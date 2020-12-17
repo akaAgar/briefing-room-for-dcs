@@ -1,12 +1,8 @@
 ![BriefingRoom logo](Media/SplashScreen.png)
 
-*Latest version:* 0.3.012.17 (December 17, 2020)
-*Targeted DCS World version:* 2.5.6.58125
-*Project page and downloads:* [github.com/akaAgar/briefing-room-for-dcs](https://github.com/akaAgar/briefing-room-for-dcs)
-*Source code repo:* [akaagar.github.io/briefing-room-for-dcs](https://akaagar.github.io/briefing-room-for-dcs/)
-*Found a bug? Have a suggestion? Post it in the issue tracker:* [github.com/akaAgar/briefing-room-for-dcs/issues](https://github.com/akaAgar/briefing-room-for-dcs/issues)
+----
 
-## What is Briefing room for DCS World?
+## What is BriefingRoom for DCS World?
 BriefingRoom for DCS World is the much more advanced successor to my own Headquarters for DCS World (HQ4DCS) application, and a massively improved version of DCS World's own fast mission generator. BriefingRoom allows you to create complete scenarios in just a few clicks. Missions generated with BriefingRoom tend to be rather "player-centric". Their purpose is not to simulate a real war theater, like Falcon 4's dynamic campaign, but to provide the player(s) with interesting objectives and challenges. This approach is a perfect fit for DCS World's limited number of units and very capable scripting engine.
 
 While BriefingRoom is designed to be easy to use and to allow the creation of missions in mere seconds, it is also heavily moddable and will give many options to power users ready to tackle with its most advanced features.
@@ -31,12 +27,12 @@ BriefingRoom is free and open source and will always remain so, but if you want 
 
 ### Additional information
 
-*Created by Ambroise Garel*
-*Released under the [GNU General Public License 3.0](https://www.gnu.org/licenses/gpl-3.0.en.html)*
-*Project website:* [akaagar.itch.io/briefing-room-for-dcs](https://akaagar.itch.io/briefing-room-for-dcs)
-*Source code repository*: [github.com/akaAgar/briefing-room-for-dcs](https://github.com/akaAgar/briefing-room-for-dcs)
-*Uses the Silk icon set* [famfamfam.com/lab/icons/silk/](https://famfamfam.com/lab/icons/silk/)
-*Requires the .NET Framework 4.5* (already installed on modern Windows systems) [microsoft.com/en-us/download/details.aspx?id=30653](https://www.microsoft.com/en-us/download/details.aspx?id=30653)
+* *Created by Ambroise Garel*
+* *Released under the [GNU General Public License 3.0](https://www.gnu.org/licenses/gpl-3.0.en.html)*
+* *Project website:* [akaagar.itch.io/briefing-room-for-dcs](https://akaagar.itch.io/briefing-room-for-dcs)
+* *Source code repository*: [github.com/akaAgar/briefing-room-for-dcs](https://github.com/akaAgar/briefing-room-for-dcs)
+* *Uses the Silk icon set* [famfamfam.com/lab/icons/silk/](https://famfamfam.com/lab/icons/silk/)
+* *Requires the .NET Framework 4.5* (already installed on modern Windows systems) [microsoft.com/en-us/download/details.aspx?id=30653](https://www.microsoft.com/en-us/download/details.aspx?id=30653)
 
 ## Changelog
 
