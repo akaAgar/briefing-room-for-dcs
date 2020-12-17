@@ -1,0 +1,25 @@
+﻿[Unit]
+DCSID=Hawk
+DefaultFamily=PlaneFighter
+ExtraLua=
+Flags=
+
+[Aircraft]
+; TODO
+A2ARating.AirToAir=
+A2ARating.Default=
+
+CarrierTypes=
+
+CruiseAltitude=Average
+CruiseSpeed=Average
+
+PlayerControllable=True
+
+Radio.Modulation=AM
+Radio.Frequency=225.0
+
+Payload.Common=chaff=0,flare=0,fuel=1272
+
+; TODO: payloads, cruise speed, cruise alt
+

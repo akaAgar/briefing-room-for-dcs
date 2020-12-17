@@ -1,0 +1,4 @@
+﻿[Unit]
+ID=Factory
+DefaultFamily=StaticStructureProduction
+InService=1940-2010

@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang='en'>
+ <head>
+  <meta charset='utf-8'>
+  <title>$MISSIONNAME$</title>
+  <style>
+    html,body,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,html, body, div, section, article, aside, header, hgroup, footer, nav, h1, h2, h3, h4, h5, h6, p, blockquote, address, time, span,figure, canvas, video, th, td, tr { margin:0;padding:0;border:0;vertical-align:baseline;font:inherit; }
+    body { font-family: 'Courier New', Courier, monospace; background-color: white; padding: 2.0em; font-size: 1.0em; }
+    .container { margin-left: auto; margin-right: auto; width: 95%; max-width: 1024px; }
+    h1 { font-variant: small-caps; font-size: 1.75rem; font-weight: bold; }
+    h2 { margin-bottom: 1.0em; font-size: 0.8rem; }
+    h3 { margin-bottom: 0; padding-bottom: 0; font-variant: small-caps; font-size: 1.35rem; font-weight: bold; }
+    p { margin-top: 0; margin-bottom: 1.0em; }
+    ol, ul { margin-left: 3.0em; margin-bottom: 1.0em; }
+    ol { margin-top: 0; list-style: decimal-leading-zero; }
+    ul { margin-top: 0; list-style: disc; }
+    img { max-width: 90%; border: 0; }
+    strong { font-weight: bold; font-variant: small-caps; }
+    table { border-collapse: collapse; font-size: 90%; font-variant: small-caps; width: 100%; max-width: 768px; margin-bottom: 1.0em; }
+    table, th, td { border: 1px solid black; padding: 0.2em 1.0em 0.2em 1.0em; text-align: left; }
+    .playerFlightGroupRow { font-weight: bold; }
+    th { background-color: lightgray; font-weight: bold; }
+  </style>
+ </head>
+ <body>
+   <div class="container">
+  <h1>$MISSIONNAME$</h1>
+  <p><strong>$MISSIONTYPE$</strong></p>
+  
+  <p>
+    <strong>Date:</strong> $LONGDATE$<br />
+    <strong>Time:</strong> $LONGTIME$<br />
+    <strong>Weather:</strong> $WEATHER$<br />
+    <strong>Wind:</strong> $WIND$ ($WINDSPEED$ m/s)
+  </p>
+  
+  <p>
+    <strong>Allies:</strong> $PLAYERCOALITION$<br />
+    <strong>Enemies:</strong> $ENEMYCOALITION$<br />
+  </p>
+  
+  <h3>Description</h3>
+  <p>$DESCRIPTION$</p>
+  
+  <h3>Tasks</h3>
+  <ul>$TASKS$</ul>
+  
+  <h3>Remarks</h3>
+  <ul>$REMARKS$</ul>
+
+  <h3>Flight groups</h3>
+  <table>
+    <tr><th>Callsign</th><th>Aircraft</th><th>Task</th><th>Radio</th><th>Remarks</th></tr>
+$FLIGHTGROUPS$
+  </table>
+
+  <h3>Airbases</h3>
+  <table>
+    <tr><th>Name</th><th>Runways</th><th>Radio</th><th>ILS</th><th>TACAN</th></tr>
+$AIRBASES$
+  </table>
+
+ <h3>Flight plan</h3>
+ <table>
+   <tr><th>WP Name</th><th>Distance from last WP</th><th>Total distance</th></tr>
+$WAYPOINTS$
+ </table>
+</div>
+ </body>
+</html>

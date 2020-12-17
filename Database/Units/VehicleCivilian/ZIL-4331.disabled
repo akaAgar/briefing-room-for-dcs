@@ -1,0 +1,5 @@
+﻿[Unit]
+DCSID=ZIL-4331
+DefaultFamily=VehicleCivilian
+ExtraLua=
+Flags=
