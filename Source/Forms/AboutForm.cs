@@ -51,7 +51,7 @@ namespace BriefingRoom4DCSWorld.Forms
             infoText += "Uses the Silk icon set (famfamfam.com/lab/icons/silk/)\r\n";
             infoText += "\r\n";
             infoText += "Released under the GNU General Public License 3.0 \r\n";
-            infoText += "Project website: akaagar.itch.io/briefing-room-for-dcs\r\n";
+            infoText += "Project website: akaagar.github.io/briefing-room-for-dcs/\r\n";
             infoText += "Source code repository: github.com/akaAgar/briefing-room-for-dcs";
             InfoLabel.Text = infoText;
         }
