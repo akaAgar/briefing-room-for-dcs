@@ -3,13 +3,13 @@
 ----
 
 ## What is BriefingRoom for DCS World?
-BriefingRoom for DCS World is the much more advanced successor to my own Headquarters for DCS World (HQ4DCS) application, and a massively improved version of DCS World's own fast mission generator. BriefingRoom allows you to create complete scenarios in just a few clicks. Missions generated with BriefingRoom tend to be rather "player-centric". Their purpose is not to simulate a real war theater, like Falcon 4's dynamic campaign, but to provide the player(s) with interesting objectives and challenges. This approach is a perfect fit for DCS World's limited number of units and very capable scripting engine.
+BriefingRoom for DCS World is a massively improved version of DCS World's own fast mission generator. BriefingRoom allows you to create complete scenarios in just a few clicks. Missions generated with BriefingRoom tend to be rather "player-centric". Their purpose is not to simulate a real war theater, like Falcon 4's dynamic campaign, but to provide the player(s) with interesting objectives and challenges. This approach is a perfect fit for DCS World's limited number of units and very capable scripting engine.
 
 While BriefingRoom is designed to be easy to use and to allow the creation of missions in mere seconds, it is also heavily moddable and will give many options to power users ready to tackle with its most advanced features.
 
-**Not interested in the source code? Get the latest version from the project website and begin creating missions right now: [akaagar.github.io/briefing-room-for-dcs](https://akaagar.github.io/briefing-room-for-dcs/)**
+**Not interested in the source code? Get the latest version from the project website and begin creating missions right now: [akaagar.itch.io/briefing-room-for-dcs](https://akaagar.itch.io/briefing-room-for-dcs/)**
 
-BriefingRoom is free and open source and will always remain so, but if you want to support its development, you can make a one-time or monthly donation
+BriefingRoom is free and open source and will always remain so, but if you want to support its development, you can make a one-time or monthly donation.
 
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VTLATJ7URMMWY)
 
@@ -31,7 +31,7 @@ BriefingRoom is free and open source and will always remain so, but if you want 
 
 * *Created by Ambroise Garel*
 * *Released under the [GNU General Public License 3.0](https://www.gnu.org/licenses/gpl-3.0.en.html)*
-* *Project website:* [akaagar.github.io/briefing-room-for-dcs/](https://akaagar.github.io/briefing-room-for-dcs/)
+* *Project website:* [akaagar.itch.io/briefing-room-for-dcs](https://akaagar.itch.io/briefing-room-for-dcs/)
 * *Source code repository*: [github.com/akaAgar/briefing-room-for-dcs](https://github.com/akaAgar/briefing-room-for-dcs)
 * *Uses the Silk icon set* [famfamfam.com/lab/icons/silk/](https://famfamfam.com/lab/icons/silk/)
 * *Requires the .NET Framework 4.5* (already installed on modern Windows systems) [microsoft.com/en-us/download/details.aspx?id=30653](https://www.microsoft.com/en-us/download/details.aspx?id=30653)
