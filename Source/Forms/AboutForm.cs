@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace BriefingRoom4DCSWorld.Forms
@@ -48,12 +49,12 @@ namespace BriefingRoom4DCSWorld.Forms
             infoText += $"Targeted DCS World version: {BriefingRoom.TARGETED_DCS_WORLD_VERSION}\r\n";
             infoText += "\r\n";
             infoText += "Created by Ambroise Garel\r\n";
-            infoText += "Uses the Silk icon set (famfamfam.com/lab/icons/silk/)\r\n";
+            infoText += "Uses the Silk icon set (http://famfamfam.com/lab/icons/silk/)\r\n";
             infoText += "\r\n";
             infoText += "Released under the GNU General Public License 3.0 \r\n";
-            infoText += "Project website: akaagar.github.io/briefing-room-for-dcs/\r\n";
-            infoText += "Source code repository: github.com/akaAgar/briefing-room-for-dcs";
-            InfoLabel.Text = infoText;
+            infoText += $"Project website: {BriefingRoom.WEBSITE_URL}\r\n";
+            infoText += $"Source code repository: {BriefingRoom.REPO_URL}";
+            InfoRichTextBox.Text = infoText;
         }
 
         /// <summary>
@@ -64,6 +65,12 @@ namespace BriefingRoom4DCSWorld.Forms
         private void CloseButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void IntoRichTextBox_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            Process.Start(e.LinkText);
+            // {BriefingRoom.WEBSITE_URL}
         }
     }
 }

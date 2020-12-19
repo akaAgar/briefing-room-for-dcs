@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.AboutTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.InfoRichTextBox = new System.Windows.Forms.RichTextBox();
             this.TitleLabel = new System.Windows.Forms.Label();
-            this.InfoLabel = new System.Windows.Forms.Label();
             this.CloseButton = new System.Windows.Forms.Button();
             this.AboutTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
@@ -40,8 +40,8 @@
             this.AboutTableLayoutPanel.ColumnCount = 2;
             this.AboutTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.AboutTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 164F));
+            this.AboutTableLayoutPanel.Controls.Add(this.InfoRichTextBox, 0, 1);
             this.AboutTableLayoutPanel.Controls.Add(this.TitleLabel, 0, 0);
-            this.AboutTableLayoutPanel.Controls.Add(this.InfoLabel, 0, 1);
             this.AboutTableLayoutPanel.Controls.Add(this.CloseButton, 1, 2);
             this.AboutTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AboutTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
@@ -52,6 +52,21 @@
             this.AboutTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.AboutTableLayoutPanel.Size = new System.Drawing.Size(496, 345);
             this.AboutTableLayoutPanel.TabIndex = 0;
+            // 
+            // InfoRichTextBox
+            // 
+            this.InfoRichTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.AboutTableLayoutPanel.SetColumnSpan(this.InfoRichTextBox, 2);
+            this.InfoRichTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.InfoRichTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InfoRichTextBox.Location = new System.Drawing.Point(9, 49);
+            this.InfoRichTextBox.Margin = new System.Windows.Forms.Padding(9);
+            this.InfoRichTextBox.Name = "InfoRichTextBox";
+            this.InfoRichTextBox.ReadOnly = true;
+            this.InfoRichTextBox.Size = new System.Drawing.Size(478, 247);
+            this.InfoRichTextBox.TabIndex = 4;
+            this.InfoRichTextBox.Text = "";
+            this.InfoRichTextBox.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.IntoRichTextBox_LinkClicked);
             // 
             // TitleLabel
             // 
@@ -66,18 +81,6 @@
             this.TitleLabel.TabIndex = 0;
             this.TitleLabel.Text = "BriefingRoom for DCS World";
             this.TitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // InfoLabel
-            // 
-            this.InfoLabel.AutoSize = true;
-            this.AboutTableLayoutPanel.SetColumnSpan(this.InfoLabel, 2);
-            this.InfoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.InfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InfoLabel.Location = new System.Drawing.Point(3, 43);
-            this.InfoLabel.Margin = new System.Windows.Forms.Padding(3);
-            this.InfoLabel.Name = "InfoLabel";
-            this.InfoLabel.Size = new System.Drawing.Size(490, 259);
-            this.InfoLabel.TabIndex = 1;
             // 
             // CloseButton
             // 
@@ -113,7 +116,7 @@
 
         private System.Windows.Forms.TableLayoutPanel AboutTableLayoutPanel;
         private System.Windows.Forms.Label TitleLabel;
-        private System.Windows.Forms.Label InfoLabel;
         private System.Windows.Forms.Button CloseButton;
+        private System.Windows.Forms.RichTextBox InfoRichTextBox;
     }
 }

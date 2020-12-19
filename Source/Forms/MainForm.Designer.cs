@@ -56,6 +56,8 @@
             this.TemplatePropertyGrid = new System.Windows.Forms.PropertyGrid();
             this.BriefingPanel = new System.Windows.Forms.Panel();
             this.BriefingWebBrowser = new System.Windows.Forms.WebBrowser();
+            this.T_s2 = new System.Windows.Forms.ToolStripSeparator();
+            this.T_About = new System.Windows.Forms.ToolStripButton();
             this.MenuStripMain.SuspendLayout();
             this.ToolStripMain.SuspendLayout();
             this.BottomStatusStrip.SuspendLayout();
@@ -178,7 +180,9 @@
             this.T_Mission_Generate,
             this.T_Mission_Export,
             this.T_Mission_ExportBriefing,
-            this.T_Debug_Export});
+            this.T_Debug_Export,
+            this.T_s2,
+            this.T_About});
             this.ToolStripMain.Location = new System.Drawing.Point(0, 24);
             this.ToolStripMain.Name = "ToolStripMain";
             this.ToolStripMain.Size = new System.Drawing.Size(784, 25);
@@ -311,7 +315,7 @@
             this.BriefingPanel.Controls.Add(this.BriefingWebBrowser);
             this.BriefingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BriefingPanel.Location = new System.Drawing.Point(0, 0);
-            this.BriefingPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BriefingPanel.Margin = new System.Windows.Forms.Padding(2);
             this.BriefingPanel.Name = "BriefingPanel";
             this.BriefingPanel.Size = new System.Drawing.Size(454, 490);
             this.BriefingPanel.TabIndex = 2;
@@ -324,6 +328,21 @@
             this.BriefingWebBrowser.Name = "BriefingWebBrowser";
             this.BriefingWebBrowser.Size = new System.Drawing.Size(450, 486);
             this.BriefingWebBrowser.TabIndex = 0;
+            // 
+            // T_s2
+            // 
+            this.T_s2.Name = "T_s2";
+            this.T_s2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // T_About
+            // 
+            this.T_About.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.T_About.Image = ((System.Drawing.Image)(resources.GetObject("T_About.Image")));
+            this.T_About.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.T_About.Name = "T_About";
+            this.T_About.Size = new System.Drawing.Size(23, 22);
+            this.T_About.Text = "toolStripButton1";
+            this.T_About.Click += new System.EventHandler(this.MenuClick);
             // 
             // MainForm
             // 
@@ -386,5 +405,7 @@
         private System.Windows.Forms.Panel BriefingPanel;
         private System.Windows.Forms.WebBrowser BriefingWebBrowser;
         private System.Windows.Forms.ToolStripButton T_Debug_Export;
+        private System.Windows.Forms.ToolStripSeparator T_s2;
+        private System.Windows.Forms.ToolStripButton T_About;
     }
 }

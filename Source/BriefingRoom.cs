@@ -39,9 +39,19 @@ namespace BriefingRoom4DCSWorld
         public static string BRIEFINGROOM_VERSION { get; } = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
         /// <summary>
+        /// Absolute URL to the project source code repository.
+        /// </summary>
+        public const string REPO_URL = "https://github.com/akaAgar/briefing-room-for-dcs";
+
+        /// <summary>
         /// Targeted DCS world version (just for info, doesn't mean that the program will not work with another version)
         /// </summary>
         public static string TARGETED_DCS_WORLD_VERSION { get; private set; }
+
+        /// <summary>
+        /// Absolute URL to the project website.
+        /// </summary>
+        public const string WEBSITE_URL = "https://akaagar.itch.io/briefing-room-for-dcs";
 
         /// <summary>
         /// Main application entry point.
@@ -53,7 +63,7 @@ namespace BriefingRoom4DCSWorld
             Console.Title = "BriefingRoom output console";
             DebugLog.Instance.CreateLogFileWriter();
 
-            using (INIFile ini = new INIFile($"{BRPaths.ROOT}Common.ini"))
+            using (INIFile ini = new INIFile($"{BRPaths.DATABASE}Common.ini"))
                 TARGETED_DCS_WORLD_VERSION = ini.GetValue("Versions", "DCSVersion", "2.5");
 
             if (args.Length > 0) // Command-line arguments are present, use the command-line tool

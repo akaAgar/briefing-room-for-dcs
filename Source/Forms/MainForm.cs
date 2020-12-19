@@ -73,6 +73,7 @@ namespace BriefingRoom4DCSWorld.Forms
             M_Mission_Export.Image = GUITools.GetImageFromResource("Icons.ExportToMiz.png");
             M_Mission_ExportBriefing.Image = GUITools.GetImageFromResource("Icons.ExportBriefing.png");
 
+            T_About.Image = GUITools.GetImageFromResource("Icons.Info.png");
             T_File_New.Image = M_File_New.Image;
             T_File_Open.Image = M_File_Open.Image;
             T_File_SaveAs.Image = M_File_SaveAs.Image;
@@ -134,6 +135,7 @@ namespace BriefingRoom4DCSWorld.Forms
             switch (senderName)
             {
                 case "M_About":
+                case "T_About":
                     using (AboutForm form = new AboutForm()) form.ShowDialog();
                     return;
                 case "M_File_New":

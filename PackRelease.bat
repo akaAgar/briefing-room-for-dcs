@@ -6,9 +6,9 @@ rem - Requires the 7z command-line tool to be in the PATH to work.        -
 rem -----------------------------------------------------------------------
 
 echo DON'T FORGET TO:
-echo 1. Clean build a release version of BriefingRoom.exe
-echo 2. Check the assembly version
-echo 3. Update README.md and website with latest assembly version
+echo 1. Check the assembly version
+echo 2. Clean build a release version of BriefingRoom.exe
+echo 3. Update README.md and website with latest assembly version and changelog
 echo 4. Export README and manuals markdown files to HTML (with Github theme)
 echo.
 pause

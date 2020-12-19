@@ -38,6 +38,8 @@ BriefingRoom is free and open source and will always remain so, but if you want 
 
 ## Changelog
 
+* Version 0.3.012.19 (December 19, 2020)
+  * Added Persian Gulf theater
 * Version 0.3.012.17 (December 17, 2020)
   * First public release
 
@@ -46,8 +48,6 @@ BriefingRoom is free and open source and will always remain so, but if you want 
 ### Coming soon
 
 * Additional coalitions: USA (1940s-2010s), Russia (1940s-2010s), Germany (1940s)
-* Additional theater: Persian gulf
-* Additional theater: Syria (when the map itself will be completed and all airfields added)
 * Additional mission types: AFAC, BDA, Bombing, CAS, CSAR, Deep strike, Escort, HVAAE, OCA, Recon...
 * Additional "ambiance" radio messages to make the world more living
 * Additional unit types
@@ -57,7 +57,7 @@ BriefingRoom is free and open source and will always remain so, but if you want 
 ### Coming later
 * Additional coalitions: many more
 * Additional gameplay options in the templates
-* All other DCS theaters
+* All DCS World theaters
 * Carrier groups for takeoff/landing
 * PvP missions
 * Unit liveries by country
