@@ -254,6 +254,11 @@ function dcsExtensions.isUnitAlive(name)
   return true
 end
 
+-- Returns the distance between two vec2s
+function dcsExtensions.getDistance(vec2a, vec2b)
+  return math.sqrt(math.pow(vec2a.x - vec2b.x) + math.pow(vec2a.y - vec2b.y))
+end
+
 -- Returns the group with ID id, or nil if no group with this ID is found
 function dcsExtensions.getGroupByID(id)
   for i=1,2 do
