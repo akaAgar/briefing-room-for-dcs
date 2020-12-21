@@ -54,7 +54,8 @@ namespace BriefingRoom4DCSWorld.Forms
             Text = $"BriefingRoom {BriefingRoom.BRIEFINGROOM_VERSION} for DCS World {BriefingRoom.TARGETED_DCS_WORLD_VERSION}";
 
 #if DEBUG
-            T_Debug_Export.Visible = true;
+            Text += " [DEBUG BUILD]";
+            M_Mission_DebugExport.Visible = true;
 #endif
 
             Icon = GUITools.GetIconFromResource("Icon.ico");
@@ -72,24 +73,21 @@ namespace BriefingRoom4DCSWorld.Forms
             M_Mission_Generate.Image = GUITools.GetImageFromResource("Icons.Update.png");
             M_Mission_Export.Image = GUITools.GetImageFromResource("Icons.ExportToMiz.png");
             M_Mission_ExportBriefing.Image = GUITools.GetImageFromResource("Icons.ExportBriefing.png");
+            M_Mission_ExportBriefingHTML.Image = GUITools.GetImageFromResource("Icons.FileHTML.png");
+            M_Mission_DebugExport.Image = GUITools.GetImageFromResource("Icons.DebugExport.png");
 
-            T_About.Image = GUITools.GetImageFromResource("Icons.Info.png");
             T_File_New.Image = M_File_New.Image;
             T_File_Open.Image = M_File_Open.Image;
             T_File_SaveAs.Image = M_File_SaveAs.Image;
             T_Mission_Generate.Image = M_Mission_Generate.Image;
             T_Mission_Export.Image = M_Mission_Export.Image;
             T_Mission_ExportBriefing.Image = M_Mission_ExportBriefing.Image;
-            T_Debug_Export.Image = GUITools.GetImageFromResource("Icons.DebugExport.png");
+            T_Mission_ExportBriefingHTML.Image = M_Mission_ExportBriefingHTML.Image;
         }
 
         private void GenerateMission()
         {
-            M_Mission_Export.Enabled = false;
-            M_Mission_ExportBriefing.Enabled = false;
-            T_Mission_Export.Enabled = false;
-            T_Mission_ExportBriefing.Enabled = false;
-            T_Debug_Export.Enabled = false;
+            ToggleMissionButtonsEnabled(false);
 
             Mission = Generator.Generate(Template);
 
@@ -101,11 +99,7 @@ namespace BriefingRoom4DCSWorld.Forms
                 return;
             }
 
-            M_Mission_Export.Enabled = true;
-            M_Mission_ExportBriefing.Enabled = true;
-            T_Mission_Export.Enabled = true;
-            T_Mission_ExportBriefing.Enabled = true;
-            T_Debug_Export.Enabled = true;
+            ToggleMissionButtonsEnabled(true);
 
             if (DebugLog.Instance.WarningCount > 0)
             {
@@ -119,6 +113,16 @@ namespace BriefingRoom4DCSWorld.Forms
             }
 
             UpdateHTMLBriefing(Mission.BriefingHTML);
+        }
+
+        private void ToggleMissionButtonsEnabled(bool enabled)
+        {
+            M_Mission_Export.Enabled = enabled;
+            M_Mission_ExportBriefing.Enabled = enabled;
+            M_Mission_ExportBriefingHTML.Enabled = enabled;
+            T_Mission_Export.Enabled = enabled;
+            T_Mission_ExportBriefing.Enabled = enabled;
+            M_Mission_DebugExport.Enabled = enabled;
         }
 
         private void UpdateHTMLBriefing(string html)
@@ -189,8 +193,8 @@ namespace BriefingRoom4DCSWorld.Forms
                         }
                     }
                     return;
-                case "M_Mission_ExportBriefing":
-                case "T_Mission_ExportBriefing":
+                case "M_Mission_ExportBriefingHTML":
+                case "T_Mission_ExportBriefingHTML":
                     if (Mission == null) return;
                     using (SaveFileDialog sfd = new SaveFileDialog())
                     {
@@ -206,7 +210,7 @@ namespace BriefingRoom4DCSWorld.Forms
                     GenerateMission();
                     return;
 #if DEBUG
-                case "T_Debug_Export":
+                case "M_Mission_DebugExport":
                     if (Mission == null) return; // No mission to export
                     Toolbox.CreateDirectoryIfMissing(BRPaths.DEBUGOUTPUT);
                     using (MizFile miz = Mission.ExportToMiz())
