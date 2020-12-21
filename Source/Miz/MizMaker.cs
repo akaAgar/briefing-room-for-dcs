@@ -92,8 +92,7 @@ namespace BriefingRoom4DCSWorld.Miz
             using (MizMakerMediaImages jpgMedia = new MizMakerMediaImages())
                 jpgMedia.AddMediaFiles(miz, mission);
 
-            DebugLog.Instance.WriteLine("MIZ file created!");
-            DebugLog.Instance.WriteLine($"Completed miz file export in {(DateTime.Now - exportStartTime).TotalSeconds.ToString(NumberFormatInfo.InvariantInfo)} seconds.");
+            DebugLog.Instance.WriteLine($"Export to .miz file completed in {(DateTime.Now - exportStartTime).TotalSeconds.ToString("F3", NumberFormatInfo.InvariantInfo)} second(s).");
 
             return miz;
         }

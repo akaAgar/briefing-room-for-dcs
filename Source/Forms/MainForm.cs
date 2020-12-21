@@ -90,28 +90,15 @@ namespace BriefingRoom4DCSWorld.Forms
             ToggleMissionButtonsEnabled(false);
 
             Mission = Generator.Generate(Template);
+            PrintStatusLabelOutput("Mission generation");
 
             if (Mission == null) // Something went wrong during the mission generation
             {
-                StatusLabel.Text = DebugLog.Instance.GetErrors().Last();
                 UpdateHTMLBriefing($"<p><strong>Mission generation failed</strong></p><p>{StatusLabel.Text}</p>");
-                StatusLabel.Image = IMAGE_ERROR;
                 return;
             }
 
             ToggleMissionButtonsEnabled(true);
-
-            if (DebugLog.Instance.WarningCount > 0)
-            {
-                StatusLabel.Text = $"Mission generated with {DebugLog.Instance.WarningCount} warning(s), please read generation log for more information.";
-                StatusLabel.Image = IMAGE_WARNING;
-            }
-            else
-            {
-                StatusLabel.Text = DebugLog.Instance.LastMessage;
-                StatusLabel.Image = IMAGE_INFO;
-            }
-
             UpdateHTMLBriefing(Mission.BriefingHTML);
         }
 
@@ -187,10 +174,7 @@ namespace BriefingRoom4DCSWorld.Forms
                         sfd.RestoreDirectory = true;
                         sfd.InitialDirectory = Toolbox.GetDCSMissionPath();
                         if (sfd.ShowDialog() == DialogResult.OK)
-                        {
-                            using (MizFile miz = Mission.ExportToMiz())
-                                miz.SaveToFile(sfd.FileName);
-                        }
+                            ExportToMiz(sfd.FileName);
                     }
                     return;
                 case "M_Mission_ExportBriefingHTML":
@@ -220,6 +204,40 @@ namespace BriefingRoom4DCSWorld.Forms
             }
         }
 
+        private void ExportToMiz(string filePath)
+        {
+            if (Mission == null) return; // Mission not generated, nothing to export
+
+            using (MizFile miz = Mission.ExportToMiz())
+            {
+                PrintStatusLabelOutput("Miz export");
+
+                if (miz == null) // Something went wrong during the .miz export
+                    return;
+
+                miz.SaveToFile(filePath);
+            }
+        }
+
+        private void PrintStatusLabelOutput(string operationDescription)
+        {
+            if (DebugLog.Instance.ErrorCount > 0)
+            {
+                StatusLabel.Text = $"{operationDescription} failed with {DebugLog.Instance.ErrorCount} error(s). Click this message for more information.";
+                StatusLabel.Image = IMAGE_ERROR;
+            }
+            else if (DebugLog.Instance.WarningCount > 0)
+            {
+                StatusLabel.Text = $"{operationDescription} completed with {DebugLog.Instance.WarningCount} warning(s). Click this message for more information.";
+                StatusLabel.Image = IMAGE_WARNING;
+            }
+            else
+            {
+                StatusLabel.Text = DebugLog.Instance.LastMessage;
+                StatusLabel.Image = IMAGE_INFO;
+            }
+        }
+
         private void MainFormFormClosing(object sender, FormClosingEventArgs e)
         {
 #if !DEBUG
@@ -233,6 +251,33 @@ namespace BriefingRoom4DCSWorld.Forms
         private void TemplatePropertyGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
             GenerateMission();
+        }
+
+        private void StatusLabel_Click(object sender, EventArgs e)
+        {
+            string text, title;
+            MessageBoxIcon icon;
+
+            if (DebugLog.Instance.ErrorCount > 0)
+            {
+                text = string.Join("\r\n", (from s in DebugLog.Instance.GetErrors() select $"- {s}"));
+                title = $"{DebugLog.Instance.ErrorCount} errors(s)";
+                icon = MessageBoxIcon.Error;
+            }
+            else if (DebugLog.Instance.WarningCount > 0)
+            {
+                text = string.Join("\r\n", (from s in DebugLog.Instance.GetWarnings() select $"- {s}"));
+                title = $"{DebugLog.Instance.WarningCount} warning(s)";
+                icon = MessageBoxIcon.Warning;
+            }
+            else
+            {
+                text = DebugLog.Instance.LastMessage;
+                title = "No problem found";
+                icon = MessageBoxIcon.Information;
+            }
+
+            MessageBox.Show(text, title, MessageBoxButtons.OK, icon);
         }
     }
 }

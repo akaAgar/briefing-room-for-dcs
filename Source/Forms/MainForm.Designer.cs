@@ -40,33 +40,33 @@
             this.M_Mission_Generate = new System.Windows.Forms.ToolStripMenuItem();
             this.M_Mission_Export = new System.Windows.Forms.ToolStripMenuItem();
             this.M_Mission_ExportBriefing = new System.Windows.Forms.ToolStripMenuItem();
+            this.M_Mission_ExportBriefingHTML = new System.Windows.Forms.ToolStripMenuItem();
+            this.M_Mission_DebugExport = new System.Windows.Forms.ToolStripMenuItem();
             this.M_About = new System.Windows.Forms.ToolStripMenuItem();
             this.BottomStatusStrip = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.MainSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.BriefingToolStrip = new System.Windows.Forms.ToolStrip();
-            this.BriefingPanel = new System.Windows.Forms.Panel();
-            this.BriefingWebBrowser = new System.Windows.Forms.WebBrowser();
-            this.T_Mission_Export = new System.Windows.Forms.ToolStripButton();
-            this.T_Mission_Generate = new System.Windows.Forms.ToolStripButton();
-            this.T_Mission_ExportBriefing = new System.Windows.Forms.ToolStripDropDownButton();
-            this.T_Mission_ExportBriefingHTML = new System.Windows.Forms.ToolStripMenuItem();
-            this.M_Mission_ExportBriefingHTML = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.TemplatePropertyGrid = new System.Windows.Forms.PropertyGrid();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.T_File_New = new System.Windows.Forms.ToolStripButton();
             this.T_File_Open = new System.Windows.Forms.ToolStripButton();
             this.T_File_SaveAs = new System.Windows.Forms.ToolStripButton();
-            this.M_Mission_DebugExport = new System.Windows.Forms.ToolStripMenuItem();
+            this.BriefingPanel = new System.Windows.Forms.Panel();
+            this.BriefingWebBrowser = new System.Windows.Forms.WebBrowser();
+            this.BriefingToolStrip = new System.Windows.Forms.ToolStrip();
+            this.T_Mission_Generate = new System.Windows.Forms.ToolStripButton();
+            this.T_Mission_Export = new System.Windows.Forms.ToolStripButton();
+            this.T_Mission_ExportBriefing = new System.Windows.Forms.ToolStripDropDownButton();
+            this.T_Mission_ExportBriefingHTML = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStripMain.SuspendLayout();
             this.BottomStatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
             this.MainSplitContainer.Panel1.SuspendLayout();
             this.MainSplitContainer.Panel2.SuspendLayout();
             this.MainSplitContainer.SuspendLayout();
-            this.BriefingToolStrip.SuspendLayout();
-            this.BriefingPanel.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.BriefingPanel.SuspendLayout();
+            this.BriefingToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // MenuStripMain
@@ -165,6 +165,22 @@
             this.M_Mission_ExportBriefing.Size = new System.Drawing.Size(206, 22);
             this.M_Mission_ExportBriefing.Text = "Export &briefing...";
             // 
+            // M_Mission_ExportBriefingHTML
+            // 
+            this.M_Mission_ExportBriefingHTML.Name = "M_Mission_ExportBriefingHTML";
+            this.M_Mission_ExportBriefingHTML.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
+            this.M_Mission_ExportBriefingHTML.Size = new System.Drawing.Size(162, 22);
+            this.M_Mission_ExportBriefingHTML.Text = "To &HTML";
+            this.M_Mission_ExportBriefingHTML.Click += new System.EventHandler(this.MenuClick);
+            // 
+            // M_Mission_DebugExport
+            // 
+            this.M_Mission_DebugExport.Name = "M_Mission_DebugExport";
+            this.M_Mission_DebugExport.Size = new System.Drawing.Size(206, 22);
+            this.M_Mission_DebugExport.Text = "Debug export";
+            this.M_Mission_DebugExport.Visible = false;
+            this.M_Mission_DebugExport.Click += new System.EventHandler(this.MenuClick);
+            // 
             // M_About
             // 
             this.M_About.Name = "M_About";
@@ -186,6 +202,7 @@
             // 
             this.StatusLabel.Name = "StatusLabel";
             this.StatusLabel.Size = new System.Drawing.Size(0, 17);
+            this.StatusLabel.Click += new System.EventHandler(this.StatusLabel_Click);
             // 
             // MainSplitContainer
             // 
@@ -207,80 +224,16 @@
             this.MainSplitContainer.SplitterDistance = 326;
             this.MainSplitContainer.TabIndex = 4;
             // 
-            // BriefingToolStrip
+            // TemplatePropertyGrid
             // 
-            this.BriefingToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.T_Mission_Generate,
-            this.T_Mission_Export,
-            this.T_Mission_ExportBriefing});
-            this.BriefingToolStrip.Location = new System.Drawing.Point(0, 0);
-            this.BriefingToolStrip.Name = "BriefingToolStrip";
-            this.BriefingToolStrip.Size = new System.Drawing.Size(454, 25);
-            this.BriefingToolStrip.TabIndex = 0;
-            this.BriefingToolStrip.Text = "toolStrip1";
-            // 
-            // BriefingPanel
-            // 
-            this.BriefingPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.BriefingPanel.Controls.Add(this.BriefingWebBrowser);
-            this.BriefingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BriefingPanel.Location = new System.Drawing.Point(0, 25);
-            this.BriefingPanel.Margin = new System.Windows.Forms.Padding(2);
-            this.BriefingPanel.Name = "BriefingPanel";
-            this.BriefingPanel.Size = new System.Drawing.Size(454, 490);
-            this.BriefingPanel.TabIndex = 3;
-            // 
-            // BriefingWebBrowser
-            // 
-            this.BriefingWebBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BriefingWebBrowser.Location = new System.Drawing.Point(0, 0);
-            this.BriefingWebBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.BriefingWebBrowser.Name = "BriefingWebBrowser";
-            this.BriefingWebBrowser.Size = new System.Drawing.Size(450, 486);
-            this.BriefingWebBrowser.TabIndex = 0;
-            // 
-            // T_Mission_Export
-            // 
-            this.T_Mission_Export.Image = ((System.Drawing.Image)(resources.GetObject("T_Mission_Export.Image")));
-            this.T_Mission_Export.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.T_Mission_Export.Name = "T_Mission_Export";
-            this.T_Mission_Export.Size = new System.Drawing.Size(119, 22);
-            this.T_Mission_Export.Text = "Export to .miz file";
-            this.T_Mission_Export.Click += new System.EventHandler(this.MenuClick);
-            // 
-            // T_Mission_Generate
-            // 
-            this.T_Mission_Generate.Image = ((System.Drawing.Image)(resources.GetObject("T_Mission_Generate.Image")));
-            this.T_Mission_Generate.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.T_Mission_Generate.Name = "T_Mission_Generate";
-            this.T_Mission_Generate.Size = new System.Drawing.Size(162, 22);
-            this.T_Mission_Generate.Text = "Generate another mission";
-            this.T_Mission_Generate.Click += new System.EventHandler(this.MenuClick);
-            // 
-            // T_Mission_ExportBriefing
-            // 
-            this.T_Mission_ExportBriefing.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.T_Mission_ExportBriefingHTML});
-            this.T_Mission_ExportBriefing.Image = ((System.Drawing.Image)(resources.GetObject("T_Mission_ExportBriefing.Image")));
-            this.T_Mission_ExportBriefing.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.T_Mission_ExportBriefing.Name = "T_Mission_ExportBriefing";
-            this.T_Mission_ExportBriefing.Size = new System.Drawing.Size(123, 22);
-            this.T_Mission_ExportBriefing.Text = "Export briefing...";
-            // 
-            // T_Mission_ExportBriefingHTML
-            // 
-            this.T_Mission_ExportBriefingHTML.Name = "T_Mission_ExportBriefingHTML";
-            this.T_Mission_ExportBriefingHTML.Size = new System.Drawing.Size(201, 22);
-            this.T_Mission_ExportBriefingHTML.Text = "Export briefing to HTML";
-            this.T_Mission_ExportBriefingHTML.Click += new System.EventHandler(this.MenuClick);
-            // 
-            // M_Mission_ExportBriefingHTML
-            // 
-            this.M_Mission_ExportBriefingHTML.Name = "M_Mission_ExportBriefingHTML";
-            this.M_Mission_ExportBriefingHTML.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
-            this.M_Mission_ExportBriefingHTML.Size = new System.Drawing.Size(180, 22);
-            this.M_Mission_ExportBriefingHTML.Text = "To &HTML";
-            this.M_Mission_ExportBriefingHTML.Click += new System.EventHandler(this.MenuClick);
+            this.TemplatePropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TemplatePropertyGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TemplatePropertyGrid.Location = new System.Drawing.Point(0, 25);
+            this.TemplatePropertyGrid.Name = "TemplatePropertyGrid";
+            this.TemplatePropertyGrid.Size = new System.Drawing.Size(326, 490);
+            this.TemplatePropertyGrid.TabIndex = 1;
+            this.TemplatePropertyGrid.ToolbarVisible = false;
+            this.TemplatePropertyGrid.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.TemplatePropertyGrid_PropertyValueChanged);
             // 
             // toolStrip1
             // 
@@ -293,17 +246,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(326, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // TemplatePropertyGrid
-            // 
-            this.TemplatePropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TemplatePropertyGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TemplatePropertyGrid.Location = new System.Drawing.Point(0, 25);
-            this.TemplatePropertyGrid.Name = "TemplatePropertyGrid";
-            this.TemplatePropertyGrid.Size = new System.Drawing.Size(326, 490);
-            this.TemplatePropertyGrid.TabIndex = 1;
-            this.TemplatePropertyGrid.ToolbarVisible = false;
-            this.TemplatePropertyGrid.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.TemplatePropertyGrid_PropertyValueChanged);
             // 
             // T_File_New
             // 
@@ -329,13 +271,72 @@
             this.T_File_SaveAs.Size = new System.Drawing.Size(74, 22);
             this.T_File_SaveAs.Text = "Save as...";
             // 
-            // M_Mission_DebugExport
+            // BriefingPanel
             // 
-            this.M_Mission_DebugExport.Name = "M_Mission_DebugExport";
-            this.M_Mission_DebugExport.Size = new System.Drawing.Size(206, 22);
-            this.M_Mission_DebugExport.Text = "Debug export";
-            this.M_Mission_DebugExport.Visible = false;
-            this.M_Mission_DebugExport.Click += new System.EventHandler(this.MenuClick);
+            this.BriefingPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.BriefingPanel.Controls.Add(this.BriefingWebBrowser);
+            this.BriefingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BriefingPanel.Location = new System.Drawing.Point(0, 25);
+            this.BriefingPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.BriefingPanel.Name = "BriefingPanel";
+            this.BriefingPanel.Size = new System.Drawing.Size(454, 490);
+            this.BriefingPanel.TabIndex = 3;
+            // 
+            // BriefingWebBrowser
+            // 
+            this.BriefingWebBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BriefingWebBrowser.Location = new System.Drawing.Point(0, 0);
+            this.BriefingWebBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.BriefingWebBrowser.Name = "BriefingWebBrowser";
+            this.BriefingWebBrowser.Size = new System.Drawing.Size(450, 486);
+            this.BriefingWebBrowser.TabIndex = 0;
+            // 
+            // BriefingToolStrip
+            // 
+            this.BriefingToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.T_Mission_Generate,
+            this.T_Mission_Export,
+            this.T_Mission_ExportBriefing});
+            this.BriefingToolStrip.Location = new System.Drawing.Point(0, 0);
+            this.BriefingToolStrip.Name = "BriefingToolStrip";
+            this.BriefingToolStrip.Size = new System.Drawing.Size(454, 25);
+            this.BriefingToolStrip.TabIndex = 0;
+            this.BriefingToolStrip.Text = "toolStrip1";
+            // 
+            // T_Mission_Generate
+            // 
+            this.T_Mission_Generate.Image = ((System.Drawing.Image)(resources.GetObject("T_Mission_Generate.Image")));
+            this.T_Mission_Generate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.T_Mission_Generate.Name = "T_Mission_Generate";
+            this.T_Mission_Generate.Size = new System.Drawing.Size(162, 22);
+            this.T_Mission_Generate.Text = "Generate another mission";
+            this.T_Mission_Generate.Click += new System.EventHandler(this.MenuClick);
+            // 
+            // T_Mission_Export
+            // 
+            this.T_Mission_Export.Image = ((System.Drawing.Image)(resources.GetObject("T_Mission_Export.Image")));
+            this.T_Mission_Export.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.T_Mission_Export.Name = "T_Mission_Export";
+            this.T_Mission_Export.Size = new System.Drawing.Size(119, 22);
+            this.T_Mission_Export.Text = "Export to .miz file";
+            this.T_Mission_Export.Click += new System.EventHandler(this.MenuClick);
+            // 
+            // T_Mission_ExportBriefing
+            // 
+            this.T_Mission_ExportBriefing.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.T_Mission_ExportBriefingHTML});
+            this.T_Mission_ExportBriefing.Image = ((System.Drawing.Image)(resources.GetObject("T_Mission_ExportBriefing.Image")));
+            this.T_Mission_ExportBriefing.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.T_Mission_ExportBriefing.Name = "T_Mission_ExportBriefing";
+            this.T_Mission_ExportBriefing.Size = new System.Drawing.Size(123, 22);
+            this.T_Mission_ExportBriefing.Text = "Export briefing...";
+            // 
+            // T_Mission_ExportBriefingHTML
+            // 
+            this.T_Mission_ExportBriefingHTML.Name = "T_Mission_ExportBriefingHTML";
+            this.T_Mission_ExportBriefingHTML.Size = new System.Drawing.Size(201, 22);
+            this.T_Mission_ExportBriefingHTML.Text = "Export briefing to HTML";
+            this.T_Mission_ExportBriefingHTML.Click += new System.EventHandler(this.MenuClick);
             // 
             // MainForm
             // 
@@ -362,11 +363,11 @@
             this.MainSplitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).EndInit();
             this.MainSplitContainer.ResumeLayout(false);
-            this.BriefingToolStrip.ResumeLayout(false);
-            this.BriefingToolStrip.PerformLayout();
-            this.BriefingPanel.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.BriefingPanel.ResumeLayout(false);
+            this.BriefingToolStrip.ResumeLayout(false);
+            this.BriefingToolStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

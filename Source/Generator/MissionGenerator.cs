@@ -207,7 +207,7 @@ namespace BriefingRoom4DCSWorld.Generator
                     mission.CoreLuaScript += "briefingRoom.mission.missionType = brMissionType.VERSUS\r\n"; break;
             }
 
-            DebugLog.Instance.WriteLine($"Mission generation completed successfully in {(DateTime.Now - generationStartTime).TotalSeconds.ToString(NumberFormatInfo.InvariantInfo)} seconds.");
+            DebugLog.Instance.WriteLine($"Mission generation completed successfully in {(DateTime.Now - generationStartTime).TotalSeconds.ToString("F3", NumberFormatInfo.InvariantInfo)} second(s).");
 
             unitMaker.Dispose();
 
