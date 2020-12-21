@@ -56,7 +56,7 @@ namespace BriefingRoom4DCSWorld.DB
         /// <summary>
         /// Array of special flags for this airbase.
         /// </summary>
-        public DBEntryTheaterAirbaseFlag[] Flags { get; }
+        public DBEntryTheaterAirbaseFlag Flags { get; }
 
         /// <summary>
         /// ILS frequency (null or empty if none).
@@ -102,7 +102,7 @@ namespace BriefingRoom4DCSWorld.DB
             Coordinates = ini.GetValue<Coordinates>("Airbases", $"{airbaseKey}.Coordinates");
             DCSID = ini.GetValue<int>("Airbases", $"{airbaseKey}.DCSID");
             Elevation = ini.GetValue<double>("Airbases", $"{airbaseKey}.Elevation");
-            Flags = ini.GetValueArray<DBEntryTheaterAirbaseFlag>("Airbases", $"{airbaseKey}.Flags").Distinct().ToArray();
+            Flags = ini.GetValueArrayAsEnumFlags<DBEntryTheaterAirbaseFlag>("Airbases", $"{airbaseKey}.Flags");
             ILS = ini.GetValue<string>("Airbases", $"{airbaseKey}.ILS");
             Name = ini.GetValue<string>("Airbases", $"{airbaseKey}.Name");
             ParkingSpots = new DBEntryTheaterAirbaseParkingSpot[Math.Max(0, ini.GetValue<int>("Airbases", $"{airbaseKey}.Parking.Count"))];

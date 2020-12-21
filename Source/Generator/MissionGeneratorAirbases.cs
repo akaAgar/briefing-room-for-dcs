@@ -1,7 +1,29 @@
-﻿using BriefingRoom4DCSWorld.DB;
+﻿/*
+==========================================================================
+This file is part of Briefing Room for DCS World, a mission
+generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
+
+Briefing Room for DCS World is free software: you can redistribute it
+and/or modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation, either version 3 of
+the License, or (at your option) any later version.
+
+Briefing Room for DCS World is distributed in the hope that it will
+be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses/
+==========================================================================
+*/
+
+using BriefingRoom4DCSWorld.DB;
+using BriefingRoom4DCSWorld.Debug;
 using BriefingRoom4DCSWorld.Mission;
 using BriefingRoom4DCSWorld.Template;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BriefingRoom4DCSWorld.Generator
@@ -23,61 +45,43 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <returns>Information about the starting airbase</returns>
         public DBEntryTheaterAirbase SelectStartingAirbase(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, DBEntryObjective objectiveDB)
         {
-            DBEntryTheaterAirbase[] airbases;
+            List<DBEntryTheaterAirbase[]> airbasesList = new List<DBEntryTheaterAirbase[]>();
+
+            // Select all airbases with enough parking spots
+            int requiredParkingSpots = template.GetMissionPackageRequiredParkingSpots();
+            airbasesList.Add((from DBEntryTheaterAirbase ab in theaterDB.Airbases where ab.ParkingSpots.Length >= requiredParkingSpots select ab).ToArray());
+
+            // Select all airbases belonging to the proper coalition (unless all airbase belong to the same coalition)
+            if ((template.TheaterRegionsCoalitions == CountryCoalition.Default) || (template.TheaterRegionsCoalitions == CountryCoalition.Inverted))
+            {
+                Coalition requiredCoalition = template.TheaterRegionsCoalitions == CountryCoalition.Inverted ? mission.CoalitionEnemy : mission.CoalitionPlayer;
+                airbasesList.Add((from DBEntryTheaterAirbase ab in airbasesList.Last() where ab.Coalition == requiredCoalition select ab).ToArray());
+            }
+
+            // If mission must start near water, select all airbases near water
+            if (objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.MustStartNearWater))
+                airbasesList.Add((from DBEntryTheaterAirbase ab in airbasesList.Last() where ab.Flags.HasFlag(DBEntryTheaterAirbaseFlag.NearWater) select ab).ToArray());
 
             // If a particular airbase name has been specified and an airbase with this name exists, pick it
             if (!string.IsNullOrEmpty(template.TheaterStartingAirbase))
             {
                 string airbaseName = template.TheaterStartingAirbase.Trim();
                 if (airbaseName.Contains(",")) airbaseName = airbaseName.Substring(airbaseName.IndexOf(',')).Trim(' ', ',');
-                airbases =
-                    (from DBEntryTheaterAirbase airbase in theaterDB.Airbases
-                     where airbase.Name == airbaseName
-                     select airbase).ToArray();
+                airbasesList.Add((from DBEntryTheaterAirbase airbase in theaterDB.Airbases where airbase.Name == airbaseName select airbase).ToArray());
 
-                if (airbases.Length > 0)
-                    return airbases[0];
+                if (airbasesList.Last().Length == 0)
+                    DebugLog.Instance.WriteLine($"Airbase \"{airbaseName}\" not found or airbase doesn't have enough parking spots. Selecting a random airbase instead.", 1, DebugLogMessageErrorLevel.Warning);
             }
 
-            // Still no airbase found? Pick a random airbase from the player coalition
-            airbases =
-                    (from DBEntryTheaterAirbase ab in theaterDB.Airbases
-                     where ab.Coalition == template.CoalitionPlayer select ab).ToArray();
-
-            // Still no airbase found? Pick a random airbase belonging to any coalition
-            if (airbases.Length == 0)
-                airbases = (from DBEntryTheaterAirbase ab in theaterDB.Airbases select ab).ToArray();
-
-            // Still nothing found? We're outta luck, abort mission generation.
-            if (airbases.Length == 0)
-                throw new Exception($"Failed to find a starting airbase on theater \"{template.TheaterID}\".");
-
-            int requiredParkingSpots = template.GetMissionPackageRequiredParkingSpots();
-
-            // Player(s) must start near water, try to find an airbase located near the ocean/sea if possible
-            if (objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.MustStartNearWater))
+            // Check for valid airbases in all list, starting from the last one (with the most criteria filtered, and go back to the previous ones
+            // as long as no airbase is found.
+            for (int i = airbasesList.Count - 1; i >= 0; i--)
             {
-                DBEntryTheaterAirbase[] airbasesOnShore = 
-                    (from DBEntryTheaterAirbase ab in airbases
-                     where ab.Flags.Contains(DBEntryTheaterAirbaseFlag.NearWater) &&
-                     ab.ParkingSpots.Length >= requiredParkingSpots
-                     select ab).ToArray();
-
-                // Found (at least) one, use the list of shore airbases instead of the general airbase list
-                if (airbasesOnShore.Length > 0)
-                    airbases = airbasesOnShore;
+                if (airbasesList[i].Length > 0)
+                    return Toolbox.RandomFrom(airbasesList[i]);
             }
 
-            // Remove airbases with insufficient parking spots
-            airbases =
-                (from DBEntryTheaterAirbase ab in airbases
-                 where ab.ParkingSpots.Length >= requiredParkingSpots
-                 select ab).ToArray();
-
-            if (airbases.Length == 0)
-                throw new Exception($"No airbase found with {requiredParkingSpots} parking spots, cannot spawn all player aircraft.");
-
-            return Toolbox.RandomFrom(airbases);
+            throw new Exception($"No airbase found with {requiredParkingSpots} parking spots, cannot spawn all player aircraft.");
         }
 
         /// <summary>
