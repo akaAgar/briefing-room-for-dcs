@@ -36,28 +36,13 @@ BriefingRoom is free and open source and will always remain so, but if you want 
 * *Uses the Silk icon set* [famfamfam.com/lab/icons/silk/](https://famfamfam.com/lab/icons/silk/)
 * *Requires the .NET Framework 4.5* (already installed on modern Windows systems) [microsoft.com/en-us/download/details.aspx?id=30653](https://www.microsoft.com/en-us/download/details.aspx?id=30653)
 
+### Planned for future versions
+
+The development roadmap and a list of features planned for future versions can be found on Trello: [trello.com/b/iGsqgbTu/briefingroom-project-tracker](https://trello.com/b/iGsqgbTu/briefingroom-project-tracker)
+
 ## Changelog
 
 * Version 0.3.012.19 (December 19, 2020)
   * Added Persian Gulf theater
 * Version 0.3.012.17 (December 17, 2020)
   * First public release
-
-## Planned for future versions
-
-### Coming soon
-
-* Additional coalitions: USA (1940s-2010s), Russia (1940s-2010s), Germany (1940s)
-* Additional mission types: AFAC, BDA, Bombing, CAS, CSAR, Deep strike, Escort, HVAAE, OCA, Recon...
-* Additional "ambiance" radio messages to make the world more living
-* Additional unit types
-* Complete modding/user guide
-* Move as many hardcoded values as possible to .ini files to provide additional modding options
-
-### Coming later
-* Additional coalitions: many more
-* Additional gameplay options in the templates
-* All DCS World theaters
-* Carrier groups for takeoff/landing
-* PvP missions
-* Unit liveries by country
