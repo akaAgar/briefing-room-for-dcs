@@ -36,11 +36,6 @@ namespace BriefingRoom4DCSWorld.Generator
         private static readonly int[] EXTRA_WAYPOINT_COUNT = new int[] { 1, 1, 2, 2, 2, 2, 3 };
 
         /// <summary>
-        /// Random variation in waypoint altitude.
-        /// </summary>
-        private static readonly MinMaxD WAYPOINT_ALTITUDE_VARIATION = new MinMaxD(0.85, 1.15);
-
-        /// <summary>
         /// Constructor.
         /// </summary>
         public MissionGeneratorFlightPlan() { }
@@ -62,7 +57,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 mission.Waypoints.Add(
                     new DCSMissionWaypoint(
                         waypointCoordinates, mission.Objectives[i].Name,
-                        objectiveDB.WaypointOnGround ? 0.0 : WAYPOINT_ALTITUDE_VARIATION.GetValue(),
+                        objectiveDB.WaypointOnGround ? 0.0 : 1.0,
                         1.0));
             }
         }

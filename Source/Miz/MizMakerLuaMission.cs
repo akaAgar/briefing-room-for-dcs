@@ -146,16 +146,23 @@ namespace BriefingRoom4DCSWorld.Miz
                 LuaTools.ReplaceKey(ref waypoint, "X", mission.Waypoints[i].Coordinates.X);
                 LuaTools.ReplaceKey(ref waypoint, "Y", mission.Waypoints[i].Coordinates.Y);
 
-                if (unitBP == null)
+                double waypointAltitude, waypointSpeed;
+                if (unitBP == null) // Unit not found in the database, use default values for the unit category
                 {
-                    LuaTools.ReplaceKey(ref waypoint, "Altitude", GetAircraftCruiseAltitude(unitBP.Category, Amount.Average));
-                    LuaTools.ReplaceKey(ref waypoint, "Speed", GetAircraftCruiseSpeed(unitBP.Category, Amount.Average));
+                    waypointAltitude = GetAircraftCruiseAltitude(unitBP.Category, Amount.Average);
+                    waypointSpeed = GetAircraftCruiseSpeed(unitBP.Category, Amount.Average);
                 }
                 else
                 {
-                    LuaTools.ReplaceKey(ref waypoint, "Altitude", GetAircraftCruiseAltitude(unitBP.Category, unitBP.AircraftData.CruiseAltitude));
-                    LuaTools.ReplaceKey(ref waypoint, "Speed", GetAircraftCruiseSpeed(unitBP.Category, unitBP.AircraftData.CruiseAltitude));
+                    waypointAltitude = GetAircraftCruiseAltitude(unitBP.Category, unitBP.AircraftData.CruiseAltitude);
+                    waypointSpeed = GetAircraftCruiseSpeed(unitBP.Category, unitBP.AircraftData.CruiseAltitude);
                 }
+
+                waypointAltitude *= mission.Waypoints[i].AltitudeMultiplier;
+                waypointSpeed *= mission.Waypoints[i].SpeedMultiplier;
+
+                LuaTools.ReplaceKey(ref waypoint, "Altitude", waypointAltitude);
+                LuaTools.ReplaceKey(ref waypoint, "Speed", waypointSpeed);
 
                 allWaypointsLua += waypoint + "\n";
             }
