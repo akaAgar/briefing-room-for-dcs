@@ -82,7 +82,7 @@ namespace BriefingRoom4DCSWorld.Template
         /// </summary>
         private void Clear()
         {
-            AircraftType = TemplateTools.CheckValuePlayerAircraft(TemplateTools.DEFAULT_PLAYER_AIRCRAFT);
+            AircraftType = TemplateTools.CheckValuePlayerAircraft(Database.Instance.Common.DefaultPlayerAircraft);
             Count = 2;
             Task = MissionTemplateMPFlightGroupTask.Objectives;
         }

@@ -323,18 +323,18 @@ namespace BriefingRoom4DCSWorld.Template
             BriefingDescription = "";
             BriefingName = "";
 
-            CoalitionBlue = TemplateTools.CheckValue<DBEntryCoalition>(TemplateTools.DEFAULT_COALITION_BLUE);
+            CoalitionBlue = TemplateTools.CheckValue<DBEntryCoalition>(Database.Instance.Common.DefaultCoalitionBlue);
             CoalitionPlayer = Coalition.Blue;
-            CoalitionRed = TemplateTools.CheckValue<DBEntryCoalition>(TemplateTools.DEFAULT_COALITION_RED);
+            CoalitionRed = TemplateTools.CheckValue<DBEntryCoalition>(Database.Instance.Common.DefaultCoalitionRed);
 
             EnvironmentSeason = Season.Random;
             EnvironmentTimeOfDay = TimeOfDay.RandomDaytime;
             EnvironmentWeather = Weather.Random;
             EnvironmentWind = Wind.Auto;
 
-            ObjectiveCount = 2;
+            ObjectiveCount = Database.Instance.Common.DefaultObjectiveCount;
             ObjectiveDistance = Amount.Average;
-            ObjectiveType = TemplateTools.CheckValue<DBEntryObjective>(TemplateTools.DEFAULT_OBJECTIVE);
+            ObjectiveType = TemplateTools.CheckValue<DBEntryObjective>(Database.Instance.Common.DefaultObjective);
 
             OppositionAirDefense = AmountN.Average;
             OppositionAirForce = AmountN.Average;
@@ -345,12 +345,12 @@ namespace BriefingRoom4DCSWorld.Template
 
             PlayerStartLocation = PlayerStartLocation.Runway;
             PlayerMPFlightGroups = new MissionTemplateMPFlightGroup[0];
-            PlayerSPAircraft = TemplateTools.CheckValuePlayerAircraft(TemplateTools.DEFAULT_PLAYER_AIRCRAFT);
+            PlayerSPAircraft = TemplateTools.CheckValuePlayerAircraft(Database.Instance.Common.DefaultPlayerAircraft);
             PlayerSPEscortCAP = 0;
             PlayerSPEscortSEAD = 0;
             PlayerSPWingmen = 1;
 
-            TheaterID = TemplateTools.CheckValue<DBEntryTheater>(TemplateTools.DEFAULT_THEATER);
+            TheaterID = TemplateTools.CheckValue<DBEntryTheater>(Database.Instance.Common.DefaultTheater);
             TheaterObjectivesLocation = ObjectiveCountryCoalition.Any;
             TheaterRegionsCoalitions = CountryCoalition.Default;
             TheaterStartingAirbase = "";

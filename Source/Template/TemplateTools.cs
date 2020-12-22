@@ -1,8 +1,7 @@
 ﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
-generator for DCS World, by @akaAgar
-(https://github.com/akaAgar/briefing-room-for-dcs)
+generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
 
 Briefing Room for DCS World is free software: you can redistribute it
 and/or modify it under the terms of the GNU General Public License
@@ -30,35 +29,35 @@ namespace BriefingRoom4DCSWorld.Template
     /// </summary>
     public static class TemplateTools
     {
-        /// <summary>
-        /// Default value for the blue coalition.
-        /// </summary>
-        public const string DEFAULT_COALITION_BLUE = "USA, 2000s";
+        ///// <summary>
+        ///// Default value for the blue coalition.
+        ///// </summary>
+        //public const string DEFAULT_COALITION_BLUE = "USA, 2000s";
 
-        /// <summary>
-        /// Default value for the red coalition.
-        /// </summary>
-        public const string DEFAULT_COALITION_RED = "Russia, 2000s";
+        ///// <summary>
+        ///// Default value for the red coalition.
+        ///// </summary>
+        //public const string DEFAULT_COALITION_RED = "Russia, 2000s";
 
-        /// <summary>
-        /// Default value for the objective type.
-        /// </summary>
-        public const string DEFAULT_OBJECTIVE = "Deep air support";
+        ///// <summary>
+        ///// Default value for the objective type.
+        ///// </summary>
+        //public const string DEFAULT_OBJECTIVE = "Deep air support";
 
-        /// <summary>
-        /// Default number of objectives.
-        /// </summary>
-        public const int DEFAULT_OBJECTIVE_COUNT = 2;
+        ///// <summary>
+        ///// Default number of objectives.
+        ///// </summary>
+        //public const int DEFAULT_OBJECTIVE_COUNT = 2;
 
-        /// <summary>
-        /// Default number of objectives.
-        /// </summary>
-        public const string DEFAULT_PLAYER_AIRCRAFT = "Su-25T Frogfoot";
+        ///// <summary>
+        ///// Default number of objectives.
+        ///// </summary>
+        //public const string DEFAULT_PLAYER_AIRCRAFT = "Su-25T Frogfoot";
 
-        /// <summary>
-        /// Default value for the theater.
-        /// </summary>
-        public const string DEFAULT_THEATER = "Caucasus";
+        ///// <summary>
+        ///// Default value for the theater.
+        ///// </summary>
+        //public const string DEFAULT_THEATER = "Caucasus";
 
         /// <summary>
         /// Maximum number of objectives.
@@ -89,7 +88,7 @@ namespace BriefingRoom4DCSWorld.Template
             string[] playerAircraft = Database.Instance.GetAllPlayerAircraftID();
 
             if (playerAircraft.Contains(value)) return value;
-            if (playerAircraft.Contains(DEFAULT_PLAYER_AIRCRAFT)) return DEFAULT_PLAYER_AIRCRAFT;
+            if (playerAircraft.Contains(Database.Instance.Common.DefaultPlayerAircraft)) return Database.Instance.Common.DefaultPlayerAircraft;
             return playerAircraft[0];
         }
 

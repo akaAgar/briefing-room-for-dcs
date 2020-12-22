@@ -40,6 +40,36 @@ namespace BriefingRoom4DCSWorld.DB
         public string[] CommonOGG { get; private set; }
 
         /// <summary>
+        /// Template default: blue coalition.
+        /// </summary>
+        public string DefaultCoalitionBlue { get; private set; }
+
+        /// <summary>
+        /// Template default: red coalition.
+        /// </summary>
+        public string DefaultCoalitionRed { get; private set; }
+
+        /// <summary>
+        /// Template default: objective.
+        /// </summary>
+        public string DefaultObjective { get; private set; }
+
+        /// <summary>
+        /// Template default: objective count.
+        /// </summary>
+        public int DefaultObjectiveCount { get; private set; }
+
+        /// <summary>
+        /// Template default: player aircraft.
+        /// </summary>
+        public string DefaultPlayerAircraft { get; private set; }
+
+        /// <summary>
+        /// Template default: theater.
+        /// </summary>
+        public string DefaultTheater { get; private set; }
+
+        /// <summary>
         /// Distance between two objectives, according to mission template <see cref="Template.MissionTemplate.ObjectiveDistance"/> setting, in nautical miles.
         /// </summary>
         public int[] DistanceBetweenObjectives { get; }
@@ -146,6 +176,17 @@ namespace BriefingRoom4DCSWorld.DB
                 foreach (string f in CommonOGG)
                     if (!File.Exists($"{BRPaths.INCLUDE_OGG}{f}.ogg"))
                         DebugLog.Instance.WriteLine($"File \"Include\\Ogg\\{f}.ogg\" doesn't exist.", 1, DebugLogMessageErrorLevel.Warning);
+            }
+
+            DebugLog.Instance.WriteLine("Loading template defaults...", 1);
+            using (INIFile ini = new INIFile($"{BRPaths.DATABASE}Defaults.ini"))
+            {
+                DefaultCoalitionBlue = ini.GetValue<string>("TemplateDefaults", "Coalition.Blue");
+                DefaultCoalitionRed = ini.GetValue<string>("TemplateDefaults", "Coalition.Red");
+                DefaultObjective = ini.GetValue<string>("TemplateDefaults", "Objective");
+                DefaultObjectiveCount = ini.GetValue<int>("TemplateDefaults", "ObjectiveCount");
+                DefaultPlayerAircraft = ini.GetValue<string>("TemplateDefaults", "PlayerAircraft");
+                DefaultTheater = ini.GetValue<string>("TemplateDefaults", "Theater");
             }
 
             DebugLog.Instance.WriteLine("Loading common enemy air defense settings...", 1);
