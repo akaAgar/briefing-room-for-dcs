@@ -40,6 +40,11 @@ namespace BriefingRoom4DCSWorld.DB
         public string[] CommonOGG { get; private set; }
 
         /// <summary>
+        /// Ogg files to include in every mission of a given game mode.
+        /// </summary>
+        public string[][] CommonOGGForGameMode { get; private set; }
+
+        /// <summary>
         /// Template default: blue coalition.
         /// </summary>
         public string DefaultCoalitionBlue { get; private set; }
@@ -176,6 +181,15 @@ namespace BriefingRoom4DCSWorld.DB
                 foreach (string f in CommonOGG)
                     if (!File.Exists($"{BRPaths.INCLUDE_OGG}{f}.ogg"))
                         DebugLog.Instance.WriteLine($"File \"Include\\Ogg\\{f}.ogg\" doesn't exist.", 1, DebugLogMessageErrorLevel.Warning);
+
+                CommonOGGForGameMode = new string[Toolbox.EnumCount<MissionType>()][];
+                for (i = 0; i < CommonOGGForGameMode.Length; i++)
+                {
+                    CommonOGGForGameMode[i] = ini.GetValueArray<string>("Include", $"CommonOgg.{(MissionType)i}");
+                    foreach (string f in CommonOGGForGameMode[i])
+                        if (!File.Exists($"{BRPaths.INCLUDE_OGG}{f}.ogg"))
+                            DebugLog.Instance.WriteLine($"File \"Include\\Ogg\\{f}.ogg\" doesn't exist.", 1, DebugLogMessageErrorLevel.Warning);
+                }
             }
 
             DebugLog.Instance.WriteLine("Loading template defaults...", 1);

@@ -187,6 +187,7 @@ namespace BriefingRoom4DCSWorld.Generator
 
             // Add common .ogg vorbis files and make sure each only appears only once.
             mission.OggFiles.AddRange(Database.Instance.Common.CommonOGG);
+            mission.OggFiles.AddRange(Database.Instance.Common.CommonOGGForGameMode[(int)template.GetMissionType()]);
             mission.OggFiles =
                 (from string o in mission.OggFiles
                  where !string.IsNullOrEmpty(o.Trim()) select o.Trim())

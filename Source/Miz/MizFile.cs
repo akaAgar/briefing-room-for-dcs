@@ -101,6 +101,7 @@ namespace BriefingRoom4DCSWorld.Miz
             return true;
         }
 
+#if DEBUG
         /// <summary>
         /// Saves all entries in the .miz file to a directory. Monstly for debugging purposes.
         /// </summary>
@@ -114,13 +115,14 @@ namespace BriefingRoom4DCSWorld.Miz
             {
                 string fileName = entryName.Replace('/', '_');
                 if (string.IsNullOrEmpty(Path.GetExtension(fileName))) fileName += ".lua";
-                if (Path.GetExtension(fileName).ToLowerInvariant() != ".lua") continue; // No need to export media files
+                //if (Path.GetExtension(fileName).ToLowerInvariant() != ".lua") continue; // No need to export media files
 
                 File.WriteAllBytes(Path.Combine(directoryPath, fileName), Entries[entryName]);
             }
 
             return true;
         }
+#endif
 
         /// <summary>
         /// Saves the .miz file to the hard drive.
