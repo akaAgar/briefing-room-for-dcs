@@ -21,9 +21,9 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 namespace BriefingRoom4DCSWorld
 {
     /// <summary>
-    /// Enumerates various options for limiting the countries in which an objective may be spawned.
+    /// Enumerates various options for limiting the countries in which an unit group may be spawned.
     /// </summary>
-    public enum ObjectiveCountryCoalition
+    public enum SpawnPointPreferredCoalition
     {
         /// <summary>
         /// Objective can be spawned in any country

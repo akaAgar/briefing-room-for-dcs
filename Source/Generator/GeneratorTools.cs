@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCSWorld.DB;
 using BriefingRoom4DCSWorld.Mission;
+using BriefingRoom4DCSWorld.Template;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -121,6 +122,28 @@ namespace BriefingRoom4DCSWorld.Generator
         public static string GetBriefingStringForUnitFamily(UnitFamily unitFamily, bool plural)
         {
             return Database.Instance.Common.UnitBriefingNames[(int)unitFamily][plural ? 1 : 0];
+        }
+
+        /// <summary>
+        /// Returns the coalition to look for in spawn points according to the template setting regarding enemy units location.
+        /// </summary>
+        /// <param name="template">A mission template</param>
+        /// <returns>A coalition, or null if any coalition can be used</returns>
+        public static Coalition? GetEnemySpawnPointCoalition(MissionTemplate template)
+        {
+            // No preference for enemy units location
+            if (template.OppositionUnitsLocation == SpawnPointPreferredCoalition.Any) return null;
+
+            // All countries belong to the same coalition anyway, so preference have no meaning.
+            if ((template.TheaterRegionsCoalitions == CountryCoalition.AllBlue) ||
+                (template.TheaterRegionsCoalitions == CountryCoalition.AllRed))
+                return null;
+
+            if (template.OppositionUnitsLocation == SpawnPointPreferredCoalition.Blue)
+                return (template.TheaterRegionsCoalitions == CountryCoalition.Inverted) ? Coalition.Red : Coalition.Blue;
+
+            // Last possibility is "template.OppositionUnitsLocation == SpawnPointPreferredCoalition.Red"
+            return (template.TheaterRegionsCoalitions == CountryCoalition.Inverted) ? Coalition.Blue : Coalition.Red;
         }
 
         /// <summary>

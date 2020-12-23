@@ -43,6 +43,7 @@ On the left side of the screen you can see a list of all settings currently used
 **Opposition**
 * **Air defense**: Intensity and quality of enemy surface-to-air defense.
 * **Air force**: Relative power of the enemy air force. Enemy air force will always be proportional to the number and air-to-air efficiency of aircraft in the player mission package, so more player/AI friendly aircraft means more enemy aircraft, regardless of this setting.
+* **Enemy units location**: Can enemy units be spawned in any country (recommended) or only in countries aligned with a given coalition? Be aware that when choosing an option other than "Any", depending on the theater and the "Theater region coalitions" setting, objectives may end up VERY far from the player(s) starting location, no matter the value of "Objective distance". Keep in mind that "Theaters regions coalitions" has a influence on this setting.
 
 **Options**
 * **Script extensions**: (advanced) Script extensions to include in this mission to provide additional features.

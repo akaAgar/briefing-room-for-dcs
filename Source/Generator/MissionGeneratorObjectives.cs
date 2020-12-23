@@ -116,7 +116,8 @@ namespace BriefingRoom4DCSWorld.Generator
                         // Select spawn points at a proper distance from last location (previous objective or home airbase)
                         lastCoordinates, distanceFromLast,
                         // Make sure no objective is too close to the initial location
-                        mission.InitialPosition, new MinMaxD(objectiveDistanceNM * OBJECTIVE_DISTANCE_VARIATION_MIN, 999999999));
+                        mission.InitialPosition, new MinMaxD(objectiveDistanceNM * OBJECTIVE_DISTANCE_VARIATION_MIN, 999999999),
+                        GeneratorTools.GetEnemySpawnPointCoalition(template));
 
                 // No spawn point found for the objective, abort mission creation.
                 if (!spawnPoint.HasValue)

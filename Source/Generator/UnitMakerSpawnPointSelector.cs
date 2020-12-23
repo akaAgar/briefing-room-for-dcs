@@ -98,17 +98,29 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="distanceFrom1">Min/max distance from origin point, in nautical miles</param>
         /// <param name="distanceOrigin2">Second origin point distance must be computed from</param>
         /// <param name="distanceFrom2">Min/max distance from second origin point, in nautical miles</param>
+        /// <param name="coalition">Which coalition should the spawn point belong to?</param>
         /// <returns>A spawn point, or null if none found matching the provided criteria</returns>
         public DBEntryTheaterSpawnPoint? GetRandomSpawnPoint(
             TheaterLocationSpawnPointType[] validTypes = null,
             Coordinates? distanceOrigin1 = null, MinMaxD? distanceFrom1 = null,
-            Coordinates? distanceOrigin2 = null, MinMaxD? distanceFrom2 = null)
+            Coordinates? distanceOrigin2 = null, MinMaxD? distanceFrom2 = null,
+            Coalition? coalition = null)
         {
             // Select all spoint points
             IEnumerable<DBEntryTheaterSpawnPoint> validSP = from DBEntryTheaterSpawnPoint pt in SpawnPoints select pt;
 
             if (validTypes != null) // Remove spawn points of invalid types
                 validSP = (from DBEntryTheaterSpawnPoint pt in validSP where validTypes.Contains(pt.PointType) select pt);
+
+            if (coalition.HasValue) // Select spawn points belonging to the proper coalition
+            {
+                IEnumerable<DBEntryTheaterSpawnPoint> coalitionValidSP =
+                    coalitionValidSP = (from DBEntryTheaterSpawnPoint sp in validSP where sp.Coalition == coalition.Value select sp);
+
+                // At least one spawn point found, only use SP for the preferred coalition
+                if (coalitionValidSP.Count() > 0)
+                    validSP = coalitionValidSP;
+            }
 
             Coordinates?[] distanceOrigin = new Coordinates?[] { distanceOrigin1, distanceOrigin2 };
             MinMaxD?[] distanceFrom = new MinMaxD?[] { distanceFrom1, distanceFrom2 };

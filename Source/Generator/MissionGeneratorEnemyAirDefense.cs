@@ -115,7 +115,8 @@ namespace BriefingRoom4DCSWorld.Generator
                         mission.ObjectivesCenter,
                         Database.Instance.Common.EnemyAirDefenseDistanceFromObjectives[(int)airDefenseRange],
                         mission.InitialPosition,
-                        new MinMaxD(Database.Instance.Common.EnemyAirDefenseDistanceFromTakeOffLocation[(int)airDefenseRange], 99999));
+                        new MinMaxD(Database.Instance.Common.EnemyAirDefenseDistanceFromTakeOffLocation[(int)airDefenseRange], 99999),
+                        GeneratorTools.GetEnemySpawnPointCoalition(template));
 
                 // No spawn point found, stop here.
                 if (!spawnPoint.HasValue)

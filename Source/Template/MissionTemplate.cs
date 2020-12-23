@@ -181,6 +181,18 @@ namespace BriefingRoom4DCSWorld.Template
         [TypeConverter(typeof(EnumTypeConverter<AmountN>))]
         public AmountN OppositionAirForce { get; set; }
 
+        /// <summary>
+        /// Can enemy units be spawned in any country (recommended) or only in countries aligned with a
+        /// given coalition? Be aware that when choosing an option other than "Any", depending on the theater and the
+        /// <see cref="TheaterRegionsCoalitions"/> setting, objectives may end up VERY far from the player(s) starting 
+        /// location, no matter the value of <see cref="ObjectiveDistance"/>.
+        /// Keep in mind that <see cref="TheaterRegionsCoalitions"/> has a influence on this setting.
+        /// </summary>
+        [Category("Opposition"), DisplayName("Enemy units location")]
+        [Description("Can enemy units be spawned in any country (recommended) or only in countries aligned with a given coalition? Be aware that when choosing an option other than \"Any\", depending on the theater and the \"Theater region coalitions\" setting, objectives may end up VERY far from the player(s) starting location, no matter the value of \"Objective distance\". Keep in mind that \"Theaters regions coalitions\" has a influence on this setting.")]
+        [TypeConverter(typeof(EnumTypeConverter<SpawnPointPreferredCoalition>))]
+        public SpawnPointPreferredCoalition OppositionUnitsLocation { get; set; }
+
         ///// <summary>
         ///// Special preferences and options to apply to this mission.
         ///// </summary>
@@ -284,18 +296,6 @@ namespace BriefingRoom4DCSWorld.Template
         public string TheaterID { get { return TheaterID_; } set { TheaterID_ = TemplateTools.CheckValue<DBEntryTheater>(value); } }
         private string TheaterID_;
 
-        ///// <summary>
-        ///// Can the objective targets be spawned in any country (highly recommended) or only in countries aligned with a
-        ///// given coalition? Be aware that when choosing an option other than "Any", depending on the theater and the
-        ///// <see cref="TheaterRegionsCoalitions"/> setting, targets may end up VERY far from the player(s) starting 
-        ///// location, no matter the options selected in <see cref="ObjectiveDistance"/>.
-        ///// </summary>
-        //[Category("Theater"), DisplayName("Theater objectives location")]
-        //[Description("Can the objective targets be spawned in any country (highly recommended) or only in countries aligned with a given coalition? Be aware that when choosing an option other than \"Any\", depending on the theater and the \"Theater region coalitions\" setting, targets may end up VERY far from the player(s) starting location, no matter the options selected in \"Objective distance\".")]
-        //[TypeConverter(typeof(EnumTypeConverter<ObjectiveCountryCoalition>))]
-        [Browsable(false)]
-        public ObjectiveCountryCoalition TheaterObjectivesLocation { get; set; }
-
         /// <summary>
         /// To which coalitions should the countries on the map (and their airbases) belong to?
         /// </summary>
@@ -338,6 +338,7 @@ namespace BriefingRoom4DCSWorld.Template
 
             OppositionAirDefense = AmountN.Average;
             OppositionAirForce = AmountN.Average;
+            OppositionUnitsLocation = SpawnPointPreferredCoalition.Any;
 
             OptionsPreferences = new MissionTemplatePreferences[0];
             OptionsScriptExtensions = new string[0];
@@ -351,7 +352,6 @@ namespace BriefingRoom4DCSWorld.Template
             PlayerSPWingmen = 1;
 
             TheaterID = TemplateTools.CheckValue<DBEntryTheater>(Database.Instance.Common.DefaultTheater);
-            TheaterObjectivesLocation = ObjectiveCountryCoalition.Any;
             TheaterRegionsCoalitions = CountryCoalition.Default;
             TheaterStartingAirbase = "";
         }
@@ -387,6 +387,7 @@ namespace BriefingRoom4DCSWorld.Template
 
                 OppositionAirDefense = ini.GetValue("Opposition", "AirDefense", OppositionAirDefense);
                 OppositionAirForce = ini.GetValue("Opposition", "AirForce", OppositionAirForce);
+                OppositionUnitsLocation = ini.GetValue("Opposition", "UnitsLocation", OppositionUnitsLocation);
 
                 OptionsPreferences = ini.GetValueArray<MissionTemplatePreferences>("Options", "Preferences");
                 OptionsScriptExtensions = ini.GetValueArray<string>("Options", "ScriptExtensions");
@@ -405,7 +406,6 @@ namespace BriefingRoom4DCSWorld.Template
                 PlayerSPWingmen = ini.GetValue("PlayerSP", "Wingmen", PlayerSPWingmen);
 
                 TheaterID = ini.GetValue("Theater", "ID", TheaterID);
-                TheaterObjectivesLocation = ini.GetValue("Theater", "ObjectivesLocation", TheaterObjectivesLocation);
                 TheaterRegionsCoalitions = ini.GetValue("Theater", "RegionsCoalitions", TheaterRegionsCoalitions);
                 TheaterStartingAirbase = ini.GetValue("Theater", "StartingAirbase", TheaterStartingAirbase);
             }
@@ -440,6 +440,7 @@ namespace BriefingRoom4DCSWorld.Template
 
                 ini.SetValue("Opposition", "AirDefense", OppositionAirDefense);
                 ini.SetValue("Opposition", "AirForce", OppositionAirForce);
+                ini.SetValue("Opposition", "UnitsLocation", OppositionUnitsLocation);
 
                 ini.SetValueArray("Options", "Preferences", OptionsPreferences);
                 ini.SetValueArray("Options", "ScriptExtensions", OptionsScriptExtensions);
@@ -457,7 +458,6 @@ namespace BriefingRoom4DCSWorld.Template
                     PlayerMPFlightGroups[i].SaveToFile(ini, "PlayerMP", $"FG{i:000}");
 
                 ini.SetValue("Theater", "ID", TheaterID);
-                ini.SetValue("Theater", "ObjectivesLocation", TheaterObjectivesLocation);
                 ini.SetValue("Theater", "RegionsCoalitions", TheaterRegionsCoalitions);
                 ini.SetValue("Theater", "StartingAirbase", TheaterStartingAirbase);
 

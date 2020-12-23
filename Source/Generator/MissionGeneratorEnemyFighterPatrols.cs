@@ -88,7 +88,8 @@ namespace BriefingRoom4DCSWorld.Generator
                     UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         null,
                         mission.ObjectivesCenter, Database.Instance.Common.EnemyCAPDistanceFromObjectives,
-                        mission.InitialPosition, new MinMaxD(Database.Instance.Common.EnemyCAPMinDistanceFromTakeOffLocation, 99999));
+                        mission.InitialPosition, new MinMaxD(Database.Instance.Common.EnemyCAPMinDistanceFromTakeOffLocation, 99999),
+                        GeneratorTools.GetEnemySpawnPointCoalition(template));
 
                 if (!spawnPoint.HasValue) // No spawn point found, stop here.
                 {
