@@ -254,6 +254,23 @@ function dcsExtensions.isUnitAlive(name)
   return true
 end
 
+-- Returns a table with all units controlled by a player
+function dcsExtensions.getAllPlayers()
+  local players = { }
+  
+  for i=1,2 do
+    for _,g in pairs(coalition.getGroups(i)) do
+      for __,u in pairs(g:getUnits()) do
+        if u:getPlayerName() ~= nil then
+          table.insert(players, u)
+        end
+      end
+    end
+  end
+
+  return players
+end
+
 -- Returns the distance between two vec2s
 function dcsExtensions.getDistance(vec2a, vec2b)
   return math.sqrt(math.pow(vec2a.x - vec2b.x) + math.pow(vec2a.y - vec2b.y))
