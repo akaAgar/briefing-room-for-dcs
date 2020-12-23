@@ -66,31 +66,33 @@ namespace BriefingRoom4DCSWorld.Generator
         {
             List<UnitFlightGroupBriefingDescription> briefingFGList = new List<UnitFlightGroupBriefingDescription>();
 
-            aiEscortTypeCAP = "";
-            aiEscortTypeSEAD = "";
 
             if (template.GetMissionType() == MissionType.SinglePlayer)
             {
-                UnitFlightGroupBriefingDescription? escortDescription;
 
                 briefingFGList.Add(GenerateSinglePlayerFlightGroup(mission, template, objectiveDB));
-
-                escortDescription = GenerateSinglePlayerAIEscort(mission, template, template.PlayerSPEscortCAP, MissionTemplateMPFlightGroupTask.SupportCAP, playerCoalitionDB);
-                if (escortDescription.HasValue)
-                {
-                    briefingFGList.Add(escortDescription.Value);
-                    aiEscortTypeCAP = escortDescription.Value.Type;
-                }
-
-                escortDescription = GenerateSinglePlayerAIEscort(mission, template, template.PlayerSPEscortSEAD, MissionTemplateMPFlightGroupTask.SupportSEAD, playerCoalitionDB);
-                if (escortDescription.HasValue)
-                {
-                    briefingFGList.Add(escortDescription.Value);
-                    aiEscortTypeSEAD = escortDescription.Value.Type;
-                }
             }
-            else
+            else {
                 briefingFGList.AddRange(GenerateMultiplayerFlightGroups(mission, template, objectiveDB));
+            }
+
+            aiEscortTypeCAP = "";
+            aiEscortTypeSEAD = "";
+            UnitFlightGroupBriefingDescription? escortDescription;
+
+            escortDescription = GenerateAIEscort(mission, template, template.AIEscortCAP, MissionTemplateMPFlightGroupTask.SupportCAP, playerCoalitionDB);
+            if (escortDescription.HasValue)
+            {
+                briefingFGList.Add(escortDescription.Value);
+                aiEscortTypeCAP = escortDescription.Value.Type;
+            }
+
+            escortDescription = GenerateAIEscort(mission, template, template.AIEscortSEAD, MissionTemplateMPFlightGroupTask.SupportSEAD, playerCoalitionDB);
+            if (escortDescription.HasValue)
+            {
+                briefingFGList.Add(escortDescription.Value);
+                aiEscortTypeSEAD = escortDescription.Value.Type;
+            }
 
             return briefingFGList.ToArray();
         }
@@ -131,7 +133,7 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="task">Escort task the flight group will be assigned with</param>
         /// <param name="playerCoalitionDB">Player coalition database entry</param>
         /// <returns>A <see cref="UnitFlightGroupBriefingDescription"/> describing the flight group, to be used in the briefing</returns>
-        private UnitFlightGroupBriefingDescription? GenerateSinglePlayerAIEscort(DCSMission mission, MissionTemplate template, int count, MissionTemplateMPFlightGroupTask task, DBEntryCoalition playerCoalitionDB)
+        private UnitFlightGroupBriefingDescription? GenerateAIEscort(DCSMission mission, MissionTemplate template, int count, MissionTemplateMPFlightGroupTask task, DBEntryCoalition playerCoalitionDB)
         {
             if (count < 1) return null; // No aircraft, nothing to generate.
 
