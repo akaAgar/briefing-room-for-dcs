@@ -63,9 +63,10 @@ namespace BriefingRoom4DCSWorld.Generator
                 return;
             }
 
+            int OppositionAirForceCount = template.OppositionAirForce == AmountN.Random ? new Random().Next((int)AmountN.VeryHigh) + 1  : (int)template.OppositionAirForce;
             int totalAirForcePower =
                 (int)(GetMissionPackageAirPower(template, objectiveDB, aiEscortTypeCAP, aiEscortTypeSEAD) *
-                Database.Instance.Common.EnemyCAPRelativePower[(int)template.OppositionAirForce]);
+                Database.Instance.Common.EnemyCAPRelativePower[OppositionAirForceCount]);
 
             DebugLog.Instance.WriteLine($"Enemy air power set to {totalAirForcePower}...", 1);
 

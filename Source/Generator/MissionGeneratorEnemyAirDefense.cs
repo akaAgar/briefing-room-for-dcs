@@ -81,8 +81,9 @@ namespace BriefingRoom4DCSWorld.Generator
         private void AddAirDefenseUnits(DCSMission mission, MissionTemplate template, AirDefenseRange airDefenseRange, DBEntryCoalition enemyCoalitionDB)
         {
             // Get the proper number of groups
+            int OppositionAirDefenseCount  = template.OppositionAirDefense == AmountN.Random ? new Random().Next((int)AmountN.VeryHigh) + 1  : (int)template.OppositionAirDefense;
             int groupCount = Database.Instance.Common.
-                EnemyAirDefense[(int)template.OppositionAirDefense].GroupsInArea[(int)airDefenseRange].GetValue();
+                EnemyAirDefense[OppositionAirDefenseCount].GroupsInArea[(int)airDefenseRange].GetValue();
 
             if (groupCount < 1) return;  // No groups to add, no need to go any further
 

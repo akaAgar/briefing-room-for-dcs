@@ -363,8 +363,8 @@ namespace BriefingRoom4DCSWorld.Template
             ObjectiveDistance = Amount.Average;
             ObjectiveType = TemplateTools.CheckValue<DBEntryObjective>(Database.Instance.Common.DefaultObjective);
 
-            OppositionAirDefense = AmountN.Average;
-            OppositionAirForce = AmountN.Average;
+            OppositionAirDefense = AmountN.Random;
+            OppositionAirForce = AmountN.Random;
             OppositionSkillLevelAir = BRSkillLevel.Random;
             OppositionSkillLevelGround = BRSkillLevel.Random;
             OppositionUnitsLocation = SpawnPointPreferredCoalition.Any;

@@ -26,6 +26,11 @@ namespace BriefingRoom4DCSWorld
     public enum AmountN
     {
         /// <summary>
+        /// Random Value
+        /// </summary>
+        Random,
+
+        /// <summary>
         /// Nothing at all
         /// </summary>
         None,
