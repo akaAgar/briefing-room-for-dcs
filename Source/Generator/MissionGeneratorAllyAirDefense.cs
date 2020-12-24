@@ -23,14 +23,15 @@ using BriefingRoom4DCSWorld.Debug;
 using BriefingRoom4DCSWorld.Mission;
 using BriefingRoom4DCSWorld.Template;
 using System;
+using System.ComponentModel;
 
 namespace BriefingRoom4DCSWorld.Generator
 {
     /// <summary>
-    /// Generates enemy surface-to-air defense unit groups,
+    /// Generates Ally surface-to-air defense unit groups,
     /// except "embedded" air defense, which is generated at the same time as the group objectives.
     /// </summary>
-    public class MissionGeneratorEnemyAirDefense : IDisposable
+    public class MissionGeneratorAllyAirDefense : IDisposable
     {
         /// <summary>
         /// Unit maker class to use to generate units.
@@ -41,7 +42,7 @@ namespace BriefingRoom4DCSWorld.Generator
         /// Constructor.
         /// </summary>
         /// <param name="unitMaker">Unit maker class to use to generate units</param>
-        public MissionGeneratorEnemyAirDefense(UnitMaker unitMaker)
+        public MissionGeneratorAllyAirDefense(UnitMaker unitMaker)
         {
             UnitMaker = unitMaker;
         }
@@ -51,23 +52,13 @@ namespace BriefingRoom4DCSWorld.Generator
         /// </summary>
         /// <param name="mission">Mission to which generated units should be added</param>
         /// <param name="template">Mission template to use</param>
-        /// <param name="objectiveDB">Mission objective database entry</param>
-        /// <param name="enemyCoalitionDB">Enemy coalition database entry</param>
-        public void CreateUnitGroups(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB, DBEntryCoalition enemyCoalitionDB)
+        /// <param name="allyCoalitionDB">Ally coalition database entry</param>
+        public void CreateUnitGroups(DCSMission mission, MissionTemplate template, DBEntryCoalition allyCoalitionDB)
         {
             foreach (AirDefenseRange airDefenseRange in (AirDefenseRange[])Enum.GetValues(typeof(AirDefenseRange)))
             {
                 DebugLog.Instance.WriteLine($"Adding {Toolbox.SplitCamelCase(airDefenseRange)} air defense", 1);
-                if (
-                    ((airDefenseRange == AirDefenseRange.ShortRange) && objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.NoEnemyAirDefenseShort)) ||
-                    ((airDefenseRange == AirDefenseRange.MediumRange) && objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.NoEnemyAirDefenseMedium)) ||
-                    ((airDefenseRange == AirDefenseRange.LongRange) && objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.NoEnemyAirDefenseLong)))
-                {
-                    DebugLog.Instance.WriteLine($"Enemy {Toolbox.SplitCamelCase(airDefenseRange)} air defense disabled for this mission objective type, not spawning any units", 1);
-                    continue;
-                }
-
-                AddAirDefenseUnits(mission, template, airDefenseRange, enemyCoalitionDB);
+                AddAirDefenseUnits(mission, template, airDefenseRange, allyCoalitionDB);
             }
         }
 
@@ -77,15 +68,16 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="mission">Mission to which generated units should be added</param>
         /// <param name="template">Mission template to use</param>
         /// <param name="airDefenseRange">Air-defense range category</param>
-        /// <param name="enemyCoalitionDB">Enemy coalition database entry</param>
-        private void AddAirDefenseUnits(DCSMission mission, MissionTemplate template, AirDefenseRange airDefenseRange, DBEntryCoalition enemyCoalitionDB)
+        /// <param name="allyCoalitionDB">Ally coalition database entry</param>
+        private void AddAirDefenseUnits(DCSMission mission, MissionTemplate template, AirDefenseRange airDefenseRange, DBEntryCoalition allyCoalitionDB)
         {
             // Get the proper number of groups
             int groupCount = Database.Instance.Common.
-                EnemyAirDefense[(int)template.OppositionAirDefense].GroupsInArea[(int)airDefenseRange].GetValue();
+                AllyAirDefense[(int)template.AllyAirDefense].GroupsInArea[(int)airDefenseRange].GetValue();
+
             if (groupCount < 1) return;  // No groups to add, no need to go any further
 
-            DCSMissionUnitGroupFlags flags = !template.OptionsShowEnemyUnits ? DCSMissionUnitGroupFlags.Hidden : 0;
+            DCSMissionUnitGroupFlags flags =  0;
 
             UnitFamily[] unitFamilies;
             TheaterLocationSpawnPointType[] validSpawnPoints;
@@ -111,11 +103,11 @@ namespace BriefingRoom4DCSWorld.Generator
                 DBEntryTheaterSpawnPoint? spawnPoint =
                     UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         validSpawnPoints,
-                        mission.ObjectivesCenter,
-                        Database.Instance.Common.EnemyAirDefenseDistanceFromObjectives[(int)airDefenseRange],
                         mission.InitialPosition,
-                        new MinMaxD(Database.Instance.Common.EnemyAirDefenseDistanceFromTakeOffLocation[(int)airDefenseRange], 99999),
-                        GeneratorTools.GetEnemySpawnPointCoalition(template));
+                        Database.Instance.Common.AllyAirDefenseDistanceFromTakeOffLocation[(int)airDefenseRange],
+                        mission.ObjectivesCenter,
+                        new MinMaxD(Database.Instance.Common.AllyAirDefenseDistanceFromObjectives[(int)airDefenseRange], 99999),
+                        GeneratorTools.GetAllySpawnPointCoalition(template));
 
                 // No spawn point found, stop here.
                 if (!spawnPoint.HasValue)
@@ -124,13 +116,13 @@ namespace BriefingRoom4DCSWorld.Generator
                     return;
                 }
 
-                string[] units = enemyCoalitionDB.GetRandomUnits(Toolbox.RandomFrom(unitFamilies), 1);
+                string[] units = allyCoalitionDB.GetRandomUnits(Toolbox.RandomFrom(unitFamilies), 1);
 
                 DCSMissionUnitGroup group = UnitMaker.AddUnitGroup(
-                    mission, units, Side.Enemy,
+                    mission, units, Side.Ally,
                     spawnPoint.Value.Coordinates,
                     "GroupVehicle", "UnitVehicle",
-                    Toolbox.BRSkillLevelToDCSSkillLevel(template.OppositionSkillLevelGround),
+                    Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel),
                     flags);
                 
                 if (group == null)

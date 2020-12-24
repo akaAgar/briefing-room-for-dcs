@@ -306,6 +306,15 @@ namespace BriefingRoom4DCSWorld.Template
         public int PlayerEscortSEAD { get { return PlayerEscortSEAD_; } set { PlayerEscortSEAD_ = Toolbox.Clamp(value, 0, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE); } }
         private int PlayerEscortSEAD_;
 
+
+        /// <summary>
+        /// Intensity and quality of ally air defense.
+        /// </summary>
+        [Category("Player"), DisplayName("Air defense")]
+        [Description("Intensity and quality of Ally air defense.")]
+        [TypeConverter(typeof(EnumTypeConverter<AmountN>))]
+        public AmountN AllyAirDefense { get; set; }
+
         /// <summary>
         /// Where should the player(s) take off from?
         /// </summary>
@@ -378,6 +387,7 @@ namespace BriefingRoom4DCSWorld.Template
             PlayerEscortCAP = 0;
             PlayerEscortSEAD = 0;
             PlayerStartLocation = PlayerStartLocation.Runway;
+            AllyAirDefense = AmountN.Average;
 
             PlayerMPFlightGroups = new MissionTemplateMPFlightGroup[0];
             PlayerSPAircraft = TemplateTools.CheckValuePlayerAircraft(Database.Instance.Common.DefaultPlayerAircraft);
@@ -432,6 +442,7 @@ namespace BriefingRoom4DCSWorld.Template
                 PlayerEscortCAP = ini.GetValue("Player", "EscortCAP", PlayerEscortCAP);
                 PlayerEscortSEAD = ini.GetValue("Player", "EscortSEAD", PlayerEscortSEAD);
                 PlayerStartLocation = ini.GetValue("Player", "StartLocation", PlayerStartLocation);
+                AllyAirDefense = ini.GetValue("player", "AllyAirDefense", AllyAirDefense);
 
                 int fgFlightGroupCount = Math.Max(0, ini.GetValue<int>("PlayerMP", "FGCount"));
                 PlayerMPFlightGroups = new MissionTemplateMPFlightGroup[fgFlightGroupCount];
@@ -490,6 +501,7 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValue("Player", "EscortCAP", PlayerEscortCAP);
                 ini.SetValue("Player", "EscortSEAD", PlayerEscortSEAD);
                 ini.SetValue("Player", "StartLocation", PlayerStartLocation);
+                ini.SetValue("Player", "AllyAirDefense", AllyAirDefense);
 
                 ini.SetValue("PlayerSP", "Aircraft", PlayerSPAircraft);
                 ini.SetValue("PlayerSP", "Wingmen", PlayerSPWingmen);
