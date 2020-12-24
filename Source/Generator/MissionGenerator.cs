@@ -208,6 +208,9 @@ namespace BriefingRoom4DCSWorld.Generator
                     mission.CoreLuaScript += "briefingRoom.mission.missionType = brMissionType.VERSUS\r\n"; break;
             }
 
+            // set if Radio Sounds are Enabled
+            mission.RadioSounds = template.OptionsRadioSounds;
+
             DebugLog.Instance.WriteLine($"Mission generation completed successfully in {(DateTime.Now - generationStartTime).TotalSeconds.ToString("F3", NumberFormatInfo.InvariantInfo)} second(s).");
 
             unitMaker.Dispose();
