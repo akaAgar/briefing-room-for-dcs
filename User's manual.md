@@ -52,14 +52,14 @@ On the left side of the screen you can see a list of all settings currently used
 * **Show enemy units on map**: Should enemy units be shown on the F10 map, mission planning, MFD SA pages, etc?
 
 **Player**
-* **Start location**: Where should the player take off from? As with all values in the "Player, single player only" category, this value is ignored if any flight group is specified in "MP flight groups", the multiplayer flight groups are then used instead.
+* **AI skill level**: Skill level of AI wingmen and escort aircraft.
+* **AI CAP escort**: Number of AI aircraft tasked with escorting the player against enemy fighters. In single-player missions, escorts will be spawned on the ramp if the player starts from the ramp (cold or hot), or in the air above the airbase if the player starts on the runway. In multiplayer missions, escorts will be spawned as soon as one player takes off.
+* **AI SEAD escort**: Number of AI aircraft tasked with escorting the player against enemy SAMs. In single-player missions, escorts will be spawned on the ramp if the player starts from the ramp (cold or hot), or in the air above the airbase if the player starts on the runway. In multiplayer missions, escorts will be spawned as soon as one player takes off.
+* **Start location**: Where should the player(s) take off from?
 
 **Player, single-player only**
 * **Aircraft**: Type of aircraft the player will fly. As with all values in the "Player, single player only" category, this value is ignored if any flight group is specified in "MP flight groups", the multiplayer flight groups are then used instead.
-* **Escort aircraft, CAP**: Number of AI aircraft tasked with escorting the player against enemy fighters. As with all values in the "Player, single player only" category, this value is ignored if any flight group is specified in "MP flight groups", the multiplayer flight groups are then used instead.
-* **Escort aircraft, SEAD**: Number of AI aircraft tasked with escorting the player against enemy SAMs. As with all values in the "Player, single player only" category, this value is ignored if any flight group is specified in "MP flight groups", the multiplayer flight groups are then used instead.
 * **Wingmen**: Number of AI wingmen in the player's flight group. As with all values in the "Player, single player only" category, this value is ignored if any flight group is specified in "MP flight groups", the multiplayer flight groups are then used instead.
-* **Wingmen skill level**: Skill level of AI wingmen and escort aircraft.
 
 **Player, multiplayer only**
 * **MP flight groups**: Multiplayer flight groups. If any flight group is specified here, the mission then becomes a multiplayer mission and all values in the "Player, single player only" are ignored.

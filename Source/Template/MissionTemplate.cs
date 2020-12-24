@@ -260,28 +260,6 @@ namespace BriefingRoom4DCSWorld.Template
         private string PlayerSPAircraft_;
 
         /// <summary>
-        /// Number of AI aircraft tasked with escorting the player against enemy fighters.
-        /// As with all values in the "Player, single player only" category, this value is ignored if any
-        /// flight group is specified in <see cref="PlayerMPFlightGroups" />, the multiplayer flight groups
-        /// are then used instead.
-        /// </summary>
-        [Category("Friendly AI"), DisplayName("Escort aircraft, CAP")]
-        [Description("Number of AI aircraft tasked with escorting the player against enemy fighters.")]
-        public int AIEscortCAP { get { return AIEscortCAP_; } set { AIEscortCAP_ = Toolbox.Clamp(value, 0, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE); } }
-        private int AIEscortCAP_;
-
-        /// <summary>
-        /// Number of AI aircraft tasked with escorting the player against enemy SAMs.
-        /// As with all values in the "Player, single player only" category, this value is ignored if any
-        /// flight group is specified in <see cref="PlayerMPFlightGroups" />, the multiplayer flight groups
-        /// are then used instead.
-        /// </summary>
-        [Category("Friendly AI"), DisplayName("Escort aircraft, SEAD")]
-        [Description("Number of AI aircraft tasked with escorting the player against enemy SAMs.")]
-        public int AIEscortSEAD { get { return AIEscortSEAD_; } set { AIEscortSEAD_ = Toolbox.Clamp(value, 0, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE); } }
-        private int AIEscortSEAD_;
-
-        /// <summary>
         /// Number of AI wingmen in the player's flight group.
         /// As with all values in the "Player, single player only" category, this value is ignored if any
         /// flight group is specified in <see cref="PlayerMPFlightGroups" />, the multiplayer flight groups
@@ -295,19 +273,36 @@ namespace BriefingRoom4DCSWorld.Template
         /// <summary>
         /// Skill level of AI wingmen and escort aircraft.
         /// </summary>
-        [Category("Player, single player only"), DisplayName("Wingmen skill level")]
+        [Category("Player"), DisplayName("AI skill level")]
         [Description("Skill level of AI wingmen and escort aircraft.")]
         [TypeConverter(typeof(EnumTypeConverter<BRSkillLevel>))]
-        public BRSkillLevel PlayerSPWingmenSkillLevel { get; set; }
+        public BRSkillLevel PlayerAISkillLevel { get; set; }
 
         /// <summary>
-        /// Where should the player take off from?
-        /// As with all values in the "Player, single player only" category, this value is ignored if any
-        /// flight group is specified in <see cref="PlayerMPFlightGroups" />, the multiplayer flight groups
-        /// are then used instead.
+        /// Number of AI aircraft tasked with escorting the player against enemy fighters.
+        /// In single-player missions, escorts will be spawned on the ramp if the player starts from the ramp (cold or hot), or in the air above the airbase if the player starts on the runway.
+        /// In multiplayer missions, escorts will be spawned as soon as one player takes off.
+        /// </summary>
+        [Category("Player"), DisplayName("AI CAP escort")]
+        [Description("Number of AI aircraft tasked with escorting the player against enemy fighters. In single-player missions, escorts will be spawned on the ramp if the player starts from the ramp (cold or hot), or in the air above the airbase if the player starts on the runway. In multiplayer missions, escorts will be spawned as soon as one player takes off.")]
+        public int PlayerEscortCAP { get { return PlayerEscortCAP_; } set { PlayerEscortCAP_ = Toolbox.Clamp(value, 0, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE); } }
+        private int PlayerEscortCAP_;
+
+        /// <summary>
+        /// Number of AI aircraft tasked with escorting the player against enemy SAMs.
+        /// In single-player missions, escorts will be spawned on the ramp if the player starts from the ramp (cold or hot), or in the air above the airbase if the player starts on the runway.
+        /// In multiplayer missions, escorts will be spawned as soon as one player takes off.
+        /// </summary>
+        [Category("Player"), DisplayName("AI SEAD escort")]
+        [Description("Number of AI aircraft tasked with escorting the player against enemy SAMs. In single-player missions, escorts will be spawned on the ramp if the player starts from the ramp (cold or hot), or in the air above the airbase if the player starts on the runway. In multiplayer missions, escorts will be spawned as soon as one player takes off.")]
+        public int PlayerEscortSEAD { get { return PlayerEscortSEAD_; } set { PlayerEscortSEAD_ = Toolbox.Clamp(value, 0, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE); } }
+        private int PlayerEscortSEAD_;
+
+        /// <summary>
+        /// Where should the player(s) take off from?
         /// </summary>
         [Category("Player"), DisplayName("Start location")]
-        [Description("Where should the player take off from? As with all values in the \"Player, single player only\" category, this value is ignored if any flight group is specified in \"MP flight groups\", the multiplayer flight groups are then used instead.")]
+        [Description("Where should the player(s) take off from?")]
         [TypeConverter(typeof(EnumTypeConverter<PlayerStartLocation>))]
         public PlayerStartLocation PlayerStartLocation { get; set; }
 
@@ -370,13 +365,14 @@ namespace BriefingRoom4DCSWorld.Template
             OptionsScriptExtensions = new string[0];
             OptionsShowEnemyUnits = true;
 
+            PlayerAISkillLevel = BRSkillLevel.Veteran;
+            PlayerEscortCAP = 0;
+            PlayerEscortSEAD = 0;
             PlayerStartLocation = PlayerStartLocation.Runway;
+
             PlayerMPFlightGroups = new MissionTemplateMPFlightGroup[0];
             PlayerSPAircraft = TemplateTools.CheckValuePlayerAircraft(Database.Instance.Common.DefaultPlayerAircraft);
-            AIEscortCAP = 0;
-            AIEscortSEAD = 0;
             PlayerSPWingmen = 1;
-            PlayerSPWingmenSkillLevel = BRSkillLevel.Veteran;
 
             TheaterID = TemplateTools.CheckValue<DBEntryTheater>(Database.Instance.Common.DefaultTheater);
             TheaterRegionsCoalitions = CountryCoalition.Default;
@@ -422,6 +418,9 @@ namespace BriefingRoom4DCSWorld.Template
                 OptionsScriptExtensions = ini.GetValueArray<string>("Options", "ScriptExtensions");
                 OptionsShowEnemyUnits = ini.GetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
 
+                PlayerAISkillLevel = ini.GetValue("Player", "AISkillLevel", PlayerAISkillLevel);
+                PlayerEscortCAP = ini.GetValue("Player", "EscortCAP", PlayerEscortCAP);
+                PlayerEscortSEAD = ini.GetValue("Player", "EscortSEAD", PlayerEscortSEAD);
                 PlayerStartLocation = ini.GetValue("Player", "StartLocation", PlayerStartLocation);
 
                 int fgFlightGroupCount = Math.Max(0, ini.GetValue<int>("PlayerMP", "FGCount"));
@@ -430,10 +429,7 @@ namespace BriefingRoom4DCSWorld.Template
                     PlayerMPFlightGroups[i] = new MissionTemplateMPFlightGroup(ini, "PlayerMP", $"FG{i:000}");
 
                 PlayerSPAircraft = ini.GetValue("PlayerSP", "Aircraft", PlayerSPAircraft);
-                AIEscortCAP = ini.GetValue("PlayerSP", "EscortCAP", AIEscortCAP);
-                AIEscortSEAD = ini.GetValue("PlayerSP", "EscortSEAD", AIEscortSEAD);
                 PlayerSPWingmen = ini.GetValue("PlayerSP", "Wingmen", PlayerSPWingmen);
-                PlayerSPWingmenSkillLevel = ini.GetValue("PlayerSP", "Wingmen.SkillLevel", PlayerSPWingmenSkillLevel);
 
                 TheaterID = ini.GetValue("Theater", "ID", TheaterID);
                 TheaterRegionsCoalitions = ini.GetValue("Theater", "RegionsCoalitions", TheaterRegionsCoalitions);
@@ -478,13 +474,14 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValueArray("Options", "ScriptExtensions", OptionsScriptExtensions);
                 ini.SetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
 
+                ini.SetValue("Player", "AISkillLevel", PlayerAISkillLevel);
+                ini.SetValue("Player", "EscortCAP", PlayerEscortCAP);
+                ini.SetValue("Player", "EscortSEAD", PlayerEscortSEAD);
                 ini.SetValue("Player", "StartLocation", PlayerStartLocation);
-                ini.SetValue("Player", "EscortCAP", AIEscortCAP);
-                ini.SetValue("Player", "EscortSEAD", AIEscortSEAD);
 
                 ini.SetValue("PlayerSP", "Aircraft", PlayerSPAircraft);
                 ini.SetValue("PlayerSP", "Wingmen", PlayerSPWingmen);
-                ini.SetValue("PlayerSP", "Wingmen.SkillLevel", PlayerSPWingmenSkillLevel);
+                ini.SetValue("PlayerSP", "Wingmen.SkillLevel", PlayerAISkillLevel);
 
                 ini.SetValue("PlayerMP", "FGCount", PlayerMPFlightGroups.Length);
                 for (int i = 0; i < PlayerMPFlightGroups.Length; i++)
@@ -541,10 +538,10 @@ namespace BriefingRoom4DCSWorld.Template
             if (GetMissionType() == MissionType.SinglePlayer)
             {
                 if (PlayerStartLocation == PlayerStartLocation.Runway) return 0; // Player and wingmen start on the runway, AI escort start in air above the airbase
-                return PlayerSPWingmen_ + 1 + AIEscortCAP_ + AIEscortSEAD_;
+                return PlayerSPWingmen_ + 1 + PlayerEscortCAP_ + PlayerEscortSEAD_;
             }
 
-            return GetPlayerCount() + AIEscortCAP_ + AIEscortSEAD_;
+            return GetPlayerCount(); // AI escorts start in the air
         }
 
         /// <summary>

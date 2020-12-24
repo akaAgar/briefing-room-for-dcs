@@ -143,11 +143,9 @@ namespace BriefingRoom4DCSWorld.Generator
 
             if (template.GetMissionType() == MissionType.SinglePlayer)
             {
-
                 // Player flight group
                 aircraft = Database.Instance.GetEntry<DBEntryUnit>(template.PlayerSPAircraft);
                 airPowerRating += ((aircraft != null) ? aircraft.AircraftData.AirToAirRating[1] : 1) * (template.PlayerSPWingmen + 1);
-
             }
             else // Mission is multi-player
             {
@@ -187,11 +185,11 @@ namespace BriefingRoom4DCSWorld.Generator
 
             // AI CAP escort
             aircraft = Database.Instance.GetEntry<DBEntryUnit>(aiEscortTypeCAP);
-            airPowerRating += ((aircraft != null) ? aircraft.AircraftData.AirToAirRating[1] : 1) * template.AIEscortCAP;
+            airPowerRating += ((aircraft != null) ? aircraft.AircraftData.AirToAirRating[1] : 1) * template.PlayerEscortCAP;
 
             // AI SEAD escort
             aircraft = Database.Instance.GetEntry<DBEntryUnit>(aiEscortTypeSEAD);
-            airPowerRating += ((aircraft != null) ? aircraft.AircraftData.AirToAirRating[0] : 1) * template.AIEscortSEAD;
+            airPowerRating += ((aircraft != null) ? aircraft.AircraftData.AirToAirRating[0] : 1) * template.PlayerEscortSEAD;
 
             return airPowerRating;
         }

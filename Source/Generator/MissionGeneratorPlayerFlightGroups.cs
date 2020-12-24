@@ -54,35 +54,30 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="template">Mission template to use</param>
         /// <param name="objectiveDB">Mission objective database entry</param>
         /// <param name="playerCoalitionDB">Player coalition database entry</param>
-        /// <param name="aiEscortTypeCAP">Type of aircraft selected for AI CAP escort (single-player only)</param>
-        /// <param name="aiEscortTypeSEAD">Type of aircraft selected for AI SEAD escort (single-player only)</param>
+        /// <param name="aiEscortTypeCAP">Type of aircraft selected for AI CAP escort</param>
+        /// <param name="aiEscortTypeSEAD">Type of aircraft selected for AI SEAD escort</param>
         /// <returns>An array of <see cref="UnitFlightGroupBriefingDescription"/> describing the flight groups, to be used in the briefing</returns>
         public UnitFlightGroupBriefingDescription[] CreateUnitGroups(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB, DBEntryCoalition playerCoalitionDB, out string aiEscortTypeCAP, out string aiEscortTypeSEAD)
         {
             List<UnitFlightGroupBriefingDescription> briefingFGList = new List<UnitFlightGroupBriefingDescription>();
 
-
             if (template.GetMissionType() == MissionType.SinglePlayer)
-            {
-
                 briefingFGList.Add(GenerateSinglePlayerFlightGroup(mission, template, objectiveDB));
-            }
-            else {
+            else
                 briefingFGList.AddRange(GenerateMultiplayerFlightGroups(mission, template, objectiveDB));
-            }
 
             aiEscortTypeCAP = "";
             aiEscortTypeSEAD = "";
             UnitFlightGroupBriefingDescription? escortDescription;
 
-            escortDescription = GenerateAIEscort(mission, template, template.AIEscortCAP, MissionTemplateMPFlightGroupTask.SupportCAP, playerCoalitionDB);
+            escortDescription = GenerateAIEscort(mission, template, template.PlayerEscortCAP, MissionTemplateMPFlightGroupTask.SupportCAP, playerCoalitionDB);
             if (escortDescription.HasValue)
             {
                 briefingFGList.Add(escortDescription.Value);
                 aiEscortTypeCAP = escortDescription.Value.Type;
             }
 
-            escortDescription = GenerateAIEscort(mission, template, template.AIEscortSEAD, MissionTemplateMPFlightGroupTask.SupportSEAD, playerCoalitionDB);
+            escortDescription = GenerateAIEscort(mission, template, template.PlayerEscortSEAD, MissionTemplateMPFlightGroupTask.SupportSEAD, playerCoalitionDB);
             if (escortDescription.HasValue)
             {
                 briefingFGList.Add(escortDescription.Value);
@@ -106,7 +101,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 Enumerable.Repeat(template.PlayerSPAircraft, template.PlayerSPWingmen + 1).ToArray(),
                 Side.Ally, mission.InitialPosition,
                 "GroupAircraftPlayer", "UnitAircraft",
-                Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerSPWingmenSkillLevel), DCSMissionUnitGroupFlags.FirstUnitIsPlayer,
+                Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel), DCSMissionUnitGroupFlags.FirstUnitIsPlayer,
                 objectiveDB.Payload,
                 null, mission.InitialAirbaseID, true);
 
@@ -142,11 +137,11 @@ namespace BriefingRoom4DCSWorld.Generator
             {
                 default: return null; // Should never happen
                 case MissionTemplateMPFlightGroupTask.SupportCAP:
-                    groupLua = "GroupAircraftPlayerEscortCAP";
+                    groupLua = (template.GetMissionType() == MissionType.SinglePlayer) ? "GroupAircraftPlayerEscortCAP" : "GroupAircraftCAP";
                     aircraft = playerCoalitionDB.GetRandomUnits(UnitFamily.PlaneFighter, count);
                     break;
                 case MissionTemplateMPFlightGroupTask.SupportSEAD:
-                    groupLua = "GroupAircraftPlayerEscortSEAD";
+                    groupLua = (template.GetMissionType() == MissionType.SinglePlayer) ? "GroupAircraftPlayerEscortSEAD" : "GroupAircraftSEAD";
                     aircraft = playerCoalitionDB.GetRandomUnits(UnitFamily.PlaneSEAD, count);
                     break;
             }
@@ -156,22 +151,33 @@ namespace BriefingRoom4DCSWorld.Generator
             // Player starts on runway, so escort starts in the air above the airfield (so player doesn't have to wait for them to take off)
             // Add a random distance so they don't crash into each other.
             if (template.PlayerStartLocation == PlayerStartLocation.Runway)
-                position += Coordinates.CreateRandom(2, 4) * Toolbox.NM_TO_METERS; 
+                position += Coordinates.CreateRandom(2, 4) * Toolbox.NM_TO_METERS;
 
-            DCSMissionUnitGroup group = UnitMaker.AddUnitGroup(
-                mission,
-                aircraft,
-                Side.Ally, position,
-                groupLua, "UnitAircraft",
-                Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerSPWingmenSkillLevel), 0,
-                payload,
-                null, mission.InitialAirbaseID, true);
+            DCSMissionUnitGroup group;
+            if (template.GetMissionType() == MissionType.SinglePlayer)
+                group = UnitMaker.AddUnitGroup(
+                    mission, aircraft,
+                    Side.Ally, position,
+                    groupLua, "UnitAircraft",
+                    Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel), 0,
+                    payload, null, mission.InitialAirbaseID, true);
+            else
+                group = UnitMaker.AddUnitGroup(
+                    mission, aircraft,
+                    Side.Ally, position,
+                    groupLua, "UnitAircraft",
+                    Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel), 0,
+                    payload, mission.ObjectivesCenter);
 
             if (group == null)
             {
                 DebugLog.Instance.WriteLine($"Failed to create AI escort flight group tasked with {task} with aircraft of type \"{aircraft[0]}\".", 1, DebugLogMessageErrorLevel.Warning);
                 return null;
             }
+
+            // MP AI escorts start in the air, so add them to the spawn queue
+            if (template.GetMissionType() != MissionType.SinglePlayer)
+                mission.AircraftSpawnQueue.Add(new DCSMissionAircraftSpawnQueueItem(group.GroupID, true));
 
             return
                 new UnitFlightGroupBriefingDescription(
