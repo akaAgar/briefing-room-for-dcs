@@ -111,7 +111,7 @@ namespace BriefingRoom4DCSWorld.Generator
                     mission, Enumerable.Repeat(unitTypes[0], groupSize).ToArray(),
                     Side.Enemy, spawnPoint.Value.Coordinates,
                     "GroupAircraftEnemyCAP", "UnitAircraft",
-                    DCSSkillLevel.Average, // Skill is always average to compensate for broken AI flight model
+                    Toolbox.BRSkillLevelToDCSSkillLevel(template.OppositionSkillLevelAir),
                     flags, UnitTaskPayload.AirToAir,
                     mission.ObjectivesCenter + Coordinates.CreateRandom(20, 40) * Toolbox.NM_TO_METERS);
 

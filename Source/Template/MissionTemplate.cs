@@ -182,6 +182,22 @@ namespace BriefingRoom4DCSWorld.Template
         public AmountN OppositionAirForce { get; set; }
 
         /// <summary>
+        /// Skill level of enemy planes and helicopters.
+        /// </summary>
+        [Category("Opposition"), DisplayName("Skill level, aircraft")]
+        [Description("Skill level of enemy planes and helicopters.")]
+        [TypeConverter(typeof(EnumTypeConverter<BRSkillLevel>))]
+        public BRSkillLevel OppositionSkillLevelAir { get; set; }
+
+        /// <summary>
+        /// Skill level of enemy ground units and air defense.
+        /// </summary>
+        [Category("Opposition"), DisplayName("Skill level, ground units")]
+        [Description("Skill level of enemy ground units and air defense.")]
+        [TypeConverter(typeof(EnumTypeConverter<BRSkillLevel>))]
+        public BRSkillLevel OppositionSkillLevelGround { get; set; }
+
+        /// <summary>
         /// Can enemy units be spawned in any country (recommended) or only in countries aligned with a
         /// given coalition? Be aware that when choosing an option other than "Any", depending on the theater and the
         /// <see cref="TheaterRegionsCoalitions"/> setting, objectives may end up VERY far from the player(s) starting 
@@ -277,6 +293,14 @@ namespace BriefingRoom4DCSWorld.Template
         private int PlayerSPWingmen_;
 
         /// <summary>
+        /// Skill level of AI wingmen and escort aircraft.
+        /// </summary>
+        [Category("Player, single player only"), DisplayName("Wingmen skill level")]
+        [Description("Skill level of AI wingmen and escort aircraft.")]
+        [TypeConverter(typeof(EnumTypeConverter<BRSkillLevel>))]
+        public BRSkillLevel PlayerSPWingmenSkillLevel { get; set; }
+
+        /// <summary>
         /// Where should the player take off from?
         /// As with all values in the "Player, single player only" category, this value is ignored if any
         /// flight group is specified in <see cref="PlayerMPFlightGroups" />, the multiplayer flight groups
@@ -338,6 +362,8 @@ namespace BriefingRoom4DCSWorld.Template
 
             OppositionAirDefense = AmountN.Average;
             OppositionAirForce = AmountN.Average;
+            OppositionSkillLevelAir = BRSkillLevel.Random;
+            OppositionSkillLevelGround = BRSkillLevel.Random;
             OppositionUnitsLocation = SpawnPointPreferredCoalition.Any;
 
             OptionsPreferences = new MissionTemplatePreferences[0];
@@ -350,6 +376,7 @@ namespace BriefingRoom4DCSWorld.Template
             PlayerSPEscortCAP = 0;
             PlayerSPEscortSEAD = 0;
             PlayerSPWingmen = 1;
+            PlayerSPWingmenSkillLevel = BRSkillLevel.Veteran;
 
             TheaterID = TemplateTools.CheckValue<DBEntryTheater>(Database.Instance.Common.DefaultTheater);
             TheaterRegionsCoalitions = CountryCoalition.Default;
@@ -387,6 +414,8 @@ namespace BriefingRoom4DCSWorld.Template
 
                 OppositionAirDefense = ini.GetValue("Opposition", "AirDefense", OppositionAirDefense);
                 OppositionAirForce = ini.GetValue("Opposition", "AirForce", OppositionAirForce);
+                OppositionSkillLevelAir = ini.GetValue("Opposition", "SkillLevel.Air", OppositionSkillLevelAir);
+                OppositionSkillLevelGround = ini.GetValue("Opposition", "SkillLevel.Ground", OppositionSkillLevelGround);
                 OppositionUnitsLocation = ini.GetValue("Opposition", "UnitsLocation", OppositionUnitsLocation);
 
                 OptionsPreferences = ini.GetValueArray<MissionTemplatePreferences>("Options", "Preferences");
@@ -404,6 +433,7 @@ namespace BriefingRoom4DCSWorld.Template
                 PlayerSPEscortCAP = ini.GetValue("PlayerSP", "EscortCAP", PlayerSPEscortCAP);
                 PlayerSPEscortSEAD = ini.GetValue("PlayerSP", "EscortSEAD", PlayerSPEscortSEAD);
                 PlayerSPWingmen = ini.GetValue("PlayerSP", "Wingmen", PlayerSPWingmen);
+                PlayerSPWingmenSkillLevel = ini.GetValue("PlayerSP", "Wingmen.SkillLevel", PlayerSPWingmenSkillLevel);
 
                 TheaterID = ini.GetValue("Theater", "ID", TheaterID);
                 TheaterRegionsCoalitions = ini.GetValue("Theater", "RegionsCoalitions", TheaterRegionsCoalitions);
@@ -440,6 +470,8 @@ namespace BriefingRoom4DCSWorld.Template
 
                 ini.SetValue("Opposition", "AirDefense", OppositionAirDefense);
                 ini.SetValue("Opposition", "AirForce", OppositionAirForce);
+                ini.SetValue("Opposition", "SkillLevel.Air", OppositionSkillLevelAir);
+                ini.SetValue("Opposition", "SkillLevel.Ground", OppositionSkillLevelGround);
                 ini.SetValue("Opposition", "UnitsLocation", OppositionUnitsLocation);
 
                 ini.SetValueArray("Options", "Preferences", OptionsPreferences);
@@ -452,6 +484,7 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValue("PlayerSP", "EscortCAP", PlayerSPEscortCAP);
                 ini.SetValue("PlayerSP", "EscortSEAD", PlayerSPEscortSEAD);
                 ini.SetValue("PlayerSP", "Wingmen", PlayerSPWingmen);
+                ini.SetValue("PlayerSP", "Wingmen.SkillLevel", PlayerSPWingmenSkillLevel);
 
                 ini.SetValue("PlayerMP", "FGCount", PlayerMPFlightGroups.Length);
                 for (int i = 0; i < PlayerMPFlightGroups.Length; i++)

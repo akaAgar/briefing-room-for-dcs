@@ -21,37 +21,31 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 namespace BriefingRoom4DCSWorld
 {
     /// <summary>
-    /// Enumeates all skill levels to be used in the mission
-    /// (unlike <see cref="BRSkillLevel"/>, which is used for skill selection in the mission template).
-    /// MUST MATCH NAMES USED BY DCS WORLD!
-    /// Can be converted from a <see cref="BRSkillLevel"/> by <see cref="Toolbox.BRSkillLevelToDCSSkillLevel(BRSkillLevel)"
+    /// Enumerates skill levels shown in BriefingRoom mission templates.
+    /// NOT the internal DCS World skill level (<see cref="DCSSkillLevel"/>).
+    /// Can be converted to a <see cref="DCSSkillLevel"/> by <see cref="Toolbox.BRSkillLevelToDCSSkillLevel(BRSkillLevel)"
     /// </summary>
-    public enum DCSSkillLevel
+    public enum BRSkillLevel
     {
         /// <summary>
-        /// The (only) player in a single player mission controls this aircraft
+        /// Select a random value for each unit.
         /// </summary>
-        Player,
-        /// <summary>
-        /// A multiplayer client controls this aircraft
-        /// </summary>
-        Client,
-
+        Random,
         /// <summary>
         /// Easy AI
         /// </summary>
-        Average,
+        Rookie,
         /// <summary>
         /// Average AI
         /// </summary>
-        Good,
+        Regular,
         /// <summary>
         /// Hard AI
         /// </summary>
-        High,
+        Veteran,
         /// <summary>
         /// Elite AI
         /// </summary>
-        Excellent
+        Ace
     }
 }

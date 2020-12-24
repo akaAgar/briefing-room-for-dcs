@@ -44,6 +44,8 @@ On the left side of the screen you can see a list of all settings currently used
 * **Air defense**: Intensity and quality of enemy surface-to-air defense.
 * **Air force**: Relative power of the enemy air force. Enemy air force will always be proportional to the number and air-to-air efficiency of aircraft in the player mission package, so more player/AI friendly aircraft means more enemy aircraft, regardless of this setting.
 * **Enemy units location**: Can enemy units be spawned in any country (recommended) or only in countries aligned with a given coalition? Be aware that when choosing an option other than "Any", depending on the theater and the "Theater region coalitions" setting, objectives may end up VERY far from the player(s) starting location, no matter the value of "Objective distance". Keep in mind that "Theaters regions coalitions" has a influence on this setting.
+* **Skill level, aircraft**: Skill level of enemy planes and helicopters.
+* **Skill level, ground units**: Skill level of enemy ground units and air defense.
 
 **Options**
 * **Script extensions**: (advanced) Script extensions to include in this mission to provide additional features.
@@ -57,6 +59,7 @@ On the left side of the screen you can see a list of all settings currently used
 * **Escort aircraft, CAP**: Number of AI aircraft tasked with escorting the player against enemy fighters. As with all values in the "Player, single player only" category, this value is ignored if any flight group is specified in "MP flight groups", the multiplayer flight groups are then used instead.
 * **Escort aircraft, SEAD**: Number of AI aircraft tasked with escorting the player against enemy SAMs. As with all values in the "Player, single player only" category, this value is ignored if any flight group is specified in "MP flight groups", the multiplayer flight groups are then used instead.
 * **Wingmen**: Number of AI wingmen in the player's flight group. As with all values in the "Player, single player only" category, this value is ignored if any flight group is specified in "MP flight groups", the multiplayer flight groups are then used instead.
+* **Wingmen skill level**: Skill level of AI wingmen and escort aircraft.
 
 **Player, multiplayer only**
 * **MP flight groups**: Multiplayer flight groups. If any flight group is specified here, the mission then becomes a multiplayer mission and all values in the "Player, single player only" are ignored.

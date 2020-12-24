@@ -131,32 +131,11 @@ namespace BriefingRoom4DCSWorld.Generator
                     mission, units, Side.Enemy,
                     spawnPoint.Value.Coordinates,
                     "GroupVehicle", "UnitVehicle",
-                    GetAirDefenseSkillLevel(template.OppositionAirDefense), flags);
+                    Toolbox.BRSkillLevelToDCSSkillLevel(template.OppositionSkillLevelGround),
+                    flags);
                 
                 if (group == null)
                     DebugLog.Instance.WriteLine($"Failed to add {airDefenseRange} air defense unit group of type {units[0]}", 1, DebugLogMessageErrorLevel.Warning);
-            }
-        }
-
-        /// <summary>
-        /// Returns a skill level appropriate for the coalition air defense quality.
-        /// </summary>
-        /// <param name="airDefenseQuality">Coalition air defense quality rating</param>
-        /// <returns>A DCS World skill level</returns>
-        private DCSSkillLevel GetAirDefenseSkillLevel(AmountN airDefenseQuality)
-        {
-            switch (airDefenseQuality)
-            {
-                case AmountN.VeryLow:
-                    return DCSSkillLevel.Average;
-                case AmountN.Low:
-                    return Toolbox.RandomFrom(DCSSkillLevel.Average, DCSSkillLevel.Good);
-                default: // case Amount.Average
-                    return Toolbox.RandomFrom(DCSSkillLevel.Average, DCSSkillLevel.Good, DCSSkillLevel.High);
-                case AmountN.High:
-                    return Toolbox.RandomFrom(DCSSkillLevel.High, DCSSkillLevel.Excellent);
-                case AmountN.VeryHigh:
-                    return DCSSkillLevel.Excellent;
             }
         }
 

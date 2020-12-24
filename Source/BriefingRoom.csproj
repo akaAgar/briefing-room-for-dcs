@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="AirDefenseLevel.cs" />
     <Compile Include="DB\DBEntryTheaterAirbaseParkingSpot.cs" />
+    <Compile Include="BRSkillLevel.cs" />
     <Compile Include="MissionType.cs" />
     <Compile Include="CoalitionBriefingElement.cs" />
     <Compile Include="Amount.cs" />

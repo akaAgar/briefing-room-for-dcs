@@ -255,23 +255,6 @@ namespace BriefingRoom4DCSWorld.Generator
                 mission.PlayerStartLocation = PlayerStartLocation.ParkingHot;
         }
 
-        public static DCSSkillLevel GetSkillByQuality(AmountN armyQuality)
-        {
-            switch (armyQuality)
-            {
-                case AmountN.VeryLow:
-                    return DCSSkillLevel.Average;
-                case AmountN.Low:
-                    return Toolbox.RandomFrom(new DCSSkillLevel[] { DCSSkillLevel.Average, DCSSkillLevel.Good });
-                default: // case Amount.Average:
-                    return Toolbox.RandomFrom(new DCSSkillLevel[] { DCSSkillLevel.Average, DCSSkillLevel.Good, DCSSkillLevel.High });
-                case AmountN.High:
-                    return Toolbox.RandomFrom(new DCSSkillLevel[] { DCSSkillLevel.Good, DCSSkillLevel.High, DCSSkillLevel.Excellent });
-                case AmountN.VeryHigh:
-                    return Toolbox.RandomFrom(new DCSSkillLevel[] { DCSSkillLevel.High, DCSSkillLevel.Excellent });
-            }
-        }
-
         /// <summary>
         /// <see cref="IDisposable"/> implementation.
         /// </summary>

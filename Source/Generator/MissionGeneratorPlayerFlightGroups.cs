@@ -34,11 +34,6 @@ namespace BriefingRoom4DCSWorld.Generator
     public class MissionGeneratorPlayerFlightGroups : IDisposable
     {
         /// <summary>
-        /// Skill level for AI wingmen and escort in single-player missions.
-        /// </summary>
-        private const DCSSkillLevel AI_WINGMEN_SKILL = DCSSkillLevel.Good;
-
-        /// <summary>
         /// Unit maker class to use to generate units.
         /// </summary>
         private readonly UnitMaker UnitMaker;
@@ -109,7 +104,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 Enumerable.Repeat(template.PlayerSPAircraft, template.PlayerSPWingmen + 1).ToArray(),
                 Side.Ally, mission.InitialPosition,
                 "GroupAircraftPlayer", "UnitAircraft",
-                AI_WINGMEN_SKILL, DCSMissionUnitGroupFlags.FirstUnitIsPlayer,
+                Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerSPWingmenSkillLevel), DCSMissionUnitGroupFlags.FirstUnitIsPlayer,
                 objectiveDB.Payload,
                 null, mission.InitialAirbaseID, true);
 
@@ -156,7 +151,8 @@ namespace BriefingRoom4DCSWorld.Generator
 
             Coordinates position = mission.InitialPosition;
 
-            // Player starts on runway, escort starts in the air above the airfield, add a random distance so they don't crash into each other
+            // Player starts on runway, so escort starts in the air above the airfield (so player doesn't have to wait for them to take off)
+            // Add a random distance so they don't crash into each other.
             if (template.PlayerStartLocation == PlayerStartLocation.Runway)
                 position += Coordinates.CreateRandom(2, 4) * Toolbox.NM_TO_METERS; 
 
@@ -165,7 +161,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 aircraft,
                 Side.Ally, position,
                 groupLua, "UnitAircraft",
-                AI_WINGMEN_SKILL, 0,
+                Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerSPWingmenSkillLevel), 0,
                 payload,
                 null, mission.InitialAirbaseID, true);
 

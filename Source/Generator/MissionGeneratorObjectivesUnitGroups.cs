@@ -78,13 +78,19 @@ namespace BriefingRoom4DCSWorld.Generator
                     (Toolbox.GetUnitCategoryFromUnitFamily(mission.Objectives[i].TargetFamily.Value) == UnitCategory.Vehicle))
                     units = GeneratorTools.AddEmbeddedAirDefense(units, template.OppositionAirDefense, coalitionsDB[(int)coalition]);
 
+                // Pick the skill level once for each objective so not all target groups have the same skill level when a
+                // "random" skill level is chosen.
+                DCSSkillLevel skillLevel =
+                    Toolbox.IsUnitFamilyAircraft(mission.Objectives[i].TargetFamily.Value) ?
+                    Toolbox.BRSkillLevelToDCSSkillLevel(template.OppositionSkillLevelAir) :
+                    Toolbox.BRSkillLevelToDCSSkillLevel(template.OppositionSkillLevelGround);
+
                 DCSMissionUnitGroup group = UnitMaker.AddUnitGroup(
                     mission, units,
                     objectiveDB.UnitGroup.Flags.HasFlag(DBUnitGroupFlags.Friendly) ? Side.Ally : Side.Enemy,
                     mission.Objectives[i].Coordinates,
                     objectiveDB.UnitGroup.LuaGroup, objectiveDB.UnitGroup.LuaUnit,
-                    DCSSkillLevel.Good, // TODO: skill level
-                    flags);
+                    skillLevel, flags);
 
                 // Something went wrong, abort mission generation, objective unit groups are required for the mission to work properly.
                 if (group == null)
