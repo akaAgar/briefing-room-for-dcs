@@ -139,28 +139,21 @@ namespace BriefingRoom4DCSWorld.Generator
         private int GetMissionPackageAirPower(MissionTemplate template, DBEntryObjective objectiveDB, string aiEscortTypeCAP, string aiEscortTypeSEAD)
         {
             int airPowerRating = 0;
+            DBEntryUnit aircraft;
 
             if (template.GetMissionType() == MissionType.SinglePlayer)
             {
-                DBEntryUnit aircraft;
 
                 // Player flight group
                 aircraft = Database.Instance.GetEntry<DBEntryUnit>(template.PlayerSPAircraft);
                 airPowerRating += ((aircraft != null) ? aircraft.AircraftData.AirToAirRating[1] : 1) * (template.PlayerSPWingmen + 1);
 
-                // AI CAP escort
-                aircraft = Database.Instance.GetEntry<DBEntryUnit>(aiEscortTypeCAP);
-                airPowerRating += ((aircraft != null) ? aircraft.AircraftData.AirToAirRating[1] : 1) * template.PlayerSPEscortCAP;
-
-                // AI SEAD escort
-                aircraft = Database.Instance.GetEntry<DBEntryUnit>(aiEscortTypeSEAD);
-                airPowerRating += ((aircraft != null) ? aircraft.AircraftData.AirToAirRating[0] : 1) * template.PlayerSPEscortSEAD;
             }
             else // Mission is multi-player
             {
                 foreach (MissionTemplateMPFlightGroup fg in template.PlayerMPFlightGroups)
                 {
-                    DBEntryUnit aircraft = Database.Instance.GetEntry<DBEntryUnit>(fg.AircraftType);
+                    aircraft = Database.Instance.GetEntry<DBEntryUnit>(fg.AircraftType);
 
                     if (aircraft == null) // Aircraft doesn't exist
                     {
@@ -191,6 +184,14 @@ namespace BriefingRoom4DCSWorld.Generator
                     airPowerRating += aircraft.AircraftData.AirToAirRating[hasAirToAirLoadout ? 1 : 0] * fg.Count;
                 }
             }
+
+            // AI CAP escort
+            aircraft = Database.Instance.GetEntry<DBEntryUnit>(aiEscortTypeCAP);
+            airPowerRating += ((aircraft != null) ? aircraft.AircraftData.AirToAirRating[1] : 1) * template.AIEscortCAP;
+
+            // AI SEAD escort
+            aircraft = Database.Instance.GetEntry<DBEntryUnit>(aiEscortTypeSEAD);
+            airPowerRating += ((aircraft != null) ? aircraft.AircraftData.AirToAirRating[0] : 1) * template.AIEscortSEAD;
 
             return airPowerRating;
         }
