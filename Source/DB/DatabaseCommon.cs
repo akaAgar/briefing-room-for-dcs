@@ -224,21 +224,21 @@ namespace BriefingRoom4DCSWorld.DB
             DebugLog.Instance.WriteLine("Loading common enemy air defense settings...", 1);
             using (INIFile ini = new INIFile($"{BRPaths.DATABASE}EnemyAirDefense.ini"))
             {
-                EnemyCAPDistanceFromObjectives = ini.GetValue<MinMaxD>("EnemyCombatAirPatrols", "DistanceFromObjectives");
-                EnemyCAPMinDistanceFromTakeOffLocation = ini.GetValue<int>("EnemyCombatAirPatrols", "MinDistanceFromTakeOffLocation");
+                EnemyCAPDistanceFromObjectives = ini.GetValue<MinMaxD>("CombatAirPatrols", "DistanceFromObjectives");
+                EnemyCAPMinDistanceFromTakeOffLocation = ini.GetValue<int>("CombatAirPatrols", "MinDistanceFromTakeOffLocation");
 
                 for (i = 0; i < Toolbox.EnumCount<AmountN>(); i++)
                 {
                     EnemyAirDefense[i] = new DatabaseCommonAirDefenseInfo(ini, (AmountN)i);
 
                     EnemyCAPRelativePower[i] = (i == 0) ? 0.0 :
-                        Toolbox.Clamp(ini.GetValue<int>("EnemyCombatAirPatrols", $"RelativePower.{(AmountN)i}"), 0, 100) / 100.0;
+                        Toolbox.Clamp(ini.GetValue<int>("CombatAirPatrols", $"RelativePower.{(AmountN)i}"), 0, 100) / 100.0;
                 }
 
                 for (i = 0; i < Toolbox.EnumCount<AirDefenseRange>(); i++)
                 {
-                    EnemyAirDefenseDistanceFromTakeOffLocation[i] = ini.GetValue<int>("EnemyAirDefenseRange", $"{(AirDefenseRange)i}.MinDistanceFromTakeOffLocation");
-                    EnemyAirDefenseDistanceFromObjectives[i] = ini.GetValue<MinMaxD>("EnemyAirDefenseRange", $"{(AirDefenseRange)i}.DistanceFromObjectives");
+                    EnemyAirDefenseDistanceFromTakeOffLocation[i] = ini.GetValue<int>("AirDefenseRange", $"{(AirDefenseRange)i}.MinDistanceFromTakeOffLocation");
+                    EnemyAirDefenseDistanceFromObjectives[i] = ini.GetValue<MinMaxD>("AirDefenseRange", $"{(AirDefenseRange)i}.DistanceFromObjectives");
                 }
             }
 
@@ -254,8 +254,8 @@ namespace BriefingRoom4DCSWorld.DB
 
                 for (i = 0; i < Toolbox.EnumCount<AirDefenseRange>(); i++)
                 {
-                    AllyAirDefenseDistanceFromTakeOffLocation[i] = ini.GetValue<MinMaxD>("EnemyAirDefenseRange", $"{(AirDefenseRange)i}.DistanceFromTakeOffLocation");
-                    AllyAirDefenseDistanceFromObjectives[i] = ini.GetValue<int>("EnemyAirDefenseRange", $"{(AirDefenseRange)i}.MinDistanceFromObjectives");
+                    AllyAirDefenseDistanceFromTakeOffLocation[i] = ini.GetValue<MinMaxD>("AirDefenseRange", $"{(AirDefenseRange)i}.DistanceFromTakeOffLocation");
+                    AllyAirDefenseDistanceFromObjectives[i] = ini.GetValue<int>("AirDefenseRange", $"{(AirDefenseRange)i}.MinDistanceFromObjectives");
                 }
             }
 
