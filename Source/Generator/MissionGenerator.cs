@@ -200,7 +200,7 @@ namespace BriefingRoom4DCSWorld.Generator
             if (!mission.RadioSounds)
                 mission.OggFiles =
                     (from string f in mission.OggFiles
-                     where (f.ToLowerInvariant() == "radio0") || (!f.ToLowerInvariant().StartsWith("radio"))).ToList();
+                     where (f.ToLowerInvariant() == "radio0") || (!f.ToLowerInvariant().StartsWith("radio")) select f).ToList();
 
             // Make sure included Lua scripts appear only once
             mission.IncludedLuaScripts = mission.IncludedLuaScripts.Distinct().OrderBy(x => x).ToList();
