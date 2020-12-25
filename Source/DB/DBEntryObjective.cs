@@ -99,7 +99,7 @@ namespace BriefingRoom4DCSWorld.DB
                 foreach (UnitFamily family in Toolbox.GetEnumValues<UnitFamily>())
                     BriefingDescriptionByUnitFamily[(int)family] = ini.GetValue<string>("Briefing", $"Description.{family}");
 
-                BriefingRemarks = ini.GetValueArray<string>("Briefing", "Remarks");
+                BriefingRemarks = ini.GetValueArray<string>("Briefing", "Remarks", ';');
                 BriefingTask = ini.GetValue<string>("Briefing", "Task");
                 BriefingTaskFlightGroup = ini.GetValue<string>("Briefing", "Task.FlightGroup");
 

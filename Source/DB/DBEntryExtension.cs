@@ -58,7 +58,7 @@ namespace BriefingRoom4DCSWorld.DB
         {
             using (INIFile ini = new INIFile(iniFilePath))
             {
-                BriefingRemarks = ini.GetValueArray<string>("Briefing", "Remarks");
+                BriefingRemarks = ini.GetValueArray<string>("Briefing", "Remarks", ';');
                 IncludeLua = ini.GetValueArray<string>("Include", "Lua");
                 IncludeOgg = ini.GetValueArray<string>("Include", "Ogg");
                 LuaSettings = ini.GetValue<string>("Lua", "Settings");
