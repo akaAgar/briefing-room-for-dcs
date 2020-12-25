@@ -185,13 +185,22 @@ namespace BriefingRoom4DCSWorld.Generator
                 briefing.GenerateMissionBriefing(mission, template, objectiveDB, airbaseDB, briefingFGList, coalitionsDB);
             }
 
+            // Set if radio sounds are enabled
+            mission.RadioSounds = template.OptionsRadioSounds;
+
             // Add common .ogg vorbis files and make sure each only appears only once.
             mission.OggFiles.AddRange(Database.Instance.Common.CommonOGG);
             mission.OggFiles.AddRange(Database.Instance.Common.CommonOGGForGameMode[(int)template.GetMissionType()]);
             mission.OggFiles =
-                (from string o in mission.OggFiles
-                 where !string.IsNullOrEmpty(o.Trim()) select o.Trim())
+                (from string f in mission.OggFiles
+                 where !string.IsNullOrEmpty(f.Trim()) select f.Trim())
                  .Distinct(StringComparer.InvariantCultureIgnoreCase).ToList();
+
+            // If radio sounds are disabled, do not include radio .ogg files to save on file size
+            if (!mission.RadioSounds)
+                mission.OggFiles =
+                    (from string f in mission.OggFiles
+                     where (f.ToLowerInvariant() == "radio0") || (!f.ToLowerInvariant().StartsWith("radio"))).ToList();
 
             // Make sure included Lua scripts appear only once
             mission.IncludedLuaScripts = mission.IncludedLuaScripts.Distinct().OrderBy(x => x).ToList();
@@ -207,9 +216,6 @@ namespace BriefingRoom4DCSWorld.Generator
                 case MissionType.Versus:
                     mission.CoreLuaScript += "briefingRoom.mission.missionType = brMissionType.VERSUS\r\n"; break;
             }
-
-            // set if Radio Sounds are Enabled
-            mission.RadioSounds = template.OptionsRadioSounds;
 
             DebugLog.Instance.WriteLine($"Mission generation completed successfully in {(DateTime.Now - generationStartTime).TotalSeconds.ToString("F3", NumberFormatInfo.InvariantInfo)} second(s).");
 

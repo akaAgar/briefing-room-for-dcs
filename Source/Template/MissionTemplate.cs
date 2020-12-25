@@ -220,6 +220,14 @@ namespace BriefingRoom4DCSWorld.Template
         public MissionTemplatePreferences[] OptionsPreferences { get; set; }
 
         /// <summary>
+        /// Should audio radio messages be played? If disabled, messages will only be displayed as text.
+        /// </summary>
+        [Category("Options"), DisplayName("Play radio sounds")]
+        [Description("Should audio radio messages be played? If disabled, messages will only be displayed as text.")]
+        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
+        public bool OptionsRadioSounds { get; set; }
+
+        /// <summary>
         /// Script extensions to include in this mission to provide additional features.
         /// </summary>
         [Category("Options"), DisplayName("Script extensions")]
@@ -235,14 +243,6 @@ namespace BriefingRoom4DCSWorld.Template
         [Description("Should enemy units be shown on the F10 map, mission planning, MFD SA pages, etc?")]
         [TypeConverter(typeof(BooleanYesNoTypeConverter))]
         public bool OptionsShowEnemyUnits { get; set; }
-
-        /// <summary>
-        /// Should enemy units be shown on the F10 map, mission planning, MFD SA pages, etc?
-        /// </summary>
-        [Category("Options"), DisplayName("Play Radio Sounds")]
-        [Description("Play Audio Roadio sounds.")]
-        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
-        public bool OptionsRadioSounds { get; set; }
 
         /// <summary>
         /// Multiplayer flight groups.
@@ -370,9 +370,9 @@ namespace BriefingRoom4DCSWorld.Template
             OppositionUnitsLocation = SpawnPointPreferredCoalition.Any;
 
             OptionsPreferences = new MissionTemplatePreferences[0];
+            OptionsRadioSounds = true;
             OptionsScriptExtensions = new string[0];
             OptionsShowEnemyUnits = true;
-            OptionsRadioSounds = true;
 
             PlayerAISkillLevel = BRSkillLevel.Veteran;
             PlayerEscortCAP = 0;
@@ -424,9 +424,9 @@ namespace BriefingRoom4DCSWorld.Template
                 OppositionUnitsLocation = ini.GetValue("Opposition", "UnitsLocation", OppositionUnitsLocation);
 
                 OptionsPreferences = ini.GetValueArray<MissionTemplatePreferences>("Options", "Preferences");
+                OptionsRadioSounds = ini.GetValue("Options", "RadioSounds", OptionsRadioSounds);
                 OptionsScriptExtensions = ini.GetValueArray<string>("Options", "ScriptExtensions");
                 OptionsShowEnemyUnits = ini.GetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
-                OptionsRadioSounds = ini.GetValue("Options", "RadioSounds", true);
 
                 PlayerAISkillLevel = ini.GetValue("Player", "AISkillLevel", PlayerAISkillLevel);
                 PlayerEscortCAP = ini.GetValue("Player", "EscortCAP", PlayerEscortCAP);
@@ -481,9 +481,9 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValue("Opposition", "UnitsLocation", OppositionUnitsLocation);
 
                 ini.SetValueArray("Options", "Preferences", OptionsPreferences);
+                ini.SetValue("Options", "RadioSounds", OptionsRadioSounds);
                 ini.SetValueArray("Options", "ScriptExtensions", OptionsScriptExtensions);
                 ini.SetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
-                ini.SetValue("Options", "RadioSounds", OptionsRadioSounds);
 
 
                 ini.SetValue("Player", "AISkillLevel", PlayerAISkillLevel);

@@ -48,6 +48,7 @@ On the left side of the screen you can see a list of all settings currently used
 * **Skill level, ground units**: Skill level of enemy ground units and air defense.
 
 **Options**
+* **Play radio sounds**: Should audio radio messages be played? If disabled, messages will only be displayed as text.
 * **Script extensions**: (advanced) Script extensions to include in this mission to provide additional features.
 * **Show enemy units on map**: Should enemy units be shown on the F10 map, mission planning, MFD SA pages, etc?
 

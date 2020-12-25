@@ -50,7 +50,7 @@ namespace BriefingRoom4DCSWorld.Miz
 
             DebugLog.Instance.WriteLine("Making replacements in the Lua files...");
             LuaTools.ReplaceKey(ref lua, "CoreLua", mission.CoreLuaScript.Trim('\r', '\n', ' '));
-            LuaTools.ReplaceKey(ref lua, "RadioSounds", mission.RadioSounds.ToString().ToLower());
+            LuaTools.ReplaceKey(ref lua, "RadioSounds", mission.RadioSounds);
             LuaTools.ReplaceKey(ref lua, "LuaSettings", mission.LuaSettings);
             LuaTools.ReplaceKey(ref lua, "IncludedLua", GetIncludedMissionFeaturesLua(mission.IncludedLuaScripts));
            
