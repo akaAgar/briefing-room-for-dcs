@@ -237,6 +237,14 @@ namespace BriefingRoom4DCSWorld.Template
         public bool OptionsShowEnemyUnits { get; set; }
 
         /// <summary>
+        /// Should enemy units be shown on the F10 map, mission planning, MFD SA pages, etc?
+        /// </summary>
+        [Category("Options"), DisplayName("Play Radio Sounds")]
+        [Description("Play Audio Roadio sounds.")]
+        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
+        public bool OptionsRadioSounds { get; set; }
+
+        /// <summary>
         /// Multiplayer flight groups.
         /// If any flight group is specified here, the mission then becomes a multiplayer mission and all values
         /// in the "Player, single player only" are ignored.
@@ -364,6 +372,7 @@ namespace BriefingRoom4DCSWorld.Template
             OptionsPreferences = new MissionTemplatePreferences[0];
             OptionsScriptExtensions = new string[0];
             OptionsShowEnemyUnits = true;
+            OptionsRadioSounds = true;
 
             PlayerAISkillLevel = BRSkillLevel.Veteran;
             PlayerEscortCAP = 0;
@@ -417,6 +426,7 @@ namespace BriefingRoom4DCSWorld.Template
                 OptionsPreferences = ini.GetValueArray<MissionTemplatePreferences>("Options", "Preferences");
                 OptionsScriptExtensions = ini.GetValueArray<string>("Options", "ScriptExtensions");
                 OptionsShowEnemyUnits = ini.GetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
+                OptionsRadioSounds = ini.GetValue("Options", "RadioSounds", true);
 
                 PlayerAISkillLevel = ini.GetValue("Player", "AISkillLevel", PlayerAISkillLevel);
                 PlayerEscortCAP = ini.GetValue("Player", "EscortCAP", PlayerEscortCAP);
@@ -473,6 +483,8 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValueArray("Options", "Preferences", OptionsPreferences);
                 ini.SetValueArray("Options", "ScriptExtensions", OptionsScriptExtensions);
                 ini.SetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
+                ini.SetValue("Options", "RadioSounds", OptionsRadioSounds);
+
 
                 ini.SetValue("Player", "AISkillLevel", PlayerAISkillLevel);
                 ini.SetValue("Player", "EscortCAP", PlayerEscortCAP);

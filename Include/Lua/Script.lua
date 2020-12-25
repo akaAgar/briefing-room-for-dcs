@@ -430,6 +430,7 @@ end
 
 briefingRoom.radioManager = { }
 briefingRoom.radioManager.ANSWER_DELAY = { 4, 6 } -- min/max time to get a answer to a radio message, in seconds
+briefingRoom.radioManager.sound = $RADIOSOUNDS$ -- can ogg files be played
 
 function briefingRoom.radioManager.getAnswerDelay()
   return math.randomFloat(briefingRoom.radioManager.ANSWER_DELAY[1], briefingRoom.radioManager.ANSWER_DELAY[2])
@@ -461,7 +462,7 @@ function briefingRoom.radioManager.doRadioMessage(args, time)
     trigger.action.outTextForCoalition($PLAYERCOALITION$, args.message, duration, false)
   end
 
-  if args.oggFile ~= nil then -- a sound was provided, play it
+  if (args.oggFile ~= nil and briefingRoom.radioManager.sound) then -- a sound was provided, play it
     trigger.action.outSoundForCoalition($PLAYERCOALITION$, args.oggFile..".ogg")
   end
 

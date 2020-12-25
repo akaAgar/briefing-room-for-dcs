@@ -87,6 +87,11 @@ namespace BriefingRoom4DCSWorld.Mission
         public int DateTimeTotalSeconds { get { return Toolbox.Clamp(DateTime.Hour * 3600 + DateTime.Minute * 60, 0, Toolbox.SECONDS_PER_DAY - 1); } }
 
         /// <summary>
+        /// Core Lua script containing tables into mission objectives, etc. Will replace RADIOSOUNDS in l10n\DEFAULT\script.lua.
+        /// </summary>
+        public bool RadioSounds { get; set; } = true;
+
+        /// <summary>
         /// Lua script files to include in the mission script. Will replace $INCLUDEDLUA$ in l10n\DEFAULT\script.lua.
         /// </summary>
         public List<string> IncludedLuaScripts { get; set; } = new List<string>();
