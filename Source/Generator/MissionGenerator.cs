@@ -134,6 +134,9 @@ namespace BriefingRoom4DCSWorld.Generator
                 weather.GenerateWind(mission, template.EnvironmentWind, theaterDB);
             }
 
+            using(MissionGeneratorCarrier unitGroupGen = new MissionGeneratorCarrier(unitMaker))
+                unitGroupGen.GenerateCarrier(mission, template,  coalitionsDB[(int)mission.CoalitionPlayer]);
+
             // Generate player unit groups
             DebugLog.Instance.WriteLine("Generating player unit groups and mission package...");
             string aiEscortTypeCAP, aiEscortTypeSEAD;

@@ -84,8 +84,6 @@ namespace BriefingRoom4DCSWorld.Generator
                 aiEscortTypeSEAD = escortDescription.Value.Type;
             }
 
-            GenerateCarrier(mission, template, playerCoalitionDB);
-
             return briefingFGList.ToArray();
         }
 
@@ -190,44 +188,6 @@ namespace BriefingRoom4DCSWorld.Generator
                     Database.Instance.GetEntry<DBEntryUnit>(aircraft[0]).AircraftData.GetRadioAsString());
         }
 
-
-        private void GenerateCarrier(DCSMission mission, MissionTemplate template, DBEntryCoalition playerCoalitionDB)
-        {
-
-            string[] ship;
-
-            ship = playerCoalitionDB.GetRandomUnits(UnitFamily.ShipCarrier, 1);
-            DBEntryTheaterSpawnPoint? spawnPoint =
-                    UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                        // If spawn point types are specified, use them. Else look for spawn points of any type
-                        new TheaterLocationSpawnPointType[]{TheaterLocationSpawnPointType.Sea},
-                        // Select spawn points at a proper distance from last location (previous objective or home airbase)
-                        mission.InitialPosition, new MinMaxD(20, 99999999),
-                        // Make sure no objective is too close to the initial location
-                        mission.InitialPosition, new MinMaxD(20, 99999999),
-                        GeneratorTools.GetAllySpawnPointCoalition(template));
-            
-            if (!spawnPoint.HasValue)
-                    throw new Exception($"Failed to find a spawn point for Carrier");
-
-            Coordinates position = mission.InitialPosition;
-            DCSMissionUnitGroup group;
-            group = UnitMaker.AddUnitGroup(
-                mission, ship,
-                Side.Ally,
-                spawnPoint.Value.Coordinates,
-                "GroupShip", "UnitShip",
-                Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel));
-            
-
-            if (group == null)
-            {
-                DebugLog.Instance.WriteLine($"Failed to create AI Carrier with ship of type \"{ship[0]}\".", 1, DebugLogMessageErrorLevel.Warning);
-            }
-
-
-            DebugLog.Instance.WriteLine($"I think I spawned a ship {group.UnitID} @ {group.Coordinates}");
-        }
 
         /// <summary>
         /// Creates multiplayer client flight groups.
