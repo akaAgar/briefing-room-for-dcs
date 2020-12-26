@@ -133,10 +133,10 @@ namespace BriefingRoom4DCSWorld.Generator
                 weather.GenerateWeather(mission, template.EnvironmentWeather, theaterDB);
                 weather.GenerateWind(mission, template.EnvironmentWind, theaterDB);
             }
-
+            DCSMissionUnitGroup carrierGroup;
             using(MissionGeneratorCarrier unitGroupGen = new MissionGeneratorCarrier(unitMaker))
-                unitGroupGen.GenerateCarrier(mission, template,  coalitionsDB[(int)mission.CoalitionPlayer]);
-
+                carrierGroup = unitGroupGen.GenerateCarrier(mission, template,  coalitionsDB[(int)mission.CoalitionPlayer]);
+            mission.Carrier = carrierGroup.Units[0];
             // Generate player unit groups
             DebugLog.Instance.WriteLine("Generating player unit groups and mission package...");
             string aiEscortTypeCAP, aiEscortTypeSEAD;
@@ -144,7 +144,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 briefingFGList.AddRange(
                     unitGroupGen.CreateUnitGroups(
                         mission, template, objectiveDB, coalitionsDB[(int)mission.CoalitionPlayer],
-                        out aiEscortTypeCAP, out aiEscortTypeSEAD));
+                        out aiEscortTypeCAP, out aiEscortTypeSEAD, mission.Carrier != null ));
 
             // Generate objective unit groups
             DebugLog.Instance.WriteLine("Generating objectives unit groups...");

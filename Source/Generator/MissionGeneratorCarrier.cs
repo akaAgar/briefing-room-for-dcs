@@ -47,7 +47,7 @@ namespace BriefingRoom4DCSWorld.Generator
             UnitMaker = unitMaker;
         }
 
-        public void GenerateCarrier(DCSMission mission, MissionTemplate template, DBEntryCoalition playerCoalitionDB)
+        public DCSMissionUnitGroup GenerateCarrier(DCSMission mission, MissionTemplate template, DBEntryCoalition playerCoalitionDB)
         {
 
             string[] ship;
@@ -83,6 +83,7 @@ namespace BriefingRoom4DCSWorld.Generator
 
 
             DebugLog.Instance.WriteLine($"I think I spawned a ship {group.UnitID} @ {group.Coordinates}");
+            return group;
         }
 
         /// <summary>

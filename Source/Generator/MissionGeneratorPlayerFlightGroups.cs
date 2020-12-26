@@ -57,12 +57,12 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="aiEscortTypeCAP">Type of aircraft selected for AI CAP escort</param>
         /// <param name="aiEscortTypeSEAD">Type of aircraft selected for AI SEAD escort</param>
         /// <returns>An array of <see cref="UnitFlightGroupBriefingDescription"/> describing the flight groups, to be used in the briefing</returns>
-        public UnitFlightGroupBriefingDescription[] CreateUnitGroups(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB, DBEntryCoalition playerCoalitionDB, out string aiEscortTypeCAP, out string aiEscortTypeSEAD)
+        public UnitFlightGroupBriefingDescription[] CreateUnitGroups(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB, DBEntryCoalition playerCoalitionDB, out string aiEscortTypeCAP, out string aiEscortTypeSEAD, bool carrier)
         {
             List<UnitFlightGroupBriefingDescription> briefingFGList = new List<UnitFlightGroupBriefingDescription>();
 
             if (template.GetMissionType() == MissionType.SinglePlayer)
-                briefingFGList.Add(GenerateSinglePlayerFlightGroup(mission, template, objectiveDB));
+                briefingFGList.Add(GenerateSinglePlayerFlightGroup(mission, template, objectiveDB,carrier));
             else
                 briefingFGList.AddRange(GenerateMultiplayerFlightGroups(mission, template, objectiveDB));
 
@@ -94,13 +94,13 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="template">Mission template to use</param>
         /// <param name="objectiveDB">Mission objective database entry</param>
         /// <returns>A <see cref="UnitFlightGroupBriefingDescription"/> describing the flight group, to be used in the briefing</returns>
-        private UnitFlightGroupBriefingDescription GenerateSinglePlayerFlightGroup(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB)
+        private UnitFlightGroupBriefingDescription GenerateSinglePlayerFlightGroup(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB, bool carrier)
         {
             DCSMissionUnitGroup group = UnitMaker.AddUnitGroup(
                 mission,
                 Enumerable.Repeat(template.PlayerSPAircraft, template.PlayerSPWingmen + 1).ToArray(),
                 Side.Ally, mission.InitialPosition,
-                "GroupAircraftPlayer", "UnitAircraft",
+                carrier? "GroupAircraftPlayerCarrier" :"GroupAircraftPlayer", "UnitAircraft",
                 Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel), DCSMissionUnitGroupFlags.FirstUnitIsPlayer,
                 objectiveDB.Payload,
                 null, mission.InitialAirbaseID, true);
