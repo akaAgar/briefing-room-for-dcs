@@ -47,12 +47,13 @@ namespace BriefingRoom4DCSWorld.Generator
             UnitMaker = unitMaker;
         }
 
-        public DCSMissionUnitGroup GenerateCarrier(DCSMission mission, MissionTemplate template, DBEntryCoalition playerCoalitionDB)
+        public void GenerateCarrier(DCSMission mission, MissionTemplate template, DBEntryCoalition playerCoalitionDB)
         {
+            if (string.IsNullOrEmpty(template.PlayerCarrier)){
+                return;
+            }
 
-            string[] ship;
 
-            ship = playerCoalitionDB.GetRandomUnits(UnitFamily.ShipCarrier, 1);
             DBEntryTheaterSpawnPoint? spawnPoint =
                     UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         // If spawn point types are specified, use them. Else look for spawn points of any type
@@ -69,7 +70,7 @@ namespace BriefingRoom4DCSWorld.Generator
             Coordinates position = mission.InitialPosition;
             DCSMissionUnitGroup group;
             group = UnitMaker.AddUnitGroup(
-                mission, ship,
+                mission, new string[]{template.PlayerCarrier},
                 Side.Ally,
                 spawnPoint.Value.Coordinates,
                 "GroupShip", "UnitShip",
@@ -78,12 +79,10 @@ namespace BriefingRoom4DCSWorld.Generator
 
             if (group == null)
             {
-                DebugLog.Instance.WriteLine($"Failed to create AI Carrier with ship of type \"{ship[0]}\".", 1, DebugLogMessageErrorLevel.Warning);
+                DebugLog.Instance.WriteLine($"Failed to create AI Carrier with ship of type \"{template.PlayerCarrier}\".", 1, DebugLogMessageErrorLevel.Warning);
             }
 
-
-            DebugLog.Instance.WriteLine($"I think I spawned a ship {group.UnitID} @ {group.Coordinates}");
-            return group;
+            mission.Carrier = group.Units[0];
         }
 
         /// <summary>

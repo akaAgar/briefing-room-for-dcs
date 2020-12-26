@@ -128,6 +128,18 @@ namespace BriefingRoom4DCSWorld.DB
         }
 
         /// <summary>
+        /// Returns IDs of all <see cref="DBEntryUnit"/> describing a Carrier.
+        /// </summary>
+        /// <returns>Array of IDs</returns>
+        public string[] GetAllCarrierID()
+        {
+            return
+                (from DBEntryUnit unit in GetAllEntries<DBEntryUnit>()
+                 where unit.DefaultFamily == UnitFamily.ShipCarrier
+                 select unit.ID).OrderBy(x => x).ToArray();
+        }
+
+        /// <summary>
         /// Returns all airfields of all theaters as an array of strings in the "TheaterID, AirbaseID"
         /// </summary>
         /// <returns>An array of strings</returns>
