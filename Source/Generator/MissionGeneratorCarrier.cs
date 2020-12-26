@@ -73,7 +73,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 mission, new string[]{template.PlayerCarrier},
                 Side.Ally,
                 spawnPoint.Value.Coordinates,
-                "GroupShip", "UnitShip",
+                "GroupCarrier", "UnitShip",
                 Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel));
             
 
