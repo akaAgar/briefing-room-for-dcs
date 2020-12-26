@@ -49,7 +49,7 @@ namespace BriefingRoom4DCSWorld.Generator
 
         public void GenerateCarrier(DCSMission mission, MissionTemplate template, DBEntryCoalition playerCoalitionDB)
         {
-            if (string.IsNullOrEmpty(template.PlayerCarrier)){
+            if (string.IsNullOrEmpty(template.TheaterCarrier)){
                 return;
             }
 
@@ -70,7 +70,7 @@ namespace BriefingRoom4DCSWorld.Generator
             Coordinates position = mission.InitialPosition;
             DCSMissionUnitGroup group;
             group = UnitMaker.AddUnitGroup(
-                mission, new string[]{template.PlayerCarrier},
+                mission, new string[]{template.TheaterCarrier},
                 Side.Ally,
                 spawnPoint.Value.Coordinates,
                 "GroupCarrier", "UnitShip",
@@ -79,7 +79,7 @@ namespace BriefingRoom4DCSWorld.Generator
 
             if (group == null)
             {
-                DebugLog.Instance.WriteLine($"Failed to create AI Carrier with ship of type \"{template.PlayerCarrier}\".", 1, DebugLogMessageErrorLevel.Warning);
+                DebugLog.Instance.WriteLine($"Failed to create AI Carrier with ship of type \"{template.TheaterCarrier}\".", 1, DebugLogMessageErrorLevel.Warning);
             }
 
             mission.Carrier = group.Units[0];
