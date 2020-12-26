@@ -154,7 +154,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 string[] units = enemyCoalitionDB.GetRandomUnits(Toolbox.RandomFrom(unitFamilies), 1);
 
                 DCSMissionUnitGroup group = UnitMaker.AddUnitGroup(
-                    mission, units, Side.Enemy,
+                    mission, units, ally? Side.Ally : Side.Enemy,
                     spawnPoint.Value.Coordinates,
                     "GroupVehicle", "UnitVehicle",
                     Toolbox.BRSkillLevelToDCSSkillLevel(skillLevel),
