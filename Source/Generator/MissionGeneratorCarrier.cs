@@ -47,10 +47,10 @@ namespace BriefingRoom4DCSWorld.Generator
             UnitMaker = unitMaker;
         }
 
-        public void GenerateCarrier(DCSMission mission, MissionTemplate template, DBEntryCoalition playerCoalitionDB)
+        public DBEntryUnit GenerateCarrier(DCSMission mission, MissionTemplate template, DBEntryCoalition playerCoalitionDB)
         {
             if (string.IsNullOrEmpty(template.TheaterCarrier)){
-                return;
+                return null;
             }
 
 
@@ -83,6 +83,9 @@ namespace BriefingRoom4DCSWorld.Generator
             }
 
             mission.Carrier = group.Units[0];
+            return (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>()
+                 where unit.ID == template.TheaterCarrier
+                 select unit).ToArray()[0];
         }
 
         /// <summary>

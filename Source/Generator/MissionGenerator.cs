@@ -133,8 +133,12 @@ namespace BriefingRoom4DCSWorld.Generator
                 weather.GenerateWeather(mission, template.EnvironmentWeather, theaterDB);
                 weather.GenerateWind(mission, template.EnvironmentWind, theaterDB);
             }
+
+            // Generate Carrier
+            DBEntryUnit carrierDB;
             using(MissionGeneratorCarrier unitGroupGen = new MissionGeneratorCarrier(unitMaker))
-                unitGroupGen.GenerateCarrier(mission, template,  coalitionsDB[(int)mission.CoalitionPlayer]);
+                carrierDB = unitGroupGen.GenerateCarrier(mission, template,  coalitionsDB[(int)mission.CoalitionPlayer]);
+
             // Generate player unit groups
             DebugLog.Instance.WriteLine("Generating player unit groups and mission package...");
             string aiEscortTypeCAP, aiEscortTypeSEAD;
@@ -188,7 +192,7 @@ namespace BriefingRoom4DCSWorld.Generator
             using (MissionGeneratorBriefing briefing = new MissionGeneratorBriefing())
             {
                 briefing.GenerateMissionName(mission, template);
-                briefing.GenerateMissionBriefing(mission, template, objectiveDB, airbaseDB, briefingFGList, coalitionsDB);
+                briefing.GenerateMissionBriefing(mission, template, objectiveDB, airbaseDB, carrierDB, briefingFGList, coalitionsDB);
             }
 
             // Set if radio sounds are enabled
