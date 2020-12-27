@@ -55,6 +55,12 @@ namespace BriefingRoom4DCSWorld.Template
         public MissionTemplateMPFlightGroupTask Task { get; set; }
 
         /// <summary>
+        /// If the group will spawn on carrier or not.
+        /// </summary>
+        [DisplayName("Carrier"), Description("Spawn Aircraft on Carrier. A carrier must be selected in Theater options")]
+        public bool Carrier { get; set; }
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         public MissionTemplateMPFlightGroup()
@@ -75,6 +81,7 @@ namespace BriefingRoom4DCSWorld.Template
             AircraftType = TemplateTools.CheckValuePlayerAircraft(ini.GetValue(section, $"{key}.AircraftType", AircraftType));
             Count = ini.GetValue(section, $"{key}.Count", Count);
             Task = ini.GetValue(section, $"{key}.Task", Task);
+            Carrier = ini.GetValue(section, $"{key}.Carrier", Carrier);
         }
 
         /// <summary>
@@ -85,6 +92,7 @@ namespace BriefingRoom4DCSWorld.Template
             AircraftType = TemplateTools.CheckValuePlayerAircraft(Database.Instance.Common.DefaultPlayerAircraft);
             Count = 2;
             Task = MissionTemplateMPFlightGroupTask.Objectives;
+            Carrier = false;
         }
 
         /// <summary>
@@ -98,6 +106,7 @@ namespace BriefingRoom4DCSWorld.Template
             ini.SetValue(section, $"{key}.AircraftType", AircraftType);
             ini.SetValue(section, $"{key}.Count", Count);
             ini.SetValue(section, $"{key}.Task", Task);
+            ini.SetValue(section, $"{key}.Carrier", Carrier);
         }
 
         /// <summary>

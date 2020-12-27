@@ -89,21 +89,20 @@ namespace BriefingRoom4DCSWorld.Miz
             LuaTools.ReplaceKey(ref lua, "BriefingDescription", mission.BriefingTXT, true);
 
             CreateUnitGroups(ref lua, mission); // Create unit groups
+    
+            Debug.DebugLog.Instance.WriteLine("Building Airbase");
+            DBEntryTheaterAirbase airbase =
+                (from DBEntryTheaterAirbase ab in Database.Instance.GetEntry<DBEntryTheater>(mission.Theater).Airbases
+                where ab.DCSID == mission.InitialAirbaseID select ab).FirstOrDefault();
+            LuaTools.ReplaceKey(ref lua, "MissionAirbaseID", mission.InitialAirbaseID);
+            LuaTools.ReplaceKey(ref lua, "MissionAirbaseX", airbase.Coordinates.X);
+            LuaTools.ReplaceKey(ref lua, "MissionAirbaseY", airbase.Coordinates.Y);
 
-            if(mission.Carrier == null){
-                Debug.DebugLog.Instance.WriteLine("Building Airbase");
-                DBEntryTheaterAirbase airbase =
-                    (from DBEntryTheaterAirbase ab in Database.Instance.GetEntry<DBEntryTheater>(mission.Theater).Airbases
-                    where ab.DCSID == mission.InitialAirbaseID select ab).FirstOrDefault();
-                LuaTools.ReplaceKey(ref lua, "MissionAirbaseID", mission.InitialAirbaseID);
-                LuaTools.ReplaceKey(ref lua, "MissionAirbaseX", airbase.Coordinates.X);
-                LuaTools.ReplaceKey(ref lua, "MissionAirbaseY", airbase.Coordinates.Y);
-            } else {
-                 Debug.DebugLog.Instance.WriteLine("Building Carrier");
-                LuaTools.ReplaceKey(ref lua, "MissionAirbaseID", 22);
+            if(mission.Carrier != null){
+                Debug.DebugLog.Instance.WriteLine("Building Carrier");
                 LuaTools.ReplaceKey(ref lua, "LinkUnit", mission.Carrier.ID);
-                LuaTools.ReplaceKey(ref lua, "MissionAirbaseX", mission.Carrier.Coordinates.X);
-                LuaTools.ReplaceKey(ref lua, "MissionAirbaseY", mission.Carrier.Coordinates.Y);
+                LuaTools.ReplaceKey(ref lua, "CarrierBaseX", mission.Carrier.Coordinates.X);
+                LuaTools.ReplaceKey(ref lua, "CarrierBaseY", mission.Carrier.Coordinates.Y);
             }
 
             // The following replacements must be performed after unit groups and player waypoints have been added

@@ -211,7 +211,7 @@ namespace BriefingRoom4DCSWorld.Generator
                     mission,
                     Enumerable.Repeat(fg.AircraftType, fg.Count).ToArray(),
                     Side.Ally, mission.InitialPosition,
-                    "GroupAircraftPlayer", "UnitAircraft",
+                    fg.Carrier? "GroupAircraftPlayerCarrier" :"GroupAircraftPlayer", "UnitAircraft",
                     DCSSkillLevel.Client, 0,
                     payload,
                     null, mission.InitialAirbaseID, true);

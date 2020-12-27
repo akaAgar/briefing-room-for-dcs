@@ -58,8 +58,8 @@
                     ["type"] = "$PLAYERSTARTINGTYPE$",
                     ["ETA"] = 0,
                     ["ETA_locked"] = true,
-                    ["y"] = $MISSIONAIRBASEY$,
-                    ["x"] = $MISSIONAIRBASEX$,
+                    ["y"] = $CARRIERBASEY$,
+                    ["x"] = $CARRIERBASEX$,
                     ["name"] = "$INITIALWPNAME$",
                     ["formation_template"] = "",
                     ["speed_locked"] = true,
@@ -84,8 +84,8 @@ $PLAYERWAYPOINTS$
                     ["type"] = "Land",
                     ["ETA"] = 0,
                     ["ETA_locked"] = false,
-                    ["y"] = $MISSIONAIRBASEY$,
-                    ["x"] = $MISSIONAIRBASEX$,
+                    ["y"] = $CARRIERBASEY$,
+                    ["x"] = $CARRIERBASEY$,
                     ["name"] = "$FINALWPNAME$",
                     ["formation_template"] = "",
                     ["speed_locked"] = true,
@@ -98,8 +98,8 @@ $PLAYERWAYPOINTS$
         {
 $UNITS$
         }, -- end of ["units"]
-        ["y"] = $MISSIONAIRBASEY$,
-        ["x"] = $MISSIONAIRBASEX$,
+        ["y"] = $CARRIERBASEY$,
+        ["x"] = $CARRIERBASEY$,
         ["name"] = "$NAME$",
         ["communication"] = true,
         ["start_time"] = 0,

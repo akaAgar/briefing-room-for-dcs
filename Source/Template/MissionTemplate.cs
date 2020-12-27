@@ -357,7 +357,7 @@ namespace BriefingRoom4DCSWorld.Template
         /// are then used instead.
         /// </summary>
         [Category("Theater"), DisplayName("Carrier")]
-        [Description("Aircraft Carrier Player Starts on")]
+        [Description("Aircraft Carrier spawned: Single Player: Aircraft will be spawed on here by default. MultiPlayer: Aircraft will spawn on carrier if option set. Be make sure your aircraft is suitable for the carrier type")]
         [TypeConverter(typeof(DBEntryCarrierConverter))]
         public string TheaterCarrier {get; set; }
 
