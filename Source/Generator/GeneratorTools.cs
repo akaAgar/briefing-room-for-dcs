@@ -53,16 +53,16 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <returns>Updated array of units with added embedded air defense units</returns>
         public static string[] AddEmbeddedAirDefense(string[] units, AmountN airDefenseLevel, DBEntryCoalition coalitionDB)
         {
-            airDefenseLevel = airDefenseLevel == AmountN.Random ? (AmountN)(new Random().Next((int)AmountN.VeryHigh) + 1)  : airDefenseLevel;
+            int airDefenseLevelInt = (int)airDefenseLevel.Get();
             // No luck this time, don't add anything
-            if (Toolbox.RandomDouble() >= Database.Instance.Common.EnemyAirDefense[(int)airDefenseLevel].EmbeddedChance)
+            if (Toolbox.RandomDouble() >= Database.Instance.Common.EnemyAirDefense[airDefenseLevelInt].EmbeddedChance)
                 return units;
 
             // Convert the unit array to an open-ended list so that units can be added
             List<string> unitsList = new List<string>(units);
 
             // Add some air defense units
-            int embeddedCount = Database.Instance.Common.EnemyAirDefense[(int)airDefenseLevel].EmbeddedUnitCount.GetValue();
+            int embeddedCount = Database.Instance.Common.EnemyAirDefense[airDefenseLevelInt].EmbeddedUnitCount.GetValue();
             for (int i = 0; i < embeddedCount; i++)
                 unitsList.AddRange(coalitionDB.GetRandomUnits(Toolbox.RandomFrom(EMBEDDED_AIR_DEFENSE_FAMILIES), 1));
 
