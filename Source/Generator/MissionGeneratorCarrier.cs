@@ -52,17 +52,13 @@ namespace BriefingRoom4DCSWorld.Generator
             if (string.IsNullOrEmpty(template.TheaterCarrier)){
                 return null;
             }
-            string[] units = new string[]{template.TheaterCarrier};
-            units = units.Concat(playerCoalitionDB.GetRandomUnits(UnitFamily.ShipCruiser, 2)).ToArray();
-            units = units.Concat(playerCoalitionDB.GetRandomUnits(UnitFamily.ShipFrigate, 2)).ToArray();
-                
 
             DBEntryTheaterSpawnPoint? spawnPoint =
                     UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         // If spawn point types are specified, use them. Else look for spawn points of any type
                         new TheaterLocationSpawnPointType[]{TheaterLocationSpawnPointType.Sea},
                         // Select spawn points at a proper distance from last location (previous objective or home airbase)
-                        mission.InitialPosition, new MinMaxD(10, 150),
+                        mission.InitialPosition, new MinMaxD(10, 200),
                         // Make sure no objective is too close to the initial location
                         null, null,
                         GeneratorTools.GetEnemySpawnPointCoalition(template));
@@ -73,14 +69,37 @@ namespace BriefingRoom4DCSWorld.Generator
             Coordinates position = mission.InitialPosition;
             DCSMissionUnitGroup group;
             group = UnitMaker.AddUnitGroup(
-                mission, units,
+                mission, new string[]{template.TheaterCarrier},
                 Side.Ally,
                 spawnPoint.Value.Coordinates,
                 "GroupCarrier", "UnitShip",
                 Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel));
 
-            
+            UnitFamily[] ships = new UnitFamily[]{
+                UnitFamily.ShipFrigate,
+                UnitFamily.ShipFrigate,
+                UnitFamily.ShipCruiser,
+                UnitFamily.ShipCruiser,
+                UnitFamily.ShipTransport
+            };
+            foreach (var ship in ships)
+            {
+                spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                    new TheaterLocationSpawnPointType[]{TheaterLocationSpawnPointType.Sea},
+                    spawnPoint.Value.Coordinates, new MinMaxD(1, 5),
+                    // Make sure no objective is too close to the initial location
+                    null, null,
+                    GeneratorTools.GetEnemySpawnPointCoalition(template));
 
+                UnitMaker.AddUnitGroup(
+                mission, playerCoalitionDB.GetRandomUnits(ship,1),
+                Side.Ally,
+                spawnPoint.Value.Coordinates,
+                "GroupShip", "UnitShip",
+                Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel));
+                
+            }
+            
             if (group == null)
             {
                 DebugLog.Instance.WriteLine($"Failed to create AI Carrier with ship of type \"{template.TheaterCarrier}\".", 1, DebugLogMessageErrorLevel.Warning);
