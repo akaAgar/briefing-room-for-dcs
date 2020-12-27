@@ -103,6 +103,12 @@ namespace BriefingRoom4DCSWorld.Mission
         /// </summary>
         public UnitTaskPayload Payload { get; set; } = UnitTaskPayload.Default;
 
+
+        /// <summary>
+        /// TACAN Value to be transmitted (Just single unit goups for now).
+        /// </summary>
+        public int TACAN {get; set;}
+
         /// <summary>
         /// Constructor.
         /// </summary>
