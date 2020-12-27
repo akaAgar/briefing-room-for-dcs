@@ -85,7 +85,7 @@ $PLAYERWAYPOINTS$
                     ["ETA"] = 0,
                     ["ETA_locked"] = false,
                     ["y"] = $CARRIERBASEY$,
-                    ["x"] = $CARRIERBASEY$,
+                    ["x"] = $CARRIERBASEX$,
                     ["name"] = "$FINALWPNAME$",
                     ["formation_template"] = "",
                     ["speed_locked"] = true,
@@ -99,7 +99,7 @@ $PLAYERWAYPOINTS$
 $UNITS$
         }, -- end of ["units"]
         ["y"] = $CARRIERBASEY$,
-        ["x"] = $CARRIERBASEY$,
+        ["x"] = $CARRIERBASEX$,
         ["name"] = "$NAME$",
         ["communication"] = true,
         ["start_time"] = 0,
