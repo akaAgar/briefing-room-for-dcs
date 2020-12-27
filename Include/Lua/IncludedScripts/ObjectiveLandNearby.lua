@@ -1,7 +1,7 @@
-briefingRoom.mission.extensions.objectiveLandNearby = {}
-briefingRoom.mission.extensions.objectiveLandNearby.MAX_DISTANCE = 500 -- max distance from the target the helo must land, in meters
+briefingRoom.extensions.objectiveLandNearby = {}
+briefingRoom.extensions.objectiveLandNearby.MAX_DISTANCE = 500 -- max distance from the target the helo must land, in meters
 
-function briefingRoom.mission.extensions.objectiveLandNearby:onEvent(event)
+function briefingRoom.extensions.objectiveLandNearby:onEvent(event)
   if briefingRoom.mission.status ~= brMissionStatus.IN_PROGRESS then return end -- mission already complete/failed, nothing to do
   if event.id ~= world.event.S_EVENT_LAND then return end -- only "land" event interest us
   if event.initiator == nil then return end -- no unit (should never happen)
@@ -17,7 +17,7 @@ function briefingRoom.mission.extensions.objectiveLandNearby:onEvent(event)
         if unit ~= nil then
           local unitPos = dcsExtensions.toVec2(unit:getPoint())
           local distance = dcsExtensions.getDistance(landPos, unitPos)
-          if distance <= briefingRoom.mission.extensions.objectiveLand.MAX_DISTANCE then
+          if distance <= briefingRoom.extensions.objectiveLand.MAX_DISTANCE then
             briefingRoom.mission.functions.completeObjective(index)
 
             if event.initiator:getPlayerName() ~= nil then
@@ -38,4 +38,4 @@ function briefingRoom.mission.extensions.objectiveLandNearby:onEvent(event)
   end
 end
 
-world.addEventHandler(briefingRoom.mission.extensions.objectiveLandNearby)
+world.addEventHandler(briefingRoom.extensions.objectiveLandNearby)
