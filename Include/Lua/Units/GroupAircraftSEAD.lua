@@ -1,5 +1,6 @@
 [$INDEX$] =
 {
+  ["lateActivation"] = true,
   ["modulation"] = $RADIOBAND$,
   ["tasks"] =
   {
