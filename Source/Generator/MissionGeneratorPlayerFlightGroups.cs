@@ -149,8 +149,10 @@ namespace BriefingRoom4DCSWorld.Generator
             Coordinates position = mission.InitialPosition;
 
             // Player starts on runway, so escort starts in the air above the airfield (so player doesn't have to wait for them to take off)
+            // OR mission is MP, so escorts start in air (but won't be spawned until at least one player takes off)
             // Add a random distance so they don't crash into each other.
-            if (template.PlayerStartLocation == PlayerStartLocation.Runway)
+            if ((template.PlayerStartLocation == PlayerStartLocation.Runway) ||
+                (template.GetMissionType() != MissionType.SinglePlayer))
                 position += Coordinates.CreateRandom(2, 4) * Toolbox.NM_TO_METERS;
 
             DCSMissionUnitGroup group;

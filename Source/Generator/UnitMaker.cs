@@ -89,10 +89,10 @@ namespace BriefingRoom4DCSWorld.Generator
                         if (requiresParkingSpots)
                         {
                             parkingSpot = SpawnPointSelector.GetFreeParkingSpot(airbaseID, out Coordinates parkingCoordinates);
-                            if (parkingSpot >= 0)
-                                unitCoordinates = parkingCoordinates;
-                            else
-                                parkingSpot = 0;
+                            //if (parkingSpot >= 0)
+                            //    unitCoordinates = parkingCoordinates;
+                            //else
+                            //    parkingSpot = 0;
                         }
                     }
 
