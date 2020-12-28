@@ -1,5 +1,5 @@
 briefingRoom.mission.features.supportLaunchFlare = { }
-briefingRoom.mission.features.supportLaunchFlare.FLARES_COUNT = 5
+briefingRoom.mission.features.supportLaunchFlare.FLARES_COUNT = 12
 briefingRoom.mission.features.supportLaunchFlare.flaresLeft = { }
 
 -- Spawn flare
@@ -30,7 +30,7 @@ function briefingRoom.mission.features.supportLaunchFlare.launchFlare(index)
   briefingRoom.mission.features.supportLaunchFlare.flaresLeft[index] = briefingRoom.mission.features.supportLaunchFlare.flaresLeft[index] - 1
 
   local args = { ["position"] = unit:getPoint() }
-  briefingRoom.radioManager.play("Affirm, shooting a flare now. Flare left: "..tostring(briefingRoom.mission.features.supportLaunchFlare.flaresLeft[index]), "RadioSupportShootingFlare", briefingRoom.radioManager.getAnswerDelay(), briefingRoom.mission.features.supportLaunchFlare.doFlare, args)
+  briefingRoom.radioManager.play("Affirm, shooting a flare now (flare(s) left: "..tostring(briefingRoom.mission.features.supportLaunchFlare.flaresLeft[index])..")", "RadioSupportShootingFlare", briefingRoom.radioManager.getAnswerDelay(), briefingRoom.mission.features.supportLaunchFlare.doFlare, args)
 end
 
 -- Create F10 menu options
