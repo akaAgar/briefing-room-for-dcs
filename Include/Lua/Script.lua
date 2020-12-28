@@ -273,7 +273,7 @@ end
 
 -- Returns the distance between two vec2s
 function dcsExtensions.getDistance(vec2a, vec2b)
-  return math.sqrt(math.pow(vec2a.x - vec2b.x) + math.pow(vec2a.y - vec2b.y))
+  return math.sqrt(math.pow(vec2a.x - vec2b.x, 2) + math.pow(vec2a.y - vec2b.y, 2))
 end
 
 -- Returns the group with ID id, or nil if no group with this ID is found
