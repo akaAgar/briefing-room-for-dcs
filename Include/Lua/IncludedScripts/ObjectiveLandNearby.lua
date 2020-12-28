@@ -1,7 +1,7 @@
-briefingRoom.mission.extensions.objectiveLandNearby = {}
-briefingRoom.mission.extensions.objectiveLandNearby.MAX_DISTANCE = 500 -- max distance from the target the helo must land, in meters
+briefingRoom.mission.features.objectiveLandNearby = {}
+briefingRoom.mission.features.objectiveLandNearby.MAX_DISTANCE = 650 -- max distance from the target the helo must land, in meters
 
-function briefingRoom.mission.extensions.objectiveLandNearby:onEvent(event)
+function briefingRoom.mission.features.objectiveLandNearby:onEvent(event)
   if briefingRoom.mission.status ~= brMissionStatus.IN_PROGRESS then return end -- mission already complete/failed, nothing to do
   if event.id ~= world.event.S_EVENT_LAND then return end -- only "land" event interest us
   if event.initiator == nil then return end -- no unit (should never happen)
@@ -11,14 +11,15 @@ function briefingRoom.mission.extensions.objectiveLandNearby:onEvent(event)
 
   for index,objective in ipairs(briefingRoom.mission.objectives) do
     if objective.status == brMissionStatus.IN_PROGRESS then
-      for _,unitID in ipairs(briefingRoom.mission.objectives.unitsID) do
+      for _,unitID in ipairs(briefingRoom.mission.objectives[index].unitsID) do
         local unit = dcsExtensions.getUnitByID(unitID)
 
         if unit ~= nil then
           local unitPos = dcsExtensions.toVec2(unit:getPoint())
           local distance = dcsExtensions.getDistance(landPos, unitPos)
-          if distance <= briefingRoom.mission.extensions.objectiveLand.MAX_DISTANCE then
+          if distance <= briefingRoom.mission.features.objectiveLandNearby.MAX_DISTANCE then
             briefingRoom.mission.functions.completeObjective(index)
+            briefingRoom.mission.objectives[index].unitsID = { }
 
             if event.initiator:getPlayerName() ~= nil then
               if briefingRoom.mission.parameters.objectiveLandNearbyPickupUnit == true then
@@ -38,4 +39,4 @@ function briefingRoom.mission.extensions.objectiveLandNearby:onEvent(event)
   end
 end
 
-world.addEventHandler(briefingRoom.mission.extensions.objectiveLandNearby)
+world.addEventHandler(briefingRoom.mission.features.objectiveLandNearby)
