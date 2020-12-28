@@ -25,6 +25,6 @@ end
 -- Create F10 menu commands
 do
   for i,o in ipairs(briefingRoom.mission.objectives) do
-    missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Require target coordinates", briefingRoom.mission.features.supportTargetCoordinates.getCoordinates, i)
+    missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Require target coordinates", briefingRoom.f10Menu.objectives[i], briefingRoom.mission.features.supportTargetCoordinates.getCoordinates, i)
   end
 end
