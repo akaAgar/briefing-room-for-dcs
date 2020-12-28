@@ -42,6 +42,35 @@ The development roadmap and a list of features planned for future versions can b
 
 ## Changelog
 
+* Version 0.3.012.28 (December 28, 2020)
+  * Bugfixes
+    * Fixed DCS crashing when a Ka-27 was spawned
+    * Fixed F-14B spawning an F-14A
+    * Fixed antiship payload of F/A-18 registered as a SEAD payload (fix by john681611)
+    * Fixed bug with Maverick F in F/A-18 default loadout (fix by john681611)
+    * Waypoints for ground targets are now spawned on the ground
+    * Starting airbase now picked correctly when red/blue countries are inverted on the map
+  * New player aircraft: all SA342 Gazelles, F-5E, F-5E-3
+  * New objectives
+    * CSAR: locate downed pilots (who can shoot distress flares to help you locate them) and land near them in a helicopter to pick them up
+    * FAC(A): direct artillery strikes on target
+    * Recon: locate enemy vehicles and fly over them to gather information
+  * Improved GUI
+    * Better toolbar buttons
+    * App now scales better at higher DPI (code by Taosenai)
+    * "Miz export complete" (with time taken for the export) now displayed in status bar
+  * New mission template settings
+    * CAP/SEAD AI escorts now available both in singleplayer and in multiplayer
+    * Option to disable radio voices (uses code by john681611)
+    * "Enemy units location": new option to make sure enemy units and objectives are only spawned in red or blue countries for increased realism
+    * AI level selection for friendly aircraft, enemy ground units and enemy aircraft
+  * New factions
+    * Russia/USSR from the 1970s to the 1990s
+  * JTAC can now transmit target coordinates (LL and MGRS) to the players
+  * Decreased distance between waypoints and targets on most objectives
+  * Improved home airbase selection algorithm
+  * Default values for the mission templates now stored in Database/Defaults.ini
+  * Project now targets .NET Framework 4.8 instead of 4.5
 * Version 0.3.012.19 (December 19, 2020)
   * Added Persian Gulf theater
 * Version 0.3.012.17 (December 17, 2020)
