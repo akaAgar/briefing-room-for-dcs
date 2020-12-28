@@ -254,6 +254,7 @@
             this.T_File_New.Name = "T_File_New";
             this.T_File_New.Size = new System.Drawing.Size(51, 22);
             this.T_File_New.Text = "New";
+            this.T_File_New.Click += new System.EventHandler(this.MenuClick);
             // 
             // T_File_Open
             // 
@@ -262,6 +263,7 @@
             this.T_File_Open.Name = "T_File_Open";
             this.T_File_Open.Size = new System.Drawing.Size(56, 22);
             this.T_File_Open.Text = "Open";
+            this.T_File_Open.Click += new System.EventHandler(this.MenuClick);
             // 
             // T_File_SaveAs
             // 
@@ -270,6 +272,7 @@
             this.T_File_SaveAs.Name = "T_File_SaveAs";
             this.T_File_SaveAs.Size = new System.Drawing.Size(74, 22);
             this.T_File_SaveAs.Text = "Save as...";
+            this.T_File_SaveAs.Click += new System.EventHandler(this.MenuClick);
             // 
             // BriefingPanel
             // 
