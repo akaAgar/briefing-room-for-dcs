@@ -12,8 +12,6 @@ function briefingRoom.mission.features.objectiveFlyby.checkFlyby(player, unit)
   local vec2u = dcsExtensions.toVec2(unit:getPoint())
   local distance = dcsExtensions.getDistance(vec2p, vec2u);
 
-  trigger.action.outText(tostring(distance), 1, false)
-
   if distance > briefingRoom.mission.features.objectiveFlyby.MAX_DISTANCE then
     return false
   end

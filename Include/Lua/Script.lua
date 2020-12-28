@@ -301,6 +301,22 @@ function dcsExtensions.getAliveUnitInGroup(groupID)
   return nil
 end
 
+-- Returns all units belonging to the given coalition
+function dcsExtensions.getCoalitionUnits(coalID)
+  local units = { }
+  for _,g in pairs(coalition.getGroups(coalID)) do
+    for __,u in pairs(g:getUnits()) do
+      if u:isActive() then
+        if u:getLife() >= 1 then
+          table.insert(units, u)
+        end
+      end
+    end
+  end
+
+  return units
+end
+
 -- Returns the vec3 position of the first unit alive in group with ID id
 function dcsExtensions.getGroupLocationByID(id)
   local g = dcsExtensions.getGroupByID(id)
@@ -716,7 +732,8 @@ function briefingRoom.mission.eventHandler:onEvent(event)
 
   elseif event.id == world.event.S_EVENT_DEAD or event.id == world.event.S_EVENT_CRASH then -- unit destroyed
     if event.initiator == nil then return end -- no initiator
-    if Unit.getGroup(event.initiator) == nil then return end -- initiator was not an unit
+    --if Unit.getGroup(event.initiator) == nil then return end -- initiator was not an unit
+    if event.initiator:getCategory() ~= Object.Category.UNIT then return end -- initiator was not an unit
     local unitID = event.initiator:getID()
 
     if event.initiator:getCoalition() == $ENEMYCOALITION$ then -- unit is an enemy, radio some variation of a "enemy destroyed" message
