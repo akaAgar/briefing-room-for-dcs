@@ -37,6 +37,9 @@ namespace BriefingRoom4DCSWorld
         /// </summary>
         public readonly string callsign;
 
+        /// <summary>
+        /// Actual Radio Frequency getting this wrong means TACAN will appear on wrong channel.
+        /// </summary>
         public readonly int freqency;
 
         /// <summary>
@@ -44,6 +47,7 @@ namespace BriefingRoom4DCSWorld
         /// </summary>
         /// <param name="channel">Channel of TACAN.</param>
         /// <param name="callsign">Callsign of tacan</param>
+        /// <param name="frequency">Frequency of tacan</param>
         public Tacan(int _channel, string _callsign, int _frequency) {
             channel = _channel;
             callsign =_callsign;
