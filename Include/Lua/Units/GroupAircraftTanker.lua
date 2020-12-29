@@ -49,9 +49,9 @@
                                         ["params"] = 
                                         {
                                             ["type"] = 4,
-                                            ["frequency"] = 1088000000,
-                                            ["callsign"] = "TKR",
-                                            ["channel"] = $TACAN$,
+                                            ["frequency"] = $TACANFREQUENCY$,
+                                            ["callsign"] = "$TACANCALLSIGN$",
+                                            ["channel"] = $TACANCHANNEL$,
                                             ["unitId"] = $UNITID$,
                                             ["modeChannel"] = "X",
                                             ["bearing"] = true,

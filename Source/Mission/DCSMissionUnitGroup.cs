@@ -107,7 +107,7 @@ namespace BriefingRoom4DCSWorld.Mission
         /// <summary>
         /// TACAN Value to be transmitted (Just single unit goups for now).
         /// </summary>
-        public int TACAN {get; set;}
+        public Tacan TACAN {get; set;}
 
         /// <summary>
         /// Constructor.

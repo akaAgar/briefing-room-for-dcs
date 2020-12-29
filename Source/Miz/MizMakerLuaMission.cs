@@ -203,8 +203,10 @@ namespace BriefingRoom4DCSWorld.Miz
                 LuaTools.ReplaceKey(ref groupLua, "ID", group.GroupID);
                 LuaTools.ReplaceKey(ref groupLua, "FirstUnitID", group.Units[0].ID);
                 LuaTools.ReplaceKey(ref groupLua, "Name", group.Name);
-                if(group.TACAN > 0){
-                    LuaTools.ReplaceKey(ref groupLua, "TACAN", group.TACAN);
+                if(group.TACAN != null){
+                    LuaTools.ReplaceKey(ref groupLua, "TacanFrequency", group.TACAN.freqency);
+                    LuaTools.ReplaceKey(ref groupLua, "TacanCallSign", group.TACAN.callsign);
+                    LuaTools.ReplaceKey(ref groupLua, "TacanChannel", group.TACAN.channel);
                     LuaTools.ReplaceKey(ref groupLua, "UnitID", group.Units[0].ID);
                 }
 

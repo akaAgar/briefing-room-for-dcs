@@ -56,8 +56,8 @@ namespace BriefingRoom4DCSWorld.Generator
         {
             List<UnitFlightGroupBriefingDescription> briefingFGList = new List<UnitFlightGroupBriefingDescription>();
 
-            briefingFGList.Add(AddSupportUnit(mission, allyCoalitionDB, SupportUnitRoles.TankerBasket, 47)); //TACAN choise due to https://forums.eagle.ru/topic/165047-hornet-mini-updates/page/6/?tab=comments#comment-3803291
-            briefingFGList.Add(AddSupportUnit(mission, allyCoalitionDB, SupportUnitRoles.TankerBoom, 48));
+            briefingFGList.Add(AddSupportUnit(mission, allyCoalitionDB, SupportUnitRoles.TankerBasket, new Tacan(47,"TKR", 1134000000))); //TACAN choise due to https://forums.eagle.ru/topic/165047-hornet-mini-updates/page/6/?tab=comments#comment-3803291
+            briefingFGList.Add(AddSupportUnit(mission, allyCoalitionDB, SupportUnitRoles.TankerBoom, new Tacan(48, "TKR", 1135000000)));
             briefingFGList.Add(AddSupportUnit(mission, allyCoalitionDB, SupportUnitRoles.AWACS)); // AWACS must be added last, so it its inserted first into the spawning queue
 
             return (from UnitFlightGroupBriefingDescription fg in briefingFGList where !string.IsNullOrEmpty(fg.Type) select fg).ToArray();
@@ -69,7 +69,7 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="mission">Mission to which generated units should be added</param>
         /// <param name="allyCoalitionDB">Ally coalition database entry</param>
         /// <param name="supportRole"></param>
-        private UnitFlightGroupBriefingDescription AddSupportUnit(DCSMission mission, DBEntryCoalition allyCoalitionDB, SupportUnitRoles supportRole, int TACAN = 0)
+        private UnitFlightGroupBriefingDescription AddSupportUnit(DCSMission mission, DBEntryCoalition allyCoalitionDB, SupportUnitRoles supportRole, Tacan TACAN = null)
         {
             DebugLog.Instance.WriteLine($"Adding {Toolbox.SplitCamelCase(supportRole)} support units...", 1);
 
@@ -106,7 +106,6 @@ namespace BriefingRoom4DCSWorld.Generator
                 DCSSkillLevel.Excellent, 0,
                 UnitTaskPayload.Default,
                 location2);
-
             if (group == null)
                 return new UnitFlightGroupBriefingDescription(); // Empty FG info will automatically be discarded
 
@@ -116,7 +115,7 @@ namespace BriefingRoom4DCSWorld.Generator
             return new UnitFlightGroupBriefingDescription(
                 group.Name, group.Units.Length, unitType,
                 (supportRole == SupportUnitRoles.AWACS) ? "Early warning" : "Refueling",
-                Database.Instance.GetEntry<DBEntryUnit>(unitType).AircraftData.GetRadioAsString(), TACAN > 0? $"TACAN: {TACAN}X":"");
+                Database.Instance.GetEntry<DBEntryUnit>(unitType).AircraftData.GetRadioAsString(), TACAN != null? $"TACAN: {TACAN.ToString()}":"");
         }
 
         /// <summary>
