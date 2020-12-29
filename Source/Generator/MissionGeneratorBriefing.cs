@@ -195,9 +195,9 @@ namespace BriefingRoom4DCSWorld.Generator
                 carrierHTML = 
                 "<tr>" +
                 $"<td>{carrierDB.ID}</td>" +
-                $"<td>127.500</td>" +
+                $"<td>127.500AM</td>" +
                 $"<td>11</td>" +
-                $"<td>74</td>" +
+                $"<td>74X</td>" +
                 "</tr>";
             }
             briefing = briefing.Replace("$CARRIERS$", carrierHTML);
@@ -265,7 +265,7 @@ namespace BriefingRoom4DCSWorld.Generator
             briefing += "\n";
             if(carrier != null){
                 briefing += "Carriers:\n";
-                briefing += $"{carrier.ID} (127.00), ILS: 1, TACAN: 74\n";
+                briefing += $"{carrier.ID} (127.00AM), ILS: 1, TACAN: 74X\n";
                 briefing += "\n";
             }
 

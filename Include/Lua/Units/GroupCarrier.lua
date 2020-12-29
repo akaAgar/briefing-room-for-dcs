@@ -48,7 +48,7 @@
                                 ["modeChannel"] = "X",
                                 ["channel"] = 74,
                                 ["system"] = 3,
-                                ["callsign"] = "TKR",
+                                ["callsign"] = "CVN",
                                 ["bearing"] = true,
                                 ["frequency"] = 1161000000,
                             }, -- end of ["params"]
