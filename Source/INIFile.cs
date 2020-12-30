@@ -221,6 +221,13 @@ namespace BriefingRoom4DCSWorld
             return (T)(object)enumVal;
         }
 
+        public T[] GetValueArrayAsMinMaxEnum<T>(string section, string key) where T : struct
+        {
+            T[] minMaxEnum = GetValueArray<T>(section, key);
+            if (minMaxEnum.Length < 2) return new T[] { Toolbox.GetEnumValues<T>().First(), Toolbox.GetEnumValues<T>().Last() };
+            return new T[] { (T)(object)Math.Min((int)(object)minMaxEnum[0], (int)(object)minMaxEnum[1]), (T)(object)Math.Max((int)(object)minMaxEnum[0], (int)(object)minMaxEnum[1]) };
+        }
+
         /// <summary>
         /// Sets a value in the INI file.
         /// </summary>

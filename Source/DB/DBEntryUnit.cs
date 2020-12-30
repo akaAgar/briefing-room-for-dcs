@@ -19,6 +19,8 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCSWorld.Debug;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BriefingRoom4DCSWorld.DB
@@ -50,9 +52,14 @@ namespace BriefingRoom4DCSWorld.DB
         public string[] DCSShapes { get; private set; }
 
         /// <summary>
-        /// Default unit family for this unit, mainly used to get random unit group names etc.
+        /// Default family for this unit, mainly used to pick random unit group names etc.
         /// </summary>
-        public UnitFamily DefaultFamily { get; private set; }
+        public UnitFamily DefaultFamily { get { return Families[0]; } }
+
+        /// <summary>
+        /// Families this unit belongs to.
+        /// </summary>
+        public UnitFamily[] Families { get; private set; }
 
         /// <summary>
         /// Extra lua to add for units of this type.
@@ -80,6 +87,11 @@ namespace BriefingRoom4DCSWorld.DB
         public double[] OffsetHeading { get; private set; }
 
         /// <summary>
+        /// Dictionary of countries operating the unit, with min (index #0) and max (index #1) decade of operation.
+        /// </summary>
+        public Dictionary<string, Decade[]> Operators { get; private set; }
+
+        /// <summary>
         /// Loads a database entry from an .ini file.
         /// </summary>
         /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
@@ -96,7 +108,11 @@ namespace BriefingRoom4DCSWorld.DB
                     DebugLog.Instance.WriteLine($"Unit {ID} contains no DCS unit ID, unit was ignored.", DebugLogMessageErrorLevel.Warning);
                     return false;
                 }
-                DefaultFamily = ini.GetValue<UnitFamily>("Unit", "DefaultFamily");
+                //Families = ini.GetValueArray<UnitFamily>("Unit", "Families");
+                Families = ini.GetValueArray<UnitFamily>("Unit", "DefaultFamily");
+                if (Families.Length == 0) Families = new UnitFamily[] { UnitFamily.VehicleTransport };
+                // Make sure all unit families belong to same category (unit cannot be a helicopter and a ground vehicle at the same time, for instance)
+                Families = (from UnitFamily f in Families where Toolbox.GetUnitCategoryFromUnitFamily(f) == Category select f).Distinct().ToArray();
                 ExtraLua = ini.GetValue<string>("Unit", "ExtraLua");
                 Flags = ini.GetValueArrayAsEnumFlags<DBEntryUnitFlags>("Unit", "Flags");
                 OffsetCoordinates = (from string s in ini.GetValueArray<string>("Unit", "Offset.Coordinates", ';') select new Coordinates(s)).ToArray();
@@ -104,18 +120,40 @@ namespace BriefingRoom4DCSWorld.DB
 
                 AircraftData = new DBEntryUnitAircraftData();
 
+                // Load the list of operators
+                Operators = new Dictionary<string, Decade[]>(StringComparer.InvariantCultureIgnoreCase);
+                foreach (string k in ini.GetKeysInSection("Operators"))
+                {
+                    if (Operators.ContainsKey(k)) continue;
+                    Operators.Add(k, ini.GetValueArrayAsMinMaxEnum<Decade>("Operators", k));
+                }
+
                 if (IsAircraft) // Load aircraft-specific data, if required
                 {
                     DCSIDs = new string[] { DCSIDs[0] }; // Aircraft can not have multiple unit types in their group
                     AircraftData = new DBEntryUnitAircraftData(ini);
                 }
                 else if (Category == UnitCategory.Static) // Load static-specific data, if required
-                {
                     DCSShapes = ini.GetValueArray<string>("Unit", "DCSID.Shape");
-                }
             }
 
             return true;
+        }
+
+
+        public bool IsValidForFamilyCountryAndPeriod(UnitFamily family, string[] countries, Decade decade)
+        {
+            // Unit does not belong to the required family
+            if (!Families.Contains(family)) return false;
+
+            foreach (string c in countries)
+            {
+                if (!Operators.ContainsKey(c)) continue;
+                if ((Operators[c][0] <= decade) && (Operators[c][1] >= decade))
+                    return true; // Found one operator operating the unit during the required decade
+            }
+
+            return false;
         }
     }
 }

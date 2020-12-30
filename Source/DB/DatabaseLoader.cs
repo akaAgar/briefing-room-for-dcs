@@ -46,7 +46,9 @@ namespace BriefingRoom4DCSWorld.DB
             LoadDatabaseEntries<DBEntryObjective>(dbEntries, "Objectives"); // Must be loaded after DBEntryMissionFeature as it depends on it
             LoadDatabaseEntries<DBEntryTheater>(dbEntries, "Theaters");
             LoadDatabaseEntries<DBEntryUnit>(dbEntries, "Units");
+            LoadDatabaseEntries<DBEntryDefaultUnitList>(dbEntries, "DefaultUnitLists"); // Must be loaded after DBEntryUnit as it depends on it
             LoadDatabaseEntries<DBEntryCoalition>(dbEntries, "Coalitions"); // Must be loaded after DBEntryUnit as it depends on it
+            LoadDatabaseEntries<DBEntryCountry>(dbEntries, "Countries"); // Must be loaded after DBEntryDefaultUnitList and DBEntryUnit as it depends on them
         }
 
         /// <summary>
@@ -87,11 +89,28 @@ namespace BriefingRoom4DCSWorld.DB
             }
             DebugLog.Instance.WriteLine($"Found {dbEntries[dbType].Count} database entries of type \"{typeof(T).Name}\"");
 
-            // If a database of type other than DBEntryExtension or DBEntryObjectiveFeature
-            // (which are not required in the mission templates) has no entries, raise an error.
-            if (dbEntries[dbType].Count == 0)
-                if ((dbType != typeof(DBEntryExtension)) && (dbType != typeof(DBEntryMissionFeature)))
+            // If a required database type has no entries, raise an error.
+            if ((dbEntries[dbType].Count == 0) && TypeMustHaveAtLeastOneEntry<T>())
                 DebugLog.Instance.WriteLine($"No valid database entries found in the \"{subDirectory}\" directory", DebugLogMessageErrorLevel.Error);
+        }
+
+        /// <summary>
+        /// Checks if this database entry type requires at least one value.
+        /// </summary>
+        /// <typeparam name="T">A type derived from <see cref="DBEntry"/></typeparam>
+        /// <returns>True if this type requires at lease one value, false if it doesn't</returns>
+        private bool TypeMustHaveAtLeastOneEntry<T>() where T: DBEntry
+        {
+            Type type = typeof(T);
+
+            if (
+                (type == typeof(DBEntryDefaultUnitList)) ||
+                (type == typeof(DBEntryExtension)) ||
+                (type == typeof(DBEntryMissionFeature))
+                )
+                return false;
+
+            return true;
         }
 
         /// <summary>
