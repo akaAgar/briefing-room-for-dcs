@@ -22,6 +22,7 @@ If not, see https://www.gnu.org/licenses/
 
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace BriefingRoom4DCSWorld.Miz
 {
@@ -115,6 +116,57 @@ namespace BriefingRoom4DCSWorld.Miz
         public static void ReplaceKey<T>(ref string lua, string key, T value, bool upperCase) where T: Enum
         {
             ReplaceKey(ref lua, key, upperCase ? value.ToString().ToUpperInvariant() : value.ToString());
+        }
+
+        /// <summary>
+        /// Replaces first found instance "$KEY$" in a Lua script by value.
+        /// </summary>
+        /// <param name="lua">The Lua script.</param>
+        /// <param name="key">The key to replace, without the dollar signs.</param>
+        /// <param name="value">The value to replace the key with.</param>
+        public static void ReplaceFirstKey(ref string lua, string key, string value) {
+            var regex = new Regex(Regex.Escape("${key.ToUpperInvariant()}$"));
+            lua = regex.Replace(lua, value, 1);
+        }
+
+        /// <summary>
+        /// Replaces first found instance "$KEY$" in a Lua script by value.
+        /// </summary>
+        /// <param name="lua">The Lua script.</param>
+        /// <param name="key">The key to replace, without the dollar signs.</param>
+        /// <param name="value">The value to replace the key with.</param>
+        public static void ReplaceFirstKey(ref string lua, string key, int value, string stringFormat = null) {
+            ReplaceFirstKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
+        }
+
+        /// <summary>
+        /// Replaces first found instance "$KEY$" in a Lua script by value.
+        /// </summary>
+        /// <param name="lua">The Lua script.</param>
+        /// <param name="key">The key to replace, without the dollar signs.</param>
+        /// <param name="value">The value to replace the key with.</param>
+        public static void ReplaceFirstKey(ref string lua, string key, float value, string stringFormat = null) {
+            ReplaceFirstKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
+        }
+
+        /// <summary>
+        /// Replaces first found instance "$KEY$" in a Lua script by value.
+        /// </summary>
+        /// <param name="lua">The Lua script.</param>
+        /// <param name="key">The key to replace, without the dollar signs.</param>
+        /// <param name="value">The value to replace the key with.</param>
+        public static void ReplaceFirstKey(ref string lua, string key, double value, string stringFormat = null) {
+            ReplaceFirstKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
+        }
+
+        /// <summary>
+        /// Replaces first found instance "$KEY$" in a Lua script by value.
+        /// </summary>
+        /// <param name="lua">The Lua script.</param>
+        /// <param name="key">The key to replace, without the dollar signs.</param>
+        /// <param name="value">The value to replace the key with.</param>
+        public static void ReplaceFirstKey(ref string lua, string key, bool value) {
+            ReplaceFirstKey(ref lua, key, Toolbox.ValToString(value).ToLowerInvariant());
         }
     }
 }
