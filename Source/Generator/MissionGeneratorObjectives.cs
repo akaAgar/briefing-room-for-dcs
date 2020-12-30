@@ -142,6 +142,9 @@ namespace BriefingRoom4DCSWorld.Generator
                 lastCoordinates = spawnPoint.Value.Coordinates;
             }
 
+            // If the target is a static object, make sure the correct flag is enabled as it has an influence of some scripts
+            mission.ObjectiveIsStatic = objectiveDB.UnitGroup.Category.HasValue && (objectiveDB.UnitGroup.Category.Value == UnitCategory.Static);
+
             // Make sure objectives are ordered by distance from the players' starting location
             mission.Objectives = mission.Objectives.OrderBy(x => mission.InitialPosition.GetDistanceFrom(x.WaypointCoordinates)).ToArray();
         }

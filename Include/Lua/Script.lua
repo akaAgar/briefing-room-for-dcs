@@ -546,6 +546,7 @@ end
 briefingRoom.mission = { } -- main Briefing room mission table
 briefingRoom.mission.hasStarted = false -- has at least one player taken off?
 briefingRoom.mission.objectives = { } -- table which will hold the mission objectives
+briefingRoom.mission.objectivesAreStatic = $STATICOBJECTIVE$ -- true if the objective is static object, false if it isn't (which means it's an unit)
 briefingRoom.mission.status = brMissionStatus.IN_PROGRESS -- current status of the mission
 briefingRoom.mission.parameters = { } -- various mission parameters
 briefingRoom.mission.parameters.targetUnitsAttributesRequired = { } -- units in target groups must have AT LEAST ONE of these attributes to be a valid target

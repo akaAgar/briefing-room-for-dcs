@@ -33,6 +33,12 @@ namespace BriefingRoom4DCSWorld.DB
     public struct DBUnitGroup
     {
         /// <summary>
+        /// Unit category of this unit group, if any.
+        /// Null means group is empty/should not be spawned.
+        /// </summary>
+        public UnitCategory? Category { get { return (Families.Length > 0) ? (UnitCategory?)Toolbox.GetUnitCategoryFromUnitFamily(Families[0]) : null; } }
+
+        /// <summary>
         /// Min/max number of units in the group.
         /// </summary>
         public MinMaxI Count { get; }

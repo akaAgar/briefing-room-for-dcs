@@ -56,6 +56,7 @@ namespace BriefingRoom4DCSWorld.Miz
            
             LuaTools.ReplaceKey(ref lua, "EnemyCoalition", $"coalition.side.{mission.CoalitionEnemy.ToString().ToUpperInvariant()}");
             LuaTools.ReplaceKey(ref lua, "PlayerCoalition", $"coalition.side.{mission.CoalitionPlayer.ToString().ToUpperInvariant()}");
+            LuaTools.ReplaceKey(ref lua, "StaticObjective", mission.ObjectiveIsStatic);
 
             return lua;
         }

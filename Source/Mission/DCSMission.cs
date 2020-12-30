@@ -139,6 +139,12 @@ namespace BriefingRoom4DCSWorld.Mission
         }
 
         /// <summary>
+        /// True if the objective is static object, false if it isn't (which means it's an unit)
+        /// Replaces $STATICOBJECTIVE$ in Script.lua
+        /// </summary>
+        public bool ObjectiveIsStatic = false;
+
+        /// <summary>
         /// Ogg vorbis audio files to include in the .miz file.
         /// </summary>
         public List<string> OggFiles { get; set; } = new List<string>();

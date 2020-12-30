@@ -47,11 +47,6 @@ namespace BriefingRoom4DCSWorld.DB
         public string[] DCSIDs { get; private set; }
 
         /// <summary>
-        /// Internal DCS World shapes for this unit. Only used by static units (aka buildings).
-        /// </summary>
-        public string[] DCSShapes { get; private set; }
-
-        /// <summary>
         /// Default family for this unit, mainly used to pick random unit group names etc.
         /// </summary>
         public UnitFamily DefaultFamily { get { return Families[0]; } }
@@ -133,8 +128,6 @@ namespace BriefingRoom4DCSWorld.DB
                     DCSIDs = new string[] { DCSIDs[0] }; // Aircraft can not have multiple unit types in their group
                     AircraftData = new DBEntryUnitAircraftData(ini);
                 }
-                else if (Category == UnitCategory.Static) // Load static-specific data, if required
-                    DCSShapes = ini.GetValueArray<string>("Unit", "DCSID.Shape");
             }
 
             return true;

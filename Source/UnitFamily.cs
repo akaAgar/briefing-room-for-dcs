@@ -104,14 +104,14 @@ namespace BriefingRoom4DCSWorld
         /// </summary>
         ShipTransport,
 
-        ///// <summary>
-        ///// Military structure
-        ///// </summary>
-        //StaticStructureMilitary,
-        ///// <summary>
-        ///// Production structure (civilian or military)
-        ///// </summary>
-        //StaticStructureProduction,
+        /// <summary>
+        /// Military structure
+        /// </summary>
+        StaticStructureMilitary,
+        /// <summary>
+        /// Production structure (civilian or military)
+        /// </summary>
+        StaticStructureProduction,
 
         /// <summary>
         /// Mobile AAA
