@@ -55,7 +55,7 @@ namespace BriefingRoom4DCSWorld.Generator
             ally = _ally;
             if (ally)
             {
-                airDefense = template.AllyAirDefense;
+                airDefense = template.PlayerFriendlyAirDefense;
                 centerPoint = mission.InitialPosition;
                 opposingPoint = mission.ObjectivesCenter;
                 distsFromCenter = Database.Instance.Common.AllyAirDefenseDistanceFromTakeOffLocation;

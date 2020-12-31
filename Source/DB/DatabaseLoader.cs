@@ -63,7 +63,7 @@ namespace BriefingRoom4DCSWorld.DB
 
             string directory = $"{BRPaths.DATABASE}{subDirectory}";
             if (!Directory.Exists(directory))
-                throw new Exception($"Directory Database\\{directory} not found.");
+                throw new Exception($"Directory Database\\{subDirectory} not found.");
 
             Type dbType = typeof(T);
             string shortTypeName = dbType.Name.Substring(7).ToLowerInvariant();

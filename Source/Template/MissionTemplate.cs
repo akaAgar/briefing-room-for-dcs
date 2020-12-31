@@ -308,12 +308,12 @@ namespace BriefingRoom4DCSWorld.Template
 
 
         /// <summary>
-        /// Intensity and quality of ally air defense.
+        /// Intensity and quality of friendly air defense.
         /// </summary>
         [Category("Player"), DisplayName("Air defense")]
-        [Description("Intensity and quality of Ally air defense.")]
+        [Description("Intensity and quality of friendly air defense.")]
         [TypeConverter(typeof(EnumTypeConverter<AmountN>))]
-        public AmountN AllyAirDefense { get; set; }
+        public AmountN PlayerFriendlyAirDefense { get; set; }
 
         /// <summary>
         /// Where should the player(s) take off from?
@@ -386,8 +386,8 @@ namespace BriefingRoom4DCSWorld.Template
             PlayerAISkillLevel = BRSkillLevel.Veteran;
             PlayerEscortCAP = 0;
             PlayerEscortSEAD = 0;
+            PlayerFriendlyAirDefense = AmountN.Average;
             PlayerStartLocation = PlayerStartLocation.Runway;
-            AllyAirDefense = AmountN.Average;
 
             PlayerMPFlightGroups = new MissionTemplateMPFlightGroup[0];
             PlayerSPAircraft = TemplateTools.CheckValuePlayerAircraft(Database.Instance.Common.DefaultPlayerAircraft);
@@ -441,8 +441,8 @@ namespace BriefingRoom4DCSWorld.Template
                 PlayerAISkillLevel = ini.GetValue("Player", "AISkillLevel", PlayerAISkillLevel);
                 PlayerEscortCAP = ini.GetValue("Player", "EscortCAP", PlayerEscortCAP);
                 PlayerEscortSEAD = ini.GetValue("Player", "EscortSEAD", PlayerEscortSEAD);
+                PlayerFriendlyAirDefense = ini.GetValue("Player", "FriendlyAirDefense", PlayerFriendlyAirDefense);
                 PlayerStartLocation = ini.GetValue("Player", "StartLocation", PlayerStartLocation);
-                AllyAirDefense = ini.GetValue("player", "AllyAirDefense", AllyAirDefense);
 
                 int fgFlightGroupCount = Math.Max(0, ini.GetValue<int>("PlayerMP", "FGCount"));
                 PlayerMPFlightGroups = new MissionTemplateMPFlightGroup[fgFlightGroupCount];
@@ -496,12 +496,11 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValueArray("Options", "ScriptExtensions", OptionsScriptExtensions);
                 ini.SetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
 
-
                 ini.SetValue("Player", "AISkillLevel", PlayerAISkillLevel);
                 ini.SetValue("Player", "EscortCAP", PlayerEscortCAP);
                 ini.SetValue("Player", "EscortSEAD", PlayerEscortSEAD);
+                ini.SetValue("Player", "FriendlyAirDefense", PlayerFriendlyAirDefense);
                 ini.SetValue("Player", "StartLocation", PlayerStartLocation);
-                ini.SetValue("Player", "AllyAirDefense", AllyAirDefense);
 
                 ini.SetValue("PlayerSP", "Aircraft", PlayerSPAircraft);
                 ini.SetValue("PlayerSP", "Wingmen", PlayerSPWingmen);

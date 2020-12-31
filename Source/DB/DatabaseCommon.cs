@@ -115,7 +115,7 @@ namespace BriefingRoom4DCSWorld.DB
         public double[] EnemyCAPRelativePower { get; }
 
         /// <summary>
-        /// Settings for enemy air defense, according to mission template <see cref="Template.MissionTemplate.AllyAirDefense"/> setting.
+        /// Settings for enemy air defense, according to mission template <see cref="Template.MissionTemplate.PlayerFriendlyAirDefense"/> setting.
         /// </summary>
         public DatabaseCommonAirDefenseInfo[] AllyAirDefense { get; }
 
