@@ -592,6 +592,7 @@ function briefingRoom.mission.functions.completeObjective(index)
     briefingRoom.debugPrint("Mission marked as complete")
     briefingRoom.mission.status = brMissionStatus.COMPLETE
     briefingRoom.radioManager.play("Excellent work! Mission complete, you may return to base.", "RadioHQMissionComplete", math.random(6, 8))
+    trigger.action.setUserFlag(1, true)
   else
     briefingRoom.radioManager.play("Good job! Objective complete, proceed to next objective.", "RadioHQObjectiveComplete", math.random(6, 8))
   end
