@@ -81,11 +81,6 @@ namespace BriefingRoom4DCSWorld.Generator
                     Coordinates unitCoordinates = coordinates;
                     double unitHeading = groupHeading;
 
-                    if(!unitsBP[0].IsAircraft && unitBP == unitsBP[0] && unitBP.OffsetCoordinates.Length < i) {
-                        unitCoordinates = coordinates.CreateNearRandom(10, 200);
-                        unitHeading = Toolbox.RandomDouble(Toolbox.TWO_PI);
-                    }
-
                     SetUnitCoordinatesAndHeading(ref unitCoordinates, ref unitHeading, unitBP, unitIndex);
 
                     // Get parking spot for the unit, if unit is parked at an airdrome
@@ -173,13 +168,10 @@ namespace BriefingRoom4DCSWorld.Generator
             {
                 if (unitBP.OffsetCoordinates.Length > unitIndex) // Unit has a fixed set of coordinates (for SAM sites, etc.)
                 {
-                    // TODO: proper rotation
-                    //Coordinates offsetCoordinates =
-                    //    new Coordinates(
-                    //        unitBP.OffsetCoordinates[unitIndex].X * Math.Cos(unitHeading) + unitBP.OffsetCoordinates[unitIndex].Y * Math.Sin(unitHeading),
-                    //        -unitBP.OffsetCoordinates[unitIndex].X * Math.Sin(unitHeading) + unitBP.OffsetCoordinates[unitIndex].Y * Math.Cos(unitHeading));
-                    //unitCoordinates += offsetCoordinates;
-                    unitCoordinates += unitBP.OffsetCoordinates[unitIndex];
+                    double s = Math.Sin(unitHeading);
+                    double c = Math.Cos(unitHeading);
+                    Coordinates offsetCoordinates= unitBP.OffsetCoordinates[unitIndex];
+                    unitCoordinates += new Coordinates( offsetCoordinates.X * c - offsetCoordinates.Y * s, offsetCoordinates.X * s + offsetCoordinates.Y * c);
                 }
                 else // No fixed coordinates, generate random coordinates
                 {
@@ -189,15 +181,13 @@ namespace BriefingRoom4DCSWorld.Generator
                             unitCoordinates += new Coordinates(SHIP_UNIT_SPACING * unitIndex);
                             break;
                         default:
-                            unitCoordinates += new Coordinates(VEHICLE_UNIT_SPACING * unitIndex);
+                            unitCoordinates = unitCoordinates.CreateNearRandom(VEHICLE_UNIT_SPACING, VEHICLE_UNIT_SPACING * 10);
                             break;
                     }
                 }
 
                 if (unitBP.OffsetHeading.Length > unitIndex) // Unit has a fixed heading (for SAM sites, etc.)
-                    // TODO: proper rotation
-                    //unitHeading = (int)((unitHeading + unitBP.OffsetHeading[unitIndex]) * Toolbox.RADIANS_TO_DEGREES) % 360 * Toolbox.DEGREES_TO_RADIANS;
-                    unitHeading = unitBP.OffsetHeading[unitIndex];
+                    unitHeading = unitHeading + unitBP.OffsetHeading[unitIndex]; // editor looks odd but works fine if negative or over 2Pi
                 else
                     unitHeading = Toolbox.RandomDouble(Toolbox.TWO_PI);
             }
