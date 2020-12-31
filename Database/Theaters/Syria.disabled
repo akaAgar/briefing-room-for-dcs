@@ -9,19 +9,18 @@ DefaultMapCenter=
 MagneticDeclination=
 
 [Daytime]
-; TODO (values are from Persian Gulf)
-January=07:34,17:17
-February=07:22,17:39
-March=06:55,17:55
-April=06:23,18:09
-May=06:01,18:25
-June=05:55,18:39
-July=06:05,18:40
-August=06:20,18:21
-September=06:32,17:50
-October=06:45,17:19
-November=07:04,16:58
-December=07:25,16:58
+January=07:10,16:15
+February=06:50,16:45
+March=06:13,17:11
+April=05:31,19:35
+May=05:00,19:59
+June=04:49,20:18
+July=05:31,20:17
+August=05:24,19:51
+September=05:46,19:10
+October=06:09,18:28
+November=06:37,15:58
+December=07:03,15:54
 
 [Temperature]
 ; TODO (values are from Persian Gulf)
