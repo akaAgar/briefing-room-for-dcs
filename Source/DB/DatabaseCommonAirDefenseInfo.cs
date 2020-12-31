@@ -60,11 +60,11 @@ namespace BriefingRoom4DCSWorld.DB
                 return;
             }
 
-            EmbeddedChance = Toolbox.Clamp(ini.GetValue<int>("EnemyAirDefense", $"{airDefenseLevel}.Embedded.Chance"), 0, 100) / 100.0;
-            EmbeddedUnitCount = ini.GetValue<MinMaxI>("EnemyAirDefense", $"{airDefenseLevel}.Embedded.UnitCount");
+            EmbeddedChance = Toolbox.Clamp(ini.GetValue<int>("AirDefense", $"{airDefenseLevel}.Embedded.Chance"), 0, 100) / 100.0;
+            EmbeddedUnitCount = ini.GetValue<MinMaxI>("AirDefense", $"{airDefenseLevel}.Embedded.UnitCount");
 
             for (i = 0; i < Toolbox.EnumCount<AirDefenseRange>(); i++)
-                GroupsInArea[i] = ini.GetValue<MinMaxI>("EnemyAirDefense", $"{airDefenseLevel}.GroupsInArea.{(AirDefenseRange)i}");
+                GroupsInArea[i] = ini.GetValue<MinMaxI>("AirDefense", $"{airDefenseLevel}.GroupsInArea.{(AirDefenseRange)i}");
         }
     }
 }

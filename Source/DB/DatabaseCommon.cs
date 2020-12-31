@@ -115,6 +115,21 @@ namespace BriefingRoom4DCSWorld.DB
         public double[] EnemyCAPRelativePower { get; }
 
         /// <summary>
+        /// Settings for enemy air defense, according to mission template <see cref="Template.MissionTemplate.AllyAirDefense"/> setting.
+        /// </summary>
+        public DatabaseCommonAirDefenseInfo[] AllyAirDefense { get; }
+
+        /// <summary>
+        /// Minimum distance (in nautical miles) between players take off location and ally surface-to-air defense, for each air defense range category.
+        /// </summary>
+        public MinMaxD[] AllyAirDefenseDistanceFromTakeOffLocation { get; }
+
+        /// <summary>
+        /// Min/max distance (in nautical miles) between objectives and ally surface-to-air defense, for each air defense range category.
+        /// </summary>
+        public int[] AllyAirDefenseDistanceFromObjectives { get; }
+
+        /// <summary>
         /// Random mission names part.
         /// </summary>
         public string[][] MissionNameParts { get; } = new string[MISSION_NAMES_PART_COUNT][];
@@ -164,6 +179,9 @@ namespace BriefingRoom4DCSWorld.DB
             EnemyAirDefense = new DatabaseCommonAirDefenseInfo[Toolbox.EnumCount<AmountN>()];
             EnemyAirDefenseDistanceFromObjectives = new MinMaxD[Toolbox.EnumCount<AirDefenseRange>()];
             EnemyAirDefenseDistanceFromTakeOffLocation = new int[Toolbox.EnumCount<AirDefenseRange>()];
+            AllyAirDefense = new DatabaseCommonAirDefenseInfo[Toolbox.EnumCount<AmountN>()];
+            AllyAirDefenseDistanceFromObjectives = new int[Toolbox.EnumCount<AirDefenseRange>()]; 
+            AllyAirDefenseDistanceFromTakeOffLocation = new MinMaxD[Toolbox.EnumCount<AirDefenseRange>()];
             EnemyCAPRelativePower = new double[Toolbox.EnumCount<AmountN>()];
         }
 
@@ -206,21 +224,38 @@ namespace BriefingRoom4DCSWorld.DB
             DebugLog.Instance.WriteLine("Loading common enemy air defense settings...", 1);
             using (INIFile ini = new INIFile($"{BRPaths.DATABASE}EnemyAirDefense.ini"))
             {
-                EnemyCAPDistanceFromObjectives = ini.GetValue<MinMaxD>("EnemyCombatAirPatrols", "DistanceFromObjectives");
-                EnemyCAPMinDistanceFromTakeOffLocation = ini.GetValue<int>("EnemyCombatAirPatrols", "MinDistanceFromTakeOffLocation");
+                EnemyCAPDistanceFromObjectives = ini.GetValue<MinMaxD>("CombatAirPatrols", "DistanceFromObjectives");
+                EnemyCAPMinDistanceFromTakeOffLocation = ini.GetValue<int>("CombatAirPatrols", "MinDistanceFromTakeOffLocation");
 
                 for (i = 0; i < Toolbox.EnumCount<AmountN>(); i++)
                 {
                     EnemyAirDefense[i] = new DatabaseCommonAirDefenseInfo(ini, (AmountN)i);
 
                     EnemyCAPRelativePower[i] = (i == 0) ? 0.0 :
-                        Toolbox.Clamp(ini.GetValue<int>("EnemyCombatAirPatrols", $"RelativePower.{(AmountN)i}"), 0, 100) / 100.0;
+                        Toolbox.Clamp(ini.GetValue<int>("CombatAirPatrols", $"RelativePower.{(AmountN)i}"), 0, 100) / 100.0;
                 }
 
                 for (i = 0; i < Toolbox.EnumCount<AirDefenseRange>(); i++)
                 {
-                    EnemyAirDefenseDistanceFromTakeOffLocation[i] = ini.GetValue<int>("EnemyAirDefenseRange", $"{(AirDefenseRange)i}.MinDistanceFromTakeOffLocation");
-                    EnemyAirDefenseDistanceFromObjectives[i] = ini.GetValue<MinMaxD>("EnemyAirDefenseRange", $"{(AirDefenseRange)i}.DistanceFromObjectives");
+                    EnemyAirDefenseDistanceFromTakeOffLocation[i] = ini.GetValue<int>("AirDefenseRange", $"{(AirDefenseRange)i}.MinDistanceFromTakeOffLocation");
+                    EnemyAirDefenseDistanceFromObjectives[i] = ini.GetValue<MinMaxD>("AirDefenseRange", $"{(AirDefenseRange)i}.DistanceFromObjectives");
+                }
+            }
+
+            DebugLog.Instance.WriteLine("Loading common ally air defense settings...", 1);
+            using (INIFile ini = new INIFile($"{BRPaths.DATABASE}AllyAirDefense.ini"))
+            {
+
+
+                for (i = 0; i < Toolbox.EnumCount<AmountN>(); i++)
+                {
+                    AllyAirDefense[i] = new DatabaseCommonAirDefenseInfo(ini, (AmountN)i);
+                }
+
+                for (i = 0; i < Toolbox.EnumCount<AirDefenseRange>(); i++)
+                {
+                    AllyAirDefenseDistanceFromTakeOffLocation[i] = ini.GetValue<MinMaxD>("AirDefenseRange", $"{(AirDefenseRange)i}.DistanceFromTakeOffLocation");
+                    AllyAirDefenseDistanceFromObjectives[i] = ini.GetValue<int>("AirDefenseRange", $"{(AirDefenseRange)i}.MinDistanceFromObjectives");
                 }
             }
 
