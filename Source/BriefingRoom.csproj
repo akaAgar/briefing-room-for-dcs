@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AirDefenseLevel.cs" />
+    <Compile Include="CampaignDifficulty.cs" />
     <Compile Include="DB\DBEntryDefaultUnitList.cs" />
     <Compile Include="DB\DBEntryCountry.cs" />
     <Compile Include="DB\DBEntryTheaterAirbaseParkingSpot.cs" />

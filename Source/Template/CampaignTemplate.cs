@@ -94,6 +94,10 @@ namespace BriefingRoom4DCSWorld.Template
         public int NumberOfMissions { get { return NumberOfMissions_; } set { NumberOfMissions_ = Toolbox.Clamp(value, TemplateTools.MIN_CAMPAIGN_MISSIONS, TemplateTools.MAX_CAMPAIGN_MISSIONS); } }
         private int NumberOfMissions_;
 
+        public CampaignDifficulty DifficultyFirstMission { get; set; }
+
+        public CampaignDifficulty DifficultyLastMission { get; set; }
+
         /// <summary>
         /// Resets all properties to their default values.
         /// </summary>
