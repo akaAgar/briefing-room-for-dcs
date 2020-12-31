@@ -73,6 +73,12 @@
     <Compile Include="DB\DBEntryCountry.cs" />
     <Compile Include="DB\DBEntryTheaterAirbaseParkingSpot.cs" />
     <Compile Include="BRSkillLevel.cs" />
+    <Compile Include="Forms\CampaignCreatorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CampaignCreatorForm.Designer.cs">
+      <DependentUpon>CampaignCreatorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MissionType.cs" />
     <Compile Include="CoalitionBriefingElement.cs" />
     <Compile Include="Amount.cs" />
@@ -122,6 +128,7 @@
     </Compile>
     <Compile Include="SupportUnitRoles.cs" />
     <Compile Include="Tacan.cs" />
+    <Compile Include="Template\CampaignTemplate.cs" />
     <Compile Include="Template\MissionTemplatePreferences.cs" />
     <Compile Include="Template\MissionTemplateDate.cs" />
     <Compile Include="Template\TemplateTools.cs" />
@@ -218,6 +225,9 @@
     <None Include="Resources\App.config" />
     <EmbeddedResource Include="Forms\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CampaignCreatorForm.resx">
+      <DependentUpon>CampaignCreatorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SplashScreenForm.resx">
       <DependentUpon>SplashScreenForm.cs</DependentUpon>

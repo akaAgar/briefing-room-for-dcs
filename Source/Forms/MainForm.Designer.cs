@@ -58,6 +58,8 @@
             this.T_Mission_Export = new System.Windows.Forms.ToolStripButton();
             this.T_Mission_ExportBriefing = new System.Windows.Forms.ToolStripDropDownButton();
             this.T_Mission_ExportBriefingHTML = new System.Windows.Forms.ToolStripMenuItem();
+            this.M_Tools = new System.Windows.Forms.ToolStripMenuItem();
+            this.M_Tools_CampaignCreator = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStripMain.SuspendLayout();
             this.BottomStatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
@@ -74,6 +76,7 @@
             this.MenuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.M_File,
             this.M_Mission,
+            this.M_Tools,
             this.M_About});
             this.MenuStripMain.Location = new System.Drawing.Point(0, 0);
             this.MenuStripMain.Name = "MenuStripMain";
@@ -341,6 +344,21 @@
             this.T_Mission_ExportBriefingHTML.Text = "Export briefing to HTML";
             this.T_Mission_ExportBriefingHTML.Click += new System.EventHandler(this.MenuClick);
             // 
+            // M_Tools
+            // 
+            this.M_Tools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.M_Tools_CampaignCreator});
+            this.M_Tools.Name = "M_Tools";
+            this.M_Tools.Size = new System.Drawing.Size(46, 20);
+            this.M_Tools.Text = "&Tools";
+            // 
+            // M_Tools_CampaignCreator
+            // 
+            this.M_Tools_CampaignCreator.Name = "M_Tools_CampaignCreator";
+            this.M_Tools_CampaignCreator.Size = new System.Drawing.Size(180, 22);
+            this.M_Tools_CampaignCreator.Text = "&Campaign creator";
+            this.M_Tools_CampaignCreator.Click += new System.EventHandler(this.MenuClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -407,5 +425,7 @@
         private System.Windows.Forms.ToolStripButton T_File_Open;
         private System.Windows.Forms.ToolStripButton T_File_SaveAs;
         private System.Windows.Forms.ToolStripMenuItem M_Mission_DebugExport;
+        private System.Windows.Forms.ToolStripMenuItem M_Tools;
+        private System.Windows.Forms.ToolStripMenuItem M_Tools_CampaignCreator;
     }
 }

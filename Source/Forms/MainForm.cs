@@ -201,6 +201,10 @@ namespace BriefingRoom4DCSWorld.Forms
                         miz.SaveToDirectory(BRPaths.DEBUGOUTPUT);
                     return;
 #endif
+                case "M_Tools_CampaignCreator":
+                    using (CampaignCreatorForm campaignForm = new CampaignCreatorForm())
+                        campaignForm.ShowDialog();
+                    return;
             }
         }
 
