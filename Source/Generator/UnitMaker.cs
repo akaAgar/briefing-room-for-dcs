@@ -187,7 +187,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 }
 
                 if (unitBP.OffsetHeading.Length > unitIndex) // Unit has a fixed heading (for SAM sites, etc.)
-                    unitHeading = unitHeading + unitBP.OffsetHeading[unitIndex]; // editor looks odd but works fine if negative or over 2Pi
+                    unitHeading = Toolbox.ClampAngle(unitHeading + unitBP.OffsetHeading[unitIndex]); // editor looks odd but works fine if negative or over 2Pi
                 else
                     unitHeading = Toolbox.RandomDouble(Toolbox.TWO_PI);
             }

@@ -221,6 +221,19 @@ namespace BriefingRoom4DCSWorld
         }
 
         /// <summary>
+        /// Makes sure an angle is between 0 and 2*Pi.
+        /// </summary>
+        /// <param name="angle">Angle in radians</param>
+        /// <returns>Angle of same value, clamped between 0 and 2*Pi</returns>
+        public static double ClampAngle(double angle)
+        {
+            int angleDeg = (int)(angle * RADIANS_TO_DEGREES);
+            while (angleDeg < 0) { angleDeg += 360; }
+            angleDeg = angleDeg % 360;
+            return angleDeg * DEGREES_TO_RADIANS;
+        }
+
+        /// <summary>
         /// Returns the number of values in an enum. Basically a shortcut for "Enum.GetValues(typeof(T)).Length".
         /// </summary>
         /// <typeparam name="T">The type of enum.</typeparam>
