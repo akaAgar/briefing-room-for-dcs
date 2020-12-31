@@ -80,6 +80,12 @@ namespace BriefingRoom4DCSWorld.Generator
                     // Set unit coordinates and heading
                     Coordinates unitCoordinates = coordinates;
                     double unitHeading = groupHeading;
+
+                    if(!unitsBP[0].IsAircraft && unitBP == unitsBP[0] && unitBP.OffsetCoordinates.Length < i) {
+                        unitCoordinates = coordinates.CreateNearRandom(10, 200);
+                        unitHeading = Toolbox.RandomDouble(Toolbox.TWO_PI);
+                    }
+
                     SetUnitCoordinatesAndHeading(ref unitCoordinates, ref unitHeading, unitBP, unitIndex);
 
                     // Get parking spot for the unit, if unit is parked at an airdrome

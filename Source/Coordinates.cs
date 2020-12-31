@@ -234,5 +234,32 @@ namespace BriefingRoom4DCSWorld
         {
             return $"{{ [\"x\"] = {Toolbox.ValToString(X)}, [\"y\"] = {Toolbox.ValToString(Y)} }}";
         }
+
+
+        /// <summary>
+        /// Creates a random coordinates set at a distance between min and max from the zero point.
+        /// Mostly used to create random inaccuracy from waypoints, etc.
+        /// </summary>
+        /// <param name="min">Minimum distance (in meters) from 0,0</param>
+        /// <param name="max">Maximum distance (in meters) from 0,0</param>
+        /// <returns>A set of coordinates</returns>
+        public Coordinates CreateNearRandom(double min, double max)
+        {
+            return CreateNearRandom(new MinMaxD(min, max));
+        }
+
+        /// <summary>
+        /// Creates a random coordinates set at a distance between minmax.Min and minMax.Max from the zero point.
+        /// Mostly used to create random inaccuracy from waypoints, etc.
+        /// </summary>
+        /// <param name="minMax">Minimum and maximum distance from 0,0</param>
+        /// <returns>A set of coordinates</returns>
+        public Coordinates CreateNearRandom(MinMaxD minMax)
+        {
+            double randX = minMax.GetValue() * Toolbox.RandomFrom(1 , -1); 
+            double randY = minMax.GetValue() * Toolbox.RandomFrom(1 , -1);
+            
+            return new Coordinates(X + randX, Y + randY);
+        }
     }
 }
