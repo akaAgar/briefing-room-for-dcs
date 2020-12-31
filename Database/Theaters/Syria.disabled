@@ -3,10 +3,8 @@ Names=Syria
 
 [Theater]
 DCSID=Syria
-; TODO
-DefaultMapCenter=
-; TODO
-MagneticDeclination=
+DefaultMapCenter=-29857,82800
+MagneticDeclination=5.08°
 
 [Daytime]
 January=07:10,16:15
