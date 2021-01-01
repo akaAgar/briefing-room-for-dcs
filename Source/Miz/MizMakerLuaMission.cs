@@ -54,6 +54,7 @@ namespace BriefingRoom4DCSWorld.Miz
             string lua = LuaTools.ReadIncludeLuaFile("Mission.lua");
 
             LuaTools.ReplaceKey(ref lua, "TheaterID", Database.Instance.GetEntry<DBEntryTheater>(mission.Theater).DCSID);
+            LuaTools.ReplaceKey(ref lua, "PlayerCoalition", mission.CoalitionPlayer.ToString().ToLowerInvariant());
 
             LuaTools.ReplaceKey(ref lua, "DateDay", mission.DateTime.Day);
             LuaTools.ReplaceKey(ref lua, "DateMonth", (int)mission.DateTime.Month + 1);

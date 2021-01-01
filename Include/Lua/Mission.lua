@@ -14,6 +14,7 @@ mission =
         ["actions"] = 
         {
             [1] = "a_do_script_file(getValueResourceByKey(\"ResKey_Script\"));",
+            [2] = "a_end_mission(\"$PLAYERCOALITION$\", \"\", 0); mission.trig.func[2]=nil;",
         }, -- end of ["actions"]
         ["events"] = 
         {
@@ -23,14 +24,17 @@ mission =
         }, -- end of ["custom"]
         ["func"] = 
         {
+            [2] = "if mission.trig.conditions[2]() then mission.trig.actions[2]() end",
         }, -- end of ["func"]
         ["flag"] = 
         {
             [1] = true,
+            [2] = true,
         }, -- end of ["flag"]
         ["conditions"] = 
         {
             [1] = "return(true)",
+            [2] = "return(c_flag_is_true(2) )",
         }, -- end of ["conditions"]
         ["customStartup"] = 
         {
@@ -444,6 +448,34 @@ $GROUPSVEHICLERED$
             }, -- end of ["actions"]
             ["comment"] = "Run main mission script",
         }, -- end of [1]
+        [2] = 
+        {
+            ["rules"] = 
+            {
+                [1] = 
+                {
+                    ["flag"] = 2,
+                    ["predicate"] = "c_flag_is_true",
+                    ["zone"] = "",
+                }, -- end of [1]
+            }, -- end of ["rules"]
+            ["comment"] = "Ends mission when trigger 2 is true",
+            ["eventlist"] = "",
+            ["predicate"] = "triggerOnce",
+            ["actions"] = 
+            {
+                [1] = 
+                {
+                    ["text"] = "",
+                    ["start_delay"] = 0,
+                    ["zone"] = "",
+                    ["predicate"] = "a_end_mission",
+                    ["winner"] = "blue",
+                    ["KeyDict_text"] = "",
+                    ["meters"] = 1000,
+                }, -- end of [1]
+            }, -- end of ["actions"]
+        }, -- end of [2]        
     }, -- end of ["trigrules"]
     ["currentKey"] = 0,
     ["start_time"] = $STARTTIME$,
