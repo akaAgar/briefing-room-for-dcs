@@ -34,29 +34,31 @@ namespace BriefingRoom4DCSWorld.Campaign
 
         }
 
-        public void Generate(CampaignTemplate campaignTemplate, string outDirectory)
+        public void Generate(CampaignTemplate campaignTemplate, string campaignFilePath)
         {
-
-            string campaignName = "NewCampaign";
+            string campaignName = Path.GetFileNameWithoutExtension(campaignFilePath);
+            string campaignDirectory = Path.GetDirectoryName(campaignFilePath);
             DCSMissionDateTime date = new DCSMissionDateTime();
 
             using (MissionGenerator generator = new MissionGenerator())
             {
-                for (int i = 0; i < campaignTemplate.MissionCount; i++)
+                for (int i = 0; i < campaignTemplate.CampaignMissionCount; i++)
                 {
                     MissionTemplate template = CreateMissionTemplate(campaignTemplate, i, campaignName, ref date);
 
                     DCSMission mission = generator.Generate(template);
                     MizFile miz = mission.ExportToMiz();
-                    miz.SaveToFile(Path.Combine(outDirectory, $"{campaignName}{i + 1:00}.miz"));
+                    miz.SaveToFile(Path.Combine(campaignDirectory, $"{campaignName}{i + 1:00}.miz"));
                 }
             }
 
-            CreateCMPFile(campaignTemplate, campaignName, outDirectory);
+            CreateCMPFile(campaignTemplate, campaignFilePath);
         }
 
-        private void CreateCMPFile(CampaignTemplate campaignTemplate, string campaignName, string outDirectory)
+        private void CreateCMPFile(CampaignTemplate campaignTemplate, string campaignFilePath)
         {
+            string campaignName = Path.GetFileNameWithoutExtension(campaignFilePath);
+
             string lua = LuaTools.ReadIncludeLuaFile("Campaign\\Campaign.lua");
             LuaTools.ReplaceKey(ref lua, "Name", campaignName);
             LuaTools.ReplaceKey(ref lua, "Description",
@@ -64,7 +66,7 @@ namespace BriefingRoom4DCSWorld.Campaign
             LuaTools.ReplaceKey(ref lua, "Units", "");
 
             string stagesLua = "";
-            for (int i = 0; i < campaignTemplate.MissionCount; i++)
+            for (int i = 0; i < campaignTemplate.CampaignMissionCount; i++)
             {
                 string nextStageLua = LuaTools.ReadIncludeLuaFile("Campaign\\CampaignStage.lua");
                 LuaTools.ReplaceKey(ref nextStageLua, "Index", i + 1);
@@ -76,7 +78,7 @@ namespace BriefingRoom4DCSWorld.Campaign
             }
             LuaTools.ReplaceKey(ref lua, "Stages", stagesLua);
 
-            File.WriteAllText(Path.Combine(outDirectory, $"{campaignName}.cmp"), lua.Replace("\r\n", "\n"));
+            File.WriteAllText(campaignFilePath, lua.Replace("\r\n", "\n"));
         }
 
         private MissionTemplate CreateMissionTemplate(CampaignTemplate campaignTemplate, int index, string campaignName, ref DCSMissionDateTime currentDate)
