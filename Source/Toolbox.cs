@@ -393,6 +393,29 @@ namespace BriefingRoom4DCSWorld
         }
 
         /// <summary>
+        /// Search for the DCS world custom campaigns path ([User]\Saved Games\DCS\Missions\Campaigns\MultiLang\)
+        /// Looks first for DCS.earlyaccess, then DCS.openbeta, then DCS.
+        /// If Saved Games\DCS\Missions is found, but not the child directories, tries to create them.
+        /// </summary>
+        /// <returns>The path, or the user My document folder if none is found.</returns>
+        public static string GetDCSCampaignPath()
+        {
+            string[] possibleDCSPaths = new string[] { "DCS.earlyaccess", "DCS.openbeta", "DCS" };
+
+            for (int i = 0; i < possibleDCSPaths.Length; i++)
+            {
+                string dcsPath = PATH_USER + "Saved Games\\" + possibleDCSPaths[i] + "\\Missions\\";
+                if (!Directory.Exists(dcsPath)) continue;
+                if (!CreateDirectoryIfMissing(dcsPath + "Campaigns\\")) continue;
+                if (!CreateDirectoryIfMissing(dcsPath + "Campaigns\\MultiLang\\")) continue;
+
+                return dcsPath + "Campaigns\\MultiLang\\";
+            }
+
+            return PATH_USER_DOCS;
+        }
+
+        /// <summary>
         /// Normalize a Windows directory path. Make sure all slashes are backslashes and that the directory ends with a backslash.
         /// </summary>
         /// <param name="path">The directory path to normalize.</param>
