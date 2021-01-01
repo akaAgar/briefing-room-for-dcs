@@ -245,12 +245,12 @@ namespace BriefingRoom4DCSWorld.Template
         public bool OptionsShowEnemyUnits { get; set; }
 
         /// <summary>
-        /// Time to end mission min after objective complete enum
+        /// When to end mission after all objectives are complete. Either after a specific time or via command.
         /// </summary>
         [Category("Options"), DisplayName("End Mode")]
-        [Description("End Mission after objective complete, either specific time or via command")]
-        [TypeConverter(typeof(EnumTypeConverter<EndMode>))]
-        public EndMode OptionsEndMode { get; set; }
+        [Description("When to end mission after all objectives are complete. Either after a specific time or via command.")]
+        [TypeConverter(typeof(EnumTypeConverter<MissionEndMode>))]
+        public MissionEndMode OptionsEndMode { get; set; }
 
         /// <summary>
         /// Multiplayer flight groups.
@@ -390,7 +390,7 @@ namespace BriefingRoom4DCSWorld.Template
             OptionsRadioSounds = true;
             OptionsScriptExtensions = new string[0];
             OptionsShowEnemyUnits = true;
-            OptionsEndMode = EndMode.NoEnd;
+            OptionsEndMode = MissionEndMode.NoEnd;
 
             PlayerAISkillLevel = BRSkillLevel.Random;
             PlayerEscortCAP = 0;

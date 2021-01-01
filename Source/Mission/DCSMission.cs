@@ -121,11 +121,11 @@ namespace BriefingRoom4DCSWorld.Mission
         /// </summary>
         public DCSMissionObjective[] Objectives { get; set; } = new DCSMissionObjective[0];
 
-        
+
         /// <summary>
-        /// Time to end mission min after objective complete -1 no auto end, -2 command end
+        /// Time to end mission min after objective complete.
         /// </summary >
-        public int EndMode {get; set;} = -1;
+        public MissionEndMode EndMode { get; set; } = MissionEndMode.NoEnd;
 
         /// <summary>
         /// "Center position" of the mission objectives (average of all objectives positions)

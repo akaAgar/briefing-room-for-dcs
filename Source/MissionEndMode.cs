@@ -23,7 +23,7 @@ namespace BriefingRoom4DCSWorld
     /// <summary>
     /// Enumerates possible EndTime Values
     /// </summary>
-    public enum EndMode
+    public enum MissionEndMode
     {
         /// <summary>
         /// don't end
