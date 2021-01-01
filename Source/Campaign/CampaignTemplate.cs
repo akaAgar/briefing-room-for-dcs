@@ -63,68 +63,170 @@ namespace BriefingRoom4DCSWorld.Campaign
             LoadFromFile(filePath);
         }
 
-        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
-        public bool AllowBadWeather { get; set; }
-
-        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
-        public bool AllowNightMissions { get; set; }
-
+        /// <summary>
+        /// Who belongs to the blue coalition?
+        /// </summary>
+        [Category("Coalitions"), DisplayName("Coalition, blue")]
+        [Description("Who belongs to the blue coalition?")]
         [TypeConverter(typeof(DBEntryTypeConverter<DBEntryCoalition>))]
-        public string CoalitionBlue { get { return CoalitionBlue_; } set { CoalitionBlue_ = TemplateTools.CheckValue<DBEntryCoalition>(value); } }
+        public string CoalitionsBlue { get { return CoalitionBlue_; } set { CoalitionBlue_ = TemplateTools.CheckValue<DBEntryCoalition>(value); } }
         private string CoalitionBlue_;
 
-        [TypeConverter(typeof(EnumTypeConverter<Coalition>))]
-        public Coalition CoalitionPlayer { get; set; }
-
+        /// <summary>
+        /// Who belongs to the red coalition?
+        /// </summary>
+        [Category("Coalitions"), DisplayName("Coalition, red")]
+        [Description("Who belongs to the red coalition?")]
         [TypeConverter(typeof(DBEntryTypeConverter<DBEntryCoalition>))]
-        public string CoalitionRed { get { return CoalitionRed_; } set { CoalitionRed_ = TemplateTools.CheckValue<DBEntryCoalition>(value); } }
+        public string CoalitionsRed { get { return CoalitionRed_; } set { CoalitionRed_ = TemplateTools.CheckValue<DBEntryCoalition>(value); } }
         private string CoalitionRed_;
 
+        /// <summary>
+        /// Chance for a mission of this campaign to take place in bad weather.
+        /// </summary>
+        [Category("Environment"), DisplayName("Bad weather chance")]
+        [Description("Chance for a mission of this campaign to take place in bad weather.")]
+        [TypeConverter(typeof(EnumTypeConverter<Coalition>))]
+        public AmountN EnvironmentBadWeatherChance { get; set; }
+
+        /// <summary>
+        /// Chance for a mission of this campaign to take place during the night.
+        /// </summary>
+        [Category("Environment"), DisplayName("Night mission chance")]
+        [Description("Chance for a mission of this campaign to take place during the night.")]
+        [TypeConverter(typeof(EnumTypeConverter<Coalition>))]
+        public AmountN EnvironmentNightMissionChance { get; set; }
+
+        /// <summary>
+        /// Number of missions in the campaign.
+        /// </summary>
+        [Category("Missions"), DisplayName("Number of missions")]
+        [Description("Number of missions in the campaign.")]
+        public int MissionsCount { get { return MissionsCount_; } set { MissionsCount_ = Toolbox.Clamp(value, MIN_CAMPAIGN_MISSIONS, MAX_CAMPAIGN_MISSIONS); } }
+        private int MissionsCount_;
+
+        /// <summary>
+        /// The type of tasking player may recieve in this campaign's missions.
+        /// </summary>
+        [Category("Missions"), DisplayName("Mission tasking")]
+        [Description("The type of tasking player may recieve in this campaign's missions.")]
         [TypeConverter(typeof(StringArrayTypeConverter))]
         [Editor(typeof(CheckedListBoxUIEditorDBEntry<DBEntryObjective>), typeof(UITypeEditor))]
-        public string[] ObjectiveTypes { get { return ObjectiveTypes_; } set { ObjectiveTypes_ = value.Distinct().OrderBy(x => x).ToArray(); } }
-        private string[] ObjectiveTypes_;
+        public string[] MissionsTypes { get { return MissionsTypes_; } set { MissionsTypes_ = TemplateTools.CheckValues<DBEntryObjective>(value, Database.Instance.Common.DefaultObjective); } }
+        private string[] MissionsTypes_;
 
         [TypeConverter(typeof(BooleanYesNoTypeConverter))]
         public bool OptionsShowEnemyUnits { get; set; }
 
+        /// <summary>
+        /// Type of aircraft the player will fly.
+        /// </summary>
+        [Category("Player"), DisplayName("Aircraft")]
+        [Description("Type of aircraft the player will fly.")]
         [TypeConverter(typeof(DBEntryPlayerAircraftTypeConverter))]
-        public string PlayerAircraft { get { return PlayerSPAircraft_; } set { PlayerSPAircraft_ = TemplateTools.CheckValuePlayerAircraft(value); } }
-        private string PlayerSPAircraft_;
+        public string PlayerAircraft { get { return PlayerAircraft_; } set { PlayerAircraft_ = TemplateTools.CheckValuePlayerAircraft(value); } }
+        private string PlayerAircraft_;
 
+        /// <summary>
+        /// Which coalition does the player belong to?
+        /// </summary>
+        [Category("Player"), DisplayName("Coalition")]
+        [Description("Which coalition does the player belong to?")]
+        [TypeConverter(typeof(EnumTypeConverter<Coalition>))]
+        public Coalition PlayerCoalition { get; set; }
+
+        /// <summary>
+        /// Where should the player take off from?
+        /// </summary>
+        [Category("Player"), DisplayName("Start location")]
+        [Description("Where should the player take off from?")]
         [TypeConverter(typeof(EnumTypeConverter<PlayerStartLocation>))]
         public PlayerStartLocation PlayerStartLocation { get; set; }
 
+        /// <summary>
+        /// Initial quality of enemy air defense.
+        /// </summary>
+        [Category("Situation"), DisplayName("Enemy air defense")]
+        [Description("Initial quality of enemy air defense.")]
+        [TypeConverter(typeof(EnumTypeConverter<AmountN>))]
+        public AmountN SituationEnemyAirDefense { get; set; }
+
+        /// <summary>
+        /// Initial quality of enemy air force.
+        /// </summary>
+        [Category("Situation"), DisplayName("Enemy air force")]
+        [Description("Initial quality of enemy air force.")]
+        [TypeConverter(typeof(EnumTypeConverter<AmountN>))]
+        public AmountN SituationEnemyAirForce { get; set; }
+
+        /// <summary>
+        /// Initial quality of friendly air defense.
+        /// </summary>
+        [Category("Situation"), DisplayName("Friendly air defense")]
+        [Description("Initial quality of friendly air defense.")]
+        [TypeConverter(typeof(EnumTypeConverter<AmountN>))]
+        public AmountN SituationFriendlyAirDefense { get; set; }
+
+        /// <summary>
+        /// Initial quality of friendly air force.
+        /// </summary>
+        [Category("Situation"), DisplayName("Friendly air force")]
+        [Description("Initial quality of friendly air force.")]
+        [TypeConverter(typeof(EnumTypeConverter<AmountN>))]
+        public AmountN SituationFriendlyAirForce { get; set; }
+
+        /// <summary>
+        /// How the situation evolves during the campaign. Campaign can get harder and harder with enemy power increasing as player completes missions (like in a game) or easier and easier as enemy power decreased (as it tend to happens to the losing side in a real conflict), etc.
+        /// </summary>
+        [Category("Situation"), DisplayName("Variation")]
+        [Description("How the situation evolves during the campaign. Campaign can get harder and harder with enemy power increasing as player completes missions (like in a game) or easier and easier as enemy power decreased (as it tend to happens to the losing side in a real conflict), etc.")]
+        [TypeConverter(typeof(EnumTypeConverter<AmountN>))]
+        public CampaignDifficultyVariation SituationVariation { get; set; }
+
+        /// <summary>
+        /// DCS World theater in which the mission will take place.
+        /// </summary>
+        [Category("Theater"), DisplayName("Theater ID")]
+        [Description("DCS World theater in which the mission will take place.")]
         [TypeConverter(typeof(DBEntryTypeConverter<DBEntryTheater>))]
         public string TheaterID { get { return TheaterID_; } set { TheaterID_ = TemplateTools.CheckValue<DBEntryTheater>(value); } }
         private string TheaterID_;
 
-        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
-        public bool InvertTheaterCoalitionCountries { get; set; }
-
-        public int MissionCount { get { return MissionCount_; } set { MissionCount_ = Toolbox.Clamp(value, MIN_CAMPAIGN_MISSIONS, MAX_CAMPAIGN_MISSIONS); } }
-        private int MissionCount_;
-
-        public CampaignDifficulty DifficultyFirstMission { get; set; }
-
-        public CampaignDifficulty DifficultyLastMission { get; set; }
+        /// <summary>
+        /// To which coalitions should the countries on the map (and their airbases) belong to?
+        /// </summary>
+        [Category("Theater"), DisplayName("Theater regions coalitions")]
+        [Description("To which coalitions should the countries on the map (and their airbases) belong to?")]
+        [TypeConverter(typeof(EnumTypeConverter<CountryCoalition>))]
+        public CountryCoalition TheaterRegionsCoalitions { get; set; }
 
         /// <summary>
         /// Resets all properties to their default values.
         /// </summary>
         public void Clear()
         {
-            AllowBadWeather = false;
-            AllowNightMissions = false;
+            CoalitionsBlue = TemplateTools.CheckValue<DBEntryCoalition>(Database.Instance.Common.DefaultCoalitionBlue);
+            CoalitionsRed = TemplateTools.CheckValue<DBEntryCoalition>(Database.Instance.Common.DefaultCoalitionRed);
 
-            CoalitionBlue = TemplateTools.CheckValue<DBEntryCoalition>(Database.Instance.Common.DefaultCoalitionBlue);
-            CoalitionPlayer = Coalition.Blue;
-            CoalitionRed = TemplateTools.CheckValue<DBEntryCoalition>(Database.Instance.Common.DefaultCoalitionRed);
-
-            MissionCount = 5;
-            ObjectiveTypes = Database.Instance.GetAllEntriesIDs<DBEntryObjective>();
+            EnvironmentBadWeatherChance = AmountN.Random;
+            EnvironmentNightMissionChance = AmountN.Random;
+            MissionsCount = 5;
+            MissionsTypes = new string[] { Database.Instance.Common.DefaultObjective };
 
             OptionsShowEnemyUnits = true;
+
+            PlayerAircraft = TemplateTools.CheckValuePlayerAircraft(Database.Instance.Common.DefaultPlayerAircraft);
+            PlayerCoalition = Coalition.Blue;
+            PlayerStartLocation = PlayerStartLocation.Runway;
+
+            SituationEnemyAirDefense = AmountN.Random;
+            SituationEnemyAirForce = AmountN.Random;
+            SituationFriendlyAirDefense = AmountN.Random;
+            SituationFriendlyAirForce = AmountN.Random;
+            SituationVariation = CampaignDifficultyVariation.Random;
+
+            TheaterID = TemplateTools.CheckValue<DBEntryTheater>(Database.Instance.Common.DefaultTheater);
+            TheaterRegionsCoalitions = CountryCoalition.Default;
         }
 
         /// <summary>
@@ -139,7 +241,29 @@ namespace BriefingRoom4DCSWorld.Campaign
 
             using (INIFile ini = new INIFile(filePath))
             {
-            
+                CoalitionsBlue = ini.GetValue("Coalitions", "Blue", CoalitionsBlue);
+                CoalitionsRed = ini.GetValue("Coalitions", "Red", CoalitionsRed);
+
+                EnvironmentBadWeatherChance = ini.GetValue("Environment", "BadWeatherChance", EnvironmentBadWeatherChance);
+                EnvironmentNightMissionChance = ini.GetValue("Environment", "NightMissionChance", EnvironmentNightMissionChance);
+
+                MissionsCount = ini.GetValue("Missions", "Count", MissionsCount);
+                MissionsTypes = ini.GetValueArray<string>("Missions", "Types");
+
+                OptionsShowEnemyUnits = ini.GetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
+
+                PlayerAircraft = ini.GetValue("Player", "Aircraft", PlayerAircraft);
+                PlayerCoalition = ini.GetValue("Player", "Coalition", PlayerCoalition);
+                PlayerStartLocation = ini.GetValue("Player", "StartLocation", PlayerStartLocation);
+
+                SituationEnemyAirDefense = ini.GetValue("Situation", "Enemy.AirDefense", SituationEnemyAirDefense);
+                SituationEnemyAirForce = ini.GetValue("Situation", "Enemy.AirForce", SituationEnemyAirForce);
+                SituationFriendlyAirDefense = ini.GetValue("Situation", "Friendly.AirDefense", SituationFriendlyAirDefense);
+                SituationFriendlyAirForce = ini.GetValue("Situation", "Friendly.AirForce", SituationFriendlyAirForce);
+                SituationVariation = ini.GetValue("Situation", "Variation", SituationVariation);
+
+                TheaterID = ini.GetValue("Theater", "ID", TheaterID);
+                TheaterRegionsCoalitions = ini.GetValue("Theater", "RegionsCoalitions", TheaterRegionsCoalitions);
             }
 
             return true;
@@ -153,19 +277,43 @@ namespace BriefingRoom4DCSWorld.Campaign
         {
             using (INIFile ini = new INIFile())
             {
+                ini.SetValue("Coalitions", "Blue", CoalitionsBlue);
+                ini.SetValue("Coalitions", "Red", CoalitionsRed);
+
+                ini.SetValue("Environment", "BadWeatherChance", EnvironmentBadWeatherChance);
+                ini.SetValue("Environment", "NightMissionChance", EnvironmentNightMissionChance);
+
+                ini.SetValue("Missions", "Count", MissionsCount);
+                ini.SetValueArray("Missions", "Types", MissionsTypes);
+
+                ini.SetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
+
+                ini.SetValue("Player", "Aircraft", PlayerAircraft);
+                ini.SetValue("Player", "Coalition", PlayerCoalition);
+                ini.SetValue("Player", "StartLocation", PlayerStartLocation);
+
+                ini.SetValue("Situation", "Enemy.AirDefense", SituationEnemyAirDefense);
+                ini.SetValue("Situation", "Enemy.AirForce", SituationEnemyAirForce);
+                ini.SetValue("Situation", "Friendly.AirDefense", SituationFriendlyAirDefense);
+                ini.SetValue("Situation", "Friendly.AirForce", SituationFriendlyAirForce);
+                ini.SetValue("Situation", "Variation", SituationVariation);
+
+                ini.SetValue("Theater", "ID", TheaterID);
+                ini.SetValue("Theater", "RegionsCoalitions", TheaterRegionsCoalitions);
+
                 ini.SaveToFile(filePath);
             }
         }
 
         /// <summary>
-        /// "Shortcut" method to get <see cref="CoalitionBlue"/> or <see cref="CoalitionRed"/> by using a <see cref="Coalition"/> parameter.
+        /// "Shortcut" method to get <see cref="CoalitionsBlue"/> or <see cref="CoalitionsRed"/> by using a <see cref="Coalition"/> parameter.
         /// </summary>
         /// <param name="coalition">Color of the coalition to return</param>
-        /// <returns><see cref="CoalitionBlue"/> or <see cref="CoalitionRed"/></returns>
+        /// <returns><see cref="CoalitionsBlue"/> or <see cref="CoalitionsRed"/></returns>
         public string GetCoalition(Coalition coalition)
         {
-            if (coalition == Coalition.Red) return CoalitionRed;
-            return CoalitionBlue;
+            if (coalition == Coalition.Red) return CoalitionsRed;
+            return CoalitionsBlue;
         }
 
         /// <summary>

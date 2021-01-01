@@ -42,7 +42,7 @@ namespace BriefingRoom4DCSWorld.Campaign
 
             using (MissionGenerator generator = new MissionGenerator())
             {
-                for (int i = 0; i < campaignTemplate.CampaignMissionCount; i++)
+                for (int i = 0; i < campaignTemplate.MissionsCount; i++)
                 {
                     MissionTemplate template = CreateMissionTemplate(campaignTemplate, i, campaignName, ref date);
 
@@ -62,11 +62,11 @@ namespace BriefingRoom4DCSWorld.Campaign
             string lua = LuaTools.ReadIncludeLuaFile("Campaign\\Campaign.lua");
             LuaTools.ReplaceKey(ref lua, "Name", campaignName);
             LuaTools.ReplaceKey(ref lua, "Description",
-                $"This is a ${campaignTemplate.CoalitionBlue} vs ${campaignTemplate.CoalitionRed} randomly-generated campaign created by an early version of the campaign generator of BriefingRoom, a mission generator for DCS World ({BriefingRoom.WEBSITE_URL}).");
+                $"This is a ${campaignTemplate.CoalitionsBlue} vs ${campaignTemplate.CoalitionsRed} randomly-generated campaign created by an early version of the campaign generator of BriefingRoom, a mission generator for DCS World ({BriefingRoom.WEBSITE_URL}).");
             LuaTools.ReplaceKey(ref lua, "Units", "");
 
             string stagesLua = "";
-            for (int i = 0; i < campaignTemplate.CampaignMissionCount; i++)
+            for (int i = 0; i < campaignTemplate.MissionsCount; i++)
             {
                 string nextStageLua = LuaTools.ReadIncludeLuaFile("Campaign\\CampaignStage.lua");
                 LuaTools.ReplaceKey(ref nextStageLua, "Index", i + 1);
@@ -90,15 +90,15 @@ namespace BriefingRoom4DCSWorld.Campaign
             template.BriefingDate.Month = currentDate.Month;
             template.BriefingDate.Year = currentDate.Year;
             template.BriefingName = $"{campaignName}, phase {index + 1}";
-            template.CoalitionBlue = campaignTemplate.CoalitionBlue;
-            template.CoalitionPlayer = campaignTemplate.CoalitionPlayer;
-            template.CoalitionRed = campaignTemplate.CoalitionRed;
+            template.CoalitionBlue = campaignTemplate.CoalitionsBlue;
+            template.CoalitionPlayer = campaignTemplate.PlayerCoalition;
+            template.CoalitionRed = campaignTemplate.CoalitionsRed;
             template.EnvironmentTimeOfDay = TimeOfDay.Dawn; // TODO
             template.EnvironmentWeather = Weather.Clear; // TODO
             template.EnvironmentWind = Wind.Auto;
             template.ObjectiveCount = Toolbox.RandomMinMax(1, 3);
             template.ObjectiveDistance = Toolbox.RandomFrom(Amount.Average, Amount.High);
-            template.ObjectiveType = Toolbox.RandomFrom(campaignTemplate.ObjectiveTypes);
+            template.ObjectiveType = Toolbox.RandomFrom(campaignTemplate.MissionsTypes);
             //template.OppositionAirDefense;
             //template.OppositionAirForce;
             //template.OppositionSkillLevelAir;

@@ -21,16 +21,18 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 namespace BriefingRoom4DCSWorld
 {
     /// <summary>
-    /// Enumerates various difficulty levels for a campaign.
+    /// Enumerates various possible difficulty variation for a campaign.
     /// </summary>
-    public enum CampaignDifficulty
+    public enum CampaignDifficultyVariation
     {
         Random,
 
-        VeryEasy,
-        Easy,
-        Average,
-        Hard,
-        VeryHard
+        ConsiderablyEasier,
+        MuchEasier,
+        SomewhatEasier,
+        Steady,
+        SomewhatHarder,
+        MuchHarder,
+        ConsiderablyHarder
     }
 }
