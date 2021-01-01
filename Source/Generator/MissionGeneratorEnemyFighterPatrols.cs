@@ -62,10 +62,9 @@ namespace BriefingRoom4DCSWorld.Generator
                 DebugLog.Instance.WriteLine("Enemy CAP disabled for this mission objective type, not spawning any units", 1);
                 return;
             }
-
             int totalAirForcePower =
                 (int)(GetMissionPackageAirPower(template, objectiveDB, aiEscortTypeCAP, aiEscortTypeSEAD) *
-                Database.Instance.Common.EnemyCAPRelativePower[(int)template.OppositionAirForce]);
+                Database.Instance.Common.EnemyCAPRelativePower[(int)template.OppositionAirForce.Get()]);
 
             DebugLog.Instance.WriteLine($"Enemy air power set to {totalAirForcePower}...", 1);
 
