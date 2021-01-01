@@ -245,6 +245,14 @@ namespace BriefingRoom4DCSWorld.Template
         public bool OptionsShowEnemyUnits { get; set; }
 
         /// <summary>
+        /// Time to end mission min after objective complete enum
+        /// </summary>
+        [Category("Options"), DisplayName("End Mode")]
+        [Description("End Mission after objective complete, either specific time or via command")]
+        [TypeConverter(typeof(EnumTypeConverter<EndMode>))]
+        public EndMode OptionsEndMode { get; set; }
+
+        /// <summary>
         /// Multiplayer flight groups.
         /// If any flight group is specified here, the mission then becomes a multiplayer mission and all values
         /// in the "Player, single player only" are ignored.
@@ -382,6 +390,7 @@ namespace BriefingRoom4DCSWorld.Template
             OptionsRadioSounds = true;
             OptionsScriptExtensions = new string[0];
             OptionsShowEnemyUnits = true;
+            OptionsEndMode = EndMode.NoEnd;
 
             PlayerAISkillLevel = BRSkillLevel.Random;
             PlayerEscortCAP = 0;
@@ -437,6 +446,7 @@ namespace BriefingRoom4DCSWorld.Template
                 OptionsRadioSounds = ini.GetValue("Options", "RadioSounds", OptionsRadioSounds);
                 OptionsScriptExtensions = ini.GetValueArray<string>("Options", "ScriptExtensions");
                 OptionsShowEnemyUnits = ini.GetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
+                OptionsEndMode = ini.GetValue("Options", "EndMode", OptionsEndMode);
 
                 PlayerAISkillLevel = ini.GetValue("Player", "AISkillLevel", PlayerAISkillLevel);
                 PlayerEscortCAP = ini.GetValue("Player", "EscortCAP", PlayerEscortCAP);
@@ -495,6 +505,8 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValue("Options", "RadioSounds", OptionsRadioSounds);
                 ini.SetValueArray("Options", "ScriptExtensions", OptionsScriptExtensions);
                 ini.SetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
+                ini.SetValue("Options", "EndMode", OptionsEndMode);
+                
 
                 ini.SetValue("Player", "AISkillLevel", PlayerAISkillLevel);
                 ini.SetValue("Player", "EscortCAP", PlayerEscortCAP);
