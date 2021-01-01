@@ -39,7 +39,8 @@ namespace BriefingRoom4DCSWorld.Campaign
         {
             string campaignName = Path.GetFileNameWithoutExtension(campaignFilePath);
             string campaignDirectory = Path.GetDirectoryName(campaignFilePath);
-            DCSMissionDateTime date = new DCSMissionDateTime();
+
+            DCSMissionDateTime date = GenerateCampaignDate(campaignTemplate);
 
             using (MissionGenerator generator = new MissionGenerator())
             {
@@ -55,6 +56,17 @@ namespace BriefingRoom4DCSWorld.Campaign
 
             CreateImageFiles(campaignTemplate, campaignFilePath);
             CreateCMPFile(campaignTemplate, campaignFilePath);
+        }
+
+        private DCSMissionDateTime GenerateCampaignDate(CampaignTemplate campaignTemplate)
+        {
+            DCSMissionDateTime date = new DCSMissionDateTime
+            {
+                Year = Toolbox.GetRandomYearFromDecade(campaignTemplate.ContextDecade),
+                Month = Toolbox.RandomFrom(Toolbox.GetEnumValues<Month>())
+            };
+            date.Day = Toolbox.RandomMinMax(1, Toolbox.GetDaysPerMonth(date.Month, date.Year));
+            return date;
         }
 
         private void CreateImageFiles(CampaignTemplate campaignTemplate, string campaignFilePath)
@@ -89,7 +101,7 @@ namespace BriefingRoom4DCSWorld.Campaign
             string lua = LuaTools.ReadIncludeLuaFile("Campaign\\Campaign.lua");
             LuaTools.ReplaceKey(ref lua, "Name", campaignName);
             LuaTools.ReplaceKey(ref lua, "Description",
-                $"This is a ${campaignTemplate.CoalitionsBlue} vs ${campaignTemplate.CoalitionsRed} randomly-generated campaign created by an early version of the campaign generator of BriefingRoom, a mission generator for DCS World ({BriefingRoom.WEBSITE_URL}).");
+                $"This is a ${campaignTemplate.ContextCoalitionsBlue} vs ${campaignTemplate.ContextCoalitionsRed} randomly-generated campaign created by an early version of the campaign generator of BriefingRoom, a mission generator for DCS World ({BriefingRoom.WEBSITE_URL}).");
             LuaTools.ReplaceKey(ref lua, "Units", "");
 
             string stagesLua = "";
@@ -110,22 +122,32 @@ namespace BriefingRoom4DCSWorld.Campaign
 
         private MissionTemplate CreateMissionTemplate(CampaignTemplate campaignTemplate, int index, string campaignName, ref DCSMissionDateTime currentDate)
         {
-            MissionTemplate template = new MissionTemplate();
-            template.BriefingDate.Enabled = true;
+            // Increment the date by a few days for each mission after the first
             if (index > 0) currentDate = IncrementDate(currentDate);
+
+            MissionTemplate template = new MissionTemplate();
+
+            template.BriefingDate.Enabled = true;
             template.BriefingDate.Day = currentDate.Day;
             template.BriefingDate.Month = currentDate.Month;
             template.BriefingDate.Year = currentDate.Year;
+            template.BriefingDescription = "";
             template.BriefingName = $"{campaignName}, phase {index + 1}";
-            template.CoalitionBlue = campaignTemplate.CoalitionsBlue;
+
+            template.CoalitionBlue = campaignTemplate.ContextCoalitionsBlue;
             template.CoalitionPlayer = campaignTemplate.PlayerCoalition;
-            template.CoalitionRed = campaignTemplate.CoalitionsRed;
-            template.EnvironmentTimeOfDay = TimeOfDay.Dawn; // TODO
-            template.EnvironmentWeather = Weather.Clear; // TODO
+            template.CoalitionRed = campaignTemplate.ContextCoalitionsRed;
+
+            template.EnvironmentTimeOfDay = GetTimeOfDayForMission(campaignTemplate.EnvironmentNightMissionChance);
+            template.EnvironmentWeather = GetWeatherForMission(campaignTemplate.EnvironmentBadWeatherChance);
             template.EnvironmentWind = Wind.Auto;
-            template.ObjectiveCount = Toolbox.RandomMinMax(1, 3);
-            template.ObjectiveDistance = Toolbox.RandomFrom(Amount.Average, Amount.High);
+
+            template.ObjectiveCount = GetObjectiveCountForMission(campaignTemplate.MissionsObjectiveCount);
+            template.ObjectiveDistance = GetRandomAmountForMission(campaignTemplate.MissionsObjectiveDistance);
             template.ObjectiveType = Toolbox.RandomFrom(campaignTemplate.MissionsTypes);
+
+            template.OppositionAirDefense = GetPowerLevel(campaignTemplate.SituationEnemyAirDefense, campaignTemplate.SituationVariation, index, campaignTemplate.MissionsCount);
+            template.OppositionAirForce = GetPowerLevel(campaignTemplate.SituationEnemyAirForce, campaignTemplate.SituationVariation, index, campaignTemplate.MissionsCount);
             //template.OppositionAirDefense;
             //template.OppositionAirForce;
             //template.OppositionSkillLevelAir;
@@ -133,6 +155,96 @@ namespace BriefingRoom4DCSWorld.Campaign
             //template.OppositionUnitsLocation;
 
             return template;
+        }
+
+        private AmountN GetPowerLevel(AmountN amount, CampaignDifficultyVariation variation, int missionIndex, int missionsCount)
+        {
+            if (amount == AmountN.Random) return AmountN.Random;
+            double campaignProgress = missionIndex / (double)(missionsCount - 1.0);
+
+            double amountOffset = 0;
+            switch (variation)
+            {
+                case CampaignDifficultyVariation.ConsiderablyEasier: amountOffset = -3.5; break;
+                case CampaignDifficultyVariation.MuchEasier: amountOffset = -2.25; break;
+                case CampaignDifficultyVariation.SomewhatEasier: amountOffset = -1.5; break;
+            }
+            double amountDouble = (double)amount + amountOffset * campaignProgress;
+
+            return (AmountN)Toolbox.Clamp((int)amountDouble, (int)AmountN.VeryLow, (int)AmountN.VeryHigh);
+        }
+
+        private Weather GetWeatherForMission(AmountN badWeatherChance)
+        {
+            int chance;
+            switch (badWeatherChance.Get())
+            {
+                case AmountN.VeryLow: chance = 0; break;
+                case AmountN.Low: chance = 10; break;
+                default: chance = 25; break; // case AmountN.Average
+                case AmountN.High: chance = 40; break;
+                case AmountN.VeryHigh: chance = 60; break;
+            }
+
+            if (Toolbox.RandomInt(100) < chance)
+                return Toolbox.RandomFrom(Weather.Precipitation, Weather.Precipitation, Weather.Precipitation, Weather.Storm);
+            else
+                return Toolbox.RandomFrom(
+                    Weather.Clear, Weather.Clear, Weather.Clear, Weather.Clear,
+                    Weather.LightClouds, Weather.LightClouds, Weather.LightClouds,
+                    Weather.SomeClouds, Weather.Overcast);
+        }
+
+        private TimeOfDay GetTimeOfDayForMission(AmountN nightMissionChance)
+        {
+            int chance;
+            switch (nightMissionChance.Get())
+            {
+                case AmountN.VeryLow: chance = 0; break;
+                case AmountN.Low: chance = 10; break;
+                default: chance = 25; break; // case AmountN.Average
+                case AmountN.High: chance = 50; break;
+                case AmountN.VeryHigh: chance = 80; break;
+            }
+
+            if (Toolbox.RandomInt(100) < chance)
+                return TimeOfDay.Night;
+            else
+                return TimeOfDay.RandomDaytime;
+        }
+
+        private int GetObjectiveCountForMission(Amount amount)
+        {
+            switch (amount)
+            {
+                case Amount.VeryLow:
+                    return 1;
+                case Amount.Low:
+                    return Toolbox.RandomFrom(1, 1, 2);
+                default: // case Amount.Average:
+                    return Toolbox.RandomFrom(1, 2, 2, 2, 3);
+                case Amount.High:
+                    return Toolbox.RandomFrom(2, 3, 3, 4);
+                case Amount.VeryHigh:
+                    return Toolbox.RandomFrom(3, 4, 4, 4, 5);
+            }
+        }
+
+        private Amount GetRandomAmountForMission(Amount amount)
+        {
+            switch (amount)
+            {
+                case Amount.VeryLow:
+                    return Toolbox.RandomFrom(Amount.VeryLow, Amount.VeryLow, Amount.Low);
+                case Amount.Low:
+                    return Toolbox.RandomFrom(Amount.VeryLow, Amount.Low, Amount.Average);
+                default: // case Amount.Average:
+                    return Toolbox.RandomFrom(Amount.Low, Amount.Average, Amount.High);
+                case Amount.High:
+                    return Toolbox.RandomFrom(Amount.Average, Amount.High, Amount.VeryHigh);
+                case Amount.VeryHigh:
+                    return Toolbox.RandomFrom(Amount.High, Amount.VeryHigh, Amount.VeryHigh);
+            }
         }
 
         private DCSMissionDateTime IncrementDate(DCSMissionDateTime date)
