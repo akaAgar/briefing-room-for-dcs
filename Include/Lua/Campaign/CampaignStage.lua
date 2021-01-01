@@ -1,6 +1,6 @@
 [$INDEX$] =
 {
-  ["name"] = "Stage $INDEX$",
+  ["name"] = "$NAME$",
   ["missions"] =
   {
     [1] =
@@ -11,7 +11,7 @@
         [2] = 100,
       }, -- end of ["interval"]
       ["file"] = "$FILE$",
-      ["description"] = "",
+      ["description"] = "$DESCRIPTION$",
       ["fullpath"] = "$FILE$",
     }, -- end of [1]
   }, -- end of ["missions"]
