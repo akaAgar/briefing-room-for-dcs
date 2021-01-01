@@ -66,20 +66,45 @@ namespace BriefingRoom4DCSWorld.Campaign
         /// <summary>
         /// Who belongs to the blue coalition?
         /// </summary>
-        [Category("Coalitions"), DisplayName("Coalition, blue")]
+        [Category("Context"), DisplayName("Coalition, blue")]
         [Description("Who belongs to the blue coalition?")]
         [TypeConverter(typeof(DBEntryTypeConverter<DBEntryCoalition>))]
-        public string CoalitionsBlue { get { return CoalitionBlue_; } set { CoalitionBlue_ = TemplateTools.CheckValue<DBEntryCoalition>(value); } }
-        private string CoalitionBlue_;
+        public string ContextCoalitionsBlue { get { return ContextCoalitionBlue_; } set { ContextCoalitionBlue_ = TemplateTools.CheckValue<DBEntryCoalition>(value); } }
+        private string ContextCoalitionBlue_;
 
         /// <summary>
         /// Who belongs to the red coalition?
         /// </summary>
-        [Category("Coalitions"), DisplayName("Coalition, red")]
+        [Category("Context"), DisplayName("Coalition, red")]
         [Description("Who belongs to the red coalition?")]
         [TypeConverter(typeof(DBEntryTypeConverter<DBEntryCoalition>))]
-        public string CoalitionsRed { get { return CoalitionRed_; } set { CoalitionRed_ = TemplateTools.CheckValue<DBEntryCoalition>(value); } }
-        private string CoalitionRed_;
+        public string ContextCoalitionsRed { get { return ContextCoalitionRed_; } set { ContextCoalitionRed_ = TemplateTools.CheckValue<DBEntryCoalition>(value); } }
+        private string ContextCoalitionRed_;
+
+        /// <summary>
+        /// Decade during which the campaign will take place.
+        /// </summary>
+        [Category("Context"), DisplayName("Decade")]
+        [Description("Decade during which the campaign will take place.")]
+        [TypeConverter(typeof(EnumTypeConverter<Decade>))]
+        public Decade ContextDecade { get; set; }
+
+        /// <summary>
+        /// DCS World theater in which the mission will take place.
+        /// </summary>
+        [Category("Context"), DisplayName("Theater")]
+        [Description("DCS World theater in which the mission will take place.")]
+        [TypeConverter(typeof(DBEntryTypeConverter<DBEntryTheater>))]
+        public string ContextTheaterID { get { return ContextTheaterID_; } set { ContextTheaterID_ = TemplateTools.CheckValue<DBEntryTheater>(value); } }
+        private string ContextTheaterID_;
+
+        /// <summary>
+        /// To which coalitions should the countries on the map (and their airbases) belong to?
+        /// </summary>
+        [Category("Context"), DisplayName("Theater, regions alignment")]
+        [Description("To which coalitions should the countries on the map (and their airbases) belong to?")]
+        [TypeConverter(typeof(EnumTypeConverter<CountryCoalition>))]
+        public CountryCoalition ContextTheaterRegionsCoalitions { get; set; }
 
         /// <summary>
         /// Chance for a mission of this campaign to take place in bad weather.
@@ -205,29 +230,15 @@ namespace BriefingRoom4DCSWorld.Campaign
         public CampaignDifficultyVariation SituationVariation { get; set; }
 
         /// <summary>
-        /// DCS World theater in which the mission will take place.
-        /// </summary>
-        [Category("Theater"), DisplayName("Theater ID")]
-        [Description("DCS World theater in which the mission will take place.")]
-        [TypeConverter(typeof(DBEntryTypeConverter<DBEntryTheater>))]
-        public string TheaterID { get { return TheaterID_; } set { TheaterID_ = TemplateTools.CheckValue<DBEntryTheater>(value); } }
-        private string TheaterID_;
-
-        /// <summary>
-        /// To which coalitions should the countries on the map (and their airbases) belong to?
-        /// </summary>
-        [Category("Theater"), DisplayName("Theater regions coalitions")]
-        [Description("To which coalitions should the countries on the map (and their airbases) belong to?")]
-        [TypeConverter(typeof(EnumTypeConverter<CountryCoalition>))]
-        public CountryCoalition TheaterRegionsCoalitions { get; set; }
-
-        /// <summary>
         /// Resets all properties to their default values.
         /// </summary>
         public void Clear()
         {
-            CoalitionsBlue = TemplateTools.CheckValue<DBEntryCoalition>(Database.Instance.Common.DefaultCoalitionBlue);
-            CoalitionsRed = TemplateTools.CheckValue<DBEntryCoalition>(Database.Instance.Common.DefaultCoalitionRed);
+            ContextCoalitionsBlue = TemplateTools.CheckValue<DBEntryCoalition>(Database.Instance.Common.DefaultCoalitionBlue);
+            ContextCoalitionsRed = TemplateTools.CheckValue<DBEntryCoalition>(Database.Instance.Common.DefaultCoalitionRed);
+            ContextDecade = Decade.Decade2000;
+            ContextTheaterID = TemplateTools.CheckValue<DBEntryTheater>(Database.Instance.Common.DefaultTheater);
+            ContextTheaterRegionsCoalitions = CountryCoalition.Default;
 
             EnvironmentBadWeatherChance = AmountN.Random;
             EnvironmentNightMissionChance = AmountN.Random;
@@ -248,9 +259,6 @@ namespace BriefingRoom4DCSWorld.Campaign
             SituationFriendlyAirDefense = AmountN.Random;
             SituationFriendlyAirForce = AmountN.Random;
             SituationVariation = CampaignDifficultyVariation.Random;
-
-            TheaterID = TemplateTools.CheckValue<DBEntryTheater>(Database.Instance.Common.DefaultTheater);
-            TheaterRegionsCoalitions = CountryCoalition.Default;
         }
 
         /// <summary>
@@ -265,8 +273,11 @@ namespace BriefingRoom4DCSWorld.Campaign
 
             using (INIFile ini = new INIFile(filePath))
             {
-                CoalitionsBlue = ini.GetValue("Coalitions", "Blue", CoalitionsBlue);
-                CoalitionsRed = ini.GetValue("Coalitions", "Red", CoalitionsRed);
+                ContextCoalitionsBlue = ini.GetValue("Context", "Coalitions.Blue", ContextCoalitionsBlue);
+                ContextCoalitionsRed = ini.GetValue("Context", "Coalitions.Red", ContextCoalitionsRed);
+                ContextDecade = ini.GetValue("Context", "Decade", ContextDecade);
+                ContextTheaterID = ini.GetValue("Context", "TheaterID", ContextTheaterID);
+                ContextTheaterRegionsCoalitions = ini.GetValue("Context", "TheaterRegionsCoalitions", ContextTheaterRegionsCoalitions);
 
                 EnvironmentBadWeatherChance = ini.GetValue("Environment", "BadWeatherChance", EnvironmentBadWeatherChance);
                 EnvironmentNightMissionChance = ini.GetValue("Environment", "NightMissionChance", EnvironmentNightMissionChance);
@@ -287,9 +298,6 @@ namespace BriefingRoom4DCSWorld.Campaign
                 SituationFriendlyAirDefense = ini.GetValue("Situation", "Friendly.AirDefense", SituationFriendlyAirDefense);
                 SituationFriendlyAirForce = ini.GetValue("Situation", "Friendly.AirForce", SituationFriendlyAirForce);
                 SituationVariation = ini.GetValue("Situation", "Variation", SituationVariation);
-
-                TheaterID = ini.GetValue("Theater", "ID", TheaterID);
-                TheaterRegionsCoalitions = ini.GetValue("Theater", "RegionsCoalitions", TheaterRegionsCoalitions);
             }
 
             return true;
@@ -303,8 +311,11 @@ namespace BriefingRoom4DCSWorld.Campaign
         {
             using (INIFile ini = new INIFile())
             {
-                ini.SetValue("Coalitions", "Blue", CoalitionsBlue);
-                ini.SetValue("Coalitions", "Red", CoalitionsRed);
+                ini.SetValue("Context", "Coalitions.Blue", ContextCoalitionsBlue);
+                ini.SetValue("Context", "Coalitions.Red", ContextCoalitionsRed);
+                ini.SetValue("Context", "Decade", ContextDecade);
+                ini.SetValue("Context", "TheaterID", ContextTheaterID);
+                ini.SetValue("Context", "TheaterRegionsCoalitions", ContextTheaterRegionsCoalitions);
 
                 ini.SetValue("Environment", "BadWeatherChance", EnvironmentBadWeatherChance);
                 ini.SetValue("Environment", "NightMissionChance", EnvironmentNightMissionChance);
@@ -326,22 +337,19 @@ namespace BriefingRoom4DCSWorld.Campaign
                 ini.SetValue("Situation", "Friendly.AirForce", SituationFriendlyAirForce);
                 ini.SetValue("Situation", "Variation", SituationVariation);
 
-                ini.SetValue("Theater", "ID", TheaterID);
-                ini.SetValue("Theater", "RegionsCoalitions", TheaterRegionsCoalitions);
-
                 ini.SaveToFile(filePath);
             }
         }
 
         /// <summary>
-        /// "Shortcut" method to get <see cref="CoalitionsBlue"/> or <see cref="CoalitionsRed"/> by using a <see cref="Coalition"/> parameter.
+        /// "Shortcut" method to get <see cref="ContextCoalitionsBlue"/> or <see cref="ContextCoalitionsRed"/> by using a <see cref="Coalition"/> parameter.
         /// </summary>
         /// <param name="coalition">Color of the coalition to return</param>
-        /// <returns><see cref="CoalitionsBlue"/> or <see cref="CoalitionsRed"/></returns>
+        /// <returns><see cref="ContextCoalitionsBlue"/> or <see cref="ContextCoalitionsRed"/></returns>
         public string GetCoalition(Coalition coalition)
         {
-            if (coalition == Coalition.Red) return CoalitionsRed;
-            return CoalitionsBlue;
+            if (coalition == Coalition.Red) return ContextCoalitionsRed;
+            return ContextCoalitionsBlue;
         }
 
         /// <summary>
