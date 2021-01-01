@@ -106,6 +106,22 @@ namespace BriefingRoom4DCSWorld.Campaign
         private int MissionsCount_;
 
         /// <summary>
+        /// How many objectives/targets will be present in each mission.
+        /// </summary>
+        [Category("Missions"), DisplayName("Objective count")]
+        [Description("How many objectives/targets will be present in the mission.")]
+        [TypeConverter(typeof(EnumTypeConverter<Amount>))]
+        public Amount MissionsObjectiveCount { get; set; }
+
+        /// <summary>
+        /// How far from the player's starting location will the objectives be.
+        /// </summary>
+        [Category("Missions"), DisplayName("Objective distance")]
+        [Description("How far from the player's starting location will the objectives be.")]
+        [TypeConverter(typeof(EnumTypeConverter<Amount>))]
+        public Amount MissionsObjectiveDistance { get; set; }
+
+        /// <summary>
         /// The type of tasking player may recieve in this campaign's missions.
         /// </summary>
         [Category("Missions"), DisplayName("Mission tasking")]
@@ -115,6 +131,11 @@ namespace BriefingRoom4DCSWorld.Campaign
         public string[] MissionsTypes { get { return MissionsTypes_; } set { MissionsTypes_ = TemplateTools.CheckValues<DBEntryObjective>(value, Database.Instance.Common.DefaultObjective); } }
         private string[] MissionsTypes_;
 
+        /// <summary>
+        /// Should enemy units be shown on the F10 map, mission planning, MFD SA pages, etc?
+        /// </summary>
+        [Category("Options"), DisplayName("Show enemy units on map")]
+        [Description("Should enemy units be shown on the F10 map, mission planning, MFD SA pages, etc?")]
         [TypeConverter(typeof(BooleanYesNoTypeConverter))]
         public bool OptionsShowEnemyUnits { get; set; }
 
@@ -210,7 +231,10 @@ namespace BriefingRoom4DCSWorld.Campaign
 
             EnvironmentBadWeatherChance = AmountN.Random;
             EnvironmentNightMissionChance = AmountN.Random;
+            
             MissionsCount = 5;
+            MissionsObjectiveCount = Amount.Average;
+            MissionsObjectiveDistance = Amount.Average;
             MissionsTypes = new string[] { Database.Instance.Common.DefaultObjective };
 
             OptionsShowEnemyUnits = true;
@@ -248,6 +272,8 @@ namespace BriefingRoom4DCSWorld.Campaign
                 EnvironmentNightMissionChance = ini.GetValue("Environment", "NightMissionChance", EnvironmentNightMissionChance);
 
                 MissionsCount = ini.GetValue("Missions", "Count", MissionsCount);
+                MissionsObjectiveCount = ini.GetValue("Missions", "ObjectiveCount", MissionsObjectiveCount);
+                MissionsObjectiveDistance = ini.GetValue("Missions", "ObjectiveDistance", MissionsObjectiveDistance);
                 MissionsTypes = ini.GetValueArray<string>("Missions", "Types");
 
                 OptionsShowEnemyUnits = ini.GetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
@@ -284,6 +310,8 @@ namespace BriefingRoom4DCSWorld.Campaign
                 ini.SetValue("Environment", "NightMissionChance", EnvironmentNightMissionChance);
 
                 ini.SetValue("Missions", "Count", MissionsCount);
+                ini.SetValue("Missions", "ObjectiveCount", MissionsObjectiveCount);
+                ini.SetValue("Missions", "ObjectiveDistance", MissionsObjectiveDistance);
                 ini.SetValueArray("Missions", "Types", MissionsTypes);
 
                 ini.SetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
