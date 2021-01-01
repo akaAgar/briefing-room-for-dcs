@@ -155,7 +155,7 @@ namespace BriefingRoom4DCSWorld.Generator
 
             // Generate enemy air defense unit groups
             DebugLog.Instance.WriteLine("Generating enemy air defense unit groups...");
-            using (MissionGeneratorEnemyAirDefense unitGroupGen = new MissionGeneratorEnemyAirDefense(unitMaker))
+            using (MissionGeneratorAirDefense unitGroupGen = new MissionGeneratorAirDefense(unitMaker))
                 unitGroupGen.CreateUnitGroups(mission, template, objectiveDB, coalitionsDB[(int)mission.CoalitionEnemy]);
 
             //// Generate enemy fighter patrols

@@ -125,7 +125,7 @@
     <Compile Include="Side.cs" />
     <Compile Include="Template\MissionTemplateMPFlightGroupTask.cs" />
     <Compile Include="Generator\MissionGeneratorEnemyFighterPatrols.cs" />
-    <Compile Include="Generator\MissionGeneratorEnemyAirDefense.cs" />
+    <Compile Include="Generator\MissionGeneratorAirDefense.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

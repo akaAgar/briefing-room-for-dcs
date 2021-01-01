@@ -30,7 +30,7 @@ namespace BriefingRoom4DCSWorld.Generator
     /// Generates enemy surface-to-air defense unit groups,
     /// except "embedded" air defense, which is generated at the same time as the group objectives.
     /// </summary>
-    public class MissionGeneratorEnemyAirDefense : IDisposable
+    public class MissionGeneratorAirDefense : IDisposable
     {
         /// <summary>
         /// Unit maker class to use to generate units.
@@ -41,7 +41,7 @@ namespace BriefingRoom4DCSWorld.Generator
         /// Constructor.
         /// </summary>
         /// <param name="unitMaker">Unit maker class to use to generate units</param>
-        public MissionGeneratorEnemyAirDefense(UnitMaker unitMaker)
+        public MissionGeneratorAirDefense(UnitMaker unitMaker)
         {
             UnitMaker = unitMaker;
         }
