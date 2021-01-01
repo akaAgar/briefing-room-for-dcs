@@ -21,6 +21,7 @@ If not, see https://www.gnu.org/licenses/
 */
 
 using BriefingRoom4DCSWorld.DB;
+using BriefingRoom4DCSWorld.Template;
 using BriefingRoom4DCSWorld.TypeConverters;
 using System;
 using System.ComponentModel;
@@ -28,13 +29,23 @@ using System.Drawing.Design;
 using System.IO;
 using System.Linq;
 
-namespace BriefingRoom4DCSWorld.Template
+namespace BriefingRoom4DCSWorld.Campaign
 {
     /// <summary>
     /// A campaign template
     /// </summary>
     public class CampaignTemplate : IDisposable
     {
+        /// <summary>
+        /// Minimum number of missions in a campaign.
+        /// </summary>
+        private const int MIN_CAMPAIGN_MISSIONS = 2;
+
+        /// <summary>
+        /// Maximum number of missions in a campaign.
+        /// </summary>
+        private const int MAX_CAMPAIGN_MISSIONS = 20;
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -52,6 +63,12 @@ namespace BriefingRoom4DCSWorld.Template
             LoadFromFile(filePath);
         }
 
+        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
+        public bool AllowBadWeather { get; set; }
+
+        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
+        public bool AllowNightMissions { get; set; }
+
         [TypeConverter(typeof(DBEntryTypeConverter<DBEntryCoalition>))]
         public string CoalitionBlue { get { return CoalitionBlue_; } set { CoalitionBlue_ = TemplateTools.CheckValue<DBEntryCoalition>(value); } }
         private string CoalitionBlue_;
@@ -63,16 +80,10 @@ namespace BriefingRoom4DCSWorld.Template
         public string CoalitionRed { get { return CoalitionRed_; } set { CoalitionRed_ = TemplateTools.CheckValue<DBEntryCoalition>(value); } }
         private string CoalitionRed_;
 
-        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
-        public bool AllowNightMissions { get; set; }
-
-        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
-        public bool AllowBadWeather { get; set; }
-
         [TypeConverter(typeof(StringArrayTypeConverter))]
         [Editor(typeof(CheckedListBoxUIEditorDBEntry<DBEntryObjective>), typeof(UITypeEditor))]
         public string[] ObjectiveTypes { get { return ObjectiveTypes_; } set { ObjectiveTypes_ = value.Distinct().OrderBy(x => x).ToArray(); } }
-        public string[] ObjectiveTypes_;
+        private string[] ObjectiveTypes_;
 
         [TypeConverter(typeof(BooleanYesNoTypeConverter))]
         public bool OptionsShowEnemyUnits { get; set; }
@@ -91,8 +102,8 @@ namespace BriefingRoom4DCSWorld.Template
         [TypeConverter(typeof(BooleanYesNoTypeConverter))]
         public bool InvertTheaterCoalitionCountries { get; set; }
 
-        public int NumberOfMissions { get { return NumberOfMissions_; } set { NumberOfMissions_ = Toolbox.Clamp(value, TemplateTools.MIN_CAMPAIGN_MISSIONS, TemplateTools.MAX_CAMPAIGN_MISSIONS); } }
-        private int NumberOfMissions_;
+        public int MissionCount { get { return MissionCount_; } set { MissionCount_ = Toolbox.Clamp(value, MIN_CAMPAIGN_MISSIONS, MAX_CAMPAIGN_MISSIONS); } }
+        private int MissionCount_;
 
         public CampaignDifficulty DifficultyFirstMission { get; set; }
 
@@ -103,7 +114,17 @@ namespace BriefingRoom4DCSWorld.Template
         /// </summary>
         public void Clear()
         {
-     
+            AllowBadWeather = false;
+            AllowNightMissions = false;
+
+            CoalitionBlue = TemplateTools.CheckValue<DBEntryCoalition>(Database.Instance.Common.DefaultCoalitionBlue);
+            CoalitionPlayer = Coalition.Blue;
+            CoalitionRed = TemplateTools.CheckValue<DBEntryCoalition>(Database.Instance.Common.DefaultCoalitionRed);
+
+            MissionCount = 5;
+            ObjectiveTypes = Database.Instance.GetAllEntriesIDs<DBEntryObjective>();
+
+            OptionsShowEnemyUnits = true;
         }
 
         /// <summary>

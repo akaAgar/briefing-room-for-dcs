@@ -60,16 +60,6 @@ namespace BriefingRoom4DCSWorld.Template
         //public const string DEFAULT_THEATER = "Caucasus";
 
         /// <summary>
-        /// Minimum number of missions in a campaign.
-        /// </summary>
-        public const int MIN_CAMPAIGN_MISSIONS = 2;
-
-        /// <summary>
-        /// Maximum number of missions in a campaign.
-        /// </summary>
-        public const int MAX_CAMPAIGN_MISSIONS = 20;
-
-        /// <summary>
         /// Maximum number of objectives.
         /// </summary>
         public const int MAX_OBJECTIVES = 5;
