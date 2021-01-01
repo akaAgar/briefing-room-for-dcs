@@ -383,10 +383,10 @@ namespace BriefingRoom4DCSWorld.Template
             OptionsScriptExtensions = new string[0];
             OptionsShowEnemyUnits = true;
 
-            PlayerAISkillLevel = BRSkillLevel.Veteran;
+            PlayerAISkillLevel = BRSkillLevel.Random;
             PlayerEscortCAP = 0;
             PlayerEscortSEAD = 0;
-            PlayerFriendlyAirDefense = AmountN.Average;
+            PlayerFriendlyAirDefense = AmountN.Random;
             PlayerStartLocation = PlayerStartLocation.Runway;
 
             PlayerMPFlightGroups = new MissionTemplateMPFlightGroup[0];
