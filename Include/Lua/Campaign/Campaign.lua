@@ -3,9 +3,9 @@ campaign =
     ["startStage"] = 1,
     ["name"] = "$NAME$",
     ["description"] = "$DESCRIPTION$",
-    ["picture"] = "titlepic.png",
-    ["pictureSuccess"] = "success.png",
-    ["pictureFailed"] = "failed.png",
+    ["picture"] = "$NAME$_Title.png",
+    ["pictureSuccess"] = "$NAME$_Success.png",
+    ["pictureFailed"] = "$NAME$_Failure.png",
     ["necessaryUnits"] = 
     {
 $UNITS$
@@ -16,5 +16,4 @@ $UNITS$
     {
 $STAGES$
     }, -- end of ["stages"]
-    ["description"] = "",
 } -- end of campaign
