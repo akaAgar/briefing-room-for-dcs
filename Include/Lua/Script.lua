@@ -593,8 +593,8 @@ function briefingRoom.mission.functions.completeObjective(index)
     briefingRoom.debugPrint("Mission marked as complete")
     briefingRoom.mission.status = brMissionStatus.COMPLETE
     briefingRoom.radioManager.play("Excellent work! Mission complete, you may return to base.", "RadioHQMissionComplete", math.random(6, 8))
-    if briefingRoom.mission.parameters.endMode > 0 then
-      briefingRoom.debugPrint("Mission auto ending in"..briefingRoom.mission.parameters.endMode.."mins")
+    if briefingRoom.mission.parameters.endMode >= 0 then
+      briefingRoom.debugPrint("Mission auto ending in "..briefingRoom.mission.parameters.endMode.." minute(s)")
       briefingRoom.mission.functions.endMissionIn(briefingRoom.mission.parameters.endMode * 60)
     end
   else
@@ -651,7 +651,7 @@ function briefingRoom.mission.functions.endMission()
 end
 
 function briefingRoom.mission.functions.endMissionIn(endInSeconds)
-  timer.scheduleFunction(briefingRoom.mission.functions.endMission, nil, timer.getTime() + 1)
+  timer.scheduleFunction(briefingRoom.mission.functions.endMission, nil, timer.getTime() + endInSeconds)
 end
 
 -- ===================================================================================
