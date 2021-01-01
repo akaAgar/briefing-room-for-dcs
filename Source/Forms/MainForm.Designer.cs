@@ -42,6 +42,8 @@
             this.M_Mission_ExportBriefing = new System.Windows.Forms.ToolStripMenuItem();
             this.M_Mission_ExportBriefingHTML = new System.Windows.Forms.ToolStripMenuItem();
             this.M_Mission_DebugExport = new System.Windows.Forms.ToolStripMenuItem();
+            this.M_Tools = new System.Windows.Forms.ToolStripMenuItem();
+            this.M_Tools_CampaignCreator = new System.Windows.Forms.ToolStripMenuItem();
             this.M_About = new System.Windows.Forms.ToolStripMenuItem();
             this.BottomStatusStrip = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -58,8 +60,6 @@
             this.T_Mission_Export = new System.Windows.Forms.ToolStripButton();
             this.T_Mission_ExportBriefing = new System.Windows.Forms.ToolStripDropDownButton();
             this.T_Mission_ExportBriefingHTML = new System.Windows.Forms.ToolStripMenuItem();
-            this.M_Tools = new System.Windows.Forms.ToolStripMenuItem();
-            this.M_Tools_CampaignCreator = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStripMain.SuspendLayout();
             this.BottomStatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
@@ -183,6 +183,21 @@
             this.M_Mission_DebugExport.Text = "Debug export";
             this.M_Mission_DebugExport.Visible = false;
             this.M_Mission_DebugExport.Click += new System.EventHandler(this.MenuClick);
+            // 
+            // M_Tools
+            // 
+            this.M_Tools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.M_Tools_CampaignCreator});
+            this.M_Tools.Name = "M_Tools";
+            this.M_Tools.Size = new System.Drawing.Size(46, 20);
+            this.M_Tools.Text = "&Tools";
+            // 
+            // M_Tools_CampaignCreator
+            // 
+            this.M_Tools_CampaignCreator.Name = "M_Tools_CampaignCreator";
+            this.M_Tools_CampaignCreator.Size = new System.Drawing.Size(263, 22);
+            this.M_Tools_CampaignCreator.Text = "&Campaign creator (EARLY VERSION)";
+            this.M_Tools_CampaignCreator.Click += new System.EventHandler(this.MenuClick);
             // 
             // M_About
             // 
@@ -343,21 +358,6 @@
             this.T_Mission_ExportBriefingHTML.Size = new System.Drawing.Size(201, 22);
             this.T_Mission_ExportBriefingHTML.Text = "Export briefing to HTML";
             this.T_Mission_ExportBriefingHTML.Click += new System.EventHandler(this.MenuClick);
-            // 
-            // M_Tools
-            // 
-            this.M_Tools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.M_Tools_CampaignCreator});
-            this.M_Tools.Name = "M_Tools";
-            this.M_Tools.Size = new System.Drawing.Size(46, 20);
-            this.M_Tools.Text = "&Tools";
-            // 
-            // M_Tools_CampaignCreator
-            // 
-            this.M_Tools_CampaignCreator.Name = "M_Tools_CampaignCreator";
-            this.M_Tools_CampaignCreator.Size = new System.Drawing.Size(180, 22);
-            this.M_Tools_CampaignCreator.Text = "&Campaign creator";
-            this.M_Tools_CampaignCreator.Click += new System.EventHandler(this.MenuClick);
             // 
             // MainForm
             // 

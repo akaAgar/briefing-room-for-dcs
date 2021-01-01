@@ -278,6 +278,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <EmbeddedResource Include="Resources\CampaignIcon.ico" />
+    <EmbeddedResource Include="Resources\Icons\Campaign.png" />
+    <EmbeddedResource Include="Resources\Icons\ExportCampaign.png" />
     <EmbeddedResource Include="Resources\Icons\FileHTML.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
