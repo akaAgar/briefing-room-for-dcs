@@ -549,6 +549,7 @@ briefingRoom.mission.objectives = { } -- table which will hold the mission objec
 briefingRoom.mission.objectivesAreStatic = $STATICOBJECTIVE$ -- true if the objective is static object, false if it isn't (which means it's an unit)
 briefingRoom.mission.status = brMissionStatus.IN_PROGRESS -- current status of the mission
 briefingRoom.mission.parameters = { } -- various mission parameters
+briefingRoom.mission.parameters.endMode = $ENDMODE$ -- Time to end mission min after objective complete -1 no auto end, -2 command end
 briefingRoom.mission.parameters.targetUnitsAttributesRequired = { } -- units in target groups must have AT LEAST ONE of these attributes to be a valid target
 briefingRoom.mission.parameters.targetUnitsAttributesIgnored = { } -- units in target groups must have NONE of these attributes to be a valid target
 
@@ -592,6 +593,12 @@ function briefingRoom.mission.functions.completeObjective(index)
     briefingRoom.debugPrint("Mission marked as complete")
     briefingRoom.mission.status = brMissionStatus.COMPLETE
     briefingRoom.radioManager.play("Excellent work! Mission complete, you may return to base.", "RadioHQMissionComplete", math.random(6, 8))
+    if briefingRoom.mission.parameters.endMode == -2 then
+      missionCommands.addCommandForCoalition($PLAYERCOALITION$, "End mission now", nil, briefingRoom.mission.functions.endMissionIn, 0)
+    elseif briefingRoom.mission.parameters.endMode >= 0 then
+      briefingRoom.debugPrint("Mission auto ending in "..briefingRoom.mission.parameters.endMode.." minute(s)")
+      briefingRoom.mission.functions.endMissionIn(briefingRoom.mission.parameters.endMode * 60)
+    end
   else
     briefingRoom.radioManager.play("Good job! Objective complete, proceed to next objective.", "RadioHQObjectiveComplete", math.random(6, 8))
   end
@@ -638,6 +645,15 @@ function briefingRoom.mission.functions.getWaypointCoordinates(index)
   local cooMessage = dcsExtensions.vec2ToStringCoordinates(briefingRoom.mission.objectives[index].waypoint)
   briefingRoom.radioManager.play("Command, request confirmation of waypoint "..briefingRoom.mission.objectives[index].name.." coordinates.", "RadioPilotWaypointCoordinates")
   briefingRoom.radioManager.play("Acknowledged, transmitting waypoint "..briefingRoom.mission.objectives[index].name.." coordinates.\n\n"..cooMessage, "RadioHQWaypointCoordinates", briefingRoom.radioManager.getAnswerDelay())
+end
+
+function briefingRoom.mission.functions.endMission(args, time)
+  trigger.action.setUserFlag(2, true)
+  return nil
+end
+
+function briefingRoom.mission.functions.endMissionIn(endInSeconds)
+  timer.scheduleFunction(briefingRoom.mission.functions.endMission, nil, timer.getTime() + endInSeconds)
 end
 
 -- ===================================================================================

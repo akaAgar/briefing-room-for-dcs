@@ -73,6 +73,7 @@
     <Compile Include="DB\DBEntryCountry.cs" />
     <Compile Include="DB\DBEntryTheaterAirbaseParkingSpot.cs" />
     <Compile Include="BRSkillLevel.cs" />
+    <Compile Include="MissionEndMode.cs" />
     <Compile Include="Generator\MissionGeneratorAirDefense.cs" />
     <Compile Include="MissionType.cs" />
     <Compile Include="CoalitionBriefingElement.cs" />

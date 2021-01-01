@@ -113,13 +113,19 @@ namespace BriefingRoom4DCSWorld.Mission
 
         /// <summary>
         /// Name/title of the mission/sortie.
-        /// </summary>
+        /// </summary >
         public string MissionName { get; set; } = "";
 
         /// <summary>
         /// An array of <see cref="DCSMissionObjective"/> describing all objectives in the mission.
         /// </summary>
         public DCSMissionObjective[] Objectives { get; set; } = new DCSMissionObjective[0];
+
+
+        /// <summary>
+        /// Time to end mission min after objective complete.
+        /// </summary >
+        public MissionEndMode EndMode { get; set; } = MissionEndMode.NoEnd;
 
         /// <summary>
         /// "Center position" of the mission objectives (average of all objectives positions)
