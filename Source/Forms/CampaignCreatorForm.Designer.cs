@@ -32,15 +32,15 @@
             this.MainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.TemplatePropertyGrid = new System.Windows.Forms.PropertyGrid();
             this.CampaignToolStripMenu = new System.Windows.Forms.ToolStrip();
+            this.T_s1 = new System.Windows.Forms.ToolStripSeparator();
             this.T_New = new System.Windows.Forms.ToolStripButton();
             this.T_Open = new System.Windows.Forms.ToolStripButton();
             this.T_SaveAs = new System.Windows.Forms.ToolStripButton();
-            this.T_s1 = new System.Windows.Forms.ToolStripSeparator();
-            this.T_ExportCampaign = new System.Windows.Forms.ToolStripButton();
-            this.T_s4 = new System.Windows.Forms.ToolStripSeparator();
-            this.T_Close = new System.Windows.Forms.ToolStripButton();
             this.T_s2 = new System.Windows.Forms.ToolStripSeparator();
+            this.T_ExportCampaign = new System.Windows.Forms.ToolStripButton();
             this.T_s3 = new System.Windows.Forms.ToolStripSeparator();
+            this.T_Close = new System.Windows.Forms.ToolStripButton();
+            this.T_s4 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
             this.MainSplitContainer.Panel1.SuspendLayout();
             this.MainSplitContainer.Panel2.SuspendLayout();
@@ -95,6 +95,11 @@
             this.CampaignToolStripMenu.TabIndex = 4;
             this.CampaignToolStripMenu.Text = "toolStrip1";
             // 
+            // T_s1
+            // 
+            this.T_s1.Name = "T_s1";
+            this.T_s1.Size = new System.Drawing.Size(181, 6);
+            // 
             // T_New
             // 
             this.T_New.Image = ((System.Drawing.Image)(resources.GetObject("T_New.Image")));
@@ -125,10 +130,10 @@
             this.T_SaveAs.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.T_SaveAs.Click += new System.EventHandler(this.OnMenuClick);
             // 
-            // T_s1
+            // T_s2
             // 
-            this.T_s1.Name = "T_s1";
-            this.T_s1.Size = new System.Drawing.Size(181, 6);
+            this.T_s2.Name = "T_s2";
+            this.T_s2.Size = new System.Drawing.Size(181, 6);
             // 
             // T_ExportCampaign
             // 
@@ -136,14 +141,14 @@
             this.T_ExportCampaign.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.T_ExportCampaign.Name = "T_ExportCampaign";
             this.T_ExportCampaign.Size = new System.Drawing.Size(181, 35);
-            this.T_ExportCampaign.Text = "Export campaign";
+            this.T_ExportCampaign.Text = "Export campaign to DCS";
             this.T_ExportCampaign.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.T_ExportCampaign.Click += new System.EventHandler(this.OnMenuClick);
             // 
-            // T_s4
+            // T_s3
             // 
-            this.T_s4.Name = "T_s4";
-            this.T_s4.Size = new System.Drawing.Size(181, 6);
+            this.T_s3.Name = "T_s3";
+            this.T_s3.Size = new System.Drawing.Size(181, 6);
             // 
             // T_Close
             // 
@@ -155,15 +160,10 @@
             this.T_Close.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.T_Close.Click += new System.EventHandler(this.OnMenuClick);
             // 
-            // T_s2
+            // T_s4
             // 
-            this.T_s2.Name = "T_s2";
-            this.T_s2.Size = new System.Drawing.Size(181, 6);
-            // 
-            // T_s3
-            // 
-            this.T_s3.Name = "T_s3";
-            this.T_s3.Size = new System.Drawing.Size(181, 6);
+            this.T_s4.Name = "T_s4";
+            this.T_s4.Size = new System.Drawing.Size(181, 6);
             // 
             // CampaignCreatorForm
             // 
@@ -171,12 +171,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 441);
             this.Controls.Add(this.MainSplitContainer);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CampaignCreatorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Campaign creator";
+            this.Text = "Campaign creation tool (EARLY VERSION)";
             this.Load += new System.EventHandler(this.CampaignCreatorForm_Load);
             this.MainSplitContainer.Panel1.ResumeLayout(false);
             this.MainSplitContainer.Panel2.ResumeLayout(false);
