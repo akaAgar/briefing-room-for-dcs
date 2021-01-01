@@ -593,7 +593,9 @@ function briefingRoom.mission.functions.completeObjective(index)
     briefingRoom.debugPrint("Mission marked as complete")
     briefingRoom.mission.status = brMissionStatus.COMPLETE
     briefingRoom.radioManager.play("Excellent work! Mission complete, you may return to base.", "RadioHQMissionComplete", math.random(6, 8))
-    if briefingRoom.mission.parameters.endMode >= 0 then
+    if briefingRoom.mission.parameters.endMode == -2 then
+      missionCommands.addCommandForCoalition($PLAYERCOALITION$, "End mission now", nil, briefingRoom.mission.functions.endMissionIn, 0)
+    elseif briefingRoom.mission.parameters.endMode >= 0 then
       briefingRoom.debugPrint("Mission auto ending in "..briefingRoom.mission.parameters.endMode.." minute(s)")
       briefingRoom.mission.functions.endMissionIn(briefingRoom.mission.parameters.endMode * 60)
     end
@@ -645,9 +647,9 @@ function briefingRoom.mission.functions.getWaypointCoordinates(index)
   briefingRoom.radioManager.play("Acknowledged, transmitting waypoint "..briefingRoom.mission.objectives[index].name.." coordinates.\n\n"..cooMessage, "RadioHQWaypointCoordinates", briefingRoom.radioManager.getAnswerDelay())
 end
 
-function briefingRoom.mission.functions.endMission()
-  briefingRoom.radioManager.play("ENDEX ENDEX!", "RadioHQMissionComplete", math.random(6, 8)) --needs new radio sound
+function briefingRoom.mission.functions.endMission(args, time)
   trigger.action.setUserFlag(2, true)
+  return nil
 end
 
 function briefingRoom.mission.functions.endMissionIn(endInSeconds)
@@ -668,9 +670,6 @@ do
   for i,o in ipairs(briefingRoom.mission.objectives) do
     briefingRoom.f10Menu.objectives[i] = missionCommands.addSubMenuForCoalition($PLAYERCOALITION$, "Objective "..o.name, nil)
     missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Require waypoint coordinates", briefingRoom.f10Menu.objectives[i], briefingRoom.mission.functions.getWaypointCoordinates, i)
-  end
-  if briefingRoom.mission.parameters.endMode == -2 then
-    missionCommands.addCommandForCoalition($PLAYERCOALITION$, "End Mission", nil, briefingRoom.mission.functions.endMissionIn, 5)
   end
 end
 
