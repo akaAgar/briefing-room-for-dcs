@@ -50,6 +50,11 @@ namespace BriefingRoom4DCSWorld
         public static string INCLUDE { get; } = $"{ROOT}Include\\";
 
         /// <summary>
+        /// Path to the Include\Jpg subdirectory.
+        /// </summary>
+        public static string INCLUDE_JPG { get; } = $"{INCLUDE}Jpg\\";
+
+        /// <summary>
         /// Path to the Include\Lua subdirectory.
         /// </summary>
         public static string INCLUDE_LUA { get; } = $"{INCLUDE}Lua\\";

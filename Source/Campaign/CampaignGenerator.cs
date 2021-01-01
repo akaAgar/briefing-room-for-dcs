@@ -23,6 +23,7 @@ using BriefingRoom4DCSWorld.Template;
 using BriefingRoom4DCSWorld.Mission;
 using BriefingRoom4DCSWorld.Miz;
 using System;
+using System.Drawing;
 using System.IO;
 
 namespace BriefingRoom4DCSWorld.Campaign
@@ -52,7 +53,33 @@ namespace BriefingRoom4DCSWorld.Campaign
                 }
             }
 
+            CreateImageFiles(campaignTemplate, campaignFilePath);
             CreateCMPFile(campaignTemplate, campaignFilePath);
+        }
+
+        private void CreateImageFiles(CampaignTemplate campaignTemplate, string campaignFilePath)
+        {
+            string baseFileName = Path.Combine(Path.GetDirectoryName(campaignFilePath), Path.GetFileNameWithoutExtension(campaignFilePath));
+            string allyFlagName = GeneratorTools.RemoveAfterComma(campaignTemplate.GetCoalition(campaignTemplate.PlayerCoalition));
+            string enemyFlagName = GeneratorTools.RemoveAfterComma(campaignTemplate.GetCoalition((Coalition)(1 - (int)campaignTemplate.PlayerCoalition)));
+
+            using (ImageMaker imgMaker = new ImageMaker())
+            {
+                imgMaker.BackgroundColor = (campaignTemplate.PlayerCoalition == Coalition.Red) ?
+                    Color.FromArgb(128, 0, 0) : Color.FromArgb(0, 0, 128);
+
+                File.WriteAllBytes($"{baseFileName}_Title.jpg",
+                    imgMaker.GetImageBytes(
+                        new ImageMakerLayer($"Flags\\{enemyFlagName}.png", ContentAlignment.MiddleCenter, -32, - 32),
+                        new ImageMakerLayer($"Flags\\{allyFlagName}.png", ContentAlignment.MiddleCenter, 32, 32)));
+                imgMaker.BackgroundColor = Color.Black;
+
+                File.WriteAllBytes($"{baseFileName}_Success.jpg",
+                    imgMaker.GetImageBytes("Sky.jpg", $"Flags\\{allyFlagName}.png"));
+
+                File.WriteAllBytes($"{baseFileName}_Failure.jpg",
+                    imgMaker.GetImageBytes("Fire.jpg", $"Flags\\{allyFlagName}.png", "Burning.png"));
+            }
         }
 
         private void CreateCMPFile(CampaignTemplate campaignTemplate, string campaignFilePath)

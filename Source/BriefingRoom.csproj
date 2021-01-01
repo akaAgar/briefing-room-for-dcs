@@ -81,6 +81,8 @@
       <DependentUpon>CampaignCreatorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Campaign\CampaignGenerator.cs" />
+    <Compile Include="ImageMakerLayer.cs" />
+    <Compile Include="ImageMaker.cs" />
     <Compile Include="MissionType.cs" />
     <Compile Include="CoalitionBriefingElement.cs" />
     <Compile Include="Amount.cs" />
