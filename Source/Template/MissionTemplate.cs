@@ -314,6 +314,13 @@ namespace BriefingRoom4DCSWorld.Template
         public int PlayerEscortSEAD { get { return PlayerEscortSEAD_; } set { PlayerEscortSEAD_ = Toolbox.Clamp(value, 0, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE); } }
         private int PlayerEscortSEAD_;
 
+        /// <summary>
+        /// Should extra ingress/egress waypoints be generated in addition to the objective waypoints?
+        /// </summary>
+        [Category("Player"), DisplayName("Extra Waypoints")]
+        [Description("Should extra ingress/egress waypoints be generated in addition to the objective waypoints?")]
+        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
+        public bool PlayerExtraWaypoints { get; set; }
 
         /// <summary>
         /// Intensity and quality of friendly air defense.
@@ -330,15 +337,6 @@ namespace BriefingRoom4DCSWorld.Template
         [Description("Where should the player(s) take off from?")]
         [TypeConverter(typeof(EnumTypeConverter<PlayerStartLocation>))]
         public PlayerStartLocation PlayerStartLocation { get; set; }
-
-        /// <summary>
-        /// Where should the player(s) take off from?
-        /// </summary>
-        [Category("Player"), DisplayName("Extra Waypoints")]
-        [Description("Generate extra Infill/Exfil waypoints")]
-        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
-
-        public bool PlayerExtraWaypoints { get; set; }
 
         /// <summary>
         /// DCS World theater in which the mission will take place.
@@ -404,9 +402,9 @@ namespace BriefingRoom4DCSWorld.Template
             PlayerAISkillLevel = BRSkillLevel.Random;
             PlayerEscortCAP = 0;
             PlayerEscortSEAD = 0;
+            PlayerExtraWaypoints = false;
             PlayerFriendlyAirDefense = AmountN.Random;
             PlayerStartLocation = PlayerStartLocation.Runway;
-            PlayerExtraWaypoints = false;
 
             PlayerMPFlightGroups = new MissionTemplateMPFlightGroup[0];
             PlayerSPAircraft = TemplateTools.CheckValuePlayerAircraft(Database.Instance.Common.DefaultPlayerAircraft);
@@ -461,9 +459,9 @@ namespace BriefingRoom4DCSWorld.Template
                 PlayerAISkillLevel = ini.GetValue("Player", "AISkillLevel", PlayerAISkillLevel);
                 PlayerEscortCAP = ini.GetValue("Player", "EscortCAP", PlayerEscortCAP);
                 PlayerEscortSEAD = ini.GetValue("Player", "EscortSEAD", PlayerEscortSEAD);
+                PlayerExtraWaypoints = ini.GetValue("Player", "PlayerExtraWaypoints", PlayerExtraWaypoints);
                 PlayerFriendlyAirDefense = ini.GetValue("Player", "FriendlyAirDefense", PlayerFriendlyAirDefense);
                 PlayerStartLocation = ini.GetValue("Player", "StartLocation", PlayerStartLocation);
-                PlayerExtraWaypoints = ini.GetValue("Player", "PlayerExtraWaypoints", PlayerExtraWaypoints);
 
                 int fgFlightGroupCount = Math.Max(0, ini.GetValue<int>("PlayerMP", "FGCount"));
                 PlayerMPFlightGroups = new MissionTemplateMPFlightGroup[fgFlightGroupCount];
@@ -522,9 +520,9 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValue("Player", "AISkillLevel", PlayerAISkillLevel);
                 ini.SetValue("Player", "EscortCAP", PlayerEscortCAP);
                 ini.SetValue("Player", "EscortSEAD", PlayerEscortSEAD);
+                ini.SetValue("Player", "PlayerExtraWaypoints", PlayerExtraWaypoints);
                 ini.SetValue("Player", "FriendlyAirDefense", PlayerFriendlyAirDefense);
                 ini.SetValue("Player", "StartLocation", PlayerStartLocation);
-                ini.SetValue("Player", "PlayerExtraWaypoints", PlayerExtraWaypoints);
 
                 ini.SetValue("PlayerSP", "Aircraft", PlayerSPAircraft);
                 ini.SetValue("PlayerSP", "Wingmen", PlayerSPWingmen);
