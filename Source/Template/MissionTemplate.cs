@@ -314,6 +314,13 @@ namespace BriefingRoom4DCSWorld.Template
         public int PlayerEscortSEAD { get { return PlayerEscortSEAD_; } set { PlayerEscortSEAD_ = Toolbox.Clamp(value, 0, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE); } }
         private int PlayerEscortSEAD_;
 
+        /// <summary>
+        /// Should extra ingress/egress waypoints be generated in addition to the objective waypoints?
+        /// </summary>
+        [Category("Player"), DisplayName("Extra Waypoints")]
+        [Description("Should extra ingress/egress waypoints be generated in addition to the objective waypoints?")]
+        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
+        public bool PlayerExtraWaypoints { get; set; }
 
         /// <summary>
         /// Intensity and quality of friendly air defense.
@@ -395,6 +402,7 @@ namespace BriefingRoom4DCSWorld.Template
             PlayerAISkillLevel = BRSkillLevel.Random;
             PlayerEscortCAP = 0;
             PlayerEscortSEAD = 0;
+            PlayerExtraWaypoints = false;
             PlayerFriendlyAirDefense = AmountN.Random;
             PlayerStartLocation = PlayerStartLocation.Runway;
 
@@ -451,6 +459,7 @@ namespace BriefingRoom4DCSWorld.Template
                 PlayerAISkillLevel = ini.GetValue("Player", "AISkillLevel", PlayerAISkillLevel);
                 PlayerEscortCAP = ini.GetValue("Player", "EscortCAP", PlayerEscortCAP);
                 PlayerEscortSEAD = ini.GetValue("Player", "EscortSEAD", PlayerEscortSEAD);
+                PlayerExtraWaypoints = ini.GetValue("Player", "PlayerExtraWaypoints", PlayerExtraWaypoints);
                 PlayerFriendlyAirDefense = ini.GetValue("Player", "FriendlyAirDefense", PlayerFriendlyAirDefense);
                 PlayerStartLocation = ini.GetValue("Player", "StartLocation", PlayerStartLocation);
 
@@ -511,6 +520,7 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValue("Player", "AISkillLevel", PlayerAISkillLevel);
                 ini.SetValue("Player", "EscortCAP", PlayerEscortCAP);
                 ini.SetValue("Player", "EscortSEAD", PlayerEscortSEAD);
+                ini.SetValue("Player", "PlayerExtraWaypoints", PlayerExtraWaypoints);
                 ini.SetValue("Player", "FriendlyAirDefense", PlayerFriendlyAirDefense);
                 ini.SetValue("Player", "StartLocation", PlayerStartLocation);
 

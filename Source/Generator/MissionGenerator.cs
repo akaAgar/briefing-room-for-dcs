@@ -179,7 +179,7 @@ namespace BriefingRoom4DCSWorld.Generator
             {
                 flightPlan.SetBullseye(mission);
                 flightPlan.AddObjectiveWaypoints(mission, objectiveDB);
-                //flightPlan.AddExtraWaypoints(mission, template);
+                flightPlan.AddExtraWaypoints(mission, template);
             }
 
             // Generate briefing. Must be last because it uses information from other generators
