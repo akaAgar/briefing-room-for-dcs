@@ -29,36 +29,6 @@ namespace BriefingRoom4DCSWorld.Template
     /// </summary>
     public static class TemplateTools
     {
-        ///// <summary>
-        ///// Default value for the blue coalition.
-        ///// </summary>
-        //public const string DEFAULT_COALITION_BLUE = "USA, 2000s";
-
-        ///// <summary>
-        ///// Default value for the red coalition.
-        ///// </summary>
-        //public const string DEFAULT_COALITION_RED = "Russia, 2000s";
-
-        ///// <summary>
-        ///// Default value for the objective type.
-        ///// </summary>
-        //public const string DEFAULT_OBJECTIVE = "Deep air support";
-
-        ///// <summary>
-        ///// Default number of objectives.
-        ///// </summary>
-        //public const int DEFAULT_OBJECTIVE_COUNT = 2;
-
-        ///// <summary>
-        ///// Default number of objectives.
-        ///// </summary>
-        //public const string DEFAULT_PLAYER_AIRCRAFT = "Su-25T Frogfoot";
-
-        ///// <summary>
-        ///// Default value for the theater.
-        ///// </summary>
-        //public const string DEFAULT_THEATER = "Caucasus";
-
         /// <summary>
         /// Maximum number of objectives.
         /// </summary>
