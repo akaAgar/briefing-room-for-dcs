@@ -245,14 +245,6 @@ namespace BriefingRoom4DCSWorld.Template
         public bool OptionsShowEnemyUnits { get; set; }
 
         /// <summary>
-        /// When to end mission after all objectives are complete. Either after a specific time or via command.
-        /// </summary>
-        [Category("Options"), DisplayName("End Mode")]
-        [Description("When to end mission after all objectives are complete. Either after a specific time or via command.")]
-        [TypeConverter(typeof(EnumTypeConverter<MissionEndMode>))]
-        public MissionEndMode OptionsEndMode { get; set; }
-
-        /// <summary>
         /// Multiplayer flight groups.
         /// If any flight group is specified here, the mission then becomes a multiplayer mission and all values
         /// in the "Player, single player only" are ignored.
@@ -295,6 +287,14 @@ namespace BriefingRoom4DCSWorld.Template
         public BRSkillLevel PlayerAISkillLevel { get; set; }
 
         /// <summary>
+        /// Type of aircraft carrier spawned. If none, player(s) will take off from an airbase. In single player, the player's aircraft will be spawed on the carrier. In multiplayer, aircraft will spawn on carrier if the option set for their flight group. Make sure aircraft are suitable for the carrier type.
+        /// </summary>
+        [Category("Player"), DisplayName("Carrier")]
+        [Description("Type of aircraft carrier spawned. If none, player(s) will take off from an airbase. In single player, the player's aircraft will be spawed on the carrier. In multiplayer, aircraft will spawn on carrier if the option set for their flight group. Make sure aircraft are suitable for the carrier type.")]
+        [TypeConverter(typeof(DBEntryCarrierConverter))]
+        public string PlayerCarrier { get; set; }
+
+        /// <summary>
         /// Number of AI aircraft tasked with escorting the player against enemy fighters.
         /// In single-player missions, escorts will be spawned on the ramp if the player starts from the ramp (cold or hot), or in the air above the airbase if the player starts on the runway.
         /// In multiplayer missions, escorts will be spawned as soon as one player takes off.
@@ -313,14 +313,6 @@ namespace BriefingRoom4DCSWorld.Template
         [Description("Number of AI aircraft tasked with escorting the player against enemy SAMs. In single-player missions, escorts will be spawned on the ramp if the player starts from the ramp (cold or hot), or in the air above the airbase if the player starts on the runway. In multiplayer missions, escorts will be spawned as soon as one player takes off.")]
         public int PlayerEscortSEAD { get { return PlayerEscortSEAD_; } set { PlayerEscortSEAD_ = Toolbox.Clamp(value, 0, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE); } }
         private int PlayerEscortSEAD_;
-
-        /// <summary>
-        /// Should extra ingress/egress waypoints be generated in addition to the objective waypoints?
-        /// </summary>
-        [Category("Player"), DisplayName("Extra Waypoints")]
-        [Description("Should extra ingress/egress waypoints be generated in addition to the objective waypoints?")]
-        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
-        public bool PlayerExtraWaypoints { get; set; }
 
         /// <summary>
         /// Intensity and quality of friendly air defense.
@@ -397,12 +389,11 @@ namespace BriefingRoom4DCSWorld.Template
             OptionsRadioSounds = true;
             OptionsScriptExtensions = new string[0];
             OptionsShowEnemyUnits = true;
-            OptionsEndMode = MissionEndMode.NoEnd;
 
             PlayerAISkillLevel = BRSkillLevel.Random;
+            PlayerCarrier = "";
             PlayerEscortCAP = 0;
             PlayerEscortSEAD = 0;
-            PlayerExtraWaypoints = false;
             PlayerFriendlyAirDefense = AmountN.Random;
             PlayerStartLocation = PlayerStartLocation.Runway;
 
@@ -454,12 +445,11 @@ namespace BriefingRoom4DCSWorld.Template
                 OptionsRadioSounds = ini.GetValue("Options", "RadioSounds", OptionsRadioSounds);
                 OptionsScriptExtensions = ini.GetValueArray<string>("Options", "ScriptExtensions");
                 OptionsShowEnemyUnits = ini.GetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
-                OptionsEndMode = ini.GetValue("Options", "EndMode", OptionsEndMode);
 
                 PlayerAISkillLevel = ini.GetValue("Player", "AISkillLevel", PlayerAISkillLevel);
+                PlayerCarrier = ini.GetValue("Player", "Carrier", PlayerCarrier);
                 PlayerEscortCAP = ini.GetValue("Player", "EscortCAP", PlayerEscortCAP);
                 PlayerEscortSEAD = ini.GetValue("Player", "EscortSEAD", PlayerEscortSEAD);
-                PlayerExtraWaypoints = ini.GetValue("Player", "PlayerExtraWaypoints", PlayerExtraWaypoints);
                 PlayerFriendlyAirDefense = ini.GetValue("Player", "FriendlyAirDefense", PlayerFriendlyAirDefense);
                 PlayerStartLocation = ini.GetValue("Player", "StartLocation", PlayerStartLocation);
 
@@ -514,13 +504,11 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValue("Options", "RadioSounds", OptionsRadioSounds);
                 ini.SetValueArray("Options", "ScriptExtensions", OptionsScriptExtensions);
                 ini.SetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
-                ini.SetValue("Options", "EndMode", OptionsEndMode);
-                
 
                 ini.SetValue("Player", "AISkillLevel", PlayerAISkillLevel);
+                ini.SetValue("Player", "Carrier", PlayerCarrier);
                 ini.SetValue("Player", "EscortCAP", PlayerEscortCAP);
                 ini.SetValue("Player", "EscortSEAD", PlayerEscortSEAD);
-                ini.SetValue("Player", "PlayerExtraWaypoints", PlayerExtraWaypoints);
                 ini.SetValue("Player", "FriendlyAirDefense", PlayerFriendlyAirDefense);
                 ini.SetValue("Player", "StartLocation", PlayerStartLocation);
 

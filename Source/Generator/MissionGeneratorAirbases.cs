@@ -58,8 +58,8 @@ namespace BriefingRoom4DCSWorld.Generator
                 airbasesList.Add((from DBEntryTheaterAirbase ab in airbasesList.Last() where ab.Coalition == requiredCoalition select ab).ToArray());
             }
 
-            // If mission must start near water, select all airbases near water
-            if (objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.MustStartNearWater))
+            // If mission must start near water, or some player start on a carrier, select all airbases near water
+            if (objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.MustStartNearWater) || !string.IsNullOrEmpty(template.PlayerCarrier))
                 airbasesList.Add((from DBEntryTheaterAirbase ab in airbasesList.Last() where ab.Flags.HasFlag(DBEntryTheaterAirbaseFlag.NearWater) select ab).ToArray());
 
             // If a particular airbase name has been specified and an airbase with this name exists, pick it

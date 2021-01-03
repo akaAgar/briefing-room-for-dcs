@@ -102,6 +102,11 @@ namespace BriefingRoom4DCSWorld.Mission
         public int InitialAirbaseID { get; set; }
 
         /// <summary>
+        /// The internal DCS ID of the carrier the player will take off from.
+        /// </summary>
+        public DCSMissionUnitGroupUnit Carrier {get; set;}
+
+        /// <summary>
         /// Initial coordinates of the players, used to measure the distance to objective.
         /// </summary>
         public Coordinates InitialPosition { get; set; }

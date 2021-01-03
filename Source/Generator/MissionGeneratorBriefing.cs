@@ -70,7 +70,7 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="template">Template from which the mission should be built</param>
         /// <param name="airbaseDB">Airbase player will take off from and land back on</param>
         /// <param name="coalitionsDB">Database entries for the mission coalitions</param>
-        public void GenerateMissionBriefing(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB, DBEntryTheaterAirbase airbaseDB, List<UnitFlightGroupBriefingDescription> flightGroups, DBEntryCoalition[] coalitionsDB)
+        public void GenerateMissionBriefing(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB, DBEntryTheaterAirbase airbaseDB, DBEntryUnit carrierDB, List<UnitFlightGroupBriefingDescription> flightGroups, DBEntryCoalition[] coalitionsDB)
         {
             DebugLog.Instance.WriteLine("Generating mission briefing...", 1);
 
@@ -90,7 +90,8 @@ namespace BriefingRoom4DCSWorld.Generator
             description = GeneratorTools.SanitizeString(description);
 
             // Generate tasks
-            List<string> tasks = new List<string> { $"Take off from {airbaseDB.Name}" };
+            string baseName = carrierDB != null? carrierDB.ID : airbaseDB.Name;
+            List<string> tasks = new List<string> { $"Take off from {baseName}" };
             string objectiveTask = GeneratorTools.ParseRandomString(objectiveDB.BriefingTask);
             for (int i = 0; i < mission.Objectives.Length; i++)
             {
@@ -98,7 +99,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 tasks.Add(taskString);
                 mission.CoreLuaScript += $"briefingRoom.mission.objectives[{i + 1}].task = \"{taskString}\"\r\n";
             }
-            tasks.Add($"Return to {airbaseDB.Name}");
+            tasks.Add($"Return to {baseName}");
             DebugLog.Instance.WriteLine($"{tasks.Count} task(s)", 2);
 
             // Generate mission remarks...
@@ -113,14 +114,14 @@ namespace BriefingRoom4DCSWorld.Generator
             remarks.Add("Use the \"F10/Other\" item in the comms for additional options");
             DebugLog.Instance.WriteLine($"{remarks.Count} remark(s)", 2);
 
-            mission.BriefingHTML = CreateHTMLBriefing(mission, template, description, tasks, remarks, flightGroups, airbaseDB, coalitionsDB);
-            mission.BriefingTXT = CreateTXTBriefing(description, tasks, remarks, flightGroups, airbaseDB);
+            mission.BriefingHTML = CreateHTMLBriefing(mission, template, description, tasks, remarks, flightGroups, airbaseDB, carrierDB, coalitionsDB);
+            mission.BriefingTXT = CreateTXTBriefing(description, tasks, remarks, flightGroups, airbaseDB, carrierDB);
         }
 
         private string CreateHTMLBriefing(
             DCSMission mission, MissionTemplate template, string description,
             List<string> tasks, List<string> remarks,
-            List<UnitFlightGroupBriefingDescription> flightGroups, DBEntryTheaterAirbase airbaseDB,
+            List<UnitFlightGroupBriefingDescription> flightGroups, DBEntryTheaterAirbase airbaseDB, DBEntryUnit carrierDB,
             DBEntryCoalition[] coalitionsDB)
         {
             DebugLog.Instance.WriteLine("Generating HTML mission briefing...", 2);
@@ -189,6 +190,19 @@ namespace BriefingRoom4DCSWorld.Generator
                 "</tr>";
             briefing = briefing.Replace("$AIRBASES$", airbasesHTML);
 
+            string carrierHTML = "";
+            if (carrierDB !=null){
+                carrierHTML = 
+                "<tr>" +
+                $"<td>{carrierDB.ID}</td>" +
+                $"<td>127.500AM</td>" +
+                $"<td>11</td>" +
+                $"<td>74X</td>" +
+                "</tr>";
+            }
+            briefing = briefing.Replace("$CARRIERS$", carrierHTML);
+
+
             // Waypoints
             string waypointsHTML = "";
             double distance;
@@ -227,7 +241,7 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <returns></returns>
         private string CreateTXTBriefing(
             string description, List<string> tasks, List<string> remarks, 
-            List<UnitFlightGroupBriefingDescription> flightGroups, DBEntryTheaterAirbase airbaseDB)
+            List<UnitFlightGroupBriefingDescription> flightGroups, DBEntryTheaterAirbase airbaseDB, DBEntryUnit carrier)
         {
             DebugLog.Instance.WriteLine("Generating raw text mission briefing...", 2);
 
@@ -249,6 +263,11 @@ namespace BriefingRoom4DCSWorld.Generator
             briefing += "AIRBASES:\n";
             briefing += $"{airbaseDB.Name} ({airbaseDB.ATC}), RWY: {airbaseDB.Runways}, ILS: {airbaseDB.ILS}, TACAN: {airbaseDB.TACAN}\n";
             briefing += "\n";
+            if(carrier != null){
+                briefing += "Carriers:\n";
+                briefing += $"{carrier.ID} (127.00AM), ILS: 1, TACAN: 74X\n";
+                briefing += "\n";
+            }
 
             briefing += $"This mission was generated by BriefingRoom for DCS {BriefingRoom.BRIEFINGROOM_VERSION}, a random mission generator for DCS World ({BriefingRoom.WEBSITE_URL})";
 

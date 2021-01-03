@@ -41,6 +41,13 @@ namespace BriefingRoom4DCSWorld.Template
         private string AircraftType_;
 
         /// <summary>
+        /// Should this aircraft group be spawned on the carrier? A compatible carrier must be selected in the mission template settings.
+        /// </summary>
+        [DisplayName("Carrier"), Description("Should this aircraft group be spawned on the carrier? A compatible carrier must be selected in the mission template settings.")]
+        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
+        public bool Carrier { get; set; }
+
+        /// <summary>
         /// Number of aircraft in this flight group.
         /// </summary>
         [DisplayName("Count"), Description("Number of aircraft in this flight group.")]
@@ -73,6 +80,7 @@ namespace BriefingRoom4DCSWorld.Template
             Clear();
             
             AircraftType = TemplateTools.CheckValuePlayerAircraft(ini.GetValue(section, $"{key}.AircraftType", AircraftType));
+            Carrier = ini.GetValue(section, $"{key}.Carrier", Carrier);
             Count = ini.GetValue(section, $"{key}.Count", Count);
             Task = ini.GetValue(section, $"{key}.Task", Task);
         }
@@ -83,6 +91,7 @@ namespace BriefingRoom4DCSWorld.Template
         private void Clear()
         {
             AircraftType = TemplateTools.CheckValuePlayerAircraft(Database.Instance.Common.DefaultPlayerAircraft);
+            Carrier = false;
             Count = 2;
             Task = MissionTemplateMPFlightGroupTask.Objectives;
         }
@@ -96,6 +105,7 @@ namespace BriefingRoom4DCSWorld.Template
         public void SaveToFile(INIFile ini, string section, string key)
         {
             ini.SetValue(section, $"{key}.AircraftType", AircraftType);
+            ini.SetValue(section, $"{key}.Carrier", Carrier);
             ini.SetValue(section, $"{key}.Count", Count);
             ini.SetValue(section, $"{key}.Task", Task);
         }
