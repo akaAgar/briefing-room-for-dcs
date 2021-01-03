@@ -156,19 +156,70 @@ namespace BriefingRoom4DCSWorld.Campaign
 
             template.OppositionAirDefense = GetPowerLevel(campaignTemplate.SituationEnemyAirDefense, campaignTemplate.SituationVariation, index, campaignTemplate.MissionsCount);
             template.OppositionAirForce = GetPowerLevel(campaignTemplate.SituationEnemyAirForce, campaignTemplate.SituationVariation, index, campaignTemplate.MissionsCount);
-            //template.OppositionAirDefense;
-            //template.OppositionAirForce;
-            //template.OppositionSkillLevelAir;
-            //template.OppositionSkillLevelGround;
-            //template.OppositionUnitsLocation;
+            template.OppositionSkillLevelAir = GetSkillLevel(campaignTemplate.SituationEnemyAirForce, campaignTemplate.SituationVariation, index, campaignTemplate.MissionsCount);
+            template.OppositionSkillLevelGround = GetSkillLevel(campaignTemplate.SituationEnemyAirDefense, campaignTemplate.SituationVariation, index, campaignTemplate.MissionsCount);
+            template.OppositionUnitsLocation = SpawnPointPreferredCoalition.Any;
+
+            template.OptionsPreferences = new MissionTemplatePreferences[0];
+
+            template.OptionsRadioSounds = true;
+            template.OptionsScriptExtensions = new string[0];
+            template.OptionsShowEnemyUnits = campaignTemplate.OptionsShowEnemyUnits;
+
+            template.PlayerAISkillLevel = GetSkillLevel(campaignTemplate.SituationFriendlyAirForce, CampaignDifficultyVariation.Steady, 0, 0);
+            template.PlayerEscortCAP = Toolbox.RandomFrom(2, 2, 2, 2, 3, 4, 4);
+            template.PlayerEscortSEAD = Toolbox.RandomFrom(2, 2, 2, 2, 3, 4, 4);
+            template.PlayerMPFlightGroups = new MissionTemplateMPFlightGroup[0];
+            template.PlayerSPAircraft = campaignTemplate.PlayerAircraft;
+            template.PlayerSPWingmen = Toolbox.RandomFrom(1, 1, 1, 1, 2, 3, 3);
+            template.PlayerStartLocation = campaignTemplate.PlayerStartLocation;
+
+            template.TheaterID = campaignTemplate.ContextTheaterID;
+            template.TheaterRegionsCoalitions = campaignTemplate.ContextTheaterRegionsCoalitions;
+            template.TheaterStartingAirbase = "";
 
             return template;
         }
 
+        private BRSkillLevel GetSkillLevel(AmountN amount, CampaignDifficultyVariation variation, int missionIndex, int missionsCount)
+        {
+            if (amount == AmountN.Random) return BRSkillLevel.Random;
+            double campaignProgress = missionIndex / (double)(Math.Max(2, missionsCount) - 1.0);
+
+            BRSkillLevel baseSkillLevel = BRSkillLevel.Regular;
+            switch (amount)
+            {
+                case AmountN.VeryLow: baseSkillLevel = BRSkillLevel.Rookie; break;
+                case AmountN.Low: baseSkillLevel = Toolbox.RandomFrom(BRSkillLevel.Rookie, BRSkillLevel.Regular); break;
+                case AmountN.Average: baseSkillLevel = Toolbox.RandomFrom(BRSkillLevel.Rookie, BRSkillLevel.Regular, BRSkillLevel.Veteran); break;
+                case AmountN.High: baseSkillLevel = Toolbox.RandomFrom(BRSkillLevel.Veteran, BRSkillLevel.Ace); break;
+                case AmountN.VeryHigh: baseSkillLevel = BRSkillLevel.Ace; break;
+            }
+
+            if (variation == CampaignDifficultyVariation.Steady) return baseSkillLevel;
+
+            double amountOffset = 0;
+            switch (variation)
+            {
+                case CampaignDifficultyVariation.ConsiderablyEasier: amountOffset = -2.25; break;
+                case CampaignDifficultyVariation.MuchEasier: amountOffset = -1.5; break;
+                case CampaignDifficultyVariation.SomewhatEasier: amountOffset = -1.0; break;
+                case CampaignDifficultyVariation.SomewhatHarder: amountOffset = 1.0; break;
+                case CampaignDifficultyVariation.MuchHarder: amountOffset = 1.5; break;
+                case CampaignDifficultyVariation.ConsiderablyHarder: amountOffset = 2.25; break;
+            }
+            double skillDouble = (double)baseSkillLevel + amountOffset * campaignProgress;
+
+            return (BRSkillLevel)Toolbox.Clamp((int)skillDouble, (int)BRSkillLevel.Regular, (int)BRSkillLevel.Ace);
+        }
+
+
         private AmountN GetPowerLevel(AmountN amount, CampaignDifficultyVariation variation, int missionIndex, int missionsCount)
         {
             if (amount == AmountN.Random) return AmountN.Random;
-            double campaignProgress = missionIndex / (double)(missionsCount - 1.0);
+            if (variation == CampaignDifficultyVariation.Steady) return amount;
+
+            double campaignProgress = missionIndex / (double)(Math.Max(2, missionsCount) - 1.0);
 
             double amountOffset = 0;
             switch (variation)
@@ -176,6 +227,9 @@ namespace BriefingRoom4DCSWorld.Campaign
                 case CampaignDifficultyVariation.ConsiderablyEasier: amountOffset = -3.5; break;
                 case CampaignDifficultyVariation.MuchEasier: amountOffset = -2.25; break;
                 case CampaignDifficultyVariation.SomewhatEasier: amountOffset = -1.5; break;
+                case CampaignDifficultyVariation.SomewhatHarder: amountOffset = 1.5; break;
+                case CampaignDifficultyVariation.MuchHarder: amountOffset = 2.25; break;
+                case CampaignDifficultyVariation.ConsiderablyHarder: amountOffset = 3.5; break;
             }
             double amountDouble = (double)amount + amountOffset * campaignProgress;
 
