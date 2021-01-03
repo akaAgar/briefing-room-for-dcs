@@ -111,7 +111,7 @@ namespace BriefingRoom4DCSWorld.Campaign
         /// </summary>
         [Category("Environment"), DisplayName("Bad weather chance")]
         [Description("Chance for a mission of this campaign to take place in bad weather.")]
-        [TypeConverter(typeof(EnumTypeConverter<Coalition>))]
+        [TypeConverter(typeof(EnumTypeConverter<AmountN>))]
         public AmountN EnvironmentBadWeatherChance { get; set; }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace BriefingRoom4DCSWorld.Campaign
         /// </summary>
         [Category("Environment"), DisplayName("Night mission chance")]
         [Description("Chance for a mission of this campaign to take place during the night.")]
-        [TypeConverter(typeof(EnumTypeConverter<Coalition>))]
+        [TypeConverter(typeof(EnumTypeConverter<AmountN>))]
         public AmountN EnvironmentNightMissionChance { get; set; }
 
         /// <summary>
@@ -226,7 +226,7 @@ namespace BriefingRoom4DCSWorld.Campaign
         /// </summary>
         [Category("Situation"), DisplayName("Variation")]
         [Description("How the situation evolves during the campaign. Campaign can get harder and harder with enemy power increasing as player completes missions (like in a game) or easier and easier as enemy power decreased (as it tend to happens to the losing side in a real conflict), etc.")]
-        [TypeConverter(typeof(EnumTypeConverter<AmountN>))]
+        [TypeConverter(typeof(EnumTypeConverter<CampaignDifficultyVariation>))]
         public CampaignDifficultyVariation SituationVariation { get; set; }
 
         /// <summary>
