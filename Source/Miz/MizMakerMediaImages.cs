@@ -20,6 +20,7 @@ If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.Generator;
 using BriefingRoom4DCSWorld.Media;
 using BriefingRoom4DCSWorld.Mission;
 using System;
@@ -61,12 +62,14 @@ namespace BriefingRoom4DCSWorld.Miz
                 imgMaker.TextOverlay.Text = mission.MissionName;
                 imgMaker.TextOverlay.Alignment = ContentAlignment.BottomCenter;
 
-                List<string> layers = new List<string>();
+                List<ImageMakerLayer> layers = new List<ImageMakerLayer>();
                 string[] theaterImages = Directory.GetFiles($"{BRPaths.INCLUDE_JPG}Theaters\\", $"{mission.Theater}*.jpg");
                 if (theaterImages.Length == 0)
-                    layers.Add("_default.jpg");
+                    layers.Add(new ImageMakerLayer("_default.jpg"));
                 else
-                    layers.Add("Theaters\\" + Path.GetFileName(Toolbox.RandomFrom(theaterImages)));
+                    layers.Add(new ImageMakerLayer("Theaters\\" + Path.GetFileName(Toolbox.RandomFrom(theaterImages))));
+
+                layers.Add(new ImageMakerLayer($"Flags\\{GeneratorTools.RemoveAfterComma(mission.Coalitions[(int)mission.CoalitionPlayer])}.png", ContentAlignment.TopLeft, 8, 8, 0, .5));
 
                 imageBytes = imgMaker.GetImageBytes(layers.ToArray());
             }

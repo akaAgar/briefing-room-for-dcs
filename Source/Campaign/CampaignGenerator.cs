@@ -78,15 +78,19 @@ namespace BriefingRoom4DCSWorld.Campaign
 
             using (ImageMaker imgMaker = new ImageMaker())
             {
-                // Pick a background color according to the player coalition
-                imgMaker.BackgroundColor = (campaignTemplate.PlayerCoalition == Coalition.Red) ?
-                    Color.FromArgb(128, 0, 0) : Color.FromArgb(0, 0, 128);
+                string theaterImage;
+                string[] theaterImages = Directory.GetFiles($"{BRPaths.INCLUDE_JPG}Theaters\\", $"{campaignTemplate.ContextTheaterID}*.jpg");
+                if (theaterImages.Length == 0)
+                    theaterImage = "_default.jpg";
+                else
+                    theaterImage = "Theaters\\" + Path.GetFileName(Toolbox.RandomFrom(theaterImages));
 
                 // Print the name of the campaign over the campaign "title picture"
                 imgMaker.TextOverlay.Text = Path.GetFileNameWithoutExtension(campaignFilePath);
                 imgMaker.TextOverlay.Alignment = ContentAlignment.TopCenter;
                 File.WriteAllBytes($"{baseFileName}_Title.jpg",
                     imgMaker.GetImageBytes(
+                        new ImageMakerLayer(theaterImage),
                         new ImageMakerLayer($"Flags\\{enemyFlagName}.png", ContentAlignment.MiddleCenter, -32, - 32),
                         new ImageMakerLayer($"Flags\\{allyFlagName}.png", ContentAlignment.MiddleCenter, 32, 32)));
 
