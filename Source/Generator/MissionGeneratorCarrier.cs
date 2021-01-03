@@ -47,29 +47,38 @@ namespace BriefingRoom4DCSWorld.Generator
             UnitMaker = unitMaker;
         }
 
-        public DBEntryUnit GenerateCarrier(DCSMission mission, MissionTemplate template, DBEntryCoalition playerCoalitionDB)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mission"></param>
+        /// <param name="template"></param>
+        /// <param name="playerCoalitionDB"></param>
+        /// <param name="windDirection0">Wind direction at altitude 0, in degrees. Used by carrier groups to make sure carriers sail into the wind.</param>
+        /// <returns></returns>
+        public DBEntryUnit GenerateCarrier(DCSMission mission, MissionTemplate template, DBEntryCoalition playerCoalitionDB, int windDirection0)
         {
-            if (string.IsNullOrEmpty(template.PlayerCarrier)){
+            if (string.IsNullOrEmpty(template.PlayerCarrier))
+            {
                 return null;
             }
 
             DBEntryTheaterSpawnPoint? spawnPoint =
                     UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         // If spawn point types are specified, use them. Else look for spawn points of any type
-                        new TheaterLocationSpawnPointType[]{TheaterLocationSpawnPointType.Sea},
+                        new TheaterLocationSpawnPointType[] { TheaterLocationSpawnPointType.Sea },
                         // Select spawn points at a proper distance from last location (previous objective or home airbase)
                         mission.InitialPosition, new MinMaxD(10, 200),
                         // Make sure no objective is too close to the initial location
                         null, null,
                         GeneratorTools.GetEnemySpawnPointCoalition(template));
-            
+
             if (!spawnPoint.HasValue)
-                    throw new Exception($"Failed to find a spawn point for Carrier");
+                throw new Exception($"Failed to find a spawn point for Carrier");
 
             Coordinates position = mission.InitialPosition;
             DCSMissionUnitGroup group;
             group = UnitMaker.AddUnitGroup(
-                mission, new string[]{template.PlayerCarrier},
+                mission, new string[] { template.PlayerCarrier },
                 Side.Ally,
                 spawnPoint.Value.Coordinates,
                 "GroupCarrier", "UnitShip",
@@ -85,28 +94,29 @@ namespace BriefingRoom4DCSWorld.Generator
             foreach (var ship in ships)
             {
                 spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                    new TheaterLocationSpawnPointType[]{TheaterLocationSpawnPointType.Sea},
+                    new TheaterLocationSpawnPointType[] { TheaterLocationSpawnPointType.Sea },
                     spawnPoint.Value.Coordinates, new MinMaxD(1, 5),
                     // Make sure no objective is too close to the initial location
                     null, null,
                     GeneratorTools.GetEnemySpawnPointCoalition(template));
 
                 UnitMaker.AddUnitGroup(
-                mission, playerCoalitionDB.GetRandomUnits(ship,1),
-                Side.Ally,
-                spawnPoint.Value.Coordinates,
-                "GroupShip", "UnitShip",
-                Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel));
-                
+                    mission, playerCoalitionDB.GetRandomUnits(ship, 1),
+                    Side.Ally,
+                    spawnPoint.Value.Coordinates,
+                    "GroupShip", "UnitShip",
+                    Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel));
             }
-            
+
             if (group == null)
                 DebugLog.Instance.WriteLine($"Failed to create AI Carrier with ship of type \"{template.PlayerCarrier}\".", 1, DebugLogMessageErrorLevel.Warning);
+            else
+                group.Units[0].Heading = Toolbox.ClampAngle((windDirection0 + 180) * Toolbox.DEGREES_TO_RADIANS);
 
             mission.Carrier = group.Units[0];
             return (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>()
-                 where unit.ID == template.PlayerCarrier
-                 select unit).ToArray()[0];
+                    where unit.ID == template.PlayerCarrier
+                    select unit).ToArray()[0];
         }
 
         /// <summary>
