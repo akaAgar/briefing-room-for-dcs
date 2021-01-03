@@ -38,19 +38,19 @@ namespace BriefingRoom4DCSWorld.Media
         public ContentAlignment Alignment { get; }
 
         /// <summary>
-        /// X-offset of the image.
+        /// Offset of the image.
         /// </summary>
-        public int OffsetX { get; }
-
-        /// <summary>
-        /// Y-offset of the image.
-        /// </summary>
-        public int OffsetY { get; }
+        public Point Offset { get; }
 
         /// <summary>
         /// Rotation of the image, in degrees.
         /// </summary>
         public int Rotation { get; }
+
+        /// <summary>
+        /// Scale of the image
+        /// </summary>
+        public double Scale { get; }
 
         /// <summary>
         /// Constructor.
@@ -60,16 +60,17 @@ namespace BriefingRoom4DCSWorld.Media
         /// <param name="offsetX">X-offset of the image</param>
         /// <param name="offsetY">Y-offset of the image</param>
         /// <param name="rotation">Rotation of the image, in degrees</param>
+        /// <param name="scale">Scale of the image</param>
         public ImageMakerLayer(
             string fileName,
             ContentAlignment alignment = ContentAlignment.MiddleCenter,
-            int offsetX = 0, int offsetY = 0, int rotation = 0)
+            int offsetX = 0, int offsetY = 0, int rotation = 0, double scale = 1.0)
         {
             FileName = fileName;
             Alignment = alignment;
-            OffsetX = offsetX;
-            OffsetY = offsetY;
+            Offset = new Point(offsetX, offsetY);
             Rotation = rotation;
+            Scale = scale;
         }
     }
 }

@@ -91,6 +91,11 @@ namespace BriefingRoom4DCSWorld
             }
         }
 
+        public static Point Add(this Point point, Point other)
+        {
+            return new Point(point.X + other.X, point.Y + other.Y);
+        }
+
         public static bool IsUnitFamilyAircraft(UnitFamily value)
         {
             return

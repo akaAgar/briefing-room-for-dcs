@@ -78,11 +78,11 @@ namespace BriefingRoom4DCSWorld.Media
 
                     using (Image layerImage = Image.FromFile(filePath))
                     {
-                        Point position = GetImagePosition(layer.Alignment, layer.OffsetX, layer.OffsetY, layerImage.Size);
+                        Point position = GetImagePosition(layer, layerImage.Size);
 
                         RotateGraphics(graphics, layer.Rotation);
                         graphics.DrawImage(layerImage,
-                                new Rectangle(position, layerImage.Size),
+                                new Rectangle(position, new Size((int)(layerImage.Size.Width * layer.Scale), (int)(layerImage.Size.Height * layer.Scale))),
                                 new Rectangle(Point.Empty, layerImage.Size),
                                 GraphicsUnit.Pixel);
                         RotateGraphics(graphics, -layer.Rotation);
@@ -121,24 +121,22 @@ namespace BriefingRoom4DCSWorld.Media
         /// <summary>
         /// Returns the exact position of an image according to the data in an <see cref="ImageMakerLayer"/>.
         /// </summary>
-        /// <param name="alignment">Alignment of the image on the layer</param>
-        /// <param name="offsetX">X-offset of the image</param>
-        /// <param name="offsetY">Y-offset of the image</param>
+        /// <param name="layer">Image layer data</param>
         /// <param name="size">Size of the image to draw, in pixels</param>
         /// <returns>Position of the image</returns>
-        private Point GetImagePosition(ContentAlignment alignment, int offsetX, int offsetY, Size size)
+        private Point GetImagePosition(ImageMakerLayer layer, Size size)
         {
             int x, y;
 
-            if (alignment.ToString().EndsWith("Left")) x = 0;
-            else if (alignment.ToString().EndsWith("Right")) x = IMAGE_SIZE - size.Width;
+            if (layer.Alignment.ToString().EndsWith("Left")) x = 0;
+            else if (layer.Alignment.ToString().EndsWith("Right")) x = IMAGE_SIZE - (int)(size.Width * layer.Scale);
             else x = (IMAGE_SIZE - size.Width) / 2;
 
-            if (alignment.ToString().StartsWith("Top")) y = 0;
-            else if (alignment.ToString().StartsWith("Bottom")) y = IMAGE_SIZE - size.Height;
+            if (layer.Alignment.ToString().StartsWith("Top")) y = 0;
+            else if (layer.Alignment.ToString().StartsWith("Bottom")) y = IMAGE_SIZE - (int)(size.Width * layer.Scale);
             else y = (IMAGE_SIZE - size.Height) / 2;
 
-            return new Point(x + offsetX, y + offsetY);
+            return new Point(x, y).Add(layer.Offset);
         }
 
         /// <summary>
