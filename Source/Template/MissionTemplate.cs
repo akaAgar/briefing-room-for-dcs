@@ -209,6 +209,14 @@ namespace BriefingRoom4DCSWorld.Template
         [TypeConverter(typeof(EnumTypeConverter<SpawnPointPreferredCoalition>))]
         public SpawnPointPreferredCoalition OppositionUnitsLocation { get; set; }
 
+        /// <summary>
+        /// When to end mission after all objectives are complete. Either after a specific time or via command.
+        /// </summary>
+        [Category("Options"), DisplayName("End Mode")]
+        [Description("When to end mission after all objectives are complete. Either after a specific time or via command.")]
+        [TypeConverter(typeof(EnumTypeConverter<MissionEndMode>))]
+        public MissionEndMode OptionsEndMode { get; set; }
+
         ///// <summary>
         ///// Special preferences and options to apply to this mission.
         ///// </summary>
@@ -315,6 +323,14 @@ namespace BriefingRoom4DCSWorld.Template
         private int PlayerEscortSEAD_;
 
         /// <summary>
+        /// Should extra ingress/egress waypoints be generated in addition to the objective waypoints?
+        /// </summary>
+        [Category("Player"), DisplayName("Extra Waypoints")]
+        [Description("Should extra ingress/egress waypoints be generated in addition to the objective waypoints?")]
+        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
+        public bool PlayerExtraWaypoints { get; set; }
+
+        /// <summary>
         /// Intensity and quality of friendly air defense.
         /// </summary>
         [Category("Player"), DisplayName("Air defense")]
@@ -385,6 +401,7 @@ namespace BriefingRoom4DCSWorld.Template
             OppositionSkillLevelGround = BRSkillLevel.Random;
             OppositionUnitsLocation = SpawnPointPreferredCoalition.Any;
 
+            OptionsEndMode = MissionEndMode.NoEnd;
             OptionsPreferences = new MissionTemplatePreferences[0];
             OptionsRadioSounds = true;
             OptionsScriptExtensions = new string[0];
@@ -394,6 +411,7 @@ namespace BriefingRoom4DCSWorld.Template
             PlayerCarrier = "";
             PlayerEscortCAP = 0;
             PlayerEscortSEAD = 0;
+            PlayerExtraWaypoints = false;
             PlayerFriendlyAirDefense = AmountN.Random;
             PlayerStartLocation = PlayerStartLocation.Runway;
 
@@ -441,6 +459,7 @@ namespace BriefingRoom4DCSWorld.Template
                 OppositionSkillLevelGround = ini.GetValue("Opposition", "SkillLevel.Ground", OppositionSkillLevelGround);
                 OppositionUnitsLocation = ini.GetValue("Opposition", "UnitsLocation", OppositionUnitsLocation);
 
+                OptionsEndMode = ini.GetValue("Options", "EndMode", OptionsEndMode);
                 OptionsPreferences = ini.GetValueArray<MissionTemplatePreferences>("Options", "Preferences");
                 OptionsRadioSounds = ini.GetValue("Options", "RadioSounds", OptionsRadioSounds);
                 OptionsScriptExtensions = ini.GetValueArray<string>("Options", "ScriptExtensions");
@@ -450,6 +469,7 @@ namespace BriefingRoom4DCSWorld.Template
                 PlayerCarrier = ini.GetValue("Player", "Carrier", PlayerCarrier);
                 PlayerEscortCAP = ini.GetValue("Player", "EscortCAP", PlayerEscortCAP);
                 PlayerEscortSEAD = ini.GetValue("Player", "EscortSEAD", PlayerEscortSEAD);
+                PlayerExtraWaypoints = ini.GetValue("Player", "ExtraWaypoints", PlayerExtraWaypoints);
                 PlayerFriendlyAirDefense = ini.GetValue("Player", "FriendlyAirDefense", PlayerFriendlyAirDefense);
                 PlayerStartLocation = ini.GetValue("Player", "StartLocation", PlayerStartLocation);
 
@@ -500,6 +520,7 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValue("Opposition", "SkillLevel.Ground", OppositionSkillLevelGround);
                 ini.SetValue("Opposition", "UnitsLocation", OppositionUnitsLocation);
 
+                ini.SetValue("Options", "EndMode", OptionsEndMode);
                 ini.SetValueArray("Options", "Preferences", OptionsPreferences);
                 ini.SetValue("Options", "RadioSounds", OptionsRadioSounds);
                 ini.SetValueArray("Options", "ScriptExtensions", OptionsScriptExtensions);
@@ -509,6 +530,7 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValue("Player", "Carrier", PlayerCarrier);
                 ini.SetValue("Player", "EscortCAP", PlayerEscortCAP);
                 ini.SetValue("Player", "EscortSEAD", PlayerEscortSEAD);
+                ini.SetValue("Player", "ExtraWaypoints", PlayerExtraWaypoints);
                 ini.SetValue("Player", "FriendlyAirDefense", PlayerFriendlyAirDefense);
                 ini.SetValue("Player", "StartLocation", PlayerStartLocation);
 
