@@ -18,7 +18,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-namespace BriefingRoom4DCSWorld
+namespace BriefingRoom4DCSWorld.Campaign
 {
     /// <summary>
     /// Enumerates various possible difficulty variation for a campaign.

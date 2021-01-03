@@ -69,10 +69,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AirDefenseLevel.cs" />
+    <Compile Include="Campaign\CampaignDifficultyVariation.cs" />
+    <Compile Include="Campaign\CampaignGenerator.cs" />
+    <Compile Include="Campaign\CampaignTemplate.cs" />
     <Compile Include="DB\DBEntryDefaultUnitList.cs" />
     <Compile Include="DB\DBEntryCountry.cs" />
     <Compile Include="DB\DBEntryTheaterAirbaseParkingSpot.cs" />
     <Compile Include="BRSkillLevel.cs" />
+    <Compile Include="Forms\CampaignCreatorForm.cs" />
+    <Compile Include="Forms\CampaignCreatorForm.Designer.cs">
+      <DependentUpon>CampaignCreatorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Media\ImageMaker.cs" />
+    <Compile Include="Media\ImageMakerLayer.cs" />
+    <Compile Include="Media\ImageMakerTextOverlay.cs" />
     <Compile Include="MissionEndMode.cs" />
     <Compile Include="Generator\MissionGeneratorAirDefense.cs" />
     <Compile Include="MissionType.cs" />
@@ -220,6 +230,9 @@
     <EmbeddedResource Include="Forms\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CampaignCreatorForm.resx">
+      <DependentUpon>CampaignCreatorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SplashScreenForm.resx">
       <DependentUpon>SplashScreenForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -267,6 +280,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <EmbeddedResource Include="Resources\Icons\Campaign.png" />
+    <EmbeddedResource Include="Resources\Icons\ExportCampaign.png" />
     <EmbeddedResource Include="Resources\Icons\FileHTML.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

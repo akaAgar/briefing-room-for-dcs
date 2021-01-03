@@ -593,6 +593,7 @@ function briefingRoom.mission.functions.completeObjective(index)
     briefingRoom.debugPrint("Mission marked as complete")
     briefingRoom.mission.status = brMissionStatus.COMPLETE
     briefingRoom.radioManager.play("Excellent work! Mission complete, you may return to base.", "RadioHQMissionComplete", math.random(6, 8))
+    trigger.action.setUserFlag(1, true)
     if briefingRoom.mission.parameters.endMode == -2 then
       missionCommands.addCommandForCoalition($PLAYERCOALITION$, "End mission now", nil, briefingRoom.mission.functions.endMissionIn, 0)
     elseif briefingRoom.mission.parameters.endMode >= 0 then
