@@ -60,7 +60,7 @@ namespace BriefingRoom4DCSWorld.Generator
             {
                 // Select a random year from the most recent coalition's decade
                 Decade decade = (Decade)Math.Max((int)coalitions[0].Decade, (int)coalitions[1].Decade);
-                year = GetRandomYearFromDecade(decade);
+                year = Toolbox.GetRandomYearFromDecade(decade);
 
                 DebugLog.Instance.WriteLine($"No fixed date provided in the mission template, generating date in decade {decade}", 1);
 
@@ -161,26 +161,6 @@ namespace BriefingRoom4DCSWorld.Generator
                 case Season.Summer: return new Month[] { Month.June, Month.July, Month.August, Month.September };
                 case Season.Fall: return new Month[] { Month.September, Month.October, Month.November, Month.December };
                 case Season.Winter: return new Month[] { Month.December, Month.January, Month.February, Month.March };
-            }
-        }
-
-        /// <summary>
-        /// Returns a random year from the provided decade.
-        /// </summary>
-        /// <param name="decade">A decade between the 1940s and the 2010s</param>
-        /// <returns>A year</returns>
-        private int GetRandomYearFromDecade(Decade decade)
-        {
-            switch (decade)
-            {
-                case Decade.Decade1940: return Toolbox.RandomInt(1942, 1945); // WW2 only
-                case Decade.Decade1950: return Toolbox.RandomInt(1950, 1960);
-                case Decade.Decade1960: return Toolbox.RandomInt(1960, 1970);
-                case Decade.Decade1970: return Toolbox.RandomInt(1970, 1980);
-                case Decade.Decade1980: return Toolbox.RandomInt(1980, 1990);
-                case Decade.Decade1990: return Toolbox.RandomInt(1990, 2000);
-                default: return Toolbox.RandomInt(2000, 2010); // case Decade.Decade2000
-                case Decade.Decade2010: return Toolbox.RandomInt(2010, 2020);
             }
         }
 

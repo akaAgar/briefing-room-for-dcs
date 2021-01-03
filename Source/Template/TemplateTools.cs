@@ -49,6 +49,23 @@ namespace BriefingRoom4DCSWorld.Template
         }
 
         /// <summary>
+        /// Checks if the proposed IDs exists in the database, and remove invalid ones from the array.
+        /// </summary>
+        /// <typeparam name="T">Database entry type to look for</typeparam>
+        /// <param name="value">Array of IDs to check</param>
+        /// <param name="defaultValue">Default ID to return if no valid ID is found in the array. Leave empty to return an empty array if no valid ID is found.</param>
+        /// <returns>An array of IDs</returns>
+        public static string[] CheckValues<T>(string[] values, string defaultValue = "") where T : DBEntry
+        {
+            values = (from string v in values where Database.Instance.EntryExists<T>(v) select v).Distinct().OrderBy(x => x).ToArray();
+
+            if ((values.Length == 0) && Database.Instance.EntryExists<T>(defaultValue))
+                values = new string[] { defaultValue };
+
+            return values;
+        }
+
+        /// <summary>
         /// Checks the proposed aircraft type exists and is player controllable.
         /// </summary>
         /// <param name="value">Aircraft type to check</param>

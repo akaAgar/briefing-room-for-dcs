@@ -116,6 +116,27 @@ namespace BriefingRoom4DCSWorld
         }
 
         /// <summary>
+        /// Returns a random year from the provided decade.
+        /// </summary>
+        /// <param name="decade">A decade between the 1940s and the 2010s</param>
+        /// <returns>A year</returns>
+        public static int GetRandomYearFromDecade(Decade decade)
+        {
+            switch (decade)
+            {
+                case Decade.Decade1940: return RandomInt(1942, 1945); // WW2 only
+                case Decade.Decade1950: return RandomInt(1950, 1960);
+                case Decade.Decade1960: return RandomInt(1960, 1970);
+                case Decade.Decade1970: return RandomInt(1970, 1980);
+                case Decade.Decade1980: return RandomInt(1980, 1990);
+                case Decade.Decade1990: return RandomInt(1990, 2000);
+                default: return RandomInt(2000, 2010); // case Decade.Decade2000
+                case Decade.Decade2010: return RandomInt(2010, 2020);
+            }
+        }
+
+
+        /// <summary>
         /// Path to the Windows user directory.
         /// </summary>
         public static string PATH_USER { get; } = NormalizeDirectoryPath(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
@@ -400,6 +421,29 @@ namespace BriefingRoom4DCSWorld
             {
                 string dcsPath = PATH_USER + "Saved Games\\" + possibleDCSPaths[i] + "\\Missions\\";
                 if (Directory.Exists(dcsPath)) return dcsPath;
+            }
+
+            return PATH_USER_DOCS;
+        }
+
+        /// <summary>
+        /// Search for the DCS world custom campaigns path ([User]\Saved Games\DCS\Missions\Campaigns\MultiLang\)
+        /// Looks first for DCS.earlyaccess, then DCS.openbeta, then DCS.
+        /// If Saved Games\DCS\Missions is found, but not the child directories, tries to create them.
+        /// </summary>
+        /// <returns>The path, or the user My document folder if none is found.</returns>
+        public static string GetDCSCampaignPath()
+        {
+            string[] possibleDCSPaths = new string[] { "DCS.earlyaccess", "DCS.openbeta", "DCS" };
+
+            for (int i = 0; i < possibleDCSPaths.Length; i++)
+            {
+                string dcsPath = PATH_USER + "Saved Games\\" + possibleDCSPaths[i] + "\\Missions\\";
+                if (!Directory.Exists(dcsPath)) continue;
+                if (!CreateDirectoryIfMissing(dcsPath + "Campaigns\\")) continue;
+                if (!CreateDirectoryIfMissing(dcsPath + "Campaigns\\MultiLang\\")) continue;
+
+                return dcsPath + "Campaigns\\MultiLang\\";
             }
 
             return PATH_USER_DOCS;

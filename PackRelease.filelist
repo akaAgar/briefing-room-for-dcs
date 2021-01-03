@@ -2,6 +2,7 @@ Database\*.ini
 Database\**\*.ini
 Database\**\**\*.ini
 Include\Briefing.html
+Include\*.cmp
 Include\Jpg\*.jpg
 Include\Lua\*.lua
 Include\Lua\**\*.lua

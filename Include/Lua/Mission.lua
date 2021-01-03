@@ -50,15 +50,18 @@ mission =
         {
             ["conditions"] = 
             {
+                [1] = "return(c_flag_is_true(1))",
             }, -- end of ["conditions"]
             ["actions"] = 
             {
+                [1] = "a_set_mission_result(100)",
             }, -- end of ["actions"]
             ["func"] = 
             {
+                [1] = "if mission.result.offline.conditions[1]() then mission.result.offline.actions[1]() end",
             }, -- end of ["func"]
         }, -- end of ["offline"]
-        ["total"] = 0,
+        ["total"] = 1,
         ["blue"] = 
         {
             ["conditions"] = 
@@ -121,6 +124,22 @@ mission =
     }, -- end of ["groundControl"]
     ["goals"] = 
     {
+        [1] = 
+        {
+            ["rules"] = 
+            {
+                [1] = 
+                {
+                    ["flag"] = 1,
+                    ["predicate"] = "c_flag_is_true",
+                    ["zone"] = "",
+                }, -- end of [1]
+            }, -- end of ["rules"]
+            ["side"] = "OFFLINE",
+            ["score"] = 100,
+            ["predicate"] = "score",
+            ["comment"] = "",
+        }, -- end of [1]
     }, -- end of ["goals"]
     ["weather"] = 
     {

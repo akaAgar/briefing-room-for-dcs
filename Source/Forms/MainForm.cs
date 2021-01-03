@@ -75,6 +75,7 @@ namespace BriefingRoom4DCSWorld.Forms
             M_Mission_ExportBriefing.Image = GUITools.GetImageFromResource("Icons.ExportBriefing.png");
             M_Mission_ExportBriefingHTML.Image = GUITools.GetImageFromResource("Icons.FileHTML.png");
             M_Mission_DebugExport.Image = GUITools.GetImageFromResource("Icons.DebugExport.png");
+            M_Tools_CampaignCreator.Image = GUITools.GetImageFromResource("Icons.Campaign.png");
 
             T_File_New.Image = M_File_New.Image;
             T_File_Open.Image = M_File_Open.Image;
@@ -201,6 +202,10 @@ namespace BriefingRoom4DCSWorld.Forms
                         miz.SaveToDirectory(BRPaths.DEBUGOUTPUT);
                     return;
 #endif
+                case "M_Tools_CampaignCreator":
+                    using (CampaignCreatorForm campaignForm = new CampaignCreatorForm())
+                        campaignForm.ShowDialog();
+                    return;
             }
         }
 
