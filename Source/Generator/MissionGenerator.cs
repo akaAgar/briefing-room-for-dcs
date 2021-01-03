@@ -163,12 +163,12 @@ namespace BriefingRoom4DCSWorld.Generator
             // Generate enemy air defense unit groups
             DebugLog.Instance.WriteLine("Generating enemy air defense unit groups...");
             using (MissionGeneratorAirDefense unitGroupGen = new MissionGeneratorAirDefense(unitMaker, false, template, mission))
-                unitGroupGen.CreateUnitGroups(mission, objectiveDB, coalitionsDB[(int)mission.CoalitionEnemy], mission.CoalitionEnemy);
+                unitGroupGen.CreateUnitGroups(mission, objectiveDB, coalitionsDB[(int)mission.CoalitionEnemy], GeneratorTools.GetEnemySpawnPointCoalition(template));
 
             // Generate ally air defense unit groups
             DebugLog.Instance.WriteLine("Generating friendly air defense unit groups...");
             using (MissionGeneratorAirDefense unitGroupGen = new MissionGeneratorAirDefense(unitMaker, true, template, mission))
-                unitGroupGen.CreateUnitGroups(mission, objectiveDB, coalitionsDB[(int)mission.CoalitionPlayer], mission.CoalitionPlayer);
+                unitGroupGen.CreateUnitGroups(mission, objectiveDB, coalitionsDB[(int)mission.CoalitionPlayer], GeneratorTools.GetAllySpawnPointCoalition(template));
 
             //// Generate enemy fighter patrols
             DebugLog.Instance.WriteLine("Generating enemy fighter patrol unit groups...");

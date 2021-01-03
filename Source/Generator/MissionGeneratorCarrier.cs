@@ -70,7 +70,7 @@ namespace BriefingRoom4DCSWorld.Generator
                         mission.InitialPosition, new MinMaxD(10, 200),
                         // Make sure no objective is too close to the initial location
                         null, null,
-                        GeneratorTools.GetEnemySpawnPointCoalition(template));
+                        GeneratorTools.GetAllySpawnPointCoalition(template));
 
             if (!spawnPoint.HasValue)
                 throw new Exception($"Failed to find a spawn point for Carrier");
@@ -98,7 +98,7 @@ namespace BriefingRoom4DCSWorld.Generator
                     spawnPoint.Value.Coordinates, new MinMaxD(1, 5),
                     // Make sure no objective is too close to the initial location
                     null, null,
-                    GeneratorTools.GetEnemySpawnPointCoalition(template));
+                    GeneratorTools.GetAllySpawnPointCoalition(template));
 
                 UnitMaker.AddUnitGroup(
                     mission, playerCoalitionDB.GetRandomUnits(ship, 1),

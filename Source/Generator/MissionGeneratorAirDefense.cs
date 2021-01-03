@@ -79,8 +79,9 @@ namespace BriefingRoom4DCSWorld.Generator
         /// </summary>
         /// <param name="mission">Mission to which generated units should be added</param>
         /// <param name="objectiveDB">Mission objective database entry</param>
-        /// <param name="enemyCoalitionDB">Enemy coalition database entry</param>
-        public void CreateUnitGroups(DCSMission mission, DBEntryObjective objectiveDB, DBEntryCoalition enemyCoalitionDB, Coalition coalition)
+        /// <param name="coalitionDB">Enemy coalition database entry</param>
+        /// <param name="coalition">Coalition of the spawn points air defense must be spawned at, or null to spawn them anywhere</param>
+        public void CreateUnitGroups(DCSMission mission, DBEntryObjective objectiveDB, DBEntryCoalition coalitionDB, Coalition? coalition)
         {
             foreach (AirDefenseRange airDefenseRange in (AirDefenseRange[])Enum.GetValues(typeof(AirDefenseRange)))
             {
@@ -94,7 +95,7 @@ namespace BriefingRoom4DCSWorld.Generator
                     continue;
                 }
 
-                AddAirDefenseUnits(mission, airDefenseRange, enemyCoalitionDB, coalition);
+                AddAirDefenseUnits(mission, airDefenseRange, coalitionDB, coalition);
             }
         }
 
@@ -105,7 +106,8 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="template">Mission template to use</param>
         /// <param name="airDefenseRange">Air-defense range category</param>
         /// <param name="enemyCoalitionDB">Enemy coalition database entry</param>
-        private void AddAirDefenseUnits(DCSMission mission, AirDefenseRange airDefenseRange, DBEntryCoalition enemyCoalitionDB, Coalition coalition)
+        /// <param name="coalition">Coalition of the spawn points air defense must be spawned at, or null to spawn them anywhere</param>
+        private void AddAirDefenseUnits(DCSMission mission, AirDefenseRange airDefenseRange, DBEntryCoalition enemyCoalitionDB, Coalition? coalition)
         {
             // Get the proper number of groups
             int groupCount = Database.Instance.Common.
