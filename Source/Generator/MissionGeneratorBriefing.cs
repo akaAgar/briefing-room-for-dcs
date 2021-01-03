@@ -111,6 +111,17 @@ namespace BriefingRoom4DCSWorld.Generator
                 remarks.AddRange( // ...from features
                     from string remark in feature.BriefingRemarks
                     select GeneratorTools.MakeBriefingStringReplacements(GeneratorTools.ParseRandomString(remark), mission, coalitionsDB));
+            //Opposition Remarks
+            string airDefenseNumbers = template.OppositionAirDefense == AmountN.Random? "Unknown":template.OppositionAirDefense.ToString();
+            string airDefenseSkill = template.OppositionSkillLevelGround == BRSkillLevel.Random? "Varied":template.OppositionSkillLevelGround.ToString();
+            string airForceNumbers = template.OppositionAirForce == AmountN.Random? "Unknown":template.OppositionAirForce.ToString();
+            string airForceSkill = template.OppositionSkillLevelAir == BRSkillLevel.Random? "Varied":template.OppositionSkillLevelAir.ToString();
+            string allyAirDefenseNumbers = template.PlayerFriendlyAirDefense == AmountN.Random? "Unknown":template.PlayerFriendlyAirDefense.ToString();
+            string allyAirDefenseSkill = template.PlayerAISkillLevel == BRSkillLevel.Random? "Varied":template.PlayerAISkillLevel.ToString();
+            remarks.AddRange(new List<string>{
+                $"Enemy Air Defenses are {airDefenseNumbers} and they are {airDefenseSkill} troops",
+                $"Expected Enemy Air Force response is {airForceNumbers} and they are {airForceSkill} pilots",
+                $"Our Air Defenses are {allyAirDefenseNumbers} and they are {allyAirDefenseSkill} troops",});
             remarks.Add("Use the \"F10/Other\" item in the comms for additional options");
             DebugLog.Instance.WriteLine($"{remarks.Count} remark(s)", 2);
 
