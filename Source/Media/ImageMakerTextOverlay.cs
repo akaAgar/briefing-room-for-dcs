@@ -46,7 +46,7 @@ namespace BriefingRoom4DCSWorld.Media
         /// <summary>
         /// Size (in pixels) of the font to use.
         /// </summary>
-        public float FontSize { get; set; } = 48.0f;
+        public float FontSize { get; set; } = 36.0f;
 
         /// <summary>
         /// Syle to use for the overlay text font.
