@@ -20,8 +20,10 @@ If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.Media;
 using BriefingRoom4DCSWorld.Mission;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -47,34 +49,26 @@ namespace BriefingRoom4DCSWorld.Miz
         /// <summary>
         /// Generates the title image for the mission.
         /// </summary>
-        /// <param name="missionName">The name of the mission.</param>
+        /// <param name="mission">The misison which requires a title image.</param>
         /// <returns>The mission title image, as an array of bytes for a JPEG file.</returns>
-        private byte[] GetTitleImage(string missionName)
+        private byte[] GetTitleImage(DCSMission mission)
         {
             byte[] imageBytes;
-            Rectangle rect;
-            int x, y;
 
-            using (Image titleImage = GetImageIfItExists("Jpg\\_default.jpg"))
+
+            using (ImageMaker imgMaker = new ImageMaker())
             {
-                using (Graphics g = Graphics.FromImage(titleImage))
-                {
-                    using (Font font = new Font("Arial", 48, FontStyle.Regular, GraphicsUnit.Point))
-                    {
-                        for (x = -1; x <= 1; x++)
-                            for (y = -1; y <= 1; y++)
-                            {
-                                if ((x == 0) && (y == 0)) continue;
-                                rect = new Rectangle(x * 1, y * 1, 512, 512);
-                                TextRenderer.DrawText(g, missionName, font, rect, Color.Black, Toolbox.CENTER_TEXT_FLAGS);
-                            }
+                imgMaker.TextOverlay.Text = mission.MissionName;
+                imgMaker.TextOverlay.Alignment = ContentAlignment.BottomCenter;
 
-                        rect = new Rectangle(0, 0, 512, 512);
-                        TextRenderer.DrawText(g, missionName, font, rect, Color.White, Toolbox.CENTER_TEXT_FLAGS);
-                    }
-                }
+                List<string> layers = new List<string>();
+                string[] theaterImages = Directory.GetFiles($"{BRPaths.INCLUDE_JPG}Theaters\\", $"{mission.Theater}*.jpg");
+                if (theaterImages.Length == 0)
+                    layers.Add("_default.jpg");
+                else
+                    layers.Add("Theaters\\" + Path.GetFileName(Toolbox.RandomFrom(theaterImages)));
 
-                imageBytes = Toolbox.ImageToBytes(titleImage, ImageFormat.Jpeg);
+                imageBytes = imgMaker.GetImageBytes(layers.ToArray());
             }
 
             return imageBytes;
@@ -82,7 +76,7 @@ namespace BriefingRoom4DCSWorld.Miz
 
         public void AddMediaFiles(MizFile miz, DCSMission mission)
         {
-            miz.AddEntry("l10n/DEFAULT/title.jpg", GetTitleImage(mission.MissionName));
+            miz.AddEntry("l10n/DEFAULT/title.jpg", GetTitleImage(mission));
         }
 
         /// <summary>
