@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCSWorld.Generator;
 using BriefingRoom4DCSWorld.Template;
+using BriefingRoom4DCSWorld.Media;
 using BriefingRoom4DCSWorld.Mission;
 using BriefingRoom4DCSWorld.Miz;
 using System;
@@ -77,14 +78,21 @@ namespace BriefingRoom4DCSWorld.Campaign
 
             using (ImageMaker imgMaker = new ImageMaker())
             {
+                // Pick a background color according to the player coalition
                 imgMaker.BackgroundColor = (campaignTemplate.PlayerCoalition == Coalition.Red) ?
                     Color.FromArgb(128, 0, 0) : Color.FromArgb(0, 0, 128);
 
+                // Print the name of the campaign over the campaign "title picture"
+                imgMaker.TextOverlay.Text = Path.GetFileNameWithoutExtension(campaignFilePath);
+                imgMaker.TextOverlay.Alignment = ContentAlignment.TopCenter;
                 File.WriteAllBytes($"{baseFileName}_Title.jpg",
                     imgMaker.GetImageBytes(
                         new ImageMakerLayer($"Flags\\{enemyFlagName}.png", ContentAlignment.MiddleCenter, -32, - 32),
                         new ImageMakerLayer($"Flags\\{allyFlagName}.png", ContentAlignment.MiddleCenter, 32, 32)));
+
+                // Reset background and text overlay
                 imgMaker.BackgroundColor = Color.Black;
+                imgMaker.TextOverlay.Text = "";
 
                 File.WriteAllBytes($"{baseFileName}_Success.jpg",
                     imgMaker.GetImageBytes("Sky.jpg", $"Flags\\{allyFlagName}.png"));

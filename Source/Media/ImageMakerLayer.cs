@@ -20,27 +20,56 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using System.Drawing;
 
-namespace BriefingRoom4DCSWorld
+namespace BriefingRoom4DCSWorld.Media
 {
+    /// <summary>
+    /// Describes a layer of image to draw with <see cref="ImageMaker"/>
+    /// </summary>
     public struct ImageMakerLayer
     {
+        /// <summary>
+        /// Filename of the image to draw on this layer (from <see cref="BRPaths.INCLUDE_JPG"/>
+        /// </summary>
         public string FileName { get; }
 
+        /// <summary>
+        /// Alignment of the image on the layer.
+        /// </summary>
         public ContentAlignment Alignment { get; }
 
+        /// <summary>
+        /// X-offset of the image.
+        /// </summary>
         public int OffsetX { get; }
 
+        /// <summary>
+        /// Y-offset of the image.
+        /// </summary>
         public int OffsetY { get; }
 
+        /// <summary>
+        /// Rotation of the image, in degrees.
+        /// </summary>
+        public int Rotation { get; }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="alignment">Alignment of the image on the layer</param>
+        /// <param name="offsetX">X-offset of the image</param>
+        /// <param name="offsetY">Y-offset of the image</param>
+        /// <param name="rotation">Rotation of the image, in degrees</param>
         public ImageMakerLayer(
             string fileName,
             ContentAlignment alignment = ContentAlignment.MiddleCenter,
-            int offsetX = 0, int offsetY = 0)
+            int offsetX = 0, int offsetY = 0, int rotation = 0)
         {
             FileName = fileName;
             Alignment = alignment;
             OffsetX = offsetX;
             OffsetY = offsetY;
+            Rotation = rotation;
         }
     }
 }
