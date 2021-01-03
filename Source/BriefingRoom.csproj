@@ -74,6 +74,7 @@
     <Compile Include="DB\DBEntryTheaterAirbaseParkingSpot.cs" />
     <Compile Include="BRSkillLevel.cs" />
     <Compile Include="Generator\MissionGeneratorAirDefense.cs" />
+    <Compile Include="Generator\MissionGeneratorCarrier.cs" />
     <Compile Include="MissionType.cs" />
     <Compile Include="CoalitionBriefingElement.cs" />
     <Compile Include="Amount.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="Debug\DebugLogMessageErrorLevel.cs" />
     <Compile Include="TypeConverters\CheckedListBoxUIEditorEnum.cs" />
     <Compile Include="TypeConverters\CheckedListBoxUIEditorDBEntry.cs" />
+    <Compile Include="TypeConverters\DBEntryCarrierConverter.cs" />
     <Compile Include="TypeConverters\EnumArrayTypeConverter.cs" />
     <Compile Include="TypeConverters\StringArrayTypeConverter.cs" />
     <Compile Include="UnitSystem.cs" />
