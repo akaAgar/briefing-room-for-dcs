@@ -91,7 +91,6 @@ namespace BriefingRoom4DCSWorld
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Toolbox.CreateDirectoryIfMissing(BRPaths.TEMPLATES);
 
                 // Display the splash screen while the database is being loaded
                 using (SplashScreenForm splashScreen = new SplashScreenForm())

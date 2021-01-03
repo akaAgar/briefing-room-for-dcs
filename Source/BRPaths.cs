@@ -83,10 +83,5 @@ namespace BriefingRoom4DCSWorld
         /// Path to the Media subdirectory.
         /// </summary>
         public static string MEDIA { get; } = $"{ROOT}Media\\";
-
-        /// <summary>
-        /// Path to the Templates subdirectory.
-        /// </summary>
-        public static string TEMPLATES { get; } = $"{ROOT}Templates\\";
     }
 }

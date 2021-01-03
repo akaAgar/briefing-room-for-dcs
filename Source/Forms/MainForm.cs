@@ -142,7 +142,6 @@ namespace BriefingRoom4DCSWorld.Forms
                     {
                         ofd.Filter = "BriefingRoom templates (*.brtemplate)|*.brtemplate";
                         ofd.RestoreDirectory = true;
-                        ofd.InitialDirectory = BRPaths.TEMPLATES;
                         if ((ofd.ShowDialog() == DialogResult.OK) && File.Exists(ofd.FileName))
                         {
                             Template.LoadFromFile(ofd.FileName);
@@ -157,7 +156,6 @@ namespace BriefingRoom4DCSWorld.Forms
                     {
                         sfd.Filter = "BriefingRoom templates (*.brtemplate)|*.brtemplate";
                         sfd.RestoreDirectory = true;
-                        sfd.InitialDirectory = BRPaths.TEMPLATES;
                         if (sfd.ShowDialog() == DialogResult.OK)
                             Template.SaveToFile(sfd.FileName);
                     }
