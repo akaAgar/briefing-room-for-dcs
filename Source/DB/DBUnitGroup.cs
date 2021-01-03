@@ -69,6 +69,11 @@ namespace BriefingRoom4DCSWorld.DB
         public TheaterLocationSpawnPointType[] SpawnPoints { get; }
 
         /// <summary>
+        /// Find spawn point within this min max from original spawn point (for DestinationObjective) flagged units
+        /// </summary>
+        public MinMaxD DistanceFromPoint { get; }   
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="ini">Objective database entry ini file</param>
@@ -76,6 +81,7 @@ namespace BriefingRoom4DCSWorld.DB
         public DBUnitGroup(INIFile ini, string section)
         {
             Count = ini.GetValue<MinMaxI>(section, "Count");
+            DistanceFromPoint = ini.GetValue<MinMaxD>(section, "DistanceFromPoint");
 
             Families = ini.GetValueArray<UnitFamily>(section, "Families");
             if (Families.Length > 0) // If the group has at least one unit family (no families mean the group is disabled)...
