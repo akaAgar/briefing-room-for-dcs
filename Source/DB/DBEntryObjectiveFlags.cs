@@ -52,13 +52,6 @@ namespace BriefingRoom4DCSWorld.DB
         /// <summary>
         /// A single target unit family will be used for all targets.
         /// </summary>
-        SingleTargetUnitFamily = 32,
-
-        /// <summary>
-        /// Friendly and hostile AI will be spawned near eachother (Friendly AI spawned on takeoff).
-        /// </summary>
-        ActiveCombat = 64,
-
-        Convoy = 128
+        SingleTargetUnitFamily = 32
     }
 }

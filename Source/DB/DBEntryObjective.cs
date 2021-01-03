@@ -76,6 +76,11 @@ namespace BriefingRoom4DCSWorld.DB
         public DBUnitGroup UnitGroup { get; private set; }
 
         /// <summary>
+        /// Unit group to spawn when this objective is selected.
+        /// </summary>
+        public DBUnitGroup AllyUnitGroup { get; private set; }
+
+        /// <summary>
         /// Min/max distance between the waypoint and the target, in nautical miles.
         /// </summary>
         public MinMaxI WaypointInaccuracy { get; private set; }
@@ -112,6 +117,7 @@ namespace BriefingRoom4DCSWorld.DB
                 Payload = ini.GetValue<UnitTaskPayload>("Objective", "Payload");
 
                 UnitGroup = new DBUnitGroup(ini, "UnitGroup");
+                AllyUnitGroup = new DBUnitGroup(ini, "AllyUnitGroup");
 
                 WaypointInaccuracy = ini.GetValue<MinMaxI>("Waypoint", "Inaccuracy");
                 WaypointOnGround = ini.GetValue<bool>("Waypoint", "OnGround");

@@ -48,5 +48,26 @@ namespace BriefingRoom4DCSWorld.DB
         /// Unit is never shown on map, no matter the value of <see cref="Template.MissionTemplate.OptionsShowEnemyUnits"/>.
         /// </summary>
         NeverOnMap = 8,
+
+        /// <summary>
+        /// This group is not a target
+        /// </summary>
+        NotObjectiveTarget = 16,
+
+        /// <summary>
+        /// force delay of spawn till after takeoff
+        /// </summary>
+        DelaySpawn =32,
+
+        /// <summary>
+        /// Sets waypoint to objective
+        /// </summary>
+        DestinationObjective = 64,
+
+        /// <summary>
+        /// Sets waypoint to player airbase
+        /// </summary>
+        DestinationPlayerBase = 128
+
     }
 }
