@@ -709,7 +709,7 @@ do
     briefingRoom.mission.objectives[index].unitsID = { }
 
     if briefingRoom.mission.objectivesAreStatic then
-      table.insert(briefingRoom.mission.objectives[index].unitsID, briefingRoom.mission.objectives[index].groupID)
+      table.insert(briefingRoom.mission.objectives[index].unitsID, tostring(briefingRoom.mission.objectives[index].groupID))
     else
       local group = dcsExtensions.getGroupByID(briefingRoom.mission.objectives[index].groupID)
       if group ~= nil then
@@ -771,7 +771,6 @@ function briefingRoom.mission.eventHandler:onEvent(event)
     if event.initiator:getCategory() ~= Object.Category.UNIT and event.initiator:getCategory() ~= Object.Category.STATIC  then return end -- initiator was not an unit or static
     if event.initiator:getCategory() == Object.Category.STATIC and not briefingRoom.mission.objectivesAreStatic then return end -- ignore static if not in static mode
     local unitID = event.initiator:getID()
-    briefingRoom.debugPrint("Unit hit:"..unitID)
 
     if event.initiator:getCoalition() == $ENEMYCOALITION$ then -- unit is an enemy, radio some variation of a "enemy destroyed" message
       local unitWasAMissionTarget = false
