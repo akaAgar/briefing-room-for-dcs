@@ -287,6 +287,18 @@ function dcsExtensions.getGroupByID(id)
   return nil
 end
 
+
+-- Returns the group with ID id, or nil if no group with this ID is found
+function dcsExtensions.getStaticByID(id)
+  for i=1,2 do
+    for _,g in pairs(coalition.getStaticObjects(i)) do
+      if g:getID() == id then return g end
+    end
+  end
+
+  return nil
+end
+
 -- Returns the first unit alive in group with ID groupID, or nil if group doesn't exist or is completely destroyed
 function dcsExtensions.getAliveUnitInGroup(groupID)
   local g = dcsExtensions.getGroupByID(groupID)
@@ -696,36 +708,41 @@ do
   for index,objective in ipairs(briefingRoom.mission.objectives) do
     briefingRoom.mission.objectives[index].unitsID = { }
 
-    local group = dcsExtensions.getGroupByID(briefingRoom.mission.objectives[index].groupID)
-    if group ~= nil then
-      for _,unit in ipairs(group:getUnits()) do
-        local validUnit = true
-
-        if #briefingRoom.mission.parameters.targetUnitsAttributesRequired > 0 then
-          validUnit = false
-          for __,a in ipairs(briefingRoom.mission.parameters.targetUnitsAttributesRequired) do
-            if unit:hasAttribute(a) then
-              validUnit = true
-            end
-          end
-        end
-
-        if #briefingRoom.mission.parameters.targetUnitsAttributesIgnored > 0 then
-          for __,a in ipairs(briefingRoom.mission.parameters.targetUnitsAttributesIgnored) do
-            if unit:hasAttribute(a) then
-              validUnit = false
-            end
-          end
-        end
-
-        if validUnit then
-          table.insert(briefingRoom.mission.objectives[index].unitsID, unit:getID())
-        end
-      end
-
-      if #briefingRoom.mission.objectives[index].unitsID == 0 then -- no valid unit found, add all units so at least we have a target
+    if briefingRoom.mission.objectivesAreStatic then
+      table.insert(briefingRoom.mission.objectives[index].unitsID, briefingRoom.mission.objectives[index].groupID)
+    else
+      local group = dcsExtensions.getGroupByID(briefingRoom.mission.objectives[index].groupID)
+      if group ~= nil then
         for _,unit in ipairs(group:getUnits()) do
-          table.insert(briefingRoom.mission.objectives[index].unitsID, unit:getID())
+
+          local validUnit = true
+
+          if #briefingRoom.mission.parameters.targetUnitsAttributesRequired > 0 then
+            validUnit = false
+            for __,a in ipairs(briefingRoom.mission.parameters.targetUnitsAttributesRequired) do
+              if unit:hasAttribute(a) then
+                validUnit = true
+              end
+            end
+          end
+
+          if #briefingRoom.mission.parameters.targetUnitsAttributesIgnored > 0 then
+            for __,a in ipairs(briefingRoom.mission.parameters.targetUnitsAttributesIgnored) do
+              if unit:hasAttribute(a) then
+                validUnit = false
+              end
+            end
+          end
+
+          if validUnit then
+            table.insert(briefingRoom.mission.objectives[index].unitsID, unit:getID())
+          end
+        end
+
+        if #briefingRoom.mission.objectives[index].unitsID == 0 then -- no valid unit found, add all units so at least we have a target
+          for _,unit in ipairs(group:getUnits()) do
+            table.insert(briefingRoom.mission.objectives[index].unitsID, unit:getID())
+          end
         end
       end
     end
@@ -751,8 +768,10 @@ function briefingRoom.mission.eventHandler:onEvent(event)
   elseif event.id == world.event.S_EVENT_DEAD or event.id == world.event.S_EVENT_CRASH then -- unit destroyed
     if event.initiator == nil then return end -- no initiator
     --if Unit.getGroup(event.initiator) == nil then return end -- initiator was not an unit
-    if event.initiator:getCategory() ~= Object.Category.UNIT then return end -- initiator was not an unit
+    if event.initiator:getCategory() ~= Object.Category.UNIT and event.initiator:getCategory() ~= Object.Category.STATIC  then return end -- initiator was not an unit or static
+    if event.initiator:getCategory() == Object.Category.STATIC and not briefingRoom.mission.objectivesAreStatic then return end -- ignore static if not in static mode
     local unitID = event.initiator:getID()
+    briefingRoom.debugPrint("Unit hit:"..unitID)
 
     if event.initiator:getCoalition() == $ENEMYCOALITION$ then -- unit is an enemy, radio some variation of a "enemy destroyed" message
       local unitWasAMissionTarget = false

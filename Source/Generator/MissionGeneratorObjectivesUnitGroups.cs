@@ -134,8 +134,11 @@ namespace BriefingRoom4DCSWorld.Generator
 
                 if (!unitGroup.Flags.HasFlag(DBUnitGroupFlags.NotObjectiveTarget))
                 {
-                    // Add the ID of the unit group associated with this objective to the Lua script
-                    mission.CoreLuaScript += $"briefingRoom.mission.objectives[{i + 1}].groupID = {group.GroupID}\r\n";
+                    if(mission.ObjectiveIsStatic) {
+                        mission.CoreLuaScript += $"briefingRoom.mission.objectives[{i + 1}].groupID = {group.Units[0].ID}\r\n";
+                    } else
+                        // Add the ID of the unit group associated with this objective to the Lua script
+                        mission.CoreLuaScript += $"briefingRoom.mission.objectives[{i + 1}].groupID = {group.GroupID}\r\n";
                 }
             }
         }
