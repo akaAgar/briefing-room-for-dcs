@@ -56,8 +56,8 @@
                     ["type"] = "$PLAYERSTARTINGTYPE$",
                     ["ETA"] = 0,
                     ["ETA_locked"] = true,
-                    ["y"] = $MISSIONAIRBASEY$,
-                    ["x"] = $MISSIONAIRBASEX$,
+                    ["y"] = $Y$,
+                    ["x"] = $X$,
                     ["name"] = "$INITIALWPNAME$",
                     ["formation_template"] = "",
                     ["airdromeId"] = $MISSIONAIRBASEID$,
@@ -98,8 +98,8 @@ $PLAYERWAYPOINTS$
         {
 $UNITS$
         }, -- end of ["units"]
-        ["y"] = $MISSIONAIRBASEY$,
-        ["x"] = $MISSIONAIRBASEX$,
+        ["y"] = $Y$,
+        ["x"] = $X$,
         ["name"] = "$NAME$",
         ["communication"] = true,
         ["start_time"] = 0,
