@@ -107,9 +107,9 @@ namespace BriefingRoom4DCSWorld.DB
             Name = ini.GetValue<string>("Airbases", $"{airbaseKey}.Name");
             ParkingSpots = new DBEntryTheaterAirbaseParkingSpot[Math.Max(0, ini.GetValue<int>("Airbases", $"{airbaseKey}.Parking.Count"))];
             for (i = 0; i < ParkingSpots.Length; i++)
-                ParkingSpots[i] = new DBEntryTheaterAirbaseParkingSpot(ini, $"{airbaseKey}.RunwaySpawns.Spot{i + 1}", false);
+                ParkingSpots[i] = new DBEntryTheaterAirbaseParkingSpot(ini, $"{airbaseKey}.Parking.Spot{i + 1}", false);
             Runways = ini.GetValue<string>("Airbases", $"{airbaseKey}.Runways");
-            RunwaySpawns = new DBEntryTheaterAirbaseParkingSpot[Math.Max(0, ini.GetValue<int>("Airbases", $"{airbaseKey}.Parking.Count"))];
+            RunwaySpawns = new DBEntryTheaterAirbaseParkingSpot[Math.Max(0, ini.GetValue<int>("Airbases", $"{airbaseKey}.RunwaySpawns.Count"))];
             for (i = 0; i < RunwaySpawns.Length; i++)
                 RunwaySpawns[i] = new DBEntryTheaterAirbaseParkingSpot(ini, $"{airbaseKey}.RunwaySpawns.Spot{i + 1}", true);
             TACAN = ini.GetValue<string>("Airbases", $"{airbaseKey}.TACAN");
