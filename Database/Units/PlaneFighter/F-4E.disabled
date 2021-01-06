@@ -37,3 +37,14 @@ Payload.Task.Default.Pylon05={BCE4E030-38E9-423E-98ED-24BE3DA87C32}
 Payload.Task.Default.Pylon06={BCE4E030-38E9-423E-98ED-24BE3DA87C32}
 Payload.Task.Default.Pylon07={9BFD8C90-F7AE-4e90-833B-BFD0CED0E536}
 
+[Operators]
+Australia=Decade1970,Decade1970
+Egypt=Decade1970,Decade2020
+Germany=Decade1970,Decade2010
+Greece=Decade1970,Decade1990
+Iran=Decade1970,Decade2020
+Israel=Decade1970,Decade2000
+South Korea=Decade1970,Decade2020
+Spain=Decade1970,Decade1990
+Turkey=Decade1970,Decade1990
+USA=Decade1960,Decade1990

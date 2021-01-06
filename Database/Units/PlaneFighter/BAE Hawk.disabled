@@ -23,3 +23,23 @@ Payload.Common=chaff=0,flare=0,fuel=1272
 
 ; TODO: payloads, cruise speed, cruise alt
 
+[Operators]
+Australia=Decade2000,Decade2020
+Bahrain=Decade2000,Decade2020
+Canada=Decade2000,Decade2020
+Finland=Decade1980,Decade2020
+India=Decade2000,Decade2020
+Indonesia=Decade1980,Decade2020
+Jordan=Decade2010,Decade2020
+Kenya=Decade1980,Decade2010
+Kuwait=Decade1980,Decade2020
+Malaysia=Decade1990,Decade2020
+Oman=Decade1990,Decade2020
+Saudi Arabia=Decade1980,Decade2020
+South Africa=Decade2000,Decade2020
+South Korea=Decade1990,Decade2010
+Switzerland=Decade1990,Decade2000
+UK=Decade1970,Decade2020
+USA=Decade1990,Decade2020
+United Arab Emirates=Decade1980,Decade2020
+Zimbabwe=Decade1980,Decade2010
