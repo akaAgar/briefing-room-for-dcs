@@ -768,14 +768,13 @@ function briefingRoom.mission.eventHandler:onEvent(event)
   elseif event.id == world.event.S_EVENT_DEAD or event.id == world.event.S_EVENT_CRASH then -- unit destroyed
     if event.initiator == nil then return end -- no initiator
     --if Unit.getGroup(event.initiator) == nil then return end -- initiator was not an unit
-    if event.initiator:getCategory() ~= Object.Category.UNIT and event.initiator:getCategory() ~= Object.Category.STATIC  then return end -- initiator was not an unit or static
-    if event.initiator:getCategory() == Object.Category.STATIC and not briefingRoom.mission.objectivesAreStatic then return end -- ignore static if not in static mode
+    if event.initiator:getCategory() ~= Object.Category.UNIT and event.initiator:getCategory() ~= Object.Category.STATIC then return end -- initiator was not an unit or static
     local unitID = event.initiator:getID()
 
     if event.initiator:getCoalition() == $ENEMYCOALITION$ then -- unit is an enemy, radio some variation of a "enemy destroyed" message
       local unitWasAMissionTarget = false
 
-      -- was the destroyed unit a mission target?
+      -- was the destroyed object a mission target?
       for _,objective in ipairs(briefingRoom.mission.objectives) do
         if table.contains(objective.unitsID, unitID) then
           unitWasAMissionTarget = true
