@@ -56,6 +56,10 @@ namespace BriefingRoom4DCSWorld
         /// <summary>
         /// 2010-2019
         /// </summary>
-        Decade2010
+        Decade2010,
+        /// <summary>
+        /// 2020-2029
+        /// </summary>
+        Decade2020
     }
 }

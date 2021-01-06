@@ -108,18 +108,6 @@ namespace BriefingRoom4DCSWorld
         /// </summary>
         public const int MAXIMUM_FLIGHT_GROUP_SIZE = 4;
 
-        public static Decade YearToTimePeriod(int year)
-        {
-            if (year >= 2010) return Decade.Decade2010;
-            if (year >= 2000) return Decade.Decade2000;
-            if (year >= 1990) return Decade.Decade1990;
-            if (year >= 1980) return Decade.Decade1980;
-            if (year >= 1970) return Decade.Decade1970;
-            if (year >= 1960) return Decade.Decade1960;
-            if (year >= 1950) return Decade.Decade1950;
-            return Decade.Decade1940;
-        }
-
         /// <summary>
         /// Returns a random year from the provided decade.
         /// </summary>
@@ -137,6 +125,7 @@ namespace BriefingRoom4DCSWorld
                 case Decade.Decade1990: return RandomInt(1990, 2000);
                 default: return RandomInt(2000, 2010); // case Decade.Decade2000
                 case Decade.Decade2010: return RandomInt(2010, 2020);
+                case Decade.Decade2020: return RandomInt(2020, 2030);
             }
         }
 
