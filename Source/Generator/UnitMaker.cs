@@ -90,10 +90,10 @@ namespace BriefingRoom4DCSWorld.Generator
                         if (requiresParkingSpots)
                         {
                             parkingSpot = SpawnPointSelector.GetFreeParkingSpot(airbaseID, out Coordinates parkingCoordinates);
-                            //if (parkingSpot >= 0)
-                            //    unitCoordinates = parkingCoordinates;
-                            //else
-                            //    parkingSpot = 0;
+                            if (parkingSpot >= 0)
+                               unitCoordinates = parkingCoordinates;
+                            else
+                               parkingSpot = 0;
                         }
                     }
 
@@ -129,7 +129,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 CallsignLua = callsign.Lua,
                 Category = unitsBP[0].Category,
                 Coalition = coalition,
-                Coordinates = coordinates,
+                Coordinates = airbaseID != 0?  groupUnits[0].Coordinates : coordinates,
                 Coordinates2 = coordinates2 ?? coordinates,
                 Flags = flags,
                 GroupID = NextGroupID,
