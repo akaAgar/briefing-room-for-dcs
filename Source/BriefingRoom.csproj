@@ -73,7 +73,6 @@
     <Compile Include="Campaign\CampaignGenerator.cs" />
     <Compile Include="Campaign\CampaignTemplate.cs" />
     <Compile Include="DB\DBEntryDefaultUnitList.cs" />
-    <Compile Include="DB\DBEntryCountry.cs" />
     <Compile Include="DB\DBEntryTheaterAirbaseParkingSpot.cs" />
     <Compile Include="BRSkillLevel.cs" />
     <Compile Include="Forms\CampaignCreatorForm.cs" />

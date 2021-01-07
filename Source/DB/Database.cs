@@ -55,6 +55,11 @@ namespace BriefingRoom4DCSWorld.DB
         public DatabaseCommon Common { get; set; }
 
         /// <summary>
+        /// Array of countries ID used by <see cref="DBEntryCoalition"/> and <see cref="DBEntryUnit"/>
+        /// </summary>
+        public string[] Countries { get; set; }
+
+        /// <summary>
         /// Database entries are stored by type in a dictionary of dictionaries.
         /// </summary>
         private readonly Dictionary<Type, Dictionary<string, DBEntry>> DBEntries;

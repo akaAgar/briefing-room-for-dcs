@@ -22,6 +22,7 @@ using BriefingRoom4DCSWorld.Debug;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace BriefingRoom4DCSWorld.DB
 {
@@ -46,9 +47,23 @@ namespace BriefingRoom4DCSWorld.DB
             LoadDatabaseEntries<DBEntryObjective>(dbEntries, "Objectives"); // Must be loaded after DBEntryMissionFeature as it depends on it
             LoadDatabaseEntries<DBEntryTheater>(dbEntries, "Theaters");
             LoadDatabaseEntries<DBEntryUnit>(dbEntries, "Units");
+            CreateCountriesListFromUnitOperators();
             LoadDatabaseEntries<DBEntryDefaultUnitList>(dbEntries, "DefaultUnitLists"); // Must be loaded after DBEntryUnit as it depends on it
             LoadDatabaseEntries<DBEntryCoalition>(dbEntries, "Coalitions"); // Must be loaded after DBEntryUnit as it depends on it
-            LoadDatabaseEntries<DBEntryCountry>(dbEntries, "Countries"); // Must be loaded after DBEntryDefaultUnitList and DBEntryUnit as it depends on them
+        }
+
+        /// <summary>
+        /// Creates the list of available countries from the operators found in <see cref="DBEntryUnit"/> .ini files.
+        /// </summary>
+        private void CreateCountriesListFromUnitOperators()
+        {
+            List<string> countries = new List<string>();
+
+            foreach (DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>())
+                countries.AddRange(unit.Operators.Keys);
+
+            Database.Instance.Countries =
+                (from string c in countries select c.ToLowerInvariant()).Distinct(StringComparer.InvariantCultureIgnoreCase).ToArray();
         }
 
         /// <summary>

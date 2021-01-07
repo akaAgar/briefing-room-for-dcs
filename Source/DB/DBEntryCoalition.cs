@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCSWorld.Debug;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,15 +30,7 @@ namespace BriefingRoom4DCSWorld.DB
     /// </summary>
     public class DBEntryCoalition : DBEntry
     {
-
         public string[][] BriefingElements { get; private set; }
-
-        public UnitSystem BriefingUnitSystem { get; private set; }
-
-        /// <summary>
-        /// IDs of <see cref="DBEntryUnit"/> carrier ships available to this coalition, by <see cref="CarrierType"/>
-        /// </summary>
-        public string[][] Carriers { get; private set; }
 
         /// <summary>
         /// Countries included in this coalition.
@@ -45,24 +38,14 @@ namespace BriefingRoom4DCSWorld.DB
         public string[] Countries { get; private set; }
 
         /// <summary>
-        /// Decade during which this coalition is active.
+        /// Default unit list this coalition should use.
         /// </summary>
-        public Decade Decade { get; private set; }
+        public string DefaultUnitList { get; private set; }
 
         /// <summary>
         /// Does this coalition use NATO callsigns for its units?
         /// </summary>
         public bool NATOCallsigns { get; private set; }
-
-        /// <summary>
-        /// Support units (AWACS, tankets...) in use by this coalition.
-        /// </summary>
-        public string[][] SupportUnits { get; private set; }
-
-        /// <summary>
-        /// Units in use by this coalition.
-        /// </summary>
-        public string[][] Units { get; private set; }
 
         /// <summary>
         /// Loads a database entry from an .ini file.
@@ -78,47 +61,26 @@ namespace BriefingRoom4DCSWorld.DB
                 BriefingElements = new string[Toolbox.EnumCount<CoalitionBriefingElement>()][];
                 for (i = 0; i < BriefingElements.Length; i++)
                     BriefingElements[i] = ini.GetValueArray<string>("Briefing", $"Elements.{(CoalitionBriefingElement)i}");
-                BriefingUnitSystem = ini.GetValue<UnitSystem>("Briefing", "UnitSystem");
 
-                Carriers = new string[Toolbox.EnumCount<CarrierType>()][];
-                for (i = 0; i < Carriers.Length; i++)
+                Countries = ini.GetValueArray<string>("Coalition", "Countries");
+                string[] invalidCountries = (from string country in Countries where !Database.Instance.Countries.Contains(country) select country).ToArray();
+                foreach (string country in invalidCountries)
+                    DebugLog.Instance.WriteLine($"Country \"{country}\" required by coalition \"{ID}\" not found.", DebugLogMessageErrorLevel.Warning);
+                Countries = (from string country in Countries where Database.Instance.Countries.Contains(country) select country.ToLowerInvariant()).ToArray();
+                if (Countries.Length == 0)
                 {
-                    Carriers[i] = GetValidDBEntryIDs<DBEntryUnit>(
-                        ini.GetValueArray<string>("Carriers", ((CarrierType)i).ToString()), out string[] invalidUnits);
-
-                    foreach (string u in invalidUnits)
-                        DebugLog.Instance.WriteLine($"Unit \"{u}\" not found in carriers for coalition \"{ID}\"", DebugLogMessageErrorLevel.Warning);
+                    DebugLog.Instance.WriteLine($"No valid country found for coalition \"{ID}\", coalition was ignored.", DebugLogMessageErrorLevel.Warning);
+                    return false;
                 }
 
-                Decade = ini.GetValue<Decade>("Coalition", "Decade");
+                DefaultUnitList = ini.GetValue<string>("Coalition", "DefaultUnitList");
+                if (!Database.Instance.EntryExists<DBEntryDefaultUnitList>(DefaultUnitList))
+                {
+                    DebugLog.Instance.WriteLine($"Default unit list \"{DefaultUnitList}\" required by coalition \"{ID}\" doesn't exist. Coalition was ignored.", DebugLogMessageErrorLevel.Warning);
+                    return false;
+                }
 
                 NATOCallsigns = ini.GetValue("Coalition", "NATOCallsigns", false);
-
-                SupportUnits = new string[Toolbox.EnumCount<SupportUnitRoles>()][];
-                for (i = 0; i < SupportUnits.Length; i++)
-                {
-                    SupportUnits[i] = GetValidDBEntryIDs<DBEntryUnit>(
-                        ini.GetValueArray<string>("Support", ((SupportUnitRoles)i).ToString()), out string[] invalidUnits);
-
-                    foreach (string u in invalidUnits)
-                        DebugLog.Instance.WriteLine($"Unit \"{u}\" not found in coalition \"{ID}\"", DebugLogMessageErrorLevel.Warning);
-                }
-
-                Units = new string[Toolbox.EnumCount<UnitFamily>()][];
-                for (i = 0; i < Units.Length; i++)
-                {
-                    Units[i] = GetValidDBEntryIDs<DBEntryUnit>(
-                        ini.GetValueArray<string>("Units", ((UnitFamily)i).ToString()), out string[] invalidUnits);
-
-                    foreach (string u in invalidUnits)
-                        DebugLog.Instance.WriteLine($"Unit \"{u}\" not found in coalition \"{ID}\"", DebugLogMessageErrorLevel.Warning);
-
-                    if (Units[i].Length == 0)
-                    {
-                        DebugLog.Instance.WriteLine($"Coalition \"{ID}\" has no unit of family \"{(UnitFamily)i}\", coalition was ignored", DebugLogMessageErrorLevel.Warning);
-                        return false;
-                    }
-                }
             }
          
             return true;
@@ -128,9 +90,11 @@ namespace BriefingRoom4DCSWorld.DB
         /// Returns the ID of a random <see cref="DBEntryUnit"/> belonging to one (or more) of the <see cref="UnitFamily"/> passed as parameters.
         /// </summary>
         /// <param name="family">Family of units to choose from</param>
+        /// <param name="decade">Decade during which the units must be operated</param>
         /// <param name="count">Number of units to generate</param>
+        /// <param name="useDefaultList">If true, and no unit of the proper family is found in the coalition countries, a unit will be selected from the default list. If false, and not unit is found, no unit will be returned.</param>
         /// <returns>Array of IDs of <see cref="DBEntryUnit"/></returns>
-        public string[] GetRandomUnits(UnitFamily family, int count)
+        public string[] GetRandomUnits(UnitFamily family, Decade decade, int count, bool useDefaultList = true)
         {
             // Count is zero, return an empty array.
             if (count < 1) return new string[0];
@@ -156,21 +120,39 @@ namespace BriefingRoom4DCSWorld.DB
                     break;
             }
 
+            string[] validUnits = SelectValidUnits(family, decade, useDefaultList);
+
             // Different unit types allowed in the group, pick a random type for each unit.
             if (allowDifferentUnitTypes)
             {
                 List<string> selectedUnits = new List<string>();
                 for (int i = 0; i < count; i++)
-                    selectedUnits.Add(Toolbox.RandomFrom(Units[(int)family]));
+                    selectedUnits.Add(Toolbox.RandomFrom(validUnits));
 
                 return selectedUnits.ToArray();
             }
             // Different unit types NOT allowed in the group, pick a random type and fill the whole array with it.
             else
             {
-                string unit = Toolbox.RandomFrom(Units[(int)family]);
+                string unit = Toolbox.RandomFrom(validUnits);
                 return Enumerable.Repeat(unit, count).ToArray();
             }
+        }
+
+        private string[] SelectValidUnits(UnitFamily family, Decade decade, bool useDefaultList)
+        {
+            DBEntryUnit[] units = (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>()
+                                   where unit.Families.Contains(family) &&
+                                   (unit.Operators.Keys.Intersect(Countries, StringComparer.InvariantCultureIgnoreCase).Count() > 0)
+                                   select unit).ToArray();
+
+            // At least one unit found, return it
+            if (units.Length > 0)
+                return (from DBEntryUnit unit in units select unit.ID).ToArray();
+
+            // No unit found
+            if (!useDefaultList) return new string[0];
+            return Database.Instance.GetEntry<DBEntryDefaultUnitList>(DefaultUnitList).DefaultUnits[(int)decade, (int)family];
         }
     }
 }
