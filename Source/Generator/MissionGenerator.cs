@@ -79,8 +79,8 @@ namespace BriefingRoom4DCSWorld.Generator
             DebugLog.Instance.WriteLine($"Starting mission generation...");
 
             // Check for missing entries in the database
-            GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.CoalitionBlue);
-            GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.CoalitionRed);
+            GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionBlue);
+            GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionRed);
             GeneratorTools.CheckDBForMissingEntry<DBEntryObjective>(template.ObjectiveType);
             GeneratorTools.CheckDBForMissingEntry<DBEntryTheater>(template.TheaterID);
 
@@ -90,8 +90,8 @@ namespace BriefingRoom4DCSWorld.Generator
 
             // Get some DB entries from the database for easier reference
             DBEntryCoalition[] coalitionsDB = new DBEntryCoalition[2];
-            coalitionsDB[(int)Coalition.Blue] = Database.Instance.GetEntry<DBEntryCoalition>(template.CoalitionBlue);
-            coalitionsDB[(int)Coalition.Red] = Database.Instance.GetEntry<DBEntryCoalition>(template.CoalitionRed);
+            coalitionsDB[(int)Coalition.Blue] = Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionBlue);
+            coalitionsDB[(int)Coalition.Red] = Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionRed);
             DBEntryObjective objectiveDB = Database.Instance.GetEntry<DBEntryObjective>(template.ObjectiveType);
             DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.TheaterID);
 
@@ -266,7 +266,7 @@ namespace BriefingRoom4DCSWorld.Generator
         {
             mission.Coalitions[(int)Coalition.Blue] = template.GetCoalition(Coalition.Blue);
             mission.Coalitions[(int)Coalition.Red] = template.GetCoalition(Coalition.Red);
-            mission.CoalitionPlayer = template.CoalitionPlayer;
+            mission.CoalitionPlayer = template.ContextCoalitionPlayer;
             mission.Theater = template.TheaterID;
             mission.PlayerStartLocation = template.PlayerStartLocation;
             mission.EndMode = template.OptionsEndMode;
