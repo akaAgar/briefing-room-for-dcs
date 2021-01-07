@@ -153,7 +153,7 @@ namespace BriefingRoom4DCSWorld.Generator
                     return;
                 }
 
-                string[] units = enemyCoalitionDB.GetRandomUnits(Toolbox.RandomFrom(unitFamilies), 1);
+                string[] units = enemyCoalitionDB.GetRandomUnits(Toolbox.RandomFrom(unitFamilies), mission.DateTime.Decade, 1);
 
                 DCSMissionUnitGroup group = UnitMaker.AddUnitGroup(
                     mission, units, ally? Side.Ally : Side.Enemy,

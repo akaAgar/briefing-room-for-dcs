@@ -138,11 +138,11 @@ namespace BriefingRoom4DCSWorld.Generator
                 default: return null; // Should never happen
                 case MissionTemplateMPFlightGroupTask.SupportCAP:
                     groupLua = (template.GetMissionType() == MissionType.SinglePlayer) ? "GroupAircraftPlayerEscortCAP" : "GroupAircraftCAP";
-                    aircraft = playerCoalitionDB.GetRandomUnits(UnitFamily.PlaneFighter, count);
+                    aircraft = playerCoalitionDB.GetRandomUnits(UnitFamily.PlaneFighter, mission.DateTime.Decade, count);
                     break;
                 case MissionTemplateMPFlightGroupTask.SupportSEAD:
                     groupLua = (template.GetMissionType() == MissionType.SinglePlayer) ? "GroupAircraftPlayerEscortSEAD" : "GroupAircraftSEAD";
-                    aircraft = playerCoalitionDB.GetRandomUnits(UnitFamily.PlaneSEAD, count);
+                    aircraft = playerCoalitionDB.GetRandomUnits(UnitFamily.PlaneSEAD, mission.DateTime.Decade, count);
                     break;
             }
 
