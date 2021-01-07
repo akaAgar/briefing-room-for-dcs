@@ -3,3 +3,7 @@ DCSID=TomahawkLauncher
 DefaultFamily=VehicleMissile
 ExtraLua=
 Flags=
+
+[Operators]
+UK=Decade1980,Decade2020
+USA=Decade1980,Decade2020

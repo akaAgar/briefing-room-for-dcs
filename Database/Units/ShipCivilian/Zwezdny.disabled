@@ -3,3 +3,6 @@ DCSID=ZWEZDNY
 DefaultFamily=ShipCivilian
 ExtraLua=
 Flags=
+
+[Operators]
+Decade1990,Decade2020

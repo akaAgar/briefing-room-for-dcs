@@ -1,5 +1,5 @@
 ﻿[Unit]
-DCSID=F-16C_50
+DCSID=F-16A
 DefaultFamily=PlaneFighter
 ; also PlaneSEAD,PlaneStrike
 ExtraLua=["AddPropAircraft"] = { ["LaserCode1"] = 8, ["LaserCode100"] = 6, ["LAU3ROF"] = 0, ["LaserCode10"] = 8, },
