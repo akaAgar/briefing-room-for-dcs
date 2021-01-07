@@ -53,11 +53,12 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="allyCoalitionDB">Ally coalition database entry</param>
         public UnitFlightGroupBriefingDescription[] CreateUnitGroups(DCSMission mission, DBEntryCoalition allyCoalitionDB)
         {
-            List<UnitFlightGroupBriefingDescription> briefingFGList = new List<UnitFlightGroupBriefingDescription>();
-
-            //briefingFGList.Add(AddSupportUnit(mission, allyCoalitionDB, UnitFamily.PlaneTankerBasket, new Tacan(47,"TKR", 1134000000))); //TACAN choise due to https://forums.eagle.ru/topic/165047-hornet-mini-updates/page/6/?tab=comments#comment-3803291
-            //briefingFGList.Add(AddSupportUnit(mission, allyCoalitionDB, UnitFamily.PlaneTankerBoom, new Tacan(48, "TKR", 1135000000)));
-            //briefingFGList.Add(AddSupportUnit(mission, allyCoalitionDB, UnitFamily.PlaneAWACS)); // AWACS must be added last, so it its inserted first into the spawning queue
+            List<UnitFlightGroupBriefingDescription> briefingFGList = new List<UnitFlightGroupBriefingDescription>
+            {
+                AddSupportUnit(mission, allyCoalitionDB, UnitFamily.PlaneTankerBasket, new Tacan(47, "TKR", 1134000000)), //TACAN choise due to https://forums.eagle.ru/topic/165047-hornet-mini-updates/page/6/?tab=comments#comment-3803291
+                AddSupportUnit(mission, allyCoalitionDB, UnitFamily.PlaneTankerBoom, new Tacan(48, "TKR", 1135000000)),
+                AddSupportUnit(mission, allyCoalitionDB, UnitFamily.PlaneAWACS) // AWACS must be added last, so it its inserted first into the spawning queue
+            };
 
             return (from UnitFlightGroupBriefingDescription fg in briefingFGList where !string.IsNullOrEmpty(fg.Type) select fg).ToArray();
         }
@@ -72,7 +73,7 @@ namespace BriefingRoom4DCSWorld.Generator
         {
             DebugLog.Instance.WriteLine($"Adding {Toolbox.SplitCamelCase(unitFamily)} support unit...", 1);
 
-            string[] validUnitTypes = allyCoalitionDB.GetRandomUnits(unitFamily, mission.DateTime.Decade, 1, false);
+            string[] validUnitTypes = allyCoalitionDB.GetRandomUnits(unitFamily, mission.DateTime.Decade, 1, true);
 
             if (validUnitTypes.Length == 0)
             {

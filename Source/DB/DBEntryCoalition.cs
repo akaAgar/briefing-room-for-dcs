@@ -141,14 +141,20 @@ namespace BriefingRoom4DCSWorld.DB
 
         private string[] SelectValidUnits(UnitFamily family, Decade decade, bool useDefaultList)
         {
-            DBEntryUnit[] units = (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>()
-                                   where unit.Families.Contains(family) &&
-                                   (unit.Operators.Keys.Intersect(Countries, StringComparer.InvariantCultureIgnoreCase).Count() > 0)
-                                   select unit).ToArray();
+            List<string> validUnits = new List<string>();
+
+            foreach (string country in Countries)
+                validUnits.AddRange(
+                    from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>()
+                    where unit.Families.Contains(family) && unit.Operators.ContainsKey(country) &&
+                    (unit.Operators[country][0] <= decade) && (unit.Operators[country][1] >= decade)
+                    select unit.ID);
+            
+            validUnits = validUnits.Distinct().ToList();
 
             // At least one unit found, return it
-            if (units.Length > 0)
-                return (from DBEntryUnit unit in units select unit.ID).ToArray();
+            if (validUnits.Count > 0)
+                return validUnits.ToArray();
 
             // No unit found
             if (!useDefaultList) return new string[0];
