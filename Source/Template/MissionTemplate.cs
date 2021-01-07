@@ -81,6 +81,14 @@ namespace BriefingRoom4DCSWorld.Template
         private string BriefingName_;
 
         /// <summary>
+        /// Unit system to use in the mission briefing.
+        /// </summary>
+        [Category("Briefing"), DisplayName("Unit system")]
+        [Description("Unit system to use in the mission briefing.")]
+        [TypeConverter(typeof(EnumTypeConverter<UnitSystem>))]
+        public UnitSystem BriefingUnitSystem { get; set; }
+
+        /// <summary>
         /// Who belongs to the blue coalition?
         /// </summary>
         [Category("Context"), DisplayName("Coalition, blue")]
@@ -389,6 +397,7 @@ namespace BriefingRoom4DCSWorld.Template
             BriefingDate = new MissionTemplateDate();
             BriefingDescription = "";
             BriefingName = "";
+            BriefingUnitSystem = UnitSystem.Imperial;
 
             ContextCoalitionBlue = TemplateTools.CheckValue<DBEntryCoalition>(Database.Instance.Common.DefaultCoalitionBlue);
             ContextCoalitionPlayer = Coalition.Blue;
@@ -448,6 +457,7 @@ namespace BriefingRoom4DCSWorld.Template
                 BriefingDate.LoadFromFile(ini);
                 BriefingDescription = ini.GetValue("Briefing", "Description", BriefingDescription);
                 BriefingName = ini.GetValue("Briefing", "Name", BriefingName);
+                BriefingUnitSystem = ini.GetValue("Briefing", "UnitSystem", BriefingUnitSystem);
 
                 ContextCoalitionBlue = ini.GetValue("Context", "Coalition.Blue", ContextCoalitionBlue);
                 ContextCoalitionPlayer = ini.GetValue("Context", "Coalition.Player", ContextCoalitionPlayer);
@@ -510,6 +520,7 @@ namespace BriefingRoom4DCSWorld.Template
                 BriefingDate.SaveToFile(ini);
                 ini.SetValue("Briefing", "Description", BriefingDescription);
                 ini.SetValue("Briefing", "Name", BriefingName);
+                ini.SetValue("Briefing", "UnitSystem", BriefingUnitSystem);
 
                 ini.SetValue("Context", "Coalition.Blue", ContextCoalitionBlue);
                 ini.SetValue("Context", "Coalition.Player", ContextCoalitionPlayer);
