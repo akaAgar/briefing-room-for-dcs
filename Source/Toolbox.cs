@@ -24,7 +24,6 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace BriefingRoom4DCSWorld
@@ -34,6 +33,8 @@ namespace BriefingRoom4DCSWorld
     /// </summary>
     public static class Toolbox
     {
+        public static readonly UnitFamily[] SHIP_CARRIER_FAMILIES = new UnitFamily[] { UnitFamily.ShipCarrierCATOBAR, UnitFamily.ShipCarrierSTOBAR, UnitFamily.ShipCarrierSTOVL };
+
         /// <summary>
         /// The number of days in each month.
         /// </summary>

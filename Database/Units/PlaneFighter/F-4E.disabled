@@ -1,6 +1,6 @@
 ﻿[Unit]
 DCSID=F-4E
-DefaultFamily=PlaneFighter
+Families=PlaneFighter
 ; also PlaneAttack,PlaneSEAD,PlaneStrike
 ExtraLua=
 Flags=EPLRS

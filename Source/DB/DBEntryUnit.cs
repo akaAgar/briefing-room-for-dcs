@@ -38,18 +38,13 @@ namespace BriefingRoom4DCSWorld.DB
         /// <summary>
         /// DCS World unit category this unit belongs to.
         /// </summary>
-        public UnitCategory Category { get { return Toolbox.GetUnitCategoryFromUnitFamily(DefaultFamily); } }
+        public UnitCategory Category { get { return Toolbox.GetUnitCategoryFromUnitFamily(Families[0]); } }
         
         /// <summary>
         /// Internal DCS World IDs for this unit.
         /// A vehicle/static unit database entry can be made of multiple units (e.g. SAM sites, factories...)
         /// </summary>
         public string[] DCSIDs { get; private set; }
-
-        /// <summary>
-        /// Default family for this unit, mainly used to pick random unit group names etc.
-        /// </summary>
-        public UnitFamily DefaultFamily { get { return Families[0]; } }
 
         /// <summary>
         /// Families this unit belongs to.
@@ -103,9 +98,12 @@ namespace BriefingRoom4DCSWorld.DB
                     DebugLog.Instance.WriteLine($"Unit {ID} contains no DCS unit ID, unit was ignored.", DebugLogMessageErrorLevel.Warning);
                     return false;
                 }
-                //Families = ini.GetValueArray<UnitFamily>("Unit", "Families");
-                Families = ini.GetValueArray<UnitFamily>("Unit", "DefaultFamily");
-                if (Families.Length == 0) Families = new UnitFamily[] { UnitFamily.VehicleTransport };
+                Families = ini.GetValueArray<UnitFamily>("Unit", "Families");
+                if (Families.Length == 0)
+                {
+                    DebugLog.Instance.WriteLine($"Unit {ID} has no family, unit was ignored.", DebugLogMessageErrorLevel.Warning);
+                    return false;
+                }
                 // Make sure all unit families belong to same category (unit cannot be a helicopter and a ground vehicle at the same time, for instance)
                 Families = (from UnitFamily f in Families where Toolbox.GetUnitCategoryFromUnitFamily(f) == Category select f).Distinct().ToArray();
                 ExtraLua = ini.GetValue<string>("Unit", "ExtraLua");

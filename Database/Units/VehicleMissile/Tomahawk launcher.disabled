@@ -1,6 +1,6 @@
 ﻿[Unit]
 DCSID=TomahawkLauncher
-DefaultFamily=VehicleMissile
+Families=VehicleMissile
 ExtraLua=
 Flags=
 

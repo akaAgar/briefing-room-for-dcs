@@ -1,6 +1,6 @@
 ﻿[Unit]
 DCSID=E-2C
-DefaultFamily=PlaneAWACS
+Families=PlaneAWACS
 ExtraLua=
 Flags=EPLRS
 
