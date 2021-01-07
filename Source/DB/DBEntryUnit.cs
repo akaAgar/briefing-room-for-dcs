@@ -82,6 +82,11 @@ namespace BriefingRoom4DCSWorld.DB
         public Dictionary<string, Decade[]> Operators { get; private set; }
 
         /// <summary>
+        /// Name of the unit mod required for this unit to be available.
+        /// </summary>
+        public string RequiredMod { get; private set; }
+
+        /// <summary>
         /// Loads a database entry from an .ini file.
         /// </summary>
         /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
@@ -110,6 +115,9 @@ namespace BriefingRoom4DCSWorld.DB
                 Flags = ini.GetValueArrayAsEnumFlags<DBEntryUnitFlags>("Unit", "Flags");
                 OffsetCoordinates = (from string s in ini.GetValueArray<string>("Unit", "Offset.Coordinates", ';') select new Coordinates(s)).ToArray();
                 OffsetHeading = ini.GetValueArray<double>("Unit", "Offset.Heading");
+                RequiredMod = ini.GetValue<string>("Unit", "RequiredMod");
+                if (!string.IsNullOrEmpty(RequiredMod))
+                    return false; // TODO: Units requiring mods are disabled for the moment, enabled them with mod selection in the template.
 
                 AircraftData = new DBEntryUnitAircraftData();
 
@@ -130,7 +138,6 @@ namespace BriefingRoom4DCSWorld.DB
 
             return true;
         }
-
 
         public bool IsValidForFamilyCountryAndPeriod(UnitFamily family, string[] countries, Decade decade)
         {
