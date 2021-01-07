@@ -63,10 +63,10 @@ namespace BriefingRoom4DCSWorld.DB
                     BriefingElements[i] = ini.GetValueArray<string>("Briefing", $"Elements.{(CoalitionBriefingElement)i}");
 
                 Countries = ini.GetValueArray<string>("Coalition", "Countries");
-                string[] invalidCountries = (from string country in Countries where !Database.Instance.Countries.Contains(country) select country).ToArray();
+                string[] invalidCountries = (from string country in Countries where !Database.Instance.Countries.Contains(country, StringComparer.InvariantCultureIgnoreCase) select country).ToArray();
                 foreach (string country in invalidCountries)
                     DebugLog.Instance.WriteLine($"Country \"{country}\" required by coalition \"{ID}\" not found.", DebugLogMessageErrorLevel.Warning);
-                Countries = (from string country in Countries where Database.Instance.Countries.Contains(country) select country.ToLowerInvariant()).ToArray();
+                Countries = (from string country in Countries where Database.Instance.Countries.Contains(country, StringComparer.InvariantCultureIgnoreCase) select country.ToLowerInvariant()).ToArray();
                 if (Countries.Length == 0)
                 {
                     DebugLog.Instance.WriteLine($"No valid country found for coalition \"{ID}\", coalition was ignored.", DebugLogMessageErrorLevel.Warning);
