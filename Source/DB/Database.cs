@@ -140,7 +140,7 @@ namespace BriefingRoom4DCSWorld.DB
         {
             return
                 (from DBEntryUnit unit in GetAllEntries<DBEntryUnit>()
-                 where unit.DefaultFamily == UnitFamily.ShipCarrier
+                 where (unit.Families.Intersect(Toolbox.SHIP_CARRIER_FAMILIES).Count() > 0)
                  select unit.ID).OrderBy(x => x).ToArray();
         }
 

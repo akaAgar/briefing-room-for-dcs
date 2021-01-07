@@ -132,7 +132,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SupportUnitRoles.cs" />
     <Compile Include="Tacan.cs" />
     <Compile Include="Template\MissionTemplatePreferences.cs" />
     <Compile Include="Template\MissionTemplateDate.cs" />
