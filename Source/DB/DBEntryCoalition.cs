@@ -158,7 +158,7 @@ namespace BriefingRoom4DCSWorld.DB
 
             // No unit found
             if (!useDefaultList) return new string[0];
-            return Database.Instance.GetEntry<DBEntryDefaultUnitList>(DefaultUnitList).DefaultUnits[(int)decade, (int)family];
+            return Database.Instance.GetEntry<DBEntryDefaultUnitList>(DefaultUnitList).DefaultUnits[(int)family, (int)decade];
         }
     }
 }

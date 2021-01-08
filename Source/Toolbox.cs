@@ -35,6 +35,9 @@ namespace BriefingRoom4DCSWorld
     {
         public static readonly UnitFamily[] SHIP_CARRIER_FAMILIES = new UnitFamily[] { UnitFamily.ShipCarrierCATOBAR, UnitFamily.ShipCarrierSTOBAR, UnitFamily.ShipCarrierSTOVL };
 
+        public static readonly int DECADES_COUNT = EnumCount<Decade>();
+        public static readonly int UNITFAMILIES_COUNT = EnumCount<UnitFamily>();
+
         /// <summary>
         /// The number of days in each month.
         /// </summary>

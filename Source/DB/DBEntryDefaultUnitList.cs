@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCSWorld.Debug;
+using System.Linq;
 
 namespace BriefingRoom4DCSWorld.DB
 {
@@ -39,25 +40,39 @@ namespace BriefingRoom4DCSWorld.DB
         /// <returns>True is successful, false if an error happened</returns>
         protected override bool OnLoad(string iniFilePath)
         {
+            int i, j;
+
+            DefaultUnits = new string[Toolbox.UNITFAMILIES_COUNT, Toolbox.DECADES_COUNT][];
+            for (i = 0; i < Toolbox.UNITFAMILIES_COUNT; i++)
+                for (j = 0; j < Toolbox.DECADES_COUNT; j++)
+                    DefaultUnits[i, j] = new string[0];
+
             using (INIFile ini = new INIFile(iniFilePath))
             {
-                DefaultUnits = new string[Toolbox.EnumCount<Decade>(), Toolbox.EnumCount<UnitFamily>()][];
-                foreach (Decade decade in Toolbox.GetEnumValues<Decade>())
-                    foreach (UnitFamily family in Toolbox.GetEnumValues<UnitFamily>())
+                foreach (UnitFamily family in Toolbox.GetEnumValues<UnitFamily>())
+                    foreach (Decade decade in Toolbox.GetEnumValues<Decade>())
                     {
-                        DefaultUnits[(int)decade, (int)family] = GetValidDBEntryIDs<DBEntryUnit>(
+                        string[] units = GetValidDBEntryIDs<DBEntryUnit>(
                             ini.GetValueArray<string>($"{decade}", $"{family}"), out string[] invalidUnits);
 
                         foreach (string u in invalidUnits)
                             DebugLog.Instance.WriteLine($"Unit \"{u}\" not found in default unit list \"{ID}\".", DebugLogMessageErrorLevel.Warning);
 
-                        if (DefaultUnits[(int)decade, (int)family].Length == 0)
-                        {
-                            DebugLog.Instance.WriteLine($"Default unit list \"{ID}\" has no unit of family \"{family}\" during {decade}, unit list was ignored.", DebugLogMessageErrorLevel.Warning);
-                            return false;
-                        }
+                        if (units.Length == 0) continue;
+
+                        for (i = (int)decade; i <= (int)Decade.Decade2020; i++)
+                            DefaultUnits[(int)family, (int)decade] = units.ToArray();
                     }
             }
+
+            for (i = 0; i < Toolbox.UNITFAMILIES_COUNT; i++)
+                for (j = 0; j < Toolbox.DECADES_COUNT; j++)
+                    if (DefaultUnits[i, j].Length == 0)
+                    {
+                        DebugLog.Instance.WriteLine($"Default unit list \"{ID}\" has no unit of family \"{(UnitFamily)i}\" during {(Decade)j}, unit list was ignored.", DebugLogMessageErrorLevel.Warning);
+                        return false;
+                    }
+
 
             return true;
         }
