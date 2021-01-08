@@ -51,11 +51,11 @@ namespace BriefingRoom4DCSWorld.DB
                         foreach (string u in invalidUnits)
                             DebugLog.Instance.WriteLine($"Unit \"{u}\" not found in default unit list \"{ID}\".", DebugLogMessageErrorLevel.Warning);
 
-                        if (DefaultUnits[(int)decade, (int)family].Length == 0)
-                        {
-                            DebugLog.Instance.WriteLine($"Default unit list \"{ID}\" has no unit of family \"{family}\" during {decade}, unit list was ignored.", DebugLogMessageErrorLevel.Warning);
-                            return false;
-                        }
+                        //if (DefaultUnits[(int)decade, (int)family].Length == 0)
+                        //{
+                        //    DebugLog.Instance.WriteLine($"Default unit list \"{ID}\" has no unit of family \"{family}\" during {decade}, unit list was ignored.", DebugLogMessageErrorLevel.Warning);
+                        //    return false;
+                        //}
                     }
             }
 
