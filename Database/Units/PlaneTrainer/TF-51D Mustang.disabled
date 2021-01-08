@@ -1,34 +1,11 @@
-﻿[Unit]
-DCSID=P-51D
-Families=PlaneFighter,PlaneAttack,PlaneStrike
-ExtraLua=
-Flags=
-
-[Aircraft]
-A2ARating.AirToAir=3
-A2ARating.Default=2
-
-CarrierTypes=
-
-CruiseAltitude=Average
-CruiseSpeed=Average
-
-PlayerControllable=True
-
-Radio.Modulation=AM
-Radio.Frequency=124.0
-
-Payload.Common=chaff=0,flare=0,fuel=497.76,gun=100
-
-; A2G: M64*2
-Payload.Task.AirToGround.Pylon04={AN-M64}
-Payload.Task.AirToGround.Pylon07={AN-M64}
+TF-51D
+Families=PlaneTrainer
 
 [Operators]
 Australia=Decade1940,Decade1960
 Canada=Decade1940,Decade1960
 China=Decade1940,Decade1940
-CostaRica=Decade1950,Decade1960
+Costa Rica=Decade1950,Decade1960
 Cuba=Decade1960,Decade1960
 DominicanRepublic=Decade1940,Decade1980
 Germany=Decade1940,Decade1940
@@ -41,11 +18,13 @@ NewZealand=Decade1940,Decade1950
 Nicaragua=Decade1950,Decade1960
 Philippines=Decade1940,Decade1980
 Poland=Decade1940,Decade1940
+Russia=Decade1940,Decade1940
 SouthAfrica=Decade1940,Decade1950
 SouthKorea=Decade1950,Decade1950
 Sweden=Decade1940,Decade1950
 Switzerland=Decade1940,Decade1960
 Netherlands=Decade1940,Decade1950
+ThirdReich=Decade1940,Decade1940
 UK=Decade1940,Decade1940
 USA=Decade1940,Decade1950
 Uruguay=Decade1950,Decade1960
