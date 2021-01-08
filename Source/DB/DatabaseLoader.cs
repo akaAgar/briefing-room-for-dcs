@@ -47,9 +47,9 @@ namespace BriefingRoom4DCSWorld.DB
             LoadDatabaseEntries<DBEntryObjective>(dbEntries, "Objectives"); // Must be loaded after DBEntryMissionFeature as it depends on it
             LoadDatabaseEntries<DBEntryTheater>(dbEntries, "Theaters");
             LoadDatabaseEntries<DBEntryUnit>(dbEntries, "Units");
-            CreateCountriesListFromUnitOperators();
+            CreateCountriesListFromUnitOperators(); // Must be called after DBEntryUnit is loaded as it depends on it
             LoadDatabaseEntries<DBEntryDefaultUnitList>(dbEntries, "DefaultUnitLists"); // Must be loaded after DBEntryUnit as it depends on it
-            LoadDatabaseEntries<DBEntryCoalition>(dbEntries, "Coalitions"); // Must be loaded after DBEntryUnit as it depends on it
+            LoadDatabaseEntries<DBEntryCoalition>(dbEntries, "Coalitions"); // Must be loaded after DBEntryUnit and DBEntryDefaultUnitList as it depends on them
         }
 
         /// <summary>
