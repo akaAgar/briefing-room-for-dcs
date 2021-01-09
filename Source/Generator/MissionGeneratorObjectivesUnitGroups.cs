@@ -93,12 +93,12 @@ namespace BriefingRoom4DCSWorld.Generator
 
                 string[] units =
                     coalitionsDB[(int)coalition].GetRandomUnits(
-                        mission.Objectives[i].TargetFamily.Value, unitGroup.Count.GetValue());
+                        mission.Objectives[i].TargetFamily.Value, mission.DateTime.Decade, unitGroup.Count.GetValue());
 
                 if (unitGroup.Flags.HasFlag(DBUnitGroupFlags.EmbeddedAirDefense) &&
                     coalition != mission.CoalitionPlayer &&
                     (Toolbox.GetUnitCategoryFromUnitFamily(mission.Objectives[i].TargetFamily.Value) == UnitCategory.Vehicle))
-                    units = GeneratorTools.AddEmbeddedAirDefense(units, template.OppositionAirDefense, coalitionsDB[(int)coalition]);
+                    units = GeneratorTools.AddEmbeddedAirDefense(units, template.OppositionAirDefense, coalitionsDB[(int)coalition], mission.DateTime.Decade);
 
                 // Pick the skill level once for each objective so not all target groups have the same skill level when a
                 // "random" skill level is chosen.

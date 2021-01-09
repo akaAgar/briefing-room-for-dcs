@@ -81,30 +81,46 @@ namespace BriefingRoom4DCSWorld.Template
         private string BriefingName_;
 
         /// <summary>
+        /// Unit system to use in the mission briefing.
+        /// </summary>
+        [Category("Briefing"), DisplayName("Unit system")]
+        [Description("Unit system to use in the mission briefing.")]
+        [TypeConverter(typeof(EnumTypeConverter<UnitSystem>))]
+        public UnitSystem BriefingUnitSystem { get; set; }
+
+        /// <summary>
         /// Who belongs to the blue coalition?
         /// </summary>
-        [Category("Coalitions"), DisplayName("Coalition, blue")]
+        [Category("Context"), DisplayName("Coalition, blue")]
         [Description("Who belongs to the blue coalition?")]
         [TypeConverter(typeof(DBEntryTypeConverter<DBEntryCoalition>))]
-        public string CoalitionBlue { get { return CoalitionBlue_; } set { CoalitionBlue_ = TemplateTools.CheckValue<DBEntryCoalition>(value); } }
-        private string CoalitionBlue_;
+        public string ContextCoalitionBlue { get { return ContextCoalitionBlue_; } set { ContextCoalitionBlue_ = TemplateTools.CheckValue<DBEntryCoalition>(value); } }
+        private string ContextCoalitionBlue_;
 
         /// <summary>
         /// Which coalition does the player(s) belong to?
         /// </summary>
-        [Category("Coalitions"), DisplayName("Player coalition")]
+        [Category("Context"), DisplayName("Player coalition")]
         [Description("Which coalition does the player(s) belong to?")]
         [TypeConverter(typeof(EnumTypeConverter<Coalition>))]
-        public Coalition CoalitionPlayer { get; set; }
+        public Coalition ContextCoalitionPlayer { get; set; }
 
         /// <summary>
         /// Who belongs to the red coalition?
         /// </summary>
-        [Category("Coalitions"), DisplayName("Coalition, red")]
+        [Category("Context"), DisplayName("Coalition, red")]
         [Description("Who belongs to the red coalition?")]
         [TypeConverter(typeof(DBEntryTypeConverter<DBEntryCoalition>))]
-        public string CoalitionRed { get { return CoalitionRed_; } set { CoalitionRed_ = TemplateTools.CheckValue<DBEntryCoalition>(value); } }
-        private string CoalitionRed_;
+        public string ContextCoalitionRed { get { return ContextCoalitionRed_; } set { ContextCoalitionRed_ = TemplateTools.CheckValue<DBEntryCoalition>(value); } }
+        private string ContextCoalitionRed_;
+
+        /// <summary>
+        /// During which decade will this mission take place? This value is ignored if Briefing/Mission date is set.
+        /// </summary>
+        [Category("Context"), DisplayName("Mission date")]
+        [Description("During which decade will this mission take place? This value is ignored if Briefing/Mission date is set.")]
+        [TypeConverter(typeof(EnumTypeConverter<Decade>))]
+        public Decade ContextDecade { get; set; }
 
         /// <summary>
         /// Season during which the mission will take place.
@@ -381,10 +397,12 @@ namespace BriefingRoom4DCSWorld.Template
             BriefingDate = new MissionTemplateDate();
             BriefingDescription = "";
             BriefingName = "";
+            BriefingUnitSystem = UnitSystem.Imperial;
 
-            CoalitionBlue = TemplateTools.CheckValue<DBEntryCoalition>(Database.Instance.Common.DefaultCoalitionBlue);
-            CoalitionPlayer = Coalition.Blue;
-            CoalitionRed = TemplateTools.CheckValue<DBEntryCoalition>(Database.Instance.Common.DefaultCoalitionRed);
+            ContextCoalitionBlue = TemplateTools.CheckValue<DBEntryCoalition>(Database.Instance.Common.DefaultCoalitionBlue);
+            ContextCoalitionPlayer = Coalition.Blue;
+            ContextCoalitionRed = TemplateTools.CheckValue<DBEntryCoalition>(Database.Instance.Common.DefaultCoalitionRed);
+            ContextDecade = Decade.Decade2000;
 
             EnvironmentSeason = Season.Random;
             EnvironmentTimeOfDay = TimeOfDay.RandomDaytime;
@@ -439,10 +457,12 @@ namespace BriefingRoom4DCSWorld.Template
                 BriefingDate.LoadFromFile(ini);
                 BriefingDescription = ini.GetValue("Briefing", "Description", BriefingDescription);
                 BriefingName = ini.GetValue("Briefing", "Name", BriefingName);
+                BriefingUnitSystem = ini.GetValue("Briefing", "UnitSystem", BriefingUnitSystem);
 
-                CoalitionBlue = ini.GetValue("Coalition", "Blue", CoalitionBlue);
-                CoalitionPlayer = ini.GetValue("Coalition", "Player", CoalitionPlayer);
-                CoalitionRed = ini.GetValue("Coalition", "Red", CoalitionRed);
+                ContextCoalitionBlue = ini.GetValue("Context", "Coalition.Blue", ContextCoalitionBlue);
+                ContextCoalitionPlayer = ini.GetValue("Context", "Coalition.Player", ContextCoalitionPlayer);
+                ContextCoalitionRed = ini.GetValue("Context", "Coalition.Red", ContextCoalitionRed);
+                ContextDecade = ini.GetValue("Context", "Decade", ContextDecade);
 
                 EnvironmentSeason = ini.GetValue("Environment", "Season", EnvironmentSeason);
                 EnvironmentTimeOfDay = ini.GetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);
@@ -500,10 +520,12 @@ namespace BriefingRoom4DCSWorld.Template
                 BriefingDate.SaveToFile(ini);
                 ini.SetValue("Briefing", "Description", BriefingDescription);
                 ini.SetValue("Briefing", "Name", BriefingName);
+                ini.SetValue("Briefing", "UnitSystem", BriefingUnitSystem);
 
-                ini.SetValue("Coalition", "Blue", CoalitionBlue);
-                ini.SetValue("Coalition", "Player", CoalitionPlayer);
-                ini.SetValue("Coalition", "Red", CoalitionRed);
+                ini.SetValue("Context", "Coalition.Blue", ContextCoalitionBlue);
+                ini.SetValue("Context", "Coalition.Player", ContextCoalitionPlayer);
+                ini.SetValue("Context", "Coalition.Red", ContextCoalitionRed);
+                ini.SetValue("Context", "Decade", ContextDecade);
 
                 ini.SetValue("Environment", "Season", EnvironmentSeason);
                 ini.SetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);
@@ -551,14 +573,14 @@ namespace BriefingRoom4DCSWorld.Template
         }
 
         /// <summary>
-        /// "Shortcut" method to get <see cref="CoalitionBlue"/> or <see cref="CoalitionRed"/> by using a <see cref="Coalition"/> parameter.
+        /// "Shortcut" method to get <see cref="ContextCoalitionBlue"/> or <see cref="ContextCoalitionRed"/> by using a <see cref="Coalition"/> parameter.
         /// </summary>
         /// <param name="coalition">Color of the coalition to return</param>
-        /// <returns><see cref="CoalitionBlue"/> or <see cref="CoalitionRed"/></returns>
+        /// <returns><see cref="ContextCoalitionBlue"/> or <see cref="ContextCoalitionRed"/></returns>
         public string GetCoalition(Coalition coalition)
         {
-            if (coalition == Coalition.Red) return CoalitionRed;
-            return CoalitionBlue;
+            if (coalition == Coalition.Red) return ContextCoalitionRed;
+            return ContextCoalitionBlue;
         }
 
         /// <summary>

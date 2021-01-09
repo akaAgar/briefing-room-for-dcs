@@ -59,10 +59,9 @@ namespace BriefingRoom4DCSWorld.Generator
             else // Not fixed date provided, generate a random one
             {
                 // Select a random year from the most recent coalition's decade
-                Decade decade = (Decade)Math.Max((int)coalitions[0].Decade, (int)coalitions[1].Decade);
-                year = Toolbox.GetRandomYearFromDecade(decade);
+                year = Toolbox.GetRandomYearFromDecade(template.ContextDecade);
 
-                DebugLog.Instance.WriteLine($"No fixed date provided in the mission template, generating date in decade {decade}", 1);
+                DebugLog.Instance.WriteLine($"No fixed date provided in the mission template, generating date in decade {template.ContextDecade}", 1);
 
                 if (template.EnvironmentSeason == Season.Random) // Random season, pick any day of the year
                 {

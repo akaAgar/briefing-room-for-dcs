@@ -71,18 +71,30 @@ namespace BriefingRoom4DCSWorld
         /// </summary>
         PlaneStrike,
         /// <summary>
-        /// Tanker plane
+        /// Tanker plane (basket)
         /// </summary>
-        PlaneTanker,
+        PlaneTankerBasket,
+        /// <summary>
+        /// Tanker plane (boom)
+        /// </summary>
+        PlaneTankerBoom,
         /// <summary>
         /// Transport plane
         /// </summary>
         PlaneTransport,
 
         /// <summary>
-        /// Aircraft carrier
+        /// Aircraft carrier (CATOBAR)
         /// </summary>
-        ShipCarrier,
+        ShipCarrierCATOBAR,
+        /// <summary>
+        /// Aircraft carrier (STOBAR)
+        /// </summary>
+        ShipCarrierSTOBAR,
+        /// <summary>
+        /// Aircraft carrier (STOVL)
+        /// </summary>
+        ShipCarrierSTOVL,
         /// <summary>
         /// Cruiser
         /// </summary>

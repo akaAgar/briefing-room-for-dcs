@@ -116,11 +116,11 @@ namespace BriefingRoom4DCSWorld.Generator
             UnitCallsign callsign = new UnitCallsign();
             if (unitsBP[0].IsAircraft) // Aircraft group, name is a callsign
             {
-                callsign = CallsignGenerator.GetCallsign(unitsBP[0].DefaultFamily, coalition);
+                callsign = CallsignGenerator.GetCallsign(unitsBP[0].Families[0], coalition);
                 groupName = callsign.GroupName;
             }
             else // Vehicle/ship/static group, name is a random group name
-                groupName = GetGroupName(unitsBP[0].DefaultFamily);
+                groupName = GetGroupName(unitsBP[0].Families[0]);
 
             // Add group to the mission
             DCSMissionUnitGroup group = new DCSMissionUnitGroup

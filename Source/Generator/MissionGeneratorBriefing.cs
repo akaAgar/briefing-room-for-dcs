@@ -228,14 +228,14 @@ namespace BriefingRoom4DCSWorld.Generator
                 
                 waypointsHTML +=
                     $"<tr><td>{wp.Name}</td>" +
-                    $"<td>{GeneratorTools.ConvertDistance(distance, coalitionsDB[(int)mission.CoalitionPlayer].BriefingUnitSystem)}</td>" +
-                    $"<td>{GeneratorTools.ConvertDistance(totalDistance, coalitionsDB[(int)mission.CoalitionPlayer].BriefingUnitSystem)}</td></tr>";
+                    $"<td>{GeneratorTools.ConvertDistance(distance, template.BriefingUnitSystem)}</td>" +
+                    $"<td>{GeneratorTools.ConvertDistance(totalDistance, template.BriefingUnitSystem)}</td></tr>";
             }
             distance = currentPosition.GetDistanceFrom(mission.InitialPosition);
             totalDistance += distance;
             waypointsHTML += $"<tr><td><strong>LANDING</strong></td>" +
-                $"<td>{GeneratorTools.ConvertDistance(distance, coalitionsDB[(int)mission.CoalitionPlayer].BriefingUnitSystem)}</td>" +
-                $"<td>{GeneratorTools.ConvertDistance(totalDistance, coalitionsDB[(int)mission.CoalitionPlayer].BriefingUnitSystem)}</td></tr>";
+                $"<td>{GeneratorTools.ConvertDistance(distance, template.BriefingUnitSystem)}</td>" +
+                $"<td>{GeneratorTools.ConvertDistance(totalDistance, template.BriefingUnitSystem)}</td></tr>";
             briefing = briefing.Replace("$WAYPOINTS$", waypointsHTML);
 
             return briefing;

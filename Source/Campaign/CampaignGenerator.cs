@@ -146,9 +146,9 @@ namespace BriefingRoom4DCSWorld.Campaign
             template.BriefingDescription = "";
             template.BriefingName = $"{campaignName}, phase {index + 1}";
 
-            template.CoalitionBlue = campaignTemplate.ContextCoalitionsBlue;
-            template.CoalitionPlayer = campaignTemplate.PlayerCoalition;
-            template.CoalitionRed = campaignTemplate.ContextCoalitionsRed;
+            template.ContextCoalitionBlue = campaignTemplate.ContextCoalitionsBlue;
+            template.ContextCoalitionPlayer = campaignTemplate.PlayerCoalition;
+            template.ContextCoalitionRed = campaignTemplate.ContextCoalitionsRed;
 
             template.EnvironmentTimeOfDay = GetTimeOfDayForMission(campaignTemplate.EnvironmentNightMissionChance);
             template.EnvironmentWeather = GetWeatherForMission(campaignTemplate.EnvironmentBadWeatherChance);

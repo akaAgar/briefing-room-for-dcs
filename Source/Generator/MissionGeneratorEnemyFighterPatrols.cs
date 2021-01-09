@@ -75,7 +75,7 @@ namespace BriefingRoom4DCSWorld.Generator
 
             while (totalAirForcePower > 0)
             {
-                string[] unitTypes = enemyCoalitionDB.GetRandomUnits(UnitFamily.PlaneFighter, 1);
+                string[] unitTypes = enemyCoalitionDB.GetRandomUnits(UnitFamily.PlaneFighter, mission.DateTime.Decade, 1);
                 if (unitTypes.Length == 0)
                 {
                     DebugLog.Instance.WriteLine("No valid units found for enemy fighter patrols.", 1, DebugLogMessageErrorLevel.Warning);
@@ -163,7 +163,7 @@ namespace BriefingRoom4DCSWorld.Generator
                     {
                         default: // case MissionTemplateMPFlightGroupTask.Objectives
                             if (objectiveDB.Payload == UnitTaskPayload.Default)
-                                hasAirToAirLoadout = aircraft.DefaultFamily == UnitFamily.PlaneFighter;
+                                hasAirToAirLoadout = aircraft.Families.Contains(UnitFamily.PlaneFighter) || aircraft.Families.Contains(UnitFamily.PlaneInterceptor);
                             else if (objectiveDB.Payload == UnitTaskPayload.AirToAir)
                                 hasAirToAirLoadout = true;
                             else

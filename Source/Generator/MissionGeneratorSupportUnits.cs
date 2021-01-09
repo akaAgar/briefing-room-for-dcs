@@ -53,26 +53,29 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="allyCoalitionDB">Ally coalition database entry</param>
         public UnitFlightGroupBriefingDescription[] CreateUnitGroups(DCSMission mission, DBEntryCoalition allyCoalitionDB)
         {
-            List<UnitFlightGroupBriefingDescription> briefingFGList = new List<UnitFlightGroupBriefingDescription>();
-
-            briefingFGList.Add(AddSupportUnit(mission, allyCoalitionDB, SupportUnitRoles.TankerBasket, new Tacan(47,"TKR", 1134000000))); //TACAN choise due to https://forums.eagle.ru/topic/165047-hornet-mini-updates/page/6/?tab=comments#comment-3803291
-            briefingFGList.Add(AddSupportUnit(mission, allyCoalitionDB, SupportUnitRoles.TankerBoom, new Tacan(48, "TKR", 1135000000)));
-            briefingFGList.Add(AddSupportUnit(mission, allyCoalitionDB, SupportUnitRoles.AWACS)); // AWACS must be added last, so it its inserted first into the spawning queue
+            List<UnitFlightGroupBriefingDescription> briefingFGList = new List<UnitFlightGroupBriefingDescription>
+            {
+                AddSupportUnit(mission, allyCoalitionDB, UnitFamily.PlaneTankerBasket, new Tacan(47, "TKR", 1134000000)), // TACAN choice due to https://forums.eagle.ru/topic/165047-hornet-mini-updates/page/6/?tab=comments#comment-3803291
+                AddSupportUnit(mission, allyCoalitionDB, UnitFamily.PlaneTankerBoom, new Tacan(48, "TKR", 1135000000)),
+                AddSupportUnit(mission, allyCoalitionDB, UnitFamily.PlaneAWACS) // AWACS must be added last, so it its inserted first into the spawning queue
+            };
 
             return (from UnitFlightGroupBriefingDescription fg in briefingFGList where !string.IsNullOrEmpty(fg.Type) select fg).ToArray();
         }
 
         /// <summary>
-        /// 
+        /// Spawn a group of support units.
         /// </summary>
         /// <param name="mission">Mission to which generated units should be added</param>
         /// <param name="allyCoalitionDB">Ally coalition database entry</param>
-        /// <param name="supportRole"></param>
-        private UnitFlightGroupBriefingDescription AddSupportUnit(DCSMission mission, DBEntryCoalition allyCoalitionDB, SupportUnitRoles supportRole, Tacan TACAN = null)
+        /// <param name="unitFamily">Family of support unit to spawn</param>
+        private UnitFlightGroupBriefingDescription AddSupportUnit(DCSMission mission, DBEntryCoalition allyCoalitionDB, UnitFamily unitFamily, Tacan TACAN = null)
         {
-            DebugLog.Instance.WriteLine($"Adding {Toolbox.SplitCamelCase(supportRole)} support units...", 1);
+            DebugLog.Instance.WriteLine($"Adding {Toolbox.SplitCamelCase(unitFamily)} support unit...", 1);
 
-            if (allyCoalitionDB.SupportUnits[(int)supportRole].Length == 0)
+            string[] validUnitTypes = allyCoalitionDB.GetRandomUnits(unitFamily, mission.DateTime.Decade, 1, false);
+
+            if (validUnitTypes.Length == 0)
             {
                 DebugLog.Instance.WriteLine($"No support unit found for this role in coalition \"{allyCoalitionDB.ID}\"", 2);
                 return new UnitFlightGroupBriefingDescription(); // Empty FG info will automatically be discarded
@@ -80,23 +83,23 @@ namespace BriefingRoom4DCSWorld.Generator
 
             string groupLua;
 
-            switch (supportRole)
+            switch (unitFamily)
             {
-                case SupportUnitRoles.AWACS:
+                case UnitFamily.PlaneAWACS:
                     groupLua = "GroupAircraftAWACS";
                     break;
-                case SupportUnitRoles.TankerBasket:
-                case SupportUnitRoles.TankerBoom:
+                case UnitFamily.PlaneTankerBasket:
+                case UnitFamily.PlaneTankerBoom:
                     groupLua = "GroupAircraftTanker";
                     break;
                 default: // Should never happen
                     return new UnitFlightGroupBriefingDescription(); // Empty FG info will automatically be discarded
             }
 
-            string unitType = Toolbox.RandomFrom(allyCoalitionDB.SupportUnits[(int)supportRole]);
-
             Coordinates location = GeneratorTools.GetCoordinatesOnFlightPath(mission, .5) + Coordinates.CreateRandom(8, 12) * Toolbox.NM_TO_METERS;
             Coordinates location2 = location + Coordinates.CreateRandom(12, 20) * Toolbox.NM_TO_METERS;
+
+            string unitType = Toolbox.RandomFrom(validUnitTypes);
 
             DCSMissionUnitGroup group = UnitMaker.AddUnitGroup(
                 mission, new string[] { unitType },
@@ -113,7 +116,7 @@ namespace BriefingRoom4DCSWorld.Generator
 
             return new UnitFlightGroupBriefingDescription(
                 group.Name, group.Units.Length, unitType,
-                (supportRole == SupportUnitRoles.AWACS) ? "Early warning" : "Refueling",
+                (unitFamily == UnitFamily.PlaneAWACS) ? "Early warning" : "Refueling",
                 Database.Instance.GetEntry<DBEntryUnit>(unitType).AircraftData.GetRadioAsString(), TACAN != null? $"TACAN: {TACAN.ToString()}":"");
         }
 

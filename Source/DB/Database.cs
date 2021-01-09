@@ -55,6 +55,11 @@ namespace BriefingRoom4DCSWorld.DB
         public DatabaseCommon Common { get; set; }
 
         /// <summary>
+        /// Array of countries ID used by <see cref="DBEntryCoalition"/> and <see cref="DBEntryUnit"/>
+        /// </summary>
+        public string[] Countries { get; set; }
+
+        /// <summary>
         /// Database entries are stored by type in a dictionary of dictionaries.
         /// </summary>
         private readonly Dictionary<Type, Dictionary<string, DBEntry>> DBEntries;
@@ -92,7 +97,7 @@ namespace BriefingRoom4DCSWorld.DB
         /// <returns>True if the entry exist, false if it doesn't</returns>
         public bool EntryExists<T>(string id) where T : DBEntry
         {
-            return DBEntries[typeof(T)].ContainsKey(id);
+            return DBEntries[typeof(T)].ContainsKey(id ?? "");
         }
 
         /// <summary>
@@ -135,7 +140,7 @@ namespace BriefingRoom4DCSWorld.DB
         {
             return
                 (from DBEntryUnit unit in GetAllEntries<DBEntryUnit>()
-                 where unit.DefaultFamily == UnitFamily.ShipCarrier
+                 where (unit.Families.Intersect(Toolbox.SHIP_CARRIER_FAMILIES).Count() > 0)
                  select unit.ID).OrderBy(x => x).ToArray();
         }
 
@@ -161,6 +166,7 @@ namespace BriefingRoom4DCSWorld.DB
         /// <returns>The entry, or null is no entry with this ID exists</returns>
         public T GetEntry<T>(string id) where T : DBEntry
         {
+            id = id ?? "";
             if (!DBEntries[typeof(T)].ContainsKey(id)) return null;
             return (T)DBEntries[typeof(T)][id];
         }

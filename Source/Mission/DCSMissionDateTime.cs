@@ -58,6 +58,22 @@ namespace BriefingRoom4DCSWorld.Mission
             return $"{((int)Month + 1):00}/{Day:00}/{Year:0000}";
         }
 
+        public Decade Decade
+        {
+            get
+            {
+                if (Year >= 2020) return Decade.Decade2020;
+                if (Year >= 2010) return Decade.Decade2010;
+                if (Year >= 2000) return Decade.Decade2000;
+                if (Year >= 1990) return Decade.Decade1990;
+                if (Year >= 1980) return Decade.Decade1980;
+                if (Year >= 1970) return Decade.Decade1970;
+                if (Year >= 1960) return Decade.Decade1960;
+                if (Year >= 1950) return Decade.Decade1950;
+                return Decade.Decade1940;
+            }
+        }
+
         public string ToTimeString()
         {
             return $"{Hour:00}:{Minute:00}";

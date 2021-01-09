@@ -173,7 +173,8 @@ namespace BriefingRoom4DCSWorld.Generator
             {
                 case UnitFamily.PlaneAWACS:
                     return UnitCallsignFamily.AWACS;
-                case UnitFamily.PlaneTanker:
+                case UnitFamily.PlaneTankerBasket:
+                case UnitFamily.PlaneTankerBoom:
                     return UnitCallsignFamily.Tanker;
                 default:
                     return UnitCallsignFamily.Aircraft;
