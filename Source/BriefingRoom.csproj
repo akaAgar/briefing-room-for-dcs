@@ -155,6 +155,7 @@
     <Compile Include="DB\DBEntryUnit.cs" />
     <Compile Include="Coordinates.cs" />
     <Compile Include="Debug\DebugLogMessageErrorLevel.cs" />
+    <Compile Include="TypeConverters\CheckedListBoxUIEditorUnitMods.cs" />
     <Compile Include="TypeConverters\CheckedListBoxUIEditorEnum.cs" />
     <Compile Include="TypeConverters\CheckedListBoxUIEditorDBEntry.cs" />
     <Compile Include="TypeConverters\DBEntryCarrierConverter.cs" />

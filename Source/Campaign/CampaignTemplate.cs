@@ -165,6 +165,15 @@ namespace BriefingRoom4DCSWorld.Campaign
         public bool OptionsShowEnemyUnits { get; set; }
 
         /// <summary>
+        /// Which unit mods should be enabled in this mission? Make sure units mods are installed and active in your version of DCS World or the units won't be spawned.
+        /// </summary>
+        [Category("Options"), DisplayName("Unit mods")]
+        [Description("Which unit mods should be enabled in this mission? Make sure units mods are installed and active in your version of DCS World or the units won't be spawned.")]
+        [TypeConverter(typeof(StringArrayTypeConverter))]
+        [Editor(typeof(CheckedListBoxUIEditorUnitMods), typeof(UITypeEditor))]
+        public string[] OptionsUnitMods { get; set; }
+
+        /// <summary>
         /// Type of aircraft the player will fly.
         /// </summary>
         [Category("Player"), DisplayName("Aircraft")]
@@ -249,6 +258,7 @@ namespace BriefingRoom4DCSWorld.Campaign
             MissionsTypes = new string[] { Database.Instance.Common.DefaultObjective };
 
             OptionsShowEnemyUnits = true;
+            OptionsUnitMods = new string[0];
 
             PlayerAircraft = TemplateTools.CheckValuePlayerAircraft(Database.Instance.Common.DefaultPlayerAircraft);
             PlayerCoalition = Coalition.Blue;
@@ -288,6 +298,7 @@ namespace BriefingRoom4DCSWorld.Campaign
                 MissionsTypes = ini.GetValueArray<string>("Missions", "Types");
 
                 OptionsShowEnemyUnits = ini.GetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
+                OptionsUnitMods = ini.GetValueArray<string>("Options", "UnitMods");
 
                 PlayerAircraft = ini.GetValue("Player", "Aircraft", PlayerAircraft);
                 PlayerCoalition = ini.GetValue("Player", "Coalition", PlayerCoalition);
@@ -326,6 +337,7 @@ namespace BriefingRoom4DCSWorld.Campaign
                 ini.SetValueArray("Missions", "Types", MissionsTypes);
 
                 ini.SetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
+                ini.SetValueArray<string>("Options", "UnitMods", OptionsUnitMods);
 
                 ini.SetValue("Player", "Aircraft", PlayerAircraft);
                 ini.SetValue("Player", "Coalition", PlayerCoalition);

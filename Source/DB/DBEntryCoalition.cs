@@ -92,9 +92,10 @@ namespace BriefingRoom4DCSWorld.DB
         /// <param name="family">Family of units to choose from</param>
         /// <param name="decade">Decade during which the units must be operated</param>
         /// <param name="count">Number of units to generate</param>
+        /// <param name="unitMods">Unit mods units can belong to</param>
         /// <param name="useDefaultList">If true, and no unit of the proper family is found in the coalition countries, a unit will be selected from the default list. If false, and not unit is found, no unit will be returned.</param>
         /// <returns>Array of IDs of <see cref="DBEntryUnit"/></returns>
-        public string[] GetRandomUnits(UnitFamily family, Decade decade, int count, bool useDefaultList = true)
+        public string[] GetRandomUnits(UnitFamily family, Decade decade, int count, string[] unitMods, bool useDefaultList = true)
         {
             // Count is zero, return an empty array.
             if (count < 1) return new string[0];
@@ -120,7 +121,7 @@ namespace BriefingRoom4DCSWorld.DB
                     break;
             }
 
-            string[] validUnits = SelectValidUnits(family, decade, useDefaultList);
+            string[] validUnits = SelectValidUnits(family, decade, unitMods, useDefaultList);
 
             // Different unit types allowed in the group, pick a random type for each unit.
             if (allowDifferentUnitTypes)
@@ -139,7 +140,7 @@ namespace BriefingRoom4DCSWorld.DB
             }
         }
 
-        private string[] SelectValidUnits(UnitFamily family, Decade decade, bool useDefaultList)
+        private string[] SelectValidUnits(UnitFamily family, Decade decade, string[] unitMods, bool useDefaultList)
         {
             List<string> validUnits = new List<string>();
 
@@ -147,6 +148,7 @@ namespace BriefingRoom4DCSWorld.DB
                 validUnits.AddRange(
                     from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>()
                     where unit.Families.Contains(family) && unit.Operators.ContainsKey(country) &&
+                    (string.IsNullOrEmpty(unit.RequiredMod) || unitMods.Contains(unit.RequiredMod, StringComparer.InvariantCultureIgnoreCase)) &&
                     (unit.Operators[country][0] <= decade) && (unit.Operators[country][1] >= decade)
                     select unit.ID);
             

@@ -65,12 +65,19 @@ namespace BriefingRoom4DCSWorld.DB
         private readonly Dictionary<Type, Dictionary<string, DBEntry>> DBEntries;
 
         /// <summary>
+        /// List of unit mods ID.
+        /// </summary>
+        public string[] UnitsMods { get; set; }
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         public Database()
         {
             Common = new DatabaseCommon();
+            Countries = new string[0];
             DBEntries = new Dictionary<Type, Dictionary<string, DBEntry>>();
+            UnitsMods = new string[0];
         }
 
         /// <summary>

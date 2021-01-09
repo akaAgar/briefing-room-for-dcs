@@ -51,8 +51,9 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="airDefenseLevel">Air defense level setting to use, from the mission template</param>
         /// <param name="coalitionDB">Database entry for the coalition to use for air-defense units</param>
         /// <param name="decade">Decade during which the units must be operated</param>
+        /// <param name="unitMods">Unit mods the units can belong to</param>
         /// <returns>Updated array of units with added embedded air defense units</returns>
-        public static string[] AddEmbeddedAirDefense(string[] units, AmountN airDefenseLevel, DBEntryCoalition coalitionDB, Decade decade)
+        public static string[] AddEmbeddedAirDefense(string[] units, AmountN airDefenseLevel, DBEntryCoalition coalitionDB, Decade decade, string[] unitMods)
         {
             int airDefenseLevelInt = (int)airDefenseLevel.Get();
             // No luck this time, don't add anything
@@ -66,7 +67,7 @@ namespace BriefingRoom4DCSWorld.Generator
             int embeddedCount = Database.Instance.Common.EnemyAirDefense[airDefenseLevelInt].EmbeddedUnitCount.GetValue();
             for (int i = 0; i < embeddedCount; i++)
                 unitsList.AddRange(
-                    coalitionDB.GetRandomUnits(Toolbox.RandomFrom(EMBEDDED_AIR_DEFENSE_FAMILIES), decade, 1));
+                    coalitionDB.GetRandomUnits(Toolbox.RandomFrom(EMBEDDED_AIR_DEFENSE_FAMILIES), decade, 1, unitMods));
 
             if (unitsList.Count == 0) return new string[0];
             // Randomize unit order so embbedded air defense units are not always at the end of the group

@@ -75,7 +75,7 @@ namespace BriefingRoom4DCSWorld.Generator
 
             while (totalAirForcePower > 0)
             {
-                string[] unitTypes = enemyCoalitionDB.GetRandomUnits(UnitFamily.PlaneFighter, mission.DateTime.Decade, 1);
+                string[] unitTypes = enemyCoalitionDB.GetRandomUnits(UnitFamily.PlaneFighter, mission.DateTime.Decade, 1, template.OptionsUnitMods);
                 if (unitTypes.Length == 0)
                 {
                     DebugLog.Instance.WriteLine("No valid units found for enemy fighter patrols.", 1, DebugLogMessageErrorLevel.Warning);

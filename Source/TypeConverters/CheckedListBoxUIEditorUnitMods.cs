@@ -22,11 +22,11 @@ using BriefingRoom4DCSWorld.DB;
 
 namespace BriefingRoom4DCSWorld.TypeConverters
 {
-    public class CheckedListBoxUIEditorDBEntry<T> : CheckedListBoxUIEditor where T : DBEntry
+    public class CheckedListBoxUIEditorUnitMods : CheckedListBoxUIEditor
     {
         protected override string[] GetPossibleArrayValues()
         {
-            return Database.Instance.GetAllEntriesIDs<T>();
+            return Database.Instance.UnitsMods;
         }
     }
 }

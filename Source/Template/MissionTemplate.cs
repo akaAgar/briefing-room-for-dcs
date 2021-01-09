@@ -277,6 +277,15 @@ namespace BriefingRoom4DCSWorld.Template
         public bool OptionsShowEnemyUnits { get; set; }
 
         /// <summary>
+        /// Which unit mods should be enabled in this mission? Make sure units mods are installed and active in your version of DCS World or the units won't be spawned.
+        /// </summary>
+        [Category("Options"), DisplayName("Unit mods")]
+        [Description("Which unit mods should be enabled in this mission? Make sure units mods are installed and active in your version of DCS World or the units won't be spawned.")]
+        [TypeConverter(typeof(StringArrayTypeConverter))]
+        [Editor(typeof(CheckedListBoxUIEditorUnitMods), typeof(UITypeEditor))]
+        public string[] OptionsUnitMods { get; set; }
+
+        /// <summary>
         /// Multiplayer flight groups.
         /// If any flight group is specified here, the mission then becomes a multiplayer mission and all values
         /// in the "Player, single player only" are ignored.
@@ -433,6 +442,7 @@ namespace BriefingRoom4DCSWorld.Template
             OptionsRadioSounds = true;
             OptionsScriptExtensions = new string[0];
             OptionsShowEnemyUnits = true;
+            OptionsUnitMods = new string[0];
 
             PlayerAISkillLevel = BRSkillLevel.Random;
             PlayerCarrier = "";
@@ -494,6 +504,7 @@ namespace BriefingRoom4DCSWorld.Template
                 OptionsRadioSounds = ini.GetValue("Options", "RadioSounds", OptionsRadioSounds);
                 OptionsScriptExtensions = ini.GetValueArray<string>("Options", "ScriptExtensions");
                 OptionsShowEnemyUnits = ini.GetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
+                OptionsUnitMods = ini.GetValueArray<string>("Options", "UnitMods");
 
                 PlayerAISkillLevel = ini.GetValue("Player", "AISkillLevel", PlayerAISkillLevel);
                 PlayerCarrier = ini.GetValue("Player", "Carrier", PlayerCarrier);
@@ -558,6 +569,7 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValue("Options", "RadioSounds", OptionsRadioSounds);
                 ini.SetValueArray("Options", "ScriptExtensions", OptionsScriptExtensions);
                 ini.SetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
+                ini.SetValueArray("Options", "UnitMods", OptionsUnitMods);
 
                 ini.SetValue("Player", "AISkillLevel", PlayerAISkillLevel);
                 ini.SetValue("Player", "Carrier", PlayerCarrier);

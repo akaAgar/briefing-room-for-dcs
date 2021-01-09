@@ -51,13 +51,14 @@ namespace BriefingRoom4DCSWorld.Generator
         /// </summary>
         /// <param name="mission">Mission to which generated units should be added</param>
         /// <param name="allyCoalitionDB">Ally coalition database entry</param>
-        public UnitFlightGroupBriefingDescription[] CreateUnitGroups(DCSMission mission, DBEntryCoalition allyCoalitionDB)
+        /// <param name="unitMods">Unit mods selected units can belong to</param>
+        public UnitFlightGroupBriefingDescription[] CreateUnitGroups(DCSMission mission, DBEntryCoalition allyCoalitionDB, string[] unitMods)
         {
             List<UnitFlightGroupBriefingDescription> briefingFGList = new List<UnitFlightGroupBriefingDescription>
             {
-                AddSupportUnit(mission, allyCoalitionDB, UnitFamily.PlaneTankerBasket, new Tacan(47, "TKR", 1134000000)), // TACAN choice due to https://forums.eagle.ru/topic/165047-hornet-mini-updates/page/6/?tab=comments#comment-3803291
-                AddSupportUnit(mission, allyCoalitionDB, UnitFamily.PlaneTankerBoom, new Tacan(48, "TKR", 1135000000)),
-                AddSupportUnit(mission, allyCoalitionDB, UnitFamily.PlaneAWACS) // AWACS must be added last, so it its inserted first into the spawning queue
+                AddSupportUnit(mission, allyCoalitionDB, UnitFamily.PlaneTankerBasket, unitMods, new Tacan(47, "TKR", 1134000000)), // TACAN choice due to https://forums.eagle.ru/topic/165047-hornet-mini-updates/page/6/?tab=comments#comment-3803291
+                AddSupportUnit(mission, allyCoalitionDB, UnitFamily.PlaneTankerBoom, unitMods, new Tacan(48, "TKR", 1135000000)),
+                AddSupportUnit(mission, allyCoalitionDB, UnitFamily.PlaneAWACS, unitMods) // AWACS must be added last, so it its inserted first into the spawning queue
             };
 
             return (from UnitFlightGroupBriefingDescription fg in briefingFGList where !string.IsNullOrEmpty(fg.Type) select fg).ToArray();
@@ -69,11 +70,13 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="mission">Mission to which generated units should be added</param>
         /// <param name="allyCoalitionDB">Ally coalition database entry</param>
         /// <param name="unitFamily">Family of support unit to spawn</param>
-        private UnitFlightGroupBriefingDescription AddSupportUnit(DCSMission mission, DBEntryCoalition allyCoalitionDB, UnitFamily unitFamily, Tacan TACAN = null)
+        /// <param name="unitMods">Unit mods selected units can belong to</param>
+        /// <param name="TACAN">TACAN info for the unit, if any</param>
+        private UnitFlightGroupBriefingDescription AddSupportUnit(DCSMission mission, DBEntryCoalition allyCoalitionDB, UnitFamily unitFamily, string[] unitMods, Tacan TACAN = null)
         {
             DebugLog.Instance.WriteLine($"Adding {Toolbox.SplitCamelCase(unitFamily)} support unit...", 1);
 
-            string[] validUnitTypes = allyCoalitionDB.GetRandomUnits(unitFamily, mission.DateTime.Decade, 1, false);
+            string[] validUnitTypes = allyCoalitionDB.GetRandomUnits(unitFamily, mission.DateTime.Decade, 1, unitMods, false);
 
             if (validUnitTypes.Length == 0)
             {

@@ -101,7 +101,7 @@ namespace BriefingRoom4DCSWorld.Generator
                     GeneratorTools.GetAllySpawnPointCoalition(template));
 
                 UnitMaker.AddUnitGroup(
-                    mission, playerCoalitionDB.GetRandomUnits(ship, mission.DateTime.Decade, 1),
+                    mission, playerCoalitionDB.GetRandomUnits(ship, mission.DateTime.Decade, 1, template.OptionsUnitMods),
                     Side.Ally,
                     spawnPoint.Value.Coordinates,
                     "GroupShip", "UnitShip",

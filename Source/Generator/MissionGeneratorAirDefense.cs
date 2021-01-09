@@ -81,7 +81,8 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="objectiveDB">Mission objective database entry</param>
         /// <param name="coalitionDB">Enemy coalition database entry</param>
         /// <param name="coalition">Coalition of the spawn points air defense must be spawned at, or null to spawn them anywhere</param>
-        public void CreateUnitGroups(DCSMission mission, DBEntryObjective objectiveDB, DBEntryCoalition coalitionDB, Coalition? coalition)
+        /// <param name="unitMods">Unit mods the units can belong to</param>
+        public void CreateUnitGroups(DCSMission mission, DBEntryObjective objectiveDB, DBEntryCoalition coalitionDB, Coalition? coalition, string[] unitMods)
         {
             foreach (AirDefenseRange airDefenseRange in (AirDefenseRange[])Enum.GetValues(typeof(AirDefenseRange)))
             {
@@ -95,7 +96,7 @@ namespace BriefingRoom4DCSWorld.Generator
                     continue;
                 }
 
-                AddAirDefenseUnits(mission, airDefenseRange, coalitionDB, coalition);
+                AddAirDefenseUnits(mission, airDefenseRange, coalitionDB, coalition, unitMods);
             }
         }
 
@@ -107,7 +108,8 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="airDefenseRange">Air-defense range category</param>
         /// <param name="enemyCoalitionDB">Enemy coalition database entry</param>
         /// <param name="coalition">Coalition of the spawn points air defense must be spawned at, or null to spawn them anywhere</param>
-        private void AddAirDefenseUnits(DCSMission mission, AirDefenseRange airDefenseRange, DBEntryCoalition enemyCoalitionDB, Coalition? coalition)
+        /// <param name="unitMods">Unit mods the units can belong to</param>
+        private void AddAirDefenseUnits(DCSMission mission, AirDefenseRange airDefenseRange, DBEntryCoalition enemyCoalitionDB, Coalition? coalition, string[] unitMods)
         {
             // Get the proper number of groups
             int groupCount = Database.Instance.Common.
@@ -153,7 +155,7 @@ namespace BriefingRoom4DCSWorld.Generator
                     return;
                 }
 
-                string[] units = enemyCoalitionDB.GetRandomUnits(Toolbox.RandomFrom(unitFamilies), mission.DateTime.Decade, 1);
+                string[] units = enemyCoalitionDB.GetRandomUnits(Toolbox.RandomFrom(unitFamilies), mission.DateTime.Decade, 1, unitMods);
 
                 DCSMissionUnitGroup group = UnitMaker.AddUnitGroup(
                     mission, units, ally? Side.Ally : Side.Enemy,

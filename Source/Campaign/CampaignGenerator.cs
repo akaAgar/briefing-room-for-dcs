@@ -164,11 +164,12 @@ namespace BriefingRoom4DCSWorld.Campaign
             template.OppositionSkillLevelGround = GetSkillLevel(campaignTemplate.SituationEnemyAirDefense, campaignTemplate.SituationVariation, index, campaignTemplate.MissionsCount);
             template.OppositionUnitsLocation = SpawnPointPreferredCoalition.Any;
 
+            template.OptionsEndMode = MissionEndMode.NoEnd;
             template.OptionsPreferences = new MissionTemplatePreferences[0];
-
             template.OptionsRadioSounds = true;
             template.OptionsScriptExtensions = new string[0];
             template.OptionsShowEnemyUnits = campaignTemplate.OptionsShowEnemyUnits;
+            template.OptionsUnitMods = campaignTemplate.OptionsUnitMods;
 
             template.PlayerAISkillLevel = GetSkillLevel(campaignTemplate.SituationFriendlyAirForce, CampaignDifficultyVariation.Steady, 0, 0);
             template.PlayerEscortCAP = Toolbox.RandomFrom(2, 2, 2, 2, 3, 4, 4);

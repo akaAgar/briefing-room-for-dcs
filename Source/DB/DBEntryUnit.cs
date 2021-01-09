@@ -116,8 +116,6 @@ namespace BriefingRoom4DCSWorld.DB
                 OffsetCoordinates = (from string s in ini.GetValueArray<string>("Unit", "Offset.Coordinates", ';') select new Coordinates(s)).ToArray();
                 OffsetHeading = ini.GetValueArray<double>("Unit", "Offset.Heading");
                 RequiredMod = ini.GetValue<string>("Unit", "RequiredMod");
-                if (!string.IsNullOrEmpty(RequiredMod))
-                    return false; // TODO: Units requiring mods are disabled for the moment, enabled them with mod selection in the template.
 
                 AircraftData = new DBEntryUnitAircraftData();
 
