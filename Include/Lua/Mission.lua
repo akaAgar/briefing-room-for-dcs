@@ -295,11 +295,12 @@ mission =
         ["blue"] = 
         {
             [1] = 80,
-            [2] = 2,
+$USACOUNTRYBLUE$
         }, -- end of ["blue"]
         ["red"] = 
         {
             [1] = 81,
+$USACOUNTRYRED$
         }, -- end of ["red"]
     }, -- end of ["coalitions"]
     ["descriptionText"] = "$BRIEFINGDESCRIPTION$",
