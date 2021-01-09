@@ -52,8 +52,7 @@ namespace BriefingRoom4DCSWorld.DB
                 foreach (UnitFamily family in Toolbox.GetEnumValues<UnitFamily>())
                     foreach (Decade decade in Toolbox.GetEnumValues<Decade>())
                     {
-                        string[] units = GetValidDBEntryIDs<DBEntryUnit>(
-                            ini.GetValueArray<string>($"{decade}", $"{family}"), out string[] invalidUnits);
+                        string[] units = GetValidDBEntryIDs<DBEntryUnit>(ini.GetValueArray<string>($"{decade}", $"{family}"), out string[] invalidUnits);
 
                         foreach (string u in invalidUnits)
                             DebugLog.Instance.WriteLine($"Unit \"{u}\" not found in default unit list \"{ID}\".", DebugLogMessageErrorLevel.Warning);
@@ -61,7 +60,7 @@ namespace BriefingRoom4DCSWorld.DB
                         if (units.Length == 0) continue;
 
                         for (i = (int)decade; i <= (int)Decade.Decade2020; i++)
-                            DefaultUnits[(int)family, (int)decade] = units.ToArray();
+                            DefaultUnits[(int)family, i] = units.ToArray();
                     }
             }
 
