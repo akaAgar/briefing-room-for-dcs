@@ -18,52 +18,8 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using System;
-
 namespace BriefingRoom4DCSWorld
 {
-
-    // Define an extension method in a non-nested static class.
-    public static class Extensions
-    {
-        /// <summary>
-        /// Gets True value if random selects a random option
-        /// </summary>
-        public static AmountN Get(this AmountN amountN)
-        {
-            return AmountN.Random == amountN ? (AmountN)(new Random().Next((int)AmountN.VeryHigh) + 1) : amountN;
-        }
-
-        /// <summary>
-        /// Roles for boolean value
-        /// </summary>
-        public static bool RollChance(this AmountN amountN)
-        {
-            int chance;
-            switch (amountN.Get())
-            {
-                case AmountN.None:
-                    return false;
-                case AmountN.VeryLow:
-                    chance = 90;
-                    break;
-                case AmountN.Low:
-                    chance = 75;
-                    break;
-                case AmountN.High:
-                    chance = 25;
-                    break;
-                case AmountN.VeryHigh:
-                    chance = 10;
-                    break;
-                default:
-                    chance = 50;
-                    break;
-            }
-            return (new Random().Next(1, 100) > chance);
-        }
-    }
-
     /// <summary>
     /// Enumerates various relative amount value, from "very low" to "very high", with a "None" value
     /// </summary>
