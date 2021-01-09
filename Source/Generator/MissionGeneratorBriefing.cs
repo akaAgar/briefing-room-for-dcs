@@ -276,7 +276,7 @@ namespace BriefingRoom4DCSWorld.Generator
             briefing += "\n";
             if(carrier != null){
                 briefing += "Carriers:\n";
-                briefing += $"{carrier.ID} (127.00AM), ILS: 1, TACAN: 74X\n";
+                briefing += $"{carrier.ID} (127.500AM), ILS: 11, TACAN: 74X\n";
                 briefing += "\n";
             }
 
