@@ -198,6 +198,14 @@ namespace BriefingRoom4DCSWorld.Template
         public AmountN OppositionAirForce { get; set; }
 
         /// <summary>
+        /// Chance enemy fighter planes will already be patrolling rather than popping up during the mission on objective completion.
+        /// </summary>
+        [Category("Opposition"), DisplayName("CAP on station")]
+        [Description("Chance enemy fighter planes will already be patrolling rather than popping up during the mission on objective completion.")]
+        [TypeConverter(typeof(EnumTypeConverter<AmountN>))]
+        public AmountN OppositionOnStationChance { get; set; }
+
+        /// <summary>
         /// Skill level of enemy planes and helicopters.
         /// </summary>
         [Category("Opposition"), DisplayName("Skill level, aircraft")]
@@ -415,6 +423,7 @@ namespace BriefingRoom4DCSWorld.Template
 
             OppositionAirDefense = AmountN.Random;
             OppositionAirForce = AmountN.Random;
+            OppositionOnStationChance = AmountN.Random;
             OppositionSkillLevelAir = BRSkillLevel.Random;
             OppositionSkillLevelGround = BRSkillLevel.Random;
             OppositionUnitsLocation = SpawnPointPreferredCoalition.Any;
@@ -475,6 +484,7 @@ namespace BriefingRoom4DCSWorld.Template
 
                 OppositionAirDefense = ini.GetValue("Opposition", "AirDefense", OppositionAirDefense);
                 OppositionAirForce = ini.GetValue("Opposition", "AirForce", OppositionAirForce);
+                OppositionOnStationChance = ini.GetValue("Opposition", "OnStationChance", OppositionOnStationChance);
                 OppositionSkillLevelAir = ini.GetValue("Opposition", "SkillLevel.Air", OppositionSkillLevelAir);
                 OppositionSkillLevelGround = ini.GetValue("Opposition", "SkillLevel.Ground", OppositionSkillLevelGround);
                 OppositionUnitsLocation = ini.GetValue("Opposition", "UnitsLocation", OppositionUnitsLocation);
@@ -538,6 +548,7 @@ namespace BriefingRoom4DCSWorld.Template
 
                 ini.SetValue("Opposition", "AirDefense", OppositionAirDefense);
                 ini.SetValue("Opposition", "AirForce", OppositionAirForce);
+                ini.SetValue("Opposition", "OnStationChance", OppositionOnStationChance);
                 ini.SetValue("Opposition", "SkillLevel.Air", OppositionSkillLevelAir);
                 ini.SetValue("Opposition", "SkillLevel.Ground", OppositionSkillLevelGround);
                 ini.SetValue("Opposition", "UnitsLocation", OppositionUnitsLocation);

@@ -161,6 +161,43 @@ namespace BriefingRoom4DCSWorld
         }
 
         /// <summary>
+        /// Return a random value value if <see cref="AmountN"/> is set to random, else returns the selected value.
+        /// </summary>
+        public static AmountN Get(this AmountN amountN)
+        {
+            return AmountN.Random == amountN ? (AmountN)(RandomInt((int)AmountN.VeryHigh) + 1) : amountN;
+        }
+
+        /// <summary>
+        /// Rolls for boolean value.
+        /// </summary>
+        public static bool RollChance(this AmountN amountN)
+        {
+            int chance;
+            switch (amountN.Get())
+            {
+                case AmountN.None:
+                    return false;
+                case AmountN.VeryLow:
+                    chance = 90;
+                    break;
+                case AmountN.Low:
+                    chance = 75;
+                    break;
+                case AmountN.High:
+                    chance = 25;
+                    break;
+                case AmountN.VeryHigh:
+                    chance = 10;
+                    break;
+                default:
+                    chance = 50;
+                    break;
+            }
+            return (RandomMinMax(1, 100) > chance);
+        }
+
+        /// <summary>
         /// Degrees to radians multipier constant.
         /// </summary>
         public const double DEGREES_TO_RADIANS = 0.0174533;

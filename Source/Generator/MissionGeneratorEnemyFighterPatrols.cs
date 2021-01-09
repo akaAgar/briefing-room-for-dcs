@@ -119,7 +119,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 else
                 {
                     DebugLog.Instance.WriteLine($"Added a group of {groupSize}× {unitTypes[0]} at {spawnPoint.Value.Coordinates}");
-                    mission.AircraftSpawnQueue.Add(new DCSMissionAircraftSpawnQueueItem(group.GroupID, false));
+                    mission.AircraftSpawnQueue.Add(new DCSMissionAircraftSpawnQueueItem(group.GroupID, template.OppositionOnStationChance.RollChance()));
                 }
 
                 aircraftCount += groupSize;
