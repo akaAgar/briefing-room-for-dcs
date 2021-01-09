@@ -24,7 +24,7 @@
         ["formation_template"] = "",
         ["y"] = $Y$,
         ["x"] = $X$,
-        ["name"] = "$NAME$",
+        ["name"] = "",
         ["ETA_locked"] = true,
         ["speed"] = 5.5555555555556,
         ["action"] = "Off Road",
