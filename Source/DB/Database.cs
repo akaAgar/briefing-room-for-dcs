@@ -97,7 +97,7 @@ namespace BriefingRoom4DCSWorld.DB
         /// <returns>True if the entry exist, false if it doesn't</returns>
         public bool EntryExists<T>(string id) where T : DBEntry
         {
-            return DBEntries[typeof(T)].ContainsKey(id);
+            return DBEntries[typeof(T)].ContainsKey(id ?? "");
         }
 
         /// <summary>
@@ -166,6 +166,7 @@ namespace BriefingRoom4DCSWorld.DB
         /// <returns>The entry, or null is no entry with this ID exists</returns>
         public T GetEntry<T>(string id) where T : DBEntry
         {
+            id = id ?? "";
             if (!DBEntries[typeof(T)].ContainsKey(id)) return null;
             return (T)DBEntries[typeof(T)][id];
         }
