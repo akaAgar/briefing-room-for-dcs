@@ -39,7 +39,7 @@ namespace BriefingRoom4DCSWorld.Template
         /// <summary>
         /// Maximum possible year.
         /// </summary>
-        private const int MAX_YEAR = 2020;
+        private const int MAX_YEAR = 2029;
 
         [DisplayName("(Enable custom date)"), Description("If enabled, the custom date will be used. If not, a random mission date will be generated.")]
         [RefreshProperties(RefreshProperties.All)]
