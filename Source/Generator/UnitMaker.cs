@@ -130,7 +130,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 Category = unitsBP[0].Category,
                 Coalition = coalition,
                 Coordinates = airbaseID != 0?  groupUnits[0].Coordinates : coordinates,
-                Coordinates2 = coordinates2 ?? coordinates,
+                Coordinates2 = coordinates2 ?? coordinates + Coordinates.CreateRandom(1, 2) * Toolbox.NM_TO_METERS,
                 Flags = flags,
                 GroupID = NextGroupID,
                 LuaGroup = groupLua,
