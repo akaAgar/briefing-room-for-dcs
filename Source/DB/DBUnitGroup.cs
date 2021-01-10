@@ -56,7 +56,7 @@ namespace BriefingRoom4DCSWorld.DB
         /// <summary>
         /// Lua script (loaded from Include\Lua\Mission) to use for this group.
         /// </summary>
-        public string LuaGroup { get; }
+        public string[] LuaGroup { get; }
 
         /// <summary>
         /// Lua script (loaded from Include\Lua\Mission) to use for each unit in this group.
@@ -94,8 +94,9 @@ namespace BriefingRoom4DCSWorld.DB
             }
 
             Flags = ini.GetValueArrayAsEnumFlags<DBUnitGroupFlags>(section, "Flags");
-            LuaGroup = ini.GetValue<string>(section, "Lua.Group");
+            LuaGroup = ini.GetValueArray<string>(section, "Lua.Group");
             LuaUnit = ini.GetValue<string>(section, "Lua.Unit");
+            // TODO: check LuaGroup and LuaUnit Lua files exist in Include/Lua
 
             List<TheaterLocationSpawnPointType> spList = new List<TheaterLocationSpawnPointType>(ini.GetValueArray<TheaterLocationSpawnPointType>(section, "SpawnPoints"));
             if (spList.Count == 0) spList.AddRange(Toolbox.GetEnumValues<TheaterLocationSpawnPointType>()); // No spawn point type means all spawn point types
@@ -106,8 +107,9 @@ namespace BriefingRoom4DCSWorld.DB
 
             if (Families.Length > 0)
             {
-                if (!File.Exists($"{BRPaths.INCLUDE_LUA_UNITS}{LuaGroup}.lua"))
-                    DebugLog.Instance.WriteLine($"File \"Include\\Lua\\Units\\{LuaGroup}.lua\" doesn't exist.", 1, DebugLogMessageErrorLevel.Warning);
+                foreach (string lGroup in LuaGroup)
+                    if (!File.Exists($"{BRPaths.INCLUDE_LUA_UNITS}{lGroup}.lua"))
+                        DebugLog.Instance.WriteLine($"File \"Include\\Lua\\Units\\{lGroup}.lua\" doesn't exist.", 1, DebugLogMessageErrorLevel.Warning);
 
                 if (!File.Exists($"{BRPaths.INCLUDE_LUA_UNITS}{LuaUnit}.lua"))
                     DebugLog.Instance.WriteLine($"File \"Include\\Lua\\Units\\{LuaUnit}.lua\" doesn't exist.", 1, DebugLogMessageErrorLevel.Warning);

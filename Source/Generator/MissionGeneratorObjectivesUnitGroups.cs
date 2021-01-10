@@ -122,7 +122,7 @@ namespace BriefingRoom4DCSWorld.Generator
                     mission, units,
                     side,
                     spawnPoint != null? spawnPoint.Value.Coordinates : mission.Objectives[i].Coordinates,
-                    unitGroup.LuaGroup, unitGroup.LuaUnit,
+                    Toolbox.RandomFrom(unitGroup.LuaGroup), unitGroup.LuaUnit,
                     skillLevel, flags, coordinates2: getDestination(unitGroup, mission, i));
 
                 // Something went wrong, abort mission generation, objective unit groups are required for the mission to work properly.
