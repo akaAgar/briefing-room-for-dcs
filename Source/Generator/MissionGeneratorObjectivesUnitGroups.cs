@@ -131,7 +131,8 @@ namespace BriefingRoom4DCSWorld.Generator
                         group.Coordinates2, "Destination",
                         1.0,
                         1.0));
-                    new MissionGeneratorFlightPlan().AddExtraWaypoints(group, template, true);
+                    if (unitGroup.ExtraWaypoints)
+                        new MissionGeneratorFlightPlan().AddExtraWaypoints(group, template, true);
                 }
 
                 // Something went wrong, abort mission generation, objective unit groups are required for the mission to work properly.

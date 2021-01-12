@@ -71,7 +71,12 @@ namespace BriefingRoom4DCSWorld.DB
         /// <summary>
         /// Find spawn point within this min max from original spawn point (for DestinationObjective) flagged units
         /// </summary>
-        public MinMaxD DistanceFromPoint { get; }   
+        public MinMaxD DistanceFromPoint { get; }
+
+        /// <summary>
+        /// Should should the units have extra waypoints
+        /// </summary>
+        public bool ExtraWaypoints { get; private set; }
 
         /// <summary>
         /// Constructor.
@@ -82,6 +87,7 @@ namespace BriefingRoom4DCSWorld.DB
         {
             Count = ini.GetValue<MinMaxI>(section, "Count");
             DistanceFromPoint = ini.GetValue<MinMaxD>(section, "DistanceFromPoint");
+            ExtraWaypoints = ini.GetValue<bool>(section, "ExtraWaypoints", false);
 
             Families = ini.GetValueArray<UnitFamily>(section, "Families");
             if (Families.Length > 0) // If the group has at least one unit family (no families mean the group is disabled)...
