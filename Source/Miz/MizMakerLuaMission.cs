@@ -154,8 +154,12 @@ namespace BriefingRoom4DCSWorld.Miz
             return lua;
         }
 
-        private void CreatePlayerWaypoints(ref string groupLua, DCSMissionUnitGroup group, DBEntryUnit unitBP)
+
+        private void CreateWaypoints(ref string groupLua, DCSMissionUnitGroup group, DBEntryUnit unitBP)
         {
+            if (group.Waypoints.Count == 0)
+                return;
+            
             string waypointLua = LuaTools.ReadIncludeLuaFile("Mission\\WaypointPlayer.lua");
             string allWaypointsLua = "";
 
@@ -168,15 +172,20 @@ namespace BriefingRoom4DCSWorld.Miz
                 LuaTools.ReplaceKey(ref waypoint, "Y", group.Waypoints[i].Coordinates.Y);
 
                 double waypointAltitude, waypointSpeed;
-                if (unitBP == null) // Unit not found in the database, use default values for the unit category
-                {
-                    waypointAltitude = GetAircraftCruiseAltitude(unitBP.Category, Amount.Average);
-                    waypointSpeed = GetAircraftCruiseSpeed(unitBP.Category, Amount.Average);
-                }
-                else
-                {
-                    waypointAltitude = GetAircraftCruiseAltitude(unitBP.Category, unitBP.AircraftData.CruiseAltitude);
-                    waypointSpeed = GetAircraftCruiseSpeed(unitBP.Category, unitBP.AircraftData.CruiseAltitude);
+                if (unitBP.IsAircraft){
+                    if (unitBP == null) // Unit not found in the database, use default values for the unit category
+                    {
+                        waypointAltitude = GetAircraftCruiseAltitude(unitBP.Category, Amount.Average);
+                        waypointSpeed = GetAircraftCruiseSpeed(unitBP.Category, Amount.Average);
+                    }
+                    else
+                    {
+                        waypointAltitude = GetAircraftCruiseAltitude(unitBP.Category, unitBP.AircraftData.CruiseAltitude);
+                        waypointSpeed = GetAircraftCruiseSpeed(unitBP.Category, unitBP.AircraftData.CruiseAltitude);
+                    }
+                } else {
+                    waypointAltitude = 8;
+                    waypointSpeed = 5.5555;
                 }
 
                 waypointAltitude *= group.Waypoints[i].AltitudeMultiplier;
@@ -188,8 +197,9 @@ namespace BriefingRoom4DCSWorld.Miz
                 allWaypointsLua += waypoint + "\n";
             }
 
-            LuaTools.ReplaceKey(ref groupLua, "PlayerWaypoints", allWaypointsLua);
-            LuaTools.ReplaceKey(ref groupLua, "LastPlayerWaypointIndex", group.Waypoints.Count + 2);
+            LuaTools.ReplaceKey(ref groupLua, "Waypoints", allWaypointsLua);
+            if (group.IsAPlayerGroup())
+                LuaTools.ReplaceKey(ref groupLua, "LastPlayerWaypointIndex", group.Waypoints.Count + 2);
         }
 
         private void CreateUnitGroups(ref string lua, DCSMission mission)
@@ -234,9 +244,7 @@ namespace BriefingRoom4DCSWorld.Miz
                 DBEntryUnit unitBP = Database.Instance.GetEntry<DBEntryUnit>(group.UnitID);
                 if (unitBP == null) continue; // TODO: error message?
 
-                // Group is a client group, requires player waypoints
-                if (group.IsAPlayerGroup())
-                    CreatePlayerWaypoints(ref groupLua, group, unitBP);
+                CreateWaypoints(ref groupLua, group, unitBP);
 
                 string allUnitsLua = "";
                 for (i = 0; i < group.Units.Length; i++)

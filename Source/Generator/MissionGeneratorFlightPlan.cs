@@ -70,31 +70,31 @@ namespace BriefingRoom4DCSWorld.Generator
         ///// </summary>
         ///// <param name="mission">Mission</param>
         ///// <param name="template">Mission template</param>
-        public void AddExtraWaypoints(DCSMission mission, DCSMissionUnitGroup group, MissionTemplate template, bool preObj = true)
+        public void AddExtraWaypoints(DCSMissionUnitGroup group, MissionTemplate template, bool preObj = true)
         {
             // No objective waypoints, or no extra waypoints required, stop here
-            if (!template.PlayerExtraWaypoints || (group.Waypoints.Count == 0))
+            if ((group.IsAPlayerGroup() && !template.PlayerExtraWaypoints) || (group.Waypoints.Count == 0))
                 return;
 
             DebugLog.Instance.WriteLine("Generating extra waypoints...");
 
             int extraWaypointsCount = Toolbox.RandomFrom(EXTRA_WAYPOINT_COUNT);
             List<Coordinates> extraWaypoints = new List<Coordinates>();
-            Coordinates startingPos = preObj? mission.InitialPosition : group.Waypoints.Last().Coordinates;
+            Coordinates startingPos = preObj? group.Waypoints.First().Coordinates : group.Waypoints.Last().Coordinates;
             for (int j = 0; j < extraWaypointsCount; j++)
             {
                 if(preObj)
                     startingPos = Coordinates.Lerp(startingPos, group.Waypoints[0].Coordinates, new MinMaxD(0.2, 0.8).GetValue()).CreateNearRandom(0, 20000);
                 else
-                    startingPos = Coordinates.Lerp(startingPos, mission.InitialPosition, new MinMaxD(0.2, 0.8).GetValue()).CreateNearRandom(0, 20000);
+                    startingPos = Coordinates.Lerp(startingPos, group.Waypoints.First().Coordinates, new MinMaxD(0.2, 0.8).GetValue()).CreateNearRandom(0, 20000);
                     extraWaypoints.Add(startingPos);
             }
 
             int count = 1;
-            extraWaypoints =  extraWaypoints.OrderBy(x => preObj? mission.InitialPosition.GetDistanceFrom(x): -mission.InitialPosition.GetDistanceFrom(x)).ToList();
+            extraWaypoints =  extraWaypoints.OrderBy(x => preObj? group.Waypoints.First().Coordinates.GetDistanceFrom(x): -group.Waypoints.First().Coordinates.GetDistanceFrom(x)).ToList();
             if (preObj) {// Adding waypoints before first objective waypoint
                 group.Waypoints.InsertRange(0, extraWaypoints.Select(x => new DCSMissionWaypoint(x, $"WP{count++:00}", 1.0)));
-                AddExtraWaypoints(mission, group, template, false);
+                AddExtraWaypoints(group, template, false);
             } else // Add waypoints after last objective waypoint
                 group.Waypoints.AddRange(extraWaypoints.Select(x =>new DCSMissionWaypoint(x, $"WP{group.Waypoints.Count + count++:00}", 1.0)));
         }

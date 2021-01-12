@@ -125,6 +125,15 @@ namespace BriefingRoom4DCSWorld.Generator
                     Toolbox.RandomFrom(unitGroup.LuaGroup), unitGroup.LuaUnit,
                     skillLevel, flags, coordinates2: getDestination(unitGroup, mission, i));
 
+                if (group.LuaGroup == "GroupAircraftMove") {
+                     group.Waypoints.Add(
+                    new DCSMissionWaypoint(
+                        group.Coordinates2, "Destination",
+                        1.0,
+                        1.0));
+                    new MissionGeneratorFlightPlan().AddExtraWaypoints(group, template, true);
+                }
+
                 // Something went wrong, abort mission generation, objective unit groups are required for the mission to work properly.
                 if (group == null)
                     throw new Exception($"Failed to create objective unit group for objective #{i + 1} made of the following units: {string.Join(", ", units)}");
