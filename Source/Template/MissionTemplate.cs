@@ -241,23 +241,14 @@ namespace BriefingRoom4DCSWorld.Template
         [TypeConverter(typeof(EnumTypeConverter<MissionEndMode>))]
         public MissionEndMode OptionsEndMode { get; set; }
 
-        ///// <summary>
-        ///// Special preferences and options to apply to this mission.
-        ///// </summary>
-        //[Category("Options"), DisplayName("Preferences")]
-        //[Description("Special preferences and options to apply to this mission.")]
-        //[TypeConverter(typeof(EnumArrayTypeConverter<MissionTemplatePreferences>))]
-        //[Editor(typeof(CheckedListBoxUIEditorEnum<MissionTemplatePreferences>), typeof(UITypeEditor))]
-        [Browsable(false)]
-        public MissionTemplatePreferences[] OptionsPreferences { get; set; }
-
         /// <summary>
-        /// Should audio radio messages be played? If disabled, messages will only be displayed as text.
+        /// Preferences and options to apply to this mission.
         /// </summary>
-        [Category("Options"), DisplayName("Play radio sounds")]
-        [Description("Should audio radio messages be played? If disabled, messages will only be displayed as text.")]
-        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
-        public bool OptionsRadioSounds { get; set; }
+        [Category("Options"), DisplayName("Preferences")]
+        [Description("Preferences and options to apply to this mission.")]
+        [TypeConverter(typeof(EnumArrayTypeConverter<MissionTemplatePreferences>))]
+        [Editor(typeof(CheckedListBoxUIEditorEnum<MissionTemplatePreferences>), typeof(UITypeEditor))]
+        public MissionTemplatePreferences[] OptionsPreferences { get; set; }
 
         /// <summary>
         /// Script extensions to include in this mission to provide additional features.
@@ -267,14 +258,6 @@ namespace BriefingRoom4DCSWorld.Template
         [TypeConverter(typeof(StringArrayTypeConverter))]
         [Editor(typeof(CheckedListBoxUIEditorDBEntry<DBEntryExtension>), typeof(UITypeEditor))]
         public string[] OptionsScriptExtensions { get; set; }
-
-        /// <summary>
-        /// Should enemy units be shown on the F10 map, mission planning, MFD SA pages, etc?
-        /// </summary>
-        [Category("Options"), DisplayName("Show enemy units on map")]
-        [Description("Should enemy units be shown on the F10 map, mission planning, MFD SA pages, etc?")]
-        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
-        public bool OptionsShowEnemyUnits { get; set; }
 
         /// <summary>
         /// Which unit mods should be enabled in this mission? Make sure units mods are installed and active in your version of DCS World or the units won't be spawned.
@@ -356,14 +339,6 @@ namespace BriefingRoom4DCSWorld.Template
         private int PlayerEscortSEAD_;
 
         /// <summary>
-        /// Should extra ingress/egress waypoints be generated in addition to the objective waypoints?
-        /// </summary>
-        [Category("Player"), DisplayName("Extra Waypoints")]
-        [Description("Should extra ingress/egress waypoints be generated in addition to the objective waypoints?")]
-        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
-        public bool PlayerExtraWaypoints { get; set; }
-
-        /// <summary>
         /// Intensity and quality of friendly air defense.
         /// </summary>
         [Category("Player"), DisplayName("Air defense")]
@@ -439,16 +414,13 @@ namespace BriefingRoom4DCSWorld.Template
 
             OptionsEndMode = MissionEndMode.NoEnd;
             OptionsPreferences = new MissionTemplatePreferences[0];
-            OptionsRadioSounds = true;
             OptionsScriptExtensions = new string[0];
-            OptionsShowEnemyUnits = true;
             OptionsUnitMods = new string[0];
 
             PlayerAISkillLevel = BRSkillLevel.Random;
             PlayerCarrier = "";
             PlayerEscortCAP = 0;
             PlayerEscortSEAD = 0;
-            PlayerExtraWaypoints = false;
             PlayerFriendlyAirDefense = AmountN.Random;
             PlayerStartLocation = PlayerStartLocation.Runway;
 
@@ -501,16 +473,13 @@ namespace BriefingRoom4DCSWorld.Template
 
                 OptionsEndMode = ini.GetValue("Options", "EndMode", OptionsEndMode);
                 OptionsPreferences = ini.GetValueArray<MissionTemplatePreferences>("Options", "Preferences");
-                OptionsRadioSounds = ini.GetValue("Options", "RadioSounds", OptionsRadioSounds);
                 OptionsScriptExtensions = ini.GetValueArray<string>("Options", "ScriptExtensions");
-                OptionsShowEnemyUnits = ini.GetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
                 OptionsUnitMods = ini.GetValueArray<string>("Options", "UnitMods");
 
                 PlayerAISkillLevel = ini.GetValue("Player", "AISkillLevel", PlayerAISkillLevel);
                 PlayerCarrier = ini.GetValue("Player", "Carrier", PlayerCarrier);
                 PlayerEscortCAP = ini.GetValue("Player", "EscortCAP", PlayerEscortCAP);
                 PlayerEscortSEAD = ini.GetValue("Player", "EscortSEAD", PlayerEscortSEAD);
-                PlayerExtraWaypoints = ini.GetValue("Player", "ExtraWaypoints", PlayerExtraWaypoints);
                 PlayerFriendlyAirDefense = ini.GetValue("Player", "FriendlyAirDefense", PlayerFriendlyAirDefense);
                 PlayerStartLocation = ini.GetValue("Player", "StartLocation", PlayerStartLocation);
 
@@ -566,16 +535,13 @@ namespace BriefingRoom4DCSWorld.Template
 
                 ini.SetValue("Options", "EndMode", OptionsEndMode);
                 ini.SetValueArray("Options", "Preferences", OptionsPreferences);
-                ini.SetValue("Options", "RadioSounds", OptionsRadioSounds);
                 ini.SetValueArray("Options", "ScriptExtensions", OptionsScriptExtensions);
-                ini.SetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
                 ini.SetValueArray("Options", "UnitMods", OptionsUnitMods);
 
                 ini.SetValue("Player", "AISkillLevel", PlayerAISkillLevel);
                 ini.SetValue("Player", "Carrier", PlayerCarrier);
                 ini.SetValue("Player", "EscortCAP", PlayerEscortCAP);
                 ini.SetValue("Player", "EscortSEAD", PlayerEscortSEAD);
-                ini.SetValue("Player", "ExtraWaypoints", PlayerExtraWaypoints);
                 ini.SetValue("Player", "FriendlyAirDefense", PlayerFriendlyAirDefense);
                 ini.SetValue("Player", "StartLocation", PlayerStartLocation);
 

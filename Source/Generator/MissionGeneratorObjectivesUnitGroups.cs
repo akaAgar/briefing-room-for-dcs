@@ -82,7 +82,7 @@ namespace BriefingRoom4DCSWorld.Generator
 
 
             DCSMissionUnitGroupFlags flags =
-                GeneratorTools.ShouldUnitBeHidden(unitGroup, template.OptionsShowEnemyUnits) ?
+                GeneratorTools.ShouldUnitBeHidden(unitGroup, !template.OptionsPreferences.Contains(MissionTemplatePreferences.HideEnemyUnits)) ?
                 DCSMissionUnitGroupFlags.Hidden : 0;
 
             for (int i = 0; i < mission.Objectives.Length; i++)

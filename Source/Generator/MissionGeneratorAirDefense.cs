@@ -23,6 +23,7 @@ using BriefingRoom4DCSWorld.Debug;
 using BriefingRoom4DCSWorld.Mission;
 using BriefingRoom4DCSWorld.Template;
 using System;
+using System.Linq;
 
 namespace BriefingRoom4DCSWorld.Generator
 {
@@ -71,7 +72,7 @@ namespace BriefingRoom4DCSWorld.Generator
             distsFromCenter = Database.Instance.Common.EnemyAirDefenseDistanceFromObjectives;
             minDistFromOpposingPoint = Database.Instance.Common.EnemyAirDefenseDistanceFromTakeOffLocation;
             skillLevel = template.OppositionSkillLevelGround;
-            optionsShowEnemyUnits = !template.OptionsShowEnemyUnits ? DCSMissionUnitGroupFlags.Hidden : 0;
+            optionsShowEnemyUnits = template.OptionsPreferences.Contains(MissionTemplatePreferences.HideEnemyUnits) ? DCSMissionUnitGroupFlags.Hidden : 0;
         }
 
         /// <summary>

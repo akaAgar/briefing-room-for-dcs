@@ -73,7 +73,7 @@ namespace BriefingRoom4DCSWorld.Generator
         public void AddExtraWaypoints(DCSMission mission, MissionTemplate template, bool preObj = true)
         {
             // No objective waypoints, or no extra waypoints required, stop here
-            if (!template.PlayerExtraWaypoints || (mission.Waypoints.Count == 0))
+            if (!template.OptionsPreferences.Contains(MissionTemplatePreferences.AddExtraWaypoints) || (mission.Waypoints.Count == 0))
                 return;
 
             DebugLog.Instance.WriteLine("Generating extra waypoints...");

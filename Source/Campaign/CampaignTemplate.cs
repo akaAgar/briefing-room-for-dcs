@@ -157,12 +157,13 @@ namespace BriefingRoom4DCSWorld.Campaign
         private string[] MissionsTypes_;
 
         /// <summary>
-        /// Should enemy units be shown on the F10 map, mission planning, MFD SA pages, etc?
+        /// Preferences and options to apply to this campaign.
         /// </summary>
-        [Category("Options"), DisplayName("Show enemy units on map")]
-        [Description("Should enemy units be shown on the F10 map, mission planning, MFD SA pages, etc?")]
-        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
-        public bool OptionsShowEnemyUnits { get; set; }
+        [Category("Options"), DisplayName("Preferences")]
+        [Description("Preferences and options to apply to this campaign.")]
+        [TypeConverter(typeof(EnumArrayTypeConverter<MissionTemplatePreferences>))]
+        [Editor(typeof(CheckedListBoxUIEditorEnum<MissionTemplatePreferences>), typeof(UITypeEditor))]
+        public MissionTemplatePreferences[] OptionsPreferences { get; set; }
 
         /// <summary>
         /// Which unit mods should be enabled in this mission? Make sure units mods are installed and active in your version of DCS World or the units won't be spawned.
@@ -257,7 +258,7 @@ namespace BriefingRoom4DCSWorld.Campaign
             MissionsObjectiveDistance = Amount.Average;
             MissionsTypes = new string[] { Database.Instance.Common.DefaultObjective };
 
-            OptionsShowEnemyUnits = true;
+            OptionsPreferences = new MissionTemplatePreferences[0];
             OptionsUnitMods = new string[0];
 
             PlayerAircraft = TemplateTools.CheckValuePlayerAircraft(Database.Instance.Common.DefaultPlayerAircraft);
@@ -297,7 +298,7 @@ namespace BriefingRoom4DCSWorld.Campaign
                 MissionsObjectiveDistance = ini.GetValue("Missions", "ObjectiveDistance", MissionsObjectiveDistance);
                 MissionsTypes = ini.GetValueArray<string>("Missions", "Types");
 
-                OptionsShowEnemyUnits = ini.GetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
+                OptionsPreferences = ini.GetValueArray<MissionTemplatePreferences>("Options", "Preferences");
                 OptionsUnitMods = ini.GetValueArray<string>("Options", "UnitMods");
 
                 PlayerAircraft = ini.GetValue("Player", "Aircraft", PlayerAircraft);
@@ -336,8 +337,8 @@ namespace BriefingRoom4DCSWorld.Campaign
                 ini.SetValue("Missions", "ObjectiveDistance", MissionsObjectiveDistance);
                 ini.SetValueArray("Missions", "Types", MissionsTypes);
 
-                ini.SetValue("Options", "ShowEnemyUnits", OptionsShowEnemyUnits);
-                ini.SetValueArray<string>("Options", "UnitMods", OptionsUnitMods);
+                ini.SetValueArray("Options", "Preferences", OptionsPreferences);
+                ini.SetValueArray("Options", "UnitMods", OptionsUnitMods);
 
                 ini.SetValue("Player", "Aircraft", PlayerAircraft);
                 ini.SetValue("Player", "Coalition", PlayerCoalition);

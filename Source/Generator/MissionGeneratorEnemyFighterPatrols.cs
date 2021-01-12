@@ -68,7 +68,7 @@ namespace BriefingRoom4DCSWorld.Generator
 
             DebugLog.Instance.WriteLine($"Enemy air power set to {totalAirForcePower}...", 1);
 
-            DCSMissionUnitGroupFlags flags = template.OptionsShowEnemyUnits ? 0 : DCSMissionUnitGroupFlags.Hidden;
+            DCSMissionUnitGroupFlags flags = template.OptionsPreferences.Contains(MissionTemplatePreferences.HideEnemyUnits) ? DCSMissionUnitGroupFlags.Hidden : 0;
 
             int aircraftCount = 0;
             int groupCount = 0;

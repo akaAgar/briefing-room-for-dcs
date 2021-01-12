@@ -198,7 +198,7 @@ namespace BriefingRoom4DCSWorld.Generator
             }
 
             // Set if radio sounds are enabled
-            mission.RadioSounds = template.OptionsRadioSounds;
+            mission.RadioSounds = !template.OptionsPreferences.Contains(MissionTemplatePreferences.DisableRadioSounds);
 
             // Add common .ogg vorbis files and make sure each only appears only once.
             mission.OggFiles.AddRange(Database.Instance.Common.CommonOGG);

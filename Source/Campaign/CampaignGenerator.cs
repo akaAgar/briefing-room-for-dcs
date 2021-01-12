@@ -26,6 +26,7 @@ using BriefingRoom4DCSWorld.Miz;
 using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 
 namespace BriefingRoom4DCSWorld.Campaign
 {
@@ -165,10 +166,8 @@ namespace BriefingRoom4DCSWorld.Campaign
             template.OppositionUnitsLocation = SpawnPointPreferredCoalition.Any;
 
             template.OptionsEndMode = MissionEndMode.NoEnd;
-            template.OptionsPreferences = new MissionTemplatePreferences[0];
-            template.OptionsRadioSounds = true;
+            template.OptionsPreferences = campaignTemplate.OptionsPreferences.ToArray();
             template.OptionsScriptExtensions = new string[0];
-            template.OptionsShowEnemyUnits = campaignTemplate.OptionsShowEnemyUnits;
             template.OptionsUnitMods = campaignTemplate.OptionsUnitMods;
 
             template.PlayerAISkillLevel = GetSkillLevel(campaignTemplate.SituationFriendlyAirForce, CampaignDifficultyVariation.Steady, 0, 0);

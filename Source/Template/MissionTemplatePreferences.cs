@@ -27,9 +27,19 @@ namespace BriefingRoom4DCSWorld.Template
     /// </summary>
     public enum MissionTemplatePreferences
     {
-        ///// <summary>
-        ///// Add extra waypoints on the way to the objectives.
-        ///// </summary>
-        //AddExtraWaypoints
+        /// <summary>
+        /// Should extra ingress/egress waypoints be generated in addition to the objective waypoints?
+        /// </summary>
+        AddExtraWaypoints,
+
+        /// <summary>
+        /// Should audio radio messages be disabled? If so, messages will only be displayed as text.
+        /// </summary>
+        DisableRadioSounds,
+
+        /// <summary>
+        /// Should enemy units be hidden on the F10 map, mission planning, MFD SA pages, etc?
+        /// </summary>
+        HideEnemyUnits
     }
 }
