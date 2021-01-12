@@ -190,6 +190,7 @@ namespace BriefingRoom4DCSWorld.Generator
                   if (group.IsAPlayerGroup()){
                     flightPlan.AddObjectiveWaypoints(mission, group, objectiveDB);
                     flightPlan.AddExtraWaypoints(group, template);
+                    flightPlan.AddExtraWaypoints(group, template, false);
                   }  
                 }
             }

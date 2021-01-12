@@ -94,7 +94,6 @@ namespace BriefingRoom4DCSWorld.Generator
             extraWaypoints =  extraWaypoints.OrderBy(x => preObj? group.Waypoints.First().Coordinates.GetDistanceFrom(x): -group.Waypoints.First().Coordinates.GetDistanceFrom(x)).ToList();
             if (preObj) {// Adding waypoints before first objective waypoint
                 group.Waypoints.InsertRange(0, extraWaypoints.Select(x => new DCSMissionWaypoint(x, $"WP{count++:00}", 1.0)));
-                AddExtraWaypoints(group, template, false);
             } else // Add waypoints after last objective waypoint
                 group.Waypoints.AddRange(extraWaypoints.Select(x =>new DCSMissionWaypoint(x, $"WP{group.Waypoints.Count + count++:00}", 1.0)));
         }
