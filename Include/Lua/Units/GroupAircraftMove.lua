@@ -36,30 +36,7 @@
           ["formation_template"] = "",
           ["speed_locked"] = true,
       }, -- end of [1]
-      [2] = 
-      {
-          ["alt"] = $ALTITUDE$,
-          ["action"] = "Turning Point",
-          ["alt_type"] = "BARO",
-          ["speed"] = $SPEED$,
-          ["task"] = 
-          {
-              ["id"] = "ComboTask",
-              ["params"] = 
-              {
-                  ["tasks"] = 
-                  {
-                  }, -- end of ["tasks"]
-              }, -- end of ["params"]
-          }, -- end of ["task"]
-          ["type"] = "Turning Point",
-          ["ETA"] = 0,
-          ["ETA_locked"] = false,
-          ["y"] = $Y2$,
-          ["x"] = $X2$,
-          ["formation_template"] = "",
-          ["speed_locked"] = true,
-      }, -- end of [2]
+      $WAYPOINTS$
     }, -- end of ["points"]
   }, -- end of ["route"]
   ["groupId"] = $ID$,

@@ -63,7 +63,7 @@
                     ["airdromeId"] = $MISSIONAIRBASEID$,
                     ["speed_locked"] = true,
                 }, -- end of [1]
-$PLAYERWAYPOINTS$
+$WAYPOINTS$
                 [$LASTPLAYERWAYPOINTINDEX$] = 
                 {
                     ["alt"] = 13,
