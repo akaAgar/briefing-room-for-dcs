@@ -111,7 +111,9 @@ namespace BriefingRoom4DCSWorld.Generator
                 remarks.AddRange( // ...from features
                     from string remark in feature.BriefingRemarks
                     select GeneratorTools.MakeBriefingStringReplacements(GeneratorTools.ParseRandomString(remark), mission, coalitionsDB));
-            //Opposition Remarks
+            
+            /*
+            // Opposition Remarks
             string airDefenseNumbers = template.OppositionAirDefense == AmountN.Random? "Unknown":template.OppositionAirDefense.ToString();
             string airDefenseSkill = template.OppositionSkillLevelGround == BRSkillLevel.Random? "Varied":template.OppositionSkillLevelGround.ToString();
             string airForceNumbers = template.OppositionAirForce == AmountN.Random? "Unknown":template.OppositionAirForce.ToString();
@@ -124,6 +126,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 $"Our Air Defenses are {allyAirDefenseNumbers} and they are {allyAirDefenseSkill} troops",});
             remarks.Add("Use the \"F10/Other\" item in the comms for additional options");
             DebugLog.Instance.WriteLine($"{remarks.Count} remark(s)", 2);
+            */
 
             mission.BriefingHTML = CreateHTMLBriefing(mission, template, description, tasks, remarks, flightGroups, airbaseDB, carrierDB, coalitionsDB);
             mission.BriefingTXT = CreateTXTBriefing(description, tasks, remarks, flightGroups, airbaseDB, carrierDB);
