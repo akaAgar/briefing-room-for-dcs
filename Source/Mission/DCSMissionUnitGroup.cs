@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using System;
+using System.Collections.Generic;
 
 namespace BriefingRoom4DCSWorld.Mission
 {
@@ -109,6 +110,30 @@ namespace BriefingRoom4DCSWorld.Mission
         /// </summary>
         public Tacan TACAN {get; set;}
 
+        /// <summary>
+        /// A list of <see cref="DCSMissionWaypoint"/> describing all waypoints for the group
+        /// </summary>
+        public List<DCSMissionWaypoint> Waypoints { get; private set; } = new List<DCSMissionWaypoint>();
+
+        /// <summary>
+        /// Total flight plan distance, in meters.
+        /// </summary>
+        public double WaypointsDistance
+        {
+            get
+            {
+                double distance = 0.0;
+                Coordinates lastCoordinates = Coordinates;
+                for (int i = 0; i < Waypoints.Count; i++)
+                {
+                    distance += lastCoordinates.GetDistanceFrom(Waypoints[i].Coordinates);
+                    lastCoordinates = Waypoints[i].Coordinates;
+                }
+                distance += lastCoordinates.GetDistanceFrom(Coordinates); // Distance from last waypoint to home airbase
+
+                return distance;
+            }
+        }
         /// <summary>
         /// Constructor.
         /// </summary>

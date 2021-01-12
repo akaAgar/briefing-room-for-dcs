@@ -185,8 +185,13 @@ namespace BriefingRoom4DCSWorld.Generator
             using (MissionGeneratorFlightPlan flightPlan = new MissionGeneratorFlightPlan())
             {
                 flightPlan.SetBullseye(mission);
-                flightPlan.AddObjectiveWaypoints(mission, objectiveDB);
-                flightPlan.AddExtraWaypoints(mission, template);
+                foreach (DCSMissionUnitGroup group in mission.UnitGroups)
+                {
+                  if (group.IsAPlayerGroup()){
+                    flightPlan.AddObjectiveWaypoints(mission, group, objectiveDB);
+                    flightPlan.AddExtraWaypoints(mission, group, template);
+                  }  
+                }
             }
 
             // Generate briefing. Must be last because it uses information from other generators

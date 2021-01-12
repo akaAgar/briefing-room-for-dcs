@@ -48,7 +48,7 @@ namespace BriefingRoom4DCSWorld.Generator
         /// </summary>
         /// <param name="mission">Mission</param>
         /// <param name="objectiveDB">Objective database entry</param>
-        public void AddObjectiveWaypoints(DCSMission mission, DBEntryObjective objectiveDB)
+        public void AddObjectiveWaypoints(DCSMission mission,DCSMissionUnitGroup group, DBEntryObjective objectiveDB)
         {
             DebugLog.Instance.WriteLine("Generating objective waypoints...", 1);
 
@@ -57,7 +57,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 Coordinates waypointCoordinates = mission.Objectives[i].WaypointCoordinates;
                 DebugLog.Instance.WriteLine($"Created objective waypoint at {waypointCoordinates}", 2);
 
-                mission.Waypoints.Add(
+                group.Waypoints.Add(
                     new DCSMissionWaypoint(
                         waypointCoordinates, mission.Objectives[i].Name,
                         objectiveDB.WaypointOnGround ? 0.0 : 1.0,
@@ -70,21 +70,21 @@ namespace BriefingRoom4DCSWorld.Generator
         ///// </summary>
         ///// <param name="mission">Mission</param>
         ///// <param name="template">Mission template</param>
-        public void AddExtraWaypoints(DCSMission mission, MissionTemplate template, bool preObj = true)
+        public void AddExtraWaypoints(DCSMission mission, DCSMissionUnitGroup group, MissionTemplate template, bool preObj = true)
         {
             // No objective waypoints, or no extra waypoints required, stop here
-            if (!template.PlayerExtraWaypoints || (mission.Waypoints.Count == 0))
+            if (!template.PlayerExtraWaypoints || (group.Waypoints.Count == 0))
                 return;
 
             DebugLog.Instance.WriteLine("Generating extra waypoints...");
 
             int extraWaypointsCount = Toolbox.RandomFrom(EXTRA_WAYPOINT_COUNT);
             List<Coordinates> extraWaypoints = new List<Coordinates>();
-            Coordinates startingPos = preObj? mission.InitialPosition : mission.Waypoints.Last().Coordinates;
+            Coordinates startingPos = preObj? mission.InitialPosition : group.Waypoints.Last().Coordinates;
             for (int j = 0; j < extraWaypointsCount; j++)
             {
                 if(preObj)
-                    startingPos = Coordinates.Lerp(startingPos, mission.Waypoints[0].Coordinates, new MinMaxD(0.2, 0.8).GetValue()).CreateNearRandom(0, 20000);
+                    startingPos = Coordinates.Lerp(startingPos, group.Waypoints[0].Coordinates, new MinMaxD(0.2, 0.8).GetValue()).CreateNearRandom(0, 20000);
                 else
                     startingPos = Coordinates.Lerp(startingPos, mission.InitialPosition, new MinMaxD(0.2, 0.8).GetValue()).CreateNearRandom(0, 20000);
                     extraWaypoints.Add(startingPos);
@@ -93,10 +93,10 @@ namespace BriefingRoom4DCSWorld.Generator
             int count = 1;
             extraWaypoints =  extraWaypoints.OrderBy(x => preObj? mission.InitialPosition.GetDistanceFrom(x): -mission.InitialPosition.GetDistanceFrom(x)).ToList();
             if (preObj) {// Adding waypoints before first objective waypoint
-                mission.Waypoints.InsertRange(0, extraWaypoints.Select(x => new DCSMissionWaypoint(x, $"WP{count++:00}", 1.0)));
-                AddExtraWaypoints(mission, template, false);
+                group.Waypoints.InsertRange(0, extraWaypoints.Select(x => new DCSMissionWaypoint(x, $"WP{count++:00}", 1.0)));
+                AddExtraWaypoints(mission, group, template, false);
             } else // Add waypoints after last objective waypoint
-                mission.Waypoints.AddRange(extraWaypoints.Select(x =>new DCSMissionWaypoint(x, $"WP{mission.Waypoints.Count + count++:00}", 1.0)));
+                group.Waypoints.AddRange(extraWaypoints.Select(x =>new DCSMissionWaypoint(x, $"WP{group.Waypoints.Count + count++:00}", 1.0)));
         }
 
         /// <summary>

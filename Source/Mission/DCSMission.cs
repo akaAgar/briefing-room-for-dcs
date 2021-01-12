@@ -192,31 +192,6 @@ namespace BriefingRoom4DCSWorld.Mission
         public List<DCSMissionUnitGroup> UnitGroups { get; private set; } = new List<DCSMissionUnitGroup>();
 
         /// <summary>
-        /// A list of <see cref="DCSMissionWaypoint"/> describing all waypoints in the mission.
-        /// </summary>
-        public List<DCSMissionWaypoint> Waypoints { get; private set; } = new List<DCSMissionWaypoint>();
-
-        /// <summary>
-        /// Total flight plan distance, in meters.
-        /// </summary>
-        public double WaypointsDistance
-        {
-            get
-            {
-                double distance = 0.0;
-                Coordinates lastCoordinates = InitialPosition;
-                for (int i = 0; i < Waypoints.Count; i++)
-                {
-                    distance += lastCoordinates.GetDistanceFrom(Waypoints[i].Coordinates);
-                    lastCoordinates = Waypoints[i].Coordinates;
-                }
-                distance += lastCoordinates.GetDistanceFrom(InitialPosition); // Distance from last waypoint to home airbase
-
-                return distance;
-            }
-        }
-
-        /// <summary>
         /// Weather information for this mission.
         /// </summary>
         public DCSMissionWeatherInfo Weather { get; set; } = new DCSMissionWeatherInfo();

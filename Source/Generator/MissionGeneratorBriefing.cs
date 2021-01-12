@@ -220,7 +220,7 @@ namespace BriefingRoom4DCSWorld.Generator
             double totalDistance = 0.0;
             Coordinates currentPosition = mission.InitialPosition;
             waypointsHTML += $"<tr><td><strong>TAKEOFF</strong></td><td>-</td><td>-</td></tr>";
-            foreach (DCSMissionWaypoint wp in mission.Waypoints)
+            foreach (DCSMissionWaypoint wp in mission.UnitGroups.First(x => x.IsAPlayerGroup()).Waypoints)
             {
                 distance = currentPosition.GetDistanceFrom(wp.Coordinates);
                 totalDistance += distance;

@@ -154,18 +154,18 @@ namespace BriefingRoom4DCSWorld.Miz
             return lua;
         }
 
-        private void CreatePlayerWaypoints(ref string groupLua, DCSMission mission, DBEntryUnit unitBP)
+        private void CreatePlayerWaypoints(ref string groupLua, DCSMissionUnitGroup group, DBEntryUnit unitBP)
         {
             string waypointLua = LuaTools.ReadIncludeLuaFile("Mission\\WaypointPlayer.lua");
             string allWaypointsLua = "";
 
-            for (int i = 0; i < mission.Waypoints.Count; i++)
+            for (int i = 0; i < group.Waypoints.Count; i++)
             {
                 string waypoint = waypointLua;
                 LuaTools.ReplaceKey(ref waypoint, "Index", i + 2);
-                LuaTools.ReplaceKey(ref waypoint, "Name", mission.Waypoints[i].Name);
-                LuaTools.ReplaceKey(ref waypoint, "X", mission.Waypoints[i].Coordinates.X);
-                LuaTools.ReplaceKey(ref waypoint, "Y", mission.Waypoints[i].Coordinates.Y);
+                LuaTools.ReplaceKey(ref waypoint, "Name", group.Waypoints[i].Name);
+                LuaTools.ReplaceKey(ref waypoint, "X", group.Waypoints[i].Coordinates.X);
+                LuaTools.ReplaceKey(ref waypoint, "Y", group.Waypoints[i].Coordinates.Y);
 
                 double waypointAltitude, waypointSpeed;
                 if (unitBP == null) // Unit not found in the database, use default values for the unit category
@@ -179,8 +179,8 @@ namespace BriefingRoom4DCSWorld.Miz
                     waypointSpeed = GetAircraftCruiseSpeed(unitBP.Category, unitBP.AircraftData.CruiseAltitude);
                 }
 
-                waypointAltitude *= mission.Waypoints[i].AltitudeMultiplier;
-                waypointSpeed *= mission.Waypoints[i].SpeedMultiplier;
+                waypointAltitude *= group.Waypoints[i].AltitudeMultiplier;
+                waypointSpeed *= group.Waypoints[i].SpeedMultiplier;
 
                 LuaTools.ReplaceKey(ref waypoint, "Altitude", waypointAltitude);
                 LuaTools.ReplaceKey(ref waypoint, "Speed", waypointSpeed);
@@ -189,7 +189,7 @@ namespace BriefingRoom4DCSWorld.Miz
             }
 
             LuaTools.ReplaceKey(ref groupLua, "PlayerWaypoints", allWaypointsLua);
-            LuaTools.ReplaceKey(ref groupLua, "LastPlayerWaypointIndex", mission.Waypoints.Count + 2);
+            LuaTools.ReplaceKey(ref groupLua, "LastPlayerWaypointIndex", group.Waypoints.Count + 2);
         }
 
         private void CreateUnitGroups(ref string lua, DCSMission mission)
@@ -236,7 +236,7 @@ namespace BriefingRoom4DCSWorld.Miz
 
                 // Group is a client group, requires player waypoints
                 if (group.IsAPlayerGroup())
-                    CreatePlayerWaypoints(ref groupLua, mission, unitBP);
+                    CreatePlayerWaypoints(ref groupLua, group, unitBP);
 
                 string allUnitsLua = "";
                 for (i = 0; i < group.Units.Length; i++)
