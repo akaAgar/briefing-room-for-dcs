@@ -148,7 +148,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 briefingFGList.AddRange(
                     unitGroupGen.CreateUnitGroups(
                         mission, template, objectiveDB, coalitionsDB[(int)mission.CoalitionPlayer],
-                        out aiEscortTypeCAP, out aiEscortTypeSEAD, mission.Carrier != null ));
+                        out aiEscortTypeCAP, out aiEscortTypeSEAD));
 
             // Generate objective unit groups
             DebugLog.Instance.WriteLine("Generating objectives unit groups...");
