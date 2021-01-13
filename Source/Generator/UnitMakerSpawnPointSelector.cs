@@ -38,7 +38,7 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <summary>
         /// List of available airbase parking spots for each airbase.
         /// </summary>
-        private readonly Dictionary<int, List<int>> AirbaseParkingSpots;
+        private readonly Dictionary<int, List<DBEntryTheaterAirbaseParkingSpot>> AirbaseParkingSpots;
 
         /// <summary>
         /// List of available spawn points.
@@ -58,7 +58,7 @@ namespace BriefingRoom4DCSWorld.Generator
         {
             TheaterDB = theaterDB;
 
-            AirbaseParkingSpots = new Dictionary<int, List<int>>();
+            AirbaseParkingSpots = new Dictionary<int, List<DBEntryTheaterAirbaseParkingSpot>>();
             SpawnPoints = new List<DBEntryTheaterSpawnPoint>();
 
             SpawnPoints.AddRange(theaterDB.SpawnPoints);
@@ -66,7 +66,7 @@ namespace BriefingRoom4DCSWorld.Generator
             {
                 if (airbase.ParkingSpots.Length < 1) continue;
                 if (AirbaseParkingSpots.ContainsKey(airbase.DCSID)) continue;
-                AirbaseParkingSpots.Add(airbase.DCSID, Enumerable.Range(0, airbase.ParkingSpots.Length).ToList());
+                AirbaseParkingSpots.Add(airbase.DCSID, airbase.ParkingSpots.ToList());
             }
         }
 
@@ -74,20 +74,23 @@ namespace BriefingRoom4DCSWorld.Generator
         /// Returns a free parking spot for the given airbase.
         /// </summary>
         /// <param name="airbaseID">Internal ID of the airbase in DCS World</param>
+        /// <param name="lastSpotCoordinates">Coordinates of the last aircraft spot</param>
         /// <param name="airbaseID">Coordinates of the selected parking spot</param>
         /// <returns>A parking spot ID, or -1 if none found or if airbase doesn't exist</returns>
-        public int GetFreeParkingSpot(int airbaseID, out Coordinates parkingSpotCoordinates)
+        public int GetFreeParkingSpot(int airbaseID, Coordinates? lastSpotCoordinates, out Coordinates parkingSpotCoordinates)
         {
             parkingSpotCoordinates = new Coordinates();
             if (!AirbaseParkingSpots.ContainsKey(airbaseID) || (AirbaseParkingSpots[airbaseID].Count == 0)) return -1;
-
             DBEntryTheaterAirbase[] airbaseDB = (from DBEntryTheaterAirbase ab in TheaterDB.Airbases where ab.DCSID == airbaseID select ab).ToArray();
             if (airbaseDB.Length == 0) return -1; // No airbase with proper DCSID
-
-            int parkingSpot = Toolbox.RandomFrom(AirbaseParkingSpots[airbaseID]);
-            AirbaseParkingSpots[airbaseID].Remove(parkingSpot);
-            parkingSpotCoordinates = airbaseDB[0].ParkingSpots[parkingSpot].Coordinates;
-            return airbaseDB[0].ParkingSpots[parkingSpot].DCSID;
+            DBEntryTheaterAirbaseParkingSpot? parkingSpot = null;
+            if(lastSpotCoordinates != null) //find nearest spot distance wise in attempt to cluster
+                parkingSpot = AirbaseParkingSpots[airbaseID].Aggregate((acc, x) => acc.Coordinates.GetDistanceFrom(lastSpotCoordinates.Value) > x.Coordinates.GetDistanceFrom(lastSpotCoordinates.Value) && x.Coordinates.GetDistanceFrom(lastSpotCoordinates.Value) != 0 ? x : acc);
+            else 
+                parkingSpot = Toolbox.RandomFrom(AirbaseParkingSpots[airbaseID]);
+            AirbaseParkingSpots[airbaseID].Remove(parkingSpot.Value);
+            parkingSpotCoordinates = parkingSpot.Value.Coordinates;
+            return parkingSpot.Value.DCSID;
         }
 
         /// <summary>

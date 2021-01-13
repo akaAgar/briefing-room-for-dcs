@@ -70,6 +70,7 @@ namespace BriefingRoom4DCSWorld.Generator
 
             // Generate units in the group
             int unitIndex = 0;
+            Coordinates? lastSpot = null;
             List<DCSMissionUnitGroupUnit> groupUnits = new List<DCSMissionUnitGroupUnit>();
             foreach (DBEntryUnit unitBP in unitsBP)
             {
@@ -89,14 +90,15 @@ namespace BriefingRoom4DCSWorld.Generator
                     {
                         if (requiresParkingSpots)
                         {
-                            parkingSpot = SpawnPointSelector.GetFreeParkingSpot(airbaseID, out Coordinates parkingCoordinates);
+                            parkingSpot = SpawnPointSelector.GetFreeParkingSpot(airbaseID, lastSpot, out Coordinates parkingCoordinates);
                             if (parkingSpot >= 0)
                                unitCoordinates = parkingCoordinates;
                             else
                                parkingSpot = 0;
+                            lastSpot = unitCoordinates;
                         }
-                    }
-
+                    } else if(airbaseID == -99) //carrier code always parks 1 maybe will need more
+                        parkingSpot = 1;
                     // Add unit to the list of units
                     DCSMissionUnitGroupUnit unit = new DCSMissionUnitGroupUnit
                     {

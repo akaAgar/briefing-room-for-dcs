@@ -103,7 +103,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 carrier? "GroupAircraftPlayerCarrier" :"GroupAircraftPlayer", "UnitAircraft",
                 Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel), DCSMissionUnitGroupFlags.FirstUnitIsPlayer,
                 objectiveDB.Payload,
-                null, mission.InitialAirbaseID, true);
+                null, carrier? -99 : mission.InitialAirbaseID, true);
 
             if (group == null)
                 throw new Exception($"Failed to create group of player aircraft of type \"{template.PlayerSPAircraft}\".");
