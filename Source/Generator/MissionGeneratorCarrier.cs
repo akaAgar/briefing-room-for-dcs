@@ -67,7 +67,7 @@ namespace BriefingRoom4DCSWorld.Generator
                         // If spawn point types are specified, use them. Else look for spawn points of any type
                         new TheaterLocationSpawnPointType[] { TheaterLocationSpawnPointType.Sea },
                         // Select spawn points at a proper distance from last location (previous objective or home airbase)
-                        mission.InitialPosition, new MinMaxD(10, 200),
+                        mission.InitialPosition, new MinMaxD(10, 50),
                         // Make sure no objective is too close to the initial location
                         null, null,
                         GeneratorTools.GetAllySpawnPointCoalition(template));
