@@ -180,7 +180,7 @@ namespace BriefingRoom4DCSWorld.Generator
                     switch (unitBP.Category)
                     {
                         case UnitCategory.Ship:
-                            unitCoordinates += new Coordinates(SHIP_UNIT_SPACING * unitIndex);
+                            unitCoordinates = unitCoordinates.CreateNearRandom(SHIP_UNIT_SPACING, SHIP_UNIT_SPACING * 10);
                             break;
                         default:
                             unitCoordinates = unitCoordinates.CreateNearRandom(VEHICLE_UNIT_SPACING, VEHICLE_UNIT_SPACING * 10);
@@ -190,7 +190,7 @@ namespace BriefingRoom4DCSWorld.Generator
 
                 if (unitBP.OffsetHeading.Length > unitIndex) // Unit has a fixed heading (for SAM sites, etc.)
                     unitHeading = Toolbox.ClampAngle(unitHeading + unitBP.OffsetHeading[unitIndex]); // editor looks odd but works fine if negative or over 2Pi
-                else
+                else if(unitBP.Category != UnitCategory.Ship)
                     unitHeading = Toolbox.RandomDouble(Toolbox.TWO_PI);
             }
         }
