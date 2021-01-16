@@ -67,7 +67,7 @@ namespace BriefingRoom4DCSWorld.Generator
                         // If spawn point types are specified, use them. Else look for spawn points of any type
                         new TheaterLocationSpawnPointType[] { TheaterLocationSpawnPointType.Sea },
                         // Select spawn points at a proper distance from last location (previous objective or home airbase)
-                        mission.InitialPosition, new MinMaxD(10, 200),
+                        mission.InitialPosition, new MinMaxD(10, 50),
                         // Make sure no objective is too close to the initial location
                         null, null,
                         GeneratorTools.GetAllySpawnPointCoalition(template));
@@ -77,41 +77,35 @@ namespace BriefingRoom4DCSWorld.Generator
 
             Coordinates position = mission.InitialPosition;
             DCSMissionUnitGroup group;
-            group = UnitMaker.AddUnitGroup(
-                mission, new string[] { template.PlayerCarrier },
-                Side.Ally,
-                spawnPoint.Value.Coordinates,
-                "GroupCarrier", "UnitShip",
-                Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel));
-
-            UnitFamily[] ships = new UnitFamily[]{
+            string[] ships = new string[] { template.PlayerCarrier };
+            foreach (var ship in new UnitFamily[]{
                 UnitFamily.ShipFrigate,
                 UnitFamily.ShipFrigate,
                 UnitFamily.ShipCruiser,
                 UnitFamily.ShipCruiser,
                 UnitFamily.ShipTransport
-            };
-            foreach (var ship in ships)
+            })
             {
-                spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                    new TheaterLocationSpawnPointType[] { TheaterLocationSpawnPointType.Sea },
-                    spawnPoint.Value.Coordinates, new MinMaxD(1, 5),
-                    // Make sure no objective is too close to the initial location
-                    null, null,
-                    GeneratorTools.GetAllySpawnPointCoalition(template));
-
-                UnitMaker.AddUnitGroup(
-                    mission, playerCoalitionDB.GetRandomUnits(ship, mission.DateTime.Decade, 1, template.OptionsUnitMods),
-                    Side.Ally,
-                    spawnPoint.Value.Coordinates,
-                    "GroupShip", "UnitShip",
-                    Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel));
+                ships = ships.Append(playerCoalitionDB.GetRandomUnits(ship, mission.DateTime.Decade, 1, template.OptionsUnitMods)[0]).ToArray();
             }
+            DebugLog.Instance.WriteLine($"Ships to be spawned {ships.Aggregate((acc, x) => $"{acc}, {x}")}", 1, DebugLogMessageErrorLevel.Warning);
+            group = UnitMaker.AddUnitGroup(
+                mission, ships,
+                Side.Ally,
+                spawnPoint.Value.Coordinates,
+                "GroupCarrier", "UnitShip",
+                Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel));
 
             if (group == null)
                 DebugLog.Instance.WriteLine($"Failed to create AI Carrier with ship of type \"{template.PlayerCarrier}\".", 1, DebugLogMessageErrorLevel.Warning);
-            else
-                group.Units[0].Heading = Toolbox.ClampAngle((windDirection0 + 180) * Toolbox.DEGREES_TO_RADIANS);
+            else {
+                //set all units against the wind
+                double heading = Toolbox.ClampAngle((windDirection0 + 180) * Toolbox.DEGREES_TO_RADIANS); 
+                foreach (DCSMissionUnitGroupUnit unit in group.Units)
+                {
+                    unit.Heading = heading;
+                }
+            }
 
             mission.Carrier = group.Units[0];
             return (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>()

@@ -70,6 +70,7 @@ namespace BriefingRoom4DCSWorld.Generator
 
             // Generate units in the group
             int unitIndex = 0;
+            Coordinates? lastSpot = null;
             List<DCSMissionUnitGroupUnit> groupUnits = new List<DCSMissionUnitGroupUnit>();
             foreach (DBEntryUnit unitBP in unitsBP)
             {
@@ -89,14 +90,15 @@ namespace BriefingRoom4DCSWorld.Generator
                     {
                         if (requiresParkingSpots)
                         {
-                            parkingSpot = SpawnPointSelector.GetFreeParkingSpot(airbaseID, out Coordinates parkingCoordinates);
+                            parkingSpot = SpawnPointSelector.GetFreeParkingSpot(airbaseID, lastSpot, out Coordinates parkingCoordinates);
                             if (parkingSpot >= 0)
                                unitCoordinates = parkingCoordinates;
                             else
                                parkingSpot = 0;
+                            lastSpot = unitCoordinates;
                         }
-                    }
-
+                    } else if(airbaseID == -99) //carrier code always parks 1 maybe will need more
+                        parkingSpot = 1;
                     // Add unit to the list of units
                     DCSMissionUnitGroupUnit unit = new DCSMissionUnitGroupUnit
                     {
@@ -178,7 +180,7 @@ namespace BriefingRoom4DCSWorld.Generator
                     switch (unitBP.Category)
                     {
                         case UnitCategory.Ship:
-                            unitCoordinates += new Coordinates(SHIP_UNIT_SPACING * unitIndex);
+                            unitCoordinates = unitCoordinates.CreateNearRandom(SHIP_UNIT_SPACING, SHIP_UNIT_SPACING * 10);
                             break;
                         default:
                             unitCoordinates = unitCoordinates.CreateNearRandom(VEHICLE_UNIT_SPACING, VEHICLE_UNIT_SPACING * 10);
@@ -188,7 +190,7 @@ namespace BriefingRoom4DCSWorld.Generator
 
                 if (unitBP.OffsetHeading.Length > unitIndex) // Unit has a fixed heading (for SAM sites, etc.)
                     unitHeading = Toolbox.ClampAngle(unitHeading + unitBP.OffsetHeading[unitIndex]); // editor looks odd but works fine if negative or over 2Pi
-                else
+                else if(unitBP.Category != UnitCategory.Ship)
                     unitHeading = Toolbox.RandomDouble(Toolbox.TWO_PI);
             }
         }
