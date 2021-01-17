@@ -86,7 +86,7 @@ namespace BriefingRoom4DCSWorld.Miz
 
             DebugLog.Instance.WriteLine(" Adding \"l10n/DEFAULT/mapResource\" entry...", 1);
             using (MizMakerLuaMapResource luaMapResource = new MizMakerLuaMapResource())
-                miz.AddEntry("l10n/DEFAULT/mapResource", luaMapResource.MakeLua(resourceOggString));
+                miz.AddEntry("l10n/DEFAULT/mapResource", luaMapResource.MakeLua(mission, resourceOggString));
 
             DebugLog.Instance.WriteLine(" Adding .jpg image media files...", 1);
             using (MizMakerMediaImages jpgMedia = new MizMakerMediaImages())

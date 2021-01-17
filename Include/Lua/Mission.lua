@@ -90,7 +90,7 @@ mission =
     ["maxDictId"] = 0,
     ["pictureFileNameN"] = 
     {
-      [1] = "ResKey_TitleImage",
+      [1] = "ResKey_TitleImage_$MISSIONID$",
     }, -- end of ["pictureFileNameN"]
     ["groundControl"] = 
     {
@@ -306,14 +306,14 @@ $USACOUNTRYRED$
     ["descriptionText"] = "$BRIEFINGDESCRIPTION$",
     ["pictureFileNameR"] = 
     {
-      [1] = "ResKey_TitleImage",
+      [1] = "ResKey_TitleImage_$MISSIONID$",
     }, -- end of ["pictureFileNameR"]
     ["descriptionNeutralsTask"] = "",
     ["descriptionBlueTask"] = "",
     ["descriptionRedTask"] = "",
     ["pictureFileNameB"] = 
     {
-      [1] = "ResKey_TitleImage",
+      [1] = "ResKey_TitleImage_$MISSIONID$",
     }, -- end of ["pictureFileNameB"]
     ["coalition"] = 
     {

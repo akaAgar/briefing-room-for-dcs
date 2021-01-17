@@ -79,7 +79,7 @@ namespace BriefingRoom4DCSWorld.Miz
 
         public void AddMediaFiles(MizFile miz, DCSMission mission)
         {
-            miz.AddEntry("l10n/DEFAULT/title.jpg", GetTitleImage(mission));
+            miz.AddEntry($"l10n/DEFAULT/title_{mission.UniqueID}.jpg", GetTitleImage(mission));
         }
 
         /// <summary>

@@ -21,6 +21,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 using BriefingRoom4DCSWorld.Miz;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace BriefingRoom4DCSWorld.Mission
 {
@@ -187,6 +188,12 @@ namespace BriefingRoom4DCSWorld.Mission
         public string Theater { get; set; } = "";
 
         /// <summary>
+        /// Unique ID for the mission. Appended to certain filenames so they don't have the same name in every mission and
+        /// get confused with one another by the DCS cache.
+        /// </summary>
+        public string UniqueID { get; } = "";
+
+        /// <summary>
         /// A list of <see cref="DCSMissionUnitGroup"/> describing all unit groups in the mission.
         /// </summary>
         public List<DCSMissionUnitGroup> UnitGroups { get; private set; } = new List<DCSMissionUnitGroup>();
@@ -224,7 +231,11 @@ namespace BriefingRoom4DCSWorld.Mission
         /// <summary>
         /// Constructor.
         /// </summary>
-        public DCSMission() { }
+        public DCSMission()
+        {
+            // Generate a unique ID for the mission.
+            UniqueID = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()).ToLowerInvariant();
+        }
 
         /// <summary>
         /// Exports the mission to a MizFile, which can then be saved to a .miz file.

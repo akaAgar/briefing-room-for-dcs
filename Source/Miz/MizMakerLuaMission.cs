@@ -151,6 +151,8 @@ namespace BriefingRoom4DCSWorld.Miz
                     break;
             }
 
+            LuaTools.ReplaceKey(ref lua, "MissionID", mission.UniqueID);
+
             return lua;
         }
 

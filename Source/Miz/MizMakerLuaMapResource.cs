@@ -20,6 +20,7 @@ If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.Mission;
 using System;
 
 namespace BriefingRoom4DCSWorld.Miz
@@ -37,13 +38,15 @@ namespace BriefingRoom4DCSWorld.Miz
         /// <summary>
         /// Generates the content of the Lua file.
         /// </summary>
+        /// <param name="mission">The mission from which to generate the .Miz file.</param>
         /// <param name="resourceOggString">An string containing the Lua declaring all embedded .ogg files.</param>
         /// <returns>The contents of the Lua file.</returns>
-        public string MakeLua(string resourceOggString)
+        public string MakeLua(DCSMission mission, string resourceOggString)
         {
             string lua = LuaTools.ReadIncludeLuaFile("MapResource.lua");
 
             LuaTools.ReplaceKey(ref lua, "OggFiles", resourceOggString);
+            LuaTools.ReplaceKey(ref lua, "MissionID", mission.UniqueID);
 
             return lua;
         }
