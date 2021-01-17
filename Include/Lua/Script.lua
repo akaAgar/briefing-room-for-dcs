@@ -808,7 +808,6 @@ function briefingRoom.mission.eventHandler:onEvent(event)
     if event.initiator:getPlayerName() ~= nil and briefingRoom.mission.missionType == brMissionType.SINGLE_PLAYER then
       briefingRoom.radioManager.play("We have confirmation. Our pilot has ejected. To all units, initiate immediate combat search and rescue operation.", "RadioHQPlayerEjected", math.random(5, 6))
     end
-  end
 
   elseif event.id == world.event.S_EVENT_LAND then -- unit landed
     if briefingRoom.mission.parameters.endMode == -3 then -- mission must end when all players have landed
