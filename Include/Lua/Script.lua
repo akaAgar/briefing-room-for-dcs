@@ -609,7 +609,7 @@ function briefingRoom.mission.functions.completeObjective(index)
     if briefingRoom.mission.parameters.endMode == -2 then
       missionCommands.addCommandForCoalition($PLAYERCOALITION$, "End mission now", nil, briefingRoom.mission.functions.endMissionIn, 0)
     elseif briefingRoom.mission.parameters.endMode >= 0 then
-      briefingRoom.debugPrint("Mission auto ending in "..briefingRoom.mission.parameters.endMode.." minute(s)")
+      briefingRoom.debugPrint("Mission will end in "..briefingRoom.mission.parameters.endMode.." minute(s)")
       briefingRoom.mission.functions.endMissionIn(briefingRoom.mission.parameters.endMode * 60)
     end
   else
@@ -807,6 +807,24 @@ function briefingRoom.mission.eventHandler:onEvent(event)
   elseif event.id == world.event.S_EVENT_EJECTION then -- unit ejected
     if event.initiator:getPlayerName() ~= nil and briefingRoom.mission.missionType == brMissionType.SINGLE_PLAYER then
       briefingRoom.radioManager.play("We have confirmation. Our pilot has ejected. To all units, initiate immediate combat search and rescue operation.", "RadioHQPlayerEjected", math.random(5, 6))
+    end
+  end
+
+  elseif event.id == world.event.S_EVENT_LAND then -- unit landed
+    if briefingRoom.mission.parameters.endMode == -3 then -- mission must end when all players have landed
+      if event.initiator:getPlayerName() ~= nil then -- unit is a player
+        
+        local players = dcsExtensions.getAllPlayers() -- check no player is flying anymore
+        local playersInAir = false
+        for _,p in ipairs(players) do
+          if p:inAir() == true then playersInAir = true end
+        end
+
+        if not playersInAir then
+          briefingRoom.debugPrint("All players have landed, mission will end in one minute.")
+          briefingRoom.mission.functions.endMissionIn(60)
+        end
+      end
     end
   end
 end

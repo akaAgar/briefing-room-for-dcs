@@ -26,14 +26,19 @@ namespace BriefingRoom4DCSWorld
     public enum MissionEndMode
     {
         /// <summary>
-        /// don't end
+        /// End mission when all players have landed
         /// </summary>
-        NoEnd = -1,
+        AllPlayersHaveLanded = -3,
 
         /// <summary>
         /// End via command
         /// </summary>
         F10Command = -2,
+
+        /// <summary>
+        /// Don't end
+        /// </summary>
+        NoEnd = -1,
 
         /// <summary>
         /// End instantly
