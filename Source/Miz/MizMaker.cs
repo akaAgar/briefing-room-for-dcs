@@ -20,6 +20,7 @@ If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.DB;
 using BriefingRoom4DCSWorld.Debug;
 using BriefingRoom4DCSWorld.Mission;
 using System;
@@ -67,7 +68,7 @@ namespace BriefingRoom4DCSWorld.Miz
             miz.AddEntry("options", LuaTools.ReadIncludeLuaFile("Options.lua"));
 
             DebugLog.Instance.WriteLine(" Adding \"theater\" entry...", 1);
-            miz.AddEntry("theatre", mission.Theater);
+            miz.AddEntry("theatre", Database.Instance.GetEntry<DBEntryTheater>(mission.Theater).DCSID);
 
             DebugLog.Instance.WriteLine(" Adding \"warehouses\" entry...", 1);
             using (MizMakerLuaWarehouse luaWarehouses = new MizMakerLuaWarehouse())

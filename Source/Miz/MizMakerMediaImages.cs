@@ -20,15 +20,14 @@ If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.DB;
 using BriefingRoom4DCSWorld.Generator;
 using BriefingRoom4DCSWorld.Media;
 using BriefingRoom4DCSWorld.Mission;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Windows.Forms;
 
 namespace BriefingRoom4DCSWorld.Miz
 {
@@ -63,7 +62,7 @@ namespace BriefingRoom4DCSWorld.Miz
                 imgMaker.TextOverlay.Alignment = ContentAlignment.BottomCenter;
 
                 List<ImageMakerLayer> layers = new List<ImageMakerLayer>();
-                string[] theaterImages = Directory.GetFiles($"{BRPaths.INCLUDE_JPG}Theaters\\", $"{mission.Theater}*.jpg");
+                string[] theaterImages = Directory.GetFiles($"{BRPaths.INCLUDE_JPG}Theaters\\", $"{Database.Instance.GetEntry<DBEntryTheater>(mission.Theater).DCSID}*.jpg");
                 if (theaterImages.Length == 0)
                     layers.Add(new ImageMakerLayer("_default.jpg"));
                 else
