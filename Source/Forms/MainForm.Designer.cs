@@ -195,8 +195,8 @@
             // M_Tools_CampaignCreator
             // 
             this.M_Tools_CampaignCreator.Name = "M_Tools_CampaignCreator";
-            this.M_Tools_CampaignCreator.Size = new System.Drawing.Size(263, 22);
-            this.M_Tools_CampaignCreator.Text = "&Campaign creator (EARLY VERSION)";
+            this.M_Tools_CampaignCreator.Size = new System.Drawing.Size(206, 22);
+            this.M_Tools_CampaignCreator.Text = "&Campaign creator (BETA)";
             this.M_Tools_CampaignCreator.Click += new System.EventHandler(this.MenuClick);
             // 
             // M_About

@@ -313,7 +313,7 @@ namespace BriefingRoom4DCSWorld.Template
         /// <summary>
         /// Type of aircraft carrier spawned. If none, player(s) will take off from an airbase. In single player, the player's aircraft will be spawed on the carrier. In multiplayer, aircraft will spawn on carrier if the option set for their flight group. Make sure aircraft are suitable for the carrier type.
         /// </summary>
-        [Category("Player"), DisplayName("Carrier (EARLY VERSION)")]
+        [Category("Player"), DisplayName("Carrier (BETA)")]
         [Description("Type of aircraft carrier spawned. If none, player(s) will take off from an airbase. In single player, the player's aircraft will be spawed on the carrier. In multiplayer, aircraft will spawn on carrier if the option set for their flight group. Make sure aircraft are suitable for the carrier type.")]
         [TypeConverter(typeof(DBEntryCarrierConverter))]
         public string PlayerCarrier { get; set; }
