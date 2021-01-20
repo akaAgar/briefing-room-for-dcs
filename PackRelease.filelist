@@ -1,9 +1,13 @@
 Database\*.ini
 Database\**\*.ini
 Database\**\**\*.ini
+Database\**\**\**\*.ini
 Include\Briefing.html
 Include\*.cmp
 Include\Jpg\*.jpg
+Include\Jpg\*.png
+Include\Jpg\**\*.jpg
+Include\Jpg\**\*.png
 Include\Lua\*.lua
 Include\Lua\**\*.lua
 Include\Ogg\*.ogg
