@@ -137,11 +137,13 @@ namespace BriefingRoom4DCSWorld.Generator
             {
                 default: return null; // Should never happen
                 case MissionTemplateMPFlightGroupTask.SupportCAP:
-                    groupLua = (template.GetMissionType() == MissionType.SinglePlayer) ? "GroupAircraftPlayerEscortCAP" : "GroupAircraftCAP";
+                    //groupLua = (template.GetMissionType() == MissionType.SinglePlayer) ? "GroupAircraftPlayerEscortCAP" : "GroupAircraftCAP";
+                    groupLua = "GroupAircraftCAP";
                     aircraft = playerCoalitionDB.GetRandomUnits(UnitFamily.PlaneFighter, mission.DateTime.Decade, count, template.OptionsUnitMods);
                     break;
                 case MissionTemplateMPFlightGroupTask.SupportSEAD:
-                    groupLua = (template.GetMissionType() == MissionType.SinglePlayer) ? "GroupAircraftPlayerEscortSEAD" : "GroupAircraftSEAD";
+                    //groupLua = (template.GetMissionType() == MissionType.SinglePlayer) ? "GroupAircraftPlayerEscortSEAD" : "GroupAircraftSEAD";
+                    groupLua = "GroupAircraftSEAD";
                     aircraft = playerCoalitionDB.GetRandomUnits(UnitFamily.PlaneSEAD, mission.DateTime.Decade, count, template.OptionsUnitMods);
                     break;
             }
@@ -156,14 +158,14 @@ namespace BriefingRoom4DCSWorld.Generator
                 position += Coordinates.CreateRandom(2, 4) * Toolbox.NM_TO_METERS;
 
             DCSMissionUnitGroup group;
-            if (template.GetMissionType() == MissionType.SinglePlayer)
-                group = UnitMaker.AddUnitGroup(
-                    mission, aircraft,
-                    Side.Ally, position,
-                    groupLua, "UnitAircraft",
-                    Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel), 0,
-                    payload, null, mission.InitialAirbaseID, true);
-            else
+            //if (template.GetMissionType() == MissionType.SinglePlayer)
+            //    group = UnitMaker.AddUnitGroup(
+            //        mission, aircraft,
+            //        Side.Ally, position,
+            //        groupLua, "UnitAircraft",
+            //        Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel), 0,
+            //        payload, null, mission.InitialAirbaseID, true);
+            //else
                 group = UnitMaker.AddUnitGroup(
                     mission, aircraft,
                     Side.Ally, position,
@@ -178,7 +180,7 @@ namespace BriefingRoom4DCSWorld.Generator
             }
 
             // MP AI escorts start in the air, so add them to the spawn queue
-            if (template.GetMissionType() != MissionType.SinglePlayer)
+            //if (template.GetMissionType() != MissionType.SinglePlayer)
                 mission.AircraftSpawnQueue.Add(new DCSMissionAircraftSpawnQueueItem(group.GroupID, true));
 
             return
