@@ -140,7 +140,7 @@ namespace BriefingRoom4DCSWorld.Forms
                 case "T_File_Open":
                     using (OpenFileDialog ofd = new OpenFileDialog())
                     {
-                        ofd.Filter = "BriefingRoom templates (*.brtemplate)|*.brtemplate";
+                        ofd.Filter = "BriefingRoom templates (*.brt)|*.brt";
                         ofd.RestoreDirectory = true;
                         if ((ofd.ShowDialog() == DialogResult.OK) && File.Exists(ofd.FileName))
                         {
@@ -154,7 +154,7 @@ namespace BriefingRoom4DCSWorld.Forms
                 case "T_File_SaveAs":
                     using (SaveFileDialog sfd = new SaveFileDialog())
                     {
-                        sfd.Filter = "BriefingRoom templates (*.brtemplate)|*.brtemplate";
+                        sfd.Filter = "BriefingRoom templates (*.brt)|*.brt";
                         sfd.RestoreDirectory = true;
                         if (sfd.ShowDialog() == DialogResult.OK)
                             Template.SaveToFile(sfd.FileName);

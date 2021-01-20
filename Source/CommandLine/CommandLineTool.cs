@@ -113,7 +113,7 @@ namespace BriefingRoom4DCSWorld.CommandLine
                     missionCount = argAsInt;
 
                 // Argument is a template file, add it to the list of template files to parse
-                if (File.Exists(arg) && arg.ToLowerInvariant().EndsWith(".brtemplate"))
+                if (File.Exists(arg) && arg.ToLowerInvariant().EndsWith(".brt"))
                     templateFiles.Add(Path.GetFullPath(arg));
             }
 
