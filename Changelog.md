@@ -7,6 +7,7 @@
     * SAM sites prefabs rotation now works correctly (code by John Harvey)
     * Static/buildings now spawned properly
     * Tanker TACAN now works properly, with remark in the briefing FG list (code by John Harvey)
+    * Fixed single player AI CAP escorts going back to base on mission start: they now fly straight to the mission area on player takoff like their multiplayer counterparts
   * New units
     * Added many missing aircraft and ground units
     * All player-controllable aircraft are now available (except for user mods)
@@ -33,6 +34,7 @@
   * Misc. changes
     * Merged all options (extra waypoints, hide enemy units, etc) into a single list for better readability of the mission template editor
     * Improved briefing descriptions
+    * Mission template file extension changed from .brtemplate to .brt
 * Version 0.3.012.28 (December 28, 2020)
   * Bug fixes
     * Fixed DCS crashing when a Ka-27 was spawned
