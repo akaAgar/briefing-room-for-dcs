@@ -198,10 +198,10 @@ namespace BriefingRoom4DCSWorld.Template
         public AmountN OppositionAirForce { get; set; }
 
         /// <summary>
-        /// Chance enemy fighter planes will already be patrolling rather than popping up during the mission on objective completion.
+        /// Chance that enemy fighter planes will already be patrolling on mission start rather than popping up during the mission on objective completion.
         /// </summary>
         [Category("Opposition"), DisplayName("CAP on station")]
-        [Description("Chance enemy fighter planes will already be patrolling rather than popping up during the mission on objective completion.")]
+        [Description("Chance that enemy fighter planes will already be patrolling on mission start rather than popping up during the mission on objective completion.")]
         [TypeConverter(typeof(EnumTypeConverter<AmountN>))]
         public AmountN OppositionOnStationChance { get; set; }
 
@@ -234,10 +234,10 @@ namespace BriefingRoom4DCSWorld.Template
         public SpawnPointPreferredCoalition OppositionUnitsLocation { get; set; }
 
         /// <summary>
-        /// When to end mission after all objectives are complete. Either after a specific time or via command.
+        /// When (and if) should the mission automatically end after all objectives are complete?
         /// </summary>
         [Category("Options"), DisplayName("End Mode")]
-        [Description("When to end mission after all objectives are complete. Either after a specific time or via command.")]
+        [Description("When (and if) should the mission automatically end after all objectives are complete?")]
         [TypeConverter(typeof(EnumTypeConverter<MissionEndMode>))]
         public MissionEndMode OptionsEndMode { get; set; }
 
@@ -311,10 +311,10 @@ namespace BriefingRoom4DCSWorld.Template
         public BRSkillLevel PlayerAISkillLevel { get; set; }
 
         /// <summary>
-        /// Type of aircraft carrier spawned. If none, player(s) will take off from an airbase. In single player, the player's aircraft will be spawed on the carrier. In multiplayer, aircraft will spawn on carrier if the option set for their flight group. Make sure aircraft are suitable for the carrier type.
+        /// Type of aircraft carrier spawned. If none, player(s) will take off from an airbase. In single player, the player's aircraft will be spawed on the carrier. In multiplayer, aircraft will spawn on carrier if the option is set for their flight group. Make sure aircraft are suitable for the carrier type.
         /// </summary>
         [Category("Player"), DisplayName("Carrier (BETA)")]
-        [Description("Type of aircraft carrier spawned. If none, player(s) will take off from an airbase. In single player, the player's aircraft will be spawed on the carrier. In multiplayer, aircraft will spawn on carrier if the option set for their flight group. Make sure aircraft are suitable for the carrier type.")]
+        [Description("Type of aircraft carrier spawned. If none, player(s) will take off from an airbase. In single player, the player's aircraft will be spawed on the carrier. In multiplayer, aircraft will spawn on carrier if the option is set for their flight group. Make sure aircraft are suitable for the carrier type.")]
         [TypeConverter(typeof(DBEntryCarrierConverter))]
         public string PlayerCarrier { get; set; }
 

@@ -23,10 +23,12 @@ On the left side of the screen you can see a list of all settings currently used
 * **Mission date**: The exact date at which the mission should take place. If enabled, the "Season" setting from the "Environment" category will be ignored. If not enabled, a random year will be selected according to the selected coalitions.
 * **Mission description**: Description of the mission to display in the briefing. If left empty, a random description will be generated.
 * **Mission name**: Name/title of the mission. If left empty, a random name will be generated.
+* **Unit system**: Unit system (metric or imperial) to use in the mission briefing.
 
 **Coalitions**
 * **Coalition, blue**: Who belongs to the blue coalition?
 * **Coalition, red**: Who belongs to the red coalition?
+* **Mission date**: During which decade will this mission take place? This value is ignored if "Briefing > Mission date" is set.
 * **Player coalition**: Which coalition does the player(s) belong to?
 
 **Environment**
@@ -43,19 +45,23 @@ On the left side of the screen you can see a list of all settings currently used
 **Opposition**
 * **Air defense**: Intensity and quality of enemy surface-to-air defense.
 * **Air force**: Relative power of the enemy air force. Enemy air force will always be proportional to the number and air-to-air efficiency of aircraft in the player mission package, so more player/AI friendly aircraft means more enemy aircraft, regardless of this setting.
+* **CAP on station**: Chance that enemy fighter planes will already be patrolling on mission start rather than popping up during the mission on objective completion.
 * **Enemy units location**: Can enemy units be spawned in any country (recommended) or only in countries aligned with a given coalition? Be aware that when choosing an option other than "Any", depending on the theater and the "Theater region coalitions" setting, objectives may end up VERY far from the player(s) starting location, no matter the value of "Objective distance". Keep in mind that "Theaters regions coalitions" has a influence on this setting.
 * **Skill level, aircraft**: Skill level of enemy planes and helicopters.
 * **Skill level, ground units**: Skill level of enemy ground units and air defense.
 
 **Options**
-* **Play radio sounds**: Should audio radio messages be played? If disabled, messages will only be displayed as text.
+* **End mode**: When (and if) should the mission automatically end after all objectives are complete?
+* **Preferences**: Preferences and options to apply to this mission.
 * **Script extensions**: (advanced) Script extensions to include in this mission to provide additional features.
-* **Show enemy units on map**: Should enemy units be shown on the F10 map, mission planning, MFD SA pages, etc?
+* **Unit mods**: Which unit mods should be enabled in this mission? Make sure units mods are installed and active in your version of DCS World or the units won't be spawned.
 
 **Player**
-* **AI skill level**: Skill level of AI wingmen and escort aircraft.
 * **AI CAP escort**: Number of AI aircraft tasked with escorting the player against enemy fighters. In single-player missions, escorts will be spawned on the ramp if the player starts from the ramp (cold or hot), or in the air above the airbase if the player starts on the runway. In multiplayer missions, escorts will be spawned as soon as one player takes off.
 * **AI SEAD escort**: Number of AI aircraft tasked with escorting the player against enemy SAMs. In single-player missions, escorts will be spawned on the ramp if the player starts from the ramp (cold or hot), or in the air above the airbase if the player starts on the runway. In multiplayer missions, escorts will be spawned as soon as one player takes off.
+* **AI skill level**: Skill level of AI wingmen and escort aircraft.
+* **Air defense**: Intensity and quality of friendly air defense.
+* **Carrier**: Type of aircraft carrier spawned. If none, player(s) will take off from an airbase. In single player, the player's aircraft will be spawed on the carrier. In multiplayer, aircraft will spawn on carrier if the option is set for their flight group. Make sure aircraft are suitable for the carrier type.
 * **Start location**: Where should the player(s) take off from?
 
 **Player, single-player only**
