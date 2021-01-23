@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AirDefenseLevel.cs" />
+    <Compile Include="CivilianTraffic.cs" />
     <Compile Include="Campaign\CampaignDifficultyVariation.cs" />
     <Compile Include="Campaign\CampaignGenerator.cs" />
     <Compile Include="Campaign\CampaignTemplate.cs" />
@@ -135,6 +136,7 @@
     <Compile Include="Tacan.cs" />
     <Compile Include="Template\MissionTemplatePreferences.cs" />
     <Compile Include="Template\MissionTemplateDate.cs" />
+    <Compile Include="RealismOption.cs" />
     <Compile Include="Template\TemplateTools.cs" />
     <Compile Include="Side.cs" />
     <Compile Include="Template\MissionTemplateMPFlightGroupTask.cs" />

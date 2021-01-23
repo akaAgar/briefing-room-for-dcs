@@ -33,6 +33,11 @@ namespace BriefingRoom4DCSWorld.Template
         AddExtraWaypoints,
 
         /// <summary>
+        /// Should DCS radio assists ("fire" when weapon release parameters are met, warning when a threat approaches, etc) be enabled?
+        /// </summary>
+        DCSRadioAssists,
+
+        /// <summary>
         /// Should audio radio messages be disabled? If so, messages will only be displayed as text.
         /// </summary>
         DisableRadioSounds,

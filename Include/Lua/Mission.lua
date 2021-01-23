@@ -507,6 +507,7 @@ $GROUPSVEHICLERED$
     {
         ["unrestrictedSATNAV"] = true,
         ["userMarks"] = true,
+$FORCEDOPTIONS$
     }, -- end of ["forcedOptions"]
     ["failures"] = 
     {

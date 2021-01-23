@@ -73,6 +73,11 @@ namespace BriefingRoom4DCSWorld.Mission
         public Coalition CoalitionPlayer { get; set; } = Coalition.Blue;
 
         /// <summary>
+        /// Should DCS radio assists ("fire" when weapon release parameters are met, warning when a threat approaches, etc) be enabled?
+        /// </summary>
+        public bool RadioAssists { get; set; } = false;
+
+        /// <summary>
         /// Core Lua script containing tables into mission objectives, etc. Will replace $CORELUA$ in l10n\DEFAULT\script.lua.
         /// </summary>
         public string CoreLuaScript { get; set; } = "";
@@ -118,6 +123,11 @@ namespace BriefingRoom4DCSWorld.Mission
         public string LuaSettings { get; set; } = "";
 
         /// <summary>
+        /// Amount of civilian traffic on the roads.
+        /// </summary>
+        public CivilianTraffic CivilianTraffic { get; set; } = CivilianTraffic.Off;
+
+        /// <summary>
         /// Name/title of the mission/sortie.
         /// </summary >
         public string MissionName { get; set; } = "";
@@ -127,6 +137,10 @@ namespace BriefingRoom4DCSWorld.Mission
         /// </summary>
         public DCSMissionObjective[] Objectives { get; set; } = new DCSMissionObjective[0];
 
+        /// <summary>
+        /// The realism options to enable in this mission.
+        /// </summary>
+        public RealismOption[] RealismOptions { get; set; } = new RealismOption[0];
 
         /// <summary>
         /// Time to end mission min after objective complete.

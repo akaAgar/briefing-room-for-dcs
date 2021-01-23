@@ -157,6 +157,14 @@ namespace BriefingRoom4DCSWorld.Campaign
         private string[] MissionsTypes_;
 
         /// <summary>
+        /// Amount of civilian traffic on the roads. Can affect performance if set too high.
+        /// </summary>
+        [Category("Options"), DisplayName("Civilian road traffic")]
+        [Description("Amount of civilian traffic on the roads. Can affect performance if set too high.")]
+        [TypeConverter(typeof(EnumTypeConverter<CivilianTraffic>))]
+        public CivilianTraffic OptionsCivilianTraffic { get; set; }
+
+        /// <summary>
         /// Preferences and options to apply to this campaign.
         /// </summary>
         [Category("Options"), DisplayName("Preferences")]
@@ -164,6 +172,15 @@ namespace BriefingRoom4DCSWorld.Campaign
         [TypeConverter(typeof(EnumArrayTypeConverter<MissionTemplatePreferences>))]
         [Editor(typeof(CheckedListBoxUIEditorEnum<MissionTemplatePreferences>), typeof(UITypeEditor))]
         public MissionTemplatePreferences[] OptionsPreferences { get; set; }
+
+        /// <summary>
+        /// Realism options to apply to this mission.
+        /// </summary>
+        [Category("Options"), DisplayName("Realism")]
+        [Description("Realism options to apply to this mission.")]
+        [TypeConverter(typeof(EnumArrayTypeConverter<RealismOption>))]
+        [Editor(typeof(CheckedListBoxUIEditorEnum<RealismOption>), typeof(UITypeEditor))]
+        public RealismOption[] OptionsRealism { get; set; }
 
         /// <summary>
         /// Which unit mods should be enabled in this mission? Make sure units mods are installed and active in your version of DCS World or the units won't be spawned.
@@ -258,7 +275,9 @@ namespace BriefingRoom4DCSWorld.Campaign
             MissionsObjectiveDistance = Amount.Average;
             MissionsTypes = new string[] { Database.Instance.Common.DefaultObjective };
 
+            OptionsCivilianTraffic = CivilianTraffic.Low;
             OptionsPreferences = new MissionTemplatePreferences[0];
+            OptionsRealism = new RealismOption[] { RealismOption.NoBDA };
             OptionsUnitMods = new string[0];
 
             PlayerAircraft = TemplateTools.CheckValuePlayerAircraft(Database.Instance.Common.DefaultPlayerAircraft);
@@ -298,7 +317,9 @@ namespace BriefingRoom4DCSWorld.Campaign
                 MissionsObjectiveDistance = ini.GetValue("Missions", "ObjectiveDistance", MissionsObjectiveDistance);
                 MissionsTypes = ini.GetValueArray<string>("Missions", "Types");
 
+                OptionsCivilianTraffic = ini.GetValue("Options", "CivilianTraffic", OptionsCivilianTraffic);
                 OptionsPreferences = ini.GetValueArray<MissionTemplatePreferences>("Options", "Preferences");
+                OptionsRealism = ini.GetValueArray<RealismOption>("Options", "Realism");
                 OptionsUnitMods = ini.GetValueArray<string>("Options", "UnitMods");
 
                 PlayerAircraft = ini.GetValue("Player", "Aircraft", PlayerAircraft);
@@ -337,7 +358,9 @@ namespace BriefingRoom4DCSWorld.Campaign
                 ini.SetValue("Missions", "ObjectiveDistance", MissionsObjectiveDistance);
                 ini.SetValueArray("Missions", "Types", MissionsTypes);
 
+                ini.SetValue("Options", "CivilianTraffic", OptionsCivilianTraffic);
                 ini.SetValueArray("Options", "Preferences", OptionsPreferences);
+                ini.SetValueArray("Options", "Realism", OptionsRealism);
                 ini.SetValueArray("Options", "UnitMods", OptionsUnitMods);
 
                 ini.SetValue("Player", "Aircraft", PlayerAircraft);

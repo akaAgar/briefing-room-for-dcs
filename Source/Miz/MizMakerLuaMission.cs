@@ -152,8 +152,63 @@ namespace BriefingRoom4DCSWorld.Miz
             }
 
             LuaTools.ReplaceKey(ref lua, "MissionID", mission.UniqueID);
+            LuaTools.ReplaceKey(ref lua, "ForcedOptions", GetForcedOptionsLua(mission));
 
             return lua;
+        }
+
+        /// <summary>
+        /// Returns a string of Lua containing the forced mission options.
+        /// </summary>
+        /// <param name="mission">The DCS mission for which forced options should be generated</param>
+        /// <returns>Values for a Lua table, as a string</returns>
+        private string GetForcedOptionsLua(DCSMission mission)
+        {
+            string forcedOptionsLua = "";
+
+            foreach (RealismOption realismOption in mission.RealismOptions)
+            {
+                switch (realismOption)
+                {
+                    case RealismOption.BirdStrikes: forcedOptionsLua += "[\"birds\"] = 300,"; break;
+                    case RealismOption.HideLabels: forcedOptionsLua += "[\"labels\"] = 0,"; break;
+                    case RealismOption.NoBDA: forcedOptionsLua += "[\"RBDAI\"] = false,\r\n"; break;
+                    case RealismOption.NoCheats: forcedOptionsLua += "[\"immortal\"] = false, [\"fuel\"] = false, [\"weapons\"] = false,"; break;
+                    case RealismOption.NoCrashRecovery: forcedOptionsLua += "[\"permitCrash\"] = false,"; break;
+                    case RealismOption.NoEasyComms: forcedOptionsLua += "[\"easyCommunication\"] = false,"; break;
+                    case RealismOption.NoExternalViews: forcedOptionsLua += "[\"externalViews\"] = false,"; break;
+                    case RealismOption.NoGameMode: forcedOptionsLua += "[\"easyFlight\"] = false, [\"easyRadar\"] = false,"; break;
+                    case RealismOption.NoOverlays: forcedOptionsLua += "[\"miniHUD\"] = false, [\"cockpitStatusBarAllowed\"] = false,"; break;
+                    case RealismOption.NoPadlock: forcedOptionsLua += "[\"padlock\"] = false,"; break;
+                    case RealismOption.RandomFailures: forcedOptionsLua += "[\"accidental_failures\"] = true,"; break;
+                    case RealismOption.RealisticGEffects: forcedOptionsLua += "[\"geffect\"] = \"realistic\","; break;
+                    case RealismOption.WakeTurbulence: forcedOptionsLua += "[\"wakeTurbulence\"] = true,"; break;
+                }
+            }
+
+            // Some realism options are forced OFF when not explicitely enabled
+            if (!mission.RealismOptions.Contains(RealismOption.BirdStrikes))
+                forcedOptionsLua += "[\"birds\"] = 0,";
+            else if (!mission.RealismOptions.Contains(RealismOption.RandomFailures))
+                forcedOptionsLua += "[\"accidental_failures\"] = false,";
+            else if (!mission.RealismOptions.Contains(RealismOption.NoBDA))
+                forcedOptionsLua += "[\"RBDAI\"] = true,";
+
+            forcedOptionsLua += $"[\"radio\"] = {(mission.RadioAssists ? "true" : "false")},";
+
+            if (mission.CivilianTraffic == CivilianTraffic.Off)
+                forcedOptionsLua += "[\"civTraffic\"] = \"\",";
+            else
+                forcedOptionsLua += $"[\"civTraffic\"] = \"{mission.CivilianTraffic.ToString().ToLowerInvariant()}\",";
+
+            if (mission.RealismOptions.Contains(RealismOption.MapDisableAll))
+                forcedOptionsLua += "[\"optionsView\"] = \"optview_onlymap\",";
+            else if(mission.RealismOptions.Contains(RealismOption.MapDisableAllButSelf))
+                forcedOptionsLua += "[\"optionsView\"] = \"optview_myaircraft\",";
+            else if (mission.RealismOptions.Contains(RealismOption.MapDisableAllButUnitsKnown))
+                forcedOptionsLua += "[\"optionsView\"] = \"optview_allies\",";
+
+            return forcedOptionsLua;
         }
 
         private void CreatePlayerWaypoints(ref string groupLua, DCSMission mission, DBEntryUnit unitBP)

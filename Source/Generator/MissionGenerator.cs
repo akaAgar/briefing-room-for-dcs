@@ -266,10 +266,13 @@ namespace BriefingRoom4DCSWorld.Generator
         {
             mission.Coalitions[(int)Coalition.Blue] = template.GetCoalition(Coalition.Blue);
             mission.Coalitions[(int)Coalition.Red] = template.GetCoalition(Coalition.Red);
+            mission.CivilianTraffic = template.OptionsCivilianTraffic;
             mission.CoalitionPlayer = template.ContextCoalitionPlayer;
+            mission.RadioAssists = template.OptionsPreferences.Contains(MissionTemplatePreferences.DCSRadioAssists);
             mission.Theater = template.TheaterID;
             mission.PlayerStartLocation = template.PlayerStartLocation;
             mission.EndMode = template.OptionsEndMode;
+            mission.RealismOptions = template.OptionsRealism;
 
             // "Runway" start locations is not available in MP missions, change to "Parking hot".
             if ((template.GetMissionType() != MissionType.SinglePlayer) &&

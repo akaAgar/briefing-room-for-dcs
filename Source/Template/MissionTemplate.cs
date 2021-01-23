@@ -234,6 +234,14 @@ namespace BriefingRoom4DCSWorld.Template
         public SpawnPointPreferredCoalition OppositionUnitsLocation { get; set; }
 
         /// <summary>
+        /// Amount of civilian traffic on the roads. Can affect performance if set too high.
+        /// </summary>
+        [Category("Options"), DisplayName("Civilian road traffic")]
+        [Description("Amount of civilian traffic on the roads. Can affect performance if set too high.")]
+        [TypeConverter(typeof(EnumTypeConverter<CivilianTraffic>))]
+        public CivilianTraffic OptionsCivilianTraffic { get; set; }
+
+        /// <summary>
         /// When (and if) should the mission automatically end after all objectives are complete?
         /// </summary>
         [Category("Options"), DisplayName("End Mode")]
@@ -249,6 +257,15 @@ namespace BriefingRoom4DCSWorld.Template
         [TypeConverter(typeof(EnumArrayTypeConverter<MissionTemplatePreferences>))]
         [Editor(typeof(CheckedListBoxUIEditorEnum<MissionTemplatePreferences>), typeof(UITypeEditor))]
         public MissionTemplatePreferences[] OptionsPreferences { get; set; }
+
+        /// <summary>
+        /// Realism options to apply to this mission.
+        /// </summary>
+        [Category("Options"), DisplayName("Realism")]
+        [Description("Realism options to apply to this mission.")]
+        [TypeConverter(typeof(EnumArrayTypeConverter<RealismOption>))]
+        [Editor(typeof(CheckedListBoxUIEditorEnum<RealismOption>), typeof(UITypeEditor))]
+        public RealismOption[] OptionsRealism { get; set; }
 
         /// <summary>
         /// Script extensions to include in this mission to provide additional features.
@@ -412,8 +429,10 @@ namespace BriefingRoom4DCSWorld.Template
             OppositionSkillLevelGround = BRSkillLevel.Random;
             OppositionUnitsLocation = SpawnPointPreferredCoalition.Any;
 
+            OptionsCivilianTraffic = CivilianTraffic.Low;
             OptionsEndMode = MissionEndMode.NoEnd;
             OptionsPreferences = new MissionTemplatePreferences[0];
+            OptionsRealism = new RealismOption[] { RealismOption.NoBDA };
             OptionsScriptExtensions = new string[0];
             OptionsUnitMods = new string[0];
 
@@ -471,8 +490,10 @@ namespace BriefingRoom4DCSWorld.Template
                 OppositionSkillLevelGround = ini.GetValue("Opposition", "SkillLevel.Ground", OppositionSkillLevelGround);
                 OppositionUnitsLocation = ini.GetValue("Opposition", "UnitsLocation", OppositionUnitsLocation);
 
+                OptionsCivilianTraffic = ini.GetValue("Options", "CivilianTraffic", OptionsCivilianTraffic);
                 OptionsEndMode = ini.GetValue("Options", "EndMode", OptionsEndMode);
                 OptionsPreferences = ini.GetValueArray<MissionTemplatePreferences>("Options", "Preferences");
+                OptionsRealism = ini.GetValueArray<RealismOption>("Options", "Realism");
                 OptionsScriptExtensions = ini.GetValueArray<string>("Options", "ScriptExtensions");
                 OptionsUnitMods = ini.GetValueArray<string>("Options", "UnitMods");
 
@@ -533,8 +554,10 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValue("Opposition", "SkillLevel.Ground", OppositionSkillLevelGround);
                 ini.SetValue("Opposition", "UnitsLocation", OppositionUnitsLocation);
 
+                ini.SetValue("Options", "CivilianTraffic", OptionsCivilianTraffic);
                 ini.SetValue("Options", "EndMode", OptionsEndMode);
                 ini.SetValueArray("Options", "Preferences", OptionsPreferences);
+                ini.SetValueArray("Options", "Realism", OptionsRealism);
                 ini.SetValueArray("Options", "ScriptExtensions", OptionsScriptExtensions);
                 ini.SetValueArray("Options", "UnitMods", OptionsUnitMods);
 
