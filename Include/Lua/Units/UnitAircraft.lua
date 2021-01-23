@@ -1,6 +1,6 @@
             [$INDEX$] = 
             {
-                ["alt"] = 13,
+                ["alt"] = $ALTITUDE$,
                 ["alt_type"] = "BARO",
                 ["livery_id"] = "default",
                 ["skill"] = "$SKILL$",

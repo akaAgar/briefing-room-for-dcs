@@ -261,6 +261,7 @@ namespace BriefingRoom4DCSWorld.Miz
                         if (unitBP == null)
                         {
                             LuaTools.ReplaceKey(ref groupLua, "Altitude", ((group.Category == UnitCategory.Helicopter) ? 1500 : 4572) * Toolbox.RandomDouble(.8, 1.2));
+                            LuaTools.ReplaceKey(ref unitLua, "Altitude", (int)((group.Category == UnitCategory.Helicopter) ? 1500 : 4572) * Toolbox.RandomDouble(.8, 1.2));
                             LuaTools.ReplaceKey(ref groupLua, "EPLRS", false);
                             LuaTools.ReplaceKey(ref unitLua, "PayloadCommon", "");
                             LuaTools.ReplaceKey(ref unitLua, "PayloadPylons", "");
@@ -271,6 +272,7 @@ namespace BriefingRoom4DCSWorld.Miz
                         else
                         {
                             LuaTools.ReplaceKey(ref groupLua, "Altitude", GetAircraftCruiseAltitude(unitBP.Category, unitBP.AircraftData.CruiseAltitude));
+                            LuaTools.ReplaceKey(ref unitLua, "Altitude", (int)GetAircraftCruiseAltitude(unitBP.Category, unitBP.AircraftData.CruiseAltitude));
                             LuaTools.ReplaceKey(ref groupLua, "EPLRS", unitBP.Flags.HasFlag(DBEntryUnitFlags.EPLRS));
                             LuaTools.ReplaceKey(ref unitLua, "PayloadCommon", unitBP.AircraftData.PayloadCommon);
                             LuaTools.ReplaceKey(ref groupLua, "RadioBand", (int)unitBP.AircraftData.RadioModulation);
