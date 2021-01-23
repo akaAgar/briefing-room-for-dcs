@@ -127,7 +127,8 @@ namespace BriefingRoom4DCSWorld.Generator
                     Toolbox.RandomFrom(unitGroup.LuaGroup), unitGroup.LuaUnit,
                     skillLevel, flags, coordinates2: getDestination(unitGroup, mission, i),
                     airbaseID: mission.Objectives[i].AirbaseID,
-                    requiresParkingSpots: mission.Objectives[i].AirbaseID > 0
+                    requiresParkingSpots: mission.Objectives[i].AirbaseID > 0,
+                    requiresOpenAirParking: unitGroup.Flags.HasFlag(DBUnitGroupFlags.AvoidHardenedBunkers)
                     );
 
                 // Something went wrong, abort mission generation, objective unit groups are required for the mission to work properly.

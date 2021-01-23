@@ -55,7 +55,7 @@ namespace BriefingRoom4DCSWorld.Generator
             DCSMission mission, string[] units, Side side,
             Coordinates coordinates, string groupLua, string unitLua,
             DCSSkillLevel skill, DCSMissionUnitGroupFlags flags = 0, UnitTaskPayload payload = UnitTaskPayload.Default,
-            Coordinates? coordinates2 = null, int airbaseID = 0, bool requiresParkingSpots = false)
+            Coordinates? coordinates2 = null, int airbaseID = 0, bool requiresParkingSpots = false, bool requiresOpenAirParking = false)
         {
             if (units.Length == 0) return null; // No units database entries ID provided, cancel group creation
 
@@ -90,7 +90,7 @@ namespace BriefingRoom4DCSWorld.Generator
                     {
                         if (requiresParkingSpots)
                         {
-                            parkingSpot = SpawnPointSelector.GetFreeParkingSpot(airbaseID, lastSpot, out Coordinates parkingCoordinates);
+                            parkingSpot = SpawnPointSelector.GetFreeParkingSpot(airbaseID, lastSpot, out Coordinates parkingCoordinates, requiresOpenAirParking);
                             if (parkingSpot >= 0)
                                unitCoordinates = parkingCoordinates;
                             else

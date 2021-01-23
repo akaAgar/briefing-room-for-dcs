@@ -77,7 +77,7 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="lastSpotCoordinates">Coordinates of the last aircraft spot</param>
         /// <param name="airbaseID">Coordinates of the selected parking spot</param>
         /// <returns>A parking spot ID, or -1 if none found or if airbase doesn't exist</returns>
-        public int GetFreeParkingSpot(int airbaseID, Coordinates? lastSpotCoordinates, out Coordinates parkingSpotCoordinates)
+        public int GetFreeParkingSpot(int airbaseID, Coordinates? lastSpotCoordinates,  out Coordinates parkingSpotCoordinates, bool requiresOpenAirParking = false)
         {
             parkingSpotCoordinates = new Coordinates();
             if (!AirbaseParkingSpots.ContainsKey(airbaseID) || (AirbaseParkingSpots[airbaseID].Count == 0)) return -1;
@@ -85,7 +85,9 @@ namespace BriefingRoom4DCSWorld.Generator
             if (airbaseDB.Length == 0) return -1; // No airbase with proper DCSID
             DBEntryTheaterAirbaseParkingSpot? parkingSpot = null;
             if(lastSpotCoordinates != null) //find nearest spot distance wise in attempt to cluster
-                parkingSpot = AirbaseParkingSpots[airbaseID].Aggregate((acc, x) => acc.Coordinates.GetDistanceFrom(lastSpotCoordinates.Value) > x.Coordinates.GetDistanceFrom(lastSpotCoordinates.Value) && x.Coordinates.GetDistanceFrom(lastSpotCoordinates.Value) != 0 ? x : acc);
+                parkingSpot = AirbaseParkingSpots[airbaseID].FindAll(x => (!requiresOpenAirParking || x.ParkingType != ParkingSpotType.HardenedAirShelter))
+                    .ToList()
+                    .Aggregate((acc, x) => acc.Coordinates.GetDistanceFrom(lastSpotCoordinates.Value) > x.Coordinates.GetDistanceFrom(lastSpotCoordinates.Value) && x.Coordinates.GetDistanceFrom(lastSpotCoordinates.Value) != 0 ? x : acc);
             else 
                 parkingSpot = Toolbox.RandomFrom(AirbaseParkingSpots[airbaseID]);
             AirbaseParkingSpots[airbaseID].Remove(parkingSpot.Value);

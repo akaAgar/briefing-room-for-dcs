@@ -67,7 +67,12 @@ namespace BriefingRoom4DCSWorld.DB
         /// <summary>
         /// Sets waypoint to player airbase
         /// </summary>
-        DestinationPlayerBase = 128
+        DestinationPlayerBase = 128,
+
+        /// <summary>
+        /// Parked Aircraft should avoid hardened bunkers
+        /// </summary>
+        AvoidHardenedBunkers = 256
 
     }
 }
