@@ -61,17 +61,6 @@ namespace BriefingRoom4DCSWorld.Miz
             LuaTools.ReplaceKey(ref lua, "DateYear", mission.DateTime.Year);
             LuaTools.ReplaceKey(ref lua, "StartTime", mission.DateTimeTotalSeconds);
 
-            if (mission.CoalitionPlayer == Coalition.Red)
-            {
-                LuaTools.ReplaceKey(ref lua, "USACountryBlue", "");
-                LuaTools.ReplaceKey(ref lua, "USACountryRed", "[2] = 2,");
-            }
-            else
-            {
-                LuaTools.ReplaceKey(ref lua, "USACountryBlue", "[2] = 2,");
-                LuaTools.ReplaceKey(ref lua, "USACountryRed", "");
-            }
-
             LuaTools.ReplaceKey(ref lua, "WeatherCloudsBase", mission.Weather.CloudBase);
             LuaTools.ReplaceKey(ref lua, "WeatherCloudsDensity", mission.Weather.CloudsDensity);
             LuaTools.ReplaceKey(ref lua, "WeatherCloudsPrecipitation", (int)mission.Weather.CloudsPrecipitation);
