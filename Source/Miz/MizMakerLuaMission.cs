@@ -292,6 +292,11 @@ namespace BriefingRoom4DCSWorld.Miz
                         }
                     }
 
+                    if (unitBP == null)
+                        LuaTools.ReplaceKey(ref unitLua, "ExtraLua", "");
+                    else
+                        LuaTools.ReplaceKey(ref unitLua, "ExtraLua", unitBP.ExtraLua);
+
                     LuaTools.ReplaceKey(ref unitLua, "Callsign", group.CallsignLua); // Must be before "index" replacement, as is it is integrated in the callsign
                     LuaTools.ReplaceKey(ref unitLua, "Index", i + 1);
                     LuaTools.ReplaceKey(ref unitLua, "ID", group.Units[i].ID);

@@ -5,6 +5,7 @@
                 ["livery_id"] = "default",
                 ["skill"] = "$SKILL$",
                 ["speed"] = 138.88888888889,
+$EXTRALUA$
                 ["AddPropAircraft"] = 
                 {
                 }, -- end of ["AddPropAircraft"]

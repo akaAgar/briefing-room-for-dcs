@@ -111,7 +111,8 @@ namespace BriefingRoom4DCSWorld.DB
                 }
                 // Make sure all unit families belong to same category (unit cannot be a helicopter and a ground vehicle at the same time, for instance)
                 Families = (from UnitFamily f in Families where Toolbox.GetUnitCategoryFromUnitFamily(f) == Category select f).Distinct().ToArray();
-                ExtraLua = ini.GetValue<string>("Unit", "ExtraLua");
+                ExtraLua = ini.GetValue<string>("Unit", "ExtraLua").Trim();
+                if (!string.IsNullOrEmpty(ExtraLua) && !ExtraLua.EndsWith(",")) ExtraLua += ",";
                 Flags = ini.GetValueArrayAsEnumFlags<DBEntryUnitFlags>("Unit", "Flags");
                 OffsetCoordinates = (from string s in ini.GetValueArray<string>("Unit", "Offset.Coordinates", ';') select new Coordinates(s)).ToArray();
                 OffsetHeading = ini.GetValueArray<double>("Unit", "Offset.Heading");
