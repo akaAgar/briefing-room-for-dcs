@@ -126,7 +126,7 @@ namespace BriefingRoom4DCSWorld.Generator
                             throw new Exception($"Failed to find a spawn point for objective {i + 1}");
                         objectiveCoordinates = spawnPoint.Value.Coordinates;
                 } else {
-                    airbase = new MissionGeneratorAirbases().SelectObjectiveAirbase(mission, template, theaterDB);
+                    airbase = new MissionGeneratorAirbases().SelectObjectiveAirbase(mission, template, theaterDB, lastCoordinates, distanceFromLast, i == 0);
                     if (!airbase.HasValue)
                             throw new Exception($"Failed to find a airbase point for objective {i + 1}");
                     objectiveCoordinates = airbase.Value.Coordinates;

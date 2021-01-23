@@ -90,43 +90,30 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="mission">Mission for which the starting airbase must be set</param>
         /// <param name="template">Mission template to use</param>
         /// <param name="theaterDB">Theater database entry</param>
-        /// <param name="objectiveDB">Objective database entry</param>
+        /// <param name="lastCoordinates">Last location for referance</param>
+        /// <param name="distance">Base Distance Range</param>
+        /// <param name="first">is first objective</param>
         /// <returns>Information about the starting airbase</returns>
-        public DBEntryTheaterAirbase SelectObjectiveAirbase(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB)
+        public DBEntryTheaterAirbase SelectObjectiveAirbase(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, Coordinates lastCoordinates,  MinMaxD distance, bool first = false)
         {
-            List<DBEntryTheaterAirbase[]> airbasesList = new List<DBEntryTheaterAirbase[]>();
+            List<DBEntryTheaterAirbase> airbasesList = new List<DBEntryTheaterAirbase>();
 
             // Select all airbases with enough parking spots Guess for now
-            int requiredParkingSpots = 10;
-            airbasesList.Add((from DBEntryTheaterAirbase ab in theaterDB.Airbases where ab.ParkingSpots.Length >= requiredParkingSpots select ab).ToArray());
+            int requiredParkingSpots = 5;
+            airbasesList.AddRange((from DBEntryTheaterAirbase ab in theaterDB.Airbases where ab.ParkingSpots.Length >= requiredParkingSpots select ab).ToArray());
 
-            // Select all airbases belonging to the proper coalition (unless all airbase belong to the same coalition)
-            if ((template.TheaterRegionsCoalitions == CountryCoalition.Default) || (template.TheaterRegionsCoalitions == CountryCoalition.Inverted))
-            {
-                Coalition requiredCoalition =  mission.CoalitionEnemy;
-                airbasesList.Add((from DBEntryTheaterAirbase ab in airbasesList.Last() where ab.Coalition == requiredCoalition select ab).ToArray());
+
+            // Likely to fail if using normal distance limitations so double max distance,  objectives at same airfield ok if not first objective
+            MinMaxD extendedDistance = new MinMaxD(first? distance.Min: 0, distance.Max * 2);
+            airbasesList = airbasesList.FindAll(x => extendedDistance.Contains(x.Coordinates.GetDistanceFrom(lastCoordinates) * Toolbox.METERS_TO_NM));
+            if (airbasesList.Count > 0){
+                DBEntryTheaterAirbase selectedAirbase = Toolbox.RandomFrom(airbasesList);
+                mission.AirbasesCoalition[selectedAirbase.DCSID] = mission.CoalitionEnemy;
+                return selectedAirbase;
             }
 
-            // If a particular airbase name has been specified and an airbase with this name exists, pick it
-            if (!string.IsNullOrEmpty(template.TheaterStartingAirbase))
-            {
-                string airbaseName = template.TheaterStartingAirbase.Trim();
-                if (airbaseName.Contains(",")) airbaseName = airbaseName.Substring(airbaseName.IndexOf(',')).Trim(' ', ',');
-                airbasesList.Add((from DBEntryTheaterAirbase airbase in theaterDB.Airbases where airbase.Name == airbaseName select airbase).ToArray());
 
-                if (airbasesList.Last().Length == 0)
-                    DebugLog.Instance.WriteLine($"Airbase \"{airbaseName}\" not found or airbase doesn't have enough parking spots. Selecting a random airbase instead.", 1, DebugLogMessageErrorLevel.Warning);
-            }
-
-            // Check for valid airbases in all list, starting from the last one (with the most criteria filtered, and go back to the previous ones
-            // as long as no airbase is found.
-            for (int i = airbasesList.Count - 1; i >= 0; i--)
-            {
-                if (airbasesList[i].Length > 0)
-                    return Toolbox.RandomFrom(airbasesList[i]);
-            }
-
-            throw new Exception($"No airbase found with {requiredParkingSpots} parking spots, cannot spawn all player aircraft.");
+            throw new Exception($"No airbase found within range try a larger objective range.");
         }
 
         /// <summary>
