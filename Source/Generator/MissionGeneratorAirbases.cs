@@ -94,26 +94,34 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="distance">Base Distance Range</param>
         /// <param name="first">is first objective</param>
         /// <returns>Information about the starting airbase</returns>
-        public DBEntryTheaterAirbase SelectObjectiveAirbase(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, Coordinates lastCoordinates,  MinMaxD distance, bool first = false)
+        public DBEntryTheaterAirbase SelectObjectiveAirbase(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, Coordinates lastCoordinates, MinMaxD distance, bool first = false)
         {
             List<DBEntryTheaterAirbase> airbasesList = new List<DBEntryTheaterAirbase>();
 
-            // Select all airbases with enough parking spots Guess for now
-            int requiredParkingSpots = 5;
-            airbasesList.AddRange((from DBEntryTheaterAirbase ab in theaterDB.Airbases where ab.ParkingSpots.Length >= requiredParkingSpots select ab).ToArray());
+            // Select all airbases with enough parking spots
+            airbasesList.AddRange((from DBEntryTheaterAirbase ab in theaterDB.Airbases where ab.ParkingSpots.Length >= Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE select ab).ToArray());
 
+            if (airbasesList.Count == 0)
+                throw new Exception($"No airbase found with at least {Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE} parking spots to use as an objective.");
 
-            // Likely to fail if using normal distance limitations so double max distance,  objectives at same airfield ok if not first objective
-            MinMaxD extendedDistance = new MinMaxD(first? distance.Min: 0, distance.Max * 2);
-            airbasesList = airbasesList.FindAll(x => extendedDistance.Contains(x.Coordinates.GetDistanceFrom(lastCoordinates) * Toolbox.METERS_TO_NM));
-            if (airbasesList.Count > 0){
-                DBEntryTheaterAirbase selectedAirbase = Toolbox.RandomFrom(airbasesList);
-                mission.AirbasesCoalition[selectedAirbase.DCSID] = mission.CoalitionEnemy;
-                return selectedAirbase;
-            }
+            int distanceMultiplier = 1;
+            do
+            {
+                MinMaxD searchDistance = new MinMaxD(first ? distance.Min : 0, distance.Max * distanceMultiplier);
+                List<DBEntryTheaterAirbase> airbasesInRange = airbasesList.FindAll(x => searchDistance.Contains(x.Coordinates.GetDistanceFrom(lastCoordinates) * Toolbox.METERS_TO_NM));
+                if (airbasesInRange.Count > 0)
+                {
+                    DBEntryTheaterAirbase selectedAirbase = Toolbox.RandomFrom(airbasesInRange);
+                    mission.AirbasesCoalition[selectedAirbase.DCSID] = mission.CoalitionEnemy;
+                    return selectedAirbase;
+                }
 
+                distanceMultiplier++;
 
-            throw new Exception($"No airbase found within range try a larger objective range.");
+                if (distanceMultiplier > 128)
+                    throw new Exception($"No target airbase found within range, try a larger objective range.");
+
+            } while (true);
         }
 
         /// <summary>
