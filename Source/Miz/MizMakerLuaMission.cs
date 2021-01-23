@@ -277,6 +277,10 @@ namespace BriefingRoom4DCSWorld.Miz
                     LuaTools.ReplaceKey(ref groupLua, "UnitID", group.Units[0].ID);
                 }
 
+                if(group.LuaGroup == "GroupAircraftStatic"){
+                    LuaTools.ReplaceKey(ref groupLua, "OBJECTIVEAIRBASEID", group.AirbaseID);
+                }
+
                 DBEntryUnit unitBP = Database.Instance.GetEntry<DBEntryUnit>(group.UnitID);
                 if (unitBP == null) continue; // TODO: error message?
 

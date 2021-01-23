@@ -116,7 +116,7 @@ namespace BriefingRoom4DCSWorld.Generator
             // Generate mission objectives
             DebugLog.Instance.WriteLine("Generating mission objectives...");
             using (MissionGeneratorObjectives objectives = new MissionGeneratorObjectives(unitMaker.SpawnPointSelector))
-                objectives.CreateObjectives(mission, template, objectiveDB);
+                objectives.CreateObjectives(mission, template, objectiveDB, theaterDB);
 
             // Generate mission date and time
             DebugLog.Instance.WriteLine("Generating mission date and time...");

@@ -68,12 +68,12 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="mission">The mission for which to generate objectives</param>
         /// <param name="template">Mission template to use</param>
         /// <param name="objectiveDB">Objective database entry</param>
-        public void CreateObjectives(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB)
+        public void CreateObjectives(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB, DBEntryTheater theaterDB)
         {
             // Set the array for the proper number of objective
             mission.Objectives = new DCSMissionObjective[template.ObjectiveCount];
 
-            GenerateObjectivesData(mission, template, objectiveDB);
+            GenerateObjectivesData(mission, template, objectiveDB, theaterDB);
             GenerateObjectivesScript(mission);
         }
 
@@ -83,7 +83,7 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="mission">The mission for which to generate objectives</param>
         /// <param name="template">Mission template to use</param>
         /// <param name="objectiveDB">Objective database entry</param>
-        private void GenerateObjectivesData(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB)
+        private void GenerateObjectivesData(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB, DBEntryTheater theaterDB)
         {
             // Keep in mind the position of the last objective/player location.
             // Start with initial player location.
@@ -107,25 +107,35 @@ namespace BriefingRoom4DCSWorld.Generator
 
                 MinMaxD distanceFromLast =
                     new MinMaxD(OBJECTIVE_DISTANCE_VARIATION_MIN, OBJECTIVE_DISTANCE_VARIATION_MAX) * objectiveDistanceNM;
+                Coordinates objectiveCoordinates;
+                DBEntryTheaterAirbase? airbase = null;
 
-                // Look for a valid spawn point
-                DBEntryTheaterSpawnPoint? spawnPoint =
-                    SpawnPointSelector.GetRandomSpawnPoint(
-                        // If spawn point types are specified, use them. Else look for spawn points of any type
-                        (objectiveDB.UnitGroup.SpawnPoints.Length > 0) ? objectiveDB.UnitGroup.SpawnPoints : null,
-                        // Select spawn points at a proper distance from last location (previous objective or home airbase)
-                        lastCoordinates, distanceFromLast,
-                        // Make sure no objective is too close to the initial location
-                        mission.InitialPosition, new MinMaxD(objectiveDistanceNM * OBJECTIVE_DISTANCE_VARIATION_MIN, 999999999),
-                        GeneratorTools.GetEnemySpawnPointCoalition(template));
+                if(objectiveDB.UnitGroup.SpawnPoints[0] != TheaterLocationSpawnPointType.Airbase){
+                    // Look for a valid spawn point
+                    DBEntryTheaterSpawnPoint? spawnPoint =
+                        SpawnPointSelector.GetRandomSpawnPoint(
+                            // If spawn point types are specified, use them. Else look for spawn points of any type
+                            (objectiveDB.UnitGroup.SpawnPoints.Length > 0) ? objectiveDB.UnitGroup.SpawnPoints : null,
+                            // Select spawn points at a proper distance from last location (previous objective or home airbase)
+                            lastCoordinates, distanceFromLast,
+                            // Make sure no objective is too close to the initial location
+                            mission.InitialPosition, new MinMaxD(objectiveDistanceNM * OBJECTIVE_DISTANCE_VARIATION_MIN, 999999999),
+                            GeneratorTools.GetEnemySpawnPointCoalition(template));
+                        // No spawn point found for the objective, abort mission creation.
+                        if (!spawnPoint.HasValue)
+                            throw new Exception($"Failed to find a spawn point for objective {i + 1}");
+                        objectiveCoordinates = spawnPoint.Value.Coordinates;
+                } else {
+                    airbase = new MissionGeneratorAirbases().SelectObjectiveAirbase(mission, template, theaterDB);
+                    if (!airbase.HasValue)
+                            throw new Exception($"Failed to find a airbase point for objective {i + 1}");
+                    objectiveCoordinates = airbase.Value.Coordinates;
+                }
 
-                // No spawn point found for the objective, abort mission creation.
-                if (!spawnPoint.HasValue)
-                    throw new Exception($"Failed to find a spawn point for objective {i + 1}");
 
                 // Set the waypoint coordinates according the the inaccuracy defined in the objective database entry
                 Coordinates waypointCoordinates =
-                    spawnPoint.Value.Coordinates +
+                    objectiveCoordinates +
                     Coordinates.CreateRandom(objectiveDB.WaypointInaccuracy * Toolbox.NM_TO_METERS);
 
                 // Select an objective family for the target if any or default to VehicleTransport.
@@ -136,10 +146,10 @@ namespace BriefingRoom4DCSWorld.Generator
 
                 // Set the mission objective
                 mission.Objectives[i] = new DCSMissionObjective(
-                    objectiveName, spawnPoint.Value.Coordinates, objectiveUnitFamily, waypointCoordinates);
+                    objectiveName, objectiveCoordinates, objectiveUnitFamily, waypointCoordinates, airbase.HasValue? airbase.Value.DCSID: 0);
 
                 // Last position is now the position of this objective
-                lastCoordinates = spawnPoint.Value.Coordinates;
+                lastCoordinates = objectiveCoordinates;
             }
 
             // If the target is a static object, make sure the correct flag is enabled as it has an influence of some scripts

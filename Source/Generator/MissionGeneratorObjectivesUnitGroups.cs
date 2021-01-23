@@ -109,6 +109,7 @@ namespace BriefingRoom4DCSWorld.Generator
                     Toolbox.BRSkillLevelToDCSSkillLevel(template.OppositionSkillLevelGround);
                 DCSMissionUnitGroup group;
                 DBEntryTheaterSpawnPoint? spawnPoint = null;
+                if(unitGroup.SpawnPoints[0] != TheaterLocationSpawnPointType.Airbase){
                 if(unitGroup.Flags.HasFlag(DBUnitGroupFlags.DestinationObjective)){
                     spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         unitGroup.SpawnPoints,
@@ -117,13 +118,17 @@ namespace BriefingRoom4DCSWorld.Generator
                     if (!spawnPoint.HasValue)
                         throw new Exception($"Failed to find spawn point for moving objective unit");
                 }
+                }
 
                 group = UnitMaker.AddUnitGroup(
                     mission, units,
                     side,
                     spawnPoint != null? spawnPoint.Value.Coordinates : mission.Objectives[i].Coordinates,
                     Toolbox.RandomFrom(unitGroup.LuaGroup), unitGroup.LuaUnit,
-                    skillLevel, flags, coordinates2: getDestination(unitGroup, mission, i));
+                    skillLevel, flags, coordinates2: getDestination(unitGroup, mission, i),
+                    airbaseID: mission.Objectives[i].AirbaseID,
+                    requiresParkingSpots: mission.Objectives[i].AirbaseID > 0
+                    );
 
                 // Something went wrong, abort mission generation, objective unit groups are required for the mission to work properly.
                 if (group == null)

@@ -48,18 +48,24 @@ namespace BriefingRoom4DCSWorld.Mission
         public Coordinates WaypointCoordinates { get; }
 
         /// <summary>
+        /// DCSID of airbase if given
+        /// </summary>
+        public int AirbaseID { get; }
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="name">Name of the objective</param>
         /// <param name="coordinates">X,Y coordinates of the objective target</param>
         /// <param name="targetFamily">Unit family of the target at this objective</param>
         /// <param name="waypointCoordinates">X,Y coordinates of the objective waypoint</param>
-        public DCSMissionObjective(string name, Coordinates coordinates, UnitFamily? targetFamily, Coordinates waypointCoordinates)
+        public DCSMissionObjective(string name, Coordinates coordinates, UnitFamily? targetFamily, Coordinates waypointCoordinates , int airbaseID = 0)
         {
             Coordinates = coordinates;
             Name = name;
             TargetFamily = targetFamily;
             WaypointCoordinates = waypointCoordinates;
+            AirbaseID = airbaseID;
         }
     }
 }
