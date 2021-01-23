@@ -793,8 +793,13 @@ function briefingRoom.mission.eventHandler:onEvent(event)
 
       local targetType = "Ground"
       if event.id == world.event.S_EVENT_CRASH then
-        targetType = "Air"
         messageIndexOffset = 2
+        if event.initiator:inAir() then
+          targetType = "Air"
+          messageIndexOffset = 2
+        elseif unitWasAMissionTarget then
+          return -- No "target splashed" message when destroying a target aircraft on the ground (mostly for OCA missions)
+        end
       end
 
       briefingRoom.radioManager.play(messages[messageIndex + messageIndexOffset], "RadioHQ"..soundName..targetType..tostring(messageIndex), math.random(1, 3))
