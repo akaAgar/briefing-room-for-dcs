@@ -505,6 +505,8 @@ $GROUPSVEHICLERED$
     ["start_time"] = $STARTTIME$,
     ["forcedOptions"] = 
     {
+        ["unrestrictedSATNAV"] = true,
+        ["userMarks"] = true,
     }, -- end of ["forcedOptions"]
     ["failures"] = 
     {
