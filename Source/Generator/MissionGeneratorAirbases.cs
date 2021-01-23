@@ -98,8 +98,25 @@ namespace BriefingRoom4DCSWorld.Generator
         {
             List<DBEntryTheaterAirbase> airbasesList = new List<DBEntryTheaterAirbase>();
 
-            // Select all airbases with enough parking spots
-            airbasesList.AddRange((from DBEntryTheaterAirbase ab in theaterDB.Airbases where ab.ParkingSpots.Length >= Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE select ab).ToArray());
+            // Select all airbases with enough parking spots, trying to match the preferred coalition for enemy unit location, if any
+            if ((template.TheaterRegionsCoalitions == CountryCoalition.AllBlue) || (template.TheaterRegionsCoalitions == CountryCoalition.AllRed) ||
+                (template.OppositionUnitsLocation == SpawnPointPreferredCoalition.Any))
+                airbasesList.AddRange((from DBEntryTheaterAirbase ab in theaterDB.Airbases where ab.ParkingSpots.Length >= Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE select ab).ToArray());
+            else
+            {
+                Coalition preferredCoalition;
+
+                if (template.OppositionUnitsLocation == SpawnPointPreferredCoalition.Blue)
+                    preferredCoalition = (template.TheaterRegionsCoalitions == CountryCoalition.Inverted) ? Coalition.Red : Coalition.Blue;
+                else
+                    preferredCoalition = (template.TheaterRegionsCoalitions == CountryCoalition.Inverted) ? Coalition.Blue : Coalition.Red;
+
+                airbasesList.AddRange(
+                    (from DBEntryTheaterAirbase ab in theaterDB.Airbases where ab.ParkingSpots.Length >= Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE && ab.Coalition == preferredCoalition select ab).ToArray());
+
+                if (airbasesList.Count == 0)
+                    airbasesList.AddRange((from DBEntryTheaterAirbase ab in theaterDB.Airbases where ab.ParkingSpots.Length >= Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE select ab).ToArray());
+            }
 
             if (airbasesList.Count == 0)
                 throw new Exception($"No airbase found with at least {Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE} parking spots to use as an objective.");
