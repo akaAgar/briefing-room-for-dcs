@@ -182,6 +182,8 @@ namespace BriefingRoom4DCSWorld.Generator
                         case UnitCategory.Ship:
                             unitCoordinates = unitCoordinates.CreateNearRandom(SHIP_UNIT_SPACING, SHIP_UNIT_SPACING * 10);
                             break;
+                        case UnitCategory.Static: // Static units are spawned exactly on the group location (and there's only a single unit per group)
+                            break;
                         default:
                             unitCoordinates = unitCoordinates.CreateNearRandom(VEHICLE_UNIT_SPACING, VEHICLE_UNIT_SPACING * 10);
                             break;
