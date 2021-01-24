@@ -79,8 +79,6 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="objectiveGroup">If the group should be tracked as an objective</param>
         public void SpawnUnitGroups(DCSMission mission, MissionTemplate template, DBUnitGroup unitGroup, DBEntryCoalition[] coalitionsDB, Side side, Coalition coalition)
         {
-
-
             DCSMissionUnitGroupFlags flags =
                 GeneratorTools.ShouldUnitBeHidden(unitGroup, !template.OptionsPreferences.Contains(MissionTemplatePreferences.HideEnemyUnits)) ?
                 DCSMissionUnitGroupFlags.Hidden : 0;
@@ -96,11 +94,6 @@ namespace BriefingRoom4DCSWorld.Generator
                         mission.Objectives[i].TargetFamily.Value, mission.DateTime.Decade,
                         unitGroup.Count.GetValue(), template.OptionsUnitMods);
 
-                if (unitGroup.Flags.HasFlag(DBUnitGroupFlags.EmbeddedAirDefense) &&
-                    coalition != mission.CoalitionPlayer &&
-                    (Toolbox.GetUnitCategoryFromUnitFamily(mission.Objectives[i].TargetFamily.Value) == UnitCategory.Vehicle))
-                    units = GeneratorTools.AddEmbeddedAirDefense(units, template.OppositionAirDefense, coalitionsDB[(int)coalition], mission.DateTime.Decade, template.OptionsUnitMods);
-
                 // Pick the skill level once for each objective so not all target groups have the same skill level when a
                 // "random" skill level is chosen.
                 DCSSkillLevel skillLevel =
@@ -109,15 +102,42 @@ namespace BriefingRoom4DCSWorld.Generator
                     Toolbox.BRSkillLevelToDCSSkillLevel(template.OppositionSkillLevelGround);
                 DCSMissionUnitGroup group;
                 DBEntryTheaterSpawnPoint? spawnPoint = null;
-                if(unitGroup.SpawnPoints[0] != TheaterLocationSpawnPointType.Airbase){
-                if(unitGroup.Flags.HasFlag(DBUnitGroupFlags.DestinationObjective)){
-                    spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                        unitGroup.SpawnPoints,
-                        mission.Objectives[i].Coordinates,
-                        unitGroup.DistanceFromPoint);
-                    if (!spawnPoint.HasValue)
-                        throw new Exception($"Failed to find spawn point for moving objective unit");
+                if (unitGroup.SpawnPoints[0] != TheaterLocationSpawnPointType.Airbase)
+                {
+                    if (unitGroup.Flags.HasFlag(DBUnitGroupFlags.DestinationObjective))
+                    {
+                        spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                            unitGroup.SpawnPoints,
+                            mission.Objectives[i].Coordinates,
+                            unitGroup.DistanceFromPoint);
+                        if (!spawnPoint.HasValue)
+                            throw new Exception($"Failed to find spawn point for moving objective unit");
+                    }
                 }
+
+                /*
+                if (unitGroup.Flags.HasFlag(DBUnitGroupFlags.EmbeddedAirDefense) &&
+                    coalition != mission.CoalitionPlayer &&
+                    (Toolbox.GetUnitCategoryFromUnitFamily(mission.Objectives[i].TargetFamily.Value) == UnitCategory.Vehicle))
+                    units = GeneratorTools.AddEmbeddedAirDefense(units, template.OppositionAirDefense, coalitionsDB[(int)coalition], mission.DateTime.Decade, template.OptionsUnitMods);
+                */
+                if (unitGroup.Flags.HasFlag(DBUnitGroupFlags.EmbeddedAirDefense)) // Add "embedded" close range surface-to-air defense
+                {
+                    if (Toolbox.GetUnitCategoryFromUnitFamily(mission.Objectives[i].TargetFamily.Value) == UnitCategory.Vehicle) // Objectives are ground vehicles, insert air defense units in the group itself
+                        units = GeneratorTools.AddEmbeddedAirDefense(units, template.OppositionAirDefense, coalitionsDB[(int)coalition], mission.DateTime.Decade, template.OptionsUnitMods);
+                    else // Objectives are not ground vehicles, create another group nearby
+                    {
+                        string[] airDefenseGroupUnits = new string[0];
+                        for (int j = 0; j < 2; j++)
+                            airDefenseGroupUnits = GeneratorTools.AddEmbeddedAirDefense(airDefenseGroupUnits, template.OppositionAirDefense, coalitionsDB[(int)coalition], mission.DateTime.Decade, template.OptionsUnitMods);
+
+                        UnitMaker.AddUnitGroup(
+                            mission, airDefenseGroupUnits,
+                            side,
+                            (spawnPoint != null ? spawnPoint.Value.Coordinates : mission.Objectives[i].Coordinates) + Coordinates.CreateRandom(0.5, 1.5) * Toolbox.NM_TO_METERS,
+                            "GroupVehicle", "UnitVehicle",
+                            skillLevel, flags);
+                    }
                 }
 
                 group = UnitMaker.AddUnitGroup(
