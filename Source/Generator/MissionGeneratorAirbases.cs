@@ -118,6 +118,11 @@ namespace BriefingRoom4DCSWorld.Generator
                     airbasesList.AddRange((from DBEntryTheaterAirbase ab in theaterDB.Airbases where ab.ParkingSpots.Length >= Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE select ab).ToArray());
             }
 
+            // Remove players' home airbase and airbases already used by other objectives from the list of available airbases
+            List<int> airbasesInUse = (from DCSMissionObjective objective in mission.Objectives select objective.AirbaseID).ToList();
+            airbasesInUse.Add(mission.InitialAirbaseID);
+            airbasesList = (from DBEntryTheaterAirbase ab in airbasesList where !airbasesInUse.Contains(ab.DCSID) select ab).ToList();
+
             if (airbasesList.Count == 0)
                 throw new Exception($"No airbase found with at least {Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE} parking spots to use as an objective.");
 
