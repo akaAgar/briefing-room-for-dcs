@@ -1,7 +1,3 @@
-briefingRoom.mission.features.objectiveFlyby = {}
-briefingRoom.mission.features.objectiveFlyby.MAX_ALTITUDE_GROUND_RECON = 1524 -- in meters (5000 feet)
-briefingRoom.mission.features.objectiveFlyby.MAX_ALT_DISTANCE_AIR_RECON = 152 -- in meters (500 feet)
-briefingRoom.mission.features.objectiveFlyby.MAX_DISTANCE = 1000 -- in meters
 
 function briefingRoom.mission.features.objectiveFlyby.checkFlyby(player, unit)
   if player == nil or unit == nil then
