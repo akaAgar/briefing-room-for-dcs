@@ -92,7 +92,11 @@ namespace BriefingRoom4DCSWorld.Generator
             DBEntryCoalition[] coalitionsDB = new DBEntryCoalition[2];
             coalitionsDB[(int)Coalition.Blue] = Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionBlue);
             coalitionsDB[(int)Coalition.Red] = Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionRed);
-            DBEntryObjective objectiveDB = Database.Instance.GetEntry<DBEntryObjective>(template.ObjectiveType);
+            DBEntryObjective objectiveDB;
+            if(template.ObjectiveType == "Random")
+                objectiveDB = Toolbox.RandomFrom<DBEntryObjective>(Database.Instance.GetAllEntries<DBEntryObjective>().Where(x => x.ID != "Random").ToArray());
+            else 
+                objectiveDB = Database.Instance.GetEntry<DBEntryObjective>(template.ObjectiveType);
             DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.TheaterID);
 
             // Create the unit maker, which will be used to generate unit groups and their properties
