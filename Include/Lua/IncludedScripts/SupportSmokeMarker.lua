@@ -19,9 +19,12 @@ function briefingRoom.mission.features.supportSmokeMarker.markWithSmoke(index)
   end
 
   local unit = dcsExtensions.getUnitByID(briefingRoom.mission.objectives[index].unitsID[1])
-  if unit == nil then -- no unit found with the ID
-    briefingRoom.radioManager.play("Negative, no visual on any target.", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
-    return
+  if unit == nil then -- no unit found with the ID, try searching for a static
+    unit = dcsExtensions.getStaticByID(briefingRoom.mission.objectives[index].unitsID[1])
+    if unit == nil then -- no unit nor static found with the ID
+      briefingRoom.radioManager.play("Negative, no visual on any target.", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
+      return
+    end
   end
 
   -- Set the next smoke time to an arbitrary negative value if this JTAC was never used before
