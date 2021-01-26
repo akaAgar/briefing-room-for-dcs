@@ -128,7 +128,7 @@ namespace BriefingRoom4DCSWorld.Generator
             DebugLog.Instance.WriteLine($"{remarks.Count} remark(s)", 2);
             */
 
-            mission.BriefingHTML = CreateHTMLBriefing(mission, template, description, tasks, remarks, flightGroups, airbaseDB, carrierDB, coalitionsDB);
+            mission.BriefingHTML = CreateHTMLBriefing(mission, template, description, tasks, remarks, flightGroups, airbaseDB, carrierDB, coalitionsDB, objectiveDB);
             mission.BriefingTXT = CreateTXTBriefing(description, tasks, remarks, flightGroups, airbaseDB, carrierDB);
         }
 
@@ -136,7 +136,7 @@ namespace BriefingRoom4DCSWorld.Generator
             DCSMission mission, MissionTemplate template, string description,
             List<string> tasks, List<string> remarks,
             List<UnitFlightGroupBriefingDescription> flightGroups, DBEntryTheaterAirbase airbaseDB, DBEntryUnit carrierDB,
-            DBEntryCoalition[] coalitionsDB)
+            DBEntryCoalition[] coalitionsDB, DBEntryObjective objectiveDB)
         {
             DebugLog.Instance.WriteLine("Generating HTML mission briefing...", 2);
 
@@ -151,7 +151,7 @@ namespace BriefingRoom4DCSWorld.Generator
             // Title
             briefing = briefing.Replace("$MISSIONNAME$", mission.MissionName);
             briefing = briefing.Replace("$MISSIONTYPE$",
-                GeneratorTools.RemoveAfterComma(template.ObjectiveType) + " mission " +
+                GeneratorTools.RemoveAfterComma(objectiveDB.ID) + " mission " +
                 ((template.GetMissionType() == MissionType.SinglePlayer) ?
                 "(single-player)" : $"({template.GetPlayerCount()}-players multiplayer)"));
 
