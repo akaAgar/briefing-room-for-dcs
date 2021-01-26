@@ -60,9 +60,12 @@ function briefingRoom.mission.features.supportLaserDesignation.turnLaserOn(index
   end
 
   local unit = dcsExtensions.getUnitByID(briefingRoom.mission.objectives[index].unitsID[1])
-  if unit == nil then -- no unit found with the ID
-    briefingRoom.radioManager.play("Negative, no visual on any target.", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
-    return
+  if unit == nil then -- no unit found with the ID, try searching for a static
+    unit = dcsExtensions.getStaticByID(briefingRoom.mission.objectives[index].unitsID[1])
+    if unit == nil then -- no unit nor static found with the ID
+      briefingRoom.radioManager.play("Negative, no visual on any target.", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
+      return
+    end
   end
 
   briefingRoom.radioManager.play("Affirm. Laser on, painting the target now. Laser code is "..tostring(briefingRoom.mission.features.supportLaserDesignation.LASER_CODE)..".", "RadioSupportLasingOk", briefingRoom.radioManager.getAnswerDelay())
