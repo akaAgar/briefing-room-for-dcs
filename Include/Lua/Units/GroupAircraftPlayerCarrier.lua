@@ -58,8 +58,8 @@
                     ["type"] = "$PLAYERSTARTINGTYPE$",
                     ["ETA"] = 0,
                     ["ETA_locked"] = true,
-                    ["y"] = $CARRIERBASEY$,
-                    ["x"] = $CARRIERBASEX$,
+                    ["y"] = $Y$,
+                    ["x"] = $X$,
                     ["name"] = "$INITIALWPNAME$",
                     ["formation_template"] = "",
                     ["speed_locked"] = true,
@@ -84,8 +84,8 @@ $PLAYERWAYPOINTS$
                     ["type"] = "Land",
                     ["ETA"] = 0,
                     ["ETA_locked"] = false,
-                    ["y"] = $CARRIERBASEY$,
-                    ["x"] = $CARRIERBASEX$,
+                    ["y"] = $Y$,
+                    ["x"] = $X$,
                     ["name"] = "$FINALWPNAME$",
                     ["formation_template"] = "",
                     ["speed_locked"] = true,
@@ -98,8 +98,8 @@ $PLAYERWAYPOINTS$
         {
 $UNITS$
         }, -- end of ["units"]
-        ["y"] = $CARRIERBASEY$,
-        ["x"] = $CARRIERBASEX$,
+        ["y"] = $Y$,
+        ["x"] = $X$,
         ["name"] = "$NAME$",
         ["communication"] = true,
         ["start_time"] = 0,

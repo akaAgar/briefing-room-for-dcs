@@ -320,20 +320,20 @@ namespace BriefingRoom4DCSWorld.Template
         private int PlayerSPWingmen_;
 
         /// <summary>
+        /// Type of aircraft carrier spawned. If none, player(s) will take off from an airbase. In single player, the player's aircraft will be spawed on the carrier. In multiplayer, aircraft will spawn on carrier if the option is set for their flight group. Make sure aircraft are suitable for the carrier type.
+        /// </summary>
+        [Category("Player, single player only"), DisplayName("Carrier (BETA)")]
+        [Description("Type of aircraft carrier spawned. If none, player(s) will take off from an airbase. In single player, the player's aircraft will be spawed on the carrier. In multiplayer, aircraft will spawn on carrier if the option is set for their flight group. Make sure aircraft are suitable for the carrier type.")]
+        [TypeConverter(typeof(DBEntryCarrierConverter))]
+        public string PlayerSPCarrier { get; set; }
+
+        /// <summary>
         /// Skill level of AI wingmen and escort aircraft.
         /// </summary>
         [Category("Player"), DisplayName("AI skill level")]
         [Description("Skill level of AI wingmen and escort aircraft.")]
         [TypeConverter(typeof(EnumTypeConverter<BRSkillLevel>))]
         public BRSkillLevel PlayerAISkillLevel { get; set; }
-
-        /// <summary>
-        /// Type of aircraft carrier spawned. If none, player(s) will take off from an airbase. In single player, the player's aircraft will be spawed on the carrier. In multiplayer, aircraft will spawn on carrier if the option is set for their flight group. Make sure aircraft are suitable for the carrier type.
-        /// </summary>
-        [Category("Player"), DisplayName("Carrier (BETA)")]
-        [Description("Type of aircraft carrier spawned. If none, player(s) will take off from an airbase. In single player, the player's aircraft will be spawed on the carrier. In multiplayer, aircraft will spawn on carrier if the option is set for their flight group. Make sure aircraft are suitable for the carrier type.")]
-        [TypeConverter(typeof(DBEntryCarrierConverter))]
-        public string PlayerCarrier { get; set; }
 
         /// <summary>
         /// Number of AI aircraft tasked with escorting the player against enemy fighters.
@@ -399,6 +399,15 @@ namespace BriefingRoom4DCSWorld.Template
         private string TheaterStartingAirbase_;
 
         /// <summary>
+        /// Type of aircraft carrier spawned. If none, player(s) will take off from an airbase. In single player, the player's aircraft will be spawed on the carrier. In multiplayer, aircraft will spawn on carrier if the option is set for their flight group. Make sure aircraft are suitable for the carrier type.
+        /// </summary>
+        [Category("Theater"), DisplayName("Carriers (BETA)")]
+        [Description("Type of aircraft carrier spawned. If none, player(s) will take off from an airbase. In single player, the player's aircraft will be spawed on the carrier. In multiplayer, aircraft will spawn on carrier if the option is set for their flight group. Make sure aircraft are suitable for the carrier type.")]
+        [TypeConverter(typeof(StringArrayTypeConverter))]
+        [Editor(typeof(CheckedListBoxUIEditorCarriers), typeof(UITypeEditor))]
+        public string[] TheaterCarriers { get; set; }
+
+        /// <summary>
         /// Resets all properties to their default values.
         /// </summary>
         public void Clear()
@@ -437,7 +446,6 @@ namespace BriefingRoom4DCSWorld.Template
             OptionsUnitMods = new string[0];
 
             PlayerAISkillLevel = BRSkillLevel.Random;
-            PlayerCarrier = "";
             PlayerEscortCAP = 0;
             PlayerEscortSEAD = 0;
             PlayerFriendlyAirDefense = AmountN.Random;
@@ -446,10 +454,12 @@ namespace BriefingRoom4DCSWorld.Template
             PlayerMPFlightGroups = new MissionTemplateMPFlightGroup[0];
             PlayerSPAircraft = TemplateTools.CheckValuePlayerAircraft(Database.Instance.Common.DefaultPlayerAircraft);
             PlayerSPWingmen = 1;
+            PlayerSPCarrier = "";
 
             TheaterID = TemplateTools.CheckValue<DBEntryTheater>(Database.Instance.Common.DefaultTheater);
             TheaterRegionsCoalitions = CountryCoalition.Default;
             TheaterStartingAirbase = "";
+            TheaterCarriers = new string[0];
         }
 
         /// <summary>
@@ -498,7 +508,6 @@ namespace BriefingRoom4DCSWorld.Template
                 OptionsUnitMods = ini.GetValueArray<string>("Options", "UnitMods");
 
                 PlayerAISkillLevel = ini.GetValue("Player", "AISkillLevel", PlayerAISkillLevel);
-                PlayerCarrier = ini.GetValue("Player", "Carrier", PlayerCarrier);
                 PlayerEscortCAP = ini.GetValue("Player", "EscortCAP", PlayerEscortCAP);
                 PlayerEscortSEAD = ini.GetValue("Player", "EscortSEAD", PlayerEscortSEAD);
                 PlayerFriendlyAirDefense = ini.GetValue("Player", "FriendlyAirDefense", PlayerFriendlyAirDefense);
@@ -511,10 +520,12 @@ namespace BriefingRoom4DCSWorld.Template
 
                 PlayerSPAircraft = ini.GetValue("PlayerSP", "Aircraft", PlayerSPAircraft);
                 PlayerSPWingmen = ini.GetValue("PlayerSP", "Wingmen", PlayerSPWingmen);
+                PlayerSPCarrier = ini.GetValue("PlayerSP", "Carrier", PlayerSPCarrier);
 
                 TheaterID = ini.GetValue("Theater", "ID", TheaterID);
                 TheaterRegionsCoalitions = ini.GetValue("Theater", "RegionsCoalitions", TheaterRegionsCoalitions);
                 TheaterStartingAirbase = ini.GetValue("Theater", "StartingAirbase", TheaterStartingAirbase);
+                TheaterCarriers = ini.GetValueArray<string>("Theater", "Carriers");
             }
 
             return true;
@@ -562,7 +573,6 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValueArray("Options", "UnitMods", OptionsUnitMods);
 
                 ini.SetValue("Player", "AISkillLevel", PlayerAISkillLevel);
-                ini.SetValue("Player", "Carrier", PlayerCarrier);
                 ini.SetValue("Player", "EscortCAP", PlayerEscortCAP);
                 ini.SetValue("Player", "EscortSEAD", PlayerEscortSEAD);
                 ini.SetValue("Player", "FriendlyAirDefense", PlayerFriendlyAirDefense);
@@ -571,6 +581,7 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValue("PlayerSP", "Aircraft", PlayerSPAircraft);
                 ini.SetValue("PlayerSP", "Wingmen", PlayerSPWingmen);
                 ini.SetValue("PlayerSP", "Wingmen.SkillLevel", PlayerAISkillLevel);
+                ini.SetValue("PlayerSP", "Carrier", PlayerSPCarrier);
 
                 ini.SetValue("PlayerMP", "FGCount", PlayerMPFlightGroups.Length);
                 for (int i = 0; i < PlayerMPFlightGroups.Length; i++)
@@ -579,6 +590,7 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValue("Theater", "ID", TheaterID);
                 ini.SetValue("Theater", "RegionsCoalitions", TheaterRegionsCoalitions);
                 ini.SetValue("Theater", "StartingAirbase", TheaterStartingAirbase);
+                ini.SetValueArray("Theater", "Carriers", TheaterCarriers);
 
                 ini.SaveToFile(filePath);
             }

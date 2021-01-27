@@ -141,9 +141,10 @@ namespace BriefingRoom4DCSWorld.Generator
             }
 
             // Generate Carrier
-            DBEntryUnit carrierDB;
+            DBEntryUnit[] carrierDB;
             using(MissionGeneratorCarrier unitGroupGen = new MissionGeneratorCarrier(unitMaker))
-                carrierDB = unitGroupGen.GenerateCarrier(mission, template, coalitionsDB[(int)mission.CoalitionPlayer], windDirection0);
+                carrierDB = unitGroupGen.GenerateCarriers(mission, template, coalitionsDB[(int)mission.CoalitionPlayer], windDirection0);
+            
 
             // Generate player unit groups
             DebugLog.Instance.WriteLine("Generating player unit groups and mission package...");

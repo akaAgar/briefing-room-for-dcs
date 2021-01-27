@@ -110,6 +110,11 @@ namespace BriefingRoom4DCSWorld.Mission
         public Tacan TACAN {get; set;}
 
         /// <summary>
+        /// ID of Carrier group is linked to
+        /// </summary>
+        public int CarrierId {get; set;}
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         public DCSMissionUnitGroup() { }

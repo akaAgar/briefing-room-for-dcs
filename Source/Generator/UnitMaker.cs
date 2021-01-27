@@ -107,6 +107,7 @@ namespace BriefingRoom4DCSWorld.Generator
                         ID = NextUnitID,
                         Type = unitBP.DCSIDs[i],
                         ParkingSpot = parkingSpot,
+                        Name = unitBP.ID
                     };
                     groupUnits.Add(unit);
                     unitIndex++; NextUnitID++;

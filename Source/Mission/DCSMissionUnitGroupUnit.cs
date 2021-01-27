@@ -50,6 +50,12 @@ namespace BriefingRoom4DCSWorld.Mission
         /// </summary>
         public string Type { get; set; } = "";
 
+
+        /// <summary>
+        /// Display name of this unit
+        /// </summary>
+        public string Name { get; set; } = "";
+
         /// <summary>
         /// Constructor.
         /// </summary>
