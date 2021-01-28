@@ -46,11 +46,11 @@
                                 ["AA"] = false,
                                 ["unitId"] = $UNITID$,
                                 ["modeChannel"] = "X",
-                                ["channel"] = $TACANCHANNEL$, --74,
+                                ["channel"] = $TACANCHANNEL$,
                                 ["system"] = 3,
                                 ["callsign"] = "$TACANCALLSIGN$",
                                 ["bearing"] = true,
-                                ["frequency"] = $TACANFREQUENCY$,--1161000000,
+                                ["frequency"] = $TACANFREQUENCY$,
                             }, -- end of ["params"]
                         }, -- end of ["action"]
                     }, -- end of ["params"]
@@ -69,7 +69,7 @@
                             ["params"] = 
                             {
                                 ["type"] = 131584,
-                                ["channel"] = 11,
+                                ["channel"] = $ILS$,
                                 ["unitId"] = $UNITID$,
                             }, -- end of ["params"]
                         }, -- end of ["action"]

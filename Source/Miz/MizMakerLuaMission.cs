@@ -274,6 +274,8 @@ namespace BriefingRoom4DCSWorld.Miz
                     LuaTools.ReplaceKey(ref groupLua, "TacanChannel", group.TACAN.channel);
                     LuaTools.ReplaceKey(ref groupLua, "UnitID", group.Units[0].ID);
                 }
+                if(group.ILS > 0)
+                    LuaTools.ReplaceKey(ref groupLua, "ILS", group.ILS);
 
 
                 DBEntryUnit unitBP = Database.Instance.GetEntry<DBEntryUnit>(group.UnitID);

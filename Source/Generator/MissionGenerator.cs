@@ -141,9 +141,8 @@ namespace BriefingRoom4DCSWorld.Generator
             }
 
             // Generate Carrier
-            DBEntryUnit[] carrierDB;
             using(MissionGeneratorCarrier unitGroupGen = new MissionGeneratorCarrier(unitMaker))
-                carrierDB = unitGroupGen.GenerateCarriers(mission, template, coalitionsDB[(int)mission.CoalitionPlayer], windDirection0);
+                unitGroupGen.GenerateCarriers(mission, template, coalitionsDB[(int)mission.CoalitionPlayer], windDirection0);
             
 
             // Generate player unit groups
@@ -199,7 +198,7 @@ namespace BriefingRoom4DCSWorld.Generator
             using (MissionGeneratorBriefing briefing = new MissionGeneratorBriefing())
             {
                 briefing.GenerateMissionName(mission, template);
-                briefing.GenerateMissionBriefing(mission, template, objectiveDB, airbaseDB, carrierDB, briefingFGList, coalitionsDB);
+                briefing.GenerateMissionBriefing(mission, template, objectiveDB, airbaseDB, briefingFGList, coalitionsDB);
             }
 
             // Set if radio sounds are enabled

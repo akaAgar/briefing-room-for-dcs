@@ -101,7 +101,7 @@ namespace BriefingRoom4DCSWorld.Generator
             DCSMissionUnitGroup group = UnitMaker.AddUnitGroup(
                 mission,
                 Enumerable.Repeat(template.PlayerSPAircraft, template.PlayerSPWingmen + 1).ToArray(),
-                Side.Ally, isCarrier? mission.Carriers.First(x => x.Name == template.PlayerSPCarrier).Coordinates : mission.InitialPosition,
+                Side.Ally, isCarrier? mission.Carriers.First(x => x.Units[0].Name == template.PlayerSPCarrier).Coordinates : mission.InitialPosition,
                 isCarrier? "GroupAircraftPlayerCarrier" : "GroupAircraftPlayer", "UnitAircraft",
                 Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel), DCSMissionUnitGroupFlags.FirstUnitIsPlayer,
                 objectiveDB.Payload,
@@ -111,7 +111,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 throw new Exception($"Failed to create group of player aircraft of type \"{template.PlayerSPAircraft}\".");
             
             if(isCarrier)
-                group.CarrierId = mission.Carriers.First(x => x.Name == template.PlayerSPCarrier).ID;
+                group.CarrierId = mission.Carriers.First(x => x.Units[0].Name == template.PlayerSPCarrier).Units[0].ID;
 
             return new UnitFlightGroupBriefingDescription(
                         group.Name, group.Units.Length, template.PlayerSPAircraft,
@@ -217,7 +217,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 DCSMissionUnitGroup group = UnitMaker.AddUnitGroup(
                     mission,
                     Enumerable.Repeat(fg.AircraftType, fg.Count).ToArray(),
-                    Side.Ally, hasCarrier ? mission.Carriers.First(x => x.Name == fg.Carrier).Coordinates : mission.InitialPosition,
+                    Side.Ally, hasCarrier ? mission.Carriers.First(x => x.Units[0].Name == fg.Carrier).Coordinates : mission.InitialPosition,
                     hasCarrier ? "GroupAircraftPlayerCarrier" : "GroupAircraftPlayer", "UnitAircraft",
                     DCSSkillLevel.Client, 0,
                     payload,
@@ -229,7 +229,7 @@ namespace BriefingRoom4DCSWorld.Generator
                     continue;
                 }
                 if(hasCarrier)
-                    group.CarrierId = mission.Carriers.First(x => x.Name == fg.Carrier).ID;
+                    group.CarrierId = mission.Carriers.First(x => x.Units[0].Name == fg.Carrier).Units[0].ID;
 
                 briefingFGList.Add(
                     new UnitFlightGroupBriefingDescription(

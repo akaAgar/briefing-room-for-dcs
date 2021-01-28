@@ -33,6 +33,11 @@ namespace BriefingRoom4DCSWorld
         public readonly int channel;
 
         /// <summary>
+        /// Mode of TACAN.
+        /// </summary>
+        public readonly char mode;
+
+        /// <summary>
         /// Callsign of tacan.
         /// </summary>
         public readonly string callsign;
@@ -48,14 +53,41 @@ namespace BriefingRoom4DCSWorld
         /// <param name="channel">Channel of TACAN.</param>
         /// <param name="callsign">Callsign of tacan</param>
         /// <param name="frequency">Frequency of tacan</param>
-        public Tacan(int _channel, string _callsign, int _frequency) {
+        public Tacan(int _channel, string _callsign, char _mode = 'X')
+        {
             channel = _channel;
-            callsign =_callsign;
-            freqency = _frequency;
+            callsign = _callsign;
+            mode = _mode;
+            freqency = getTACANFrequency(_channel,_mode);
         }
 
-        public override string ToString(){
-            return $"{callsign}-{channel}X";
+        private int getTACANFrequency(int channel, char channelMode)
+        {
+            int A = 1151;
+            int B = 64;
+
+            if (channel < 64)
+                B = 1;
+
+            if (channelMode == 'Y')
+            {
+                A = 1025;
+                if (channel < 64)
+                    A = 1088;
+            }
+            else
+            {
+                if (channel < 64)
+                    A = 962;
+            }
+
+            return (A + channel - B) * 1000000;
+        }
+
+
+        public override string ToString()
+        {
+            return $"{callsign}-{channel}{mode}";
         }
     }
 }

@@ -110,6 +110,11 @@ namespace BriefingRoom4DCSWorld.Mission
         public Tacan TACAN {get; set;}
 
         /// <summary>
+        /// ILS Channel to be transmitted (Just single unit goups for now).
+        /// </summary>
+        public int ILS {get; set;}
+
+        /// <summary>
         /// ID of Carrier group is linked to
         /// </summary>
         public int CarrierId {get; set;}

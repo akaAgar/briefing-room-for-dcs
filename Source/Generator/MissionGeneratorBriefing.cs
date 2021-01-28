@@ -70,7 +70,7 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="template">Template from which the mission should be built</param>
         /// <param name="airbaseDB">Airbase player will take off from and land back on</param>
         /// <param name="coalitionsDB">Database entries for the mission coalitions</param>
-        public void GenerateMissionBriefing(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB, DBEntryTheaterAirbase airbaseDB, DBEntryUnit[] carrierDB, List<UnitFlightGroupBriefingDescription> flightGroups, DBEntryCoalition[] coalitionsDB)
+        public void GenerateMissionBriefing(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB, DBEntryTheaterAirbase airbaseDB, List<UnitFlightGroupBriefingDescription> flightGroups, DBEntryCoalition[] coalitionsDB)
         {
             DebugLog.Instance.WriteLine("Generating mission briefing...", 1);
 
@@ -128,14 +128,14 @@ namespace BriefingRoom4DCSWorld.Generator
             DebugLog.Instance.WriteLine($"{remarks.Count} remark(s)", 2);
             */
 
-            mission.BriefingHTML = CreateHTMLBriefing(mission, template, description, tasks, remarks, flightGroups, airbaseDB, carrierDB, coalitionsDB, objectiveDB);
-            mission.BriefingTXT = CreateTXTBriefing(description, tasks, remarks, flightGroups, airbaseDB, carrierDB);
+            mission.BriefingHTML = CreateHTMLBriefing(mission, template, description, tasks, remarks, flightGroups, airbaseDB, coalitionsDB, objectiveDB);
+            mission.BriefingTXT = CreateTXTBriefing(mission, description, tasks, remarks, flightGroups, airbaseDB);
         }
 
         private string CreateHTMLBriefing(
             DCSMission mission, MissionTemplate template, string description,
             List<string> tasks, List<string> remarks,
-            List<UnitFlightGroupBriefingDescription> flightGroups, DBEntryTheaterAirbase airbaseDB, DBEntryUnit[] carrierDB,
+            List<UnitFlightGroupBriefingDescription> flightGroups, DBEntryTheaterAirbase airbaseDB,
             DBEntryCoalition[] coalitionsDB, DBEntryObjective objectiveDB)
         {
             DebugLog.Instance.WriteLine("Generating HTML mission briefing...", 2);
@@ -205,14 +205,14 @@ namespace BriefingRoom4DCSWorld.Generator
             briefing = briefing.Replace("$AIRBASES$", airbasesHTML);
 
             string carrierHTML = "";
-            foreach (var carrier in carrierDB)
+            foreach (var carrier in mission.Carriers)
             {
                 carrierHTML += 
                 "<tr>" +
-                $"<td>{carrier.ID}</td>" +
+                $"<td>{carrier.Units[0].Name}</td>" +
                 $"<td>127.500AM</td>" +
-                $"<td>11</td>" +
-                $"<td>74X</td>" +
+                $"<td>{carrier.ILS}</td>" +
+                $"<td>{carrier.TACAN.ToString()}</td>" +
                 "</tr>";
             }
             briefing = briefing.Replace("$CARRIERS$", carrierHTML);
@@ -255,8 +255,8 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="airbaseDB">Airbase player will take off from and land back on</param>
         /// <returns></returns>
         private string CreateTXTBriefing(
-            string description, List<string> tasks, List<string> remarks, 
-            List<UnitFlightGroupBriefingDescription> flightGroups, DBEntryTheaterAirbase airbaseDB, DBEntryUnit[] carriers)
+            DCSMission mission, string description, List<string> tasks, List<string> remarks, 
+            List<UnitFlightGroupBriefingDescription> flightGroups, DBEntryTheaterAirbase airbaseDB)
         {
             DebugLog.Instance.WriteLine("Generating raw text mission briefing...", 2);
 
@@ -279,9 +279,9 @@ namespace BriefingRoom4DCSWorld.Generator
             briefing += $"{airbaseDB.Name} ({airbaseDB.ATC}), RWY: {airbaseDB.Runways}, ILS: {airbaseDB.ILS}, TACAN: {airbaseDB.TACAN}\n";
             briefing += "\n";
             briefing += "Carriers:\n";
-            foreach (var carrier in carriers)
+            foreach (var carrier in mission.Carriers)
             {
-                briefing += $"{carrier.ID} (127.500AM), ILS: 11, TACAN: 74X\n";
+                briefing += $"{carrier.Units[0].Name} (127.500AM), ILS: {carrier.ILS}, TACAN: {carrier.TACAN.ToString()}\n";
             }
             briefing += "\n";
 

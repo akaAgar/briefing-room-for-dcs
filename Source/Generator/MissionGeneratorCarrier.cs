@@ -55,12 +55,11 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="playerCoalitionDB"></param>
         /// <param name="windDirection0">Wind direction at altitude 0, in degrees. Used by carrier groups to make sure carriers sail into the wind.</param>
         /// <returns></returns>
-        public DBEntryUnit[] GenerateCarriers(DCSMission mission, MissionTemplate template, DBEntryCoalition playerCoalitionDB, int windDirection0)
+        public void GenerateCarriers(DCSMission mission, MissionTemplate template, DBEntryCoalition playerCoalitionDB, int windDirection0)
         {
-            List<DBEntryUnit> entries = new List<DBEntryUnit>();
             if (template.TheaterCarriers.Length == 0)
             {
-                return entries.ToArray();
+                return;
             }
 
             foreach (string carrier in template.TheaterCarriers)
@@ -110,15 +109,13 @@ namespace BriefingRoom4DCSWorld.Generator
                     unit.Heading = heading;
                 }
             }
+                string cvnId = mission.Carriers.Length > 0? (mission.Carriers.Length + 1).ToString() : "";
+                group.TACAN = new Tacan(74+ mission.Carriers.Length, $"CVN{cvnId}");
+                group.ILS = 11 + mission.Carriers.Length;
 
-                group.TACAN = new Tacan(74, $"CVN", 1161000000);
-
-                mission.Carriers = mission.Carriers.Append(group.Units[0]).ToArray();
-                entries.Add((from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>()
-                        where unit.ID == carrier
-                        select unit).ToArray()[0]);
+                mission.Carriers = mission.Carriers.Append(group).ToArray();
             }
-            return entries.ToArray();
+            return;
         }
 
         /// <summary>
