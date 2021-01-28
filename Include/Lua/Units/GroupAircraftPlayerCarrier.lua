@@ -15,7 +15,7 @@
                     ["alt"] = 13,
                     ["action"] = "$PLAYERSTARTINGACTION$",
                     ["linkUnit"] = $LINKUNIT$,
-                    ["helipadId"] = 1,
+                    ["helipadId"] = $LINKUNIT$,
                     ["alt_type"] = "BARO",
                     ["properties"] = 
                     {
