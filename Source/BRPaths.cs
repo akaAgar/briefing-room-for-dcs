@@ -30,7 +30,7 @@ namespace BriefingRoom4DCSWorld
         /// <summary>
         /// Path to the application.
         /// </summary>
-        public static string ROOT { get; } = Toolbox.NormalizeDirectoryPath(Application.StartupPath);
+        public static string ROOT { get; } = Toolbox.NormalizeDirectoryPath(Application.StartupPath) + "..//";
 
         /// <summary>
         /// Path to the database subdirectory.
