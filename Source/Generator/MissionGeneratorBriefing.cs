@@ -210,7 +210,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 carrierHTML += 
                 "<tr>" +
                 $"<td>{carrier.Units[0].Name}</td>" +
-                $"<td>127.500AM</td>" +
+                $"<td>{carrier.RadioFrequency.ToString("n3")}{carrier.RadioModulation}</td>" +
                 $"<td>{carrier.ILS}</td>" +
                 $"<td>{carrier.TACAN.ToString()}</td>" +
                 "</tr>";
@@ -281,7 +281,7 @@ namespace BriefingRoom4DCSWorld.Generator
             briefing += "Carriers:\n";
             foreach (var carrier in mission.Carriers)
             {
-                briefing += $"{carrier.Units[0].Name} (127.500AM), ILS: {carrier.ILS}, TACAN: {carrier.TACAN.ToString()}\n";
+                briefing += $"{carrier.Units[0].Name} ({carrier.RadioFrequency.ToString("n3")}{carrier.RadioModulation}), ILS: {carrier.ILS}, TACAN: {carrier.TACAN.ToString()}\n";
             }
             briefing += "\n";
 

@@ -112,7 +112,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 string cvnId = mission.Carriers.Length > 0? (mission.Carriers.Length + 1).ToString() : "";
                 group.TACAN = new Tacan(74+ mission.Carriers.Length, $"CVN{cvnId}");
                 group.ILS = 11 + mission.Carriers.Length;
-
+                group.RadioFrequency = 127.5f + mission.Carriers.Length;
                 mission.Carriers = mission.Carriers.Append(group).ToArray();
             }
             return;

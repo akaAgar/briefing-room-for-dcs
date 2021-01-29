@@ -335,6 +335,14 @@ namespace BriefingRoom4DCSWorld.Miz
 
                             LuaTools.ReplaceKey(ref unitLua, "PayloadPylons", pylonLua);
                         }
+                    } else if((group.Category == UnitCategory.Ship)){
+                        if(group.RadioFrequency > 0){
+                        LuaTools.ReplaceKey(ref unitLua, "RadioBand", (int)group.RadioModulation);
+                        LuaTools.ReplaceKey(ref unitLua, "RadioFrequency", group.RadioFrequency * 1000000);
+                        } else {
+                            LuaTools.ReplaceKey(ref unitLua, "RadioBand", 0);
+                            LuaTools.ReplaceKey(ref unitLua, "RadioFrequency", 127.0f * 1000000);
+                        }
                     }
 
                     if (unitBP == null)

@@ -118,7 +118,15 @@ namespace BriefingRoom4DCSWorld.Mission
         /// ID of Carrier group is linked to
         /// </summary>
         public int CarrierId {get; set;}
+        /// <summary>
+        /// Default radio frequency for this aircraft.
+        /// </summary>
+        public float RadioFrequency { get; set; }
 
+        /// <summary>
+        /// Default radio modulation for this aircraft.
+        /// </summary>
+        public RadioModulation RadioModulation { get; set; }
         /// <summary>
         /// Constructor.
         /// </summary>
