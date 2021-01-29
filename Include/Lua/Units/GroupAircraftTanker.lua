@@ -2,6 +2,7 @@
 {
     ["lateActivation"] = true,
     ["modulation"] = $RADIOBAND$,
+    ["radioSet"] = true,
     ["tasks"] = 
     {
     }, -- end of ["tasks"]
