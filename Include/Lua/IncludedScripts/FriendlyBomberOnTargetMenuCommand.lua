@@ -1,5 +1,3 @@
-briefingRoom.mission.featuresUnitGroups.FriendlyBomberOnTarget = { 7, 8 }
-
 briefingRoom.mission.features.friendlyBomberOnTarget = { }
 briefingRoom.mission.features.friendlyBomberOnTarget.activated = { } -- was the bomber FG activated?
 
