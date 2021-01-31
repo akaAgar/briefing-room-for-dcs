@@ -57,12 +57,20 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <returns></returns>
         public void GenerateCarriers(DCSMission mission, MissionTemplate template, DBEntryCoalition playerCoalitionDB, int windDirection0)
         {
-            if (template.TheaterCarriers.Length == 0)
-            {
-                return;
-            }
+             var carriers = new string[]{};
+             if(template.GetMissionType() == MissionType.SinglePlayer){
+                if (string.IsNullOrEmpty(template.PlayerSPCarrier))
+                    return;
+                carriers = carriers.Append(template.PlayerSPCarrier).ToArray();
+             }
+             else {
+                  carriers = template.PlayerMPFlightGroups.Aggregate(new string[]{},(acc, x) => !string.IsNullOrEmpty(x.Carrier)? acc.Append(x.Carrier).ToArray() : acc);
+             }
 
-            foreach (string carrier in template.TheaterCarriers)
+            if (carriers.Length == 0)
+                return;
+
+            foreach (string carrier in carriers)
             {
 
             DBEntryTheaterSpawnPoint? spawnPoint =
@@ -100,7 +108,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel));
 
             if (group == null)
-                DebugLog.Instance.WriteLine($"Failed to create AI Carrier with ship of type \"{template.TheaterCarriers}\".", 1, DebugLogMessageErrorLevel.Warning);
+                DebugLog.Instance.WriteLine($"Failed to create AI Carrier with ship of type \"{carrier}\".", 1, DebugLogMessageErrorLevel.Warning);
             else {
                 //set all units against the wind
                 double heading = Toolbox.ClampAngle((windDirection0 + 180) * Toolbox.DEGREES_TO_RADIANS); 

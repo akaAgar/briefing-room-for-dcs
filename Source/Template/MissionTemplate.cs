@@ -399,15 +399,6 @@ namespace BriefingRoom4DCSWorld.Template
         private string TheaterStartingAirbase_;
 
         /// <summary>
-        /// Type of aircraft carrier spawned. If none, player(s) will take off from an airbase. In single player, the player's aircraft will be spawed on the carrier. In multiplayer, aircraft will spawn on carrier if the option is set for their flight group. Make sure aircraft are suitable for the carrier type.
-        /// </summary>
-        [Category("Theater"), DisplayName("Carriers (BETA)")]
-        [Description("Type of aircraft carrier spawned. If none, player(s) will take off from an airbase. In single player, the player's aircraft will be spawed on the carrier. In multiplayer, aircraft will spawn on carrier if the option is set for their flight group. Make sure aircraft are suitable for the carrier type.")]
-        [TypeConverter(typeof(StringArrayTypeConverter))]
-        [Editor(typeof(CheckedListBoxUIEditorCarriers), typeof(UITypeEditor))]
-        public string[] TheaterCarriers { get; set; }
-
-        /// <summary>
         /// Resets all properties to their default values.
         /// </summary>
         public void Clear()
@@ -459,7 +450,6 @@ namespace BriefingRoom4DCSWorld.Template
             TheaterID = TemplateTools.CheckValue<DBEntryTheater>(Database.Instance.Common.DefaultTheater);
             TheaterRegionsCoalitions = CountryCoalition.Default;
             TheaterStartingAirbase = "";
-            TheaterCarriers = new string[0];
         }
 
         /// <summary>
@@ -525,7 +515,6 @@ namespace BriefingRoom4DCSWorld.Template
                 TheaterID = ini.GetValue("Theater", "ID", TheaterID);
                 TheaterRegionsCoalitions = ini.GetValue("Theater", "RegionsCoalitions", TheaterRegionsCoalitions);
                 TheaterStartingAirbase = ini.GetValue("Theater", "StartingAirbase", TheaterStartingAirbase);
-                TheaterCarriers = ini.GetValueArray<string>("Theater", "Carriers");
             }
 
             return true;
@@ -590,7 +579,6 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValue("Theater", "ID", TheaterID);
                 ini.SetValue("Theater", "RegionsCoalitions", TheaterRegionsCoalitions);
                 ini.SetValue("Theater", "StartingAirbase", TheaterStartingAirbase);
-                ini.SetValueArray("Theater", "Carriers", TheaterCarriers);
 
                 ini.SaveToFile(filePath);
             }
