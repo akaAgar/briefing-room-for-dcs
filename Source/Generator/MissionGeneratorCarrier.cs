@@ -55,12 +55,23 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="playerCoalitionDB"></param>
         /// <param name="windDirection0">Wind direction at altitude 0, in degrees. Used by carrier groups to make sure carriers sail into the wind.</param>
         /// <returns></returns>
-        public DBEntryUnit GenerateCarrier(DCSMission mission, MissionTemplate template, DBEntryCoalition playerCoalitionDB, int windDirection0)
+        public void GenerateCarriers(DCSMission mission, MissionTemplate template, DBEntryCoalition playerCoalitionDB, int windDirection0)
         {
-            if (string.IsNullOrEmpty(template.PlayerCarrier))
+             var carriers = new string[]{};
+             if(template.GetMissionType() == MissionType.SinglePlayer){
+                if (string.IsNullOrEmpty(template.PlayerSPCarrier))
+                    return;
+                carriers = carriers.Append(template.PlayerSPCarrier).ToArray();
+             }
+             else {
+                  carriers = template.PlayerMPFlightGroups.Aggregate(new string[]{},(acc, x) => !string.IsNullOrEmpty(x.Carrier)? acc.Append(x.Carrier).ToArray() : acc);
+             }
+
+            if (carriers.Length == 0)
+                return;
+
+            foreach (string carrier in carriers)
             {
-                return null;
-            }
 
             DBEntryTheaterSpawnPoint? spawnPoint =
                     UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
@@ -77,7 +88,7 @@ namespace BriefingRoom4DCSWorld.Generator
 
             Coordinates position = mission.InitialPosition;
             DCSMissionUnitGroup group;
-            string[] ships = new string[] { template.PlayerCarrier };
+            string[] ships = new string[] { carrier };
             foreach (var ship in new UnitFamily[]{
                 UnitFamily.ShipFrigate,
                 UnitFamily.ShipFrigate,
@@ -97,7 +108,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel));
 
             if (group == null)
-                DebugLog.Instance.WriteLine($"Failed to create AI Carrier with ship of type \"{template.PlayerCarrier}\".", 1, DebugLogMessageErrorLevel.Warning);
+                DebugLog.Instance.WriteLine($"Failed to create AI Carrier with ship of type \"{carrier}\".", 1, DebugLogMessageErrorLevel.Warning);
             else {
                 //set all units against the wind
                 double heading = Toolbox.ClampAngle((windDirection0 + 180) * Toolbox.DEGREES_TO_RADIANS); 
@@ -106,11 +117,13 @@ namespace BriefingRoom4DCSWorld.Generator
                     unit.Heading = heading;
                 }
             }
-
-            mission.Carrier = group.Units[0];
-            return (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>()
-                    where unit.ID == template.PlayerCarrier
-                    select unit).ToArray()[0];
+                string cvnId = mission.Carriers.Length > 0? (mission.Carriers.Length + 1).ToString() : "";
+                group.TACAN = new Tacan(74+ mission.Carriers.Length, $"CVN{cvnId}");
+                group.ILS = 11 + mission.Carriers.Length;
+                group.RadioFrequency = 127.5f + mission.Carriers.Length;
+                mission.Carriers = mission.Carriers.Append(group).ToArray();
+            }
+            return;
         }
 
         /// <summary>

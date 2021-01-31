@@ -44,13 +44,13 @@
                             {
                                 ["type"] = 4,
                                 ["AA"] = false,
-                                ["unitId"] = 1,
+                                ["unitId"] = $UNITID$,
                                 ["modeChannel"] = "X",
-                                ["channel"] = 74,
+                                ["channel"] = $TACANCHANNEL$,
                                 ["system"] = 3,
-                                ["callsign"] = "CVN",
+                                ["callsign"] = "$TACANCALLSIGN$",
                                 ["bearing"] = true,
-                                ["frequency"] = 1161000000,
+                                ["frequency"] = $TACANFREQUENCY$,
                             }, -- end of ["params"]
                         }, -- end of ["action"]
                     }, -- end of ["params"]
@@ -69,8 +69,8 @@
                             ["params"] = 
                             {
                                 ["type"] = 131584,
-                                ["channel"] = 11,
-                                ["unitId"] = 1,
+                                ["channel"] = $ILS$,
+                                ["unitId"] = $UNITID$,
                             }, -- end of ["params"]
                         }, -- end of ["action"]
                     }, -- end of ["params"]

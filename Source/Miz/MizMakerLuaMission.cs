@@ -99,13 +99,6 @@ namespace BriefingRoom4DCSWorld.Miz
             LuaTools.ReplaceKey(ref lua, "MissionAirbaseX", airbase.Coordinates.X);
             LuaTools.ReplaceKey(ref lua, "MissionAirbaseY", airbase.Coordinates.Y);
 
-            if(mission.Carrier != null){
-                Debug.DebugLog.Instance.WriteLine("Building Carrier");
-                LuaTools.ReplaceKey(ref lua, "LinkUnit", mission.Carrier.ID);
-                LuaTools.ReplaceKey(ref lua, "CarrierBaseX", mission.Carrier.Coordinates.X);
-                LuaTools.ReplaceKey(ref lua, "CarrierBaseY", mission.Carrier.Coordinates.Y);
-            }
-
             // The following replacements must be performed after unit groups and player waypoints have been added
             LuaTools.ReplaceKey(ref lua, "PlayerGroupID", mission.PlayerGroupID);
             LuaTools.ReplaceKey(ref lua, "InitialWPName", Database.Instance.Common.WPNameInitial);
@@ -271,6 +264,9 @@ namespace BriefingRoom4DCSWorld.Miz
                 LuaTools.ReplaceKey(ref groupLua, "FirstUnitID", group.Units[0].ID);
                 LuaTools.ReplaceKey(ref groupLua, "Name", group.Name);
                 LuaTools.ReplaceKey(ref groupLua, "ObjectiveAirbaseID", group.AirbaseID);
+
+                if(group.CarrierId > 0)
+                    LuaTools.ReplaceKey(ref groupLua, "LinkUnit", group.CarrierId);
                 
                 if (group.TACAN != null){
                     LuaTools.ReplaceKey(ref groupLua, "TacanFrequency", group.TACAN.freqency);
@@ -278,6 +274,8 @@ namespace BriefingRoom4DCSWorld.Miz
                     LuaTools.ReplaceKey(ref groupLua, "TacanChannel", group.TACAN.channel);
                     LuaTools.ReplaceKey(ref groupLua, "UnitID", group.Units[0].ID);
                 }
+                if(group.ILS > 0)
+                    LuaTools.ReplaceKey(ref groupLua, "ILS", group.ILS);
 
 
                 DBEntryUnit unitBP = Database.Instance.GetEntry<DBEntryUnit>(group.UnitID);
@@ -336,6 +334,14 @@ namespace BriefingRoom4DCSWorld.Miz
                             }
 
                             LuaTools.ReplaceKey(ref unitLua, "PayloadPylons", pylonLua);
+                        }
+                    } else if((group.Category == UnitCategory.Ship)){
+                        if(group.RadioFrequency > 0){
+                        LuaTools.ReplaceKey(ref unitLua, "RadioBand", (int)group.RadioModulation);
+                        LuaTools.ReplaceKey(ref unitLua, "RadioFrequency", group.RadioFrequency * 1000000);
+                        } else {
+                            LuaTools.ReplaceKey(ref unitLua, "RadioBand", 0);
+                            LuaTools.ReplaceKey(ref unitLua, "RadioFrequency", 127.0f * 1000000);
                         }
                     }
 

@@ -56,8 +56,8 @@ namespace BriefingRoom4DCSWorld.Generator
         {
             List<UnitFlightGroupBriefingDescription> briefingFGList = new List<UnitFlightGroupBriefingDescription>
             {
-                AddSupportUnit(mission, allyCoalitionDB, UnitFamily.PlaneTankerBasket, unitMods, new Tacan(47, "TKR", 1134000000)), // TACAN choice due to https://forums.eagle.ru/topic/165047-hornet-mini-updates/page/6/?tab=comments#comment-3803291
-                AddSupportUnit(mission, allyCoalitionDB, UnitFamily.PlaneTankerBoom, unitMods, new Tacan(48, "TKR", 1135000000)),
+                AddSupportUnit(mission, allyCoalitionDB, UnitFamily.PlaneTankerBasket, unitMods, new Tacan(47, "TKR")), // TACAN choice due to https://forums.eagle.ru/topic/165047-hornet-mini-updates/page/6/?tab=comments#comment-3803291
+                AddSupportUnit(mission, allyCoalitionDB, UnitFamily.PlaneTankerBoom, unitMods, new Tacan(48, "TKR")),
                 AddSupportUnit(mission, allyCoalitionDB, UnitFamily.PlaneAWACS, unitMods) // AWACS must be added last, so it its inserted first into the spawning queue
             };
 

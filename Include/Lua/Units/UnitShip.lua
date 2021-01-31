@@ -12,6 +12,6 @@ $EXTRALUA$
   ["x"] = $X$,
   ["name"] = "$NAME$",
   ["heading"] = $HEADING$,
-  ["modulation"] = 0,
-  ["frequency"] = 127500000,
+  ["modulation"] = $RADIOBAND$,
+  ["frequency"] = $RADIOFREQUENCY$,
 }, -- end of [$INDEX$]

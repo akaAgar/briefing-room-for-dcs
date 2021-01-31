@@ -110,6 +110,24 @@ namespace BriefingRoom4DCSWorld.Mission
         public Tacan TACAN {get; set;}
 
         /// <summary>
+        /// ILS Channel to be transmitted (Just single unit goups for now).
+        /// </summary>
+        public int ILS {get; set;}
+
+        /// <summary>
+        /// ID of Carrier group is linked to
+        /// </summary>
+        public int CarrierId {get; set;}
+        /// <summary>
+        /// Default radio frequency for this aircraft.
+        /// </summary>
+        public float RadioFrequency { get; set; }
+
+        /// <summary>
+        /// Default radio modulation for this aircraft.
+        /// </summary>
+        public RadioModulation RadioModulation { get; set; }
+        /// <summary>
         /// Constructor.
         /// </summary>
         public DCSMissionUnitGroup() { }

@@ -44,8 +44,8 @@ namespace BriefingRoom4DCSWorld.Template
         /// Should this aircraft group be spawned on the carrier? A compatible carrier must be selected in the mission template settings.
         /// </summary>
         [DisplayName("Carrier"), Description("Should this aircraft group be spawned on the carrier? A compatible carrier must be selected in the mission template settings.")]
-        [TypeConverter(typeof(BooleanYesNoTypeConverter))]
-        public bool Carrier { get; set; }
+        [TypeConverter(typeof(DBEntryCarrierConverter))]
+        public string Carrier { get; set; }
 
         /// <summary>
         /// Number of aircraft in this flight group.
@@ -91,7 +91,7 @@ namespace BriefingRoom4DCSWorld.Template
         private void Clear()
         {
             AircraftType = TemplateTools.CheckValuePlayerAircraft(Database.Instance.Common.DefaultPlayerAircraft);
-            Carrier = false;
+            Carrier = "";
             Count = 2;
             Task = MissionTemplateMPFlightGroupTask.Objectives;
         }
