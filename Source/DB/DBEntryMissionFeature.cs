@@ -31,7 +31,12 @@ namespace BriefingRoom4DCSWorld.DB
         /// <summary>
         /// Unit group to spawn when this mission feature is enabled.
         /// </summary>
-        public DBUnitGroup UnitGroup { get; protected set; }
+        public DBUnitGroup UnitGroup { get; private set; }
+
+        /// <summary>
+        /// Initial position (index #0) and destination (index #1) of the unit group.
+        /// </summary>
+        public DBEntryMissionFeatureUnitGroupLocation[] UnitGroupCoordinates { get; private set; }
 
         /// <summary>
         /// Loads a database entry from an .ini file.
@@ -44,7 +49,12 @@ namespace BriefingRoom4DCSWorld.DB
             if (!base.OnLoad(iniFilePath)) return false;
 
             using (INIFile ini = new INIFile(iniFilePath))
+            {
                 UnitGroup = new DBUnitGroup(ini, "UnitGroup");
+                UnitGroupCoordinates = new DBEntryMissionFeatureUnitGroupLocation[2];
+                UnitGroupCoordinates[0] = ini.GetValue<DBEntryMissionFeatureUnitGroupLocation>("UnitGroup", "Position.Initial");
+                UnitGroupCoordinates[1] = ini.GetValue<DBEntryMissionFeatureUnitGroupLocation>("UnitGroup", "Position.Destination");
+            }
 
             return true;
         }

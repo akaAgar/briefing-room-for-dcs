@@ -72,7 +72,11 @@ namespace BriefingRoom4DCSWorld.DB
         /// <summary>
         /// Parked Aircraft should avoid hardened bunkers
         /// </summary>
-        AvoidHardenedBunkers = 256
+        AvoidHardenedBunkers = 256,
 
+        /// <summary>
+        /// Aircraft should be manually activated by a script, and not added to the queue of aircraft groups to activate
+        /// </summary>
+        ManualActivation = 512
     }
 }

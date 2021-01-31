@@ -95,10 +95,14 @@ namespace BriefingRoom4DCSWorld.Generator
                         unitGroup.Count.GetValue(), template.OptionsUnitMods);
 
                 // Pick the skill level once for each objective so not all target groups have the same skill level when a "random" skill level is chosen.
-                DCSSkillLevel skillLevel =
-                    Toolbox.IsUnitFamilyAircraft(mission.Objectives[i].TargetFamily.Value) ?
-                    Toolbox.BRSkillLevelToDCSSkillLevel(template.OppositionSkillLevelAir) :
-                    Toolbox.BRSkillLevelToDCSSkillLevel(template.OppositionSkillLevelGround);
+                DCSSkillLevel skillLevel;
+                if (side == Side.Ally)
+                    skillLevel = Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel);
+                else
+                    skillLevel = 
+                        Toolbox.IsUnitFamilyAircraft(mission.Objectives[i].TargetFamily.Value) ?
+                        Toolbox.BRSkillLevelToDCSSkillLevel(template.OppositionSkillLevelAir) : Toolbox.BRSkillLevelToDCSSkillLevel(template.OppositionSkillLevelGround);
+
                 DCSMissionUnitGroup group;
                 DBEntryTheaterSpawnPoint? spawnPoint = null;
                 if (unitGroup.SpawnPoints[0] != TheaterLocationSpawnPointType.Airbase)
@@ -150,7 +154,8 @@ namespace BriefingRoom4DCSWorld.Generator
                     throw new Exception($"Failed to create objective unit group for objective #{i + 1} made of the following units: {string.Join(", ", units)}");
 
                 // Add aircraft group to the queue of aircraft groups to be spawned
-                if ((group.Category == UnitCategory.Helicopter) || (group.Category == UnitCategory.Plane) || unitGroup.Flags.HasFlag(DBUnitGroupFlags.DelaySpawn))
+                if (!unitGroup.Flags.HasFlag(DBUnitGroupFlags.ManualActivation) &&
+                    ((group.Category == UnitCategory.Helicopter) || (group.Category == UnitCategory.Plane) || unitGroup.Flags.HasFlag(DBUnitGroupFlags.DelaySpawn)))
                     mission.AircraftSpawnQueue.Add(new DCSMissionAircraftSpawnQueueItem(group.GroupID, true));
 
                 if (!unitGroup.Flags.HasFlag(DBUnitGroupFlags.NotObjectiveTarget))

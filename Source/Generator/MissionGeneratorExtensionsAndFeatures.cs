@@ -23,6 +23,7 @@ using BriefingRoom4DCSWorld.Debug;
 using BriefingRoom4DCSWorld.Mission;
 using BriefingRoom4DCSWorld.Template;
 using System;
+using System.Collections.Generic;
 
 namespace BriefingRoom4DCSWorld.Generator
 {
@@ -54,6 +55,8 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="coalitionsDB">Coalitions database entries</param>
         public void GenerateExtensionsAndFeatures(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB, DBEntryCoalition[] coalitionsDB)
         {
+            int i, j;
+
             DBEntryExtension[] extensions = Database.Instance.GetEntries<DBEntryExtension>(template.OptionsScriptExtensions);
             foreach (DBEntryExtension extension in extensions)
                 AddIncludedFiles(mission, extension);
@@ -68,30 +71,68 @@ namespace BriefingRoom4DCSWorld.Generator
 
                 Side side = feature.UnitGroup.Flags.HasFlag(DBUnitGroupFlags.Friendly) ? Side.Ally : Side.Enemy;
 
+                UnitFamily unitFamily = Toolbox.RandomFrom(feature.UnitGroup.Families);
+
                 // Pick units
                 string[] units =
                     coalitionsDB[(int)((side == Side.Ally) ? mission.CoalitionPlayer : mission.CoalitionEnemy)].GetRandomUnits(
-                        Toolbox.RandomFrom(feature.UnitGroup.Families), mission.DateTime.Decade,
+                        unitFamily, mission.DateTime.Decade,
                         feature.UnitGroup.Count.GetValue(), template.OptionsUnitMods);
 
-                DCSSkillLevel skillLevel = DCSSkillLevel.Average; // TODO
+                DCSSkillLevel skillLevel;
+                if (side == Side.Ally)
+                    skillLevel = Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel);
+                else
+                    skillLevel = Toolbox.IsUnitFamilyAircraft(unitFamily) ?
+                        Toolbox.BRSkillLevelToDCSSkillLevel(template.OppositionSkillLevelAir) : Toolbox.BRSkillLevelToDCSSkillLevel(template.OppositionSkillLevelGround);
+
                 DCSMissionUnitGroupFlags flags = 0;
 
-                for (int i = 0; i < mission.Objectives.Length; i++)
+                List<int> unitGroupsID = new List<int>();
+                for (i = 0; i < mission.Objectives.Length; i++)
                 {
+                    Coordinates[] coordinates = new Coordinates[2];
+                    for (j = 0; j < 2; j++)
+                    {
+                        switch (feature.UnitGroupCoordinates[j])
+                        {
+                            case DBEntryMissionFeatureUnitGroupLocation.Homebase:
+                                coordinates[j] = mission.InitialPosition + Coordinates.CreateRandom(2, 6) * Toolbox.NM_TO_METERS;
+                                break;
+                            case DBEntryMissionFeatureUnitGroupLocation.Objective:
+                                coordinates[j] = mission.Objectives[i].Coordinates;
+                                break;
+                            case DBEntryMissionFeatureUnitGroupLocation.ObjectiveNear:
+                                coordinates[j] = mission.Objectives[i].Coordinates + Coordinates.CreateRandom(1.5, 4) * Toolbox.NM_TO_METERS;
+                                break;
+                            case DBEntryMissionFeatureUnitGroupLocation.Waypoint:
+                                coordinates[j] = mission.Objectives[i].WaypointCoordinates;
+                                break;
+                            case DBEntryMissionFeatureUnitGroupLocation.WaypointNear:
+                                coordinates[j] = mission.Objectives[i].WaypointCoordinates + Coordinates.CreateRandom(1.5, 4) * Toolbox.NM_TO_METERS;
+                                break;
+                        }
+                    }
+
                     DCSMissionUnitGroup group = UnitMaker.AddUnitGroup(
                         mission, units, side,
-                        mission.Objectives[i].Coordinates + Coordinates.CreateRandom(2, 6) * Toolbox.NM_TO_METERS,
+                        coordinates[0],
                         Toolbox.RandomFrom(feature.UnitGroup.LuaGroup), feature.UnitGroup.LuaUnit,
-                        skillLevel, flags);
+                        skillLevel, flags, UnitTaskPayload.Default, coordinates[1]);
 
                     if (group == null)
                         DebugLog.Instance.WriteLine($"Failed to create mission feature unit group for objective #{i + 1} made of the following units: {string.Join(", ", units)}", 1, DebugLogMessageErrorLevel.Warning);
 
+                    unitGroupsID.Add(group.GroupID);
+
                     // Add aircraft group to the queue of aircraft groups to be spawned
-                    if ((group.Category == UnitCategory.Helicopter) || (group.Category == UnitCategory.Plane) || feature.UnitGroup.Flags.HasFlag(DBUnitGroupFlags.DelaySpawn))
+                    if (!feature.UnitGroup.Flags.HasFlag(DBUnitGroupFlags.ManualActivation) &&
+                        ((group.Category == UnitCategory.Helicopter) || (group.Category == UnitCategory.Plane) || feature.UnitGroup.Flags.HasFlag(DBUnitGroupFlags.DelaySpawn)))
                         mission.AircraftSpawnQueue.Add(new DCSMissionAircraftSpawnQueueItem(group.GroupID, true));
                 }
+
+                if (unitGroupsID.Count > 0)
+                    mission.LuaSettings += $"briefingRoom.mission.featuresUnitGroups.{feature.ID} = {{ {string.Join(", ", unitGroupsID)} }}";
             }
         }
 
