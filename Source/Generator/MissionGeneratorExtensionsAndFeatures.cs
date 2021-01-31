@@ -81,7 +81,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 {
                     DCSMissionUnitGroup group = UnitMaker.AddUnitGroup(
                         mission, units, side,
-                        mission.Objectives[i].Coordinates,
+                        mission.Objectives[i].Coordinates + Coordinates.CreateRandom(2, 6) * Toolbox.NM_TO_METERS,
                         Toolbox.RandomFrom(feature.UnitGroup.LuaGroup), feature.UnitGroup.LuaUnit,
                         skillLevel, flags);
 
