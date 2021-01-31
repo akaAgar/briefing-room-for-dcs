@@ -59,8 +59,8 @@
                           {
                               ["direction"] = 0,
                               ["attackQtyLimit"] = false,
-                              ["attackQty"] = 1,
-                              ["expend"] = "All",
+                              ["attackQty"] = 4,
+                              ["expend"] = "Quarter",
                               ["y"] = $Y2$,
                               ["directionEnabled"] = false,
                               ["groupAttack"] = true,
