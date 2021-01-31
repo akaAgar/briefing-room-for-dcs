@@ -60,13 +60,13 @@
                               ["direction"] = 0,
                               ["attackQtyLimit"] = false,
                               ["attackQty"] = 1,
-                              ["expend"] = "Auto",
+                              ["expend"] = "All",
                               ["y"] = $Y2$,
                               ["directionEnabled"] = false,
                               ["groupAttack"] = true,
                               ["altitude"] =  $ALTITUDE$,
                               ["altitudeEnabled"] = false,
-                              ["weaponType"] = 1073741822,
+                              ["weaponType"] = 2147485694,
                               ["x"] = $X2$,
                           }, -- end of ["params"]
                       }, -- end of [1]
