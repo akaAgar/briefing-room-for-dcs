@@ -19,11 +19,10 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCSWorld.DB;
+using BriefingRoom4DCSWorld.Debug;
 using BriefingRoom4DCSWorld.Mission;
 using BriefingRoom4DCSWorld.Template;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BriefingRoom4DCSWorld.Generator
 {
@@ -67,7 +66,32 @@ namespace BriefingRoom4DCSWorld.Generator
                 // No unit family in the unit group, so not unit group to add
                 if (feature.UnitGroup.Families.Length == 0) continue;
 
-                // TODO: add feature unit group
+                Side side = feature.UnitGroup.Flags.HasFlag(DBUnitGroupFlags.Friendly) ? Side.Ally : Side.Enemy;
+
+                // Pick units
+                string[] units =
+                    coalitionsDB[(int)((side == Side.Ally) ? mission.CoalitionPlayer : mission.CoalitionEnemy)].GetRandomUnits(
+                        Toolbox.RandomFrom(feature.UnitGroup.Families), mission.DateTime.Decade,
+                        feature.UnitGroup.Count.GetValue(), template.OptionsUnitMods);
+
+                DCSSkillLevel skillLevel = DCSSkillLevel.Average; // TODO
+                DCSMissionUnitGroupFlags flags = 0;
+
+                for (int i = 0; i < mission.Objectives.Length; i++)
+                {
+                    DCSMissionUnitGroup group = UnitMaker.AddUnitGroup(
+                        mission, units, side,
+                        mission.Objectives[i].Coordinates,
+                        Toolbox.RandomFrom(feature.UnitGroup.LuaGroup), feature.UnitGroup.LuaUnit,
+                        skillLevel, flags);
+
+                    if (group == null)
+                        DebugLog.Instance.WriteLine($"Failed to create mission feature unit group for objective #{i + 1} made of the following units: {string.Join(", ", units)}", 1, DebugLogMessageErrorLevel.Warning);
+
+                    // Add aircraft group to the queue of aircraft groups to be spawned
+                    if ((group.Category == UnitCategory.Helicopter) || (group.Category == UnitCategory.Plane) || feature.UnitGroup.Flags.HasFlag(DBUnitGroupFlags.DelaySpawn))
+                        mission.AircraftSpawnQueue.Add(new DCSMissionAircraftSpawnQueueItem(group.GroupID, true));
+                }
             }
         }
 
