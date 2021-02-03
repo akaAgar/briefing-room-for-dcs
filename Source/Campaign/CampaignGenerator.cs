@@ -179,10 +179,11 @@ namespace BriefingRoom4DCSWorld.Campaign
             template.PlayerSPAircraft = campaignTemplate.PlayerAircraft;
             template.PlayerSPWingmen = Toolbox.RandomFrom(1, 1, 1, 1, 2, 3, 3);
             template.PlayerStartLocation = campaignTemplate.PlayerStartLocation;
+            template.PlayerSPCarrier = campaignTemplate.PlayerStartingCarrier;
 
             template.TheaterID = campaignTemplate.ContextTheaterID;
             template.TheaterRegionsCoalitions = campaignTemplate.ContextTheaterRegionsCoalitions;
-            template.TheaterStartingAirbase = "";
+            template.TheaterStartingAirbase = campaignTemplate.PlayerStartingAirbase;
 
             return template;
         }

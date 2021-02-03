@@ -208,6 +208,26 @@ namespace BriefingRoom4DCSWorld.Campaign
         [TypeConverter(typeof(EnumTypeConverter<Coalition>))]
         public Coalition PlayerCoalition { get; set; }
 
+
+        /// <summary>
+        /// Name of the airbase the player must take off from.
+        /// If left empty, or if the airbase doesn't exist in this theater, a random airbase will be selected.
+        /// </summary>
+        [Category("Theater"), DisplayName("Theater starting airbase")]
+        [Description("Name of the airbase the player must take off from. If left empty, or if the airbase doesn't exist in this theater, a random airbase will be selected. Be aware that if the selected airbase doesn't have enough parking spots for the player mission package, some units may not spawn properly.")]
+        [TypeConverter(typeof(DBEntryTheaterAirbaseArrayTypeConverter))]
+        public string PlayerStartingAirbase { get { return PlayerStartingAirbase_; } set { PlayerStartingAirbase_ = TemplateTools.CheckValueTheaterStartingAirbase(value); } }
+        private string PlayerStartingAirbase_;
+
+
+        /// <summary>
+        /// Type of aircraft carrier the player will be spawned on. If none, player will take off from an airbase. Make sure the player aircraft is suitable for the carrier type.
+        /// </summary>
+        [Category("Player"), DisplayName("Carrier (BETA)")]
+        [Description("Type of aircraft carrier the player will be spawned on. If none, player will take off from an airbase. Make sure the player aircraft is suitable for the carrier type.")]
+        [TypeConverter(typeof(DBEntryCarrierConverter))]
+        public string PlayerStartingCarrier { get; set; }
+
         /// <summary>
         /// Where should the player take off from?
         /// </summary>
@@ -282,6 +302,8 @@ namespace BriefingRoom4DCSWorld.Campaign
 
             PlayerAircraft = TemplateTools.CheckValuePlayerAircraft(Database.Instance.Common.DefaultPlayerAircraft);
             PlayerCoalition = Coalition.Blue;
+            PlayerStartingAirbase_ = "";
+            PlayerStartingCarrier = "";
             PlayerStartLocation = PlayerStartLocation.Runway;
 
             SituationEnemyAirDefense = AmountN.Random;
@@ -324,6 +346,8 @@ namespace BriefingRoom4DCSWorld.Campaign
 
                 PlayerAircraft = ini.GetValue("Player", "Aircraft", PlayerAircraft);
                 PlayerCoalition = ini.GetValue("Player", "Coalition", PlayerCoalition);
+                PlayerStartingAirbase = ini.GetValue("Player", "StartingAirbase", PlayerStartingAirbase);
+                PlayerStartingCarrier = ini.GetValue("Player", "StartingCarrier", PlayerStartingCarrier);
                 PlayerStartLocation = ini.GetValue("Player", "StartLocation", PlayerStartLocation);
 
                 SituationEnemyAirDefense = ini.GetValue("Situation", "Enemy.AirDefense", SituationEnemyAirDefense);
@@ -365,6 +389,8 @@ namespace BriefingRoom4DCSWorld.Campaign
 
                 ini.SetValue("Player", "Aircraft", PlayerAircraft);
                 ini.SetValue("Player", "Coalition", PlayerCoalition);
+                ini.SetValue("Player", "StartingAirbase", PlayerStartingAirbase);
+                ini.SetValue("Player", "StartingCarrier", PlayerStartingCarrier);
                 ini.SetValue("Player", "StartLocation", PlayerStartLocation);
 
                 ini.SetValue("Situation", "Enemy.AirDefense", SituationEnemyAirDefense);

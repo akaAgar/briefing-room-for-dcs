@@ -320,10 +320,10 @@ namespace BriefingRoom4DCSWorld.Template
         private int PlayerSPWingmen_;
 
         /// <summary>
-        /// Type of aircraft carrier spawned. If none, player(s) will take off from an airbase. In single player, the player's aircraft will be spawed on the carrier. In multiplayer, aircraft will spawn on carrier if the option is set for their flight group. Make sure aircraft are suitable for the carrier type.
+        /// Type of aircraft carrier the player will be spawned on. If none, player will take off from an airbase. Make sure the player aircraft is suitable for the carrier type.
         /// </summary>
         [Category("Player, single player only"), DisplayName("Carrier (BETA)")]
-        [Description("Type of aircraft carrier spawned. If none, player(s) will take off from an airbase. In single player, the player's aircraft will be spawed on the carrier. In multiplayer, aircraft will spawn on carrier if the option is set for their flight group. Make sure aircraft are suitable for the carrier type.")]
+        [Description("Type of aircraft carrier the player will be spawned on. If none, player will take off from an airbase. Make sure the player aircraft is suitable for the carrier type.")]
         [TypeConverter(typeof(DBEntryCarrierConverter))]
         public string PlayerSPCarrier { get; set; }
 
