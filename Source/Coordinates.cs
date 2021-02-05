@@ -167,6 +167,21 @@ namespace BriefingRoom4DCSWorld
         }
 
         /// <summary>
+        /// Interpolates two sets of coordinates.
+        /// </summary>
+        /// <param name="coo1">A set of coordinates</param>
+        /// <param name="coo2">Another set of coordinates</param>
+        /// <param name="value">A value between</param>
+        /// <returns>The interpolated set of coordinates</returns>
+        public static Coordinates FromAngleAndDistance(Coordinates coordinates, double distance, double angle)
+        {
+            return new Coordinates(
+                coordinates.X + distance * Math.Cos(distance * Toolbox.DEGREES_TO_RADIANS),
+                coordinates.Y + distance * Math.Sin(distance * Toolbox.DEGREES_TO_RADIANS));
+        }
+
+
+        /// <summary>
         /// Creates a random coordinates set at a distance between min and max from the zero point.
         /// Mostly used to create random inaccuracy from waypoints, etc.
         /// </summary>

@@ -20,7 +20,7 @@
         ["x"] = $X$,
         ["name"] = "",
         ["ETA_locked"] = true,
-        ["speed"] = 0,
+        ["speed"] = 14,
         ["action"] = "Turning Point",
         ["task"] =
         {
@@ -80,6 +80,29 @@
         }, -- end of ["task"]
         ["speed_locked"] = true,
       }, -- end of [1]
+      [2] = 
+      {
+          ["alt"] = -0,
+          ["type"] = "Turning Point",
+          ["speed"] = 14,
+          ["alt_type"] = "BARO",
+          ["formation_template"] = "",
+          ["y"] = $Y2$,
+          ["x"] = $X2$,
+          ["ETA_locked"] = false,
+          ["action"] = "Turning Point",
+          ["task"] = 
+          {
+              ["id"] = "ComboTask",
+              ["params"] = 
+              {
+                  ["tasks"] = 
+                  {
+                  }, -- end of ["tasks"]
+              }, -- end of ["params"]
+          }, -- end of ["task"]
+          ["speed_locked"] = true,
+      }, -- end of [2]
     }, -- end of ["points"]
   }, -- end of ["route"]
   ["groupId"] = $ID$,

@@ -116,6 +116,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 {
                     unit.Heading = heading;
                 }
+                group.Coordinates2 = Coordinates.FromAngleAndDistance(group.Coordinates, 24 * Toolbox.NM_TO_METERS, heading);
             }
                 string cvnId = mission.Carriers.Length > 0? (mission.Carriers.Length + 1).ToString() : "";
                 group.TACAN = new Tacan(74+ mission.Carriers.Length, $"CVN{cvnId}");
