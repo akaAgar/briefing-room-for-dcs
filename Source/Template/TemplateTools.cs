@@ -20,6 +20,7 @@ If not, see https://www.gnu.org/licenses/
 */
 
 using BriefingRoom4DCSWorld.DB;
+using System;
 using System.Linq;
 
 namespace BriefingRoom4DCSWorld.Template
@@ -33,6 +34,16 @@ namespace BriefingRoom4DCSWorld.Template
         /// Maximum number of objectives.
         /// </summary>
         public const int MAX_OBJECTIVES = 5;
+
+        /// <summary>
+        /// Minimum distance to the objective, in nautical miles.
+        /// </summary>
+        public const int MIN_OBJECTIVE_DISTANCE = 20;
+
+        /// <summary>
+        /// Maximum distance to the objective, in nautical miles.
+        /// </summary>
+        public const int MAX_OBJECTIVE_DISTANCE = 200;
 
         /// <summary>
         /// Checks if the proposed ID exists in the database, or return a default value if it doesn't.
@@ -88,6 +99,12 @@ namespace BriefingRoom4DCSWorld.Template
         {
             if (Database.Instance.GetAllTheaterAirfields().Contains(value)) return value;
             return "";
+        }
+
+        public static int CheckObjectiveDistance(int value)
+        {
+            if (value == 0) return 0;
+            return Toolbox.Clamp(value, MIN_OBJECTIVE_DISTANCE, MAX_OBJECTIVE_DISTANCE);
         }
     }
 }

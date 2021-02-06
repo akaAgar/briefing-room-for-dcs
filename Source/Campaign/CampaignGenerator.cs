@@ -18,6 +18,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.DB;
 using BriefingRoom4DCSWorld.Generator;
 using BriefingRoom4DCSWorld.Template;
 using BriefingRoom4DCSWorld.Media;
@@ -156,7 +157,7 @@ namespace BriefingRoom4DCSWorld.Campaign
             template.EnvironmentWind = Wind.Auto;
 
             template.ObjectiveCount = GetObjectiveCountForMission(campaignTemplate.MissionsObjectiveCount);
-            template.ObjectiveDistance = GetRandomAmountForMission(campaignTemplate.MissionsObjectiveDistance);
+            template.ObjectiveDistanceNM = Database.Instance.Common.DistanceFromTakeOffLocation[(int)campaignTemplate.MissionsObjectiveDistance];
             template.ObjectiveType = Toolbox.RandomFrom(campaignTemplate.MissionsTypes);
 
             template.OppositionAirDefense = GetPowerLevel(campaignTemplate.SituationEnemyAirDefense, campaignTemplate.SituationVariation, index, campaignTemplate.MissionsCount);

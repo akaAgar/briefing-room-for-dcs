@@ -163,12 +163,12 @@ namespace BriefingRoom4DCSWorld.Template
         private int ObjectiveCount_;
 
         /// <summary>
-        /// How far from the player's starting location will the objectives be.
+        /// How far from the player's starting location will the objectives be, in nautical miles. "Zero" means "random".
         /// </summary>
         [Category("Objectives"), DisplayName("Objective distance")]
-        [Description("How far from the player's starting location will the objectives be.")]
-        [TypeConverter(typeof(EnumTypeConverter<Amount>))]
-        public Amount ObjectiveDistance { get; set; }
+        [Description("How far from the player's starting location will the objectives be, in nautical miles. \"Zero\" means \"random\".")]
+        public int ObjectiveDistanceNM { get { return ObjectiveDistanceNM_; } set { ObjectiveDistanceNM_ = TemplateTools.CheckObjectiveDistance(value); } }
+        private int ObjectiveDistanceNM_;
 
         /// <summary>
         /// The type of task player must accomplish in this mission.
@@ -419,7 +419,7 @@ namespace BriefingRoom4DCSWorld.Template
             EnvironmentWind = Wind.Auto;
 
             ObjectiveCount = Database.Instance.Common.DefaultObjectiveCount;
-            ObjectiveDistance = Amount.Average;
+            ObjectiveDistanceNM = 0;
             ObjectiveType = TemplateTools.CheckValue<DBEntryObjective>(Database.Instance.Common.DefaultObjective);
 
             OppositionAirDefense = AmountN.Random;
@@ -480,7 +480,7 @@ namespace BriefingRoom4DCSWorld.Template
                 EnvironmentWind = ini.GetValue("Environment", "Wind", EnvironmentWind);
 
                 ObjectiveCount = ini.GetValue("Objective", "Count", ObjectiveCount);
-                ObjectiveDistance = ini.GetValue("Objective", "Distance", ObjectiveDistance);
+                ObjectiveDistanceNM = ini.GetValue("Objective", "Distance", ObjectiveDistanceNM);
                 ObjectiveType = ini.GetValue("Objective", "Type", ObjectiveType);
 
                 OppositionAirDefense = ini.GetValue("Opposition", "AirDefense", OppositionAirDefense);
@@ -544,7 +544,7 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValue("Environment", "Wind", EnvironmentWind);
 
                 ini.SetValue("Objective", "Count", ObjectiveCount);
-                ini.SetValue("Objective", "Distance", ObjectiveDistance);
+                ini.SetValue("Objective", "Distance", ObjectiveDistanceNM);
                 ini.SetValue("Objective", "Type", ObjectiveType);
 
                 ini.SetValue("Opposition", "AirDefense", OppositionAirDefense);
