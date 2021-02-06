@@ -118,8 +118,7 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="mission">The mission.</param>
         /// <param name="wind">The preferred wind speed.</param>
         /// <param name="theaterDB">Theater database entry</param>
-        /// <param name="windDirection0">Wind direction at altitude 0, in degrees. Used by carrier groups to make sure carriers sail into the wind.</param>
-        public void GenerateWind(DCSMission mission, Wind wind, DBEntryTheater theaterDB, out int windDirection0)
+        public void GenerateWind(DCSMission mission, Wind wind, DBEntryTheater theaterDB)
         {
             // If auto, speed depends on weather, so we never end up with no wind in a storm
             mission.Weather.WindLevel = (wind == Wind.Auto) ?
@@ -137,7 +136,6 @@ namespace BriefingRoom4DCSWorld.Generator
                 DebugLog.Instance.WriteLine($"Wind speed at {WIND_ALTITUDE[i]} meters set to {mission.Weather.WindSpeed[i]} m/s, direction of {mission.Weather.WindDirection[i]}", 1);
             }
 
-            windDirection0 = mission.Weather.WindDirection[0];
 
             // Turbulence is equals to max(weatherTurbulence, windTurbulence)
             mission.Weather.Turbulence = Math.Max(mission.Weather.Turbulence, theaterDB.Wind[windIndex].Turbulence.GetValue());

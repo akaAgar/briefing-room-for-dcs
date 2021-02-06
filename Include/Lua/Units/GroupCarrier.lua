@@ -20,7 +20,7 @@
         ["x"] = $X$,
         ["name"] = "",
         ["ETA_locked"] = true,
-        ["speed"] = 14,
+        ["speed"] = $SPEED$,
         ["action"] = "Turning Point",
         ["task"] =
         {
@@ -84,7 +84,7 @@
       {
           ["alt"] = -0,
           ["type"] = "Turning Point",
-          ["speed"] = 14,
+          ["speed"] = $SPEED$,
           ["alt_type"] = "BARO",
           ["formation_template"] = "",
           ["y"] = $Y2$,

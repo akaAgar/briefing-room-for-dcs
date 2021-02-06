@@ -103,6 +103,10 @@ namespace BriefingRoom4DCSWorld.Mission
         /// </summary>
         public UnitTaskPayload Payload { get; set; } = UnitTaskPayload.Default;
 
+        /// <summary>
+        /// Speed Of group;
+        /// </summary>
+        public double Speed {get; set;}
 
         /// <summary>
         /// TACAN Value to be transmitted (Just single unit goups for now).
