@@ -179,6 +179,7 @@
             // M_Mission_DebugExport
             // 
             this.M_Mission_DebugExport.Name = "M_Mission_DebugExport";
+            this.M_Mission_DebugExport.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.M_Mission_DebugExport.Size = new System.Drawing.Size(206, 22);
             this.M_Mission_DebugExport.Text = "Debug export";
             this.M_Mission_DebugExport.Visible = false;
@@ -195,7 +196,9 @@
             // M_Tools_CampaignCreator
             // 
             this.M_Tools_CampaignCreator.Name = "M_Tools_CampaignCreator";
-            this.M_Tools_CampaignCreator.Size = new System.Drawing.Size(206, 22);
+            this.M_Tools_CampaignCreator.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.C)));
+            this.M_Tools_CampaignCreator.Size = new System.Drawing.Size(276, 22);
             this.M_Tools_CampaignCreator.Text = "&Campaign creator (BETA)";
             this.M_Tools_CampaignCreator.Click += new System.EventHandler(this.MenuClick);
             // 
