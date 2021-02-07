@@ -19,7 +19,7 @@ PlayerControllable=True
 Radio.Modulation=AM
 Radio.Frequency=225.0
 
-Payload.Common=chaff=0,flare=0,fuel=1272
+Payload.Common=["chaff"] = 0,["flare"] = 0,["fuel"] = 1272
 
 ; TODO: payloads, cruise speed, cruise alt
 
