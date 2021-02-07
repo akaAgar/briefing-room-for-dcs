@@ -165,8 +165,8 @@ namespace BriefingRoom4DCSWorld.Template
         /// <summary>
         /// How far from the player's starting location will the objectives be, in nautical miles. "Zero" means "random".
         /// </summary>
-        [Category("Objectives"), DisplayName("Objective distance")]
-        [Description("How far from the player's starting location will the objectives be, in nautical miles. \"Zero\" means \"random\".")]
+        [Category("Objectives"), DisplayName("Objective distance (NM)")]
+        [Description("How far from the player's starting location will the objectives be in Nautical Miles, in nautical miles. \"Zero\" means \"random\".")]
         public int ObjectiveDistanceNM { get { return ObjectiveDistanceNM_; } set { ObjectiveDistanceNM_ = TemplateTools.CheckObjectiveDistance(value); } }
         private int ObjectiveDistanceNM_;
 
