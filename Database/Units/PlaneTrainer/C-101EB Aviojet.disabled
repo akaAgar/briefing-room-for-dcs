@@ -18,7 +18,7 @@ PlayerControllable=True
 Radio.Modulation=FM
 Radio.Frequency=225.0
 
-Payload.Common=chaff=0,flare=0,fuel=1508.64
+Payload.Common=["chaff"] = 0,["flare"] = 0,["fuel"] = 1508.64
 
 [Operators]
 Chile=Decade1980,Decade2020

@@ -18,7 +18,7 @@ PlayerControllable=False
 Radio.Modulation=FM
 Radio.Frequency=305.0
 
-Payload.Common=chaff=0,flare=0,fuel=823.2,gun=100
+Payload.Common=["chaff"] = 0,["flare"] = 0,["fuel"] = 823.2,["gun"] = 100
 
 ; Default: FAB-100x2
 Payload.Task.Default.Pylon01={FB3CE165-BF07-4979-887C-92B87F13276B}
