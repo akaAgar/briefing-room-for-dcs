@@ -55,7 +55,7 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="playerCoalitionDB"></param>
         /// <param name="windDirection0">Wind direction at altitude 0, in degrees. Used by carrier groups to make sure carriers sail into the wind.</param>
         /// <returns></returns>
-        public void GenerateCarriers(DCSMission mission, MissionTemplate template, DBEntryCoalition playerCoalitionDB, int windDirection0)
+        public void GenerateCarriers(DCSMission mission, MissionTemplate template, DBEntryCoalition playerCoalitionDB)
         {
              var carriers = new string[]{};
              if(template.GetMissionType() == MissionType.SinglePlayer){
@@ -111,11 +111,20 @@ namespace BriefingRoom4DCSWorld.Generator
                 DebugLog.Instance.WriteLine($"Failed to create AI Carrier with ship of type \"{carrier}\".", 1, DebugLogMessageErrorLevel.Warning);
             else {
                 //set all units against the wind
-                double heading = Toolbox.ClampAngle((windDirection0 + 180) * Toolbox.DEGREES_TO_RADIANS); 
+                int windDirection = mission.Weather.WindDirection[0];
+                double WindSpeed = mission.Weather.WindSpeed[0];
+                double windOverDeck = 12.8611; // 25kts
+                group.Speed = windOverDeck - WindSpeed;
+                if(group.Speed <= 2.6) {
+                    group.Speed = 2.57222; //5kts
+                }
+                double heading = Toolbox.ClampAngle((windDirection + 180) * Toolbox.DEGREES_TO_RADIANS); 
                 foreach (DCSMissionUnitGroupUnit unit in group.Units)
                 {
                     unit.Heading = heading;
                 }
+                group.Units[0].Coordinates = group.Coordinates;
+                group.Coordinates2 = Coordinates.FromAngleAndDistance(group.Coordinates, (group.Speed * Toolbox.METERS_PER_SECOND_TO_KNOTS) * Toolbox.NM_TO_METERS, heading);
             }
                 string cvnId = mission.Carriers.Length > 0? (mission.Carriers.Length + 1).ToString() : "";
                 group.TACAN = new Tacan(74+ mission.Carriers.Length, $"CVN{cvnId}");

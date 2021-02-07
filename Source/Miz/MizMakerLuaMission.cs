@@ -343,6 +343,7 @@ namespace BriefingRoom4DCSWorld.Miz
                             LuaTools.ReplaceKey(ref unitLua, "RadioBand", 0);
                             LuaTools.ReplaceKey(ref unitLua, "RadioFrequency", 127.0f * 1000000);
                         }
+                        LuaTools.ReplaceKey(ref groupLua, "Speed", group.Speed);
                     }
 
                     if (unitBP == null)

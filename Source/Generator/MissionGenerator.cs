@@ -130,19 +130,17 @@ namespace BriefingRoom4DCSWorld.Generator
                 dateTime.GenerateMissionTime(mission, template, theaterDB);
             }
 
-            int windDirection0; // Wind direction at altitude 0, in degrees. Used by carrier groups to make sure carriers sail into the wind.
-
             // Generate mission weather
             DebugLog.Instance.WriteLine("Generating mission weather...");
             using (MissionGeneratorWeather weather = new MissionGeneratorWeather())
             {
                 weather.GenerateWeather(mission, template.EnvironmentWeather, theaterDB);
-                weather.GenerateWind(mission, template.EnvironmentWind, theaterDB, out windDirection0);
+                weather.GenerateWind(mission, template.EnvironmentWind, theaterDB);
             }
 
             // Generate Carrier
             using(MissionGeneratorCarrier unitGroupGen = new MissionGeneratorCarrier(unitMaker))
-                unitGroupGen.GenerateCarriers(mission, template, coalitionsDB[(int)mission.CoalitionPlayer], windDirection0);
+                unitGroupGen.GenerateCarriers(mission, template, coalitionsDB[(int)mission.CoalitionPlayer]);
             
 
             // Generate player unit groups

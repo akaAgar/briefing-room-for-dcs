@@ -237,6 +237,13 @@ namespace BriefingRoom4DCSWorld
         /// </summary>
         public const double KNOTS_TO_METERS_PER_SECOND = 0.514444;
 
+        
+        /// <summary>
+        /// meters per second to Knots multiplier.
+        /// </summary>
+        public const double METERS_PER_SECOND_TO_KNOTS = 1.94384;
+
+
         /// <summary>
         /// The default language for missions and UI. BriefingRoom will not start if this language is not found in Library\Languages.
         /// </summary>
