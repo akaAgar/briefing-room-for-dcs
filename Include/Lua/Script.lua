@@ -531,6 +531,17 @@ function briefingRoom.aircraftActivator.pushNextQueue()
   table.remove(briefingRoom.aircraftActivator.extraQueues, 1) -- remove the added extra queue
 end
 
+function briefingRoom.aircraftActivator.spawnGroup(groupID)
+  local acGroup = dcsExtensions.getGroupByID(groupID) -- get the group
+  if acGroup ~= nil then -- activate the group, if it exists
+    acGroup:activate()
+    briefingRoom.debugPrint("Activating aircraft group "..acGroup:getName())
+  else
+    briefingRoom.debugPrint("Failed to activate aircraft group "..tostring(briefingRoom.aircraftActivator.currentQueue[1]))
+  end
+  return nil
+end
+
 -- Every INTERVAL seconds, check for aircraft groups to activate in the queue
 function briefingRoom.aircraftActivator.update(args, time)
   briefingRoom.debugPrint("Looking for aircraft groups to activate, found "..tostring(#briefingRoom.aircraftActivator.currentQueue), 1)
@@ -669,6 +680,19 @@ function briefingRoom.mission.functions.endMissionIn(endInSeconds)
   timer.scheduleFunction(briefingRoom.mission.functions.endMission, nil, timer.getTime() + endInSeconds)
 end
 
+function briefingRoom.mission.functions.requestSupport(type)
+  local groupID = 0
+  if     type == "CAP" then 
+    groupID = briefingRoom.aircraftActivator.escortCAP
+  elseif type == "SEAD" then
+    groupID = briefingRoom.aircraftActivator.escortSEAD
+  end
+  local delay = briefingRoom.radioManager.getAnswerDelay() 
+  briefingRoom.radioManager.play("Command, request "..type.." Support.", "RadioPilotWaypointCoordinates") -- Needs actual radio message
+  briefingRoom.radioManager.play("Acknowledged, "..type.." arriving on station shortly", "RadioHQWaypointCoordinates", delay) -- Needs actual radio message
+  timer.scheduleFunction(briefingRoom.aircraftActivator.spawnGroup, groupID, timer.getTime() + delay)
+end
+
 -- ===================================================================================
 -- 3.3 - MISSION F10 MENU
 -- Script ran when the mission starts to create the F10 menu
@@ -683,6 +707,14 @@ do
   for i,o in ipairs(briefingRoom.mission.objectives) do
     briefingRoom.f10Menu.objectives[i] = missionCommands.addSubMenuForCoalition($PLAYERCOALITION$, "Objective "..o.name, nil)
     missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Require waypoint coordinates", briefingRoom.f10Menu.objectives[i], briefingRoom.mission.functions.getWaypointCoordinates, i)
+  end
+
+  if briefingRoom.aircraftActivator.escortCAP > 0 then
+    missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Deploy CAP", nil,  briefingRoom.mission.functions.requestSupport, "CAP") 
+  end
+
+  if briefingRoom.aircraftActivator.escortSEAD > 0 then
+    missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Deploy SEAD", nil,  briefingRoom.mission.functions.requestSupport, "SEAD") 
   end
 end
 
