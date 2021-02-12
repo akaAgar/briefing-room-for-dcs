@@ -247,6 +247,9 @@ namespace BriefingRoom4DCSWorld.Generator
             List<string> extraQueues = (from DCSMissionAircraftSpawnQueueItem queueItem in mission.AircraftSpawnQueue
                                      where !queueItem.SpawnOnStart select queueItem.GroupID.ToString()).ToList();
             int totalExtraQueues = extraQueues.Count;
+            
+            mission.CoreLuaScript += $"briefingRoom.aircraftActivator.escortCAP = {mission.EscortCap}\r\n";
+            mission.CoreLuaScript += $"briefingRoom.aircraftActivator.escortSEAD = {mission.EscortSEAD}\r\n";
 
             mission.CoreLuaScript += "briefingRoom.aircraftActivator.extraQueues = { ";
             for (int i = 0; i < mission.Objectives.Length; i++)
