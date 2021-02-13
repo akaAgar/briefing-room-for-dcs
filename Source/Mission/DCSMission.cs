@@ -43,18 +43,6 @@ namespace BriefingRoom4DCSWorld.Mission
         public List<DCSMissionAircraftSpawnQueueItem> AircraftSpawnQueue { get; set; } = new List<DCSMissionAircraftSpawnQueueItem>();
 
         /// <summary>
-        /// Group Id of CAP AI Escort.
-        /// Aircraft are spawned based off F10 menu request.
-        /// </summary>
-        public int EscortCap { get; set; } = 0;
-        
-        /// <summary>
-        /// Group Id of SEAD AI Escort.
-        /// Aircraft are spawned based off F10 menu request.
-        /// </summary>
-        public int EscortSEAD { get; set; } = 0;
-
-        /// <summary>
         /// Mission briefing, in HTML format.
         /// </summary>
         public string BriefingHTML { get; set; } = "";

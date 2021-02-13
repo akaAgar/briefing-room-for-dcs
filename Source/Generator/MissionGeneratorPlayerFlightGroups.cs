@@ -186,17 +186,7 @@ namespace BriefingRoom4DCSWorld.Generator
 
             // MP AI escorts start in the air, so add them to the spawn queue
             //if (template.GetMissionType() != MissionType.SinglePlayer)
-            switch (task)
-            {
-                default: return null; // Should never happen
-                case MissionTemplateMPFlightGroupTask.SupportCAP:
-                    mission.EscortCap = group.GroupID;
-                    break;
-                case MissionTemplateMPFlightGroupTask.SupportSEAD:
-                    mission.EscortSEAD = group.GroupID;
-                    break;
-            }
-                
+                mission.AircraftSpawnQueue.Add(new DCSMissionAircraftSpawnQueueItem(group.GroupID, true));
 
             return
                 new UnitFlightGroupBriefingDescription(

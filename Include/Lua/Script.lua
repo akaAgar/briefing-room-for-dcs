@@ -531,16 +531,6 @@ function briefingRoom.aircraftActivator.pushNextQueue()
   table.remove(briefingRoom.aircraftActivator.extraQueues, 1) -- remove the added extra queue
 end
 
-function briefingRoom.aircraftActivator.spawnGroup(groupID)
-  local acGroup = dcsExtensions.getGroupByID(groupID) -- get the group
-  if acGroup ~= nil then -- activate the group, if it exists
-    acGroup:activate()
-    briefingRoom.debugPrint("Activating aircraft group "..acGroup:getName())
-  else
-    briefingRoom.debugPrint("Failed to activate aircraft group "..tostring(briefingRoom.aircraftActivator.currentQueue[1]))
-  end
-end
-
 -- Every INTERVAL seconds, check for aircraft groups to activate in the queue
 function briefingRoom.aircraftActivator.update(args, time)
   briefingRoom.debugPrint("Looking for aircraft groups to activate, found "..tostring(#briefingRoom.aircraftActivator.currentQueue), 1)
@@ -548,7 +538,13 @@ function briefingRoom.aircraftActivator.update(args, time)
     return time + briefingRoom.aircraftActivator.getRandomInterval() -- schedule next update and return
   end
 
-  briefingRoom.aircraftActivator.spawnGroup(briefingRoom.aircraftActivator.currentQueue[1])
+  local acGroup = dcsExtensions.getGroupByID(briefingRoom.aircraftActivator.currentQueue[1]) -- get the group
+  if acGroup ~= nil then -- activate the group, if it exists
+    acGroup:activate()
+    briefingRoom.debugPrint("Activating aircraft group "..acGroup:getName())
+  else
+    briefingRoom.debugPrint("Failed to activate aircraft group "..tostring(briefingRoom.aircraftActivator.currentQueue[1]))
+  end
   table.remove(briefingRoom.aircraftActivator.currentQueue, 1) -- remove the ID from the queue
 
   return time + briefingRoom.aircraftActivator.getRandomInterval() -- schedule next update
@@ -687,14 +683,6 @@ do
   for i,o in ipairs(briefingRoom.mission.objectives) do
     briefingRoom.f10Menu.objectives[i] = missionCommands.addSubMenuForCoalition($PLAYERCOALITION$, "Objective "..o.name, nil)
     missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Require waypoint coordinates", briefingRoom.f10Menu.objectives[i], briefingRoom.mission.functions.getWaypointCoordinates, i)
-  end
-
-  if briefingRoom.aircraftActivator.escortCAP > 0 then
-    missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Deploy CAP", nil, briefingRoom.aircraftActivator.spawnGroup, briefingRoom.aircraftActivator.escortCAP) 
-  end
-
-  if briefingRoom.aircraftActivator.escortSEAD > 0 then
-    missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Deploy SEAD", nil, briefingRoom.aircraftActivator.spawnGroup, briefingRoom.aircraftActivator.escortSEAD) 
   end
 end
 
