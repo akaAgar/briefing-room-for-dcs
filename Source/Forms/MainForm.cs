@@ -46,7 +46,7 @@ namespace BriefingRoom4DCSWorld.Forms
             InitializeComponent();
 
             Generator = new MissionGenerator();
-            Template = new MissionTemplate();
+            Template = new MissionTemplate(Toolbox.GetDCSMissionPath() + "Default.brt");
         }
 
         private void MainForm_Load(object sender, EventArgs e)
