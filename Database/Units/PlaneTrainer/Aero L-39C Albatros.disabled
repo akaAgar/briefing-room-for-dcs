@@ -21,12 +21,12 @@ Radio.Frequency=305.0
 Payload.Common=["chaff"] = 0,["flare"] = 0,["fuel"] = 823.2,["gun"] = 100
 
 ; Default: FAB-100x2
-Payload.Task.Default.Pylon01={FB3CE165-BF07-4979-887C-92B87F13276B}
-Payload.Task.Default.Pylon03={FB3CE165-BF07-4979-887C-92B87F13276B}
+Payload.Decade2000.Task.Default.Pylon01={FB3CE165-BF07-4979-887C-92B87F13276B}
+Payload.Decade2000.Task.Default.Pylon03={FB3CE165-BF07-4979-887C-92B87F13276B}
 
 ; AirToAir: R-3Sx2
-Payload.Task.AirToAir.Pylon01={R-3S}
-Payload.Task.AirToAir.Pylon03={R-3S}
+Payload.Decade2000.Task.AirToAir.Pylon01={R-3S}
+Payload.Decade2000.Task.AirToAir.Pylon03={R-3S}
 
 [Operators]
 Abkhazia=Decade1970,Decade2020
