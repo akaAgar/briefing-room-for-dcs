@@ -113,7 +113,6 @@ namespace BriefingRoom4DCSWorld.DB
                 PayloadTasks.Add(decade, new Dictionary<UnitTaskPayload, string[]>());
                 foreach (UnitTaskPayload task in Enum.GetValues(typeof(UnitTaskPayload)))
                 {
-                    Debug.DebugLog.Instance.WriteLine($"{decade} -> {task}");
                     PayloadTasks[decade].Add(task, new string[MAX_PYLONS]);
                     for (var pylonIndex = 0; pylonIndex < MAX_PYLONS; pylonIndex++)
                         PayloadTasks[decade][task][pylonIndex] = ini.GetValue<string>("Aircraft", $"Payload.{decade}.Task.{task}.Pylon{pylonIndex + 1:00}");
@@ -143,7 +142,7 @@ namespace BriefingRoom4DCSWorld.DB
             if (TaskPayloadExists(UnitTaskPayload.Default, decade))
                 return PayloadTasks[decade][UnitTaskPayload.Default];
 
-            return PayloadTasks[Decade.Decade2020][UnitTaskPayload.Default];
+            return PayloadTasks[Decade.Decade2000][UnitTaskPayload.Default];
         }
 
         /// <summary>
