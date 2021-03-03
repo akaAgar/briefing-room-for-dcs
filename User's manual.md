@@ -15,6 +15,8 @@ This manual contains everything you need to know if you just plan to use Briefin
 
 When ran without any command-line parameters, BriefingRoom starts in GUI mode, which allows you to edit your mission parameters using an user-friendly interface, export mission to .miz directly or save your mission templates for later use, or to use them with the command-line tool (see below).
 
+You can setup a default template by overwriting or editing the "Default.brt" template in the program directory, which is loaded each time you start Briefing Room.
+
 ### Mission template settings
 
 On the left side of the screen you can see a list of all settings currently used by the mission template. 
