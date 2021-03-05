@@ -325,7 +325,7 @@ namespace BriefingRoom4DCSWorld.Miz
                             LuaTools.ReplaceKey(ref groupLua, "Speed", GetAircraftCruiseSpeed(unitBP.Category, unitBP.AircraftData.CruiseSpeed));
 
                             string pylonLua = "";
-                            string[] payload = unitBP.AircraftData.GetPayload(group.Payload);
+                            string[] payload = unitBP.AircraftData.GetPayload(group.Payload, mission.DateTime.Decade);
                             for (j = 0; j < DBEntryUnitAircraftData.MAX_PYLONS; j++)
                             {
                                 string pylonCode = payload[j];

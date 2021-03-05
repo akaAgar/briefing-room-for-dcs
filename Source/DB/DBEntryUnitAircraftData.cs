@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
@@ -65,7 +66,7 @@ namespace BriefingRoom4DCSWorld.DB
         /// <summary>
         /// Payload for each pylon and each mission type.
         /// </summary>
-        private string[][] PayloadTasks { get; set; } = new string[Toolbox.EnumCount<UnitTaskPayload>()][];
+        private Dictionary<Decade,Dictionary<UnitTaskPayload,string[]>> PayloadTasks { get; set; } = new Dictionary<Decade,Dictionary<UnitTaskPayload,string[]>>();
 
         /// <summary>
         /// Is this aircraft player-controllable?
@@ -93,7 +94,6 @@ namespace BriefingRoom4DCSWorld.DB
         /// <param name="ini">INI file</param>
         public DBEntryUnitAircraftData(INIFile ini)
         {
-            int i, j;
 
             AirToAirRating[0] = Math.Max(1, ini.GetValue<int>("Aircraft", "A2ARating.Default"));
             AirToAirRating[1] = Math.Max(1, ini.GetValue<int>("Aircraft", "A2ARating.AirToAir"));
@@ -109,11 +109,14 @@ namespace BriefingRoom4DCSWorld.DB
             RadioModulation = ini.GetValue<RadioModulation>("Aircraft", "Radio.Modulation");
 
             PayloadCommon = ini.GetValue<string>("Aircraft", "Payload.Common");
-            for (i = 0; i < PayloadTasks.GetLength(0); i++)
-            {
-                PayloadTasks[i] = new string[MAX_PYLONS];
-                for (j = 0; j < MAX_PYLONS; j++)
-                    PayloadTasks[i][j] = ini.GetValue<string>("Aircraft", $"Payload.Task.{(UnitTaskPayload)i}.Pylon{j + 1:00}");
+            foreach (Decade decade in Enum.GetValues(typeof(Decade))){
+                PayloadTasks.Add(decade, new Dictionary<UnitTaskPayload, string[]>());
+                foreach (UnitTaskPayload task in Enum.GetValues(typeof(UnitTaskPayload)))
+                {
+                    PayloadTasks[decade].Add(task, new string[MAX_PYLONS]);
+                    for (var pylonIndex = 0; pylonIndex < MAX_PYLONS; pylonIndex++)
+                        PayloadTasks[decade][task][pylonIndex] = ini.GetValue<string>("Aircraft", $"Payload.{decade}.Task.{task}.Pylon{pylonIndex + 1:00}");
+                }
             }
         }
 
@@ -131,12 +134,15 @@ namespace BriefingRoom4DCSWorld.DB
         /// </summary>
         /// <param name="taskPayload">Task the aircraft should perform</param>
         /// <returns>An array of strings describing the weapon on each pylon</returns>
-        public string[] GetPayload(UnitTaskPayload taskPayload)
+        public string[] GetPayload(UnitTaskPayload taskPayload, Decade decade)
         {
-            if (TaskPayloadExists(taskPayload))
-                return PayloadTasks[(int)taskPayload];
+            if (TaskPayloadExists(taskPayload, decade))
+                return PayloadTasks[decade][taskPayload];
+            
+            if (TaskPayloadExists(UnitTaskPayload.Default, decade))
+                return PayloadTasks[decade][UnitTaskPayload.Default];
 
-            return PayloadTasks[(int)UnitTaskPayload.Default];
+            return PayloadTasks[Decade.Decade2000][UnitTaskPayload.Default];
         }
 
         /// <summary>
@@ -145,11 +151,11 @@ namespace BriefingRoom4DCSWorld.DB
         /// </summary>
         /// <param name="task">A task</param>
         /// <returns>True if a payload have been defined for this task, false otherwise</returns>
-        private bool TaskPayloadExists(UnitTaskPayload task)
+        private bool TaskPayloadExists(UnitTaskPayload task, Decade decade)
         {
             // If at least one pylon has been defined for this task, return true
             for (int i = 0; i < MAX_PYLONS; i++)
-                if (!string.IsNullOrEmpty(PayloadTasks[(int)task][i]))
+                if (!string.IsNullOrEmpty(PayloadTasks[decade][task][i]))
                     return true;
 
             return false;
