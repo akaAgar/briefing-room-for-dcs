@@ -1,5 +1,41 @@
 ## Changelog
 
+* Version 0.3.103.05 (March 5, 2021)
+  * Bug fixes
+    * AFAC and search & destroy targets are now always hidden on map, regardless of "show enemy units on map" setting
+    * Fixed a bug with static units/building not spawned exactly the proper coordinates
+    * Fixed "Deep strike" static buldings now only spawn on large spawnpoints (so only on open ground, not in the middle of a field)
+    * Fixed JTAC not lasing/marking static objects correctly (by David Pierron)
+    * Fixed wrong spawning altitude for aircraft units, which sometimes spawned in the ground (by John Harvey)
+  * New template options
+    * Civilian traffic level can be selected
+    * Distance to objective(s) is now set via an integer value, so very large or very short distances (e.g. for rotary wing operations) can be generated
+    * Realism settings (disable external views, enable bird strikes...) can be enforced*
+    * Starting airbase and starting carrier selection added to the campaign generator
+  * New flyable aircraft
+    * A-4E-C Skyhawk (mod) (by John Harvey)
+    * F-14A player aircraft (by John Harvey)
+    * F-22A Raptor (mod) (by John Harvey)
+    * F-86F Sabre
+    * Messerschmitt Bf 109K
+    * Spitfire (by John Harvey)
+  * New mission objectives
+    * Battle damage assessment
+    * Bomber escort
+    * Offensive counter air (with help from John Harvey)
+    * Patrol (by John Harvey)
+  * Misc. improvements
+    * Added keyboard shortcut for campaign generator
+    * Aircraft carriers now sail into the wind (by John Harvey)
+    * Crash site (with fire and smoke) now spawned near the stranded pilots in CSAR missions
+    * Default settings are now set in a "Default.brt" mission template files stored in program directory (by John Harvey)
+    * Embedded air defense is now spawned near static buildings, not only near vehicles
+    * Now supports custom Lua for unit-specific settings (laser code for the F-16, NVG/HMD selection, etc)
+    * GPS is now available to all coalitions, so there's no need to artificially add the USA to the player's coalition to give them access to the GPS
+    * Mission features can now be used to spawn unit groups, like objectives
+    * Multiple carriers can now be spawned (by John Harvey)
+    * Different payloads for each decade can now be specified for aircraft in the database. The payloads themselves have not been added yet. (by John Harvey)
+    * Updated Moroccan units (by Nomadzy)
 * Version 0.3.101.20 (January 20, 2021)
   * Bug fixes
     * Now assigns the USA to the player's coalition because DCS World restricts access to the GPS to coalitions including the US (thanks to John Harvey for noticing)
@@ -25,6 +61,7 @@
     * Campaign generator (EARLY VERSION)
     * All new coalitions/units pairing system (list of operators in each unit definition instead of a list of units for each coalition)
     * Selection of mission decade/era is now independent from coalition, proper units are chosen for the year during which the mission takes place
+    * Enemy AI skill can now be selected (uses code by John Harvey)
     * Friendly air defense (code by John Harvey)
     * Carrier groups and carrier takeoff/landing (EARLY VERSION) (code by John Harvey)
     * Now generates custom "title" pictures to campaigns and missions
