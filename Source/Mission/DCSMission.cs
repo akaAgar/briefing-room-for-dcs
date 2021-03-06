@@ -42,6 +42,9 @@ namespace BriefingRoom4DCSWorld.Mission
         /// </summary>
         public List<DCSMissionAircraftSpawnQueueItem> AircraftSpawnQueue { get; set; } = new List<DCSMissionAircraftSpawnQueueItem>();
 
+        public int EscortCAPGroupId { get; set; } = 0;
+        public int EscortSEADGroupId { get; set; } = 0;
+
         /// <summary>
         /// Mission briefing, in HTML format.
         /// </summary>

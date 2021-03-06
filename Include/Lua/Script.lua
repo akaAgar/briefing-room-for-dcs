@@ -682,11 +682,15 @@ end
 
 function briefingRoom.mission.functions.requestSupport(type)
   local groupID = 0
+  local Command = ""
   if     type == "CAP" then 
     groupID = briefingRoom.aircraftActivator.escortCAP
+    command = briefingRoom.f10Menu.CAPCommand
   elseif type == "SEAD" then
     groupID = briefingRoom.aircraftActivator.escortSEAD
+    command = briefingRoom.f10Menu.SEADCommand
   end
+  missionCommands.removeItemForCoalition($PLAYERCOALITION$, command)
   local delay = briefingRoom.radioManager.getAnswerDelay() 
   briefingRoom.radioManager.play("Command, request "..type.." Support.", "RadioPilotWaypointCoordinates") -- Needs actual radio message
   briefingRoom.radioManager.play("Acknowledged, "..type.." arriving on station shortly", "RadioHQWaypointCoordinates", delay) -- Needs actual radio message
@@ -710,11 +714,11 @@ do
   end
 
   if briefingRoom.aircraftActivator.escortCAP > 0 then
-    missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Deploy CAP", nil,  briefingRoom.mission.functions.requestSupport, "CAP") 
+    briefingRoom.f10Menu.CAPCommand = missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Deploy CAP", nil,  briefingRoom.mission.functions.requestSupport, "CAP") 
   end
 
   if briefingRoom.aircraftActivator.escortSEAD > 0 then
-    missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Deploy SEAD", nil,  briefingRoom.mission.functions.requestSupport, "SEAD") 
+    briefingRoom.f10Menu.SEADCommand = missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Deploy SEAD", nil,  briefingRoom.mission.functions.requestSupport, "SEAD") 
   end
 end
 
