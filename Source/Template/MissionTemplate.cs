@@ -341,7 +341,7 @@ namespace BriefingRoom4DCSWorld.Template
         /// In multiplayer missions, escorts will be spawned as soon as one player takes off.
         /// </summary>
         [Category("Player"), DisplayName("AI CAP escort")]
-        [Description("Number of AI aircraft tasked with escorting the player against enemy fighters. In single-player missions, escorts will be spawned on the ramp if the player starts from the ramp (cold or hot), or in the air above the airbase if the player starts on the runway. In multiplayer missions, escorts will be spawned as soon as one player takes off.")]
+        [Description("Number of AI aircraft tasked with escorting the player against enemy fighters. Request these aircraft via the F10 menu.")]
         public int PlayerEscortCAP { get { return PlayerEscortCAP_; } set { PlayerEscortCAP_ = Toolbox.Clamp(value, 0, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE); } }
         private int PlayerEscortCAP_;
 
@@ -351,7 +351,7 @@ namespace BriefingRoom4DCSWorld.Template
         /// In multiplayer missions, escorts will be spawned as soon as one player takes off.
         /// </summary>
         [Category("Player"), DisplayName("AI SEAD escort")]
-        [Description("Number of AI aircraft tasked with escorting the player against enemy SAMs. In single-player missions, escorts will be spawned on the ramp if the player starts from the ramp (cold or hot), or in the air above the airbase if the player starts on the runway. In multiplayer missions, escorts will be spawned as soon as one player takes off.")]
+        [Description("Number of AI aircraft tasked with escorting the player against enemy SAMs. Request these aircraft via the F10 menu.")]
         public int PlayerEscortSEAD { get { return PlayerEscortSEAD_; } set { PlayerEscortSEAD_ = Toolbox.Clamp(value, 0, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE); } }
         private int PlayerEscortSEAD_;
 

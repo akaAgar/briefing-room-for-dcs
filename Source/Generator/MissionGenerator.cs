@@ -257,6 +257,9 @@ namespace BriefingRoom4DCSWorld.Generator
                 extraQueues.RemoveRange(0, length);
             }
             mission.CoreLuaScript += "}\r\n";
+
+            mission.CoreLuaScript += $"briefingRoom.aircraftActivator.escortCAP = {mission.EscortCAPGroupId}\r\n";
+            mission.CoreLuaScript += $"briefingRoom.aircraftActivator.escortSEAD  = {mission.EscortSEADGroupId}\r\n";
         }
 
         /// <summary>
