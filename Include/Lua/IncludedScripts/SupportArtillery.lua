@@ -111,6 +111,5 @@ world.addEventHandler(briefingRoom.mission.features.artillery)
 briefingRoom.mission.features.artillery.fireMissionsLeft = briefingRoom.mission.features.artillery.FIRE_MISSIONS_PER_OBJECTIVE * #briefingRoom.mission.objectives
 
 if briefingRoom.f10Menu.supportMenu == nil then
-  briefingRoom.f10Menu.supportMenu = missionCommands.addSubMenuForCoalition($PLAYERCOALITION$, "Support", nil)
 end
 missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Begin fire mission on provided coordinates", briefingRoom.f10Menu.supportMenu, briefingRoom.mission.features.artillery.launchFireMission, nil)

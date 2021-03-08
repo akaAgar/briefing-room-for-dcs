@@ -680,20 +680,20 @@ function briefingRoom.mission.functions.endMissionIn(endInSeconds)
   timer.scheduleFunction(briefingRoom.mission.functions.endMission, nil, timer.getTime() + endInSeconds)
 end
 
-function briefingRoom.mission.functions.requestSupport(type)
+function briefingRoom.mission.functions.requestSupport(supportType)
   local groupID = 0
   local Command = ""
-  if     type == "CAP" then 
+  if supportType == "CAP" then 
     groupID = briefingRoom.aircraftActivator.escortCAP
-    command = briefingRoom.f10Menu.CAPCommand
-  elseif type == "SEAD" then
+    command = briefingRoom.f10Menu.RequestCAPSupportCommand
+  elseif supportType == "SEAD" then
     groupID = briefingRoom.aircraftActivator.escortSEAD
-    command = briefingRoom.f10Menu.SEADCommand
+    command = briefingRoom.f10Menu.RequestSEADSupportCommand
   end
   missionCommands.removeItemForCoalition($PLAYERCOALITION$, command)
-  local delay = briefingRoom.radioManager.getAnswerDelay() 
-  briefingRoom.radioManager.play("Command, request "..type.." Support.", "RadioPilotWaypointCoordinates") -- Needs actual radio message
-  briefingRoom.radioManager.play("Acknowledged, "..type.." arriving on station shortly", "RadioHQWaypointCoordinates", delay) -- Needs actual radio message
+  local delay = briefingRoom.radioManager.getAnswerDelay();
+  briefingRoom.radioManager.play("Command, requesting "..supportType.." support.", "RadioPilot"..supportType.."Support")
+  briefingRoom.radioManager.play("Affirm, "..supportType.." support is on its way.", "RadioHQ"..supportType.."Support", delay)
   timer.scheduleFunction(briefingRoom.aircraftActivator.spawnGroup, groupID, timer.getTime() + delay)
 end
 
@@ -707,18 +707,19 @@ briefingRoom.f10Menu.objectives = { }
 
 do
   missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Mission status", nil, briefingRoom.mission.functions.getMissionStatus, nil)
+  briefingRoom.f10Menu.supportMenu = missionCommands.addSubMenuForCoalition($PLAYERCOALITION$, "Support", nil)
 
   for i,o in ipairs(briefingRoom.mission.objectives) do
     briefingRoom.f10Menu.objectives[i] = missionCommands.addSubMenuForCoalition($PLAYERCOALITION$, "Objective "..o.name, nil)
-    missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Require waypoint coordinates", briefingRoom.f10Menu.objectives[i], briefingRoom.mission.functions.getWaypointCoordinates, i)
+    missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Request waypoint coordinates", briefingRoom.f10Menu.objectives[i], briefingRoom.mission.functions.getWaypointCoordinates, i)
   end
 
   if briefingRoom.aircraftActivator.escortCAP > 0 then
-    briefingRoom.f10Menu.CAPCommand = missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Deploy CAP", nil,  briefingRoom.mission.functions.requestSupport, "CAP") 
+    briefingRoom.f10Menu.RequestCAPSupportCommand = missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Request CAP support", briefingRoom.f10Menu.supportMenu,  briefingRoom.mission.functions.requestSupport, "CAP") 
   end
 
   if briefingRoom.aircraftActivator.escortSEAD > 0 then
-    briefingRoom.f10Menu.SEADCommand = missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Deploy SEAD", nil,  briefingRoom.mission.functions.requestSupport, "SEAD") 
+    briefingRoom.f10Menu.RequestSEADSupportCommand = missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Request SEAD support", briefingRoom.f10Menu.supportMenu,  briefingRoom.mission.functions.requestSupport, "SEAD") 
   end
 end
 
