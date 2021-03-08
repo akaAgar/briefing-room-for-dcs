@@ -129,7 +129,7 @@ namespace BriefingRoom4DCSWorld.Miz
 
                     LuaTools.ReplaceKey(ref lua, "PlayerEscortStartingAction", "Turning Point"); // Player starts on runway, AI escorts start in air above him
                     LuaTools.ReplaceKey(ref lua, "PlayerEscortStartingType", "Turning Point");
-                    LuaTools.ReplaceKey(ref lua, "PlayerEscortStartingAltitude", GetAircraftCruiseAltitude(UnitCategory.Plane, Amount.Average));
+                    LuaTools.ReplaceKey(ref lua, "PlayerEscortStartingAltitude", 10000 * Toolbox.FEET_TO_METERS);
                     break;
             }
 
@@ -209,13 +209,13 @@ namespace BriefingRoom4DCSWorld.Miz
                 double waypointAltitude, waypointSpeed;
                 if (unitBP == null) // Unit not found in the database, use default values for the unit category
                 {
-                    waypointAltitude = GetAircraftCruiseAltitude(unitBP.Category, Amount.Average);
-                    waypointSpeed = GetAircraftCruiseSpeed(unitBP.Category, Amount.Average);
+                    waypointAltitude = ((unitBP.Category == UnitCategory.Helicopter) ? 1500 : 20000) * Toolbox.FEET_TO_METERS;
+                    waypointSpeed = ((unitBP.Category == UnitCategory.Helicopter) ? 90 : 300) * Toolbox.KNOTS_TO_METERS_PER_SECOND;
                 }
                 else
                 {
-                    waypointAltitude = GetAircraftCruiseAltitude(unitBP.Category, unitBP.AircraftData.CruiseAltitude);
-                    waypointSpeed = GetAircraftCruiseSpeed(unitBP.Category, unitBP.AircraftData.CruiseAltitude);
+                    waypointAltitude = unitBP.AircraftData.CruiseAltitude;
+                    waypointSpeed = unitBP.AircraftData.CruiseAltitude;
                 }
 
                 waypointAltitude *= mission.Waypoints[i].AltitudeMultiplier;
@@ -306,7 +306,7 @@ namespace BriefingRoom4DCSWorld.Miz
                         if (unitBP == null)
                         {
                             LuaTools.ReplaceKey(ref groupLua, "Altitude", ((group.Category == UnitCategory.Helicopter) ? 1500 : 4572) * Toolbox.RandomDouble(.8, 1.2));
-                            LuaTools.ReplaceKey(ref unitLua, "Altitude", (int)((group.Category == UnitCategory.Helicopter) ? 1500 : 4572) * Toolbox.RandomDouble(.8, 1.2));
+                            LuaTools.ReplaceKey(ref unitLua, "Altitude", ((group.Category == UnitCategory.Helicopter) ? 1500 : 4572) * Toolbox.RandomDouble(.8, 1.2));
                             LuaTools.ReplaceKey(ref groupLua, "EPLRS", false);
                             LuaTools.ReplaceKey(ref unitLua, "PayloadCommon", "");
                             LuaTools.ReplaceKey(ref unitLua, "PayloadPylons", "");
@@ -316,13 +316,13 @@ namespace BriefingRoom4DCSWorld.Miz
                         }
                         else
                         {
-                            LuaTools.ReplaceKey(ref groupLua, "Altitude", GetAircraftCruiseAltitude(unitBP.Category, unitBP.AircraftData.CruiseAltitude));
-                            LuaTools.ReplaceKey(ref unitLua, "Altitude", (int)GetAircraftCruiseAltitude(unitBP.Category, unitBP.AircraftData.CruiseAltitude));
+                            LuaTools.ReplaceKey(ref groupLua, "Altitude", unitBP.AircraftData.CruiseAltitude);
+                            LuaTools.ReplaceKey(ref unitLua, "Altitude", unitBP.AircraftData.CruiseAltitude);
                             LuaTools.ReplaceKey(ref groupLua, "EPLRS", unitBP.Flags.HasFlag(DBEntryUnitFlags.EPLRS));
                             LuaTools.ReplaceKey(ref unitLua, "PayloadCommon", unitBP.AircraftData.PayloadCommon);
                             LuaTools.ReplaceKey(ref groupLua, "RadioBand", (int)unitBP.AircraftData.RadioModulation);
                             LuaTools.ReplaceKey(ref groupLua, "RadioFrequency", unitBP.AircraftData.RadioFrequency);
-                            LuaTools.ReplaceKey(ref groupLua, "Speed", GetAircraftCruiseSpeed(unitBP.Category, unitBP.AircraftData.CruiseSpeed));
+                            LuaTools.ReplaceKey(ref groupLua, "Speed", unitBP.AircraftData.CruiseSpeed);
 
                             string pylonLua = "";
                             string[] payload = unitBP.AircraftData.GetPayload(group.Payload, mission.DateTime.Decade);
@@ -376,54 +376,6 @@ namespace BriefingRoom4DCSWorld.Miz
             }
 
             LuaTools.ReplaceKey(ref lua, $"Groups{unitCategory}{coalition}", allGroupsLua);
-        }
-
-        private double GetAircraftCruiseAltitude(UnitCategory category, Amount altitudeCategory, double variation = 0.1)
-        {
-            double altitude = 0.0;
-
-            switch (category)
-            {
-                case UnitCategory.Helicopter:
-                    altitude = 1500;
-                    break;
-                case UnitCategory.Plane:
-                    switch (altitudeCategory)
-                    {
-                        case Amount.VeryLow: altitude = 5000; break;
-                        case Amount.Low: altitude = 12500; break;
-                        case Amount.Average: altitude = 20000; break;
-                        case Amount.High: altitude = 25000; break;
-                        case Amount.VeryHigh: altitude = 30000; break;
-                    }
-                    break;
-            }
-
-            return altitude * Toolbox.FEET_TO_METERS * Toolbox.RandomDouble(1 - variation, 1 + variation);
-        }
-
-        private double GetAircraftCruiseSpeed(UnitCategory category, Amount speedCategory)
-        {
-            double speed = 0.0;
-
-            switch (category)
-            {
-                case UnitCategory.Helicopter:
-                    speed = 90;
-                    break;
-                case UnitCategory.Plane:
-                    switch (speedCategory)
-                    {
-                        case Amount.VeryLow: speed = 150; break;
-                        case Amount.Low: speed = 225; break;
-                        case Amount.Average: speed = 300; break;
-                        case Amount.High: speed = 350; break;
-                        case Amount.VeryHigh: speed = 400; break;
-                    }
-                    break;
-            }
-
-            return speed * Toolbox.KNOTS_TO_METERS_PER_SECOND;
         }
     }
 }

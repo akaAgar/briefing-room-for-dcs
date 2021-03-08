@@ -49,14 +49,14 @@ namespace BriefingRoom4DCSWorld.DB
         public CarrierType[] CarrierTypes { get; private set; } = new CarrierType[0];
 
         /// <summary>
-        /// Cruise speed, relative to this unit category.
+        /// Cruise speed, in knots.
         /// </summary>
-        public Amount CruiseSpeed { get; private set; } = Amount.Average;
+        public int CruiseSpeed { get; private set; } = (int)(300 * Toolbox.KNOTS_TO_METERS_PER_SECOND);
 
         /// <summary>
-        /// Cruise altitude, relative to this unit category.
+        /// Cruise altitude, in feet.
         /// </summary>
-        public Amount CruiseAltitude { get; private set; } = Amount.Average;
+        public int CruiseAltitude { get; private set; } = (int)(15000 * Toolbox.FEET_TO_METERS);
 
         /// <summary>
         /// Common payload (fuel, chaff, flares, cannon...) for this aircraft.
@@ -94,14 +94,13 @@ namespace BriefingRoom4DCSWorld.DB
         /// <param name="ini">INI file</param>
         public DBEntryUnitAircraftData(INIFile ini)
         {
-
             AirToAirRating[0] = Math.Max(1, ini.GetValue<int>("Aircraft", "A2ARating.Default"));
             AirToAirRating[1] = Math.Max(1, ini.GetValue<int>("Aircraft", "A2ARating.AirToAir"));
 
             CarrierTypes = ini.GetValueArray<CarrierType>("Aircraft", "CarrierTypes").Distinct().ToArray();
 
-            CruiseAltitude = ini.GetValue<Amount>("Aircraft", "CruiseAltitude");
-            CruiseSpeed = ini.GetValue<Amount>("Aircraft", "CruiseSpeed");
+            CruiseAltitude = (int)(Math.Max(0, ini.GetValue<int>("Aircraft", "CruiseAltitude")) * Toolbox.FEET_TO_METERS);
+            CruiseSpeed = (int)(Math.Max(0, ini.GetValue<int>("Aircraft", "CruiseSpeed")) * Toolbox.KNOTS_TO_METERS_PER_SECOND);
 
             PlayerControllable = ini.GetValue<bool>("Aircraft", "PlayerControllable");
 
