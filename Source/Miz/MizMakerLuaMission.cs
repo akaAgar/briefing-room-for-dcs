@@ -310,6 +310,8 @@ namespace BriefingRoom4DCSWorld.Miz
                             LuaTools.ReplaceKey(ref groupLua, "EPLRS", false);
                             LuaTools.ReplaceKey(ref unitLua, "PayloadCommon", "");
                             LuaTools.ReplaceKey(ref unitLua, "PayloadPylons", "");
+                            LuaTools.ReplaceKey(ref unitLua, "RadioPresetsLua", "");
+                            LuaTools.ReplaceKey(ref unitLua, "PropsLua", "");
                             LuaTools.ReplaceKey(ref groupLua, "RadioBand", 0);
                             LuaTools.ReplaceKey(ref groupLua, "RadioFrequency", 124.0f);
                             LuaTools.ReplaceKey(ref groupLua, "Speed", ((group.Category == UnitCategory.Helicopter) ? 51 : 125) * Toolbox.RandomDouble(.9, 1.1));
@@ -320,6 +322,13 @@ namespace BriefingRoom4DCSWorld.Miz
                             LuaTools.ReplaceKey(ref unitLua, "Altitude", unitBP.AircraftData.CruiseAltitude);
                             LuaTools.ReplaceKey(ref groupLua, "EPLRS", unitBP.Flags.HasFlag(DBEntryUnitFlags.EPLRS));
                             LuaTools.ReplaceKey(ref unitLua, "PayloadCommon", unitBP.AircraftData.PayloadCommon);
+                            if (group.IsAPlayerGroup()){
+                                LuaTools.ReplaceKey(ref unitLua, "RadioPresetsLua", string.Join("", unitBP.AircraftData.RadioPresets.Select((x, index) => $"[{index + 1}] = {x.ToLuaString()}")));
+                                LuaTools.ReplaceKey(ref unitLua, "PropsLua", unitBP.AircraftData.PropsLua);
+                            } else {
+                                LuaTools.ReplaceKey(ref unitLua, "RadioPresetsLua", "");
+                                LuaTools.ReplaceKey(ref unitLua, "PropsLua", "");
+                            }
                             LuaTools.ReplaceKey(ref groupLua, "RadioBand", (int)unitBP.AircraftData.RadioModulation);
                             LuaTools.ReplaceKey(ref groupLua, "RadioFrequency", unitBP.AircraftData.RadioFrequency);
                             LuaTools.ReplaceKey(ref groupLua, "Speed", unitBP.AircraftData.CruiseSpeed);

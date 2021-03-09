@@ -83,6 +83,16 @@ namespace BriefingRoom4DCSWorld.DB
         /// </summary>
         public RadioModulation RadioModulation { get; private set; } = RadioModulation.AM;
 
+
+        /// <summary>
+        /// Radio Preset Lua
+        /// </summary>
+        public List<RadioPreset> RadioPresets {get; private set;}
+
+        /// <summary>
+        /// Props Lua
+        /// </summary>
+        public string PropsLua {get; private set;} = "";
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -103,6 +113,7 @@ namespace BriefingRoom4DCSWorld.DB
             CruiseSpeed = (int)(Math.Max(0, ini.GetValue<int>("Aircraft", "CruiseSpeed")) * Toolbox.KNOTS_TO_METERS_PER_SECOND);
 
             PlayerControllable = ini.GetValue<bool>("Aircraft", "PlayerControllable");
+            PropsLua = ini.GetValue<string>("Aircraft", "PropsLua");
 
             RadioFrequency = ini.GetValue<float>("Aircraft", "Radio.Frequency");
             RadioModulation = ini.GetValue<RadioModulation>("Aircraft", "Radio.Modulation");
@@ -116,6 +127,15 @@ namespace BriefingRoom4DCSWorld.DB
                     for (var pylonIndex = 0; pylonIndex < MAX_PYLONS; pylonIndex++)
                         PayloadTasks[decade][task][pylonIndex] = ini.GetValue<string>("Aircraft", $"Payload.{decade}.Task.{task}.Pylon{pylonIndex + 1:00}");
                 }
+            }
+            RadioPresets = new List<RadioPreset>();
+            for (int i = 0; i < 4; i++)
+            {   
+                if (ini.ValueExists("Aircraft", $"Radio.Presets.{i}.Channels"))
+                    RadioPresets.Add(new RadioPreset{
+                        Channels = ini.GetValueArray<int>("Aircraft", $"Radio.Presets.{i}.Channels"),
+                        Modulations = ini.GetValueArray<int>("Aircraft", $"Radio.Presets.{i}.Modulations")
+                });
             }
         }
 

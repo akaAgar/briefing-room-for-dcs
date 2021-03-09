@@ -8,6 +8,7 @@
 $EXTRALUA$
                 ["AddPropAircraft"] = 
                 {
+$PROPSLUA$
                 }, -- end of ["AddPropAircraft"]
                 ["type"] = "$TYPE$",
                 ["unitId"] = $ID$,
@@ -27,4 +28,8 @@ $PAYLOADCOMMON$
                 ["heading"] = $HEADING$,
                 ["callsign"] = $CALLSIGN$,
                 ["onboard_num"] = "$ONBOARDNUMBER$",
+                ["Radio"] = 
+                {
+$RADIOPRESETSLUA$
+                }
             }, -- end of [$INDEX$]
