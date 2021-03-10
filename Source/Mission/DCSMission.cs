@@ -244,6 +244,9 @@ namespace BriefingRoom4DCSWorld.Mission
         /// Weather information for this mission.
         /// </summary>
         public DCSMissionWeatherInfo Weather { get; set; } = new DCSMissionWeatherInfo();
+        
+        public List<Country> CountryBlues { get; internal set; }
+        public List<Country> CountryReds { get; internal set; }
 
         /// <summary>
         /// Constructor.

@@ -24,6 +24,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace BriefingRoom4DCSWorld
@@ -455,6 +456,12 @@ namespace BriefingRoom4DCSWorld
         {
             try { return Convert.ToInt32(stringValue.Trim(), NumberFormatInfo.InvariantInfo); }
             catch (Exception) { return defaultValue; }
+        }
+
+        //TODO Extract this into a larger ToLua Class for all this kinda stuff we may need
+        public static string ListToLuaString(IEnumerable<int> list)
+        {
+            return $"{{{string.Join(",", list.Select((x,i) => $"[{i+1}] = {x}"))}}}";
         }
 
         /// <summary>

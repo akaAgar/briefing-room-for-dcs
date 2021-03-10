@@ -134,7 +134,9 @@ namespace BriefingRoom4DCSWorld.Mission
         /// <summary>
         /// Constructor.
         /// </summary>
-        public DCSMissionUnitGroup() { }
+
+        public Country Country {get; set;} = Country.CJTF_BLUE;
+        public DCSMissionUnitGroup() {}
 
         /// <summary>
         /// Is this group a player-controlled flight group?

@@ -276,6 +276,22 @@ namespace BriefingRoom4DCSWorld.Generator
             mission.RadioAssists = !template.Realism.Contains(RealismOption.DisableDCSRadioAssists);
             mission.Theater = template.ContextTheater;
             mission.PlayerStartLocation = template.FlightPlanPlayerStartLocation;
+            mission.CountryBlues =new List<Country>{Country.CJTF_BLUE};
+            mission.CountryReds = new List<Country>{Country.CJTF_RED};
+            if (template.GetMissionType() == MissionType.SinglePlayer){
+                if (template.ContextCoalitionPlayer == Coalition.Blue)
+                    mission.CountryBlues.Add(template.PlayerCountry);
+                else 
+                    mission.CountryReds.Add(template.PlayerCountry);
+            } else {
+                var countries = template.PlayerMPFlightGroups.Select(x => x.Country).Distinct().ToList();
+                if (template.ContextCoalitionPlayer == Coalition.Blue)
+                    mission.CountryBlues.AddRange(countries);
+                else 
+                    mission.CountryReds.AddRange(countries);
+            }
+            mission.CountryBlues = mission.CountryBlues.Distinct().ToList();
+            mission.CountryReds = mission.CountryReds.Distinct().ToList();
             mission.EndMode = template.OptionsEndMode;
             mission.RealismOptions = template.Realism;
 

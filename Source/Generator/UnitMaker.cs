@@ -55,7 +55,7 @@ namespace BriefingRoom4DCSWorld.Generator
             DCSMission mission, string[] units, Side side,
             Coordinates coordinates, string groupLua, string unitLua,
             DCSSkillLevel skill, DCSMissionUnitGroupFlags flags = 0, UnitTaskPayload payload = UnitTaskPayload.Default,
-            Coordinates? coordinates2 = null, int airbaseID = 0, bool requiresParkingSpots = false, bool requiresOpenAirParking = false)
+            Coordinates? coordinates2 = null, int airbaseID = 0, bool requiresParkingSpots = false, bool requiresOpenAirParking = false, Country? country = null)
         {
             if (units.Length == 0) return null; // No units database entries ID provided, cancel group creation
 
@@ -65,6 +65,8 @@ namespace BriefingRoom4DCSWorld.Generator
             if (unitsBP.Length == 0) return null; // All database entries were null, cancel group creation
 
             Coalition coalition = (side == Side.Ally) ? mission.CoalitionPlayer : mission.CoalitionEnemy; // Pick group coalition
+            if(!country.HasValue)
+                country = coalition == Coalition.Blue? Country.CJTF_BLUE : Country.CJTF_RED;
 
             double groupHeading = unitsBP[0].IsAircraft ? 0 : Toolbox.RandomDouble(Toolbox.TWO_PI); // Generate global group heading
 
@@ -132,6 +134,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 CallsignLua = callsign.Lua,
                 Category = unitsBP[0].Category,
                 Coalition = coalition,
+                Country = country.Value,
                 Coordinates = airbaseID != 0?  groupUnits[0].Coordinates : coordinates,
                 Coordinates2 = coordinates2 ?? coordinates + Coordinates.CreateRandom(1, 2) * Toolbox.NM_TO_METERS,
                 Flags = flags,
