@@ -66,7 +66,7 @@ namespace BriefingRoom4DCSWorld.Generator
 
             Coalition coalition = (side == Side.Ally) ? mission.CoalitionPlayer : mission.CoalitionEnemy; // Pick group coalition
             if(!country.HasValue)
-                country = coalition == Coalition.Blue? Country.CJTF_BLUE : Country.CJTF_RED;
+                country = coalition == Coalition.Blue? Country.CJTFBlue : Country.CJTFBlue;
 
             double groupHeading = unitsBP[0].IsAircraft ? 0 : Toolbox.RandomDouble(Toolbox.TWO_PI); // Generate global group heading
 

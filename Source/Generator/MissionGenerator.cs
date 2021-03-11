@@ -276,8 +276,8 @@ namespace BriefingRoom4DCSWorld.Generator
             mission.RadioAssists = !template.Realism.Contains(RealismOption.DisableDCSRadioAssists);
             mission.Theater = template.ContextTheater;
             mission.PlayerStartLocation = template.FlightPlanPlayerStartLocation;
-            mission.CountryBlues =new List<Country>{Country.CJTF_BLUE};
-            mission.CountryReds = new List<Country>{Country.CJTF_RED};
+            mission.CountryBlues =new List<Country>{Country.CJTFBlue};
+            mission.CountryReds = new List<Country>{Country.CJTFRed};
             if (template.GetMissionType() == MissionType.SinglePlayer){
                 if (template.ContextCoalitionPlayer == Coalition.Blue)
                     mission.CountryBlues.Add(template.PlayerCountry);

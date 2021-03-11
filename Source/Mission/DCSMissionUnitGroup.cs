@@ -135,7 +135,7 @@ namespace BriefingRoom4DCSWorld.Mission
         /// Constructor.
         /// </summary>
 
-        public Country Country {get; set;} = Country.CJTF_BLUE;
+        public Country Country {get; set;} = Country.CJTFBlue;
         public DCSMissionUnitGroup() {}
 
         /// <summary>
