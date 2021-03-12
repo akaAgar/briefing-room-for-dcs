@@ -127,6 +127,7 @@
     <Compile Include="Mission\DCSMissionAircraftSpawnQueueItem.cs" />
     <Compile Include="Mission\DCSMissionDateTime.cs" />
     <Compile Include="Mission\DCSMissionWeatherInfo.cs" />
+    <Compile Include="RadioPreset.cs" />
     <Compile Include="SpawnPointPreferredCoalition.cs" />
     <Compile Include="ParkingSpotType.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
