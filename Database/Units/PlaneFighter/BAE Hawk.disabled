@@ -1,7 +1,6 @@
 ﻿[Unit]
 DCSID=Hawk
 Families=PlaneFighter
-ExtraLua=
 Flags=
 
 [Aircraft]

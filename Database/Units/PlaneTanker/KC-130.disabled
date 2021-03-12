@@ -1,7 +1,6 @@
 ﻿[Unit]
 DCSID=KC-135
 Families=PlaneTankerBoom
-ExtraLua=
 Flags=EPLRS
 
 [Aircraft]

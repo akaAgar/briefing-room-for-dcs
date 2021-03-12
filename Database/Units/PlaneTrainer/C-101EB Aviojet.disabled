@@ -1,7 +1,6 @@
 ﻿[Unit]
 DCSID=C-101EB
 Families=PlaneTrainer
-ExtraLua=
 Flags=EPLRS
 
 [Aircraft]

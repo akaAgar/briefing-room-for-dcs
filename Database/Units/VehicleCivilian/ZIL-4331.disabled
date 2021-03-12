@@ -1,7 +1,6 @@
 ﻿[Unit]
 DCSID=ZIL-4331
 Families=VehicleCivilian
-ExtraLua=
 Flags=
 
 [Operators]

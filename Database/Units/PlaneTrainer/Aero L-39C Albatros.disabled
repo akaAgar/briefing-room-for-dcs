@@ -1,7 +1,6 @@
 [Unit]
 DCSID=L-39C
 Families=PlaneTrainer
-ExtraLua=
 Flags=
 
 [Aircraft]

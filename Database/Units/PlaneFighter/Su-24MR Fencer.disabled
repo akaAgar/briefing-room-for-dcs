@@ -2,7 +2,6 @@
 DCSID=Su-24MR
 Families=PlaneStrike
 ;Recon aircraft
-ExtraLua=
 Flags=
 
 [Aircraft]

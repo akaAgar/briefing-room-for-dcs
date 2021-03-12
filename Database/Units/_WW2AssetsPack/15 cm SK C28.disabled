@@ -1,7 +1,6 @@
 [Unit]
 DCSID=SK_C_28_naval_gun
 Families=VehicleArtillery
-ExtraLua=
 Flags=
 RequiredMod=WW2AssetsPack
 

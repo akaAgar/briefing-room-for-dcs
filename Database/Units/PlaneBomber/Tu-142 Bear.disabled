@@ -1,7 +1,6 @@
 ﻿[Unit]
 DCSID=Tu-142
 Families=PlaneRecon
-ExtraLua=
 Flags=
 
 [Aircraft]

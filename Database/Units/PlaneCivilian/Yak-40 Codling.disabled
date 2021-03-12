@@ -1,7 +1,6 @@
 [Unit]
 DCSID=Yak-40
 Families=PlaneCivilian
-ExtraLua=
 Flags=
 
 [Aircraft]
