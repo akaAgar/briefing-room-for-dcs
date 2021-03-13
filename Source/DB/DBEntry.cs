@@ -35,6 +35,21 @@ namespace BriefingRoom4DCSWorld.DB
         public string ID { get; private set; }
 
         /// <summary>
+        /// Display name to show for this database entry in the user interface. If null or empty, <see cref="ID"/> will be used instead.
+        /// </summary>
+        public string UIDisplayName { get; private set; }
+
+        /// <summary>
+        /// Category in which to sort this database entry in the user interface.
+        /// </summary>
+        public string UICategory { get; private set; }
+
+        /// <summary>
+        /// Description to show for this database entry in the user interface.
+        /// </summary>
+        public string UIDescription { get; private set; }
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         public DBEntry() { }
@@ -48,6 +63,13 @@ namespace BriefingRoom4DCSWorld.DB
         public bool Load(string id, string iniFilePath)
         {
             ID = id;
+            using (INIFile ini = new INIFile(iniFilePath))
+            {
+                UIDisplayName = ini.GetValue<string>("UI", "DisplayName");
+                if (string.IsNullOrEmpty(UIDisplayName)) UIDisplayName = ID;
+                UICategory = ini.GetValue<string>("UI", "Category");
+                UIDescription = ini.GetValue<string>("UI", "Description");
+            }
             return OnLoad(iniFilePath);
         }
 
