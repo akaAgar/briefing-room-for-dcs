@@ -55,6 +55,11 @@ namespace BriefingRoom4DCSWorld.DB
         public DatabaseCommon Common { get; set; }
 
         /// <summary>
+        /// Localized strings.
+        /// </summary>
+        public DatabaseStrings Strings { get; set; }
+
+        /// <summary>
         /// Array of countries ID used by <see cref="DBEntryCoalition"/> and <see cref="DBEntryUnit"/>
         /// </summary>
         public string[] Countries { get; set; }
@@ -75,6 +80,7 @@ namespace BriefingRoom4DCSWorld.DB
         public Database()
         {
             Common = new DatabaseCommon();
+            Strings = new DatabaseStrings();
             Countries = new string[0];
             DBEntries = new Dictionary<Type, Dictionary<string, DBEntry>>();
             UnitsMods = new string[0];
@@ -124,7 +130,18 @@ namespace BriefingRoom4DCSWorld.DB
         /// <returns>IDs, in an array of strings</returns>
         public string[] GetAllEntriesIDs<T>() where T : DBEntry
         {
-            return DBEntries[typeof(T)].Keys.ToArray();
+            return GetAllEntriesIDs(typeof(T));
+        }
+
+        /// <summary>
+        /// Returns all IDs of entries of a certain type.
+        /// </summary>
+        /// <param name="t">Database entry type</param>
+        /// <returns>IDs, in an array of strings</returns>
+        public string[] GetAllEntriesIDs(Type t)
+        {
+            if (!DBEntries.ContainsKey(t)) return null;
+            return DBEntries[t].Keys.ToArray();
         }
 
         /// <summary>
