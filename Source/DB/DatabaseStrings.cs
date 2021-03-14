@@ -31,11 +31,6 @@ namespace BriefingRoom4DCSWorld.DB
     public class DatabaseStrings : IDisposable
     {
         /// <summary>
-        /// Default language to use.
-        /// </summary>
-        private const string DEFAULT_LANGUAGE = "English";
-
-        /// <summary>
         /// INI file where language strings are stored.
         /// </summary>
         private readonly INIFile StringsINI;
@@ -49,7 +44,7 @@ namespace BriefingRoom4DCSWorld.DB
         /// Currently selected langauge;
         /// </summary>
         public string SelectedLanguage { get { return SelectedLanguage_; } set { if (AvailableLanguages.Contains(value)) SelectedLanguage_ = value; } }
-        private string SelectedLanguage_ = DEFAULT_LANGUAGE;
+        private string SelectedLanguage_ = Toolbox.DEFAULT_LANGUAGE;
 
         /// <summary>
         /// Constructor.
@@ -67,7 +62,7 @@ namespace BriefingRoom4DCSWorld.DB
         public string GetString(string key)
         {
             string locStr = StringsINI.GetValue<string>(SelectedLanguage, key);
-            if (string.IsNullOrEmpty(locStr)) locStr = StringsINI.GetValue<string>(DEFAULT_LANGUAGE, key);
+            if (string.IsNullOrEmpty(locStr)) locStr = StringsINI.GetValue<string>(Toolbox.DEFAULT_LANGUAGE, key);
             if (string.IsNullOrEmpty(locStr)) locStr = key;
             return locStr;
         }

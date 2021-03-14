@@ -37,17 +37,17 @@ namespace BriefingRoom4DCSWorld.DB
         /// <summary>
         /// Display name to show for this database entry in the user interface. If null or empty, <see cref="ID"/> will be used instead.
         /// </summary>
-        public string UIDisplayName { get; private set; }
+        public LocalizedString UIDisplayName { get; private set; }
 
         /// <summary>
         /// Category in which to sort this database entry in the user interface.
         /// </summary>
-        public string UICategory { get; private set; }
+        public LocalizedString UICategory { get; private set; }
 
         /// <summary>
         /// Description to show for this database entry in the user interface.
         /// </summary>
-        public string UIDescription { get; private set; }
+        public LocalizedString UIDescription { get; private set; }
 
         /// <summary>
         /// Constructor.
@@ -65,10 +65,12 @@ namespace BriefingRoom4DCSWorld.DB
             ID = id;
             using (INIFile ini = new INIFile(iniFilePath))
             {
-                UIDisplayName = ini.GetValue<string>("UI", "DisplayName");
-                if (string.IsNullOrEmpty(UIDisplayName)) UIDisplayName = ID;
-                UICategory = ini.GetValue<string>("UI", "Category");
-                UIDescription = ini.GetValue<string>("UI", "Description");
+                UIDisplayName = new LocalizedString(ini, "UI", "DisplayName");
+                if (string.IsNullOrEmpty(UIDisplayName.Get())) UIDisplayName = new LocalizedString(ID);
+                UIDisplayName = new LocalizedString(ini, "UI", "DisplayName");
+
+                UICategory = new LocalizedString(ini, "UI", "Category");
+                UIDescription = new LocalizedString(ini, "UI", "Description");
             }
             return OnLoad(iniFilePath);
         }
