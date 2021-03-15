@@ -47,41 +47,43 @@ namespace BriefingRoom4DCSWorld
         /// </summary>
         public readonly int freqency;
 
+        public readonly bool AA;
+
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="channel">Channel of TACAN.</param>
         /// <param name="callsign">Callsign of tacan</param>
         /// <param name="frequency">Frequency of tacan</param>
-        public Tacan(int _channel, string _callsign, char _mode = 'X')
+        public Tacan(int _channel, string _callsign, char _mode = 'X', bool AA = false)
         {
             channel = _channel;
             callsign = _callsign;
             mode = _mode;
-            freqency = getTACANFrequency(_channel,_mode);
+            freqency = getTACANFrequency(_channel,_mode, AA);
         }
 
-        private int getTACANFrequency(int channel, char channelMode)
+        //Pulled from calcTACANFrequencyMHz in DCS World OpenBeta\MissionEditor\modules\me_action_db.lua
+        private int getTACANFrequency(int channel, char channelMode, bool AA)
         {
-            int A = 1151;
-            int B = 64;
-
-            if (channel < 64)
-                B = 1;
-
-            if (channelMode == 'Y')
-            {
-                A = 1025;
-                if (channel < 64)
-                    A = 1088;
+            int res;
+            if 	(!AA && channelMode == 'X'){
+                if(channel < 64)
+                {
+                    res =  962 + channel - 1;
+                } else {
+                    res =  1151 + channel - 64;
+                }
+            } else {
+                if(channel < 64)
+                {
+                    res =  1088 + channel - 1;
+                } else {
+                    res =  1025 + channel - 64;
+                }
             }
-            else
-            {
-                if (channel < 64)
-                    A = 962;
-            }
 
-            return (A + channel - B) * 1000000;
+            return res * 1000000;
         }
 
 
