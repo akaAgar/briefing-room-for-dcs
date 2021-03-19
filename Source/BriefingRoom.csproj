@@ -73,6 +73,7 @@
     <Compile Include="Campaign\CampaignDifficultyVariation.cs" />
     <Compile Include="Campaign\CampaignGenerator.cs" />
     <Compile Include="Campaign\CampaignTemplate.cs" />
+    <Compile Include="DB\DatabaseStrings.cs" />
     <Compile Include="DB\DBEntryDefaultUnitList.cs" />
     <Compile Include="DB\DBEntryMissionFeatureUnitGroupLocation.cs" />
     <Compile Include="DB\DBEntryTheaterAirbaseParkingSpot.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Forms\CampaignCreatorForm.Designer.cs">
       <DependentUpon>CampaignCreatorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="LocalizedString.cs" />
     <Compile Include="Media\ImageMaker.cs" />
     <Compile Include="Media\ImageMakerLayer.cs" />
     <Compile Include="Media\ImageMakerTextOverlay.cs" />
