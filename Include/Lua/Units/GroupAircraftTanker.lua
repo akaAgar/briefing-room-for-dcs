@@ -50,6 +50,7 @@
                                         ["params"] = 
                                         {
                                             ["type"] = 4,
+                                            ["AA"] = true,
                                             ["frequency"] = $TACANFREQUENCY$,
                                             ["callsign"] = "$TACANCALLSIGN$",
                                             ["channel"] = $TACANCHANNEL$,
