@@ -69,8 +69,7 @@ namespace BriefingRoom4DCSWorld.Generator
 
             if (carriers.Length == 0)
                 return;
-
-            foreach (string carrier in carriers)
+            foreach (string carrier in carriers.Distinct())
             {
 
             DBEntryTheaterSpawnPoint? spawnPoint =
