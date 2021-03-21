@@ -4,7 +4,7 @@
   ["tasks"] =
   {
   }, -- end of ["tasks"]
-  ["task"] = "Nothing",
+  ["task"] = "CAP",
   ["uncontrolled"] = false,
   ["taskSelected"] = true,
   ["route"] =
