@@ -21,7 +21,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 using BriefingRoom4DCSWorld.CommandLine;
 using BriefingRoom4DCSWorld.DB;
 using BriefingRoom4DCSWorld.Debug;
-using BriefingRoom4DCSWorld.Forms;
+using BriefingRoom4DCSWorld.GUI;
 using System;
 using System.Reflection;
 using System.Windows.Forms;

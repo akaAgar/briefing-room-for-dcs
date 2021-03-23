@@ -1,56 +1,59 @@
-﻿[briefing]
-date.enabled=False
-date.day=1
-date.month=January
-date.year=2000
-unitsystem=Imperial
+﻿[common]
+missiontype=SinglePlayer
 
 [context]
 coalition.blue=USA
 coalition.player=Blue
 coalition.red=Russia
 decade=Decade2000
+theater=Caucasus
 
 [environment]
 season=Random
-timeofday=RandomDaytime
-weather=Random
-wind=Auto
+timeofday=Noon
+weather=Precipitation
+wind=StrongGale
+
+[flightplan]
+extrawaypoints=No
+playerstartlocation=Runway
 
 [objective]
 count=2
 distance=0
-type=Random
-
-[opposition]
-airdefense=Random
-airforce=Random
-onstationchance=Random
-skilllevel.air=Random
-skilllevel.ground=Random
-unitslocation=Any
+type=
 
 [options]
+briefingunitsystem=Imperial
 civiliantraffic=Low
-endmode=NoEnd
-realism=NoBDA
+endmode=Never
+enemyunitslocation=Any
+radiosounds=Yes
+theatercountriescoalitions=Default
 
-[player]
+[situationenemy]
+airdefense=Random
+airforce=Random
+caponstationchance=Random
+skilllevelair=Random
+skilllevelground=Random
+
+[situationfriendly]
 aiskilllevel=Random
+airdefense=Random
 escortcap=0
 escortsead=0
-friendlyairdefense=Random
-startlocation=Runway
 
-[playersp]
-aircraft=Su-25T Frogfoot
-wingmen=1
-wingmen.skilllevel=Random
+[playerflightgroups]
+count=1
+fg000.aircrafttype=Su-25T
+fg000.count=2
+fg000.task=Objectives
 
-[playermp]
-fgcount=0
+[realism]
+realism=DisableDCSRadioAssists,NoBDA
 
-[theater]
-id=Caucasus
-regionscoalitions=Default
+[scriptextensions]
+
+[unitmods]
 

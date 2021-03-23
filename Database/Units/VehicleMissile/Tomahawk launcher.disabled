@@ -1,8 +1,0 @@
-﻿[Unit]
-DCSID=TomahawkLauncher
-Families=VehicleMissile
-Flags=
-
-[Operators]
-UK=Decade1980,Decade2020
-USA=Decade1980,Decade2020

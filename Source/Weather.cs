@@ -18,6 +18,8 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.Attributes;
+
 namespace BriefingRoom4DCSWorld
 {
     /// <summary>
@@ -25,13 +27,25 @@ namespace BriefingRoom4DCSWorld
     /// </summary>
     public enum Weather
     {
+        [TreeViewEnum("Random", "Any weather. Calmer weather will still be picked more often than stormy/dangerous ones.")]
         Random = -1, // Random must be < 0 for casts from Int32
 
+        [TreeViewEnum("Clear", "Clear weather. Not a cloud on the horizon.")]
         Clear,
+
+        [TreeViewEnum("Light clouds", "Light clouds.")]
         LightClouds,
+
+        [TreeViewEnum("Some clouds", "Some clouds.")]
         SomeClouds,
+
+        [TreeViewEnum("Overcast", "Lots of clouds. Visibility may be impaired.")]
         Overcast,
+        
+        [TreeViewEnum("Precipitation", "Rain, snow, light dust storm (according to theater and season).")]
         Precipitation,
+        
+        [TreeViewEnum("Storm", "Heavy rain, lightning, snowstorm, heavy dust storm (according to theater and season).")]
         Storm
     }
 }

@@ -1,4 +1,7 @@
-﻿[Unit]
+﻿[GUI]
+DisplayName=KC-130
+
+[Unit]
 DCSID=KC-135
 Families=PlaneTankerBoom
 Flags=EPLRS

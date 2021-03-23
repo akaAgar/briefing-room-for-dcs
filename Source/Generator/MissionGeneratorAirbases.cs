@@ -52,25 +52,25 @@ namespace BriefingRoom4DCSWorld.Generator
             airbasesList.Add((from DBEntryTheaterAirbase ab in theaterDB.Airbases where ab.ParkingSpots.Length >= requiredParkingSpots select ab).ToArray());
 
             // Select all airbases belonging to the proper coalition (unless all airbase belong to the same coalition)
-            if ((template.TheaterRegionsCoalitions == CountryCoalition.Default) || (template.TheaterRegionsCoalitions == CountryCoalition.Inverted))
+            if ((template.OptionsTheaterCountriesCoalitions == CountryCoalition.Default) || (template.OptionsTheaterCountriesCoalitions == CountryCoalition.Inverted))
             {
-                Coalition requiredCoalition = template.TheaterRegionsCoalitions == CountryCoalition.Inverted ? mission.CoalitionEnemy : mission.CoalitionPlayer;
+                Coalition requiredCoalition = template.OptionsTheaterCountriesCoalitions == CountryCoalition.Inverted ? mission.CoalitionEnemy : mission.CoalitionPlayer;
                 airbasesList.Add((from DBEntryTheaterAirbase ab in airbasesList.Last() where ab.Coalition == requiredCoalition select ab).ToArray());
             }
 
             // If mission must start near water, or some player start on a carrier, select all airbases near water
-            if (objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.MustStartNearWater) || !string.IsNullOrEmpty(template.PlayerSPCarrier))
+            if (objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.MustStartNearWater) || !string.IsNullOrEmpty(template.PlayerFlightGroups[0].Carrier))
                 airbasesList.Add((from DBEntryTheaterAirbase ab in airbasesList.Last() where ab.Flags.HasFlag(DBEntryTheaterAirbaseFlag.NearWater) select ab).ToArray());
 
             // If a particular airbase name has been specified and an airbase with this name exists, pick it
-            if (!string.IsNullOrEmpty(template.TheaterStartingAirbase))
+            if (!string.IsNullOrEmpty(template.FlightPlanTheaterStartingAirbase))
             {
-                string airbaseName = template.TheaterStartingAirbase.Trim();
-                if (airbaseName.Contains(",")) airbaseName = airbaseName.Substring(airbaseName.IndexOf(',')).Trim(' ', ',');
-                airbasesList.Add((from DBEntryTheaterAirbase airbase in theaterDB.Airbases where airbase.Name == airbaseName select airbase).ToArray());
+                airbasesList.Add((from DBEntryTheaterAirbase airbase in theaterDB.Airbases
+                                  where airbase.Name.ToLowerInvariant() == template.FlightPlanTheaterStartingAirbase.ToLowerInvariant()
+                                  select airbase).ToArray());
 
                 if (airbasesList.Last().Length == 0)
-                    DebugLog.Instance.WriteLine($"Airbase \"{airbaseName}\" not found or airbase doesn't have enough parking spots. Selecting a random airbase instead.", 1, DebugLogMessageErrorLevel.Warning);
+                    DebugLog.Instance.WriteLine($"Airbase \"{template.FlightPlanTheaterStartingAirbase}\" not found or airbase doesn't have enough parking spots. Selecting a random airbase instead.", 1, DebugLogMessageErrorLevel.Warning);
             }
 
             // Check for valid airbases in all list, starting from the last one (with the most criteria filtered, and go back to the previous ones
@@ -99,17 +99,17 @@ namespace BriefingRoom4DCSWorld.Generator
             List<DBEntryTheaterAirbase> airbasesList = new List<DBEntryTheaterAirbase>();
 
             // Select all airbases with enough parking spots, trying to match the preferred coalition for enemy unit location, if any
-            if ((template.TheaterRegionsCoalitions == CountryCoalition.AllBlue) || (template.TheaterRegionsCoalitions == CountryCoalition.AllRed) ||
-                (template.OppositionUnitsLocation == SpawnPointPreferredCoalition.Any))
+            if ((template.OptionsTheaterCountriesCoalitions == CountryCoalition.AllBlue) || (template.OptionsTheaterCountriesCoalitions == CountryCoalition.AllRed) ||
+                (template.OptionsEnemyUnitsLocation == SpawnPointPreferredCoalition.Any))
                 airbasesList.AddRange((from DBEntryTheaterAirbase ab in theaterDB.Airbases where ab.ParkingSpots.Length >= Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE select ab).ToArray());
             else
             {
                 Coalition preferredCoalition;
 
-                if (template.OppositionUnitsLocation == SpawnPointPreferredCoalition.Blue)
-                    preferredCoalition = (template.TheaterRegionsCoalitions == CountryCoalition.Inverted) ? Coalition.Red : Coalition.Blue;
+                if (template.OptionsEnemyUnitsLocation == SpawnPointPreferredCoalition.Blue)
+                    preferredCoalition = (template.OptionsTheaterCountriesCoalitions == CountryCoalition.Inverted) ? Coalition.Red : Coalition.Blue;
                 else
-                    preferredCoalition = (template.TheaterRegionsCoalitions == CountryCoalition.Inverted) ? Coalition.Blue : Coalition.Red;
+                    preferredCoalition = (template.OptionsTheaterCountriesCoalitions == CountryCoalition.Inverted) ? Coalition.Blue : Coalition.Red;
 
                 airbasesList.AddRange(
                     (from DBEntryTheaterAirbase ab in theaterDB.Airbases where ab.ParkingSpots.Length >= Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE && ab.Coalition == preferredCoalition select ab).ToArray());

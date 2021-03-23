@@ -32,22 +32,22 @@ namespace BriefingRoom4DCSWorld.DB
         /// Unique ID used by this entry in the database dictionary. Same as the dictionary key.
         /// Duplicated here to make things easier in some methods using Linq queries on Database entries.
         /// </summary>
-        public string ID { get; private set; }
+        public string ID { get; protected set; }
 
         /// <summary>
         /// Display name to show for this database entry in the user interface. If null or empty, <see cref="ID"/> will be used instead.
         /// </summary>
-        public LocalizedString UIDisplayName { get; private set; }
+        public string UIDisplayName { get; protected set; }
 
         /// <summary>
         /// Category in which to sort this database entry in the user interface.
         /// </summary>
-        public LocalizedString UICategory { get; private set; }
+        public string UICategory { get; protected set; }
 
         /// <summary>
         /// Description to show for this database entry in the user interface.
         /// </summary>
-        public LocalizedString UIDescription { get; private set; }
+        public string UIDescription { get; protected set; }
 
         /// <summary>
         /// Constructor.
@@ -65,12 +65,10 @@ namespace BriefingRoom4DCSWorld.DB
             ID = id;
             using (INIFile ini = new INIFile(iniFilePath))
             {
-                UIDisplayName = new LocalizedString(ini, "UI", "DisplayName");
-                if (string.IsNullOrEmpty(UIDisplayName.Get())) UIDisplayName = new LocalizedString(ID);
-                UIDisplayName = new LocalizedString(ini, "UI", "DisplayName");
-
-                UICategory = new LocalizedString(ini, "UI", "Category");
-                UIDescription = new LocalizedString(ini, "UI", "Description");
+                UIDisplayName = ini.GetValue<string>("GUI", "DisplayName");
+                if (string.IsNullOrEmpty(UIDisplayName)) UIDisplayName = ID;
+                UICategory = ini.GetValue<string>("GUI", "Category");
+                UIDescription = ini.GetValue<string>("GUI", "Description");
             }
             return OnLoad(iniFilePath);
         }

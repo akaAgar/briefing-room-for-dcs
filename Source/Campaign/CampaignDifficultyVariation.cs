@@ -18,21 +18,37 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.Attributes;
+
 namespace BriefingRoom4DCSWorld.Campaign
 {
     /// <summary>
-    /// Enumerates various possible difficulty variation for a campaign.
+    /// Enumerates various possible difficulty variations for a campaign.
     /// </summary>
     public enum CampaignDifficultyVariation
     {
+        [TreeViewEnum("Random", "Pick a difficulty variation randomly.")]
         Random,
 
+        [TreeViewEnum("Considerably easier", "Campaign become a lot easier as the player completes missions.")]
         ConsiderablyEasier,
+
+        [TreeViewEnum("Much easier", "Campaign become easier as the player completes missions.")]
         MuchEasier,
+
+        [TreeViewEnum("Somewhat easier", "Campaign become somewhat easier as the player completes missions.")]
         SomewhatEasier,
+
+        [TreeViewEnum("Steady", "Campaign difficulty stays the same during all missions.")]
         Steady,
+
+        [TreeViewEnum("Somewhat harder", "Campaign become somewhat harder as the player completes missions.")]
         SomewhatHarder,
+
+        [TreeViewEnum("Much harder", "Campaign become harder as the player completes missions.")]
         MuchHarder,
+
+        [TreeViewEnum("Considerably harder", "Campaign become a lot harder as the player completes missions.")]
         ConsiderablyHarder
     }
 }

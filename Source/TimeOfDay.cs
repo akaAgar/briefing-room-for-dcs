@@ -18,6 +18,8 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.Attributes;
+
 namespace BriefingRoom4DCSWorld
 {
     /// <summary>
@@ -25,12 +27,22 @@ namespace BriefingRoom4DCSWorld
     /// </summary>
     public enum TimeOfDay
     {
+        [TreeViewEnum("Random", "Any time of the day or night.")]
         Random,
+        
+        [TreeViewEnum("Random, daytime", "Any time during daylight hours.")]
         RandomDaytime,
 
+        [TreeViewEnum("Dawn", "Just after sunrise.")]
         Dawn,
+
+        [TreeViewEnum("Noon", "In the middle of the day.")]
         Noon,
+        
+        [TreeViewEnum("Twilight", "Just before sunset.")]
         Twilight,
+        
+        [TreeViewEnum("Night", "At night.")]
         Night
     }
 }

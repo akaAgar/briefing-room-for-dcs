@@ -18,6 +18,8 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.Attributes;
+
 namespace BriefingRoom4DCSWorld
 {
     /// <summary>
@@ -26,21 +28,16 @@ namespace BriefingRoom4DCSWorld
     /// </summary>
     public enum CountryCoalition
     {
-        /// <summary>
-        /// Use default theater setting
-        /// </summary>
+        [TreeViewEnum("Default", "Use default theater setting.")]
         Default,
-        /// <summary>
-        /// Use the opposite of the default theater setting (blue becomes red and vice versa)
-        /// </summary>
+        
+        [TreeViewEnum("Inverted", "Use the opposite of the default theater setting (blue becomes red and vice versa).")]
         Inverted,
-        /// <summary>
-        /// All airbases on the base (unless specified otherwise during mission generation, e.g. the starting airbase of red players) belong to the blue coalition
-        /// </summary>
+        
+        [TreeViewEnum("All blue", "All airbases on the map (unless specified otherwise during mission generation, e.g. the starting airbase of red players) belong to the blue coalition.")]
         AllBlue,
-        /// <summary>
-        /// All airbases on the base (unless specified otherwise during mission generation, e.g. the starting airbase of blue players) belong to the red coalition
-        /// </summary>
+
+        [TreeViewEnum("All red", "All airbases on the map (unless specified otherwise during mission generation, e.g. the starting airbase of blue players) belong to the red coalition.")]
         AllRed
     }
 }

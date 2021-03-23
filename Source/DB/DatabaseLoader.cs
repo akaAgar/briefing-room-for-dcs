@@ -46,11 +46,49 @@ namespace BriefingRoom4DCSWorld.DB
             LoadDatabaseEntries<DBEntryMissionFeature>(dbEntries, "MissionFeatures");
             LoadDatabaseEntries<DBEntryObjective>(dbEntries, "Objectives"); // Must be loaded after DBEntryMissionFeature as it depends on it
             LoadDatabaseEntries<DBEntryTheater>(dbEntries, "Theaters");
-            LoadDatabaseEntries<DBEntryUnit>(dbEntries, "Units");
+            GenerateAirbasePseudoEntries(dbEntries); // Must be called after DBEntryTheater is loaded, as it depends on it
+            LoadDatabaseEntries<DBEntryDCSMod>(dbEntries, "DCSMods");
+            LoadDatabaseEntries<DBEntryUnit>(dbEntries, "Units"); // Must be loaded after DBEntryDCSMod is loaded as it depends on it
+            GenerateUnitPseudoEntries(dbEntries); // Must be called after DBEntryUnit is loaded, as it depends on it
             CreateCountriesArrayFromUnitOperators(); // Must be called after DBEntryUnit is loaded as it depends on it
-            CreateUnitModsArrayFromUnits(); // Must be called after DBEntryUnit is loaded as it depends on it
             LoadDatabaseEntries<DBEntryDefaultUnitList>(dbEntries, "DefaultUnitLists"); // Must be loaded after DBEntryUnit as it depends on it
             LoadDatabaseEntries<DBEntryCoalition>(dbEntries, "Coalitions"); // Must be loaded after DBEntryUnit and DBEntryDefaultUnitList as it depends on them
+        }
+
+        private void GenerateUnitPseudoEntries(Dictionary<Type, Dictionary<string, DBEntry>> dbEntries)
+        {
+            Type playerAircraftType = typeof(DBPseudoEntryPlayerAircraft);
+            dbEntries.Add(playerAircraftType, new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase));
+
+            Type carrierType = typeof(DBPseudoEntryCarrier);
+            dbEntries.Add(carrierType, new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase));
+
+            foreach (DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>())
+            {
+                if (unit.AircraftData.PlayerControllable)
+                    dbEntries[playerAircraftType].Add(unit.ID, new DBPseudoEntryPlayerAircraft(unit.ID, unit.UIDisplayName, unit.UICategory, unit.UIDescription));
+
+                if (unit.Families.Intersect(Toolbox.SHIP_CARRIER_FAMILIES).Count() > 0)
+                    dbEntries[carrierType].Add(unit.ID, new DBPseudoEntryCarrier(unit.ID, unit.UIDisplayName, unit.UICategory, unit.UIDescription));
+            }
+        }
+
+        private void GenerateAirbasePseudoEntries(Dictionary<Type, Dictionary<string, DBEntry>> dbEntries)
+        {
+            Type airbaseType = typeof(DBPseudoEntryAirbase);
+            dbEntries.Add(airbaseType, new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase));
+
+            foreach (DBEntryTheater theater in Database.Instance.GetAllEntries<DBEntryTheater>())
+            {
+                foreach (DBEntryTheaterAirbase airbase in theater.Airbases)
+                {
+                    string airbaseID = airbase.Name.ToLowerInvariant();
+                    if (dbEntries[airbaseType].ContainsKey(airbaseID)) continue;
+
+                    dbEntries[airbaseType].Add(airbaseID,
+                        new DBPseudoEntryAirbase(airbaseID, airbase.Name, theater.UIDisplayName, airbase.Name));
+                }
+            }
         }
 
         /// <summary>
@@ -65,17 +103,6 @@ namespace BriefingRoom4DCSWorld.DB
 
             Database.Instance.Countries =
                 (from string c in countries select c.ToLowerInvariant()).Distinct(StringComparer.InvariantCultureIgnoreCase).ToArray();
-        }
-
-        private void CreateUnitModsArrayFromUnits()
-        {
-            List<string> unitMods = new List<string>();
-
-            foreach (DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>())
-                if (!string.IsNullOrEmpty(unit.RequiredMod.Trim()))
-                    unitMods.Add(unit.RequiredMod);
-
-            Database.Instance.UnitsMods = unitMods.Distinct(StringComparer.InvariantCultureIgnoreCase).ToArray();
         }
 
         /// <summary>

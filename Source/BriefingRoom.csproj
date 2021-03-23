@@ -69,20 +69,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AirDefenseLevel.cs" />
+    <Compile Include="Attributes\TreeViewEnumAttribute.cs" />
+    <Compile Include="Attributes\TreeViewPropertyAttributeFlags.cs" />
+    <Compile Include="Attributes\TreeViewPropertyIntAttribute.cs" />
     <Compile Include="CivilianTraffic.cs" />
     <Compile Include="Campaign\CampaignDifficultyVariation.cs" />
     <Compile Include="Campaign\CampaignGenerator.cs" />
     <Compile Include="Campaign\CampaignTemplate.cs" />
-    <Compile Include="DB\DatabaseStrings.cs" />
+    <Compile Include="DB\DBPseudoEntry.cs" />
+    <Compile Include="DB\DBPseudoEntryCarrier.cs" />
+    <Compile Include="DB\DBPseudoEntryPlayerAircraft.cs" />
+    <Compile Include="DB\DBPseudoEntryAirbase.cs" />
+    <Compile Include="DB\DBEntryDCSMod.cs" />
     <Compile Include="DB\DBEntryDefaultUnitList.cs" />
     <Compile Include="DB\DBEntryMissionFeatureUnitGroupLocation.cs" />
     <Compile Include="DB\DBEntryTheaterAirbaseParkingSpot.cs" />
     <Compile Include="BRSkillLevel.cs" />
-    <Compile Include="Forms\CampaignCreatorForm.cs" />
-    <Compile Include="Forms\CampaignCreatorForm.Designer.cs">
+    <Compile Include="GUI\CampaignCreatorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\CampaignCreatorForm.Designer.cs">
       <DependentUpon>CampaignCreatorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LocalizedString.cs" />
+    <Compile Include="Attributes\TreeViewPropertyAttribute.cs" />
+    <Compile Include="GUI\ContextMenuExpandable.cs" />
+    <Compile Include="GUI\TreeViewPropertyEditor.cs" />
     <Compile Include="Media\ImageMaker.cs" />
     <Compile Include="Media\ImageMakerLayer.cs" />
     <Compile Include="Media\ImageMakerTextOverlay.cs" />
@@ -109,16 +120,16 @@
     <Compile Include="DB\DBEntryUnitAircraftData.cs" />
     <Compile Include="DB\DatabaseCommon.cs" />
     <Compile Include="BriefingRoom.cs" />
-    <Compile Include="Forms\AboutForm.cs">
+    <Compile Include="GUI\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AboutForm.Designer.cs">
+    <Compile Include="GUI\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SplashScreenForm.cs">
+    <Compile Include="GUI\SplashScreenForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SplashScreenForm.Designer.cs">
+    <Compile Include="GUI\SplashScreenForm.Designer.cs">
       <DependentUpon>SplashScreenForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Generator\MissionGeneratorAirbases.cs" />
@@ -138,20 +149,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Tacan.cs" />
-    <Compile Include="Template\MissionTemplatePreferences.cs" />
-    <Compile Include="Template\MissionTemplateDate.cs" />
     <Compile Include="RealismOption.cs" />
-    <Compile Include="Template\TemplateTools.cs" />
     <Compile Include="Side.cs" />
-    <Compile Include="Template\MissionTemplateMPFlightGroupTask.cs" />
+    <Compile Include="Template\MissionTemplate.cs" />
+    <Compile Include="Template\MissionTemplateFlightGroupTask.cs" />
     <Compile Include="Generator\MissionGeneratorEnemyFighterPatrols.cs" />
-    <Compile Include="Forms\MainForm.cs">
+    <Compile Include="GUI\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MainForm.Designer.cs">
+    <Compile Include="GUI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\GUITools.cs" />
+    <Compile Include="GUI\GUITools.cs" />
     <Compile Include="Generator\MissionGeneratorObjectivesUnitGroups.cs" />
     <Compile Include="Generator\MissionGeneratorPlayerFlightGroups.cs" />
     <Compile Include="Generator\UnitMakerSpawnPointSelector.cs" />
@@ -161,12 +170,7 @@
     <Compile Include="DB\DBEntryUnit.cs" />
     <Compile Include="Coordinates.cs" />
     <Compile Include="Debug\DebugLogMessageErrorLevel.cs" />
-    <Compile Include="TypeConverters\CheckedListBoxUIEditorUnitMods.cs" />
-    <Compile Include="TypeConverters\CheckedListBoxUIEditorEnum.cs" />
-    <Compile Include="TypeConverters\CheckedListBoxUIEditorDBEntry.cs" />
-    <Compile Include="TypeConverters\DBEntryCarrierConverter.cs" />
-    <Compile Include="TypeConverters\EnumArrayTypeConverter.cs" />
-    <Compile Include="TypeConverters\StringArrayTypeConverter.cs" />
+    <Compile Include="YesNo.cs" />
     <Compile Include="UnitSystem.cs" />
     <Compile Include="UnitTaskPayload.cs" />
     <Compile Include="Generator\UnitMaker.cs" />
@@ -184,16 +188,7 @@
     <Compile Include="RadioModulation.cs" />
     <Compile Include="Mission\DCSMissionUnitGroupFlags.cs" />
     <Compile Include="Mission\DCSMissionUnitGroup.cs" />
-    <Compile Include="Template\MissionTemplate.cs" />
-    <Compile Include="Template\MissionTemplateMPFlightGroup.cs" />
-    <Compile Include="TypeConverters\CheckedListBoxUIEditor.cs" />
-    <Compile Include="TypeConverters\DBEntryTypeConverter.cs" />
-    <Compile Include="TypeConverters\DBEntryTheaterAirbaseArrayTypeConverter.cs" />
-    <Compile Include="TypeConverters\DBEntryPlayerAircraftTypeConverter.cs" />
-    <Compile Include="TypeConverters\EnumTypeConverter.cs" />
-    <Compile Include="TypeConverters\BooleanYesNoTypeConverter.cs" />
-    <Compile Include="TypeConverters\DescriptionArrayEditor.cs" />
-    <Compile Include="TypeConverters\MissionTemplateFlightGroupConverter.cs" />
+    <Compile Include="Template\MissionTemplateFlightGroup.cs" />
     <Compile Include="Mission\DCSMissionObjective.cs" />
     <Compile Include="Miz\MizMakerLuaMapResource.cs" />
     <Compile Include="Miz\MizMakerLuaMission.cs" />
@@ -234,19 +229,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="app.config" />
     <None Include="Resources\App.config" />
-    <EmbeddedResource Include="Forms\AboutForm.resx">
+    <EmbeddedResource Include="GUI\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CampaignCreatorForm.resx">
+    <EmbeddedResource Include="GUI\CampaignCreatorForm.resx">
       <DependentUpon>CampaignCreatorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SplashScreenForm.resx">
+    <EmbeddedResource Include="GUI\SplashScreenForm.resx">
       <DependentUpon>SplashScreenForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Resources\app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\MainForm.resx">
+    <EmbeddedResource Include="GUI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
@@ -256,19 +251,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Icons\Exit.png" />
-    <EmbeddedResource Include="Resources\Icons\ExportToMiz.png" />
-    <EmbeddedResource Include="Resources\Icons\New.png" />
-    <EmbeddedResource Include="Resources\Icons\Open.png" />
-    <EmbeddedResource Include="Resources\Icons\Save.png" />
-    <EmbeddedResource Include="Resources\Icons\SaveAs.png" />
-    <EmbeddedResource Include="Resources\Icons\Update.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Icons\ExportBriefing.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -278,18 +263,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Icons\Warning.png" />
-    <EmbeddedResource Include="Resources\Icons\Error.png" />
-    <EmbeddedResource Include="Resources\Icons\Info.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Icons\DebugExport.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Icon.ico" />
-    <EmbeddedResource Include="Resources\Icons\Campaign.png" />
-    <EmbeddedResource Include="Resources\Icons\ExportCampaign.png" />
-    <EmbeddedResource Include="Resources\Icons\FileHTML.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

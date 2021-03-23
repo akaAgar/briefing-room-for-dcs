@@ -18,6 +18,8 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.Attributes;
+
 namespace BriefingRoom4DCSWorld
 {
     /// <summary>
@@ -25,17 +27,13 @@ namespace BriefingRoom4DCSWorld
     /// </summary>
     public enum SpawnPointPreferredCoalition
     {
-        /// <summary>
-        /// Objective can be spawned in any country
-        /// </summary>
+        [TreeViewEnum("Anywhere", "Objective can be spawned in any country.")]
         Any,
-        /// <summary>
-        /// Objective can only be spawned in a country aligned with the BLUE coalition
-        /// </summary>
+        
+        [TreeViewEnum("Blue countries only", "Enemi units can only be spawned in countries aligned with the blue coalition.")]
         Blue,
-        /// <summary>
-        /// Objective can only be spawned in a country aligned with the RED coalition
-        /// </summary>
+
+        [TreeViewEnum("Red countries only", "Enemi units can only be spawned in countries aligned with the red coalition.")]
         Red
     }
 }

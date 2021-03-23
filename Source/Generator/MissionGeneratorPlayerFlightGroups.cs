@@ -61,7 +61,7 @@ namespace BriefingRoom4DCSWorld.Generator
         {
             List<UnitFlightGroupBriefingDescription> briefingFGList = new List<UnitFlightGroupBriefingDescription>();
 
-            if (template.GetMissionType() == MissionType.SinglePlayer)
+            if (template.MissionType == MissionType.SinglePlayer)
                 briefingFGList.Add(GenerateSinglePlayerFlightGroup(mission, template, objectiveDB));
             else
                 briefingFGList.AddRange(GenerateMultiplayerFlightGroups(mission, template, objectiveDB));
@@ -70,14 +70,14 @@ namespace BriefingRoom4DCSWorld.Generator
             aiEscortTypeSEAD = "";
             UnitFlightGroupBriefingDescription? escortDescription;
 
-            escortDescription = GenerateAIEscort(mission, template, template.PlayerEscortCAP, MissionTemplateMPFlightGroupTask.SupportCAP, playerCoalitionDB);
+            escortDescription = GenerateAIEscort(mission, template, template.SituationFriendlyEscortCAP, MissionTemplateFlightGroupTask.SupportCAP, playerCoalitionDB);
             if (escortDescription.HasValue)
             {
                 briefingFGList.Add(escortDescription.Value);
                 aiEscortTypeCAP = escortDescription.Value.Type;
             }
 
-            escortDescription = GenerateAIEscort(mission, template, template.PlayerEscortSEAD, MissionTemplateMPFlightGroupTask.SupportSEAD, playerCoalitionDB);
+            escortDescription = GenerateAIEscort(mission, template, template.SituationFriendlyEscortSEAD, MissionTemplateFlightGroupTask.SupportSEAD, playerCoalitionDB);
             if (escortDescription.HasValue)
             {
                 briefingFGList.Add(escortDescription.Value);
@@ -96,27 +96,27 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <returns>A <see cref="UnitFlightGroupBriefingDescription"/> describing the flight group, to be used in the briefing</returns>
         private UnitFlightGroupBriefingDescription GenerateSinglePlayerFlightGroup(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB)
         {
-            bool isCarrier = !string.IsNullOrEmpty(template.PlayerSPCarrier);
-            DebugLog.Instance.WriteLine($"{template.PlayerSPCarrier} -> {string.Join(",",mission.Carriers.Select(x => x.Name).ToArray())}");
+            bool isCarrier = !string.IsNullOrEmpty(template.PlayerFlightGroups[0].Carrier);
+            DebugLog.Instance.WriteLine($"{template.PlayerFlightGroups[0].Carrier} -> {string.Join(",",mission.Carriers.Select(x => x.Name).ToArray())}");
             DCSMissionUnitGroup group = UnitMaker.AddUnitGroup(
                 mission,
-                Enumerable.Repeat(template.PlayerSPAircraft, template.PlayerSPWingmen + 1).ToArray(),
-                Side.Ally, isCarrier? mission.Carriers.First(x => x.Units[0].Name == template.PlayerSPCarrier).Coordinates : mission.InitialPosition,
+                Enumerable.Repeat(template.PlayerFlightGroups[0].Aircraft, template.PlayerFlightGroups[0].Count).ToArray(),
+                Side.Ally, isCarrier? mission.Carriers.First(x => x.Units[0].Name == template.PlayerFlightGroups[0].Carrier).Coordinates : mission.InitialPosition,
                 isCarrier? "GroupAircraftPlayerCarrier" : "GroupAircraftPlayer", "UnitAircraft",
-                Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel), DCSMissionUnitGroupFlags.FirstUnitIsPlayer,
+                Toolbox.BRSkillLevelToDCSSkillLevel(template.SituationFriendlyAISkillLevel), DCSMissionUnitGroupFlags.FirstUnitIsPlayer,
                 objectiveDB.Payload,
                 null, isCarrier? -99 : mission.InitialAirbaseID, true);
 
             if (group == null)
-                throw new Exception($"Failed to create group of player aircraft of type \"{template.PlayerSPAircraft}\".");
+                throw new Exception($"Failed to create group of player aircraft of type \"{template.PlayerFlightGroups[0].Aircraft}\".");
             
             if(isCarrier)
-                group.CarrierId = mission.Carriers.First(x => x.Units[0].Name == template.PlayerSPCarrier).Units[0].ID;
+                group.CarrierId = mission.Carriers.First(x => x.Units[0].Name == template.PlayerFlightGroups[0].Carrier).Units[0].ID;
 
             return new UnitFlightGroupBriefingDescription(
-                        group.Name, group.Units.Length, template.PlayerSPAircraft,
+                        group.Name, group.Units.Length, template.PlayerFlightGroups[0].Aircraft,
                         objectiveDB.BriefingTaskFlightGroup,
-                        Database.Instance.GetEntry<DBEntryUnit>(template.PlayerSPAircraft).AircraftData.GetRadioAsString());
+                        Database.Instance.GetEntry<DBEntryUnit>(template.PlayerFlightGroups[0].Aircraft).AircraftData.GetRadioAsString());
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="task">Escort task the flight group will be assigned with</param>
         /// <param name="playerCoalitionDB">Player coalition database entry</param>
         /// <returns>A <see cref="UnitFlightGroupBriefingDescription"/> describing the flight group, to be used in the briefing</returns>
-        private UnitFlightGroupBriefingDescription? GenerateAIEscort(DCSMission mission, MissionTemplate template, int count, MissionTemplateMPFlightGroupTask task, DBEntryCoalition playerCoalitionDB)
+        private UnitFlightGroupBriefingDescription? GenerateAIEscort(DCSMission mission, MissionTemplate template, int count, MissionTemplateFlightGroupTask task, DBEntryCoalition playerCoalitionDB)
         {
             if (count < 1) return null; // No aircraft, nothing to generate.
 
@@ -141,15 +141,15 @@ namespace BriefingRoom4DCSWorld.Generator
             switch (task)
             {
                 default: return null; // Should never happen
-                case MissionTemplateMPFlightGroupTask.SupportCAP:
+                case MissionTemplateFlightGroupTask.SupportCAP:
                     //groupLua = (template.GetMissionType() == MissionType.SinglePlayer) ? "GroupAircraftPlayerEscortCAP" : "GroupAircraftCAP";
                     groupLua = "GroupAircraftCAP";
-                    aircraft = playerCoalitionDB.GetRandomUnits(UnitFamily.PlaneFighter, mission.DateTime.Decade, count, template.OptionsUnitMods);
+                    aircraft = playerCoalitionDB.GetRandomUnits(UnitFamily.PlaneFighter, mission.DateTime.Decade, count, template.UnitMods);
                     break;
-                case MissionTemplateMPFlightGroupTask.SupportSEAD:
+                case MissionTemplateFlightGroupTask.SupportSEAD:
                     //groupLua = (template.GetMissionType() == MissionType.SinglePlayer) ? "GroupAircraftPlayerEscortSEAD" : "GroupAircraftSEAD";
                     groupLua = "GroupAircraftSEAD";
-                    aircraft = playerCoalitionDB.GetRandomUnits(UnitFamily.PlaneSEAD, mission.DateTime.Decade, count, template.OptionsUnitMods);
+                    aircraft = playerCoalitionDB.GetRandomUnits(UnitFamily.PlaneSEAD, mission.DateTime.Decade, count, template.UnitMods);
                     break;
             }
 
@@ -158,8 +158,8 @@ namespace BriefingRoom4DCSWorld.Generator
             // Player starts on runway, so escort starts in the air above the airfield (so player doesn't have to wait for them to take off)
             // OR mission is MP, so escorts start in air (but won't be spawned until at least one player takes off)
             // Add a random distance so they don't crash into each other.
-            if ((template.PlayerStartLocation == PlayerStartLocation.Runway) ||
-                (template.GetMissionType() != MissionType.SinglePlayer))
+            if ((template.FlightPlanPlayerStartLocation == PlayerStartLocation.Runway) ||
+                (template.MissionType != MissionType.SinglePlayer))
                 position += Coordinates.CreateRandom(2, 4) * Toolbox.NM_TO_METERS;
 
             DCSMissionUnitGroup group;
@@ -175,7 +175,7 @@ namespace BriefingRoom4DCSWorld.Generator
                     mission, aircraft,
                     Side.Ally, position,
                     groupLua, "UnitAircraft",
-                    Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel), 0,
+                    Toolbox.BRSkillLevelToDCSSkillLevel(template.SituationFriendlyAISkillLevel), 0,
                     payload, mission.ObjectivesCenter);
 
             if (group == null)
@@ -187,10 +187,10 @@ namespace BriefingRoom4DCSWorld.Generator
             switch (task)
             {
                 default: return null; // Should never happen
-                case MissionTemplateMPFlightGroupTask.SupportCAP:
+                case MissionTemplateFlightGroupTask.SupportCAP:
                     mission.EscortCAPGroupId = group.GroupID;
                     break;
-                case MissionTemplateMPFlightGroupTask.SupportSEAD:
+                case MissionTemplateFlightGroupTask.SupportSEAD:
                     mission.EscortSEADGroupId = group.GroupID;
                     break;
             }
@@ -216,14 +216,14 @@ namespace BriefingRoom4DCSWorld.Generator
 
             List<UnitFlightGroupBriefingDescription> briefingFGList = new List<UnitFlightGroupBriefingDescription>();
 
-            foreach (MissionTemplateMPFlightGroup fg in template.PlayerMPFlightGroups)
+            foreach (MissionTemplateFlightGroup fg in template.PlayerFlightGroups)
             {
                 // Select proper payload for the flight group according to its tasking
-                UnitTaskPayload payload = GetPayloadByTask(fg.Task, objectiveDB);
+                UnitTaskPayload payload = GetPayloadByTask(fg.Tasking, objectiveDB);
                 bool hasCarrier = !string.IsNullOrEmpty(fg.Carrier);
                 DCSMissionUnitGroup group = UnitMaker.AddUnitGroup(
                     mission,
-                    Enumerable.Repeat(fg.AircraftType, fg.Count).ToArray(),
+                    Enumerable.Repeat(fg.Aircraft, fg.Count).ToArray(),
                     Side.Ally, hasCarrier ? mission.Carriers.First(x => x.Units[0].Name == fg.Carrier).Coordinates : mission.InitialPosition,
                     hasCarrier ? "GroupAircraftPlayerCarrier" : "GroupAircraftPlayer", "UnitAircraft",
                     DCSSkillLevel.Client, 0,
@@ -232,7 +232,7 @@ namespace BriefingRoom4DCSWorld.Generator
 
                 if (group == null)
                 {
-                    DebugLog.Instance.WriteLine($"Failed to create group of player aircraft of type \"{fg.AircraftType}\".", 1, DebugLogMessageErrorLevel.Warning);
+                    DebugLog.Instance.WriteLine($"Failed to create group of player aircraft of type \"{fg.Aircraft}\".", 1, DebugLogMessageErrorLevel.Warning);
                     continue;
                 }
                 if(hasCarrier)
@@ -240,9 +240,9 @@ namespace BriefingRoom4DCSWorld.Generator
 
                 briefingFGList.Add(
                     new UnitFlightGroupBriefingDescription(
-                        group.Name, group.Units.Length, fg.AircraftType,
-                        GetTaskingDescription(fg.Task, objectiveDB),
-                        Database.Instance.GetEntry<DBEntryUnit>(fg.AircraftType).AircraftData.GetRadioAsString()));
+                        group.Name, group.Units.Length, fg.Aircraft,
+                        GetTaskingDescription(fg.Tasking, objectiveDB),
+                        Database.Instance.GetEntry<DBEntryUnit>(fg.Aircraft).AircraftData.GetRadioAsString()));
 
                 totalGroupsCreated++;
             }
@@ -260,16 +260,16 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="task">Task assigned to this flight group in the mission package</param>
         /// <param name="objectiveDB">(optional) Mission objective database entry</param>
         /// <returns>A payload</returns>
-        private UnitTaskPayload GetPayloadByTask(MissionTemplateMPFlightGroupTask task, DBEntryObjective objectiveDB = null)
+        private UnitTaskPayload GetPayloadByTask(MissionTemplateFlightGroupTask task, DBEntryObjective objectiveDB = null)
         {
             switch (task)
             {
                 default: // case MissionTemplateMPFlightGroupTask.Objectives
                     if (objectiveDB == null) return UnitTaskPayload.Default;
                     return objectiveDB.Payload;
-                case MissionTemplateMPFlightGroupTask.SupportCAP:
+                case MissionTemplateFlightGroupTask.SupportCAP:
                     return UnitTaskPayload.AirToAir;
-                case MissionTemplateMPFlightGroupTask.SupportSEAD:
+                case MissionTemplateFlightGroupTask.SupportSEAD:
                     return UnitTaskPayload.SEAD;
             }
         }
@@ -280,16 +280,16 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="task">Task assigned to this flight group in the mission package</param>
         /// <param name="objectiveDB">(optional) Mission objective database entry</param>
         /// <returns>Name of task as it will appear in the flight group table</returns>
-        private string GetTaskingDescription(MissionTemplateMPFlightGroupTask task, DBEntryObjective objectiveDB)
+        private string GetTaskingDescription(MissionTemplateFlightGroupTask task, DBEntryObjective objectiveDB)
         {
             switch (task)
             {
                 default: // case MissionTemplateMPFlightGroupTask.Objectives
                     if (objectiveDB == null) return "Mission objectives";
                     return objectiveDB.BriefingTaskFlightGroup;
-                case MissionTemplateMPFlightGroupTask.SupportCAP:
+                case MissionTemplateFlightGroupTask.SupportCAP:
                     return "CAP escort";
-                case MissionTemplateMPFlightGroupTask.SupportSEAD:
+                case MissionTemplateFlightGroupTask.SupportSEAD:
                     return "SEAD escort";
             }
         }

@@ -18,47 +18,34 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.Attributes;
+
 namespace BriefingRoom4DCSWorld
 {
     /// <summary>
-    /// Enumerates possible EndTime Values
+    /// Enumerates possible settings for mission auto-ending.
     /// </summary>
     public enum MissionEndMode
     {
-        /// <summary>
-        /// End mission when all players have landed
-        /// </summary>
+        [TreeViewEnum("Never", "Never end the mission automatically, players have to exit the mission.")]
+        Never = -1,
+
+        [TreeViewEnum("All players have landed", "End mission automatically when all objective are complete and all players have landed.")]
         AllPlayersHaveLanded = -3,
 
-        /// <summary>
-        /// End via command
-        /// </summary>
+        [TreeViewEnum("F10 menu command", "End mission when using the \"End mission\" menu command.")]
         F10Command = -2,
 
-        /// <summary>
-        /// Don't end
-        /// </summary>
-        NoEnd = -1,
-
-        /// <summary>
-        /// End instantly
-        /// </summary>
+        [TreeViewEnum("Instantly", "End mission instantly when the last objective is completed.")]
         Instant = 0,
 
-        /// <summary>
-        /// End in 5 Mins
-        /// </summary>
+        [TreeViewEnum("After 5 minutes", "End mission 5 minutes after the last objective is completed.")]
         FiveMins = 5,
 
-        /// <summary>
-        /// End in 10 Mins
-        /// </summary>
+        [TreeViewEnum("After 10 minutes", "End mission 10 minutes after the last objective is completed.")]
         TenMins = 10,
 
-        /// <summary>
-        /// End in 20 Mins
-        /// </summary>
+        [TreeViewEnum("After 20 minutes", "End mission 20 minutes after the last objective is completed.")]
         TwentyMins = 20,
-        
     }
 }

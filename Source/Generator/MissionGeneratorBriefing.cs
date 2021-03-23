@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCSWorld.DB;
 using BriefingRoom4DCSWorld.Debug;
+using BriefingRoom4DCSWorld.GUI;
 using BriefingRoom4DCSWorld.Mission;
 using BriefingRoom4DCSWorld.Template;
 using System;
@@ -50,15 +51,9 @@ namespace BriefingRoom4DCSWorld.Generator
         {
             DebugLog.Instance.WriteLine("Generating mission name...", 1);
 
-            string fixedName = GeneratorTools.SanitizeString(template.BriefingName);
-            if (!string.IsNullOrEmpty(fixedName)) // A custom mission name has been provided, use it
-                mission.MissionName = fixedName;
-            else // No custom name? Generate one
-            {
-                mission.MissionName = Database.Instance.Common.MissionNameTemplate;
-                for (int i = 0; i < DatabaseCommon.MISSION_NAMES_PART_COUNT; i++)
-                    mission.MissionName = mission.MissionName.Replace($"$P{i + 1}$", Toolbox.RandomFrom(Database.Instance.Common.MissionNameParts[i]));
-            }
+            mission.MissionName = Database.Instance.Common.MissionNameTemplate;
+            for (int i = 0; i < DatabaseCommon.MISSION_NAMES_PART_COUNT; i++)
+                mission.MissionName = mission.MissionName.Replace($"$P{i + 1}$", Toolbox.RandomFrom(Database.Instance.Common.MissionNameParts[i]));
 
             DebugLog.Instance.WriteLine($"Mission name set to \"{mission.MissionName}\"", 2);
         }
@@ -77,16 +72,12 @@ namespace BriefingRoom4DCSWorld.Generator
             // Get mission features
             DBEntryMissionFeature[] features = Database.Instance.GetEntries<DBEntryMissionFeature>(objectiveDB.MissionFeatures);
 
-            string description = GeneratorTools.SanitizeString(template.BriefingDescription);
-            if (string.IsNullOrEmpty(description)) // No custom mission description has been provided, generate one
-            {
-                description = objectiveDB.BriefingDescriptionByUnitFamily[(int)mission.Objectives[0].TargetFamily];
-                if (string.IsNullOrEmpty(description)) // No custom briefing for this target family, use the default
-                    description = objectiveDB.BriefingDescription;
+            string description = objectiveDB.BriefingDescriptionByUnitFamily[(int)mission.Objectives[0].TargetFamily];
+            if (string.IsNullOrEmpty(description)) // No custom briefing for this target family, use the default
+                description = objectiveDB.BriefingDescription;
 
-                description =
-                    GeneratorTools.MakeBriefingStringReplacements(GeneratorTools.ParseRandomString(description), mission, coalitionsDB);
-            }
+            description =
+                GeneratorTools.MakeBriefingStringReplacements(GeneratorTools.ParseRandomString(description), mission, coalitionsDB);
             description = GeneratorTools.SanitizeString(description);
 
             // Generate tasks
@@ -106,27 +97,11 @@ namespace BriefingRoom4DCSWorld.Generator
             List<string> remarks = new List<string>();
             remarks.AddRange( // ...from objective
                 from string remark in objectiveDB.BriefingRemarks
-                select GeneratorTools.MakeBriefingStringReplacements(GeneratorTools.ParseRandomString(remark), mission, coalitionsDB)); 
+                select GeneratorTools.MakeBriefingStringReplacements(GeneratorTools.ParseRandomString(remark), mission, coalitionsDB));
             foreach (DBEntryMissionFeature feature in features)
                 remarks.AddRange( // ...from features
                     from string remark in feature.BriefingRemarks
                     select GeneratorTools.MakeBriefingStringReplacements(GeneratorTools.ParseRandomString(remark), mission, coalitionsDB));
-            
-            /*
-            // Opposition Remarks
-            string airDefenseNumbers = template.OppositionAirDefense == AmountN.Random? "Unknown":template.OppositionAirDefense.ToString();
-            string airDefenseSkill = template.OppositionSkillLevelGround == BRSkillLevel.Random? "Varied":template.OppositionSkillLevelGround.ToString();
-            string airForceNumbers = template.OppositionAirForce == AmountN.Random? "Unknown":template.OppositionAirForce.ToString();
-            string airForceSkill = template.OppositionSkillLevelAir == BRSkillLevel.Random? "Varied":template.OppositionSkillLevelAir.ToString();
-            string allyAirDefenseNumbers = template.PlayerFriendlyAirDefense == AmountN.Random? "Unknown":template.PlayerFriendlyAirDefense.ToString();
-            string allyAirDefenseSkill = template.PlayerAISkillLevel == BRSkillLevel.Random? "Varied":template.PlayerAISkillLevel.ToString();
-            remarks.AddRange(new List<string>{
-                $"Enemy Air Defenses are {airDefenseNumbers} and they are {airDefenseSkill} troops",
-                $"Expected Enemy Air Force response is {airForceNumbers} and they are {airForceSkill} pilots",
-                $"Our Air Defenses are {allyAirDefenseNumbers} and they are {allyAirDefenseSkill} troops",});
-            remarks.Add("Use the \"F10/Other\" item in the comms for additional options");
-            DebugLog.Instance.WriteLine($"{remarks.Count} remark(s)", 2);
-            */
 
             mission.BriefingHTML = CreateHTMLBriefing(mission, template, description, tasks, remarks, flightGroups, airbaseDB, coalitionsDB, objectiveDB);
             mission.BriefingTXT = CreateTXTBriefing(mission, description, tasks, remarks, flightGroups, airbaseDB);
@@ -151,9 +126,9 @@ namespace BriefingRoom4DCSWorld.Generator
             // Title
             briefing = briefing.Replace("$MISSIONNAME$", mission.MissionName);
             briefing = briefing.Replace("$MISSIONTYPE$",
-                GeneratorTools.RemoveAfterComma(objectiveDB.ID) + " mission " +
-                ((template.GetMissionType() == MissionType.SinglePlayer) ?
-                "(single-player)" : $"({template.GetPlayerCount()}-players multiplayer)"));
+                objectiveDB.UIDisplayName + ", " +
+                ((template.MissionType == MissionType.SinglePlayer) ?
+                "single-player" : $"{template.GetPlayerCount()}-players multiplayer"));
 
             // Situation summary
             briefing = briefing.Replace("$LONGDATE$", mission.DateTime.ToDateString(true));
@@ -232,14 +207,14 @@ namespace BriefingRoom4DCSWorld.Generator
                 
                 waypointsHTML +=
                     $"<tr><td>{wp.Name}</td>" +
-                    $"<td>{GeneratorTools.ConvertDistance(distance, template.BriefingUnitSystem)}</td>" +
-                    $"<td>{GeneratorTools.ConvertDistance(totalDistance, template.BriefingUnitSystem)}</td></tr>";
+                    $"<td>{GeneratorTools.ConvertDistance(distance, template.OptionsBriefingUnitSystem)}</td>" +
+                    $"<td>{GeneratorTools.ConvertDistance(totalDistance, template.OptionsBriefingUnitSystem)}</td></tr>";
             }
             distance = currentPosition.GetDistanceFrom(mission.InitialPosition);
             totalDistance += distance;
             waypointsHTML += $"<tr><td><strong>LANDING</strong></td>" +
-                $"<td>{GeneratorTools.ConvertDistance(distance, template.BriefingUnitSystem)}</td>" +
-                $"<td>{GeneratorTools.ConvertDistance(totalDistance, template.BriefingUnitSystem)}</td></tr>";
+                $"<td>{GeneratorTools.ConvertDistance(distance, template.OptionsBriefingUnitSystem)}</td>" +
+                $"<td>{GeneratorTools.ConvertDistance(totalDistance, template.OptionsBriefingUnitSystem)}</td></tr>";
             briefing = briefing.Replace("$WAYPOINTS$", waypointsHTML);
 
             return briefing;

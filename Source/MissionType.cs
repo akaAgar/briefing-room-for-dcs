@@ -18,6 +18,8 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.Attributes;
+
 namespace BriefingRoom4DCSWorld
 {
     /// <summary>
@@ -25,17 +27,10 @@ namespace BriefingRoom4DCSWorld
     /// </summary>
     public enum MissionType
     {
-        /// <summary>
-        /// One-player mission.
-        /// </summary>
+        [TreeViewEnum("Single-player", "Single player mission.")]
         SinglePlayer,
-        /// <summary>
-        /// Multiplayer mission, all players are on the same side.
-        /// </summary>
-        Cooperative,
-        /// <summary>
-        /// Multiplayer mission, players on both sides.
-        /// </summary>
-        Versus
+
+        [TreeViewEnum("Multiplayer", "Multiplayer mission.")]
+        Multiplayer,
     }
 }

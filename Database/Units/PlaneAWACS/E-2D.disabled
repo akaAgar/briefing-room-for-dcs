@@ -1,0 +1,33 @@
+﻿[GUI]
+DisplayName=E-2D Hawkeye
+
+[Unit]
+DCSID=E-2C
+Families=PlaneAWACS
+Flags=EPLRS
+
+[Aircraft]
+A2ARating.AirToAir=0
+A2ARating.Default=0
+
+CarrierTypes=
+
+CruiseAltitude=20000
+CruiseSpeed=300
+
+PlayerControllable=False
+
+Radio.Modulation=AM
+Radio.Frequency=251.0
+
+Payload.Common=["chaff"] = 120,["flare"] = 60,["fuel"] = 5624
+
+[Operators]
+Egypt=Decade1980,Decade2020
+France=Decade2000,Decade2020
+Israel=Decade1980,Decade2000
+Japan=Decade1970,Decade2020
+Mexico=Decade2000,Decade2020
+Singapore=Decade1980,Decade2010
+Taiwan=Decade1990,Decade2020
+USA=Decade1970,Decade2020

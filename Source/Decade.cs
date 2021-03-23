@@ -18,6 +18,8 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.Attributes;
+
 namespace BriefingRoom4DCSWorld
 {
     /// <summary>
@@ -25,41 +27,31 @@ namespace BriefingRoom4DCSWorld
     /// </summary>
     public enum Decade
     {
-        /// <summary>
-        /// 1940-1949
-        /// </summary>
+        [TreeViewEnum("1940s (World war 2)", "A random year between 1942 and 1945.")]
         Decade1940,
-        /// <summary>
-        /// 1950-1959
-        /// </summary>
+
+        [TreeViewEnum("1950s", "A random year between 1950 and 1959.")]
         Decade1950,
-        /// <summary>
-        /// 1960-1969
-        /// </summary>
+
+        [TreeViewEnum("1960s", "A random year between 1960 and 1969.")]
         Decade1960,
-        /// <summary>
-        /// 1970-1979
-        /// </summary>
+
+        [TreeViewEnum("1970s", "A random year between 1970 and 1979.")]
         Decade1970,
-        /// <summary>
-        /// 1980-1989
-        /// </summary>
+
+        [TreeViewEnum("1980s", "A random year between 1980 and 1989.")]
         Decade1980,
-        /// <summary>
-        /// 1990-1999
-        /// </summary>
+
+        [TreeViewEnum("1990s", "A random year between 1990 and 1999.")]
         Decade1990,
-        /// <summary>
-        /// 2000-2009
-        /// </summary>
+
+        [TreeViewEnum("2000s", "A random year between 2000 and 2009.")]
         Decade2000,
-        /// <summary>
-        /// 2010-2019
-        /// </summary>
+
+        [TreeViewEnum("2010s", "A random year between 2010 and 2019.")]
         Decade2010,
-        /// <summary>
-        /// 2020-2029
-        /// </summary>
+
+        [TreeViewEnum("2020s", "A random year between 2020 and 2029.")]
         Decade2020
     }
 }

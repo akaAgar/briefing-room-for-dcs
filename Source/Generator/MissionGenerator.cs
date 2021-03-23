@@ -81,8 +81,8 @@ namespace BriefingRoom4DCSWorld.Generator
             // Check for missing entries in the database
             GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionBlue);
             GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionRed);
-            GeneratorTools.CheckDBForMissingEntry<DBEntryObjective>(template.ObjectiveType);
-            GeneratorTools.CheckDBForMissingEntry<DBEntryTheater>(template.TheaterID);
+            GeneratorTools.CheckDBForMissingEntry<DBEntryObjective>(template.ObjectiveType, true);
+            GeneratorTools.CheckDBForMissingEntry<DBEntryTheater>(template.ContextTheater);
 
             // Create the mission and copy some values (theater database entry ID, etc.) from the template
             DCSMission mission = new DCSMission();
@@ -93,11 +93,11 @@ namespace BriefingRoom4DCSWorld.Generator
             coalitionsDB[(int)Coalition.Blue] = Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionBlue);
             coalitionsDB[(int)Coalition.Red] = Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionRed);
             DBEntryObjective objectiveDB;
-            if(template.ObjectiveType == "Random")
-                objectiveDB = Toolbox.RandomFrom<DBEntryObjective>(Database.Instance.GetAllEntries<DBEntryObjective>().Where(x => x.ID != "Random").ToArray());
+            if (string.IsNullOrEmpty(template.ObjectiveType)) // Random objective
+                objectiveDB = Toolbox.RandomFrom(Database.Instance.GetAllEntries<DBEntryObjective>());
             else 
                 objectiveDB = Database.Instance.GetEntry<DBEntryObjective>(template.ObjectiveType);
-            DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.TheaterID);
+            DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
 
             // Create the unit maker, which will be used to generate unit groups and their properties
             UnitMaker unitMaker = new UnitMaker(coalitionsDB, theaterDB);
@@ -114,7 +114,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 mission.InitialAirbaseID = airbaseDB.DCSID;
                 mission.InitialPosition = airbaseDB.Coordinates;
 
-                airbaseGen.SetupAirbasesCoalitions(mission, template.TheaterRegionsCoalitions, theaterDB);
+                airbaseGen.SetupAirbasesCoalitions(mission, template.OptionsTheaterCountriesCoalitions, theaterDB);
             }
 
             // Generate mission objectives
@@ -160,17 +160,17 @@ namespace BriefingRoom4DCSWorld.Generator
             // Generate friendly support units
             DebugLog.Instance.WriteLine("Generating friendly support units...");
             using (MissionGeneratorSupportUnits unitGroupGen = new MissionGeneratorSupportUnits(unitMaker))
-                briefingFGList.AddRange(unitGroupGen.CreateUnitGroups(mission, coalitionsDB[(int)mission.CoalitionPlayer], template.OptionsUnitMods));
+                briefingFGList.AddRange(unitGroupGen.CreateUnitGroups(mission, coalitionsDB[(int)mission.CoalitionPlayer], template.UnitMods));
 
             // Generate enemy air defense unit groups
             DebugLog.Instance.WriteLine("Generating enemy air defense unit groups...");
             using (MissionGeneratorAirDefense unitGroupGen = new MissionGeneratorAirDefense(unitMaker, false, template, mission))
-                unitGroupGen.CreateUnitGroups(mission, objectiveDB, coalitionsDB[(int)mission.CoalitionEnemy], GeneratorTools.GetEnemySpawnPointCoalition(template), template.OptionsUnitMods);
+                unitGroupGen.CreateUnitGroups(mission, objectiveDB, coalitionsDB[(int)mission.CoalitionEnemy], GeneratorTools.GetEnemySpawnPointCoalition(template), template.UnitMods);
 
             // Generate ally air defense unit groups
             DebugLog.Instance.WriteLine("Generating friendly air defense unit groups...");
             using (MissionGeneratorAirDefense unitGroupGen = new MissionGeneratorAirDefense(unitMaker, true, template, mission))
-                unitGroupGen.CreateUnitGroups(mission, objectiveDB, coalitionsDB[(int)mission.CoalitionPlayer], GeneratorTools.GetAllySpawnPointCoalition(template), template.OptionsUnitMods);
+                unitGroupGen.CreateUnitGroups(mission, objectiveDB, coalitionsDB[(int)mission.CoalitionPlayer], GeneratorTools.GetAllySpawnPointCoalition(template), template.UnitMods);
 
             //// Generate enemy fighter patrols
             DebugLog.Instance.WriteLine("Generating enemy fighter patrol unit groups...");
@@ -200,11 +200,11 @@ namespace BriefingRoom4DCSWorld.Generator
             }
 
             // Set if radio sounds are enabled
-            mission.RadioSounds = !template.OptionsPreferences.Contains(MissionTemplatePreferences.DisableRadioSounds);
+            mission.RadioSounds = (template.OptionsRadioSounds == YesNo.Yes);
 
             // Add common .ogg vorbis files and make sure each only appears only once.
             mission.OggFiles.AddRange(Database.Instance.Common.CommonOGG);
-            mission.OggFiles.AddRange(Database.Instance.Common.CommonOGGForGameMode[(int)template.GetMissionType()]);
+            mission.OggFiles.AddRange(Database.Instance.Common.CommonOGGForGameMode[(int)template.MissionType]);
             mission.OggFiles =
                 (from string f in mission.OggFiles
                  where !string.IsNullOrEmpty(f.Trim()) select f.Trim())
@@ -221,14 +221,14 @@ namespace BriefingRoom4DCSWorld.Generator
 
             // Create aircraft queues and finalize the core script
             CreateAircraftActivationQueues(mission);
-            switch (template.GetMissionType())
+            switch (template.MissionType)
             {
                 case MissionType.SinglePlayer:
                     mission.CoreLuaScript += "briefingRoom.mission.missionType = brMissionType.SINGLE_PLAYER\r\n"; break;
-                case MissionType.Cooperative:
+                case MissionType.Multiplayer:
                     mission.CoreLuaScript += "briefingRoom.mission.missionType = brMissionType.COOPERATIVE\r\n"; break;
-                case MissionType.Versus:
-                    mission.CoreLuaScript += "briefingRoom.mission.missionType = brMissionType.VERSUS\r\n"; break;
+                //case MissionType.Versus:
+                //    mission.CoreLuaScript += "briefingRoom.mission.missionType = brMissionType.VERSUS\r\n"; break;
             }
 
             DebugLog.Instance.WriteLine($"Mission generation completed successfully in {(DateTime.Now - generationStartTime).TotalSeconds.ToString("F3", NumberFormatInfo.InvariantInfo)} second(s).");
@@ -273,15 +273,15 @@ namespace BriefingRoom4DCSWorld.Generator
             mission.Coalitions[(int)Coalition.Red] = template.GetCoalition(Coalition.Red);
             mission.CivilianTraffic = template.OptionsCivilianTraffic;
             mission.CoalitionPlayer = template.ContextCoalitionPlayer;
-            mission.RadioAssists = template.OptionsPreferences.Contains(MissionTemplatePreferences.DCSRadioAssists);
-            mission.Theater = template.TheaterID;
-            mission.PlayerStartLocation = template.PlayerStartLocation;
+            mission.RadioAssists = !template.Realism.Contains(RealismOption.DisableDCSRadioAssists);
+            mission.Theater = template.ContextTheater;
+            mission.PlayerStartLocation = template.FlightPlanPlayerStartLocation;
             mission.EndMode = template.OptionsEndMode;
-            mission.RealismOptions = template.OptionsRealism;
+            mission.RealismOptions = template.Realism;
 
             // "Runway" start locations is not available in MP missions, change to "Parking hot".
-            if ((template.GetMissionType() != MissionType.SinglePlayer) &&
-                (template.PlayerStartLocation == PlayerStartLocation.Runway))
+            if ((template.MissionType != MissionType.SinglePlayer) &&
+                (template.FlightPlanPlayerStartLocation == PlayerStartLocation.Runway))
                 mission.PlayerStartLocation = PlayerStartLocation.ParkingHot;
         }
 

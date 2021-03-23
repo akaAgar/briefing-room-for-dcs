@@ -1,3 +1,6 @@
+[GUI]
+DisplayName=
+
 [Unit]
 DCSID=SK_C_28_naval_gun
 Families=VehicleArtillery

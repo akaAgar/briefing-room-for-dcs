@@ -18,6 +18,8 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.Attributes;
+
 namespace BriefingRoom4DCSWorld
 {
     /// <summary>
@@ -25,9 +27,16 @@ namespace BriefingRoom4DCSWorld
     /// </summary>
     public enum CivilianTraffic
     {
+        [TreeViewEnum("Off", "No civilian road traffic.")]
         Off,
+
+        [TreeViewEnum("Low", "Low civilian road traffic.")]
         Low,
+
+        [TreeViewEnum("Medium", "Medium civilian road traffic.")]
         Medium,
+
+        [TreeViewEnum("High", "High civilian road traffic.")]
         High
     }
 }

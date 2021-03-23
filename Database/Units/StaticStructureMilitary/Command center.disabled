@@ -1,4 +1,7 @@
-﻿[Unit]
+﻿[GUI]
+DisplayName=Command center
+
+[Unit]
 DCSID=.Command Center
 Families=StaticStructureMilitary
 Flags=

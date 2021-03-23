@@ -47,42 +47,30 @@ namespace BriefingRoom4DCSWorld.Generator
             int day, year;
             Month month;
 
-            // A fixed date has been provided, use it
-            if (template.BriefingDate.Enabled)
-            {
-                DebugLog.Instance.WriteLine("Using fixed date provided in the mission template", 1);
+            // Select a random year from the most recent coalition's decade
+            year = Toolbox.GetRandomYearFromDecade(template.ContextDecade);
 
-                day = template.BriefingDate.Day;
-                month = template.BriefingDate.Month;
-                year = template.BriefingDate.Year;
+            DebugLog.Instance.WriteLine($"No fixed date provided in the mission template, generating date in decade {template.ContextDecade}", 1);
+
+            if (template.EnvironmentSeason == Season.Random) // Random season, pick any day of the year
+            {
+                month = (Month)Toolbox.RandomInt(12);
+                day = Toolbox.RandomMinMax(1, Toolbox.GetDaysPerMonth(month, year));
             }
-            else // Not fixed date provided, generate a random one
+            else // Pick a date according to the desired season
             {
-                // Select a random year from the most recent coalition's decade
-                year = Toolbox.GetRandomYearFromDecade(template.ContextDecade);
+                Month[] seasonMonths = GetMonthsForSeason(template.EnvironmentSeason);
 
-                DebugLog.Instance.WriteLine($"No fixed date provided in the mission template, generating date in decade {template.ContextDecade}", 1);
-
-                if (template.EnvironmentSeason == Season.Random) // Random season, pick any day of the year
+                int monthIndex = Toolbox.RandomInt(4);
+                month = seasonMonths[monthIndex];
+                switch (monthIndex)
                 {
-                    month = (Month)Toolbox.RandomInt(12);
-                    day = Toolbox.RandomMinMax(1, Toolbox.GetDaysPerMonth(month, year));
-                }
-                else // Pick a date according to the desired season
-                {
-                    Month[] seasonMonths = GetMonthsForSeason(template.EnvironmentSeason);
-
-                    int monthIndex = Toolbox.RandomInt(4);
-                    month = seasonMonths[monthIndex];
-                    switch (monthIndex)
-                    {
-                        case 0: // First month of the season, season begins on the 21st
-                            day = Toolbox.RandomMinMax(21, Toolbox.GetDaysPerMonth(month, year)); break;
-                        case 3: // Last month of the season, season ends on the 20th
-                            day = Toolbox.RandomMinMax(1, 20); break;
-                        default:
-                            day = Toolbox.RandomMinMax(1, Toolbox.GetDaysPerMonth(month, year)); break;
-                    }
+                    case 0: // First month of the season, season begins on the 21st
+                        day = Toolbox.RandomMinMax(21, Toolbox.GetDaysPerMonth(month, year)); break;
+                    case 3: // Last month of the season, season ends on the 20th
+                        day = Toolbox.RandomMinMax(1, 20); break;
+                    default:
+                        day = Toolbox.RandomMinMax(1, Toolbox.GetDaysPerMonth(month, year)); break;
                 }
             }
 

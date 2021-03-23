@@ -148,7 +148,7 @@ namespace BriefingRoom4DCSWorld.Mission
         /// <summary>
         /// Time to end mission min after objective complete.
         /// </summary >
-        public MissionEndMode EndMode { get; set; } = MissionEndMode.NoEnd;
+        public MissionEndMode EndMode { get; set; } = MissionEndMode.Never;
 
         /// <summary>
         /// "Center position" of the mission objectives (average of all objectives positions)

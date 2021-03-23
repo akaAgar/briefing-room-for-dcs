@@ -64,18 +64,18 @@ namespace BriefingRoom4DCSWorld.Generator
             }
             int totalAirForcePower =
                 (int)(GetMissionPackageAirPower(template, objectiveDB, aiEscortTypeCAP, aiEscortTypeSEAD) *
-                Database.Instance.Common.EnemyCAPRelativePower[(int)template.OppositionAirForce.Get()]);
+                Database.Instance.Common.EnemyCAPRelativePower[(int)template.SituationEnemyAirForce.Get()]);
 
             DebugLog.Instance.WriteLine($"Enemy air power set to {totalAirForcePower}...", 1);
 
-            DCSMissionUnitGroupFlags flags = template.OptionsPreferences.Contains(MissionTemplatePreferences.HideEnemyUnits) ? DCSMissionUnitGroupFlags.Hidden : 0;
+            DCSMissionUnitGroupFlags flags = template.Realism.Contains(RealismOption.HideEnemyUnits) ? DCSMissionUnitGroupFlags.Hidden : 0;
 
             int aircraftCount = 0;
             int groupCount = 0;
 
             while (totalAirForcePower > 0)
             {
-                string[] unitTypes = enemyCoalitionDB.GetRandomUnits(UnitFamily.PlaneFighter, mission.DateTime.Decade, 1, template.OptionsUnitMods);
+                string[] unitTypes = enemyCoalitionDB.GetRandomUnits(UnitFamily.PlaneFighter, mission.DateTime.Decade, 1, template.UnitMods);
                 if (unitTypes.Length == 0)
                 {
                     DebugLog.Instance.WriteLine("No valid units found for enemy fighter patrols.", 1, DebugLogMessageErrorLevel.Warning);
@@ -110,7 +110,7 @@ namespace BriefingRoom4DCSWorld.Generator
                     mission, Enumerable.Repeat(unitTypes[0], groupSize).ToArray(),
                     Side.Enemy, spawnPoint.Value.Coordinates,
                     "GroupAircraftCAP", "UnitAircraft",
-                    Toolbox.BRSkillLevelToDCSSkillLevel(template.OppositionSkillLevelAir),
+                    Toolbox.BRSkillLevelToDCSSkillLevel(template.SituationEnemySkillLevelAir),
                     flags, UnitTaskPayload.AirToAir,
                     mission.ObjectivesCenter + Coordinates.CreateRandom(20, 40) * Toolbox.NM_TO_METERS);
 
@@ -119,7 +119,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 else
                 {
                     DebugLog.Instance.WriteLine($"Added a group of {groupSize}× {unitTypes[0]} at {spawnPoint.Value.Coordinates}");
-                    mission.AircraftSpawnQueue.Add(new DCSMissionAircraftSpawnQueueItem(group.GroupID, template.OppositionOnStationChance.RollChance()));
+                    mission.AircraftSpawnQueue.Add(new DCSMissionAircraftSpawnQueueItem(group.GroupID, template.SituationEnemyCAPOnStationChance.RollChance()));
                 }
 
                 aircraftCount += groupSize;
@@ -140,17 +140,17 @@ namespace BriefingRoom4DCSWorld.Generator
             int airPowerRating = 0;
             DBEntryUnit aircraft;
 
-            if (template.GetMissionType() == MissionType.SinglePlayer)
+            if (template.MissionType == MissionType.SinglePlayer)
             {
                 // Player flight group
-                aircraft = Database.Instance.GetEntry<DBEntryUnit>(template.PlayerSPAircraft);
-                airPowerRating += ((aircraft != null) ? aircraft.AircraftData.AirToAirRating[1] : 1) * (template.PlayerSPWingmen + 1);
+                aircraft = Database.Instance.GetEntry<DBEntryUnit>(template.PlayerFlightGroups[0].Aircraft);
+                airPowerRating += ((aircraft != null) ? aircraft.AircraftData.AirToAirRating[1] : 1) * (template.PlayerFlightGroups[0].Count);
             }
             else // Mission is multi-player
             {
-                foreach (MissionTemplateMPFlightGroup fg in template.PlayerMPFlightGroups)
+                foreach (MissionTemplateFlightGroup fg in template.PlayerFlightGroups)
                 {
-                    aircraft = Database.Instance.GetEntry<DBEntryUnit>(fg.AircraftType);
+                    aircraft = Database.Instance.GetEntry<DBEntryUnit>(fg.Aircraft);
 
                     if (aircraft == null) // Aircraft doesn't exist
                     {
@@ -159,7 +159,7 @@ namespace BriefingRoom4DCSWorld.Generator
                     }
 
                     bool hasAirToAirLoadout;
-                    switch (fg.Task)
+                    switch (fg.Tasking)
                     {
                         default: // case MissionTemplateMPFlightGroupTask.Objectives
                             if (objectiveDB.Payload == UnitTaskPayload.Default)
@@ -169,10 +169,10 @@ namespace BriefingRoom4DCSWorld.Generator
                             else
                                 hasAirToAirLoadout = false;
                             break;
-                        case MissionTemplateMPFlightGroupTask.SupportCAP:
+                        case MissionTemplateFlightGroupTask.SupportCAP:
                             hasAirToAirLoadout = true;
                             break;
-                        case MissionTemplateMPFlightGroupTask.SupportSEAD:
+                        case MissionTemplateFlightGroupTask.SupportSEAD:
                             hasAirToAirLoadout = false;
                             break;
 
@@ -184,11 +184,11 @@ namespace BriefingRoom4DCSWorld.Generator
 
             // AI CAP escort
             aircraft = Database.Instance.GetEntry<DBEntryUnit>(aiEscortTypeCAP);
-            airPowerRating += ((aircraft != null) ? aircraft.AircraftData.AirToAirRating[1] : 1) * template.PlayerEscortCAP;
+            airPowerRating += ((aircraft != null) ? aircraft.AircraftData.AirToAirRating[1] : 1) * template.SituationFriendlyEscortCAP;
 
             // AI SEAD escort
             aircraft = Database.Instance.GetEntry<DBEntryUnit>(aiEscortTypeSEAD);
-            airPowerRating += ((aircraft != null) ? aircraft.AircraftData.AirToAirRating[0] : 1) * template.PlayerEscortSEAD;
+            airPowerRating += ((aircraft != null) ? aircraft.AircraftData.AirToAirRating[0] : 1) * template.SituationFriendlyEscortSEAD;
 
             return airPowerRating;
         }

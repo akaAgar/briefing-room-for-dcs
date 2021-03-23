@@ -49,9 +49,15 @@ namespace BriefingRoom4DCSWorld.Campaign
             {
                 for (int i = 0; i < campaignTemplate.MissionsCount; i++)
                 {
-                    MissionTemplate template = CreateMissionTemplate(campaignTemplate, i, campaignName, ref date);
+                    // Increment the date by a few days for each mission after the first
+                    if (i > 0) IncrementDate(ref date);
+
+                    MissionTemplate template = CreateMissionTemplate(campaignTemplate, i);
 
                     DCSMission mission = generator.Generate(template);
+                    mission.MissionName = $"{campaignName}, phase {i + 1}";
+                    mission.DateTime.Day = date.Day; mission.DateTime.Month = date.Month; mission.DateTime.Year = date.Year;
+
                     MizFile miz = mission.ExportToMiz();
                     miz.SaveToFile(Path.Combine(campaignDirectory, $"{campaignName}{i + 1:00}.miz"));
                 }
@@ -75,8 +81,8 @@ namespace BriefingRoom4DCSWorld.Campaign
         private void CreateImageFiles(CampaignTemplate campaignTemplate, string campaignFilePath)
         {
             string baseFileName = Path.Combine(Path.GetDirectoryName(campaignFilePath), Path.GetFileNameWithoutExtension(campaignFilePath));
-            string allyFlagName = GeneratorTools.RemoveAfterComma(campaignTemplate.GetCoalition(campaignTemplate.PlayerCoalition));
-            string enemyFlagName = GeneratorTools.RemoveAfterComma(campaignTemplate.GetCoalition((Coalition)(1 - (int)campaignTemplate.PlayerCoalition)));
+            string allyFlagName = GeneratorTools.RemoveAfterComma(campaignTemplate.GetCoalition(campaignTemplate.ContextCoalitionPlayer));
+            string enemyFlagName = GeneratorTools.RemoveAfterComma(campaignTemplate.GetCoalition((Coalition)(1 - (int)campaignTemplate.ContextCoalitionPlayer)));
 
             using (ImageMaker imgMaker = new ImageMaker())
             {
@@ -134,57 +140,50 @@ namespace BriefingRoom4DCSWorld.Campaign
             File.WriteAllText(campaignFilePath, lua.Replace("\r\n", "\n"));
         }
 
-        private MissionTemplate CreateMissionTemplate(CampaignTemplate campaignTemplate, int index, string campaignName, ref DCSMissionDateTime currentDate)
+        private MissionTemplate CreateMissionTemplate(CampaignTemplate campaignTemplate, int index)
         {
-            // Increment the date by a few days for each mission after the first
-            if (index > 0) currentDate = IncrementDate(currentDate);
+            MissionTemplate template = new MissionTemplate
+            {
+                ContextCoalitionBlue = campaignTemplate.ContextCoalitionsBlue,
+                ContextCoalitionPlayer = campaignTemplate.ContextCoalitionPlayer,
+                ContextCoalitionRed = campaignTemplate.ContextCoalitionsRed,
 
-            MissionTemplate template = new MissionTemplate();
+                EnvironmentTimeOfDay = GetTimeOfDayForMission(campaignTemplate.EnvironmentNightMissionChance),
+                EnvironmentWeather = GetWeatherForMission(campaignTemplate.EnvironmentBadWeatherChance),
+                EnvironmentWind = Wind.Auto,
 
-            template.BriefingDate.Enabled = true;
-            template.BriefingDate.Day = currentDate.Day;
-            template.BriefingDate.Month = currentDate.Month;
-            template.BriefingDate.Year = currentDate.Year;
-            template.BriefingDescription = "";
-            template.BriefingName = $"{campaignName}, phase {index + 1}";
+                ObjectiveCount = GetObjectiveCountForMission(campaignTemplate.MissionsObjectiveCount),
+                ObjectiveDistance = MissionTemplate.OBJECTIVE_DISTANCE_INCREMENT * 2 * ((int)campaignTemplate.MissionsObjectiveDistance + 1),
+                ObjectiveType = Toolbox.RandomFrom(campaignTemplate.Objectives),
 
-            template.ContextCoalitionBlue = campaignTemplate.ContextCoalitionsBlue;
-            template.ContextCoalitionPlayer = campaignTemplate.PlayerCoalition;
-            template.ContextCoalitionRed = campaignTemplate.ContextCoalitionsRed;
+                SituationEnemyAirDefense = GetPowerLevel(campaignTemplate.SituationEnemyAirDefense, campaignTemplate.MissionsDifficultyVariation, index, campaignTemplate.MissionsCount),
+                SituationEnemyAirForce = GetPowerLevel(campaignTemplate.SituationEnemyAirForce, campaignTemplate.MissionsDifficultyVariation, index, campaignTemplate.MissionsCount),
+                SituationEnemySkillLevelAir = GetSkillLevel(campaignTemplate.SituationEnemyAirForce, campaignTemplate.MissionsDifficultyVariation, index, campaignTemplate.MissionsCount),
+                SituationEnemySkillLevelGround = GetSkillLevel(campaignTemplate.SituationEnemyAirDefense, campaignTemplate.MissionsDifficultyVariation, index, campaignTemplate.MissionsCount),
+                OptionsEnemyUnitsLocation = SpawnPointPreferredCoalition.Any,
 
-            template.EnvironmentTimeOfDay = GetTimeOfDayForMission(campaignTemplate.EnvironmentNightMissionChance);
-            template.EnvironmentWeather = GetWeatherForMission(campaignTemplate.EnvironmentBadWeatherChance);
-            template.EnvironmentWind = Wind.Auto;
+                OptionsCivilianTraffic = campaignTemplate.OptionsCivilianTraffic,
+                OptionsEndMode = MissionEndMode.Never,
+                //template.OptionsPreferences = campaignTemplate.OptionsPreferences.ToArray();
+                Realism = campaignTemplate.Realism.ToArray(),
+                ScriptExtensions = new string[0],
+                UnitMods = campaignTemplate.UnitMods,
 
-            template.ObjectiveCount = GetObjectiveCountForMission(campaignTemplate.MissionsObjectiveCount);
-            template.ObjectiveDistanceNM = Database.Instance.Common.DistanceFromTakeOffLocation[(int)campaignTemplate.MissionsObjectiveDistance];
-            template.ObjectiveType = Toolbox.RandomFrom(campaignTemplate.MissionsTypes);
+                SituationFriendlyAISkillLevel = GetSkillLevel(campaignTemplate.SituationFriendlyAirForce, CampaignDifficultyVariation.Steady, 0, 0),
+                SituationFriendlyEscortCAP = Toolbox.RandomFrom(2, 2, 2, 2, 3, 4, 4),
+                SituationFriendlyEscortSEAD = Toolbox.RandomFrom(2, 2, 2, 2, 3, 4, 4),
+                PlayerFlightGroups = new MissionTemplateFlightGroup[0],
+                FlightPlanPlayerStartLocation = campaignTemplate.PlayerStartLocation
+            };
 
-            template.OppositionAirDefense = GetPowerLevel(campaignTemplate.SituationEnemyAirDefense, campaignTemplate.SituationVariation, index, campaignTemplate.MissionsCount);
-            template.OppositionAirForce = GetPowerLevel(campaignTemplate.SituationEnemyAirForce, campaignTemplate.SituationVariation, index, campaignTemplate.MissionsCount);
-            template.OppositionSkillLevelAir = GetSkillLevel(campaignTemplate.SituationEnemyAirForce, campaignTemplate.SituationVariation, index, campaignTemplate.MissionsCount);
-            template.OppositionSkillLevelGround = GetSkillLevel(campaignTemplate.SituationEnemyAirDefense, campaignTemplate.SituationVariation, index, campaignTemplate.MissionsCount);
-            template.OppositionUnitsLocation = SpawnPointPreferredCoalition.Any;
+            template.PlayerFlightGroups = new MissionTemplateFlightGroup[]
+                { new MissionTemplateFlightGroup(
+                    campaignTemplate.PlayerAircraft, Toolbox.RandomFrom(2, 2, 2, 2, 3, 4, 4),
+                    MissionTemplateFlightGroupTask.Objectives, campaignTemplate.PlayerCarrier) };
 
-            template.OptionsCivilianTraffic = campaignTemplate.OptionsCivilianTraffic;
-            template.OptionsEndMode = MissionEndMode.NoEnd;
-            template.OptionsPreferences = campaignTemplate.OptionsPreferences.ToArray();
-            template.OptionsRealism = campaignTemplate.OptionsRealism.ToArray();
-            template.OptionsScriptExtensions = new string[0];
-            template.OptionsUnitMods = campaignTemplate.OptionsUnitMods;
-
-            template.PlayerAISkillLevel = GetSkillLevel(campaignTemplate.SituationFriendlyAirForce, CampaignDifficultyVariation.Steady, 0, 0);
-            template.PlayerEscortCAP = Toolbox.RandomFrom(2, 2, 2, 2, 3, 4, 4);
-            template.PlayerEscortSEAD = Toolbox.RandomFrom(2, 2, 2, 2, 3, 4, 4);
-            template.PlayerMPFlightGroups = new MissionTemplateMPFlightGroup[0];
-            template.PlayerSPAircraft = campaignTemplate.PlayerAircraft;
-            template.PlayerSPWingmen = Toolbox.RandomFrom(1, 1, 1, 1, 2, 3, 3);
-            template.PlayerStartLocation = campaignTemplate.PlayerStartLocation;
-            template.PlayerSPCarrier = campaignTemplate.PlayerStartingCarrier;
-
-            template.TheaterID = campaignTemplate.ContextTheaterID;
-            template.TheaterRegionsCoalitions = campaignTemplate.ContextTheaterRegionsCoalitions;
-            template.TheaterStartingAirbase = campaignTemplate.PlayerStartingAirbase;
+            template.ContextTheater = campaignTemplate.ContextTheaterID;
+            template.OptionsTheaterCountriesCoalitions = campaignTemplate.OptionsTheaterCountriesCoalitions;
+            template.FlightPlanTheaterStartingAirbase = campaignTemplate.PlayerStartingAirbase;
 
             return template;
         }
@@ -300,24 +299,7 @@ namespace BriefingRoom4DCSWorld.Campaign
             }
         }
 
-        private Amount GetRandomAmountForMission(Amount amount)
-        {
-            switch (amount)
-            {
-                case Amount.VeryLow:
-                    return Toolbox.RandomFrom(Amount.VeryLow, Amount.VeryLow, Amount.Low);
-                case Amount.Low:
-                    return Toolbox.RandomFrom(Amount.VeryLow, Amount.Low, Amount.Average);
-                default: // case Amount.Average:
-                    return Toolbox.RandomFrom(Amount.Low, Amount.Average, Amount.High);
-                case Amount.High:
-                    return Toolbox.RandomFrom(Amount.Average, Amount.High, Amount.VeryHigh);
-                case Amount.VeryHigh:
-                    return Toolbox.RandomFrom(Amount.High, Amount.VeryHigh, Amount.VeryHigh);
-            }
-        }
-
-        private DCSMissionDateTime IncrementDate(DCSMissionDateTime date)
+        private void IncrementDate(ref DCSMissionDateTime date)
         {
             date.Day += Toolbox.RandomMinMax(1, 3);
             if (date.Day > Toolbox.GetDaysPerMonth(date.Month, date.Year))
@@ -330,8 +312,6 @@ namespace BriefingRoom4DCSWorld.Campaign
                 else
                     date.Month++;
             }
-
-            return date;
         }
 
         public void Dispose()

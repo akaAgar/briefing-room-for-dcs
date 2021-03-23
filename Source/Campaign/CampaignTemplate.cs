@@ -20,11 +20,11 @@ If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.Attributes;
 using BriefingRoom4DCSWorld.DB;
 using BriefingRoom4DCSWorld.Template;
-using BriefingRoom4DCSWorld.TypeConverters;
 using System;
-using System.ComponentModel;
+//using System.ComponentModel;
 using System.Drawing.Design;
 using System.IO;
 using System.Linq;
@@ -63,254 +63,116 @@ namespace BriefingRoom4DCSWorld.Campaign
             LoadFromFile(filePath);
         }
 
-        /// <summary>
-        /// Who belongs to the blue coalition?
-        /// </summary>
-        [Category("Context"), DisplayName("Coalition, blue")]
-        [Description("Who belongs to the blue coalition?")]
-        [TypeConverter(typeof(DBEntryTypeConverter<DBEntryCoalition>))]
-        public string ContextCoalitionsBlue { get { return ContextCoalitionBlue_; } set { ContextCoalitionBlue_ = TemplateTools.CheckValue<DBEntryCoalition>(value); } }
-        private string ContextCoalitionBlue_;
+        [TreeViewProperty("Coalition, blue", "Context", typeof(DBEntryCoalition), "Who belongs to the blue coalition?")]
+        public string ContextCoalitionsBlue { get; set; }
 
-        /// <summary>
-        /// Who belongs to the red coalition?
-        /// </summary>
-        [Category("Context"), DisplayName("Coalition, red")]
-        [Description("Who belongs to the red coalition?")]
-        [TypeConverter(typeof(DBEntryTypeConverter<DBEntryCoalition>))]
-        public string ContextCoalitionsRed { get { return ContextCoalitionRed_; } set { ContextCoalitionRed_ = TemplateTools.CheckValue<DBEntryCoalition>(value); } }
-        private string ContextCoalitionRed_;
+        [TreeViewProperty("Player coalition", "Context", typeof(Coalition), "Which coalition does the player(s) belong to?")]
+        public Coalition ContextCoalitionPlayer { get; set; }
 
-        /// <summary>
-        /// Decade during which the campaign will take place.
-        /// </summary>
-        [Category("Context"), DisplayName("Decade")]
-        [Description("Decade during which the campaign will take place.")]
-        [TypeConverter(typeof(EnumTypeConverter<Decade>))]
+        [TreeViewProperty("Coalition, red", "Context", typeof(DBEntryCoalition), "Who belongs to the red coalition?")]
+        public string ContextCoalitionsRed { get; set; }
+
+        [TreeViewProperty("Time period", "Context", typeof(Decade), "Decade during which the campaign will take place.")]
         public Decade ContextDecade { get; set; }
 
-        /// <summary>
-        /// DCS World theater in which the mission will take place.
-        /// </summary>
-        [Category("Context"), DisplayName("Theater")]
-        [Description("DCS World theater in which the mission will take place.")]
-        [TypeConverter(typeof(DBEntryTypeConverter<DBEntryTheater>))]
-        public string ContextTheaterID { get { return ContextTheaterID_; } set { ContextTheaterID_ = TemplateTools.CheckValue<DBEntryTheater>(value); } }
-        private string ContextTheaterID_;
+        [TreeViewProperty("Theater", "Context", typeof(DBEntryTheater), "DCS World theater in which the mission will take place.")]
+        public string ContextTheaterID { get; set; }
 
-        /// <summary>
-        /// To which coalitions should the countries on the map (and their airbases) belong to?
-        /// </summary>
-        [Category("Context"), DisplayName("Theater, regions alignment")]
-        [Description("To which coalitions should the countries on the map (and their airbases) belong to?")]
-        [TypeConverter(typeof(EnumTypeConverter<CountryCoalition>))]
-        public CountryCoalition ContextTheaterRegionsCoalitions { get; set; }
-
-        /// <summary>
-        /// Chance for a mission of this campaign to take place in bad weather.
-        /// </summary>
-        [Category("Environment"), DisplayName("Bad weather chance")]
-        [Description("Chance for a mission of this campaign to take place in bad weather.")]
-        [TypeConverter(typeof(EnumTypeConverter<AmountN>))]
+        [TreeViewProperty("Bad weather chance", "Environment", typeof(AmountN), "Chance for a mission of this campaign to take place in bad weather.")]
         public AmountN EnvironmentBadWeatherChance { get; set; }
 
-        /// <summary>
-        /// Chance for a mission of this campaign to take place during the night.
-        /// </summary>
-        [Category("Environment"), DisplayName("Night mission chance")]
-        [Description("Chance for a mission of this campaign to take place during the night.")]
-        [TypeConverter(typeof(EnumTypeConverter<AmountN>))]
+        [TreeViewProperty("Night mission chance", "Environment", typeof(AmountN), "Chance for a mission of this campaign to take place during the night.")]
         public AmountN EnvironmentNightMissionChance { get; set; }
 
-        /// <summary>
-        /// Number of missions in the campaign.
-        /// </summary>
-        [Category("Missions"), DisplayName("Number of missions")]
-        [Description("Number of missions in the campaign.")]
-        public int MissionsCount { get { return MissionsCount_; } set { MissionsCount_ = Toolbox.Clamp(value, MIN_CAMPAIGN_MISSIONS, MAX_CAMPAIGN_MISSIONS); } }
-        private int MissionsCount_;
+        [TreeViewProperty("Count", "Missions", typeof(int), "Number of missions in the campaign.")]
+        [TreeViewPropertyInt(MIN_CAMPAIGN_MISSIONS, MAX_CAMPAIGN_MISSIONS)]
+        public int MissionsCount { get; set; }
 
-        /// <summary>
-        /// How many objectives/targets will be present in each mission.
-        /// </summary>
-        [Category("Missions"), DisplayName("Objective count")]
-        [Description("How many objectives/targets will be present in the mission.")]
-        [TypeConverter(typeof(EnumTypeConverter<Amount>))]
+        [TreeViewProperty("Difficulty variation", "Missions", typeof(CampaignDifficultyVariation), "How the situation evolves during the campaign. Campaign can get harder and harder with enemy power increasing as player completes missions (like in a game) or easier and easier as enemy power decreased (as it tend to happens to the losing side in a real conflict), etc.")]
+        public CampaignDifficultyVariation MissionsDifficultyVariation { get; set; }
+
+        [TreeViewProperty("Objective count", "Missions", typeof(Amount), "How many objectives/targets will be present in the mission.")]
         public Amount MissionsObjectiveCount { get; set; }
 
-        /// <summary>
-        /// How far from the player's starting location will the objectives be.
-        /// </summary>
-        [Category("Missions"), DisplayName("Objective distance")]
-        [Description("How far from the player's starting location will the objectives be.")]
-        [TypeConverter(typeof(EnumTypeConverter<Amount>))]
+        [TreeViewProperty("Objective distance", "Missions", typeof(Amount), "How far from the player's starting location will the objectives be.")]
         public Amount MissionsObjectiveDistance { get; set; }
 
-        /// <summary>
-        /// The type of tasking player may recieve in this campaign's missions.
-        /// </summary>
-        [Category("Missions"), DisplayName("Mission tasking")]
-        [Description("The type of tasking player may recieve in this campaign's missions.")]
-        [TypeConverter(typeof(StringArrayTypeConverter))]
-        [Editor(typeof(CheckedListBoxUIEditorDBEntry<DBEntryObjective>), typeof(UITypeEditor))]
-        public string[] MissionsTypes { get { return MissionsTypes_; } set { MissionsTypes_ = TemplateTools.CheckValues<DBEntryObjective>(value, Database.Instance.Common.DefaultObjective); } }
-        private string[] MissionsTypes_;
+        [TreeViewProperty("Objectives", null, typeof(DBEntryObjective), "Allowed objectives in this campaign.")]
+        public string[] Objectives { get; set; }
 
-        /// <summary>
-        /// Amount of civilian traffic on the roads. Can affect performance if set too high.
-        /// </summary>
-        [Category("Options"), DisplayName("Civilian road traffic")]
-        [Description("Amount of civilian traffic on the roads. Can affect performance if set too high.")]
-        [TypeConverter(typeof(EnumTypeConverter<CivilianTraffic>))]
+        [TreeViewProperty("Civilian road traffic", "Options", typeof(CivilianTraffic), "Amount of civilian traffic on the roads. Can affect performance if set too high.")]
         public CivilianTraffic OptionsCivilianTraffic { get; set; }
 
-        /// <summary>
-        /// Preferences and options to apply to this campaign.
-        /// </summary>
-        [Category("Options"), DisplayName("Preferences")]
-        [Description("Preferences and options to apply to this campaign.")]
-        [TypeConverter(typeof(EnumArrayTypeConverter<MissionTemplatePreferences>))]
-        [Editor(typeof(CheckedListBoxUIEditorEnum<MissionTemplatePreferences>), typeof(UITypeEditor))]
-        public MissionTemplatePreferences[] OptionsPreferences { get; set; }
+        [TreeViewProperty("Theater countries coalitions", "Options", typeof(CountryCoalition), "To which coalitions should the countries on the map (and their airbases) belong to?")]
+        public CountryCoalition OptionsTheaterCountriesCoalitions { get; set; }
 
-        /// <summary>
-        /// Realism options to apply to this mission.
-        /// </summary>
-        [Category("Options"), DisplayName("Realism")]
-        [Description("Realism options to apply to this mission.")]
-        [TypeConverter(typeof(EnumArrayTypeConverter<RealismOption>))]
-        [Editor(typeof(CheckedListBoxUIEditorEnum<RealismOption>), typeof(UITypeEditor))]
-        public RealismOption[] OptionsRealism { get; set; }
+        [TreeViewProperty("Realism", null, typeof(RealismOption), "Realism options to apply to this mission.")]
+        public RealismOption[] Realism { get; set; }
 
-        /// <summary>
-        /// Which unit mods should be enabled in this mission? Make sure units mods are installed and active in your version of DCS World or the units won't be spawned.
-        /// </summary>
-        [Category("Options"), DisplayName("Unit mods")]
-        [Description("Which unit mods should be enabled in this mission? Make sure units mods are installed and active in your version of DCS World or the units won't be spawned.")]
-        [TypeConverter(typeof(StringArrayTypeConverter))]
-        [Editor(typeof(CheckedListBoxUIEditorUnitMods), typeof(UITypeEditor))]
-        public string[] OptionsUnitMods { get; set; }
+        [TreeViewProperty("Unit mods", null, typeof(DBEntryDCSMod), "Which unit mods should be enabled in this mission? Make sure units mods are installed and active in your version of DCS World or the units won't be spawned.")]
+        public string[] UnitMods { get; set; }
 
-        /// <summary>
-        /// Type of aircraft the player will fly.
-        /// </summary>
-        [Category("Player"), DisplayName("Aircraft")]
-        [Description("Type of aircraft the player will fly.")]
-        [TypeConverter(typeof(DBEntryPlayerAircraftTypeConverter))]
-        public string PlayerAircraft { get { return PlayerAircraft_; } set { PlayerAircraft_ = TemplateTools.CheckValuePlayerAircraft(value); } }
-        private string PlayerAircraft_;
+        [TreeViewProperty("Aircraft", "Player", typeof(DBPseudoEntryPlayerAircraft), "Type of aircraft the player will fly.")]
+        public string PlayerAircraft { get; set; }
 
-        /// <summary>
-        /// Which coalition does the player belong to?
-        /// </summary>
-        [Category("Player"), DisplayName("Coalition")]
-        [Description("Which coalition does the player belong to?")]
-        [TypeConverter(typeof(EnumTypeConverter<Coalition>))]
-        public Coalition PlayerCoalition { get; set; }
+        [TreeViewProperty("Carrier", "Player", typeof(DBPseudoEntryCarrier), "Type of aircraft carrier the player will be spawned on.")]
+        public string PlayerCarrier { get; set; }
 
-
-        /// <summary>
-        /// Name of the airbase the player must take off from.
-        /// If left empty, or if the airbase doesn't exist in this theater, a random airbase will be selected.
-        /// </summary>
-        [Category("Theater"), DisplayName("Theater starting airbase")]
-        [Description("Name of the airbase the player must take off from. If left empty, or if the airbase doesn't exist in this theater, a random airbase will be selected. Be aware that if the selected airbase doesn't have enough parking spots for the player mission package, some units may not spawn properly.")]
-        [TypeConverter(typeof(DBEntryTheaterAirbaseArrayTypeConverter))]
-        public string PlayerStartingAirbase { get { return PlayerStartingAirbase_; } set { PlayerStartingAirbase_ = TemplateTools.CheckValueTheaterStartingAirbase(value); } }
-        private string PlayerStartingAirbase_;
-
-
-        /// <summary>
-        /// Type of aircraft carrier the player will be spawned on. If none, player will take off from an airbase. Make sure the player aircraft is suitable for the carrier type.
-        /// </summary>
-        [Category("Player"), DisplayName("Carrier (BETA)")]
-        [Description("Type of aircraft carrier the player will be spawned on. If none, player will take off from an airbase. Make sure the player aircraft is suitable for the carrier type.")]
-        [TypeConverter(typeof(DBEntryCarrierConverter))]
-        public string PlayerStartingCarrier { get; set; }
-
-        /// <summary>
-        /// Where should the player take off from?
-        /// </summary>
-        [Category("Player"), DisplayName("Start location")]
-        [Description("Where should the player take off from?")]
-        [TypeConverter(typeof(EnumTypeConverter<PlayerStartLocation>))]
+        [TreeViewProperty("Start location", "Player", typeof(PlayerStartLocation), "Where should the player take off from?")]
         public PlayerStartLocation PlayerStartLocation { get; set; }
 
-        /// <summary>
-        /// Initial quality of enemy air defense.
-        /// </summary>
-        [Category("Situation"), DisplayName("Enemy air defense")]
-        [Description("Initial quality of enemy air defense.")]
-        [TypeConverter(typeof(EnumTypeConverter<AmountN>))]
+        [TreeViewProperty("Starting airbase", "Player", typeof(DBPseudoEntryAirbase), "Name of the airbase the player must take off from. If left empty, or if the airbase doesn't exist in this theater, a random airbase will be selected. Be aware that if the selected airbase doesn't have enough parking spots for the player mission package, some units may not spawn properly.", TreeViewPropertyAttributeFlags.EmptyIsRandom)]
+        public string PlayerStartingAirbase { get; set; }
+
+        [TreeViewProperty("Enemy air defense", "Situation", typeof(AmountN), "Intensity and quality of enemy air defense.")]
         public AmountN SituationEnemyAirDefense { get; set; }
 
-        /// <summary>
-        /// Initial quality of enemy air force.
-        /// </summary>
-        [Category("Situation"), DisplayName("Enemy air force")]
-        [Description("Initial quality of enemy air force.")]
-        [TypeConverter(typeof(EnumTypeConverter<AmountN>))]
+        [TreeViewProperty("Enemy air force", "Situation", typeof(AmountN), "Relative power of the enemy air force.")]
         public AmountN SituationEnemyAirForce { get; set; }
 
-        /// <summary>
-        /// Initial quality of friendly air defense.
-        /// </summary>
-        [Category("Situation"), DisplayName("Friendly air defense")]
-        [Description("Initial quality of friendly air defense.")]
-        [TypeConverter(typeof(EnumTypeConverter<AmountN>))]
+        [TreeViewProperty("Friendly air defense", "Situation", typeof(AmountN), "Intensity and quality of friendly air defense.")]
         public AmountN SituationFriendlyAirDefense { get; set; }
 
-        /// <summary>
-        /// Initial quality of friendly air force.
-        /// </summary>
-        [Category("Situation"), DisplayName("Friendly air force")]
-        [Description("Initial quality of friendly air force.")]
-        [TypeConverter(typeof(EnumTypeConverter<AmountN>))]
+        [TreeViewProperty("Friendly air force", "Situation", typeof(AmountN), "Intensity and quality of friendly air force.")]
         public AmountN SituationFriendlyAirForce { get; set; }
-
-        /// <summary>
-        /// How the situation evolves during the campaign. Campaign can get harder and harder with enemy power increasing as player completes missions (like in a game) or easier and easier as enemy power decreased (as it tend to happens to the losing side in a real conflict), etc.
-        /// </summary>
-        [Category("Situation"), DisplayName("Variation")]
-        [Description("How the situation evolves during the campaign. Campaign can get harder and harder with enemy power increasing as player completes missions (like in a game) or easier and easier as enemy power decreased (as it tend to happens to the losing side in a real conflict), etc.")]
-        [TypeConverter(typeof(EnumTypeConverter<CampaignDifficultyVariation>))]
-        public CampaignDifficultyVariation SituationVariation { get; set; }
 
         /// <summary>
         /// Resets all properties to their default values.
         /// </summary>
         public void Clear()
         {
-            ContextCoalitionsBlue = TemplateTools.CheckValue<DBEntryCoalition>(Database.Instance.Common.DefaultCoalitionBlue);
-            ContextCoalitionsRed = TemplateTools.CheckValue<DBEntryCoalition>(Database.Instance.Common.DefaultCoalitionRed);
+            ContextCoalitionsBlue = Database.Instance.CheckValue<DBEntryCoalition>("USA");
+            ContextCoalitionPlayer = Coalition.Blue;
+            ContextCoalitionsRed = Database.Instance.CheckValue<DBEntryCoalition>("Russia");
             ContextDecade = Decade.Decade2000;
-            ContextTheaterID = TemplateTools.CheckValue<DBEntryTheater>(Database.Instance.Common.DefaultTheater);
-            ContextTheaterRegionsCoalitions = CountryCoalition.Default;
+            ContextTheaterID = Database.Instance.CheckValue<DBEntryTheater>("Caucasus");
 
             EnvironmentBadWeatherChance = AmountN.Random;
             EnvironmentNightMissionChance = AmountN.Random;
             
             MissionsCount = 5;
+            MissionsDifficultyVariation = CampaignDifficultyVariation.Random;
             MissionsObjectiveCount = Amount.Average;
             MissionsObjectiveDistance = Amount.Average;
-            MissionsTypes = new string[] { Database.Instance.Common.DefaultObjective };
-
+            
+            Objectives = new string[0];
+            
+            OptionsTheaterCountriesCoalitions = CountryCoalition.Default;
             OptionsCivilianTraffic = CivilianTraffic.Low;
-            OptionsPreferences = new MissionTemplatePreferences[0];
-            OptionsRealism = new RealismOption[] { RealismOption.NoBDA };
-            OptionsUnitMods = new string[0];
-
-            PlayerAircraft = TemplateTools.CheckValuePlayerAircraft(Database.Instance.Common.DefaultPlayerAircraft);
-            PlayerCoalition = Coalition.Blue;
-            PlayerStartingAirbase_ = "";
-            PlayerStartingCarrier = "";
+            
+            PlayerAircraft = Database.Instance.CheckValue<DBPseudoEntryPlayerAircraft>("Su-25T");
+            PlayerStartingAirbase = "";
+            PlayerCarrier = "";
             PlayerStartLocation = PlayerStartLocation.Runway;
+
+            Realism = new RealismOption[] { RealismOption.DisableDCSRadioAssists, RealismOption.NoBDA };
 
             SituationEnemyAirDefense = AmountN.Random;
             SituationEnemyAirForce = AmountN.Random;
             SituationFriendlyAirDefense = AmountN.Random;
             SituationFriendlyAirForce = AmountN.Random;
-            SituationVariation = CampaignDifficultyVariation.Random;
+
+            UnitMods = new string[0];
         }
 
         /// <summary>
@@ -326,35 +188,37 @@ namespace BriefingRoom4DCSWorld.Campaign
             using (INIFile ini = new INIFile(filePath))
             {
                 ContextCoalitionsBlue = ini.GetValue("Context", "Coalitions.Blue", ContextCoalitionsBlue);
+                ContextCoalitionPlayer = ini.GetValue("Context", "Coalition.Player", ContextCoalitionPlayer);
                 ContextCoalitionsRed = ini.GetValue("Context", "Coalitions.Red", ContextCoalitionsRed);
                 ContextDecade = ini.GetValue("Context", "Decade", ContextDecade);
                 ContextTheaterID = ini.GetValue("Context", "TheaterID", ContextTheaterID);
-                ContextTheaterRegionsCoalitions = ini.GetValue("Context", "TheaterRegionsCoalitions", ContextTheaterRegionsCoalitions);
 
                 EnvironmentBadWeatherChance = ini.GetValue("Environment", "BadWeatherChance", EnvironmentBadWeatherChance);
                 EnvironmentNightMissionChance = ini.GetValue("Environment", "NightMissionChance", EnvironmentNightMissionChance);
 
                 MissionsCount = ini.GetValue("Missions", "Count", MissionsCount);
+                MissionsDifficultyVariation = ini.GetValue("Missions", "DifficultyVariation", MissionsDifficultyVariation);
                 MissionsObjectiveCount = ini.GetValue("Missions", "ObjectiveCount", MissionsObjectiveCount);
                 MissionsObjectiveDistance = ini.GetValue("Missions", "ObjectiveDistance", MissionsObjectiveDistance);
-                MissionsTypes = ini.GetValueArray<string>("Missions", "Types");
+
+                Objectives = ini.GetValueArray<string>("Objectives", "Objectives");
 
                 OptionsCivilianTraffic = ini.GetValue("Options", "CivilianTraffic", OptionsCivilianTraffic);
-                OptionsPreferences = ini.GetValueArray<MissionTemplatePreferences>("Options", "Preferences");
-                OptionsRealism = ini.GetValueArray<RealismOption>("Options", "Realism");
-                OptionsUnitMods = ini.GetValueArray<string>("Options", "UnitMods");
+                OptionsTheaterCountriesCoalitions = ini.GetValue("Options", "TheaterRegionsCoalitions", OptionsTheaterCountriesCoalitions);
 
                 PlayerAircraft = ini.GetValue("Player", "Aircraft", PlayerAircraft);
-                PlayerCoalition = ini.GetValue("Player", "Coalition", PlayerCoalition);
                 PlayerStartingAirbase = ini.GetValue("Player", "StartingAirbase", PlayerStartingAirbase);
-                PlayerStartingCarrier = ini.GetValue("Player", "StartingCarrier", PlayerStartingCarrier);
+                PlayerCarrier = ini.GetValue("Player", "StartingCarrier", PlayerCarrier);
                 PlayerStartLocation = ini.GetValue("Player", "StartLocation", PlayerStartLocation);
 
+                Realism = ini.GetValueArray<RealismOption>("Realism", "Realism");
+                
                 SituationEnemyAirDefense = ini.GetValue("Situation", "Enemy.AirDefense", SituationEnemyAirDefense);
                 SituationEnemyAirForce = ini.GetValue("Situation", "Enemy.AirForce", SituationEnemyAirForce);
                 SituationFriendlyAirDefense = ini.GetValue("Situation", "Friendly.AirDefense", SituationFriendlyAirDefense);
                 SituationFriendlyAirForce = ini.GetValue("Situation", "Friendly.AirForce", SituationFriendlyAirForce);
-                SituationVariation = ini.GetValue("Situation", "Variation", SituationVariation);
+
+                UnitMods = ini.GetValueArray<string>("UnitMods", "UnitMods");
             }
 
             return true;
@@ -369,35 +233,37 @@ namespace BriefingRoom4DCSWorld.Campaign
             using (INIFile ini = new INIFile())
             {
                 ini.SetValue("Context", "Coalitions.Blue", ContextCoalitionsBlue);
+                ini.SetValue("Context", "Coalition.Player", ContextCoalitionPlayer);
                 ini.SetValue("Context", "Coalitions.Red", ContextCoalitionsRed);
                 ini.SetValue("Context", "Decade", ContextDecade);
                 ini.SetValue("Context", "TheaterID", ContextTheaterID);
-                ini.SetValue("Context", "TheaterRegionsCoalitions", ContextTheaterRegionsCoalitions);
 
                 ini.SetValue("Environment", "BadWeatherChance", EnvironmentBadWeatherChance);
                 ini.SetValue("Environment", "NightMissionChance", EnvironmentNightMissionChance);
 
                 ini.SetValue("Missions", "Count", MissionsCount);
+                ini.SetValue("Missions", "DifficultyVariation", MissionsDifficultyVariation);
                 ini.SetValue("Missions", "ObjectiveCount", MissionsObjectiveCount);
                 ini.SetValue("Missions", "ObjectiveDistance", MissionsObjectiveDistance);
-                ini.SetValueArray("Missions", "Types", MissionsTypes);
+
+                ini.SetValueArray("Objectives", "Objectives", Objectives);
 
                 ini.SetValue("Options", "CivilianTraffic", OptionsCivilianTraffic);
-                ini.SetValueArray("Options", "Preferences", OptionsPreferences);
-                ini.SetValueArray("Options", "Realism", OptionsRealism);
-                ini.SetValueArray("Options", "UnitMods", OptionsUnitMods);
+                ini.SetValue("Options", "TheaterRegionsCoalitions", OptionsTheaterCountriesCoalitions);
 
                 ini.SetValue("Player", "Aircraft", PlayerAircraft);
-                ini.SetValue("Player", "Coalition", PlayerCoalition);
                 ini.SetValue("Player", "StartingAirbase", PlayerStartingAirbase);
-                ini.SetValue("Player", "StartingCarrier", PlayerStartingCarrier);
+                ini.SetValue("Player", "StartingCarrier", PlayerCarrier);
                 ini.SetValue("Player", "StartLocation", PlayerStartLocation);
+
+                ini.SetValueArray("Realism", "Realism", Realism);
 
                 ini.SetValue("Situation", "Enemy.AirDefense", SituationEnemyAirDefense);
                 ini.SetValue("Situation", "Enemy.AirForce", SituationEnemyAirForce);
                 ini.SetValue("Situation", "Friendly.AirDefense", SituationFriendlyAirDefense);
                 ini.SetValue("Situation", "Friendly.AirForce", SituationFriendlyAirForce);
-                ini.SetValue("Situation", "Variation", SituationVariation);
+
+                ini.SetValueArray("UnitMods", "UnitMods", UnitMods);
 
                 ini.SaveToFile(filePath);
             }

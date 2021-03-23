@@ -36,7 +36,7 @@ namespace BriefingRoom4DCSWorld.DB
         AlwaysOnMap = 1,
         /// <summary>
         /// Short-range (radar, IR and AAA) should be "embedded" in this group to provide cover.
-        /// Exact amount of air defense depends on the <see cref="Template.MissionTemplate.OppositionAirDefense"/> setting.
+        /// Exact amount of air defense depends on the <see cref="Template.MissionTemplate.SituationEnemyAirDefense"/> setting.
         /// Only valid for groups of category <see cref="UnitCategory.Vehicle"/>.
         /// </summary>
         EmbeddedAirDefense = 2,

@@ -1,0 +1,31 @@
+﻿[GUI]
+DisplayName=Tu-142 Bear
+
+[Unit]
+DCSID=Tu-142
+Families=PlaneRecon
+Flags=
+
+[Aircraft]
+A2ARating.AirToAir=0
+A2ARating.Default=0
+
+CarrierTypes=
+
+CruiseAltitude=30000
+CruiseSpeed=300
+
+PlayerControllable=False
+
+Radio.Modulation=FM
+Radio.Frequency=251.0
+
+Payload.Common=["chaff"] = 48,["flare"] = 48,["fuel"] = 87000
+
+;Default: Kh-35*6
+Payload.Decade2000.Task.Default.Pylon01={C42EE4C3-355C-4B83-8B22-B39430B8F4AE}
+
+[Operators]
+India=Decade1990,Decade2010
+Russia=Decade1970,Decade2020
+Ukraine=Decade1990,Decade2000

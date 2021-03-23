@@ -18,73 +18,64 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.Attributes;
+
 namespace BriefingRoom4DCSWorld
 {
     public enum RealismOption
     {
-        /// <summary>
-        /// Enables bird strikes.
-        /// </summary>
+        [TreeViewEnum("Bird strikes", "Enable bird strikes.")]
         BirdStrikes,
-        /// <summary>
-        /// Disables units labels.
-        /// </summary>
+
+        [TreeViewEnum("Disable radio assists", "Disable DCS radio assists (\"fire\" when weapon release parameters are met, warning when a threat approaches, etc.)")]
+        DisableDCSRadioAssists,
+
+        [TreeViewEnum("Hide enemy units", "Hide enemy units on the F10 map, mission planning, MFD SA pages, etc.")]
+        HideEnemyUnits,
+
+        [TreeViewEnum("Hide labels", "Disable unit labels.")]
         HideLabels,
-        /// <summary>
-        /// Hides all units (INCLUDING the player) on the map. Supersedes <see cref="MapDisableAllButSelf"/> and <see cref="MapDisableAllButUnitsKnown"/>.
-        /// </summary>
+
+        [TreeViewEnum("Map, disable all", "Hide all units (INCLUDING the player) on the F10 map. Supersedes \"Map, disable all but self\" and \"Map, disable all but known units\".")]
         MapDisableAll,
-        /// <summary>
-        /// Hides all units except the player on the map. Supersedes <see cref="MapDisableAllButUnitsKnown"/>.
-        /// </summary>
+
+        [TreeViewEnum("Map, disable all but self", "Hide all units except the player on the F10 map. Supersedes \"Map, disable all but known units\".")]
         MapDisableAllButSelf,
-        /// <summary>
-        /// Hides all units except those in view of an ally unit ("fog of war" mode).
-        /// </summary>
+
+        [TreeViewEnum("Map, disable all but known units", "Hide all units except those in view of an ally unit (\"fog of war\" mode).")]
         MapDisableAllButUnitsKnown,
-        /// <summary>
-        /// Disabled battle-damage assessment when players destroy something.
-        /// </summary>
+
+        [TreeViewEnum("No BDA", "Disable DCS World's battle-damage assessment log displayed when players damage or destroy something.")]
         NoBDA,
-        /// <summary>
-        /// Disable all cheats (infinite weapons, infinite fuel, invulerability).
-        /// </summary>
+
+        [TreeViewEnum("No cheats", "Disable all cheats (infinite weapons, infinite fuel, invulerability).")]
         NoCheats,
-        /// <summary>
-        /// Players cannot respawn in a new plane on crash ("single life" mode).
-        /// </summary>
+
+        [TreeViewEnum("No crash recovery", "Players cannot respawn in a new plane when crashing (\"single life\" mode).")]
         NoCrashRecovery,
-        /// <summary>
-        /// Disable easy comms.
-        /// </summary>
+
+        [TreeViewEnum("No easy comms", "Enforce realistic communications.")]
         NoEasyComms,
-        /// <summary>
-        /// Disable external views.
-        /// </summary>
+
+        [TreeViewEnum("No external views", "Disable external views.")]
         NoExternalViews,
-        /// <summary>
-        /// Disable "game mode" simplfications (flight and avionics).
-        /// </summary>
+
+        [TreeViewEnum("No game mode", "Disable \"game mode\" simplfications (flight model and avionics).")]
         NoGameMode,
-        /// <summary>
-        /// Disable overlays (minimap, 
-        /// </summary>
+
+        [TreeViewEnum("No overlays", "Disable overlays (arcade minimap, etc.)")]
         NoOverlays,
-        /// <summary>
-        /// Disable padlock views.
-        /// </summary>
+
+        [TreeViewEnum("No padlock", "Disable padlock views.")]
         NoPadlock,
-        /// <summary>
-        /// Enables random failures.
-        /// </summary>
+
+        [TreeViewEnum("Random failures", "Enable random aircraft system failures.")]
         RandomFailures,
-        /// <summary>
-        /// Enables realistic G-effects.
-        /// </summary>
+
+        [TreeViewEnum("Realistic G-effects", "Enable ealistic G-effects.")]
         RealisticGEffects,
-        /// <summary>
-        /// Enabled wake turbulence.
-        /// </summary>
+
+        [TreeViewEnum("Wake turbulence", "Enable realistic wake turbulence.")]
         WakeTurbulence
     }
 }

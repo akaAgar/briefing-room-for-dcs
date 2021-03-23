@@ -18,6 +18,8 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.Attributes;
+
 namespace BriefingRoom4DCSWorld
 {
     /// <summary>
@@ -27,25 +29,19 @@ namespace BriefingRoom4DCSWorld
     /// </summary>
     public enum BRSkillLevel
     {
-        /// <summary>
-        /// Select a random value for each unit.
-        /// </summary>
+        [TreeViewEnum("Random", "Select a random AI skill level for each unit.")]
         Random,
-        /// <summary>
-        /// Easy AI
-        /// </summary>
+
+        [TreeViewEnum("Rookie", "Easy AI.")]
         Rookie,
-        /// <summary>
-        /// Average AI
-        /// </summary>
+
+        [TreeViewEnum("Regular", "Average AI.")]
         Regular,
-        /// <summary>
-        /// Hard AI
-        /// </summary>
+
+        [TreeViewEnum("Veteran", "Hard AI.")]
         Veteran,
-        /// <summary>
-        /// Elite AI
-        /// </summary>
+        
+        [TreeViewEnum("Ace", "Elite AI.")]
         Ace
     }
 }

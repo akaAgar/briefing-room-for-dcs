@@ -56,23 +56,23 @@ namespace BriefingRoom4DCSWorld.Generator
             ally = _ally;
             if (ally)
             {
-                airDefense = template.PlayerFriendlyAirDefense.Get();
+                airDefense = template.SituationFriendlyAirDefense.Get();
                 centerPoint = mission.InitialPosition;
                 opposingPoint = mission.ObjectivesCenter;
                 distsFromCenter = Database.Instance.Common.AllyAirDefenseDistanceFromTakeOffLocation;
                 minDistFromOpposingPoint = Database.Instance.Common.AllyAirDefenseDistanceFromObjectives;
-                skillLevel = template.PlayerAISkillLevel;
+                skillLevel = template.SituationFriendlyAISkillLevel;
                 optionsShowEnemyUnits = 0;
                 return;
             }
 
-            airDefense = template.OppositionAirDefense.Get();
+            airDefense = template.SituationEnemyAirDefense.Get();
             centerPoint = mission.ObjectivesCenter;
             opposingPoint = mission.InitialPosition;
             distsFromCenter = Database.Instance.Common.EnemyAirDefenseDistanceFromObjectives;
             minDistFromOpposingPoint = Database.Instance.Common.EnemyAirDefenseDistanceFromTakeOffLocation;
-            skillLevel = template.OppositionSkillLevelGround;
-            optionsShowEnemyUnits = template.OptionsPreferences.Contains(MissionTemplatePreferences.HideEnemyUnits) ? DCSMissionUnitGroupFlags.Hidden : 0;
+            skillLevel = template.SituationEnemySkillLevelGround;
+            optionsShowEnemyUnits = template.Realism.Contains(RealismOption.HideEnemyUnits) ? DCSMissionUnitGroupFlags.Hidden : 0;
         }
 
         /// <summary>
@@ -87,13 +87,13 @@ namespace BriefingRoom4DCSWorld.Generator
         {
             foreach (AirDefenseRange airDefenseRange in (AirDefenseRange[])Enum.GetValues(typeof(AirDefenseRange)))
             {
-                DebugLog.Instance.WriteLine($"Adding {Toolbox.SplitCamelCase(airDefenseRange)} air defense", 1);
+                DebugLog.Instance.WriteLine($"Adding {airDefenseRange} air defense", 1);
                 if (
                     ((airDefenseRange == AirDefenseRange.ShortRange) && objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.NoEnemyAirDefenseShort)) ||
                     ((airDefenseRange == AirDefenseRange.MediumRange) && objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.NoEnemyAirDefenseMedium)) ||
                     ((airDefenseRange == AirDefenseRange.LongRange) && objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.NoEnemyAirDefenseLong)))
                 {
-                    DebugLog.Instance.WriteLine($"{Toolbox.SplitCamelCase(airDefenseRange)} air defense disabled for this mission objective type, not spawning any units", 1);
+                    DebugLog.Instance.WriteLine($"{airDefenseRange} air defense disabled for this mission objective type, not spawning any units", 1);
                     continue;
                 }
 

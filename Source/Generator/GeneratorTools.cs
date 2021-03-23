@@ -86,8 +86,11 @@ namespace BriefingRoom4DCSWorld.Generator
         /// </summary>
         /// <typeparam name="T">The type of <see cref="DBEntry"/> to look for</typeparam>
         /// <param name="id">The id of the entry to look for</param>
-        public static void CheckDBForMissingEntry<T>(string id) where T : DBEntry
+        /// <param name="allowEmpty">If true, null or empty strings will be allowed</param>
+        public static void CheckDBForMissingEntry<T>(string id, bool allowEmpty = false) where T : DBEntry
         {
+            if (string.IsNullOrEmpty(id) && allowEmpty) return;
+
             if (!Database.Instance.EntryExists<T>(id))
                 throw new Exception($"{typeof(T).Name} \"{id}\" not found.");
         }
@@ -136,18 +139,18 @@ namespace BriefingRoom4DCSWorld.Generator
         public static Coalition? GetEnemySpawnPointCoalition(MissionTemplate template)
         {
             // No preference for enemy units location
-            if (template.OppositionUnitsLocation == SpawnPointPreferredCoalition.Any) return null;
+            if (template.OptionsEnemyUnitsLocation == SpawnPointPreferredCoalition.Any) return null;
 
             // All countries belong to the same coalition anyway, so preference have no meaning.
-            if ((template.TheaterRegionsCoalitions == CountryCoalition.AllBlue) ||
-                (template.TheaterRegionsCoalitions == CountryCoalition.AllRed))
+            if ((template.OptionsTheaterCountriesCoalitions == CountryCoalition.AllBlue) ||
+                (template.OptionsTheaterCountriesCoalitions == CountryCoalition.AllRed))
                 return null;
 
-            if (template.OppositionUnitsLocation == SpawnPointPreferredCoalition.Blue)
-                return (template.TheaterRegionsCoalitions == CountryCoalition.Inverted) ? Coalition.Red : Coalition.Blue;
+            if (template.OptionsEnemyUnitsLocation == SpawnPointPreferredCoalition.Blue)
+                return (template.OptionsTheaterCountriesCoalitions == CountryCoalition.Inverted) ? Coalition.Red : Coalition.Blue;
 
             // Last possibility is "template.OppositionUnitsLocation == SpawnPointPreferredCoalition.Red"
-            return (template.TheaterRegionsCoalitions == CountryCoalition.Inverted) ? Coalition.Blue : Coalition.Red;
+            return (template.OptionsTheaterCountriesCoalitions == CountryCoalition.Inverted) ? Coalition.Blue : Coalition.Red;
         }
 
         /// <summary>
@@ -158,18 +161,18 @@ namespace BriefingRoom4DCSWorld.Generator
         public static Coalition? GetAllySpawnPointCoalition(MissionTemplate template)
         {
             // No preference for enemy units location
-            if (template.OppositionUnitsLocation != SpawnPointPreferredCoalition.Any) return null;
+            if (template.OptionsEnemyUnitsLocation != SpawnPointPreferredCoalition.Any) return null;
 
             // All countries belong to the same coalition anyway, so preference have no meaning.
-            if ((template.TheaterRegionsCoalitions != CountryCoalition.AllBlue) &&
-                (template.TheaterRegionsCoalitions != CountryCoalition.AllRed))
+            if ((template.OptionsTheaterCountriesCoalitions != CountryCoalition.AllBlue) &&
+                (template.OptionsTheaterCountriesCoalitions != CountryCoalition.AllRed))
                 return null;
 
-            if (template.OppositionUnitsLocation == SpawnPointPreferredCoalition.Blue)
-                return (template.TheaterRegionsCoalitions == CountryCoalition.Inverted) ? Coalition.Blue : Coalition.Red;
+            if (template.OptionsEnemyUnitsLocation == SpawnPointPreferredCoalition.Blue)
+                return (template.OptionsTheaterCountriesCoalitions == CountryCoalition.Inverted) ? Coalition.Blue : Coalition.Red;
 
             // Last possibility is "template.OppositionUnitsLocation == SpawnPointPreferredCoalition.Red"
-            return (template.TheaterRegionsCoalitions == CountryCoalition.Inverted) ? Coalition.Red : Coalition.Blue;
+            return (template.OptionsTheaterCountriesCoalitions == CountryCoalition.Inverted) ? Coalition.Red : Coalition.Blue;
         }
 
         /// <summary>

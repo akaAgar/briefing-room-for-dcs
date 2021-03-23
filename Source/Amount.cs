@@ -18,6 +18,8 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.Attributes;
+
 namespace BriefingRoom4DCSWorld
 {
     /// <summary>
@@ -25,25 +27,19 @@ namespace BriefingRoom4DCSWorld
     /// </summary>
     public enum Amount
     {
-        /// <summary>
-        /// Very low amount
-        /// </summary>
+        [TreeViewEnum("Very low", "Very low amount.")]
         VeryLow,
-        /// <summary>
-        /// Low amount
-        /// </summary>
+
+        [TreeViewEnum("Low", "Low amount.")]
         Low,
-        /// <summary>
-        /// Average amount
-        /// </summary>
+
+        [TreeViewEnum("Average", "Average/balanced amount.")]
         Average,
-        /// <summary>
-        /// High amount
-        /// </summary>
+
+        [TreeViewEnum("High", "High amount.")]
         High,
-        /// <summary>
-        /// Very high amount
-        /// </summary>
+
+        [TreeViewEnum("Very high", "Very high amount.")]
         VeryHigh
     }
 }

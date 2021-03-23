@@ -58,18 +58,19 @@ namespace BriefingRoom4DCSWorld.Generator
         public void GenerateCarriers(DCSMission mission, MissionTemplate template, DBEntryCoalition playerCoalitionDB)
         {
              var carriers = new string[]{};
-             if(template.GetMissionType() == MissionType.SinglePlayer){
-                if (string.IsNullOrEmpty(template.PlayerSPCarrier))
+             if(template.MissionType == MissionType.SinglePlayer){
+                if (string.IsNullOrEmpty(template.PlayerFlightGroups[0].Carrier))
                     return;
-                carriers = carriers.Append(template.PlayerSPCarrier).ToArray();
+                carriers = carriers.Append(template.PlayerFlightGroups[0].Carrier).ToArray();
              }
              else {
-                  carriers = template.PlayerMPFlightGroups.Aggregate(new string[]{},(acc, x) => !string.IsNullOrEmpty(x.Carrier)? acc.Append(x.Carrier).ToArray() : acc);
+                  carriers = template.PlayerFlightGroups.Aggregate(new string[]{},(acc, x) => !string.IsNullOrEmpty(x.Carrier)? acc.Append(x.Carrier).ToArray() : acc);
              }
 
             if (carriers.Length == 0)
                 return;
-            foreach (string carrier in carriers.Distinct())
+
+            foreach (string carrier in carriers)
             {
 
             DBEntryTheaterSpawnPoint? spawnPoint =
@@ -96,7 +97,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 UnitFamily.ShipTransport
             })
             {
-                ships = ships.Append(playerCoalitionDB.GetRandomUnits(ship, mission.DateTime.Decade, 1, template.OptionsUnitMods)[0]).ToArray();
+                ships = ships.Append(playerCoalitionDB.GetRandomUnits(ship, mission.DateTime.Decade, 1, template.UnitMods)[0]).ToArray();
             }
             DebugLog.Instance.WriteLine($"Ships to be spawned {ships.Aggregate((acc, x) => $"{acc}, {x}")}", 1, DebugLogMessageErrorLevel.Warning);
             group = UnitMaker.AddUnitGroup(
@@ -104,7 +105,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 Side.Ally,
                 spawnPoint.Value.Coordinates,
                 "GroupCarrier", "UnitShip",
-                Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel));
+                Toolbox.BRSkillLevelToDCSSkillLevel(template.SituationFriendlyAISkillLevel));
 
             if (group == null)
                 DebugLog.Instance.WriteLine($"Failed to create AI Carrier with ship of type \"{carrier}\".", 1, DebugLogMessageErrorLevel.Warning);

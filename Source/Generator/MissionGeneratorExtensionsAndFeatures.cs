@@ -57,7 +57,7 @@ namespace BriefingRoom4DCSWorld.Generator
         {
             int i, j;
 
-            DBEntryExtension[] extensions = Database.Instance.GetEntries<DBEntryExtension>(template.OptionsScriptExtensions);
+            DBEntryExtension[] extensions = Database.Instance.GetEntries<DBEntryExtension>(template.ScriptExtensions);
             foreach (DBEntryExtension extension in extensions)
                 AddIncludedFiles(mission, extension);
 
@@ -77,14 +77,14 @@ namespace BriefingRoom4DCSWorld.Generator
                 string[] units =
                     coalitionsDB[(int)((side == Side.Ally) ? mission.CoalitionPlayer : mission.CoalitionEnemy)].GetRandomUnits(
                         unitFamily, mission.DateTime.Decade,
-                        feature.UnitGroup.Count.GetValue(), template.OptionsUnitMods);
+                        feature.UnitGroup.Count.GetValue(), template.UnitMods);
 
                 DCSSkillLevel skillLevel;
                 if (side == Side.Ally)
-                    skillLevel = Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel);
+                    skillLevel = Toolbox.BRSkillLevelToDCSSkillLevel(template.SituationFriendlyAISkillLevel);
                 else
                     skillLevel = Toolbox.IsUnitFamilyAircraft(unitFamily) ?
-                        Toolbox.BRSkillLevelToDCSSkillLevel(template.OppositionSkillLevelAir) : Toolbox.BRSkillLevelToDCSSkillLevel(template.OppositionSkillLevelGround);
+                        Toolbox.BRSkillLevelToDCSSkillLevel(template.SituationEnemySkillLevelAir) : Toolbox.BRSkillLevelToDCSSkillLevel(template.SituationEnemySkillLevelGround);
 
                 DCSMissionUnitGroupFlags flags = 0;
 

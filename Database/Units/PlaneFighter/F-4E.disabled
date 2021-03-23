@@ -1,4 +1,7 @@
-﻿[Unit]
+﻿[GUI]
+DisplayName=F-4E
+
+[Unit]
 DCSID=F-4E
 Families=PlaneFighter,PlaneAttack,PlaneSEAD,PlaneStrike
 Flags=EPLRS

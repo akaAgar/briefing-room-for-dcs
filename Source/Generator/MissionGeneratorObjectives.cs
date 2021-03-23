@@ -101,9 +101,9 @@ namespace BriefingRoom4DCSWorld.Generator
 
                 // Compute a random distance from last position, in nautical miles
                 double objectiveDistanceNM =
-                    (template.ObjectiveDistanceNM == 0) ?
-                    Toolbox.RandomInt(TemplateTools.MIN_OBJECTIVE_DISTANCE, TemplateTools.MAX_OBJECTIVE_DISTANCE) :
-                    template.ObjectiveDistanceNM;
+                    (template.ObjectiveDistance == 0) ?
+                    Toolbox.RandomInt(MissionTemplate.OBJECTIVE_DISTANCE_INCREMENT, MissionTemplate.MAX_OBJECTIVE_DISTANCE) :
+                    template.ObjectiveDistance;
 
                 if (i > 0) // Objective is not the first one, spawn it close to the previous objective
                     objectiveDistanceNM /= 5.0;

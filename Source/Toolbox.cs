@@ -107,6 +107,13 @@ namespace BriefingRoom4DCSWorld
                 (GetUnitCategoryFromUnitFamily(value) == UnitCategory.Plane);
         }
 
+        public static object LowerCaseFirstLetter(string str)
+        {
+            if (string.IsNullOrEmpty(str)) return str;
+            if (str.Length == 1) return str.ToLowerInvariant();
+            return str.Substring(0, 1).ToLowerInvariant() + str.Substring(1);
+        }
+
         /// <summary>
         /// Maximum number of aircraft per flightgroup.
         /// </summary>
@@ -653,56 +660,6 @@ namespace BriefingRoom4DCSWorld
             if (numberStr.EndsWith("1")) return $"{number}st";
 
             return $"{number}th";
-        }
-
-        /// <summary>
-        /// Turns a camel cased enum name into a string with spaces between words.
-        /// </summary>
-        /// <typeparam name="T">Type of enum</typeparam>
-        /// <param name="enumValue">Enum value</param>
-        /// <returns>A string</returns>
-        public static string SplitCamelCase<T>(T enumValue) where T : struct
-        {
-            string input = enumValue.ToString();
-            string output = "";
-
-            for (int i = 0; i < input.Length; i++)
-            {
-                if (i == 0)
-                {
-                    output += input[i].ToString().ToUpperInvariant();
-                    continue;
-                }
-                else if (i == input.Length - 1)
-                {
-                    output += input[i];
-                    break;
-                }
-
-                if (char.IsUpper(input[i]))
-                {
-                    if (!char.IsUpper(input[i - 1]))
-                    {
-                        output += " ";
-                        output += input[i];
-                        continue;
-                    }
-
-                    if (!char.IsUpper(input[i + 1]))
-                    {
-                        output += " ";
-                        output += input[i].ToString().ToLowerInvariant();
-                        continue;
-                    }
-
-                }
-
-                output += input[i];
-            }
-
-            return output;
-
-            //return Regex.Replace(Regex.Replace(enumValue.ToString(), @"(\P{Ll})(\P{Ll}\p{Ll})", "$1 $2"), @"(\p{Ll})(\P{Ll})", "$1 $2");
         }
 
         /// <summary>

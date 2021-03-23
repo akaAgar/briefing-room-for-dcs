@@ -80,7 +80,7 @@ namespace BriefingRoom4DCSWorld.Generator
         public void SpawnUnitGroups(DCSMission mission, MissionTemplate template, DBUnitGroup unitGroup, DBEntryCoalition[] coalitionsDB, Side side, Coalition coalition)
         {
             DCSMissionUnitGroupFlags flags =
-                GeneratorTools.ShouldUnitBeHidden(unitGroup, !template.OptionsPreferences.Contains(MissionTemplatePreferences.HideEnemyUnits)) ?
+                GeneratorTools.ShouldUnitBeHidden(unitGroup, !template.Realism.Contains(RealismOption.HideEnemyUnits)) ?
                 DCSMissionUnitGroupFlags.Hidden : 0;
 
             for (int i = 0; i < mission.Objectives.Length; i++)
@@ -92,16 +92,16 @@ namespace BriefingRoom4DCSWorld.Generator
                 string[] units =
                     coalitionsDB[(int)coalition].GetRandomUnits(
                         mission.Objectives[i].TargetFamily.Value, mission.DateTime.Decade,
-                        unitGroup.Count.GetValue(), template.OptionsUnitMods);
+                        unitGroup.Count.GetValue(), template.UnitMods);
 
                 // Pick the skill level once for each objective so not all target groups have the same skill level when a "random" skill level is chosen.
                 DCSSkillLevel skillLevel;
                 if (side == Side.Ally)
-                    skillLevel = Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel);
+                    skillLevel = Toolbox.BRSkillLevelToDCSSkillLevel(template.SituationFriendlyAISkillLevel);
                 else
                     skillLevel = 
                         Toolbox.IsUnitFamilyAircraft(mission.Objectives[i].TargetFamily.Value) ?
-                        Toolbox.BRSkillLevelToDCSSkillLevel(template.OppositionSkillLevelAir) : Toolbox.BRSkillLevelToDCSSkillLevel(template.OppositionSkillLevelGround);
+                        Toolbox.BRSkillLevelToDCSSkillLevel(template.SituationEnemySkillLevelAir) : Toolbox.BRSkillLevelToDCSSkillLevel(template.SituationEnemySkillLevelGround);
 
                 DCSMissionUnitGroup group;
                 DBEntryTheaterSpawnPoint? spawnPoint = null;
@@ -121,13 +121,13 @@ namespace BriefingRoom4DCSWorld.Generator
                 if (unitGroup.Flags.HasFlag(DBUnitGroupFlags.EmbeddedAirDefense)) // Add "embedded" close range surface-to-air defense
                 {
                     if (Toolbox.GetUnitCategoryFromUnitFamily(mission.Objectives[i].TargetFamily.Value) == UnitCategory.Vehicle) // Objectives are ground vehicles, insert air defense units in the group itself
-                        units = GeneratorTools.AddEmbeddedAirDefense(units, template.OppositionAirDefense, coalitionsDB[(int)coalition], mission.DateTime.Decade, template.OptionsUnitMods);
+                        units = GeneratorTools.AddEmbeddedAirDefense(units, template.SituationEnemyAirDefense, coalitionsDB[(int)coalition], mission.DateTime.Decade, template.UnitMods);
                     else // Objectives are not ground vehicles, create another group nearby
                     {
                         // TODO: make sure the group is not spawn in water
                         string[] airDefenseGroupUnits = new string[0];
                         for (int j = 0; j < 2; j++)
-                            airDefenseGroupUnits = GeneratorTools.AddEmbeddedAirDefense(airDefenseGroupUnits, template.OppositionAirDefense, coalitionsDB[(int)coalition], mission.DateTime.Decade, template.OptionsUnitMods);
+                            airDefenseGroupUnits = GeneratorTools.AddEmbeddedAirDefense(airDefenseGroupUnits, template.SituationEnemyAirDefense, coalitionsDB[(int)coalition], mission.DateTime.Decade, template.UnitMods);
 
                         UnitMaker.AddUnitGroup(
                             mission, airDefenseGroupUnits,

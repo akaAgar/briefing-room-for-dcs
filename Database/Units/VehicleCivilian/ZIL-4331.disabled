@@ -1,4 +1,7 @@
-﻿[Unit]
+﻿[GUI]
+DisplayName=ZIL-4331
+
+[Unit]
 DCSID=ZIL-4331
 Families=VehicleCivilian
 Flags=

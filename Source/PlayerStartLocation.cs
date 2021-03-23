@@ -18,6 +18,8 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.Attributes;
+
 namespace BriefingRoom4DCSWorld
 {
     /// <summary>
@@ -25,18 +27,16 @@ namespace BriefingRoom4DCSWorld
     /// </summary>
     public enum PlayerStartLocation
     {
-        /// <summary>
-        /// Player(s) start on ramp, plane cold, and must perform the start up procedure.
-        /// </summary>
+        [TreeViewEnum("Parking, cold", "Player(s) start on ramp, plane cold, and must perform the start up procedure.")]
         ParkingCold,
         /// <summary>
-        /// Player(s) start on ramp, plane hot, ready to taxi to the runway.
+        /// 
         /// </summary>
+
+        [TreeViewEnum("Parking, hot", "Player(s) start on ramp, plane hot, ready to taxi to the runway.")]
         ParkingHot,
-        /// <summary>
-        /// Player(s) start on the runway, ready to takoff.
-        /// Not available in multiplayer missions (automatically changed to <see cref="ParkingHot"/>.
-        /// </summary>
+
+        [TreeViewEnum("Runway", "Player(s) start on the runway, ready to takoff. Not available in multiplayer missions (automatically changed to \"Parking, hot\").")]
         Runway
     }
 }

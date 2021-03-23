@@ -74,7 +74,7 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="TACAN">TACAN info for the unit, if any</param>
         private UnitFlightGroupBriefingDescription AddSupportUnit(DCSMission mission, DBEntryCoalition allyCoalitionDB, UnitFamily unitFamily, string[] unitMods, Tacan TACAN = null)
         {
-            DebugLog.Instance.WriteLine($"Adding {Toolbox.SplitCamelCase(unitFamily)} support unit...", 1);
+            DebugLog.Instance.WriteLine($"Adding {unitFamily} support unit...", 1);
 
             string[] validUnitTypes = allyCoalitionDB.GetRandomUnits(unitFamily, mission.DateTime.Decade, 1, unitMods, false);
 

@@ -55,11 +55,6 @@ namespace BriefingRoom4DCSWorld.DB
         public DatabaseCommon Common { get; set; }
 
         /// <summary>
-        /// Localized strings.
-        /// </summary>
-        public DatabaseStrings Strings { get; set; }
-
-        /// <summary>
         /// Array of countries ID used by <see cref="DBEntryCoalition"/> and <see cref="DBEntryUnit"/>
         /// </summary>
         public string[] Countries { get; set; }
@@ -70,20 +65,13 @@ namespace BriefingRoom4DCSWorld.DB
         private readonly Dictionary<Type, Dictionary<string, DBEntry>> DBEntries;
 
         /// <summary>
-        /// List of unit mods ID.
-        /// </summary>
-        public string[] UnitsMods { get; set; }
-
-        /// <summary>
         /// Constructor.
         /// </summary>
         public Database()
         {
             Common = new DatabaseCommon();
-            Strings = new DatabaseStrings();
             Countries = new string[0];
             DBEntries = new Dictionary<Type, Dictionary<string, DBEntry>>();
-            UnitsMods = new string[0];
         }
 
         /// <summary>
@@ -120,7 +108,12 @@ namespace BriefingRoom4DCSWorld.DB
         /// <returns>An array of entries.</returns>
         public T[] GetAllEntries<T>() where T : DBEntry
         {
-            return (from d in DBEntries[typeof(T)].Values select (T)d).ToArray();
+            return (from entry in DBEntries[typeof(T)].Values select (T)entry).ToArray();
+        }
+
+        public DBEntry[] GetAllEntries(Type entryType)
+        {
+            return (from entry in DBEntries[entryType].Values select entry).ToArray();
         }
 
         /// <summary>
@@ -157,18 +150,6 @@ namespace BriefingRoom4DCSWorld.DB
         }
 
         /// <summary>
-        /// Returns IDs of all <see cref="DBEntryUnit"/> describing a Carrier.
-        /// </summary>
-        /// <returns>Array of IDs</returns>
-        public string[] GetAllCarrierID()
-        {
-            return
-                (from DBEntryUnit unit in GetAllEntries<DBEntryUnit>()
-                 where (unit.Families.Intersect(Toolbox.SHIP_CARRIER_FAMILIES).Count() > 0)
-                 select unit.ID).OrderBy(x => x).ToArray();
-        }
-
-        /// <summary>
         /// Returns all airfields of all theaters as an array of strings in the "TheaterID, AirbaseID"
         /// </summary>
         /// <returns>An array of strings</returns>
@@ -195,6 +176,13 @@ namespace BriefingRoom4DCSWorld.DB
             return (T)DBEntries[typeof(T)][id];
         }
 
+        public DBEntry GetEntry(Type entryType, string id)
+        {
+            id = id ?? "";
+            if (!DBEntries[entryType].ContainsKey(id)) return null;
+            return DBEntries[entryType][id];
+        }
+
         /// <summary>
         /// Returns all existing entries of type T with an ID in array ids;
         /// </summary>
@@ -205,5 +193,41 @@ namespace BriefingRoom4DCSWorld.DB
         {
             return (from T entry in GetAllEntries<T>() where ids.Distinct().OrderBy(x => x).Contains(entry.ID) select entry).ToArray();
         }
+
+        /// <summary>
+        /// Checks if the proposed ID exists in the database, or return a default value if it doesn't.
+        /// </summary>
+        /// <typeparam name="T">Database entry type to look for</typeparam>
+        /// <param name="value">Value to check</param>
+        /// <param name="defaultValue">Default value to return if the checked value is not found</param>
+        /// <param name="allowEmpty">If true, null or empty values will be allowed (and "" will be returned)</param>
+        /// <returns>The value if it is found in the library, or a default value if desired value is not found</returns>
+        public string CheckValue<T>(string value, string defaultValue = "", bool allowEmpty = false) where T : DBEntry
+        {
+            if (string.IsNullOrEmpty(value) && allowEmpty) return "";
+
+            if (EntryExists<T>(value)) return value; // Value exists, return it
+            if (EntryExists<T>(defaultValue)) return defaultValue; // Value doesn't exist, return the default value
+            if (string.IsNullOrEmpty(defaultValue) && allowEmpty) return "";
+            return GetAllEntriesIDs<T>()[0]; // Neither value exist, return the first value found
+        }
+
+        /// <summary>
+        /// Checks if the proposed IDs exists in the database, and remove invalid ones from the array.
+        /// </summary>
+        /// <typeparam name="T">Database entry type to look for</typeparam>
+        /// <param name="value">Array of IDs to check</param>
+        /// <param name="defaultValue">Default ID to return if no valid ID is found in the array. Leave empty to return an empty array if no valid ID is found.</param>
+        /// <returns>An array of IDs</returns>
+        public string[] CheckValues<T>(string[] values, string defaultValue = "") where T : DBEntry
+        {
+            values = (from string v in values where EntryExists<T>(v) select v).Distinct().OrderBy(x => x).ToArray();
+
+            if ((values.Length == 0) && EntryExists<T>(defaultValue))
+                values = new string[] { defaultValue };
+
+            return values;
+        }
+
     }
 }

@@ -83,5 +83,10 @@ namespace BriefingRoom4DCSWorld
         /// Path to the Media subdirectory.
         /// </summary>
         public static string MEDIA { get; } = $"{ROOT}Media\\";
+
+        /// <summary>
+        /// Path to the Media\Icons16 subdirectory.
+        /// </summary>
+        public static string MEDIA_ICONS16 { get; } = $"{MEDIA}Icons16\\";
     }
 }

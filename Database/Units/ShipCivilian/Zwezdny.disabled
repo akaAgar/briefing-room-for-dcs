@@ -1,4 +1,7 @@
-﻿[Unit]
+﻿[GUI]
+DisplayName=Zwezdny
+
+[Unit]
 DCSID=ZWEZDNY
 Families=ShipCivilian
 Flags=

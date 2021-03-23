@@ -18,6 +18,8 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCSWorld.Attributes;
+
 namespace BriefingRoom4DCSWorld
 {
     /// <summary>
@@ -25,13 +27,10 @@ namespace BriefingRoom4DCSWorld
     /// </summary>
     public enum UnitSystem
     {
-        /// <summary>
-        /// Imperial system (nautical miles, knots, feet...)
-        /// </summary>
+        [TreeViewEnum("Imperial", "Imperial units (nautical miles, knots, feet...)")]
         Imperial,
-        /// <summary>
-        /// Metric system (kilometers, km/h, meters...)
-        /// </summary>
+
+        [TreeViewEnum("Metric", "Metric units (kilometers, Km/h, meters...)")]
         Metric
     }
 }
