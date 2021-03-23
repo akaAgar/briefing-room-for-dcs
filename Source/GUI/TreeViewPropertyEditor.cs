@@ -71,7 +71,6 @@ namespace BriefingRoom4DCSWorld.GUI
             EditorTreeView.Font = GUITools.BLUEPRINT_FONT;
             EditorTreeView.BackColor = GUITools.BLUEPRINT_BACKCOLOR_TREEVIEW;
             EditorTreeView.ForeColor = GUITools.BLUEPRINT_FORECOLOR;
-            //EditorTreeView.TreeViewNodeSorter = new TreeViewPropertyEditorNodeSorter();
             EditorTreeView.ShowPlusMinus = false;
             EditorTreeView.ShowRootLines = false;
 
@@ -396,26 +395,5 @@ namespace BriefingRoom4DCSWorld.GUI
         {
 
         }
-
-        //private class TreeViewPropertyEditorNodeSorter : IComparer
-        //{
-        //    private bool IsPriorityNode(TreeNode node)
-        //    {
-        //        if (node.Nodes.Count > 0) return false;
-        //        if (node.Name == null) return true;
-        //        if (node.Name.StartsWith("*")) return false;
-        //        return true;
-        //    }
-
-        //    public int Compare(object object1, object object2)
-        //    {
-        //        TreeNode node1 =  (TreeNode)object1;
-        //        TreeNode node2 = (TreeNode)object2;
-
-        //        if (IsPriorityNode(node1) && !IsPriorityNode(node2)) return -1;
-        //        if (!IsPriorityNode(node1) && IsPriorityNode(node2)) return 1;
-        //        return node1.Text.CompareTo(node2.Text);
-        //    }
-        //}
     }
 }

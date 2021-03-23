@@ -38,12 +38,12 @@ namespace BriefingRoom4DCSWorld.GUI
         /// <summary>
         /// Background color for the "Blueprint" treeview control.
         /// </summary>
-        public static readonly Color BLUEPRINT_BACKCOLOR_TREEVIEW = Color.SlateBlue;
+        public static readonly Color BLUEPRINT_BACKCOLOR_TREEVIEW = Color.FromArgb(255, 48, 87, 225);
 
         /// <summary>
         /// Background color for the "Blueprint" context menu.
         /// </summary>
-        public static readonly Color BLUEPRINT_BACKCOLOR_MENU = Color.MediumSlateBlue;
+        public static readonly Color BLUEPRINT_BACKCOLOR_MENU = Color.FromArgb(255, 38, 71, 200);
 
         /// <summary>
         /// Font for the "Blueprint" treeview and context menu.
