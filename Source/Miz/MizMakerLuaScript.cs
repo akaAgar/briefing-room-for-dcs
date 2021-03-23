@@ -25,6 +25,7 @@ using BriefingRoom4DCSWorld.Mission;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace BriefingRoom4DCSWorld.Miz
 {
@@ -56,6 +57,8 @@ namespace BriefingRoom4DCSWorld.Miz
            
             LuaTools.ReplaceKey(ref lua, "EnemyCoalition", $"coalition.side.{mission.CoalitionEnemy.ToString().ToUpperInvariant()}");
             LuaTools.ReplaceKey(ref lua, "PlayerCoalition", $"coalition.side.{mission.CoalitionPlayer.ToString().ToUpperInvariant()}");
+            //PLAYER TODO actually generate waypoint data
+            LuaTools.ReplaceKey(ref lua, "PlayerWaypoints", GetPlayerWaypoints(mission.Waypoints));
             LuaTools.ReplaceKey(ref lua, "StaticObjective", mission.ObjectiveIsStatic);
             LuaTools.ReplaceKey(ref lua, "EndMode", (int)mission.EndMode);
 
@@ -81,6 +84,16 @@ namespace BriefingRoom4DCSWorld.Miz
             }
 
             return lua;
+        }
+
+        private string GetPlayerWaypoints(List<DCSMissionWaypoint> waypoints)
+        {
+            var output = new List<string>();
+            foreach (var waypoint in waypoints)
+            {
+                output.Add($"{{name = \"{waypoint.Name}\", location = {{x = {waypoint.Coordinates.X}, y = 0, z = {waypoint.Coordinates.Y}}}}}");
+            }
+            return $"{{{string.Join(",",output)}}}";
         }
 
         /// <summary>
