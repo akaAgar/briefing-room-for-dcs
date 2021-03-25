@@ -339,7 +339,6 @@ namespace BriefingRoom4DCSWorld.Template
 
                 ini.SetValue("Context", "Coalition.Blue", ContextCoalitionBlue);
                 ini.SetValue("Context", "Coalition.Player", ContextCoalitionPlayer);
-                ini.SetValue("Context", "Country.Player", PlayerCountry);
                 ini.SetValue("Context", "Coalition.Red", ContextCoalitionRed);
                 ini.SetValue("Context", "Decade", ContextDecade);
                 ini.SetValue("Context", "Theater", ContextTheater);
