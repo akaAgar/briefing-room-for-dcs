@@ -179,7 +179,7 @@ namespace BriefingRoom4DCSWorld.Campaign
             template.PlayerFlightGroups = new MissionTemplateFlightGroup[]
                 { new MissionTemplateFlightGroup(
                     campaignTemplate.PlayerAircraft, Toolbox.RandomFrom(2, 2, 2, 2, 3, 4, 4),
-                    MissionTemplateFlightGroupTask.Objectives, campaignTemplate.PlayerCarrier) };
+                    MissionTemplateFlightGroupTask.Objectives, campaignTemplate.PlayerCarrier, Country.CJTFBlue) }; //TODO Make country selectable
 
             template.ContextTheater = campaignTemplate.ContextTheaterID;
             template.OptionsTheaterCountriesCoalitions = campaignTemplate.OptionsTheaterCountriesCoalitions;

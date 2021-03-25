@@ -1,4 +1,4 @@
-﻿/*
+/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -96,27 +96,28 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <returns>A <see cref="UnitFlightGroupBriefingDescription"/> describing the flight group, to be used in the briefing</returns>
         private UnitFlightGroupBriefingDescription GenerateSinglePlayerFlightGroup(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB)
         {
-            bool isCarrier = !string.IsNullOrEmpty(template.PlayerFlightGroups[0].Carrier);
-            DebugLog.Instance.WriteLine($"{template.PlayerFlightGroups[0].Carrier} -> {string.Join(",",mission.Carriers.Select(x => x.Name).ToArray())}");
+            var playerFlightGroup = template.PlayerFlightGroups[0];
+            bool isCarrier = !string.IsNullOrEmpty(playerFlightGroup.Carrier);
+            DebugLog.Instance.WriteLine($"{playerFlightGroup.Carrier} -> {string.Join(",",mission.Carriers.Select(x => x.Name).ToArray())}");
             DCSMissionUnitGroup group = UnitMaker.AddUnitGroup(
                 mission,
-                Enumerable.Repeat(template.PlayerFlightGroups[0].Aircraft, template.PlayerFlightGroups[0].Count).ToArray(),
-                Side.Ally, isCarrier? mission.Carriers.First(x => x.Units[0].Name == template.PlayerFlightGroups[0].Carrier).Coordinates : mission.InitialPosition,
+                Enumerable.Repeat(playerFlightGroup.Aircraft, playerFlightGroup.Count).ToArray(),
+                Side.Ally, isCarrier? mission.Carriers.First(x => x.Units[0].Name == playerFlightGroup.Carrier).Coordinates : mission.InitialPosition,
                 isCarrier? "GroupAircraftPlayerCarrier" : "GroupAircraftPlayer", "UnitAircraft",
                 Toolbox.BRSkillLevelToDCSSkillLevel(template.SituationFriendlyAISkillLevel), DCSMissionUnitGroupFlags.FirstUnitIsPlayer,
                 objectiveDB.Payload,
-                null, isCarrier? -99 : mission.InitialAirbaseID, true,  country: template.PlayerCountry);
+                null, isCarrier? -99 : mission.InitialAirbaseID, true,  country: playerFlightGroup.Country);
 
             if (group == null)
-                throw new Exception($"Failed to create group of player aircraft of type \"{template.PlayerFlightGroups[0].Aircraft}\".");
+                throw new Exception($"Failed to create group of player aircraft of type \"{playerFlightGroup.Aircraft}\".");
             
             if(isCarrier)
-                group.CarrierId = mission.Carriers.First(x => x.Units[0].Name == template.PlayerFlightGroups[0].Carrier).Units[0].ID;
+                group.CarrierId = mission.Carriers.First(x => x.Units[0].Name == playerFlightGroup.Carrier).Units[0].ID;
 
             return new UnitFlightGroupBriefingDescription(
-                        group.Name, group.Units.Length, template.PlayerFlightGroups[0].Aircraft,
+                        group.Name, group.Units.Length, playerFlightGroup.Aircraft,
                         objectiveDB.BriefingTaskFlightGroup,
-                        Database.Instance.GetEntry<DBEntryUnit>(template.PlayerFlightGroups[0].Aircraft).AircraftData.GetRadioAsString());
+                        Database.Instance.GetEntry<DBEntryUnit>(playerFlightGroup.Aircraft).AircraftData.GetRadioAsString());
         }
 
         /// <summary>
