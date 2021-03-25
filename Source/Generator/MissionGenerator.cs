@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -275,7 +275,6 @@ namespace BriefingRoom4DCSWorld.Generator
             mission.CoalitionPlayer = template.ContextCoalitionPlayer;
             mission.RadioAssists = !template.Realism.Contains(RealismOption.DisableDCSRadioAssists);
             mission.Theater = template.ContextTheater;
-            mission.PlayerStartLocation = template.FlightPlanPlayerStartLocation;
             mission.CountryBlues =new List<Country>{Country.CJTFBlue};
             mission.CountryReds = new List<Country>{Country.CJTFRed};
             var countries = template.PlayerFlightGroups.Select(x => x.Country).Distinct().ToList();
@@ -290,8 +289,8 @@ namespace BriefingRoom4DCSWorld.Generator
 
             // "Runway" start locations is not available in MP missions, change to "Parking hot".
             if ((template.MissionType != MissionType.SinglePlayer) &&
-                (template.FlightPlanPlayerStartLocation == PlayerStartLocation.Runway))
-                mission.PlayerStartLocation = PlayerStartLocation.ParkingHot;
+                (template.PlayerFlightGroups[0].StartLocation == PlayerStartLocation.Runway))
+                mission = PlayerStartLocation.ParkingHot;
         }
 
         /// <summary>

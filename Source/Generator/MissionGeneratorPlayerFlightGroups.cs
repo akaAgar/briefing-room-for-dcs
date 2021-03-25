@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -159,7 +159,7 @@ namespace BriefingRoom4DCSWorld.Generator
             // Player starts on runway, so escort starts in the air above the airfield (so player doesn't have to wait for them to take off)
             // OR mission is MP, so escorts start in air (but won't be spawned until at least one player takes off)
             // Add a random distance so they don't crash into each other.
-            if ((template.FlightPlanPlayerStartLocation == PlayerStartLocation.Runway) ||
+            if ((template.PlayerFlightGroups[0].StartLocation == PlayerStartLocation.Runway) ||
                 (template.MissionType != MissionType.SinglePlayer))
                 position += Coordinates.CreateRandom(2, 4) * Toolbox.NM_TO_METERS;
 

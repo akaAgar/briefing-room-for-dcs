@@ -195,11 +195,6 @@ namespace BriefingRoom4DCSWorld.Mission
         }
 
         /// <summary>
-        /// Starting location (runway, ramp hot, ramp cold) of the player(s)
-        /// </summary>
-        public PlayerStartLocation PlayerStartLocation { get; set; } = PlayerStartLocation.Runway;
-
-        /// <summary>
         /// The ID of the <see cref="TheaterBP"/> (NOT THE DCS WORLD INTERNAL THEATER ID!) for this mission.
         /// </summary>
         public string Theater { get; set; } = "";
