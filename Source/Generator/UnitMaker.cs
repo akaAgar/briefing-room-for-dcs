@@ -55,7 +55,7 @@ namespace BriefingRoom4DCSWorld.Generator
             DCSMission mission, string[] units, Side side,
             Coordinates coordinates, string groupLua, string unitLua,
             DCSSkillLevel skill, DCSMissionUnitGroupFlags flags = 0, UnitTaskPayload payload = UnitTaskPayload.Default,
-            Coordinates? coordinates2 = null, int airbaseID = 0, bool requiresParkingSpots = false, bool requiresOpenAirParking = false, Country? country = null, PlayerStartLocation? startLocation = null)
+            Coordinates? coordinates2 = null, int airbaseID = 0, bool requiresParkingSpots = false, bool requiresOpenAirParking = false, Country? country = null, PlayerStartLocation startLocation = PlayerStartLocation.Runway)
         {
             if (units.Length == 0) return null; // No units database entries ID provided, cancel group creation
 
@@ -146,7 +146,7 @@ namespace BriefingRoom4DCSWorld.Generator
                 UnitID = units[0],
                 LuaUnit = unitLua,
                 Units = groupUnits.ToArray(),
-                StartLocation = startLocation.Value
+                StartLocation = startLocation
             };
             mission.UnitGroups.Add(group);
 

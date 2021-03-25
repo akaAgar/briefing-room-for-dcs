@@ -110,27 +110,20 @@ namespace BriefingRoom4DCSWorld.Miz
             LuaTools.ReplaceKey(ref lua, "FinalWPName", Database.Instance.Common.WPNameFinal);
             LuaTools.ReplaceKey(ref lua, "FinalWPName", Database.Instance.Common.WPNameFinal); //Duplicate
 
-            switch (mission.PlayerStartLocation)
+            switch (mission.UnitGroups.Find(x => x.IsAPlayerGroup()).StartLocation)
             {
                 default: // case PlayerStartLocation.ParkingCold
-                    LuaTools.ReplaceKey(ref lua, "PlayerStartingAction", "From Parking Area");
-                    LuaTools.ReplaceKey(ref lua, "PlayerStartingType", "TakeOffParking");
-
                     LuaTools.ReplaceKey(ref lua, "PlayerEscortStartingAction", "From Parking Area"); // Player starts cold, AI escorts start cold too
                     LuaTools.ReplaceKey(ref lua, "PlayerEscortStartingType", "TakeOffParking");
                     LuaTools.ReplaceKey(ref lua, "PlayerEscortStartingAltitude", 13);
                     break;
                 case PlayerStartLocation.ParkingHot:
-                    LuaTools.ReplaceKey(ref lua, "PlayerStartingAction", "From Parking Area Hot");
-                    LuaTools.ReplaceKey(ref lua, "PlayerStartingType", "TakeOffParkingHot");
 
                     LuaTools.ReplaceKey(ref lua, "PlayerEscortStartingAction", "From Parking Area Hot"); // Player starts hot, AI escorts start hot too
                     LuaTools.ReplaceKey(ref lua, "PlayerEscortStartingType", "TakeOffParkingHot");
                     LuaTools.ReplaceKey(ref lua, "PlayerEscortStartingAltitude", 13);
                     break;
                 case PlayerStartLocation.Runway:
-                    LuaTools.ReplaceKey(ref lua, "PlayerStartingAction", "From Runway");
-                    LuaTools.ReplaceKey(ref lua, "PlayerStartingType", "TakeOff");
 
                     LuaTools.ReplaceKey(ref lua, "PlayerEscortStartingAction", "Turning Point"); // Player starts on runway, AI escorts start in air above him
                     LuaTools.ReplaceKey(ref lua, "PlayerEscortStartingType", "Turning Point");
@@ -302,7 +295,26 @@ namespace BriefingRoom4DCSWorld.Miz
 
                 // Group is a client group, requires player waypoints
                 if (group.IsAPlayerGroup())
+                {
                     CreatePlayerWaypoints(ref groupLua, mission, unitBP);
+                    switch (group.StartLocation)
+                    {
+                        default: // case PlayerStartLocation.ParkingCold
+                            LuaTools.ReplaceKey(ref groupLua, "PlayerStartingAction", "From Parking Area");
+                            LuaTools.ReplaceKey(ref groupLua, "PlayerStartingType", "TakeOffParking");
+                            break;
+                        case PlayerStartLocation.ParkingHot:
+                            LuaTools.ReplaceKey(ref groupLua, "PlayerStartingAction", "From Parking Area Hot");
+                            LuaTools.ReplaceKey(ref groupLua, "PlayerStartingType", "TakeOffParkingHot");
+                            break;
+                        case PlayerStartLocation.Runway:
+                            LuaTools.ReplaceKey(ref groupLua, "PlayerStartingAction", "From Runway");
+                            LuaTools.ReplaceKey(ref groupLua, "PlayerStartingType", "TakeOff");
+                            break;
+                    }
+
+
+                }
 
                 string allUnitsLua = "";
                 for (i = 0; i < group.Units.Length; i++)

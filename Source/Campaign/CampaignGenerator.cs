@@ -173,7 +173,6 @@ namespace BriefingRoom4DCSWorld.Campaign
                 SituationFriendlyEscortCAP = Toolbox.RandomFrom(2, 2, 2, 2, 3, 4, 4),
                 SituationFriendlyEscortSEAD = Toolbox.RandomFrom(2, 2, 2, 2, 3, 4, 4),
                 PlayerFlightGroups = new MissionTemplateFlightGroup[0],
-                FlightPlanPlayerStartLocation = campaignTemplate.PlayerStartLocation
             };
 
             template.PlayerFlightGroups = new MissionTemplateFlightGroup[]
