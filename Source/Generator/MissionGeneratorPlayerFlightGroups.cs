@@ -106,7 +106,9 @@ namespace BriefingRoom4DCSWorld.Generator
                 isCarrier? "GroupAircraftPlayerCarrier" : "GroupAircraftPlayer", "UnitAircraft",
                 Toolbox.BRSkillLevelToDCSSkillLevel(template.SituationFriendlyAISkillLevel), DCSMissionUnitGroupFlags.FirstUnitIsPlayer,
                 objectiveDB.Payload,
-                null, isCarrier? -99 : mission.InitialAirbaseID, true,  country: playerFlightGroup.Country);
+                null, isCarrier? -99 : mission.InitialAirbaseID, true,  country: playerFlightGroup.Country,
+                startLocation: playerFlightGroup.StartLocation
+                );
 
             if (group == null)
                 throw new Exception($"Failed to create group of player aircraft of type \"{playerFlightGroup.Aircraft}\".");
@@ -229,8 +231,8 @@ namespace BriefingRoom4DCSWorld.Generator
                     hasCarrier ? "GroupAircraftPlayerCarrier" : "GroupAircraftPlayer", "UnitAircraft",
                     DCSSkillLevel.Client, 0,
                     payload,
-                    null, hasCarrier ? -99 : mission.InitialAirbaseID, true, country: fg.Country);
-
+                    null, hasCarrier ? -99 : mission.InitialAirbaseID, true, country: fg.Country,
+                    startLocation: fg.StartLocation == PlayerStartLocation.Runway ? PlayerStartLocation.ParkingHot : fg.StartLocation);
                 if (group == null)
                 {
                     DebugLog.Instance.WriteLine($"Failed to create group of player aircraft of type \"{fg.Aircraft}\".", 1, DebugLogMessageErrorLevel.Warning);

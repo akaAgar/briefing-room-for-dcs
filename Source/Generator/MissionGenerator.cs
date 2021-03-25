@@ -286,11 +286,6 @@ namespace BriefingRoom4DCSWorld.Generator
             mission.CountryReds = mission.CountryReds.Distinct().ToList();
             mission.EndMode = template.OptionsEndMode;
             mission.RealismOptions = template.Realism;
-
-            // "Runway" start locations is not available in MP missions, change to "Parking hot".
-            if ((template.MissionType != MissionType.SinglePlayer) &&
-                (template.PlayerFlightGroups[0].StartLocation == PlayerStartLocation.Runway))
-                mission = PlayerStartLocation.ParkingHot;
         }
 
         /// <summary>

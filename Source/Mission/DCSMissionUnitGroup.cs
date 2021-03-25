@@ -127,6 +127,8 @@ namespace BriefingRoom4DCSWorld.Mission
         /// </summary>
         public float RadioFrequency { get; set; }
 
+        public PlayerStartLocation StartLocation {get; set;}
+
         /// <summary>
         /// Default radio modulation for this aircraft.
         /// </summary>
