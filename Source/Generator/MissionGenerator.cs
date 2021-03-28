@@ -162,6 +162,11 @@ namespace BriefingRoom4DCSWorld.Generator
             using (MissionGeneratorSupportUnits unitGroupGen = new MissionGeneratorSupportUnits(unitMaker))
                 briefingFGList.AddRange(unitGroupGen.CreateUnitGroups(mission, coalitionsDB[(int)mission.CoalitionPlayer], template.UnitMods));
 
+            // Generate friendly support units
+            DebugLog.Instance.WriteLine("Generating enemy support units...");
+            using (MissionGeneratorEnemySupportUnits unitGroupGen = new MissionGeneratorEnemySupportUnits(unitMaker))
+                unitGroupGen.CreateUnitGroups(mission, template, coalitionsDB[(int)mission.CoalitionEnemy], template.UnitMods);
+
             // Generate enemy air defense unit groups
             DebugLog.Instance.WriteLine("Generating enemy air defense unit groups...");
             using (MissionGeneratorAirDefense unitGroupGen = new MissionGeneratorAirDefense(unitMaker, false, template, mission))
