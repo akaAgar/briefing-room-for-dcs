@@ -469,7 +469,7 @@ function briefingRoom.radioManager.getReadingTime(message)
   message = message or ""
   messsage = tostring(message)
 
-  return math.max(3.0, #message / 10.7) -- 10.7 letters per second, minimum length 3.0 seconds
+  return math.max(5.0, #message / 8.7) -- 10.7 letters per second, minimum length 3.0 seconds
 end
 
 function briefingRoom.radioManager.play(message, oggFile, delay, functionToRun, functionParameters)
