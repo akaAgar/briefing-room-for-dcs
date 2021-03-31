@@ -100,9 +100,6 @@ namespace BriefingRoom4DCSWorld.Template
         [TreeViewProperty("Add extra waypoints", "Flight plan", typeof(YesNo), "Should extra ingress/egress waypoints be generated in addition to the objective waypoints?")]
         public YesNo FlightPlanAddExtraWaypoints { get; set; }
 
-        [TreeViewProperty("Player start location", "Flight plan", typeof(PlayerStartLocation), "Where should the player(s) take off from?")]
-        public PlayerStartLocation FlightPlanPlayerStartLocation { get; set; }
-
         [TreeViewProperty("Starting airbase", "Flight plan", typeof(DBPseudoEntryAirbase), "Name of the airbase the player must take off from. If left empty, or if the airbase doesn't exist in this theater, a random airbase will be selected. Be aware that if the selected airbase doesn't have enough parking spots for the player mission package, some units may not spawn properly.", TreeViewPropertyAttributeFlags.EmptyIsRandom)]
         public string FlightPlanTheaterStartingAirbase { get; set; }
 
@@ -195,7 +192,6 @@ namespace BriefingRoom4DCSWorld.Template
             EnvironmentWind = Wind.Auto;
 
             FlightPlanAddExtraWaypoints = YesNo.No;
-            FlightPlanPlayerStartLocation = PlayerStartLocation.Runway;
             FlightPlanTheaterStartingAirbase = "";
 
             ObjectiveCount = 2;
@@ -283,7 +279,6 @@ namespace BriefingRoom4DCSWorld.Template
                 EnvironmentWind = ini.GetValue("Environment", "Wind", EnvironmentWind);
 
                 FlightPlanAddExtraWaypoints = ini.GetValue("FlightPlan", "ExtraWaypoints", FlightPlanAddExtraWaypoints);
-                FlightPlanPlayerStartLocation = ini.GetValue("FlightPlan", "PlayerStartLocation", FlightPlanPlayerStartLocation);
                 FlightPlanTheaterStartingAirbase = ini.GetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
 
                 ObjectiveCount = Toolbox.Clamp(ini.GetValue("Objective", "Count", ObjectiveCount), 1, MAX_OBJECTIVES);
@@ -349,7 +344,6 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValue("Environment", "Wind", EnvironmentWind);
 
                 ini.SetValue("FlightPlan", "ExtraWaypoints", FlightPlanAddExtraWaypoints);
-                ini.SetValue("FlightPlan", "PlayerStartLocation", FlightPlanPlayerStartLocation);
                 ini.SetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
 
                 ini.SetValue("Objective", "Count", ObjectiveCount);
@@ -419,7 +413,7 @@ namespace BriefingRoom4DCSWorld.Template
         {
             if (MissionType == MissionType.SinglePlayer)
             {
-                if (FlightPlanPlayerStartLocation == PlayerStartLocation.Runway) return 0; // Player and wingmen start on the runway, AI escort start in air above the airbase
+                if (PlayerFlightGroups[0].StartLocation == PlayerStartLocation.Runway) return 0; // Player and wingmen start on the runway, AI escort start in air above the airbase
                 return PlayerFlightGroups[0].Count + SituationFriendlyEscortCAP + SituationFriendlyEscortSEAD;
             }
 

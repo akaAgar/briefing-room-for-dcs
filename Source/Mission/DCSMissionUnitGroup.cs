@@ -127,6 +127,8 @@ namespace BriefingRoom4DCSWorld.Mission
         /// </summary>
         public float RadioFrequency { get; set; }
 
+        public PlayerStartLocation StartLocation {get; set;}
+
         /// <summary>
         /// Default radio modulation for this aircraft.
         /// </summary>
@@ -134,7 +136,9 @@ namespace BriefingRoom4DCSWorld.Mission
         /// <summary>
         /// Constructor.
         /// </summary>
-        public DCSMissionUnitGroup() { }
+
+        public Country Country {get; set;} = Country.CJTFBlue;
+        public DCSMissionUnitGroup() {}
 
         /// <summary>
         /// Is this group a player-controlled flight group?

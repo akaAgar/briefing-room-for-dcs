@@ -209,97 +209,9 @@ mission =
     }, -- end of ["map"]
     ["coalitions"] = 
     {
-        ["neutrals"] = 
-        {
-            [1] = 18,
-            [2] = 70,
-            [3] = 83,
-            [4] = 21,
-            [5] = 23,
-            [6] = 65,
-            [7] = 24,
-            [8] = 11,
-            [9] = 64,
-            [10] = 25,
-            [11] = 8,
-            [12] = 63,
-            [13] = 27,
-            [14] = 28,
-            [15] = 76,
-            [16] = 26,
-            [17] = 13,
-            [18] = 29,
-            [19] = 62,
-            [20] = 30,
-            [21] = 5,
-            [22] = 78,
-            [23] = 16,
-            [24] = 6,
-            [25] = 31,
-            [26] = 61,
-            [27] = 32,
-            [28] = 33,
-            [29] = 60,
-            [30] = 17,
-            [31] = 34,
-            [32] = 35,
-            [33] = 15,
-            [34] = 69,
-            [35] = 20,
-            [36] = 36,
-            [37] = 59,
-            [38] = 37,
-            [39] = 71,
-            [40] = 79,
-            [41] = 58,
-            [42] = 57,
-            [43] = 56,
-            [44] = 55,
-            [45] = 38,
-            [46] = 12,
-            [47] = 73,
-            [48] = 39,
-            [49] = 54,
-            [50] = 40,
-            [51] = 77,
-            [52] = 72,
-            [53] = 41,
-            [54] = 0,
-            [55] = 42,
-            [56] = 43,
-            [57] = 44,
-            [58] = 75,
-            [59] = 45,
-            [60] = 19,
-            [61] = 9,
-            [62] = 53,
-            [63] = 46,
-            [64] = 22,
-            [65] = 47,
-            [66] = 52,
-            [67] = 10,
-            [68] = 66,
-            [69] = 51,
-            [70] = 3,
-            [71] = 4,
-            [72] = 1,
-            [73] = 74,
-            [74] = 82,
-            [75] = 7,
-            [76] = 68,
-            [77] = 50,
-            [78] = 49,
-            [79] = 48,
-            [80] = 67,
-        }, -- end of ["neutrals"]
-        ["blue"] = 
-        {
-            [1] = 80,
-        }, -- end of ["blue"]
-        ["red"] = 
-        {
-            [1] = 81,
-        }, -- end of ["red"]
+        ["neutrals"] = $NEUTRALS$,
+        ["blue"] = $BLUES$,
+        ["red"] = $REDS$,
     }, -- end of ["coalitions"]
     ["descriptionText"] = "$BRIEFINGDESCRIPTION$",
     ["pictureFileNameR"] = 
@@ -343,46 +255,7 @@ mission =
             ["name"] = "blue",
             ["country"] = 
             {
-                [1] = 
-                {
-                    ["id"] = 80,
-                    ["name"] = "CJTF Blue",
-                    ["helicopter"] = 
-                    {
-                        ["group"] = 
-                        {
-$GROUPSHELICOPTERBLUE$
-                        }, -- end of ["group"]
-                    }, -- end of ["helicopter"]
-                    ["plane"] = 
-                    {
-                        ["group"] = 
-                        {
-$GROUPSPLANEBLUE$
-                        }, -- end of ["group"]
-                    }, -- end of ["plane"]
-                    ["ship"] = 
-                    {
-                        ["group"] = 
-                        {
-$GROUPSSHIPBLUE$
-                        }, -- end of ["group"]
-                    }, -- end of ["ship"]
-                    ["static"] = 
-                    {
-                        ["group"] = 
-                        {
-$GROUPSSTATICBLUE$
-                        }, -- end of ["group"]
-                    }, -- end of ["static"]
-                    ["vehicle"] = 
-                    {
-                        ["group"] = 
-                        {
-$GROUPSVEHICLEBLUE$
-                        }, -- end of ["group"]
-                    }, -- end of ["vehicle"]
-                }, -- end of [1]
+                $COUNTRYSBLUE$
             }, -- end of ["country"]
         }, -- end of ["blue"]
         ["red"] = 
@@ -398,46 +271,7 @@ $GROUPSVEHICLEBLUE$
             ["name"] = "red",
             ["country"] = 
             {
-                [1] = 
-                {
-                    ["id"] = 81,
-                    ["name"] = "CJTF Red",
-                    ["helicopter"] = 
-                    {
-                        ["group"] = 
-                        {
-$GROUPSHELICOPTERRED$
-                        }, -- end of ["group"]
-                    }, -- end of ["helicopter"]
-                    ["plane"] = 
-                    {
-                        ["group"] = 
-                        {
-$GROUPSPLANERED$
-                        }, -- end of ["group"]
-                    }, -- end of ["plane"]
-                    ["ship"] = 
-                    {
-                        ["group"] = 
-                        {
-$GROUPSSHIPRED$
-                        }, -- end of ["group"]
-                    }, -- end of ["ship"]
-                    ["static"] = 
-                    {
-                        ["group"] = 
-                        {
-$GROUPSSTATICRED$
-                        }, -- end of ["group"]
-                    }, -- end of ["static"]
-                    ["vehicle"] = 
-                    {
-                        ["group"] = 
-                        {
-$GROUPSVEHICLERED$
-                        }, -- end of ["group"]
-                    }, -- end of ["vehicle"]
-                }, -- end of [1]
+                $COUNTRYSRED$
             }, -- end of ["country"]
         }, -- end of ["red"]
     }, -- end of ["coalition"]

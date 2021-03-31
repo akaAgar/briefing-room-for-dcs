@@ -33,41 +33,38 @@ namespace BriefingRoom4DCSWorld.Template
     /// </summary>
     public class MissionTemplateFlightGroup : ContextMenuExpandable
     {
-        /// <summary>
-        /// Type of aircraft in this flight group.
-        /// </summary>
+
         public string Aircraft { get; set; }
 
-        /// <summary>
-        /// Should this aircraft group be spawned on the carrier? A compatible carrier must be selected in the mission template settings.
-        /// </summary>
         public string Carrier { get; set; }
 
-        /// <summary>
-        /// Number of aircraft in this flight group.
-        /// </summary>
         public int Count { get { return _Count; } set { _Count = Toolbox.Clamp(value, 1, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE); } }
         private int _Count = 1;
 
-        /// <summary>
-        /// Task assigned to this flight group. Can be the mission objectives or CAP/SEAD escort.
-        /// </summary>
         public MissionTemplateFlightGroupTask Tasking { get; set; }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
+        public Country Country { get; set; }
+
+        public PlayerStartLocation StartLocation { get; set; }
+
         public MissionTemplateFlightGroup()
         {
             Clear();
         }
 
-        public MissionTemplateFlightGroup(string aircraft, int count, MissionTemplateFlightGroupTask tasking, string carrier)
+        public MissionTemplateFlightGroup(
+            string aircraft,
+            int count,
+            MissionTemplateFlightGroupTask tasking,
+            string carrier,
+            Country country,
+            PlayerStartLocation startLocation)
         {
             Aircraft = aircraft;
             Count = count;
             Tasking = tasking;
             Carrier = carrier;
+            StartLocation = startLocation;
         }
 
         /// <summary>
@@ -84,6 +81,8 @@ namespace BriefingRoom4DCSWorld.Template
             Carrier = ini.GetValue(section, $"{key}.Carrier", Carrier);
             Count = ini.GetValue(section, $"{key}.Count", Count);
             Tasking = ini.GetValue(section, $"{key}.Task", Tasking);
+            Country = ini.GetValue(section, $"{key}.Country", Country);
+            StartLocation = ini.GetValue(section, $"{key}.StartLocation", StartLocation);
         }
 
         /// <summary>
@@ -95,6 +94,8 @@ namespace BriefingRoom4DCSWorld.Template
             Carrier = "";
             Count = 2;
             Tasking = MissionTemplateFlightGroupTask.Objectives;
+            Country = Country.CJTFBlue;
+            StartLocation = PlayerStartLocation.Runway;
         }
 
         /// <summary>
@@ -109,6 +110,8 @@ namespace BriefingRoom4DCSWorld.Template
             ini.SetValue(section, $"{key}.Carrier", Carrier);
             ini.SetValue(section, $"{key}.Count", Count);
             ini.SetValue(section, $"{key}.Task", Tasking);
+            ini.SetValue(section, $"{key}.Country", Country);
+            ini.SetValue(section, $"{key}.StartLocation", StartLocation);
         }
 
         /// <summary>
@@ -117,7 +120,7 @@ namespace BriefingRoom4DCSWorld.Template
         /// <returns>A string representing this flight group to display in the PropertyGrid.</returns>
         public override string ToString()
         {
-            string str = $"{Toolbox.ValToString(Count)}x {Aircraft}, tasked with {Toolbox.LowerCaseFirstLetter(GUITools.GetDisplayName(Tasking))}, take off from ";
+            string str = $"{Toolbox.ValToString(Count)}x {Aircraft}, from {Country}, tasked with {Toolbox.LowerCaseFirstLetter(GUITools.GetDisplayName(Tasking))}, starting {StartLocation}, take off from ";
             if (string.IsNullOrEmpty(Carrier)) str += "land airbase";
             else str += GUITools.GetDisplayName(typeof(DBPseudoEntryCarrier), Carrier);
 
@@ -156,14 +159,50 @@ namespace BriefingRoom4DCSWorld.Template
             parentMenu = (ToolStripMenuItem)contextMenu.Items.Add("Home carrier");
             parentMenu.DropDownItems.Add("(None, take off from land airbase)").Tag = "$";
             GUITools.PopulateToolStripMenuWithDBEntries(parentMenu.DropDownItems, typeof(DBPseudoEntryCarrier), onClickEventHandler, false, "$");
+
+            // Country //TODO Grouping
+            parentMenu = (ToolStripMenuItem)contextMenu.Items.Add("Country");
+            foreach (object enumValue in Enum.GetValues(typeof(Country)))
+            {
+                GUITools.GetDisplayStrings(typeof(Country), enumValue, out string enumDisplayName, out string enumDescription);
+
+                ToolStripMenuItem item = new ToolStripMenuItem
+                {
+                    Text = enumDisplayName,
+                    Tag = enumValue,
+                    ToolTipText = enumDescription
+                };
+
+                parentMenu.DropDownItems.Add(item);
+            }
+
+            // Country //TODO Grouping
+            parentMenu = (ToolStripMenuItem)contextMenu.Items.Add("StartLocation");
+            foreach (object enumValue in Enum.GetValues(typeof(PlayerStartLocation)))
+            {
+                GUITools.GetDisplayStrings(typeof(PlayerStartLocation), enumValue, out string enumDisplayName, out string enumDescription);
+
+                ToolStripMenuItem item = new ToolStripMenuItem
+                {
+                    Text = enumDisplayName,
+                    Tag = enumValue,
+                    ToolTipText = enumDescription
+                };
+
+                parentMenu.DropDownItems.Add(item);
+            }
         }
 
         public override void OnContextMenuItemClicked(object itemTag)
         {
             if (itemTag == null) return;
             
-            if (itemTag is MissionTemplateFlightGroupTask)
-                Tasking = (MissionTemplateFlightGroupTask)itemTag;
+            if (itemTag is MissionTemplateFlightGroupTask groupTask)
+                Tasking = groupTask;
+            else if (itemTag is Country country)
+                Country = country;
+            else if (itemTag is PlayerStartLocation location)
+                StartLocation = location;
             else if (itemTag is int)
                 Count = (int)itemTag;
             else if (itemTag is string)

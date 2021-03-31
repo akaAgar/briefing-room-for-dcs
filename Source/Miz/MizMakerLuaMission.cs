@@ -23,6 +23,7 @@ If not, see https://www.gnu.org/licenses/
 using BriefingRoom4DCSWorld.DB;
 using BriefingRoom4DCSWorld.Mission;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BriefingRoom4DCSWorld.Miz
@@ -79,6 +80,10 @@ namespace BriefingRoom4DCSWorld.Miz
                 LuaTools.ReplaceKey(ref lua, $"WeatherWind{i + 1}", mission.Weather.WindSpeed[i]);
                 LuaTools.ReplaceKey(ref lua, $"WeatherWind{i + 1}Dir", mission.Weather.WindDirection[i]);
             }
+            var neutrals = Enum.GetValues(typeof(Country)).Cast<Country>().Where(x => !mission.CountryBlues.Contains(x) && !mission.CountryReds.Contains(x));
+            LuaTools.ReplaceKey(ref lua, "Neutrals", Toolbox.ListToLuaString(neutrals.Cast<int>()));
+            LuaTools.ReplaceKey(ref lua, "Reds", Toolbox.ListToLuaString(mission.CountryReds.Cast<int>()));
+            LuaTools.ReplaceKey(ref lua, "Blues", Toolbox.ListToLuaString(mission.CountryBlues.Cast<int>()));
 
             LuaTools.ReplaceKey(ref lua, "BullseyeBlueX", mission.Bullseye[(int)Coalition.Blue].X);
             LuaTools.ReplaceKey(ref lua, "BullseyeBlueY", mission.Bullseye[(int)Coalition.Blue].Y);
@@ -105,27 +110,20 @@ namespace BriefingRoom4DCSWorld.Miz
             LuaTools.ReplaceKey(ref lua, "FinalWPName", Database.Instance.Common.WPNameFinal);
             LuaTools.ReplaceKey(ref lua, "FinalWPName", Database.Instance.Common.WPNameFinal); //Duplicate
 
-            switch (mission.PlayerStartLocation)
+            switch (mission.UnitGroups.Find(x => x.IsAPlayerGroup()).StartLocation)
             {
                 default: // case PlayerStartLocation.ParkingCold
-                    LuaTools.ReplaceKey(ref lua, "PlayerStartingAction", "From Parking Area");
-                    LuaTools.ReplaceKey(ref lua, "PlayerStartingType", "TakeOffParking");
-
                     LuaTools.ReplaceKey(ref lua, "PlayerEscortStartingAction", "From Parking Area"); // Player starts cold, AI escorts start cold too
                     LuaTools.ReplaceKey(ref lua, "PlayerEscortStartingType", "TakeOffParking");
                     LuaTools.ReplaceKey(ref lua, "PlayerEscortStartingAltitude", 13);
                     break;
                 case PlayerStartLocation.ParkingHot:
-                    LuaTools.ReplaceKey(ref lua, "PlayerStartingAction", "From Parking Area Hot");
-                    LuaTools.ReplaceKey(ref lua, "PlayerStartingType", "TakeOffParkingHot");
 
                     LuaTools.ReplaceKey(ref lua, "PlayerEscortStartingAction", "From Parking Area Hot"); // Player starts hot, AI escorts start hot too
                     LuaTools.ReplaceKey(ref lua, "PlayerEscortStartingType", "TakeOffParkingHot");
                     LuaTools.ReplaceKey(ref lua, "PlayerEscortStartingAltitude", 13);
                     break;
                 case PlayerStartLocation.Runway:
-                    LuaTools.ReplaceKey(ref lua, "PlayerStartingAction", "From Runway");
-                    LuaTools.ReplaceKey(ref lua, "PlayerStartingType", "TakeOff");
 
                     LuaTools.ReplaceKey(ref lua, "PlayerEscortStartingAction", "Turning Point"); // Player starts on runway, AI escorts start in air above him
                     LuaTools.ReplaceKey(ref lua, "PlayerEscortStartingType", "Turning Point");
@@ -235,12 +233,25 @@ namespace BriefingRoom4DCSWorld.Miz
         {
             int i, j;
 
-            for (i = 0; i < 2; i++)
-                for (j = 0; j < Toolbox.EnumCount<UnitCategory>(); j++)
-                    CreateUnitGroups(ref lua, mission, (Coalition)i, (UnitCategory)j);
+            for (i = 0; i < 2; i++){
+                string coalitionLua = "";
+                var k = 1;
+                foreach (var country in (Coalition)i == Coalition.Blue? mission.CountryBlues: mission.CountryReds)
+                {
+                    string countryLua = LuaTools.ReadIncludeLuaFile($"Country");
+                    LuaTools.ReplaceKey(ref countryLua, "Index", k);
+                    LuaTools.ReplaceKey(ref countryLua, "DCSID", (int)country);
+                    LuaTools.ReplaceKey(ref countryLua, "Name", Enum.GetName(typeof(Country), country));
+                    for (j = 0; j < Toolbox.EnumCount<UnitCategory>(); j++)
+                        CreateUnitGroups(ref countryLua, mission, (Coalition)i, (UnitCategory)j, country);
+                    coalitionLua += countryLua;
+                    k++;
+                }
+                LuaTools.ReplaceKey(ref lua, $"COUNTRYS{(Coalition)i}", coalitionLua);
+            }
         }
 
-        private void CreateUnitGroups(ref string lua, DCSMission mission, Coalition coalition, UnitCategory unitCategory)
+        private void CreateUnitGroups(ref string lua, DCSMission mission, Coalition coalition, UnitCategory unitCategory, Country country)
         {
             int i, j;
             int groupIndex = 1;
@@ -249,6 +260,7 @@ namespace BriefingRoom4DCSWorld.Miz
             foreach (DCSMissionUnitGroup group in mission.UnitGroups)
             {
                 if ((group.Coalition != coalition) || // Group does not belong to this coalition
+                    (group.Country != country) || // Group does not match country
                     (group.Category != unitCategory) || // Group does not belong to this unit category
                     (group.Units.Length == 0)) // Group doesn't contain any units
                     continue; // Ignore it
@@ -283,7 +295,26 @@ namespace BriefingRoom4DCSWorld.Miz
 
                 // Group is a client group, requires player waypoints
                 if (group.IsAPlayerGroup())
+                {
                     CreatePlayerWaypoints(ref groupLua, mission, unitBP);
+                    switch (group.StartLocation)
+                    {
+                        default: // case PlayerStartLocation.ParkingCold
+                            LuaTools.ReplaceKey(ref groupLua, "PlayerStartingAction", "From Parking Area");
+                            LuaTools.ReplaceKey(ref groupLua, "PlayerStartingType", "TakeOffParking");
+                            break;
+                        case PlayerStartLocation.ParkingHot:
+                            LuaTools.ReplaceKey(ref groupLua, "PlayerStartingAction", "From Parking Area Hot");
+                            LuaTools.ReplaceKey(ref groupLua, "PlayerStartingType", "TakeOffParkingHot");
+                            break;
+                        case PlayerStartLocation.Runway:
+                            LuaTools.ReplaceKey(ref groupLua, "PlayerStartingAction", "From Runway");
+                            LuaTools.ReplaceKey(ref groupLua, "PlayerStartingType", "TakeOff");
+                            break;
+                    }
+
+
+                }
 
                 string allUnitsLua = "";
                 for (i = 0; i < group.Units.Length; i++)
@@ -384,7 +415,7 @@ namespace BriefingRoom4DCSWorld.Miz
                 groupIndex++;
             }
 
-            LuaTools.ReplaceKey(ref lua, $"Groups{unitCategory}{coalition}", allGroupsLua);
+            LuaTools.ReplaceKey(ref lua, $"Groups{unitCategory}", allGroupsLua);
         }
     }
 }

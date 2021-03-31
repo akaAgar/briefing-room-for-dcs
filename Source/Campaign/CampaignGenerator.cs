@@ -173,13 +173,12 @@ namespace BriefingRoom4DCSWorld.Campaign
                 SituationFriendlyEscortCAP = Toolbox.RandomFrom(2, 2, 2, 2, 3, 4, 4),
                 SituationFriendlyEscortSEAD = Toolbox.RandomFrom(2, 2, 2, 2, 3, 4, 4),
                 PlayerFlightGroups = new MissionTemplateFlightGroup[0],
-                FlightPlanPlayerStartLocation = campaignTemplate.PlayerStartLocation
             };
 
             template.PlayerFlightGroups = new MissionTemplateFlightGroup[]
                 { new MissionTemplateFlightGroup(
                     campaignTemplate.PlayerAircraft, Toolbox.RandomFrom(2, 2, 2, 2, 3, 4, 4),
-                    MissionTemplateFlightGroupTask.Objectives, campaignTemplate.PlayerCarrier) };
+                    MissionTemplateFlightGroupTask.Objectives, campaignTemplate.PlayerCarrier, Country.CJTFBlue, PlayerStartLocation.Runway) }; //TODO Make country selectable
 
             template.ContextTheater = campaignTemplate.ContextTheaterID;
             template.OptionsTheaterCountriesCoalitions = campaignTemplate.OptionsTheaterCountriesCoalitions;
