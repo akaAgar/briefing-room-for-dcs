@@ -23,8 +23,6 @@ using BriefingRoom4DCSWorld.Debug;
 using BriefingRoom4DCSWorld.Mission;
 using BriefingRoom4DCSWorld.Template;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BriefingRoom4DCSWorld.Generator
 {
@@ -55,9 +53,11 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="unitMods">Unit mods selected units can belong to</param>
         public void CreateUnitGroups(DCSMission mission, MissionTemplate template, DBEntryCoalition enemyCoalitionDB, string[] unitMods)
         {
-                AddSupportUnit(mission, template, enemyCoalitionDB, UnitFamily.PlaneTankerBasket, unitMods, new Tacan(39, "ETR", AA: true));
-                AddSupportUnit(mission, template, enemyCoalitionDB, UnitFamily.PlaneTankerBoom, unitMods, new Tacan(82, "EKR", AA: true));
-                AddSupportUnit(mission, template, enemyCoalitionDB, UnitFamily.PlaneAWACS, unitMods); // AWACS must be added last, so it its inserted first into the spawning queue
+            if(!template.SituationEnemySupportAircraft.RollChance())
+                return;
+            AddSupportUnit(mission, template, enemyCoalitionDB, UnitFamily.PlaneTankerBasket, unitMods, new Tacan(39, "ETR", AA: true));
+            AddSupportUnit(mission, template, enemyCoalitionDB, UnitFamily.PlaneTankerBoom, unitMods, new Tacan(82, "EKR", AA: true));
+            AddSupportUnit(mission, template, enemyCoalitionDB, UnitFamily.PlaneAWACS, unitMods); // AWACS must be added last, so it its inserted first into the spawning queue
         }
 
         /// <summary>

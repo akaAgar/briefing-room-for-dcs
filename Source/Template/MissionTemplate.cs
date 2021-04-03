@@ -143,6 +143,9 @@ namespace BriefingRoom4DCSWorld.Template
         
         [TreeViewProperty("CAP on station", "Situation, enemies", typeof(AmountN), "Chance that enemy fighter planes will already be patrolling on mission start rather than popping up during the mission on objective completion.")]
         public AmountN SituationEnemyCAPOnStationChance { get; set; }
+
+        [TreeViewProperty("Support Aircraft", "Situation, enemies", typeof(AmountN), "Enemy forces have support aircraft such as AWACS and Tankers.")]
+        public AmountN SituationEnemySupportAircraft { get; set; }
         
         [TreeViewProperty("Aircraft skill level", "Situation, enemies", typeof(BRSkillLevel), "Skill level of enemy planes and helicopters.")]
         public BRSkillLevel SituationEnemySkillLevelAir { get; set; }
@@ -214,6 +217,7 @@ namespace BriefingRoom4DCSWorld.Template
             SituationEnemyCAPOnStationChance = AmountN.Random;
             SituationEnemySkillLevelAir = BRSkillLevel.Random;
             SituationEnemySkillLevelGround = BRSkillLevel.Random;
+            SituationEnemySupportAircraft = AmountN.Random;
 
             SituationFriendlyAISkillLevel = BRSkillLevel.Random;
             SituationFriendlyAirDefense = AmountN.Random;
@@ -302,6 +306,7 @@ namespace BriefingRoom4DCSWorld.Template
                 SituationEnemyCAPOnStationChance = ini.GetValue("SituationEnemy", "CAPOnStationChance", SituationEnemyCAPOnStationChance);
                 SituationEnemySkillLevelAir = ini.GetValue("SituationEnemy", "SkillLevelAir", SituationEnemySkillLevelAir);
                 SituationEnemySkillLevelGround = ini.GetValue("SituationEnemy", "SkillLevelGround", SituationEnemySkillLevelGround);
+                SituationEnemySupportAircraft = ini.GetValue("SituationEnemy", "SupportAircraft", SituationEnemySupportAircraft);
 
                 SituationFriendlyAISkillLevel = ini.GetValue("SituationFriendly", "AISkillLevel", SituationFriendlyAISkillLevel);
                 SituationFriendlyAirDefense = ini.GetValue("SituationFriendly", "AirDefense", SituationFriendlyAirDefense);
@@ -368,6 +373,7 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValue("SituationEnemy", "CAPOnStationChance", SituationEnemyCAPOnStationChance);
                 ini.SetValue("SituationEnemy", "SkillLevelAir", SituationEnemySkillLevelAir);
                 ini.SetValue("SituationEnemy", "SkillLevelGround", SituationEnemySkillLevelGround);
+                ini.SetValue("SituationEnemy", "SupportAircraft", SituationEnemySupportAircraft);
 
                 ini.SetValue("SituationFriendly", "AISkillLevel", SituationFriendlyAISkillLevel);
                 ini.SetValue("SituationFriendly", "AirDefense", SituationFriendlyAirDefense);
