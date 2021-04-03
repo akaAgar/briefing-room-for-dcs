@@ -1,6 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -9,7 +7,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BriefingRoom4DCSWorld</RootNamespace>
     <AssemblyName>BriefingRoom</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFramework>net48</TargetFramework>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <PublishUrl>publish\</PublishUrl>
@@ -27,7 +25,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,220 +51,11 @@
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>Resources\app.manifest</ApplicationManifest>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Design" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AirDefenseLevel.cs" />
-    <Compile Include="Attributes\TreeViewEnumAttribute.cs" />
-    <Compile Include="Attributes\TreeViewPropertyAttributeFlags.cs" />
-    <Compile Include="Attributes\TreeViewPropertyIntAttribute.cs" />
-    <Compile Include="CivilianTraffic.cs" />
-    <Compile Include="Campaign\CampaignDifficultyVariation.cs" />
-    <Compile Include="Campaign\CampaignGenerator.cs" />
-    <Compile Include="Campaign\CampaignTemplate.cs" />
-    <Compile Include="CloudPreset.cs" />
-    <Compile Include="Country.cs" />
-    <Compile Include="DB\DBEntryWeather.cs" />
-    <Compile Include="DB\DBPseudoEntry.cs" />
-    <Compile Include="DB\DBPseudoEntryCarrier.cs" />
-    <Compile Include="DB\DBPseudoEntryPlayerAircraft.cs" />
-    <Compile Include="DB\DBPseudoEntryAirbase.cs" />
-    <Compile Include="DB\DBEntryDCSMod.cs" />
-    <Compile Include="DB\DBEntryDefaultUnitList.cs" />
-    <Compile Include="DB\DBEntryMissionFeatureUnitGroupLocation.cs" />
-    <Compile Include="DB\DBEntryTheaterAirbaseParkingSpot.cs" />
-    <Compile Include="BRSkillLevel.cs" />
-    <Compile Include="Generator\MissionGeneratorEnemySupportUnits.cs" />
-    <Compile Include="GUI\CampaignCreatorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\CampaignCreatorForm.Designer.cs">
-      <DependentUpon>CampaignCreatorForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Attributes\TreeViewPropertyAttribute.cs" />
-    <Compile Include="GUI\ContextMenuExpandable.cs" />
-    <Compile Include="GUI\TreeViewPropertyEditor.cs" />
-    <Compile Include="Media\ImageMaker.cs" />
-    <Compile Include="Media\ImageMakerLayer.cs" />
-    <Compile Include="Media\ImageMakerTextOverlay.cs" />
-    <Compile Include="MissionEndMode.cs" />
-    <Compile Include="Generator\MissionGeneratorAirDefense.cs" />
-    <Compile Include="Generator\MissionGeneratorCarrier.cs" />
-    <Compile Include="MissionType.cs" />
-    <Compile Include="CoalitionBriefingElement.cs" />
-    <Compile Include="Amount.cs" />
-    <Compile Include="AirDefenseRange.cs" />
-    <Compile Include="BRPaths.cs" />
-    <Compile Include="CommandLine\CommandLineTool.cs" />
-    <Compile Include="DB\DatabaseCommonAirDefenseInfo.cs" />
-    <Compile Include="DB\DatabaseLoader.cs" />
-    <Compile Include="DB\DBEntry.cs" />
-    <Compile Include="DB\DBEntryExtension.cs" />
-    <Compile Include="DB\DBEntryMissionFeature.cs" />
-    <Compile Include="DB\DBEntryObjective.cs" />
-    <Compile Include="DB\DBEntryCoalition.cs" />
-    <Compile Include="DB\DBEntryObjectiveFlags.cs" />
-    <Compile Include="DB\DBEntryTheaterAirbaseFlag.cs" />
-    <Compile Include="DB\DBUnitGroup.cs" />
-    <Compile Include="DB\DBUnitGroupFlags.cs" />
-    <Compile Include="DB\DBEntryUnitAircraftData.cs" />
-    <Compile Include="DB\DatabaseCommon.cs" />
-    <Compile Include="BriefingRoom.cs" />
-    <Compile Include="GUI\AboutForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\AboutForm.Designer.cs">
-      <DependentUpon>AboutForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\SplashScreenForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\SplashScreenForm.Designer.cs">
-      <DependentUpon>SplashScreenForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Generator\MissionGeneratorAirbases.cs" />
-    <Compile Include="Generator\MissionGeneratorDateTime.cs" />
-    <Compile Include="Generator\GeneratorTools.cs" />
-    <Compile Include="Generator\MissionGeneratorSupportUnits.cs" />
-    <Compile Include="Generator\MissionGeneratorExtensionsAndFeatures.cs" />
-    <Compile Include="Mission\DCSMissionAircraftSpawnQueueItem.cs" />
-    <Compile Include="Mission\DCSMissionDateTime.cs" />
-    <Compile Include="Mission\DCSMissionWeatherInfo.cs" />
-    <Compile Include="RadioPreset.cs" />
-    <Compile Include="SpawnPointPreferredCoalition.cs" />
-    <Compile Include="ParkingSpotType.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Tacan.cs" />
-    <Compile Include="RealismOption.cs" />
-    <Compile Include="Side.cs" />
-    <Compile Include="Template\MissionTemplate.cs" />
-    <Compile Include="Template\MissionTemplateFlightGroupTask.cs" />
-    <Compile Include="Generator\MissionGeneratorEnemyFighterPatrols.cs" />
-    <Compile Include="GUI\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\GUITools.cs" />
-    <Compile Include="Generator\MissionGeneratorObjectivesUnitGroups.cs" />
-    <Compile Include="Generator\MissionGeneratorPlayerFlightGroups.cs" />
-    <Compile Include="Generator\UnitMakerSpawnPointSelector.cs" />
-    <Compile Include="Generator\UnitFlightGroupBriefingDescription.cs" />
-    <Compile Include="Mission\DCSMissionUnitGroupUnit.cs" />
-    <Compile Include="DB\DBEntryUnitFlags.cs" />
-    <Compile Include="DB\DBEntryUnit.cs" />
-    <Compile Include="Coordinates.cs" />
-    <Compile Include="Debug\DebugLogMessageErrorLevel.cs" />
-    <Compile Include="YesNo.cs" />
-    <Compile Include="UnitSystem.cs" />
-    <Compile Include="UnitTaskPayload.cs" />
-    <Compile Include="Generator\UnitMaker.cs" />
-    <Compile Include="INIFile.cs" />
-    <Compile Include="INIFileSection.cs" />
-    <Compile Include="Generator\UnitCallsign.cs" />
-    <Compile Include="Generator\MissionGeneratorBriefing.cs" />
-    <Compile Include="Generator\UnitMakerCallsignGenerator.cs" />
-    <Compile Include="Generator\MissionGeneratorWeather.cs" />
-    <Compile Include="Debug\DebugLog.cs" />
-    <Compile Include="Generator\MissionGenerator.cs" />
-    <Compile Include="Generator\MissionGeneratorObjectives.cs" />
-    <Compile Include="Generator\MissionGeneratorFlightPlan.cs" />
-    <Compile Include="Mission\DCSMission.cs" />
-    <Compile Include="RadioModulation.cs" />
-    <Compile Include="Mission\DCSMissionUnitGroupFlags.cs" />
-    <Compile Include="Mission\DCSMissionUnitGroup.cs" />
-    <Compile Include="Template\MissionTemplateFlightGroup.cs" />
-    <Compile Include="Mission\DCSMissionObjective.cs" />
-    <Compile Include="Miz\MizMakerLuaMapResource.cs" />
-    <Compile Include="Miz\MizMakerLuaMission.cs" />
-    <Compile Include="Miz\MizMakerLuaScript.cs" />
-    <Compile Include="Miz\LuaTools.cs" />
-    <Compile Include="Miz\MizMakerLuaWarehouse.cs" />
-    <Compile Include="Miz\MizMakerMediaAudio.cs" />
-    <Compile Include="Miz\MizMakerMediaImages.cs" />
-    <Compile Include="Miz\MizMaker.cs" />
-    <Compile Include="Miz\MizFile.cs" />
-    <Compile Include="AmountN.cs" />
-    <Compile Include="Toolbox.cs" />
-    <Compile Include="Generator\UnitCallsignFamily.cs" />
-    <Compile Include="CarrierType.cs" />
-    <Compile Include="Coalition.cs" />
-    <Compile Include="CountryCoalition.cs" />
-    <Compile Include="DCSSkillLevel.cs" />
-    <Compile Include="MinMaxD.cs" />
-    <Compile Include="MinMaxI.cs" />
-    <Compile Include="Month.cs" />
-    <Compile Include="PlayerStartLocation.cs" />
-    <Compile Include="Precipitation.cs" />
-    <Compile Include="Season.cs" />
-    <Compile Include="TheaterSpawnPointType.cs" />
-    <Compile Include="TimeOfDay.cs" />
-    <Compile Include="Decade.cs" />
-    <Compile Include="UnitCategory.cs" />
-    <Compile Include="UnitFamily.cs" />
-    <Compile Include="Weather.cs" />
-    <Compile Include="Wind.cs" />
-    <Compile Include="DB\DBEntryTheater.cs" />
-    <Compile Include="DB\DBEntryTheaterAirbase.cs" />
-    <Compile Include="DB\DBEntryTheaterSpawnPoint.cs" />
-    <Compile Include="DB\DBEntryTheaterWind.cs" />
-    <Compile Include="DB\Database.cs" />
-    <Compile Include="Mission\DCSMissionWaypoint.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="app.config" />
-    <None Include="Resources\App.config" />
-    <EmbeddedResource Include="GUI\AboutForm.resx">
-      <DependentUpon>AboutForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\CampaignCreatorForm.resx">
-      <DependentUpon>CampaignCreatorForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\SplashScreenForm.resx">
-      <DependentUpon>SplashScreenForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <None Include="Resources\app.manifest" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="GUI\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <PackageReference Include="System.Resources.Extensions" Version="5.0.0" />
+    <PackageReference Include="System.Windows.Forms" Version="4.0.0"/>
+    <PackageReference Include="System.Design" Version="4.0.0"/>
+    <PackageReference Include="System.IO.Compression" Version="4.3.0"/>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
