@@ -41,7 +41,6 @@ namespace BriefingRoom4DCSWorld.DB
                 lua += $"[{index}] = {Channels[index]},";
             }   
             lua += "},},";
-            Debug.DebugLog.Instance.WriteLine(lua);
             return lua;
         }
     }
