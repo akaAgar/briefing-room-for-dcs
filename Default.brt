@@ -1,5 +1,5 @@
 ﻿[common]
-missiontype=SinglePlayer
+missiontype=Multiplayer
 
 [context]
 coalition.blue=USA
@@ -20,7 +20,7 @@ extrawaypoints=No
 
 [objective]
 count=2
-distance=0
+distance=40
 
 [options]
 briefingunitsystem=Imperial
@@ -45,12 +45,27 @@ escortcap=2
 escortsead=2
 
 [playerflightgroups]
-count=1
+count=4
 fg000.aircrafttype=FA-18C_hornet
 fg000.count=4
 fg000.task=Objectives
-fg000.country=CJTFBlue
+fg000.country=USA
 fg000.startlocation=Runway
+fg001.aircrafttype=A-10C_2
+fg001.count=2
+fg001.task=Objectives
+fg001.country=USA
+fg001.startlocation=Runway
+fg002.aircrafttype=F-16C_50
+fg002.count=2
+fg002.task=SupportSEAD
+fg002.country=Israel
+fg002.startlocation=Runway
+fg003.aircrafttype=M-2000C
+fg003.count=2
+fg003.task=SupportCAP
+fg003.country=France
+fg003.startlocation=Runway
 
 [realism]
 realism=DisableDCSRadioAssists,NoBDA
