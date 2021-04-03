@@ -41,13 +41,13 @@ supportaircraft=Random
 [situationfriendly]
 aiskilllevel=Random
 airdefense=Random
-escortcap=0
-escortsead=0
+escortcap=2
+escortsead=2
 
 [playerflightgroups]
 count=1
-fg000.aircrafttype=Su-25T
-fg000.count=2
+fg000.aircrafttype=FA-18C_hornet
+fg000.count=4
 fg000.task=Objectives
 fg000.country=CJTFBlue
 fg000.startlocation=Runway
