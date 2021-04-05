@@ -141,6 +141,7 @@ Flakpanzer Gepard.ini Example(03/21)
 #### Aircraft
 
 A-10C Thunderbolt II 2.0.ini Example(03/21)
+For Payload configs see [Porting Payloads](docs/PortingPayloads.md)
 
     [Unit]
     DCSID=A-10C_2
@@ -165,7 +166,6 @@ A-10C Thunderbolt II 2.0.ini Example(03/21)
     Payload.Common=["chaff"] = 240,["flare"] = 120,["fuel"] = 5029,["ammo_type"] = 1,["gun"] = 100 <- Common payload params for aircraft 
 
     <- Payload Config Payload.(Decade.cs).Task.(UnitTaskPayload.cs).Pylon(pos)=Item ID
-    <- Best setting up single aircraft in editor with loadout and finding config in there
     ; Default: AGM-65D*4,GBU-12*2,GBU-38,Mk-82,AIM-9,TGP,ECM
     Payload.Decade2000.Task.Default.pylon01=ALQ_184 
     Payload.Decade2000.Task.Default.pylon03={E6A6262A-CA08-4B3D-B030-E1A993B98452}
