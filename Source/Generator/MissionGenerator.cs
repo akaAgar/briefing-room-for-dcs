@@ -134,7 +134,7 @@ namespace BriefingRoom4DCSWorld.Generator
             DebugLog.Instance.WriteLine("Generating mission weather...");
             using (MissionGeneratorWeather weather = new MissionGeneratorWeather())
             {
-                weather.GenerateWeather(mission, template.EnvironmentWeather, theaterDB);
+                weather.GenerateWeather(mission, template.EnvironmentWeather, theaterDB, Database.Instance.Common);
                 weather.GenerateWind(mission, template.EnvironmentWind, theaterDB);
             }
 

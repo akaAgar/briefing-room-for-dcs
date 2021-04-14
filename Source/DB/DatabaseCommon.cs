@@ -129,6 +129,8 @@ namespace BriefingRoom4DCSWorld.DB
         /// </summary>
         public string[] WPNamesObjectives { get; private set; }
 
+        public DBEntryWeather[] Weather { get; private set; }
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -224,6 +226,14 @@ namespace BriefingRoom4DCSWorld.DB
                 WPNameInitial = ini.GetValue<string>("Waypoints", "Initial");
                 WPNameNavigation = ini.GetValue<string>("Waypoints", "Navigation");
                 WPNamesObjectives = ini.GetValueArray<string>("Waypoints", "Objectives");
+            }
+
+            DebugLog.Instance.WriteLine("Loading common weather settings...", 1);
+            using (INIFile ini = new INIFile($"{BRPaths.DATABASE}Weather.ini"))
+            {
+                Weather = new DBEntryWeather[Toolbox.EnumCount<Weather>() - 1]; // -1 because we don't want "Random"
+                for (i = 0; i < Weather.Length; i++)
+                    Weather[i] = new DBEntryWeather(ini, ((Weather)i).ToString());
             }
         }
 

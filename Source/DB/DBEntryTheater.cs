@@ -76,11 +76,6 @@ namespace BriefingRoom4DCSWorld.DB
         public MinMaxI[] Temperature { get; private set; }
 
         /// <summary>
-        /// Weather parameters for all "weather quality" settings. 11 values, from clear (0) to storm (10).
-        /// </summary>
-        public DBEntryTheaterWeather[] Weather { get; private set; }
-
-        /// <summary>
         /// Wind parameters for all "wind speed" settings. 11 values, from clear (0) to storm (10).
         /// </summary>
         public DBEntryTheaterWind[] Wind { get; private set; }
@@ -123,11 +118,6 @@ namespace BriefingRoom4DCSWorld.DB
                 Temperature = new MinMaxI[12];
                 for (i = 0; i < 12; i++)
                     Temperature[i] = ini.GetValue<MinMaxI>("Temperature", ((Month)i).ToString());
-
-                // [Weather] section
-                Weather = new DBEntryTheaterWeather[Toolbox.EnumCount<Weather>() - 1]; // -1 because we don't want "Random"
-                for (i = 0; i < Weather.Length; i++)
-                    Weather[i] = new DBEntryTheaterWeather(ini, ((Weather)i).ToString());
 
                 // [Wind] section
                 Wind = new DBEntryTheaterWind[Toolbox.EnumCount<Wind>() - 1]; // -1 because we don't want "Auto"
