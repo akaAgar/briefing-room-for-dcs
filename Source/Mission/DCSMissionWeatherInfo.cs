@@ -43,6 +43,8 @@ namespace BriefingRoom4DCSWorld.Mission
         /// </summary>
         public int CloudsThickness { get; set; } = 0;
 
+        public CloudPreset CloudsPreset { get; set; } = CloudPreset.None;
+
         /// <summary>
         /// The type of precipitation.
         /// </summary>

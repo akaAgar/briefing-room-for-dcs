@@ -190,6 +190,7 @@ mission =
         {
             ["thickness"] = $WEATHERCLOUDSTHICKNESS$,
             ["density"] = $WEATHERCLOUDSDENSITY$,
+            ["preset"] = "$WEATHERCLOUDSPRESET$",
             ["base"] = $WEATHERCLOUDSBASE$,
             ["iprecptns"] = $WEATHERCLOUDSPRECIPITATION$,
         }, -- end of ["clouds"]
