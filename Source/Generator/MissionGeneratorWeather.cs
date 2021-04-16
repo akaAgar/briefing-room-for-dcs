@@ -65,7 +65,7 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="mission">The mission.</param>
         /// <param name="weather">The preferred type of weather (clear, cloudy, storm...).</param>
         /// <param name="theaterDB">Theater database entry</param>
-        public void GenerateWeather(DCSMission mission, Weather weather, DBEntryTheater theaterDB)
+        public void GenerateWeather(DCSMission mission, Weather weather, DBEntryTheater theaterDB, DatabaseCommon commonDB)
         {
             mission.Weather.Temperature = theaterDB.Temperature[(int)mission.DateTime.Month].GetValue();
             mission.Weather.WeatherLevel = (weather == Weather.Random) ? Toolbox.RandomFrom(RANDOM_WEATHER) : weather;
@@ -75,24 +75,24 @@ namespace BriefingRoom4DCSWorld.Generator
             int weatherIndex = (int)mission.Weather.WeatherLevel;
 
             // Clouds and precipitations
-            mission.Weather.CloudBase = theaterDB.Weather[weatherIndex].CloudsBase.GetValue();
-            mission.Weather.CloudsDensity = theaterDB.Weather[weatherIndex].CloudsDensity.GetValue();
-            mission.Weather.CloudsPrecipitation = Toolbox.RandomFrom(theaterDB.Weather[weatherIndex].CloudsPrecipitation);
-            mission.Weather.CloudsThickness = theaterDB.Weather[weatherIndex].CloudsThickness.GetValue();
+            mission.Weather.CloudBase = commonDB.Weather[weatherIndex].CloudsBase.GetValue();
+            mission.Weather.CloudsDensity = commonDB.Weather[weatherIndex].CloudsDensity.GetValue();
+            mission.Weather.CloudsPrecipitation = Toolbox.RandomFrom(commonDB.Weather[weatherIndex].CloudsPrecipitation);
+            mission.Weather.CloudsThickness = commonDB.Weather[weatherIndex].CloudsThickness.GetValue();
 
             // Dust
-            mission.Weather.DustEnabled = Toolbox.RandomFrom(theaterDB.Weather[weatherIndex].DustEnabled);
-            mission.Weather.DustDensity = mission.Weather.DustEnabled ? theaterDB.Weather[weatherIndex].DustDensity.GetValue() : 0;
+            mission.Weather.DustEnabled = Toolbox.RandomFrom(commonDB.Weather[weatherIndex].DustEnabled);
+            mission.Weather.DustDensity = mission.Weather.DustEnabled ? commonDB.Weather[weatherIndex].DustDensity.GetValue() : 0;
 
             // Fog
-            mission.Weather.FogEnabled = Toolbox.RandomFrom(theaterDB.Weather[weatherIndex].FogEnabled);
-            mission.Weather.FogThickness = mission.Weather.FogEnabled ? theaterDB.Weather[weatherIndex].FogThickness.GetValue() : 0;
-            mission.Weather.FogVisibility = mission.Weather.FogEnabled ? theaterDB.Weather[weatherIndex].FogVisibility.GetValue() : 0;
+            mission.Weather.FogEnabled = Toolbox.RandomFrom(commonDB.Weather[weatherIndex].FogEnabled);
+            mission.Weather.FogThickness = mission.Weather.FogEnabled ? commonDB.Weather[weatherIndex].FogThickness.GetValue() : 0;
+            mission.Weather.FogVisibility = mission.Weather.FogEnabled ? commonDB.Weather[weatherIndex].FogVisibility.GetValue() : 0;
 
             // Pressure, turbulence and visiblity
-            mission.Weather.QNH = theaterDB.Weather[weatherIndex].QNH.GetValue();
-            mission.Weather.Turbulence = theaterDB.Weather[weatherIndex].Turbulence.GetValue();
-            mission.Weather.Visibility = theaterDB.Weather[(int)mission.Weather.WeatherLevel].Visibility.GetValue();
+            mission.Weather.QNH = commonDB.Weather[weatherIndex].QNH.GetValue();
+            mission.Weather.Turbulence = commonDB.Weather[weatherIndex].Turbulence.GetValue();
+            mission.Weather.Visibility = commonDB.Weather[(int)mission.Weather.WeatherLevel].Visibility.GetValue();
 
             DebugLog.Instance.WriteLine($"Cloud base altitude set to {mission.Weather.CloudBase} m", 1);
             DebugLog.Instance.WriteLine($"Cloud density set to {mission.Weather.CloudBase}", 1);
