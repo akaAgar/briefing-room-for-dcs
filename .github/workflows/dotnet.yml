@@ -5,19 +5,30 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
+ 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-
+ 
+    runs-on: windows-latest
+ 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+    - uses: actions/checkout@v1
+      name: Checkout Code
+     
+    - name: Setup MSBuild Path
+      uses: warrenbuckley/Setup-MSBuild@v1
+       
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.2
+     
+    - name: Restore NuGet Packages
+      run: nuget restore Source/BriefingRoom.sln
+ 
+    - name: Build and Publish Web App
+      run: msbuild Source/BriefingRoom.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+ 
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v1.0.0
       with:
-        dotnet-version: 4.8.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
+        name: published_webapp
+        path: bin\Release\Publish
