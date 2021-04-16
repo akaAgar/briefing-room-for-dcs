@@ -22,7 +22,7 @@ jobs:
       run: dotnet restore Source/BriefingRoom.sln
  
     - name: Build and Publish Web App
-      run: dotnet Source/BriefingRoom.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+      run: dotnet publish Source/BriefingRoom.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
  
     - name: Upload Artifact
       uses: actions/upload-artifact@v1.0.0
