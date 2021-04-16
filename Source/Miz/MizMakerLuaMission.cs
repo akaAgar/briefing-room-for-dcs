@@ -66,6 +66,8 @@ namespace BriefingRoom4DCSWorld.Miz
             LuaTools.ReplaceKey(ref lua, "WeatherCloudsDensity", mission.Weather.CloudsDensity);
             LuaTools.ReplaceKey(ref lua, "WeatherCloudsPrecipitation", (int)mission.Weather.CloudsPrecipitation);
             LuaTools.ReplaceKey(ref lua, "WeatherCloudsThickness", mission.Weather.CloudsThickness);
+            LuaTools.ReplaceKey(ref lua, "WeatherCloudsPreset", mission.Weather.CloudsPreset.ToString());
+
             LuaTools.ReplaceKey(ref lua, "WeatherDustDensity", mission.Weather.DustDensity);
             LuaTools.ReplaceKey(ref lua, "WeatherDustEnabled", mission.Weather.DustEnabled);
             LuaTools.ReplaceKey(ref lua, "WeatherFogEnabled", mission.Weather.Turbulence);

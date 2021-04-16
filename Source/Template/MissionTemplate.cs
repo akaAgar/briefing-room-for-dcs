@@ -94,6 +94,9 @@ namespace BriefingRoom4DCSWorld.Template
         [TreeViewProperty("Weather", "Environment", typeof(Weather), "What the weather be like during the mission.")]
         public Weather EnvironmentWeather { get; set; }
 
+        [TreeViewProperty("CloudPreset", "Environment", typeof(CloudPreset), "Use A Cloud Preset (Note weather settings may mess with this)")]
+        public CloudPreset EnvironmentCloudPreset { get; set; }
+
         [TreeViewProperty("Wind", "Environment", typeof(Wind), "How windy will the weather be during the mission. \"Auto\" means \"choose according to the weather\".")]
         public Wind EnvironmentWind { get; set; }
 
@@ -192,6 +195,7 @@ namespace BriefingRoom4DCSWorld.Template
             EnvironmentSeason = Season.Random;
             EnvironmentTimeOfDay = TimeOfDay.RandomDaytime;
             EnvironmentWeather = Weather.Random;
+            EnvironmentCloudPreset = CloudPreset.Random;
             EnvironmentWind = Wind.Auto;
 
             FlightPlanAddExtraWaypoints = YesNo.No;
@@ -280,6 +284,7 @@ namespace BriefingRoom4DCSWorld.Template
                 EnvironmentSeason = ini.GetValue("Environment", "Season", EnvironmentSeason);
                 EnvironmentTimeOfDay = ini.GetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);
                 EnvironmentWeather = ini.GetValue("Environment", "Weather", EnvironmentWeather);
+                EnvironmentCloudPreset = ini.GetValue("Environment", "CloudPreset", EnvironmentCloudPreset);
                 EnvironmentWind = ini.GetValue("Environment", "Wind", EnvironmentWind);
 
                 FlightPlanAddExtraWaypoints = ini.GetValue("FlightPlan", "ExtraWaypoints", FlightPlanAddExtraWaypoints);
@@ -346,6 +351,7 @@ namespace BriefingRoom4DCSWorld.Template
                 ini.SetValue("Environment", "Season", EnvironmentSeason);
                 ini.SetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);
                 ini.SetValue("Environment", "Weather", EnvironmentWeather);
+                ini.SetValue("Environment", "CloudPreset", EnvironmentCloudPreset);
                 ini.SetValue("Environment", "Wind", EnvironmentWind);
 
                 ini.SetValue("FlightPlan", "ExtraWaypoints", FlightPlanAddExtraWaypoints);

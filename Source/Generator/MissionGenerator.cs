@@ -278,6 +278,7 @@ namespace BriefingRoom4DCSWorld.Generator
             mission.Coalitions[(int)Coalition.Red] = template.GetCoalition(Coalition.Red);
             mission.CivilianTraffic = template.OptionsCivilianTraffic;
             mission.CoalitionPlayer = template.ContextCoalitionPlayer;
+            mission.Weather.CloudsPreset = template.EnvironmentCloudPreset.Get();
             mission.RadioAssists = !template.Realism.Contains(RealismOption.DisableDCSRadioAssists);
             mission.Theater = template.ContextTheater;
             mission.CountryBlues =new List<Country>{Country.CJTFBlue};
