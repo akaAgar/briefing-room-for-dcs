@@ -78,6 +78,7 @@
     <Compile Include="Campaign\CampaignTemplate.cs" />
     <Compile Include="CloudPreset.cs" />
     <Compile Include="Country.cs" />
+    <Compile Include="DB\DBEntryWeather.cs" />
     <Compile Include="DB\DBPseudoEntry.cs" />
     <Compile Include="DB\DBPseudoEntryCarrier.cs" />
     <Compile Include="DB\DBPseudoEntryPlayerAircraft.cs" />
@@ -225,7 +226,6 @@
     <Compile Include="DB\DBEntryTheater.cs" />
     <Compile Include="DB\DBEntryTheaterAirbase.cs" />
     <Compile Include="DB\DBEntryTheaterSpawnPoint.cs" />
-    <Compile Include="DB\DBEntryTheaterWeather.cs" />
     <Compile Include="DB\DBEntryTheaterWind.cs" />
     <Compile Include="DB\Database.cs" />
     <Compile Include="Mission\DCSMissionWaypoint.cs" />
