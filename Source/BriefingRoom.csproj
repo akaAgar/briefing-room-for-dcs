@@ -76,6 +76,7 @@
     <Compile Include="Campaign\CampaignDifficultyVariation.cs" />
     <Compile Include="Campaign\CampaignGenerator.cs" />
     <Compile Include="Campaign\CampaignTemplate.cs" />
+    <Compile Include="CloudPreset.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="DB\DBPseudoEntry.cs" />
     <Compile Include="DB\DBPseudoEntryCarrier.cs" />
