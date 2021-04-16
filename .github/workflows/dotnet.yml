@@ -16,7 +16,7 @@ jobs:
       name: Checkout Code
     - uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '4.8.x'
+        dotnet-version: '3.1.x'
      
     - name: Restore NuGet Packages
       run: dotnet restore Source/BriefingRoom.sln
