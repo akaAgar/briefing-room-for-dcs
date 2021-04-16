@@ -14,18 +14,15 @@ jobs:
     steps:
     - uses: actions/checkout@v1
       name: Checkout Code
-     
-    - name: Setup MSBuild Path
-      uses: warrenbuckley/Setup-MSBuild@v1
-       
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.0.2
+    - uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '4.8.x'
      
     - name: Restore NuGet Packages
-      run: nuget restore Source/BriefingRoom.sln
+      run: dotnet restore Source/BriefingRoom.sln
  
     - name: Build and Publish Web App
-      run: msbuild Source/BriefingRoom.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+      run: dotnet Source/BriefingRoom.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
  
     - name: Upload Artifact
       uses: actions/upload-artifact@v1.0.0
