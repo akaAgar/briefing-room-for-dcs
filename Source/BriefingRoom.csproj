@@ -76,6 +76,7 @@
     <Compile Include="Campaign\CampaignDifficultyVariation.cs" />
     <Compile Include="Campaign\CampaignGenerator.cs" />
     <Compile Include="Campaign\CampaignTemplate.cs" />
+    <Compile Include="Country.cs" />
     <Compile Include="DB\DBPseudoEntry.cs" />
     <Compile Include="DB\DBPseudoEntryCarrier.cs" />
     <Compile Include="DB\DBPseudoEntryPlayerAircraft.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="DB\DBEntryMissionFeatureUnitGroupLocation.cs" />
     <Compile Include="DB\DBEntryTheaterAirbaseParkingSpot.cs" />
     <Compile Include="BRSkillLevel.cs" />
+    <Compile Include="Generator\MissionGeneratorEnemySupportUnits.cs" />
     <Compile Include="GUI\CampaignCreatorForm.cs">
       <SubType>Form</SubType>
     </Compile>
