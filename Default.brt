@@ -11,17 +11,16 @@ theater=Caucasus
 [environment]
 season=Random
 timeofday=Noon
-weather=Precipitation
-wind=StrongGale
+weather=Random
+cloudpreset=Random
+wind=Auto
 
 [flightplan]
 extrawaypoints=No
-playerstartlocation=Runway
 
 [objective]
 count=2
 distance=0
-type=
 
 [options]
 briefingunitsystem=Imperial
@@ -37,6 +36,7 @@ airforce=Random
 caponstationchance=Random
 skilllevelair=Random
 skilllevelground=Random
+supportaircraft=Random
 
 [situationfriendly]
 aiskilllevel=Random
@@ -49,6 +49,8 @@ count=1
 fg000.aircrafttype=Su-25T
 fg000.count=2
 fg000.task=Objectives
+fg000.country=CJTFBlue
+fg000.startlocation=Runway
 
 [realism]
 realism=DisableDCSRadioAssists,NoBDA

@@ -94,7 +94,7 @@ namespace BriefingRoom4DCSWorld.Template
         [TreeViewProperty("Weather", "Environment", typeof(Weather), "What the weather be like during the mission.")]
         public Weather EnvironmentWeather { get; set; }
 
-        [TreeViewProperty("CloudPreset", "Environment", typeof(CloudPreset), "Use A Cloud Preset (Note weather settings may mess with this)")]
+        [TreeViewProperty("Cloud preset", "Environment", typeof(CloudPreset), "Cloud preset to use (for DCS World 2.7+ new cloud sytem)")]
         public CloudPreset EnvironmentCloudPreset { get; set; }
 
         [TreeViewProperty("Wind", "Environment", typeof(Wind), "How windy will the weather be during the mission. \"Auto\" means \"choose according to the weather\".")]
