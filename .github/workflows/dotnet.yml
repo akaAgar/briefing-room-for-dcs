@@ -29,8 +29,17 @@ jobs:
         filename: test-net5-release.zip
         exclusions: '*.git* /*net48/* /*docs/* /*Source/* *.dll'
 
-    - name: Upload Release
+    - name: Generate build number
+      uses: einaregilsson/build-number@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}  
+
+      - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
+          tag: "test-net5-$BUILD_NUMBER"
+          name: "test-net5-$BUILD_NUMBER"
+          body: "This is a test build using .Net5"
+          prerelease: true
           artifacts: "test-net5-release.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
