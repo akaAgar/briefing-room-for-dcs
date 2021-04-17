@@ -2,9 +2,7 @@ name: .NET
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [ mikes-net5-build ]
  
 jobs:
   build:
@@ -17,16 +15,19 @@ jobs:
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1.7.2
       with:
-        dotnet-version: 3.1.x
+        dotnet-version: 5.0.x
 
     - name: Restore NuGet Packages
       run: dotnet restore Source/BriefingRoom.sln
  
     - name: Build and Publish Web App
-      run: dotnet publish Source/BriefingRoom.sln /p:Configuration=Release
- 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v1.0.0
+      run: dotnet publish Source/BriefingRoom.sln -o . -c Release
+      
+    - name: Zip Release
+      uses: TheDoctor0/zip-release@0.4.1
       with:
-        name: published_webapp
-        path: bin\Release\Publish
+        filename: test-net5-release.zip
+        exclusions: '*.git* /*net48/* /*docs/* /*Source/* *.dll
+
+ 
+
