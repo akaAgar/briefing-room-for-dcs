@@ -1,6 +1,6 @@
 options = 
 {
-    ["playerName"] = "Player",
+    ["playerName"] = "SomoneElse",
     ["miscellaneous"] = 
     {
         ["allow_server_screenshots"] = false,
@@ -51,8 +51,8 @@ options =
         ["iconsTheme"] = "nato",
         ["avionicsLanguage"] = "english",
         ["weapons"] = false,
-        ["setGlobal"] = true,
-        ["labels"] = false,
+        ["setGlobal"] = false,
+        ["labels"] = 1,
     }, -- end of ["difficulty"]
     ["VR"] = 
     {
