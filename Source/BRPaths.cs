@@ -18,6 +18,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+
 using System.Windows.Forms;
 
 namespace BriefingRoom4DCSWorld
@@ -30,7 +31,11 @@ namespace BriefingRoom4DCSWorld
         /// <summary>
         /// Path to the application.
         /// </summary>
-        public static string ROOT { get; } = Toolbox.NormalizeDirectoryPath(Application.StartupPath) + "..//";
+        #if DEBUG
+            public static string ROOT { get; } = Toolbox.NormalizeDirectoryPath(Application.StartupPath) +  "..//";
+        #else
+            public static string ROOT { get; } = Toolbox.NormalizeDirectoryPath(Application.StartupPath);
+        #endif
 
         /// <summary>
         /// Path to the database subdirectory.
