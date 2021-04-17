@@ -1,0 +1,33 @@
+name: .NET
+
+on:
+  push:
+    branches: [ mikes-net5-build ]
+ 
+jobs:
+  build:
+ 
+    runs-on: windows-latest
+ 
+    steps:
+    - uses: actions/checkout@v1
+      name: Checkout Code
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v1.7.2
+      with:
+        dotnet-version: 5.0.x
+
+    - name: Restore NuGet Packages
+      run: dotnet restore Source/BriefingRoom.sln
+ 
+    - name: Build and Publish Web App
+      run: dotnet publish Source/BriefingRoom.sln -o . -c Release
+      
+    - name: Zip Release
+      uses: TheDoctor0/zip-release@0.4.1
+      with:
+        filename: test-net5-release.zip
+        exclusions: '*.git* /*net48/* /*docs/* /*Source/* *.dll
+
+ 
+
