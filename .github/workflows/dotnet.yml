@@ -7,7 +7,7 @@ on:
 jobs:
   build:
  
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
  
     steps:
     - uses: actions/checkout@v1
@@ -20,7 +20,7 @@ jobs:
     - name: Restore NuGet Packages
       run: dotnet restore Source/BriefingRoom.sln
  
-    - name: Build and Publish Web App
+    - name: Build and Publish App
       run: dotnet publish Source/BriefingRoom.sln -o . -c Release
       
     - name: Zip Release
