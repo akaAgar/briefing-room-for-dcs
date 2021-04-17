@@ -27,7 +27,4 @@ jobs:
       uses: TheDoctor0/zip-release@0.4.1
       with:
         filename: test-net5-release.zip
-        exclusions: '*.git* /*net48/* /*docs/* /*Source/* *.dll
-
- 
-
+        exclusions: '*.git* /*net48/* /*docs/* /*Source/* *.dll'
