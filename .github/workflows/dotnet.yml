@@ -28,3 +28,9 @@ jobs:
       with:
         filename: test-net5-release.zip
         exclusions: '*.git* /*net48/* /*docs/* /*Source/* *.dll'
+
+    - name: Upload Release
+      uses: ncipollo/release-action@v1
+      with:
+          artifacts: "test-net5-release.zip"
+          token: ${{ secrets.GITHUB_TOKEN }}
