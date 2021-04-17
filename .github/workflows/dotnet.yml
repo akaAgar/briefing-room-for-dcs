@@ -34,7 +34,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}  
 
-      - name: Upload Release
+    - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
           tag: "test-net5-$BUILD_NUMBER"
