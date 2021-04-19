@@ -160,11 +160,11 @@ namespace BriefingRoom4DCSWorld.Template
         public BRSkillLevel SituationFriendlyAISkillLevel { get; set; }
         
         [TreeViewProperty("AI CAP escort", "Situation, friendlies", typeof(int), "Number of AI aircraft tasked with escorting the player against enemy fighters. In single-player missions, escorts will be spawned on the ramp if the player starts from the ramp (cold or hot), or in the air above the airbase if the player starts on the runway. In multiplayer missions, escorts will be spawned as soon as one player takes off.")]
-        [TreeViewPropertyInt(1, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE)]
+        [TreeViewPropertyInt(0, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE)]
         public int SituationFriendlyEscortCAP { get; set; }
 
         [TreeViewProperty("AI SEAD escort", "Situation, friendlies", typeof(int), "Number of AI aircraft tasked with escorting the player against enemy air defense. In single-player missions, escorts will be spawned on the ramp if the player starts from the ramp (cold or hot), or in the air above the airbase if the player starts on the runway. In multiplayer missions, escorts will be spawned as soon as one player takes off.")]
-        [TreeViewPropertyInt(1, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE)]
+        [TreeViewPropertyInt(0, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE)]
         public int SituationFriendlyEscortSEAD { get; set; }
 
         [TreeViewProperty("Player flight groups", null, typeof(MissionTemplateFlightGroup), "Player flight groups.")]

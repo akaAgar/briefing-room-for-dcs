@@ -707,11 +707,9 @@ briefingRoom.f10Menu.objectives = { }
 
 do
   missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Mission status", nil, briefingRoom.mission.functions.getMissionStatus, nil)
-  briefingRoom.f10Menu.supportMenu = missionCommands.addSubMenuForCoalition($PLAYERCOALITION$, "Support", nil)
 
-  for i,o in ipairs(briefingRoom.mission.objectives) do
-    briefingRoom.f10Menu.objectives[i] = missionCommands.addSubMenuForCoalition($PLAYERCOALITION$, "Objective "..o.name, nil)
-    missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Request waypoint coordinates", briefingRoom.f10Menu.objectives[i], briefingRoom.mission.functions.getWaypointCoordinates, i)
+  if briefingRoom.aircraftActivator.escortCAP > 0 or briefingRoom.aircraftActivator.escortSEAD > 0 then
+    briefingRoom.f10Menu.supportMenu = missionCommands.addSubMenuForCoalition($PLAYERCOALITION$, "Support", nil)
   end
 
   if briefingRoom.aircraftActivator.escortCAP > 0 then
@@ -720,6 +718,11 @@ do
 
   if briefingRoom.aircraftActivator.escortSEAD > 0 then
     briefingRoom.f10Menu.RequestSEADSupportCommand = missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Request SEAD support", briefingRoom.f10Menu.supportMenu,  briefingRoom.mission.functions.requestSupport, "SEAD") 
+  end
+  
+  for i,o in ipairs(briefingRoom.mission.objectives) do
+    briefingRoom.f10Menu.objectives[i] = missionCommands.addSubMenuForCoalition($PLAYERCOALITION$, "Objective "..o.name, nil)
+    missionCommands.addCommandForCoalition($PLAYERCOALITION$, "Request waypoint coordinates", briefingRoom.f10Menu.objectives[i], briefingRoom.mission.functions.getWaypointCoordinates, i)
   end
 end
 
