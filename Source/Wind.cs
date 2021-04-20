@@ -30,22 +30,22 @@ namespace BriefingRoom4DCSWorld
         [TreeViewEnum("Auto", "Wind level will be picked automatically according to the weather.")]
         Auto = -1, // Auto must be < 0 for casts from Int32
 
-        [TreeViewEnum("Calm", "No wind at all.")]
+        [TreeViewEnum("Calm", "Force 0, No wind at all. ")]
         Calm,
 
-        [TreeViewEnum("Light air", "Very light wind.")]
-        LightAir,
+        [TreeViewEnum("Light Breeze", "Force 1-2, Light wind.")]
+        LightBreeze,
 
-        [TreeViewEnum("Gentle breeze", "Light wind.")]
-        GentleBreeze,
+        [TreeViewEnum("Moderate breeze", "Force 3-4, Average wind.")]
+        ModerateBreeze,
 
-        [TreeViewEnum("Strong breeze", "Average wind, flying and aiming may require skill.")]
+        [TreeViewEnum("Strong breeze", "Force 5-6, Noticeable wind, flying and aiming may require skill.")]
         StrongBreeze,
 
-        [TreeViewEnum("High wind", "Strong wind. Flying and aiming will be heavily impaired.")]
-        HighWind,
+        [TreeViewEnum("Gale", "Force 7-8, Strong wind. Flying and aiming will be heavily impaired.")]
+        Gale,
 
-        [TreeViewEnum("Strong gale", "Very strong wind. Flying in these condition may prove dangerous.")]
-        StrongGale
+        [TreeViewEnum("Storm", "Force 9-10, Very strong wind. Flying in these condition may prove dangerous.")]
+        Storm
     }
 }

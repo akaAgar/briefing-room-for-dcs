@@ -23,9 +23,9 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 namespace BriefingRoom4DCSWorld.DB
 {
     /// <summary>
-    /// Stores information about a set of wind conditions in a <see cref="DBEntryTheater"/>.
+    /// Stores information about a set of wind conditions in a <see cref="DBEntry"/>.
     /// </summary>
-    public struct DBEntryTheaterWind
+    public struct DBEntryWind
     {
         /// <summary>
         /// Min/max wind speed (in meters/second).
@@ -38,11 +38,11 @@ namespace BriefingRoom4DCSWorld.DB
         public MinMaxI Turbulence { get; }
 
         /// <summary>
-        /// Constructor. Loads data from a theater database entry .ini file.
+        /// Constructor. Loads data from a weather database entry .ini file.
         /// </summary>
         /// <param name="ini">The .ini file to load from.</param>
         /// <param name="key">The value key.</param>
-        public DBEntryTheaterWind(INIFile ini, string key)
+        public DBEntryWind(INIFile ini, string key)
         {
             Wind = ini.GetValue<MinMaxI>("Wind", key + ".Wind");
             Turbulence = ini.GetValue<MinMaxI>("Wind", key + ".Turbulence");

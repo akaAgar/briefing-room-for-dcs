@@ -203,11 +203,11 @@ namespace BriefingRoom4DCSWorld.Generator
             switch (windConditions)
             {
                 default: return "Calm"; // Wind.Calm
-                case Wind.GentleBreeze: return "Gentle breeze";
-                case Wind.HighWind: return "High wind";
-                case Wind.LightAir: return "Light air";
+                case Wind.LightBreeze: return "Light Breeze";
+                case Wind.ModerateBreeze: return "Moderate breeze";
                 case Wind.StrongBreeze: return "Strong breeze";
-                case Wind.StrongGale: return "Strong gale";
+                case Wind.Gale: return "Gale wind";
+                case Wind.Storm: return "Storm";
             }
         }
 
