@@ -1,5 +1,22 @@
 ## Changelog
 
+* Version 0.4.104.21 (April 21, 2021)
+  * All new UI
+  * Bug fixes
+    * Fixed minor typos (by tgrandgent)
+    * Fixed typo in "Soldier M249" unit ID
+    * Fixed missing gun in Fix F-5E-3 (by John Harvey)
+    * Fixed AWACS altitude (by John Harvey)
+    * Removed erroneous settings in Options.lua
+    * Improved wind settings, high winds should not be as frequent (by John Harvey)
+  * Improvements
+    * CAP/SEAD support called by radio (with John Harvey)
+    * Changed cruise altitude and cruise speed to integers in aircraft ini files
+    * Better weather management (by John Harvey)
+  * New features
+    * Added "show waypoints as map markers" extensions (by John Harvey)
+    * Support for DCS World 2.7 cloud presets (by John Harvey)
+    * New "aircraft properties" field in unit properties, radio presets managements (by John Harvey)
 * Version 0.3.103.05 (March 5, 2021)
   * Bug fixes
     * AFAC and search & destroy targets are now always hidden on map, regardless of "show enemy units on map" setting
