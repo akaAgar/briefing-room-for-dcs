@@ -135,7 +135,7 @@ namespace BriefingRoom4DCSWorld.Generator
             using (MissionGeneratorWeather weather = new MissionGeneratorWeather())
             {
                 weather.GenerateWeather(mission, template.EnvironmentWeather, theaterDB, Database.Instance.Common);
-                weather.GenerateWind(mission, template.EnvironmentWind, theaterDB);
+                weather.GenerateWind(mission, template.EnvironmentWind, Database.Instance.Common);
             }
 
             // Generate Carrier

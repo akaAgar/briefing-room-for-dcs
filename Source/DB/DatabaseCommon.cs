@@ -131,6 +131,8 @@ namespace BriefingRoom4DCSWorld.DB
 
         public DBEntryWeather[] Weather { get; private set; }
 
+        public DBEntryWind[] Wind { get; private set; }
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -234,6 +236,10 @@ namespace BriefingRoom4DCSWorld.DB
                 Weather = new DBEntryWeather[Toolbox.EnumCount<Weather>() - 1]; // -1 because we don't want "Random"
                 for (i = 0; i < Weather.Length; i++)
                     Weather[i] = new DBEntryWeather(ini, ((Weather)i).ToString());
+                
+                Wind = new DBEntryWind[Toolbox.EnumCount<Wind>() - 1]; // -1 because we don't want "Random"
+                for (i = 0; i < Wind.Length; i++)
+                    Wind[i] = new DBEntryWind(ini, ((Wind)i).ToString());
             }
         }
 

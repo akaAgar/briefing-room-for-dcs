@@ -118,11 +118,11 @@ namespace BriefingRoom4DCSWorld.Generator
         /// <param name="mission">The mission.</param>
         /// <param name="wind">The preferred wind speed.</param>
         /// <param name="theaterDB">Theater database entry</param>
-        public void GenerateWind(DCSMission mission, Wind wind, DBEntryTheater theaterDB)
+        public void GenerateWind(DCSMission mission, Wind wind, DatabaseCommon commonDB)
         {
             // If auto, speed depends on weather, so we never end up with no wind in a storm
             mission.Weather.WindLevel = (wind == Wind.Auto) ?
-                (Wind)Toolbox.Clamp((int)mission.Weather.WeatherLevel + Toolbox.RandomMinMax(-1, 1), 0, (int)Wind.StrongGale)
+                (Wind)Toolbox.Clamp((int)mission.Weather.WeatherLevel + Toolbox.RandomMinMax(-1, 1), 0, (int)Wind.Storm)
                 : wind;
 
             DebugLog.Instance.WriteLine($"Wind speed level set to {mission.Weather.WindLevel}", 1);
@@ -131,14 +131,14 @@ namespace BriefingRoom4DCSWorld.Generator
 
             for (int i = 0; i < 3; i++)
             {
-                mission.Weather.WindSpeed[i] = Math.Max(0, theaterDB.Wind[windIndex].Wind.GetValue());
+                mission.Weather.WindSpeed[i] = Math.Max(0, commonDB.Wind[windIndex].Wind.GetValue());
                 mission.Weather.WindDirection[i] = (mission.Weather.WindSpeed[i] > 0) ? Toolbox.RandomInt(0, 360) : 0;
                 DebugLog.Instance.WriteLine($"Wind speed at {WIND_ALTITUDE[i]} meters set to {mission.Weather.WindSpeed[i]} m/s, direction of {mission.Weather.WindDirection[i]}", 1);
             }
 
 
             // Turbulence is equals to max(weatherTurbulence, windTurbulence)
-            mission.Weather.Turbulence = Math.Max(mission.Weather.Turbulence, theaterDB.Wind[windIndex].Turbulence.GetValue());
+            mission.Weather.Turbulence = Math.Max(mission.Weather.Turbulence, commonDB.Wind[windIndex].Turbulence.GetValue());
             DebugLog.Instance.WriteLine($"Turbulence updated to {mission.Weather.Turbulence} m/s", 1);
         }
     }

@@ -76,11 +76,6 @@ namespace BriefingRoom4DCSWorld.DB
         public MinMaxI[] Temperature { get; private set; }
 
         /// <summary>
-        /// Wind parameters for all "wind speed" settings. 11 values, from clear (0) to storm (10).
-        /// </summary>
-        public DBEntryTheaterWind[] Wind { get; private set; }
-
-        /// <summary>
         /// Loads a database entry from an .ini file.
         /// </summary>
         /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
@@ -118,11 +113,6 @@ namespace BriefingRoom4DCSWorld.DB
                 Temperature = new MinMaxI[12];
                 for (i = 0; i < 12; i++)
                     Temperature[i] = ini.GetValue<MinMaxI>("Temperature", ((Month)i).ToString());
-
-                // [Wind] section
-                Wind = new DBEntryTheaterWind[Toolbox.EnumCount<Wind>() - 1]; // -1 because we don't want "Auto"
-                for (i = 0; i < Wind.Length; i++)
-                    Wind[i] = new DBEntryTheaterWind(ini, ((Wind)i).ToString());
 
                 // [Airbases] section
                 Airbases = new DBEntryTheaterAirbase[ini.GetTopLevelKeysInSection("Airbases").Length];
