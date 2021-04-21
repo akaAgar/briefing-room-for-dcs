@@ -305,7 +305,7 @@ namespace BriefingRoom4DCSWorld
         {
             int angleDeg = (int)(angle * RADIANS_TO_DEGREES);
             while (angleDeg < 0) { angleDeg += 360; }
-            angleDeg = angleDeg % 360;
+            angleDeg %= 360;
             return angleDeg * DEGREES_TO_RADIANS;
         }
 
