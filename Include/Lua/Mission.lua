@@ -7,10 +7,10 @@ mission =
         }, -- end of ["actions"]
         ["events"] = 
         {
-        },
+        }, -- end of ["events"]
         ["custom"] = 
         {
-        },
+        }, -- end of ["custom"]
         ["func"] = 
         {
         }, -- end of ["func"]
@@ -22,7 +22,7 @@ mission =
         }, -- end of ["conditions"]
         ["customStartup"] = 
         {
-        },
+        }, -- end of ["customStartup"]
         ["funcStartup"] = 
         {
         }, -- end of ["funcStartup"]
@@ -43,37 +43,37 @@ mission =
             ["conditions"] = 
             {
                 [1] = "return(c_flag_is_true(1))",
-            },
+            }, -- end of ["conditions"]
             ["actions"] = 
             {
                 [1] = "a_set_mission_result(100)",
-            },
+            }, -- end of ["actions"]
             ["func"] = 
             {
                 [1] = "if mission.result.offline.conditions[1]() then mission.result.offline.actions[1]() end",
-            },
-        },
+            }, -- end of ["func"]
+        }, -- end of ["offline"]
         ["total"] = 1,
         ["blue"] = 
         {
             ["conditions"] = 
             {
-            },
+            }, -- end of ["conditions"]
             ["actions"] = 
             {
-            },
+            }, -- end of ["actions"]
             ["func"] = 
             {
-            },
-        },
+            }, -- end of ["func"]
+        }, -- end of ["blue"]
         ["red"] = 
         {
             ["conditions"] = 
             {
-            },
+            }, -- end of ["conditions"]
             ["actions"] = 
             {
-            },
+            }, -- end of ["actions"]
             ["func"] = 
             {
             }, -- end of ["func"]
@@ -89,19 +89,19 @@ mission =
                 ["neutrals"] = 0,
                 ["blue"] = 0,
                 ["red"] = 0,
-            },
+            }, -- end of ["artillery_commander"]
             ["instructor"] = 
             {
                 ["neutrals"] = 0,
                 ["blue"] = 0,
                 ["red"] = 0,
-            },
+            }, -- end of ["instructor"]
             ["observer"] = 
             {
                 ["neutrals"] = 0,
                 ["blue"] = 0,
                 ["red"] = 0,
-            },
+            }, -- end of ["observer"]
             ["forward_observer"] = 
             {
                 ["neutrals"] = 0,
@@ -125,8 +125,8 @@ mission =
                     ["flag"] = 1,
                     ["predicate"] = "c_flag_is_true",
                     ["zone"] = "",
-                },
-            },
+                }, -- end of [1]
+            }, -- end of ["rules"]
             ["side"] = "OFFLINE",
             ["score"] = 100,
             ["predicate"] = "score",
@@ -193,8 +193,8 @@ mission =
     {
         ["zones"] = 
         {
-        },
-    },
+        }, -- end of ["zones"]
+    }, -- end of ["triggers"]
     ["map"] = 
     {
         ["centerY"] = $MISSION_AIRBASE_Y$,
@@ -226,15 +226,15 @@ mission =
             {
                 ["y"] = 0,
                 ["x"] = 0,
-            },
+            }, -- end of ["bullseye"]
             ["nav_points"] = 
             {
-            },
+            }, -- end of ["nav_points"]
             ["name"] = "neutrals",
             ["country"] = 
             {
-            },
-        },
+            }, -- end of ["country"]
+        }, -- end of ["neutrals"]
         ["blue"] = 
         {
             ["bullseye"] = 
@@ -244,7 +244,7 @@ mission =
             }, -- end of ["bullseye"]
             ["nav_points"] = 
             {
-            },
+            }, -- end of ["nav_points"]
             ["name"] = "blue",
             ["country"] = 
             {
@@ -260,7 +260,7 @@ mission =
             }, -- end of ["bullseye"]
             ["nav_points"] = 
             {
-            },
+            }, -- end of ["nav_points"]
             ["name"] = "red",
             ["country"] = 
             {
@@ -276,7 +276,7 @@ mission =
         {
             ["rules"] = 
             {
-            },
+            }, -- end of ["rules"]
             ["eventlist"] = "",
             ["predicate"] = "triggerStart",
             ["actions"] = 
@@ -292,11 +292,11 @@ mission =
                     {
                         [1] = "",
                         [2] = "",
-                    },
-                },
-            },
+                    }, -- end of ["ai_task"]
+                }, -- end of [1]
+            }, -- end of ["actions"]
             ["comment"] = "Run main mission script",
-        },
+        }, -- end of [1]
         [2] = 
         {
             ["rules"] = 
@@ -306,8 +306,8 @@ mission =
                     ["flag"] = 2,
                     ["predicate"] = "c_flag_is_true",
                     ["zone"] = "",
-                },
-            },
+                }, -- end of [1]
+            }, -- end of ["rules"]
             ["comment"] = "Ends mission when trigger 2 is true",
             ["eventlist"] = "",
             ["predicate"] = "triggerOnce",
@@ -336,5 +336,5 @@ $FORCED_OPTIONS$
     }, -- end of ["forcedOptions"]
     ["failures"] = 
     {
-    },
-}
+    }, -- end of ["failures"]
+} -- end of mission

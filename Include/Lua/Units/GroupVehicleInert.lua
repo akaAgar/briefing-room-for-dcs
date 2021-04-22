@@ -4,7 +4,7 @@
   ["lateActivation"] = false,
   ["tasks"] =
   {
-  },
+  }, -- end of ["tasks"]
   ["uncontrollable"] = false,
   ["task"] = "Ground Nothing",
   ["hiddenOnMFD"] = $HIDDEN$,
@@ -12,7 +12,7 @@
   {
     ["spans"] =
     {
-    },
+    }, -- end of ["spans"]
     ["points"] =
     {
       [1] =
@@ -50,10 +50,10 @@
                     {
                       ["value"] = 4,
                       ["name"] = 0,
-                    },
-                  },
-                },
-              },
+                    }, -- end of ["params"]
+                  }, -- end of ["action"]
+                }, -- end of ["params"]
+              }, -- end of [1]
               [2] =
               {
                 ["number"] = 2,
@@ -68,10 +68,10 @@
                     ["params"] =
                     {
                       ["value"] = true,
-                    },
-                  },
-                },
-              },
+                    }, -- end of ["params"]
+                  }, -- end of ["action"]
+                }, -- end of ["params"]
+              }, -- end of [2]
               [3] =
               {
                 ["enabled"] = true,
@@ -81,25 +81,25 @@
                 ["params"] =
                 {
                   ["templateId"] = "",
-                },
-              },
-            },
-          },
-        },
+                }, -- end of ["params"]
+              }, -- end of [3]
+            }, -- end of ["tasks"]
+          }, -- end of ["params"]
+        }, -- end of ["task"]
         ["speed_locked"] = true,
-      },
-    },
+      }, -- end of [1]
+    }, -- end of ["points"]
     ["routeRelativeTOT"] = false,
-  },
+  }, -- end of ["route"]
   ["groupId"] = $ID$,
   ["hidden"] = $HIDDEN$,
   ["units"] =
   {
     $UNITS$
-  },
+  }, -- end of ["units"]
   ["y"] = $Y$,
   ["x"] = $X$,
   ["name"] = "$NAME$",
   ["start_time"] = 0,
   ["hiddenOnPlanner"] = $HIDDEN$,
-},
+}, -- end of [$INDEX$]

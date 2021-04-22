@@ -9,4 +9,4 @@ $EXTRALUA$
   ["x"] = $X$,
   ["name"] = "$NAME$",
   ["heading"] = $HEADING$,
-},
+}, -- end of [$INDEX$]
