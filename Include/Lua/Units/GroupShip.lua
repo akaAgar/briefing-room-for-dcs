@@ -3,7 +3,7 @@
   ["visible"] = false,
   ["tasks"] =
   {
-  }, -- end of ["tasks"]
+  },
   ["uncontrollable"] = false,
   ["route"] =
   {
@@ -29,21 +29,21 @@
           {
             ["tasks"] =
             {
-            }, -- end of ["tasks"]
-          }, -- end of ["params"]
-        }, -- end of ["task"]
+            },
+          },
+        },
         ["speed_locked"] = true,
-      }, -- end of [1]
-    }, -- end of ["points"]
-  }, -- end of ["route"]
+      },
+    },
+  },
   ["groupId"] = $ID$,
   ["hidden"] = $HIDDEN$,
   ["units"] =
   {
     $UNITS$
-  }, -- end of ["units"]
+  },
   ["y"] = $Y$,
   ["x"] = $X$,
   ["name"] = "$NAME$",
   ["start_time"] = 0,
-}, -- end of [$INDEX$]
+},

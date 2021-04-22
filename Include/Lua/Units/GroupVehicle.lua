@@ -4,7 +4,7 @@
   ["lateActivation"] = false,
   ["tasks"] =
   {
-  }, -- end of ["tasks"]
+  },
   ["uncontrollable"] = false,
   ["task"] = "Ground Nothing",
   ["hiddenOnMFD"] = $HIDDEN$,
@@ -12,7 +12,7 @@
   {
     ["spans"] =
     {
-    }, -- end of ["spans"]
+    },
     ["points"] =
     {
       [1] =
@@ -35,23 +35,23 @@
           {
             ["tasks"] =
             {
-            }, -- end of ["tasks"]
-          }, -- end of ["params"]
-        }, -- end of ["task"]
+            },
+          },
+        },
         ["speed_locked"] = true,
-      }, -- end of [1]
-    }, -- end of ["points"]
+      },
+    },
     ["routeRelativeTOT"] = false,
-  }, -- end of ["route"]
+  },
   ["groupId"] = $ID$,
   ["hidden"] = $HIDDEN$,
   ["units"] =
   {
 $UNITS$
-  }, -- end of ["units"]
+  },
   ["y"] = $Y$,
   ["x"] = $X$,
   ["name"] = "$NAME$",
   ["start_time"] = 0,
   ["hiddenOnPlanner"] = $HIDDEN$,
-}, -- end of [$INDEX$]
+},

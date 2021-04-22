@@ -9,7 +9,7 @@ $EXTRALUA$
                 ["AddPropAircraft"] = 
                 {
 $PROPSLUA$
-                }, -- end of ["AddPropAircraft"]
+                },
                 ["type"] = "$TYPE$",
                 ["unitId"] = $ID$,
                 ["psi"] = 0,
@@ -22,9 +22,9 @@ $PROPSLUA$
                     ["pylons"] = 
                     {
 $PAYLOADPYLONS$
-                    }, -- end of ["pylons"]
+                    },
 $PAYLOADCOMMON$
-                }, -- end of ["payload"]
+                },
                 ["heading"] = $HEADING$,
                 ["callsign"] = $CALLSIGN$,
                 ["onboard_num"] = "$ONBOARDNUMBER$",
@@ -32,4 +32,4 @@ $PAYLOADCOMMON$
                 {
 $RADIOPRESETSLUA$
                 }
-            }, -- end of [$INDEX$]
+            },
