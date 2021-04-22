@@ -18,6 +18,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom.DB;
 using BriefingRoom.Debug;
 using BriefingRoom.Generator;
 using BriefingRoom.Mission;
@@ -35,6 +36,34 @@ namespace BriefingRoom.CommandLine
     /// </summary>
     public class CommandLineTool : IDisposable
     {
+        [STAThread]
+        private static void Main(string[] args)
+        {
+            if (args.Length <= 0) // No arguments
+            {
+                return;
+            }
+
+            Database.Instance.Initialize(); // Called here in command-line mode, when in GUI mode function is called by the SplashScreen
+            if (DebugLog.Instance.ErrorCount > 0) return; // Errors found, abort! abort!
+
+            try
+            {
+                using (CommandLineTool clt = new CommandLineTool())
+                    clt.DoCommandLine(args);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR: {ex.Message}");
+            }
+
+#if DEBUG
+            Console.WriteLine();
+            Console.WriteLine("Press any key to close this window");
+            Console.ReadKey();
+#endif
+        }
+
         /// <summary>
         /// Maximum number of missions to generate.
         /// </summary>

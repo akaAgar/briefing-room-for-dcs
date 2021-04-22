@@ -53,10 +53,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
-    <PackageReference Include="System.Resources.Extensions" Version="5.0.0" />
-    <PackageReference Include="System.Windows.Forms" Version="4.0.0" />
-    <PackageReference Include="System.Design" Version="4.0.0" />
-    <PackageReference Include="System.IO.Compression" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BriefingRoomLibrary\BriefingRoomLibrary.csproj" />

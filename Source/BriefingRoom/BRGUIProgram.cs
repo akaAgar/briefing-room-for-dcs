@@ -18,7 +18,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using BriefingRoom.CommandLine;
 using BriefingRoom.DB;
 using BriefingRoom.Debug;
 using BriefingRoom.GUI;
@@ -60,41 +59,18 @@ namespace BriefingRoom
             using (INIFile ini = new INIFile($"{BRPaths.DATABASE}Common.ini"))
                 TARGETED_DCS_WORLD_VERSION = ini.GetValue("Versions", "DCSVersion", "2.5");
 
-            if (args.Length > 0) // Command-line arguments are present, use the command-line tool
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            // Display the splash screen while the database is being loaded
+            using (SplashScreenForm splashScreen = new SplashScreenForm())
             {
-                Database.Instance.Initialize(); // Called here in command-line mode, when in GUI mode function is called by the SplashScreen
-                if (DebugLog.Instance.ErrorCount > 0) return; // Errors found, abort! abort!
-
-                try
-                {
-                    using (CommandLineTool clt = new CommandLineTool())
-                        clt.DoCommandLine(args);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"ERROR: {ex.Message}");
-                }
-
-#if DEBUG
-                Console.WriteLine();
-                Console.WriteLine("Press any key to close this window");
-                Console.ReadKey();
-#endif
+                splashScreen.ShowDialog();
+                if (splashScreen.AbortStartup) return;
             }
-            else // No command-line, use the GUI tool
-            {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
 
-                // Display the splash screen while the database is being loaded
-                using (SplashScreenForm splashScreen = new SplashScreenForm())
-                {
-                    splashScreen.ShowDialog();
-                    if (splashScreen.AbortStartup) return;
-                }
-
-                Application.Run(new MainForm());
-            }
+            Application.Run(new MainForm());
 
             DebugLog.Instance.CloseLogFileWriter();
         }
