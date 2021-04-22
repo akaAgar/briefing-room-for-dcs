@@ -3,7 +3,7 @@
         ["modulation"] = $RADIOBAND$,
         ["tasks"] = 
         {
-        }, -- end of ["tasks"]
+        },
         ["task"] = "CAS",
         ["uncontrolled"] = false,
         ["route"] = 
@@ -24,7 +24,7 @@
                         ["vangle"] = 0,
                         ["angle"] = 0,
                         ["steer"] = 2,
-                    }, -- end of ["properties"]
+                    },
                     ["speed"] = $SPEED$,
                     ["task"] = 
                     {
@@ -48,13 +48,13 @@
                                             {
                                                 ["value"] = $EPLRS$,
                                                 ["groupId"] = $ID$,
-                                            }, -- end of ["params"]
-                                        }, -- end of ["action"]
-                                    }, -- end of ["params"]
-                                }, -- end of [1]
-                            }, -- end of ["tasks"]
-                        }, -- end of ["params"]
-                    }, -- end of ["task"]
+                                            },
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                    },
                     ["type"] = "$PLAYERSTARTINGTYPE$",
                     ["ETA"] = 0,
                     ["ETA_locked"] = true,
@@ -63,7 +63,7 @@
                     ["name"] = "$INITIALWPNAME$",
                     ["formation_template"] = "",
                     ["speed_locked"] = true,
-                }, -- end of [1]
+                },
 $PLAYERWAYPOINTS$
                 [$LASTPLAYERWAYPOINTINDEX$] = 
                 {
@@ -78,9 +78,9 @@ $PLAYERWAYPOINTS$
                         {
                             ["tasks"] = 
                             {
-                            }, -- end of ["tasks"]
-                        }, -- end of ["params"]
-                    }, -- end of ["task"]
+                            },
+                        },
+                    },
                     ["type"] = "Land",
                     ["ETA"] = 0,
                     ["ETA_locked"] = false,
@@ -90,18 +90,18 @@ $PLAYERWAYPOINTS$
                     ["formation_template"] = "",
                     ["speed_locked"] = true,
                 }, -- end of [$LASTPLAYERWAYPOINTINDEX$]
-            }, -- end of ["points"]
-        }, -- end of ["route"]
+            },
+        },
         ["groupId"] = $ID$,
         ["hidden"] = $HIDDEN$,
         ["units"] = 
         {
 $UNITS$
-        }, -- end of ["units"]
+        },
         ["y"] = $Y$,
         ["x"] = $X$,
         ["name"] = "$NAME$",
         ["communication"] = true,
         ["start_time"] = 0,
         ["frequency"] = $RADIOFREQUENCY$,
-    }, -- end of [$INDEX$]
+    },

@@ -18,7 +18,7 @@ options =
         ["chat_window_at_start"] = true,
         ["synchronize_controls"] = false,
         ["show_pilot_body"] = true,
-    }, -- end of ["miscellaneous"]
+    },
     ["difficulty"] = 
     {
         ["fuel"] = false,
@@ -149,7 +149,7 @@ options =
             ["CPLocalList_J-11A"] = "default",
             ["CPLocalList_MiG-29G"] = "default",
             ["CPLocalList_F-15C"] = "default",
-        }, -- end of ["FC3"]
+        },
         ["F/A-18C"] = 
         {
             ["abDetent"] = 0,
@@ -257,7 +257,7 @@ options =
         ["music"] = 0,
         ["voice_chat_input"] = "",
         ["gui"] = 100,
-    }, -- end of ["sound"]
+    },
     ["views"] = 
     {
         ["cockpit"] = 
@@ -265,6 +265,6 @@ options =
             ["mirrors"] = false,
             ["reflections"] = false,
             ["avionics"] = 3,
-        }, -- end of ["cockpit"]
-    }, -- end of ["views"]
-} -- end of options
+        },
+    },
+}
