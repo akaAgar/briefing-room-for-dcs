@@ -18,7 +18,7 @@ options =
         ["chat_window_at_start"] = true,
         ["synchronize_controls"] = false,
         ["show_pilot_body"] = true,
-    },
+    }, -- end of ["miscellaneous"]
     ["difficulty"] = 
     {
         ["geffect"] = "realistic",
@@ -53,7 +53,7 @@ options =
         ["weapons"] = false,
         ["setGlobal"] = false,
         ["labels"] = 1,
-    },
+    }, -- end of ["difficulty"]
     ["VR"] = 
     {
         ["enable"] = true,
@@ -67,7 +67,7 @@ options =
         ["custom_IPD_enable"] = false,
         ["custom_IPD"] = 63.5,
         ["hand_controllers"] = true,
-    },
+    }, -- end of ["VR"]
     ["graphics"] = 
     {
         ["messagesFontScale"] = 1.5,
@@ -107,7 +107,7 @@ options =
         ["clutterMaxDistance"] = 750,
         ["scaleGui"] = 1,
         ["civTraffic"] = "",
-    },
+    }, -- end of ["graphics"]
     ["plugins"] = 
     {
         ["Su-25T"] = 
@@ -139,7 +139,7 @@ options =
             ["CPLocalList_J-11A"] = "default",
             ["CPLocalList_MiG-29G"] = "default",
             ["CPLocalList_F-15C"] = "default",
-        },
+        }, -- end of ["FC3"]
         ["F/A-18C"] = 
         {
             ["abDetent"] = false,
@@ -164,14 +164,14 @@ options =
             ["tacviewDebugModeEnabled"] = false,
             ["tacviewClientTelemetryPassword"] = "",
             ["tacviewRemoteControlPassword"] = "",
-        },
+        }, -- end of ["Tacview"]
         ["AV8BNA"] = 
         {
             ["CPLocalList"] = "default",
             ["INS_Alignment"] = 2,
             ["INS_GYROHasNAV"] = false,
             ["MPCD_EXPORT"] = false,
-        },
+        }, -- end of ["AV8BNA"]
         ["Ka-50"] = 
         {
             ["Ka50TrimmingMethod"] = 0,
@@ -212,7 +212,7 @@ options =
             ["enable"] = false,
             ["shoulderJointY_Right"] = -23,
             ["yawOffsetGlove_Right"] = 0,
-        },
+        }, -- end of ["CaptoGlove"]
         ["F-16C"] = 
         {
             ["abDetent"] = 0,
@@ -222,7 +222,7 @@ options =
             ["canopyTint"] = 1,
             ["mfdReflections"] = 0,
         }, -- end of ["F-16C"]
-    },
+    }, -- end of ["plugins"]
     ["format"] = 1,
     ["sound"] = 
     {
@@ -246,7 +246,7 @@ options =
         ["music"] = 0,
         ["voice_chat_input"] = "0:{0.0.1.00000000}.{4095cd24-1e1e-4dc5-b52e-0dc47b68d2a7}",
         ["gui"] = 100,
-    },
+    }, -- end of ["sound"]
     ["views"] = 
     {
         ["cockpit"] = 
@@ -254,6 +254,6 @@ options =
             ["mirrors"] = false,
             ["reflections"] = false,
             ["avionics"] = 3,
-        },
-    },
-}
+        }, -- end of ["cockpit"]
+    }, -- end of ["views"]
+} -- end of options

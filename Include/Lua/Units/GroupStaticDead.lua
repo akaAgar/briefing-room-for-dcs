@@ -15,16 +15,16 @@
         ["x"] = $X$,
         ["formation_template"] = "",
         ["action"] = "",
-      },
-    },
-  },
+      }, -- end of [1]
+    }, -- end of ["points"]
+  }, -- end of ["route"]
   ["groupId"] = $ID$,
   ["units"] =
   {
 $UNITS$
-  },
+  }, -- end of ["units"]
   ["y"] = $Y$,
   ["x"] = $X$,
   ["name"] = "$NAME$",
   ["dead"] = true,
-},
+}, -- end of [$INDEX$]

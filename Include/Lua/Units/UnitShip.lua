@@ -3,7 +3,7 @@
   ["transportable"] =
   {
     ["randomTransportable"] = false,
-  },
+  }, -- end of ["transportable"]
   ["skill"] = "$SKILL$",
   ["type"] = "$TYPE$",
   ["unitId"] = $ID$,
@@ -14,4 +14,4 @@ $EXTRALUA$
   ["heading"] = $HEADING$,
   ["modulation"] = $RADIOBAND$,
   ["frequency"] = $RADIOFREQUENCY$,
-},
+}, -- end of [$INDEX$]
