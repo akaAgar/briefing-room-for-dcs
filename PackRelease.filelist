@@ -12,6 +12,7 @@ Include\Lua\*.lua
 Include\Lua\**\*.lua
 Include\Ogg\*.ogg
 Media\*.*
+Media\Icons16\*.png
 Templates\*.brTemplate
 BriefingRoom.exe
 LICENSE
