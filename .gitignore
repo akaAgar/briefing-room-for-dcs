@@ -13,3 +13,8 @@
 *.user
 *.xml
 *.zip
+*.dll
+/.vs
+
+*/obj/*
+*/bin/*
