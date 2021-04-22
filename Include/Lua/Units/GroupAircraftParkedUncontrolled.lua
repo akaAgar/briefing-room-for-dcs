@@ -3,7 +3,7 @@
   ["lateActivation"] = false,
   ["tasks"] =
   {
-  }, -- end of ["tasks"]
+  },
   ["task"] = "Nothing",
   ["uncontrolled"] = true,
   ["taskSelected"] = true,
@@ -25,9 +25,9 @@
               {
                   ["tasks"] = 
                   {
-                  }, -- end of ["tasks"]
-              }, -- end of ["params"]
-          }, -- end of ["task"]
+                  },
+              },
+          },
           ["type"] = "TakeOffParking",
           ["ETA"] = 0,
           ["ETA_locked"] = true,
@@ -36,15 +36,15 @@
           ["formation_template"] = "",
           ["airdromeId"] = $OBJECTIVEAIRBASEID$,
           ["speed_locked"] = true,
-      }, -- end of [1]
-    }, -- end of ["points"]
-  }, -- end of ["route"]
+      },
+    },
+  },
   ["groupId"] = $ID$,
   ["hidden"] = $HIDDEN$,
   ["units"] =
   {
 $UNITS$
-  }, -- end of ["units"]
+  },
   ["y"] = $Y$,
   ["x"] = $X$,
   ["name"] = "$NAME$",
@@ -52,4 +52,4 @@ $UNITS$
   ["start_time"] = 0,
   ["modulation"] = $RADIOBAND$,
   ["frequency"] = $RADIOFREQUENCY$,
-}, -- end of [$INDEX$]
+},

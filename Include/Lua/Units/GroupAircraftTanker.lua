@@ -5,7 +5,7 @@
     ["radioSet"] = true,
     ["tasks"] = 
     {
-    }, -- end of ["tasks"]
+    },
     ["task"] = "Refueling",
     ["uncontrolled"] = false,
     ["taskSelected"] = true,
@@ -34,8 +34,8 @@
                                 ["number"] = 1,
                                 ["params"] = 
                                 {
-                                }, -- end of ["params"]
-                            }, -- end of [1]
+                                },
+                            },
                             [2] = 
                             {
                                 ["enabled"] = true,
@@ -58,10 +58,10 @@
                                             ["modeChannel"] = "X",
                                             ["bearing"] = true,
                                             ["system"] = 4,
-                                        }, -- end of ["params"]
-                                    }, -- end of ["action"]
-                                }, -- end of ["params"]
-                            }, -- end of [2]
+                                        },
+                                    },
+                                },
+                            },
                             [3] = 
                             {
                                 ["enabled"] = true,
@@ -77,10 +77,10 @@
                                         {
                                             ["value"] = $EPLRS$,
                                             ["groupId"] = $ID$,
-                                        }, -- end of ["params"]
-                                    }, -- end of ["action"]
-                                }, -- end of ["params"]
-                            }, -- end of [3]
+                                        },
+                                    },
+                                },
+                            },
                             [4] = 
                             {
                                 ["enabled"] = true,
@@ -95,10 +95,10 @@
                                         ["params"] = 
                                         {
                                             ["value"] = true,
-                                        }, -- end of ["params"]
-                                    }, -- end of ["action"]
-                                }, -- end of ["params"]
-                            }, -- end of [4]
+                                        },
+                                    },
+                                },
+                            },
                             [5] = 
                             {
                                 ["enabled"] = true,
@@ -113,10 +113,10 @@
                                         ["params"] = 
                                         {
                                             ["value"] = true,
-                                        }, -- end of ["params"]
-                                    }, -- end of ["action"]
-                                }, -- end of ["params"]
-                            }, -- end of [5]
+                                        },
+                                    },
+                                },
+                            },
                             [6] = 
                             {
                                 ["enabled"] = true,
@@ -132,10 +132,10 @@
                                         {
                                             ["value"] = 0,
                                             ["name"] = 1,
-                                        }, -- end of ["params"]
-                                    }, -- end of ["action"]
-                                }, -- end of ["params"]
-                            }, -- end of [6]
+                                        },
+                                    },
+                                },
+                            },
                             [7] = 
                             {
                                 ["enabled"] = true,
@@ -147,11 +147,11 @@
                                     ["altitude"] = $ALTITUDE$,
                                     ["pattern"] = "Race-Track",
                                     ["speed"] = $SPEED$,
-                                }, -- end of ["params"]
-                            }, -- end of [7]
-                        }, -- end of ["tasks"]
-                    }, -- end of ["params"]
-                }, -- end of ["task"]
+                                },
+                            },
+                        },
+                    },
+                },
                 ["type"] = "Turning Point",
                 ["ETA"] = 0,
                 ["ETA_locked"] = true,
@@ -160,7 +160,7 @@
                 ["name"] = "",
                 ["formation_template"] = "",
                 ["speed_locked"] = true,
-            }, -- end of [1]
+            },
             [2] = 
             {
                 ["alt"] = $ALTITUDE$,
@@ -174,9 +174,9 @@
                     {
                         ["tasks"] = 
                         {
-                        }, -- end of ["tasks"]
-                    }, -- end of ["params"]
-                }, -- end of ["task"]
+                        },
+                    },
+                },
                 ["type"] = "Turning Point",
                 ["ETA"] = 0.0,
                 ["ETA_locked"] = false,
@@ -185,19 +185,19 @@
                 ["name"] = "",
                 ["formation_template"] = "",
                 ["speed_locked"] = true,
-            }, -- end of [2]
-        }, -- end of ["points"]
-    }, -- end of ["route"]
+            },
+        },
+    },
     ["groupId"] = $ID$,
     ["hidden"] = $HIDDEN$,
     ["units"] = 
     {
 $UNITS$
-    }, -- end of ["units"]
+    },
     ["y"] = $Y$,
     ["x"] = $X$,
     ["name"] = "$NAME$",
     ["communication"] = true,
     ["start_time"] = 0,
     ["frequency"] = $RADIOFREQUENCY$,
-}, -- end of [$INDEX$]
+},
