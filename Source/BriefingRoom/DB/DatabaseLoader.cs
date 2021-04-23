@@ -42,7 +42,6 @@ namespace BriefingRoom.DB
         public void LoadAll(Dictionary<Type, Dictionary<string, DBEntry>> dbEntries)
         {
             dbEntries.Clear();
-            LoadDatabaseEntries<DBEntryExtension>(dbEntries, "Extensions");
             LoadDatabaseEntries<DBEntryMissionFeature>(dbEntries, "MissionFeatures");
             LoadDatabaseEntries<DBEntryObjective>(dbEntries, "Objectives"); // Must be loaded after DBEntryMissionFeature as it depends on it
             LoadDatabaseEntries<DBEntryTheater>(dbEntries, "Theaters");
@@ -132,7 +131,7 @@ namespace BriefingRoom.DB
                 string id = Path.GetFileNameWithoutExtension(filePath).Trim();
 
                 // Extensions, mission features and units may not have commas in their IDs as these will be used in comma-separated arrays.
-                if ((dbType == typeof(DBEntryExtension)) || (dbType == typeof(DBEntryMissionFeature)) || (dbType == typeof(DBEntryUnit)))
+                if ((dbType == typeof(DBEntryMissionFeature)) || (dbType == typeof(DBEntryUnit)))
                     id = id.Replace(",", "").Trim();
 
                 if (dbEntries[dbType].ContainsKey(id)) continue;
@@ -159,7 +158,6 @@ namespace BriefingRoom.DB
 
             if (
                 (type == typeof(DBEntryDefaultUnitList)) ||
-                (type == typeof(DBEntryExtension)) ||
                 (type == typeof(DBEntryMissionFeature))
                 )
                 return false;

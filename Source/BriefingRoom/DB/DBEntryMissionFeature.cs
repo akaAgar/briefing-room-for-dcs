@@ -26,8 +26,33 @@ namespace BriefingRoom.DB
     /// <summary>
     /// Stores information about a mission feature.
     /// </summary>
-    public class DBEntryMissionFeature : DBEntryExtension
+    public class DBEntryMissionFeature : DBEntry
     {
+        /// <summary>
+        /// Randomly-parsed (<see cref="Toolbox.ParseRandomString(string)"/>) single-line remarks to add to the mission briefing when this feature is enabled.
+        /// </summary>
+        public string[] BriefingRemarks { get; private set; }
+
+        /// <summary>
+        /// Lua scripts to include (from Include\Lua\IncludedScripts) in the mission when this feature is enabled.
+        /// </summary>
+        public string[] IncludeLua { get; private set; }
+
+        /// <summary>
+        /// Ogg files to include in the .miz file when this mission feature is enabled.
+        /// </summary>
+        public string[] IncludeOgg { get; private set; }
+
+        /// <summary>
+        /// Lua code to include just before the included files.
+        /// </summary>
+        public string LuaSettings { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string IncompatiblePrefix { get; private set; }
+
         /// <summary>
         /// Unit group to spawn when this mission feature is enabled.
         /// </summary>
@@ -46,15 +71,28 @@ namespace BriefingRoom.DB
 
         protected override bool OnLoad(string iniFilePath)
         {
-            if (!base.OnLoad(iniFilePath)) return false;
-
             using (INIFile ini = new INIFile(iniFilePath))
             {
+                BriefingRemarks = ini.GetValueArray<string>("Briefing", "Remarks", ';');
+                IncludeLua = ini.GetValueArray<string>("Include", "Lua");
+                IncludeOgg = ini.GetValueArray<string>("Include", "Ogg");
+                LuaSettings = ini.GetValue<string>("Lua", "Settings");
+
+                IncompatiblePrefix = ini.GetValue<string>("UnitGroup", "Position.Initial").ToLowerInvariant();
+
                 UnitGroup = new DBUnitGroup(ini, "UnitGroup");
                 UnitGroupCoordinates = new DBEntryMissionFeatureUnitGroupLocation[2];
                 UnitGroupCoordinates[0] = ini.GetValue<DBEntryMissionFeatureUnitGroupLocation>("UnitGroup", "Position.Initial");
                 UnitGroupCoordinates[1] = ini.GetValue<DBEntryMissionFeatureUnitGroupLocation>("UnitGroup", "Position.Destination");
             }
+
+            foreach (string f in IncludeLua)
+                if (!File.Exists($"{BRPaths.INCLUDE_LUA_INCLUDEDSCRIPTS}{f}.lua"))
+                    DebugLog.Instance.WriteLine($"File \"Include\\Lua\\IncludedScripts\\{f}.lua\", required by mission feature \"{ID}\", doesn't exist.", 1, DebugLogMessageErrorLevel.Warning);
+
+            foreach (string f in IncludeOgg)
+                if (!File.Exists($"{BRPaths.INCLUDE_OGG}{f}.ogg"))
+                    DebugLog.Instance.WriteLine($"File \"Include\\Ogg\\{f}.ogg\", required by mission feature \"{ID}\", doesn't exist.", 1, DebugLogMessageErrorLevel.Warning);
 
             return true;
         }

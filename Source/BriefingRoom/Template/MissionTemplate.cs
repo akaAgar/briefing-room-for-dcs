@@ -173,8 +173,8 @@ namespace BriefingRoom.Template
         [TreeViewProperty("Realism", null, typeof(RealismOption), "Realism options to apply to this mission.")]
         public RealismOption[] Realism { get; set; }
 
-        [TreeViewProperty("Script extensions", null, typeof(DBEntryExtension), "Script extensions to include in this mission to provide additional features.")]
-        public string[] ScriptExtensions { get; set; }
+        [TreeViewProperty("Mission features", null, typeof(DBEntryMissionFeature), "Mission features to include in this mission.")]
+        public string[] MissionFeatures { get; set; }
 
         [TreeViewProperty("Unit mods", null, typeof(DBEntryDCSMod), "Which unit mods should be enabled in this mission? Make sure units mods are installed and active in your version of DCS World or the units won't be spawned.")]
         public string[] UnitMods { get; set; }
@@ -228,7 +228,7 @@ namespace BriefingRoom.Template
 
             Realism = new RealismOption[] { RealismOption.DisableDCSRadioAssists, RealismOption.NoBDA };
 
-            ScriptExtensions = new string[0];
+            MissionFeatures = new string[0];
 
             UnitMods = new string[0];
 
@@ -322,7 +322,7 @@ namespace BriefingRoom.Template
 
                 Realism = ini.GetValueArray<RealismOption>("Realism", "Realism").Distinct().ToArray();
 
-                ScriptExtensions = ini.GetValueArray<string>("ScriptExtensions", "ScriptExtensions").Distinct().ToArray();
+                MissionFeatures = ini.GetValueArray<string>("ScriptExtensions", "ScriptExtensions").Distinct().ToArray();
 
                 UnitMods = ini.GetValueArray<string>("UnitMods", "UnitMods").Distinct().ToArray();
             }
@@ -387,7 +387,7 @@ namespace BriefingRoom.Template
 
                 ini.SetValueArray("Realism", "Realism", Realism);
 
-                ini.SetValueArray("ScriptExtensions", "ScriptExtensions", ScriptExtensions);
+                ini.SetValueArray("ScriptExtensions", "ScriptExtensions", MissionFeatures);
 
                 ini.SetValueArray("UnitMods", "UnitMods", UnitMods);
 

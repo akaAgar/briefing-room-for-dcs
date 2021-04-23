@@ -57,8 +57,8 @@ namespace BriefingRoom.Generator
         {
             int i, j;
 
-            DBEntryExtension[] extensions = Database.Instance.GetEntries<DBEntryExtension>(template.ScriptExtensions);
-            foreach (DBEntryExtension extension in extensions)
+            DBEntryMissionFeature[] extensions = Database.Instance.GetEntries<DBEntryMissionFeature>(template.MissionFeatures);
+            foreach (DBEntryMissionFeature extension in extensions)
                 AddIncludedFiles(mission, extension);
 
             DBEntryMissionFeature[] features = Database.Instance.GetEntries<DBEntryMissionFeature>(objectiveDB.MissionFeatures);
@@ -141,7 +141,7 @@ namespace BriefingRoom.Generator
         /// </summary>
         /// <param name="mission">Mission in which files should be included</param>
         /// <param name="extension">Extension/mission feature to read from</param>
-        private void AddIncludedFiles(DCSMission mission, DBEntryExtension extension)
+        private void AddIncludedFiles(DCSMission mission, DBEntryMissionFeature extension)
         {
             // Add lua settings
             if (!string.IsNullOrEmpty(extension.LuaSettings))

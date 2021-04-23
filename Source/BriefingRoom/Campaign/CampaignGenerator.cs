@@ -166,7 +166,7 @@ namespace BriefingRoom.Campaign
                 OptionsEndMode = MissionEndMode.Never,
                 //template.OptionsPreferences = campaignTemplate.OptionsPreferences.ToArray();
                 Realism = campaignTemplate.Realism.ToArray(),
-                ScriptExtensions = new string[0],
+                MissionFeatures = new string[0],
                 UnitMods = campaignTemplate.UnitMods,
 
                 SituationFriendlyAISkillLevel = GetSkillLevel(campaignTemplate.SituationFriendlyAirForce, CampaignDifficultyVariation.Steady, 0, 0),
