@@ -1,11 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{62C3A919-BE9A-40AD-A867-F79D40CB46FB}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{5BDE97C4-4B27-40D2-8547-28A05C9A077E}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BriefingRoom.GUI</RootNamespace>
+    <RootNamespace>BriefingRoom</RootNamespace>
     <AssemblyName>BriefingRoom</AssemblyName>
     <TargetFramework>net48</TargetFramework>
     <FileAlignment>512</FileAlignment>
@@ -26,6 +26,7 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,13 +49,8 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>Icon.ico</ApplicationIcon>
-  </PropertyGroup>
   <ItemGroup>
-    <Content Include="Icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BriefingRoomLibrary\BriefingRoomLibrary.csproj" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
 </Project>

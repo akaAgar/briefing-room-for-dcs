@@ -1,3 +1,4 @@
+/.vs
 [Dd]ebug[Oo]utput/
 [Ss]ource/.vs/
 [Ss]ource/**/[Oo]bj/
@@ -7,9 +8,8 @@
 *.dll
 *.exe
 *.log
+*.miz
 *.pdb
 *.user
 *.xml
 *.zip
-*.dll
-/.vs

@@ -35,6 +35,16 @@ namespace BriefingRoom
     public static class Toolbox
     {
         /// <summary>
+        /// Absolute URL to the project source code repository.
+        /// </summary>
+        public const string REPO_URL = "https://github.com/akaAgar/briefing-room-for-dcs";
+
+        /// <summary>
+        /// Absolute URL to the project website.
+        /// </summary>
+        public const string WEBSITE_URL = "https://akaagar.itch.io/briefing-room-for-dcs";
+
+        /// <summary>
         /// The current version of BriefingRoom.
         /// </summary>
         public const string BRIEFINGROOM_VERSION = "0.4.104.21";

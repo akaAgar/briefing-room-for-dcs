@@ -39,6 +39,10 @@ namespace BriefingRoom.CommandLine
         [STAThread]
         private static void Main(string[] args)
         {
+#if DEBUG
+            args = new string[] { "Default.brt" };
+#endif
+
             if (args.Length <= 0) // No arguments
             {
                 return;

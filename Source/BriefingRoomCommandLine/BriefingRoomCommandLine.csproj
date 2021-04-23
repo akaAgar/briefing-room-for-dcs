@@ -6,7 +6,7 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BriefingRoom.CommandLine</RootNamespace>
-    <AssemblyName>BriefingRoom</AssemblyName>
+    <AssemblyName>BriefingRoomCommandLine</AssemblyName>
     <TargetFramework>net48</TargetFramework>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -26,6 +26,7 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,9 +50,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CommandLineTool.cs" />
+    <ProjectReference Include="..\BriefingRoom\BriefingRoom.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BriefingRoomLibrary\BriefingRoomLibrary.csproj" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
 </Project>

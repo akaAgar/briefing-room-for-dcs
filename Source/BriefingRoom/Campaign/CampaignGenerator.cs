@@ -121,7 +121,7 @@ namespace BriefingRoom.Campaign
             string lua = LuaTools.ReadIncludeLuaFile("Campaign\\Campaign.lua");
             LuaTools.ReplaceKey(ref lua, "Name", campaignName);
             LuaTools.ReplaceKey(ref lua, "Description",
-                $"This is a {campaignTemplate.ContextCoalitionsBlue} vs {campaignTemplate.ContextCoalitionsRed} randomly-generated campaign created by an early version of the campaign generator of BriefingRoom, a mission generator for DCS World ({BriefingRoom.WEBSITE_URL}).");
+                $"This is a {campaignTemplate.ContextCoalitionsBlue} vs {campaignTemplate.ContextCoalitionsRed} randomly-generated campaign created by an early version of the campaign generator of BriefingRoom, a mission generator for DCS World ({Toolbox.WEBSITE_URL}).");
             LuaTools.ReplaceKey(ref lua, "Units", "");
 
             string stagesLua = "";

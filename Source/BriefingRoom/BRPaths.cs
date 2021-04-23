@@ -31,11 +31,7 @@ namespace BriefingRoom
         /// <summary>
         /// Path to the application.
         /// </summary>
-        #if DEBUG
-            public static string ROOT { get; } = Toolbox.NormalizeDirectoryPath(Application.StartupPath) +  "..//";
-        #else
-            public static string ROOT { get; } = Toolbox.NormalizeDirectoryPath(Application.StartupPath);
-        #endif
+        public static string ROOT { get; } = Toolbox.NormalizeDirectoryPath(Application.StartupPath);
 
         /// <summary>
         /// Path to the database subdirectory.
@@ -78,7 +74,7 @@ namespace BriefingRoom
         /// Path to the Include\Lua\Units subdirectory.
         /// </summary>
         public static string INCLUDE_LUA_UNITS { get; } = $"{INCLUDE_LUA}Units\\";
-        
+
         /// <summary>
         /// Path to the Include\Lua subdirectory.
         /// </summary>

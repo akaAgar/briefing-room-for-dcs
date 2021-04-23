@@ -65,10 +65,18 @@ namespace BriefingRoom.DB
         private readonly Dictionary<Type, Dictionary<string, DBEntry>> DBEntries;
 
         /// <summary>
+        /// Targeted DCS world version (just for info, doesn't mean that the program will not work with another version)
+        /// </summary>
+        public string TARGETED_DCS_WORLD_VERSION { get; private set; }
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         public Database()
         {
+            using (INIFile ini = new INIFile($"{BRPaths.DATABASE}Common.ini"))
+                TARGETED_DCS_WORLD_VERSION = ini.GetValue("Versions", "DCSVersion", "2.5");
+
             Common = new DatabaseCommon();
             Countries = new string[0];
             DBEntries = new Dictionary<Type, Dictionary<string, DBEntry>>();

@@ -18,34 +18,17 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using BriefingRoom.DB;
 using BriefingRoom.Debug;
-using BriefingRoom.GUI;
 using System;
 using System.Windows.Forms;
 
-namespace BriefingRoom
+namespace BriefingRoom.GUI
 {
     /// <summary>
     /// Main application class.
     /// </summary>
     public static class BriefingRoom
     {
-        /// <summary>
-        /// Absolute URL to the project source code repository.
-        /// </summary>
-        public const string REPO_URL = "https://github.com/akaAgar/briefing-room-for-dcs";
-
-        /// <summary>
-        /// Targeted DCS world version (just for info, doesn't mean that the program will not work with another version)
-        /// </summary>
-        public static string TARGETED_DCS_WORLD_VERSION { get; private set; }
-
-        /// <summary>
-        /// Absolute URL to the project website.
-        /// </summary>
-        public const string WEBSITE_URL = "https://akaagar.itch.io/briefing-room-for-dcs";
-
         /// <summary>
         /// Main application entry point.
         /// </summary>
@@ -55,10 +38,6 @@ namespace BriefingRoom
         {
             Console.Title = "BriefingRoom output console";
             DebugLog.Instance.CreateLogFileWriter();
-
-            using (INIFile ini = new INIFile($"{BRPaths.DATABASE}Common.ini"))
-                TARGETED_DCS_WORLD_VERSION = ini.GetValue("Versions", "DCSVersion", "2.5");
-
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

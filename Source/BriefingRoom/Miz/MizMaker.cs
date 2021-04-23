@@ -55,7 +55,7 @@ namespace BriefingRoom.Miz
             DateTime exportStartTime = DateTime.Now;
             MizFile miz = new MizFile();
 
-            miz.AddEntry("Credits.txt", $"Generated with BriefingRoom for DCS World ({BriefingRoom.WEBSITE_URL})");
+            miz.AddEntry("Credits.txt", $"Generated with BriefingRoom for DCS World ({Toolbox.WEBSITE_URL})");
 
             DebugLog.Instance.WriteLine(" Adding \"briefing.html\" entry...", 1);
             miz.AddEntry("briefing.html", mission.BriefingHTML);
