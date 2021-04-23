@@ -106,6 +106,8 @@ namespace BriefingRoom.Template
         [TreeViewProperty("Starting airbase", "Flight plan", typeof(DBPseudoEntryAirbase), "Name of the airbase the player must take off from. If left empty, or if the airbase doesn't exist in this theater, a random airbase will be selected. Be aware that if the selected airbase doesn't have enough parking spots for the player mission package, some units may not spawn properly.", TreeViewPropertyAttributeFlags.EmptyIsRandom)]
         public string FlightPlanTheaterStartingAirbase { get; set; }
 
+        public MissionTemplateObjective[] Objectives { get; set; }
+
         [TreeViewProperty("Objective count", "Objectives", typeof(int), "How many objectives/targets will be present in the mission.")]
         [TreeViewPropertyInt(1, MAX_OBJECTIVES)]
         public int ObjectiveCount { get; set; }
@@ -201,6 +203,7 @@ namespace BriefingRoom.Template
             FlightPlanAddExtraWaypoints = YesNo.No;
             FlightPlanTheaterStartingAirbase = "";
 
+            Objectives = new MissionTemplateObjective[1] { new MissionTemplateObjective("DestroyAll", "VehicleAny", "Idle", Amount.Average) };
             ObjectiveCount = 2;
             ObjectiveDistance = 0;
             ObjectiveType = "";
@@ -290,6 +293,11 @@ namespace BriefingRoom.Template
                 FlightPlanAddExtraWaypoints = ini.GetValue("FlightPlan", "ExtraWaypoints", FlightPlanAddExtraWaypoints);
                 FlightPlanTheaterStartingAirbase = ini.GetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
 
+                List<MissionTemplateObjective> objectivesList = new List<MissionTemplateObjective>();
+                foreach (string objectiveKey in ini.GetTopLevelKeysInSection("Objectives")) objectivesList.Add(new MissionTemplateObjective(ini, "Objectives", objectiveKey));
+                if (objectivesList.Count == 0) objectivesList.Add(new MissionTemplateObjective("DestroyAll", "VehicleAny", "Idle", Amount.Average));
+                Objectives = objectivesList.ToArray();
+
                 ObjectiveCount = Toolbox.Clamp(ini.GetValue("Objective", "Count", ObjectiveCount), 1, MAX_OBJECTIVES);
                 ObjectiveDistance = Toolbox.Clamp(ini.GetValue("Objective", "Distance", ObjectiveDistance), 0, MAX_OBJECTIVE_DISTANCE);
                 ObjectiveType = ini.GetValue("Objective", "Type", ObjectiveType); // Database.Instance.CheckValue<DBEntryObjective>(ini.GetValue("Objective", "Type", ObjectiveType), "", true);
@@ -356,6 +364,9 @@ namespace BriefingRoom.Template
 
                 ini.SetValue("FlightPlan", "ExtraWaypoints", FlightPlanAddExtraWaypoints);
                 ini.SetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
+
+                for (int i = 0; i < Objectives.Length; i++)
+                    Objectives[i].SaveToFile(ini, "Objectives", $"Objective{i + 1:000}");
 
                 ini.SetValue("Objective", "Count", ObjectiveCount);
                 ini.SetValue("Objective", "Distance", ObjectiveDistance);

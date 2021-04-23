@@ -221,7 +221,7 @@ namespace BriefingRoom
             return (T)(object)enumVal;
         }
 
-        public T[] GetValueArrayAsMinMaxEnum<T>(string section, string key) where T : struct
+        public T[] GetValueArrayAsMinMaxEnum<T>(string section, string key) where T : Enum
         {
             T[] minMaxEnum = GetValueArray<T>(section, key);
             if (minMaxEnum.Length < 2) return new T[] { Toolbox.GetEnumValues<T>().First(), Toolbox.GetEnumValues<T>().Last() };

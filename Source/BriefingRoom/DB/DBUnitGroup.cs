@@ -36,7 +36,7 @@ namespace BriefingRoom.DB
         /// Unit category of this unit group, if any.
         /// Null means group is empty/should not be spawned.
         /// </summary>
-        public UnitCategory? Category { get { return (Families.Length > 0) ? (UnitCategory?)Toolbox.GetUnitCategoryFromUnitFamily(Families[0]) : null; } }
+        public UnitCategory? Category { get { return (Families.Length > 0) ? (UnitCategory?)Families[0].GetCategory() : null; } }
 
         /// <summary>
         /// Min/max number of units in the group.
@@ -90,7 +90,7 @@ namespace BriefingRoom.DB
                 UnitFamily family0 = Families[0];
                 // Families don't have to be Distinct() because one may want to mention the same familiy several times
                 // so it appears more often
-                Families = (from UnitFamily family in Families where Toolbox.GetUnitCategoryFromUnitFamily(family) == Toolbox.GetUnitCategoryFromUnitFamily(family0) select family).ToArray();
+                Families = (from UnitFamily family in Families where family.GetCategory() == family0.GetCategory() select family).ToArray();
             }
 
             Flags = ini.GetValueArrayAsEnumFlags<DBUnitGroupFlags>(section, "Flags");

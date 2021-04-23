@@ -100,7 +100,7 @@ namespace BriefingRoom.DB
             // Count is zero, return an empty array.
             if (count < 1) return new string[0];
             
-            UnitCategory category = Toolbox.GetUnitCategoryFromUnitFamily(family);
+            UnitCategory category = family.GetCategory();
             bool allowDifferentUnitTypes = false;
             
             switch (category)

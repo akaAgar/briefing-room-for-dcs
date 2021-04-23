@@ -49,6 +49,9 @@ namespace BriefingRoom.DB
             dbEntries.Clear();
             LoadDatabaseEntries<DBEntryMissionFeature>(dbEntries, "MissionFeatures");
             LoadDatabaseEntries<DBEntryObjective>(dbEntries, "Objectives"); // Must be loaded after DBEntryMissionFeature as it depends on it
+            LoadDatabaseEntries<DBEntryObjectiveBehavior>(dbEntries, "ObjectiveBehaviors");
+            LoadDatabaseEntries<DBEntryObjectiveTarget>(dbEntries, "ObjectiveTargets");
+            LoadDatabaseEntries<DBEntryObjectiveTask>(dbEntries, "ObjectiveTasks");
             LoadDatabaseEntries<DBEntryTheater>(dbEntries, "Theaters");
             GenerateAirbasePseudoEntries(dbEntries); // Must be called after DBEntryTheater is loaded, as it depends on it
             LoadDatabaseEntries<DBEntryDCSMod>(dbEntries, "DCSMods");

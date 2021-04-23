@@ -119,8 +119,8 @@ namespace BriefingRoom
         public static bool IsUnitFamilyAircraft(UnitFamily value)
         {
             return
-                (GetUnitCategoryFromUnitFamily(value) == UnitCategory.Helicopter) ||
-                (GetUnitCategoryFromUnitFamily(value) == UnitCategory.Plane);
+                (value.GetCategory() == UnitCategory.Helicopter) ||
+                (value.GetCategory() == UnitCategory.Plane);
         }
 
         public static object LowerCaseFirstLetter(string str)
@@ -178,9 +178,14 @@ namespace BriefingRoom
         /// </summary>
         /// <typeparam name="T">A type of enum</typeparam>
         /// <returns>All enum values</returns>
-        public static T[] GetEnumValues<T>() where T : struct
+        public static T[] GetEnumValues<T>() where T : Enum
         {
             return (T[])Enum.GetValues(typeof(T));
+        }
+
+        public static int GetEnumValuesCount<T>() where T : Enum
+        {
+            return Enum.GetValues(typeof(T)).Length;
         }
 
         /// <summary>
@@ -349,7 +354,7 @@ namespace BriefingRoom
         /// </summary>
         /// <param name="family">The unit family.</param>
         /// <returns>The unit category.</returns>
-        public static UnitCategory GetUnitCategoryFromUnitFamily(UnitFamily family)
+        public static UnitCategory GetCategory(this UnitFamily family)
         {
             string roleStr = family.ToString().ToLowerInvariant();
 

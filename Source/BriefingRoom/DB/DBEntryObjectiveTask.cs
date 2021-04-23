@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom.Debug;
 using System.IO;
+using System.Linq;
 
 namespace BriefingRoom.DB
 {
@@ -29,16 +30,48 @@ namespace BriefingRoom.DB
     public class DBEntryObjectiveTask : DBEntry
     {
         /// <summary>
+        /// On which side will the target units be?
+        /// </summary>
+        public Side TargetSide { get; private set; }
+
+        /// <summary>
+        /// Which units categories are valid targets for this task?
+        /// </summary>
+        public UnitCategory[] ValidUnitCategories { get; private set; }
+
+        public string[] CompletionTriggerLua { get; private set; }
+
+        /// <summary>
         /// Loads a database entry from an .ini file.
         /// </summary>
         /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
         /// <returns>True is successful, false if an error happened</returns>
-
         protected override bool OnLoad(string iniFilePath)
         {
             using (INIFile ini = new INIFile(iniFilePath))
             {
-               
+                TargetSide = ini.GetValue<Side>("ObjectiveTask", "TargetSide");
+                ValidUnitCategories = ini.GetValueArray<UnitCategory>("ObjectiveTask", "ValidUnitCategories").Distinct().ToArray();
+                if (ValidUnitCategories.Length == 0) ValidUnitCategories = Toolbox.GetEnumValues<UnitCategory>(); // No category means all categories
+
+                CompletionTriggerLua = new string[Toolbox.GetEnumValuesCount<UnitCategory>()];
+                foreach (UnitCategory unitCategory in Toolbox.GetEnumValues<UnitCategory>())
+                {
+                    CompletionTriggerLua[(int)unitCategory] = ini.GetValue<string>("CompletionTriggerLua", $"{unitCategory}").Trim();
+                    if (ValidUnitCategories.Contains(unitCategory))
+                    {
+                        if (string.IsNullOrEmpty(CompletionTriggerLua[(int)unitCategory]))
+                        {
+                            DebugLog.Instance.WriteLine($"Missing completion trigger lua for objective task \"{ID}\" with unit category \"{unitCategory}\".", DebugLogMessageErrorLevel.Warning);
+                            return false;
+                        }
+                        if (!File.Exists($"{BRPaths.INCLUDE_LUA_OBJECTIVETRIGGERS}{CompletionTriggerLua[(int)unitCategory]}"))
+                        {
+                            DebugLog.Instance.WriteLine($"Completion trigger Lua file {CompletionTriggerLua[(int)unitCategory]} for objective task \"{ID}\" not found.", DebugLogMessageErrorLevel.Warning);
+                            return false;
+                        }
+                    }
+                }
             }
 
             return true;

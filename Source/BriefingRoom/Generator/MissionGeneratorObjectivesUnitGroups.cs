@@ -123,7 +123,7 @@ namespace BriefingRoom.Generator
 
                 if (unitGroup.Flags.HasFlag(DBUnitGroupFlags.EmbeddedAirDefense)) // Add "embedded" close range surface-to-air defense
                 {
-                    if (Toolbox.GetUnitCategoryFromUnitFamily(mission.Objectives[i].TargetFamily.Value) == UnitCategory.Vehicle) // Objectives are ground vehicles, insert air defense units in the group itself
+                    if (mission.Objectives[i].TargetFamily.Value.GetCategory() == UnitCategory.Vehicle) // Objectives are ground vehicles, insert air defense units in the group itself
                         units = GeneratorTools.AddEmbeddedAirDefense(Database, units, template.SituationEnemyAirDefense, coalitionsDB[(int)coalition], mission.DateTime.Decade, template.UnitMods);
                     else // Objectives are not ground vehicles, create another group nearby
                     {

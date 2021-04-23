@@ -66,6 +66,11 @@ namespace BriefingRoom
         public static string INCLUDE_LUA_INCLUDEDSCRIPTS { get; } = $"{INCLUDE_LUA}IncludedScripts\\";
 
         /// <summary>
+        /// Path to the Include\Lua\ObjectiveTriggers subdirectory.
+        /// </summary>
+        public static string INCLUDE_LUA_OBJECTIVETRIGGERS { get; } = $"{INCLUDE_LUA}ObjectiveTriggers\\";
+
+        /// <summary>
         /// Path to the Include\Lua\Mission subdirectory.
         /// </summary>
         public static string INCLUDE_LUA_MISSION { get; } = $"{INCLUDE_LUA}Mission\\";
