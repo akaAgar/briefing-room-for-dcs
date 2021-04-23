@@ -212,5 +212,17 @@ namespace BriefingRoom.DB
             return values;
         }
 
+        public DatabaseEntryInfo[] GetDatabaseEntriesInfo(DatabaseValueType databaseValueType)
+        {
+            switch (databaseValueType)
+            {
+                case DatabaseValueType.FlyableAircraft:
+                    return (from DBEntryUnit unit in GetAllEntries<DBEntryUnit>() where unit.AircraftData.PlayerControllable select unit.GetDBEntryInfo()).ToArray();
+                case DatabaseValueType.Theater:
+                    return (from DBEntryTheater theater in GetAllEntries<DBEntryTheater>() select theater.GetDBEntryInfo()).ToArray();
+            }
+
+            return new DatabaseEntryInfo[0];
+        }
     }
 }

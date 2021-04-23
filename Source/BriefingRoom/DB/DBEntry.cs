@@ -56,6 +56,11 @@ namespace BriefingRoom.DB
         /// </summary>
         public DBEntry() { }
 
+        public DatabaseEntryInfo GetDBEntryInfo()
+        {
+            return new DatabaseEntryInfo(ID, UIDisplayName, UICategory, UIDescription);
+        }
+
         /// <summary>
         /// Loads a database entry from an .ini file.
         /// </summary>
