@@ -1,0 +1,29 @@
+@using BriefingRoom4DCSWorld
+@using BriefingRoom4DCSWorld.DB
+@using BriefingRoom4DCSWorld.Template
+<div id="context">
+        <h3>Flight Plan</h3>
+        <label>
+            Add extra waypoints @Template.FlightPlanAddExtraWaypoints
+            <select bind="@Template.FlightPlanAddExtraWaypoints">
+                @foreach (var value in Enum.GetValues(typeof(YesNo)))
+                {
+                    <option value="@value">@value</option>
+                }
+            </select>
+        </label>
+        <label>
+            Starting airbase
+            <select bind="@Template.FlightPlanTheaterStartingAirbase">
+                @foreach (var value in Database.Instance.GetAllEntries<DBPseudoEntryAirbase>())
+                {
+                    <option value="@value">@value</option>
+                }
+            </select>
+        </label>
+    </div>
+
+@code {
+    [CascadingParameter]
+    public MissionTemplate Template { get; set; }
+}

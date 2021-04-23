@@ -1,0 +1,27 @@
+@using BriefingRoom4DCSWorld.Template
+@using BriefingRoom4DCSWorld.DB
+<div id="context">
+        <h3>Objective</h3>
+        <label>
+            Count
+            <input type="number" bind="@Template.ObjectiveCount" />
+        </label>
+        <label>
+            Distance
+            <input type="number" bind="@Template.ObjectiveDistance" />
+        </label>
+        <label>
+            Type
+            <select bind="@Template.ObjectiveType">
+                @foreach (var value in Database.Instance.GetAllEntries<DBEntryObjective>())
+                {
+                    <option value="@value.ID">@value.UIDisplayName</option>
+                }
+            </select>
+        </label>
+    </div>
+
+@code {
+    [CascadingParameter]
+    public MissionTemplate Template { get; set; }
+}

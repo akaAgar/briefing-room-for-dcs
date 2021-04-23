@@ -1,7 +1,58 @@
 @page "/"
+@inject IJSRuntime JSRuntime
+@using BriefingRoom4DCSWorld.Template
+@using BriefingRoom4DCSWorld.Mission
+@using BriefingRoom4DCSWorld.Generator
+@using BriefingRoom4DCSWorld.Miz
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
+<h1>Briefing Room</h1>
+<div>
+    <CascadingValue Value="template">
+        <Context/>
+        <Env />
+        <FlightPlan />
+        <Objective/>
+    </CascadingValue>
+    
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+
+
+</div>
+<button class="btn btn-primary" @onclick="GenerateMission">Generate</button>
+<button class="btn btn-primary" @onclick="DownloadMission">Download</button>
+<div>@((MarkupString)mission.BriefingHTML)</div>
+
+@template
+
+@code {
+
+    private MissionTemplate template;
+    private DCSMission mission = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        template = new MissionTemplate();
+        template.Clear();
+    }
+
+    private void GenerateMission()
+    {
+        using (MissionGenerator generator = new MissionGenerator())
+        {
+            mission = generator.Generate(template);
+        }
+    }
+
+    async Task DownloadMission()
+    {
+        using (MizFile miz = mission.ExportToMiz())
+        {
+
+            if (miz == null) // Something went wrong during the .miz export
+                return;
+            await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{mission.MissionName}.miz", "application/octet-stream",
+            miz.ZipFiles());
+        }
+    }
+}

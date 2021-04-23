@@ -1,0 +1,59 @@
+@using BriefingRoom4DCSWorld
+@using BriefingRoom4DCSWorld.Template
+@using BriefingRoom4DCSWorld.DB
+<div id="context">
+        <h3>Context</h3>
+        <label>
+            Player Coalition
+            <select bind="@Template.ContextCoalitionPlayer">
+                @foreach (var value in Enum.GetValues(typeof(Coalition)))
+                {
+                    <option value="@value">@value</option>
+                }
+            </select>
+        </label>
+        <label>
+            Blue Coalition
+            <select bind="@Template.ContextCoalitionBlue">
+                @foreach (var value in Database.Instance.GetAllEntries<DBEntryCoalition>())
+                {
+                    <option value="@value.ID">@value.UIDisplayName</option>
+                }
+            </select>
+        </label>
+        <label>
+            Red Coalition
+            <select bind="@Template.ContextCoalitionRed">
+                @foreach (var value in Database.Instance.GetAllEntries<DBEntryCoalition>())
+                {
+                    <option value="@value.ID">@value.UIDisplayName</option>
+                }
+            </select>
+        </label>
+        <label>
+            Time period
+            <select bind="@Template.ContextDecade">
+                @foreach (var value in Enum.GetValues(typeof(Decade)))
+                {
+                    <option value="@value">@value</option>
+                }
+            </select>
+        </label>
+        <label>
+            Theater @Template.ContextTheater
+            <select bind="@Template.ContextTheater">
+                @foreach (var value in Database.Instance.GetAllEntries<DBEntryTheater>())
+                {
+                    <option value="@value.ID">@value.UIDisplayName</option>
+                }
+            </select>
+        </label>
+    </div>
+
+@code {
+    [CascadingParameter]
+    public MissionTemplate Template { get; set; }
+
+    private MissionTemplate template;
+
+}
