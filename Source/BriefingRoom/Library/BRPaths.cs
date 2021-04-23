@@ -19,7 +19,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 
-using System.Windows.Forms;
 
 namespace BriefingRoom4DCS
 {

@@ -156,6 +156,26 @@ namespace BriefingRoom4DCS.Miz
             return true;
         }
 
+        public byte[] ZipFiles()
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                using (ZipArchive zip = new ZipArchive(ms, ZipArchiveMode.Update))
+                {
+                    foreach (string entryName in Entries.Keys)
+                    {
+                        ZipArchiveEntry entry = zip.CreateEntry(entryName, CompressionLevel.Optimal);
+                        using (BinaryWriter writer = new BinaryWriter(entry.Open()))
+                        {
+                            writer.Write(Entries[entryName]);
+                        }
+                    }
+                }
+                return ms.ToArray();
+            }
+            
+        }
+
         /// <summary>
         /// Normalize an entry path to the proper DCS World miz format.
         /// </summary>
