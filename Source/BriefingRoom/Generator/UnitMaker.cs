@@ -39,11 +39,14 @@ namespace BriefingRoom.Generator
         private int NextGroupID;
         private int NextUnitID;
 
+        private readonly Database Database;
+
         public UnitMakerSpawnPointSelector SpawnPointSelector { get; }
         public UnitMakerCallsignGenerator CallsignGenerator { get; }
 
-        public UnitMaker(DBEntryCoalition[] coalitionsDB, DBEntryTheater theaterDB)
+        public UnitMaker(Database database, DBEntryCoalition[] coalitionsDB, DBEntryTheater theaterDB)
         {
+            Database = database;
             CallsignGenerator = new UnitMakerCallsignGenerator(coalitionsDB);
             SpawnPointSelector = new UnitMakerSpawnPointSelector(theaterDB);
 
@@ -60,7 +63,7 @@ namespace BriefingRoom.Generator
             if (units.Length == 0) return null; // No units database entries ID provided, cancel group creation
 
             // TODO: check for missing units
-            DBEntryUnit[] unitsBP = (from string u in units where Database.Instance.EntryExists<DBEntryUnit>(u) select Database.Instance.GetEntry<DBEntryUnit>(u)).ToArray();
+            DBEntryUnit[] unitsBP = (from string u in units where Database.EntryExists<DBEntryUnit>(u) select Database.GetEntry<DBEntryUnit>(u)).ToArray();
             unitsBP = (from DBEntryUnit u in unitsBP where u != null select u).ToArray();
             if (unitsBP.Length == 0) return null; // All database entries were null, cancel group creation
 
@@ -159,7 +162,7 @@ namespace BriefingRoom.Generator
 
         private string GetGroupName(UnitFamily family)
         {
-            string name = GeneratorTools.ParseRandomString(Database.Instance.Common.UnitGroupNames[(int)family]);
+            string name = GeneratorTools.ParseRandomString(Database.Common.UnitGroupNames[(int)family]);
 
             int fakeGroupNumber = NextGroupID * 10 + Toolbox.RandomInt(1, 10);
             name = name.Replace("$N$", fakeGroupNumber.ToString(NumberFormatInfo.InvariantInfo));

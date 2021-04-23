@@ -48,7 +48,6 @@ namespace BriefingRoom.CommandLine
                 return;
             }
 
-            Database.Instance.Initialize(); // Called here in command-line mode, when in GUI mode function is called by the SplashScreen
             if (DebugLog.Instance.ErrorCount > 0) return; // Errors found, abort! abort!
 
             try
@@ -73,10 +72,15 @@ namespace BriefingRoom.CommandLine
         /// </summary>
         private const int MAX_MISSION_COUNT = 10;
 
+        private readonly BriefingRoomLibrary BRLibrary;
+
         /// <summary>
         /// Constructor.
         /// </summary>
-        public CommandLineTool() { }
+        public CommandLineTool()
+        {
+            BRLibrary = new BriefingRoomLibrary();
+        }
 
         /// <summary>
         /// Generates mission(s) from command line arguments.
@@ -93,34 +97,28 @@ namespace BriefingRoom.CommandLine
                 return false;
             }
 
-            using (MissionGenerator generator = new MissionGenerator())
+            foreach (string t in templateFiles)
             {
-                foreach (string t in templateFiles)
+                for (int i = 0; i < missionCount; i++)
                 {
-                    using (MissionTemplate template = new MissionTemplate(t))
+                    DCSMission mission = BRLibrary.GenerateMission(t);
+                    if (mission == null)
                     {
-                        for (int i = 0; i < missionCount;i++)
-                        {
-                            DCSMission mission = generator.Generate(template);
-                            if (mission == null)
-                            {
-                                DebugLog.Instance.WriteLine($"Failed to generate a mission from template {Path.GetFileName(t)}", DebugLogMessageErrorLevel.Warning);
-                                continue;
-                            }
-
-                            string mizFileName = Path.Combine(Application.StartupPath, Path.GetFileNameWithoutExtension(t) + ".miz");
-                            mizFileName = GetUnusedFileName(mizFileName);
-
-                            MizFile miz = mission.ExportToMiz();
-                            if ((miz == null) || !miz.SaveToFile(mizFileName))
-                            {
-                                DebugLog.Instance.WriteLine($"Failed to export .miz file from template {Path.GetFileName(t)}", DebugLogMessageErrorLevel.Warning);
-                                continue;
-                            }
-                            else
-                                DebugLog.Instance.WriteLine($"Mission {Path.GetFileName(mizFileName)} exported to .miz file from template {Path.GetFileName(t)}");
-                        }
+                        DebugLog.Instance.WriteLine($"Failed to generate a mission from template {Path.GetFileName(t)}", DebugLogMessageErrorLevel.Warning);
+                        continue;
                     }
+
+                    string mizFileName = Path.Combine(Application.StartupPath, Path.GetFileNameWithoutExtension(t) + ".miz");
+                    mizFileName = GetUnusedFileName(mizFileName);
+
+                    MizFile miz = BRLibrary.MissionToMiz(mission);
+                    if ((miz == null) || !miz.SaveToFile(mizFileName))
+                    {
+                        DebugLog.Instance.WriteLine($"Failed to export .miz file from template {Path.GetFileName(t)}", DebugLogMessageErrorLevel.Warning);
+                        continue;
+                    }
+                    else
+                        DebugLog.Instance.WriteLine($"Mission {Path.GetFileName(mizFileName)} exported to .miz file from template {Path.GetFileName(t)}");
                 }
             }
 
@@ -173,6 +171,9 @@ namespace BriefingRoom.CommandLine
         /// <summary>
         /// <see cref="IDisposable"/> implementation.
         /// </summary>
-        public void Dispose() { }
+        public void Dispose()
+        {
+            BRLibrary.Dispose();
+        }
     }
 }

@@ -53,18 +53,18 @@ namespace BriefingRoom.Generator
         /// <param name="decade">Decade during which the units must be operated</param>
         /// <param name="unitMods">Unit mods the units can belong to</param>
         /// <returns>Updated array of units with added embedded air defense units</returns>
-        public static string[] AddEmbeddedAirDefense(string[] units, AmountN airDefenseLevel, DBEntryCoalition coalitionDB, Decade decade, string[] unitMods)
+        public static string[] AddEmbeddedAirDefense(Database database, string[] units, AmountN airDefenseLevel, DBEntryCoalition coalitionDB, Decade decade, string[] unitMods)
         {
             int airDefenseLevelInt = (int)airDefenseLevel.Get();
             // No luck this time, don't add anything
-            if (Toolbox.RandomDouble() >= Database.Instance.Common.EnemyAirDefense[airDefenseLevelInt].EmbeddedChance)
+            if (Toolbox.RandomDouble() >= database.Common.EnemyAirDefense[airDefenseLevelInt].EmbeddedChance)
                 return units;
 
             // Convert the unit array to an open-ended list so that units can be added
             List<string> unitsList = new List<string>(units);
 
             // Add some air defense units
-            int embeddedCount = Database.Instance.Common.EnemyAirDefense[airDefenseLevelInt].EmbeddedUnitCount.GetValue();
+            int embeddedCount = database.Common.EnemyAirDefense[airDefenseLevelInt].EmbeddedUnitCount.GetValue();
             for (int i = 0; i < embeddedCount; i++)
                 unitsList.AddRange(
                     coalitionDB.GetRandomUnits(Toolbox.RandomFrom(EMBEDDED_AIR_DEFENSE_FAMILIES), decade, 1, unitMods));
@@ -87,11 +87,11 @@ namespace BriefingRoom.Generator
         /// <typeparam name="T">The type of <see cref="DBEntry"/> to look for</typeparam>
         /// <param name="id">The id of the entry to look for</param>
         /// <param name="allowEmpty">If true, null or empty strings will be allowed</param>
-        public static void CheckDBForMissingEntry<T>(string id, bool allowEmpty = false) where T : DBEntry
+        public static void CheckDBForMissingEntry<T>(Database database, string id, bool allowEmpty = false) where T : DBEntry
         {
             if (string.IsNullOrEmpty(id) && allowEmpty) return;
 
-            if (!Database.Instance.EntryExists<T>(id))
+            if (!database.EntryExists<T>(id))
                 throw new Exception($"{typeof(T).Name} \"{id}\" not found.");
         }
 
@@ -126,9 +126,9 @@ namespace BriefingRoom.Generator
             return coordinates + Coordinates.CreateRandom(distance / 8, distance / 4);
         }
 
-        public static string GetBriefingStringForUnitFamily(UnitFamily unitFamily, bool plural)
+        public static string GetBriefingStringForUnitFamily(Database database, UnitFamily unitFamily, bool plural)
         {
-            return Database.Instance.Common.UnitBriefingNames[(int)unitFamily][plural ? 1 : 0];
+            return database.Common.UnitBriefingNames[(int)unitFamily][plural ? 1 : 0];
         }
 
         /// <summary>
@@ -211,9 +211,9 @@ namespace BriefingRoom.Generator
             }
         }
 
-        public static string MakeBriefingStringReplacements(string briefingString, DCSMission mission, DBEntryCoalition[] coalitionsDB, int objectiveIndex = 0)
+        public static string MakeBriefingStringReplacements(Database database, string briefingString, DCSMission mission, DBEntryCoalition[] coalitionsDB, int objectiveIndex = 0)
         {
-            DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(mission.Theater);
+            DBEntryTheater theaterDB = database.GetEntry<DBEntryTheater>(mission.Theater);
 
             briefingString = briefingString.Replace("$ALLYADJ$", Toolbox.RandomFrom(coalitionsDB[(int)mission.CoalitionPlayer].BriefingElements[(int)CoalitionBriefingElement.Adjective]));
             briefingString = briefingString.Replace("$ENEMYADJ$", Toolbox.RandomFrom(coalitionsDB[(int)mission.CoalitionEnemy].BriefingElements[(int)CoalitionBriefingElement.Adjective]));
@@ -228,10 +228,10 @@ namespace BriefingRoom.Generator
 
             briefingString = briefingString.Replace("$UNITFAMILIES$",
                 mission.Objectives[objectiveIndex].TargetFamily.HasValue ?
-                GetBriefingStringForUnitFamily(mission.Objectives[objectiveIndex].TargetFamily.Value, true) : "units");
+                GetBriefingStringForUnitFamily(database, mission.Objectives[objectiveIndex].TargetFamily.Value, true) : "units");
             briefingString = briefingString.Replace("$UNITFAMILY$",
                 mission.Objectives[objectiveIndex].TargetFamily.HasValue ?
-                GetBriefingStringForUnitFamily(mission.Objectives[objectiveIndex].TargetFamily.Value, false) : "unit");
+                GetBriefingStringForUnitFamily(database, mission.Objectives[objectiveIndex].TargetFamily.Value, false) : "unit");
 
             return Toolbox.ICase(SanitizeString(briefingString));
         }

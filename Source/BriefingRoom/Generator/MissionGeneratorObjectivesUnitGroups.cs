@@ -33,6 +33,8 @@ namespace BriefingRoom.Generator
     /// </summary>
     public class MissionGeneratorObjectivesUnitGroups : IDisposable
     {
+        private readonly Database Database;
+
         /// <summary>
         /// Unit maker class to use to generate units.
         /// </summary>
@@ -42,8 +44,9 @@ namespace BriefingRoom.Generator
         /// Constructor.
         /// </summary>
         /// <param name="unitMaker">Unit maker class to use to generate units</param>
-        public MissionGeneratorObjectivesUnitGroups(UnitMaker unitMaker)
+        public MissionGeneratorObjectivesUnitGroups(Database database, UnitMaker unitMaker)
         {
+            Database = database;
             UnitMaker = unitMaker;
         }
 
@@ -121,13 +124,13 @@ namespace BriefingRoom.Generator
                 if (unitGroup.Flags.HasFlag(DBUnitGroupFlags.EmbeddedAirDefense)) // Add "embedded" close range surface-to-air defense
                 {
                     if (Toolbox.GetUnitCategoryFromUnitFamily(mission.Objectives[i].TargetFamily.Value) == UnitCategory.Vehicle) // Objectives are ground vehicles, insert air defense units in the group itself
-                        units = GeneratorTools.AddEmbeddedAirDefense(units, template.SituationEnemyAirDefense, coalitionsDB[(int)coalition], mission.DateTime.Decade, template.UnitMods);
+                        units = GeneratorTools.AddEmbeddedAirDefense(Database, units, template.SituationEnemyAirDefense, coalitionsDB[(int)coalition], mission.DateTime.Decade, template.UnitMods);
                     else // Objectives are not ground vehicles, create another group nearby
                     {
                         // TODO: make sure the group is not spawn in water
                         string[] airDefenseGroupUnits = new string[0];
                         for (int j = 0; j < 2; j++)
-                            airDefenseGroupUnits = GeneratorTools.AddEmbeddedAirDefense(airDefenseGroupUnits, template.SituationEnemyAirDefense, coalitionsDB[(int)coalition], mission.DateTime.Decade, template.UnitMods);
+                            airDefenseGroupUnits = GeneratorTools.AddEmbeddedAirDefense(Database, airDefenseGroupUnits, template.SituationEnemyAirDefense, coalitionsDB[(int)coalition], mission.DateTime.Decade, template.UnitMods);
 
                         UnitMaker.AddUnitGroup(
                             mission, airDefenseGroupUnits,

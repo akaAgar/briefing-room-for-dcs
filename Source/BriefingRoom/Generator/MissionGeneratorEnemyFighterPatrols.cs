@@ -37,12 +37,15 @@ namespace BriefingRoom.Generator
         /// </summary>
         private readonly UnitMaker UnitMaker;
 
+        private readonly Database Database;
+
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="unitMaker">Unit maker class to use to generate units</param>
-        public MissionGeneratorEnemyFighterPatrols(UnitMaker unitMaker)
+        public MissionGeneratorEnemyFighterPatrols(Database database, UnitMaker unitMaker)
         {
+            Database = database;
             UnitMaker = unitMaker;
         }
 
@@ -64,7 +67,7 @@ namespace BriefingRoom.Generator
             }
             int totalAirForcePower =
                 (int)(GetMissionPackageAirPower(template, objectiveDB, aiEscortTypeCAP, aiEscortTypeSEAD) *
-                Database.Instance.Common.EnemyCAPRelativePower[(int)template.SituationEnemyAirForce.Get()]);
+                Database.Common.EnemyCAPRelativePower[(int)template.SituationEnemyAirForce.Get()]);
 
             DebugLog.Instance.WriteLine($"Enemy air power set to {totalAirForcePower}...", 1);
 
@@ -86,8 +89,8 @@ namespace BriefingRoom.Generator
                 DBEntryTheaterSpawnPoint? spawnPoint =
                     UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         null,
-                        mission.ObjectivesCenter, Database.Instance.Common.EnemyCAPDistanceFromObjectives,
-                        mission.InitialPosition, new MinMaxD(Database.Instance.Common.EnemyCAPMinDistanceFromTakeOffLocation, 99999),
+                        mission.ObjectivesCenter, Database.Common.EnemyCAPDistanceFromObjectives,
+                        mission.InitialPosition, new MinMaxD(Database.Common.EnemyCAPMinDistanceFromTakeOffLocation, 99999),
                         GeneratorTools.GetEnemySpawnPointCoalition(template));
 
                 if (!spawnPoint.HasValue) // No spawn point found, stop here.
@@ -96,7 +99,7 @@ namespace BriefingRoom.Generator
                     break;
                 }
 
-                int unitPower = Database.Instance.GetEntry<DBEntryUnit>(unitTypes[0]).AircraftData.AirToAirRating[1];
+                int unitPower = Database.GetEntry<DBEntryUnit>(unitTypes[0]).AircraftData.AirToAirRating[1];
                 int groupSize = 1;
                 if (totalAirForcePower >= unitPower * 2) groupSize = 2;
                 if (Toolbox.RandomDouble() < .3)
@@ -143,14 +146,14 @@ namespace BriefingRoom.Generator
             if (template.MissionType == MissionType.SinglePlayer)
             {
                 // Player flight group
-                aircraft = Database.Instance.GetEntry<DBEntryUnit>(template.PlayerFlightGroups[0].Aircraft);
+                aircraft = Database.GetEntry<DBEntryUnit>(template.PlayerFlightGroups[0].Aircraft);
                 airPowerRating += ((aircraft != null) ? aircraft.AircraftData.AirToAirRating[1] : 1) * (template.PlayerFlightGroups[0].Count);
             }
             else // Mission is multi-player
             {
                 foreach (MissionTemplateFlightGroup fg in template.PlayerFlightGroups)
                 {
-                    aircraft = Database.Instance.GetEntry<DBEntryUnit>(fg.Aircraft);
+                    aircraft = Database.GetEntry<DBEntryUnit>(fg.Aircraft);
 
                     if (aircraft == null) // Aircraft doesn't exist
                     {
@@ -183,11 +186,11 @@ namespace BriefingRoom.Generator
             }
 
             // AI CAP escort
-            aircraft = Database.Instance.GetEntry<DBEntryUnit>(aiEscortTypeCAP);
+            aircraft = Database.GetEntry<DBEntryUnit>(aiEscortTypeCAP);
             airPowerRating += ((aircraft != null) ? aircraft.AircraftData.AirToAirRating[1] : 1) * template.SituationFriendlyEscortCAP;
 
             // AI SEAD escort
-            aircraft = Database.Instance.GetEntry<DBEntryUnit>(aiEscortTypeSEAD);
+            aircraft = Database.GetEntry<DBEntryUnit>(aiEscortTypeSEAD);
             airPowerRating += ((aircraft != null) ? aircraft.AircraftData.AirToAirRating[0] : 1) * template.SituationFriendlyEscortSEAD;
 
             return airPowerRating;

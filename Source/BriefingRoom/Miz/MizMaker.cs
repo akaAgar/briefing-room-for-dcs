@@ -33,10 +33,15 @@ namespace BriefingRoom.Miz
     /// </summary>
     public class MizMaker : IDisposable
     {
+        private readonly Database Database;
+
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MizMaker() { }
+        public MizMaker(Database database)
+        {
+            Database = database;
+        }
 
         /// <summary>
         /// Exports a BriefingRoom mission to a DCS .miz file.
@@ -61,14 +66,14 @@ namespace BriefingRoom.Miz
             miz.AddEntry("briefing.html", mission.BriefingHTML);
 
             DebugLog.Instance.WriteLine(" Adding \"mission\" entry...", 1);
-            using (MizMakerLuaMission luaMission = new MizMakerLuaMission())
+            using (MizMakerLuaMission luaMission = new MizMakerLuaMission(Database))
                 miz.AddEntry("mission", luaMission.MakeLua(mission));
 
             DebugLog.Instance.WriteLine(" Adding \"options\" entry...", 1);
             miz.AddEntry("options", LuaTools.ReadIncludeLuaFile("Options.lua"));
 
             DebugLog.Instance.WriteLine(" Adding \"theater\" entry...", 1);
-            miz.AddEntry("theatre", Database.Instance.GetEntry<DBEntryTheater>(mission.Theater).DCSID);
+            miz.AddEntry("theatre", Database.GetEntry<DBEntryTheater>(mission.Theater).DCSID);
 
             DebugLog.Instance.WriteLine(" Adding \"warehouses\" entry...", 1);
             using (MizMakerLuaWarehouse luaWarehouses = new MizMakerLuaWarehouse())
@@ -90,7 +95,7 @@ namespace BriefingRoom.Miz
                 miz.AddEntry("l10n/DEFAULT/mapResource", luaMapResource.MakeLua(mission, resourceOggString));
 
             DebugLog.Instance.WriteLine(" Adding .jpg image media files...", 1);
-            using (MizMakerMediaImages jpgMedia = new MizMakerMediaImages())
+            using (MizMakerMediaImages jpgMedia = new MizMakerMediaImages(Database))
                 jpgMedia.AddMediaFiles(miz, mission);
 
             DebugLog.Instance.WriteLine($"Export to .miz file completed in {(DateTime.Now - exportStartTime).TotalSeconds.ToString("F3", NumberFormatInfo.InvariantInfo)} second(s).");

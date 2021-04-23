@@ -19,8 +19,11 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using System;
+using BriefingRoom.Campaign;
 using BriefingRoom.DB;
+using BriefingRoom.Generator;
 using BriefingRoom.Mission;
+using BriefingRoom.Miz;
 using BriefingRoom.Template;
 
 namespace BriefingRoom
@@ -30,19 +33,40 @@ namespace BriefingRoom
     /// </summary>
     public sealed class BriefingRoomLibrary : IDisposable
     {
+        private readonly CampaignGenerator CampaignGen;
+        private readonly Database Database;
+        private readonly MissionGenerator Generator;
+
         public BriefingRoomLibrary()
         {
-            Database.Instance.Initialize();
+            Database = new Database();
+            Generator = new MissionGenerator(Database);
+            CampaignGen = new CampaignGenerator(Database, Generator);
+        }
+
+        public DCSMission GenerateMission(string templateFilePath)
+        {
+            return Generator.Generate(new MissionTemplate(templateFilePath));
         }
 
         public DCSMission GenerateMission(MissionTemplate template)
         {
-            return null;
+            return Generator.Generate(template);
+        }
+
+        public MizFile MissionToMiz(DCSMission mission)
+        {
+            MizFile miz;
+
+            using (MizMaker exporter = new MizMaker(Database))
+                miz = exporter.ExportToMizFile(mission);
+
+            return miz;
         }
 
         public void Dispose()
         {
-
+            Generator.Dispose();
         }
     }
 }

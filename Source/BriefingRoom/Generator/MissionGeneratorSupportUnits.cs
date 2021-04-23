@@ -32,6 +32,8 @@ namespace BriefingRoom.Generator
     /// </summary>
     public class MissionGeneratorSupportUnits : IDisposable
     {
+        private readonly Database Database;
+
         /// <summary>
         /// Unit maker class to use to generate units.
         /// </summary>
@@ -41,8 +43,9 @@ namespace BriefingRoom.Generator
         /// Constructor.
         /// </summary>
         /// <param name="unitMaker">Unit maker class to use to generate units</param>
-        public MissionGeneratorSupportUnits(UnitMaker unitMaker)
+        public MissionGeneratorSupportUnits(Database database, UnitMaker unitMaker)
         {
+            Database = database;
             UnitMaker = unitMaker;
         }
 
@@ -120,7 +123,7 @@ namespace BriefingRoom.Generator
             return new UnitFlightGroupBriefingDescription(
                 group.Name, group.Units.Length, unitType,
                 (unitFamily == UnitFamily.PlaneAWACS) ? "Early warning" : "Refueling",
-                Database.Instance.GetEntry<DBEntryUnit>(unitType).AircraftData.GetRadioAsString(), TACAN != null? $"TACAN: {TACAN.ToString()}":"");
+                Database.GetEntry<DBEntryUnit>(unitType).AircraftData.GetRadioAsString(), TACAN != null? $"TACAN: {TACAN.ToString()}":"");
         }
 
         /// <summary>

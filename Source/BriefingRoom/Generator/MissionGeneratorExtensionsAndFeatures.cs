@@ -32,6 +32,8 @@ namespace BriefingRoom.Generator
     /// </summary>
     public class MissionGeneratorExtensionsAndFeatures : IDisposable
     {
+        private readonly Database Database;
+
         /// <summary>
         /// Unit maker class to use to generate units.
         /// </summary>
@@ -41,8 +43,9 @@ namespace BriefingRoom.Generator
         /// Constructor.
         /// </summary>
         /// <param name="unitMaker">Unit maker class to use to generate units</param>
-        public MissionGeneratorExtensionsAndFeatures(UnitMaker unitMaker)
+        public MissionGeneratorExtensionsAndFeatures(Database database, UnitMaker unitMaker)
         {
+            Database = database;
             UnitMaker = unitMaker;
         }
 
@@ -57,11 +60,11 @@ namespace BriefingRoom.Generator
         {
             int i, j;
 
-            DBEntryMissionFeature[] extensions = Database.Instance.GetEntries<DBEntryMissionFeature>(template.MissionFeatures);
+            DBEntryMissionFeature[] extensions = Database.GetEntries<DBEntryMissionFeature>(template.MissionFeatures);
             foreach (DBEntryMissionFeature extension in extensions)
                 AddIncludedFiles(mission, extension);
 
-            DBEntryMissionFeature[] features = Database.Instance.GetEntries<DBEntryMissionFeature>(objectiveDB.MissionFeatures);
+            DBEntryMissionFeature[] features = Database.GetEntries<DBEntryMissionFeature>(objectiveDB.MissionFeatures);
             foreach (DBEntryMissionFeature feature in features)
             {
                 AddIncludedFiles(mission, feature);

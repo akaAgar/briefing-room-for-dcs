@@ -33,6 +33,8 @@ namespace BriefingRoom.Generator
     /// </summary>
     public class MissionGeneratorAirDefense : IDisposable
     {
+        private Database Database;
+
         /// <summary>
         /// Unit maker class to use to generate units.
         /// </summary>
@@ -50,8 +52,10 @@ namespace BriefingRoom.Generator
         /// Constructor.
         /// </summary>
         /// <param name="unitMaker">Unit maker class to use to generate units</param>
-        public MissionGeneratorAirDefense(UnitMaker unitMaker, bool _ally, MissionTemplate template, DCSMission mission)
+        public MissionGeneratorAirDefense(Database database, UnitMaker unitMaker, bool _ally, MissionTemplate template, DCSMission mission)
         {
+            Database = database;
+
             UnitMaker = unitMaker;
             ally = _ally;
             if (ally)
@@ -59,8 +63,8 @@ namespace BriefingRoom.Generator
                 airDefense = template.SituationFriendlyAirDefense.Get();
                 centerPoint = mission.InitialPosition;
                 opposingPoint = mission.ObjectivesCenter;
-                distsFromCenter = Database.Instance.Common.AllyAirDefenseDistanceFromTakeOffLocation;
-                minDistFromOpposingPoint = Database.Instance.Common.AllyAirDefenseDistanceFromObjectives;
+                distsFromCenter = Database.Common.AllyAirDefenseDistanceFromTakeOffLocation;
+                minDistFromOpposingPoint = Database.Common.AllyAirDefenseDistanceFromObjectives;
                 skillLevel = template.SituationFriendlyAISkillLevel;
                 optionsShowEnemyUnits = 0;
                 return;
@@ -69,8 +73,8 @@ namespace BriefingRoom.Generator
             airDefense = template.SituationEnemyAirDefense.Get();
             centerPoint = mission.ObjectivesCenter;
             opposingPoint = mission.InitialPosition;
-            distsFromCenter = Database.Instance.Common.EnemyAirDefenseDistanceFromObjectives;
-            minDistFromOpposingPoint = Database.Instance.Common.EnemyAirDefenseDistanceFromTakeOffLocation;
+            distsFromCenter = Database.Common.EnemyAirDefenseDistanceFromObjectives;
+            minDistFromOpposingPoint = Database.Common.EnemyAirDefenseDistanceFromTakeOffLocation;
             skillLevel = template.SituationEnemySkillLevelGround;
             optionsShowEnemyUnits = template.Realism.Contains(RealismOption.HideEnemyUnits) ? DCSMissionUnitGroupFlags.Hidden : 0;
         }
@@ -113,8 +117,7 @@ namespace BriefingRoom.Generator
         private void AddAirDefenseUnits(DCSMission mission, AirDefenseRange airDefenseRange, DBEntryCoalition enemyCoalitionDB, Coalition? coalition, string[] unitMods)
         {
             // Get the proper number of groups
-            int groupCount = Database.Instance.Common.
-                EnemyAirDefense[(int)airDefense].GroupsInArea[(int)airDefenseRange].GetValue();
+            int groupCount = Database.Common.EnemyAirDefense[(int)airDefense].GroupsInArea[(int)airDefenseRange].GetValue();
             if (groupCount < 1) return;  // No groups to add, no need to go any further
 
             DCSMissionUnitGroupFlags flags = optionsShowEnemyUnits;

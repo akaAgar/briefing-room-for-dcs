@@ -18,6 +18,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom.DB;
 using BriefingRoom.Miz;
 using System;
 using System.Collections.Generic;
@@ -250,20 +251,6 @@ namespace BriefingRoom.Mission
         {
             // Generate a unique ID for the mission.
             UniqueID = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()).ToLowerInvariant();
-        }
-
-        /// <summary>
-        /// Exports the mission to a MizFile, which can then be saved to a .miz file.
-        /// </summary>
-        /// <returns>A MizFile</returns>
-        public MizFile ExportToMiz()
-        {
-            MizFile miz;
-
-            using (MizMaker exporter = new MizMaker())
-                miz = exporter.ExportToMizFile(this);
-
-            return miz;
         }
 
         /// <summary>

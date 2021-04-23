@@ -28,6 +28,8 @@ namespace BriefingRoom.DB
     /// </summary>
     public abstract class DBEntry : IDisposable
     {
+        protected Database Database { get; set; }
+
         /// <summary>
         /// Unique ID used by this entry in the database dictionary. Same as the dictionary key.
         /// Duplicated here to make things easier in some methods using Linq queries on Database entries.
@@ -60,8 +62,10 @@ namespace BriefingRoom.DB
         /// <param name="id">Unique ID of the database entry</param>
         /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
         /// <returns>True is successful, false if an error happened</returns>
-        public bool Load(string id, string iniFilePath)
+        public bool Load(Database database, string id, string iniFilePath)
         {
+            Database = database;
+
             ID = id;
             using (INIFile ini = new INIFile(iniFilePath))
             {
@@ -100,13 +104,13 @@ namespace BriefingRoom.DB
             // Accepted values IDs are neither null nor empty AND exist in the database
             string[] accepted =
                 (from string v in values
-                 where !string.IsNullOrEmpty(v.Trim()) && Database.Instance.EntryExists<T>(v.Trim())
+                 where !string.IsNullOrEmpty(v.Trim()) && Database.EntryExists<T>(v.Trim())
                  select v.Trim()).ToArray();
 
             // Accepted values IDs are neither null nor empty but DO NOT exist in the database
             rejected =
                 (from string v in values
-                 where !string.IsNullOrEmpty(v.Trim()) && !Database.Instance.EntryExists<T>(v.Trim())
+                 where !string.IsNullOrEmpty(v.Trim()) && !Database.EntryExists<T>(v.Trim())
                  select v.Trim()).ToArray();
 
             return accepted;

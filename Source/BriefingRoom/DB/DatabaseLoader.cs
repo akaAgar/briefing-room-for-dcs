@@ -28,10 +28,15 @@ namespace BriefingRoom.DB
 {
     public class DatabaseLoader : IDisposable
     {
+        private readonly Database Database;
+
         /// <summary>
         /// Constructor.
         /// </summary>
-        public DatabaseLoader() { }
+        public DatabaseLoader(Database database)
+        {
+            Database = database;
+        }
 
         /// <summary>
         /// Load all files from the Library directory into the library.
@@ -62,7 +67,7 @@ namespace BriefingRoom.DB
             Type carrierType = typeof(DBPseudoEntryCarrier);
             dbEntries.Add(carrierType, new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase));
 
-            foreach (DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>())
+            foreach (DBEntryUnit unit in Database.GetAllEntries<DBEntryUnit>())
             {
                 if (unit.AircraftData.PlayerControllable)
                     dbEntries[playerAircraftType].Add(unit.ID, new DBPseudoEntryPlayerAircraft(unit.ID, unit.UIDisplayName, unit.UICategory, unit.UIDescription));
@@ -77,7 +82,7 @@ namespace BriefingRoom.DB
             Type airbaseType = typeof(DBPseudoEntryAirbase);
             dbEntries.Add(airbaseType, new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase));
 
-            foreach (DBEntryTheater theater in Database.Instance.GetAllEntries<DBEntryTheater>())
+            foreach (DBEntryTheater theater in Database.GetAllEntries<DBEntryTheater>())
             {
                 foreach (DBEntryTheaterAirbase airbase in theater.Airbases)
                 {
@@ -97,10 +102,10 @@ namespace BriefingRoom.DB
         {
             List<string> countries = new List<string>();
 
-            foreach (DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>())
+            foreach (DBEntryUnit unit in Database.GetAllEntries<DBEntryUnit>())
                 countries.AddRange(unit.Operators.Keys);
 
-            Database.Instance.Countries =
+            Database.Countries =
                 (from string c in countries select c.ToLowerInvariant()).Distinct(StringComparer.InvariantCultureIgnoreCase).ToArray();
         }
 
@@ -136,7 +141,7 @@ namespace BriefingRoom.DB
 
                 if (dbEntries[dbType].ContainsKey(id)) continue;
                 T entry = new T();
-                if (!entry.Load(id, filePath)) continue;
+                if (!entry.Load(Database, id, filePath)) continue;
                 dbEntries[dbType].Add(id, entry);
                 DebugLog.Instance.WriteLine($"Loaded {shortTypeName} \"{id}\"", 1);
             }

@@ -36,10 +36,15 @@ namespace BriefingRoom.Miz
     /// </summary>
     public class MizMakerMediaImages : IDisposable
     {
+        private readonly Database Database;
+
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MizMakerMediaImages() { }
+        public MizMakerMediaImages(Database database)
+        {
+            Database = database;
+        }
 
         /// <summary>
         /// IDispose implementation.
@@ -62,7 +67,7 @@ namespace BriefingRoom.Miz
                 imgMaker.TextOverlay.Alignment = ContentAlignment.BottomCenter;
 
                 List<ImageMakerLayer> layers = new List<ImageMakerLayer>();
-                string[] theaterImages = Directory.GetFiles($"{BRPaths.INCLUDE_JPG}Theaters\\", $"{Database.Instance.GetEntry<DBEntryTheater>(mission.Theater).DCSID}*.jpg");
+                string[] theaterImages = Directory.GetFiles($"{BRPaths.INCLUDE_JPG}Theaters\\", $"{Database.GetEntry<DBEntryTheater>(mission.Theater).DCSID}*.jpg");
                 if (theaterImages.Length == 0)
                     layers.Add(new ImageMakerLayer("_default.jpg"));
                 else

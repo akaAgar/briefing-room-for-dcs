@@ -141,11 +141,11 @@ namespace BriefingRoom.Campaign
         /// </summary>
         public void Clear()
         {
-            ContextCoalitionsBlue = Database.Instance.CheckValue<DBEntryCoalition>("USA");
+            ContextCoalitionsBlue = "USA"; // Database.Instance.CheckValue<DBEntryCoalition>("USA");
             ContextCoalitionPlayer = Coalition.Blue;
-            ContextCoalitionsRed = Database.Instance.CheckValue<DBEntryCoalition>("Russia");
+            ContextCoalitionsRed = "Russia"; // Database.Instance.CheckValue<DBEntryCoalition>("Russia");
             ContextDecade = Decade.Decade2000;
-            ContextTheaterID = Database.Instance.CheckValue<DBEntryTheater>("Caucasus");
+            ContextTheaterID = "Caucasus"; // Database.Instance.CheckValue<DBEntryTheater>("Caucasus");
 
             EnvironmentBadWeatherChance = AmountN.Random;
             EnvironmentNightMissionChance = AmountN.Random;
@@ -159,8 +159,8 @@ namespace BriefingRoom.Campaign
             
             OptionsTheaterCountriesCoalitions = CountryCoalition.Default;
             OptionsCivilianTraffic = CivilianTraffic.Low;
-            
-            PlayerAircraft = Database.Instance.CheckValue<DBPseudoEntryPlayerAircraft>("Su-25T");
+
+            PlayerAircraft = "Su-25T"; // Database.Instance.CheckValue<DBPseudoEntryPlayerAircraft>("Su-25T");
             PlayerStartingAirbase = "";
             PlayerCarrier = "";
             PlayerStartLocation = PlayerStartLocation.Runway;

@@ -33,6 +33,8 @@ namespace BriefingRoom.Generator
     /// </summary>
     public class MissionGeneratorPlayerFlightGroups : IDisposable
     {
+        private readonly Database Database;
+
         /// <summary>
         /// Unit maker class to use to generate units.
         /// </summary>
@@ -42,8 +44,9 @@ namespace BriefingRoom.Generator
         /// Constructor.
         /// </summary>
         /// <param name="unitMaker">Unit maker class to use to generate units</param>
-        public MissionGeneratorPlayerFlightGroups(UnitMaker unitMaker)
+        public MissionGeneratorPlayerFlightGroups(Database database, UnitMaker unitMaker)
         {
+            Database = database;
             UnitMaker = unitMaker;
         }
 
@@ -119,7 +122,7 @@ namespace BriefingRoom.Generator
             return new UnitFlightGroupBriefingDescription(
                         group.Name, group.Units.Length, playerFlightGroup.Aircraft,
                         objectiveDB.BriefingTaskFlightGroup,
-                        Database.Instance.GetEntry<DBEntryUnit>(playerFlightGroup.Aircraft).AircraftData.GetRadioAsString());
+                        Database.GetEntry<DBEntryUnit>(playerFlightGroup.Aircraft).AircraftData.GetRadioAsString());
         }
 
         /// <summary>
@@ -202,7 +205,7 @@ namespace BriefingRoom.Generator
                 new UnitFlightGroupBriefingDescription(
                     group.Name, group.Units.Length, aircraft[0],
                     GetTaskingDescription(task, null),
-                    Database.Instance.GetEntry<DBEntryUnit>(aircraft[0]).AircraftData.GetRadioAsString());
+                    Database.GetEntry<DBEntryUnit>(aircraft[0]).AircraftData.GetRadioAsString());
         }
 
 
@@ -245,7 +248,7 @@ namespace BriefingRoom.Generator
                     new UnitFlightGroupBriefingDescription(
                         group.Name, group.Units.Length, fg.Aircraft,
                         GetTaskingDescription(fg.Tasking, objectiveDB),
-                        Database.Instance.GetEntry<DBEntryUnit>(fg.Aircraft).AircraftData.GetRadioAsString()));
+                        Database.GetEntry<DBEntryUnit>(fg.Aircraft).AircraftData.GetRadioAsString()));
 
                 totalGroupsCreated++;
             }

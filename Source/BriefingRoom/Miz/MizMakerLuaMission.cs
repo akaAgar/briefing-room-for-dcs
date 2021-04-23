@@ -33,10 +33,15 @@ namespace BriefingRoom.Miz
     /// </summary>
     public class MizMakerLuaMission : IDisposable
     {
+        private readonly Database Database;
+
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MizMakerLuaMission() { }
+        public MizMakerLuaMission(Database database)
+        {
+            Database = database;
+        }
 
         /// <summary>
         /// <see cref="IDisposable"/> implementation.
@@ -54,7 +59,7 @@ namespace BriefingRoom.Miz
 
             string lua = LuaTools.ReadIncludeLuaFile("Mission.lua");
 
-            LuaTools.ReplaceKey(ref lua, "TheaterID", Database.Instance.GetEntry<DBEntryTheater>(mission.Theater).DCSID);
+            LuaTools.ReplaceKey(ref lua, "TheaterID", Database.GetEntry<DBEntryTheater>(mission.Theater).DCSID);
             LuaTools.ReplaceKey(ref lua, "PlayerCoalition", mission.CoalitionPlayer.ToString().ToLowerInvariant());
 
             LuaTools.ReplaceKey(ref lua, "DateDay", mission.DateTime.Day);
@@ -100,7 +105,7 @@ namespace BriefingRoom.Miz
     
             Debug.DebugLog.Instance.WriteLine("Building Airbase");
             DBEntryTheaterAirbase airbase =
-                (from DBEntryTheaterAirbase ab in Database.Instance.GetEntry<DBEntryTheater>(mission.Theater).Airbases
+                (from DBEntryTheaterAirbase ab in Database.GetEntry<DBEntryTheater>(mission.Theater).Airbases
                 where ab.DCSID == mission.InitialAirbaseID select ab).FirstOrDefault();
             LuaTools.ReplaceKey(ref lua, "MissionAirbaseID", mission.InitialAirbaseID);
             LuaTools.ReplaceKey(ref lua, "MissionAirbaseX", airbase.Coordinates.X);
@@ -108,9 +113,9 @@ namespace BriefingRoom.Miz
 
             // The following replacements must be performed after unit groups and player waypoints have been added
             LuaTools.ReplaceKey(ref lua, "PlayerGroupID", mission.PlayerGroupID);
-            LuaTools.ReplaceKey(ref lua, "InitialWPName", Database.Instance.Common.WPNameInitial);
-            LuaTools.ReplaceKey(ref lua, "FinalWPName", Database.Instance.Common.WPNameFinal);
-            LuaTools.ReplaceKey(ref lua, "FinalWPName", Database.Instance.Common.WPNameFinal); //Duplicate
+            LuaTools.ReplaceKey(ref lua, "InitialWPName", Database.Common.WPNameInitial);
+            LuaTools.ReplaceKey(ref lua, "FinalWPName", Database.Common.WPNameFinal);
+            LuaTools.ReplaceKey(ref lua, "FinalWPName", Database.Common.WPNameFinal); //Duplicate
 
             switch (mission.UnitGroups.Find(x => x.IsAPlayerGroup()).StartLocation)
             {
@@ -292,7 +297,7 @@ namespace BriefingRoom.Miz
                     LuaTools.ReplaceKey(ref groupLua, "ILS", group.ILS);
 
 
-                DBEntryUnit unitBP = Database.Instance.GetEntry<DBEntryUnit>(group.UnitID);
+                DBEntryUnit unitBP = Database.GetEntry<DBEntryUnit>(group.UnitID);
                 if (unitBP == null) continue; // TODO: error message?
 
                 // Group is a client group, requires player waypoints

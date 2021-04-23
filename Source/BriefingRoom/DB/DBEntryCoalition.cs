@@ -63,10 +63,10 @@ namespace BriefingRoom.DB
                     BriefingElements[i] = ini.GetValueArray<string>("Briefing", $"Elements.{(CoalitionBriefingElement)i}");
 
                 Countries = ini.GetValueArray<string>("Coalition", "Countries");
-                string[] invalidCountries = (from string country in Countries where !Database.Instance.Countries.Contains(country, StringComparer.InvariantCultureIgnoreCase) select country).ToArray();
+                string[] invalidCountries = (from string country in Countries where !Database.Countries.Contains(country, StringComparer.InvariantCultureIgnoreCase) select country).ToArray();
                 foreach (string country in invalidCountries)
                     DebugLog.Instance.WriteLine($"Country \"{country}\" required by coalition \"{ID}\" not found.", DebugLogMessageErrorLevel.Warning);
-                Countries = (from string country in Countries where Database.Instance.Countries.Contains(country, StringComparer.InvariantCultureIgnoreCase) select country.ToLowerInvariant()).ToArray();
+                Countries = (from string country in Countries where Database.Countries.Contains(country, StringComparer.InvariantCultureIgnoreCase) select country.ToLowerInvariant()).ToArray();
                 if (Countries.Length == 0)
                 {
                     DebugLog.Instance.WriteLine($"No valid country found for coalition \"{ID}\", coalition was ignored.", DebugLogMessageErrorLevel.Warning);
@@ -74,7 +74,7 @@ namespace BriefingRoom.DB
                 }
 
                 DefaultUnitList = ini.GetValue<string>("Coalition", "DefaultUnitList");
-                if (!Database.Instance.EntryExists<DBEntryDefaultUnitList>(DefaultUnitList))
+                if (!Database.EntryExists<DBEntryDefaultUnitList>(DefaultUnitList))
                 {
                     DebugLog.Instance.WriteLine($"Default unit list \"{DefaultUnitList}\" required by coalition \"{ID}\" doesn't exist. Coalition was ignored.", DebugLogMessageErrorLevel.Warning);
                     return false;
@@ -146,7 +146,7 @@ namespace BriefingRoom.DB
 
             foreach (string country in Countries)
                 validUnits.AddRange(
-                    from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>()
+                    from DBEntryUnit unit in Database.GetAllEntries<DBEntryUnit>()
                     where unit.Families.Contains(family) && unit.Operators.ContainsKey(country) &&
                     (string.IsNullOrEmpty(unit.RequiredMod) || unitMods.Contains(unit.RequiredMod, StringComparer.InvariantCultureIgnoreCase)) &&
                     (unit.Operators[country][0] <= decade) && (unit.Operators[country][1] >= decade)
@@ -160,7 +160,7 @@ namespace BriefingRoom.DB
 
             // No unit found
             if (!useDefaultList) return new string[0];
-            return Database.Instance.GetEntry<DBEntryDefaultUnitList>(DefaultUnitList).DefaultUnits[(int)family, (int)decade];
+            return Database.GetEntry<DBEntryDefaultUnitList>(DefaultUnitList).DefaultUnits[(int)family, (int)decade];
         }
     }
 }

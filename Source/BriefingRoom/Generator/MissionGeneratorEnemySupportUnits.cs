@@ -31,6 +31,8 @@ namespace BriefingRoom.Generator
     /// </summary>
     public class MissionGeneratorEnemySupportUnits : IDisposable
     {
+        private readonly Database Database;
+
         /// <summary>
         /// Unit maker class to use to generate units.
         /// </summary>
@@ -40,8 +42,9 @@ namespace BriefingRoom.Generator
         /// Constructor.
         /// </summary>
         /// <param name="unitMaker">Unit maker class to use to generate units</param>
-        public MissionGeneratorEnemySupportUnits(UnitMaker unitMaker)
+        public MissionGeneratorEnemySupportUnits(Database database, UnitMaker unitMaker)
         {
+            Database = database;
             UnitMaker = unitMaker;
         }
 
@@ -98,8 +101,8 @@ namespace BriefingRoom.Generator
             DBEntryTheaterSpawnPoint? spawnPoint =
                 UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                     null,
-                    mission.ObjectivesCenter, Database.Instance.Common.EnemyCAPDistanceFromObjectives,
-                    mission.InitialPosition, new MinMaxD(Database.Instance.Common.EnemyCAPMinDistanceFromTakeOffLocation, 99999),
+                    mission.ObjectivesCenter, Database.Common.EnemyCAPDistanceFromObjectives,
+                    mission.InitialPosition, new MinMaxD(Database.Common.EnemyCAPMinDistanceFromTakeOffLocation, 99999),
                     GeneratorTools.GetEnemySpawnPointCoalition(template));
 
             if (!spawnPoint.HasValue) // No spawn point found, stop here.

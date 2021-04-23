@@ -33,9 +33,13 @@ namespace BriefingRoom.Campaign
 {
     public class CampaignGenerator : IDisposable
     {
-        public CampaignGenerator()
-        {
+        private readonly Database Database;
+        private readonly MissionGenerator MissionGenerator;
 
+        public CampaignGenerator(Database database, MissionGenerator missionGenerator)
+        {
+            Database = database;
+            MissionGenerator = missionGenerator;
         }
 
         public void Generate(CampaignTemplate campaignTemplate, string campaignFilePath)
@@ -45,20 +49,20 @@ namespace BriefingRoom.Campaign
 
             DCSMissionDateTime date = GenerateCampaignDate(campaignTemplate);
 
-            using (MissionGenerator generator = new MissionGenerator())
+            for (int i = 0; i < campaignTemplate.MissionsCount; i++)
             {
-                for (int i = 0; i < campaignTemplate.MissionsCount; i++)
+                // Increment the date by a few days for each mission after the first
+                if (i > 0) IncrementDate(ref date);
+
+                MissionTemplate template = CreateMissionTemplate(campaignTemplate, i);
+
+                DCSMission mission = MissionGenerator.Generate(template);
+                mission.MissionName = $"{campaignName}, phase {i + 1}";
+                mission.DateTime.Day = date.Day; mission.DateTime.Month = date.Month; mission.DateTime.Year = date.Year;
+
+                using (MizMaker mizMaker = new MizMaker(Database))
                 {
-                    // Increment the date by a few days for each mission after the first
-                    if (i > 0) IncrementDate(ref date);
-
-                    MissionTemplate template = CreateMissionTemplate(campaignTemplate, i);
-
-                    DCSMission mission = generator.Generate(template);
-                    mission.MissionName = $"{campaignName}, phase {i + 1}";
-                    mission.DateTime.Day = date.Day; mission.DateTime.Month = date.Month; mission.DateTime.Year = date.Year;
-
-                    MizFile miz = mission.ExportToMiz();
+                    MizFile miz = mizMaker.ExportToMizFile(mission);
                     miz.SaveToFile(Path.Combine(campaignDirectory, $"{campaignName}{i + 1:00}.miz"));
                 }
             }

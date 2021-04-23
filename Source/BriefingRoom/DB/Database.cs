@@ -31,25 +31,6 @@ namespace BriefingRoom.DB
     public class Database
     {
         /// <summary>
-        /// Singleton of the library.
-        /// </summary>
-        public static Database Instance
-        {
-            get
-            {
-                if (_Instance == null)
-                    _Instance = new Database();
-
-                return _Instance;
-            }
-        }
-
-        /// <summary>
-        /// Static singleton field.
-        /// </summary>
-        private static Database _Instance = null;
-
-        /// <summary>
         /// Misc. common settings for mission generation.
         /// </summary>
         public DatabaseCommon Common { get; set; }
@@ -80,18 +61,12 @@ namespace BriefingRoom.DB
             Common = new DatabaseCommon();
             Countries = new string[0];
             DBEntries = new Dictionary<Type, Dictionary<string, DBEntry>>();
-        }
 
-        /// <summary>
-        /// Initialize the database and loads all entries from .ini files in <see cref="DATABASE_PATH"/>
-        /// </summary>
-        public void Initialize()
-        {
             DebugLog.Instance.Clear();
             Common.Load();
 
             DBEntries.Clear();
-            using (DatabaseLoader loader = new DatabaseLoader())
+            using (DatabaseLoader loader = new DatabaseLoader(this))
                 loader.LoadAll(DBEntries);
 
             if (GetAllPlayerAircraftID().Length == 0) // Can't start without at least one player-controllable aircraft

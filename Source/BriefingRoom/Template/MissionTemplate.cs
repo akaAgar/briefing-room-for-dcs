@@ -186,11 +186,11 @@ namespace BriefingRoom.Template
         {
             MissionType = MissionType.SinglePlayer;
 
-            ContextCoalitionBlue = Database.Instance.CheckValue<DBEntryCoalition>("USA");
+            ContextCoalitionBlue = "USA"; // Database.Instance.CheckValue<DBEntryCoalition>("USA");
             ContextCoalitionPlayer = Coalition.Blue;
-            ContextCoalitionRed = Database.Instance.CheckValue<DBEntryCoalition>("Russia");
+            ContextCoalitionRed = "Russia"; // Database.Instance.CheckValue<DBEntryCoalition>("Russia");
             ContextDecade = Decade.Decade2000;
-            ContextTheater = Database.Instance.CheckValue<DBEntryTheater>("Caucasus");
+            ContextTheater = "Caucasus"; // Database.Instance.CheckValue<DBEntryTheater>("Caucasus");
 
             EnvironmentSeason = Season.Random;
             EnvironmentTimeOfDay = TimeOfDay.RandomDaytime;
@@ -274,12 +274,12 @@ namespace BriefingRoom.Template
             using (INIFile ini = new INIFile(filePath))
             {
                 MissionType = ini.GetValue("Common", "MissionType", MissionType);
-                
-                ContextCoalitionBlue = Database.Instance.CheckValue<DBEntryCoalition>(ini.GetValue("Context", "Coalition.Blue", ContextCoalitionBlue));
+
+                ContextCoalitionBlue = ini.GetValue("Context", "Coalition.Blue", ContextCoalitionBlue); // Database.Instance.CheckValue<DBEntryCoalition>(ini.GetValue("Context", "Coalition.Blue", ContextCoalitionBlue));
                 ContextCoalitionPlayer = ini.GetValue("Context", "Coalition.Player", ContextCoalitionPlayer);
-                ContextCoalitionRed = Database.Instance.CheckValue<DBEntryCoalition>(ini.GetValue("Context", "Coalition.Red", ContextCoalitionRed));
+                ContextCoalitionRed = ini.GetValue("Context", "Coalition.Red", ContextCoalitionRed); // Database.Instance.CheckValue<DBEntryCoalition>(ini.GetValue("Context", "Coalition.Red", ContextCoalitionRed));
                 ContextDecade = ini.GetValue("Context", "Decade", ContextDecade);
-                ContextTheater = Database.Instance.CheckValue<DBEntryTheater>(ini.GetValue("Context", "Theater", ContextTheater));
+                ContextTheater = ini.GetValue("Context", "Theater", ContextTheater);// Database.Instance.CheckValue<DBEntryTheater>(ini.GetValue("Context", "Theater", ContextTheater));
 
                 EnvironmentSeason = ini.GetValue("Environment", "Season", EnvironmentSeason);
                 EnvironmentTimeOfDay = ini.GetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);
@@ -292,7 +292,7 @@ namespace BriefingRoom.Template
 
                 ObjectiveCount = Toolbox.Clamp(ini.GetValue("Objective", "Count", ObjectiveCount), 1, MAX_OBJECTIVES);
                 ObjectiveDistance = Toolbox.Clamp(ini.GetValue("Objective", "Distance", ObjectiveDistance), 0, MAX_OBJECTIVE_DISTANCE);
-                ObjectiveType = Database.Instance.CheckValue<DBEntryObjective>(ini.GetValue("Objective", "Type", ObjectiveType), "", true);
+                ObjectiveType = ini.GetValue("Objective", "Type", ObjectiveType); // Database.Instance.CheckValue<DBEntryObjective>(ini.GetValue("Objective", "Type", ObjectiveType), "", true);
 
                 OptionsBriefingUnitSystem = ini.GetValue("Options", "BriefingUnitSystem", OptionsBriefingUnitSystem);
                 OptionsCivilianTraffic = ini.GetValue("Options", "CivilianTraffic", OptionsCivilianTraffic);

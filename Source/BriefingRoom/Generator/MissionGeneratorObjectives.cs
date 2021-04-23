@@ -53,12 +53,15 @@ namespace BriefingRoom.Generator
         /// </summary>
         private readonly UnitMakerSpawnPointSelector SpawnPointSelector;
 
+        private readonly Database Database;
+
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="spawnPointSelector">Spawn point selector to use for objective generation</param>
-        public MissionGeneratorObjectives(UnitMakerSpawnPointSelector spawnPointSelector)
+        public MissionGeneratorObjectives(Database database, UnitMakerSpawnPointSelector spawnPointSelector)
         {
+            Database = database;
             SpawnPointSelector = spawnPointSelector;
         }
 
@@ -194,7 +197,7 @@ namespace BriefingRoom.Generator
             string objectiveName;
             do
             {
-                objectiveName = Toolbox.RandomFrom(Database.Instance.Common.WPNamesObjectives);
+                objectiveName = Toolbox.RandomFrom(Database.Common.WPNamesObjectives);
             } while (UsedObjectiveNames.Contains(objectiveName));
             UsedObjectiveNames.Add(objectiveName);
 

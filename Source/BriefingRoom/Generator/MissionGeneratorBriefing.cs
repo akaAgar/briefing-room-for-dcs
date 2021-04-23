@@ -37,10 +37,15 @@ namespace BriefingRoom.Generator
     {
         private static readonly string HTML_TEMPLATE_FILE = $"{BRPaths.INCLUDE}Briefing.html";
 
+        private readonly Database Database;
+
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MissionGeneratorBriefing() { }
+        public MissionGeneratorBriefing(Database database)
+        {
+            Database = database;
+        }
 
         /// <summary>
         /// Generate a random mission name if none is provided in the template, or returns the provided name if there is one.
@@ -51,9 +56,9 @@ namespace BriefingRoom.Generator
         {
             DebugLog.Instance.WriteLine("Generating mission name...", 1);
 
-            mission.MissionName = Database.Instance.Common.MissionNameTemplate;
+            mission.MissionName = Database.Common.MissionNameTemplate;
             for (int i = 0; i < DatabaseCommon.MISSION_NAMES_PART_COUNT; i++)
-                mission.MissionName = mission.MissionName.Replace($"$P{i + 1}$", Toolbox.RandomFrom(Database.Instance.Common.MissionNameParts[i]));
+                mission.MissionName = mission.MissionName.Replace($"$P{i + 1}$", Toolbox.RandomFrom(Database.Common.MissionNameParts[i]));
 
             DebugLog.Instance.WriteLine($"Mission name set to \"{mission.MissionName}\"", 2);
         }
@@ -70,14 +75,14 @@ namespace BriefingRoom.Generator
             DebugLog.Instance.WriteLine("Generating mission briefing...", 1);
 
             // Get mission features
-            DBEntryMissionFeature[] features = Database.Instance.GetEntries<DBEntryMissionFeature>(objectiveDB.MissionFeatures);
+            DBEntryMissionFeature[] features = Database.GetEntries<DBEntryMissionFeature>(objectiveDB.MissionFeatures);
 
             string description = objectiveDB.BriefingDescriptionByUnitFamily[(int)mission.Objectives[0].TargetFamily];
             if (string.IsNullOrEmpty(description)) // No custom briefing for this target family, use the default
                 description = objectiveDB.BriefingDescription;
 
             description =
-                GeneratorTools.MakeBriefingStringReplacements(GeneratorTools.ParseRandomString(description), mission, coalitionsDB);
+                GeneratorTools.MakeBriefingStringReplacements(Database, GeneratorTools.ParseRandomString(description), mission, coalitionsDB);
             description = GeneratorTools.SanitizeString(description);
 
             // Generate tasks
@@ -86,7 +91,7 @@ namespace BriefingRoom.Generator
             string objectiveTask = GeneratorTools.ParseRandomString(objectiveDB.BriefingTask);
             for (int i = 0; i < mission.Objectives.Length; i++)
             {
-                string taskString = GeneratorTools.MakeBriefingStringReplacements(objectiveTask, mission, coalitionsDB, i);
+                string taskString = GeneratorTools.MakeBriefingStringReplacements(Database, objectiveTask, mission, coalitionsDB, i);
                 tasks.Add(taskString);
                 mission.CoreLuaScript += $"briefingRoom.mission.objectives[{i + 1}].task = \"{taskString}\"\r\n";
             }
@@ -97,11 +102,11 @@ namespace BriefingRoom.Generator
             List<string> remarks = new List<string>();
             remarks.AddRange( // ...from objective
                 from string remark in objectiveDB.BriefingRemarks
-                select GeneratorTools.MakeBriefingStringReplacements(GeneratorTools.ParseRandomString(remark), mission, coalitionsDB));
+                select GeneratorTools.MakeBriefingStringReplacements(Database, GeneratorTools.ParseRandomString(remark), mission, coalitionsDB));
             foreach (DBEntryMissionFeature feature in features)
                 remarks.AddRange( // ...from features
                     from string remark in feature.BriefingRemarks
-                    select GeneratorTools.MakeBriefingStringReplacements(GeneratorTools.ParseRandomString(remark), mission, coalitionsDB));
+                    select GeneratorTools.MakeBriefingStringReplacements(Database, GeneratorTools.ParseRandomString(remark), mission, coalitionsDB));
 
             mission.BriefingHTML = CreateHTMLBriefing(mission, template, description, tasks, remarks, flightGroups, airbaseDB, coalitionsDB, objectiveDB);
             mission.BriefingTXT = CreateTXTBriefing(mission, description, tasks, remarks, flightGroups, airbaseDB);
