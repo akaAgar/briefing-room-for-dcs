@@ -48,3 +48,25 @@ a, .btn-link {
         right: 0.75rem;
         top: 0.5rem;
     }
+
+    .generator-group {
+        display:  flex;
+    }
+    .generator-form,.generator-preview {
+        padding: .5em
+    } 
+    .generator-form {
+        flex-grow: 1;
+    }
+    .generator-preview{
+        border-left: 1px solid gray;
+        max-width: 50%;
+        flex-shrink: 1;
+    }
+
+    .delete-flight {
+        margin: 5px;
+        text-decoration:none;
+        color: darkgray;
+        font-weight: bold;
+    }
