@@ -409,7 +409,7 @@
     </div>
     @if(!String.IsNullOrEmpty(mission.BriefingHTML)){
         <div class="generator-preview">
-                <button class="btn btn-primary form-control" type="submit">DownloadMission</button>
+                <button class="btn btn-primary form-control" @onclick="DownloadMission">DownloadMission</button>
             <div>@((MarkupString)mission.BriefingHTML)</div>
         </div>
     }
