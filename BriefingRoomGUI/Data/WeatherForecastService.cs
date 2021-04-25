@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GUI_API.Data
+namespace BriefingRoomGUI.Data
 {
     public class WeatherForecastService
     {

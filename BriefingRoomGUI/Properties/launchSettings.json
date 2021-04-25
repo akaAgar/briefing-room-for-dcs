@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "GUI-API": {
+    "BriefingRoomGUI": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

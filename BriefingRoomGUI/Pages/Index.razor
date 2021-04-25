@@ -7,6 +7,7 @@
 @using BriefingRoom4DCSWorld.Generator
 @using BriefingRoom4DCSWorld.Miz
 @using System.Globalization
+@using System.Linq
 
 
 <h1>Mission Generator</h1>
@@ -140,6 +141,7 @@
                         <div class="form-group">
                             <label>Starting airbase</label>
                             <InputSelect class="form-control" @bind-Value="Template.FlightPlanTheaterStartingAirbase">
+                                <option value="">Random</option>
                                 @foreach (var value in Database.Instance.GetAllEntries<DBPseudoEntryAirbase>())
                                 {
                                     <option value="@value.ID">@value.UIDisplayName</option>
@@ -162,6 +164,7 @@
                         <div class="form-group">
                             <label>Type</label>
                             <InputSelect class="form-control" @bind-Value="Template.ObjectiveType">
+                                <option value="">Random</option>
                                 @foreach (var value in Database.Instance.GetAllEntries<DBEntryObjective>())
                                 {
                                     <option value="@value.ID">@value.UIDisplayName</option>
@@ -404,6 +407,35 @@
                         }
                     </div>
                     break;
+                case "misc":
+                    <div id="misc" class="generator-block">
+                        <h3>Misc</h3>
+                        <div class="misc-lists">
+                            <div class="form-group">
+                                <h4>Realism</h4>
+                                <CheckBoxList Data="Enum.GetValues(typeof(RealismOption)).Cast<RealismOption>()"  
+                                    TextField="@((item)=>item.ToString())"  
+                                    ValueField="@((item)=>item)"
+                                    SelectedValues="Template.Realism" TItem="RealismOption" TItemOutput="RealismOption" />  
+                            </div>
+                            <div class="form-group">
+                                <h4>Script extensions</h4>
+                                <CheckBoxList Data="Database.Instance.GetAllEntries<DBEntryExtension>().ToList()"  
+                                    TextField="@((item)=>item.UIDisplayName)"  
+                                    ValueField="@((item)=>item.ID)"  
+                                    SelectedValues="Template.ScriptExtensions" TItem="DBEntryExtension" TItemOutput="string" /> 
+                            </div>
+                            <div class="form-group">
+                                <h4>Unit mods</h4>
+                                <CheckBoxList Data="Database.Instance.GetAllEntries<DBEntryDCSMod>().ToList()"  
+                                    TextField="@((item)=>item.UIDisplayName)"  
+                                    ValueField="@((item)=>item.ID)"  
+                                    SelectedValues="Template.ScriptExtensions" TItem="DBEntryDCSMod" TItemOutput="string" /> 
+                            </div>
+                        </div>
+                    </div>
+                    break;
+
             }
         </EditForm>
     </div>
@@ -411,6 +443,13 @@
         <div class="generator-preview">
                 <button class="btn btn-primary form-control" @onclick="DownloadMission">DownloadMission</button>
             <div>@((MarkupString)mission.BriefingHTML)</div>
+            @foreach (var point in mission.Waypoints)
+            {
+                <div>
+                @point.Coordinates.X,
+                @point.Coordinates.Y
+                </div>
+            }
         </div>
     }
 </div>
@@ -437,7 +476,7 @@
     }
 
     private string tab = "context";
-    private List<string> tabs = new List<string>{"context","environment","flight-plan", "objective", "options", "situation", "flight-groups"};
+    private List<string> tabs = new List<string>{"context","environment","flight-plan", "objective", "options", "situation", "flight-groups", "misc"};
     private void SetTab(string var){
         tab = var;
     }

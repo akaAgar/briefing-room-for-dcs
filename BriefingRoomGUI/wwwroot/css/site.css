@@ -70,3 +70,8 @@ a, .btn-link {
         color: darkgray;
         font-weight: bold;
     }
+
+    .misc-lists {
+        display: flex;
+        justify-content: space-between;
+    }

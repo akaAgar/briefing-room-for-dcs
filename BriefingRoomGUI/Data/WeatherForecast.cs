@@ -1,6 +1,6 @@
 using System;
 
-namespace GUI_API.Data
+namespace BriefingRoomGUI.Data
 {
     public class WeatherForecast
     {

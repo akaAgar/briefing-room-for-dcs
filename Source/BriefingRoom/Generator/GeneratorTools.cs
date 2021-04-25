@@ -53,7 +53,7 @@ namespace BriefingRoom4DCS.Generator
         /// <param name="decade">Decade during which the units must be operated</param>
         /// <param name="unitMods">Unit mods the units can belong to</param>
         /// <returns>Updated array of units with added embedded air defense units</returns>
-        internal static string[] AddEmbeddedAirDefense(string[] units, AmountNR airDefenseLevel, DBEntryCoalition coalitionDB, Decade decade, string[] unitMods)
+        internal static string[] AddEmbeddedAirDefense(string[] units, AmountN airDefenseLevel, DBEntryCoalition coalitionDB, Decade decade, List<string> unitMods)
         {
             int airDefenseLevelInt = (int)airDefenseLevel.Get();
             // No luck this time, don't add anything

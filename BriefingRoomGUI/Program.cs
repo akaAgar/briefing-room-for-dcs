@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using BriefingRoom4DCSWorld.DB;
 using BriefingRoom4DCSWorld.Debug;
 
-namespace GUI_API
+namespace BriefingRoomGUI
 {
     public class Program
     {

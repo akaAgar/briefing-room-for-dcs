@@ -94,7 +94,7 @@ namespace BriefingRoom4DCS.Data
         /// <param name="unitMods">Unit mods units can belong to</param>
         /// <param name="useDefaultList">If true, and no unit of the proper family is found in the coalition countries, a unit will be selected from the default list. If false, and not unit is found, no unit will be returned.</param>
         /// <returns>Array of IDs of <see cref="DBEntryUnit"/></returns>
-        internal string[] GetRandomUnits(UnitFamily family, Decade decade, int count, string[] unitMods, bool useDefaultList = true)
+        internal string[] GetRandomUnits(UnitFamily family, Decade decade, int count, List<string> unitMods, bool useDefaultList = true)
         {
             // Count is zero, return an empty array.
             if (count < 1) return new string[0];
@@ -147,7 +147,7 @@ namespace BriefingRoom4DCS.Data
         /// <param name="unitMods">Unit mods from which units can be picked.</param>
         /// <param name="useDefaultList">Should units from the default list be return if no matching units are found?</param>
         /// <returns>An array of <see cref="DBEntryUnit"/> ids.</returns>
-        private string[] SelectValidUnits(UnitFamily family, Decade decade, string[] unitMods, bool useDefaultList)
+        private string[] SelectValidUnits(UnitFamily family, Decade decade, List<string> unitMods, bool useDefaultList)
         {
             List<string> validUnits = new List<string>();
 
