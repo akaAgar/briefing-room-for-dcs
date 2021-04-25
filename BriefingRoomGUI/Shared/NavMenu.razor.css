@@ -4,7 +4,8 @@
 
 .top-row {
     height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+    background-color: #F6F7FF;
+    padding: .5em;
 }
 
 .navbar-brand {
@@ -50,9 +51,24 @@
     color: white;
 }
 
+.bottom-logo {
+    display: none;
+    padding: 1em;
+    position: absolute;
+    bottom: 0;
+}
+
+.bottom-logo img {
+    width: 100%;
+}
+
 @media (min-width: 641px) {
     .navbar-toggler {
         display: none;
+    }
+
+    .bottom-logo {
+        display: inline-block;
     }
 
     .collapse {

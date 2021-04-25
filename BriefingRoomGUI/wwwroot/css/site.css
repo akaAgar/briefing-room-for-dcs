@@ -78,3 +78,36 @@ a, .btn-link {
     .misc-lists .form-group {
         margin:  0 1em;
     }
+
+    .splash-screen {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: linear-gradient(180deg, #0C3050 0%, #020A10 100%);
+        z-index: 99999;
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 2s linear;
+
+    }
+
+    @keyframes fadeOut {
+        0% { opacity: 1;}
+        99% { opacity: 0.01;width: 100%; height: 100%;}
+        100% { opacity: 0;width: 0; height: 0;}
+    }
+
+    .fade-out {
+        display: block;
+        animation: fadeOut 2s 1s;
+        animation-fill-mode: forwards;
+    }
+
+    .splash-screen img {
+        margin: 30vh auto;
+        width: 40%;
+        display: block;
+    }
