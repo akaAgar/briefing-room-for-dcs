@@ -46,9 +46,9 @@ namespace BriefingRoom.Generator
         public string Remarks { get; }
 
         /// <summary>
-        /// Flight group task.
+        /// Flight group payload.
         /// </summary>
-        public string Task { get; }
+        public string Payload { get; }
         /// <summary>
         /// Flight group unit type name.
         /// </summary>
@@ -60,15 +60,15 @@ namespace BriefingRoom.Generator
         /// <param name="callsign">Flight group callsign</param>
         /// <param name="count">Flight group unit count</param>
         /// <param name="type">Flight group unit type name</param>
-        /// <param name="task">Flight group task</param>
+        /// <param name="payload">Flight group payload</param>
         /// <param name="radio">Flight group radio frequency</param>
         /// <param name="remarks">Extra info about the flight group</param>
-        public UnitFlightGroupBriefingDescription(string callsign, int count, string type, string task, string radio, string remarks = "")
+        public UnitFlightGroupBriefingDescription(string callsign, int count, string type, string payload, string radio, string remarks = "")
         {
             Callsign = callsign;
             Count = count;
             Type = type;
-            Task = task;
+            Payload = payload;
             Radio = radio;
             Remarks = remarks;
         }

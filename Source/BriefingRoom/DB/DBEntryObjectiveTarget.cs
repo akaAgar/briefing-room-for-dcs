@@ -19,7 +19,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom.Debug;
-using System.IO;
 using System.Linq;
 
 namespace BriefingRoom.DB
@@ -29,11 +28,15 @@ namespace BriefingRoom.DB
     /// </summary>
     public class DBEntryObjectiveTarget : DBEntry
     {
+        public string[] BriefingName { get; private set; }
+
         public UnitCategory UnitCategory { get { return UnitFamilies[0].GetCategory(); } }
 
         public UnitFamily[] UnitFamilies { get; private set; }
 
         public MinMaxI[] UnitCount { get; private set; }
+
+        public TheaterLocationSpawnPointType[] ValidSpawnPoints { get; private set; }
 
         /// <summary>
         /// Loads a database entry from an .ini file.
@@ -44,19 +47,27 @@ namespace BriefingRoom.DB
         {
             using (INIFile ini = new INIFile(iniFilePath))
             {
+                BriefingName = new string[2]
+                {
+                        ini.GetValue<string>("ObjectiveTarget", "Briefing.UnitName.Singular"),
+                        ini.GetValue<string>("ObjectiveTarget", "Briefing.UnitName.Plural")
+                };
+
                 UnitFamilies = ini.GetValueArray<UnitFamily>("ObjectiveTarget", "Units.Families");
                 if (UnitFamilies.Length == 0)
                 {
                     DebugLog.Instance.WriteLine($"No unit categories for objective target \"{ID}\"", DebugLogMessageErrorLevel.Warning);
                     return false;
                 }
-                
+
                 // Make sure all unit families belong to the same category
                 UnitFamilies = (from UnitFamily unitFamily in UnitFamilies where unitFamily.GetCategory() == UnitCategory select unitFamily).ToArray();
 
                 UnitCount = new MinMaxI[Toolbox.GetEnumValuesCount<Amount>()];
                 foreach (Amount amount in Toolbox.GetEnumValues<Amount>())
                     UnitCount[(int)amount] = ini.GetValue<MinMaxI>("ObjectiveTarget", $"Units.Count.{amount}");
+
+                ValidSpawnPoints = ini.GetValueArray<TheaterLocationSpawnPointType>("ObjectiveTarget", "ValidSpawnPoints");
             }
 
             return true;

@@ -54,17 +54,12 @@ namespace BriefingRoom.Generator
         /// </summary>
         /// <param name="mission">Mission to which features and extensions should be added</param>
         /// <param name="template">Mission template to use</param>
-        /// <param name="objectiveDB">Mission objective database entry</param>
         /// <param name="coalitionsDB">Coalitions database entries</param>
-        public void GenerateExtensionsAndFeatures(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB, DBEntryCoalition[] coalitionsDB)
+        public void GenerateExtensionsAndFeatures(DCSMission mission, MissionTemplate template, DBEntryCoalition[] coalitionsDB)
         {
             int i, j;
 
-            DBEntryMissionFeature[] extensions = Database.GetEntries<DBEntryMissionFeature>(template.MissionFeatures);
-            foreach (DBEntryMissionFeature extension in extensions)
-                AddIncludedFiles(mission, extension);
-
-            DBEntryMissionFeature[] features = Database.GetEntries<DBEntryMissionFeature>(objectiveDB.MissionFeatures);
+            DBEntryMissionFeature[] features = Database.GetEntries<DBEntryMissionFeature>(template.MissionFeatures);
             foreach (DBEntryMissionFeature feature in features)
             {
                 AddIncludedFiles(mission, feature);

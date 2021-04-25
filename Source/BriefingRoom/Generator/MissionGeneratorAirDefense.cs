@@ -83,19 +83,18 @@ namespace BriefingRoom.Generator
         /// Main unit generation method.
         /// </summary>
         /// <param name="mission">Mission to which generated units should be added</param>
-        /// <param name="objectiveDB">Mission objective database entry</param>
         /// <param name="coalitionDB">Enemy coalition database entry</param>
         /// <param name="coalition">Coalition of the spawn points air defense must be spawned at, or null to spawn them anywhere</param>
         /// <param name="unitMods">Unit mods the units can belong to</param>
-        public void CreateUnitGroups(DCSMission mission, DBEntryObjective objectiveDB, DBEntryCoalition coalitionDB, Coalition? coalition, string[] unitMods)
+        public void CreateUnitGroups(DCSMission mission/*, DBEntryObjective objectiveDB*/, DBEntryCoalition coalitionDB, Coalition? coalition, string[] unitMods)
         {
             foreach (AirDefenseRange airDefenseRange in (AirDefenseRange[])Enum.GetValues(typeof(AirDefenseRange)))
             {
                 DebugLog.Instance.WriteLine($"Adding {airDefenseRange} air defense", 1);
                 if (
-                    ((airDefenseRange == AirDefenseRange.ShortRange) && objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.NoEnemyAirDefenseShort)) ||
-                    ((airDefenseRange == AirDefenseRange.MediumRange) && objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.NoEnemyAirDefenseMedium)) ||
-                    ((airDefenseRange == AirDefenseRange.LongRange) && objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.NoEnemyAirDefenseLong)))
+                    ((airDefenseRange == AirDefenseRange.ShortRange) /*&& objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.NoEnemyAirDefenseShort)*/) ||
+                    ((airDefenseRange == AirDefenseRange.MediumRange) /*&& objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.NoEnemyAirDefenseMedium)*/) ||
+                    ((airDefenseRange == AirDefenseRange.LongRange) /*&& objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.NoEnemyAirDefenseLong)*/))
                 {
                     DebugLog.Instance.WriteLine($"{airDefenseRange} air defense disabled for this mission objective type, not spawning any units", 1);
                     continue;

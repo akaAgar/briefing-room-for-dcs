@@ -33,7 +33,7 @@ namespace BriefingRoom
     /// </summary>
     public sealed class BriefingRoomLibrary : IDisposable
     {
-        private readonly CampaignGenerator CampaignGen;
+        //private readonly CampaignGenerator CampaignGen;
         private readonly Database Database;
         private readonly MissionGenerator Generator;
 
@@ -41,7 +41,7 @@ namespace BriefingRoom
         {
             Database = new Database();
             Generator = new MissionGenerator(Database);
-            CampaignGen = new CampaignGenerator(Database, Generator);
+            //CampaignGen = new CampaignGenerator(Database, Generator);
         }
 
         public DCSMission GenerateMission(string templateFilePath)

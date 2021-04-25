@@ -55,37 +55,36 @@ namespace BriefingRoom.Generator
         /// </summary>
         /// <param name="mission">Mission to which generated units should be added</param>
         /// <param name="template">Mission template to use</param>
-        /// <param name="objectiveDB">Mission objective database entry</param>
         /// <param name="playerCoalitionDB">Player coalition database entry</param>
         /// <param name="aiEscortTypeCAP">Type of aircraft selected for AI CAP escort</param>
         /// <param name="aiEscortTypeSEAD">Type of aircraft selected for AI SEAD escort</param>
         /// <returns>An array of <see cref="UnitFlightGroupBriefingDescription"/> describing the flight groups, to be used in the briefing</returns>
-        public UnitFlightGroupBriefingDescription[] CreateUnitGroups(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB, DBEntryCoalition playerCoalitionDB, out string aiEscortTypeCAP, out string aiEscortTypeSEAD)
+        public UnitFlightGroupBriefingDescription[] CreateUnitGroups(DCSMission mission, MissionTemplate template, DBEntryCoalition playerCoalitionDB, out string aiEscortTypeCAP, out string aiEscortTypeSEAD)
         {
             List<UnitFlightGroupBriefingDescription> briefingFGList = new List<UnitFlightGroupBriefingDescription>();
 
             if (template.MissionType == MissionType.SinglePlayer)
-                briefingFGList.Add(GenerateSinglePlayerFlightGroup(mission, template, objectiveDB));
+                briefingFGList.Add(GenerateSinglePlayerFlightGroup(mission, template));
             else
-                briefingFGList.AddRange(GenerateMultiplayerFlightGroups(mission, template, objectiveDB));
+                briefingFGList.AddRange(GenerateMultiplayerFlightGroups(mission, template));
 
             aiEscortTypeCAP = "";
             aiEscortTypeSEAD = "";
-            UnitFlightGroupBriefingDescription? escortDescription;
+            //UnitFlightGroupBriefingDescription? escortDescription;
 
-            escortDescription = GenerateAIEscort(mission, template, template.SituationFriendlyEscortCAP, MissionTemplateFlightGroupTask.SupportCAP, playerCoalitionDB);
-            if (escortDescription.HasValue)
-            {
-                briefingFGList.Add(escortDescription.Value);
-                aiEscortTypeCAP = escortDescription.Value.Type;
-            }
+            //escortDescription = GenerateAIEscort(mission, template, template.SituationFriendlyEscortCAP, MissionTemplateFlightGroupTask.SupportCAP, playerCoalitionDB);
+            //if (escortDescription.HasValue)
+            //{
+            //    briefingFGList.Add(escortDescription.Value);
+            //    aiEscortTypeCAP = escortDescription.Value.Type;
+            //}
 
-            escortDescription = GenerateAIEscort(mission, template, template.SituationFriendlyEscortSEAD, MissionTemplateFlightGroupTask.SupportSEAD, playerCoalitionDB);
-            if (escortDescription.HasValue)
-            {
-                briefingFGList.Add(escortDescription.Value);
-                aiEscortTypeSEAD = escortDescription.Value.Type;
-            }
+            //escortDescription = GenerateAIEscort(mission, template, template.SituationFriendlyEscortSEAD, MissionTemplateFlightGroupTask.SupportSEAD, playerCoalitionDB);
+            //if (escortDescription.HasValue)
+            //{
+            //    briefingFGList.Add(escortDescription.Value);
+            //    aiEscortTypeSEAD = escortDescription.Value.Type;
+            //}
 
             return briefingFGList.ToArray();
         }
@@ -95,9 +94,8 @@ namespace BriefingRoom.Generator
         /// </summary>
         /// <param name="mission">Mission to which generated units should be added</param>
         /// <param name="template">Mission template to use</param>
-        /// <param name="objectiveDB">Mission objective database entry</param>
         /// <returns>A <see cref="UnitFlightGroupBriefingDescription"/> describing the flight group, to be used in the briefing</returns>
-        private UnitFlightGroupBriefingDescription GenerateSinglePlayerFlightGroup(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB)
+        private UnitFlightGroupBriefingDescription GenerateSinglePlayerFlightGroup(DCSMission mission, MissionTemplate template)
         {
             var playerFlightGroup = template.PlayerFlightGroups[0];
             bool isCarrier = !string.IsNullOrEmpty(playerFlightGroup.Carrier);
@@ -107,8 +105,7 @@ namespace BriefingRoom.Generator
                 Enumerable.Repeat(playerFlightGroup.Aircraft, playerFlightGroup.Count).ToArray(),
                 Side.Ally, isCarrier? mission.Carriers.First(x => x.Units[0].Name == playerFlightGroup.Carrier).Coordinates : mission.InitialPosition,
                 isCarrier? "GroupAircraftPlayerCarrier" : "GroupAircraftPlayer", "UnitAircraft",
-                Toolbox.BRSkillLevelToDCSSkillLevel(template.SituationFriendlyAISkillLevel), DCSMissionUnitGroupFlags.FirstUnitIsPlayer,
-                objectiveDB.Payload,
+                Toolbox.BRSkillLevelToDCSSkillLevel(template.SituationFriendlyAISkillLevel), DCSMissionUnitGroupFlags.FirstUnitIsPlayer, UnitTaskPayload.Default,
                 null, isCarrier? -99 : mission.InitialAirbaseID, true,  country: playerFlightGroup.Country,
                 startLocation: playerFlightGroup.StartLocation
                 );
@@ -120,103 +117,99 @@ namespace BriefingRoom.Generator
                 group.CarrierId = mission.Carriers.First(x => x.Units[0].Name == playerFlightGroup.Carrier).Units[0].ID;
 
             return new UnitFlightGroupBriefingDescription(
-                        group.Name, group.Units.Length, playerFlightGroup.Aircraft,
-                        objectiveDB.BriefingTaskFlightGroup,
+                        group.Name, group.Units.Length, playerFlightGroup.Aircraft, playerFlightGroup.Payload.ToString(),
                         Database.GetEntry<DBEntryUnit>(playerFlightGroup.Aircraft).AircraftData.GetRadioAsString());
         }
 
-        /// <summary>
-        /// Creates an AI escort flight group in a single-player mission.
-        /// </summary>
-        /// <param name="mission">Mission to which generated units should be added</param>
-        /// <param name="template">Mission template to use</param>
-        /// <param name="count">Number of aircraft in the flight group</param>
-        /// <param name="task">Escort task the flight group will be assigned with</param>
-        /// <param name="playerCoalitionDB">Player coalition database entry</param>
-        /// <returns>A <see cref="UnitFlightGroupBriefingDescription"/> describing the flight group, to be used in the briefing</returns>
-        private UnitFlightGroupBriefingDescription? GenerateAIEscort(DCSMission mission, MissionTemplate template, int count, MissionTemplateFlightGroupTask task, DBEntryCoalition playerCoalitionDB)
-        {
-            if (count < 1) return null; // No aircraft, nothing to generate.
+        ///// <summary>
+        ///// Creates an AI escort flight group in a single-player mission.
+        ///// </summary>
+        ///// <param name="mission">Mission to which generated units should be added</param>
+        ///// <param name="template">Mission template to use</param>
+        ///// <param name="count">Number of aircraft in the flight group</param>
+        ///// <param name="playerCoalitionDB">Player coalition database entry</param>
+        ///// <returns>A <see cref="UnitFlightGroupBriefingDescription"/> describing the flight group, to be used in the briefing</returns>
+        //private UnitFlightGroupBriefingDescription? GenerateAIEscort(DCSMission mission, MissionTemplate template, int count, DBEntryCoalition playerCoalitionDB)
+        //{
+        //    if (count < 1) return null; // No aircraft, nothing to generate.
 
-            // Select proper payload for the flight group according to its tasking
-            UnitTaskPayload payload = GetPayloadByTask(task, null);
+        //    // Select proper payload for the flight group according to its tasking
+        //    UnitTaskPayload payload = GetPayloadByTask(task, null);
 
-            string groupLua;
-            string[] aircraft;
+        //    string groupLua;
+        //    string[] aircraft;
 
-            switch (task)
-            {
-                default: return null; // Should never happen
-                case MissionTemplateFlightGroupTask.SupportCAP:
-                    //groupLua = (template.GetMissionType() == MissionType.SinglePlayer) ? "GroupAircraftPlayerEscortCAP" : "GroupAircraftCAP";
-                    groupLua = "GroupAircraftCAP";
-                    aircraft = playerCoalitionDB.GetRandomUnits(UnitFamily.PlaneFighter, mission.DateTime.Decade, count, template.UnitMods);
-                    break;
-                case MissionTemplateFlightGroupTask.SupportSEAD:
-                    //groupLua = (template.GetMissionType() == MissionType.SinglePlayer) ? "GroupAircraftPlayerEscortSEAD" : "GroupAircraftSEAD";
-                    groupLua = "GroupAircraftSEAD";
-                    aircraft = playerCoalitionDB.GetRandomUnits(UnitFamily.PlaneSEAD, mission.DateTime.Decade, count, template.UnitMods);
-                    break;
-            }
+        //    switch (task)
+        //    {
+        //        default: return null; // Should never happen
+        //        case MissionTemplateFlightGroupTask.SupportCAP:
+        //            //groupLua = (template.GetMissionType() == MissionType.SinglePlayer) ? "GroupAircraftPlayerEscortCAP" : "GroupAircraftCAP";
+        //            groupLua = "GroupAircraftCAP";
+        //            aircraft = playerCoalitionDB.GetRandomUnits(UnitFamily.PlaneFighter, mission.DateTime.Decade, count, template.UnitMods);
+        //            break;
+        //        case MissionTemplateFlightGroupTask.SupportSEAD:
+        //            //groupLua = (template.GetMissionType() == MissionType.SinglePlayer) ? "GroupAircraftPlayerEscortSEAD" : "GroupAircraftSEAD";
+        //            groupLua = "GroupAircraftSEAD";
+        //            aircraft = playerCoalitionDB.GetRandomUnits(UnitFamily.PlaneSEAD, mission.DateTime.Decade, count, template.UnitMods);
+        //            break;
+        //    }
 
-            Coordinates position = mission.InitialPosition;
+        //    Coordinates position = mission.InitialPosition;
 
-            // Player starts on runway, so escort starts in the air above the airfield (so player doesn't have to wait for them to take off)
-            // OR mission is MP, so escorts start in air (but won't be spawned until at least one player takes off)
-            // Add a random distance so they don't crash into each other.
-            if ((template.PlayerFlightGroups[0].StartLocation == PlayerStartLocation.Runway) ||
-                (template.MissionType != MissionType.SinglePlayer))
-                position += Coordinates.CreateRandom(2, 4) * Toolbox.NM_TO_METERS;
+        //    // Player starts on runway, so escort starts in the air above the airfield (so player doesn't have to wait for them to take off)
+        //    // OR mission is MP, so escorts start in air (but won't be spawned until at least one player takes off)
+        //    // Add a random distance so they don't crash into each other.
+        //    if ((template.PlayerFlightGroups[0].StartLocation == PlayerStartLocation.Runway) ||
+        //        (template.MissionType != MissionType.SinglePlayer))
+        //        position += Coordinates.CreateRandom(2, 4) * Toolbox.NM_TO_METERS;
 
-            DCSMissionUnitGroup group;
-            //if (template.GetMissionType() == MissionType.SinglePlayer)
-            //    group = UnitMaker.AddUnitGroup(
-            //        mission, aircraft,
-            //        Side.Ally, position,
-            //        groupLua, "UnitAircraft",
-            //        Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel), 0,
-            //        payload, null, mission.InitialAirbaseID, true);
-            //else
-                group = UnitMaker.AddUnitGroup(
-                    mission, aircraft,
-                    Side.Ally, position,
-                    groupLua, "UnitAircraft",
-                    Toolbox.BRSkillLevelToDCSSkillLevel(template.SituationFriendlyAISkillLevel), 0,
-                    payload, mission.ObjectivesCenter);
+        //    DCSMissionUnitGroup group;
+        //    //if (template.GetMissionType() == MissionType.SinglePlayer)
+        //    //    group = UnitMaker.AddUnitGroup(
+        //    //        mission, aircraft,
+        //    //        Side.Ally, position,
+        //    //        groupLua, "UnitAircraft",
+        //    //        Toolbox.BRSkillLevelToDCSSkillLevel(template.PlayerAISkillLevel), 0,
+        //    //        payload, null, mission.InitialAirbaseID, true);
+        //    //else
+        //        group = UnitMaker.AddUnitGroup(
+        //            mission, aircraft,
+        //            Side.Ally, position,
+        //            groupLua, "UnitAircraft",
+        //            Toolbox.BRSkillLevelToDCSSkillLevel(template.SituationFriendlyAISkillLevel), 0,
+        //            payload, mission.ObjectivesCenter);
 
-            if (group == null)
-            {
-                DebugLog.Instance.WriteLine($"Failed to create AI escort flight group tasked with {task} with aircraft of type \"{aircraft[0]}\".", 1, DebugLogMessageErrorLevel.Warning);
-                return null;
-            }
+        //    if (group == null)
+        //    {
+        //        DebugLog.Instance.WriteLine($"Failed to create AI escort flight group tasked with {task} with aircraft of type \"{aircraft[0]}\".", 1, DebugLogMessageErrorLevel.Warning);
+        //        return null;
+        //    }
 
-            switch (task)
-            {
-                default: return null; // Should never happen
-                case MissionTemplateFlightGroupTask.SupportCAP:
-                    mission.EscortCAPGroupId = group.GroupID;
-                    break;
-                case MissionTemplateFlightGroupTask.SupportSEAD:
-                    mission.EscortSEADGroupId = group.GroupID;
-                    break;
-            }
+        //    switch (task)
+        //    {
+        //        default: return null; // Should never happen
+        //        case MissionTemplateFlightGroupTask.SupportCAP:
+        //            mission.EscortCAPGroupId = group.GroupID;
+        //            break;
+        //        case MissionTemplateFlightGroupTask.SupportSEAD:
+        //            mission.EscortSEADGroupId = group.GroupID;
+        //            break;
+        //    }
 
-            return
-                new UnitFlightGroupBriefingDescription(
-                    group.Name, group.Units.Length, aircraft[0],
-                    GetTaskingDescription(task, null),
-                    Database.GetEntry<DBEntryUnit>(aircraft[0]).AircraftData.GetRadioAsString());
-        }
-
+        //    return
+        //        new UnitFlightGroupBriefingDescription(
+        //            group.Name, group.Units.Length, aircraft[0],
+        //            GetTaskingDescription(task, null),
+        //            Database.GetEntry<DBEntryUnit>(aircraft[0]).AircraftData.GetRadioAsString());
+        //}
 
         /// <summary>
         /// Creates multiplayer client flight groups.
         /// </summary>
         /// <param name="mission">Mission to which generated units should be added</param>
         /// <param name="template">Mission template to use</param>
-        /// <param name="objectiveDB">Mission objective database entry</param>
         /// <returns>An array of <see cref="UnitFlightGroupBriefingDescription"/> describing the flight groups, to be used in the briefing</returns>
-        private UnitFlightGroupBriefingDescription[] GenerateMultiplayerFlightGroups(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB)
+        private UnitFlightGroupBriefingDescription[] GenerateMultiplayerFlightGroups(DCSMission mission, MissionTemplate template)
         {
             int totalGroupsCreated = 0;
 
@@ -224,8 +217,6 @@ namespace BriefingRoom.Generator
 
             foreach (MissionTemplateFlightGroup fg in template.PlayerFlightGroups)
             {
-                // Select proper payload for the flight group according to its tasking
-                UnitTaskPayload payload = GetPayloadByTask(fg.Tasking, objectiveDB);
                 bool hasCarrier = !string.IsNullOrEmpty(fg.Carrier);
                 DCSMissionUnitGroup group = UnitMaker.AddUnitGroup(
                     mission,
@@ -233,7 +224,7 @@ namespace BriefingRoom.Generator
                     Side.Ally, hasCarrier ? mission.Carriers.First(x => x.Units[0].Name == fg.Carrier).Coordinates : mission.InitialPosition,
                     hasCarrier ? "GroupAircraftPlayerCarrier" : "GroupAircraftPlayer", "UnitAircraft",
                     DCSSkillLevel.Client, 0,
-                    payload,
+                    fg.Payload,
                     null, hasCarrier ? -99 : mission.InitialAirbaseID, true, country: fg.Country,
                     startLocation: fg.StartLocation == PlayerStartLocation.Runway ? PlayerStartLocation.ParkingHot : fg.StartLocation);
                 if (group == null)
@@ -246,8 +237,7 @@ namespace BriefingRoom.Generator
 
                 briefingFGList.Add(
                     new UnitFlightGroupBriefingDescription(
-                        group.Name, group.Units.Length, fg.Aircraft,
-                        GetTaskingDescription(fg.Tasking, objectiveDB),
+                        group.Name, group.Units.Length, fg.Aircraft, fg.Payload.ToString(),
                         Database.GetEntry<DBEntryUnit>(fg.Aircraft).AircraftData.GetRadioAsString()));
 
                 totalGroupsCreated++;
@@ -260,45 +250,45 @@ namespace BriefingRoom.Generator
             return briefingFGList.ToArray();
         }
 
-        /// <summary>
-        /// Returns the proper payload type for a given task.
-        /// </summary>
-        /// <param name="task">Task assigned to this flight group in the mission package</param>
-        /// <param name="objectiveDB">(optional) Mission objective database entry</param>
-        /// <returns>A payload</returns>
-        private UnitTaskPayload GetPayloadByTask(MissionTemplateFlightGroupTask task, DBEntryObjective objectiveDB = null)
-        {
-            switch (task)
-            {
-                default: // case MissionTemplateMPFlightGroupTask.Objectives
-                    if (objectiveDB == null) return UnitTaskPayload.Default;
-                    return objectiveDB.Payload;
-                case MissionTemplateFlightGroupTask.SupportCAP:
-                    return UnitTaskPayload.AirToAir;
-                case MissionTemplateFlightGroupTask.SupportSEAD:
-                    return UnitTaskPayload.SEAD;
-            }
-        }
+        ///// <summary>
+        ///// Returns the proper payload type for a given task.
+        ///// </summary>
+        ///// <param name="task">Task assigned to this flight group in the mission package</param>
+        ///// <param name="objectiveDB">(optional) Mission objective database entry</param>
+        ///// <returns>A payload</returns>
+        //private UnitTaskPayload GetPayloadByTask(MissionTemplateFlightGroupTask task, DBEntryObjective objectiveDB = null)
+        //{
+        //    switch (task)
+        //    {
+        //        default: // case MissionTemplateMPFlightGroupTask.Objectives
+        //            if (objectiveDB == null) return UnitTaskPayload.Default;
+        //            return objectiveDB.Payload;
+        //        case MissionTemplateFlightGroupTask.SupportCAP:
+        //            return UnitTaskPayload.AirToAir;
+        //        case MissionTemplateFlightGroupTask.SupportSEAD:
+        //            return UnitTaskPayload.SEAD;
+        //    }
+        //}
 
-        /// <summary>
-        /// Return a string describing the task of a player flight group, to display in the flight group table part of the briefing.
-        /// </summary>
-        /// <param name="task">Task assigned to this flight group in the mission package</param>
-        /// <param name="objectiveDB">(optional) Mission objective database entry</param>
-        /// <returns>Name of task as it will appear in the flight group table</returns>
-        private string GetTaskingDescription(MissionTemplateFlightGroupTask task, DBEntryObjective objectiveDB)
-        {
-            switch (task)
-            {
-                default: // case MissionTemplateMPFlightGroupTask.Objectives
-                    if (objectiveDB == null) return "Mission objectives";
-                    return objectiveDB.BriefingTaskFlightGroup;
-                case MissionTemplateFlightGroupTask.SupportCAP:
-                    return "CAP escort";
-                case MissionTemplateFlightGroupTask.SupportSEAD:
-                    return "SEAD escort";
-            }
-        }
+        ///// <summary>
+        ///// Return a string describing the task of a player flight group, to display in the flight group table part of the briefing.
+        ///// </summary>
+        ///// <param name="task">Task assigned to this flight group in the mission package</param>
+        ///// <param name="objectiveDB">(optional) Mission objective database entry</param>
+        ///// <returns>Name of task as it will appear in the flight group table</returns>
+        //private string GetTaskingDescription(MissionTemplateFlightGroupTask task, DBEntryObjective objectiveDB)
+        //{
+        //    switch (task)
+        //    {
+        //        default: // case MissionTemplateMPFlightGroupTask.Objectives
+        //            if (objectiveDB == null) return "Mission objectives";
+        //            return objectiveDB.BriefingTaskFlightGroup;
+        //        case MissionTemplateFlightGroupTask.SupportCAP:
+        //            return "CAP escort";
+        //        case MissionTemplateFlightGroupTask.SupportSEAD:
+        //            return "SEAD escort";
+        //    }
+        //}
 
         /// <summary>
         /// <see cref="IDisposable"/> implementation.

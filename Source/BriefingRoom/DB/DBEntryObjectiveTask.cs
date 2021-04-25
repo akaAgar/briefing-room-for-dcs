@@ -41,6 +41,8 @@ namespace BriefingRoom.DB
 
         public string[] CompletionTriggerLua { get; private set; }
 
+        public string BriefingTask { get; private set; }
+
         /// <summary>
         /// Loads a database entry from an .ini file.
         /// </summary>
@@ -50,6 +52,7 @@ namespace BriefingRoom.DB
         {
             using (INIFile ini = new INIFile(iniFilePath))
             {
+                BriefingTask = ini.GetValue<string>("ObjectiveTask", "BriefingTask");
                 TargetSide = ini.GetValue<Side>("ObjectiveTask", "TargetSide");
                 ValidUnitCategories = ini.GetValueArray<UnitCategory>("ObjectiveTask", "ValidUnitCategories").Distinct().ToArray();
                 if (ValidUnitCategories.Length == 0) ValidUnitCategories = Toolbox.GetEnumValues<UnitCategory>(); // No category means all categories

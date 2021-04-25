@@ -97,8 +97,8 @@ namespace BriefingRoom.Campaign
         [TreeViewProperty("Objective distance", "Missions", typeof(Amount), "How far from the player's starting location will the objectives be.")]
         public Amount MissionsObjectiveDistance { get; set; }
 
-        [TreeViewProperty("Objectives", null, typeof(DBEntryObjective), "Allowed objectives in this campaign.")]
-        public string[] Objectives { get; set; }
+        //[TreeViewProperty("Objectives", null, typeof(DBEntryObjective), "Allowed objectives in this campaign.")]
+        //public string[] Objectives { get; set; }
 
         [TreeViewProperty("Civilian road traffic", "Options", typeof(CivilianTraffic), "Amount of civilian traffic on the roads. Can affect performance if set too high.")]
         public CivilianTraffic OptionsCivilianTraffic { get; set; }
@@ -155,7 +155,7 @@ namespace BriefingRoom.Campaign
             MissionsObjectiveCount = Amount.Average;
             MissionsObjectiveDistance = Amount.Average;
             
-            Objectives = new string[0];
+            //Objectives = new string[0];
             
             OptionsTheaterCountriesCoalitions = CountryCoalition.Default;
             OptionsCivilianTraffic = CivilianTraffic.Low;
@@ -201,7 +201,7 @@ namespace BriefingRoom.Campaign
                 MissionsObjectiveCount = ini.GetValue("Missions", "ObjectiveCount", MissionsObjectiveCount);
                 MissionsObjectiveDistance = ini.GetValue("Missions", "ObjectiveDistance", MissionsObjectiveDistance);
 
-                Objectives = ini.GetValueArray<string>("Objectives", "Objectives");
+                //Objectives = ini.GetValueArray<string>("Objectives", "Objectives");
 
                 OptionsCivilianTraffic = ini.GetValue("Options", "CivilianTraffic", OptionsCivilianTraffic);
                 OptionsTheaterCountriesCoalitions = ini.GetValue("Options", "TheaterRegionsCoalitions", OptionsTheaterCountriesCoalitions);
@@ -246,7 +246,7 @@ namespace BriefingRoom.Campaign
                 ini.SetValue("Missions", "ObjectiveCount", MissionsObjectiveCount);
                 ini.SetValue("Missions", "ObjectiveDistance", MissionsObjectiveDistance);
 
-                ini.SetValueArray("Objectives", "Objectives", Objectives);
+                //ini.SetValueArray("Objectives", "Objectives", Objectives);
 
                 ini.SetValue("Options", "CivilianTraffic", OptionsCivilianTraffic);
                 ini.SetValue("Options", "TheaterRegionsCoalitions", OptionsTheaterCountriesCoalitions);

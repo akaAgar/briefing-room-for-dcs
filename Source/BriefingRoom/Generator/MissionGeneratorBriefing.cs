@@ -70,16 +70,18 @@ namespace BriefingRoom.Generator
         /// <param name="template">Template from which the mission should be built</param>
         /// <param name="airbaseDB">Airbase player will take off from and land back on</param>
         /// <param name="coalitionsDB">Database entries for the mission coalitions</param>
-        public void GenerateMissionBriefing(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB, DBEntryTheaterAirbase airbaseDB, List<UnitFlightGroupBriefingDescription> flightGroups, DBEntryCoalition[] coalitionsDB)
+        public void GenerateMissionBriefing(DCSMission mission, MissionTemplate template, DBEntryTheaterAirbase airbaseDB, List<UnitFlightGroupBriefingDescription> flightGroups, DBEntryCoalition[] coalitionsDB)
         {
             DebugLog.Instance.WriteLine("Generating mission briefing...", 1);
 
             // Get mission features
-            DBEntryMissionFeature[] features = Database.GetEntries<DBEntryMissionFeature>(objectiveDB.MissionFeatures);
+            DBEntryMissionFeature[] features = Database.GetEntries<DBEntryMissionFeature>(template.MissionFeatures);
 
-            string description = objectiveDB.BriefingDescriptionByUnitFamily[(int)mission.Objectives[0].TargetFamily];
-            if (string.IsNullOrEmpty(description)) // No custom briefing for this target family, use the default
-                description = objectiveDB.BriefingDescription;
+            //string description = objectiveDB.BriefingDescriptionByUnitFamily[(int)mission.Objectives[0].TargetFamily];
+            //if (string.IsNullOrEmpty(description)) // No custom briefing for this target family, use the default
+            //    description = objectiveDB.BriefingDescription;
+
+            string description = "This is a mission.";
 
             description =
                 GeneratorTools.MakeBriefingStringReplacements(Database, GeneratorTools.ParseRandomString(description), mission, coalitionsDB);
@@ -88,9 +90,9 @@ namespace BriefingRoom.Generator
             // Generate tasks
             string baseName = airbaseDB.Name; // TODO: this doesn't work for lots of carriers so simplifying for now
             List<string> tasks = new List<string> { $"Take off from {baseName}" };
-            string objectiveTask = GeneratorTools.ParseRandomString(objectiveDB.BriefingTask);
             for (int i = 0; i < mission.Objectives.Length; i++)
             {
+                string objectiveTask = Database.GetEntry<DBEntryObjectiveTask>(template.Objectives[i].Task).BriefingTask;
                 string taskString = GeneratorTools.MakeBriefingStringReplacements(Database, objectiveTask, mission, coalitionsDB, i);
                 tasks.Add(taskString);
                 mission.CoreLuaScript += $"briefingRoom.mission.objectives[{i + 1}].task = \"{taskString}\"\r\n";
@@ -100,15 +102,15 @@ namespace BriefingRoom.Generator
 
             // Generate mission remarks...
             List<string> remarks = new List<string>();
-            remarks.AddRange( // ...from objective
-                from string remark in objectiveDB.BriefingRemarks
-                select GeneratorTools.MakeBriefingStringReplacements(Database, GeneratorTools.ParseRandomString(remark), mission, coalitionsDB));
+            //remarks.AddRange( // ...from objective
+            //    from string remark in objectiveDB.BriefingRemarks
+            //    select GeneratorTools.MakeBriefingStringReplacements(Database, GeneratorTools.ParseRandomString(remark), mission, coalitionsDB));
             foreach (DBEntryMissionFeature feature in features)
                 remarks.AddRange( // ...from features
                     from string remark in feature.BriefingRemarks
                     select GeneratorTools.MakeBriefingStringReplacements(Database, GeneratorTools.ParseRandomString(remark), mission, coalitionsDB));
 
-            mission.BriefingHTML = CreateHTMLBriefing(mission, template, description, tasks, remarks, flightGroups, airbaseDB, coalitionsDB, objectiveDB);
+            mission.BriefingHTML = CreateHTMLBriefing(mission, template, description, tasks, remarks, flightGroups, airbaseDB, coalitionsDB);
             mission.BriefingTXT = CreateTXTBriefing(mission, description, tasks, remarks, flightGroups, airbaseDB);
         }
 
@@ -116,7 +118,7 @@ namespace BriefingRoom.Generator
             DCSMission mission, MissionTemplate template, string description,
             List<string> tasks, List<string> remarks,
             List<UnitFlightGroupBriefingDescription> flightGroups, DBEntryTheaterAirbase airbaseDB,
-            DBEntryCoalition[] coalitionsDB, DBEntryObjective objectiveDB)
+            DBEntryCoalition[] coalitionsDB)
         {
             DebugLog.Instance.WriteLine("Generating HTML mission briefing...", 2);
 
@@ -131,9 +133,9 @@ namespace BriefingRoom.Generator
             // Title
             briefing = briefing.Replace("$MISSIONNAME$", mission.MissionName);
             briefing = briefing.Replace("$MISSIONTYPE$",
-                objectiveDB.UIDisplayName + ", " +
+                //objectiveDB.UIDisplayName + ", " +
                 ((template.MissionType == MissionType.SinglePlayer) ?
-                "single-player" : $"{template.GetPlayerCount()}-players multiplayer"));
+                "Single-player mission" : $"{template.GetPlayerCount()}-players multiplayer mission"));
 
             // Situation summary
             briefing = briefing.Replace("$LONGDATE$", mission.DateTime.ToDateString(true));
@@ -168,7 +170,7 @@ namespace BriefingRoom.Generator
                     "<tr>" +
                     $"<td>{fg.Callsign}</td>" +
                     $"<td>{fg.Count}×{fg.Type}</td>" +
-                    $"<td>{fg.Task}</td><td>{fg.Radio}</td>" +
+                    $"<td>{fg.Payload}</td><td>{fg.Radio}</td>" +
                     $"<td>{fg.Remarks}</td>" +
                     "</tr>";
             briefing = briefing.Replace("$FLIGHTGROUPS$", flightGroupsHTML);
@@ -252,7 +254,7 @@ namespace BriefingRoom.Generator
 
             briefing += "MISSION PACKAGE:\n";
             foreach (UnitFlightGroupBriefingDescription fg in flightGroups)
-                briefing += $"- {fg.Callsign} ({fg.Count}×{fg.Type}, {fg.Task}) - {fg.Radio}{(string.IsNullOrEmpty(fg.Remarks) ? "" : $", {fg.Remarks}")}\n";
+                briefing += $"- {fg.Callsign} ({fg.Count}×{fg.Type}, {fg.Payload}) - {fg.Radio}{(string.IsNullOrEmpty(fg.Remarks) ? "" : $", {fg.Remarks}")}\n";
             briefing += "\n";
 
             briefing += "AIRBASES:\n";

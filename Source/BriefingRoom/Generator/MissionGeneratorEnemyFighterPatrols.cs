@@ -54,19 +54,18 @@ namespace BriefingRoom.Generator
         /// </summary>
         /// <param name="mission">Mission to which generated units should be added</param>
         /// <param name="template">Mission template to use</param>
-        /// <param name="objectiveDB">Mission objective database entry</param>
         /// <param name="enemyCoalitionDB">Enemy coalition database entry</param>
         /// <param name="aiEscortTypeCAP">Type of aircraft selected for player AI CAP escort (single-player only)</param>
         /// <param name="aiEscortTypeSEAD">Type of aircraft selected for player AI SEAD escort (single-player only)</param>
-        public void CreateUnitGroups(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB, DBEntryCoalition enemyCoalitionDB, string aiEscortTypeCAP, string aiEscortTypeSEAD)
+        public void CreateUnitGroups(DCSMission mission, MissionTemplate template, DBEntryCoalition enemyCoalitionDB, string aiEscortTypeCAP, string aiEscortTypeSEAD)
         {
-            if (objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.NoEnemyCAP))
-            {
-                DebugLog.Instance.WriteLine("Enemy CAP disabled for this mission objective type, not spawning any units", 1);
-                return;
-            }
+            //if (objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.NoEnemyCAP))
+            //{
+            //    DebugLog.Instance.WriteLine("Enemy CAP disabled for this mission objective type, not spawning any units", 1);
+            //    return;
+            //}
             int totalAirForcePower =
-                (int)(GetMissionPackageAirPower(template, objectiveDB, aiEscortTypeCAP, aiEscortTypeSEAD) *
+                (int)(GetMissionPackageAirPower(template, aiEscortTypeCAP, aiEscortTypeSEAD) *
                 Database.Common.EnemyCAPRelativePower[(int)template.SituationEnemyAirForce.Get()]);
 
             DebugLog.Instance.WriteLine($"Enemy air power set to {totalAirForcePower}...", 1);
@@ -134,11 +133,10 @@ namespace BriefingRoom.Generator
         /// Returns the total air-to-air power rating of the player's (and AI escort) flight package
         /// </summary>
         /// <param name="template">Mission template to use</param>
-        /// <param name="objectiveDB">Mission objective database entry</param>
         /// <param name="aiEscortTypeCAP">Type of aircraft selected for player AI CAP escort (single-player only)</param>
         /// <param name="aiEscortTypeSEAD">Type of aircraft selected for player AI SEAD escort (single-player only)</param>
         /// <returns>Total air-to-air power rating of the flight package</returns>
-        private int GetMissionPackageAirPower(MissionTemplate template, DBEntryObjective objectiveDB, string aiEscortTypeCAP, string aiEscortTypeSEAD)
+        private int GetMissionPackageAirPower(MissionTemplate template, string aiEscortTypeCAP, string aiEscortTypeSEAD)
         {
             int airPowerRating = 0;
             DBEntryUnit aircraft;
@@ -161,25 +159,9 @@ namespace BriefingRoom.Generator
                         continue;
                     }
 
-                    bool hasAirToAirLoadout;
-                    switch (fg.Tasking)
-                    {
-                        default: // case MissionTemplateMPFlightGroupTask.Objectives
-                            if (objectiveDB.Payload == UnitTaskPayload.Default)
-                                hasAirToAirLoadout = aircraft.Families.Contains(UnitFamily.PlaneFighter) || aircraft.Families.Contains(UnitFamily.PlaneInterceptor);
-                            else if (objectiveDB.Payload == UnitTaskPayload.AirToAir)
-                                hasAirToAirLoadout = true;
-                            else
-                                hasAirToAirLoadout = false;
-                            break;
-                        case MissionTemplateFlightGroupTask.SupportCAP:
-                            hasAirToAirLoadout = true;
-                            break;
-                        case MissionTemplateFlightGroupTask.SupportSEAD:
-                            hasAirToAirLoadout = false;
-                            break;
-
-                    }
+                    bool hasAirToAirLoadout = // Does the flight group have an air-to-air payload?
+                        (fg.Payload == UnitTaskPayload.AirToAir) ||
+                        ((fg.Payload == UnitTaskPayload.Default) && (aircraft.Families.Contains(UnitFamily.PlaneFighter) || aircraft.Families.Contains(UnitFamily.PlaneInterceptor)));
 
                     airPowerRating += aircraft.AircraftData.AirToAirRating[hasAirToAirLoadout ? 1 : 0] * fg.Count;
                 }

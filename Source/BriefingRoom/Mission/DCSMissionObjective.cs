@@ -18,6 +18,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom.DB;
 using System;
 
 namespace BriefingRoom.Mission
@@ -48,9 +49,14 @@ namespace BriefingRoom.Mission
         public Coordinates WaypointCoordinates { get; }
 
         /// <summary>
-        /// DCSID of airbase if given
+        /// DCSID of airbase, if any.
         /// </summary>
         public int AirbaseID { get; }
+
+        /// <summary>
+        /// Is the waypoint on the ground (true) or in air (false)?
+        /// </summary>
+        public bool WaypointOnGround { get; }
 
         /// <summary>
         /// Constructor.
@@ -59,13 +65,15 @@ namespace BriefingRoom.Mission
         /// <param name="coordinates">X,Y coordinates of the objective target</param>
         /// <param name="targetFamily">Unit family of the target at this objective</param>
         /// <param name="waypointCoordinates">X,Y coordinates of the objective waypoint</param>
-        public DCSMissionObjective(string name, Coordinates coordinates, UnitFamily? targetFamily, Coordinates waypointCoordinates , int airbaseID = 0)
+        /// <param name="waypointOnGround">X,Y coordinates of the objective waypoint</param>
+        public DCSMissionObjective(string name, Coordinates coordinates, UnitFamily? targetFamily, Coordinates waypointCoordinates, bool waypointOnGround = false, int airbaseID = 0)
         {
             Coordinates = coordinates;
             Name = name;
             TargetFamily = targetFamily;
             WaypointCoordinates = waypointCoordinates;
             AirbaseID = airbaseID;
+            WaypointOnGround = waypointOnGround;
         }
     }
 }

@@ -30,10 +30,15 @@ namespace BriefingRoom.Generator
 {
     public class MissionGeneratorAirbases : IDisposable
     {
+        private readonly Database Database;
+
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MissionGeneratorAirbases() { }
+        public MissionGeneratorAirbases(Database database)
+        {
+            Database = database;
+        }
 
         /// <summary>
         /// Picks a starting airbase for the player(s)
@@ -41,9 +46,8 @@ namespace BriefingRoom.Generator
         /// <param name="mission">Mission for which the starting airbase must be set</param>
         /// <param name="template">Mission template to use</param>
         /// <param name="theaterDB">Theater database entry</param>
-        /// <param name="objectiveDB">Objective database entry</param>
         /// <returns>Information about the starting airbase</returns>
-        public DBEntryTheaterAirbase SelectStartingAirbase(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, DBEntryObjective objectiveDB)
+        public DBEntryTheaterAirbase SelectStartingAirbase(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB)
         {
             List<DBEntryTheaterAirbase[]> airbasesList = new List<DBEntryTheaterAirbase[]>();
 
@@ -58,8 +62,17 @@ namespace BriefingRoom.Generator
                 airbasesList.Add((from DBEntryTheaterAirbase ab in airbasesList.Last() where ab.Coalition == requiredCoalition select ab).ToArray());
             }
 
-            // If mission must start near water, or some player start on a carrier, select all airbases near water
-            if (objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.MustStartNearWater) || !string.IsNullOrEmpty(template.PlayerFlightGroups[0].Carrier))
+            bool seaTargets = false;
+            foreach (MissionTemplateObjective objective in template.Objectives)
+                if (Database.EntryExists<DBEntryObjectiveTarget>(objective.Target) &&
+                    (Database.GetEntry<DBEntryObjectiveTarget>(objective.Target).UnitCategory == UnitCategory.Ship))
+                {
+                    seaTargets = true;
+                    break;
+                }
+
+            // If some targets are ships, or some player start on a carrier, only select airbases near water
+            if (seaTargets || !string.IsNullOrEmpty(template.PlayerFlightGroups[0].Carrier))
                 airbasesList.Add((from DBEntryTheaterAirbase ab in airbasesList.Last() where ab.Flags.HasFlag(DBEntryTheaterAirbaseFlag.NearWater) select ab).ToArray());
 
             // If a particular airbase name has been specified and an airbase with this name exists, pick it

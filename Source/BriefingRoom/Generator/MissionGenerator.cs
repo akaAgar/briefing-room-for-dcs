@@ -86,7 +86,7 @@ namespace BriefingRoom.Generator
             // Check for missing entries in the database
             GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(Database, template.ContextCoalitionBlue);
             GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(Database, template.ContextCoalitionRed);
-            GeneratorTools.CheckDBForMissingEntry<DBEntryObjective>(Database, template.ObjectiveType, true);
+            //GeneratorTools.CheckDBForMissingEntry<DBEntryObjective>(Database, template.ObjectiveType, true);
             GeneratorTools.CheckDBForMissingEntry<DBEntryTheater>(Database, template.ContextTheater);
 
             // Create the mission and copy some values (theater database entry ID, etc.) from the template
@@ -97,11 +97,11 @@ namespace BriefingRoom.Generator
             DBEntryCoalition[] coalitionsDB = new DBEntryCoalition[2];
             coalitionsDB[(int)Coalition.Blue] = Database.GetEntry<DBEntryCoalition>(template.ContextCoalitionBlue);
             coalitionsDB[(int)Coalition.Red] = Database.GetEntry<DBEntryCoalition>(template.ContextCoalitionRed);
-            DBEntryObjective objectiveDB;
-            if (string.IsNullOrEmpty(template.ObjectiveType)) // Random objective
-                objectiveDB = Toolbox.RandomFrom(Database.GetAllEntries<DBEntryObjective>());
-            else 
-                objectiveDB = Database.GetEntry<DBEntryObjective>(template.ObjectiveType);
+            //DBEntryObjective objectiveDB;
+            //if (string.IsNullOrEmpty(template.ObjectiveType)) // Random objective
+            //    objectiveDB = Toolbox.RandomFrom(Database.GetAllEntries<DBEntryObjective>());
+            //else 
+            //    objectiveDB = Database.GetEntry<DBEntryObjective>(template.ObjectiveType);
             DBEntryTheater theaterDB = Database.GetEntry<DBEntryTheater>(template.ContextTheater);
 
             // Create the unit maker, which will be used to generate unit groups and their properties
@@ -112,9 +112,9 @@ namespace BriefingRoom.Generator
 
             // Setup airbases
             DBEntryTheaterAirbase airbaseDB;
-            using (MissionGeneratorAirbases airbaseGen = new MissionGeneratorAirbases())
+            using (MissionGeneratorAirbases airbaseGen = new MissionGeneratorAirbases(Database))
             {
-                airbaseDB = airbaseGen.SelectStartingAirbase(mission, template, theaterDB, objectiveDB);
+                airbaseDB = airbaseGen.SelectStartingAirbase(mission, template, theaterDB);
 
                 mission.InitialAirbaseID = airbaseDB.DCSID;
                 mission.InitialPosition = airbaseDB.Coordinates;
@@ -125,7 +125,7 @@ namespace BriefingRoom.Generator
             // Generate mission objectives
             DebugLog.Instance.WriteLine("Generating mission objectives...");
             using (MissionGeneratorObjectives objectives = new MissionGeneratorObjectives(Database, unitMaker.SpawnPointSelector))
-                objectives.CreateObjectives(mission, template, objectiveDB, theaterDB);
+                objectives.CreateObjectives(mission, template, theaterDB);
 
             // Generate mission date and time
             DebugLog.Instance.WriteLine("Generating mission date and time...");
@@ -154,13 +154,13 @@ namespace BriefingRoom.Generator
             using (MissionGeneratorPlayerFlightGroups unitGroupGen = new MissionGeneratorPlayerFlightGroups(Database, unitMaker))
                 briefingFGList.AddRange(
                     unitGroupGen.CreateUnitGroups(
-                        mission, template, objectiveDB, coalitionsDB[(int)mission.CoalitionPlayer],
+                        mission, template, coalitionsDB[(int)mission.CoalitionPlayer],
                         out aiEscortTypeCAP, out aiEscortTypeSEAD));
 
             // Generate objective unit groups
             DebugLog.Instance.WriteLine("Generating objectives unit groups...");
             using (MissionGeneratorObjectivesUnitGroups unitGroupGen = new MissionGeneratorObjectivesUnitGroups(Database, unitMaker))
-                unitGroupGen.CreateUnitGroups(mission, template, objectiveDB, coalitionsDB);
+                unitGroupGen.CreateUnitGroups(mission, template, coalitionsDB);
 
             // Generate friendly support units
             DebugLog.Instance.WriteLine("Generating friendly support units...");
@@ -175,29 +175,29 @@ namespace BriefingRoom.Generator
             // Generate enemy air defense unit groups
             DebugLog.Instance.WriteLine("Generating enemy air defense unit groups...");
             using (MissionGeneratorAirDefense unitGroupGen = new MissionGeneratorAirDefense(Database, unitMaker, false, template, mission))
-                unitGroupGen.CreateUnitGroups(mission, objectiveDB, coalitionsDB[(int)mission.CoalitionEnemy], GeneratorTools.GetEnemySpawnPointCoalition(template), template.UnitMods);
+                unitGroupGen.CreateUnitGroups(mission, coalitionsDB[(int)mission.CoalitionEnemy], GeneratorTools.GetEnemySpawnPointCoalition(template), template.UnitMods);
 
             // Generate ally air defense unit groups
             DebugLog.Instance.WriteLine("Generating friendly air defense unit groups...");
             using (MissionGeneratorAirDefense unitGroupGen = new MissionGeneratorAirDefense(Database, unitMaker, true, template, mission))
-                unitGroupGen.CreateUnitGroups(mission, objectiveDB, coalitionsDB[(int)mission.CoalitionPlayer], GeneratorTools.GetAllySpawnPointCoalition(template), template.UnitMods);
+                unitGroupGen.CreateUnitGroups(mission, coalitionsDB[(int)mission.CoalitionPlayer], GeneratorTools.GetAllySpawnPointCoalition(template), template.UnitMods);
 
             //// Generate enemy fighter patrols
             DebugLog.Instance.WriteLine("Generating enemy fighter patrol unit groups...");
             using (MissionGeneratorEnemyFighterPatrols unitGroupGen = new MissionGeneratorEnemyFighterPatrols(Database, unitMaker))
-                unitGroupGen.CreateUnitGroups(mission, template, objectiveDB, coalitionsDB[(int)mission.CoalitionEnemy], aiEscortTypeCAP, aiEscortTypeSEAD);
+                unitGroupGen.CreateUnitGroups(mission, template, coalitionsDB[(int)mission.CoalitionEnemy], aiEscortTypeCAP, aiEscortTypeSEAD);
 
             //// Generate mission features
             DebugLog.Instance.WriteLine("Generating mission features unit groups...");
             using (MissionGeneratorExtensionsAndFeatures featuresGen = new MissionGeneratorExtensionsAndFeatures(Database, unitMaker))
-                featuresGen.GenerateExtensionsAndFeatures(mission, template, objectiveDB, coalitionsDB);
+                featuresGen.GenerateExtensionsAndFeatures(mission, template, coalitionsDB);
 
             // Generates the mission flight plan
             DebugLog.Instance.WriteLine("Generating mission flight plan...");
             using (MissionGeneratorFlightPlan flightPlan = new MissionGeneratorFlightPlan())
             {
                 flightPlan.SetBullseye(mission);
-                flightPlan.AddObjectiveWaypoints(mission, objectiveDB);
+                flightPlan.AddObjectiveWaypoints(mission);
                 flightPlan.AddExtraWaypoints(mission, template);
             }
 
@@ -206,7 +206,7 @@ namespace BriefingRoom.Generator
             using (MissionGeneratorBriefing briefing = new MissionGeneratorBriefing(Database))
             {
                 briefing.GenerateMissionName(mission, template);
-                briefing.GenerateMissionBriefing(mission, template, objectiveDB, airbaseDB, briefingFGList, coalitionsDB);
+                briefing.GenerateMissionBriefing(mission, template, airbaseDB, briefingFGList, coalitionsDB);
             }
 
             // Set if radio sounds are enabled

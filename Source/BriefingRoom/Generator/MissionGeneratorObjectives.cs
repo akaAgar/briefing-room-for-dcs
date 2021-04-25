@@ -70,13 +70,12 @@ namespace BriefingRoom.Generator
         /// </summary>
         /// <param name="mission">The mission for which to generate objectives</param>
         /// <param name="template">Mission template to use</param>
-        /// <param name="objectiveDB">Objective database entry</param>
-        public void CreateObjectives(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB, DBEntryTheater theaterDB)
+        public void CreateObjectives(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB)
         {
             // Set the array for the proper number of objective
-            mission.Objectives = new DCSMissionObjective[template.ObjectiveCount];
+            mission.Objectives = new DCSMissionObjective[template.Objectives.Length];
 
-            GenerateObjectivesData(mission, template, objectiveDB, theaterDB);
+            GenerateObjectivesData(mission, template, theaterDB);
             GenerateObjectivesScript(mission);
         }
 
@@ -85,18 +84,21 @@ namespace BriefingRoom.Generator
         /// </summary>
         /// <param name="mission">The mission for which to generate objectives</param>
         /// <param name="template">Mission template to use</param>
-        /// <param name="objectiveDB">Objective database entry</param>
-        private void GenerateObjectivesData(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB, DBEntryTheater theaterDB)
+        private void GenerateObjectivesData(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB)
         {
             // Keep in mind the position of the last objective/player location.
             // Start with initial player location.
             Coordinates lastCoordinates = mission.InitialPosition;
 
             // Common family to use for all objectives if DBEntryObjectiveFlags.SingleTargetUnitFamily is set
-            UnitFamily singleObjectiveUnitFamily = objectiveDB.GetRandomUnitFamily();
+            //UnitFamily singleObjectiveUnitFamily = objectiveDB.GetRandomUnitFamily();
 
-            for (int i = 0; i < template.ObjectiveCount; i++)
+            for (int i = 0; i < template.Objectives.Length; i++)
             {
+                DBEntryObjectiveTarget objectiveTarget = Database.GetEntry<DBEntryObjectiveTarget>(template.Objectives[i].Target);
+                DBEntryObjectiveTargetBehavior objectiveTargetBehavior = Database.GetEntry<DBEntryObjectiveTargetBehavior>(template.Objectives[i].TargetBehavior);
+                DBEntryObjectiveTask objectiveTask = Database.GetEntry<DBEntryObjectiveTask>(template.Objectives[i].Task);
+
                 // Pick a random unique name, or a waypoint number if objectives shouldn't be named
                 string objectiveName = PickUniqueObjectiveName();
 
@@ -104,9 +106,9 @@ namespace BriefingRoom.Generator
 
                 // Compute a random distance from last position, in nautical miles
                 double objectiveDistanceNM =
-                    (template.ObjectiveDistance == 0) ?
+                    (template.FlightPlanObjectiveDistance == 0) ?
                     Toolbox.RandomInt(MissionTemplate.OBJECTIVE_DISTANCE_INCREMENT, MissionTemplate.MAX_OBJECTIVE_DISTANCE) :
-                    template.ObjectiveDistance;
+                    template.FlightPlanObjectiveDistance;
 
                 if (i > 0) // Objective is not the first one, spawn it close to the previous objective
                     objectiveDistanceNM /= 5.0;
@@ -116,12 +118,12 @@ namespace BriefingRoom.Generator
                 Coordinates objectiveCoordinates;
                 DBEntryTheaterAirbase? airbase = null;
 
-                if(objectiveDB.UnitGroup.SpawnPoints[0] != TheaterLocationSpawnPointType.Airbase){
+                //if(objectiveDB.UnitGroup.SpawnPoints[0] != TheaterLocationSpawnPointType.Airbase){
                     // Look for a valid spawn point
                     DBEntryTheaterSpawnPoint? spawnPoint =
                         SpawnPointSelector.GetRandomSpawnPoint(
                             // If spawn point types are specified, use them. Else look for spawn points of any type
-                            (objectiveDB.UnitGroup.SpawnPoints.Length > 0) ? objectiveDB.UnitGroup.SpawnPoints : null,
+                            (objectiveTarget.ValidSpawnPoints.Length > 0) ? objectiveTarget.ValidSpawnPoints : null,
                             // Select spawn points at a proper distance from last location (previous objective or home airbase)
                             lastCoordinates, distanceFromLast,
                             // Make sure no objective is too close to the initial location
@@ -131,35 +133,27 @@ namespace BriefingRoom.Generator
                         if (!spawnPoint.HasValue)
                             throw new Exception($"Failed to find a spawn point for objective {i + 1}");
                         objectiveCoordinates = spawnPoint.Value.Coordinates;
-                } else {
-                    airbase = new MissionGeneratorAirbases().SelectObjectiveAirbase(mission, template, theaterDB, lastCoordinates, distanceFromLast, i == 0);
-                    if (!airbase.HasValue)
-                            throw new Exception($"Failed to find a airbase point for objective {i + 1}");
-                    objectiveCoordinates = airbase.Value.Coordinates;
-                }
-
+                //} else {
+                //    airbase = new MissionGeneratorAirbases(Database).SelectObjectiveAirbase(mission, template, theaterDB, lastCoordinates, distanceFromLast, i == 0);
+                //    if (!airbase.HasValue)
+                //            throw new Exception($"Failed to find a airbase point for objective {i + 1}");
+                //    objectiveCoordinates = airbase.Value.Coordinates;
+                //}
 
                 // Set the waypoint coordinates according the the inaccuracy defined in the objective database entry
                 Coordinates waypointCoordinates =
-                    objectiveCoordinates +
-                    Coordinates.CreateRandom(objectiveDB.WaypointInaccuracy * Toolbox.NM_TO_METERS);
-
-                // Select an objective family for the target if any or default to VehicleTransport.
-                UnitFamily objectiveUnitFamily = singleObjectiveUnitFamily;
-
-                if (!objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.SingleTargetUnitFamily))
-                    objectiveUnitFamily = objectiveDB.GetRandomUnitFamily();
+                    objectiveCoordinates; // + Coordinates.CreateRandom(objectiveDB.WaypointInaccuracy * Toolbox.NM_TO_METERS);
 
                 // Set the mission objective
                 mission.Objectives[i] = new DCSMissionObjective(
-                    objectiveName, objectiveCoordinates, objectiveUnitFamily, waypointCoordinates, airbase.HasValue? airbase.Value.DCSID: 0);
+                    objectiveName, objectiveCoordinates, Toolbox.RandomFrom(objectiveTarget.UnitFamilies), waypointCoordinates, true, airbase.HasValue? airbase.Value.DCSID: 0);
 
                 // Last position is now the position of this objective
                 lastCoordinates = objectiveCoordinates;
             }
 
             // If the target is a static object, make sure the correct flag is enabled as it has an influence of some scripts
-            mission.ObjectiveIsStatic = objectiveDB.UnitGroup.Category.HasValue && (objectiveDB.UnitGroup.Category.Value == UnitCategory.Static);
+            mission.ObjectiveIsStatic = false; // objectiveDB.UnitGroup.Category.HasValue && (objectiveDB.UnitGroup.Category.Value == UnitCategory.Static);
 
             // Make sure objectives are ordered by distance from the players' starting location
             mission.Objectives = mission.Objectives.OrderBy(x => mission.InitialPosition.GetDistanceFrom(x.WaypointCoordinates)).ToArray();

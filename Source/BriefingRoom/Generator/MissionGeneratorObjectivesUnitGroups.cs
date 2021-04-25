@@ -55,20 +55,19 @@ namespace BriefingRoom.Generator
         /// </summary>
         /// <param name="mission">Mission to which generated units should be added</param>
         /// <param name="template">Mission template to use</param>
-        /// <param name="objectiveDB">Mission objective database entry</param>
         /// <param name="coalitionsDB">Coalitions database entries</param>
-        public void CreateUnitGroups(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB, DBEntryCoalition[] coalitionsDB)
+        public void CreateUnitGroups(DCSMission mission, MissionTemplate template, DBEntryCoalition[] coalitionsDB)
         {
-            Coalition coalition =
-                            objectiveDB.UnitGroup.Flags.HasFlag(DBUnitGroupFlags.Friendly) ?
-                            mission.CoalitionPlayer : mission.CoalitionEnemy;
-            Side side = objectiveDB.UnitGroup.Flags.HasFlag(DBUnitGroupFlags.Friendly) ? Side.Ally : Side.Enemy;
-            SpawnUnitGroups(mission, template, objectiveDB.UnitGroup, coalitionsDB, side, coalition);
-            if (objectiveDB.AllyUnitGroup.Category != null)
-            {
-                DebugLog.Instance.WriteLine($"Generating Friendly units for objective");
-                SpawnUnitGroups(mission, template, objectiveDB.AllyUnitGroup, coalitionsDB, Side.Ally, mission.CoalitionPlayer);
-            }
+            //Coalition coalition =
+            //                objectiveDB.UnitGroup.Flags.HasFlag(DBUnitGroupFlags.Friendly) ?
+            //                mission.CoalitionPlayer : mission.CoalitionEnemy;
+            //Side side = objectiveDB.UnitGroup.Flags.HasFlag(DBUnitGroupFlags.Friendly) ? Side.Ally : Side.Enemy;
+            SpawnUnitGroups(mission, template, /*objectiveDB.UnitGroup,*/ coalitionsDB/*, side, coalition*/);
+            //if (objectiveDB.AllyUnitGroup.Category != null)
+            //{
+            //    DebugLog.Instance.WriteLine($"Generating Friendly units for objective");
+            //    SpawnUnitGroups(mission, template, objectiveDB.AllyUnitGroup, coalitionsDB, Side.Ally, mission.CoalitionPlayer);
+            //}
         }
 
         /// <summary>
@@ -76,15 +75,17 @@ namespace BriefingRoom.Generator
         /// </summary>
         /// <param name="mission">Mission to which generated units should be added</param>
         /// <param name="template">Mission template to use</param>
-        /// <param name="objectiveDB">Mission objective database entry</param>
+        ///// <param name="objectiveDB">Mission objective database entry</param>
         /// <param name="coalitionsDB">Coalitions database entries</param>
-        /// <param name="moving">Will the group be moving</param>
-        /// <param name="objectiveGroup">If the group should be tracked as an objective</param>
-        public void SpawnUnitGroups(DCSMission mission, MissionTemplate template, DBUnitGroup unitGroup, DBEntryCoalition[] coalitionsDB, Side side, Coalition coalition)
+        ///// <param name="moving">Will the group be moving</param>
+        ///// <param name="objectiveGroup">If the group should be tracked as an objective</param>
+        public void SpawnUnitGroups(DCSMission mission, MissionTemplate template, /*DBUnitGroup unitGroup,*/ DBEntryCoalition[] coalitionsDB/*, Side side, Coalition coalition*/)
         {
-            DCSMissionUnitGroupFlags flags =
-                GeneratorTools.ShouldUnitBeHidden(unitGroup, !template.Realism.Contains(RealismOption.HideEnemyUnits)) ?
-                DCSMissionUnitGroupFlags.Hidden : 0;
+            //DCSMissionUnitGroupFlags flags =
+            //    GeneratorTools.ShouldUnitBeHidden(unitGroup, !template.Realism.Contains(RealismOption.HideEnemyUnits)) ?
+            //    DCSMissionUnitGroupFlags.Hidden : 0;
+
+            DCSMissionUnitGroupFlags flags = template.Realism.Contains(RealismOption.HideEnemyUnits) ? DCSMissionUnitGroupFlags.Hidden : 0;
 
             for (int i = 0; i < mission.Objectives.Length; i++)
             {
@@ -92,14 +93,20 @@ namespace BriefingRoom.Generator
                 if (!mission.Objectives[i].TargetFamily.HasValue)
                     continue;
 
+                DBEntryObjectiveTarget objectiveTarget = Database.GetEntry<DBEntryObjectiveTarget>(template.Objectives[i].Target);
+                DBEntryObjectiveTargetBehavior objectiveTargetBehavior = Database.GetEntry<DBEntryObjectiveTargetBehavior>(template.Objectives[i].TargetBehavior);
+                DBEntryObjectiveTask objectiveTask = Database.GetEntry<DBEntryObjectiveTask>(template.Objectives[i].Task);
+
+                Coalition coalition = (objectiveTask.TargetSide == Side.Ally) ? mission.CoalitionPlayer : mission.CoalitionEnemy;
+
                 string[] units =
                     coalitionsDB[(int)coalition].GetRandomUnits(
                         mission.Objectives[i].TargetFamily.Value, mission.DateTime.Decade,
-                        unitGroup.Count.GetValue(), template.UnitMods);
+                        objectiveTarget.UnitCount[(int)template.Objectives[i].TargetCount].GetValue(), template.UnitMods);
 
                 // Pick the skill level once for each objective so not all target groups have the same skill level when a "random" skill level is chosen.
                 DCSSkillLevel skillLevel;
-                if (side == Side.Ally)
+                if (objectiveTask.TargetSide == Side.Ally)
                     skillLevel = Toolbox.BRSkillLevelToDCSSkillLevel(template.SituationFriendlyAISkillLevel);
                 else
                     skillLevel = 
@@ -108,67 +115,67 @@ namespace BriefingRoom.Generator
 
                 DCSMissionUnitGroup group;
                 DBEntryTheaterSpawnPoint? spawnPoint = null;
-                if (unitGroup.SpawnPoints[0] != TheaterLocationSpawnPointType.Airbase)
-                {
-                    if (unitGroup.Flags.HasFlag(DBUnitGroupFlags.DestinationObjective))
-                    {
-                        spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                            unitGroup.SpawnPoints,
-                            mission.Objectives[i].Coordinates,
-                            unitGroup.DistanceFromPoint);
-                        if (!spawnPoint.HasValue)
-                            throw new Exception($"Failed to find spawn point for moving objective unit");
-                    }
-                }
+                //if (unitGroup.SpawnPoints[0] != TheaterLocationSpawnPointType.Airbase)
+                //{
+                //    if (unitGroup.Flags.HasFlag(DBUnitGroupFlags.DestinationObjective))
+                //    {
+                //        spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                //            unitGroup.SpawnPoints,
+                //            mission.Objectives[i].Coordinates,
+                //            unitGroup.DistanceFromPoint);
+                //        if (!spawnPoint.HasValue)
+                //            throw new Exception($"Failed to find spawn point for moving objective unit");
+                //    }
+                //}
 
-                if (unitGroup.Flags.HasFlag(DBUnitGroupFlags.EmbeddedAirDefense)) // Add "embedded" close range surface-to-air defense
-                {
-                    if (mission.Objectives[i].TargetFamily.Value.GetCategory() == UnitCategory.Vehicle) // Objectives are ground vehicles, insert air defense units in the group itself
-                        units = GeneratorTools.AddEmbeddedAirDefense(Database, units, template.SituationEnemyAirDefense, coalitionsDB[(int)coalition], mission.DateTime.Decade, template.UnitMods);
-                    else // Objectives are not ground vehicles, create another group nearby
-                    {
-                        // TODO: make sure the group is not spawn in water
-                        string[] airDefenseGroupUnits = new string[0];
-                        for (int j = 0; j < 2; j++)
-                            airDefenseGroupUnits = GeneratorTools.AddEmbeddedAirDefense(Database, airDefenseGroupUnits, template.SituationEnemyAirDefense, coalitionsDB[(int)coalition], mission.DateTime.Decade, template.UnitMods);
+                //if (unitGroup.Flags.HasFlag(DBUnitGroupFlags.EmbeddedAirDefense)) // Add "embedded" close range surface-to-air defense
+                //{
+                //    if (mission.Objectives[i].TargetFamily.Value.GetCategory() == UnitCategory.Vehicle) // Objectives are ground vehicles, insert air defense units in the group itself
+                //        units = GeneratorTools.AddEmbeddedAirDefense(Database, units, template.SituationEnemyAirDefense, coalitionsDB[(int)coalition], mission.DateTime.Decade, template.UnitMods);
+                //    else // Objectives are not ground vehicles, create another group nearby
+                //    {
+                //        // TODO: make sure the group is not spawn in water
+                //        string[] airDefenseGroupUnits = new string[0];
+                //        for (int j = 0; j < 2; j++)
+                //            airDefenseGroupUnits = GeneratorTools.AddEmbeddedAirDefense(Database, airDefenseGroupUnits, template.SituationEnemyAirDefense, coalitionsDB[(int)coalition], mission.DateTime.Decade, template.UnitMods);
 
-                        UnitMaker.AddUnitGroup(
-                            mission, airDefenseGroupUnits,
-                            side,
-                            (spawnPoint != null ? spawnPoint.Value.Coordinates : mission.Objectives[i].Coordinates) + Coordinates.CreateRandom(0.5, 1.5) * Toolbox.NM_TO_METERS,
-                            "GroupVehicle", "UnitVehicle",
-                            skillLevel, flags);
-                    }
-                }
+                //        UnitMaker.AddUnitGroup(
+                //            mission, airDefenseGroupUnits,
+                //            side,
+                //            (spawnPoint != null ? spawnPoint.Value.Coordinates : mission.Objectives[i].Coordinates) + Coordinates.CreateRandom(0.5, 1.5) * Toolbox.NM_TO_METERS,
+                //            "GroupVehicle", "UnitVehicle",
+                //            skillLevel, flags);
+                //    }
+                //}
 
                 group = UnitMaker.AddUnitGroup(
                     mission, units,
-                    side,
-                    spawnPoint != null? spawnPoint.Value.Coordinates : mission.Objectives[i].Coordinates,
-                    Toolbox.RandomFrom(unitGroup.LuaGroup), unitGroup.LuaUnit,
-                    skillLevel, flags, coordinates2: getDestination(unitGroup, mission, i),
-                    airbaseID: mission.Objectives[i].AirbaseID,
-                    requiresParkingSpots: mission.Objectives[i].AirbaseID > 0,
-                    requiresOpenAirParking: unitGroup.Flags.HasFlag(DBUnitGroupFlags.AvoidHardenedBunkers)
-                    );
+                    objectiveTask.TargetSide,
+                    spawnPoint != null ? spawnPoint.Value.Coordinates : mission.Objectives[i].Coordinates,
+                    Toolbox.RandomFrom(objectiveTargetBehavior.GroupLua[(int)objectiveTarget.UnitCategory]), objectiveTargetBehavior.UnitLua[(int)objectiveTarget.UnitCategory],
+                    skillLevel, flags); // null, /* coordinates2: getDestination(unitGroup, mission, i), */
+                    //0 //, airbaseID: mission.Objectives[i].AirbaseID,
+                    //requiresParkingSpots: mission.Objectives[i].AirbaseID > 0,
+                    //false //requiresOpenAirParking: unitGroup.Flags.HasFlag(DBUnitGroupFlags.AvoidHardenedBunkers)
+                    //);
 
                 // Something went wrong, abort mission generation, objective unit groups are required for the mission to work properly.
                 if (group == null)
                     throw new Exception($"Failed to create objective unit group for objective #{i + 1} made of the following units: {string.Join(", ", units)}");
 
                 // Add aircraft group to the queue of aircraft groups to be spawned
-                if (!unitGroup.Flags.HasFlag(DBUnitGroupFlags.ManualActivation) &&
-                    ((group.Category == UnitCategory.Helicopter) || (group.Category == UnitCategory.Plane) || unitGroup.Flags.HasFlag(DBUnitGroupFlags.DelaySpawn)))
-                    mission.AircraftSpawnQueue.Add(new DCSMissionAircraftSpawnQueueItem(group.GroupID, true));
+                //if (!unitGroup.Flags.HasFlag(DBUnitGroupFlags.ManualActivation) &&
+                //    ((group.Category == UnitCategory.Helicopter) || (group.Category == UnitCategory.Plane) || unitGroup.Flags.HasFlag(DBUnitGroupFlags.DelaySpawn)))
+                //    mission.AircraftSpawnQueue.Add(new DCSMissionAircraftSpawnQueueItem(group.GroupID, true));
 
-                if (!unitGroup.Flags.HasFlag(DBUnitGroupFlags.NotObjectiveTarget))
-                {
-                    if(mission.ObjectiveIsStatic) {
-                        mission.CoreLuaScript += $"briefingRoom.mission.objectives[{i + 1}].groupID = {group.Units[0].ID}\r\n";
-                    } else
-                        // Add the ID of the unit group associated with this objective to the Lua script
-                        mission.CoreLuaScript += $"briefingRoom.mission.objectives[{i + 1}].groupID = {group.GroupID}\r\n";
-                }
+                //if (!unitGroup.Flags.HasFlag(DBUnitGroupFlags.NotObjectiveTarget))
+                //{
+                //    if(mission.ObjectiveIsStatic) {
+                //        mission.CoreLuaScript += $"briefingRoom.mission.objectives[{i + 1}].groupID = {group.Units[0].ID}\r\n";
+                //    } else
+                //        // Add the ID of the unit group associated with this objective to the Lua script
+                //        mission.CoreLuaScript += $"briefingRoom.mission.objectives[{i + 1}].groupID = {group.GroupID}\r\n";
+                //}
             }
         }
 

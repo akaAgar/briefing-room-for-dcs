@@ -40,9 +40,9 @@ namespace BriefingRoom.Template
         public int Count { get { return _Count; } set { _Count = Toolbox.Clamp(value, 1, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE); } }
         private int _Count = 1;
 
-        public MissionTemplateFlightGroupTask Tasking { get; set; }
-
         public Country Country { get; set; }
+
+        public UnitTaskPayload Payload { get; set; }
 
         public PlayerStartLocation StartLocation { get; set; }
 
@@ -54,15 +54,16 @@ namespace BriefingRoom.Template
         public MissionTemplateFlightGroup(
             string aircraft,
             int count,
-            MissionTemplateFlightGroupTask tasking,
+            UnitTaskPayload payload,
             string carrier,
             Country country,
             PlayerStartLocation startLocation)
         {
             Aircraft = aircraft;
             Count = count;
-            Tasking = tasking;
+            Payload = payload;
             Carrier = carrier;
+            Country = country;
             StartLocation = startLocation;
         }
 
@@ -79,7 +80,7 @@ namespace BriefingRoom.Template
             Aircraft = ini.GetValue(section, $"{key}.AircraftType", Aircraft); //Database.CheckValue<DBPseudoEntryPlayerAircraft>(ini.GetValue(section, $"{key}.AircraftType", Aircraft));
             Carrier = ini.GetValue(section, $"{key}.Carrier", Carrier);
             Count = ini.GetValue(section, $"{key}.Count", Count);
-            Tasking = ini.GetValue(section, $"{key}.Task", Tasking);
+            Payload = ini.GetValue(section, $"{key}.Payload", Payload);
             Country = ini.GetValue(section, $"{key}.Country", Country);
             StartLocation = ini.GetValue(section, $"{key}.StartLocation", StartLocation);
         }
@@ -92,7 +93,7 @@ namespace BriefingRoom.Template
             Aircraft = "Su-25T"; // Database.CheckValue<DBPseudoEntryPlayerAircraft>("Su-25T", "Su-25T");
             Carrier = "";
             Count = 2;
-            Tasking = MissionTemplateFlightGroupTask.Objectives;
+            Payload = UnitTaskPayload.Default;
             Country = Country.CJTFBlue;
             StartLocation = PlayerStartLocation.Runway;
         }
@@ -108,7 +109,7 @@ namespace BriefingRoom.Template
             ini.SetValue(section, $"{key}.AircraftType", Aircraft);
             ini.SetValue(section, $"{key}.Carrier", Carrier);
             ini.SetValue(section, $"{key}.Count", Count);
-            ini.SetValue(section, $"{key}.Task", Tasking);
+            ini.SetValue(section, $"{key}.Payload", Payload);
             ini.SetValue(section, $"{key}.Country", Country);
             ini.SetValue(section, $"{key}.StartLocation", StartLocation);
         }
@@ -123,7 +124,7 @@ namespace BriefingRoom.Template
             //if (string.IsNullOrEmpty(Carrier)) str += "land airbase";
             //else str += GUITools.GetDisplayName(Database, typeof(DBPseudoEntryCarrier), Carrier);
 
-            string str = $"{Toolbox.ValToString(Count)}x {Aircraft}, from {Country}, tasked with {Toolbox.LowerCaseFirstLetter(Tasking.ToString())}, starting {StartLocation}, take off from ";
+            string str = $"{Toolbox.ValToString(Count)}x {Aircraft}, from {Country}, loaded with {Toolbox.LowerCaseFirstLetter(Payload.ToString())}, starting {StartLocation}, take off from ";
             if (string.IsNullOrEmpty(Carrier)) str += "land airbase";
             else str += Carrier;
 

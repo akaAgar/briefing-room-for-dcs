@@ -108,16 +108,16 @@ namespace BriefingRoom.Template
 
         public MissionTemplateObjective[] Objectives { get; set; }
 
-        [TreeViewProperty("Objective count", "Objectives", typeof(int), "How many objectives/targets will be present in the mission.")]
-        [TreeViewPropertyInt(1, MAX_OBJECTIVES)]
-        public int ObjectiveCount { get; set; }
+        //[TreeViewProperty("Objective count", "Objectives", typeof(int), "How many objectives/targets will be present in the mission.")]
+        //[TreeViewPropertyInt(1, MAX_OBJECTIVES)]
+        //public int ObjectiveCount { get; set; }
 
         [TreeViewProperty("Objective distance", "Objectives", typeof(int), "How far from the player's starting location will the objectives be.")]
         [TreeViewPropertyInt(0, MAX_OBJECTIVE_DISTANCE, 20, "%i nm", "Random")]
-        public int ObjectiveDistance { get; set; }
+        public int FlightPlanObjectiveDistance { get; set; }
 
-        [TreeViewProperty("Objective type", "Objectives", typeof(DBEntryObjective), "The type of task player must accomplish in this mission.", TreeViewPropertyAttributeFlags.EmptyIsRandom)]
-        public string ObjectiveType { get; set; }
+        //[TreeViewProperty("Objective type", "Objectives", typeof(DBEntryObjective), "The type of task player must accomplish in this mission.", TreeViewPropertyAttributeFlags.EmptyIsRandom)]
+        //public string ObjectiveType { get; set; }
 
         [TreeViewProperty("Briefing unit system", "Options", typeof(UnitSystem), "Unit system to use in the mission briefing.")]
         public UnitSystem OptionsBriefingUnitSystem { get; set; }
@@ -201,12 +201,12 @@ namespace BriefingRoom.Template
             EnvironmentWind = Wind.Auto;
 
             FlightPlanAddExtraWaypoints = YesNo.No;
+            FlightPlanObjectiveDistance = 0;
             FlightPlanTheaterStartingAirbase = "";
 
             Objectives = new MissionTemplateObjective[1] { new MissionTemplateObjective("DestroyAll", "VehicleAny", "Idle", Amount.Average) };
-            ObjectiveCount = 2;
-            ObjectiveDistance = 0;
-            ObjectiveType = "";
+            //ObjectiveCount = 2;
+            //ObjectiveType = "";
 
             OptionsBriefingUnitSystem = UnitSystem.Imperial;
             OptionsCivilianTraffic = CivilianTraffic.Low;
@@ -291,6 +291,7 @@ namespace BriefingRoom.Template
                 EnvironmentWind = ini.GetValue("Environment", "Wind", EnvironmentWind);
 
                 FlightPlanAddExtraWaypoints = ini.GetValue("FlightPlan", "ExtraWaypoints", FlightPlanAddExtraWaypoints);
+                FlightPlanObjectiveDistance = Toolbox.Clamp(ini.GetValue("FlightPlan", "ObjectiveDistance", FlightPlanObjectiveDistance), 0, MAX_OBJECTIVE_DISTANCE);
                 FlightPlanTheaterStartingAirbase = ini.GetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
 
                 List<MissionTemplateObjective> objectivesList = new List<MissionTemplateObjective>();
@@ -298,9 +299,8 @@ namespace BriefingRoom.Template
                 if (objectivesList.Count == 0) objectivesList.Add(new MissionTemplateObjective("DestroyAll", "VehicleAny", "Idle", Amount.Average));
                 Objectives = objectivesList.ToArray();
 
-                ObjectiveCount = Toolbox.Clamp(ini.GetValue("Objective", "Count", ObjectiveCount), 1, MAX_OBJECTIVES);
-                ObjectiveDistance = Toolbox.Clamp(ini.GetValue("Objective", "Distance", ObjectiveDistance), 0, MAX_OBJECTIVE_DISTANCE);
-                ObjectiveType = ini.GetValue("Objective", "Type", ObjectiveType); // Database.Instance.CheckValue<DBEntryObjective>(ini.GetValue("Objective", "Type", ObjectiveType), "", true);
+                //ObjectiveCount = Toolbox.Clamp(ini.GetValue("Objective", "Count", ObjectiveCount), 1, MAX_OBJECTIVES);
+                //ObjectiveType = ini.GetValue("Objective", "Type", ObjectiveType); // Database.Instance.CheckValue<DBEntryObjective>(ini.GetValue("Objective", "Type", ObjectiveType), "", true);
 
                 OptionsBriefingUnitSystem = ini.GetValue("Options", "BriefingUnitSystem", OptionsBriefingUnitSystem);
                 OptionsCivilianTraffic = ini.GetValue("Options", "CivilianTraffic", OptionsCivilianTraffic);
@@ -363,14 +363,14 @@ namespace BriefingRoom.Template
                 ini.SetValue("Environment", "Wind", EnvironmentWind);
 
                 ini.SetValue("FlightPlan", "ExtraWaypoints", FlightPlanAddExtraWaypoints);
+                ini.SetValue("FlightPlan", "ObjectiveDistance", FlightPlanObjectiveDistance);
                 ini.SetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
 
                 for (int i = 0; i < Objectives.Length; i++)
                     Objectives[i].SaveToFile(ini, "Objectives", $"Objective{i + 1:000}");
 
-                ini.SetValue("Objective", "Count", ObjectiveCount);
-                ini.SetValue("Objective", "Distance", ObjectiveDistance);
-                ini.SetValue("Objective", "Type", ObjectiveType);
+                //ini.SetValue("Objective", "Count", ObjectiveCount);
+                //ini.SetValue("Objective", "Type", ObjectiveType);
 
                 ini.SetValue("Options", "BriefingUnitSystem", OptionsBriefingUnitSystem);
                 ini.SetValue("Options", "CivilianTraffic", OptionsCivilianTraffic);

@@ -32,45 +32,45 @@ namespace BriefingRoom.Template
         /// <summary>
         /// Database ID of the <see cref="DBEntryObjectiveTarget"/>
         /// </summary>
-        public string ObjectiveTarget { get; }
+        public string Target { get; }
 
         /// <summary>
         /// Database ID of the <see cref="DBEntryObjectiveBehavior"/>
         /// </summary>
-        public string ObjectiveTargetBehavior { get; }
+        public string TargetBehavior { get; }
 
         /// <summary>
         /// Number of target units at this objective.
         /// </summary>
-        public Amount ObjectiveTargetCount { get; }
+        public Amount TargetCount { get; }
 
         /// <summary>
         /// Database ID of the <see cref="DBEntryObjectiveTask"/>
         /// </summary>
-        public string ObjectiveTask { get; }
+        public string Task { get; }
 
         public MissionTemplateObjective(INIFile ini, string section, string key)
         {
-            ObjectiveTarget = ini.GetValue<string>(section, $"{key}.Target");
-            ObjectiveTargetBehavior = ini.GetValue<string>(section, $"{key}.TargetBehavior");
-            ObjectiveTargetCount = ini.GetValue<Amount>(section, $"{key}.TargetCount");
-            ObjectiveTask = ini.GetValue<string>(section, $"{key}.Task");
+            Target = ini.GetValue<string>(section, $"{key}.Target");
+            TargetBehavior = ini.GetValue<string>(section, $"{key}.TargetBehavior");
+            TargetCount = ini.GetValue<Amount>(section, $"{key}.TargetCount");
+            Task = ini.GetValue<string>(section, $"{key}.Task");
         }
 
         public MissionTemplateObjective(string task, string targetID, string targetBehaviorID, Amount targetCount = Amount.Average)
         {
-            ObjectiveTarget = task;
-            ObjectiveTargetBehavior = targetID;
-            ObjectiveTargetCount = targetCount;
-            ObjectiveTask = targetBehaviorID;
+            Target = task;
+            TargetBehavior = targetID;
+            TargetCount = targetCount;
+            Task = targetBehaviorID;
         }
 
         public void SaveToFile(INIFile ini, string section, string key)
         {
-            ini.SetValue(section, $"{key}.Target", ObjectiveTarget);
-            ini.SetValue(section, $"{key}.TargetBehavior", ObjectiveTargetBehavior);
-            ini.SetValue(section, $"{key}.TargetCount", ObjectiveTargetCount);
-            ini.SetValue(section, $"{key}.Task", ObjectiveTask);
+            ini.SetValue(section, $"{key}.Target", Target);
+            ini.SetValue(section, $"{key}.TargetBehavior", TargetBehavior);
+            ini.SetValue(section, $"{key}.TargetCount", TargetCount);
+            ini.SetValue(section, $"{key}.Task", Task);
         }
     }
 }

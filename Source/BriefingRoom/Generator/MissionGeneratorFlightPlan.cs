@@ -47,8 +47,7 @@ namespace BriefingRoom.Generator
         /// Adds waypoints for the mission objectives.
         /// </summary>
         /// <param name="mission">Mission</param>
-        /// <param name="objectiveDB">Objective database entry</param>
-        public void AddObjectiveWaypoints(DCSMission mission, DBEntryObjective objectiveDB)
+        public void AddObjectiveWaypoints(DCSMission mission)
         {
             DebugLog.Instance.WriteLine("Generating objective waypoints...", 1);
 
@@ -60,7 +59,7 @@ namespace BriefingRoom.Generator
                 mission.Waypoints.Add(
                     new DCSMissionWaypoint(
                         waypointCoordinates, mission.Objectives[i].Name,
-                        objectiveDB.WaypointOnGround ? 0.0 : 1.0,
+                        mission.Objectives[i].WaypointOnGround ? 0.0 : 1.0,
                         1.0));
             }
         }

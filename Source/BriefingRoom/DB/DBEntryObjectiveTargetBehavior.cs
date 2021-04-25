@@ -26,8 +26,11 @@ namespace BriefingRoom.DB
     /// <summary>
     /// Stores information about the behavior of an objective target.
     /// </summary>
-    public class DBEntryObjectiveBehavior : DBEntry
+    public class DBEntryObjectiveTargetBehavior : DBEntry
     {
+        public string[] GroupLua { get; private set; }
+        public string[] UnitLua { get; private set; }
+
         /// <summary>
         /// Loads a database entry from an .ini file.
         /// </summary>
@@ -38,7 +41,13 @@ namespace BriefingRoom.DB
         {
             using (INIFile ini = new INIFile(iniFilePath))
             {
+                GroupLua = new string[Toolbox.GetEnumValuesCount<UnitCategory>()];
+                foreach (UnitCategory unitCategory in Toolbox.GetEnumValues<UnitCategory>())
+                    GroupLua[(int)unitCategory] = ini.GetValue<string>("Lua", $"Group.{unitCategory}");
 
+                UnitLua = new string[Toolbox.GetEnumValuesCount<UnitCategory>()];
+                foreach (UnitCategory unitLua in Toolbox.GetEnumValues<UnitCategory>())
+                    UnitLua[(int)unitLua] = ini.GetValue<string>("Lua", $"Unit.{unitLua}");
             }
 
             return true;
