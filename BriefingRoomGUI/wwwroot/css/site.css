@@ -73,5 +73,8 @@ a, .btn-link {
 
     .misc-lists {
         display: flex;
-        justify-content: space-between;
+    }
+
+    .misc-lists .form-group {
+        margin:  0 1em;
     }

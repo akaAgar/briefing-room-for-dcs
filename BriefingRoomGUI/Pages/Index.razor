@@ -14,6 +14,8 @@
 <div class="generator-group">
     <div class="generator-form">
         <EditForm Model="Template" OnSubmit="GenerateMission">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
             <button type="submit form-control" disabled style="display: none" aria-hidden="true"></button>
             <button class="btn btn-primary form-control" type="submit">Generate</button>
             <ul class="nav nav-tabs">
@@ -285,7 +287,7 @@
                                         </InputSelect>
                                     </div>
                                     <div class="form-group">
-                                        <label>"Ground forces skill level</label>
+                                        <label>Ground forces skill level</label>
                                         <InputSelect class="form-control" @bind-Value="Template.SituationEnemySkillLevelGround">
                                             @foreach (var value in Enum.GetValues(typeof(BRSkillLevel)))
                                             {
@@ -366,8 +368,7 @@
                                     <div class="form-group">
                                         <label>Carrier</label>
                                         <InputSelect class="form-control" @bind-Value="flight.Carrier">
-                            
-                                            <option value=""></option>
+                                            <option value="">N/A</option>
                                             @foreach (var value in Database.Instance.GetAllEntries<DBPseudoEntryCarrier>())
                                             {
                                                 <option value="@value.ID">@value.UIDisplayName</option>
@@ -443,13 +444,6 @@
         <div class="generator-preview">
                 <button class="btn btn-primary form-control" @onclick="DownloadMission">DownloadMission</button>
             <div>@((MarkupString)mission.BriefingHTML)</div>
-            @foreach (var point in mission.Waypoints)
-            {
-                <div>
-                @point.Coordinates.X,
-                @point.Coordinates.Y
-                </div>
-            }
         </div>
     }
 </div>
@@ -463,8 +457,8 @@
     private TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
     protected override async Task OnInitializedAsync()
     {
-        Template = new MissionTemplate();
-        Template.Clear();
+        Template = new MissionTemplate(BRPaths.ROOT + "Default.brt");
+        flightGroupTab = Template.PlayerFlightGroups[0];
     }
 
     private void GenerateMission()
@@ -495,7 +489,9 @@
 
     private void AddFlightGroup()
     {
-        Template.PlayerFlightGroups.Add(new MissionTemplateFlightGroup());
+        MissionTemplateFlightGroup flight = new();
+        flightGroupTab = flight;
+        Template.PlayerFlightGroups.Add(flight);
         Template.MissionType = MissionType.Multiplayer;
     }
 
@@ -504,6 +500,7 @@
         Template.PlayerFlightGroups.Remove(flight);
         if(Template.PlayerFlightGroups.Count == 1){
             Template.MissionType = MissionType.SinglePlayer;
+            flightGroupTab = Template.PlayerFlightGroups[0];
         }
     }
 
