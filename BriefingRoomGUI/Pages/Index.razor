@@ -8,7 +8,8 @@
 @using BriefingRoom4DCSWorld.Miz
 @using System.Globalization
 @using System.Linq
-
+@using Blazored.Typeahead
+@using BriefingRoomGUI.Utils
 
 <h1>Mission Generator</h1>
 <div class="generator-group">
@@ -42,21 +43,37 @@
                         </div>
                         <div class="form-group">
                             <label>Blue Coalition</label>
-                            <InputSelect class="form-control" @bind-Value="Template.ContextCoalitionBlue">
-                                @foreach (var value in Database.Instance.GetAllEntries<DBEntryCoalition>())
-                                {
-                                    <option value="@value.ID">@value.UIDisplayName</option>
-                                }
-                            </InputSelect>
+                            <BlazoredTypeahead  SearchMethod="SearchCoalition"
+                                                @bind-Value="Template.ContextCoalitionBlue"
+                                                EnableDropDown="true"
+                                                ConvertMethod="Typeahead.ConvertDB"
+                                                DisableClear="true"
+                                                MaximumSuggestions="100"
+                                                >
+                                <SelectedTemplate Context="coalitionId">
+                                    @GetCoalitionDisplayName(@coalitionId)
+                                </SelectedTemplate>
+                                <ResultTemplate Context="coalition">
+                                    @coalition.UIDisplayName
+                                </ResultTemplate>
+                            </BlazoredTypeahead>
                         </div>
                         <div class="form-group">
                             <label>Red Coalition</label>
-                            <InputSelect class="form-control" @bind-Value="Template.ContextCoalitionRed">
-                                @foreach (var value in Database.Instance.GetAllEntries<DBEntryCoalition>())
-                                {
-                                    <option value="@value.ID">@value.UIDisplayName</option>
-                                }
-                            </InputSelect>
+                            <BlazoredTypeahead  SearchMethod="SearchCoalition"
+                                            @bind-Value="Template.ContextCoalitionRed"
+                                            EnableDropDown="true"
+                                            ConvertMethod="Typeahead.ConvertDB"
+                                            DisableClear="true"
+                                            MaximumSuggestions="100"
+                                            >
+                                <SelectedTemplate Context="coalitionId">
+                                    @GetCoalitionDisplayName(@coalitionId)
+                                </SelectedTemplate>
+                                <ResultTemplate Context="coalition">
+                                    @coalition.UIDisplayName
+                                </ResultTemplate>
+                            </BlazoredTypeahead>
                         </div>
                         <div class="form-group">
                             <label>Time period</label>
@@ -165,13 +182,21 @@
                         </div>
                         <div class="form-group">
                             <label>Type</label>
-                            <InputSelect class="form-control" @bind-Value="Template.ObjectiveType">
-                                <option value="">Random</option>
-                                @foreach (var value in Database.Instance.GetAllEntries<DBEntryObjective>())
-                                {
-                                    <option value="@value.ID">@value.UIDisplayName</option>
-                                }
-                            </InputSelect>
+                            <BlazoredTypeahead  SearchMethod="SearchObjectiveType"
+                                                            @bind-Value="Template.ObjectiveType"
+                                                            EnableDropDown="true"
+                                                            DisableClear="false"
+                                                            ConvertMethod="Typeahead.ConvertDB"
+                                                            MaximumSuggestions="100"
+                                                            placeholder="Random"
+                                                            >
+                                            <SelectedTemplate Context="typeID">
+                                                @GetObjectiveTypeDisplayName(@typeID)
+                                            </SelectedTemplate>
+                                            <ResultTemplate Context="type">
+                                                @type.UIDisplayName
+                                            </ResultTemplate>
+                                        </BlazoredTypeahead>
                         </div>
                     </div>
                     break;
@@ -358,12 +383,20 @@
                                 <div class="flight-group">
                                     <div class="form-group">
                                         <label>Aircraft</label>
-                                        <InputSelect class="form-control" @bind-Value="flight.Aircraft">
-                                            @foreach (var value in Database.Instance.GetAllEntries<DBPseudoEntryPlayerAircraft>())
-                                            {
-                                                <option value="@value.ID">@value.UIDisplayName</option>
-                                            }
-                                        </InputSelect>
+                                        <BlazoredTypeahead  SearchMethod="SearchAircraft"
+                                                            @bind-Value="flight.Aircraft"
+                                                            EnableDropDown="true"
+                                                            ConvertMethod="Typeahead.ConvertDB"
+                                                            DisableClear="true"
+                                                            MaximumSuggestions="100"
+                                                            >
+                                            <SelectedTemplate Context="aircraftId">
+                                                @GetAircraftDisplayName(@aircraftId)
+                                            </SelectedTemplate>
+                                            <ResultTemplate Context="aircraft">
+                                                @aircraft.UIDisplayName
+                                            </ResultTemplate>
+                                        </BlazoredTypeahead>
                                     </div>
                                     <div class="form-group">
                                         <label>Carrier</label>
@@ -386,12 +419,19 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Country</label>
-                                        <InputSelect class="form-control" @bind-Value="flight.Country">
-                                            @foreach (var value in Enum.GetValues(typeof(Country)))
-                                            {
-                                                <option value="@value">@value</option>
-                                            }
-                                        </InputSelect>
+                                        <BlazoredTypeahead  SearchMethod="SearchCountry"
+                                                            @bind-Value="flight.Country"
+                                                            EnableDropDown="true"
+                                                            DisableClear="true"
+                                                            MaximumSuggestions="100"
+                                                            >
+                                            <SelectedTemplate Context="country">
+                                                @country
+                                            </SelectedTemplate>
+                                            <ResultTemplate Context="country">
+                                                @country
+                                            </ResultTemplate>
+                                        </BlazoredTypeahead>
                                     </div>
                                     <div class="form-group">
                                         <label>Start Location</label>
@@ -504,7 +544,24 @@
         }
     }
 
-    private string GetAircraftDisplayName(string id) => Database.Instance.GetEntry<DBPseudoEntryPlayerAircraft>(id).UIDisplayName;
+    private async Task<IEnumerable<Country>> SearchCountry(string searchText) =>
+        await Typeahead.SearchEnum<Country>(searchText);
+
+    private async Task<IEnumerable<DBPseudoEntryPlayerAircraft>> SearchAircraft(string searchText) => 
+            await Typeahead.SearchDB<DBPseudoEntryPlayerAircraft>(searchText);
+    private string GetAircraftDisplayName(string id) => 
+        Typeahead.GetDBDisplayName<DBPseudoEntryPlayerAircraft>(id);
+
+    private async Task<IEnumerable<DBEntryObjective>> SearchObjectiveType(string searchText) =>
+        await Typeahead.SearchDB<DBEntryObjective>(searchText);
+    private string GetObjectiveTypeDisplayName(string id) => 
+        Typeahead.GetDBDisplayName<DBEntryObjective>(id);
+        
+    private async Task<IEnumerable<DBEntryCoalition>> SearchCoalition(string searchText) => 
+        await Typeahead.SearchDB<DBEntryCoalition>(searchText); 
+
+    private string GetCoalitionDisplayName(string id) =>
+        Typeahead.GetDBDisplayName<DBEntryCoalition>(id);
 
     async Task DownloadMission()
     {
