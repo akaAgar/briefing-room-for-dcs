@@ -20,15 +20,15 @@ If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
 
-using BriefingRoom.Mission;
+using BriefingRoom4DCS.Mission;
 using System;
 
-namespace BriefingRoom.Miz
+namespace BriefingRoom4DCS.Miz
 {
     /// <summary>
     /// Creates the "Warehouses" entry in the MIZ file.
     /// </summary>
-    public class MizMakerLuaWarehouse : IDisposable
+    internal class MizMakerLuaWarehouse : IDisposable
     {
         /// <summary>
         /// The warehouse Lua template, loaded from Include\Lua
@@ -43,7 +43,7 @@ namespace BriefingRoom.Miz
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MizMakerLuaWarehouse()
+        internal MizMakerLuaWarehouse()
         {
             WarehouseLua = LuaTools.ReadIncludeLuaFile("Warehouses.lua");
             WarehouseAirportLua = LuaTools.ReadIncludeLuaFile("Warehouses\\Airport.lua");
@@ -54,7 +54,7 @@ namespace BriefingRoom.Miz
         /// </summary>
         /// <param name="missHQ">An HQ4DCS mission.</param>
         /// <returns>The contents of the Lua file.</returns>
-        public string MakeLua(DCSMission missHQ)
+        internal string MakeLua(DCSMission missHQ)
         {
             string airportsLua = "";
 

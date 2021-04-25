@@ -20,27 +20,26 @@ If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
 
-using BriefingRoom.DB;
-using BriefingRoom.Mission;
+using BriefingRoom4DCS.Data;
+using BriefingRoom4DCS.Mission;
+using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BriefingRoom.Miz
+namespace BriefingRoom4DCS.Miz
 {
     /// <summary>
     /// Creates the "Mission" entry in the MIZ file.
     /// </summary>
-    public class MizMakerLuaMission : IDisposable
+    internal class MizMakerLuaMission : IDisposable
     {
-        private readonly Database Database;
-
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MizMakerLuaMission(Database database)
+        internal MizMakerLuaMission()
         {
-            Database = database;
+
         }
 
         /// <summary>
@@ -53,23 +52,23 @@ namespace BriefingRoom.Miz
         /// </summary>
         /// <param name="mission">An HQ4DCS mission.</param>
         /// <returns>The contents of the Lua file.</returns>
-        public string MakeLua(DCSMission mission)
+        internal string MakeLua(DCSMission mission)
         {
             int i;
 
             string lua = LuaTools.ReadIncludeLuaFile("Mission.lua");
 
-            LuaTools.ReplaceKey(ref lua, "TheaterID", Database.GetEntry<DBEntryTheater>(mission.Theater).DCSID);
+            LuaTools.ReplaceKey(ref lua, "TheaterID", Database.Instance.GetEntry<DBEntryTheater>(mission.Theater).DCSID);
             LuaTools.ReplaceKey(ref lua, "PlayerCoalition", mission.CoalitionPlayer.ToString().ToLowerInvariant());
 
             LuaTools.ReplaceKey(ref lua, "DateDay", mission.DateTime.Day);
             LuaTools.ReplaceKey(ref lua, "DateMonth", (int)mission.DateTime.Month + 1);
             LuaTools.ReplaceKey(ref lua, "DateYear", mission.DateTime.Year);
-            LuaTools.ReplaceKey(ref lua, "StartTime", mission.DateTimeTotalSeconds);
+            LuaTools.ReplaceKey(ref lua, "StartTime", mission.DateTime.GetTotalSecondsSinceMidnight());
 
             LuaTools.ReplaceKey(ref lua, "WeatherCloudsBase", mission.Weather.CloudBase);
             LuaTools.ReplaceKey(ref lua, "WeatherCloudsDensity", mission.Weather.CloudsDensity);
-            LuaTools.ReplaceKey(ref lua, "WeatherCloudsPrecipitation", (int)mission.Weather.CloudsPrecipitation);
+            //LuaTools.ReplaceKey(ref lua, "WeatherCloudsPrecipitation", (int)mission.Weather.CloudsPrecipitation);
             LuaTools.ReplaceKey(ref lua, "WeatherCloudsThickness", mission.Weather.CloudsThickness);
             LuaTools.ReplaceKey(ref lua, "WeatherCloudsPreset", mission.Weather.CloudsPreset.ToString());
 
@@ -87,10 +86,10 @@ namespace BriefingRoom.Miz
                 LuaTools.ReplaceKey(ref lua, $"WeatherWind{i + 1}", mission.Weather.WindSpeed[i]);
                 LuaTools.ReplaceKey(ref lua, $"WeatherWind{i + 1}Dir", mission.Weather.WindDirection[i]);
             }
-            var neutrals = Enum.GetValues(typeof(Country)).Cast<Country>().Where(x => !mission.CountryBlues.Contains(x) && !mission.CountryReds.Contains(x));
+            var neutrals = Enum.GetValues(typeof(Country)).Cast<Country>().Where(x => !mission.CoalitionCountries[(int)Coalition.Blue].Contains(x) && !mission.CoalitionCountries[(int)Coalition.Red].Contains(x));
             LuaTools.ReplaceKey(ref lua, "Neutrals", Toolbox.ListToLuaString(neutrals.Cast<int>()));
-            LuaTools.ReplaceKey(ref lua, "Reds", Toolbox.ListToLuaString(mission.CountryReds.Cast<int>()));
-            LuaTools.ReplaceKey(ref lua, "Blues", Toolbox.ListToLuaString(mission.CountryBlues.Cast<int>()));
+            LuaTools.ReplaceKey(ref lua, "Reds", Toolbox.ListToLuaString(mission.CoalitionCountries[(int)Coalition.Red].Cast<int>()));
+            LuaTools.ReplaceKey(ref lua, "Blues", Toolbox.ListToLuaString(mission.CoalitionCountries[(int)Coalition.Blue].Cast<int>()));
 
             LuaTools.ReplaceKey(ref lua, "BullseyeBlueX", mission.Bullseye[(int)Coalition.Blue].X);
             LuaTools.ReplaceKey(ref lua, "BullseyeBlueY", mission.Bullseye[(int)Coalition.Blue].Y);
@@ -103,19 +102,19 @@ namespace BriefingRoom.Miz
 
             CreateUnitGroups(ref lua, mission); // Create unit groups
     
-            Debug.DebugLog.Instance.WriteLine("Building Airbase");
-            DBEntryTheaterAirbase airbase =
-                (from DBEntryTheaterAirbase ab in Database.GetEntry<DBEntryTheater>(mission.Theater).Airbases
-                where ab.DCSID == mission.InitialAirbaseID select ab).FirstOrDefault();
-            LuaTools.ReplaceKey(ref lua, "MissionAirbaseID", mission.InitialAirbaseID);
-            LuaTools.ReplaceKey(ref lua, "MissionAirbaseX", airbase.Coordinates.X);
-            LuaTools.ReplaceKey(ref lua, "MissionAirbaseY", airbase.Coordinates.Y);
+            //BriefingRoom.PrintToLog("Building Airbase");
+            //DBEntryTheaterAirbase airbase =
+            //    (from DBEntryTheaterAirbase ab in Database.Instance.GetEntry<DBEntryTheater>(mission.Theater).Airbases
+            //    where ab.DCSID == mission.InitialAirbaseID select ab).FirstOrDefault();
+            //LuaTools.ReplaceKey(ref lua, "MissionAirbaseID", mission.InitialAirbaseID);
+            //LuaTools.ReplaceKey(ref lua, "MissionAirbaseX", airbase.Coordinates.X);
+            //LuaTools.ReplaceKey(ref lua, "MissionAirbaseY", airbase.Coordinates.Y);
 
             // The following replacements must be performed after unit groups and player waypoints have been added
             LuaTools.ReplaceKey(ref lua, "PlayerGroupID", mission.PlayerGroupID);
-            LuaTools.ReplaceKey(ref lua, "InitialWPName", Database.Common.WPNameInitial);
-            LuaTools.ReplaceKey(ref lua, "FinalWPName", Database.Common.WPNameFinal);
-            LuaTools.ReplaceKey(ref lua, "FinalWPName", Database.Common.WPNameFinal); //Duplicate
+            LuaTools.ReplaceKey(ref lua, "InitialWPName", Database.Instance.Common.WPNameInitial);
+            LuaTools.ReplaceKey(ref lua, "FinalWPName", Database.Instance.Common.WPNameFinal);
+            LuaTools.ReplaceKey(ref lua, "FinalWPName", Database.Instance.Common.WPNameFinal); //Duplicate
 
             switch (mission.UnitGroups.Find(x => x.IsAPlayerGroup()).StartLocation)
             {
@@ -153,7 +152,7 @@ namespace BriefingRoom.Miz
         {
             string forcedOptionsLua = "";
 
-            foreach (RealismOption realismOption in mission.RealismOptions)
+            foreach (RealismOption realismOption in mission.OptionsRealism)
             {
                 switch (realismOption)
                 {
@@ -174,26 +173,26 @@ namespace BriefingRoom.Miz
             }
 
             // Some realism options are forced OFF when not explicitely enabled
-            if (!mission.RealismOptions.Contains(RealismOption.BirdStrikes))
+            if (!mission.OptionsRealism.Contains(RealismOption.BirdStrikes))
                 forcedOptionsLua += "[\"birds\"] = 0,";
-            else if (!mission.RealismOptions.Contains(RealismOption.RandomFailures))
+            else if (!mission.OptionsRealism.Contains(RealismOption.RandomFailures))
                 forcedOptionsLua += "[\"accidental_failures\"] = false,";
-            else if (!mission.RealismOptions.Contains(RealismOption.NoBDA))
+            else if (!mission.OptionsRealism.Contains(RealismOption.NoBDA))
                 forcedOptionsLua += "[\"RBDAI\"] = true,";
 
-            forcedOptionsLua += $"[\"radio\"] = {(mission.RadioAssists ? "true" : "false")},";
+            forcedOptionsLua += $"[\"radio\"] = {(mission.OptionsRealism.Contains(RealismOption.DisableDCSRadioAssists) ? "false" : "true")},";
 
-            if (mission.CivilianTraffic == CivilianTraffic.Off)
-                forcedOptionsLua += "[\"civTraffic\"] = \"\",";
-            else
-                forcedOptionsLua += $"[\"civTraffic\"] = \"{mission.CivilianTraffic.ToString().ToLowerInvariant()}\",";
+            //if (mission.CivilianTraffic == CivilianTraffic.Off)
+            //    forcedOptionsLua += "[\"civTraffic\"] = \"\",";
+            //else
+            //    forcedOptionsLua += $"[\"civTraffic\"] = \"{mission.CivilianTraffic.ToString().ToLowerInvariant()}\",";
 
-            if (mission.RealismOptions.Contains(RealismOption.MapDisableAll))
-                forcedOptionsLua += "[\"optionsView\"] = \"optview_onlymap\",";
-            else if(mission.RealismOptions.Contains(RealismOption.MapDisableAllButSelf))
-                forcedOptionsLua += "[\"optionsView\"] = \"optview_myaircraft\",";
-            else if (mission.RealismOptions.Contains(RealismOption.MapDisableAllButUnitsKnown))
-                forcedOptionsLua += "[\"optionsView\"] = \"optview_allies\",";
+            //if (mission.RealismOptions.Contains(RealismOption.MapDisableAll))
+            //    forcedOptionsLua += "[\"optionsView\"] = \"optview_onlymap\",";
+            //else if(mission.RealismOptions.Contains(RealismOption.MapDisableAllButSelf))
+            //    forcedOptionsLua += "[\"optionsView\"] = \"optview_myaircraft\",";
+            //else if (mission.RealismOptions.Contains(RealismOption.MapDisableAllButUnitsKnown))
+            //    forcedOptionsLua += "[\"optionsView\"] = \"optview_allies\",";
 
             return forcedOptionsLua;
         }
@@ -243,7 +242,7 @@ namespace BriefingRoom.Miz
             for (i = 0; i < 2; i++){
                 string coalitionLua = "";
                 var k = 1;
-                foreach (var country in (Coalition)i == Coalition.Blue? mission.CountryBlues: mission.CountryReds)
+                foreach (var country in (Coalition)i == Coalition.Blue? mission.CoalitionCountries[(int)Coalition.Blue]: mission.CoalitionCountries[(int)Coalition.Red])
                 {
                     string countryLua = LuaTools.ReadIncludeLuaFile($"Country");
                     LuaTools.ReplaceKey(ref countryLua, "Index", k);
@@ -297,7 +296,7 @@ namespace BriefingRoom.Miz
                     LuaTools.ReplaceKey(ref groupLua, "ILS", group.ILS);
 
 
-                DBEntryUnit unitBP = Database.GetEntry<DBEntryUnit>(group.UnitID);
+                DBEntryUnit unitBP = Database.Instance.GetEntry<DBEntryUnit>(group.UnitID);
                 if (unitBP == null) continue; // TODO: error message?
 
                 // Group is a client group, requires player waypoints
@@ -372,7 +371,7 @@ namespace BriefingRoom.Miz
                             LuaTools.ReplaceKey(ref groupLua, "Speed", unitBP.AircraftData.CruiseSpeed);
 
                             string pylonLua = "";
-                            string[] payload = unitBP.AircraftData.GetPayload(group.Payload, mission.DateTime.Decade);
+                            string[] payload = unitBP.AircraftData.GetPayload(group.Payload, mission.DateTime.GetDecade());
                             for (j = 0; j < DBEntryUnitAircraftData.MAX_PYLONS; j++)
                             {
                                 string pylonCode = payload[j];

@@ -18,62 +18,61 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using System;
 using System.Drawing;
 
-namespace BriefingRoom.Media
+namespace BriefingRoom4DCS.Media
 {
     /// <summary>
     /// Describes a layer of text to draw in a <see cref="ImageMaker"/>
     /// </summary>
-    public class ImageMakerTextOverlay
+    internal class ImageMakerTextOverlay
     {
         /// <summary>
         /// Alignment of the text overlay.
         /// </summary>
-        public ContentAlignment Alignment { get; set; } = ContentAlignment.MiddleCenter;
+        internal ContentAlignment Alignment { get; set; } = ContentAlignment.MiddleCenter;
 
         /// <summary>
         /// Color to use fot the text overlay.
         /// </summary>
-        public Color Color { get; set; } = Color.White;
+        internal Color Color { get; set; } = Color.White;
 
         /// <summary>
         /// Font to use for the text overlay.
         /// </summary>
-        public string FontFamily { get; set; } = "Arial";
+        internal string FontFamily { get; set; } = "Arial";
 
         /// <summary>
         /// Size (in pixels) of the font to use.
         /// </summary>
-        public float FontSize { get; set; } = 36.0f;
+        internal float FontSize { get; set; } = 36.0f;
 
         /// <summary>
         /// Syle to use for the overlay text font.
         /// </summary>
-        public FontStyle FontStyle { get; set; } = FontStyle.Regular;
+        internal FontStyle FontStyle { get; set; } = FontStyle.Regular;
 
         /// <summary>
         /// Rotation of the image, in degrees.
         /// </summary>
-        public int Rotation { get; set; } = 0;
+        internal int Rotation { get; set; } = 0;
 
         /// <summary>
         /// Text to draw over all generated images.
         /// </summary>
-        public string Text { get; set; } = "";
+        internal string Text { get; set; } = "";
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="rotationInDegrees">Rotation of the image, in degrees</param>
-        public ImageMakerTextOverlay() { }
+        internal ImageMakerTextOverlay() { }
 
         /// <summary>
         /// Draw the text overlay on the provided <see cref="Graphics"/>.
         /// </summary>
         /// <param name="graphics"><see cref="Graphics"/> to use to draw the text overlay</param>
-        public void Draw(Graphics graphics)
+        internal void Draw(Graphics graphics)
         {
             if (string.IsNullOrEmpty(Text)) return; // No text, nothing to draw
          

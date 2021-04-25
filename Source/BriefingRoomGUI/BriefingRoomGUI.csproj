@@ -46,11 +46,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BriefingRoom\BriefingRoom.csproj" />
+    <ProjectReference Include="..\BriefingRoomLEGACY\BriefingRoomLEGACY.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Windows.Forms" />

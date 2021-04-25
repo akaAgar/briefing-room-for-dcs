@@ -20,7 +20,6 @@ If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
 
-using BriefingRoom.Debug;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,7 +27,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Text;
 
-namespace BriefingRoom.Miz
+namespace BriefingRoom4DCS.Miz
 {
     /// <summary>
     /// A DCS World .miz file.
@@ -79,7 +78,7 @@ namespace BriefingRoom.Miz
         /// <returns>True if everything went well, false if an error happened</returns>
         public bool AddEntry(string entryPath, byte[] bytes)
         {
-            DebugLog.Instance.WriteLine($"Adding file {entryPath} to the .miz file");
+            BriefingRoom.PrintToLog($"Adding file {entryPath} to the .miz file");
 
             entryPath = NormalizeEntryPath(entryPath);
 
@@ -150,7 +149,7 @@ namespace BriefingRoom.Miz
             }
             catch (Exception ex)
             {
-                DebugLog.Instance.WriteLine(ex.Message, DebugLogMessageErrorLevel.Error);
+                BriefingRoom.PrintToLog(ex.Message, LogMessageErrorLevel.Error);
                 return false;
             }
 

@@ -20,24 +20,23 @@ If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
 
-using BriefingRoom.Debug;
-using BriefingRoom.Mission;
+using BriefingRoom4DCS.Mission;
 using System;
 using System.IO;
 
-namespace BriefingRoom.Miz
+namespace BriefingRoom4DCS.Miz
 {
     /// <summary>
     /// Handles the inclusion of all .ogg files into the .miz file.
     /// </summary>
-    public class MizMakerMediaAudio : IDisposable
+    internal class MizMakerMediaAudio : IDisposable
     {
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MizMakerMediaAudio() { }
+        internal MizMakerMediaAudio() { }
 
-        public void AddMediaFiles(MizFile miz, DCSMission mission, out string resourceOggString)
+        internal void AddMediaFiles(MizFile miz, DCSMission mission, out string resourceOggString)
         {
             resourceOggString = "";
 
@@ -56,11 +55,11 @@ namespace BriefingRoom.Miz
             string oggFilePath = $"{BRPaths.INCLUDE_OGG}{file}.ogg";
             if (!File.Exists(oggFilePath))
             {
-                DebugLog.Instance.WriteLine($"  WARNING: Failed to load .ogg file Include\\Ogg\\{file}.ogg");
+                BriefingRoom.PrintToLog($"  WARNING: Failed to load .ogg file Include\\Ogg\\{file}.ogg");
                 return; // File doesn't exist
             }
 
-            DebugLog.Instance.WriteLine($"  Added file Include\\Ogg\\{file}.ogg");
+            BriefingRoom.PrintToLog($"  Added file Include\\Ogg\\{file}.ogg");
             miz.AddEntry($"l10n/DEFAULT/{file}.ogg", File.ReadAllBytes(oggFilePath));
 
             resourceOggString += $" [\"ResKey_Snd_{Path.GetFileNameWithoutExtension(file)}\"] = \"{file}.ogg\",\r\n";

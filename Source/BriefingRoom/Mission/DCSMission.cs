@@ -18,53 +18,60 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using BriefingRoom.DB;
-using BriefingRoom.Miz;
+using BriefingRoom4DCS.Miz;
+using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace BriefingRoom.Mission
+namespace BriefingRoom4DCS.Mission
 {
     /// <summary>
     /// Stores a DCS World mission, with all its unit groups, Lua scripts and parameters.
     /// Can be exported to a <see cref="Miz.MizFile"/> through use of the <see cref="ExportToMiz"/> method.
     /// </summary>
-    public class DCSMission : IDisposable
+    public sealed class DCSMission : IDisposable
     {
         /// <summary>
-        /// The coalition each airbase belongs to. Key is the airbase ID in DCS World, value is the coalition.
+        /// The coalition each airbase on the map belongs to. Key is the airbase ID in DCS World, value is the coalition.
         /// </summary>
-        public Dictionary<int, Coalition> AirbasesCoalition { get; set; } = new Dictionary<int, Coalition>();
+        public Dictionary<int, Coalition> AirbasesCoalition { get; internal set; } = new Dictionary<int, Coalition>();
 
         /// <summary>
         /// List of aircraft groups to spawn during the mission.
-        /// Aircraft groups are activated later on because (1) they would run out of fuel if spawned on start and (2) it's nice to face new enemy CAP units as the mission goes on
+        /// Aircraft groups are activated later on because (1) they would run out of fuel if spawned on start and (2) it's nice to face new enemy CAP units as the mission goes on.
         /// </summary>
-        public List<DCSMissionAircraftSpawnQueueItem> AircraftSpawnQueue { get; set; } = new List<DCSMissionAircraftSpawnQueueItem>();
-
-        public int EscortCAPGroupId { get; set; } = 0;
-        public int EscortSEADGroupId { get; set; } = 0;
+        public List<DCSMissionAircraftSpawnQueueItem> AircraftSpawnQueue { get; internal set; } = new List<DCSMissionAircraftSpawnQueueItem>();
 
         /// <summary>
         /// Mission briefing, in HTML format.
         /// </summary>
-        public string BriefingHTML { get; set; } = "";
+        public string BriefingHTML { get; internal set; } = "";
 
         /// <summary>
         /// Mission briefing, in raw text format, as it will be displayed in DCS World.
         /// </summary>
-        public string BriefingTXT { get; set; } = "";
+        public string BriefingTXT { get; internal set; } = "";
 
         /// <summary>
         /// Location of blue (index #0) and red (index #1) coalition bullseye.
         /// </summary>
-        public Coordinates[] Bullseye { get; set; } = new Coordinates[] { new Coordinates(), new Coordinates() };
+        public Coordinates[] Bullseye { get; internal set; } = new Coordinates[] { new Coordinates(), new Coordinates() };
+
+        /// <summary>
+        /// DCS IDs of the carrier(s) the player will take off from.
+        /// </summary>
+        public DCSMissionUnitGroup[] Carriers { get; internal set; }
 
         /// <summary>
         /// ID of the <see cref="DB.DBEntryCoalition"/> of blue (index #0) and red (index #1) coalitions.
         /// </summary>
-        public string[] Coalitions { get; set; } = new string[] { "", "" };
+        public string[] Coalitions { get; internal set; } = new string[] { "", "" };
+
+        /// <summary>
+        /// Countries belonging to the blue (index #0) and red (index #1) coalitions.
+        /// </summary>
+        public List<Country>[] CoalitionCountries { get; internal set; } = new List<Country>[] { new List<Country>(), new List<Country>() };
 
         /// <summary>
         /// Enemy coalition. Read-only, generated from <see cref="CoalitionPlayer"/>.
@@ -74,82 +81,47 @@ namespace BriefingRoom.Mission
         /// <summary>
         /// Coalition the player(s) belongs to.
         /// </summary>
-        public Coalition CoalitionPlayer { get; set; } = Coalition.Blue;
-
-        /// <summary>
-        /// Should DCS radio assists ("fire" when weapon release parameters are met, warning when a threat approaches, etc) be enabled?
-        /// </summary>
-        public bool RadioAssists { get; set; } = false;
-
-        /// <summary>
-        /// Core Lua script containing tables into mission objectives, etc. Will replace $CORELUA$ in l10n\DEFAULT\script.lua.
-        /// </summary>
-        public string CoreLuaScript { get; set; } = "";
+        public Coalition CoalitionPlayer { get; internal set; } = Coalition.Blue;
 
         /// <summary>
         /// Date and time during which this mission takes place.
         /// </summary>
-        public DCSMissionDateTime DateTime { get; set; } = new DCSMissionDateTime();
-
-        /// <summary>
-        /// Starting time of the mission in seconds since midnight.
-        /// </summary>
-        public int DateTimeTotalSeconds { get { return Toolbox.Clamp(DateTime.Hour * 3600 + DateTime.Minute * 60, 0, Toolbox.SECONDS_PER_DAY - 1); } }
-
-        /// <summary>
-        /// Core Lua script containing tables into mission objectives, etc. Will replace RADIOSOUNDS in l10n\DEFAULT\script.lua.
-        /// </summary>
-        public bool RadioSounds { get; set; } = true;
+        public DCSMissionDateTime DateTime { get; internal set; } = new DCSMissionDateTime();
 
         /// <summary>
         /// Lua script files to include in the mission script. Will replace $INCLUDEDLUA$ in l10n\DEFAULT\script.lua.
         /// </summary>
-        public List<string> IncludedLuaScripts { get; set; } = new List<string>();
+        public List<string> IncludedLuaScripts { get; internal set; } = new List<string>();
 
         /// <summary>
-        /// The internal DCS ID of the airbase the player will take off from.
+        /// DCS ID of the airbase the player will take off from.
         /// </summary>
-        public int InitialAirbaseID { get; set; }
+        public int InitialAirbaseID { get; internal set; }
 
         /// <summary>
-        /// The internal DCS ID of the carrier the player will take off from.
+        /// Initial coordinates of the players, used to measure the distance to objectives.
         /// </summary>
-        public DCSMissionUnitGroup[] Carriers {get; set;} = new DCSMissionUnitGroup[]{};
+        public Coordinates InitialPosition { get; internal set; }
 
         /// <summary>
-        /// Initial coordinates of the players, used to measure the distance to objective.
+        /// Lua script for mission features.
         /// </summary>
-        public Coordinates InitialPosition { get; set; }
+        public string LuaScriptMissionFeatures { get; internal set; } = "";
 
         /// <summary>
-        /// Lua code to include just before the included scripts, to set parameters, etc.
+        /// Lua script for mission objectives.
         /// </summary>
-        public string LuaSettings { get; set; } = "";
-
-        /// <summary>
-        /// Amount of civilian traffic on the roads.
-        /// </summary>
-        public CivilianTraffic CivilianTraffic { get; set; } = CivilianTraffic.Off;
+        public string LuaScriptObjectives { get; internal set; } = "";
 
         /// <summary>
         /// Name/title of the mission/sortie.
         /// </summary >
-        public string MissionName { get; set; } = "";
+        public string MissionName { get; internal set; } = "";
 
         /// <summary>
         /// An array of <see cref="DCSMissionObjective"/> describing all objectives in the mission.
         /// </summary>
-        public DCSMissionObjective[] Objectives { get; set; } = new DCSMissionObjective[0];
-
-        /// <summary>
-        /// The realism options to enable in this mission.
-        /// </summary>
-        public RealismOption[] RealismOptions { get; set; } = new RealismOption[0];
-
-        /// <summary>
-        /// Time to end mission min after objective complete.
-        /// </summary >
-        public MissionEndMode EndMode { get; set; } = MissionEndMode.Never;
+        public DCSMissionObjective[] Objectives { get; internal set; } = new DCSMissionObjective[0];
 
         /// <summary>
         /// "Center position" of the mission objectives (average of all objectives positions)
@@ -169,6 +141,16 @@ namespace BriefingRoom.Mission
         }
 
         /// <summary>
+        /// The mission options to enable in this mission.
+        /// </summary>
+        public MissionOption[] OptionsMission { get; internal set; } = new MissionOption[0];
+
+        /// <summary>
+        /// The realism options to enable in this mission.
+        /// </summary>
+        public RealismOption[] OptionsRealism { get; internal set; } = new RealismOption[0];
+
+        /// <summary>
         /// True if the objective is static object, false if it isn't (which means it's an unit)
         /// Replaces $STATICOBJECTIVE$ in Script.lua
         /// </summary>
@@ -177,7 +159,7 @@ namespace BriefingRoom.Mission
         /// <summary>
         /// Ogg vorbis audio files to include in the .miz file.
         /// </summary>
-        public List<string> OggFiles { get; set; } = new List<string>();
+        public List<string> OggFiles { get; internal set; } = new List<string>();
 
         /// <summary>
         /// Returns the ID of the first group containing players.
@@ -198,7 +180,7 @@ namespace BriefingRoom.Mission
         /// <summary>
         /// The ID of the <see cref="TheaterBP"/> (NOT THE DCS WORLD INTERNAL THEATER ID!) for this mission.
         /// </summary>
-        public string Theater { get; set; } = "";
+        public string Theater { get; internal set; } = "";
 
         /// <summary>
         /// Unique ID for the mission. Appended to certain filenames so they don't have the same name in every mission and
@@ -209,12 +191,12 @@ namespace BriefingRoom.Mission
         /// <summary>
         /// A list of <see cref="DCSMissionUnitGroup"/> describing all unit groups in the mission.
         /// </summary>
-        public List<DCSMissionUnitGroup> UnitGroups { get; private set; } = new List<DCSMissionUnitGroup>();
+        public List<DCSMissionUnitGroup> UnitGroups { get; internal set; } = new List<DCSMissionUnitGroup>();
 
         /// <summary>
         /// A list of <see cref="DCSMissionWaypoint"/> describing all waypoints in the mission.
         /// </summary>
-        public List<DCSMissionWaypoint> Waypoints { get; private set; } = new List<DCSMissionWaypoint>();
+        public List<DCSMissionWaypoint> Waypoints { get; internal set; } = new List<DCSMissionWaypoint>();
 
         /// <summary>
         /// Total flight plan distance, in meters.
@@ -239,10 +221,7 @@ namespace BriefingRoom.Mission
         /// <summary>
         /// Weather information for this mission.
         /// </summary>
-        public DCSMissionWeatherInfo Weather { get; set; } = new DCSMissionWeatherInfo();
-        
-        public List<Country> CountryBlues { get; internal set; }
-        public List<Country> CountryReds { get; internal set; }
+        public DCSMissionWeatherInfo Weather { get; internal set; } = new DCSMissionWeatherInfo();
 
         /// <summary>
         /// Constructor.
@@ -251,6 +230,17 @@ namespace BriefingRoom.Mission
         {
             // Generate a unique ID for the mission.
             UniqueID = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()).ToLowerInvariant();
+        }
+
+
+        public MizFile ExportToMiz()
+        {
+            MizFile miz;
+
+            using (MizMaker mizMaker = new MizMaker())
+                miz = mizMaker.ExportToMizFile(this);
+
+            return miz;
         }
 
         /// <summary>

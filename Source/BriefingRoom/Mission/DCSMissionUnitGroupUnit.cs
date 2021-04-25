@@ -18,7 +18,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-namespace BriefingRoom.Mission
+namespace BriefingRoom4DCS.Mission
 {
     /// <summary>
     /// Stores information about an unit in a (<see cref="DCSMissionUnitGroup"/>).

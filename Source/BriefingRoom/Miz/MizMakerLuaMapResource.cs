@@ -20,20 +20,20 @@ If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
 
-using BriefingRoom.Mission;
+using BriefingRoom4DCS.Mission;
 using System;
 
-namespace BriefingRoom.Miz
+namespace BriefingRoom4DCS.Miz
 {
     /// <summary>
     /// Creates the "l10n/DEFAULT/mapResource" entry in the MIZ file.
     /// </summary>
-    public class MizMakerLuaMapResource : IDisposable
+    internal class MizMakerLuaMapResource : IDisposable
     {
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MizMakerLuaMapResource() { }
+        internal MizMakerLuaMapResource() { }
 
         /// <summary>
         /// Generates the content of the Lua file.
@@ -41,7 +41,7 @@ namespace BriefingRoom.Miz
         /// <param name="mission">The mission from which to generate the .Miz file.</param>
         /// <param name="resourceOggString">An string containing the Lua declaring all embedded .ogg files.</param>
         /// <returns>The contents of the Lua file.</returns>
-        public string MakeLua(DCSMission mission, string resourceOggString)
+        internal string MakeLua(DCSMission mission, string resourceOggString)
         {
             string lua = LuaTools.ReadIncludeLuaFile("MapResource.lua");
 

@@ -20,7 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using System;
 
-namespace BriefingRoom.Mission
+namespace BriefingRoom4DCS.Mission
 {
     /// <summary>
     /// Stores information about an aircraft group to spawn in <see cref="DCSMission.AircraftSpawnQueue"/>.

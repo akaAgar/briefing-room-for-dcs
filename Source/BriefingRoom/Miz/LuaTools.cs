@@ -24,19 +24,19 @@ using System;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace BriefingRoom.Miz
+namespace BriefingRoom4DCS.Miz
 {
     /// <summary>
     /// Static class provided various tool methods to handle included Lua files.
     /// </summary>
-    public static class LuaTools
+    internal static class LuaTools
     {
         /// <summary>
         /// Reads the content of an embedded Lua file in BriefingRoom.Resources.Lua namespace.
         /// </summary>
         /// <param name="filePath">Path to resource file from BriefingRoom.Resources.Lua</param>
         /// <returns>The content of the Lua file, or an empty string if the resource was not found.</returns>
-        public static string ReadIncludeLuaFile(string filePath)
+        internal static string ReadIncludeLuaFile(string filePath)
         {
             if (string.IsNullOrEmpty(filePath)) return "";
             if (!filePath.ToLowerInvariant().EndsWith(".lua")) filePath += ".lua";
@@ -52,7 +52,7 @@ namespace BriefingRoom.Miz
         /// <param name="lua">The Lua script.</param>
         /// <param name="key">The key to replace, without the dollar signs.</param>
         /// <param name="value">The value to replace the key with.</param>
-        public static void ReplaceKey(ref string lua, string key, bool value) { ReplaceKey(ref lua, key, Toolbox.ValToString(value).ToLowerInvariant()); }
+        internal static void ReplaceKey(ref string lua, string key, bool value) { ReplaceKey(ref lua, key, Toolbox.ValToString(value).ToLowerInvariant()); }
 
         /// <summary>
         /// Replaces all instance of "$KEY$" in a Lua script by value.
@@ -61,7 +61,7 @@ namespace BriefingRoom.Miz
         /// <param name="key">The key to replace, without the dollar signs.</param>
         /// <param name="value">The value to replace the key with.</param>
         /// <param name="stringFormat">The string format string to use when converting the value to a string.</param>
-        public static void ReplaceKey(ref string lua, string key, int value, string stringFormat = null)
+        internal static void ReplaceKey(ref string lua, string key, int value, string stringFormat = null)
         {
             ReplaceKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
         }
@@ -73,7 +73,7 @@ namespace BriefingRoom.Miz
         /// <param name="key">The key to replace, without the dollar signs.</param>
         /// <param name="value">The value to replace the key with.</param>
         /// <param name="stringFormat">The string format string to use when converting the value to a string.</param>
-        public static void ReplaceKey(ref string lua, string key, float value, string stringFormat = null)
+        internal static void ReplaceKey(ref string lua, string key, float value, string stringFormat = null)
         {
             ReplaceKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
         }
@@ -85,7 +85,7 @@ namespace BriefingRoom.Miz
         /// <param name="key">The key to replace, without the dollar signs.</param>
         /// <param name="value">The value to replace the key with.</param>
         /// <param name="stringFormat">The string format string to use when converting the value to a string.</param>
-        public static void ReplaceKey(ref string lua, string key, double value, string stringFormat = null)
+        internal static void ReplaceKey(ref string lua, string key, double value, string stringFormat = null)
         {
             ReplaceKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
         }
@@ -97,7 +97,7 @@ namespace BriefingRoom.Miz
         /// <param name="key">The key to replace, without the dollar signs.</param>
         /// <param name="value">The value to replace the key with.</param>
         /// <param name="allowNewLines">Should line breaks (\n) be allowed?</param>
-        public static void ReplaceKey(ref string lua, string key, string value, bool allowNewLines = false)
+        internal static void ReplaceKey(ref string lua, string key, string value, bool allowNewLines = false)
         {
             value = value ?? "";
             if (allowNewLines) value = value.Replace("\n", "\\\n");
@@ -113,7 +113,7 @@ namespace BriefingRoom.Miz
         /// <param name="key">The key to replace, without the dollar signs.</param>
         /// <param name="value">The value to replace the key with.</param>
         /// <param name="bool">Should the enum value be cast to upper case?</param>
-        public static void ReplaceKey<T>(ref string lua, string key, T value, bool upperCase) where T: Enum
+        internal static void ReplaceKey<T>(ref string lua, string key, T value, bool upperCase) where T: Enum
         {
             ReplaceKey(ref lua, key, upperCase ? value.ToString().ToUpperInvariant() : value.ToString());
         }
@@ -124,7 +124,7 @@ namespace BriefingRoom.Miz
         /// <param name="lua">The Lua script.</param>
         /// <param name="key">The key to replace, without the dollar signs.</param>
         /// <param name="value">The value to replace the key with.</param>
-        public static void ReplaceFirstKey(ref string lua, string key, string value) {
+        internal static void ReplaceFirstKey(ref string lua, string key, string value) {
             var regex = new Regex(Regex.Escape("${key.ToUpperInvariant()}$"));
             lua = regex.Replace(lua, value, 1);
         }
@@ -135,7 +135,7 @@ namespace BriefingRoom.Miz
         /// <param name="lua">The Lua script.</param>
         /// <param name="key">The key to replace, without the dollar signs.</param>
         /// <param name="value">The value to replace the key with.</param>
-        public static void ReplaceFirstKey(ref string lua, string key, int value, string stringFormat = null) {
+        internal static void ReplaceFirstKey(ref string lua, string key, int value, string stringFormat = null) {
             ReplaceFirstKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
         }
 
@@ -145,7 +145,7 @@ namespace BriefingRoom.Miz
         /// <param name="lua">The Lua script.</param>
         /// <param name="key">The key to replace, without the dollar signs.</param>
         /// <param name="value">The value to replace the key with.</param>
-        public static void ReplaceFirstKey(ref string lua, string key, float value, string stringFormat = null) {
+        internal static void ReplaceFirstKey(ref string lua, string key, float value, string stringFormat = null) {
             ReplaceFirstKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
         }
 
@@ -155,7 +155,7 @@ namespace BriefingRoom.Miz
         /// <param name="lua">The Lua script.</param>
         /// <param name="key">The key to replace, without the dollar signs.</param>
         /// <param name="value">The value to replace the key with.</param>
-        public static void ReplaceFirstKey(ref string lua, string key, double value, string stringFormat = null) {
+        internal static void ReplaceFirstKey(ref string lua, string key, double value, string stringFormat = null) {
             ReplaceFirstKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
         }
 
@@ -165,7 +165,7 @@ namespace BriefingRoom.Miz
         /// <param name="lua">The Lua script.</param>
         /// <param name="key">The key to replace, without the dollar signs.</param>
         /// <param name="value">The value to replace the key with.</param>
-        public static void ReplaceFirstKey(ref string lua, string key, bool value) {
+        internal static void ReplaceFirstKey(ref string lua, string key, bool value) {
             ReplaceFirstKey(ref lua, key, Toolbox.ValToString(value).ToLowerInvariant());
         }
     }

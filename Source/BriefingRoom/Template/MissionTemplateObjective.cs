@@ -1,8 +1,7 @@
 ﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
-generator for DCS World, by @akaAgar
-(https://github.com/akaAgar/briefing-room-for-dcs)
+generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
 
 Briefing Room for DCS World is free software: you can redistribute it
 and/or modify it under the terms of the GNU General Public License
@@ -20,57 +19,107 @@ If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
 
-using BriefingRoom.DB;
+using BriefingRoom4DCS.Data;
+using System.ComponentModel.DataAnnotations;
 
-namespace BriefingRoom.Template
+namespace BriefingRoom4DCS.Template
 {
     /// <summary>
-    /// Stores information about a template objective.
+    /// Stores information about a mission template objective.
     /// </summary>
-    public struct MissionTemplateObjective
+    public sealed class MissionTemplateObjective
     {
-        /// <summary>
-        /// Database ID of the <see cref="DBEntryObjectiveTarget"/>
-        /// </summary>
-        public string Target { get; }
+        [Required, DatabaseSourceType(DatabaseEntryType.ObjectiveTarget)]
+        [Display(Name = "Target", Description = "Family of units to use as a target for this objective.")]
+        public string Target { get { return Target_; } set { Target_ = Database.Instance.CheckID<DBEntryObjectiveTarget>(value); } }
+        private string Target_;
+
+        [Required, DatabaseSourceType(DatabaseEntryType.ObjectiveTargetBehavior)]
+        [Display(Name = "Target behavior", Description = "How will the target units behave?")]
+        public string TargetBehavior { get { return TargetBehavior_; } set { TargetBehavior_ = Database.Instance.CheckID<DBEntryObjectiveTargetBehavior>(value); } }
+        private string TargetBehavior_;
+
+        [Required]
+        [Display(Name = "Target count", Description = "Number of target units at this objective.")]
+        public Amount TargetCount { get; set; }
+
+        [Required, DatabaseSourceType(DatabaseEntryType.ObjectiveTask)]
+        [Display(Name = "Task", Description = "Task to accomplish at this objective.")]
+        public string Task { get { return Task_; } set { Task_ = Database.Instance.CheckID<DBEntryObjectiveTask>(value); } }
+        private string Task_;
+
+        [Required]
+        [Display(Name = "Waypoint on target", Description = "Is the waypoint located exactly on the target's initial location, or will the player(s) have to look for the target?")]
+        public bool WaypointOnTarget { get; set; }
 
         /// <summary>
-        /// Database ID of the <see cref="DBEntryObjectiveBehavior"/>
+        /// Constructor.
         /// </summary>
-        public string TargetBehavior { get; }
+        public MissionTemplateObjective()
+        {
+            Target = "VehicleAny";
+            TargetBehavior = "Idle";
+            TargetCount = Amount.Average;
+            Task = "DestroyAll";
+            WaypointOnTarget = true;
+        }
 
         /// <summary>
-        /// Number of target units at this objective.
+        /// Constructor.
         /// </summary>
-        public Amount TargetCount { get; }
+        /// <param name="target">Family of units to use as a target for this objective.</param>
+        /// <param name="targetBehavior"></param>
+        /// <param name="task">Task to accomplish at this objective.</param>
+        /// <param name="targetCount">Number of target units at this objective.</param>
+        /// <param name="waypointOnTarget">Is the waypoint located exactly on the target's initial location, or will the player(s) have to look for the target?</param>
+        public MissionTemplateObjective(string target, string targetBehavior, string task, Amount targetCount = Amount.Average, bool waypointOnTarget = true)
+        {
+            Target = target;
+            TargetBehavior = targetBehavior;
+            TargetCount = targetCount;
+            Task = task;
+            WaypointOnTarget = waypointOnTarget;
+        }
 
         /// <summary>
-        /// Database ID of the <see cref="DBEntryObjectiveTask"/>
+        /// Constructor.
         /// </summary>
-        public string Task { get; }
+        /// <param name="ini">INI file to load from.</param>
+        /// <param name="section">INI section.</param>
+        /// <param name="key">INI key.</param>
+        internal MissionTemplateObjective(INIFile ini, string section, string key)
+        {
+            LoadFromFile(ini, section, key);
+        }
 
-        public MissionTemplateObjective(INIFile ini, string section, string key)
+        /// <summary>
+        /// Loads the objective template from an .ini file.
+        /// </summary>
+        /// <param name="ini">INI file to save to.</param>
+        /// <param name="section">INI section.</param>
+        /// <param name="key">INI key.</param>
+        internal void LoadFromFile(INIFile ini, string section, string key)
         {
             Target = ini.GetValue<string>(section, $"{key}.Target");
             TargetBehavior = ini.GetValue<string>(section, $"{key}.TargetBehavior");
             TargetCount = ini.GetValue<Amount>(section, $"{key}.TargetCount");
             Task = ini.GetValue<string>(section, $"{key}.Task");
+            WaypointOnTarget = ini.GetValue<bool>(section, $"{key}.WaypointOnTarget");
         }
 
-        public MissionTemplateObjective(string task, string targetID, string targetBehaviorID, Amount targetCount = Amount.Average)
+        /// <summary>
+        /// Saves the objective template to an .ini file.
+        /// </summary>
+        /// <param name="ini">INI file to save to.</param>
+        /// <param name="section">INI section.</param>
+        /// <param name="key">INI key.</param>
+        internal void SaveToFile(INIFile ini, string section, string key)
         {
-            Target = task;
-            TargetBehavior = targetID;
-            TargetCount = targetCount;
-            Task = targetBehaviorID;
-        }
-
-        public void SaveToFile(INIFile ini, string section, string key)
-        {
+            ini.SetValue(section, $"{key}.Task", Task);
             ini.SetValue(section, $"{key}.Target", Target);
             ini.SetValue(section, $"{key}.TargetBehavior", TargetBehavior);
             ini.SetValue(section, $"{key}.TargetCount", TargetCount);
-            ini.SetValue(section, $"{key}.Task", Task);
+            ini.SetValue(section, $"{key}.WaypointOnTarget", WaypointOnTarget);
         }
     }
 }

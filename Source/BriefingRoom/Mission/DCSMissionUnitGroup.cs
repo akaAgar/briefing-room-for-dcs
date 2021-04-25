@@ -20,7 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using System;
 
-namespace BriefingRoom.Mission
+namespace BriefingRoom4DCS.Mission
 {
     /// <summary>
     /// Stores information about an unit group.
@@ -99,9 +99,9 @@ namespace BriefingRoom.Mission
         public string UnitID { get; set; } = "";
 
         /// <summary>
-        /// The type of payload units of this group will carry.
+        /// The type of payload aircraft of this group will carry.
         /// </summary>
-        public UnitTaskPayload Payload { get; set; } = UnitTaskPayload.Default;
+        public AircraftPayload Payload { get; set; } = AircraftPayload.Default;
 
         /// <summary>
         /// Speed Of group;

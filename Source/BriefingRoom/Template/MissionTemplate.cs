@@ -20,25 +20,25 @@ If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
 
-using BriefingRoom.Attributes;
-using BriefingRoom.DB;
-using BriefingRoom.Debug;
+using BriefingRoom4DCS.Data;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 
-namespace BriefingRoom.Template
+namespace BriefingRoom4DCS.Template
 {
     /// <summary>
     /// A mission template, to be used as input in the MissionGenerator class.
     /// </summary>
-    public class MissionTemplate : IDisposable
+    public sealed class MissionTemplate : IDisposable
     {
         /// <summary>
-        /// Increment between two proposed objective distances in the menu (in nautical miles).
+        /// Path to the default template file storing default values.
         /// </summary>
-        public const int OBJECTIVE_DISTANCE_INCREMENT = 20;
+        private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BRPaths.ROOT}Default.brt";
 
         /// <summary>
         /// Maximum number of objectives.
@@ -46,9 +46,139 @@ namespace BriefingRoom.Template
         public const int MAX_OBJECTIVES = 5;
 
         /// <summary>
+        /// Maximum number of player flight groups.
+        /// </summary>
+        public const int MAX_PLAYER_FLIGHT_GROUPS = 8;
+
+        /// <summary>
         /// Maximum distance to the objective, in nautical miles.
         /// </summary>
         public const int MAX_OBJECTIVE_DISTANCE = 200;
+
+        [Required]
+        [Display(Name = "Mission type", Description = "Is the mission single or multiplayer?")]
+        public MissionType MissionType { get; set; }
+
+        [Required, DatabaseSourceType(DatabaseEntryType.Coalition)]
+        [Display(Name = "Blue coalition", Description = "Which countries belong to the blue coalition?")]
+        [Category("Context")]
+        public string ContextCoalitionBlue { get; set; }
+
+        [Required, DatabaseSourceType(DatabaseEntryType.Coalition)]
+        [Display(Name = "Player coalition", Description = "Which countries belong to the red coalition?")]
+        [Category("Context")]
+        public string ContextCoalitionRed { get; set; }
+
+        [Required]
+        [Display(Name = "Time period", Description = "Time period during which the mission takes place.")]
+        [Category("Context")]
+        public Decade ContextDecade { get; set; }
+
+        [Required]
+        [Display(Name = "Player coalition", Description = "Coalition the player(s) belongs to.")]
+        [Category("Context")]
+        public Coalition ContextPlayerCoalition { get; set; }
+
+        [Required, DatabaseSourceType(DatabaseEntryType.Theater)]
+        [Display(Name = "Theater", Description = "Theater in which the mission takes place.")]
+        [Category("Context")]
+        public string ContextTheater { get; set; }
+
+        [Required]
+        [Display(Name = "Countries coalition", Description = "To which coalition do the countries on the map (and their airbases) belong?")]
+        [Category("Context")]
+        public CountryCoalition ContextTheaterCountriesCoalitions { get; set; }
+
+        [Required]
+        [Display(Name = "Cloud preset", Description = "DCS World cloud preset to use for the weather.")]
+        [Category("Environment")]
+        public CloudPreset EnvironmentCloudPreset { get; set; }
+
+        [Required]
+        [Display(Name = "Season", Description = "Season during which the mission takes place.")]
+        [Category("Environment")]
+        public Season EnvironmentSeason { get; set; }
+
+        [Required]
+        [Display(Name = "Time of day", Description = "Time of day of mission start.")]
+        [Category("Environment")]
+        public TimeOfDay EnvironmentTimeOfDay { get; set; }
+
+        [Required]
+        [Display(Name = "Wind", Description = "Wind intensity.")]
+        [Category("Environment")]
+        public Wind EnvironmentWind { get; set; }
+
+        [Required, Range(0, MAX_OBJECTIVE_DISTANCE, ErrorMessage = "Objective distance must be between {1} and {2} nautical miles.")]
+        [Display(Name = "Objective distance", Description = "Distance to the objectives, in nautical miles. \"Zero\" means \"random\".")]
+        [Category("Flight plan")]
+        public int FlightPlanObjectiveDistance { get { return FlightPlanObjectiveDistance_; } set { FlightPlanObjectiveDistance_ = Toolbox.Clamp(value, 0, MAX_OBJECTIVE_DISTANCE); } }
+        private int FlightPlanObjectiveDistance_;
+
+        [Required]
+        [Display(Name = "Objectives locations", Description = "In which countries should objectives and enemy units be spawned? Be aware that selecting an option other than \"Any\" can greatly increase distance to the objectives.")]
+        [Category("Flight plan")]
+        public ObjectiveCountryLocation FlightPlanObjectivesLocation { get; set; }
+
+        [Required, DatabaseSourceType(DatabaseEntryType.Airbase, true)]
+        [Display(Name = "Starting airbase", Description = "Airbase from which the player(s) will take off. Leave empty for none")]
+        [Category("Flight plan")]
+        public string FlightPlanTheaterStartingAirbase { get; set; }
+
+        [Required, DatabaseSourceType(DatabaseEntryType.MissionFeatures)]
+        [Display(Name = "Mission features", Description = "Special features to include in this mission.")]
+        public List<string> MissionFeatures { get { return MissionFeatures_; } set { MissionFeatures_ = Database.Instance.CheckMissionFeaturesIDs(value.ToArray()).ToList(); } }
+        private List<string> MissionFeatures_ = new List<string>();
+
+        [Required, DatabaseSourceType(DatabaseEntryType.DCSMod)]
+        [Display(Name = "DCS World mods", Description = "DCS unit mods to use for this mission.")]
+        public List<string> Mods { get { return Mods_; } set { Mods_ = Database.Instance.CheckIDs<DBEntryDCSMod>(value.ToArray()).ToList(); } }
+        private List<string> Mods_ = new List<string>();
+
+        [Required, MinLength(1), MaxLength(MAX_OBJECTIVES)]
+        [Display(Name = "Objectives", Description = "Mission objectives.")]
+        public List<MissionTemplateObjective> Objectives { get; set; }
+
+        [Required]
+        [Display(Name = "Fog of war", Description = "Fog of war settings for this mission.")]
+        public FogOfWar OptionsFogOfWar { get; set; }
+
+        [Required]
+        [Display(Name = "Mission options", Description = "Miscellaneous options to customize the mission's feel.")]
+        [Category("Options")]
+        public List<MissionOption> OptionsMission { get { return OptionsMission_; } set { OptionsMission_ = value.Distinct().ToList(); } }
+        private List<MissionOption> OptionsMission_ = new List<MissionOption>();
+
+        [Required]
+        [Display(Name = "Realism options", Description = "Realism options to enforce.")]
+        [Category("Options")]
+        public List<RealismOption> OptionsRealism { get { return OptionsRealism_; } set { OptionsRealism_ = value.Distinct().ToList(); } }
+        private List<RealismOption> OptionsRealism_ = new List<RealismOption>();
+
+        [Required, MinLength(1), MaxLength(MAX_PLAYER_FLIGHT_GROUPS)]
+        [Display(Name = "Player flight groups", Description = "All player flight groups in this mission's flight package.")]
+        public List<MissionTemplateFlightGroup> PlayerFlightGroups { get { return PlayerFlightGroups_; } set { PlayerFlightGroups_ = value.Take(MAX_PLAYER_FLIGHT_GROUPS).ToList(); } }
+        private List<MissionTemplateFlightGroup> PlayerFlightGroups_ = new List<MissionTemplateFlightGroup>();
+
+        [Required]
+        [Display(Name = "Enemy air defense", Description = "Quality and quantity of enemy surface-to-air defense.")]
+        [Category("Situation")]
+        public AmountNR SituationEnemyAirDefense { get; set; }
+
+        [Required]
+        [Display(Name = "Enemy air force", Description = "Quality and quantity of enemy fighter patrols.")]
+        [Category("Situation")]
+        public AmountNR SituationEnemyAirForce { get; set; }
+
+        [Required]
+        [Display(Name = "Friendly air defense", Description = "Quality and quantity of enemy surface-to-air defense.")]
+        [Category("Situation")]
+        public AmountNR SituationFriendlyAirDefense { get; set; }
+
+        [Required]
+        [Display(Name = "Friendly air force", Description = "Quality and quantity of friendly fighter patrols.")]
+        [Category("Situation")]
+        public AmountNR SituationFriendlyAirForce { get; set; }
 
         /// <summary>
         /// Constructor.
@@ -67,201 +197,52 @@ namespace BriefingRoom.Template
             LoadFromFile(filePath);
         }
 
-        [TreeViewProperty("Mission type", null, typeof(MissionType), "The type of mission (single player or cooperative)")]
-        public MissionType MissionType { get; set; }
-
-        [TreeViewProperty("Coalition, blue", "Context", typeof(DBEntryCoalition), "Who belongs to the blue coalition?")]
-        public string ContextCoalitionBlue { get; set; }
-
-        [TreeViewProperty("Player coalition", "Context", typeof(Coalition), "Which coalition does the player(s) belong to?")]
-        public Coalition ContextCoalitionPlayer { get; set; }
-
-        [TreeViewProperty("Coalition, red", "Context", typeof(DBEntryCoalition), "Who belongs to the red coalition?")]
-        public string ContextCoalitionRed { get; set; }
-
-        [TreeViewProperty("Time period", "Context", typeof(Decade), "During which decade will this mission take place? This value is ignored if Briefing/Mission date is set.")]
-        public Decade ContextDecade { get; set; }
-
-        [TreeViewProperty("Theater", "Context", typeof(DBEntryTheater), "DCS World theater in which the mission will take place.")]
-        public string ContextTheater { get; set; }
-
-        [TreeViewProperty("Season", "Environment", typeof(Season), "Season during which the mission will take place.")]
-        public Season EnvironmentSeason { get; set; }
-
-        [TreeViewProperty("Time of day", "Environment", typeof(TimeOfDay), "Starting time of the mission.")]
-        public TimeOfDay EnvironmentTimeOfDay { get; set; }
-
-        [TreeViewProperty("Weather", "Environment", typeof(Weather), "What the weather be like during the mission.")]
-        public Weather EnvironmentWeather { get; set; }
-
-        [TreeViewProperty("Cloud preset", "Environment", typeof(CloudPreset), "Cloud preset to use (for DCS World 2.7+ new cloud sytem)")]
-        public CloudPreset EnvironmentCloudPreset { get; set; }
-
-        [TreeViewProperty("Wind", "Environment", typeof(Wind), "How windy will the weather be during the mission. \"Auto\" means \"choose according to the weather\".")]
-        public Wind EnvironmentWind { get; set; }
-
-        [TreeViewProperty("Add extra waypoints", "Flight plan", typeof(YesNo), "Should extra ingress/egress waypoints be generated in addition to the objective waypoints?")]
-        public YesNo FlightPlanAddExtraWaypoints { get; set; }
-
-        [TreeViewProperty("Starting airbase", "Flight plan", typeof(DBPseudoEntryAirbase), "Name of the airbase the player must take off from. If left empty, or if the airbase doesn't exist in this theater, a random airbase will be selected. Be aware that if the selected airbase doesn't have enough parking spots for the player mission package, some units may not spawn properly.", TreeViewPropertyAttributeFlags.EmptyIsRandom)]
-        public string FlightPlanTheaterStartingAirbase { get; set; }
-
-        public MissionTemplateObjective[] Objectives { get; set; }
-
-        //[TreeViewProperty("Objective count", "Objectives", typeof(int), "How many objectives/targets will be present in the mission.")]
-        //[TreeViewPropertyInt(1, MAX_OBJECTIVES)]
-        //public int ObjectiveCount { get; set; }
-
-        [TreeViewProperty("Objective distance", "Objectives", typeof(int), "How far from the player's starting location will the objectives be.")]
-        [TreeViewPropertyInt(0, MAX_OBJECTIVE_DISTANCE, 20, "%i nm", "Random")]
-        public int FlightPlanObjectiveDistance { get; set; }
-
-        //[TreeViewProperty("Objective type", "Objectives", typeof(DBEntryObjective), "The type of task player must accomplish in this mission.", TreeViewPropertyAttributeFlags.EmptyIsRandom)]
-        //public string ObjectiveType { get; set; }
-
-        [TreeViewProperty("Briefing unit system", "Options", typeof(UnitSystem), "Unit system to use in the mission briefing.")]
-        public UnitSystem OptionsBriefingUnitSystem { get; set; }
-
-        [TreeViewProperty("Civilian road traffic", "Options", typeof(CivilianTraffic), "Amount of civilian traffic on the roads. Can affect performance if set too high.")]
-        public CivilianTraffic OptionsCivilianTraffic { get; set; }
-
-        [TreeViewProperty("Mission auto-ending", "Options", typeof(MissionEndMode), "When (and if) should the mission automatically end after all objectives are complete?")]
-        public MissionEndMode OptionsEndMode { get; set; }
-
-        [TreeViewProperty("Enemy units location", "Options", typeof(SpawnPointPreferredCoalition), "Can enemy units be spawned in any country (recommended) or only in countries aligned with a given coalition? Be aware that when choosing an option other than \"Any\", depending on the theater and the \"Theater region coalitions\" setting, objectives may end up VERY far from the player(s) starting location, no matter the value of \"Objective distance\". Keep in mind that \"Theaters regions coalitions\" has a influence on this setting.")]
-        public SpawnPointPreferredCoalition OptionsEnemyUnitsLocation { get; set; }
-
-        [TreeViewProperty("Audio radio messages", "Options", typeof(YesNo), "Should audio radio messages be enabled? If not, messages will only be displayed as text.")]
-        public YesNo OptionsRadioSounds { get; set; }
-
-        [TreeViewProperty("Theater countries coalitions", "Options", typeof(CountryCoalition), "To which coalitions should the countries on the map (and their airbases) belong to?")]
-        public CountryCoalition OptionsTheaterCountriesCoalitions { get; set; }
-
-        [TreeViewProperty("Air defense", "Situation, enemies", typeof(AmountN), "Intensity and quality of enemy air defense.")]
-        public AmountN SituationEnemyAirDefense { get; set; }
-        
-        [TreeViewProperty("Air force", "Situation, enemies", typeof(AmountN), "Relative power of the enemy air force. Enemy air force will always be proportional to the number and air-to-air efficiency of aircraft in the player mission package, so more player/AI friendly aircraft means more enemy aircraft, regardless of this setting.")]
-        public AmountN SituationEnemyAirForce { get; set; }
-        
-        [TreeViewProperty("CAP on station", "Situation, enemies", typeof(AmountN), "Chance that enemy fighter planes will already be patrolling on mission start rather than popping up during the mission on objective completion.")]
-        public AmountN SituationEnemyCAPOnStationChance { get; set; }
-
-        [TreeViewProperty("Support Aircraft", "Situation, enemies", typeof(AmountN), "Enemy forces have support aircraft such as AWACS and Tankers.")]
-        public AmountN SituationEnemySupportAircraft { get; set; }
-        
-        [TreeViewProperty("Aircraft skill level", "Situation, enemies", typeof(BRSkillLevel), "Skill level of enemy planes and helicopters.")]
-        public BRSkillLevel SituationEnemySkillLevelAir { get; set; }
-        
-        [TreeViewProperty("Ground forces skill level", "Situation, enemies", typeof(BRSkillLevel), "Skill level of enemy ground units and air defense.")]
-        public BRSkillLevel SituationEnemySkillLevelGround { get; set; }
-
-        [TreeViewProperty("Air defense", "Situation, friendlies", typeof(AmountN), "Intensity and quality of friendly air defense.")]
-        public AmountN SituationFriendlyAirDefense { get; set; }
-        
-        [TreeViewProperty("Skill level", "Situation, friendlies", typeof(BRSkillLevel), "Skill level of friendly units.")]
-        public BRSkillLevel SituationFriendlyAISkillLevel { get; set; }
-        
-        [TreeViewProperty("AI CAP escort", "Situation, friendlies", typeof(int), "Number of AI aircraft tasked with escorting the player against enemy fighters. In single-player missions, escorts will be spawned on the ramp if the player starts from the ramp (cold or hot), or in the air above the airbase if the player starts on the runway. In multiplayer missions, escorts will be spawned as soon as one player takes off.")]
-        [TreeViewPropertyInt(0, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE)]
-        public int SituationFriendlyEscortCAP { get; set; }
-
-        [TreeViewProperty("AI SEAD escort", "Situation, friendlies", typeof(int), "Number of AI aircraft tasked with escorting the player against enemy air defense. In single-player missions, escorts will be spawned on the ramp if the player starts from the ramp (cold or hot), or in the air above the airbase if the player starts on the runway. In multiplayer missions, escorts will be spawned as soon as one player takes off.")]
-        [TreeViewPropertyInt(0, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE)]
-        public int SituationFriendlyEscortSEAD { get; set; }
-
-        [TreeViewProperty("Player flight groups", null, typeof(MissionTemplateFlightGroup), "Player flight groups.")]
-        public MissionTemplateFlightGroup[] PlayerFlightGroups { get; set; } = new MissionTemplateFlightGroup[0];
-
-        [TreeViewProperty("Realism", null, typeof(RealismOption), "Realism options to apply to this mission.")]
-        public RealismOption[] Realism { get; set; }
-
-        [TreeViewProperty("Mission features", null, typeof(DBEntryMissionFeature), "Mission features to include in this mission.")]
-        public string[] MissionFeatures { get; set; }
-
-        [TreeViewProperty("Unit mods", null, typeof(DBEntryDCSMod), "Which unit mods should be enabled in this mission? Make sure units mods are installed and active in your version of DCS World or the units won't be spawned.")]
-        public string[] UnitMods { get; set; }
-
         /// <summary>
         /// Resets all properties to their default values.
         /// </summary>
         public void Clear()
         {
+            // If the default template is found, load it.
+            if (File.Exists(DEFAULT_TEMPLATE_FILEPATH))
+            {
+                LoadFromFile(DEFAULT_TEMPLATE_FILEPATH);
+                return;
+            }
+
             MissionType = MissionType.SinglePlayer;
 
-            ContextCoalitionBlue = "USA"; // Database.Instance.CheckValue<DBEntryCoalition>("USA");
-            ContextCoalitionPlayer = Coalition.Blue;
-            ContextCoalitionRed = "Russia"; // Database.Instance.CheckValue<DBEntryCoalition>("Russia");
+            ContextCoalitionBlue = "USA";
+            ContextCoalitionRed = "Russia";
             ContextDecade = Decade.Decade2000;
-            ContextTheater = "Caucasus"; // Database.Instance.CheckValue<DBEntryTheater>("Caucasus");
+            ContextPlayerCoalition = Coalition.Blue;
+            ContextTheater = "Caucasus";
+            ContextTheaterCountriesCoalitions = CountryCoalition.Default;
 
+            EnvironmentCloudPreset = CloudPreset.Random;
             EnvironmentSeason = Season.Random;
             EnvironmentTimeOfDay = TimeOfDay.RandomDaytime;
-            EnvironmentWeather = Weather.Random;
-            EnvironmentCloudPreset = CloudPreset.Random;
-            EnvironmentWind = Wind.Auto;
+            EnvironmentWind = Wind.Random;
 
-            FlightPlanAddExtraWaypoints = YesNo.No;
-            FlightPlanObjectiveDistance = 0;
+            FlightPlanObjectiveDistance = 80;
+            FlightPlanObjectivesLocation = ObjectiveCountryLocation.Any;
             FlightPlanTheaterStartingAirbase = "";
 
-            Objectives = new MissionTemplateObjective[1] { new MissionTemplateObjective("DestroyAll", "VehicleAny", "Idle", Amount.Average) };
-            //ObjectiveCount = 2;
-            //ObjectiveType = "";
+            MissionFeatures = new List<string>();
+            
+            Mods = new List<string>();
 
-            OptionsBriefingUnitSystem = UnitSystem.Imperial;
-            OptionsCivilianTraffic = CivilianTraffic.Low;
-            OptionsEndMode = MissionEndMode.Never;
-            OptionsEnemyUnitsLocation = SpawnPointPreferredCoalition.Any;
-            OptionsRadioSounds = YesNo.Yes;
-            OptionsTheaterCountriesCoalitions = CountryCoalition.Default;
+            Objectives = new MissionTemplateObjective[] { new MissionTemplateObjective() }.ToList();
 
-            SituationEnemyAirDefense = AmountN.Random;
-            SituationEnemyAirForce = AmountN.Random;
-            SituationEnemyCAPOnStationChance = AmountN.Random;
-            SituationEnemySkillLevelAir = BRSkillLevel.Random;
-            SituationEnemySkillLevelGround = BRSkillLevel.Random;
-            SituationEnemySupportAircraft = AmountN.Random;
+            OptionsFogOfWar = FogOfWar.All;
+            OptionsMission = new MissionOption[] { MissionOption.ImperialUnitsForBriefing }.ToList();
+            OptionsRealism = new RealismOption[] { RealismOption.DisableDCSRadioAssists, RealismOption.NoBDA }.ToList();
 
-            SituationFriendlyAISkillLevel = BRSkillLevel.Random;
-            SituationFriendlyAirDefense = AmountN.Random;
-            SituationFriendlyEscortCAP = 0;
-            SituationFriendlyEscortSEAD = 0;
+            PlayerFlightGroups = new MissionTemplateFlightGroup[] { new MissionTemplateFlightGroup() }.ToList();
 
-            PlayerFlightGroups = new MissionTemplateFlightGroup[] { new MissionTemplateFlightGroup() };
-
-            Realism = new RealismOption[] { RealismOption.DisableDCSRadioAssists, RealismOption.NoBDA };
-
-            MissionFeatures = new string[0];
-
-            UnitMods = new string[0];
-
-            CheckValues(out string[] _);
-        }
-
-        public bool CheckValues(out string[] errorMessages)
-        {
-            bool changesMade = false;
-            List<string> errorMessagesList = new List<string>();
-
-            if (PlayerFlightGroups.Length == 0)
-            {
-                PlayerFlightGroups = new MissionTemplateFlightGroup[] { new MissionTemplateFlightGroup() };
-                changesMade = true;
-                errorMessagesList.Add("No player flight group in template, added default flight group.");
-            }
-
-            if ((MissionType == MissionType.SinglePlayer) && (PlayerFlightGroups.Length > 1))
-            {
-                MissionType = MissionType.Multiplayer;
-                changesMade = true;
-                errorMessagesList.Add("Multiple player flight groups, mission type was changed to multiplayer.");
-            }
-
-            foreach (string msg in errorMessagesList)
-                DebugLog.Instance.WriteLine(msg, DebugLogMessageErrorLevel.Warning);
-
-            errorMessages = errorMessagesList.ToArray();
-            return changesMade;
+            SituationEnemyAirDefense = AmountNR.Random;
+            SituationEnemyAirForce = AmountNR.Random;
+            SituationFriendlyAirDefense = AmountNR.Random;
+            SituationFriendlyAirForce = AmountNR.None;
         }
 
         /// <summary>
@@ -276,66 +257,45 @@ namespace BriefingRoom.Template
 
             using (INIFile ini = new INIFile(filePath))
             {
-                MissionType = ini.GetValue("Common", "MissionType", MissionType);
+                MissionType = ini.GetValue("MissionType", "MissionType", MissionType);
 
-                ContextCoalitionBlue = ini.GetValue("Context", "Coalition.Blue", ContextCoalitionBlue); // Database.Instance.CheckValue<DBEntryCoalition>(ini.GetValue("Context", "Coalition.Blue", ContextCoalitionBlue));
-                ContextCoalitionPlayer = ini.GetValue("Context", "Coalition.Player", ContextCoalitionPlayer);
-                ContextCoalitionRed = ini.GetValue("Context", "Coalition.Red", ContextCoalitionRed); // Database.Instance.CheckValue<DBEntryCoalition>(ini.GetValue("Context", "Coalition.Red", ContextCoalitionRed));
+                ContextCoalitionBlue = ini.GetValue("Context", "CoalitionBlue", ContextCoalitionBlue);
+                ContextCoalitionRed = ini.GetValue("Context", "CoalitionRed", ContextCoalitionRed);
                 ContextDecade = ini.GetValue("Context", "Decade", ContextDecade);
-                ContextTheater = ini.GetValue("Context", "Theater", ContextTheater);// Database.Instance.CheckValue<DBEntryTheater>(ini.GetValue("Context", "Theater", ContextTheater));
+                ContextPlayerCoalition = ini.GetValue("Context", "PlayerCoalition", ContextPlayerCoalition);
+                ContextTheater = ini.GetValue("Context", "Theater", ContextTheater);
+                ContextTheaterCountriesCoalitions = ini.GetValue("Context", "TheaterCountriesCoalitions", ContextTheaterCountriesCoalitions);
 
+                EnvironmentCloudPreset = ini.GetValue("Environment", "CloudPreset", EnvironmentCloudPreset);
                 EnvironmentSeason = ini.GetValue("Environment", "Season", EnvironmentSeason);
                 EnvironmentTimeOfDay = ini.GetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);
-                EnvironmentWeather = ini.GetValue("Environment", "Weather", EnvironmentWeather);
-                EnvironmentCloudPreset = ini.GetValue("Environment", "CloudPreset", EnvironmentCloudPreset);
                 EnvironmentWind = ini.GetValue("Environment", "Wind", EnvironmentWind);
 
-                FlightPlanAddExtraWaypoints = ini.GetValue("FlightPlan", "ExtraWaypoints", FlightPlanAddExtraWaypoints);
-                FlightPlanObjectiveDistance = Toolbox.Clamp(ini.GetValue("FlightPlan", "ObjectiveDistance", FlightPlanObjectiveDistance), 0, MAX_OBJECTIVE_DISTANCE);
+                FlightPlanObjectiveDistance = ini.GetValue("FlightPlan", "ObjectiveDistance", FlightPlanObjectiveDistance);
+                FlightPlanObjectivesLocation = ini.GetValue("FlightPlan", "ObjectivesLocation", FlightPlanObjectivesLocation);
                 FlightPlanTheaterStartingAirbase = ini.GetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
 
-                List<MissionTemplateObjective> objectivesList = new List<MissionTemplateObjective>();
-                foreach (string objectiveKey in ini.GetTopLevelKeysInSection("Objectives")) objectivesList.Add(new MissionTemplateObjective(ini, "Objectives", objectiveKey));
-                if (objectivesList.Count == 0) objectivesList.Add(new MissionTemplateObjective("DestroyAll", "VehicleAny", "Idle", Amount.Average));
-                Objectives = objectivesList.ToArray();
+                MissionFeatures = ini.GetValueArray<string>("MissionFeatures", "MissionFeatures").ToList();
 
-                //ObjectiveCount = Toolbox.Clamp(ini.GetValue("Objective", "Count", ObjectiveCount), 1, MAX_OBJECTIVES);
-                //ObjectiveType = ini.GetValue("Objective", "Type", ObjectiveType); // Database.Instance.CheckValue<DBEntryObjective>(ini.GetValue("Objective", "Type", ObjectiveType), "", true);
+                Mods = ini.GetValueArray<string>("Mods", "Mods").ToList();
 
-                OptionsBriefingUnitSystem = ini.GetValue("Options", "BriefingUnitSystem", OptionsBriefingUnitSystem);
-                OptionsCivilianTraffic = ini.GetValue("Options", "CivilianTraffic", OptionsCivilianTraffic);
-                OptionsEndMode = ini.GetValue("Options", "EndMode", OptionsEndMode);
-                OptionsEnemyUnitsLocation = ini.GetValue("Options", "EnemyUnitsLocation", OptionsEnemyUnitsLocation);
-                OptionsRadioSounds = ini.GetValue("Options", "RadioSounds", OptionsRadioSounds);
-                OptionsTheaterCountriesCoalitions = ini.GetValue("Options", "TheaterCountriesCoalitions", OptionsTheaterCountriesCoalitions);
+                Objectives.Clear();
+                foreach (string key in ini.GetTopLevelKeysInSection("Objectives"))
+                    Objectives.Add(new MissionTemplateObjective(ini, "Objectives", key));
 
-                SituationEnemyAirDefense = ini.GetValue("SituationEnemy", "AirDefense", SituationEnemyAirDefense);
-                SituationEnemyAirForce = ini.GetValue("SituationEnemy", "AirForce", SituationEnemyAirForce);
-                SituationEnemyCAPOnStationChance = ini.GetValue("SituationEnemy", "CAPOnStationChance", SituationEnemyCAPOnStationChance);
-                SituationEnemySkillLevelAir = ini.GetValue("SituationEnemy", "SkillLevelAir", SituationEnemySkillLevelAir);
-                SituationEnemySkillLevelGround = ini.GetValue("SituationEnemy", "SkillLevelGround", SituationEnemySkillLevelGround);
-                SituationEnemySupportAircraft = ini.GetValue("SituationEnemy", "SupportAircraft", SituationEnemySupportAircraft);
+                OptionsFogOfWar = ini.GetValue("Options", "FogOfWar", OptionsFogOfWar);
+                OptionsMission = ini.GetValueArray<MissionOption>("Options", "Mission").ToList();
+                OptionsRealism = ini.GetValueArray<RealismOption>("Options", "Realism").ToList();
 
-                SituationFriendlyAISkillLevel = ini.GetValue("SituationFriendly", "AISkillLevel", SituationFriendlyAISkillLevel);
-                SituationFriendlyAirDefense = ini.GetValue("SituationFriendly", "AirDefense", SituationFriendlyAirDefense);
-                SituationFriendlyEscortCAP = Toolbox.Clamp(ini.GetValue("SituationFriendly", "EscortCAP", SituationFriendlyEscortCAP), 0, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE);
-                SituationFriendlyEscortSEAD = Toolbox.Clamp(ini.GetValue("SituationFriendly", "EscortSEAD", SituationFriendlyEscortSEAD), 0, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE);
+                PlayerFlightGroups.Clear();
+                foreach (string key in ini.GetTopLevelKeysInSection("PlayerFlightGroups"))
+                    PlayerFlightGroups.Add(new MissionTemplateFlightGroup(ini, "PlayerFlightGroups", key));
 
-                int fgFlightGroupCount = Math.Max(0, ini.GetValue<int>("PlayerFlightGroups", "Count"));
-                PlayerFlightGroups = new MissionTemplateFlightGroup[fgFlightGroupCount];
-                for (int i = 0; i < fgFlightGroupCount; i++)
-                    PlayerFlightGroups[i] = new MissionTemplateFlightGroup(ini, "PlayerFlightGroups", $"FG{i:000}");
-                if (PlayerFlightGroups.Length == 0)
-                    PlayerFlightGroups = new MissionTemplateFlightGroup[] { new MissionTemplateFlightGroup() };
-
-                Realism = ini.GetValueArray<RealismOption>("Realism", "Realism").Distinct().ToArray();
-
-                MissionFeatures = ini.GetValueArray<string>("ScriptExtensions", "ScriptExtensions").Distinct().ToArray();
-
-                UnitMods = ini.GetValueArray<string>("UnitMods", "UnitMods").Distinct().ToArray();
+                SituationEnemyAirDefense = ini.GetValue("Situation", "EnemyAirDefense", SituationEnemyAirDefense);
+                SituationEnemyAirForce = ini.GetValue("Situation", "EnemyAirForce", SituationEnemyAirForce);
+                SituationFriendlyAirDefense = ini.GetValue("Situation", "FriendlyAirDefense", SituationFriendlyAirDefense);
+                SituationFriendlyAirForce = ini.GetValue("Situation", "FriendlyAirForce", SituationFriendlyAirForce);
             }
-
-            CheckValues(out string[] _);
 
             return true;
         }
@@ -346,101 +306,49 @@ namespace BriefingRoom.Template
         /// <param name="filePath">Path to the .ini file.</param>
         public void SaveToFile(string filePath)
         {
+            int i;
+
             using (INIFile ini = new INIFile())
             {
-                ini.SetValue("Common", "MissionType", MissionType);
+                ini.SetValue("MissionType", "MissionType", MissionType);
 
-                ini.SetValue("Context", "Coalition.Blue", ContextCoalitionBlue);
-                ini.SetValue("Context", "Coalition.Player", ContextCoalitionPlayer);
-                ini.SetValue("Context", "Coalition.Red", ContextCoalitionRed);
+                ini.SetValue("Context", "CoalitionBlue", ContextCoalitionBlue);
+                ini.SetValue("Context", "CoalitionRed", ContextCoalitionRed);
                 ini.SetValue("Context", "Decade", ContextDecade);
+                ini.SetValue("Context", "PlayerCoalition", ContextPlayerCoalition);
                 ini.SetValue("Context", "Theater", ContextTheater);
+                ini.SetValue("Context", "TheaterCountriesCoalitions", ContextTheaterCountriesCoalitions);
 
+                ini.SetValue("Environment", "CloudPreset", EnvironmentCloudPreset);
                 ini.SetValue("Environment", "Season", EnvironmentSeason);
                 ini.SetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);
-                ini.SetValue("Environment", "Weather", EnvironmentWeather);
-                ini.SetValue("Environment", "CloudPreset", EnvironmentCloudPreset);
                 ini.SetValue("Environment", "Wind", EnvironmentWind);
 
-                ini.SetValue("FlightPlan", "ExtraWaypoints", FlightPlanAddExtraWaypoints);
                 ini.SetValue("FlightPlan", "ObjectiveDistance", FlightPlanObjectiveDistance);
+                ini.SetValue("FlightPlan", "ObjectivesLocation", FlightPlanObjectivesLocation);
                 ini.SetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
 
-                for (int i = 0; i < Objectives.Length; i++)
-                    Objectives[i].SaveToFile(ini, "Objectives", $"Objective{i + 1:000}");
+                ini.SetValueArray("MissionFeatures", "MissionFeatures", MissionFeatures.ToArray());
 
-                //ini.SetValue("Objective", "Count", ObjectiveCount);
-                //ini.SetValue("Objective", "Type", ObjectiveType);
+                ini.SetValueArray("Mods", "Mods", Mods.ToArray());
 
-                ini.SetValue("Options", "BriefingUnitSystem", OptionsBriefingUnitSystem);
-                ini.SetValue("Options", "CivilianTraffic", OptionsCivilianTraffic);
-                ini.SetValue("Options", "EndMode", OptionsEndMode);
-                ini.SetValue("Options", "EnemyUnitsLocation", OptionsEnemyUnitsLocation);
-                ini.SetValue("Options", "RadioSounds", OptionsRadioSounds);
-                ini.SetValue("Options", "TheaterCountriesCoalitions", OptionsTheaterCountriesCoalitions);
+                for (i = 0; i < Objectives.Count; i++)
+                    Objectives[i].SaveToFile(ini, "Objectives", $"Objective{i:000}");
 
-                ini.SetValue("SituationEnemy", "AirDefense", SituationEnemyAirDefense);
-                ini.SetValue("SituationEnemy", "AirForce", SituationEnemyAirForce);
-                ini.SetValue("SituationEnemy", "CAPOnStationChance", SituationEnemyCAPOnStationChance);
-                ini.SetValue("SituationEnemy", "SkillLevelAir", SituationEnemySkillLevelAir);
-                ini.SetValue("SituationEnemy", "SkillLevelGround", SituationEnemySkillLevelGround);
-                ini.SetValue("SituationEnemy", "SupportAircraft", SituationEnemySupportAircraft);
+                ini.SetValue("Options", "FogOfWar", OptionsFogOfWar);
+                ini.SetValueArray("Options", "Mission", OptionsMission.ToArray());
+                ini.SetValueArray("Options", "Realism", OptionsRealism.ToArray());
 
-                ini.SetValue("SituationFriendly", "AISkillLevel", SituationFriendlyAISkillLevel);
-                ini.SetValue("SituationFriendly", "AirDefense", SituationFriendlyAirDefense);
-                ini.SetValue("SituationFriendly", "EscortCAP", SituationFriendlyEscortCAP);
-                ini.SetValue("SituationFriendly", "EscortSEAD", SituationFriendlyEscortSEAD);
+                for (i = 0; i < PlayerFlightGroups.Count; i++)
+                    PlayerFlightGroups[i].SaveToFile(ini, "PlayerFlightGroups", $"PlayerFlightGroup{i:000}");
 
-                ini.SetValue("PlayerFlightGroups", "Count", PlayerFlightGroups.Length);
-
-                for (int i = 0; i < PlayerFlightGroups.Length; i++)
-                    PlayerFlightGroups[i].SaveToFile(ini, "PlayerFlightGroups", $"FG{i:000}");
-
-                ini.SetValueArray("Realism", "Realism", Realism);
-
-                ini.SetValueArray("ScriptExtensions", "ScriptExtensions", MissionFeatures);
-
-                ini.SetValueArray("UnitMods", "UnitMods", UnitMods);
+                ini.SetValue("Situation", "EnemyAirDefense", SituationEnemyAirDefense);
+                ini.SetValue("Situation", "EnemyAirForce", SituationEnemyAirForce);
+                ini.SetValue("Situation", "FriendlyAirDefense", SituationFriendlyAirDefense);
+                ini.SetValue("Situation", "FriendlyAirForce", SituationFriendlyAirForce);
 
                 ini.SaveToFile(filePath);
             }
-        }
-
-        /// <summary>
-        /// "Shortcut" method to get <see cref="ContextCoalitionBlue"/> or <see cref="ContextCoalitionRed"/> by using a <see cref="Coalition"/> parameter.
-        /// </summary>
-        /// <param name="coalition">Color of the coalition to return</param>
-        /// <returns><see cref="ContextCoalitionBlue"/> or <see cref="ContextCoalitionRed"/></returns>
-        public string GetCoalition(Coalition coalition)
-        {
-            if (coalition == Coalition.Red) return ContextCoalitionRed;
-            return ContextCoalitionBlue;
-        }
-
-        /// <summary>
-        /// Returns the total number of player-controllable aircraft in the mission.
-        /// </summary>
-        /// <returns>The number of player-controllable aircraft</returns>
-        public int GetPlayerCount()
-        {
-            if (MissionType == MissionType.SinglePlayer) return 1;
-
-            return (from MissionTemplateFlightGroup pfg in PlayerFlightGroups select pfg.Count).Sum();
-        }
-
-        /// <summary>
-        /// Returns the total number of parking spots required for the misison package aircraft.
-        /// </summary>
-        /// <returns>Number of parking spots required</returns>
-        public int GetMissionPackageRequiredParkingSpots()
-        {
-            if (MissionType == MissionType.SinglePlayer)
-            {
-                if (PlayerFlightGroups[0].StartLocation == PlayerStartLocation.Runway) return 0; // Player and wingmen start on the runway, AI escort start in air above the airbase
-                return PlayerFlightGroups[0].Count + SituationFriendlyEscortCAP + SituationFriendlyEscortSEAD;
-            }
-
-            return GetPlayerCount(); // AI escorts start in the air
         }
 
         /// <summary>

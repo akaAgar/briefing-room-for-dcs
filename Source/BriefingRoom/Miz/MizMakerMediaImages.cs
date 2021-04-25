@@ -20,30 +20,28 @@ If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
 
-using BriefingRoom.DB;
-using BriefingRoom.Generator;
-using BriefingRoom.Media;
-using BriefingRoom.Mission;
+using BriefingRoom4DCS.Data;
+//using BriefingRoom4DCS.Generator;
+using BriefingRoom4DCS.Media;
+using BriefingRoom4DCS.Mission;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 
-namespace BriefingRoom.Miz
+namespace BriefingRoom4DCS.Miz
 {
     /// <summary>
     /// Creates all images file required for the mission except for Kneeboard makers, which are handled differently (see MIZMediaKneeboardMaker).
     /// </summary>
-    public class MizMakerMediaImages : IDisposable
+    internal class MizMakerMediaImages : IDisposable
     {
-        private readonly Database Database;
-
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MizMakerMediaImages(Database database)
+        internal MizMakerMediaImages()
         {
-            Database = database;
+
         }
 
         /// <summary>
@@ -60,20 +58,20 @@ namespace BriefingRoom.Miz
         {
             byte[] imageBytes;
 
-
             using (ImageMaker imgMaker = new ImageMaker())
             {
                 imgMaker.TextOverlay.Text = mission.MissionName;
                 imgMaker.TextOverlay.Alignment = ContentAlignment.BottomCenter;
 
                 List<ImageMakerLayer> layers = new List<ImageMakerLayer>();
-                string[] theaterImages = Directory.GetFiles($"{BRPaths.INCLUDE_JPG}Theaters\\", $"{Database.GetEntry<DBEntryTheater>(mission.Theater).DCSID}*.jpg");
+                string[] theaterImages = Directory.GetFiles($"{BRPaths.INCLUDE_JPG}Theaters\\", $"{Database.Instance.GetEntry<DBEntryTheater>(mission.Theater).DCSID}*.jpg");
                 if (theaterImages.Length == 0)
                     layers.Add(new ImageMakerLayer("_default.jpg"));
                 else
                     layers.Add(new ImageMakerLayer("Theaters\\" + Path.GetFileName(Toolbox.RandomFrom(theaterImages))));
 
-                layers.Add(new ImageMakerLayer($"Flags\\{GeneratorTools.RemoveAfterComma(mission.Coalitions[(int)mission.CoalitionPlayer])}.png", ContentAlignment.TopLeft, 8, 8, 0, .5));
+                //layers.Add(new ImageMakerLayer($"Flags\\{GeneratorTools.RemoveAfterComma(mission.Coalitions[(int)mission.CoalitionPlayer])}.png", ContentAlignment.TopLeft, 8, 8, 0, .5));
+                layers.Add(new ImageMakerLayer($"Flags\\{mission.Coalitions[(int)mission.CoalitionPlayer]}.png", ContentAlignment.TopLeft, 8, 8, 0, .5));
 
                 imageBytes = imgMaker.GetImageBytes(layers.ToArray());
             }
@@ -81,7 +79,7 @@ namespace BriefingRoom.Miz
             return imageBytes;
         }
 
-        public void AddMediaFiles(MizFile miz, DCSMission mission)
+        internal void AddMediaFiles(MizFile miz, DCSMission mission)
         {
             miz.AddEntry($"l10n/DEFAULT/title_{mission.UniqueID}.jpg", GetTitleImage(mission));
         }

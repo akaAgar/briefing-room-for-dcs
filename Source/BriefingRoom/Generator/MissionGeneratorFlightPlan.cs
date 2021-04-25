@@ -1,118 +1,117 @@
-﻿/*
-==========================================================================
-This file is part of Briefing Room for DCS World, a mission
-generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
+﻿///*
+//==========================================================================
+//This file is part of Briefing Room for DCS World, a mission
+//generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
 
-Briefing Room for DCS World is free software: you can redistribute it
-and/or modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation, either version 3 of
-the License, or (at your option) any later version.
+//Briefing Room for DCS World is free software: you can redistribute it
+//and/or modify it under the terms of the GNU General Public License
+//as published by the Free Software Foundation, either version 3 of
+//the License, or (at your option) any later version.
 
-Briefing Room for DCS World is distributed in the hope that it will
-be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
-of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+//Briefing Room for DCS World is distributed in the hope that it will
+//be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+//of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses/
-==========================================================================
-*/
+//You should have received a copy of the GNU General Public License
+//along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses/
+//==========================================================================
+//*/
 
-using BriefingRoom.DB;
-using BriefingRoom.Debug;
-using BriefingRoom.Mission;
-using BriefingRoom.Template;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+//using BriefingRoom4DCS.Data;
+//using BriefingRoom4DCS.Mission;
+//using BriefingRoom4DCS.Template;
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
 
-namespace BriefingRoom.Generator
-{
-    /// <summary>
-    /// Generates the player's flight plan and waypoints.
-    /// </summary>
-    public class MissionGeneratorFlightPlan : IDisposable
-    {
-        /// <summary>
-        /// An array with some random count of extra waypoints to add before and after the objective waypoints.
-        /// </summary>
-        private static readonly int[] EXTRA_WAYPOINT_COUNT = new int[] { 1, 1, 2, 2, 2, 2, 3 };
+//namespace BriefingRoom4DCS.Generator
+//{
+//    /// <summary>
+//    /// Generates the player's flight plan and waypoints.
+//    /// </summary>
+//    internal class MissionGeneratorFlightPlan : IDisposable
+//    {
+//        /// <summary>
+//        /// An array with some random count of extra waypoints to add before and after the objective waypoints.
+//        /// </summary>
+//        private static readonly int[] EXTRA_WAYPOINT_COUNT = new int[] { 1, 1, 2, 2, 2, 2, 3 };
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        public MissionGeneratorFlightPlan() { }
+//        /// <summary>
+//        /// Constructor.
+//        /// </summary>
+//        internal MissionGeneratorFlightPlan() { }
 
-        /// <summary>
-        /// Adds waypoints for the mission objectives.
-        /// </summary>
-        /// <param name="mission">Mission</param>
-        public void AddObjectiveWaypoints(DCSMission mission)
-        {
-            DebugLog.Instance.WriteLine("Generating objective waypoints...", 1);
+//        /// <summary>
+//        /// Adds waypoints for the mission objectives.
+//        /// </summary>
+//        /// <param name="mission">Mission</param>
+//        internal void AddObjectiveWaypoints(DCSMission mission)
+//        {
+//            BriefingRoom.PrintToLog("Generating objective waypoints...");
 
-            for (int i = 0; i < mission.Objectives.Length; i++)
-            {
-                Coordinates waypointCoordinates = mission.Objectives[i].WaypointCoordinates;
-                DebugLog.Instance.WriteLine($"Created objective waypoint at {waypointCoordinates}", 2);
+//            for (int i = 0; i < mission.Objectives.Length; i++)
+//            {
+//                Coordinates waypointCoordinates = mission.Objectives[i].WaypointCoordinates;
+//                BriefingRoom.PrintToLog($"Created objective waypoint at {waypointCoordinates}");
 
-                mission.Waypoints.Add(
-                    new DCSMissionWaypoint(
-                        waypointCoordinates, mission.Objectives[i].Name,
-                        mission.Objectives[i].WaypointOnGround ? 0.0 : 1.0,
-                        1.0));
-            }
-        }
+//                mission.Waypoints.Add(
+//                    new DCSMissionWaypoint(
+//                        waypointCoordinates, mission.Objectives[i].Name,
+//                        mission.Objectives[i].WaypointOnGround ? 0.0 : 1.0,
+//                        1.0));
+//            }
+//        }
 
-        ///// <summary>
-        ///// Adds extra waypoint before and after the objective waypoints, if required.
-        ///// </summary>
-        ///// <param name="mission">Mission</param>
-        ///// <param name="template">Mission template</param>
-        public void AddExtraWaypoints(DCSMission mission, MissionTemplate template, bool preObj = true)
-        {
-            // No objective waypoints, or no extra waypoints required, stop here
-            if ((template.FlightPlanAddExtraWaypoints == YesNo.No) || (mission.Waypoints.Count == 0))
-                return;
+//        ///// <summary>
+//        ///// Adds extra waypoint before and after the objective waypoints, if required.
+//        ///// </summary>
+//        ///// <param name="mission">Mission</param>
+//        ///// <param name="template">Mission template</param>
+//        internal void AddExtraWaypoints(DCSMission mission, MissionTemplate template, bool preObj = true)
+//        {
+//            // No objective waypoints, or no extra waypoints required, stop here
+//            if ((template.FlightPlanAddExtraWaypoints == YesNo.No) || (mission.Waypoints.Count == 0))
+//                return;
 
-            DebugLog.Instance.WriteLine("Generating extra waypoints...");
+//            BriefingRoom.PrintToLog("Generating extra waypoints...");
 
-            int extraWaypointsCount = Toolbox.RandomFrom(EXTRA_WAYPOINT_COUNT);
-            List<Coordinates> extraWaypoints = new List<Coordinates>();
-            Coordinates startingPos = preObj? mission.InitialPosition : mission.Waypoints.Last().Coordinates;
-            for (int j = 0; j < extraWaypointsCount; j++)
-            {
-                if(preObj)
-                    startingPos = Coordinates.Lerp(startingPos, mission.Waypoints[0].Coordinates, new MinMaxD(0.2, 0.8).GetValue()).CreateNearRandom(0, 20000);
-                else
-                    startingPos = Coordinates.Lerp(startingPos, mission.InitialPosition, new MinMaxD(0.2, 0.8).GetValue()).CreateNearRandom(0, 20000);
-                    extraWaypoints.Add(startingPos);
-            }
+//            int extraWaypointsCount = Toolbox.RandomFrom(EXTRA_WAYPOINT_COUNT);
+//            List<Coordinates> extraWaypoints = new List<Coordinates>();
+//            Coordinates startingPos = preObj? mission.InitialPosition : mission.Waypoints.Last().Coordinates;
+//            for (int j = 0; j < extraWaypointsCount; j++)
+//            {
+//                if(preObj)
+//                    startingPos = Coordinates.Lerp(startingPos, mission.Waypoints[0].Coordinates, new MinMaxD(0.2, 0.8).GetValue()).CreateNearRandom(0, 20000);
+//                else
+//                    startingPos = Coordinates.Lerp(startingPos, mission.InitialPosition, new MinMaxD(0.2, 0.8).GetValue()).CreateNearRandom(0, 20000);
+//                    extraWaypoints.Add(startingPos);
+//            }
 
-            int count = 1;
-            extraWaypoints =  extraWaypoints.OrderBy(x => preObj? mission.InitialPosition.GetDistanceFrom(x): -mission.InitialPosition.GetDistanceFrom(x)).ToList();
-            if (preObj) {// Adding waypoints before first objective waypoint
-                mission.Waypoints.InsertRange(0, extraWaypoints.Select(x => new DCSMissionWaypoint(x, $"WP{count++:00}", 1.0)));
-                AddExtraWaypoints(mission, template, false);
-            } else // Add waypoints after last objective waypoint
-                mission.Waypoints.AddRange(extraWaypoints.Select(x =>new DCSMissionWaypoint(x, $"WP{mission.Waypoints.Count + count++:00}", 1.0)));
-        }
+//            int count = 1;
+//            extraWaypoints =  extraWaypoints.OrderBy(x => preObj? mission.InitialPosition.GetDistanceFrom(x): -mission.InitialPosition.GetDistanceFrom(x)).ToList();
+//            if (preObj) {// Adding waypoints before first objective waypoint
+//                mission.Waypoints.InsertRange(0, extraWaypoints.Select(x => new DCSMissionWaypoint(x, $"WP{count++:00}", 1.0)));
+//                AddExtraWaypoints(mission, template, false);
+//            } else // Add waypoints after last objective waypoint
+//                mission.Waypoints.AddRange(extraWaypoints.Select(x =>new DCSMissionWaypoint(x, $"WP{mission.Waypoints.Count + count++:00}", 1.0)));
+//        }
 
-        /// <summary>
-        /// Sets the mission bullseye for both coalitions.
-        /// </summary>
-        /// <param name="mission">The mission</param>
-        public void SetBullseye(DCSMission mission)
-        {
-            for (int i = 0; i < 2; i++)
-                mission.Bullseye[i] =
-                    mission.ObjectivesCenter +
-                    Coordinates.CreateRandom(20 * Toolbox.NM_TO_METERS, 40 * Toolbox.NM_TO_METERS);
-        }
+//        /// <summary>
+//        /// Sets the mission bullseye for both coalitions.
+//        /// </summary>
+//        /// <param name="mission">The mission</param>
+//        internal void SetBullseye(DCSMission mission)
+//        {
+//            for (int i = 0; i < 2; i++)
+//                mission.Bullseye[i] =
+//                    mission.ObjectivesCenter +
+//                    Coordinates.CreateRandom(20 * Toolbox.NM_TO_METERS, 40 * Toolbox.NM_TO_METERS);
+//        }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
-        public void Dispose() { }
-    }
-}
+//        /// <summary>
+//        /// <see cref="IDisposable"/> implementation.
+//        /// </summary>
+//        public void Dispose() { }
+//    }
+//}

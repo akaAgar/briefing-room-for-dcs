@@ -18,10 +18,10 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using BriefingRoom.DB;
+using BriefingRoom4DCS.Data;
 using System;
 
-namespace BriefingRoom.Mission
+namespace BriefingRoom4DCS.Mission
 {
     /// <summary>
     /// Stores information about a mission objective.

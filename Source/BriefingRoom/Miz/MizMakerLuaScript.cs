@@ -20,39 +20,38 @@ If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
 
-using BriefingRoom.Debug;
-using BriefingRoom.Mission;
+using BriefingRoom4DCS.Mission;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace BriefingRoom.Miz
+namespace BriefingRoom4DCS.Miz
 {
     /// <summary>
     /// Creates the "l10n/DEFAULT/script.lua" entry in the MIZ file.
     /// </summary>
-    public class MizMakerLuaScript : IDisposable
+    internal class MizMakerLuaScript : IDisposable
     {
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MizMakerLuaScript() { }
+        internal MizMakerLuaScript() { }
 
         /// <summary>
         /// Generates the content of the Lua file.
         /// </summary>
         /// <param name="mission">An HQ4DCS mission.</param>
         /// <returns>The contents of the Lua file.</returns>
-        public string MakeLua(DCSMission mission)
+        internal string MakeLua(DCSMission mission)
         {
-            DebugLog.Instance.WriteLine("Concatenating source Lua files...");
+            BriefingRoom.PrintToLog("Concatenating source Lua files...");
             string lua = LuaTools.ReadIncludeLuaFile("Script.lua");
 
-            DebugLog.Instance.WriteLine("Making replacements in the Lua files...");
-            LuaTools.ReplaceKey(ref lua, "CoreLua", mission.CoreLuaScript.Trim('\r', '\n', ' '));
-            LuaTools.ReplaceKey(ref lua, "RadioSounds", mission.RadioSounds);
-            LuaTools.ReplaceKey(ref lua, "LuaSettings", mission.LuaSettings);
+            BriefingRoom.PrintToLog("Making replacements in the Lua files...");
+            LuaTools.ReplaceKey(ref lua, "CoreLua", mission.LuaScriptObjectives.Trim('\r', '\n', ' '));
+            LuaTools.ReplaceKey(ref lua, "RadioSounds", !mission.OptionsMission.Contains(Template.MissionOption.RadioMessagesTextOnly));
+            //LuaTools.ReplaceKey(ref lua, "LuaSettings", mission.LuaSettings);
             LuaTools.ReplaceKey(ref lua, "IncludedLua", GetIncludedMissionFeaturesLua(mission.IncludedLuaScripts));
            
             LuaTools.ReplaceKey(ref lua, "EnemyCoalition", $"coalition.side.{mission.CoalitionEnemy.ToString().ToUpperInvariant()}");
@@ -60,7 +59,7 @@ namespace BriefingRoom.Miz
             //PLAYER TODO actually generate waypoint data
             LuaTools.ReplaceKey(ref lua, "PlayerWaypoints", GetPlayerWaypoints(mission.Waypoints));
             LuaTools.ReplaceKey(ref lua, "StaticObjective", mission.ObjectiveIsStatic);
-            LuaTools.ReplaceKey(ref lua, "EndMode", (int)mission.EndMode);
+            //LuaTools.ReplaceKey(ref lua, "EndMode", (int)mission.EndMode);
 
             return lua;
         }

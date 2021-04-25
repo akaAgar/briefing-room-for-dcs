@@ -20,29 +20,37 @@ If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
 
-using BriefingRoom.DB;
-using BriefingRoom.GUI;
+using BriefingRoom4DCS.Data;
 using System;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace BriefingRoom.Template
+namespace BriefingRoom4DCS.Template
 {
     /// <summary>
     /// A player flight group, to be stored in <see cref="MissionTemplate.PlayerFlightGroups"/>
     /// </summary>
-    public class MissionTemplateFlightGroup // : ContextMenuExpandable
+    public sealed class MissionTemplateFlightGroup
     {
+        /// <summary>
+        /// Type of aircraft in this flight group.
+        /// </summary>
         public string Aircraft { get; set; }
 
+        /// <summary>
+        /// Type of carrier this flight group takes off from (leave empty for land airbase).
+        /// </summary>
         public string Carrier { get; set; }
 
+        /// <summary>
+        /// Number of 
+        /// </summary>
         public int Count { get { return _Count; } set { _Count = Toolbox.Clamp(value, 1, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE); } }
         private int _Count = 1;
 
         public Country Country { get; set; }
 
-        public UnitTaskPayload Payload { get; set; }
+        public AircraftPayload Payload { get; set; }
 
         public PlayerStartLocation StartLocation { get; set; }
 
@@ -51,13 +59,7 @@ namespace BriefingRoom.Template
             Clear();
         }
 
-        public MissionTemplateFlightGroup(
-            string aircraft,
-            int count,
-            UnitTaskPayload payload,
-            string carrier,
-            Country country,
-            PlayerStartLocation startLocation)
+        public MissionTemplateFlightGroup(string aircraft, int count, AircraftPayload payload, string carrier, Country country, PlayerStartLocation startLocation)
         {
             Aircraft = aircraft;
             Count = count;
@@ -73,7 +75,7 @@ namespace BriefingRoom.Template
         /// <param name="ini">The .ini file to load from</param>
         /// <param name="section">The ini section to load from</param>
         /// <param name="key">The ini key to load from</param>
-        public MissionTemplateFlightGroup(INIFile ini, string section, string key)
+        internal MissionTemplateFlightGroup(INIFile ini, string section, string key)
         {
             Clear();
 
@@ -93,7 +95,7 @@ namespace BriefingRoom.Template
             Aircraft = "Su-25T"; // Database.CheckValue<DBPseudoEntryPlayerAircraft>("Su-25T", "Su-25T");
             Carrier = "";
             Count = 2;
-            Payload = UnitTaskPayload.Default;
+            Payload = AircraftPayload.Default;
             Country = Country.CJTFBlue;
             StartLocation = PlayerStartLocation.Runway;
         }
@@ -104,7 +106,7 @@ namespace BriefingRoom.Template
         /// <param name="ini"></param>
         /// <param name="section">The ini section to save to</param>
         /// <param name="key">The ini key to save to</param>
-        public void SaveToFile(INIFile ini, string section, string key)
+        internal void SaveToFile(INIFile ini, string section, string key)
         {
             ini.SetValue(section, $"{key}.AircraftType", Aircraft);
             ini.SetValue(section, $"{key}.Carrier", Carrier);
@@ -130,93 +132,6 @@ namespace BriefingRoom.Template
 
             return str;
         }
-
-        //public override void CreateContextMenu(ContextMenuStrip contextMenu, ToolStripItemClickedEventHandler onClickEventHandler)
-        //{
-        //    ToolStripMenuItem parentMenu;
-
-        //    // Flyable aircraft
-        //    parentMenu = (ToolStripMenuItem)contextMenu.Items.Add("Aircraft");
-        //    GUITools.PopulateToolStripMenuWithDBEntries(parentMenu.DropDownItems, typeof(DBPseudoEntryPlayerAircraft), onClickEventHandler);
-
-        //    // Aircraft count
-        //    parentMenu = (ToolStripMenuItem)contextMenu.Items.Add("Aircraft count");
-        //    GUITools.PopulateToolStripMenuWithIntegers(parentMenu.DropDownItems, 1, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE);
-
-        //    // Flight group tasking
-        //    parentMenu = (ToolStripMenuItem)contextMenu.Items.Add("Tasking");
-        //    foreach (object enumValue in Enum.GetValues(typeof(MissionTemplateFlightGroupTask)))
-        //    {
-        //        GUITools.GetDisplayStrings(typeof(MissionTemplateFlightGroupTask), enumValue, out string enumDisplayName, out string enumDescription);
-
-        //        ToolStripMenuItem item = new ToolStripMenuItem
-        //        {
-        //            Text = enumDisplayName,
-        //            Tag = enumValue,
-        //            ToolTipText = enumDescription
-        //        };
-
-        //        parentMenu.DropDownItems.Add(item);
-        //    }
-
-        //    // Aircraft carriers
-        //    parentMenu = (ToolStripMenuItem)contextMenu.Items.Add("Home carrier");
-        //    parentMenu.DropDownItems.Add("(None, take off from land airbase)").Tag = "$";
-        //    GUITools.PopulateToolStripMenuWithDBEntries(parentMenu.DropDownItems, typeof(DBPseudoEntryCarrier), onClickEventHandler, false, "$");
-
-        //    // Country //TODO Grouping
-        //    parentMenu = (ToolStripMenuItem)contextMenu.Items.Add("Country");
-        //    foreach (object enumValue in Enum.GetValues(typeof(Country)))
-        //    {
-        //        GUITools.GetDisplayStrings(typeof(Country), enumValue, out string enumDisplayName, out string enumDescription);
-
-        //        ToolStripMenuItem item = new ToolStripMenuItem
-        //        {
-        //            Text = enumDisplayName,
-        //            Tag = enumValue,
-        //            ToolTipText = enumDescription
-        //        };
-
-        //        parentMenu.DropDownItems.Add(item);
-        //    }
-
-        //    // Country //TODO Grouping
-        //    parentMenu = (ToolStripMenuItem)contextMenu.Items.Add("StartLocation");
-        //    foreach (object enumValue in Enum.GetValues(typeof(PlayerStartLocation)))
-        //    {
-        //        GUITools.GetDisplayStrings(typeof(PlayerStartLocation), enumValue, out string enumDisplayName, out string enumDescription);
-
-        //        ToolStripMenuItem item = new ToolStripMenuItem
-        //        {
-        //            Text = enumDisplayName,
-        //            Tag = enumValue,
-        //            ToolTipText = enumDescription
-        //        };
-
-        //        parentMenu.DropDownItems.Add(item);
-        //    }
-        //}
-
-        //public override void OnContextMenuItemClicked(object itemTag)
-        //{
-        //    if (itemTag == null) return;
-            
-        //    if (itemTag is MissionTemplateFlightGroupTask groupTask)
-        //        Tasking = groupTask;
-        //    else if (itemTag is Country country)
-        //        Country = country;
-        //    else if (itemTag is PlayerStartLocation location)
-        //        StartLocation = location;
-        //    else if (itemTag is int)
-        //        Count = (int)itemTag;
-        //    else if (itemTag is string)
-        //    {
-        //        if (itemTag.ToString().StartsWith("$"))
-        //            Carrier = itemTag.ToString().Substring(1);
-        //        else
-        //            Aircraft = itemTag.ToString();
-        //    }
-        //}
 
         /// <summary>
         /// IDispose implementation.

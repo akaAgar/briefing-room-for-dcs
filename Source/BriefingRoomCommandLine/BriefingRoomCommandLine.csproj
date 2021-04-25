@@ -5,7 +5,7 @@
     <ProjectGuid>{015DF5C0-B3DE-459F-A700-5968FE1A7F7C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BriefingRoom.CommandLine</RootNamespace>
+    <RootNamespace>BriefingRoom4DCS.CommandLineTool</RootNamespace>
     <AssemblyName>BriefingRoomCommandLine</AssemblyName>
     <TargetFramework>net48</TargetFramework>
     <FileAlignment>512</FileAlignment>
@@ -53,6 +53,7 @@
     <ProjectReference Include="..\BriefingRoom\BriefingRoom.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
 </Project>
