@@ -22,7 +22,7 @@
                 @foreach (var value in tabs)
                 {
                     <li class="nav-item">
-                        <a class="nav-link @(tab == value ? "active" : "")" aria-current="page" href="#" @onclick='() => SetTab(value)'>@textInfo.ToTitleCase(value)</a>
+                        <a class="nav-link @(tab == value ? "active" : "")" aria-current="page"  @onclick='() => SetTab(value)'>@textInfo.ToTitleCase(value)</a>
                     </li>
                 }
             </ul>
@@ -256,7 +256,7 @@
                             @foreach (var value in situationTabs)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link @(situationTab == value ? "active" : "")" aria-current="page" href="#" @onclick='() => SetSituationTab(value)'>@textInfo.ToTitleCase(value)</a>
+                                    <a class="nav-link @(situationTab == value ? "active" : "")" aria-current="page"  @onclick='() => SetSituationTab(value)'>@textInfo.ToTitleCase(value)</a>
                                 </li>
                             }
                         </ul>
@@ -362,7 +362,7 @@
                             @foreach (var value in Template.PlayerFlightGroups)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link @(flightGroupTab == value ? "active" : "")" aria-current="page" href="#" @onclick='() => SetFlightGroupTab(value)'>
+                                    <a class="nav-link @(flightGroupTab == value ? "active" : "")" aria-current="page"  @onclick='() => SetFlightGroupTab(value)'>
                                         @GetAircraftDisplayName(@value.Aircraft)
                                         @if(Template.PlayerFlightGroups.Count > 1)
                                         {
