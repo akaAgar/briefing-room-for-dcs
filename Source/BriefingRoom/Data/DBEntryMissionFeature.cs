@@ -49,7 +49,7 @@ namespace BriefingRoom4DCS.Data
         internal string LuaSettings { get; private set; }
 
         /// <summary>
-        /// 
+        /// Other features starting whose ID starts with this string are incompatible with this one.
         /// </summary>
         internal string IncompatiblePrefix { get; private set; }
 
@@ -61,7 +61,7 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Initial position (index #0) and destination (index #1) of the unit group.
         /// </summary>
-        internal DBEntryMissionFeatureUnitGroupLocation[] UnitGroupCoordinates { get; private set; }
+        internal DBEntryFeatureUnitGroupLocation[] UnitGroupCoordinates { get; private set; }
 
         /// <summary>
         /// Loads a database entry from an .ini file.
@@ -78,21 +78,21 @@ namespace BriefingRoom4DCS.Data
                 IncludeOgg = ini.GetValueArray<string>("Include", "Ogg");
                 LuaSettings = ini.GetValue<string>("Lua", "Settings");
 
-                IncompatiblePrefix = ini.GetValue<string>("UnitGroup", "Position.Initial").ToLowerInvariant();
+                IncompatiblePrefix = ini.GetValue<string>("Feature", "IncompatiblePrefix").ToLowerInvariant();
 
                 UnitGroup = new DBUnitGroup(ini, "UnitGroup");
-                UnitGroupCoordinates = new DBEntryMissionFeatureUnitGroupLocation[2];
-                UnitGroupCoordinates[0] = ini.GetValue<DBEntryMissionFeatureUnitGroupLocation>("UnitGroup", "Position.Initial");
-                UnitGroupCoordinates[1] = ini.GetValue<DBEntryMissionFeatureUnitGroupLocation>("UnitGroup", "Position.Destination");
+                UnitGroupCoordinates = new DBEntryFeatureUnitGroupLocation[2];
+                UnitGroupCoordinates[0] = ini.GetValue<DBEntryFeatureUnitGroupLocation>("UnitGroup", "Position.Initial");
+                UnitGroupCoordinates[1] = ini.GetValue<DBEntryFeatureUnitGroupLocation>("UnitGroup", "Position.Destination");
             }
 
             foreach (string f in IncludeLua)
                 if (!File.Exists($"{BRPaths.INCLUDE_LUA_INCLUDEDSCRIPTS}{f}.lua"))
-                    BriefingRoom.PrintToLog($"File \"Include\\Lua\\IncludedScripts\\{f}.lua\", required by mission feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
+                    BriefingRoom.PrintToLog($"File \"Include\\Lua\\IncludedScripts\\{f}.lua\", required by feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
 
             foreach (string f in IncludeOgg)
                 if (!File.Exists($"{BRPaths.INCLUDE_OGG}{f}.ogg"))
-                    BriefingRoom.PrintToLog($"File \"Include\\Ogg\\{f}.ogg\", required by mission feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
+                    BriefingRoom.PrintToLog($"File \"Include\\Ogg\\{f}.ogg\", required by feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
 
             return true;
         }

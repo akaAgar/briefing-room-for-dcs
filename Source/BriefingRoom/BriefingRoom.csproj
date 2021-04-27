@@ -47,11 +47,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Campaign\**" />
-    <EmbeddedResource Remove="Campaign\**" />
-    <None Remove="Campaign\**" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Windows.Forms" />

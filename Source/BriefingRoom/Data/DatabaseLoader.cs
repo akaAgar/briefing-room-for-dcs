@@ -48,13 +48,12 @@ namespace BriefingRoom4DCS.Data
         {
             dbEntries.Clear();
             LoadDatabaseEntries<DBEntryMissionFeature>(dbEntries, "MissionFeatures");
-            //LoadDatabaseEntries<DBEntryObjective>(dbEntries, "Objectives"); // Must be loaded after DBEntryMissionFeature as it depends on it
             LoadDatabaseEntries<DBEntryObjectiveTarget>(dbEntries, "ObjectiveTargets");
             LoadDatabaseEntries<DBEntryObjectiveTargetBehavior>(dbEntries, "ObjectiveTargetsBehaviors");
             LoadDatabaseEntries<DBEntryObjectiveTask>(dbEntries, "ObjectiveTasks");
+            LoadDatabaseEntries<DBEntryObjectiveFeature>(dbEntries, "ObjectiveFeatures");
             LoadDatabaseEntries<DBEntryTheater>(dbEntries, "Theaters");
             LoadDatabaseEntries<DBEntryTheaterAirbase>(dbEntries, "TheatersAirbases"); // Must be called after DBEntryTheater is loaded, as it depends on it
-            //GenerateAirbasePseudoEntries(dbEntries); // Must be called after DBEntryTheater is loaded, as it depends on it
             LoadDatabaseEntries<DBEntryDCSMod>(dbEntries, "DCSMods");
             LoadDatabaseEntries<DBEntryUnit>(dbEntries, "Units"); // Must be loaded after DBEntryDCSMod is loaded as it depends on it
             GenerateUnitPseudoEntries(dbEntries); // Must be called after DBEntryUnit is loaded, as it depends on it
@@ -80,24 +79,6 @@ namespace BriefingRoom4DCS.Data
                     dbEntries[carrierType].Add(unit.ID, new DBPseudoEntryCarrier(unit.ID, unit.UIDisplayName, unit.UICategory, unit.UIDescription));
             }
         }
-
-        //private void GenerateAirbasePseudoEntries(Dictionary<Type, Dictionary<string, DBEntry>> dbEntries)
-        //{
-        //    Type airbaseType = typeof(DBPseudoEntryAirbase);
-        //    dbEntries.Add(airbaseType, new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase));
-
-        //    foreach (DBEntryTheater theater in Database.GetAllEntries<DBEntryTheater>())
-        //    {
-        //        foreach (DBEntryTheaterAirbase airbase in theater.Airbases)
-        //        {
-        //            string airbaseID = airbase.Name.ToLowerInvariant();
-        //            if (dbEntries[airbaseType].ContainsKey(airbaseID)) continue;
-
-        //            dbEntries[airbaseType].Add(airbaseID,
-        //                new DBPseudoEntryAirbase(airbaseID, airbase.Name, theater.UIDisplayName, airbase.Name));
-        //        }
-        //    }
-        //}
 
         /// <summary>
         /// Creates the list of available countries from the operators found in <see cref="DBEntryUnit"/> .ini files.

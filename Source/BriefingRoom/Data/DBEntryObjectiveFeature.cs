@@ -18,14 +18,17 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+
+using System.IO;
+
 namespace BriefingRoom4DCS.Data
 {
-    internal enum DBEntryMissionFeatureUnitGroupLocation
+    /// <summary>
+    /// Stores information about an objective feature.
+    /// Just a <see cref="DBEntryMissionFeature"> by another name so they're not mixed up in the database.
+    /// </summary>
+    internal sealed class DBEntryObjectiveFeature : DBEntryMissionFeature
     {
-        Homebase,
-        Objective,
-        ObjectiveNear,
-        Waypoint,
-        WaypointNear,
+
     }
 }

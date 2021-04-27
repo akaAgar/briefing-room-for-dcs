@@ -23,23 +23,17 @@ using System.ComponentModel.DataAnnotations;
 namespace BriefingRoom4DCS.Template
 {
     /// <summary>
-    /// Enumerates various possible mission options.
+    /// Enumerates various possible mission objective options.
     /// </summary>
-    public enum MissionOption
+    public enum ObjectiveOption
     {
-        [Display(Name = "Add extra waypoints", Description = "Add ingress and egress waypoints along the flight path in addition to the objective waypoints.")]
-        AddExtraWaypoints,
+        [Display(Name = "Hide target", Description = "Target is always hidden on the map, no matter the \"fog of war\" preferences. Ignored if \"Show target\" is set.")]
+        HideTarget,
 
-        [Display(Name = "Enable debug mode", Description = "Enable debug output and command in the mission.")]
-        DebugMode,
-        
-        [Display(Name = "Enable civilian traffic", Description = "If true, civilian traffic will be enabled. Can have an impact on performances.")]
-        EnableCivilianTraffic,
-        
-        [Display(Name = "Use imperial units", Description = "Use imperial units for briefing instead of the metric system.")]
-        ImperialUnitsForBriefing,
-        
-        [Display(Name = "Text-only radio messages", Description = "Display radio messages in text-format only (no voiceover). Selecting this option will severly decrease the size of the .miz files.")]
-        RadioMessagesTextOnly,
+        [Display(Name = "Inaccurate waypoint", Description = "Waypoint will not be spawned on the target itself (or at the target's initial position for moving targets) but a few nautical miles away, so player(s) will have to search for it.")]
+        InaccurateWaypoint,
+
+        [Display(Name = "Show target", Description = "Target is always visible on the map, no matter the \"fog of war\" preferences. Overrides \"Hide target\".")]
+        ShowTarget,
     }
 }
