@@ -26,7 +26,7 @@ namespace BriefingRoom4DCS.Data
     internal class DBEntryWeatherPreset : DBEntry
     {
         /// <summary>
-        /// 
+        /// DCS World 2.7 cloud preset to use with this weather pattern.
         /// </summary>
         internal string CloudPreset { get; private set; }
 
