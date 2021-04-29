@@ -9,7 +9,7 @@
     <ItemGroup>
       <PackageReference Include="Blazored.Typeahead" Version="4.6.0" />
       <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
-      <ProjectReference Include="../Source/BriefingRoom.csproj" />
+      <ProjectReference Include="../BriefingRoom/BriefingRoom.csproj" />
     </ItemGroup>
 
 </Project>
