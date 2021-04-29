@@ -24,6 +24,7 @@ using BriefingRoom4DCS.Generator;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BriefingRoom4DCS
@@ -97,7 +98,7 @@ namespace BriefingRoom4DCS
         //     return miz;
         // }
 
-        public static DatabaseEntryInfo[] GetDatabaseEntriesInfo(DatabaseEntryType entryType, string parameter = "")
+        public static List<DatabaseEntryInfo> GetDatabaseEntriesInfo(DatabaseEntryType entryType, string parameter = "")
         {
             switch (entryType)
             {
@@ -108,33 +109,33 @@ namespace BriefingRoom4DCS
                         return (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>() where airbase.Theater == parameter.ToLowerInvariant() select airbase.GetDBEntryInfo()).ToArray();
 
                 case DatabaseEntryType.DCSMod:
-                    return (from DBEntryDCSMod dcsMod in Database.Instance.GetAllEntries<DBEntryDCSMod>() select dcsMod.GetDBEntryInfo()).ToArray();
+                    return (from DBEntryDCSMod dcsMod in Database.Instance.GetAllEntries<DBEntryDCSMod>() select dcsMod.GetDBEntryInfo()).ToList();
 
                 case DatabaseEntryType.FlyableAircraft:
-                    return (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>() where unit.AircraftData.PlayerControllable select unit.GetDBEntryInfo()).ToArray();
+                    return (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>() where unit.AircraftData.PlayerControllable select unit.GetDBEntryInfo()).ToList();
 
                 case DatabaseEntryType.ObjectiveTarget:
-                    return (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryObjectiveTarget>() where unit.AircraftData.PlayerControllable select unit.GetDBEntryInfo()).ToArray();
+                    return (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryObjectiveTarget>() where unit.AircraftData.PlayerControllable select unit.GetDBEntryInfo()).ToList();
 
                 case DatabaseEntryType.ObjectiveTargetBehavior:
-                    return (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryObjectiveTargetBehavior>() where unit.AircraftData.PlayerControllable select unit.GetDBEntryInfo()).ToArray();
+                    return (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryObjectiveTargetBehavior>() where unit.AircraftData.PlayerControllable select unit.GetDBEntryInfo()).ToList();
 
                 case DatabaseEntryType.ObjectiveTask:
-                    return (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryObjectiveTask>() where unit.AircraftData.PlayerControllable select unit.GetDBEntryInfo()).ToArray();
+                    return (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryObjectiveTask>() where unit.AircraftData.PlayerControllable select unit.GetDBEntryInfo()).ToList();
 
                 case DatabaseEntryType.Theater:
-                    return (from DBEntryTheater theater in Database.Instance.GetAllEntries<DBEntryTheater>() select theater.GetDBEntryInfo()).ToArray();
+                    return (from DBEntryTheater theater in Database.Instance.GetAllEntries<DBEntryTheater>() select theater.GetDBEntryInfo()).ToList();
 
                 case DatabaseEntryType.WeatherPreset:
-                    return (from DBEntryWeatherPreset weatherPreset in Database.Instance.GetAllEntries<DBEntryWeatherPreset>() select weatherPreset.GetDBEntryInfo()).ToArray();
+                    return (from DBEntryWeatherPreset weatherPreset in Database.Instance.GetAllEntries<DBEntryWeatherPreset>() select weatherPreset.GetDBEntryInfo()).ToList();
             }
 
-            return new DatabaseEntryInfo[0];
+            return new List<DatabaseEntryInfo>{new DatabaseEntryInfo()};
         }
 
-        public static string[] GetDatabaseEntriesIDs(DatabaseEntryType entryType, string parameter = "")
+        public static List<string> GetDatabaseEntriesIDs(DatabaseEntryType entryType, string parameter = "")
         {
-            return (from DatabaseEntryInfo entryInfo in GetDatabaseEntriesInfo(entryType, parameter) select entryInfo.ID).ToArray();
+            return (from DatabaseEntryInfo entryInfo in GetDatabaseEntriesInfo(entryType, parameter) select entryInfo.ID).ToList();
         }
 
         /// <summary>

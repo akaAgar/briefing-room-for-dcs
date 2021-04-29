@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using BriefingRoom4DCS.Generator;
 using BriefingRoom4DCS.Template;
 using BriefingRoom4DCS.Miz;
 
@@ -21,9 +20,9 @@ namespace API.Controllers
         [HttpPost]
         public FileContentResult Post(MissionTemplate template)
         {
-            using (MissionGenerator generator = new MissionGenerator())
+            using (BriefingRoom4DCS.BriefingRoom briefingRoom = new BriefingRoom4DCS.BriefingRoom())
             {
-                var mission = generator.Generate(template);
+                var mission = briefingRoom.GenerateMission(template);
                 using (MizFile miz = mission.ExportToMiz())
                 {
 

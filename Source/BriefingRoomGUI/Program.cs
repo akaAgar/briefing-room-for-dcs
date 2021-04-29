@@ -14,8 +14,6 @@ namespace BriefingRoomGUI
     {
         public static void Main(string[] args)
         {
-            DebugLog.Instance.CreateLogFileWriter();
-            Database.Instance.Initialize(); 
             CreateHostBuilder(args).Build().Run();
         }
 
