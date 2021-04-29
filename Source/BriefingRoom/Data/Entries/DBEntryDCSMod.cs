@@ -21,10 +21,17 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 namespace BriefingRoom4DCS.Data
 {
     /// <summary>
-    /// Stores data about a DCS mod
+    /// Stores data about a DCS World unit mod.
+    /// Does not actually contain any data apart from the name of the mod.
+    /// Used when picking units from a <see cref="DBEntryCoalition"/> where the <see cref="DBEntryDCSMod"/> id is used to identify a mod.
     /// </summary>
     internal class DBEntryDCSMod : DBEntry
     {
+        /// <summary>
+        /// Loads a database entry from an .ini file.
+        /// </summary>
+        /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
+        /// <returns>True is successful, false if an error happened</returns>
         protected override bool OnLoad(string iniFilePath) { return true; }
     }
 }

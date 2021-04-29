@@ -18,6 +18,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCS.Data;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -117,8 +118,8 @@ namespace BriefingRoom4DCS
         public static bool IsUnitFamilyAircraft(UnitFamily value)
         {
             return
-                (value.GetCategory() == UnitCategory.Helicopter) ||
-                (value.GetCategory() == UnitCategory.Plane);
+                (value.GetUnitCategory() == UnitCategory.Helicopter) ||
+                (value.GetUnitCategory() == UnitCategory.Plane);
         }
 
         public static object LowerCaseFirstLetter(string str)
@@ -126,6 +127,52 @@ namespace BriefingRoom4DCS
             if (string.IsNullOrEmpty(str)) return str;
             if (str.Length == 1) return str.ToLowerInvariant();
             return str.Substring(0, 1).ToLowerInvariant() + str.Substring(1);
+        }
+
+        /// <summary>
+        /// Makes sure a file name/path ends with the proper extension.
+        /// If the extension is not present, append it to the file path.
+        /// </summary>
+        /// <param name="filePath">Absolute path to a file, or filename.</param>
+        /// <param name="extension">File extension, WITH THE LEADING DOT (e.g. ".lua")</param>
+        /// <returns>The file name/path, with the added extension if it was missing.</returns>
+        internal static string AddMissingFileExtension(string filePath, string extension)
+        {
+            if (filePath == null) return null;
+            if (!filePath.EndsWith(extension, StringComparison.OrdinalIgnoreCase))
+                return $"{filePath}{extension}";
+
+            return filePath;
+        }
+
+        /// <summary>
+        /// Makes sure each file name/path in an array ends with the proper extension.
+        /// If the extension is not present, append it to the file path.
+        /// </summary>
+        /// <param name="filePath">Array of absolute paths to a file, or filenames.</param>
+        /// <param name="extension">File extension, WITH THE LEADING DOT (e.g. ".lua")</param>
+        /// <returns>An array of file names/paths, with the added extension if it was missing.</returns>
+        internal static string[] AddMissingFileExtensions(string[] filePaths, string extension)
+        {
+            if (filePaths == null) return null;
+
+            return (from string filePath in filePaths select AddMissingFileExtension(filePath, extension)).ToArray();
+        }
+
+        /// <summary>
+        /// Makes sure all unit families in an array belong to the same unit category.
+        /// (e.g. <see cref="UnitFamily.HelicopterAttack"/> and <see cref="UnitFamily.HelicopterUtility"/> can be mixed, but not <see cref="UnitFamily.HelicopterAttack"/> and <see cref="UnitFamily.VehicleAAA"/>.
+        /// If that's not the case, removes all families which do not belong to the same category as unitFamily[0].
+        /// </summary>
+        /// <param name="unitFamilies">An array of <see cref="UnitFamily"/>.</param>
+        /// <returns>An array of <see cref="UnitFamily"/>.</returns>
+        internal static UnitFamily[] SetSingleCategoryFamilies(UnitFamily[] unitFamilies)
+        {
+            if ((unitFamilies == null) || (unitFamilies.Length == 0)) return new UnitFamily[0];
+
+            return (from UnitFamily unitFamily in unitFamilies
+                    where unitFamily.GetUnitCategory() == unitFamilies[0].GetUnitCategory()
+                    select unitFamily).Distinct().ToArray();
         }
 
         /// <summary>
@@ -352,7 +399,7 @@ namespace BriefingRoom4DCS
         /// </summary>
         /// <param name="family">The unit family.</param>
         /// <returns>The unit category.</returns>
-        public static UnitCategory GetCategory(this UnitFamily family)
+        public static UnitCategory GetUnitCategory(this UnitFamily family)
         {
             string roleStr = family.ToString().ToLowerInvariant();
 

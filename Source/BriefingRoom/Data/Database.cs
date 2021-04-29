@@ -54,11 +54,6 @@ namespace BriefingRoom4DCS.Data
         /// </summary>
         internal DatabaseCommon Common { get; set; }
 
-        ///// <summary>
-        ///// Array of countries ID used by <see cref="DBEntryCoalition"/> and <see cref="DBEntryUnit"/>
-        ///// </summary>
-        //internal string[] Countries { get; set; }
-
         /// <summary>
         /// Database entries are stored by type in a dictionary of dictionaries.
         /// </summary>
@@ -75,7 +70,6 @@ namespace BriefingRoom4DCS.Data
         internal Database()
         {
             Common = new DatabaseCommon();
-            //Countries = new string[0];
             DBEntries = new Dictionary<Type, Dictionary<string, DBEntry>>();
         }
 
@@ -85,7 +79,6 @@ namespace BriefingRoom4DCS.Data
         internal void Initialize()
         {
             if (Initialized) return;
-            Initialized = true;
 
             Common.Load();
 
@@ -99,18 +92,13 @@ namespace BriefingRoom4DCS.Data
             LoadEntries<DBEntryTheaterAirbase>("TheatersAirbases"); // Must be called after DBEntryTheater is loaded, as it depends on it
             LoadEntries<DBEntryDCSMod>("DCSMods");
             LoadEntries<DBEntryUnit>("Units"); // Must be loaded after DBEntryDCSMod is loaded as it depends on it
-            //GenerateUnitPseudoEntries(); // Must be called after DBEntryUnit is loaded, as it depends on it
-
-            //// Creates the list of available countries from the operators found in DBEntryUnit .ini files.
-            //List<string> countries = new List<string>();
-            //foreach (DBEntryUnit unit in GetAllEntries<DBEntryUnit>()) countries.AddRange(unit.Operators.Keys);
-            //Countries = (from string c in countries select c.ToLowerInvariant()).Distinct(StringComparer.InvariantCultureIgnoreCase).ToArray();
-
             LoadEntries<DBEntryDefaultUnitList>("DefaultUnitLists"); // Must be loaded after DBEntryUnit as it depends on it
             LoadEntries<DBEntryCoalition>("Coalitions"); // Must be loaded after DBEntryUnit and DBEntryDefaultUnitList as it depends on them
 
             if (GetAllPlayerAircraftID().Length == 0) // Can't start without at least one player-controllable aircraft
                 BriefingRoom.PrintToLog("No player-controllable aircraft found.", LogMessageErrorLevel.Error);
+
+            Initialized = true;
         }
 
         /// <summary>

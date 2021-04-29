@@ -60,10 +60,15 @@ namespace BriefingRoom4DCS
         /// </summary>
         public static string INCLUDE_LUA { get; } = $"{INCLUDE}Lua\\";
 
+        ///// <summary>
+        ///// Path to the Include\Lua\IncludedScripts subdirectory.
+        ///// </summary>
+        //public static string INCLUDE_LUA_INCLUDEDSCRIPTS { get; } = $"{INCLUDE_LUA}IncludedScripts\\";
+
         /// <summary>
-        /// Path to the Include\Lua\IncludedScripts subdirectory.
+        /// Path to the Include\Lua\MissionFeatures subdirectory.
         /// </summary>
-        public static string INCLUDE_LUA_INCLUDEDSCRIPTS { get; } = $"{INCLUDE_LUA}IncludedScripts\\";
+        public static string INCLUDE_LUA_MISSIONFEATURES { get; } = $"{INCLUDE_LUA}MissionFeatures\\";
 
         /// <summary>
         /// Path to the Include\Lua\ObjectiveTriggers subdirectory.

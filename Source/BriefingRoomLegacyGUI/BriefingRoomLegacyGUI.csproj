@@ -5,8 +5,8 @@
     <ProjectGuid>{62C3A919-BE9A-40AD-A867-F79D40CB46FB}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BriefingRoom.GUI</RootNamespace>
-    <AssemblyName>BriefingRoomGUI</AssemblyName>
+    <RootNamespace>BriefingRoom4DCS.LegacyGUI</RootNamespace>
+    <AssemblyName>BriefingRoomLegacyGUI</AssemblyName>
     <TargetFramework>net48</TargetFramework>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -47,7 +47,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BriefingRoomLEGACY\BriefingRoomLEGACY.csproj" />
+    <ProjectReference Include="..\BriefingRoom\BriefingRoom.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Windows.Forms" />

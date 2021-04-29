@@ -77,7 +77,7 @@ namespace BriefingRoom4DCS.Miz
 
             foreach (string f in luaFiles)
             {
-                string filePath = $"{BRPaths.INCLUDE_LUA_INCLUDEDSCRIPTS}{f}.lua";
+                string filePath = $"{BRPaths.INCLUDE_LUA_MISSIONFEATURES}{f}.lua";
                 if (!File.Exists(filePath)) continue;
                 lua += File.ReadAllText(filePath) + "\n";
             }

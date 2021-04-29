@@ -30,6 +30,9 @@ namespace BriefingRoom4DCS.Data
     /// </summary>
     internal class DBEntryCoalition : DBEntry
     {
+        /// <summary>
+        /// Flavor text to add to the mission briefing for this coalition.
+        /// </summary>
         internal string[][] BriefingElements { get; private set; }
 
         /// <summary>
@@ -63,10 +66,6 @@ namespace BriefingRoom4DCS.Data
                     BriefingElements[i] = ini.GetValueArray<string>("Briefing", $"Elements.{(CoalitionBriefingElement)i}");
 
                 Countries = ini.GetValueArray<Country>("Coalition", "Countries").Distinct().OrderBy(x => x).ToArray();
-                //string[] invalidCountries = (from Country country in Countries where !Database.Countries.Contains(country, StringComparer.InvariantCultureIgnoreCase) select country).ToArray();
-                //foreach (string country in invalidCountries)
-                //    BriefingRoom.PrintToLog($"Country \"{country}\" required by coalition \"{ID}\" not found.", LogMessageErrorLevel.Warning);
-                //Countries = (from string country in Countries where Database.Countries.Contains(country, StringComparer.InvariantCultureIgnoreCase) select country.ToLowerInvariant()).ToArray();
                 if (Countries.Length == 0)
                 {
                     BriefingRoom.PrintToLog($"No country in coalition \"{ID}\", coalition was ignored.", LogMessageErrorLevel.Warning);
@@ -100,7 +99,7 @@ namespace BriefingRoom4DCS.Data
             // Count is zero, return an empty array.
             if (count < 1) return new string[0];
             
-            UnitCategory category = family.GetCategory();
+            UnitCategory category = family.GetUnitCategory();
             bool allowDifferentUnitTypes = false;
             
             switch (category)
@@ -140,6 +139,14 @@ namespace BriefingRoom4DCS.Data
             }
         }
 
+        /// <summary>
+        /// Picks valid units from a family, for a given decade, from the specified unit mods.
+        /// </summary>
+        /// <param name="family">Unit family to choose from.</param>
+        /// <param name="decade">Decade during which the unit must be in use.</param>
+        /// <param name="unitMods">Unit mods from which units can be picked.</param>
+        /// <param name="useDefaultList">Should units from the default list be return if no matching units are found?</param>
+        /// <returns>An array of <see cref="DBEntryUnit"/> ids.</returns>
         private string[] SelectValidUnits(UnitFamily family, Decade decade, string[] unitMods, bool useDefaultList)
         {
             List<string> validUnits = new List<string>();

@@ -104,12 +104,17 @@ namespace BriefingRoom4DCS.Mission
         public Coordinates InitialPosition { get; internal set; }
 
         /// <summary>
-        /// Lua script for mission features.
+        /// Lua script for mission features. Replaces $MISSION_FEATURES_LUA$ in Script.lua.
         /// </summary>
         public string LuaScriptMissionFeatures { get; internal set; } = "";
 
         /// <summary>
-        /// Lua script for mission objectives.
+        /// Lua script for mission features settings. Replaces $MISSION_FEATURES_SETTINGS_LUA$ in Script.lua.
+        /// </summary>
+        public string LuaScriptMissionFeaturesSettings { get; internal set; } = "";
+
+        /// <summary>
+        /// Lua script for mission objectives. Replaces $MISSION_OBJECTIVES_LUA$ in Script.lua.
         /// </summary>
         public string LuaScriptObjectives { get; internal set; } = "";
 

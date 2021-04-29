@@ -18,7 +18,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-namespace BriefingRoom4DCS.Data
+namespace BriefingRoom4DCS
 {
     /// <summary>
     /// Stores a summary of a database entry to display in an user interface.

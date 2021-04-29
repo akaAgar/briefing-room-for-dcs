@@ -25,6 +25,7 @@ namespace BriefingRoom4DCS.Data
 {
     /// <summary>
     /// Stores information about a default unit list.
+    /// Used by <see cref="DBEntryCoalition.GetRandomUnits(UnitFamily, Decade, int, string[], bool)"/> when no matching unit are found for a Coalition/Decade/UnitFamily combination.
     /// </summary>
     internal class DBEntryDefaultUnitList : DBEntry
     {

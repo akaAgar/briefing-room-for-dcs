@@ -25,10 +25,10 @@ using System;
 namespace BriefingRoom4DCS.Data
 {
     /// <summary>
-    /// Enumerates special flags to apply to an <see cref="DBUnitGroup"/>
+    /// Enumerates special flags to apply to a <see cref="DBEntryMissionFeature"/>'s unit group.
     /// </summary>
     [Flags]
-    internal enum DBUnitGroupFlags
+    internal enum MissionFeatureUnitGroupFlags
     {
         /// <summary>
         /// Unit is always shown on map, no matter the value of <see cref="Template.MissionTemplate.OptionsShowEnemyUnits"/>.

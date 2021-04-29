@@ -38,7 +38,7 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// DCS World unit category this unit belongs to.
         /// </summary>
-        internal UnitCategory Category { get { return Families[0].GetCategory(); } }
+        internal UnitCategory Category { get { return Families[0].GetUnitCategory(); } }
         
         /// <summary>
         /// Internal DCS World IDs for this unit.
@@ -110,7 +110,7 @@ namespace BriefingRoom4DCS.Data
                     return false;
                 }
                 // Make sure all unit families belong to same category (unit cannot be a helicopter and a ground vehicle at the same time, for instance)
-                Families = (from UnitFamily f in Families where f.GetCategory() == Category select f).Distinct().ToArray();
+                Families = (from UnitFamily f in Families where f.GetUnitCategory() == Category select f).Distinct().ToArray();
                 ExtraLua = ini.GetValue<string>("Unit", "ExtraLua").Trim();
                 if (!string.IsNullOrEmpty(ExtraLua) && !ExtraLua.EndsWith(",")) ExtraLua += ",";
                 Flags = ini.GetValueArrayAsEnumFlags<DBEntryUnitFlags>("Unit", "Flags");

@@ -288,18 +288,18 @@ namespace BriefingRoom4DCS.Generator
             return str.Replace('\\', '/').Replace("\"", "''").Replace("\r\n", "\n").Trim(' ', '\n', '\t');
         }
 
-        /// <summary>
-        /// Should a unit group be hidden on the F10 map and other planning info?
-        /// </summary>
-        /// <param name="unitGroup">Database info about a unit group</param>
-        /// <param name="oppositionKnown"><see cref="Template.MissionTemplate.OptionsShowEnemyUnits"/> setting</param>
-        /// <returns>True if hidden, false if visible</returns>
-        internal static bool ShouldUnitBeHidden(DBUnitGroup unitGroup, bool oppositionKnown)
-        {
-            if (unitGroup.Flags.HasFlag(DBUnitGroupFlags.NeverOnMap)) return true;
-            if (unitGroup.Flags.HasFlag(DBUnitGroupFlags.AlwaysOnMap)) return false;
-            if (!oppositionKnown && !unitGroup.Flags.HasFlag(DBUnitGroupFlags.Friendly)) return true;
-            return false;
-        }
+        ///// <summary>
+        ///// Should a unit group be hidden on the F10 map and other planning info?
+        ///// </summary>
+        ///// <param name="unitGroup">Database info about a unit group</param>
+        ///// <param name="oppositionKnown"><see cref="Template.MissionTemplate.OptionsShowEnemyUnits"/> setting</param>
+        ///// <returns>True if hidden, false if visible</returns>
+        //internal static bool ShouldUnitBeHidden(DBUnitGroup unitGroup, bool oppositionKnown)
+        //{
+        //    if (unitGroup.Flags.HasFlag(DBUnitGroupFlags.NeverOnMap)) return true;
+        //    if (unitGroup.Flags.HasFlag(DBUnitGroupFlags.AlwaysOnMap)) return false;
+        //    if (!oppositionKnown && !unitGroup.Flags.HasFlag(DBUnitGroupFlags.Friendly)) return true;
+        //    return false;
+        //}
     }
 }

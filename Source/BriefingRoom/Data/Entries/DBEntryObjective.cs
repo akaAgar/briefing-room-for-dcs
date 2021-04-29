@@ -18,7 +18,7 @@
 //==========================================================================
 //*/
 
-//
+// TODO: DEPRECATED, REMOVE
 
 //namespace BriefingRoom4DCS.Data
 //{

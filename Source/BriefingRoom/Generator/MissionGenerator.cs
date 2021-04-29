@@ -36,10 +36,7 @@ namespace BriefingRoom4DCS.Generator
         /// <summary>
         /// Constructor.
         /// </summary>
-        internal MissionGenerator()
-        {
-
-        }
+        internal MissionGenerator() { }
 
         /// <summary>
         /// Generates a <see cref="DCSMission"/> from a <see cref="MissionTemplate"/>.
@@ -52,6 +49,8 @@ namespace BriefingRoom4DCS.Generator
         {
             DCSMission mission;
 
+            // When debugging, let the IDE/compile catch the errors.
+            // In the release build, print the errors to the log.
 #if !DEBUG
             try
             {

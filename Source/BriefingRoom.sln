@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoomCommandLine", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoom", "BriefingRoom\BriefingRoom.csproj", "{375F253A-7FD6-4930-A80A-05F2A885C793}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoomLegacyGUI", "BriefingRoomLegacyGUI\BriefingRoomLegacyGUI.csproj", "{62C3A919-BE9A-40AD-A867-F79D40CB46FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{375F253A-7FD6-4930-A80A-05F2A885C793}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{375F253A-7FD6-4930-A80A-05F2A885C793}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{375F253A-7FD6-4930-A80A-05F2A885C793}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62C3A919-BE9A-40AD-A867-F79D40CB46FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62C3A919-BE9A-40AD-A867-F79D40CB46FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62C3A919-BE9A-40AD-A867-F79D40CB46FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62C3A919-BE9A-40AD-A867-F79D40CB46FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

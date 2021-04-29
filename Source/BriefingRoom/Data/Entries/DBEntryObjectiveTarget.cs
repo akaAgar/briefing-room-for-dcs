@@ -30,7 +30,7 @@ namespace BriefingRoom4DCS.Data
     {
         internal string[] BriefingName { get; private set; }
 
-        internal UnitCategory UnitCategory { get { return UnitFamilies[0].GetCategory(); } }
+        internal UnitCategory UnitCategory { get { return UnitFamilies[0].GetUnitCategory(); } }
 
         internal UnitFamily[] UnitFamilies { get; private set; }
 
@@ -53,15 +53,12 @@ namespace BriefingRoom4DCS.Data
                         ini.GetValue<string>("ObjectiveTarget", "Briefing.UnitName.Plural")
                 };
 
-                UnitFamilies = ini.GetValueArray<UnitFamily>("ObjectiveTarget", "Units.Families");
+                UnitFamilies = Toolbox.SetSingleCategoryFamilies(ini.GetValueArray<UnitFamily>("ObjectiveTarget", "Units.Families"));
                 if (UnitFamilies.Length == 0)
                 {
                     BriefingRoom.PrintToLog($"No unit categories for objective target \"{ID}\"", LogMessageErrorLevel.Warning);
                     return false;
                 }
-
-                // Make sure all unit families belong to the same category
-                UnitFamilies = (from UnitFamily unitFamily in UnitFamilies where unitFamily.GetCategory() == UnitCategory select unitFamily).ToArray();
 
                 UnitCount = new MinMaxI[Toolbox.GetEnumValuesCount<Amount>()];
                 foreach (Amount amount in Toolbox.GetEnumValues<Amount>())

@@ -18,40 +18,40 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using BriefingRoom.Debug;
+//using BriefingRoom.Debug;
 using System;
 using System.Windows.Forms;
 
-namespace BriefingRoom.GUI
+namespace BriefingRoom4DCS.LegacyGUI
 {
     /// <summary>
     /// Main application class.
     /// </summary>
-    public static class BriefingRoom
+    public static class BriefingRoomLegacyGUIProgram
     {
         /// <summary>
         /// Main application entry point.
         /// </summary>
         /// <param name="args">Command line arguments</param>
         [STAThread]
-        private static void Main(string[] args)
+        private static void Main()
         {
-            Console.Title = "BriefingRoom output console";
-            DebugLog.Instance.CreateLogFileWriter();
+            //Console.Title = "BriefingRoom output console";
+            //DebugLog.Instance.CreateLogFileWriter();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
             // Display the splash screen while the database is being loaded
-            using (SplashScreenForm splashScreen = new SplashScreenForm())
-            {
-                splashScreen.ShowDialog();
-                if (splashScreen.AbortStartup) return;
-            }
+            //using (SplashScreenForm splashScreen = new SplashScreenForm())
+            //{
+            //    splashScreen.ShowDialog();
+            //    if (splashScreen.AbortStartup) return;
+            //}
 
-            Application.Run(new MainForm());
+            //Application.Run(new MainForm());
 
-            DebugLog.Instance.CloseLogFileWriter();
+            //DebugLog.Instance.CloseLogFileWriter();
         }
     }
 }

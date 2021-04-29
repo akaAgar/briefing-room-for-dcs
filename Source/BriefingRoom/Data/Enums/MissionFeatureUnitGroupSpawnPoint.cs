@@ -18,26 +18,14 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using System.Windows.Forms;
-
-namespace BriefingRoom.GUI
+namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// A class that can be expanded into a ContextMenu when viewed as a property in a <see cref="TreeViewPropertyEditor{T}"/>.
-    /// </summary>
-    public abstract class ContextMenuExpandable
+    internal enum MissionFeatureUnitGroupSpawnPoint
     {
-        /// <summary>
-        /// Adds the required items in a context menu.
-        /// </summary>
-        /// <param name="contextMenu">The context menu in which to display items.</param>
-        /// <param name="onClickEventHandler">Method to call when a menu item is clicked.</param>
-        public abstract void CreateContextMenu(ContextMenuStrip contextMenu, ToolStripItemClickedEventHandler onClickEventHandler);
-
-        /// <summary>
-        /// Called when an item from the context menu is clicked.
-        /// </summary>
-        /// <param name="itemTag">Tag of the clicked item.</param>
-        public abstract void OnContextMenuItemClicked(object itemTag);
+        Homebase,
+        Objective,
+        ObjectiveNear,
+        Waypoint,
+        WaypointNear,
     }
 }
