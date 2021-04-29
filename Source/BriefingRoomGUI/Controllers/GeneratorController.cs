@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using BriefingRoom4DCSWorld.Generator;
-using BriefingRoom4DCSWorld.Template;
-using BriefingRoom4DCSWorld.Miz;
+using BriefingRoom4DCS.Generator;
+using BriefingRoom4DCS.Template;
+using BriefingRoom4DCS.Miz;
 
 
 namespace API.Controllers

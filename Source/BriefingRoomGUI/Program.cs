@@ -6,8 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using BriefingRoom4DCSWorld.DB;
-using BriefingRoom4DCSWorld.Debug;
+using BriefingRoom4DCS.Data;
 
 namespace BriefingRoomGUI
 {

@@ -2,8 +2,8 @@ using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
-using BriefingRoom4DCSWorld;
-using BriefingRoom4DCSWorld.DB;
+using BriefingRoom4DCS;
+using BriefingRoom4DCS.Data;
 
 namespace BriefingRoomGUI.Utils
 {
