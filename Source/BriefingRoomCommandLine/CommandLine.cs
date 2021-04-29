@@ -21,7 +21,11 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
+
+using BriefingRoom4DCS.Mission;
+using BriefingRoom4DCS.Miz;
 
 namespace BriefingRoom4DCS.CommandLineTool
 {
@@ -30,6 +34,15 @@ namespace BriefingRoom4DCS.CommandLineTool
     /// </summary>
     public class CommandLine : IDisposable
     {
+        /// <summary>
+        /// Maximum number of missions to generate.
+        /// </summary>
+        private const int MAX_MISSION_COUNT = 10;
+
+        private static readonly string LOG_FILE = $"{Application.StartupPath}\\Log.txt";
+
+        private readonly StreamWriter LogWriter;
+
         [STAThread]
         private static void Main(string[] args)
         {
@@ -42,7 +55,7 @@ namespace BriefingRoom4DCS.CommandLineTool
                 return;
             }
 
-            //if (DebugLog.Instance.ErrorCount > 0) return; // Errors found, abort! abort!
+//            if (DebugLog.Instance.ErrorCount > 0) return; // Errors found, abort! abort!
 
             try
             {
@@ -61,11 +74,6 @@ namespace BriefingRoom4DCS.CommandLineTool
 #endif
         }
 
-        /// <summary>
-        /// Maximum number of missions to generate.
-        /// </summary>
-        private const int MAX_MISSION_COUNT = 10;
-
         private readonly BriefingRoom4DCS.BriefingRoom BriefingRoomGenerator;
 
         /// <summary>
@@ -73,10 +81,12 @@ namespace BriefingRoom4DCS.CommandLineTool
         /// </summary>
         public CommandLine()
         {
-            BriefingRoomGenerator = new BriefingRoom4DCS.BriefingRoom(DebugLog_OnLog);
+            if (File.Exists(LOG_FILE)) File.Delete(LOG_FILE);
+            LogWriter = File.AppendText(LOG_FILE);
+            BriefingRoomGenerator = new BriefingRoom(WriteToDebugLog);
         }
 
-        private void DebugLog_OnLog(string message, LogMessageErrorLevel errorLevel)
+        private void WriteToDebugLog(string message, LogMessageErrorLevel errorLevel = LogMessageErrorLevel.Info)
         {
             switch (errorLevel)
             {
@@ -84,6 +94,7 @@ namespace BriefingRoom4DCS.CommandLineTool
                 case LogMessageErrorLevel.Warning: message = $"WARNING: {message}"; break;
             }
 
+            LogWriter.WriteLine(message);
             Console.WriteLine(message);
         }
 
@@ -98,34 +109,34 @@ namespace BriefingRoom4DCS.CommandLineTool
 
             if (templateFiles.Length == 0)
             {
-                //DebugLog.Print("No mission template files provided", DebugLogMessageErrorLevel.Error);
+                WriteToDebugLog("No mission template files provided.", LogMessageErrorLevel.Warning);
                 return false;
             }
 
-            //foreach (string t in templateFiles)
-            //{
-            //    for (int i = 0; i < missionCount; i++)
-            //    {
-            //        DCSMission mission = BRLibrary.GenerateMission(t);
-            //        if (mission == null)
-            //        {
-            //            DebugLog.Print($"Failed to generate a mission from template {Path.GetFileName(t)}", DebugLogMessageErrorLevel.Warning);
-            //            continue;
-            //        }
+            foreach (string t in templateFiles)
+            {
+                for (int i = 0; i < missionCount; i++)
+                {
+                    DCSMission mission = BriefingRoomGenerator.GenerateMission(t);
+                    if (mission == null)
+                    {
+                        Console.WriteLine($"Failed to generate a mission from template {Path.GetFileName(t)}");
+                        continue;
+                    }
 
-            //        string mizFileName = Path.Combine(Application.StartupPath, Path.GetFileNameWithoutExtension(t) + ".miz");
-            //        mizFileName = GetUnusedFileName(mizFileName);
+                    string mizFileName = Path.Combine(Application.StartupPath, Path.GetFileNameWithoutExtension(t) + ".miz");
+                    mizFileName = GetUnusedFileName(mizFileName);
 
-            //        MizFile miz = BRLibrary.MissionToMiz(mission);
-            //        if ((miz == null) || !miz.SaveToFile(mizFileName))
-            //        {
-            //            DebugLog.Print($"Failed to export .miz file from template {Path.GetFileName(t)}", DebugLogMessageErrorLevel.Warning);
-            //            continue;
-            //        }
-            //        else
-            //            DebugLog.Print($"Mission {Path.GetFileName(mizFileName)} exported to .miz file from template {Path.GetFileName(t)}");
-            //    }
-            //}
+                    MizFile miz = mission.ExportToMiz();
+                    if ((miz == null) || !miz.SaveToFile(mizFileName))
+                    {
+                        WriteToDebugLog($"Failed to export .miz file from template {Path.GetFileName(t)}", LogMessageErrorLevel.Warning);
+                        continue;
+                    }
+                    else
+                        WriteToDebugLog($"Mission {Path.GetFileName(mizFileName)} exported to .miz file from template {Path.GetFileName(t)}");
+                }
+            }
 
             return true;
         }
@@ -179,6 +190,7 @@ namespace BriefingRoom4DCS.CommandLineTool
         public void Dispose()
         {
             BriefingRoomGenerator.Dispose();
+            LogWriter.Dispose();
         }
     }
 }
