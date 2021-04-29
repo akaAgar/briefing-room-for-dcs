@@ -241,10 +241,10 @@ namespace BriefingRoom4DCS
             return AmountNR.Random == amountNR ? (AmountNR)(RandomInt((int)AmountNR.VeryHigh) + 1) : amountNR;
         }
 
-        public static CloudPreset Get(this CloudPreset cloudPreset)
-        {
-            return CloudPreset.Random == cloudPreset ? (CloudPreset)(RandomInt((int)CloudPreset.RainyPreset3) + 1) : cloudPreset;
-        }
+        //public static CloudPreset Get(this CloudPreset cloudPreset)
+        //{
+        //    return CloudPreset.Random == cloudPreset ? (CloudPreset)(RandomInt((int)CloudPreset.RainyPreset3) + 1) : cloudPreset;
+        //}
 
         /// <summary>
         /// Rolls for boolean value.

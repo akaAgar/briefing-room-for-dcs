@@ -94,6 +94,7 @@ namespace BriefingRoom4DCS.Data
             LoadEntries<DBEntryUnit>("Units"); // Must be loaded after DBEntryDCSMod is loaded as it depends on it
             LoadEntries<DBEntryDefaultUnitList>("DefaultUnitLists"); // Must be loaded after DBEntryUnit as it depends on it
             LoadEntries<DBEntryCoalition>("Coalitions"); // Must be loaded after DBEntryUnit and DBEntryDefaultUnitList as it depends on them
+            LoadEntries<DBEntryWeatherPreset>("WeatherPreset");
 
             if (GetAllPlayerAircraftID().Length == 0) // Can't start without at least one player-controllable aircraft
                 BriefingRoom.PrintToLog("No player-controllable aircraft found.", LogMessageErrorLevel.Error);

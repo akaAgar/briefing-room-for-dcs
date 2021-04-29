@@ -47,7 +47,7 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Settings for enemy air defense, according to mission template <see cref="Template.MissionTemplate.SituationEnemyAirDefense"/> setting.
         /// </summary>
-        internal DatabaseCommonAirDefenseInfo[] EnemyAirDefense { get; }
+        internal DBCommonAirDefenseInfo[] EnemyAirDefense { get; }
 
         /// <summary>
         /// Minimum distance (in nautical miles) between players take off location and enemy surface-to-air defense, for each air defense range category.
@@ -77,7 +77,7 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Settings for enemy air defense, according to mission template <see cref="Template.MissionTemplate.SituationFriendlyAirDefense"/> setting.
         /// </summary>
-        internal DatabaseCommonAirDefenseInfo[] AllyAirDefense { get; }
+        internal DBCommonAirDefenseInfo[] AllyAirDefense { get; }
 
         /// <summary>
         /// Minimum distance (in nautical miles) between players take off location and ally surface-to-air defense, for each air defense range category.
@@ -129,19 +129,19 @@ namespace BriefingRoom4DCS.Data
         /// </summary>
         internal string[] WPNamesObjectives { get; private set; }
 
-        internal DBEntryWeather[] Weather { get; private set; }
+        //internal DBEntryWeather[] Weather { get; private set; }
 
-        internal DBEntryWind[] Wind { get; private set; }
+        internal DBCommonWind[] Wind { get; private set; }
 
         /// <summary>
         /// Constructor.
         /// </summary>
         internal DatabaseCommon()
         {
-            EnemyAirDefense = new DatabaseCommonAirDefenseInfo[Toolbox.EnumCount<AmountNR>()];
+            EnemyAirDefense = new DBCommonAirDefenseInfo[Toolbox.EnumCount<AmountNR>()];
             EnemyAirDefenseDistanceFromObjectives = new MinMaxD[Toolbox.EnumCount<AirDefenseRange>()];
             EnemyAirDefenseDistanceFromTakeOffLocation = new int[Toolbox.EnumCount<AirDefenseRange>()];
-            AllyAirDefense = new DatabaseCommonAirDefenseInfo[Toolbox.EnumCount<AmountNR>()];
+            AllyAirDefense = new DBCommonAirDefenseInfo[Toolbox.EnumCount<AmountNR>()];
             AllyAirDefenseDistanceFromObjectives = new int[Toolbox.EnumCount<AirDefenseRange>()]; 
             AllyAirDefenseDistanceFromTakeOffLocation = new MinMaxD[Toolbox.EnumCount<AirDefenseRange>()];
             EnemyCAPRelativePower = new double[Toolbox.EnumCount<AmountNR>()];
@@ -180,7 +180,7 @@ namespace BriefingRoom4DCS.Data
 
                 for (i = 0; i < Toolbox.EnumCount<AmountNR>(); i++)
                 {
-                    EnemyAirDefense[i] = new DatabaseCommonAirDefenseInfo(ini, (AmountNR)i);
+                    EnemyAirDefense[i] = new DBCommonAirDefenseInfo(ini, (AmountNR)i);
 
                     EnemyCAPRelativePower[i] = (i == 0) ? 0.0 :
                         Toolbox.Clamp(ini.GetValue<int>("CombatAirPatrols", $"RelativePower.{(AmountNR)i}"), 0, 100) / 100.0;
@@ -196,11 +196,9 @@ namespace BriefingRoom4DCS.Data
             BriefingRoom.PrintToLog("Loading common ally air defense settings...");
             using (INIFile ini = new INIFile($"{BRPaths.DATABASE}AllyAirDefense.ini"))
             {
-
-
                 for (i = 0; i < Toolbox.EnumCount<AmountNR>(); i++)
                 {
-                    AllyAirDefense[i] = new DatabaseCommonAirDefenseInfo(ini, (AmountNR)i);
+                    AllyAirDefense[i] = new DBCommonAirDefenseInfo(ini, (AmountNR)i);
                 }
 
                 for (i = 0; i < Toolbox.EnumCount<AirDefenseRange>(); i++)
@@ -230,16 +228,16 @@ namespace BriefingRoom4DCS.Data
                 WPNamesObjectives = ini.GetValueArray<string>("Waypoints", "Objectives");
             }
 
-            BriefingRoom.PrintToLog("Loading common weather settings...");
-            using (INIFile ini = new INIFile($"{BRPaths.DATABASE}Weather.ini"))
+            BriefingRoom.PrintToLog("Loading common wind settings...");
+            using (INIFile ini = new INIFile($"{BRPaths.DATABASE}Wind.ini"))
             {
-                Weather = new DBEntryWeather[Toolbox.EnumCount<Weather>() - 1]; // -1 because we don't want "Random"
-                for (i = 0; i < Weather.Length; i++)
-                    Weather[i] = new DBEntryWeather(ini, ((Weather)i).ToString());
+                //Weather = new DBEntryWeather[Toolbox.EnumCount<Weather>() - 1]; // -1 because we don't want "Random"
+                //for (i = 0; i < Weather.Length; i++)
+                //    Weather[i] = new DBEntryWeather(ini, ((Weather)i).ToString());
                 
-                Wind = new DBEntryWind[Toolbox.EnumCount<Wind>() - 1]; // -1 because we don't want "Random"
+                Wind = new DBCommonWind[Toolbox.EnumCount<Wind>() - 1]; // -1 because we don't want "Random"
                 for (i = 0; i < Wind.Length; i++)
-                    Wind[i] = new DBEntryWind(ini, ((Wind)i).ToString());
+                    Wind[i] = new DBCommonWind(ini, ((Wind)i).ToString());
             }
         }
 

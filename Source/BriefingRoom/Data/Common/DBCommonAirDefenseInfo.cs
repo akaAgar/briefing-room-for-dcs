@@ -23,7 +23,7 @@ namespace BriefingRoom4DCS.Data
     /// <summary>
     /// Stores settings (number of units, etc.) about a level of enemy air defense.
     /// </summary>
-    internal struct DatabaseCommonAirDefenseInfo
+    internal struct DBCommonAirDefenseInfo
     {
         /// <summary>
         /// Chance (percentage) to have "embedded" short-range air-defense units included in objective groups.
@@ -45,7 +45,7 @@ namespace BriefingRoom4DCS.Data
         /// </summary>
         /// <param name="ini">.ini file from which to load air defense common settings</param>
         /// <param name="airDefenseLevel">Level of air defense for which this setting applies.</param>
-        internal DatabaseCommonAirDefenseInfo(INIFile ini, AmountNR airDefenseLevel)
+        internal DBCommonAirDefenseInfo(INIFile ini, AmountNR airDefenseLevel)
         {
             int i;
             GroupsInArea = new MinMaxI[Toolbox.EnumCount<AirDefenseRange>()];

@@ -124,6 +124,9 @@ namespace BriefingRoom4DCS
 
                 case DatabaseEntryType.Theater:
                     return (from DBEntryTheater theater in Database.Instance.GetAllEntries<DBEntryTheater>() select theater.GetDBEntryInfo()).ToArray();
+
+                case DatabaseEntryType.WeatherPreset:
+                    return (from DBEntryWeatherPreset weatherPreset in Database.Instance.GetAllEntries<DBEntryWeatherPreset>() select weatherPreset.GetDBEntryInfo()).ToArray();
             }
 
             return new DatabaseEntryInfo[0];

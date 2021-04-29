@@ -90,11 +90,6 @@ namespace BriefingRoom4DCS.Template
         public CountryCoalition ContextTheaterCountriesCoalitions { get; set; }
 
         [Required]
-        [Display(Name = "Cloud preset", Description = "DCS World cloud preset to use for the weather.")]
-        [Category("Environment")]
-        public CloudPreset EnvironmentCloudPreset { get; set; }
-
-        [Required]
         [Display(Name = "Season", Description = "Season during which the mission takes place.")]
         [Category("Environment")]
         public Season EnvironmentSeason { get; set; }
@@ -103,6 +98,11 @@ namespace BriefingRoom4DCS.Template
         [Display(Name = "Time of day", Description = "Time of day of mission start.")]
         [Category("Environment")]
         public TimeOfDay EnvironmentTimeOfDay { get; set; }
+
+        [Required, DatabaseSourceType(DatabaseEntryType.WeatherPreset, true)]
+        [Display(Name = "Weather preset", Description = "Weather preset to use for this mission.")]
+        [Category("Environment")]
+        public string EnvironmentWeatherPreset { get; set; }
 
         [Required]
         [Display(Name = "Wind", Description = "Wind intensity.")]
@@ -218,9 +218,9 @@ namespace BriefingRoom4DCS.Template
             ContextTheater = "Caucasus";
             ContextTheaterCountriesCoalitions = CountryCoalition.Default;
 
-            EnvironmentCloudPreset = CloudPreset.Random;
             EnvironmentSeason = Season.Random;
             EnvironmentTimeOfDay = TimeOfDay.RandomDaytime;
+            EnvironmentWeatherPreset = "";
             EnvironmentWind = Wind.Random;
 
             FlightPlanObjectiveDistance = 80;
@@ -266,9 +266,9 @@ namespace BriefingRoom4DCS.Template
                 ContextTheater = ini.GetValue("Context", "Theater", ContextTheater);
                 ContextTheaterCountriesCoalitions = ini.GetValue("Context", "TheaterCountriesCoalitions", ContextTheaterCountriesCoalitions);
 
-                EnvironmentCloudPreset = ini.GetValue("Environment", "CloudPreset", EnvironmentCloudPreset);
                 EnvironmentSeason = ini.GetValue("Environment", "Season", EnvironmentSeason);
                 EnvironmentTimeOfDay = ini.GetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);
+                EnvironmentWeatherPreset = ini.GetValue("Environment", "WeatherPreset", EnvironmentWeatherPreset);
                 EnvironmentWind = ini.GetValue("Environment", "Wind", EnvironmentWind);
 
                 FlightPlanObjectiveDistance = ini.GetValue("FlightPlan", "ObjectiveDistance", FlightPlanObjectiveDistance);
@@ -319,9 +319,9 @@ namespace BriefingRoom4DCS.Template
                 ini.SetValue("Context", "Theater", ContextTheater);
                 ini.SetValue("Context", "TheaterCountriesCoalitions", ContextTheaterCountriesCoalitions);
 
-                ini.SetValue("Environment", "CloudPreset", EnvironmentCloudPreset);
                 ini.SetValue("Environment", "Season", EnvironmentSeason);
                 ini.SetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);
+                ini.SetValue("Environment", "WeatherPreset", EnvironmentWeatherPreset);
                 ini.SetValue("Environment", "Wind", EnvironmentWind);
 
                 ini.SetValue("FlightPlan", "ObjectiveDistance", FlightPlanObjectiveDistance);

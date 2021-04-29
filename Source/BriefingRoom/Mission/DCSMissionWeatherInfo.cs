@@ -43,10 +43,10 @@ namespace BriefingRoom4DCS.Mission
         /// </summary>
         public int CloudsThickness { get; internal set; } = 0;
 
-        /// <summary>
-        /// DCS Cloud preset to use.
-        /// </summary>
-        public CloudPreset CloudsPreset { get; internal set; } = CloudPreset.None;
+        ///// <summary>
+        ///// DCS Cloud preset to use.
+        ///// </summary>
+        //public CloudPreset CloudsPreset { get; internal set; } = CloudPreset.None;
 
         /// <summary>
         /// Is dust enabled?

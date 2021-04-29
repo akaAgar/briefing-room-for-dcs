@@ -18,7 +18,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-
 using System.IO;
 using System.Linq;
 
@@ -65,7 +64,7 @@ namespace BriefingRoom4DCS.Data
                     {
                         if (string.IsNullOrEmpty(CompletionTriggerLua[(int)unitCategory]))
                         {
-                            BriefingRoom.PrintToLog($"Missing completion trigger lua for objective task \"{ID}\" with unit category \"{unitCategory}\".", LogMessageErrorLevel.Warning);
+                            BriefingRoom.PrintToLog($"Missing completion trigger Lua for objective task \"{ID}\" with unit category \"{unitCategory}\".", LogMessageErrorLevel.Warning);
                             return false;
                         }
                         if (!File.Exists($"{BRPaths.INCLUDE_LUA_OBJECTIVETRIGGERS}{CompletionTriggerLua[(int)unitCategory]}"))

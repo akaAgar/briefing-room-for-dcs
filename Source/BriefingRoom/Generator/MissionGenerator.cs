@@ -281,7 +281,7 @@ namespace BriefingRoom4DCS.Generator
             mission.Coalitions[(int)Coalition.Blue] = GeneratorTools.GetTemplateCoalition(template, Coalition.Blue);
             mission.Coalitions[(int)Coalition.Red] = GeneratorTools.GetTemplateCoalition(template, Coalition.Red);
             mission.CoalitionPlayer = template.ContextPlayerCoalition;
-            mission.Weather.CloudsPreset = template.EnvironmentCloudPreset;
+            //mission.Weather.CloudsPreset = template.EnvironmentCloudPreset;
             mission.Theater = template.ContextTheater;
             mission.CoalitionCountries[(int)Coalition.Blue] = new List<Country> { Country.CJTFBlue };
             mission.CoalitionCountries[(int)Coalition.Red] = new List<Country> { Country.CJTFRed };

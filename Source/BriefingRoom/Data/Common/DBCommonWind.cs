@@ -18,14 +18,12 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-
-
 namespace BriefingRoom4DCS.Data
 {
     /// <summary>
     /// Stores information about a set of wind conditions in a <see cref="DBEntry"/>.
     /// </summary>
-    internal struct DBEntryWind
+    internal struct DBCommonWind
     {
         /// <summary>
         /// Min/max wind speed (in meters/second).
@@ -42,7 +40,7 @@ namespace BriefingRoom4DCS.Data
         /// </summary>
         /// <param name="ini">The .ini file to load from.</param>
         /// <param name="key">The value key.</param>
-        internal DBEntryWind(INIFile ini, string key)
+        internal DBCommonWind(INIFile ini, string key)
         {
             Wind = ini.GetValue<MinMaxI>("Wind", key + ".Wind");
             Turbulence = ini.GetValue<MinMaxI>("Wind", key + ".Turbulence");
