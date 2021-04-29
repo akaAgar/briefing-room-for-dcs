@@ -33,9 +33,9 @@ namespace BriefingRoom4DCS.Data
         internal string[][] BriefingElements { get; private set; }
 
         /// <summary>
-        /// Countries included in this coalition.
+        /// Countries which are part of this coalition.
         /// </summary>
-        internal string[] Countries { get; private set; }
+        internal Country[] Countries { get; private set; }
 
         /// <summary>
         /// Default unit list this coalition should use.
@@ -62,14 +62,14 @@ namespace BriefingRoom4DCS.Data
                 for (i = 0; i < BriefingElements.Length; i++)
                     BriefingElements[i] = ini.GetValueArray<string>("Briefing", $"Elements.{(CoalitionBriefingElement)i}");
 
-                Countries = ini.GetValueArray<string>("Coalition", "Countries");
-                string[] invalidCountries = (from string country in Countries where !Database.Countries.Contains(country, StringComparer.InvariantCultureIgnoreCase) select country).ToArray();
-                foreach (string country in invalidCountries)
-                    BriefingRoom.PrintToLog($"Country \"{country}\" required by coalition \"{ID}\" not found.", LogMessageErrorLevel.Warning);
-                Countries = (from string country in Countries where Database.Countries.Contains(country, StringComparer.InvariantCultureIgnoreCase) select country.ToLowerInvariant()).ToArray();
+                Countries = ini.GetValueArray<Country>("Coalition", "Countries").Distinct().OrderBy(x => x).ToArray();
+                //string[] invalidCountries = (from Country country in Countries where !Database.Countries.Contains(country, StringComparer.InvariantCultureIgnoreCase) select country).ToArray();
+                //foreach (string country in invalidCountries)
+                //    BriefingRoom.PrintToLog($"Country \"{country}\" required by coalition \"{ID}\" not found.", LogMessageErrorLevel.Warning);
+                //Countries = (from string country in Countries where Database.Countries.Contains(country, StringComparer.InvariantCultureIgnoreCase) select country.ToLowerInvariant()).ToArray();
                 if (Countries.Length == 0)
                 {
-                    BriefingRoom.PrintToLog($"No valid country found for coalition \"{ID}\", coalition was ignored.", LogMessageErrorLevel.Warning);
+                    BriefingRoom.PrintToLog($"No country in coalition \"{ID}\", coalition was ignored.", LogMessageErrorLevel.Warning);
                     return false;
                 }
 
@@ -144,7 +144,7 @@ namespace BriefingRoom4DCS.Data
         {
             List<string> validUnits = new List<string>();
 
-            foreach (string country in Countries)
+            foreach (Country country in Countries)
                 validUnits.AddRange(
                     from DBEntryUnit unit in Database.GetAllEntries<DBEntryUnit>()
                     where unit.Families.Contains(family) && unit.Operators.ContainsKey(country) &&

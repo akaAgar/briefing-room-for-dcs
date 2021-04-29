@@ -79,7 +79,7 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Dictionary of countries operating the unit, with min (index #0) and max (index #1) decade of operation.
         /// </summary>
-        internal Dictionary<string, Decade[]> Operators { get; private set; }
+        internal Dictionary<Country, Decade[]> Operators { get; private set; }
 
         /// <summary>
         /// Name of the unit mod required for this unit to be available.
@@ -121,11 +121,17 @@ namespace BriefingRoom4DCS.Data
                 AircraftData = new DBEntryUnitAircraftData();
 
                 // Load the list of operators
-                Operators = new Dictionary<string, Decade[]>(StringComparer.InvariantCultureIgnoreCase);
+                Operators = new Dictionary<Country, Decade[]>();
                 foreach (string k in ini.GetKeysInSection("Operators"))
                 {
-                    if (Operators.ContainsKey(k)) continue;
-                    Operators.Add(k, ini.GetValueArrayAsMinMaxEnum<Decade>("Operators", k));
+                    if (!Enum.TryParse(k, true, out Country country))
+                    {
+                        BriefingRoom.PrintToLog($"Country {k} in unit {ID} doesn't exist.", LogMessageErrorLevel.Warning);
+                        continue;
+                    }
+
+                    if (Operators.ContainsKey(country)) continue;
+                    Operators.Add(country, ini.GetValueArrayAsMinMaxEnum<Decade>("Operators", k));
                 }
 
                 if (IsAircraft) // Load aircraft-specific data, if required
@@ -138,15 +144,15 @@ namespace BriefingRoom4DCS.Data
             return true;
         }
 
-        internal bool IsValidForFamilyCountryAndPeriod(UnitFamily family, string[] countries, Decade decade)
+        internal bool IsValidForFamilyCountryAndPeriod(UnitFamily family, Country[] countries, Decade decade)
         {
             // Unit does not belong to the required family
             if (!Families.Contains(family)) return false;
 
-            foreach (string c in countries)
+            foreach (Country country in countries)
             {
-                if (!Operators.ContainsKey(c)) continue;
-                if ((Operators[c][0] <= decade) && (Operators[c][1] >= decade))
+                if (!Operators.ContainsKey(country)) continue;
+                if ((Operators[country][0] <= decade) && (Operators[country][1] >= decade))
                     return true; // Found one operator operating the unit during the required decade
             }
 

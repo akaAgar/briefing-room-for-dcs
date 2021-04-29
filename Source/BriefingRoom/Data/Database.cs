@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace BriefingRoom4DCS.Data
@@ -53,10 +54,10 @@ namespace BriefingRoom4DCS.Data
         /// </summary>
         internal DatabaseCommon Common { get; set; }
 
-        /// <summary>
-        /// Array of countries ID used by <see cref="DBEntryCoalition"/> and <see cref="DBEntryUnit"/>
-        /// </summary>
-        internal string[] Countries { get; set; }
+        ///// <summary>
+        ///// Array of countries ID used by <see cref="DBEntryCoalition"/> and <see cref="DBEntryUnit"/>
+        ///// </summary>
+        //internal string[] Countries { get; set; }
 
         /// <summary>
         /// Database entries are stored by type in a dictionary of dictionaries.
@@ -74,9 +75,8 @@ namespace BriefingRoom4DCS.Data
         internal Database()
         {
             Common = new DatabaseCommon();
-            Countries = new string[0];
+            //Countries = new string[0];
             DBEntries = new Dictionary<Type, Dictionary<string, DBEntry>>();
-            Initialize();
         }
 
         /// <summary>
@@ -85,17 +85,79 @@ namespace BriefingRoom4DCS.Data
         internal void Initialize()
         {
             if (Initialized) return;
+            Initialized = true;
 
             Common.Load();
 
+            // Load entries into the database
             DBEntries.Clear();
-            using (DatabaseLoader loader = new DatabaseLoader(this))
-                loader.LoadAll(DBEntries);
+            LoadEntries<DBEntryMissionFeature>("MissionFeatures");
+            LoadEntries<DBEntryObjectiveTarget>("ObjectiveTargets");
+            LoadEntries<DBEntryObjectiveTargetBehavior>("ObjectiveTargetsBehaviors");
+            LoadEntries<DBEntryObjectiveTask>("ObjectiveTasks");
+            LoadEntries<DBEntryTheater>("Theaters");
+            LoadEntries<DBEntryTheaterAirbase>("TheatersAirbases"); // Must be called after DBEntryTheater is loaded, as it depends on it
+            LoadEntries<DBEntryDCSMod>("DCSMods");
+            LoadEntries<DBEntryUnit>("Units"); // Must be loaded after DBEntryDCSMod is loaded as it depends on it
+            //GenerateUnitPseudoEntries(); // Must be called after DBEntryUnit is loaded, as it depends on it
+
+            //// Creates the list of available countries from the operators found in DBEntryUnit .ini files.
+            //List<string> countries = new List<string>();
+            //foreach (DBEntryUnit unit in GetAllEntries<DBEntryUnit>()) countries.AddRange(unit.Operators.Keys);
+            //Countries = (from string c in countries select c.ToLowerInvariant()).Distinct(StringComparer.InvariantCultureIgnoreCase).ToArray();
+
+            LoadEntries<DBEntryDefaultUnitList>("DefaultUnitLists"); // Must be loaded after DBEntryUnit as it depends on it
+            LoadEntries<DBEntryCoalition>("Coalitions"); // Must be loaded after DBEntryUnit and DBEntryDefaultUnitList as it depends on them
 
             if (GetAllPlayerAircraftID().Length == 0) // Can't start without at least one player-controllable aircraft
                 BriefingRoom.PrintToLog("No player-controllable aircraft found.", LogMessageErrorLevel.Error);
+        }
 
-            Initialized = false;
+        /// <summary>
+        /// Loads database entries from all .ini files in a directory (and its subdirectories).
+        /// </summary>
+        /// <typeparam name="T">The type of <see cref="DBEntry"/> class to load</typeparam>
+        /// <param name="dbEntries">Dictionary in which to store the database entries</param>
+        /// <param name="subDirectory"><see cref="DATABASE_PATH"/> subdirectory in which to look for files</param>
+        private void LoadEntries<T>(string subDirectory) where T : DBEntry, new()
+        {
+            BriefingRoom.PrintToLog($"Loading {subDirectory.ToLowerInvariant()}...");
+
+            string directory = $"{BRPaths.DATABASE}{subDirectory}";
+            if (!Directory.Exists(directory))
+                throw new Exception($"Directory Database\\{subDirectory} not found.");
+
+            Type dbType = typeof(T);
+            string shortTypeName = dbType.Name.Substring(7).ToLowerInvariant();
+
+            if (!DBEntries.ContainsKey(dbType))
+                DBEntries.Add(dbType, new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase));
+
+            DBEntries[dbType].Clear();
+
+            foreach (string filePath in Directory.EnumerateFiles(directory, "*.ini", SearchOption.AllDirectories))
+            {
+                string id = Path.GetFileNameWithoutExtension(filePath).Trim();
+
+                // Extensions, mission features and units may not have commas in their IDs as these will be used in comma-separated arrays.
+                if ((dbType == typeof(DBEntryMissionFeature)) || (dbType == typeof(DBEntryUnit)))
+                    id = id.Replace(",", "").Trim();
+
+                if (DBEntries[dbType].ContainsKey(id)) continue;
+                T entry = new T();
+                if (!entry.Load(this, id, filePath)) continue;
+                DBEntries[dbType].Add(id, entry);
+                BriefingRoom.PrintToLog($"Loaded {shortTypeName} \"{id}\"");
+            }
+            BriefingRoom.PrintToLog($"Found {DBEntries[dbType].Count} database entries of type \"{typeof(T).Name}\"");
+
+            bool mustHaveAtLeastOneEntry = true;
+            if ((dbType == typeof(DBEntryDefaultUnitList)) || (dbType == typeof(DBEntryMissionFeature)))
+                mustHaveAtLeastOneEntry = false;
+
+            // If a required database type has no entries, raise an error.
+            if ((DBEntries[dbType].Count == 0) && mustHaveAtLeastOneEntry)
+                BriefingRoom.PrintToLog($"No valid database entries found in the \"{subDirectory}\" directory", LogMessageErrorLevel.Error);
         }
 
         /// <summary>

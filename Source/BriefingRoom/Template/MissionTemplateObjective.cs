@@ -20,7 +20,9 @@ If not, see https://www.gnu.org/licenses/
 */
 
 using BriefingRoom4DCS.Data;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace BriefingRoom4DCS.Template
 {
@@ -29,6 +31,11 @@ namespace BriefingRoom4DCS.Template
     /// </summary>
     public sealed class MissionTemplateObjective
     {
+        [Required]
+        [Display(Name = "Options", Description = "Miscellaneous options for this mission objective.")]
+        public List<ObjectiveOption> Options { get { return Options_; } set { Options_ = value.Distinct().ToList(); } }
+        private List<ObjectiveOption> Options_;
+
         [Required, DatabaseSourceType(DatabaseEntryType.ObjectiveTarget)]
         [Display(Name = "Target", Description = "Family of units to use as a target for this objective.")]
         public string Target { get { return Target_; } set { Target_ = Database.Instance.CheckID<DBEntryObjectiveTarget>(value); } }
@@ -48,20 +55,16 @@ namespace BriefingRoom4DCS.Template
         public string Task { get { return Task_; } set { Task_ = Database.Instance.CheckID<DBEntryObjectiveTask>(value); } }
         private string Task_;
 
-        [Required]
-        [Display(Name = "Waypoint on target", Description = "Is the waypoint located exactly on the target's initial location, or will the player(s) have to look for the target?")]
-        public bool WaypointOnTarget { get; set; }
-
         /// <summary>
         /// Constructor.
         /// </summary>
         public MissionTemplateObjective()
         {
+            Options = new List<ObjectiveOption>();
             Target = "VehicleAny";
             TargetBehavior = "Idle";
             TargetCount = Amount.Average;
             Task = "DestroyAll";
-            WaypointOnTarget = true;
         }
 
         /// <summary>
@@ -71,14 +74,14 @@ namespace BriefingRoom4DCS.Template
         /// <param name="targetBehavior"></param>
         /// <param name="task">Task to accomplish at this objective.</param>
         /// <param name="targetCount">Number of target units at this objective.</param>
-        /// <param name="waypointOnTarget">Is the waypoint located exactly on the target's initial location, or will the player(s) have to look for the target?</param>
-        public MissionTemplateObjective(string target, string targetBehavior, string task, Amount targetCount = Amount.Average, bool waypointOnTarget = true)
+        /// <param name="options">Special options to apply to this objective.</param>
+        public MissionTemplateObjective(string target, string targetBehavior, string task, Amount targetCount = Amount.Average, params ObjectiveOption[] options)
         {
+            Options = new List<ObjectiveOption>(options);
             Target = target;
             TargetBehavior = targetBehavior;
             TargetCount = targetCount;
             Task = task;
-            WaypointOnTarget = waypointOnTarget;
         }
 
         /// <summary>
@@ -100,11 +103,11 @@ namespace BriefingRoom4DCS.Template
         /// <param name="key">INI key.</param>
         internal void LoadFromFile(INIFile ini, string section, string key)
         {
+            Options = ini.GetValueArray<ObjectiveOption>(section, $"{key}.Options").ToList();
             Target = ini.GetValue<string>(section, $"{key}.Target");
             TargetBehavior = ini.GetValue<string>(section, $"{key}.TargetBehavior");
             TargetCount = ini.GetValue<Amount>(section, $"{key}.TargetCount");
             Task = ini.GetValue<string>(section, $"{key}.Task");
-            WaypointOnTarget = ini.GetValue<bool>(section, $"{key}.WaypointOnTarget");
         }
 
         /// <summary>
@@ -115,11 +118,11 @@ namespace BriefingRoom4DCS.Template
         /// <param name="key">INI key.</param>
         internal void SaveToFile(INIFile ini, string section, string key)
         {
+            ini.SetValueArray(section, $"{key}.Options", Options.ToArray());
             ini.SetValue(section, $"{key}.Task", Task);
             ini.SetValue(section, $"{key}.Target", Target);
             ini.SetValue(section, $"{key}.TargetBehavior", TargetBehavior);
             ini.SetValue(section, $"{key}.TargetCount", TargetCount);
-            ini.SetValue(section, $"{key}.WaypointOnTarget", WaypointOnTarget);
         }
     }
 }

@@ -94,13 +94,6 @@ namespace BriefingRoom4DCS.CommandLineTool
         /// <returns>True if everything when wrong, false otherwise</returns>
         public bool DoCommandLine(params string[] args)
         {
-//#if DEBUG
-//            using (CommandLineInterface cli = new CommandLineInterface())
-//            { }
-
-//            return false;
-//#endif
-
             ParseCommandLineArguments(args, out string[] templateFiles, out int missionCount);
 
             if (templateFiles.Length == 0)
