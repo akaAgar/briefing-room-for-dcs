@@ -18,7 +18,10 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using System.Windows.Forms;
+using System;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 
 namespace BriefingRoom4DCS
 {
@@ -30,7 +33,7 @@ namespace BriefingRoom4DCS
         /// <summary>
         /// Path to the application.
         /// </summary>
-        public static string ROOT { get; } = Toolbox.NormalizeDirectoryPath(Application.StartupPath);
+        public static string ROOT { get; } = FindRoot();
 
         /// <summary>
         /// Path to the database subdirectory.
@@ -98,5 +101,19 @@ namespace BriefingRoom4DCS
         /// Path to the Media\Icons16 subdirectory.
         /// </summary>
         public static string MEDIA_ICONS16 { get; } = $"{MEDIA}Icons16\\";
+
+
+        private static string FindRoot(string path = "", int loop = 0){
+            if(string.IsNullOrEmpty(path))
+                path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location.Replace("BriefingRoom.dll", ""));
+            path = Path.GetFullPath(path);
+            DirectoryInfo di = new DirectoryInfo(path);
+            var directories = di.GetDirectories();
+            if(directories.Any(x => x.Name == "Database"))
+                return Toolbox.NormalizeDirectoryPath(path);
+            if(loop > 10)
+                throw new Exception("Can't Find Database within 10 levels up on app");
+            return FindRoot(path + "/..", loop + 1);
+        }
     }
 }

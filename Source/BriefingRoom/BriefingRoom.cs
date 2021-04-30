@@ -128,6 +128,9 @@ namespace BriefingRoom4DCS
 
                 case DatabaseEntryType.WeatherPreset:
                     return (from DBEntryWeatherPreset weatherPreset in Database.Instance.GetAllEntries<DBEntryWeatherPreset>() select weatherPreset.GetDBEntryInfo()).ToList();
+                
+                case DatabaseEntryType.Coalition:
+                    return (from DBEntryCoalition coalition in Database.Instance.GetAllEntries<DBEntryCoalition>() select coalition.GetDBEntryInfo()).ToList();
             }
 
             return new List<DatabaseEntryInfo>{new DatabaseEntryInfo()};

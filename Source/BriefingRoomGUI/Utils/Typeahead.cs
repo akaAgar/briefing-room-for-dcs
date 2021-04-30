@@ -18,6 +18,7 @@ namespace BriefingRoomGUI.Utils
         public static string GetDBDisplayName(DatabaseEntryType entryType, string id) {
             if(String.IsNullOrEmpty(id))
                 return "Random";
+            var list = BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(entryType);
             return BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(entryType).First(x => x.ID == id).Name;
         }
 

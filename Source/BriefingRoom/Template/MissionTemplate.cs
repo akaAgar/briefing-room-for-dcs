@@ -194,6 +194,7 @@ namespace BriefingRoom4DCS.Template
         /// <param name="filePath">Path to the .ini file the template should be read from.</param>
         public MissionTemplate(string filePath)
         {
+            Clear();
             LoadFromFile(filePath);
         }
 
@@ -252,7 +253,6 @@ namespace BriefingRoom4DCS.Template
         /// <returns></returns>
         public bool LoadFromFile(string filePath)
         {
-            Clear();
             if (!File.Exists(filePath)) return false;
 
             using (INIFile ini = new INIFile(filePath))

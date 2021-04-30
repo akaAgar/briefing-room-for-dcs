@@ -337,22 +337,20 @@
 
 @code {
 
+    private BriefingRoom4DCS.BriefingRoom briefingRoom = new BriefingRoom4DCS.BriefingRoom();
     private MissionTemplate Template;
     private DCSMission mission = new();
 
     private TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
     protected override async Task OnInitializedAsync()
     {
-        Template = new MissionTemplate(BRPaths.ROOT + "Default.brt");
+        Template = new MissionTemplate();
         flightGroupTab = Template.PlayerFlightGroups[0];
     }
 
     private void GenerateMission()
     {
-        using (BriefingRoom4DCS.BriefingRoom briefingRoom = new BriefingRoom4DCS.BriefingRoom())
-        {
-            mission = briefingRoom.GenerateMission(Template);
-        }
+        mission = briefingRoom.GenerateMission(Template);
     }
 
     private string tab = "context";
