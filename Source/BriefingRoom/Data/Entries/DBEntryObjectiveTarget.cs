@@ -35,7 +35,7 @@ namespace BriefingRoom4DCS.Data
 
         internal MinMaxI[] UnitCount { get; private set; }
 
-        internal TheaterLocationSpawnPointType[] ValidSpawnPoints { get; private set; }
+        internal SpawnPointType[] ValidSpawnPoints { get; private set; }
 
         /// <summary>
         /// Loads a database entry from an .ini file.
@@ -63,7 +63,7 @@ namespace BriefingRoom4DCS.Data
                 foreach (Amount amount in Toolbox.GetEnumValues<Amount>())
                     UnitCount[(int)amount] = ini.GetValue<MinMaxI>("ObjectiveTarget", $"Units.Count.{amount}");
 
-                ValidSpawnPoints = ini.GetValueArray<TheaterLocationSpawnPointType>("ObjectiveTarget", "ValidSpawnPoints");
+                ValidSpawnPoints = DatabaseTools.CheckSpawnPoints(ini.GetValueArray<SpawnPointType>("ObjectiveTarget", "ValidSpawnPoints"));
             }
 
             return true;

@@ -26,7 +26,7 @@ namespace BriefingRoom4DCS.Data
     /// <summary>
     /// Stores information about a DCS World theater airbase
     /// </summary>
-    internal class DBEntryTheaterAirbase : DBEntry
+    internal class DBEntryAirbase : DBEntry
     {
         /// <summary>
         /// ATC frequencies.
@@ -56,7 +56,7 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Array of special flags for this airbase.
         /// </summary>
-        internal DBEntryTheaterAirbaseFlag Flags { get; private set; }
+        internal AirbaseFlag Flags { get; private set; }
 
         /// <summary>
         /// ILS frequency (null or empty if none).
@@ -71,7 +71,7 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Parking spots of this airbase.
         /// </summary>
-        internal DBEntryTheaterAirbaseParkingSpot[] ParkingSpots { get; private set; }
+        internal DBEntryAirbaseParkingSpot[] ParkingSpots { get; private set; }
 
         /// <summary>
         /// A list of runway orientations.
@@ -81,7 +81,7 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Runway spawn spots spots of this airbase.
         /// </summary>
-        internal DBEntryTheaterAirbaseParkingSpot[] RunwaySpawns { get; private set; }
+        internal DBEntryAirbaseParkingSpot[] RunwaySpawns { get; private set; }
 
         /// <summary>
         /// TACAN frequency (null or empty if none).
@@ -102,7 +102,7 @@ namespace BriefingRoom4DCS.Data
                 Coordinates = ini.GetValue<Coordinates>("Airbase", "Coordinates");
                 DCSID = ini.GetValue<int>("Airbase", "DCSID");
                 Elevation = ini.GetValue<double>("Airbase", "Elevation");
-                Flags = ini.GetValueArrayAsEnumFlags<DBEntryTheaterAirbaseFlag>("Airbase", "Flags");
+                Flags = ini.GetValueArrayAsEnumFlags<AirbaseFlag>("Airbase", "Flags");
                 ILS = ini.GetValue<string>("Airbase", "ILS");
                 Name = ini.GetValue<string>("Airbase", "Name");
                 Runways = ini.GetValue<string>("Airbase", "Runways");
@@ -122,13 +122,13 @@ namespace BriefingRoom4DCS.Data
             return true;
         }
 
-        private DBEntryTheaterAirbaseParkingSpot[] LoadParkingSpots(INIFile ini, string section, bool isRunway = false)
+        private DBEntryAirbaseParkingSpot[] LoadParkingSpots(INIFile ini, string section, bool isRunway = false)
         {
             string[] ids = ini.GetTopLevelKeysInSection(section);
-            DBEntryTheaterAirbaseParkingSpot[] parkingSpots = new DBEntryTheaterAirbaseParkingSpot[ids.Length];
+            DBEntryAirbaseParkingSpot[] parkingSpots = new DBEntryAirbaseParkingSpot[ids.Length];
 
             for (int i = 0; i < ids.Length; i++)
-                parkingSpots[i] = new DBEntryTheaterAirbaseParkingSpot(ini, section, ids[i], isRunway);
+                parkingSpots[i] = new DBEntryAirbaseParkingSpot(ini, section, ids[i], isRunway);
 
             return parkingSpots;
         }

@@ -23,7 +23,7 @@ namespace BriefingRoom4DCS.Data
     /// <summary>
     /// A type of location spawn point. Used to know what can be spawned at its location.
     /// </summary>
-    public enum TheaterLocationSpawnPointType
+    public enum SpawnPointType
     {
         /// <summary>
         /// Small spot on land, maybe in a forest or a street

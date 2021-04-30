@@ -40,7 +40,7 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// The type of spawn point.
         /// </summary>
-        internal TheaterLocationSpawnPointType PointType { get; private set; }
+        internal SpawnPointType PointType { get; private set; }
 
         /// <summary>
         /// Default coalition the country this point is located in belongs to.
@@ -63,7 +63,7 @@ namespace BriefingRoom4DCS.Data
             try
             {
                 Coordinates = new Coordinates(Toolbox.StringToDouble(vals[0]), Toolbox.StringToDouble(vals[1]));
-                PointType = (TheaterLocationSpawnPointType)Enum.Parse(typeof(TheaterLocationSpawnPointType), vals[2], true);
+                PointType = (SpawnPointType)Enum.Parse(typeof(SpawnPointType), vals[2], true);
                 Coalition = (Coalition)Enum.Parse(typeof(Coalition), vals[3], true);
             }
             catch (Exception)

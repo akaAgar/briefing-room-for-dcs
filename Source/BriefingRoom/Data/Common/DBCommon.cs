@@ -30,11 +30,6 @@ namespace BriefingRoom4DCS.Data
     internal class DatabaseCommon : IDisposable
     {
         /// <summary>
-        /// Maximum number of name parts to use in random mission names.
-        /// </summary>
-        internal const int MISSION_NAMES_PART_COUNT = 4;
-
-        /// <summary>
         /// Ogg files to include in every mission.
         /// </summary>
         internal string[] CommonOGG { get; private set; }
@@ -90,47 +85,13 @@ namespace BriefingRoom4DCS.Data
         internal int[] AllyAirDefenseDistanceFromObjectives { get; }
 
         /// <summary>
-        /// Random mission names part.
+        /// Stores information about common mission names/wording.
         /// </summary>
-        internal string[][] MissionNameParts { get; } = new string[MISSION_NAMES_PART_COUNT][];
+        internal DBCommonNames Names { get; private set; }
 
         /// <summary>
-        /// Random mission name template, where $P1$, $P2$, $P3$, $P4$ is remplaced with a random mission name part.
+        /// Data about wind speeds.
         /// </summary>
-        internal string MissionNameTemplate { get; private set; }
-
-        /// <summary>
-        /// Name (singular -index #0- and plural -index #1) to display in the briefings for each unit family.
-        /// </summary>
-        internal string[][] UnitBriefingNames { get; } = new string[Toolbox.EnumCount<UnitFamily>()][];
-
-        /// <summary>
-        /// Random-parsable (<see cref="Generator.GeneratorTools.ParseRandomString(string)"/>) string for unit group names of each <see cref="UnitFamily"/>.
-        /// </summary>
-        internal string[] UnitGroupNames { get; } = new string[Toolbox.EnumCount<UnitFamily>()];
-
-        /// <summary>
-        /// Name of the final (landing) player waypoint.
-        /// </summary>
-        internal string WPNameFinal { get; private set; }
-
-        /// <summary>
-        /// Name of the initial (takeoff) player waypoint.
-        /// </summary>
-        internal string WPNameInitial { get; private set; }
-
-        /// <summary>
-        /// Name of the navigation player waypoints, where $0$, $00$, $000$... is replaced with the waypoint number.
-        /// </summary>
-        internal string WPNameNavigation { get; private set; }
-
-        /// <summary>
-        /// Names to use for objectives and objective waypoints.
-        /// </summary>
-        internal string[] WPNamesObjectives { get; private set; }
-
-        //internal DBEntryWeather[] Weather { get; private set; }
-
         internal DBCommonWind[] Wind { get; private set; }
 
         /// <summary>
@@ -209,24 +170,7 @@ namespace BriefingRoom4DCS.Data
             }
 
             BriefingRoom.PrintToLog("Loading common names settings...");
-            using (INIFile ini = new INIFile($"{BRPaths.DATABASE}Names.ini"))
-            {
-                MissionNameTemplate = ini.GetValue<string>("Mission", "Template");
-                for (i = 0; i < MISSION_NAMES_PART_COUNT; i++)
-                    MissionNameParts[i] = ini.GetValueArray<string>("Mission", $"Part{i + 1}");
-
-                for (i = 0; i < Toolbox.EnumCount<UnitFamily>(); i++)
-                {
-                    UnitBriefingNames[i] = ini.GetValueArray<string>("UnitBriefing", ((UnitFamily)i).ToString());
-                    Array.Resize(ref UnitBriefingNames[i], 2);
-                    UnitGroupNames[i] = ini.GetValue<string>("UnitGroup", ((UnitFamily)i).ToString());
-                }
-
-                WPNameFinal = ini.GetValue<string>("Waypoints", "Final");
-                WPNameInitial = ini.GetValue<string>("Waypoints", "Initial");
-                WPNameNavigation = ini.GetValue<string>("Waypoints", "Navigation");
-                WPNamesObjectives = ini.GetValueArray<string>("Waypoints", "Objectives");
-            }
+            Names = new DBCommonNames();
 
             BriefingRoom.PrintToLog("Loading common wind settings...");
             using (INIFile ini = new INIFile($"{BRPaths.DATABASE}Wind.ini"))

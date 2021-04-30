@@ -23,9 +23,9 @@ using System.Linq;
 namespace BriefingRoom4DCS.Data
 {
     /// <summary>
-    /// Stores information about a parking spot in a <see cref="DBEntryTheaterAirbase"/>
+    /// Stores information about a parking spot in a <see cref="DBEntryAirbase"/>
     /// </summary>
-    internal struct DBEntryTheaterAirbaseParkingSpot
+    internal struct DBEntryAirbaseParkingSpot
     {
         /// <summary>
         /// Unique internal DCSID for this parking spot.
@@ -48,7 +48,7 @@ namespace BriefingRoom4DCS.Data
         /// <param name="ini">The .ini file to load parking spot data from.</param>
         /// <param name="parkingKey">The top-level key (parking spot unique ID)</param>
         /// <param name="isRunway">Is this parking spot a runway spawn spot</param>
-        internal DBEntryTheaterAirbaseParkingSpot(INIFile ini, string section, string parkingKey, bool isRunway)
+        internal DBEntryAirbaseParkingSpot(INIFile ini, string section, string parkingKey, bool isRunway)
         {
             DCSID = ini.GetValue<int>(section, $"{parkingKey}.DCSID");
             Coordinates = ini.GetValue<Coordinates>(section, $"{parkingKey}.Coordinates");

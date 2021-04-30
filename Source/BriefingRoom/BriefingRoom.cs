@@ -103,9 +103,9 @@ namespace BriefingRoom4DCS
             {
                 case DatabaseEntryType.Airbase:
                     if (string.IsNullOrEmpty(parameter)) // No parameter, return all airbases
-                        return (from DBEntryTheaterAirbase airbase in Database.Instance.GetAllEntries<DBEntryTheaterAirbase>() select airbase.GetDBEntryInfo()).ToArray();
+                        return (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>() select airbase.GetDBEntryInfo()).ToArray();
                     else // A parameter was provided, return all airbases from specified theater
-                        return (from DBEntryTheaterAirbase airbase in Database.Instance.GetAllEntries<DBEntryTheaterAirbase>() where airbase.Theater == parameter.ToLowerInvariant() select airbase.GetDBEntryInfo()).ToArray();
+                        return (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>() where airbase.Theater == parameter.ToLowerInvariant() select airbase.GetDBEntryInfo()).ToArray();
 
                 case DatabaseEntryType.DCSMod:
                     return (from DBEntryDCSMod dcsMod in Database.Instance.GetAllEntries<DBEntryDCSMod>() select dcsMod.GetDBEntryInfo()).ToArray();

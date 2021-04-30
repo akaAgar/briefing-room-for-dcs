@@ -112,9 +112,8 @@ namespace BriefingRoom4DCS.Miz
 
             // The following replacements must be performed after unit groups and player waypoints have been added
             LuaTools.ReplaceKey(ref lua, "PlayerGroupID", mission.PlayerGroupID);
-            LuaTools.ReplaceKey(ref lua, "InitialWPName", Database.Instance.Common.WPNameInitial);
-            LuaTools.ReplaceKey(ref lua, "FinalWPName", Database.Instance.Common.WPNameFinal);
-            LuaTools.ReplaceKey(ref lua, "FinalWPName", Database.Instance.Common.WPNameFinal); //Duplicate
+            LuaTools.ReplaceKey(ref lua, "InitialWPName", Database.Instance.Common.Names.WPNameInitial);
+            LuaTools.ReplaceKey(ref lua, "FinalWPName", Database.Instance.Common.Names.WPNameFinal);
 
             switch (mission.UnitGroups.Find(x => x.IsAPlayerGroup()).StartLocation)
             {

@@ -89,11 +89,11 @@ namespace BriefingRoom4DCS.Data
             LoadEntries<DBEntryObjectiveTargetBehavior>("ObjectiveTargetsBehaviors");
             LoadEntries<DBEntryObjectiveTask>("ObjectiveTasks");
             LoadEntries<DBEntryTheater>("Theaters");
-            LoadEntries<DBEntryTheaterAirbase>("TheatersAirbases"); // Must be called after DBEntryTheater is loaded, as it depends on it
+            LoadEntries<DBEntryAirbase>("TheatersAirbases"); // Must be loaded after DBEntryTheater, as it depends on it
             LoadEntries<DBEntryDCSMod>("DCSMods");
-            LoadEntries<DBEntryUnit>("Units"); // Must be loaded after DBEntryDCSMod is loaded as it depends on it
-            LoadEntries<DBEntryDefaultUnitList>("DefaultUnitLists"); // Must be loaded after DBEntryUnit as it depends on it
-            LoadEntries<DBEntryCoalition>("Coalitions"); // Must be loaded after DBEntryUnit and DBEntryDefaultUnitList as it depends on them
+            LoadEntries<DBEntryUnit>("Units"); // Must be loaded after DBEntryDCSMod, as it depends on it
+            LoadEntries<DBEntryDefaultUnitList>("DefaultUnitLists"); // Must be loaded after DBEntryUnit, as it depends on it
+            LoadEntries<DBEntryCoalition>("Coalitions"); // Must be loaded after DBEntryUnit and DBEntryDefaultUnitList, as it depends on them
             LoadEntries<DBEntryWeatherPreset>("WeatherPreset");
 
             if (GetAllPlayerAircraftID().Length == 0) // Can't start without at least one player-controllable aircraft

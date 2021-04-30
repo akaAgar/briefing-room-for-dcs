@@ -21,9 +21,9 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 namespace BriefingRoom4DCS.Data
 {
     /// <summary>
-    /// Enumerates possible flags for a <see cref="DBEntryTheaterAirbase"/>
+    /// Enumerates possible flags for a <see cref="DBEntryAirbase"/>
     /// </summary>
-    internal enum DBEntryTheaterAirbaseFlag
+    internal enum AirbaseFlag
     {
         /// <summary>
         /// This is a military airbase.

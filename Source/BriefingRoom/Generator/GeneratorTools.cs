@@ -134,7 +134,7 @@ namespace BriefingRoom4DCS.Generator
 
         internal static string GetBriefingStringForUnitFamily(UnitFamily unitFamily, bool plural)
         {
-            return Database.Instance.Common.UnitBriefingNames[(int)unitFamily][plural ? 1 : 0];
+            return Database.Instance.Common.Names.UnitBriefingNames[(int)unitFamily][plural ? 1 : 0];
         }
 
         ///// <summary>
