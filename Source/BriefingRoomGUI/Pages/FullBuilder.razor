@@ -32,15 +32,6 @@
                     <div id="context"  class="generator-block">
                         <h3>Context</h3>
                         <div class="form-group">
-                            <label>Player Coalition</label>
-                            <InputSelect class="form-control" @bind-Value="Template.ContextPlayerCoalition">
-                                @foreach (var value in Enum.GetValues(typeof(Coalition)))
-                                {
-                                    <option value="@value">@value</option>
-                                }
-                            </InputSelect>
-                        </div>
-                        <div class="form-group">
                             <label>Blue Coalition</label>
                             <BlazoredTypeahead  SearchMethod="SearchCoalition"
                                                 @bind-Value="Template.ContextCoalitionBlue"
@@ -84,11 +75,29 @@
                             </InputSelect>
                         </div>
                         <div class="form-group">
+                            <label>Player Coalition</label>
+                            <InputSelect class="form-control" @bind-Value="Template.ContextPlayerCoalition">
+                                @foreach (var value in Enum.GetValues(typeof(Coalition)))
+                                {
+                                    <option value="@value">@value</option>
+                                }
+                            </InputSelect>
+                        </div>
+                        <div class="form-group">
                             <label>Theater @Template.ContextTheater</label>
                             <InputSelect class="form-control" @bind-Value="Template.ContextTheater">
                                 @foreach (var value in BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.Theater))
                                 {
                                     <option value="@value.ID">@value.Name</option>
+                                }
+                            </InputSelect>
+                        </div>
+                        <div class="form-group">
+                            <label>Countries coalition</label>
+                            <InputSelect class="form-control" @bind-Value="Template.ContextTheaterCountriesCoalitions">
+                                @foreach (var value in Enum.GetValues(typeof(CountryCoalition)))
+                                {
+                                    <option value="@value">@value</option>
                                 }
                             </InputSelect>
                         </div>
@@ -139,6 +148,19 @@
                     <div id="flight-plan" class="generator-block">
                         <h3>Flight Plan</h3>
                         <div class="form-group">
+                            <label>Objective distance</label>
+                            <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistance" ></InputNumber>
+                        </div>
+                        <div class="form-group">
+                            <label>Objectives locations</label>
+                            <InputSelect class="form-control" @bind-Value="Template.FlightPlanObjectivesLocation">
+                                @foreach (var value in Enum.GetValues(typeof(ObjectiveCountryLocation)))
+                                {
+                                    <option value="@value">@value</option>
+                                }
+                            </InputSelect>
+                        </div>
+                        <div class="form-group">
                             <label>Starting airbase</label>
                             <InputSelect class="form-control" @bind-Value="Template.FlightPlanTheaterStartingAirbase">
                                 <option value="">Random</option>
@@ -147,21 +169,127 @@
                                     <option value="@value.ID">@value.Name</option>
                                 }
                             </InputSelect>
-                        </div>
-                        <div class="form-group">
-                            <label>Distance</label>
-                            <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistance" />
-                        </div>
+                        </div>  
                     </div>
                     break;
                 case "objective": 
                     <div id="objective" class="generator-block">
                         <h3>Objective</h3>
+                        <ul class="nav nav-tabs">
+                            @foreach (var value in Template.Objectives)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link @(ObjectiveTab == value ? "active" : "")" aria-current="page"  @onclick='() => SetObjectiveTab(value)'>
+                                        @value.Task = @value.Target
+                                        @if(Template.Objectives.Count > 1)
+                                        {
+                                            <a class="delete-flight" @onclick="() =>  RemoveObjective(value)">x</a>
+                                        }
+                                    </a>
+                                </li>
+                            }
+                            <li class="nav-item">
+                                <a class="nav-link" @onclick="AddObjective">+</a>
+                            </li>
+                        </ul>
+                        
+                        @foreach (var objective in Template.Objectives)
+                        {
+                            if(ObjectiveTab == objective){
+                                <div class="flight-group">
+                                    <div class="form-group">
+                                        <label>Task</label>
+                                        <InputSelect class="form-control" @bind-Value="objective.Task">
+                                            @foreach (var value in BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveTask))
+                                            {
+                                                <option value="@value.ID">@value.Name</option>
+                                            }
+                                        </InputSelect>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Target</label>
+                                        <InputSelect class="form-control" @bind-Value="objective.Target">
+                                            @foreach (var value in BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveTarget))
+                                            {
+                                                <option value="@value.ID">@value.Name</option>
+                                            }
+                                        </InputSelect>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Target behavior</label>
+                                        <InputSelect class="form-control" @bind-Value="objective.TargetBehavior">
+                                            @foreach (var value in BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveTargetBehavior))
+                                            {
+                                                <option value="@value.ID">@value.Name</option>
+                                            }
+                                        </InputSelect>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Target count</label>
+                                        <InputSelect class="form-control" @bind-Value="objective.TargetCount">
+                                            @foreach (var value in Enum.GetValues(typeof(Amount)))
+                                            {
+                                                <option value="@value">@value</option>
+                                            }
+                                        </InputSelect>
+                                    </div>
+                                    <div class="form-group">
+                                        <h4>Options</h4>
+                                        <CheckBoxList Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"  
+                                            TextField="@((item)=>item.ToString())"  
+                                            ValueField="@((item)=>item)"
+                                            SelectedValues="objective.Options" TItem="ObjectiveOption" TItemOutput="ObjectiveOption" >  
+                                        </CheckBoxList> 
+                                    </div>
+                                </div>
+                            }
+                        }
                     </div>
                     break;
                 case "options": 
                     <div id="options" class="generator-block">
                         <h3>Options</h3>
+                        <div class="form-group">
+                            <h4>Mission Features</h4>
+                            <CheckBoxList Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeatures).ToList()"  
+                                TextField="@((item)=>item.Name)"  
+                                ValueField="@((item)=>item.ID)"  
+                                SelectedValues="Template.MissionFeatures" TItem="DatabaseEntryInfo" TItemOutput="string" > 
+                            </CheckBoxList> 
+                        </div>
+                        <div class="form-group">
+                            <label>Fog of War</label>
+                            <InputSelect class="form-control" @bind-Value="Template.OptionsFogOfWar">
+                                @foreach (var value in Enum.GetValues(typeof(FogOfWar)))
+                                {
+                                    <option value="@value">@value</option>
+                                }
+                            </InputSelect>
+                        </div>
+                        <div class="form-group">
+                            <h4>Realism</h4>
+                            <CheckBoxList Data="Enum.GetValues(typeof(RealismOption)).Cast<RealismOption>()"  
+                                TextField="@((item)=>item.ToString())"  
+                                ValueField="@((item)=>item)"
+                                SelectedValues="Template.OptionsRealism" TItem="RealismOption" TItemOutput="RealismOption" >  
+                            </CheckBoxList> 
+                        </div>
+                        <div class="form-group">
+                            <h4>Unit mods</h4>
+                            <CheckBoxList Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.DCSMod).ToList()"  
+                                TextField="@((item)=>item.Name)"  
+                                ValueField="@((item)=>item.ID)"  
+                                SelectedValues="Template.Mods" TItem="DatabaseEntryInfo" TItemOutput="string" > 
+                            </CheckBoxList> 
+                        </div>
+                        <div class="form-group">
+                            <h4>Mission options</h4>
+                            <CheckBoxList Data="Enum.GetValues(typeof(MissionOption)).Cast<MissionOption>()"  
+                                TextField="@((item)=>item.ToString())"  
+                                ValueField="@((item)=>item)"
+                                SelectedValues="Template.OptionsMission" TItem="MissionOption" TItemOutput="MissionOption" >
+                            </CheckBoxList>  
+                        </div>
                     </div>
                     break;
                 case "situation": 
@@ -206,6 +334,15 @@
                                     <div class="form-group">
                                         <label>Air Defense</label>
                                         <InputSelect class="form-control" @bind-Value="Template.SituationFriendlyAirDefense">
+                                            @foreach (var value in Enum.GetValues(typeof(AmountNR)))
+                                            {
+                                                <option value="@value">@value</option>
+                                            }
+                                        </InputSelect>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Air Force</label>
+                                        <InputSelect class="form-control" @bind-Value="Template.SituationFriendlyAirForce">
                                             @foreach (var value in Enum.GetValues(typeof(AmountNR)))
                                             {
                                                 <option value="@value">@value</option>
@@ -297,29 +434,7 @@
                                     </div>
                                 </div>
                             }
-                            
                         }
-                    </div>
-                    break;
-                case "misc":
-                    <div id="misc" class="generator-block">
-                        <h3>Misc</h3>
-                        <div class="misc-lists">
-                            <div class="form-group">
-                                <h4>Realism</h4>
-                                <CheckBoxList Data="Enum.GetValues(typeof(RealismOption)).Cast<RealismOption>()"  
-                                    TextField="@((item)=>item.ToString())"  
-                                    ValueField="@((item)=>item)"
-                                    SelectedValues="Template.OptionsRealism" TItem="RealismOption" TItemOutput="RealismOption" />  
-                            </div>
-                            <div class="form-group">
-                                <h4>Unit mods</h4>
-                                <CheckBoxList Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.DCSMod).ToList()"  
-                                    TextField="@((item)=>item.Name)"  
-                                    ValueField="@((item)=>item.ID)"  
-                                    SelectedValues="Template.Mods" TItem="DatabaseEntryInfo" TItemOutput="string" /> 
-                            </div>
-                        </div>
                     </div>
                     break;
 
@@ -353,8 +468,28 @@
         mission = briefingRoom.GenerateMission(Template);
     }
 
+    async Task DownloadMission()
+    {
+        using (MizFile miz = mission.ExportToMiz())
+        {
+
+            if (miz == null) // Something went wrong during the .miz export
+                return;
+            await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{mission.MissionName}.miz", "application/octet-stream",
+            miz.ZipFiles());
+        }
+    }
+
     private string tab = "context";
-    private List<string> tabs = new List<string>{"context","environment","flight-plan", "objective", "options", "situation", "flight-groups", "misc"};
+    private List<string> tabs = new List<string>{
+        "context",
+        "environment",
+        "objective",
+        "flight-groups",
+        "flight-plan",
+        "situation",
+        "options",
+        };
     private void SetTab(string var){
         tab = var;
     }
@@ -388,6 +523,23 @@
         }
     }
 
+    private MissionTemplateObjective ObjectiveTab;
+    private void SetObjectiveTab(MissionTemplateObjective var){
+        ObjectiveTab = var;
+    }
+
+    private void AddObjective()
+    {
+        MissionTemplateObjective obj = new();
+        ObjectiveTab = obj;
+        Template.Objectives.Add(obj);
+    }
+
+     private void RemoveObjective(MissionTemplateObjective obj)
+    {
+        Template.Objectives.Remove(obj);
+    }
+
     private async Task<IEnumerable<Country>> SearchCountry(string searchText) =>
         await Typeahead.SearchEnum<Country>(searchText);
 
@@ -406,16 +558,4 @@
 
     private string GetCoalitionDisplayName(string id) =>
         Typeahead.GetDBDisplayName(DatabaseEntryType.Coalition, id);
-
-    async Task DownloadMission()
-    {
-        using (MizFile miz = mission.ExportToMiz())
-        {
-
-            if (miz == null) // Something went wrong during the .miz export
-                return;
-            await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{mission.MissionName}.miz", "application/octet-stream",
-            miz.ZipFiles());
-        }
-    }
 }
