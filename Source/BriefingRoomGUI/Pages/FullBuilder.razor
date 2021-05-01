@@ -544,9 +544,9 @@
         await Typeahead.SearchEnum<Country>(searchText);
 
     private async Task<IEnumerable<DatabaseEntryInfo>> SearchAircraft(string searchText) => 
-            await Typeahead.SearchDB(DatabaseEntryType.FlyableAircraft, searchText);
+            await Typeahead.SearchDB(DatabaseEntryType.UnitFlyableAircraft, searchText);
     private string GetAircraftDisplayName(string id) => 
-        Typeahead.GetDBDisplayName(DatabaseEntryType.FlyableAircraft, id);
+        Typeahead.GetDBDisplayName(DatabaseEntryType.UnitFlyableAircraft, id);
 
     private async Task<IEnumerable<DatabaseEntryInfo>> SearchObjectiveType(string searchText) =>
         await Typeahead.SearchDB(DatabaseEntryType.ObjectiveTask, searchText);
