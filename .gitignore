@@ -14,7 +14,8 @@
 *.xml
 *.zip
 *.dll
-/.vs
+
+/*.txt
 
 */obj/*
 */bin/*
