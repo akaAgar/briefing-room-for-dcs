@@ -251,7 +251,7 @@
                         <h3>Options</h3>
                         <div class="form-group">
                             <h4>Mission Features</h4>
-                            <CheckBoxList Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeatures).ToList()"  
+                            <CheckBoxList Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"  
                                 TextField="@((item)=>item.Name)"  
                                 ValueField="@((item)=>item.ID)"  
                                 SelectedValues="Template.MissionFeatures" TItem="DatabaseEntryInfo" TItemOutput="string" > 
