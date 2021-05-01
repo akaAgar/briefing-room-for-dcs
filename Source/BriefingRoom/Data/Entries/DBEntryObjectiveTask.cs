@@ -59,7 +59,7 @@ namespace BriefingRoom4DCS.Data
                 CompletionTriggerLua = new string[Toolbox.GetEnumValuesCount<UnitCategory>()];
                 foreach (UnitCategory unitCategory in Toolbox.GetEnumValues<UnitCategory>())
                 {
-                    CompletionTriggerLua[(int)unitCategory] = ini.GetValue<string>("CompletionTriggerLua", $"{unitCategory}").Trim();
+                    CompletionTriggerLua[(int)unitCategory] = Toolbox.AddMissingFileExtension(ini.GetValue<string>("CompletionTriggerLua", $"{unitCategory}"), ".lua");
                     if (ValidUnitCategories.Contains(unitCategory))
                     {
                         if (string.IsNullOrEmpty(CompletionTriggerLua[(int)unitCategory]))
@@ -67,7 +67,7 @@ namespace BriefingRoom4DCS.Data
                             BriefingRoom.PrintToLog($"Missing completion trigger Lua for objective task \"{ID}\" with unit category \"{unitCategory}\".", LogMessageErrorLevel.Warning);
                             return false;
                         }
-                        if (!File.Exists($"{BRPaths.INCLUDE_LUA_OBJECTIVETRIGGERS}{CompletionTriggerLua[(int)unitCategory]}"))
+                        if (!File.Exists($"{BRPaths.INCLUDE_LUA_OBJECTIVESTRIGGERS}{CompletionTriggerLua[(int)unitCategory]}"))
                         {
                             BriefingRoom.PrintToLog($"Completion trigger Lua file {CompletionTriggerLua[(int)unitCategory]} for objective task \"{ID}\" not found.", LogMessageErrorLevel.Warning);
                             return false;

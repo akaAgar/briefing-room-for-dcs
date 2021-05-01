@@ -3,7 +3,7 @@ Families=PlaneTrainer
 
 [Operators]
 Abkhazia=Decade1980,Decade2020
-Armenia=Decade1980,Decade2020
+; Armenia=Decade1980,Decade2020
 Belarus=Decade1980,Decade2020
 Bulgaria=Decade1980,Decade2020
 Georgia=Decade1980,Decade2020

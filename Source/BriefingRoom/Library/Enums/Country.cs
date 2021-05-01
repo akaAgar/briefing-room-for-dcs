@@ -21,11 +21,16 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 namespace BriefingRoom4DCS
 {
     /// <summary>
-    /// Enumerates the various coalitions map countries (and their airbase) can belong to,
-    /// relative to the default settings in <see cref="DB.DBEntryTheaterAirbase"/> and <see cref="DB.DBEntryTheaterSpawnPoint"/>.
+    /// Enumerates DCS World countries.
+    /// Values must match the ones from DCS (full list here: https://wiki.hoggitworld.com/view/DCS_enum_country)
     /// </summary>
     public enum Country
     {
+        /// <summary>
+        /// Special BriefingRoom country used for unit operators
+        /// </summary>
+        ALL = 1,
+
         Russia = 0,
         Ukraine = 1,
         USA = 2,
@@ -108,5 +113,8 @@ namespace BriefingRoom4DCS
         CJTFBlue = 80,
         CJTFRed = 81,
         UnPeacekeepers = 82,
+        Argentina = 83,
+        Cyprus = 84,
+        Slovenia = 85
     }
 }

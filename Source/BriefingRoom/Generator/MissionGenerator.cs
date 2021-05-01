@@ -283,8 +283,8 @@ namespace BriefingRoom4DCS.Generator
             mission.CoalitionPlayer = template.ContextPlayerCoalition;
             //mission.Weather.CloudsPreset = template.EnvironmentCloudPreset;
             mission.Theater = template.ContextTheater;
-            mission.CoalitionCountries[(int)Coalition.Blue] = new List<Country> { Country.CJTFBlue };
-            mission.CoalitionCountries[(int)Coalition.Red] = new List<Country> { Country.CJTFRed };
+            //mission.CoalitionCountries[(int)Coalition.Blue] = new List<Country> { Country.CJTFBlue };
+            //mission.CoalitionCountries[(int)Coalition.Red] = new List<Country> { Country.CJTFRed };
             var countries = template.PlayerFlightGroups.Select(x => x.Country).Distinct().ToList();
             if (template.ContextPlayerCoalition == Coalition.Blue)
                 mission.CoalitionCountries[(int)Coalition.Blue].AddRange(countries);

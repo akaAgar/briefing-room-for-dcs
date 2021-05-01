@@ -7,8 +7,8 @@ Families=VehicleCivilian
 Flags=
 
 [Operators]
-Armenia=Decade1980,Decade2020
-Azerbaijan=Decade1980,Decade2020
+; Armenia=Decade1980,Decade2020
+; Azerbaijan=Decade1980,Decade2020
 Belarus=Decade1980,Decade2020
 Estonia=Decade1980,Decade2020
 Georgia=Decade1980,Decade2020
