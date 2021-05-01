@@ -26,9 +26,64 @@ namespace BriefingRoom4DCS.Data
     internal class DBEntryWeatherPreset : DBEntry
     {
         /// <summary>
-        /// DCS World 2.7 cloud preset to use with this weather pattern.
+        /// String to display in the briefing when this weather preset is selected.
         /// </summary>
-        internal string CloudPreset { get; private set; }
+        internal string BriefingDescription { get; private set; }
+
+        /// <summary>
+        /// Min,max base cloud height (in meters).
+        /// </summary>
+        internal MinMaxI CloudsBase { get; private set; }
+
+        /// <summary>
+        /// DCS World 2.7 cloud presets to use with this weather pattern.
+        /// </summary>
+        internal string[] CloudsPresets { get; private set; }
+
+        /// <summary>
+        /// Min,max base cloud thickness in meters
+        /// </summary>
+        internal MinMaxI CloudsThickness { get; private set; }
+
+        /// <summary>
+        /// Are dust storms enabled?
+        /// </summary>
+        internal bool Dust { get; private set; }
+
+        /// <summary>
+        /// Min,max dust storm density, if enabled (0-10).
+        /// </summary>
+        internal MinMaxI DustDensity { get; private set; }
+
+        /// <summary>
+        /// Is fog enabled?
+        /// </summary>
+        internal bool Fog { get; private set; }
+
+        /// <summary>
+        /// Min,max fog thickness.
+        /// </summary>
+        internal MinMaxI FogThickness { get; private set; }
+
+        /// <summary>
+        /// Min,max fog visibility in meters.
+        /// </summary>
+        internal MinMaxI FogVisibility { get; private set; }
+
+        /// <summary>
+        /// Min,max atmospheric pressure at mean sea level.
+        /// </summary>
+        internal MinMaxI QNH { get; private set; }
+
+        /// <summary>
+        /// Amount of turbulence (in m/s) to add to the wind turbulence.
+        /// </summary>
+        internal MinMaxI Turbulence { get; private set; }
+
+        /// <summary>
+        /// Min,max visibility in meters.
+        /// </summary>
+        internal MinMaxI Visibility { get; private set; }
 
         /// <summary>
         /// Loads a database entry from an .ini file.
@@ -40,97 +95,25 @@ namespace BriefingRoom4DCS.Data
         {
             using (INIFile ini = new INIFile(iniFilePath))
             {
-                CloudPreset = ini.GetValue<string>("Weather", "CloudPreset");
+                BriefingDescription = ini.GetValue<string>("Briefing", "Description");
+
+                CloudsBase = ini.GetValue<MinMaxI>("Weather", "Clouds.Base");
+                CloudsPresets = ini.GetValueArray<string>("Weather", "Clouds.Presets");
+                CloudsThickness = ini.GetValue<MinMaxI>("Weather", "Clouds.Thickness");
+
+                Dust = ini.GetValue<bool>("Weather", "Dust");
+                DustDensity = ini.GetValue<MinMaxI>("Weather", "Dust.Density");
+
+                Fog = ini.GetValue<bool>("Weather", "Fog");
+                FogThickness = ini.GetValue<MinMaxI>("Weather", "Fog.Thickness");
+                FogVisibility = ini.GetValue<MinMaxI>("Weather", "Fog.Visibility");
+
+                QNH = ini.GetValue<MinMaxI>("Weather", "QNH");
+                Turbulence = ini.GetValue<MinMaxI>("Weather", "Turbulence");
+                Visibility = ini.GetValue<MinMaxI>("Weather", "Visibility");
             }
 
             return true;
         }
-
-        ///// <summary>
-        ///// Min,max base cloud height (in meters).
-        ///// </summary>
-        //internal MinMaxI CloudsBase { get; }
-
-        ///// <summary>
-        ///// Min,max cloud density (0-10).
-        ///// </summary>
-        //internal MinMaxI CloudsDensity { get; }
-
-        ///// <summary>
-        ///// Precipitation type. Be aware that DCS only allow some values is cloud density if high enough. Invalid values will be ignored by DCS.
-        ///// </summary>
-        ////internal Precipitation[] CloudsPrecipitation { get; }
-
-        ///// <summary>
-        ///// Min,max base cloud thickness in meters
-        ///// </summary>
-        //internal MinMaxI CloudsThickness { get; }
-
-        ///// <summary>
-        ///// Are dust storm enabled. If multiple values can be provided, a random value will be selected(e.g. "true,true,false" gives 66% chance of duststorm).
-        ///// </summary>
-        //internal bool[] DustEnabled { get; }
-
-        ///// <summary>
-        ///// Min,max dust storm density, if enabled (0-10).
-        ///// </summary>
-        //internal MinMaxI DustDensity { get; }
-
-        ///// <summary>
-        ///// Is fog enabled. If multiple values can be provided, a random value will be selected(e.g. true,true,false gives 66% chance of fog).
-        ///// </summary>
-        //internal bool[] FogEnabled { get; }
-
-        ///// <summary>
-        ///// Min,max fog thickness.
-        ///// </summary>
-        //internal MinMaxI FogThickness { get; }
-
-        ///// <summary>
-        ///// Min,max fog visibility in meters.
-        ///// </summary>
-        //internal MinMaxI FogVisibility { get; }
-
-        ///// <summary>
-        ///// Min,max atmospheric pressure at mean sea level.
-        ///// </summary>
-        //internal MinMaxI QNH { get; }
-
-        ///// <summary>
-        ///// Min,max turbulence in meters/second.
-        ///// </summary>
-        //internal MinMaxI Turbulence { get; }
-
-        ///// <summary>
-        ///// Min,max visibility in meters.
-        ///// </summary>
-        //internal MinMaxI Visibility { get; }
-
-        //        /// <summary>
-        //        /// Constructor. Loads data from weather database entry .ini file.
-        //        /// </summary>
-        //        /// <param name="ini">The .ini file to load from.</param>
-        //        /// <param name="key">The value key.</param>
-        //        internal DBEntryWeatherPreset(INIFile ini, string key)
-        //{
-            //CloudsBase = ini.GetValue<MinMaxI>("Weather", key + ".Clouds.Base");
-            //CloudsDensity = ini.GetValue<MinMaxI>("Weather", key + ".Clouds.Density");
-            ////CloudsPrecipitation = ini.GetValueArray<Precipitation>("Weather", key + ".Clouds.Precipitation");
-            ////if (CloudsPrecipitation.Length == 0) CloudsPrecipitation = new Precipitation[] { Precipitation.None };
-            //CloudsThickness = ini.GetValue<MinMaxI>("Weather", key + ".Clouds.Thickness");
-
-            //DustEnabled = ini.GetValueArray<bool>("Weather", key + ".Dust.Enabled");
-            //if (DustEnabled.Length == 0) DustEnabled = new bool[] { false };
-            //DustDensity = ini.GetValue<MinMaxI>("Weather", key + ".Dust.Density");
-
-            //FogEnabled = ini.GetValueArray<bool>("Weather", key + ".Fog.Enabled");
-            //if (FogEnabled.Length == 0) DustEnabled = new bool[] { false };
-            //FogThickness = ini.GetValue<MinMaxI>("Weather", key + ".Fog.Thickness");
-            //FogVisibility = ini.GetValue<MinMaxI>("Weather", key + ".Fog.Visibility");
-
-            //QNH = ini.GetValue<MinMaxI>("Weather", key + ".QNH");
-            //Turbulence = ini.GetValue<MinMaxI>("Weather", key + ".Turbulence");
-            //Visibility = ini.GetValue<MinMaxI>("Weather", key + ".Visibility");
-        //}
     }
 }
