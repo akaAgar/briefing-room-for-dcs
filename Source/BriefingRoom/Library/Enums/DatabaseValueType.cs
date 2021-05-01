@@ -28,12 +28,15 @@ namespace BriefingRoom4DCS
         Airbase,
         Coalition,
         DCSMod,
-        FlyableAircraft,
-        MissionFeatures,
+        MissionFeature,
+        ObjectiveFeature,
         ObjectiveTarget,
         ObjectiveTargetBehavior,
         ObjectiveTask,
         Theater,
+        Unit,
+        UnitCarrier,
+        UnitFlyableAircraft,
         WeatherPreset
     }
 }

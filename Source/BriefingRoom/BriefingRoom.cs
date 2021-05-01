@@ -112,29 +112,41 @@ namespace BriefingRoom4DCS
                     else // A parameter was provided, return all airbases from specified theater
                         return (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>() where airbase.Theater == parameter.ToLowerInvariant() select airbase.GetDBEntryInfo()).ToList();
 
+                case DatabaseEntryType.Coalition:
+                    return (from DBEntryCoalition coalition in Database.Instance.GetAllEntries<DBEntryCoalition>() select coalition.GetDBEntryInfo()).ToList();
+
                 case DatabaseEntryType.DCSMod:
                     return (from DBEntryDCSMod dcsMod in Database.Instance.GetAllEntries<DBEntryDCSMod>() select dcsMod.GetDBEntryInfo()).ToList();
 
-                case DatabaseEntryType.FlyableAircraft:
-                    return (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>() where unit.AircraftData.PlayerControllable select unit.GetDBEntryInfo()).ToList();
+                case DatabaseEntryType.MissionFeature:
+                    return (from DBEntryMissionFeature missionFeature in Database.Instance.GetAllEntries<DBEntryMissionFeature>() select missionFeature.GetDBEntryInfo()).ToList();
+
+                case DatabaseEntryType.ObjectiveFeature:
+                    return (from DBEntryObjectiveFeature objectiveFeature in Database.Instance.GetAllEntries<DBEntryObjectiveFeature>() select objectiveFeature.GetDBEntryInfo()).ToList();
 
                 case DatabaseEntryType.ObjectiveTarget:
-                    return (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryObjectiveTarget>() where unit.AircraftData.PlayerControllable select unit.GetDBEntryInfo()).ToList();
+                    return (from DBEntryUnit objectiveTarget in Database.Instance.GetAllEntries<DBEntryObjectiveTarget>() select objectiveTarget.GetDBEntryInfo()).ToList();
 
                 case DatabaseEntryType.ObjectiveTargetBehavior:
-                    return (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryObjectiveTargetBehavior>() where unit.AircraftData.PlayerControllable select unit.GetDBEntryInfo()).ToList();
+                    return (from DBEntryObjectiveTargetBehavior objectiveTargetBehavior in Database.Instance.GetAllEntries<DBEntryObjectiveTargetBehavior>() select objectiveTargetBehavior.GetDBEntryInfo()).ToList();
 
                 case DatabaseEntryType.ObjectiveTask:
-                    return (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryObjectiveTask>() where unit.AircraftData.PlayerControllable select unit.GetDBEntryInfo()).ToList();
+                    return (from DBEntryObjectiveTask objectiveTask in Database.Instance.GetAllEntries<DBEntryObjectiveTask>() select objectiveTask.GetDBEntryInfo()).ToList();
 
                 case DatabaseEntryType.Theater:
                     return (from DBEntryTheater theater in Database.Instance.GetAllEntries<DBEntryTheater>() select theater.GetDBEntryInfo()).ToList();
 
+                case DatabaseEntryType.Unit:
+                    return (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>() select unit.GetDBEntryInfo()).ToList();
+
+                case DatabaseEntryType.UnitCarrier:
+                    return (from DBEntryUnit unitCarrier in Database.Instance.GetAllEntries<DBEntryUnit>() where Toolbox.SHIP_CARRIER_FAMILIES.Intersect(unitCarrier.Families).Count() > 0 select unitCarrier.GetDBEntryInfo()).ToList();
+
+                case DatabaseEntryType.UnitFlyableAircraft:
+                    return (from DBEntryUnit unitFlyable in Database.Instance.GetAllEntries<DBEntryUnit>() where unitFlyable.AircraftData.PlayerControllable select unitFlyable.GetDBEntryInfo()).ToList();
+
                 case DatabaseEntryType.WeatherPreset:
-                    return (from DBEntryWeatherPreset weatherPreset in Database.Instance.GetAllEntries<DBEntryWeatherPreset>() select weatherPreset.GetDBEntryInfo()).ToList();
-                
-                case DatabaseEntryType.Coalition:
-                    return (from DBEntryCoalition coalition in Database.Instance.GetAllEntries<DBEntryCoalition>() select coalition.GetDBEntryInfo()).ToList();
+                    return (from DBEntryWeatherPreset weatherPreset in Database.Instance.GetAllEntries<DBEntryWeatherPreset>() select weatherPreset.GetDBEntryInfo()).ToList();                
             }
 
             return new List<DatabaseEntryInfo>{new DatabaseEntryInfo()};

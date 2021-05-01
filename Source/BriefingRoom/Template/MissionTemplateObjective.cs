@@ -29,8 +29,13 @@ namespace BriefingRoom4DCS.Template
     /// <summary>
     /// Stores information about a mission template objective.
     /// </summary>
-    public sealed class MissionTemplateObjective
+    public class MissionTemplateObjective
     {
+        [Required, DatabaseSourceType(DatabaseEntryType.ObjectiveFeature)]
+        [Display(Name = "Objective features", Description = "Special features to include in this objective.")]
+        public List<string> Features { get { return Features_; } set { Features_ = Database.Instance.CheckMissionFeaturesIDs(value.ToArray()).ToList(); } }
+        private List<string> Features_ = new List<string>();
+
         [Required]
         [Display(Name = "Options", Description = "Miscellaneous options for this mission objective.")]
         public List<ObjectiveOption> Options { get { return Options_; } set { Options_ = value.Distinct().ToList(); } }
@@ -60,6 +65,7 @@ namespace BriefingRoom4DCS.Template
         /// </summary>
         public MissionTemplateObjective()
         {
+            Features = new List<string>();
             Options = new List<ObjectiveOption>();
             Target = "VehicleAny";
             TargetBehavior = "Idle";
@@ -73,10 +79,12 @@ namespace BriefingRoom4DCS.Template
         /// <param name="target">Family of units to use as a target for this objective.</param>
         /// <param name="targetBehavior"></param>
         /// <param name="task">Task to accomplish at this objective.</param>
+        /// <param name="features">Special features to include in this objective.</param>
         /// <param name="targetCount">Number of target units at this objective.</param>
         /// <param name="options">Special options to apply to this objective.</param>
-        public MissionTemplateObjective(string target, string targetBehavior, string task, Amount targetCount = Amount.Average, params ObjectiveOption[] options)
+        public MissionTemplateObjective(string target, string targetBehavior, string task, string[] features, Amount targetCount = Amount.Average, params ObjectiveOption[] options)
         {
+            Features = new List<string>(features);
             Options = new List<ObjectiveOption>(options);
             Target = target;
             TargetBehavior = targetBehavior;
@@ -103,6 +111,7 @@ namespace BriefingRoom4DCS.Template
         /// <param name="key">INI key.</param>
         internal void LoadFromFile(INIFile ini, string section, string key)
         {
+            Features = Database.Instance.CheckIDs<DBEntryObjectiveFeature>(ini.GetValueArray<string>(section, $"{key}.Features")).ToList();
             Options = ini.GetValueArray<ObjectiveOption>(section, $"{key}.Options").ToList();
             Target = ini.GetValue<string>(section, $"{key}.Target");
             TargetBehavior = ini.GetValue<string>(section, $"{key}.TargetBehavior");
@@ -118,6 +127,7 @@ namespace BriefingRoom4DCS.Template
         /// <param name="key">INI key.</param>
         internal void SaveToFile(INIFile ini, string section, string key)
         {
+            ini.SetValueArray(section, $"{key}.Features", Features.ToArray());
             ini.SetValueArray(section, $"{key}.Options", Options.ToArray());
             ini.SetValue(section, $"{key}.Task", Task);
             ini.SetValue(section, $"{key}.Target", Target);
