@@ -85,6 +85,7 @@ namespace BriefingRoom4DCS.Data
             // Load entries into the database
             DBEntries.Clear();
             LoadEntries<DBEntryMissionFeature>("MissionFeatures");
+            LoadEntries<DBEntryObjectiveFeature>("ObjectiveFeatures");
             LoadEntries<DBEntryObjectiveTarget>("ObjectiveTargets");
             LoadEntries<DBEntryObjectiveTargetBehavior>("ObjectiveTargetsBehaviors");
             LoadEntries<DBEntryObjectiveTask>("ObjectiveTasks");
@@ -96,7 +97,9 @@ namespace BriefingRoom4DCS.Data
             LoadEntries<DBEntryCoalition>("Coalitions"); // Must be loaded after DBEntryUnit and DBEntryDefaultUnitList, as it depends on them
             LoadEntries<DBEntryWeatherPreset>("WeatherPreset");
 
-            if (GetAllPlayerAircraftID().Length == 0) // Can't start without at least one player-controllable aircraft
+            // Can't start without at least one player-controllable aircraft
+            if ((from DBEntryUnit unit in GetAllEntries<DBEntryUnit>()
+                 where unit.AircraftData.PlayerControllable select unit.ID).Count() == 0)
                 BriefingRoom.PrintToLog("No player-controllable aircraft found.", LogMessageErrorLevel.Error);
 
             Initialized = true;
@@ -141,7 +144,9 @@ namespace BriefingRoom4DCS.Data
             BriefingRoom.PrintToLog($"Found {DBEntries[dbType].Count} database entries of type \"{typeof(T).Name}\"");
 
             bool mustHaveAtLeastOneEntry = true;
-            if ((dbType == typeof(DBEntryDefaultUnitList)) || (dbType == typeof(DBEntryMissionFeature)))
+            if ((dbType == typeof(DBEntryDefaultUnitList)) ||
+                (dbType == typeof(DBEntryObjectiveFeature)) ||
+                (dbType == typeof(DBEntryMissionFeature)))
                 mustHaveAtLeastOneEntry = false;
 
             // If a required database type has no entries, raise an error.
@@ -250,18 +255,6 @@ namespace BriefingRoom4DCS.Data
         {
             if (!DBEntries.ContainsKey(typeof(T))) return null;
             return DBEntries[typeof(T)].Keys.ToArray();
-        }
-
-        /// <summary>
-        /// Returns IDs of all <see cref="DBEntryUnit"/> describing a player-controllable aircraft.
-        /// </summary>
-        /// <returns>Array of IDs</returns>
-        internal string[] GetAllPlayerAircraftID()
-        {
-            return
-                (from DBEntryUnit unit in GetAllEntries<DBEntryUnit>()
-                 where unit.AircraftData.PlayerControllable
-                 select unit.ID).OrderBy(x => x).ToArray();
         }
 
         /// <summary>

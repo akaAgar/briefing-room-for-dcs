@@ -110,12 +110,12 @@ namespace BriefingRoom4DCS.Data
                 IncludeOgg = Toolbox.AddMissingFileExtensions(ini.GetValueArray<string>("Include", "Ogg"), ".ogg");
 
                 foreach (string f in IncludeLua)
-                    if (!File.Exists($"{BRPaths.INCLUDE_LUA_MISSIONFEATURES}{f}.lua"))
-                        BriefingRoom.PrintToLog($"File \"Include\\Lua\\MissionFeatures\\{f}.lua\", required by feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
+                    if (!File.Exists($"{BRPaths.INCLUDE_LUA_MISSIONFEATURES}{f}"))
+                        BriefingRoom.PrintToLog($"File \"Include\\Lua\\MissionFeatures\\{f}\", required by feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
 
                 foreach (string f in IncludeOgg)
-                    if (!File.Exists($"{BRPaths.INCLUDE_OGG}{f}.ogg"))
-                        BriefingRoom.PrintToLog($"File \"Include\\Ogg\\{f}.ogg\", required by feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
+                    if (!File.Exists($"{BRPaths.INCLUDE_OGG}{f}"))
+                        BriefingRoom.PrintToLog($"File \"Include\\Ogg\\{f}\", required by feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
 
                 // Unit group
                 UnitGroupFamilies = Toolbox.SetSingleCategoryFamilies(ini.GetValueArray<UnitFamily>("UnitGroup", "Families"));

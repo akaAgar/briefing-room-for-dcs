@@ -61,6 +61,10 @@ namespace BriefingRoom4DCS
         internal static void PrintToLog(string message, LogMessageErrorLevel errorLevel = LogMessageErrorLevel.Info)
         {
             OnLog?.Invoke(message, errorLevel);
+
+            // Throw an exception if there was an error.
+            if (errorLevel == LogMessageErrorLevel.Error)
+                throw new Exception(message);
         }
 
         //private readonly CampaignGenerator CampaignGen;

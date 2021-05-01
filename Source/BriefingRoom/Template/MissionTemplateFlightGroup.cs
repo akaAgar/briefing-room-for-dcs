@@ -20,11 +20,6 @@ If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
 
-using BriefingRoom4DCS.Data;
-using System;
-using System.Linq;
-using System.Windows.Forms;
-
 namespace BriefingRoom4DCS.Template
 {
     /// <summary>
@@ -38,27 +33,48 @@ namespace BriefingRoom4DCS.Template
         public string Aircraft { get; set; }
 
         /// <summary>
-        /// Type of carrier this flight group takes off from (leave empty for land airbase).
+        /// Type of carrier this flight group takes off from (empty means "use land airbase").
         /// </summary>
         public string Carrier { get; set; }
 
         /// <summary>
-        /// Number of 
+        /// Number of aircraft in the group.
         /// </summary>
         public int Count { get { return _Count; } set { _Count = Toolbox.Clamp(value, 1, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE); } }
         private int _Count = 1;
 
+        /// <summary>
+        /// Country this aircraft group belongs to (mainly used for liveries).
+        /// </summary>
         public Country Country { get; set; }
 
+        /// <summary>
+        /// Payload this aircraft group will carry.
+        /// </summary>
         public AircraftPayload Payload { get; set; }
 
+        /// <summary>
+        /// Start location for this flight group.
+        /// </summary>
         public PlayerStartLocation StartLocation { get; set; }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public MissionTemplateFlightGroup()
         {
             Clear();
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="aircraft">Payload this aircraft group will carry.</param>
+        /// <param name="count">Number of aircraft in the group.</param>
+        /// <param name="payload">Payload this aircraft group will carry.</param>
+        /// <param name="carrier">Type of carrier this flight group takes off from (empty means "use land airbase").</param>
+        /// <param name="country">Country this aircraft group belongs to (mainly used for liveries).</param>
+        /// <param name="startLocation">Start location for this flight group.</param>
         public MissionTemplateFlightGroup(string aircraft, int count, AircraftPayload payload, string carrier, Country country, PlayerStartLocation startLocation)
         {
             Aircraft = aircraft;
@@ -114,23 +130,6 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue(section, $"{key}.Payload", Payload);
             ini.SetValue(section, $"{key}.Country", Country);
             ini.SetValue(section, $"{key}.StartLocation", StartLocation);
-        }
-
-        /// <summary>
-        /// ToString() override.
-        /// </summary>
-        /// <returns>A string representing this flight group to display in the PropertyGrid.</returns>
-        public override string ToString()
-        {
-            //string str = $"{Toolbox.ValToString(Count)}x {Aircraft}, from {Country}, tasked with {Toolbox.LowerCaseFirstLetter(GUITools.GetDisplayName(Tasking))}, starting {StartLocation}, take off from ";
-            //if (string.IsNullOrEmpty(Carrier)) str += "land airbase";
-            //else str += GUITools.GetDisplayName(Database, typeof(DBPseudoEntryCarrier), Carrier);
-
-            string str = $"{Toolbox.ValToString(Count)}x {Aircraft}, from {Country}, loaded with {Toolbox.LowerCaseFirstLetter(Payload.ToString())}, starting {StartLocation}, take off from ";
-            if (string.IsNullOrEmpty(Carrier)) str += "land airbase";
-            else str += Carrier;
-
-            return str;
         }
 
         /// <summary>

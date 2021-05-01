@@ -18,14 +18,13 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCS.Mission;
+using BriefingRoom4DCS.Miz;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-
-using BriefingRoom4DCS.Mission;
-using BriefingRoom4DCS.Miz;
 
 namespace BriefingRoom4DCS.CommandLineTool
 {
@@ -39,7 +38,7 @@ namespace BriefingRoom4DCS.CommandLineTool
         /// </summary>
         private const int MAX_MISSION_COUNT = 10;
 
-        private static readonly string LOG_FILE = $"{Application.StartupPath}\\Log.txt";
+        private static readonly string LOG_FILE = $"{Application.StartupPath}\\BriefingRoomCommandLineDebugLog.txt";
 
         private readonly StreamWriter LogWriter;
 
@@ -64,7 +63,7 @@ namespace BriefingRoom4DCS.CommandLineTool
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"ERROR: {ex.Message}");
+                Console.WriteLine($"CRITICAL ERROR: {ex.Message}");
             }
 
 #if DEBUG
@@ -83,6 +82,7 @@ namespace BriefingRoom4DCS.CommandLineTool
         {
             if (File.Exists(LOG_FILE)) File.Delete(LOG_FILE);
             LogWriter = File.AppendText(LOG_FILE);
+            LogWriter.Flush();
             BriefingRoomGenerator = new BriefingRoom(WriteToDebugLog);
         }
 
