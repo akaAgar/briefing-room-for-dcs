@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
-namespace BriefingRoomGUI
+namespace BriefingRoom4DCS.GUI
 {
     public class Startup
     {

@@ -2,9 +2,8 @@ using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
-using BriefingRoom4DCS;
 
-namespace BriefingRoomGUI.Utils
+namespace BriefingRoom4DCS.GUI.Utils
 {
     public class Typeahead
     {

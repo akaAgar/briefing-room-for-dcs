@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using BriefingRoom4DCS;
 using BriefingRoom4DCS.Template;
-using BriefingRoom4DCS.Miz;
-
 
 namespace API.Controllers
 {
@@ -20,16 +19,12 @@ namespace API.Controllers
         [HttpPost]
         public FileContentResult Post(MissionTemplate template)
         {
-            using (BriefingRoom4DCS.BriefingRoom briefingRoom = new BriefingRoom4DCS.BriefingRoom())
+            using (BriefingRoom briefingRoom = new BriefingRoom())
             {
-                var mission = briefingRoom.GenerateMission(template);
-                using (MizFile miz = mission.ExportToMiz())
-                {
-
-                    if (miz == null) // Something went wrong during the .miz export
-                        return null;
-                    return File(miz.ZipFiles(), "application/octet-stream", $"{mission.MissionName}.miz");
-                }
+                DCSMission mission = briefingRoom.GenerateMission(template);
+                byte[] mizBytes = mission.SaveToMizBytes();
+                if (mizBytes == null) return null; // Something went wrong during the .miz export
+                return File(mizBytes, "application/octet-stream", $"{mission.Name}.miz");
             }
         }
     }
