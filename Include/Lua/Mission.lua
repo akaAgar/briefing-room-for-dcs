@@ -155,9 +155,9 @@ mission =
                 ["dir"] = $WEATHER_WIND_DIRECTION1$,
             }, -- end of ["atGround"]
         }, -- end of ["wind"]
-        ["enable_fog"] = false,
+        ["enable_fog"] = $WEATHER_FOG$,
         ["groundTurbulence"] = $WEATHER_GROUND_TURBULENCE$,
-        ["enable_dust"] = false,
+        ["enable_dust"] = $WEATHER_DUST$,
         ["season"] = 
         {
             ["temperature"] = $WEATHER_TEMPERATURE$,
@@ -170,21 +170,21 @@ mission =
         ["name"] = "Default",
         ["fog"] = 
         {
-            ["thickness"] = 0,
-            ["visibility"] = 0,
+            ["thickness"] = $WEATHER_FOG_THICKNESS$,
+            ["visibility"] = $WEATHER_FOG_VISIBILITY$,
         }, -- end of ["fog"]
-        ["dust_density"] = 0,
+        ["dust_density"] = $WEATHER_DUST_DENSITY$,
         ["qnh"] = $WEATHER_QNH$,
         ["visibility"] = 
         {
-            ["distance"] = 80000,
+            ["distance"] = $WEATHER_VISIBILITY$,
         }, -- end of ["visibility"]
         ["clouds"] = 
         {
-            ["thickness"] = 200,
+            ["thickness"] = $WEATHER_CLOUDS_THICKNESS$,
             ["density"] = 0,
             ["preset"] = "$WEATHER_CLOUDS_PRESET$",
-            ["base"] = 2500,
+            ["base"] = $WEATHER_CLOUDS_BASE$,
             ["iprecptns"] = 0,
         }, -- end of ["clouds"]
     }, -- end of ["weather"]

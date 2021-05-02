@@ -19,7 +19,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCS.Data;
-using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
@@ -122,20 +121,20 @@ namespace BriefingRoom4DCS.Generator
         /// <param name="mission">The DCS mission</param>
         /// <param name="lerpValue">Progess on the airbase to objectives center distance (0.0=airbase, 1.0=objective center)</param>
         /// <returns>A set of coordinates</returns>
-        internal static Coordinates GetCoordinatesOnFlightPath(DCSMission mission, double lerpValue)
-        {
-            Coordinates coordinates = Coordinates.Lerp(mission.InitialPosition, mission.ObjectivesCenter, lerpValue);
-            double distance = mission.InitialPosition.GetDistanceFrom(mission.ObjectivesCenter);
+        //internal static Coordinates GetCoordinatesOnFlightPath(DCSMission mission, double lerpValue)
+        //{
+        //    Coordinates coordinates = Coordinates.Lerp(mission.InitialPosition, mission.ObjectivesCenter, lerpValue);
+        //    double distance = mission.InitialPosition.GetDistanceFrom(mission.ObjectivesCenter);
 
-            // Create some random variation proportional to the total flight path distance
-            distance = Math.Max(20.0, distance);
-            return coordinates + Coordinates.CreateRandom(distance / 8, distance / 4);
-        }
+        //    // Create some random variation proportional to the total flight path distance
+        //    distance = Math.Max(20.0, distance);
+        //    return coordinates + Coordinates.CreateRandom(distance / 8, distance / 4);
+        //}
 
-        internal static string GetBriefingStringForUnitFamily(UnitFamily unitFamily, bool plural)
-        {
-            return Database.Instance.Common.Names.UnitBriefingNames[(int)unitFamily][plural ? 1 : 0];
-        }
+        //internal static string GetBriefingStringForUnitFamily(UnitFamily unitFamily, bool plural)
+        //{
+        //    return Database.Instance.Common.Names.UnitBriefingNames[(int)unitFamily][plural ? 1 : 0];
+        //}
 
         ///// <summary>
         ///// Returns the coalition to look for in spawn points according to the template setting regarding enemy units location.
@@ -217,89 +216,89 @@ namespace BriefingRoom4DCS.Generator
         //    }
         //}
 
-        internal static string MakeBriefingStringReplacements(string briefingString, DCSMission mission, DBEntryCoalition[] coalitionsDB, int objectiveIndex = 0)
-        {
-            DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(mission.Theater);
+        //internal static string MakeBriefingStringReplacements(string briefingString, DCSMission mission, DBEntryCoalition[] coalitionsDB, int objectiveIndex = 0)
+        //{
+        //    DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(mission.Theater);
 
-            briefingString = briefingString.Replace("$ALLYADJ$", Toolbox.RandomFrom(coalitionsDB[(int)mission.CoalitionPlayer].BriefingElements[(int)CoalitionBriefingElement.Adjective]));
-            briefingString = briefingString.Replace("$ENEMYADJ$", Toolbox.RandomFrom(coalitionsDB[(int)mission.CoalitionEnemy].BriefingElements[(int)CoalitionBriefingElement.Adjective]));
-            briefingString = briefingString.Replace("$RECON$", Toolbox.RandomFrom(coalitionsDB[(int)mission.CoalitionPlayer].BriefingElements[(int)CoalitionBriefingElement.Recon]));
-            briefingString = briefingString.Replace("$STRCOMMAND$", Toolbox.RandomFrom(coalitionsDB[(int)mission.CoalitionPlayer].BriefingElements[(int)CoalitionBriefingElement.StrategicCommand]));
-            briefingString = briefingString.Replace("$TACCOMMAND$", Toolbox.RandomFrom(coalitionsDB[(int)mission.CoalitionPlayer].BriefingElements[(int)CoalitionBriefingElement.TacticalCommand]));
-            briefingString = briefingString.Replace("$THEATER$", Toolbox.RandomFrom(theaterDB.BriefingNames));
-            briefingString = briefingString.Replace("$THEALLIES$", Toolbox.RandomFrom(coalitionsDB[(int)mission.CoalitionPlayer].BriefingElements[(int)CoalitionBriefingElement.TheCoalition]));
-            briefingString = briefingString.Replace("$THEENEMIES$", Toolbox.RandomFrom(coalitionsDB[(int)mission.CoalitionEnemy].BriefingElements[(int)CoalitionBriefingElement.TheCoalition]));
+        //    briefingString = briefingString.Replace("$ALLYADJ$", Toolbox.RandomFrom(coalitionsDB[(int)mission.CoalitionPlayer].BriefingElements[(int)CoalitionBriefingElement.Adjective]));
+        //    briefingString = briefingString.Replace("$ENEMYADJ$", Toolbox.RandomFrom(coalitionsDB[(int)mission.CoalitionEnemy].BriefingElements[(int)CoalitionBriefingElement.Adjective]));
+        //    briefingString = briefingString.Replace("$RECON$", Toolbox.RandomFrom(coalitionsDB[(int)mission.CoalitionPlayer].BriefingElements[(int)CoalitionBriefingElement.Recon]));
+        //    briefingString = briefingString.Replace("$STRCOMMAND$", Toolbox.RandomFrom(coalitionsDB[(int)mission.CoalitionPlayer].BriefingElements[(int)CoalitionBriefingElement.StrategicCommand]));
+        //    briefingString = briefingString.Replace("$TACCOMMAND$", Toolbox.RandomFrom(coalitionsDB[(int)mission.CoalitionPlayer].BriefingElements[(int)CoalitionBriefingElement.TacticalCommand]));
+        //    briefingString = briefingString.Replace("$THEATER$", Toolbox.RandomFrom(theaterDB.BriefingNames));
+        //    briefingString = briefingString.Replace("$THEALLIES$", Toolbox.RandomFrom(coalitionsDB[(int)mission.CoalitionPlayer].BriefingElements[(int)CoalitionBriefingElement.TheCoalition]));
+        //    briefingString = briefingString.Replace("$THEENEMIES$", Toolbox.RandomFrom(coalitionsDB[(int)mission.CoalitionEnemy].BriefingElements[(int)CoalitionBriefingElement.TheCoalition]));
 
-            briefingString = briefingString.Replace("$OBJECTIVE$", mission.Objectives[objectiveIndex].Name);
+        //    briefingString = briefingString.Replace("$OBJECTIVE$", mission.Objectives[objectiveIndex].Name);
 
-            briefingString = briefingString.Replace("$UNITFAMILIES$",
-                mission.Objectives[objectiveIndex].TargetFamily.HasValue ?
-                GetBriefingStringForUnitFamily(mission.Objectives[objectiveIndex].TargetFamily.Value, true) : "units");
-            briefingString = briefingString.Replace("$UNITFAMILY$",
-                mission.Objectives[objectiveIndex].TargetFamily.HasValue ?
-                GetBriefingStringForUnitFamily(mission.Objectives[objectiveIndex].TargetFamily.Value, false) : "unit");
+        //    briefingString = briefingString.Replace("$UNITFAMILIES$",
+        //        mission.Objectives[objectiveIndex].TargetFamily.HasValue ?
+        //        GetBriefingStringForUnitFamily(mission.Objectives[objectiveIndex].TargetFamily.Value, true) : "units");
+        //    briefingString = briefingString.Replace("$UNITFAMILY$",
+        //        mission.Objectives[objectiveIndex].TargetFamily.HasValue ?
+        //        GetBriefingStringForUnitFamily(mission.Objectives[objectiveIndex].TargetFamily.Value, false) : "unit");
 
-            return Toolbox.ICase(SanitizeString(briefingString));
-        }
+        //    return Toolbox.ICase(SanitizeString(briefingString));
+        //}
 
-        internal static string RemoveAfterComma(string str)
-        {
-            str = Regex.Replace(str, @",.*", "");
+        //internal static string RemoveAfterComma(string str)
+        //{
+        //    str = Regex.Replace(str, @",.*", "");
 
-            //str = Regex.Replace(str, @"\(.*\)", "");
+        //    //str = Regex.Replace(str, @"\(.*\)", "");
 
-            return SanitizeString(str);
-        }
-
-        /// <summary>
-        /// Randomizes parts of a string.
-        /// </summary>
-        /// <param name="randomString">The string to randomize</param>
-        /// <returns>A randomized string.</returns>
-        internal static string ParseRandomString(string randomString)
-        {
-            while (randomString.Contains("{") && randomString.Contains("{"))
-            {
-                int start = randomString.LastIndexOf("{");
-                string stringLeft = randomString.Substring(start);
-                if (!stringLeft.Contains("}")) break;
-                int end = stringLeft.IndexOf("}") + 1;
-
-                string segment = randomString.Substring(start, end);
-                string parsedSegment = segment.Replace("{", "").Replace("}", "").Trim();
-                string[] items = parsedSegment.Split('|');
-                string selItem = Toolbox.RandomFrom(items);
-
-                randomString = randomString.Replace(segment, selItem);
-            }
-
-            return randomString.Replace("{", "").Replace("}", "").Trim();
-        }
-
-        /// <summary>
-        /// Remove all double-quotes and backslashes from a string to avoid broken strings and code injections.
-        /// </summary>
-        /// <param name="str">The string to sanitize</param>
-        /// <returns>A string without double-quotes and backslashes</returns>
-        internal static string SanitizeString(string str)
-        {
-            if (string.IsNullOrEmpty(str)) return "";
-
-            return str.Replace('\\', '/').Replace("\"", "''").Replace("\r\n", "\n").Trim(' ', '\n', '\t');
-        }
+        //    return SanitizeString(str);
+        //}
 
         ///// <summary>
-        ///// Should a unit group be hidden on the F10 map and other planning info?
+        ///// Randomizes parts of a string.
         ///// </summary>
-        ///// <param name="unitGroup">Database info about a unit group</param>
-        ///// <param name="oppositionKnown"><see cref="Template.MissionTemplate.OptionsShowEnemyUnits"/> setting</param>
-        ///// <returns>True if hidden, false if visible</returns>
-        //internal static bool ShouldUnitBeHidden(DBUnitGroup unitGroup, bool oppositionKnown)
+        ///// <param name="randomString">The string to randomize</param>
+        ///// <returns>A randomized string.</returns>
+        //internal static string ParseRandomString(string randomString)
         //{
-        //    if (unitGroup.Flags.HasFlag(DBUnitGroupFlags.NeverOnMap)) return true;
-        //    if (unitGroup.Flags.HasFlag(DBUnitGroupFlags.AlwaysOnMap)) return false;
-        //    if (!oppositionKnown && !unitGroup.Flags.HasFlag(DBUnitGroupFlags.Friendly)) return true;
-        //    return false;
+        //    while (randomString.Contains("{") && randomString.Contains("{"))
+        //    {
+        //        int start = randomString.LastIndexOf("{");
+        //        string stringLeft = randomString.Substring(start);
+        //        if (!stringLeft.Contains("}")) break;
+        //        int end = stringLeft.IndexOf("}") + 1;
+
+        //        string segment = randomString.Substring(start, end);
+        //        string parsedSegment = segment.Replace("{", "").Replace("}", "").Trim();
+        //        string[] items = parsedSegment.Split('|');
+        //        string selItem = Toolbox.RandomFrom(items);
+
+        //        randomString = randomString.Replace(segment, selItem);
+        //    }
+
+        //    return randomString.Replace("{", "").Replace("}", "").Trim();
         //}
+
+        ///// <summary>
+        ///// Remove all double-quotes and backslashes from a string to avoid broken strings and code injections.
+        ///// </summary>
+        ///// <param name="str">The string to sanitize</param>
+        ///// <returns>A string without double-quotes and backslashes</returns>
+        //internal static string SanitizeString(string str)
+        //{
+        //    if (string.IsNullOrEmpty(str)) return "";
+
+        //    return str.Replace('\\', '/').Replace("\"", "''").Replace("\r\n", "\n").Trim(' ', '\n', '\t');
+        //}
+
+        /////// <summary>
+        /////// Should a unit group be hidden on the F10 map and other planning info?
+        /////// </summary>
+        /////// <param name="unitGroup">Database info about a unit group</param>
+        /////// <param name="oppositionKnown"><see cref="Template.MissionTemplate.OptionsShowEnemyUnits"/> setting</param>
+        /////// <returns>True if hidden, false if visible</returns>
+        ////internal static bool ShouldUnitBeHidden(DBUnitGroup unitGroup, bool oppositionKnown)
+        ////{
+        ////    if (unitGroup.Flags.HasFlag(DBUnitGroupFlags.NeverOnMap)) return true;
+        ////    if (unitGroup.Flags.HasFlag(DBUnitGroupFlags.AlwaysOnMap)) return false;
+        ////    if (!oppositionKnown && !unitGroup.Flags.HasFlag(DBUnitGroupFlags.Friendly)) return true;
+        ////    return false;
+        ////}
     }
 }

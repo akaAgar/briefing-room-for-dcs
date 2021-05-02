@@ -20,16 +20,16 @@
 //==========================================================================
 //*/
 
-//using BriefingRoom.Attributes;
-//using BriefingRoom.DB;
-//using BriefingRoom.Template;
+//using BriefingRoom4DCS.Attributes;
+//using BriefingRoom4DCS.DB;
+//using BriefingRoom4DCS.Template;
 //using System;
 ////using System.ComponentModel;
 //using System.Drawing.Design;
 //using System.IO;
 //using System.Linq;
 
-//namespace BriefingRoom.Template
+//namespace BriefingRoom4DCS.Template
 //{
 //    /// <summary>
 //    /// A campaign template

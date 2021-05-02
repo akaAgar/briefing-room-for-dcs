@@ -18,12 +18,9 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using BriefingRoom4DCS.Mission;
-using BriefingRoom4DCS.Miz;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
 
 namespace BriefingRoom4DCS.CommandLineTool
@@ -127,8 +124,7 @@ namespace BriefingRoom4DCS.CommandLineTool
                     string mizFileName = Path.Combine(Application.StartupPath, Path.GetFileNameWithoutExtension(t) + ".miz");
                     mizFileName = GetUnusedFileName(mizFileName);
 
-                    MizFile miz = mission.ExportToMiz();
-                    if ((miz == null) || !miz.SaveToFile(mizFileName))
+                    if (!mission.SaveToMizFile(mizFileName))
                     {
                         WriteToDebugLog($"Failed to export .miz file from template {Path.GetFileName(t)}", LogMessageErrorLevel.Warning);
                         continue;

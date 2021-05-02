@@ -24,7 +24,7 @@
 //using BriefingRoom.Template;
 //using System;
 
-//namespace BriefingRoom.Generator
+//namespace BriefingRoom4DCS.Generator
 //{
 //    /// <summary>
 //    /// Generates friendly support units (AWACS, tankers...)

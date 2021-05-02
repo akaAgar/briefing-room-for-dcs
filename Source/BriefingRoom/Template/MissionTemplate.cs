@@ -137,7 +137,7 @@ namespace BriefingRoom4DCS.Template
 
         [Required, MinLength(1), MaxLength(MAX_OBJECTIVES)]
         [Display(Name = "Objectives", Description = "Mission objectives.")]
-        public List<MissionTemplateObjective> Objectives { get; set; }
+        public List<MissionTemplateObjective> Objectives { get; set; } = new List<MissionTemplateObjective>();
 
         [Required]
         [Display(Name = "Fog of war", Description = "Fog of war settings for this mission.")]

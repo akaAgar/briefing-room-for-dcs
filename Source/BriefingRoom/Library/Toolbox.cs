@@ -78,6 +78,39 @@ namespace BriefingRoom4DCS
         }
 
         /// <summary>
+        /// Check if a filepath is valid.
+        /// Code by https://stackoverflow.com/questions/6198392/check-whether-a-path-is-valid
+        /// </summary>
+        /// <param name="path">The file path to check.</param>
+        /// <param name="allowRelativePaths">Should relative paths be allowed?</param>
+        /// <returns>True if the path is valid, false otherwise</returns>
+        internal static bool IsFilePathValid(string path, bool allowRelativePaths = false)
+        {
+            bool isValid;
+
+            try
+            {
+                string fullPath = Path.GetFullPath(path);
+
+                if (allowRelativePaths)
+                {
+                    isValid = Path.IsPathRooted(path);
+                }
+                else
+                {
+                    string root = Path.GetPathRoot(path);
+                    isValid = string.IsNullOrEmpty(root.Trim(new char[] { '\\', '/' })) == false;
+                }
+            }
+            catch (Exception)
+            {
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        /// <summary>
         /// Returns a string with the first letter cast to upper case.
         /// </summary>
         /// <param name="value">A string</param>

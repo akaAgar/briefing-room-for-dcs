@@ -24,7 +24,7 @@ using System;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace BriefingRoom4DCS.Miz
+namespace BriefingRoom4DCS.Generator
 {
     /// <summary>
     /// Static class provided various tool methods to handle included Lua files.
