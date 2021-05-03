@@ -123,6 +123,11 @@ namespace BriefingRoom4DCS
             return value[0].ToString().ToUpperInvariant() + (castRestOfStringToLowerCase ? value.Substring(1).ToLowerInvariant() : value.Substring(1));
         }
 
+        internal static Coalition GetEnemy(this Coalition coalition)
+        {
+            return (Coalition)(1 - (int)coalition);
+        }
+
         ///// <summary>
         ///// Converts a BriefingRoom skill level to a DCS World skill level.
         ///// </summary>
