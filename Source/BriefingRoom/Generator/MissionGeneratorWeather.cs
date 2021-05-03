@@ -62,6 +62,7 @@ namespace BriefingRoom4DCS.Generator
             else
                 weatherDB = Database.Instance.GetEntry<DBEntryWeatherPreset>(template.EnvironmentWeatherPreset);
 
+            mission.SetValue("WEATHER_NAME", weatherDB.BriefingDescription, true);
             mission.SetValue("WEATHER_CLOUDS_BASE", weatherDB.CloudsBase.GetValue(), true);
             mission.SetValue("WEATHER_CLOUDS_PRESET", Toolbox.RandomFrom(weatherDB.CloudsPresets), true);
             mission.SetValue("WEATHER_CLOUDS_THICKNESS", weatherDB.CloudsThickness.GetValue(), true);
@@ -89,12 +90,17 @@ namespace BriefingRoom4DCS.Generator
             Wind windLevel = template.EnvironmentWind == Wind.Random ? windLevel = PickRandomWindLevel() : template.EnvironmentWind;
             BriefingRoom.PrintToLog($"Wind speed level set to \"{windLevel}\".");
 
+            int windAverage = 0;
             for (int i = 0; i < 3; i++)
             {
                 int windSpeed = Database.Instance.Common.Wind[(int)windLevel].Wind.GetValue();
+                windAverage += windSpeed;
                 mission.SetValue($"WEATHER_WIND_SPEED{i + 1}", windSpeed, true);
                 mission.SetValue($"WEATHER_WIND_DIRECTION{i + 1}", windSpeed > 0 ? Toolbox.RandomInt(0, 360) : 0, true);
             }
+
+            mission.SetValue($"WEATHER_WIND_NAME", windLevel.ToString(), true); // TODO: get name from attribute
+            mission.SetValue($"WEATHER_WIND_SPEED_AVERAGE", windAverage / 3, true);
 
             mission.SetValue("WEATHER_GROUND_TURBULENCE", Database.Instance.Common.Wind[(int)windLevel].Turbulence.GetValue() + turbulenceFromWeather, true);
         }

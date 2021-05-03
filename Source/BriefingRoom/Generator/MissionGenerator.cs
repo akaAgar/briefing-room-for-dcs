@@ -79,6 +79,7 @@ namespace BriefingRoom4DCS.Generator
                 dateTimeGenerator.GenerateMissionTime(mission, template, theaterDB, month);
             }
 
+            // Generate weather and wind
             BriefingRoom.PrintToLog("Generating mission weather...");
             using (MissionGeneratorWeather weatherGenerator = new MissionGeneratorWeather())
             {
@@ -91,8 +92,10 @@ namespace BriefingRoom4DCS.Generator
             BriefingRoom.PrintToLog("Setting up airbases...");
             using (MissionGeneratorAirbases airbasesGenerator = new MissionGeneratorAirbases())
             {
-                airbasesGenerator.SelectStartingAirbase(mission, template, out playerAirbase);
+                playerAirbase = airbasesGenerator.SelectStartingAirbase(mission, template);
+                if (playerAirbase == null) return null; // No valid airbase was found
                 airbasesGenerator.SetupAirbasesCoalitions(mission, template, playerAirbase);
+                mission.SetValue("PLAYER_AIRBASE_NAME", playerAirbase.Name);
             }
 
 

@@ -21,7 +21,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Template;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
@@ -31,145 +30,99 @@ namespace BriefingRoom4DCS.Generator
         /// <summary>
         /// Constructor.
         /// </summary>
-        internal MissionGeneratorAirbases()
-        {
-
-        }
+        internal MissionGeneratorAirbases() { }
 
         /// <summary>
         /// Picks a starting airbase for the player(s)
         /// </summary>
         /// <param name="mission">Mission for which the starting airbase must be set</param>
         /// <param name="template">Mission template to use</param>
-        /// <param name="playerAirbase">Players' takeoff/landing airbase</param>
-        internal void SelectStartingAirbase(DCSMission mission, MissionTemplate template, out DBEntryAirbase playerAirbase)
+        /// <returns>Players' takeoff/landing airbase</returns>
+        internal DBEntryAirbase SelectStartingAirbase(DCSMission mission, MissionTemplate template)
         {
-            playerAirbase = null;
+            // Get total number of required parking spots for flight groups
+            int requiredParkingSpots = (from MissionTemplateFlightGroup flightGroup in template.PlayerFlightGroups select flightGroup.Count).Sum();
 
             // Select all airbases for this theater
             DBEntryAirbase[] airbases = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater).GetAirbases();
 
-            // Get total number of required parking spots for flight groups
-            int requiredParkingSpots = (from MissionTemplateFlightGroup flightGroup in template.PlayerFlightGroups select flightGroup.Count).Sum();
+            // If a particular airbase name has been specified and an airbase with this name exists, pick it
+            if (!string.IsNullOrEmpty(template.FlightPlanTheaterStartingAirbase))
+            {
+                airbases = (from DBEntryAirbase airbase in airbases where airbase.ID == template.FlightPlanTheaterStartingAirbase select airbase).ToArray();
+                if (airbases.Length == 0)
+                {
+                    BriefingRoom.PrintToLog($"No airbase found with ID \"{template.FlightPlanTheaterStartingAirbase}\", cannot spawn player aircraft.", LogMessageErrorLevel.Error);
+                    return null;
+                }
+                if (airbases[0].ParkingSpots.Length < requiredParkingSpots)
+                {
+                    BriefingRoom.PrintToLog($"Airbase \"{template.FlightPlanTheaterStartingAirbase}\" has less than {requiredParkingSpots} parking spots, cannot spawn player aircraft.", LogMessageErrorLevel.Error);
+                    return null;
+                }
+
+                return airbases[0];
+            }
 
             // Select all airbases with enough parking spots
             airbases = (from DBEntryAirbase airbase in airbases where airbase.ParkingSpots.Length >= requiredParkingSpots select airbase).ToArray();
             if (airbases.Length == 0)
             {
                 BriefingRoom.PrintToLog($"No airbase found with {requiredParkingSpots} parking spots, cannot spawn all player aircraft.", LogMessageErrorLevel.Error);
-                playerAirbase = null;
-                return;
+                return null;
             }
 
-            //// If a particular airbase name has been specified and an airbase with this name exists, pick it
-            //if (!string.IsNullOrEmpty(template.FlightPlanTheaterStartingAirbase))
-            //{
-            //    airbases = (from DBEntryAirbase airbase in airbases where airbase.ParkingSpots.Length >= requiredParkingSpots select airbase).ToArray();
-            //    if ()
-            //    airbasesList.Add((from DBEntryAirbase airbase in airbases
-            //                      where airbase.Name.ToLowerInvariant() == template.FlightPlanTheaterStartingAirbase.ToLowerInvariant()
-            //                      select airbase).ToArray());
+            // Select all airbases belonging to the player coalition (unless all airbases belong to the same coalition)
+            if ((template.ContextTheaterCountriesCoalitions == CountryCoalition.Default) ||
+                (template.ContextTheaterCountriesCoalitions == CountryCoalition.Inverted))
+            {
+                Coalition requiredCoalition =
+                    (template.ContextTheaterCountriesCoalitions == CountryCoalition.Inverted) ?
+                    template.ContextPlayerCoalition.GetEnemy() : template.ContextPlayerCoalition;
 
-            //    if (airbasesList.Last().Length == 0)
-            //        BriefingRoom.PrintToLog($"Airbase \"{template.FlightPlanTheaterStartingAirbase}\" not found or airbase doesn't have enough parking spots. Selecting a random airbase instead.", LogMessageErrorLevel.Warning);
-            //}
+                airbases = (from DBEntryAirbase airbase in airbases where airbase.Coalition == requiredCoalition select airbase).ToArray();
 
-            //// Select all airbases belonging to the player coalition (unless all airbases belong to the same coalition)
-            //if ((template.ContextTheaterCountriesCoalitions == CountryCoalition.Default) ||
-            //    (template.ContextTheaterCountriesCoalitions == CountryCoalition.Inverted))
-            //{
-            //    Coalition requiredCoalition =
-            //        (template.ContextTheaterCountriesCoalitions == CountryCoalition.Inverted) ?
-            //        template.ContextPlayerCoalition.GetEnemy() : template.ContextPlayerCoalition;
+                if (airbases.Length == 0)
+                {
+                    BriefingRoom.PrintToLog($"No airbase belonging to coalition {requiredCoalition} was found, cannot spawn player aircraft.", LogMessageErrorLevel.Error);
+                    return null;
+                }
+            }
+            else
+                airbases = airbases.ToArray();
 
-            //    airbasesList.Add((from DBEntryTheaterAirbase ab in airbasesList.Last() where ab.Coalition == requiredCoalition select ab).ToArray());
-            //}
+            // If some targets are ships, or some player start on a carrier, try to pick an airbase near water
+            if (MissionPrefersShoreAirbase(template))
+            {
+                DBEntryAirbase[] shoreAirbases = (from DBEntryAirbase airbase in airbases where airbase.Flags.HasFlag(AirbaseFlag.NearWater) select airbase).ToArray();
 
-            //// Targets are ships, spawn players near the sea
-            //bool seaTargets = false;
-            //foreach (MissionTemplateObjective objective in template.Objectives)
-            //    if (Database.Instance.EntryExists<DBEntryObjectiveTarget>(objective.Target) &&
-            //        (Database.Instance.GetEntry<DBEntryObjectiveTarget>(objective.Target).UnitCategory == UnitCategory.Ship))
-            //    {
-            //        seaTargets = true;
-            //        break;
-            //    }
+                if (shoreAirbases.Length > 0)
+                    return Toolbox.RandomFrom(shoreAirbases);
+            }
 
-            //// If some targets are ships, or some player start on a carrier, only select airbases near water
-            //if (seaTargets || !string.IsNullOrEmpty(template.PlayerFlightGroups[0].Carrier))
-            //    airbasesList.Add((from DBEntryTheaterAirbase ab in airbasesList.Last() where ab.Flags.HasFlag(DBEntryTheaterAirbaseFlag.NearWater) select ab).ToArray());
-
-
-            //// Check for valid airbases in all list, starting from the last one (with the most criteria filtered, and go back to the previous ones
-            //// as long as no airbase is found.
-            //for (int i = airbasesList.Count - 1; i >= 0; i--)
-            //{
-            //    if (airbasesList[i].Length > 0)
-            //        playerAirbase = Toolbox.RandomFrom(airbasesList[i]);
-            //}
+            return Toolbox.RandomFrom(airbases);
         }
 
-        ///// <summary>
-        ///// Picks a starting airbase for the player(s)
-        ///// </summary>
-        ///// <param name="mission">Mission for which the starting airbase must be set</param>
-        ///// <param name="template">Mission template to use</param>
-        ///// <param name="theaterDB">Theater database entry</param>
-        ///// <param name="lastCoordinates">Last location for referance</param>
-        ///// <param name="distance">Base Distance Range</param>
-        ///// <param name="first">is first objective</param>
-        ///// <returns>Information about the starting airbase</returns>
-        //internal DBEntryTheaterAirbase SelectObjectiveAirbase(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, Coordinates lastCoordinates, MinMaxD distance, bool first = false)
-        //{
-        //    List<DBEntryTheaterAirbase> airbasesList = new List<DBEntryTheaterAirbase>();
+        /// <summary>
+        /// Should airbases near the sea be preferred as starting/landing airbases?
+        /// </summary>
+        /// <param name="template">Mission template to check.</param>
+        /// <returns>True or false</returns>
+        private bool MissionPrefersShoreAirbase(MissionTemplate template)
+        {
+            // If any objective target is a ship, return true
+            foreach (MissionTemplateObjective objective in template.Objectives)
+                if (Database.Instance.EntryExists<DBEntryObjectiveTarget>(objective.Target) &&
+                    (Database.Instance.GetEntry<DBEntryObjectiveTarget>(objective.Target).UnitCategory == UnitCategory.Ship))
+                    return true;
 
-        //    // Select all airbases with enough parking spots, trying to match the preferred coalition for enemy unit location, if any
-        //    if ((template.OptionsTheaterCountriesCoalitions == CountryCoalition.AllBlue) || (template.OptionsTheaterCountriesCoalitions == CountryCoalition.AllRed) ||
-        //        (template.OptionsEnemyUnitsLocation == SpawnPointPreferredCoalition.Any))
-        //        airbasesList.AddRange((from DBEntryTheaterAirbase ab in theaterDB.Airbases where ab.ParkingSpots.Length >= Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE select ab).ToArray());
-        //    else
-        //    {
-        //        Coalition preferredCoalition;
+            // If any flight group takes off from a carrier, return true
+            foreach (MissionTemplateFlightGroup flightGroup in template.PlayerFlightGroups)
+                if (!string.IsNullOrEmpty(flightGroup.Carrier))
+                    return true;
 
-        //        if (template.OptionsEnemyUnitsLocation == SpawnPointPreferredCoalition.Blue)
-        //            preferredCoalition = (template.OptionsTheaterCountriesCoalitions == CountryCoalition.Inverted) ? Coalition.Red : Coalition.Blue;
-        //        else
-        //            preferredCoalition = (template.OptionsTheaterCountriesCoalitions == CountryCoalition.Inverted) ? Coalition.Blue : Coalition.Red;
-
-        //        airbasesList.AddRange(
-        //            (from DBEntryTheaterAirbase ab in theaterDB.Airbases where ab.ParkingSpots.Length >= Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE && ab.Coalition == preferredCoalition select ab).ToArray());
-
-        //        if (airbasesList.Count == 0)
-        //            airbasesList.AddRange((from DBEntryTheaterAirbase ab in theaterDB.Airbases where ab.ParkingSpots.Length >= Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE select ab).ToArray());
-        //    }
-
-        //    // Remove players' home airbase and airbases already used by other objectives from the list of available airbases
-        //    List<int> airbasesInUse = (from DCSMissionObjective objective in mission.Objectives select objective.AirbaseID).ToList();
-        //    airbasesInUse.Add(mission.InitialAirbaseID);
-        //    airbasesList = (from DBEntryTheaterAirbase ab in airbasesList where !airbasesInUse.Contains(ab.DCSID) select ab).ToList();
-
-        //    if (airbasesList.Count == 0)
-        //        throw new Exception($"No airbase found with at least {Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE} parking spots to use as an objective.");
-
-        //    int distanceMultiplier = 1;
-        //    do
-        //    {
-        //        MinMaxD searchDistance = new MinMaxD(first ? distance.Min : 0, distance.Max * distanceMultiplier);
-        //        List<DBEntryTheaterAirbase> airbasesInRange = airbasesList.FindAll(x => searchDistance.Contains(x.Coordinates.GetDistanceFrom(lastCoordinates) * Toolbox.METERS_TO_NM));
-        //        if (airbasesInRange.Count > 0)
-        //        {
-        //            DBEntryTheaterAirbase selectedAirbase = Toolbox.RandomFrom(airbasesInRange);
-        //            mission.AirbasesCoalition[selectedAirbase.DCSID] = mission.CoalitionEnemy;
-        //            return selectedAirbase;
-        //        }
-
-        //        distanceMultiplier++;
-
-        //        if (distanceMultiplier > 128)
-        //            throw new Exception($"No target airbase found within range, try a larger objective range.");
-
-        //    } while (true);
-        //}
+            return false;
+        }
 
         /// <summary>
         /// Sets the coalition to which the various airbases on the theater belong.
