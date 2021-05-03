@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 
 namespace BriefingRoom4DCS
 {
@@ -39,6 +40,10 @@ namespace BriefingRoom4DCS
 
         internal Dictionary<string, string> MissionValues { get; }
 
+        internal List<string> MediaFilesOgg { get; private set; }
+
+        internal Dictionary<int, Coalition> Airbases { get; }
+
         public string Name { get { return MissionValues.ContainsKey("MISSION_NAME") ? MissionValues["MISSION_NAME"] : ""; } }
 
         
@@ -46,10 +51,20 @@ namespace BriefingRoom4DCS
         
         public string BriefingRawText { get { return ""; } } // TODO
 
+        internal void SetAirbase(int airbaseID, Coalition airbaseCoalition)
+        {
+            if (Airbases.ContainsKey(airbaseID))
+                Airbases[airbaseID] = airbaseCoalition;
+            else
+                Airbases.Add(airbaseID, airbaseCoalition);
+        }
+
         internal DCSMission()
         {
             UniqueID = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()).ToLowerInvariant();
+            Airbases = new Dictionary<int, Coalition>();
             MissionValues = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
+            MediaFilesOgg = new List<string>();
         }
 
         internal void SetValue(string key, int value, bool verbose = false)
@@ -60,6 +75,13 @@ namespace BriefingRoom4DCS
         internal void SetValue(string key, bool value, bool verbose = false)
         {
             SetValue(key, value.ToString(NumberFormatInfo.InvariantInfo), verbose, false);
+        }
+
+        internal void AddOggFiles(params string[] oggFiles)
+        {
+            oggFiles = Toolbox.AddMissingFileExtensions(oggFiles, ".ogg");
+            MediaFilesOgg.AddRange(oggFiles);
+            MediaFilesOgg = MediaFilesOgg.Distinct().ToList();
         }
 
         internal void SetValue(string key, string value, bool verbose = false, bool append = false)
@@ -108,7 +130,10 @@ namespace BriefingRoom4DCS
         /// <summary>
         /// <see cref="IDisposable"/> implementation.
         /// </summary>
-        public void Dispose() { }
+        public void Dispose()
+        {
+
+        }
     }
 }
 
