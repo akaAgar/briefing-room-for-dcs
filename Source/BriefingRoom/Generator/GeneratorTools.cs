@@ -92,12 +92,18 @@ namespace BriefingRoom4DCS.Generator
         /// <typeparam name="T">The type of <see cref="DBEntry"/> to look for</typeparam>
         /// <param name="id">The id of the entry to look for</param>
         /// <param name="allowEmpty">If true, null or empty strings will be allowed</param>
-        internal static void CheckDBForMissingEntry<T>(string id, bool allowEmpty = false) where T : DBEntry
+        /// <returns></returns>
+        internal static bool CheckDBForMissingEntry<T>(string id, bool allowEmpty = false) where T : DBEntry
         {
-            if (string.IsNullOrEmpty(id) && allowEmpty) return;
+            if (string.IsNullOrEmpty(id) && allowEmpty) return true;
 
             if (!Database.Instance.EntryExists<T>(id))
-                throw new Exception($"{typeof(T).Name} \"{id}\" not found.");
+            {
+                BriefingRoom.PrintToLog($"Database entry {typeof(T).Name} with ID \"{id}\" not found.", LogMessageErrorLevel.Error);
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>

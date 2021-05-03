@@ -41,21 +41,38 @@ namespace BriefingRoom4DCS.Generator
 
         internal DCSMission Generate(MissionTemplate template)
         {
+            // Check for missing entries in the database
+            if (!GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionBlue) ||
+                !GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionRed) ||
+                !GeneratorTools.CheckDBForMissingEntry<DBEntryWeatherPreset>(template.EnvironmentWeatherPreset, true) ||
+                !GeneratorTools.CheckDBForMissingEntry<DBEntryTheater>(template.ContextTheater))
+                return null;
+
+            // Create mission class
             DCSMission mission = new DCSMission();
 
             // Get required database entries here, so we don't have to look for them each time they're needed.
             DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
+            DBEntryCoalition[] coalitionDB = new DBEntryCoalition[]
+                {
+                    Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionBlue),
+                    Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionRed)
+                };
 
-            // Set common values
+            // Copy values from the template
             mission.SetValue("THEATER_ID", theaterDB.DCSID);
+
+            // Add common media files
+            mission.AddOggFiles(Database.Instance.Common.CommonOGG);
+            mission.AddOggFiles(Database.Instance.Common.CommonOGGForGameMode[(int)template.MissionType]);
 
             // Generate list of countries for each coalition
             using (MissionGeneratorCountries countriesGenerator = new MissionGeneratorCountries())
                 countriesGenerator.GenerateCountries(mission, template);
 
             // Generate mission date and time
-            BriefingRoom.PrintToLog("Generating mission date and time...");
             Month month;
+            BriefingRoom.PrintToLog("Generating mission date and time...");
             using (MissionGeneratorDateTime dateTimeGenerator = new MissionGeneratorDateTime())
             {
                 dateTimeGenerator.GenerateMissionDate(mission, template, out month);
@@ -68,6 +85,20 @@ namespace BriefingRoom4DCS.Generator
                 weatherGenerator.GenerateWeather(mission, template, theaterDB, month, out int turbulenceFromWeather);
                 weatherGenerator.GenerateWind(mission, template, turbulenceFromWeather);
             }
+
+            // Setup airbases
+            DBEntryAirbase playerAirbase;
+            BriefingRoom.PrintToLog("Setting up airbases...");
+            using (MissionGeneratorAirbases airbasesGenerator = new MissionGeneratorAirbases())
+            {
+                airbasesGenerator.SelectStartingAirbase(mission, template, out playerAirbase);
+                airbasesGenerator.SetupAirbasesCoalitions(mission, template, playerAirbase);
+            }
+
+
+            // Generate carrier groups
+            // TODO
+
 
             return mission;
         }

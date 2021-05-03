@@ -163,7 +163,10 @@ namespace BriefingRoom4DCS.Data
         /// <returns>An array of <see cref="DBEntryAirbase"/></returns>
         public DBEntryAirbase[] GetAirbases()
         {
-            return (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>() where Toolbox.StringICompare(airbase.Theater, ID) select airbase).ToArray();
+            return
+                (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>()
+                 where Toolbox.StringICompare(airbase.Theater, ID)
+                 select airbase).ToArray();
         }
     }
 }
