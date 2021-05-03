@@ -46,10 +46,26 @@ namespace BriefingRoom4DCS
 
         public string Name { get { return MissionValues.ContainsKey("MISSION_NAME") ? MissionValues["MISSION_NAME"] : ""; } }
 
-        
-        public string BriefingHTML { get { return ""; } } // TODO
+        public string GetHTMLBriefing(bool fullHtml)
+        {
+            string html = File.ReadAllText($"{BRPaths.INCLUDE_HTML}Briefing.html");
+            if (fullHtml)
+                html = File.ReadAllText($"{BRPaths.INCLUDE_HTML}BriefingHeader.html") + html + File.ReadAllText($"{BRPaths.INCLUDE_HTML}BriefingFooter.html");
+
+            return ReplaceValues(html);
+        }
         
         public string BriefingRawText { get { return ""; } } // TODO
+
+        internal string ReplaceValues(string rawText)
+        {
+            if (rawText == null) return null;
+
+            foreach (KeyValuePair<string, string> keyPair in MissionValues)
+                rawText = rawText.Replace($"${keyPair.Key.ToUpperInvariant()}$", keyPair.Value);
+
+            return rawText;
+        }
 
         internal void SetAirbase(int airbaseID, Coalition airbaseCoalition)
         {

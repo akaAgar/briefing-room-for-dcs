@@ -47,6 +47,7 @@ namespace BriefingRoom4DCS
         {
             Dictionary<string, byte[]> MizFileEntries = new Dictionary<string, byte[]>();
             AddLuaFileToEntries(MizFileEntries, "mission", $"{BRPaths.INCLUDE_LUA}Mission.lua", mission);
+            AddStringValueToEntries(MizFileEntries, "Briefing.html", mission.GetHTMLBriefing(true));
 
             byte[] mizBytes;
 
@@ -56,8 +57,6 @@ namespace BriefingRoom4DCS
                 {
                     using (ZipArchive zip = new ZipArchive(ms, ZipArchiveMode.Update))
                     {
-                        //using (ZipArchive zip = ZipFile.Open(mizFilePath, ZipArchiveMode.Create))
-                        //{
                         foreach (string entryKey in MizFileEntries.Keys)
                         {
                             ZipArchiveEntry entry = zip.CreateEntry(entryKey, CompressionLevel.Optimal);
@@ -159,11 +158,17 @@ namespace BriefingRoom4DCS
             if (!File.Exists(sourceFile)) return false;
 
             string luaContent = File.ReadAllText(sourceFile);
-            if (mission != null) // A mission was provided, do the required replacement to the file.
-                foreach (KeyValuePair<string, string> keyPair in mission.MissionValues)
-                    luaContent = luaContent.Replace($"${keyPair.Key.ToUpperInvariant()}$", keyPair.Value);
+            if (mission != null) // A mission was provided, do the required replacements in the file.
+                luaContent = mission.ReplaceValues(luaContent);
 
             mizFileEntries.Add(mizEntryKey, Encoding.UTF8.GetBytes(luaContent));
+            return true;
+        }
+
+        private bool AddStringValueToEntries(Dictionary<string, byte[]> mizFileEntries, string mizEntryKey, string stringValue)
+        {
+            if (string.IsNullOrEmpty(mizEntryKey) || mizFileEntries.ContainsKey(mizEntryKey)) return false;
+            mizFileEntries.Add(mizEntryKey, Encoding.UTF8.GetBytes(stringValue));
             return true;
         }
 

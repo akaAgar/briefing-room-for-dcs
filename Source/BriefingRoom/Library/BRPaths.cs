@@ -53,6 +53,11 @@ namespace BriefingRoom4DCS
         public static string INCLUDE { get; } = $"{ROOT}Include\\";
 
         /// <summary>
+        /// Path to the Include\Html subdirectory.
+        /// </summary>
+        public static string INCLUDE_HTML { get; } = $"{INCLUDE}Html\\";
+
+        /// <summary>
         /// Path to the Include\Jpg subdirectory.
         /// </summary>
         public static string INCLUDE_JPG { get; } = $"{INCLUDE}Jpg\\";
