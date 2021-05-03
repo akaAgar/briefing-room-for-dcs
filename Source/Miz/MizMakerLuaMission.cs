@@ -215,7 +215,7 @@ namespace BriefingRoom4DCSWorld.Miz
                 else
                 {
                     waypointAltitude = unitBP.AircraftData.CruiseAltitude;
-                    waypointSpeed = unitBP.AircraftData.CruiseAltitude;
+                    waypointSpeed = unitBP.AircraftData.CruiseSpeed;
                 }
 
                 waypointAltitude *= mission.Waypoints[i].AltitudeMultiplier;
