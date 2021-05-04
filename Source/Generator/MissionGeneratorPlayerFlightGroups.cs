@@ -60,6 +60,7 @@ namespace BriefingRoom4DCSWorld.Generator
         public UnitFlightGroupBriefingDescription[] CreateUnitGroups(DCSMission mission, MissionTemplate template, DBEntryObjective objectiveDB, DBEntryCoalition playerCoalitionDB, out string aiEscortTypeCAP, out string aiEscortTypeSEAD)
         {
             List<UnitFlightGroupBriefingDescription> briefingFGList = new List<UnitFlightGroupBriefingDescription>();
+            FixCountryConflicts(template);
 
             if (template.MissionType == MissionType.SinglePlayer)
                 briefingFGList.Add(GenerateSinglePlayerFlightGroup(mission, template, objectiveDB));
@@ -85,6 +86,19 @@ namespace BriefingRoom4DCSWorld.Generator
             }
 
             return briefingFGList.ToArray();
+        }
+
+        private void FixCountryConflicts(MissionTemplate template)
+        {
+            foreach(var fg in template.PlayerFlightGroups){
+                if(template.ContextCoalitionPlayer == Coalition.Red && fg.Country == Country.CJTFBlue){
+                    fg.Country = Country.CJTFRed;
+                    continue;
+                } else if(template.ContextCoalitionPlayer == Coalition.Blue && fg.Country == Country.CJTFRed){
+                    fg.Country = Country.CJTFBlue;
+                    continue;
+                }
+            }
         }
 
         /// <summary>
