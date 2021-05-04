@@ -1,29 +1,60 @@
-﻿///*
-//==========================================================================
-//This file is part of Briefing Room for DCS World, a mission
-//generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
+﻿/*
+==========================================================================
+This file is part of Briefing Room for DCS World, a mission
+generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
 
-//Briefing Room for DCS World is free software: you can redistribute it
-//and/or modify it under the terms of the GNU General Public License
-//as published by the Free Software Foundation, either version 3 of
-//the License, or (at your option) any later version.
+Briefing Room for DCS World is free software: you can redistribute it
+and/or modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation, either version 3 of
+the License, or (at your option) any later version.
 
-//Briefing Room for DCS World is distributed in the hope that it will
-//be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
-//of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//GNU General Public License for more details.
+Briefing Room for DCS World is distributed in the hope that it will
+be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-//You should have received a copy of the GNU General Public License
-//along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses/
-//==========================================================================
-//*/
+You should have received a copy of the GNU General Public License
+along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses/
+==========================================================================
+*/
 
-//using BriefingRoom4DCS.Data;
-//using BriefingRoom4DCS.Mission;
-//using System;
-//using System.Collections.Generic;
-//using System.Globalization;
-//using System.Linq;
+using BriefingRoom4DCS.Data;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+
+namespace BriefingRoom4DCS.Generator
+{
+    internal class UnitMaker : IDisposable
+    {
+        private readonly DCSMission Mission;
+        private readonly DBEntryCoalition[] CoalitionsDB;
+        private readonly Coalition PlayerCoalition;
+        private readonly DBEntryTheater TheaterDB;
+
+        internal UnitMaker(DCSMission mission, DBEntryCoalition[] coalitionsDB, DBEntryTheater theaterDB, Coalition playerCoalition)
+        {
+            CoalitionsDB = coalitionsDB;
+            Mission = mission;
+            PlayerCoalition = playerCoalition;
+            TheaterDB = theaterDB;
+        }
+
+        //internal DCSMissionUnitGroup AddUnitGroup(
+        //    DCSMission mission, string[] units, Side side,
+        //    Coordinates coordinates, string groupLua, string unitLua,
+        //    DCSSkillLevel skill, DCSMissionUnitGroupFlags flags = 0, AircraftPayload payload = AircraftPayload.Default,
+        //    Coordinates? coordinates2 = null, int airbaseID = 0, bool requiresParkingSpots = false, bool requiresOpenAirParking = false, Country? country = null, PlayerStartLocation startLocation = PlayerStartLocation.Runway)
+        //{
+        //}
+
+            public void Dispose()
+        {
+
+        }
+    }
+}
 
 //namespace BriefingRoom4DCS.Generator
 //{
