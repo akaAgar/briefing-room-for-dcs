@@ -70,7 +70,7 @@ namespace BriefingRoom4DCSWorld.Generator
             if (carriers.Length == 0)
                 return;
 
-            foreach (string carrier in carriers)
+            foreach (string carrier in carriers.Distinct())
             {
 
             DBEntryTheaterSpawnPoint? spawnPoint =
@@ -89,16 +89,6 @@ namespace BriefingRoom4DCSWorld.Generator
             Coordinates position = mission.InitialPosition;
             DCSMissionUnitGroup group;
             string[] ships = new string[] { carrier };
-            foreach (var ship in new UnitFamily[]{
-                UnitFamily.ShipFrigate,
-                UnitFamily.ShipFrigate,
-                UnitFamily.ShipCruiser,
-                UnitFamily.ShipCruiser,
-                UnitFamily.ShipTransport
-            })
-            {
-                ships = ships.Append(playerCoalitionDB.GetRandomUnits(ship, mission.DateTime.Decade, 1, template.UnitMods)[0]).ToArray();
-            }
             DebugLog.Instance.WriteLine($"Ships to be spawned {ships.Aggregate((acc, x) => $"{acc}, {x}")}", 1, DebugLogMessageErrorLevel.Warning);
             group = UnitMaker.AddUnitGroup(
                 mission, ships,
