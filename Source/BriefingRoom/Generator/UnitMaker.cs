@@ -31,7 +31,10 @@ namespace BriefingRoom4DCS.Generator
         private readonly DCSMission Mission;
         private readonly DBEntryCoalition[] CoalitionsDB;
         private readonly Coalition PlayerCoalition;
+        private readonly List<DBEntryTheaterSpawnPoint> SpawnPoints;
         private readonly DBEntryTheater TheaterDB;
+
+        private int GroupID = 1;
 
         internal UnitMaker(DCSMission mission, DBEntryCoalition[] coalitionsDB, DBEntryTheater theaterDB, Coalition playerCoalition)
         {
@@ -39,17 +42,36 @@ namespace BriefingRoom4DCS.Generator
             Mission = mission;
             PlayerCoalition = playerCoalition;
             TheaterDB = theaterDB;
+            SpawnPoints = theaterDB.SpawnPoints.ToList();
         }
 
-        //internal DCSMissionUnitGroup AddUnitGroup(
-        //    DCSMission mission, string[] units, Side side,
-        //    Coordinates coordinates, string groupLua, string unitLua,
+        internal int AddUnitGroup(
+    string[] units, Side side,
+    string groupLua, string unitLua,
+    Coordinates coordinates, Coordinates? coordinates2,
+    DCSSkillLevel skill, DCSMissionUnitGroupFlags flags = 0, AircraftPayload payload = AircraftPayload.Default,
+    int airbaseID = 0, Country? country = null, PlayerStartLocation startLocation = PlayerStartLocation.Runway)
+        {
+
+
+            GroupID++;
+            return GroupID - 1;
+        }
+
+        //internal int AddUnitGroup(
+        //    string[] units, Side side,
+        //    string groupLua, string unitLua,
+        //    Coordinates coordinates, Coordinates? coordinates2,
         //    DCSSkillLevel skill, DCSMissionUnitGroupFlags flags = 0, AircraftPayload payload = AircraftPayload.Default,
-        //    Coordinates? coordinates2 = null, int airbaseID = 0, bool requiresParkingSpots = false, bool requiresOpenAirParking = false, Country? country = null, PlayerStartLocation startLocation = PlayerStartLocation.Runway)
+        //    int airbaseID = 0, Country? country = null, PlayerStartLocation startLocation = PlayerStartLocation.Runway)
         //{
+
+
+        //    GroupID++;
+        //    return GroupID - 1;
         //}
 
-            public void Dispose()
+        public void Dispose()
         {
 
         }

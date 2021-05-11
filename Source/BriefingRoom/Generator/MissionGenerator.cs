@@ -53,11 +53,14 @@ namespace BriefingRoom4DCS.Generator
 
             // Get required database entries here, so we don't have to look for them each time they're needed.
             DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
-            DBEntryCoalition[] coalitionDB = new DBEntryCoalition[]
+            DBEntryCoalition[] coalitionsDB = new DBEntryCoalition[]
                 {
                     Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionBlue),
                     Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionRed)
                 };
+
+            // Create unit maker
+            UnitMaker unitMaker = new UnitMaker(mission, coalitionsDB, theaterDB, template.ContextPlayerCoalition);
 
             // Copy values from the template
             mission.SetValue("THEATER_ID", theaterDB.DCSID);
@@ -98,10 +101,16 @@ namespace BriefingRoom4DCS.Generator
                 mission.SetValue("PLAYER_AIRBASE_NAME", playerAirbase.Name);
             }
 
+            // Generate objectives
+            BriefingRoom.PrintToLog("Generating objectives...");
+            using (MissionGeneratorObjectives objectivesGenerator = new MissionGeneratorObjectives(unitMaker))
+            {
+                for (int i = 0; i < template.Objectives.Count; i++)
+                    objectivesGenerator.GenerateObjective(mission, template, i);
+            }
 
             // Generate carrier groups
             // TODO
-
 
             return mission;
         }
