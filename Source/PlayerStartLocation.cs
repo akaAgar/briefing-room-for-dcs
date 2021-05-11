@@ -37,6 +37,9 @@ namespace BriefingRoom4DCSWorld
         ParkingHot,
 
         [TreeViewEnum("Runway", "Player(s) start on the runway, ready to takoff. Not available in multiplayer missions (automatically changed to \"Parking, hot\").")]
-        Runway
+        Runway,
+
+        [TreeViewEnum("Both", "Creates 1 group of each. Not available in singleplayer missions (automatically changed to \"Runway\").")]
+        Both
     }
 }
