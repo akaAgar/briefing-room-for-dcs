@@ -175,10 +175,6 @@ namespace BriefingRoom4DCS.Data
             BriefingRoom.PrintToLog("Loading common wind settings...");
             using (INIFile ini = new INIFile($"{BRPaths.DATABASE}Wind.ini"))
             {
-                //Weather = new DBEntryWeather[Toolbox.EnumCount<Weather>() - 1]; // -1 because we don't want "Random"
-                //for (i = 0; i < Weather.Length; i++)
-                //    Weather[i] = new DBEntryWeather(ini, ((Weather)i).ToString());
-                
                 Wind = new DBCommonWind[Toolbox.EnumCount<Wind>() - 1]; // -1 because we don't want "Random"
                 for (i = 0; i < Wind.Length; i++)
                     Wind[i] = new DBCommonWind(ini, ((Wind)i).ToString());
