@@ -43,13 +43,13 @@ namespace BriefingRoom4DCS
         /// </summary>
         public string UniqueID { get; } = "";
 
-        internal Dictionary<string, string> MissionValues { get; }
+        private Dictionary<string, string> Values { get; }
 
         internal List<string> MediaFilesOgg { get; private set; }
 
         internal Dictionary<int, Coalition> Airbases { get; }
 
-        public string Name { get { return MissionValues.ContainsKey("MISSION_NAME") ? MissionValues["MISSION_NAME"] : ""; } }
+        public string Name { get { return Values.ContainsKey("MISSION_NAME") ? Values["MISSION_NAME"] : ""; } }
 
         public string GetHTMLBriefing(bool fullHtml)
         {
@@ -66,7 +66,7 @@ namespace BriefingRoom4DCS
         {
             if (rawText == null) return null;
 
-            foreach (KeyValuePair<string, string> keyPair in MissionValues)
+            foreach (KeyValuePair<string, string> keyPair in Values)
                 rawText = rawText.Replace($"${keyPair.Key.ToUpperInvariant()}$", keyPair.Value);
 
             return rawText;
@@ -83,7 +83,7 @@ namespace BriefingRoom4DCS
         internal DCSMission()
         {
             Airbases = new Dictionary<int, Coalition>();
-            MissionValues = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
+            Values = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
             MediaFilesOgg = new List<string>();
             UniqueID = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()).ToLowerInvariant();
             SetValue("MISSION_ID", UniqueID);
@@ -120,16 +120,24 @@ namespace BriefingRoom4DCS
             if (string.IsNullOrEmpty(key)) return;
             key = key.ToUpperInvariant();
             value = value ?? "";
+            value = value.Replace("\r\n", "\n");
 
-            string displayedValue = value.Replace("\r\n", "\n").Replace("\n", " ");
+            string displayedValue = value.Replace("\n", " ");
             if (displayedValue.Length > MAX_VALUE_LENGTH_DISPLAY) displayedValue = displayedValue.Substring(0, MAX_VALUE_LENGTH_DISPLAY) + "...";
 
-            BriefingRoom.PrintToLog($"Mission parameter \"{key.ToLowerInvariant()}\" {(append ? "set to" : "appended with")} \"{displayedValue}\".");
+            BriefingRoom.PrintToLog($"Mission parameter \"{key.ToLowerInvariant()}\" {(append ? "appended with" : "set to")} \"{displayedValue}\".");
 
-            if (!MissionValues.ContainsKey(key))
-                MissionValues.Add(key, value);
+            if (!Values.ContainsKey(key))
+                Values.Add(key, value);
             else
-                MissionValues[key] = append ? MissionValues[key] + value : value;
+                Values[key] = append ? Values[key] + value : value;
+        }
+
+        internal string GetValue(string key)
+        {
+            if (string.IsNullOrEmpty(key)) return "";
+            if (!Values.ContainsKey(key)) return "";
+            return Values[key];
         }
 
         internal void AddOggFiles(params string[] oggFiles)
