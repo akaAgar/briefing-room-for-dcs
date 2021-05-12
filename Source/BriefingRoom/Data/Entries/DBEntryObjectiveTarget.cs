@@ -59,7 +59,7 @@ namespace BriefingRoom4DCS.Data
                     return false;
                 }
 
-                UnitCount = new MinMaxI[Toolbox.GetEnumValuesCount<Amount>()];
+                UnitCount = new MinMaxI[Toolbox.EnumCount<Amount>()];
                 foreach (Amount amount in Toolbox.GetEnumValues<Amount>())
                     UnitCount[(int)amount] = ini.GetValue<MinMaxI>("ObjectiveTarget", $"Units.Count.{amount}");
 

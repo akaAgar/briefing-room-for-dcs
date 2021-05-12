@@ -40,11 +40,11 @@ namespace BriefingRoom4DCS.Data
         {
             using (INIFile ini = new INIFile(iniFilePath))
             {
-                GroupLua = new string[Toolbox.GetEnumValuesCount<UnitCategory>()];
+                GroupLua = new string[Toolbox.EnumCount<UnitCategory>()];
                 foreach (UnitCategory unitCategory in Toolbox.GetEnumValues<UnitCategory>())
                     GroupLua[(int)unitCategory] = ini.GetValue<string>("Lua", $"Group.{unitCategory}");
 
-                UnitLua = new string[Toolbox.GetEnumValuesCount<UnitCategory>()];
+                UnitLua = new string[Toolbox.EnumCount<UnitCategory>()];
                 foreach (UnitCategory unitLua in Toolbox.GetEnumValues<UnitCategory>())
                     UnitLua[(int)unitLua] = ini.GetValue<string>("Lua", $"Unit.{unitLua}");
             }

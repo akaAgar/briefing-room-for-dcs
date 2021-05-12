@@ -42,6 +42,8 @@ namespace BriefingRoom4DCS.Generator
 
         internal DCSMission Generate(MissionTemplate template)
         {
+            int i;
+
             // Check for missing entries in the database
             if (!GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionBlue) ||
                 !GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionRed) ||
@@ -60,9 +62,6 @@ namespace BriefingRoom4DCS.Generator
                     Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionRed)
                 };
 
-            // Create unit maker
-            UnitMaker unitMaker = new UnitMaker(mission, coalitionsDB, theaterDB, template.ContextPlayerCoalition);
-
             // Copy values from the template
             mission.SetValue("THEATER_ID", theaterDB.DCSID);
 
@@ -70,9 +69,13 @@ namespace BriefingRoom4DCS.Generator
             mission.AddOggFiles(Database.Instance.Common.CommonOGG);
             mission.AddOggFiles(Database.Instance.Common.CommonOGGForGameMode[(int)template.MissionType]);
 
+            Country[][] coalitionsCountries;
             // Generate list of countries for each coalition
             using (MissionGeneratorCountries countriesGenerator = new MissionGeneratorCountries())
-                countriesGenerator.GenerateCountries(mission, template);
+                coalitionsCountries = countriesGenerator.GenerateCountries(mission, template);
+
+            // Create unit maker
+            UnitMaker unitMaker = new UnitMaker(mission, template, coalitionsDB, theaterDB, template.ContextPlayerCoalition, coalitionsCountries);
 
             // Generate mission date and time
             Month month;
@@ -107,22 +110,29 @@ namespace BriefingRoom4DCS.Generator
             // Generate objectives
             BriefingRoom.PrintToLog("Generating objectives...");
             using (MissionGeneratorObjectives objectivesGenerator = new MissionGeneratorObjectives(unitMaker))
-            {
-                for (int i = 0; i < template.Objectives.Count; i++)
+                for (i = 0; i < template.Objectives.Count; i++)
                     objectivesGenerator.GenerateObjective(mission, template, i);
-            }
+
+            // Generate player flight groups
+            BriefingRoom.PrintToLog("Generating player flight groups...");
+            using (MissionGeneratorPlayerFlightGroups playerFlightGroupsGenerator = new MissionGeneratorPlayerFlightGroups(unitMaker))
+                for (i = 0; i < template.PlayerFlightGroups.Count; i++)
+                    playerFlightGroupsGenerator.GeneratePlayerFlightGroup(mission, template.PlayerFlightGroups[i], playerAirbase);
+            //unitMaker.AddUnitGroup(new string[] { "A-10C" }, Side.Ally, UnitCategory.Plane, "", "", playerAirbase.Coordinates, DCSSkillLevel.Average);
 
             // TODO: TEMPORARY - REMOVE
             mission.SetValue("BULLSEYE_BLUE_X", playerAirbase.Coordinates.X);
             mission.SetValue("BULLSEYE_BLUE_Y", playerAirbase.Coordinates.Y);
             mission.SetValue("BULLSEYE_RED_X", playerAirbase.Coordinates.X);
             mission.SetValue("BULLSEYE_RED_Y", playerAirbase.Coordinates.Y);
-            mission.SetValue("COUNTRIES_BLUE", "");
-            mission.SetValue("COUNTRIES_RED", "");
             mission.SetValue("RESOURCES_OGG_FILES", "");
 
             // Generate carrier groups
             // TODO
+
+            // Get unit tables from the unit maker
+            mission.SetValue("COUNTRIES_BLUE", unitMaker.GetUnitsLuaTable(Coalition.Blue));
+            mission.SetValue("COUNTRIES_RED", unitMaker.GetUnitsLuaTable(Coalition.Red));
 
             // Generate briefing and additional mission info
             BriefingRoom.PrintToLog("Generating briefing...");
@@ -137,7 +147,7 @@ namespace BriefingRoom4DCS.Generator
             using (MissionGeneratorOptions optionsGenerator = new MissionGeneratorOptions())
                 optionsGenerator.GenerateForcedOptions(mission, template);
 
-            // Generate mission options
+            // Generate warehouses
             BriefingRoom.PrintToLog("Generating warehouses...");
             using (MissionGeneratorWarehouses warehousesGenerator = new MissionGeneratorWarehouses())
                 warehousesGenerator.GenerateWarehouses(mission);

@@ -51,7 +51,8 @@ namespace BriefingRoom4DCS.Generator
         /// </summary>
         /// <param name="mission">Mission to generate.</param>
         /// <param name="template">Mission template to use.</param>
-        internal void GenerateCountries(DCSMission mission, MissionTemplate template)
+        /// <returns>Countries in each coalition</returns>
+        internal Country[][] GenerateCountries(DCSMission mission, MissionTemplate template)
         {
             int i;
 
@@ -80,6 +81,8 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("COALITION_NEUTRAL", GetCountriesLuaTable(neutralCountries));
             mission.SetValue("COALITION_BLUE", GetCountriesLuaTable(countries[(int)Coalition.Blue]));
             mission.SetValue("COALITION_RED", GetCountriesLuaTable(countries[(int)Coalition.Red]));
+
+            return new Country[][] { countries[0].ToArray(), countries[1].ToArray(), };
         }
 
         private string GetCountriesLuaTable(List<Country> countries)

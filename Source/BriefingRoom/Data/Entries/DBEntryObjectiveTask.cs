@@ -56,7 +56,7 @@ namespace BriefingRoom4DCS.Data
                 ValidUnitCategories = ini.GetValueArray<UnitCategory>("ObjectiveTask", "ValidUnitCategories").Distinct().ToArray();
                 if (ValidUnitCategories.Length == 0) ValidUnitCategories = Toolbox.GetEnumValues<UnitCategory>(); // No category means all categories
 
-                CompletionTriggerLua = new string[Toolbox.GetEnumValuesCount<UnitCategory>()];
+                CompletionTriggerLua = new string[Toolbox.EnumCount<UnitCategory>()];
                 foreach (UnitCategory unitCategory in Toolbox.GetEnumValues<UnitCategory>())
                 {
                     CompletionTriggerLua[(int)unitCategory] = Toolbox.AddMissingFileExtension(ini.GetValue<string>("CompletionTriggerLua", $"{unitCategory}"), ".lua");

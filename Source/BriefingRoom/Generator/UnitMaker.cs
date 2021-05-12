@@ -19,44 +19,181 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCS.Data;
+using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
+    internal enum UnitMakerGroupSetting
+    {
+        AirbaseID,
+        AircraftPayload,
+        CoordinatesDestination,
+        Country,
+        FirstUnitIsPlayer,
+        Hidden,
+        PlayerStartLocation,
+        RequiresOpenAirParking,
+        RequiresParkingSpots,
+    }
+
+
+    //FirstUnitIsPlayer = 1,
+    //    /// <summary>
+    //    /// Unit group will be hidden in the planning, on MFD SA pages and on the F10 map.
+    //    /// </summary>
+    //    Hidden = 2,
+
+    //     = 4,
+    //     = 8
+
     internal class UnitMaker : IDisposable
     {
         private readonly DCSMission Mission;
+        private readonly MissionTemplate Template;
         private readonly DBEntryCoalition[] CoalitionsDB;
         private readonly Coalition PlayerCoalition;
         private readonly List<DBEntryTheaterSpawnPoint> SpawnPoints;
         private readonly DBEntryTheater TheaterDB;
+        private readonly Country[][] CoalitionsCountries;
 
-        private int GroupID = 1;
+        private readonly Dictionary<Country, Dictionary<UnitCategory, List<string>>> UnitLuaTables = new Dictionary<Country, Dictionary<UnitCategory, List<string>>>();
 
-        internal UnitMaker(DCSMission mission, DBEntryCoalition[] coalitionsDB, DBEntryTheater theaterDB, Coalition playerCoalition)
+        private int GroupID;
+
+        internal UnitMaker(DCSMission mission, MissionTemplate template, DBEntryCoalition[] coalitionsDB, DBEntryTheater theaterDB, Coalition playerCoalition, Country[][] coalitionsCountries)
         {
-            CoalitionsDB = coalitionsDB;
             Mission = mission;
+            Template = template;
+
+            CoalitionsDB = coalitionsDB;
             PlayerCoalition = playerCoalition;
             TheaterDB = theaterDB;
             SpawnPoints = theaterDB.SpawnPoints.ToList();
+            CoalitionsCountries = coalitionsCountries;
+
+            Clear();
+        }
+
+        internal void Clear()
+        {
+            GroupID = 1;
+            UnitLuaTables.Clear();
         }
 
         internal int AddUnitGroup(
-    string[] units, Side side,
-    string groupLua, string unitLua,
-    Coordinates coordinates, Coordinates? coordinates2,
-    DCSSkillLevel skill, DCSMissionUnitGroupFlags flags = 0, AircraftPayload payload = AircraftPayload.Default,
-    int airbaseID = 0, Country? country = null, PlayerStartLocation startLocation = PlayerStartLocation.Runway)
+            UnitFamily family, int unitCount, Side side,
+            string groupLua, string unitLua,
+            Coordinates coordinates, DCSSkillLevel skill,
+            params KeyValuePair<UnitMakerGroupSetting, int>[] unitGroupSetting)
         {
+            DBEntryCoalition unitsCoalitionDB = CoalitionsDB[(int)((side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy())];
+            
+            string[] unitsID = unitsCoalitionDB.GetRandomUnits(family, Template.ContextDecade, unitCount, Template.Mods, true);
+            if (unitsID.Length == 0) return 0;
 
+            return AddUnitGroup(unitsID, side, family.GetUnitCategory(), groupLua, unitLua, coordinates, skill, unitGroupSetting);
+        }
+
+        internal int AddUnitGroup(
+            string[] unitsID, Side side, UnitCategory category,
+            string groupLua, string unitLua,
+            Coordinates coordinates, DCSSkillLevel skill,
+            params KeyValuePair<UnitMakerGroupSetting, int>[] unitGroupSetting)
+        {
+            Country country = ((side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy()) == Coalition.Blue ? Country.CJTFBlue : Country.CJTFRed;
+
+            string lua = File.ReadAllText($"{BRPaths.INCLUDE_LUA_UNITS}{Toolbox.AddMissingFileExtension(groupLua, ".lua")}");
+            LuaTools.ReplaceKey(ref lua, "ID", GroupID);
+            LuaTools.ReplaceKey(ref lua, "X", coordinates.X);
+            LuaTools.ReplaceKey(ref lua, "Y", coordinates.Y);
+
+            AddUnitGroupToTable(country, category, lua);
 
             GroupID++;
             return GroupID - 1;
         }
+
+        private void AddUnitGroupToTable(Country country, UnitCategory category, string unitGroupLua)
+        {
+            if (!UnitLuaTables.ContainsKey(country)) UnitLuaTables.Add(country, new Dictionary<UnitCategory, List<string>>());
+            if (!UnitLuaTables[country].ContainsKey(category)) UnitLuaTables[country].Add(category, new List<string>());
+            UnitLuaTables[country][category].Add(unitGroupLua);
+        }
+
+        internal string GetUnitsLuaTable(Coalition coalition)
+        {
+            string unitsLuaTable = "";
+
+            for (int countryIndex = 0; countryIndex < CoalitionsCountries[(int)coalition].Length; countryIndex++) // Check all countries in this coalition
+            {
+                Country country = CoalitionsCountries[(int)coalition][countryIndex];
+
+                if (!UnitLuaTables.ContainsKey(country)) continue; // No units for this country
+
+                unitsLuaTable += $"[{countryIndex + 1}] =\n";
+                unitsLuaTable += "{\n";
+                unitsLuaTable += $"[\"id\"] = {(int)country},\n";
+
+                foreach (UnitCategory unitCategory in Toolbox.GetEnumValues<UnitCategory>()) // Check all coalitions
+                {
+                    if (!UnitLuaTables[country].ContainsKey(unitCategory)) continue; // No unit for this unit category
+
+                    unitsLuaTable += $"[\"{unitCategory.ToString().ToLowerInvariant()}\"] =\n";
+                    unitsLuaTable += "{\n";
+
+                    for (int groupIndex = 0; groupIndex < UnitLuaTables[country][unitCategory].Count; groupIndex++)
+                    {
+                        unitsLuaTable += $"[{groupIndex + 1}] =\n";
+                        unitsLuaTable += "{\n";
+                        unitsLuaTable += $"{UnitLuaTables[country][unitCategory][groupIndex]}\n";
+                        unitsLuaTable += "},\n";
+                    }
+
+                    unitsLuaTable += "},\n";
+                }
+
+                unitsLuaTable += "},\n";
+            }
+
+            return unitsLuaTable;
+        }
+
+        //    internal int AddUnitGroup(
+        //string[] units, Side side,
+        //string groupLua, string unitLua,
+        //Coordinates coordinates, Coordinates? coordinates2,
+        //DCSSkillLevel skill, DCSMissionUnitGroupFlags flags = 0, AircraftPayload payload = AircraftPayload.Default,
+        //int airbaseID = 0, Country? country = null, PlayerStartLocation startLocation = PlayerStartLocation.Runway)
+        //    {
+
+
+        //        GroupID++;
+        //        return GroupID - 1;
+        //    }
+
+        //    internal int AddUnitGroup(
+        //string[] units, Side side,
+        //string groupLua, string unitLua,
+        //Coordinates coordinates, Coordinates? coordinates2,
+        //DCSSkillLevel skill, DCSMissionUnitGroupFlags flags = 0, AircraftPayload payload = AircraftPayload.Default,
+        //int airbaseID = 0, Country? country = null, PlayerStartLocation startLocation = PlayerStartLocation.Runway)
+        //    {
+
+
+        //        GroupID++;
+        //        return GroupID - 1;
+        //    }
+
+        /*
+         * public void MyFunction(params KeyValuePair<string, object>[] pairs)
+{
+    // ...
+}*/
 
         //internal int AddUnitGroup(
         //    string[] units, Side side,
