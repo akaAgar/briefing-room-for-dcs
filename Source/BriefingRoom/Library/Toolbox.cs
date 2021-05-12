@@ -27,6 +27,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Text;
 
 namespace BriefingRoom4DCS
 {
@@ -116,11 +117,22 @@ namespace BriefingRoom4DCS
         /// <param name="value">A string</param>
         /// <param name="vcastRestOfStringToLowerCasealue">Should the rest of the string be cast to lowercase?</param>
         /// <returns>A string of null if the input string was null</returns>
-        public static string ICase(string value, bool castRestOfStringToLowerCase = false)
+        internal static string ICase(string value, bool castRestOfStringToLowerCase = false)
         {
             if (value == null) return null;
             if (value.Length < 2) return value.ToUpperInvariant();
             return value[0].ToString().ToUpperInvariant() + (castRestOfStringToLowerCase ? value.Substring(1).ToLowerInvariant() : value.Substring(1));
+        }
+
+
+        internal static string ReplaceAll(this string str, string replaceTo, params string[] replaceFrom)
+        {
+            StringBuilder sb = new StringBuilder(str);
+            
+            foreach (string r in replaceFrom)
+                sb.Replace(r, replaceTo);
+
+            return sb.ToString();
         }
 
         internal static Coalition GetEnemy(this Coalition coalition)
