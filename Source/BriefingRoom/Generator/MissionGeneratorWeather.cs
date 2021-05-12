@@ -62,18 +62,18 @@ namespace BriefingRoom4DCS.Generator
             else
                 weatherDB = Database.Instance.GetEntry<DBEntryWeatherPreset>(template.EnvironmentWeatherPreset);
 
-            mission.SetValue("WEATHER_NAME", weatherDB.BriefingDescription, true);
-            mission.SetValue("WEATHER_CLOUDS_BASE", weatherDB.CloudsBase.GetValue(), true);
-            mission.SetValue("WEATHER_CLOUDS_PRESET", Toolbox.RandomFrom(weatherDB.CloudsPresets), true);
-            mission.SetValue("WEATHER_CLOUDS_THICKNESS", weatherDB.CloudsThickness.GetValue(), true);
-            mission.SetValue("WEATHER_DUST", weatherDB.Dust, true);
-            mission.SetValue("WEATHER_DUST_DENSITY", weatherDB.DustDensity.GetValue(), true);
-            mission.SetValue("WEATHER_FOG", weatherDB.Fog, true);
-            mission.SetValue("WEATHER_FOG_THICKNESS", weatherDB.FogThickness.GetValue(), true);
-            mission.SetValue("WEATHER_FOG_VISIBILITY", weatherDB.FogVisibility.GetValue(), true);
-            mission.SetValue("WEATHER_QNH", weatherDB.QNH.GetValue(), true);
-            mission.SetValue("WEATHER_TEMPERATURE", theaterDB.Temperature[(int)month].GetValue(), true);
-            mission.SetValue("WEATHER_VISIBILITY", weatherDB.Visibility.GetValue(), true);
+            mission.SetValue("WEATHER_NAME", weatherDB.BriefingDescription);
+            mission.SetValue("WEATHER_CLOUDS_BASE", weatherDB.CloudsBase.GetValue());
+            mission.SetValue("WEATHER_CLOUDS_PRESET", Toolbox.RandomFrom(weatherDB.CloudsPresets));
+            mission.SetValue("WEATHER_CLOUDS_THICKNESS", weatherDB.CloudsThickness.GetValue());
+            mission.SetValue("WEATHER_DUST", weatherDB.Dust);
+            mission.SetValue("WEATHER_DUST_DENSITY", weatherDB.DustDensity.GetValue());
+            mission.SetValue("WEATHER_FOG", weatherDB.Fog);
+            mission.SetValue("WEATHER_FOG_THICKNESS", weatherDB.FogThickness.GetValue());
+            mission.SetValue("WEATHER_FOG_VISIBILITY", weatherDB.FogVisibility.GetValue());
+            mission.SetValue("WEATHER_QNH", weatherDB.QNH.GetValue());
+            mission.SetValue("WEATHER_TEMPERATURE", theaterDB.Temperature[(int)month].GetValue());
+            mission.SetValue("WEATHER_VISIBILITY", weatherDB.Visibility.GetValue());
 
             turbulenceFromWeather = weatherDB.Turbulence.GetValue();
         }
@@ -95,14 +95,14 @@ namespace BriefingRoom4DCS.Generator
             {
                 int windSpeed = Database.Instance.Common.Wind[(int)windLevel].Wind.GetValue();
                 windAverage += windSpeed;
-                mission.SetValue($"WEATHER_WIND_SPEED{i + 1}", windSpeed, true);
-                mission.SetValue($"WEATHER_WIND_DIRECTION{i + 1}", windSpeed > 0 ? Toolbox.RandomInt(0, 360) : 0, true);
+                mission.SetValue($"WEATHER_WIND_SPEED{i + 1}", windSpeed);
+                mission.SetValue($"WEATHER_WIND_DIRECTION{i + 1}", windSpeed > 0 ? Toolbox.RandomInt(0, 360) : 0);
             }
 
-            mission.SetValue($"WEATHER_WIND_NAME", windLevel.ToString(), true); // TODO: get name from attribute
-            mission.SetValue($"WEATHER_WIND_SPEED_AVERAGE", windAverage / 3, true);
+            mission.SetValue($"WEATHER_WIND_NAME", windLevel.ToString()); // TODO: get name from attribute
+            mission.SetValue($"WEATHER_WIND_SPEED_AVERAGE", windAverage / 3);
 
-            mission.SetValue("WEATHER_GROUND_TURBULENCE", Database.Instance.Common.Wind[(int)windLevel].Turbulence.GetValue() + turbulenceFromWeather, true);
+            mission.SetValue("WEATHER_GROUND_TURBULENCE", Database.Instance.Common.Wind[(int)windLevel].Turbulence.GetValue() + turbulenceFromWeather);
         }
 
         /// <summary>

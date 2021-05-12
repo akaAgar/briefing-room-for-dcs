@@ -33,6 +33,11 @@ namespace BriefingRoom4DCS
     public sealed class DCSMission : IDisposable
     {
         /// <summary>
+        /// If a value is longer than this, <see cref="SetValue(string, string, bool)" /> will not output it to the debug log.
+        /// </summary>
+        private const int MAX_VALUE_LENGTH_DISPLAY = 16;
+
+        /// <summary>
         /// Unique ID for the mission. Appended to certain filenames so they don't have the same name in every mission and
         /// get confused with one another in the DCS World cache.
         /// </summary>
@@ -77,20 +82,54 @@ namespace BriefingRoom4DCS
 
         internal DCSMission()
         {
-            UniqueID = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()).ToLowerInvariant();
             Airbases = new Dictionary<int, Coalition>();
             MissionValues = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
             MediaFilesOgg = new List<string>();
+            UniqueID = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()).ToLowerInvariant();
+            SetValue("MISSION_ID", UniqueID);
         }
 
-        internal void SetValue(string key, int value, bool verbose = false)
+        internal void SetValue(string key, int value)
         {
-            SetValue(key, value.ToString(NumberFormatInfo.InvariantInfo), verbose, false);
+            SetValue(key, value.ToString(NumberFormatInfo.InvariantInfo), false);
         }
 
-        internal void SetValue(string key, bool value, bool verbose = false)
+        internal void SetValue(string key, double value)
         {
-            SetValue(key, value.ToString(NumberFormatInfo.InvariantInfo), verbose, false);
+            SetValue(key, value.ToString(NumberFormatInfo.InvariantInfo), false);
+        }
+
+
+        internal void SetValue(string key, bool value)
+        {
+            SetValue(key, value.ToString(NumberFormatInfo.InvariantInfo), false);
+        }
+
+        internal void SetValue(string key, string value)
+        {
+            SetValue(key, value, false);
+        }
+
+        internal void AppendValue(string key, string value)
+        {
+            SetValue(key, value, true);
+        }
+
+        private void SetValue(string key, string value, bool append)
+        {
+            if (string.IsNullOrEmpty(key)) return;
+            key = key.ToUpperInvariant();
+            value = value ?? "";
+
+            string displayedValue = value.Replace("\r\n", "\n").Replace("\n", " ");
+            if (displayedValue.Length > MAX_VALUE_LENGTH_DISPLAY) displayedValue = displayedValue.Substring(0, MAX_VALUE_LENGTH_DISPLAY) + "...";
+
+            BriefingRoom.PrintToLog($"Mission parameter \"{key.ToLowerInvariant()}\" {(append ? "set to" : "appended with")} \"{displayedValue}\".");
+
+            if (!MissionValues.ContainsKey(key))
+                MissionValues.Add(key, value);
+            else
+                MissionValues[key] = append ? MissionValues[key] + value : value;
         }
 
         internal void AddOggFiles(params string[] oggFiles)
@@ -98,21 +137,6 @@ namespace BriefingRoom4DCS
             oggFiles = Toolbox.AddMissingFileExtensions(oggFiles, ".ogg");
             MediaFilesOgg.AddRange(oggFiles);
             MediaFilesOgg = MediaFilesOgg.Distinct().ToList();
-        }
-
-        internal void SetValue(string key, string value, bool verbose = false, bool append = false)
-        {
-            if (string.IsNullOrEmpty(key)) return;
-            key = key.ToUpperInvariant();
-            value = value ?? "";
-
-            if (verbose)
-                BriefingRoom.PrintToLog($"Mission parameter \"{key.ToLowerInvariant()}\" {(append ? "set to" : "extended with")} \"{value}\".");
-
-            if (!MissionValues.ContainsKey(key))
-                MissionValues.Add(key, value);
-            else
-                MissionValues[key] = append ? MissionValues[key] + value : value;
         }
 
         public bool SaveToMizFile(string mizFilePath)
