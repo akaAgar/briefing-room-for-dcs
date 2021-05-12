@@ -98,9 +98,10 @@ namespace BriefingRoom4DCS.Generator
                 mission.SetValue($"WEATHER_WIND_SPEED{i + 1}", windSpeed);
                 mission.SetValue($"WEATHER_WIND_DIRECTION{i + 1}", windSpeed > 0 ? Toolbox.RandomInt(0, 360) : 0);
             }
+            windAverage /= 3;
 
             mission.SetValue($"WEATHER_WIND_NAME", windLevel.ToString()); // TODO: get name from attribute
-            mission.SetValue($"WEATHER_WIND_SPEED_AVERAGE", windAverage / 3);
+            mission.SetValue($"WEATHER_WIND_SPEED_AVERAGE", windAverage);
 
             mission.SetValue("WEATHER_GROUND_TURBULENCE", Database.Instance.Common.Wind[(int)windLevel].Turbulence.GetValue() + turbulenceFromWeather);
         }
