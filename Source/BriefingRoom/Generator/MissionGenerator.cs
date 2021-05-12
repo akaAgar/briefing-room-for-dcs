@@ -37,6 +37,7 @@ namespace BriefingRoom4DCS.Generator
         /// </summary>
         internal MissionGenerator()
         {
+
         }
 
         internal DCSMission Generate(MissionTemplate template)
@@ -111,6 +112,14 @@ namespace BriefingRoom4DCS.Generator
                     objectivesGenerator.GenerateObjective(mission, template, i);
             }
 
+            // TODO: TEMPORARY - REMOVE
+            mission.SetValue("BULLSEYE_BLUE_X", playerAirbase.Coordinates.X);
+            mission.SetValue("BULLSEYE_BLUE_Y", playerAirbase.Coordinates.Y);
+            mission.SetValue("BULLSEYE_RED_X", playerAirbase.Coordinates.X);
+            mission.SetValue("BULLSEYE_RED_Y", playerAirbase.Coordinates.Y);
+            mission.SetValue("COUNTRIES_BLUE", "");
+            mission.SetValue("COUNTRIES_RED", "");
+            mission.SetValue("RESOURCES_OGG_FILES", "");
 
             // Generate carrier groups
             // TODO
@@ -120,14 +129,18 @@ namespace BriefingRoom4DCS.Generator
             using (MissionGeneratorBriefing briefingGenerator = new MissionGeneratorBriefing())
             {
                 briefingGenerator.GenerateMissionName(mission, template);
+                briefingGenerator.GenerateMissionBriefingDescription(mission, template);
             }
 
             // Generate mission options
             BriefingRoom.PrintToLog("Generating options...");
             using (MissionGeneratorOptions optionsGenerator = new MissionGeneratorOptions())
-            {
                 optionsGenerator.GenerateForcedOptions(mission, template);
-            }
+
+            // Generate mission options
+            BriefingRoom.PrintToLog("Generating warehouses...");
+            using (MissionGeneratorWarehouses warehousesGenerator = new MissionGeneratorWarehouses())
+                warehousesGenerator.GenerateWarehouses(mission);
 
             return mission;
         }
