@@ -51,17 +51,21 @@ namespace BriefingRoom4DCS.CommandLineTool
                 return;
             }
 
-//            if (DebugLog.Instance.ErrorCount > 0) return; // Errors found, abort! abort!
+            //            if (DebugLog.Instance.ErrorCount > 0) return; // Errors found, abort! abort!
 
+#if !DEBUG
             try
             {
+#endif
                 using (CommandLine cl = new CommandLine())
                     cl.DoCommandLine(args);
+#if !DEBUG
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"CRITICAL ERROR: {ex.Message}");
             }
+#endif
 
 #if DEBUG
             Console.WriteLine();
