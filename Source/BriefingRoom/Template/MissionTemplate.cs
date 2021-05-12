@@ -55,9 +55,18 @@ namespace BriefingRoom4DCS.Template
         /// </summary>
         public const int MAX_OBJECTIVE_DISTANCE = 200;
 
+
         [Required]
         [Display(Name = "Mission type", Description = "Is the mission single or multiplayer?")]
         public MissionType MissionType { get; set; }
+
+        [Display(Name = "Mission name", Description = "Name of the mission. If left empty, a random name will be generated.")]
+        [Category("Briefing")]
+        public string BriefingMissionName { get; set; }
+
+        [Display(Name = "Mission description", Description = "Briefing/description of the mission. If left empty, a random briefing will be generated.")]
+        [Category("Briefing")]
+        public string BriefingMissionDescription { get; set; }
 
         [Required, DatabaseSourceType(DatabaseEntryType.Coalition)]
         [Display(Name = "Blue coalition", Description = "Which countries belong to the blue coalition?")]
@@ -212,6 +221,9 @@ namespace BriefingRoom4DCS.Template
 
             MissionType = MissionType.SinglePlayer;
 
+            BriefingMissionName = "";
+            BriefingMissionDescription = "";
+
             ContextCoalitionBlue = "USA";
             ContextCoalitionRed = "Russia";
             ContextDecade = Decade.Decade2000;
@@ -258,6 +270,9 @@ namespace BriefingRoom4DCS.Template
             using (INIFile ini = new INIFile(filePath))
             {
                 MissionType = ini.GetValue("MissionType", "MissionType", MissionType);
+
+                BriefingMissionName = ini.GetValue("Briefing", "MissionName", BriefingMissionName);
+                BriefingMissionDescription = ini.GetValue("Briefing", "MissionDescription", BriefingMissionDescription);
 
                 ContextCoalitionBlue = ini.GetValue("Context", "CoalitionBlue", ContextCoalitionBlue);
                 ContextCoalitionRed = ini.GetValue("Context", "CoalitionRed", ContextCoalitionRed);
@@ -311,6 +326,9 @@ namespace BriefingRoom4DCS.Template
             using (INIFile ini = new INIFile())
             {
                 ini.SetValue("MissionType", "MissionType", MissionType);
+
+                ini.SetValue("Briefing", "MissionName", BriefingMissionName);
+                ini.SetValue("Briefing", "MissionDescription", BriefingMissionDescription);
 
                 ini.SetValue("Context", "CoalitionBlue", ContextCoalitionBlue);
                 ini.SetValue("Context", "CoalitionRed", ContextCoalitionRed);

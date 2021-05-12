@@ -99,6 +99,8 @@ namespace BriefingRoom4DCS.Generator
                 if (playerAirbase == null) return null; // No valid airbase was found
                 airbasesGenerator.SetupAirbasesCoalitions(mission, template, playerAirbase);
                 mission.SetValue("PLAYER_AIRBASE_NAME", playerAirbase.Name);
+                mission.SetValue("MISSION_AIRBASE_X", playerAirbase.Coordinates.X);
+                mission.SetValue("MISSION_AIRBASE_Y", playerAirbase.Coordinates.Y);
             }
 
             // Generate objectives
@@ -109,8 +111,23 @@ namespace BriefingRoom4DCS.Generator
                     objectivesGenerator.GenerateObjective(mission, template, i);
             }
 
+
             // Generate carrier groups
             // TODO
+
+            // Generate briefing and additional mission info
+            BriefingRoom.PrintToLog("Generating briefing...");
+            using (MissionGeneratorBriefing briefingGenerator = new MissionGeneratorBriefing())
+            {
+                briefingGenerator.GenerateMissionName(mission, template);
+            }
+
+            // Generate mission options
+            BriefingRoom.PrintToLog("Generating options...");
+            using (MissionGeneratorOptions optionsGenerator = new MissionGeneratorOptions())
+            {
+                optionsGenerator.GenerateForcedOptions(mission, template);
+            }
 
             return mission;
         }
