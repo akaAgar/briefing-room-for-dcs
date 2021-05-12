@@ -290,11 +290,6 @@ namespace BriefingRoom4DCS
             return (T[])Enum.GetValues(typeof(T));
         }
 
-        public static int GetEnumValuesCount<T>() where T : Enum
-        {
-            return Enum.GetValues(typeof(T)).Length;
-        }
-
         /// <summary>
         /// Return a random value value if <see cref="AmountN"/> is set to random, else returns the selected value.
         /// </summary>
@@ -307,6 +302,7 @@ namespace BriefingRoom4DCS
         //{
         //    return CloudPreset.Random == cloudPreset ? (CloudPreset)(RandomInt((int)CloudPreset.RainyPreset3) + 1) : cloudPreset;
         //}
+
 
         /// <summary>
         /// Rolls for boolean value.
