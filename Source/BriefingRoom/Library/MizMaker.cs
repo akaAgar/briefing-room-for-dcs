@@ -46,8 +46,17 @@ namespace BriefingRoom4DCS
         internal byte[] ExportToMizBytes(DCSMission mission)
         {
             Dictionary<string, byte[]> MizFileEntries = new Dictionary<string, byte[]>();
-            AddLuaFileToEntries(MizFileEntries, "mission", $"{BRPaths.INCLUDE_LUA}Mission.lua", mission);
-            AddStringValueToEntries(MizFileEntries, "Briefing.html", mission.GetHTMLBriefing(true));
+
+            AddStringValueToEntries(MizFileEntries, "briefing.html", mission.GetHTMLBriefing(true));
+            AddStringValueToEntries(MizFileEntries, "credits.txt", "Generated with BriefingRoom for DCS World (https://akaagar.itch.io/briefing-room-for-dcs)");
+            AddLuaFileToEntries(MizFileEntries, "mission", "Mission.lua", mission);
+            AddLuaFileToEntries(MizFileEntries, "options", "Options.lua", null);
+            AddStringValueToEntries(MizFileEntries, "theatre", mission.GetValue("THEATER_ID"));
+            AddLuaFileToEntries(MizFileEntries, "warehouses", "Warehouses.lua", mission);
+
+            AddLuaFileToEntries(MizFileEntries, "l10n/DEFAULT/dictionary", "Dictionary.lua", null);
+            AddLuaFileToEntries(MizFileEntries, "l10n/DEFAULT/mapResource", "MapResource.lua", mission);
+            AddStringValueToEntries(MizFileEntries, "l10n/DEFAULT/script.lua", " ");
 
             byte[] mizBytes;
 
@@ -154,7 +163,8 @@ namespace BriefingRoom4DCS
 
         private bool AddLuaFileToEntries(Dictionary<string, byte[]> mizFileEntries, string mizEntryKey, string sourceFile, DCSMission mission = null)
         {
-            if (string.IsNullOrEmpty(mizEntryKey) || mizFileEntries.ContainsKey(mizEntryKey)) return false;
+            if (string.IsNullOrEmpty(mizEntryKey) || mizFileEntries.ContainsKey(mizEntryKey) || string.IsNullOrEmpty(sourceFile)) return false;
+            sourceFile = $"{BRPaths.INCLUDE_LUA}{sourceFile}";
             if (!File.Exists(sourceFile)) return false;
 
             string luaContent = File.ReadAllText(sourceFile);
