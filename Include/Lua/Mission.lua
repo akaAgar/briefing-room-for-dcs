@@ -239,8 +239,8 @@ mission =
         {
             ["bullseye"] = 
             {
-                ["y"] = $BULLSEYE_BLUEY$,
-                ["x"] = $BULLSEYE_BLUEX$,
+                ["y"] = $BULLSEYE_BLUE_Y$,
+                ["x"] = $BULLSEYE_BLUE_X$,
             }, -- end of ["bullseye"]
             ["nav_points"] = 
             {
