@@ -78,6 +78,18 @@ namespace BriefingRoom4DCS
             return leapYear ? 29 : 28;
         }
 
+        public static string ToLuaName(this UnitCategory unitCategory)
+        {
+            switch (unitCategory)
+            {
+                case UnitCategory.Helicopter: return "HELICOPTER";
+                case UnitCategory.Plane: return "AIRPLANE";
+                case UnitCategory.Ship: return "SHIP";
+                case UnitCategory.Static: return "STRUCTURE";
+                default: return "GROUND_UNIT"; // case UnitCategory.Vehicle
+            }
+        }
+
         /// <summary>
         /// Check if a filepath is valid.
         /// Code by https://stackoverflow.com/questions/6198392/check-whether-a-path-is-valid

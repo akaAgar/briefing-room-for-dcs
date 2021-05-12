@@ -56,7 +56,7 @@ namespace BriefingRoom4DCS
 
             AddLuaFileToEntries(MizFileEntries, "l10n/DEFAULT/dictionary", "Dictionary.lua", null);
             AddLuaFileToEntries(MizFileEntries, "l10n/DEFAULT/mapResource", "MapResource.lua", mission);
-            AddStringValueToEntries(MizFileEntries, "l10n/DEFAULT/script.lua", " ");
+            AddLuaFileToEntries(MizFileEntries, "l10n/DEFAULT/script.lua", "Script.lua", mission);
 
             byte[] mizBytes;
 

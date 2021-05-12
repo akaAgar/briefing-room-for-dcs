@@ -73,6 +73,14 @@ namespace BriefingRoom4DCS.Generator
             DBEntryObjectiveTargetBehavior targetBehaviorDB = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior);
             DBEntryObjectiveTask taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task);
 
+            // TODO: check DB entries exist
+
+            // Add Lua data for this objective
+            string objectiveLua = $"briefingRoom.objectives[{index + 1}] = {{ ";
+            objectiveLua += $"targetCategory = Unit.Category.{targetDB.UnitCategory.ToLuaName()}, ";
+            objectiveLua += "},\n";
+            mission.AppendValue("OBJECTIVES_LUA", objectiveLua);
+
             //UnitMaker.AddUnitGroup()
         }
 
