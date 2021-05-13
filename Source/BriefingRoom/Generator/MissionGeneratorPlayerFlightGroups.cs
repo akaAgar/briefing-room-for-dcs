@@ -52,7 +52,10 @@ namespace BriefingRoom4DCS.Generator
 
             return UnitMaker.AddUnitGroup(
                 Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), Side.Ally, unit.Category,
-                "GroupAircraftPlayer", "UnitAircraft", playerAirbase.Coordinates, DCSSkillLevel.Average);
+                "GroupAircraftPlayer", "UnitAircraft", playerAirbase.Coordinates, DCSSkillLevel.Average,
+                "MissionAirbaseX".ToKeyValuePair(playerAirbase.Coordinates.X),
+                "MissionAirbaseY".ToKeyValuePair(playerAirbase.Coordinates.Y),
+                "MissionAirbaseID".ToKeyValuePair(playerAirbase.DCSID));
         }
 
         ///// <summary>

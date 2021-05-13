@@ -52,121 +52,132 @@ namespace BriefingRoom4DCS.Generator
         /// <param name="lua">The Lua script.</param>
         /// <param name="key">The key to replace, without the dollar signs.</param>
         /// <param name="value">The value to replace the key with.</param>
-        internal static void ReplaceKey(ref string lua, string key, bool value) { ReplaceKey(ref lua, key, Toolbox.ValToString(value).ToLowerInvariant()); }
-
-        /// <summary>
-        /// Replaces all instance of "$KEY$" in a Lua script by value.
-        /// </summary>
-        /// <param name="lua">The Lua script.</param>
-        /// <param name="key">The key to replace, without the dollar signs.</param>
-        /// <param name="value">The value to replace the key with.</param>
-        /// <param name="stringFormat">The string format string to use when converting the value to a string.</param>
-        internal static void ReplaceKey(ref string lua, string key, int value, string stringFormat = null)
+        internal static void ReplaceKey(ref string lua, string key, object value)
         {
-            ReplaceKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
+            lua = lua.Replace($"${key.ToUpperInvariant()}$", Toolbox.ValToString(value));
         }
 
-        /// <summary>
-        /// Replaces all instance of "$KEY$" in a Lua script by value.
-        /// </summary>
-        /// <param name="lua">The Lua script.</param>
-        /// <param name="key">The key to replace, without the dollar signs.</param>
-        /// <param name="value">The value to replace the key with.</param>
-        /// <param name="stringFormat">The string format string to use when converting the value to a string.</param>
-        internal static void ReplaceKey(ref string lua, string key, float value, string stringFormat = null)
-        {
-            ReplaceKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
-        }
+        ///// <summary>
+        ///// Replaces all instance of "$KEY$" in a Lua script by value.
+        ///// </summary>
+        ///// <param name="lua">The Lua script.</param>
+        ///// <param name="key">The key to replace, without the dollar signs.</param>
+        ///// <param name="value">The value to replace the key with.</param>
+        //internal static void ReplaceKey(ref string lua, string key, bool value) { ReplaceKey(ref lua, key, Toolbox.ValToString(value).ToLowerInvariant()); }
 
-        /// <summary>
-        /// Replaces all instance of "$KEY$" in a Lua script by value.
-        /// </summary>
-        /// <param name="lua">The Lua script.</param>
-        /// <param name="key">The key to replace, without the dollar signs.</param>
-        /// <param name="value">The value to replace the key with.</param>
-        /// <param name="stringFormat">The string format string to use when converting the value to a string.</param>
-        internal static void ReplaceKey(ref string lua, string key, double value, string stringFormat = null)
-        {
-            ReplaceKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
-        }
+        ///// <summary>
+        ///// Replaces all instance of "$KEY$" in a Lua script by value.
+        ///// </summary>
+        ///// <param name="lua">The Lua script.</param>
+        ///// <param name="key">The key to replace, without the dollar signs.</param>
+        ///// <param name="value">The value to replace the key with.</param>
+        ///// <param name="stringFormat">The string format string to use when converting the value to a string.</param>
+        //internal static void ReplaceKey(ref string lua, string key, int value, string stringFormat = null)
+        //{
+        //    ReplaceKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
+        //}
 
-        /// <summary>
-        /// Replaces all instance of "$KEY$" in a Lua script by value.
-        /// </summary>
-        /// <param name="lua">The Lua script.</param>
-        /// <param name="key">The key to replace, without the dollar signs.</param>
-        /// <param name="value">The value to replace the key with.</param>
-        /// <param name="allowNewLines">Should line breaks (\n) be allowed?</param>
-        internal static void ReplaceKey(ref string lua, string key, string value, bool allowNewLines = false)
-        {
-            value = value ?? "";
-            if (allowNewLines) value = value.Replace("\n", "\\\n");
-            else value = value.Replace("\n", " ");
+        ///// <summary>
+        ///// Replaces all instance of "$KEY$" in a Lua script by value.
+        ///// </summary>
+        ///// <param name="lua">The Lua script.</param>
+        ///// <param name="key">The key to replace, without the dollar signs.</param>
+        ///// <param name="value">The value to replace the key with.</param>
+        ///// <param name="stringFormat">The string format string to use when converting the value to a string.</param>
+        //internal static void ReplaceKey(ref string lua, string key, float value, string stringFormat = null)
+        //{
+        //    ReplaceKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
+        //}
 
-            lua = lua.Replace($"${key.ToUpperInvariant()}$", value);
-        }
+        ///// <summary>
+        ///// Replaces all instance of "$KEY$" in a Lua script by value.
+        ///// </summary>
+        ///// <param name="lua">The Lua script.</param>
+        ///// <param name="key">The key to replace, without the dollar signs.</param>
+        ///// <param name="value">The value to replace the key with.</param>
+        ///// <param name="stringFormat">The string format string to use when converting the value to a string.</param>
+        //internal static void ReplaceKey(ref string lua, string key, double value, string stringFormat = null)
+        //{
+        //    ReplaceKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
+        //}
 
-        /// <summary>
-        /// Replaces all instance of "$KEY$" in a Lua script by value.
-        /// </summary>
-        /// <param name="lua">The Lua script.</param>
-        /// <param name="key">The key to replace, without the dollar signs.</param>
-        /// <param name="value">The value to replace the key with.</param>
-        /// <param name="bool">Should the enum value be cast to upper case?</param>
-        internal static void ReplaceKey<T>(ref string lua, string key, T value, bool upperCase) where T: Enum
-        {
-            ReplaceKey(ref lua, key, upperCase ? value.ToString().ToUpperInvariant() : value.ToString());
-        }
+        ///// <summary>
+        ///// Replaces all instance of "$KEY$" in a Lua script by value.
+        ///// </summary>
+        ///// <param name="lua">The Lua script.</param>
+        ///// <param name="key">The key to replace, without the dollar signs.</param>
+        ///// <param name="value">The value to replace the key with.</param>
+        ///// <param name="allowNewLines">Should line breaks (\n) be allowed?</param>
+        //internal static void ReplaceKey(ref string lua, string key, string value, bool allowNewLines = false)
+        //{
+        //    value = value ?? "";
+        //    if (allowNewLines) value = value.Replace("\n", "\\\n");
+        //    else value = value.Replace("\n", " ");
 
-        /// <summary>
-        /// Replaces first found instance "$KEY$" in a Lua script by value.
-        /// </summary>
-        /// <param name="lua">The Lua script.</param>
-        /// <param name="key">The key to replace, without the dollar signs.</param>
-        /// <param name="value">The value to replace the key with.</param>
-        internal static void ReplaceFirstKey(ref string lua, string key, string value) {
-            var regex = new Regex(Regex.Escape("${key.ToUpperInvariant()}$"));
-            lua = regex.Replace(lua, value, 1);
-        }
+        //    lua = lua.Replace($"${key.ToUpperInvariant()}$", value);
+        //}
 
-        /// <summary>
-        /// Replaces first found instance "$KEY$" in a Lua script by value.
-        /// </summary>
-        /// <param name="lua">The Lua script.</param>
-        /// <param name="key">The key to replace, without the dollar signs.</param>
-        /// <param name="value">The value to replace the key with.</param>
-        internal static void ReplaceFirstKey(ref string lua, string key, int value, string stringFormat = null) {
-            ReplaceFirstKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
-        }
+        ///// <summary>
+        ///// Replaces all instance of "$KEY$" in a Lua script by value.
+        ///// </summary>
+        ///// <param name="lua">The Lua script.</param>
+        ///// <param name="key">The key to replace, without the dollar signs.</param>
+        ///// <param name="value">The value to replace the key with.</param>
+        ///// <param name="bool">Should the enum value be cast to upper case?</param>
+        //internal static void ReplaceKey<T>(ref string lua, string key, T value, bool upperCase) where T: Enum
+        //{
+        //    ReplaceKey(ref lua, key, upperCase ? value.ToString().ToUpperInvariant() : value.ToString());
+        //}
 
-        /// <summary>
-        /// Replaces first found instance "$KEY$" in a Lua script by value.
-        /// </summary>
-        /// <param name="lua">The Lua script.</param>
-        /// <param name="key">The key to replace, without the dollar signs.</param>
-        /// <param name="value">The value to replace the key with.</param>
-        internal static void ReplaceFirstKey(ref string lua, string key, float value, string stringFormat = null) {
-            ReplaceFirstKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
-        }
+        ///// <summary>
+        ///// Replaces first found instance "$KEY$" in a Lua script by value.
+        ///// </summary>
+        ///// <param name="lua">The Lua script.</param>
+        ///// <param name="key">The key to replace, without the dollar signs.</param>
+        ///// <param name="value">The value to replace the key with.</param>
+        //internal static void ReplaceFirstKey(ref string lua, string key, string value) {
+        //    var regex = new Regex(Regex.Escape("${key.ToUpperInvariant()}$"));
+        //    lua = regex.Replace(lua, value, 1);
+        //}
 
-        /// <summary>
-        /// Replaces first found instance "$KEY$" in a Lua script by value.
-        /// </summary>
-        /// <param name="lua">The Lua script.</param>
-        /// <param name="key">The key to replace, without the dollar signs.</param>
-        /// <param name="value">The value to replace the key with.</param>
-        internal static void ReplaceFirstKey(ref string lua, string key, double value, string stringFormat = null) {
-            ReplaceFirstKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
-        }
+        ///// <summary>
+        ///// Replaces first found instance "$KEY$" in a Lua script by value.
+        ///// </summary>
+        ///// <param name="lua">The Lua script.</param>
+        ///// <param name="key">The key to replace, without the dollar signs.</param>
+        ///// <param name="value">The value to replace the key with.</param>
+        //internal static void ReplaceFirstKey(ref string lua, string key, int value, string stringFormat = null) {
+        //    ReplaceFirstKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
+        //}
 
-        /// <summary>
-        /// Replaces first found instance "$KEY$" in a Lua script by value.
-        /// </summary>
-        /// <param name="lua">The Lua script.</param>
-        /// <param name="key">The key to replace, without the dollar signs.</param>
-        /// <param name="value">The value to replace the key with.</param>
-        internal static void ReplaceFirstKey(ref string lua, string key, bool value) {
-            ReplaceFirstKey(ref lua, key, Toolbox.ValToString(value).ToLowerInvariant());
-        }
+        ///// <summary>
+        ///// Replaces first found instance "$KEY$" in a Lua script by value.
+        ///// </summary>
+        ///// <param name="lua">The Lua script.</param>
+        ///// <param name="key">The key to replace, without the dollar signs.</param>
+        ///// <param name="value">The value to replace the key with.</param>
+        //internal static void ReplaceFirstKey(ref string lua, string key, float value, string stringFormat = null) {
+        //    ReplaceFirstKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
+        //}
+
+        ///// <summary>
+        ///// Replaces first found instance "$KEY$" in a Lua script by value.
+        ///// </summary>
+        ///// <param name="lua">The Lua script.</param>
+        ///// <param name="key">The key to replace, without the dollar signs.</param>
+        ///// <param name="value">The value to replace the key with.</param>
+        //internal static void ReplaceFirstKey(ref string lua, string key, double value, string stringFormat = null) {
+        //    ReplaceFirstKey(ref lua, key, Toolbox.ValToString(value, stringFormat));
+        //}
+
+        ///// <summary>
+        ///// Replaces first found instance "$KEY$" in a Lua script by value.
+        ///// </summary>
+        ///// <param name="lua">The Lua script.</param>
+        ///// <param name="key">The key to replace, without the dollar signs.</param>
+        ///// <param name="value">The value to replace the key with.</param>
+        //internal static void ReplaceFirstKey(ref string lua, string key, bool value) {
+        //    ReplaceFirstKey(ref lua, key, Toolbox.ValToString(value).ToLowerInvariant());
+        //}
     }
 }

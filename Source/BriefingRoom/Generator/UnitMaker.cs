@@ -28,18 +28,18 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal enum UnitMakerGroupSetting
-    {
-        AirbaseID,
-        AircraftPayload,
-        CoordinatesDestination,
-        Country,
-        FirstUnitIsPlayer,
-        Hidden,
-        PlayerStartLocation,
-        RequiresOpenAirParking,
-        RequiresParkingSpots,
-    }
+    //internal enum UnitMakerGroupSetting
+    //{
+    //    AirbaseID,
+    //    AircraftPayload,
+    //    CoordinatesDestination,
+    //    Country,
+    //    FirstUnitIsPlayer,
+    //    Hidden,
+    //    PlayerStartLocation,
+    //    RequiresOpenAirParking,
+    //    RequiresParkingSpots,
+    //}
 
 
     //FirstUnitIsPlayer = 1,
@@ -89,25 +89,28 @@ namespace BriefingRoom4DCS.Generator
             UnitFamily family, int unitCount, Side side,
             string groupLua, string unitLua,
             Coordinates coordinates, DCSSkillLevel skill,
-            params KeyValuePair<UnitMakerGroupSetting, int>[] unitGroupSetting)
+            params KeyValuePair<string, object>[] extraSettings)
         {
             DBEntryCoalition unitsCoalitionDB = CoalitionsDB[(int)((side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy())];
             
             string[] unitsID = unitsCoalitionDB.GetRandomUnits(family, Template.ContextDecade, unitCount, Template.Mods, true);
             if (unitsID.Length == 0) return 0;
 
-            return AddUnitGroup(unitsID, side, family.GetUnitCategory(), groupLua, unitLua, coordinates, skill, unitGroupSetting);
+            return AddUnitGroup(unitsID, side, family.GetUnitCategory(), groupLua, unitLua, coordinates, skill, extraSettings);
         }
 
         internal int AddUnitGroup(
             string[] unitsID, Side side, UnitCategory category,
             string groupLua, string unitLua,
             Coordinates coordinates, DCSSkillLevel skill,
-            params KeyValuePair<UnitMakerGroupSetting, int>[] unitGroupSetting)
+            params KeyValuePair<string, object>[] extraSettings)
         {
             Country country = ((side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy()) == Coalition.Blue ? Country.CJTFBlue : Country.CJTFRed;
 
             string lua = File.ReadAllText($"{BRPaths.INCLUDE_LUA_UNITS}{Toolbox.AddMissingFileExtension(groupLua, ".lua")}");
+            foreach (KeyValuePair<string, object> extraSetting in extraSettings)
+                LuaTools.ReplaceKey(ref lua, extraSetting.Key, extraSetting.Value);
+
             LuaTools.ReplaceKey(ref lua, "ID", GroupID);
             LuaTools.ReplaceKey(ref lua, "X", coordinates.X);
             LuaTools.ReplaceKey(ref lua, "Y", coordinates.Y);

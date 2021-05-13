@@ -52,7 +52,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 string airportLua = airportLuaTemplate;
                 LuaTools.ReplaceKey(ref airportLua, "index", airbaseID);
-                LuaTools.ReplaceKey(ref airportLua, "coalition", mission.Airbases[airbaseID], true);
+                LuaTools.ReplaceKey(ref airportLua, "coalition", mission.Airbases[airbaseID].ToString().ToUpperInvariant());
 
                 warehousesAirportLua += airportLua + "\r\n";
             }

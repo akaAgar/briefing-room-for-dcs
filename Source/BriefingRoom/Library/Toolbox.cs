@@ -136,6 +136,10 @@ namespace BriefingRoom4DCS
             return value[0].ToString().ToUpperInvariant() + (castRestOfStringToLowerCase ? value.Substring(1).ToLowerInvariant() : value.Substring(1));
         }
 
+        internal static KeyValuePair<string, object> ToKeyValuePair(this string key, object value)
+        {
+            return new KeyValuePair<string, object>(key, value);
+        }
 
         internal static string ReplaceAll(this string str, string replaceTo, params string[] replaceFrom)
         {
@@ -484,13 +488,20 @@ namespace BriefingRoom4DCS
         }
 
         /// <summary>
-        /// Converts a boolean to a string. Basically, a shortcut for ToString(NumberFormatInfo.InvariantInfo).
+        /// Converts an object to a string with proper formatting for use in Lua files, etc.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="stringFormat">String format, if any.</param>
         /// <returns>The value as a string.</returns>
-        public static string ValToString(bool value)
+        public static string ValToString(object value, string stringFormat = "")
         {
-            return value.ToString(NumberFormatInfo.InvariantInfo);
+            if (value == null) return "";
+            if (value is string) return (string)value;
+            if (value is bool) return ((bool)value).ToString(NumberFormatInfo.InvariantInfo);
+            if (value is int) return ((int)value).ToString(stringFormat, NumberFormatInfo.InvariantInfo);
+            if (value is float) return ((float)value).ToString(stringFormat, NumberFormatInfo.InvariantInfo);
+            if (value is double) return ((double)value).ToString(stringFormat, NumberFormatInfo.InvariantInfo);
+            return value.ToString();
         }
 
         /// <summary>
@@ -510,32 +521,6 @@ namespace BriefingRoom4DCS
             }
 
             return imageBytes;
-        }
-
-        /// <summary>
-        /// Converts an integer to a string. Basically, a shortcut for ToString(NumberFormatInfo.InvariantInfo).
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <returns>The value as a string.</returns>
-        public static string ValToString(int value, string stringFormat = null)
-        {
-            if (string.IsNullOrEmpty(stringFormat))
-                return value.ToString(NumberFormatInfo.InvariantInfo);
-            else
-                return value.ToString(stringFormat, NumberFormatInfo.InvariantInfo);
-        }
-
-        /// <summary>
-        /// Converts a double to a string. Basically, a shortcut for ToString(NumberFormatInfo.InvariantInfo).
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <returns>The value, as a string.</returns>
-        public static string ValToString(double value, string stringFormat = null)
-        {
-            if (string.IsNullOrEmpty(stringFormat))
-                return value.ToString(NumberFormatInfo.InvariantInfo);
-            else
-                return value.ToString(stringFormat, NumberFormatInfo.InvariantInfo);
         }
 
         /// <summary>
