@@ -1,5 +1,3 @@
-            [$INDEX$] = 
-            {
                 ["alt"] = $ALTITUDE$,
                 ["alt_type"] = "BARO",
                 ["livery_id"] = "default",
@@ -32,4 +30,3 @@ $PAYLOADCOMMON$
                 {
 $RADIOPRESETSLUA$
                 }
-            }, -- end of [$INDEX$]

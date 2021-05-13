@@ -1,5 +1,3 @@
-[$INDEX$] =
-{
   ["transportable"] =
   {
     ["randomTransportable"] = false,
@@ -13,4 +11,3 @@ $EXTRALUA$
   ["name"] = "$NAME$",
   ["heading"] = $HEADING$,
   ["playerCanDrive"] = false,
-}, -- end of [$INDEX$]

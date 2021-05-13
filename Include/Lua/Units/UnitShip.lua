@@ -1,5 +1,3 @@
-[$INDEX$] =
-{
   ["transportable"] =
   {
     ["randomTransportable"] = false,
@@ -14,4 +12,3 @@ $EXTRALUA$
   ["heading"] = $HEADING$,
   ["modulation"] = $RADIOBAND$,
   ["frequency"] = $RADIOFREQUENCY$,
-}, -- end of [$INDEX$]

@@ -1,5 +1,3 @@
-[$INDEX$] =
-{
   ["category"] = "",
   ["shape_name"] = "",
   ["type"] = "$TYPE$",
@@ -9,4 +7,3 @@ $EXTRALUA$
   ["x"] = $X$,
   ["name"] = "$NAME$",
   ["heading"] = $HEADING$,
-}, -- end of [$INDEX$]
