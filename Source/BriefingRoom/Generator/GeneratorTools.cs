@@ -22,6 +22,7 @@ using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -120,6 +121,16 @@ namespace BriefingRoom4DCS.Generator
             }
 
             return true;
+        }
+
+        internal static string GetGroupName(int groupID, UnitFamily family)
+        {
+            string name = ParseRandomString(Database.Instance.Common.Names.UnitGroupNames[(int)family]);
+
+            int fakeGroupNumber = groupID * 10 + Toolbox.RandomInt(1, 10);
+            name = name.Replace("$N$", fakeGroupNumber.ToString(NumberFormatInfo.InvariantInfo));
+            name = name.Replace("$NTH$", Toolbox.GetOrdinalAdjective(fakeGroupNumber));
+            return name;
         }
 
         /// <summary>
@@ -272,30 +283,30 @@ namespace BriefingRoom4DCS.Generator
         //    return SanitizeString(str);
         //}
 
-        ///// <summary>
-        ///// Randomizes parts of a string.
-        ///// </summary>
-        ///// <param name="randomString">The string to randomize</param>
-        ///// <returns>A randomized string.</returns>
-        //internal static string ParseRandomString(string randomString)
-        //{
-        //    while (randomString.Contains("{") && randomString.Contains("{"))
-        //    {
-        //        int start = randomString.LastIndexOf("{");
-        //        string stringLeft = randomString.Substring(start);
-        //        if (!stringLeft.Contains("}")) break;
-        //        int end = stringLeft.IndexOf("}") + 1;
+        /// <summary>
+        /// Randomizes parts of a string.
+        /// </summary>
+        /// <param name="randomString">The string to randomize</param>
+        /// <returns>A randomized string.</returns>
+        internal static string ParseRandomString(string randomString)
+        {
+            while (randomString.Contains("{") && randomString.Contains("{"))
+            {
+                int start = randomString.LastIndexOf("{");
+                string stringLeft = randomString.Substring(start);
+                if (!stringLeft.Contains("}")) break;
+                int end = stringLeft.IndexOf("}") + 1;
 
-        //        string segment = randomString.Substring(start, end);
-        //        string parsedSegment = segment.Replace("{", "").Replace("}", "").Trim();
-        //        string[] items = parsedSegment.Split('|');
-        //        string selItem = Toolbox.RandomFrom(items);
+                string segment = randomString.Substring(start, end);
+                string parsedSegment = segment.Replace("{", "").Replace("}", "").Trim();
+                string[] items = parsedSegment.Split('|');
+                string selItem = Toolbox.RandomFrom(items);
 
-        //        randomString = randomString.Replace(segment, selItem);
-        //    }
+                randomString = randomString.Replace(segment, selItem);
+            }
 
-        //    return randomString.Replace("{", "").Replace("}", "").Trim();
-        //}
+            return randomString.Replace("{", "").Replace("}", "").Trim();
+        }
 
         ///// <summary>
         ///// Remove all double-quotes and backslashes from a string to avoid broken strings and code injections.

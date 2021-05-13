@@ -111,11 +111,11 @@ namespace BriefingRoom4DCS.Generator
             string[] units = unitsCoalitionDB.GetRandomUnits(family, Template.ContextDecade, unitCount, Template.Mods, true);
             if (units.Length == 0) return null;
 
-            return AddUnitGroup(units, side, family.GetUnitCategory(), groupLua, unitLua, coordinates, skill, extraSettings);
+            return AddUnitGroup(units, side, family, groupLua, unitLua, coordinates, skill, extraSettings);
         }
 
         internal UnitMakerGroupInfo? AddUnitGroup(
-            string[] units, Side side, UnitCategory category,
+            string[] units, Side side, UnitFamily unitFamily,
             string groupLua, string unitLua,
             Coordinates coordinates, DCSSkillLevel skill,
             params KeyValuePair<string, object>[] extraSettings)
@@ -128,9 +128,13 @@ namespace BriefingRoom4DCS.Generator
             foreach (KeyValuePair<string, object> extraSetting in extraSettings)
                 LuaTools.ReplaceKey(ref lua, extraSetting.Key, extraSetting.Value);
 
+            // TODO: callsigns if unit is an aircraft
+            string groupName = GeneratorTools.GetGroupName(GroupID, unitFamily);
+
             LuaTools.ReplaceKey(ref lua, "ID", GroupID);
             LuaTools.ReplaceKey(ref lua, "X", coordinates.X);
             LuaTools.ReplaceKey(ref lua, "Y", coordinates.Y);
+            LuaTools.ReplaceKey(ref lua, "NAME", groupName);
 
             string unitLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_UNITS}{Toolbox.AddMissingFileExtension(unitLua, ".lua")}");
             string unitsLuaTable = "";
@@ -151,8 +155,14 @@ namespace BriefingRoom4DCS.Generator
                 {
                     LuaTools.ReplaceKey(ref singleUnitLuaTable, "ALTITUDE", unitDB.AircraftData.CruiseAltitude);
                     LuaTools.ReplaceKey(ref singleUnitLuaTable, "PROPSLUA", unitDB.AircraftData.PropsLua);
+                    // TODO: callsigns -- LuaTools.ReplaceKey(ref singleUnitLuaTable, "NAME", ????);
                     LuaTools.ReplaceKey(ref singleUnitLuaTable, "SPEED", unitDB.AircraftData.CruiseSpeed);
+
+                    if (unitIndex == 0)
+                        LuaTools.ReplaceKey(ref lua, "RADIOBAND", (int)unitDB.AircraftData.RadioModulation);
                 }
+                else
+                    LuaTools.ReplaceKey(ref singleUnitLuaTable, "NAME", $"{groupName} {unitIndex + 1}");
 
                 unitsLuaTable += $"[{unitIndex + 1}] =\n";
                 unitsLuaTable += "{\n";
@@ -168,7 +178,7 @@ namespace BriefingRoom4DCS.Generator
             LuaTools.ReplaceKey(ref lua, "SKILL", skill); // Must be after units are added, because skill is set as a unit level
             LuaTools.ReplaceKey(ref lua, "HIDDEN", GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side)); // If "hidden" was not set through custom values
 
-            AddUnitGroupToTable(country, category, lua);
+            AddUnitGroupToTable(country, unitFamily.GetUnitCategory(), lua);
 
             GroupID++;
             return new UnitMakerGroupInfo(GroupID - 1, unitsIDList);
@@ -400,16 +410,6 @@ namespace BriefingRoom4DCS.Generator
 //            BriefingRoom.PrintToLog($"Added \"{group.Units[0].Type}\" unit group \"{group.Name}\" for coalition {group.Coalition.ToString().ToUpperInvariant()}");
 
 //            return group;
-//        }
-
-//        private string GetGroupName(UnitFamily family)
-//        {
-//            string name = GeneratorTools.ParseRandomString(Database.Instance.Common.UnitGroupNames[(int)family]);
-
-//            int fakeGroupNumber = NextGroupID * 10 + Toolbox.RandomInt(1, 10);
-//            name = name.Replace("$N$", fakeGroupNumber.ToString(NumberFormatInfo.InvariantInfo));
-//            name = name.Replace("$NTH$", Toolbox.GetOrdinalAdjective(fakeGroupNumber));
-//            return name;
 //        }
 
 //        private void SetUnitCoordinatesAndHeading(ref Coordinates unitCoordinates, ref double unitHeading, DBEntryUnit unitBP, int unitIndex)

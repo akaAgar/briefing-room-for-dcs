@@ -53,12 +53,11 @@ namespace BriefingRoom4DCS.Generator
             if ((unit == null) || !unit.AircraftData.PlayerControllable) return;
 
             if (UnitMaker.AddUnitGroup(
-                Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), Side.Ally, unit.Category,
+                Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), Side.Ally, unit.Families[0],
                 "GroupAircraftPlayer", "UnitAircraft", playerAirbase.Coordinates, DCSSkillLevel.Average,
                 "MissionAirbaseX".ToKeyValuePair(playerAirbase.Coordinates.X),
                 "MissionAirbaseY".ToKeyValuePair(playerAirbase.Coordinates.Y),
-                "MissionAirbaseID".ToKeyValuePair(playerAirbase.DCSID)
-                ) == null)
+                "MissionAirbaseID".ToKeyValuePair(playerAirbase.DCSID)) == null)
                 BriefingRoom.PrintToLog("Failed to generate player flight group.", LogMessageErrorLevel.Warning);
         }
 
