@@ -45,17 +45,21 @@ namespace BriefingRoom4DCS.Generator
             UnitMaker = unitMaker;
         }
 
-        internal int GeneratePlayerFlightGroup(DCSMission mission, MissionTemplateFlightGroup flightGroup, DBEntryAirbase playerAirbase)
+        internal void GeneratePlayerFlightGroup(DCSMission mission, MissionTemplateFlightGroup flightGroup, DBEntryAirbase playerAirbase)
         {
             DBEntryUnit unit = Database.Instance.GetEntry<DBEntryUnit>(flightGroup.Aircraft);
-            if ((unit == null) || !unit.AircraftData.PlayerControllable) return 0; // Not an unit, or not a player-controllable unit, abort.
 
-            return UnitMaker.AddUnitGroup(
+            // Not an unit, or not a player-controllable unit, abort.
+            if ((unit == null) || !unit.AircraftData.PlayerControllable) return;
+
+            if (UnitMaker.AddUnitGroup(
                 Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), Side.Ally, unit.Category,
                 "GroupAircraftPlayer", "UnitAircraft", playerAirbase.Coordinates, DCSSkillLevel.Average,
                 "MissionAirbaseX".ToKeyValuePair(playerAirbase.Coordinates.X),
                 "MissionAirbaseY".ToKeyValuePair(playerAirbase.Coordinates.Y),
-                "MissionAirbaseID".ToKeyValuePair(playerAirbase.DCSID));
+                "MissionAirbaseID".ToKeyValuePair(playerAirbase.DCSID)
+                ) == null)
+                BriefingRoom.PrintToLog("Failed to generate player flight group.", LogMessageErrorLevel.Warning);
         }
 
         ///// <summary>

@@ -36,15 +36,15 @@ namespace BriefingRoom4DCS.Generator
         /// </summary>
         private readonly List<string> UsedObjectiveNames = new List<string>();
 
-        ///// <summary>
-        ///// Minimum objective distance variation.
-        ///// </summary>
-        //private const double OBJECTIVE_DISTANCE_VARIATION_MIN = 0.75;
+        /// <summary>
+        /// Minimum objective distance variation.
+        /// </summary>
+        private const double OBJECTIVE_DISTANCE_VARIATION_MIN = 0.75;
 
-        ///// <summary>
-        ///// Maximum objective distance variation.
-        ///// </summary>
-        //private const double OBJECTIVE_DISTANCE_VARIATION_MAX = 1.25;
+        /// <summary>
+        /// Maximum objective distance variation.
+        /// </summary>
+        private const double OBJECTIVE_DISTANCE_VARIATION_MAX = 1.25;
 
         ///// <summary>
         ///// List of already used objective names, to make sure each one is different.
@@ -65,7 +65,7 @@ namespace BriefingRoom4DCS.Generator
             UnitMaker = unitMaker;
         }
 
-        internal void GenerateObjective(DCSMission mission, MissionTemplate template, int index)
+        internal Coordinates GenerateObjective(DCSMission mission, MissionTemplate template, int index, Coordinates lastCoordinates)
         {
             MissionTemplateObjective objectiveTemplate = template.Objectives[index];
             DBEntryObjectiveFeature[] featuresDB = Database.Instance.GetEntries<DBEntryObjectiveFeature>(objectiveTemplate.Features.ToArray());
@@ -81,7 +81,30 @@ namespace BriefingRoom4DCS.Generator
             objectiveLua += "},\n";
             mission.AppendValue("OBJECTIVES_LUA", objectiveLua);
 
-            //UnitMaker.AddUnitGroup()
+            DBEntryTheaterSpawnPoint? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                targetDB.ValidSpawnPoints, lastCoordinates,
+                new MinMaxD(
+                    template.FlightPlanObjectiveDistance * OBJECTIVE_DISTANCE_VARIATION_MIN,
+                    template.FlightPlanObjectiveDistance * OBJECTIVE_DISTANCE_VARIATION_MAX));
+
+            if (!spawnPoint.HasValue)
+            {
+                BriefingRoom.PrintToLog("Failed to spawn objective unit group.", LogMessageErrorLevel.Warning);
+                return lastCoordinates;
+            }
+
+            bool hidden = GeneratorTools.GetHiddenStatus(template.OptionsFogOfWar, taskDB.TargetSide);
+            if (objectiveTemplate.Options.Contains(ObjectiveOption.ShowTarget)) hidden = false;
+            else if (objectiveTemplate.Options.Contains(ObjectiveOption.HideTarget)) hidden = true;
+
+            UnitMaker.AddUnitGroup(
+                Toolbox.RandomFrom(targetDB.UnitFamilies), targetDB.UnitCount[(int)objectiveTemplate.TargetCount].GetValue(),
+                taskDB.TargetSide,
+                targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
+                spawnPoint.Value.Coordinates, DCSSkillLevel.Average,
+                "Hidden".ToKeyValuePair(hidden));
+
+            return spawnPoint.Value.Coordinates;
         }
 
         ///// <summary>

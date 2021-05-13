@@ -86,6 +86,22 @@ namespace BriefingRoom4DCS.Generator
             return template.ContextCoalitionBlue;
         }
 
+        internal static bool GetHiddenStatus(FogOfWar fogOfWar, Side side)
+        {
+            switch (fogOfWar)
+            {
+                default:
+                case FogOfWar.All:
+                    return false;
+                case FogOfWar.AlliesOnly:
+                case FogOfWar.KnownUnitsOnly:
+                    return side == Side.Enemy;
+                case FogOfWar.SelfOnly:
+                case FogOfWar.None:
+                    return true;
+            }
+        }
+
         /// <summary>
         /// Checks for a <see cref="DBEntry"/> in <see cref="Database"/> and throws an exception if it isn't found.
         /// </summary>

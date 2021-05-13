@@ -51,19 +51,32 @@ namespace BriefingRoom4DCS.Generator
     //     = 4,
     //     = 8
 
+    internal struct UnitMakerGroupInfo
+    {
+        internal int GroupID { get; }
+        internal int[] UnitsID { get; }
+
+        internal UnitMakerGroupInfo(int groupID, List<int> unitsID)
+        {
+            GroupID = groupID;
+            UnitsID = unitsID.ToArray();
+        }
+    }
+
     internal class UnitMaker : IDisposable
     {
         private readonly DCSMission Mission;
         private readonly MissionTemplate Template;
         private readonly DBEntryCoalition[] CoalitionsDB;
         private readonly Coalition PlayerCoalition;
-        private readonly List<DBEntryTheaterSpawnPoint> SpawnPoints;
-        private readonly DBEntryTheater TheaterDB;
         private readonly Country[][] CoalitionsCountries;
 
         private readonly Dictionary<Country, Dictionary<UnitCategory, List<string>>> UnitLuaTables = new Dictionary<Country, Dictionary<UnitCategory, List<string>>>();
 
         private int GroupID;
+        private int UnitID;
+
+        internal UnitMakerSpawnPointSelector SpawnPointSelector { get; }
 
         internal UnitMaker(DCSMission mission, MissionTemplate template, DBEntryCoalition[] coalitionsDB, DBEntryTheater theaterDB, Coalition playerCoalition, Country[][] coalitionsCountries)
         {
@@ -72,9 +85,9 @@ namespace BriefingRoom4DCS.Generator
 
             CoalitionsDB = coalitionsDB;
             PlayerCoalition = playerCoalition;
-            TheaterDB = theaterDB;
-            SpawnPoints = theaterDB.SpawnPoints.ToList();
             CoalitionsCountries = coalitionsCountries;
+
+            SpawnPointSelector = new UnitMakerSpawnPointSelector(theaterDB);
 
             Clear();
         }
@@ -82,29 +95,33 @@ namespace BriefingRoom4DCS.Generator
         internal void Clear()
         {
             GroupID = 1;
+            UnitID = 1;
             UnitLuaTables.Clear();
         }
 
-        internal int AddUnitGroup(
+        internal UnitMakerGroupInfo? AddUnitGroup(
             UnitFamily family, int unitCount, Side side,
             string groupLua, string unitLua,
             Coordinates coordinates, DCSSkillLevel skill,
             params KeyValuePair<string, object>[] extraSettings)
         {
+            if (unitCount <= 0) return null;
             DBEntryCoalition unitsCoalitionDB = CoalitionsDB[(int)((side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy())];
             
-            string[] unitsID = unitsCoalitionDB.GetRandomUnits(family, Template.ContextDecade, unitCount, Template.Mods, true);
-            if (unitsID.Length == 0) return 0;
+            string[] units = unitsCoalitionDB.GetRandomUnits(family, Template.ContextDecade, unitCount, Template.Mods, true);
+            if (units.Length == 0) return null;
 
-            return AddUnitGroup(unitsID, side, family.GetUnitCategory(), groupLua, unitLua, coordinates, skill, extraSettings);
+            return AddUnitGroup(units, side, family.GetUnitCategory(), groupLua, unitLua, coordinates, skill, extraSettings);
         }
 
-        internal int AddUnitGroup(
-            string[] unitsID, Side side, UnitCategory category,
+        internal UnitMakerGroupInfo? AddUnitGroup(
+            string[] units, Side side, UnitCategory category,
             string groupLua, string unitLua,
             Coordinates coordinates, DCSSkillLevel skill,
             params KeyValuePair<string, object>[] extraSettings)
         {
+            if (units.Length == 0) return null;
+
             Country country = ((side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy()) == Coalition.Blue ? Country.CJTFBlue : Country.CJTFRed;
 
             string lua = File.ReadAllText($"{BRPaths.INCLUDE_LUA_UNITS}{Toolbox.AddMissingFileExtension(groupLua, ".lua")}");
@@ -115,10 +132,46 @@ namespace BriefingRoom4DCS.Generator
             LuaTools.ReplaceKey(ref lua, "X", coordinates.X);
             LuaTools.ReplaceKey(ref lua, "Y", coordinates.Y);
 
+            string unitLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_UNITS}{Toolbox.AddMissingFileExtension(unitLua, ".lua")}");
+            string unitsLuaTable = "";
+            List<int> unitsIDList = new List<int>();
+            for (int unitIndex = 0; unitIndex < units.Length; unitIndex++)
+            {
+                DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(units[unitIndex]);
+                if (unitDB == null) continue;
+
+                string singleUnitLuaTable = unitLuaTemplate;
+                foreach (KeyValuePair<string, object> extraSetting in extraSettings)
+                    LuaTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value);
+                LuaTools.ReplaceKey(ref singleUnitLuaTable, "ID", UnitID);
+                LuaTools.ReplaceKey(ref singleUnitLuaTable, "TYPE", units[unitIndex]);
+                LuaTools.ReplaceKey(ref singleUnitLuaTable, "HEADING", Toolbox.RandomDouble(Toolbox.TWO_PI));
+                LuaTools.ReplaceKey(ref singleUnitLuaTable, "EXTRALUA", unitDB.ExtraLua);
+                if ((unitDB.Category == UnitCategory.Helicopter) || (unitDB.Category == UnitCategory.Plane))
+                {
+                    LuaTools.ReplaceKey(ref singleUnitLuaTable, "ALTITUDE", unitDB.AircraftData.CruiseAltitude);
+                    LuaTools.ReplaceKey(ref singleUnitLuaTable, "PROPSLUA", unitDB.AircraftData.PropsLua);
+                    LuaTools.ReplaceKey(ref singleUnitLuaTable, "SPEED", unitDB.AircraftData.CruiseSpeed);
+                }
+
+                unitsLuaTable += $"[{unitIndex + 1}] =\n";
+                unitsLuaTable += "{\n";
+                unitsLuaTable += $"{singleUnitLuaTable}\n";
+                unitsLuaTable += $"}}, -- end of [{unitIndex + 1}]\n";
+
+                unitsIDList.Add(UnitID);
+                UnitID++;
+            }
+            if (unitsIDList.Count == 0) return null; // No valid units added to this group
+            LuaTools.ReplaceKey(ref lua, "UNITS", unitsLuaTable);
+
+            LuaTools.ReplaceKey(ref lua, "SKILL", skill); // Must be after units are added, because skill is set as a unit level
+            LuaTools.ReplaceKey(ref lua, "HIDDEN", GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side)); // If "hidden" was not set through custom values
+
             AddUnitGroupToTable(country, category, lua);
 
             GroupID++;
-            return GroupID - 1;
+            return new UnitMakerGroupInfo(GroupID - 1, unitsIDList);
         }
 
         private void AddUnitGroupToTable(Country country, UnitCategory category, string unitGroupLua)

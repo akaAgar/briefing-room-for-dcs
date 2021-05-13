@@ -109,9 +109,10 @@ namespace BriefingRoom4DCS.Generator
 
             // Generate objectives
             BriefingRoom.PrintToLog("Generating objectives...");
+            Coordinates lastWPCoordinates = playerAirbase.Coordinates;
             using (MissionGeneratorObjectives objectivesGenerator = new MissionGeneratorObjectives(unitMaker))
                 for (i = 0; i < template.Objectives.Count; i++)
-                    objectivesGenerator.GenerateObjective(mission, template, i);
+                    lastWPCoordinates = objectivesGenerator.GenerateObjective(mission, template, i, lastWPCoordinates);
 
             // Generate player flight groups
             BriefingRoom.PrintToLog("Generating player flight groups...");
