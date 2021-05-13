@@ -151,13 +151,13 @@ namespace BriefingRoom4DCS.Generator
                         unitsLuaTable += $"[{groupIndex + 1}] =\n";
                         unitsLuaTable += "{\n";
                         unitsLuaTable += $"{UnitLuaTables[country][unitCategory][groupIndex]}\n";
-                        unitsLuaTable += "},\n";
+                        unitsLuaTable += $"}}, -- end of [{groupIndex + 1}]\n";
                     }
 
-                    unitsLuaTable += "},\n";
+                    unitsLuaTable += $"}}, -- end of [\"{unitCategory.ToString().ToLowerInvariant()}\"]\n";
                 }
 
-                unitsLuaTable += "},\n";
+                unitsLuaTable += $"}}, -- end of [{countryIndex + 1}]\n";
             }
 
             return unitsLuaTable;

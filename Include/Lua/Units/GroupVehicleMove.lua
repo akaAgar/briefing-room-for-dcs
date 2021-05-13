@@ -1,5 +1,3 @@
-[$INDEX$] =
-{
   ["visible"] = false,
   ["lateActivation"] = true,
   ["tasks"] =
@@ -132,4 +130,3 @@ $UNITS$
   ["name"] = "$NAME$",
   ["start_time"] = 0,
   ["hiddenOnPlanner"] = $HIDDEN$,
-}, -- end of [$INDEX$]

@@ -1,5 +1,3 @@
-[$INDEX$] =
-{
   ["heading"] = 0,
   ["route"] =
   {
@@ -27,4 +25,3 @@ $UNITS$
   ["x"] = $X$,
   ["name"] = "$NAME$",
   ["dead"] = true,
-}, -- end of [$INDEX$]

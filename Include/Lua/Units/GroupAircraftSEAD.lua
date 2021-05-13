@@ -1,5 +1,3 @@
-[$INDEX$] =
-{
   ["lateActivation"] = true,
   ["modulation"] = $RADIOBAND$,
   ["tasks"] =
@@ -143,4 +141,3 @@
   ["communication"] = true,
   ["start_time"] = 0,
   ["frequency"] = $RADIOFREQUENCY$,
-}, -- end of [$INDEX$]

@@ -1,5 +1,3 @@
-[$INDEX$] =
-{
   ["visible"] = false,
   ["tasks"] =
   {
@@ -46,4 +44,3 @@
   ["x"] = $X$,
   ["name"] = "$NAME$",
   ["start_time"] = 0,
-}, -- end of [$INDEX$]
