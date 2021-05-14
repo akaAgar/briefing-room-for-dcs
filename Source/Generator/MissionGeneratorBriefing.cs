@@ -105,6 +105,16 @@ namespace BriefingRoom4DCSWorld.Generator
 
             mission.BriefingHTML = CreateHTMLBriefing(mission, template, description, tasks, remarks, flightGroups, airbaseDB, coalitionsDB, objectiveDB);
             mission.BriefingTXT = CreateTXTBriefing(mission, description, tasks, remarks, flightGroups, airbaseDB);
+
+            var carrierString = "";
+            if(mission.Carriers.Length > 0)
+                carrierString = $@"
+Carriers: {String.Join("",mission.Carriers.Select(carrier =>$@"
+- {carrier.Units[0].Name} {carrier.RadioFrequency.ToString("n3")}{carrier.RadioModulation} ILS:{carrier.ILS} TACAN:{carrier.TACAN.ToString()}"))}";
+            
+            mission.KneeboardText = $@"Airbase: {airbaseDB.Name} RNY:{airbaseDB.Runways} ATC:{airbaseDB.ATC} ILS:{airbaseDB.ILS} TACAN:{airbaseDB.TACAN}{carrierString}
+Flights: {String.Join("",flightGroups.Select(flt =>$@"
+- {flt.Callsign} {flt.Type} {flt.Count} Ship {flt.Task} COM: {flt.Radio}{(String.IsNullOrEmpty(flt.Remarks)? "":  $" Notes:{flt.Remarks}")}"))}";
         }
 
         private string CreateHTMLBriefing(

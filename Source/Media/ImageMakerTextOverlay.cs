@@ -63,11 +63,18 @@ namespace BriefingRoom4DCSWorld.Media
         /// </summary>
         public string Text { get; set; } = "";
 
+        public bool Shadow {get; set;} = true;
+
+        private ImageMaker ImageMaker;
+
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="rotationInDegrees">Rotation of the image, in degrees</param>
-        public ImageMakerTextOverlay() { }
+        public ImageMakerTextOverlay(ImageMaker imageMaker)
+        {
+            ImageMaker = imageMaker;
+        }
 
         /// <summary>
         /// Draw the text overlay on the provided <see cref="Graphics"/>.
@@ -76,21 +83,24 @@ namespace BriefingRoom4DCSWorld.Media
         public void Draw(Graphics graphics)
         {
             if (string.IsNullOrEmpty(Text)) return; // No text, nothing to draw
-         
+
             using (Font font = new Font(FontFamily, FontSize, FontStyle))
             {
                 Size textSize = graphics.MeasureString(Text, font).ToSize();
                 StringFormat stringFormat = GetStringFormat();
 
                 // Draw text black "shadow" first to make sure it is readable on any background
-                for (int x = -1; x <= 1; x++)
-                    for (int y = -1; y <= 1; y++)
-                        graphics.DrawString(Text, font, Brushes.Black,
-                            new RectangleF(3 * x, 3 * y, ImageMaker.IMAGE_SIZE, ImageMaker.IMAGE_SIZE), stringFormat);
+                if (Shadow)
+                {
+                    for (int x = -1; x <= 1; x++)
+                        for (int y = -1; y <= 1; y++)
+                            graphics.DrawString(Text, font, Brushes.Black,
+                                new RectangleF(3 * x + 10, 3 * y + 10, ImageMaker.ImageSizeX -10, ImageMaker.ImageSizeY -10), stringFormat);
+                }
 
                 using (SolidBrush brush = new SolidBrush(Color))
                     graphics.DrawString(Text, font, brush,
-                        new RectangleF(0, 0, ImageMaker.IMAGE_SIZE, ImageMaker.IMAGE_SIZE), stringFormat);
+                        new RectangleF(10, 10, ImageMaker.ImageSizeX - 10, ImageMaker.ImageSizeY -10), stringFormat);
             }
         }
 
