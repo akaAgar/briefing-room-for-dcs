@@ -234,34 +234,21 @@ namespace BriefingRoom4DCSWorld.Generator
             List<UnitFlightGroupBriefingDescription> briefingFGList = new List<UnitFlightGroupBriefingDescription>();
 
             foreach (MissionTemplateFlightGroup fg in template.PlayerFlightGroups)
-            {
-                // Select proper payload for the flight group according to its tasking
-                UnitTaskPayload payload = GetPayloadByTask(fg.Tasking, objectiveDB);
-                bool hasCarrier = !string.IsNullOrEmpty(fg.Carrier);
-                DCSMissionUnitGroup group = UnitMaker.AddUnitGroup(
-                    mission,
-                    Enumerable.Repeat(fg.Aircraft, fg.Count).ToArray(),
-                    Side.Ally, hasCarrier ? mission.Carriers.First(x => x.Units[0].Name == fg.Carrier).Coordinates : mission.InitialPosition,
-                    hasCarrier ? "GroupAircraftPlayerCarrier" : "GroupAircraftPlayer", "UnitAircraft",
-                    DCSSkillLevel.Client, 0,
-                    payload,
-                    null, hasCarrier ? -99 : mission.InitialAirbaseID, true, country: fg.Country,
-                    startLocation: fg.StartLocation == PlayerStartLocation.Runway ? PlayerStartLocation.ParkingHot : fg.StartLocation);
-                if (group == null)
-                {
-                    DebugLog.Instance.WriteLine($"Failed to create group of player aircraft of type \"{fg.Aircraft}\".", 1, DebugLogMessageErrorLevel.Warning);
-                    continue;
+            {   
+                var brief = SpawnMPGroup(fg, objectiveDB, mission);
+                if(brief.HasValue){
+                    briefingFGList.Add(brief.Value);
+                    totalGroupsCreated++;
                 }
-                if(hasCarrier)
-                    group.CarrierId = mission.Carriers.First(x => x.Units[0].Name == fg.Carrier).Units[0].ID;
-
-                briefingFGList.Add(
-                    new UnitFlightGroupBriefingDescription(
-                        group.Name, group.Units.Length, fg.Aircraft,
-                        GetTaskingDescription(fg.Tasking, objectiveDB),
-                        Database.Instance.GetEntry<DBEntryUnit>(fg.Aircraft).AircraftData.GetRadioAsString()));
-
-                totalGroupsCreated++;
+                if(fg.StartLocation == PlayerStartLocation.Both){
+                    fg.StartLocation = PlayerStartLocation.ParkingCold;
+                    brief = SpawnMPGroup(fg, objectiveDB, mission);
+                    if(brief.HasValue){
+                        briefingFGList.Add(brief.Value);
+                        totalGroupsCreated++;
+                    } 
+                    fg.StartLocation = PlayerStartLocation.Both;
+                }
             }
 
             // Not a single player flight group was created succesfully, abort mission generation
@@ -269,6 +256,37 @@ namespace BriefingRoom4DCSWorld.Generator
                 throw new Exception("No player flight groups could be created, mission generation failed.");
 
             return briefingFGList.ToArray();
+        }
+
+
+        private UnitFlightGroupBriefingDescription? SpawnMPGroup(MissionTemplateFlightGroup fg, DBEntryObjective objectiveDB, DCSMission mission)
+        {
+            // Select proper payload for the flight group according to its tasking
+            UnitTaskPayload payload = GetPayloadByTask(fg.Tasking, objectiveDB);
+            bool hasCarrier = !string.IsNullOrEmpty(fg.Carrier);
+            DCSMissionUnitGroup group = UnitMaker.AddUnitGroup(
+                mission,
+                Enumerable.Repeat(fg.Aircraft, fg.Count).ToArray(),
+                Side.Ally, hasCarrier ? mission.Carriers.First(x => x.Units[0].Name == fg.Carrier).Coordinates : mission.InitialPosition,
+                hasCarrier ? "GroupAircraftPlayerCarrier" : "GroupAircraftPlayer", "UnitAircraft",
+                DCSSkillLevel.Client, 0,
+                payload,
+                null, hasCarrier ? -99 : mission.InitialAirbaseID, true, country: fg.Country,
+                startLocation: fg.StartLocation == PlayerStartLocation.Runway || fg.StartLocation == PlayerStartLocation.Both ? PlayerStartLocation.ParkingHot : fg.StartLocation);
+            if (group == null)
+            {
+                DebugLog.Instance.WriteLine($"Failed to create group of player aircraft of type \"{fg.Aircraft}\".", 1, DebugLogMessageErrorLevel.Warning);
+                return null;
+            }
+            group.Name = $"{group.Name}({(fg.StartLocation == PlayerStartLocation.ParkingCold? 'C' : 'H')})";
+            if(hasCarrier)
+                group.CarrierId = mission.Carriers.First(x => x.Units[0].Name == fg.Carrier).Units[0].ID;
+
+            
+            return new UnitFlightGroupBriefingDescription(
+                group.Name, group.Units.Length, fg.Aircraft,
+                GetTaskingDescription(fg.Tasking, objectiveDB),
+                Database.Instance.GetEntry<DBEntryUnit>(fg.Aircraft).AircraftData.GetRadioAsString());          
         }
 
         /// <summary>
