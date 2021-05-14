@@ -156,25 +156,11 @@ namespace BriefingRoom4DCS
             return (Coalition)(1 - (int)coalition);
         }
 
-        ///// <summary>
-        ///// Converts a BriefingRoom skill level to a DCS World skill level.
-        ///// </summary>
-        ///// <param name="skillLevel">A BriefingRoom skill level</param>
-        ///// <returns>A DCS World skill level.</returns>
-        //public static DCSSkillLevel BRSkillLevelToDCSSkillLevel(BRSkillLevel skillLevel)
-        //{
-        //    switch  (skillLevel)
-        //    {
-        //        //case BRSkillLevel.Random
-        //        default:
-        //            return RandomFrom(DCSSkillLevel.Average, DCSSkillLevel.Good, DCSSkillLevel.High, DCSSkillLevel.Excellent);
-
-        //        case BRSkillLevel.Rookie: return DCSSkillLevel.Average;
-        //        case BRSkillLevel.Regular: return DCSSkillLevel.Good;
-        //        case BRSkillLevel.Veteran: return DCSSkillLevel.High;
-        //        case BRSkillLevel.Ace: return DCSSkillLevel.Excellent;
-        //    }
-        //}
+        public static string ReadAllTextIfFileExists(string filePath)
+        {
+            if (!File.Exists(filePath)) return "";
+            return File.ReadAllText(filePath);
+        }
 
         public static Point Add(this Point point, Point other)
         {

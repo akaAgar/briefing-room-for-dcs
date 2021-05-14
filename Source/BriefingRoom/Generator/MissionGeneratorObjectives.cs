@@ -66,15 +66,20 @@ namespace BriefingRoom4DCS.Generator
             ObjectiveNames = new List<string>(Database.Instance.Common.Names.WPObjectivesNames);
         }
 
-        internal Coordinates GenerateObjective(DCSMission mission, MissionTemplate template, int index, Coordinates lastCoordinates)
+        internal Coordinates GenerateObjective(DCSMission mission, MissionTemplate template, int objectiveIndex, Coordinates lastCoordinates)
         {
-            MissionTemplateObjective objectiveTemplate = template.Objectives[index];
+            MissionTemplateObjective objectiveTemplate = template.Objectives[objectiveIndex];
             DBEntryObjectiveFeature[] featuresDB = Database.Instance.GetEntries<DBEntryObjectiveFeature>(objectiveTemplate.Features.ToArray());
             DBEntryObjectiveTarget targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
             DBEntryObjectiveTargetBehavior targetBehaviorDB = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior);
             DBEntryObjectiveTask taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task);
 
-            // TODO: check DB entries exist
+            if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective #{objectiveIndex + 1}.");
+            if (targetBehaviorDB == null) throw new BriefingRoomException($"Target behavior \"{targetBehaviorDB.UIDisplayName}\" not found for objective #{objectiveIndex + 1}.");
+            if (taskDB == null) throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not found for objective #{objectiveIndex + 1}.");
+
+            if (taskDB.ValidUnitCategories.Contains(targetDB.UnitCategory))
+                throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not valid for objective #{objectiveIndex + 1} targets, which belong to category \"{targetDB.UnitCategory}\".");
 
             DBEntryTheaterSpawnPoint? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                 targetDB.ValidSpawnPoints, lastCoordinates,
@@ -83,10 +88,7 @@ namespace BriefingRoom4DCS.Generator
                     template.FlightPlanObjectiveDistance * OBJECTIVE_DISTANCE_VARIATION_MAX));
 
             if (!spawnPoint.HasValue)
-            {
-                BriefingRoom.PrintToLog("Failed to spawn objective unit group.", LogMessageErrorLevel.Warning);
-                return lastCoordinates;
-            }
+                throw new BriefingRoomException("Failed to spawn objective unit group.");
 
             // Pick a name, then remove it from the list
             string objectiveName = Toolbox.RandomFrom(ObjectiveNames);
@@ -96,21 +98,42 @@ namespace BriefingRoom4DCS.Generator
             if (objectiveTemplate.Options.Contains(ObjectiveOption.ShowTarget)) hidden = false;
             else if (objectiveTemplate.Options.Contains(ObjectiveOption.HideTarget)) hidden = true;
 
-            UnitMaker.AddUnitGroup(
+            UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
                 Toolbox.RandomFrom(targetDB.UnitFamilies), targetDB.UnitCount[(int)objectiveTemplate.TargetCount].GetValue(),
                 taskDB.TargetSide,
                 targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
                 spawnPoint.Value.Coordinates, DCSSkillLevel.Average,
                 "Hidden".ToKeyValuePair(hidden));
 
-            // Add Lua data for this objective
-            string objectiveLua = $"briefingRoom.objectives[{index + 1}] = {{ ";
-            objectiveLua += $"targetCategory = Unit.Category.{targetDB.UnitCategory.ToLuaName()}, ";
-            objectiveLua += $"name = \"{objectiveName}\", ";
-            objectiveLua += "}\n";
-            objectiveLua += $"briefingRoom.f10Menu.objectives[{index + 1}] = missionCommands.addSubMenuForCoalition(coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}, \"Objective {objectiveName}\", nil)\n";
+            if (!targetGroupInfo.HasValue) // Failed to generate target group
+                throw new BriefingRoomException($"Failed to generate group for objective {objectiveIndex + 1}");
 
+            // Add Lua data table for this objective
+            string objectiveLua = $"briefingRoom.mission.objectives.data[{objectiveIndex + 1}] = {{ ";
+            objectiveLua += $"groupID = {targetGroupInfo.Value.GroupID}, ";
+            objectiveLua += $"name = \"{objectiveName}\", ";
+            objectiveLua += $"targetCategory = Unit.Category.{targetDB.UnitCategory.ToLuaName()}, ";
+            objectiveLua += $"unitsID = {{ {string.Join(", ", targetGroupInfo.Value.UnitsID)} }}";
+            objectiveLua += "}\n";
+            objectiveLua += $"briefingRoom.mission.f10Menu.objectives[{objectiveIndex + 1}] = missionCommands.addSubMenuForCoalition(coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}, \"Objective {objectiveName}\", nil)\n";
             mission.AppendValue("OBJECTIVES_LUA", objectiveLua);
+
+            // Add objective features Lua for this objective
+            string triggerLua = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA_OBJECTIVESTRIGGERS}{taskDB.CompletionTriggerLua}");
+            LuaTools.ReplaceKey(ref triggerLua, "INDEX", objectiveIndex + 1);
+            mission.AppendValue("OBJECTIVES_TRIGGERS_LUA", triggerLua);
+
+            // Add objective features Lua for this objective
+            mission.SetValue("OBJECTIVES_FEATURES_LUA", ""); // Just in case there's no features
+            foreach (DBEntryObjectiveFeature featureDB in featuresDB)
+            {
+                foreach (string scriptFile in featureDB.IncludeLua)
+                {
+                    string scriptLua = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA_OBJECTIVEFEATURES}{scriptFile}");
+                    LuaTools.ReplaceKey(ref scriptLua, "INDEX", objectiveIndex + 1);
+                    mission.AppendValue("OBJECTIVES_FEATURES_LUA", scriptLua);
+                }
+            }
 
             return spawnPoint.Value.Coordinates;
         }

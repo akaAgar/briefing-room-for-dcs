@@ -38,7 +38,7 @@ namespace BriefingRoom4DCS.Data
         /// </summary>
         internal UnitCategory[] ValidUnitCategories { get; private set; }
 
-        internal string[] CompletionTriggerLua { get; private set; }
+        internal string CompletionTriggerLua { get; private set; }
 
         internal string BriefingTask { get; private set; }
 
@@ -52,28 +52,15 @@ namespace BriefingRoom4DCS.Data
             using (INIFile ini = new INIFile(iniFilePath))
             {
                 BriefingTask = ini.GetValue<string>("ObjectiveTask", "BriefingTask");
+                CompletionTriggerLua = Toolbox.AddMissingFileExtension(ini.GetValue<string>("ObjectiveTask", "CompletionTriggerLua"), ".lua");
+                if (!File.Exists($"{BRPaths.INCLUDE_LUA_OBJECTIVESTRIGGERS}{CompletionTriggerLua}"))
+                {
+                    BriefingRoom.PrintToLog($"Completion trigger Lua file {CompletionTriggerLua} for objective task \"{ID}\" not found.", LogMessageErrorLevel.Warning);
+                    return false;
+                }
                 TargetSide = ini.GetValue<Side>("ObjectiveTask", "TargetSide");
                 ValidUnitCategories = ini.GetValueArray<UnitCategory>("ObjectiveTask", "ValidUnitCategories").Distinct().ToArray();
                 if (ValidUnitCategories.Length == 0) ValidUnitCategories = Toolbox.GetEnumValues<UnitCategory>(); // No category means all categories
-
-                CompletionTriggerLua = new string[Toolbox.EnumCount<UnitCategory>()];
-                foreach (UnitCategory unitCategory in Toolbox.GetEnumValues<UnitCategory>())
-                {
-                    CompletionTriggerLua[(int)unitCategory] = Toolbox.AddMissingFileExtension(ini.GetValue<string>("CompletionTriggerLua", $"{unitCategory}"), ".lua");
-                    if (ValidUnitCategories.Contains(unitCategory))
-                    {
-                        if (string.IsNullOrEmpty(CompletionTriggerLua[(int)unitCategory]))
-                        {
-                            BriefingRoom.PrintToLog($"Missing completion trigger Lua for objective task \"{ID}\" with unit category \"{unitCategory}\".", LogMessageErrorLevel.Warning);
-                            return false;
-                        }
-                        if (!File.Exists($"{BRPaths.INCLUDE_LUA_OBJECTIVESTRIGGERS}{CompletionTriggerLua[(int)unitCategory]}"))
-                        {
-                            BriefingRoom.PrintToLog($"Completion trigger Lua file {CompletionTriggerLua[(int)unitCategory]} for objective task \"{ID}\" not found.", LogMessageErrorLevel.Warning);
-                            return false;
-                        }
-                    }
-                }
             }
 
             return true;
