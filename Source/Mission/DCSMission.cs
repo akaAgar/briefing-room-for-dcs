@@ -242,6 +242,7 @@ namespace BriefingRoom4DCSWorld.Mission
         
         public List<Country> CountryBlues { get; internal set; }
         public List<Country> CountryReds { get; internal set; }
+        public string KneeboardText { get; internal set; }
 
         /// <summary>
         /// Constructor.

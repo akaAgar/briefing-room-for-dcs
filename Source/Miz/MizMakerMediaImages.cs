@@ -28,6 +28,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 
 namespace BriefingRoom4DCSWorld.Miz
 {
@@ -76,9 +77,35 @@ namespace BriefingRoom4DCSWorld.Miz
             return imageBytes;
         }
 
+        private byte[] GetKneeboardImage(DCSMission mission)
+        {
+            byte[] imageBytes;
+
+
+            using (ImageMaker imgMaker = new ImageMaker())
+            {
+                imgMaker.ImageSizeX = 800;
+                imgMaker.ImageSizeY = 1200;
+                imgMaker.TextOverlay.Shadow = false;
+                imgMaker.TextOverlay.Color = Color.Black;
+                imgMaker.TextOverlay.Text = mission.KneeboardText;
+                imgMaker.TextOverlay.FontSize = 14.0f;
+                imgMaker.TextOverlay.FontFamily = "Segoe Script";
+                imgMaker.TextOverlay.Alignment = ContentAlignment.TopLeft;
+
+                List<ImageMakerLayer> layers = new List<ImageMakerLayer>{
+                    new ImageMakerLayer("notebook.png")
+                };
+
+                imageBytes = imgMaker.GetImageBytes(layers.ToArray());
+            }
+
+            return imageBytes;
+        }
         public void AddMediaFiles(MizFile miz, DCSMission mission)
         {
             miz.AddEntry($"l10n/DEFAULT/title_{mission.UniqueID}.jpg", GetTitleImage(mission));
+            miz.AddEntry($"KNEEBOARD/IMAGES/comms_{mission.UniqueID}.jpg", GetKneeboardImage(mission));
         }
 
         /// <summary>
