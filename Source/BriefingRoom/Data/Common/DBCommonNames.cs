@@ -55,22 +55,22 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Name of the final (landing) player waypoint.
         /// </summary>
-        internal string WPNameFinal { get; private set; }
+        internal string WPFinalName { get; private set; }
 
         /// <summary>
         /// Name of the initial (takeoff) player waypoint.
         /// </summary>
-        internal string WPNameInitial { get; private set; }
+        internal string WPInitialName { get; private set; }
 
         /// <summary>
         /// Name of the navigation player waypoints, where $0$, $00$, $000$... is replaced with the waypoint number.
         /// </summary>
-        internal string WPNameNavigation { get; private set; }
+        internal string WPNavigationName { get; private set; }
 
         /// <summary>
         /// Names to use for objectives and objective waypoints.
         /// </summary>
-        internal string[] WPNamesObjectives { get; private set; }
+        internal string[] WPObjectivesNames { get; private set; }
 
         /// <summary>
         /// Constructor.
@@ -93,10 +93,10 @@ namespace BriefingRoom4DCS.Data
                     UnitGroupNames[i] = ini.GetValue<string>("UnitGroup", ((UnitFamily)i).ToString());
                 }
 
-                WPNameFinal = ini.GetValue<string>("Waypoints", "Final");
-                WPNameInitial = ini.GetValue<string>("Waypoints", "Initial");
-                WPNameNavigation = ini.GetValue<string>("Waypoints", "Navigation");
-                WPNamesObjectives = ini.GetValueArray<string>("Waypoints", "Objectives");
+                WPFinalName = ini.GetValue<string>("Waypoints", "Final");
+                WPInitialName = ini.GetValue<string>("Waypoints", "Initial");
+                WPNavigationName = ini.GetValue<string>("Waypoints", "Navigation");
+                WPObjectivesNames = ini.GetValueArray<string>("Waypoints", "Objectives");
             }
         }
     }

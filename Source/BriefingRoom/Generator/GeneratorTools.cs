@@ -333,5 +333,32 @@ namespace BriefingRoom4DCS.Generator
         ////    if (!oppositionKnown && !unitGroup.Flags.HasFlag(DBUnitGroupFlags.Friendly)) return true;
         ////    return false;
         ////}
+        ///
+
+        internal static string GetPlayerStartingAction(PlayerStartLocation playerStartLocation)
+        {
+            switch (playerStartLocation)
+            {
+                default: // case PlayerStartLocation.ParkingCold
+                    return "From Parking Area";
+                case PlayerStartLocation.ParkingHot:
+                    return "From Parking Area Hot";
+                case PlayerStartLocation.Runway:
+                    return "From Runway";
+            }
+        }
+
+        internal static string GetPlayerStartingType(PlayerStartLocation playerStartLocation)
+        {
+            switch (playerStartLocation)
+            {
+                default: // case PlayerStartLocation.ParkingCold
+                    return "TakeOffParking";
+                case PlayerStartLocation.ParkingHot:
+                    return "TakeOffParkingHot";
+                case PlayerStartLocation.Runway:
+                    return "TakeOff";
+            }
+        }
     }
 }

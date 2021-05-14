@@ -32,9 +32,9 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGeneratorObjectives : IDisposable
     {
         /// <summary>
-        /// List of already used objective names, to make sure each one is different.
+        /// List of available objective names, to make sure each one is different.
         /// </summary>
-        private readonly List<string> UsedObjectiveNames = new List<string>();
+        private readonly List<string> ObjectiveNames = new List<string>();
 
         /// <summary>
         /// Minimum objective distance variation.
@@ -63,6 +63,7 @@ namespace BriefingRoom4DCS.Generator
         internal MissionGeneratorObjectives(UnitMaker unitMaker)
         {
             UnitMaker = unitMaker;
+            ObjectiveNames = new List<string>(Database.Instance.Common.Names.WPObjectivesNames);
         }
 
         internal Coordinates GenerateObjective(DCSMission mission, MissionTemplate template, int index, Coordinates lastCoordinates)
@@ -74,12 +75,6 @@ namespace BriefingRoom4DCS.Generator
             DBEntryObjectiveTask taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task);
 
             // TODO: check DB entries exist
-
-            // Add Lua data for this objective
-            string objectiveLua = $"briefingRoom.objectives[{index + 1}] = {{ ";
-            objectiveLua += $"targetCategory = Unit.Category.{targetDB.UnitCategory.ToLuaName()}, ";
-            objectiveLua += "},\n";
-            mission.AppendValue("OBJECTIVES_LUA", objectiveLua);
 
             DBEntryTheaterSpawnPoint? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                 targetDB.ValidSpawnPoints, lastCoordinates,
@@ -93,6 +88,10 @@ namespace BriefingRoom4DCS.Generator
                 return lastCoordinates;
             }
 
+            // Pick a name, then remove it from the list
+            string objectiveName = Toolbox.RandomFrom(ObjectiveNames);
+            ObjectiveNames.Remove(objectiveName);
+
             bool hidden = GeneratorTools.GetHiddenStatus(template.OptionsFogOfWar, taskDB.TargetSide);
             if (objectiveTemplate.Options.Contains(ObjectiveOption.ShowTarget)) hidden = false;
             else if (objectiveTemplate.Options.Contains(ObjectiveOption.HideTarget)) hidden = true;
@@ -103,6 +102,15 @@ namespace BriefingRoom4DCS.Generator
                 targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
                 spawnPoint.Value.Coordinates, DCSSkillLevel.Average,
                 "Hidden".ToKeyValuePair(hidden));
+
+            // Add Lua data for this objective
+            string objectiveLua = $"briefingRoom.objectives[{index + 1}] = {{ ";
+            objectiveLua += $"targetCategory = Unit.Category.{targetDB.UnitCategory.ToLuaName()}, ";
+            objectiveLua += $"name = \"{objectiveName}\", ";
+            objectiveLua += "}\n";
+            objectiveLua += $"briefingRoom.f10Menu.objectives[{index + 1}] = missionCommands.addSubMenuForCoalition(coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}, \"Objective {objectiveName}\", nil)\n";
+
+            mission.AppendValue("OBJECTIVES_LUA", objectiveLua);
 
             return spawnPoint.Value.Coordinates;
         }
