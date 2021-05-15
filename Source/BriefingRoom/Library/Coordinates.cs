@@ -19,6 +19,8 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BriefingRoom4DCS
 {
@@ -275,6 +277,18 @@ namespace BriefingRoom4DCS
             double randY = minMax.GetValue() * Toolbox.RandomFrom(1 , -1);
             
             return new Coordinates(X + randX, Y + randY);
+        }
+
+        /// <summary>
+        /// Returns the sum of a series of coordinates.
+        /// </summary>
+        /// <param name="coordinates">Coordinates to sum.</param>
+        /// <returns>The sum of all coordinates</returns>
+        internal static Coordinates Sum(IEnumerable<Coordinates> coordinates)
+        {
+            return new Coordinates(
+                (from coordinate in coordinates select coordinate.X).Sum(),
+                (from coordinate in coordinates select coordinate.Y).Sum());
         }
     }
 }
