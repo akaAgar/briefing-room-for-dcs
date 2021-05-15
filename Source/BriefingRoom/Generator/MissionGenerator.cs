@@ -109,10 +109,25 @@ namespace BriefingRoom4DCS.Generator
 
             // Generate objectives
             BriefingRoom.PrintToLog("Generating objectives...");
+            List<Coordinates> objectiveCoordinates = new List<Coordinates>();
             Coordinates lastWPCoordinates = playerAirbase.Coordinates;
             using (MissionGeneratorObjectives objectivesGenerator = new MissionGeneratorObjectives(unitMaker))
                 for (i = 0; i < template.Objectives.Count; i++)
+                {
                     lastWPCoordinates = objectivesGenerator.GenerateObjective(mission, template, i, lastWPCoordinates);
+                    objectiveCoordinates.Add(lastWPCoordinates);
+                }
+            Coordinates objectivesCenter = (objectiveCoordinates.Count == 0) ? playerAirbase.Coordinates : Coordinates.Sum(objectiveCoordinates) / objectiveCoordinates.Count;
+
+            // Generate extra flight plan info
+            using (MissionGeneratorFlightPlan flightPlanGenerator = new MissionGeneratorFlightPlan())
+            {
+                flightPlanGenerator.GenerateBullseyes(mission, objectivesCenter);
+            }
+
+            // Generate surface-to-air defenses
+            using (MissionGeneratorAirDefense airDefenseGenerator = new MissionGeneratorAirDefense(unitMaker))
+                airDefenseGenerator.GenerateAirDefense(mission, template, playerAirbase.Coordinates, objectivesCenter);
 
             // Generate player flight groups
             BriefingRoom.PrintToLog("Generating player flight groups...");
@@ -121,11 +136,6 @@ namespace BriefingRoom4DCS.Generator
                     playerFlightGroupsGenerator.GeneratePlayerFlightGroup(mission, template.PlayerFlightGroups[i], playerAirbase);
             //unitMaker.AddUnitGroup(new string[] { "A-10C" }, Side.Ally, UnitCategory.Plane, "", "", playerAirbase.Coordinates, DCSSkillLevel.Average);
 
-            // TODO: TEMPORARY - REMOVE
-            mission.SetValue("BULLSEYE_BLUE_X", playerAirbase.Coordinates.X);
-            mission.SetValue("BULLSEYE_BLUE_Y", playerAirbase.Coordinates.Y);
-            mission.SetValue("BULLSEYE_RED_X", playerAirbase.Coordinates.X);
-            mission.SetValue("BULLSEYE_RED_Y", playerAirbase.Coordinates.Y);
             mission.SetValue("RESOURCES_OGG_FILES", "");
 
             // Generate carrier groups
