@@ -78,7 +78,7 @@ namespace BriefingRoom4DCS.Generator
             if (targetBehaviorDB == null) throw new BriefingRoomException($"Target behavior \"{targetBehaviorDB.UIDisplayName}\" not found for objective #{objectiveIndex + 1}.");
             if (taskDB == null) throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not found for objective #{objectiveIndex + 1}.");
 
-            if (taskDB.ValidUnitCategories.Contains(targetDB.UnitCategory))
+            if (!taskDB.ValidUnitCategories.Contains(targetDB.UnitCategory))
                 throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not valid for objective #{objectiveIndex + 1} targets, which belong to category \"{targetDB.UnitCategory}\".");
 
             DBEntryTheaterSpawnPoint? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
