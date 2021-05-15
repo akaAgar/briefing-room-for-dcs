@@ -78,6 +78,8 @@ namespace BriefingRoom4DCS.Generator
 
         internal UnitMakerSpawnPointSelector SpawnPointSelector { get; }
 
+        internal UnitMakerCallsignGenerator CallsignGenerator { get; }
+
         internal UnitMaker(DCSMission mission, MissionTemplate template, DBEntryCoalition[] coalitionsDB, DBEntryTheater theaterDB, Coalition playerCoalition, Country[][] coalitionsCountries)
         {
             Mission = mission;
@@ -87,6 +89,7 @@ namespace BriefingRoom4DCS.Generator
             PlayerCoalition = playerCoalition;
             CoalitionsCountries = coalitionsCountries;
 
+            CallsignGenerator = new UnitMakerCallsignGenerator(coalitionsDB);
             SpawnPointSelector = new UnitMakerSpawnPointSelector(theaterDB);
 
             Clear();
@@ -276,7 +279,8 @@ namespace BriefingRoom4DCS.Generator
 
         public void Dispose()
         {
-
+            CallsignGenerator.Dispose();
+            SpawnPointSelector.Dispose();
         }
     }
 }
