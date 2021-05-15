@@ -40,21 +40,6 @@ namespace BriefingRoom4DCS.Data
         internal string[][] CommonOGGForGameMode { get; private set; }
 
         /// <summary>
-        /// Settings for enemy air defense, according to mission template <see cref="Template.MissionTemplate.SituationEnemyAirDefense"/> setting.
-        /// </summary>
-        internal DBCommonAirDefenseInfo[] EnemyAirDefense { get; }
-
-        /// <summary>
-        /// Minimum distance (in nautical miles) between players take off location and enemy surface-to-air defense, for each air defense range category.
-        /// </summary>
-        internal int[] EnemyAirDefenseDistanceFromTakeOffLocation { get; }
-
-        /// <summary>
-        /// Min/max distance (in nautical miles) between objectives and enemy surface-to-air defense, for each air defense range category.
-        /// </summary>
-        internal MinMaxD[] EnemyAirDefenseDistanceFromObjectives { get; }
-
-        /// <summary>
         /// Min/max distance between enemy CAP and the mission objectives.
         /// </summary>
         internal MinMaxD EnemyCAPDistanceFromObjectives { get; private set; }
@@ -70,19 +55,9 @@ namespace BriefingRoom4DCS.Data
         internal double[] EnemyCAPRelativePower { get; }
 
         /// <summary>
-        /// Settings for enemy air defense, according to mission template <see cref="Template.MissionTemplate.SituationFriendlyAirDefense"/> setting.
+        /// Stores information about surface-to-air defense.
         /// </summary>
-        internal DBCommonAirDefenseInfo[] AllyAirDefense { get; }
-
-        /// <summary>
-        /// Minimum distance (in nautical miles) between players take off location and ally surface-to-air defense, for each air defense range category.
-        /// </summary>
-        internal MinMaxD[] AllyAirDefenseDistanceFromTakeOffLocation { get; }
-
-        /// <summary>
-        /// Min/max distance (in nautical miles) between objectives and ally surface-to-air defense, for each air defense range category.
-        /// </summary>
-        internal int[] AllyAirDefenseDistanceFromObjectives { get; }
+        internal DBCommonAirDefense AirDefense { get; private set; }
 
         /// <summary>
         /// Stores information about common mission names/wording.
@@ -99,12 +74,6 @@ namespace BriefingRoom4DCS.Data
         /// </summary>
         internal DatabaseCommon()
         {
-            EnemyAirDefense = new DBCommonAirDefenseInfo[Toolbox.EnumCount<AmountNR>()];
-            EnemyAirDefenseDistanceFromObjectives = new MinMaxD[Toolbox.EnumCount<AirDefenseRange>()];
-            EnemyAirDefenseDistanceFromTakeOffLocation = new int[Toolbox.EnumCount<AirDefenseRange>()];
-            AllyAirDefense = new DBCommonAirDefenseInfo[Toolbox.EnumCount<AmountNR>()];
-            AllyAirDefenseDistanceFromObjectives = new int[Toolbox.EnumCount<AirDefenseRange>()]; 
-            AllyAirDefenseDistanceFromTakeOffLocation = new MinMaxD[Toolbox.EnumCount<AirDefenseRange>()];
             EnemyCAPRelativePower = new double[Toolbox.EnumCount<AmountNR>()];
         }
 
@@ -134,40 +103,7 @@ namespace BriefingRoom4DCS.Data
             }
 
             BriefingRoom.PrintToLog("Loading common enemy air defense settings...");
-            using (INIFile ini = new INIFile($"{BRPaths.DATABASE}EnemyAirDefense.ini"))
-            {
-                EnemyCAPDistanceFromObjectives = ini.GetValue<MinMaxD>("CombatAirPatrols", "DistanceFromObjectives");
-                EnemyCAPMinDistanceFromTakeOffLocation = ini.GetValue<int>("CombatAirPatrols", "MinDistanceFromTakeOffLocation");
-
-                for (i = 0; i < Toolbox.EnumCount<AmountNR>(); i++)
-                {
-                    EnemyAirDefense[i] = new DBCommonAirDefenseInfo(ini, (AmountNR)i);
-
-                    EnemyCAPRelativePower[i] = (i == 0) ? 0.0 :
-                        Toolbox.Clamp(ini.GetValue<int>("CombatAirPatrols", $"RelativePower.{(AmountNR)i}"), 0, 100) / 100.0;
-                }
-
-                for (i = 0; i < Toolbox.EnumCount<AirDefenseRange>(); i++)
-                {
-                    EnemyAirDefenseDistanceFromTakeOffLocation[i] = ini.GetValue<int>("AirDefenseRange", $"{(AirDefenseRange)i}.MinDistanceFromTakeOffLocation");
-                    EnemyAirDefenseDistanceFromObjectives[i] = ini.GetValue<MinMaxD>("AirDefenseRange", $"{(AirDefenseRange)i}.DistanceFromObjectives");
-                }
-            }
-
-            BriefingRoom.PrintToLog("Loading common ally air defense settings...");
-            using (INIFile ini = new INIFile($"{BRPaths.DATABASE}AllyAirDefense.ini"))
-            {
-                for (i = 0; i < Toolbox.EnumCount<AmountNR>(); i++)
-                {
-                    AllyAirDefense[i] = new DBCommonAirDefenseInfo(ini, (AmountNR)i);
-                }
-
-                for (i = 0; i < Toolbox.EnumCount<AirDefenseRange>(); i++)
-                {
-                    AllyAirDefenseDistanceFromTakeOffLocation[i] = ini.GetValue<MinMaxD>("AirDefenseRange", $"{(AirDefenseRange)i}.DistanceFromTakeOffLocation");
-                    AllyAirDefenseDistanceFromObjectives[i] = ini.GetValue<int>("AirDefenseRange", $"{(AirDefenseRange)i}.MinDistanceFromObjectives");
-                }
-            }
+            AirDefense = new DBCommonAirDefense();
 
             BriefingRoom.PrintToLog("Loading common names settings...");
             Names = new DBCommonNames();

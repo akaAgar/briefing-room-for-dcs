@@ -18,12 +18,14 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using System.Linq;
+
 namespace BriefingRoom4DCS.Data
 {
     /// <summary>
     /// Stores settings (number of units, etc.) about a level of enemy air defense.
     /// </summary>
-    internal struct DBCommonAirDefenseInfo
+    internal struct DBCommonAirDefenseLevel
     {
         /// <summary>
         /// Chance (percentage) to have "embedded" short-range air-defense units included in objective groups.
@@ -41,21 +43,27 @@ namespace BriefingRoom4DCS.Data
         internal MinMaxI[] GroupsInArea { get; }
 
         /// <summary>
+        /// Possible AI skill levels for air defense units.
+        /// </summary>
+        internal DCSSkillLevel[] SkillLevel { get; }
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="ini">.ini file from which to load air defense common settings</param>
         /// <param name="airDefenseLevel">Level of air defense for which this setting applies.</param>
-        internal DBCommonAirDefenseInfo(INIFile ini, AmountNR airDefenseLevel)
+        internal DBCommonAirDefenseLevel(INIFile ini, AmountNR airDefenseLevel)
         {
             int i;
             GroupsInArea = new MinMaxI[Toolbox.EnumCount<AirDefenseRange>()];
 
-            if (airDefenseLevel == AmountNR.None)
+            if ((airDefenseLevel == AmountNR.None) || (airDefenseLevel == AmountNR.Random))
             {
                 EmbeddedChance = 0;
                 EmbeddedUnitCount = new MinMaxI(0, 0);
                 for (i = 0; i < Toolbox.EnumCount<AirDefenseRange>(); i++)
                     GroupsInArea[i] = new MinMaxI(0, 0);
+                SkillLevel = new DCSSkillLevel[] { DCSSkillLevel.Average };
 
                 return;
             }
@@ -65,6 +73,9 @@ namespace BriefingRoom4DCS.Data
 
             for (i = 0; i < Toolbox.EnumCount<AirDefenseRange>(); i++)
                 GroupsInArea[i] = ini.GetValue<MinMaxI>("AirDefense", $"{airDefenseLevel}.GroupsInArea.{(AirDefenseRange)i}");
+
+            SkillLevel = ini.GetValueArray<DCSSkillLevel>("AirDefense", $"{airDefenseLevel}.SkillLevel").Distinct().ToArray();
+            if (SkillLevel.Length == 0) SkillLevel = new DCSSkillLevel[] { DCSSkillLevel.Average, DCSSkillLevel.Good, DCSSkillLevel.High, DCSSkillLevel.Excellent };
         }
     }
 }
