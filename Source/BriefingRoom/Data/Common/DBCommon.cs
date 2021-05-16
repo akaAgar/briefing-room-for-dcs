@@ -18,7 +18,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-
 using System;
 using System.IO;
 
@@ -40,24 +39,14 @@ namespace BriefingRoom4DCS.Data
         internal string[][] CommonOGGForGameMode { get; private set; }
 
         /// <summary>
-        /// Min/max distance between enemy CAP and the mission objectives.
-        /// </summary>
-        internal MinMaxD EnemyCAPDistanceFromObjectives { get; private set; }
-
-        /// <summary>
-        /// Min distance (in nautical miles) between enemy CAP and players take off location.
-        /// </summary>
-        internal int EnemyCAPMinDistanceFromTakeOffLocation { get; private set; }
-
-        /// <summary>
-        /// Relative power (percentage) of enemy CAP relative to the players' flight package.
-        /// </summary>
-        internal double[] EnemyCAPRelativePower { get; }
-
-        /// <summary>
         /// Stores information about surface-to-air defense.
         /// </summary>
         internal DBCommonAirDefense AirDefense { get; private set; }
+
+        /// <summary>
+        /// Stores information about combat air patrols.
+        /// </summary>
+        internal DBCommonCAP CAP { get; private set; }
 
         /// <summary>
         /// Stores information about common mission names/wording.
@@ -72,10 +61,7 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Constructor.
         /// </summary>
-        internal DatabaseCommon()
-        {
-            EnemyCAPRelativePower = new double[Toolbox.EnumCount<AmountNR>()];
-        }
+        internal DatabaseCommon() { }
 
         /// <summary>
         /// Loads common settings from <see cref="COMMON_SETTINGS_FILE"/>
@@ -102,8 +88,11 @@ namespace BriefingRoom4DCS.Data
                 }
             }
 
-            BriefingRoom.PrintToLog("Loading common enemy air defense settings...");
+            BriefingRoom.PrintToLog("Loading common air defense settings...");
             AirDefense = new DBCommonAirDefense();
+
+            BriefingRoom.PrintToLog("Loading common CAP settings...");
+            CAP = new DBCommonCAP();
 
             BriefingRoom.PrintToLog("Loading common names settings...");
             Names = new DBCommonNames();
