@@ -98,11 +98,15 @@ namespace BriefingRoom4DCS.Generator
             if (objectiveTemplate.Options.Contains(ObjectiveOption.ShowTarget)) hidden = false;
             else if (objectiveTemplate.Options.Contains(ObjectiveOption.HideTarget)) hidden = true;
 
+            UnitFamily targetFamily = Toolbox.RandomFrom(targetDB.UnitFamilies);
+
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
-                Toolbox.RandomFrom(targetDB.UnitFamilies), targetDB.UnitCount[(int)objectiveTemplate.TargetCount].GetValue(),
+                targetFamily, targetDB.UnitCount[(int)objectiveTemplate.TargetCount].GetValue(),
                 taskDB.TargetSide,
                 targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
-                spawnPoint.Value.Coordinates, DCSSkillLevel.Average,
+                spawnPoint.Value.Coordinates,
+                GetObjectiveSkillLevel(template, taskDB.TargetSide, targetFamily),
+                AircraftPayload.Default,
                 "Hidden".ToKeyValuePair(hidden));
 
             if (!targetGroupInfo.HasValue) // Failed to generate target group
@@ -136,6 +140,34 @@ namespace BriefingRoom4DCS.Generator
             }
 
             return spawnPoint.Value.Coordinates;
+        }
+
+        private DCSSkillLevel GetObjectiveSkillLevel(MissionTemplate template, Side targetSide, UnitFamily targetFamily)
+        {
+            // Target is an aircraft, air force quality decides skill level
+            if (targetFamily.GetUnitCategory().IsAircraft())
+            {
+                //AmountNR airDefenseIntensity;
+                //if (targetSide == Side.Ally) airDefenseIntensity = template.SituationFriendlyAirForce.Get();
+                //else airDefenseIntensity = template.SituationEnemyAirForce.Get();
+
+                // TODO: return Toolbox.RandomFrom(Database.Instance.Common.CAP.CAPLevels[(int)airDefenseIntensity].SkillLevel);
+
+                return DCSSkillLevel.Average;
+            }
+
+            // Target is a surface-to-air unit, air defense quality decides skill level
+            if (targetFamily.IsAirDefense())
+            {
+                AmountNR airDefenseIntensity;
+                if (targetSide == Side.Ally) airDefenseIntensity = template.SituationFriendlyAirDefense.Get();
+                else airDefenseIntensity = template.SituationEnemyAirDefense.Get();
+
+                return Toolbox.RandomFrom(Database.Instance.Common.AirDefense.AirDefenseLevels[(int)airDefenseIntensity].SkillLevel);
+            }
+
+            // Target is nothing of that, return some random skill
+            return Toolbox.RandomFrom(DCSSkillLevel.Average, DCSSkillLevel.Good, DCSSkillLevel.High);
         }
 
         ///// <summary>
