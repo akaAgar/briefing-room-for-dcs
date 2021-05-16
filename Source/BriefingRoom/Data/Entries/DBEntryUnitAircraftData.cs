@@ -32,6 +32,11 @@ namespace BriefingRoom4DCS.Data
     internal class DBEntryUnitAircraftData
     {
         /// <summary>
+        /// Default decade to use for payload if no payload was found for a given decade.
+        /// </summary>
+        private const Decade DEFAULT_PAYLOAD_DECADE = Decade.Decade2000;
+
+        /// <summary>
         /// Maximum number of payload pylons per aircraft.
         /// </summary>
         internal const int MAX_PYLONS = 24;
@@ -149,19 +154,31 @@ namespace BriefingRoom4DCS.Data
         }
 
         /// <summary>
-        /// Returns the proper payload for a given task, or the default payload if required payload is not available.
+        /// Returns the Lua table for the payload for a given task, or the default payload if required payload is not available.
         /// </summary>
-        /// <param name="taskPayload">Task the aircraft should perform</param>
-        /// <returns>An array of strings describing the weapon on each pylon</returns>
-        internal string[] GetPayload(AircraftPayload taskPayload, Decade decade)
+        /// <param name="taskPayload">Task the aircraft should perform.</param>
+        /// <param name="decade">Decade during which the mission will take place.</param>
+        /// <returns>An Lua table, as a string</returns>
+        internal string GetPayloadLua(AircraftPayload aircraftPayload, Decade decade)
         {
-            if (TaskPayloadExists(taskPayload, decade))
-                return PayloadTasks[decade][taskPayload];
-            
-            if (TaskPayloadExists(AircraftPayload.Default, decade))
-                return PayloadTasks[decade][AircraftPayload.Default];
+            string[] payload;
 
-            return PayloadTasks[Decade.Decade2000][AircraftPayload.Default];
+            if (TaskPayloadExists(aircraftPayload, decade))
+                payload = PayloadTasks[decade][aircraftPayload];
+            else if (TaskPayloadExists(AircraftPayload.Default, decade))
+                payload = PayloadTasks[decade][AircraftPayload.Default];
+            else
+                payload = PayloadTasks[DEFAULT_PAYLOAD_DECADE][AircraftPayload.Default];
+
+            string pylonsLua = "";
+            for (int i = 0; i < MAX_PYLONS; i++)
+            {
+                string pylonCode = payload[i];
+                if (!string.IsNullOrEmpty(pylonCode))
+                    pylonsLua += $"[{i + 1}] = {{[\"CLSID\"] = \"{pylonCode}\" }},\r\n";
+            }
+
+            return pylonsLua;
         }
 
         /// <summary>
