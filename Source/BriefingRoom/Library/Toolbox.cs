@@ -433,29 +433,51 @@ namespace BriefingRoom4DCS
         }
 
         /// <summary>
-        /// Do units belonging to this category are aircraft?
-        /// </summary>
-        /// <param name="category">An unit category</param>
-        /// <returns>True if unit is an aircraft (helicopter or plane), false otherwise.</returns>
-        public static bool IsAircraft(UnitCategory category)
-        {
-            return (category == UnitCategory.Helicopter) || (category == UnitCategory.Plane);
-        }
-
-        /// <summary>
         /// Returns the UnitCategory an UnitFamily belongs to.
         /// </summary>
-        /// <param name="family">The unit family.</param>
+        /// <param name="unitFamily">The unit family.</param>
         /// <returns>The unit category.</returns>
-        public static UnitCategory GetUnitCategory(this UnitFamily family)
+        public static UnitCategory GetUnitCategory(this UnitFamily unitFamily)
         {
-            string roleStr = family.ToString().ToLowerInvariant();
+            string roleStr = unitFamily.ToString().ToLowerInvariant();
 
             if (roleStr.StartsWith("helicopter")) return UnitCategory.Helicopter;
             if (roleStr.StartsWith("plane")) return UnitCategory.Plane;
             if (roleStr.StartsWith("ship")) return UnitCategory.Ship;
             if (roleStr.StartsWith("static")) return UnitCategory.Static;
             return UnitCategory.Vehicle;
+        }
+
+        /// <summary>
+        /// Do units belonging to this category are aircraft?
+        /// </summary>
+        /// <param name="category">An unit category</param>
+        /// <returns>True if unit is an aircraft (helicopter or plane), false otherwise.</returns>
+        public static bool IsAircraft(this UnitCategory unitCategory)
+        {
+            return (unitCategory == UnitCategory.Helicopter) || (unitCategory == UnitCategory.Plane);
+        }
+
+        /// <summary>
+        /// Is this unit family an air defense unit family (SAM, MANPADS, AAA...)?
+        /// </summary>
+        /// <param name="unitFamily">An unit family.</param>
+        /// <returns>True if the unit family is an air defense family, false otherwise.</returns>
+        public static bool IsAirDefense(this UnitFamily unitFamily)
+        {
+            switch (unitFamily)
+            {
+                case UnitFamily.VehicleAAA:
+                case UnitFamily.VehicleAAAStatic:
+                case UnitFamily.VehicleInfantryMANPADS:
+                case UnitFamily.VehicleSAMLong:
+                case UnitFamily.VehicleSAMMedium:
+                case UnitFamily.VehicleSAMShort:
+                case UnitFamily.VehicleSAMShortIR:
+                    return true;
+            }
+
+            return false;
         }
 
         /// <summary>
