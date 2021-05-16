@@ -138,8 +138,9 @@ namespace BriefingRoom4DCS.Generator
             Country country = (coalition == Coalition.Blue) ? Country.CJTFBlue : Country.CJTFRed;
 
             string lua = File.ReadAllText($"{BRPaths.INCLUDE_LUA_UNITS}{Toolbox.AddMissingFileExtension(groupLua, ".lua")}");
-            foreach (KeyValuePair<string, object> extraSetting in extraSettings)
-                LuaTools.ReplaceKey(ref lua, extraSetting.Key, extraSetting.Value);
+            foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
+                if (!(extraSetting.Value is Array)) // Array extra settings are treated on a per-unit basis
+                    LuaTools.ReplaceKey(ref lua, extraSetting.Key, extraSetting.Value);
 
             string groupName;
             UnitCallsign? callsign = null;
@@ -151,9 +152,11 @@ namespace BriefingRoom4DCS.Generator
             else
                 groupName = GeneratorTools.GetGroupName(GroupID, unitFamily);
             
-            LuaTools.ReplaceKey(ref lua, "ID", GroupID);
-            LuaTools.ReplaceKey(ref lua, "X", coordinates.X);
-            LuaTools.ReplaceKey(ref lua, "Y", coordinates.Y);
+            LuaTools.ReplaceKey(ref lua, "GroupID", GroupID);
+            LuaTools.ReplaceKey(ref lua, "GroupX", coordinates.X);
+            LuaTools.ReplaceKey(ref lua, "GroupY", coordinates.Y);
+            LuaTools.ReplaceKey(ref lua, "GroupX2", coordinates.X);
+            LuaTools.ReplaceKey(ref lua, "GroupY2", coordinates.Y);
             LuaTools.ReplaceKey(ref lua, "Name", groupName);
 
             string unitLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_UNITS}{Toolbox.AddMissingFileExtension(unitLua, ".lua")}");
@@ -167,19 +170,22 @@ namespace BriefingRoom4DCS.Generator
                 SetUnitCoordinatesAndHeading(unitDB, unitIndex, coordinates, out Coordinates unitCoordinates, out double unitHeading);
 
                 string singleUnitLuaTable = unitLuaTemplate;
-                foreach (KeyValuePair<string, object> extraSetting in extraSettings)
-                    LuaTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value);
-                LuaTools.ReplaceKey(ref singleUnitLuaTable, "ID", UnitID);
+                foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
+                    if (extraSetting.Value is Array)
+                        LuaTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value, unitIndex);
+                    else
+                        LuaTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value);
+
+                LuaTools.ReplaceKey(ref singleUnitLuaTable, "UnitID", UnitID);
                 LuaTools.ReplaceKey(ref singleUnitLuaTable, "Type", units[unitIndex]);
                 LuaTools.ReplaceKey(ref singleUnitLuaTable, "ExtraLua", unitDB.ExtraLua);
                 LuaTools.ReplaceKey(ref singleUnitLuaTable, "Heading", unitHeading);
-                LuaTools.ReplaceKey(ref singleUnitLuaTable, "X", unitCoordinates.X);
-                LuaTools.ReplaceKey(ref singleUnitLuaTable, "Y", unitCoordinates.Y);
+                LuaTools.ReplaceKey(ref singleUnitLuaTable, "UnitX", unitCoordinates.X);
+                LuaTools.ReplaceKey(ref singleUnitLuaTable, "UnitY", unitCoordinates.Y);
                 if ((unitDB.Category == UnitCategory.Helicopter) || (unitDB.Category == UnitCategory.Plane))
                 {
                     LuaTools.ReplaceKey(ref singleUnitLuaTable, "Altitude", unitDB.AircraftData.CruiseAltitude);
                     LuaTools.ReplaceKey(ref singleUnitLuaTable, "PropsLua", unitDB.AircraftData.PropsLua);
-                    LuaTools.ReplaceKey(ref singleUnitLuaTable, "EPLRS", unitDB.Flags.HasFlag(DBEntryUnitFlags.EPLRS));
                     LuaTools.ReplaceKey(ref singleUnitLuaTable, "Speed", unitDB.AircraftData.CruiseSpeed);
                     LuaTools.ReplaceKey(ref singleUnitLuaTable, "Callsign", callsign.Value.GetLua(unitIndex + 1));
                     LuaTools.ReplaceKey(ref singleUnitLuaTable, "OnBoardNumber", Toolbox.RandomInt(1, 1000).ToString("000"));
@@ -190,6 +196,7 @@ namespace BriefingRoom4DCS.Generator
 
                     if (unitIndex == 0) // Replace these values only once, as they affect the whole group
                     {
+                        LuaTools.ReplaceKey(ref lua, "EPLRS", unitDB.Flags.HasFlag(DBEntryUnitFlags.EPLRS));
                         LuaTools.ReplaceKey(ref lua, "RadioBand", (int)unitDB.AircraftData.RadioModulation);
                         LuaTools.ReplaceKey(ref lua, "RadioFrequency", unitDB.AircraftData.RadioFrequency);
                         LuaTools.ReplaceKey(ref lua, "Speed", unitDB.AircraftData.CruiseSpeed);

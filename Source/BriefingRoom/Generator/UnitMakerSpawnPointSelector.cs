@@ -68,10 +68,11 @@ namespace BriefingRoom4DCS.Generator
         /// Returns a free parking spot for the given airbase.
         /// </summary>
         /// <param name="airbaseID">Internal ID of the airbase in DCS World</param>
-        /// <param name="lastSpotCoordinates">Coordinates of the last aircraft spot</param>
-        /// <param name="airbaseID">Coordinates of the selected parking spot</param>
+        /// <param name="parkingSpotCoordinates">Coordinates of the selected parking spot</param>
+        /// <param name="lastSpotCoordinates">Coordinates of the last aircraft spot picked, if any. Will try to pick a spot near this one.</param>
+        /// <param name="requiresOpenAirParking">Should the aircraft be spawned on an opened parking spot (not in a hangar)?</param>
         /// <returns>A parking spot ID, or -1 if none found or if airbase doesn't exist</returns>
-        internal int GetFreeParkingSpot(int airbaseID, Coordinates? lastSpotCoordinates, out Coordinates parkingSpotCoordinates, bool requiresOpenAirParking = false)
+        internal int GetFreeParkingSpot(int airbaseID, out Coordinates parkingSpotCoordinates, Coordinates? lastSpotCoordinates = null, bool requiresOpenAirParking = false)
         {
             parkingSpotCoordinates = new Coordinates();
             if (!AirbaseParkingSpots.ContainsKey(airbaseID) || (AirbaseParkingSpots[airbaseID].Count == 0)) return -1;

@@ -21,7 +21,9 @@ If not, see https://www.gnu.org/licenses/
 */
 
 using System;
+using System.Collections;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace BriefingRoom4DCS.Generator
@@ -55,6 +57,26 @@ namespace BriefingRoom4DCS.Generator
         internal static void ReplaceKey(ref string lua, string key, object value)
         {
             lua = lua.Replace($"${key.ToUpperInvariant()}$", Toolbox.ValToString(value));
+        }
+
+        /// <summary>
+        /// Replaces all instance of "$KEY$" in a Lua script by a value from a given index arrayValue.
+        /// </summary>
+        /// <param name="lua">The Lua script.</param>
+        /// <param name="key">The key to replace, without the dollar signs.</param>
+        /// <param name="arrayValue">An array from which to pick the value to replace the key with.</param>
+        /// <param name="arrayIndex">Index of the array from which to pick the value.</param>
+        internal static void ReplaceKey(ref string lua, string key, object arrayValue, int arrayIndex)
+        {
+            try
+            {
+                object value = ((IEnumerable)arrayValue).Cast<object>().Select(x => x).ToArray()[arrayIndex];
+                ReplaceKey(ref lua, key, value);
+            }
+            catch (Exception)
+            {
+                ReplaceKey(ref lua, key, "");
+            }
         }
 
         ///// <summary>
