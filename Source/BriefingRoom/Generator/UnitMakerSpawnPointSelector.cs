@@ -61,13 +61,7 @@ namespace BriefingRoom4DCS.Generator
             AirbaseParkingSpots = new Dictionary<int, List<DBEntryAirbaseParkingSpot>>();
             SpawnPoints = new List<DBEntryTheaterSpawnPoint>();
 
-            SpawnPoints.AddRange(theaterDB.SpawnPoints);
-            foreach (DBEntryAirbase airbase in theaterDB.GetAirbases())
-            {
-                if (airbase.ParkingSpots.Length < 1) continue;
-                if (AirbaseParkingSpots.ContainsKey(airbase.DCSID)) continue;
-                AirbaseParkingSpots.Add(airbase.DCSID, airbase.ParkingSpots.ToList());
-            }
+            Clear();
         }
 
         /// <summary>
@@ -93,6 +87,20 @@ namespace BriefingRoom4DCS.Generator
             AirbaseParkingSpots[airbaseID].Remove(parkingSpot.Value);
             parkingSpotCoordinates = parkingSpot.Value.Coordinates;
             return parkingSpot.Value.DCSID;
+        }
+
+        internal void Clear()
+        {
+            AirbaseParkingSpots.Clear();
+            SpawnPoints.Clear();
+
+            SpawnPoints.AddRange(TheaterDB.SpawnPoints);
+            foreach (DBEntryAirbase airbase in TheaterDB.GetAirbases())
+            {
+                if (airbase.ParkingSpots.Length < 1) continue;
+                if (AirbaseParkingSpots.ContainsKey(airbase.DCSID)) continue;
+                AirbaseParkingSpots.Add(airbase.DCSID, airbase.ParkingSpots.ToList());
+            }
         }
 
         /// <summary>

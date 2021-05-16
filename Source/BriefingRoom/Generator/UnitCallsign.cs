@@ -34,12 +34,12 @@ namespace BriefingRoom4DCS.Generator
         /// <summary>
         /// Unit name, with "$INDEX$" for the unit index, e.g. "ENFIELD 1 $INDEX"
         /// </summary>
-        internal string UnitName { get; }
+        private readonly string UnitName;
 
         /// <summary>
         /// Lua table with the callsign info.
         /// </summary>
-        internal string Lua { get; }
+        private readonly string Lua;
 
         /// <summary>
         /// Constructor.
@@ -52,6 +52,26 @@ namespace BriefingRoom4DCS.Generator
             GroupName = groupName;
             UnitName = unitName;
             Lua = lua;
+        }
+
+        /// <summary>
+        /// Returns the Lua table for an unit from the group using this callsign.
+        /// </summary>
+        /// <param name="unitIndex">Index of the unit in the group (starting at 1).</param>
+        /// <returns>A Lua table, as a string.</returns>
+        internal string GetLua(int unitIndex)
+        {
+            return Lua.Replace("$INDEX$", unitIndex.ToString());
+        }
+
+        /// <summary>
+        /// Returns the name of an unit from the group using this callsign.
+        /// </summary>
+        /// <param name="unitIndex">Index of the unit in the group (starting at 1).</param>
+        /// <returns>An unit name.</returns>
+        internal string GetUnitName(int unitIndex)
+        {
+            return UnitName.Replace("$INDEX$", unitIndex.ToString());
         }
     }
 }

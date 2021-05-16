@@ -75,7 +75,7 @@ namespace BriefingRoom4DCS.Generator
             Clear();
         }
 
-        private void Clear()
+        internal void Clear()
         {
             int i, j;
 
