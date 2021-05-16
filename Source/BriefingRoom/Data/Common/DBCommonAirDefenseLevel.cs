@@ -23,7 +23,7 @@ using System.Linq;
 namespace BriefingRoom4DCS.Data
 {
     /// <summary>
-    /// Stores settings (number of units, etc.) about a level of enemy air defense.
+    /// Stores settings (number of units, etc.) about a level of air defense.
     /// </summary>
     internal struct DBCommonAirDefenseLevel
     {

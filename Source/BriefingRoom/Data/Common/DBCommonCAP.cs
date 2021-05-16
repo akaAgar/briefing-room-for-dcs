@@ -37,19 +37,16 @@ namespace BriefingRoom4DCS.Data
         internal int EnemyCAPMinDistanceFromTakeOffLocation { get; private set; }
 
         /// <summary>
-        /// Relative power (percentage) of enemy CAP relative to the players' flight package.
+        /// Settings for CAP at various CAP levels.
         /// </summary>
-        internal double[] EnemyCAPRelativePower { get; }
-
+        internal DBCommonCAPLevel[] CAPLevels { get; }
 
         internal DBCommonCAP()
         {
-            EnemyCAPRelativePower = new double[Toolbox.EnumCount<AmountNR>()];
-
-            //int i;
-
             using (INIFile ini = new INIFile($"{BRPaths.DATABASE}CAP.ini"))
             {
+
+
                 //AirDefenseLevels = new DBCommonAirDefenseLevel[Toolbox.EnumCount<AmountNR>()];
                 //for (i = 0; i < Toolbox.EnumCount<AmountNR>(); i++)
                 //    AirDefenseLevels[i] = new DBCommonAirDefenseLevel(ini, (AmountNR)i);

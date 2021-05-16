@@ -53,7 +53,10 @@ namespace BriefingRoom4DCS.Generator
 
             // Create mission class and other fields
             DCSMission mission = new DCSMission();
+            
             List<Waypoint> waypoints = new List<Waypoint>();
+            List<int> immediateActivationAircraftGroupsIDs = new List<int>();
+            List<int> lateActivationAircraftGroupsIDs = new List<int>();
 
             // Get required database entries here, so we don't have to look for them each time they're needed.
             DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
@@ -108,8 +111,6 @@ namespace BriefingRoom4DCS.Generator
                 mission.SetValue("MISSION_AIRBASE_Y", playerAirbase.Coordinates.Y);
             }
 
-
-
             // Generate objectives
             BriefingRoom.PrintToLog("Generating objectives...");
             List<Coordinates> objectiveCoordinates = new List<Coordinates>();
@@ -131,9 +132,21 @@ namespace BriefingRoom4DCS.Generator
                 flightPlanGenerator.GenerateExtraWaypoints(template, playerAirbase.Coordinates, waypoints, true); // Egress WPs
             }
 
+
             // Generate surface-to-air defenses
             using (MissionGeneratorAirDefense airDefenseGenerator = new MissionGeneratorAirDefense(unitMaker))
                 airDefenseGenerator.GenerateAirDefense(template, playerAirbase.Coordinates, objectivesCenter);
+
+            // Generate combat air patrols
+            using (MissionGeneratorCombatAirPatrols capGenerator = new MissionGeneratorCombatAirPatrols(unitMaker))
+            {
+                int[] capGroupsID = capGenerator.GenerateCAP(template, playerAirbase.Coordinates, objectivesCenter);
+                foreach (int capGroupID in capGroupsID) // Add 50% of CAP groups to the list of A/C activated on takeoff, the other 50% to the list of A/C activated later.
+                    if (Toolbox.RandomChance(2))
+                        immediateActivationAircraftGroupsIDs.Add(capGroupID);
+                    else
+                        lateActivationAircraftGroupsIDs.Add(capGroupID);
+            }
 
             // Generate player flight groups
             BriefingRoom.PrintToLog("Generating player flight groups...");
@@ -141,12 +154,12 @@ namespace BriefingRoom4DCS.Generator
                 for (i = 0; i < template.PlayerFlightGroups.Count; i++)
                     playerFlightGroupsGenerator.GeneratePlayerFlightGroup(template.PlayerFlightGroups[i], playerAirbase, waypoints);
 
-            mission.SetValue("RESOURCES_OGG_FILES", "");
+            mission.SetValue("RESOURCES_OGG_FILES", ""); // TODO
 
             // Generate carrier groups
             // TODO
 
-            // Get unit tables from the unit maker
+            // Get unit tables from the unit maker (must be done after all units are generated)
             mission.SetValue("COUNTRIES_BLUE", unitMaker.GetUnitsLuaTable(Coalition.Blue));
             mission.SetValue("COUNTRIES_RED", unitMaker.GetUnitsLuaTable(Coalition.Red));
 

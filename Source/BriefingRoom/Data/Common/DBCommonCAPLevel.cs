@@ -23,27 +23,17 @@ using System.Linq;
 namespace BriefingRoom4DCS.Data
 {
     /// <summary>
-    /// Stores settings (number of units, etc.) about a level of enemy air defense.
+    /// Stores settings (number of units, etc.) about a level of CAP.
     /// </summary>
     internal struct DBCommonCAPLevel
     {
         /// <summary>
-        /// Chance (percentage) to have "embedded" short-range air-defense units included in objective groups.
+        /// Number of CAP aircraft (not flight groups) to spawn at this CAP level.
         /// </summary>
-        internal double EmbeddedChance { get; }
-        
-        /// <summary>
-        /// Min/max number of short-range air-defense units to "embed" in objective groups.
-        /// </summary>
-        internal MinMaxI EmbeddedUnitCount { get; }
+        internal MinMaxI AircraftCount { get; }
 
         /// <summary>
-        /// Min/max number of air-defense groups of each range to add near the objectives.
-        /// </summary>
-        internal MinMaxI[] GroupsInArea { get; }
-
-        /// <summary>
-        /// Possible AI skill levels for air defense units.
+        /// Possible AI skill levels for units at this CAP level.
         /// </summary>
         internal DCSSkillLevel[] SkillLevel { get; }
 
@@ -51,30 +41,19 @@ namespace BriefingRoom4DCS.Data
         /// Constructor.
         /// </summary>
         /// <param name="ini">.ini file from which to load air defense common settings</param>
-        /// <param name="airDefenseLevel">Level of air defense for which this setting applies.</param>
-        internal DBCommonCAPLevel(INIFile ini, AmountNR airDefenseLevel)
+        /// <param name="capLevel">Level of CAP for which this setting applies.</param>
+        internal DBCommonCAPLevel(INIFile ini, AmountNR capLevel)
         {
-            int i;
-            GroupsInArea = new MinMaxI[Toolbox.EnumCount<AirDefenseRange>()];
-
-            if ((airDefenseLevel == AmountNR.None) || (airDefenseLevel == AmountNR.Random))
+            if ((capLevel == AmountNR.None) || (capLevel == AmountNR.Random))
             {
-                EmbeddedChance = 0;
-                EmbeddedUnitCount = new MinMaxI(0, 0);
-                for (i = 0; i < Toolbox.EnumCount<AirDefenseRange>(); i++)
-                    GroupsInArea[i] = new MinMaxI(0, 0);
+                AircraftCount = new MinMaxI(0, 0);
                 SkillLevel = new DCSSkillLevel[] { DCSSkillLevel.Average };
-
                 return;
             }
 
-            EmbeddedChance = Toolbox.Clamp(ini.GetValue<int>("AirDefense", $"{airDefenseLevel}.Embedded.Chance"), 0, 100) / 100.0;
-            EmbeddedUnitCount = ini.GetValue<MinMaxI>("AirDefense", $"{airDefenseLevel}.Embedded.UnitCount");
+            AircraftCount = ini.GetValue<MinMaxI>("AirDefense", $"{capLevel}.UnitCount");
 
-            for (i = 0; i < Toolbox.EnumCount<AirDefenseRange>(); i++)
-                GroupsInArea[i] = ini.GetValue<MinMaxI>("AirDefense", $"{airDefenseLevel}.GroupsInArea.{(AirDefenseRange)i}");
-
-            SkillLevel = ini.GetValueArray<DCSSkillLevel>("AirDefense", $"{airDefenseLevel}.SkillLevel").Distinct().ToArray();
+            SkillLevel = ini.GetValueArray<DCSSkillLevel>("AirDefense", $"{capLevel}.SkillLevel").Distinct().ToArray();
             if (SkillLevel.Length == 0) SkillLevel = new DCSSkillLevel[] { DCSSkillLevel.Average, DCSSkillLevel.Good, DCSSkillLevel.High, DCSSkillLevel.Excellent };
         }
     }
