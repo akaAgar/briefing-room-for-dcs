@@ -36,15 +36,6 @@ namespace BriefingRoom4DCS.Generator
         /// </summary>
         private readonly UnitMaker UnitMaker;
 
-        //private readonly AmountNR airDefense;
-        //private readonly Coordinates centerPoint;
-        //private readonly Coordinates opposingPoint;
-        //private readonly MinMaxD[] distsFromCenter;
-        //private readonly int[] minDistFromOpposingPoint;
-        //private readonly DCSSkillLevel skillLevel;
-        //private readonly DCSMissionUnitGroupFlags optionsShowEnemyUnits;
-        //private readonly bool ally;
-
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -54,7 +45,7 @@ namespace BriefingRoom4DCS.Generator
             UnitMaker = unitMaker;
         }
 
-        internal void GenerateAirDefense(DCSMission mission, MissionTemplate template, Coordinates initialPosition, Coordinates objectivesCenter)
+        internal void GenerateAirDefense(MissionTemplate template, Coordinates initialPosition, Coordinates objectivesCenter)
         {
             foreach (Coalition coalition in Toolbox.GetEnumValues<Coalition>())
             {
@@ -65,136 +56,72 @@ namespace BriefingRoom4DCS.Generator
                 Coordinates centerPoint = ally ? initialPosition : objectivesCenter;
                 Coordinates opposingPoint = ally ? objectivesCenter : initialPosition;
 
-                GenerateAirDefenseUnits(side, coalition, airDefenseAmount, centerPoint, opposingPoint);
+                foreach (AirDefenseRange airDefenseRange in Toolbox.GetEnumValues<AirDefenseRange>())
+                    CreateAirDefenseGroups(side, coalition, airDefenseAmount, airDefenseRange, centerPoint, opposingPoint);
             }
         }
 
-        private void GenerateAirDefenseUnits(Side side, Coalition coalition, AmountNR airDefenseAmount, Coordinates centerPoint, Coordinates opposingPoint)
+        private void CreateAirDefenseGroups(
+            Side side, Coalition coalition,
+            AmountNR airDefenseAmount, AirDefenseRange airDefenseRange,
+            Coordinates centerPoint, Coordinates opposingPoint)
         {
-            throw new NotImplementedException();
+            DBCommonAirDefenseLevel airDefenseLevelDB = Database.Instance.Common.AirDefense.AirDefenseLevels[(int)airDefenseAmount];
+
+            int groupCount = airDefenseLevelDB.GroupsInArea[(int)airDefenseRange].GetValue();
+            if (groupCount < 1) return;  // No groups to add, no need to go any further
+
+            //DCSMissionUnitGroupFlags flags = optionsShowEnemyUnits;
+
+            UnitFamily[] unitFamilies;
+            SpawnPointType[] validSpawnPoints;
+            switch (airDefenseRange)
+            {
+                default: // case AirDefenseRange.ShortRange:
+                    unitFamilies = new UnitFamily[] { UnitFamily.VehicleAAA, UnitFamily.VehicleAAAStatic, UnitFamily.VehicleInfantryMANPADS, UnitFamily.VehicleSAMShort, UnitFamily.VehicleSAMShort, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShortIR };
+                    validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandSmall, SpawnPointType.LandMedium, SpawnPointType.LandLarge };
+                    break;
+                case AirDefenseRange.MediumRange:
+                    unitFamilies = new UnitFamily[] { UnitFamily.VehicleSAMMedium };
+                    validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandMedium, SpawnPointType.LandLarge };
+                    break;
+                case AirDefenseRange.LongRange:
+                    unitFamilies = new UnitFamily[] { UnitFamily.VehicleSAMLong };
+                    validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandLarge };
+                    break;
+            }
+
+            for (int i = 0; i < groupCount; i++)
+            {
+                // Find spawn point at the proper distance from the objective(s), but not to close from starting airbase
+                DBEntryTheaterSpawnPoint? spawnPoint =
+                    UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                        validSpawnPoints,
+                        centerPoint,
+                        Database.Instance.Common.AirDefense.DistanceFromCenter[(int)side, (int)airDefenseRange],
+                        opposingPoint,
+                        new MinMaxD(Database.Instance.Common.AirDefense.MinDistanceFromOpposingPoint[(int)side, (int)airDefenseRange], 99999),
+                        coalition);
+
+                // No spawn point found, stop here.
+                if (!spawnPoint.HasValue)
+                {
+                    BriefingRoom.PrintToLog($"No spawn point found for {airDefenseRange} air defense unit groups", LogMessageErrorLevel.Warning);
+                    return;
+                }
+
+                UnitMakerGroupInfo? groupInfo = UnitMaker.AddUnitGroup(
+                    Toolbox.RandomFrom(unitFamilies), 1, side,
+                    "GroupVehicle", "UnitVehicle",
+                    spawnPoint.Value.Coordinates,
+                    Toolbox.RandomFrom(airDefenseLevelDB.SkillLevel));
+
+                if (!groupInfo.HasValue) // Failed to generate a group
+                    BriefingRoom.PrintToLog(
+                        $"Failed to add {airDefenseRange} air defense unit group for {coalition} coalition.",
+                        LogMessageErrorLevel.Warning);
+            }
         }
-
-        ///// <summary>
-        ///// Constructor.
-        ///// </summary>
-        ///// <param name="unitMaker">Unit maker class to use to generate units</param>
-        //internal MissionGeneratorAirDefense(UnitMaker unitMaker, bool _ally, MissionTemplate template, DCSMission mission)
-        //{
-        //    UnitMaker = unitMaker;
-        //    ally = _ally;
-        //    if (ally)
-        //    {
-        //        airDefense = template.SituationFriendlyAirDefense.Get();
-        //        centerPoint = mission.InitialPosition;
-        //        opposingPoint = mission.ObjectivesCenter;
-        //        distsFromCenter = Database.Instance.Common.AllyAirDefenseDistanceFromTakeOffLocation;
-        //        minDistFromOpposingPoint = Database.Instance.Common.AllyAirDefenseDistanceFromObjectives;
-        //        skillLevel = template.SituationFriendlyAISkillLevel;
-        //        optionsShowEnemyUnits = 0;
-        //        return;
-        //    }
-
-        //    airDefense = template.SituationEnemyAirDefense.Get();
-        //    centerPoint = mission.ObjectivesCenter;
-        //    opposingPoint = mission.InitialPosition;
-        //    distsFromCenter = Database.Instance.Common.EnemyAirDefenseDistanceFromObjectives;
-        //    minDistFromOpposingPoint = Database.Common.EnemyAirDefenseDistanceFromTakeOffLocation;
-        //    //skillLevel = template.SituationEnemySkillLevelGround;
-        //    //optionsShowEnemyUnits = template.Realism.Contains(RealismOption.HideEnemyUnits) ? DCSMissionUnitGroupFlags.Hidden : 0;
-        //}
-
-        ///// <summary>
-        ///// Main unit generation method.
-        ///// </summary>
-        ///// <param name="mission">Mission to which generated units should be added</param>
-        ///// <param name="coalitionDB">Enemy coalition database entry</param>
-        ///// <param name="coalition">Coalition of the spawn points air defense must be spawned at, or null to spawn them anywhere</param>
-        ///// <param name="unitMods">Unit mods the units can belong to</param>
-        //internal void CreateUnitGroups(DCSMission mission/*, DBEntryObjective objectiveDB*/, DBEntryCoalition coalitionDB, Coalition? coalition, string[] unitMods)
-        //{
-        //    foreach (AirDefenseRange airDefenseRange in (AirDefenseRange[])Enum.GetValues(typeof(AirDefenseRange)))
-        //    {
-        //        BriefingRoom.PrintToLog($"Adding {airDefenseRange} air defense", 1);
-        //        if (
-        //            ((airDefenseRange == AirDefenseRange.ShortRange) /*&& objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.NoEnemyAirDefenseShort)*/) ||
-        //            ((airDefenseRange == AirDefenseRange.MediumRange) /*&& objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.NoEnemyAirDefenseMedium)*/) ||
-        //            ((airDefenseRange == AirDefenseRange.LongRange) /*&& objectiveDB.Flags.HasFlag(DBEntryObjectiveFlags.NoEnemyAirDefenseLong)*/))
-        //        {
-        //            BriefingRoom.PrintToLog($"{airDefenseRange} air defense disabled for this mission objective type, not spawning any units", 1);
-        //            continue;
-        //        }
-
-        //        AddAirDefenseUnits(mission, airDefenseRange, coalitionDB, coalition, unitMods);
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Add surface-to-air defense groups.
-        ///// </summary>
-        ///// <param name="mission">Mission to which generated units should be added</param>
-        ///// <param name="template">Mission template to use</param>
-        ///// <param name="airDefenseRange">Air-defense range category</param>
-        ///// <param name="enemyCoalitionDB">Enemy coalition database entry</param>
-        ///// <param name="coalition">Coalition of the spawn points air defense must be spawned at, or null to spawn them anywhere</param>
-        ///// <param name="unitMods">Unit mods the units can belong to</param>
-        //private void AddAirDefenseUnits(DCSMission mission, AirDefenseRange airDefenseRange, DBEntryCoalition enemyCoalitionDB, Coalition? coalition, string[] unitMods)
-        //{
-        //    // Get the proper number of groups
-        //    int groupCount = Database.Common.EnemyAirDefense[(int)airDefense].GroupsInArea[(int)airDefenseRange].GetValue();
-        //    if (groupCount < 1) return;  // No groups to add, no need to go any further
-
-        //    DCSMissionUnitGroupFlags flags = optionsShowEnemyUnits;
-
-        //    UnitFamily[] unitFamilies;
-        //    TheaterLocationSpawnPointType[] validSpawnPoints;
-        //    switch (airDefenseRange)
-        //    {
-        //        default: // case AirDefenseRange.ShortRange:
-        //            unitFamilies = new UnitFamily[] { UnitFamily.VehicleAAA, UnitFamily.VehicleAAAStatic, UnitFamily.VehicleInfantryMANPADS, UnitFamily.VehicleSAMShort, UnitFamily.VehicleSAMShort, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShortIR };
-        //            validSpawnPoints = new TheaterLocationSpawnPointType[] { TheaterLocationSpawnPointType.LandSmall, TheaterLocationSpawnPointType.LandMedium, TheaterLocationSpawnPointType.LandLarge };
-        //            break;
-        //        case AirDefenseRange.MediumRange:
-        //            unitFamilies = new UnitFamily[] { UnitFamily.VehicleSAMMedium };
-        //            validSpawnPoints = new TheaterLocationSpawnPointType[] { TheaterLocationSpawnPointType.LandMedium, TheaterLocationSpawnPointType.LandLarge };
-        //            break;
-        //        case AirDefenseRange.LongRange:
-        //            unitFamilies = new UnitFamily[] { UnitFamily.VehicleSAMLong };
-        //            validSpawnPoints = new TheaterLocationSpawnPointType[] { TheaterLocationSpawnPointType.LandLarge };
-        //            break;
-        //    }
-
-        //    for (int i = 0; i < groupCount; i++)
-        //    {
-        //        // Find spawn point at the proper distance from the objective(s), but not to close from starting airbase
-        //        DBEntryTheaterSpawnPoint? spawnPoint =
-        //            UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-        //                validSpawnPoints,
-        //                centerPoint,
-        //                distsFromCenter[(int)airDefenseRange],
-        //                opposingPoint,
-        //                new MinMaxD(minDistFromOpposingPoint[(int)airDefenseRange], 99999),
-        //                coalition);
-
-        //        // No spawn point found, stop here.
-        //        if (!spawnPoint.HasValue)
-        //        {
-        //            BriefingRoom.PrintToLog($"No spawn point found for {airDefenseRange} air defense unit groups", 1, DebugLogMessageErrorLevel.Warning);
-        //            return;
-        //        }
-
-        //        string[] units = enemyCoalitionDB.GetRandomUnits(Toolbox.RandomFrom(unitFamilies), mission.DateTime.Decade, 1, unitMods);
-
-        //        DCSMissionUnitGroup group = UnitMaker.AddUnitGroup(
-        //            mission, units, ally ? Side.Ally : Side.Enemy,
-        //            spawnPoint.Value.Coordinates,
-        //            "GroupVehicle", "UnitVehicle",
-        //            Toolbox.BRSkillLevelToDCSSkillLevel(skillLevel),
-        //            flags);
-
-        //        if (group == null)
-        //            BriefingRoom.PrintToLog($"Failed to add {airDefenseRange} air defense unit group of type {units[0]}", 1, DebugLogMessageErrorLevel.Warning);
-        //    }
-        //}
 
         /// <summary>
         /// <see cref="IDisposable"/> implementation.

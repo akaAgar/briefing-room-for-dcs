@@ -75,7 +75,7 @@ namespace BriefingRoom4DCS.Generator
                 coalitionsCountries = countriesGenerator.GenerateCountries(mission, template);
 
             // Create unit maker
-            UnitMaker unitMaker = new UnitMaker(mission, template, coalitionsDB, theaterDB, template.ContextPlayerCoalition, coalitionsCountries);
+            UnitMaker unitMaker = new UnitMaker(template, coalitionsDB, theaterDB, template.ContextPlayerCoalition, coalitionsCountries);
 
             // Generate mission date and time
             Month month;
@@ -127,7 +127,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Generate surface-to-air defenses
             using (MissionGeneratorAirDefense airDefenseGenerator = new MissionGeneratorAirDefense(unitMaker))
-                airDefenseGenerator.GenerateAirDefense(mission, template, playerAirbase.Coordinates, objectivesCenter);
+                airDefenseGenerator.GenerateAirDefense(template, playerAirbase.Coordinates, objectivesCenter);
 
             // Generate player flight groups
             BriefingRoom.PrintToLog("Generating player flight groups...");
