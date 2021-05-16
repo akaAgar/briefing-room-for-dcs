@@ -22,6 +22,7 @@ using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
@@ -45,12 +46,28 @@ namespace BriefingRoom4DCS.Generator
             UnitMaker = unitMaker;
         }
 
-        internal void GeneratePlayerFlightGroup(DCSMission mission, MissionTemplateFlightGroup flightGroup, DBEntryAirbase playerAirbase)
+        internal void GeneratePlayerFlightGroup(MissionTemplateFlightGroup flightGroup, DBEntryAirbase playerAirbase, List<Waypoint> waypoints)
         {
             DBEntryUnit unit = Database.Instance.GetEntry<DBEntryUnit>(flightGroup.Aircraft);
 
             // Not an unit, or not a player-controllable unit, abort.
-            if ((unit == null) || !unit.AircraftData.PlayerControllable) return;
+            if ((unit == null) || !unit.AircraftData.PlayerControllable)
+                throw new BriefingRoomException($"Player flight group unit \"{flightGroup.Aircraft}\" does not exist or is not player-controllable.");
+
+            List<int> parkingSpotIDsList = new List<int>();
+            List<Coordinates> parkingSpotCoordinatesList = new List<Coordinates>();
+
+            Coordinates? lastParkingCoordinates = null;
+
+            for (int i = 0; i < flightGroup.Count; i++)
+            {
+                int parkingSpot = UnitMaker.SpawnPointSelector.GetFreeParkingSpot(playerAirbase.DCSID, out Coordinates parkingSpotCoordinates, lastParkingCoordinates);
+                if (parkingSpot < 0) throw new BriefingRoomException("No parking spot found for player aircraft.");
+                lastParkingCoordinates = parkingSpotCoordinates;
+
+                parkingSpotIDsList.Add(parkingSpot);
+                parkingSpotCoordinatesList.Add(parkingSpotCoordinates);
+            }
 
             if (UnitMaker.AddUnitGroup(
                 Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), Side.Ally, unit.Families[0],
@@ -60,11 +77,39 @@ namespace BriefingRoom4DCS.Generator
                 "PlayerStartingType".ToKeyValuePair(GeneratorTools.GetPlayerStartingType(flightGroup.StartLocation)),
                 "InitialWPName".ToKeyValuePair(Database.Instance.Common.Names.WPInitialName),
                 "FinalWPName".ToKeyValuePair(Database.Instance.Common.Names.WPFinalName),
+                "ParkingID".ToKeyValuePair(parkingSpotIDsList.ToArray()),
+                "PlayerWaypoints".ToKeyValuePair(GenerateFlightPlanLua(waypoints)),
+                "LastPlayerWaypointIndex".ToKeyValuePair(waypoints.Count + 2),
+                "UnitX".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.X).ToArray()),
+                "UnitY".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.Y).ToArray()),
                 "MissionAirbaseX".ToKeyValuePair(playerAirbase.Coordinates.X),
                 "MissionAirbaseY".ToKeyValuePair(playerAirbase.Coordinates.Y),
                 "MissionAirbaseID".ToKeyValuePair(playerAirbase.DCSID)) == null)
                 BriefingRoom.PrintToLog("Failed to generate player flight group.", LogMessageErrorLevel.Warning);
         }
+
+        private string GenerateFlightPlanLua(List<Waypoint> waypoints)
+        {
+            string flightPlanLua = "";
+            string waypointLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_MISSION}WaypointPlayer.lua");
+            // TODO: throw exception if file doesn't exist
+
+            for (int i = 0; i < waypoints.Count; i++)
+            {
+                string waypointLua = waypointLuaTemplate;
+
+                LuaTools.ReplaceKey(ref waypointLua, "Index", i + 2);
+                LuaTools.ReplaceKey(ref waypointLua, "Name", waypoints[i].Name);
+                LuaTools.ReplaceKey(ref waypointLua, "X", waypoints[i].Coordinates.X);
+                LuaTools.ReplaceKey(ref waypointLua, "Y", waypoints[i].Coordinates.Y);
+                if (waypoints[i].OnGround) LuaTools.ReplaceKey(ref waypointLua, "Altitude", "0");
+
+                flightPlanLua += waypointLua + "\n";
+            }
+
+            return flightPlanLua;
+        }
+
 
         ///// <summary>
         ///// Main unit generation method.

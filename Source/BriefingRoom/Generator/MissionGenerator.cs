@@ -51,8 +51,9 @@ namespace BriefingRoom4DCS.Generator
                 !GeneratorTools.CheckDBForMissingEntry<DBEntryTheater>(template.ContextTheater))
                 return null;
 
-            // Create mission class
+            // Create mission class and other fields
             DCSMission mission = new DCSMission();
+            List<Waypoint> waypoints = new List<Waypoint>();
 
             // Get required database entries here, so we don't have to look for them each time they're needed.
             DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
@@ -107,15 +108,18 @@ namespace BriefingRoom4DCS.Generator
                 mission.SetValue("MISSION_AIRBASE_Y", playerAirbase.Coordinates.Y);
             }
 
+
+
             // Generate objectives
             BriefingRoom.PrintToLog("Generating objectives...");
             List<Coordinates> objectiveCoordinates = new List<Coordinates>();
-            Coordinates lastWPCoordinates = playerAirbase.Coordinates;
+            Coordinates lastObjectiveCoordinates = playerAirbase.Coordinates;
             using (MissionGeneratorObjectives objectivesGenerator = new MissionGeneratorObjectives(unitMaker))
                 for (i = 0; i < template.Objectives.Count; i++)
                 {
-                    lastWPCoordinates = objectivesGenerator.GenerateObjective(mission, template, i, lastWPCoordinates);
-                    objectiveCoordinates.Add(lastWPCoordinates);
+                    lastObjectiveCoordinates = objectivesGenerator.GenerateObjective(mission, template, i, lastObjectiveCoordinates, out string objectiveName);
+                    objectiveCoordinates.Add(lastObjectiveCoordinates);
+                    waypoints.Add(objectivesGenerator.GenerateObjectiveWaypoint(template.Objectives[i], lastObjectiveCoordinates, objectiveName));
                 }
             Coordinates objectivesCenter = (objectiveCoordinates.Count == 0) ? playerAirbase.Coordinates : Coordinates.Sum(objectiveCoordinates) / objectiveCoordinates.Count;
 
@@ -123,6 +127,8 @@ namespace BriefingRoom4DCS.Generator
             using (MissionGeneratorFlightPlan flightPlanGenerator = new MissionGeneratorFlightPlan())
             {
                 flightPlanGenerator.GenerateBullseyes(mission, objectivesCenter);
+                flightPlanGenerator.GenerateExtraWaypoints(template, playerAirbase.Coordinates, waypoints, false); // Ingress WPs
+                flightPlanGenerator.GenerateExtraWaypoints(template, playerAirbase.Coordinates, waypoints, true); // Egress WPs
             }
 
             // Generate surface-to-air defenses
@@ -133,8 +139,7 @@ namespace BriefingRoom4DCS.Generator
             BriefingRoom.PrintToLog("Generating player flight groups...");
             using (MissionGeneratorPlayerFlightGroups playerFlightGroupsGenerator = new MissionGeneratorPlayerFlightGroups(unitMaker))
                 for (i = 0; i < template.PlayerFlightGroups.Count; i++)
-                    playerFlightGroupsGenerator.GeneratePlayerFlightGroup(mission, template.PlayerFlightGroups[i], playerAirbase);
-            //unitMaker.AddUnitGroup(new string[] { "A-10C" }, Side.Ally, UnitCategory.Plane, "", "", playerAirbase.Coordinates, DCSSkillLevel.Average);
+                    playerFlightGroupsGenerator.GeneratePlayerFlightGroup(template.PlayerFlightGroups[i], playerAirbase, waypoints);
 
             mission.SetValue("RESOURCES_OGG_FILES", "");
 

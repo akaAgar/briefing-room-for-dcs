@@ -18,10 +18,10 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
@@ -83,29 +83,6 @@ namespace BriefingRoom4DCS.Generator
         //    if ((template.FlightPlanAddExtraWaypoints == YesNo.No) || (mission.Waypoints.Count == 0))
         //        return;
 
-        //    BriefingRoom.PrintToLog("Generating extra waypoints...");
-
-        //    int extraWaypointsCount = Toolbox.RandomFrom(EXTRA_WAYPOINT_COUNT);
-        //    List<Coordinates> extraWaypoints = new List<Coordinates>();
-        //    Coordinates startingPos = preObj ? mission.InitialPosition : mission.Waypoints.Last().Coordinates;
-        //    for (int j = 0; j < extraWaypointsCount; j++)
-        //    {
-        //        if (preObj)
-        //            startingPos = Coordinates.Lerp(startingPos, mission.Waypoints[0].Coordinates, new MinMaxD(0.2, 0.8).GetValue()).CreateNearRandom(0, 20000);
-        //        else
-        //            startingPos = Coordinates.Lerp(startingPos, mission.InitialPosition, new MinMaxD(0.2, 0.8).GetValue()).CreateNearRandom(0, 20000);
-        //        extraWaypoints.Add(startingPos);
-        //    }
-
-        //    int count = 1;
-        //    extraWaypoints = extraWaypoints.OrderBy(x => preObj ? mission.InitialPosition.GetDistanceFrom(x) : -mission.InitialPosition.GetDistanceFrom(x)).ToList();
-        //    if (preObj)
-        //    {// Adding waypoints before first objective waypoint
-        //        mission.Waypoints.InsertRange(0, extraWaypoints.Select(x => new DCSMissionWaypoint(x, $"WP{count++:00}", 1.0)));
-        //        AddExtraWaypoints(mission, template, false);
-        //    }
-        //    else // Add waypoints after last objective waypoint
-        //        mission.Waypoints.AddRange(extraWaypoints.Select(x => new DCSMissionWaypoint(x, $"WP{mission.Waypoints.Count + count++:00}", 1.0)));
         //}
 
         ///// <summary>
@@ -137,5 +114,33 @@ namespace BriefingRoom4DCS.Generator
         /// <see cref="IDisposable"/> implementation.
         /// </summary>
         public void Dispose() { }
+
+        internal void GenerateExtraWaypoints(MissionTemplate template, Coordinates initialCoordinates, List<Waypoint> waypoints, bool afterObjective)
+        {
+            if (!template.OptionsMission.Contains(MissionOption.AddExtraWaypoints))
+                return; // No extra waypoints required
+
+            BriefingRoom.PrintToLog($"Generating extra {(afterObjective ? "egress" : "ingress")} waypoints...");
+
+            int extraWaypointsCount = Toolbox.RandomFrom(EXTRA_WAYPOINT_COUNT);
+            List<Coordinates> extraWaypoints = new List<Coordinates>();
+
+            Coordinates startingPos = afterObjective ? waypoints.Last().Coordinates : waypoints.First().Coordinates;
+            for (int i = 0; i < extraWaypointsCount; i++)
+            {
+                if (afterObjective)
+                    startingPos = Coordinates.Lerp(startingPos, initialCoordinates, new MinMaxD(0.2, 0.8).GetValue()).CreateNearRandom(0, 20000);
+                else
+                    startingPos = Coordinates.Lerp(startingPos, waypoints.First().Coordinates, new MinMaxD(0.2, 0.8).GetValue()).CreateNearRandom(0, 20000);
+                extraWaypoints.Add(startingPos);
+            }
+
+            int count = 1;
+            extraWaypoints = extraWaypoints.OrderBy(x => afterObjective ? -initialCoordinates.GetDistanceFrom(x) : initialCoordinates.GetDistanceFrom(x)).ToList();
+            if (afterObjective) // Adding waypoints before first objective waypoint
+                waypoints.AddRange(extraWaypoints.Select(wpCoordinates => new Waypoint($"WP{waypoints.Count + count++:00}", wpCoordinates)));
+            else // Add waypoints after last objective waypoint
+                waypoints.InsertRange(0, extraWaypoints.Select(wpCoordinates => new Waypoint( $"WP{count++:00}", wpCoordinates)));
+        }
     }
 }

@@ -66,7 +66,7 @@ namespace BriefingRoom4DCS.Generator
             ObjectiveNames = new List<string>(Database.Instance.Common.Names.WPObjectivesNames);
         }
 
-        internal Coordinates GenerateObjective(DCSMission mission, MissionTemplate template, int objectiveIndex, Coordinates lastCoordinates)
+        internal Coordinates GenerateObjective(DCSMission mission, MissionTemplate template, int objectiveIndex, Coordinates lastCoordinates, out string objectiveName)
         {
             MissionTemplateObjective objectiveTemplate = template.Objectives[objectiveIndex];
             DBEntryObjectiveFeature[] featuresDB = Database.Instance.GetEntries<DBEntryObjectiveFeature>(objectiveTemplate.Features.ToArray());
@@ -91,7 +91,7 @@ namespace BriefingRoom4DCS.Generator
                 throw new BriefingRoomException("Failed to spawn objective unit group.");
 
             // Pick a name, then remove it from the list
-            string objectiveName = Toolbox.RandomFrom(ObjectiveNames);
+            objectiveName = Toolbox.RandomFrom(ObjectiveNames);
             ObjectiveNames.Remove(objectiveName);
 
             bool hidden = GeneratorTools.GetHiddenStatus(template.OptionsFogOfWar, taskDB.TargetSide);
@@ -140,6 +140,20 @@ namespace BriefingRoom4DCS.Generator
             }
 
             return spawnPoint.Value.Coordinates;
+        }
+
+        internal Waypoint GenerateObjectiveWaypoint(MissionTemplateObjective objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName)
+        {
+            DBEntryObjectiveTarget targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
+            if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective.");
+
+            Coordinates waypointCoordinates = objectiveCoordinates;
+            bool onGround = !targetDB.UnitCategory.IsAircraft(); // Ground targets = waypoint on the ground
+
+            if (objectiveTemplate.Options.Contains(ObjectiveOption.InaccurateWaypoint))
+                waypointCoordinates += Coordinates.CreateRandom(3.0, 6.0) * Toolbox.NM_TO_METERS;
+
+            return new Waypoint(objectiveName, waypointCoordinates, onGround);
         }
 
         private DCSSkillLevel GetObjectiveSkillLevel(MissionTemplate template, Side targetSide, UnitFamily targetFamily)
