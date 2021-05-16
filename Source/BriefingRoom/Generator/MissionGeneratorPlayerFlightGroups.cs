@@ -54,9 +54,11 @@ namespace BriefingRoom4DCS.Generator
 
             if (UnitMaker.AddUnitGroup(
                 Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), Side.Ally, unit.Families[0],
-                "GroupAircraftPlayer", "UnitAircraft", playerAirbase.Coordinates, DCSSkillLevel.Average,
+                "GroupAircraftPlayer", "UnitAircraft", playerAirbase.Coordinates,
+                Toolbox.RandomFrom(DCSSkillLevel.High, DCSSkillLevel.Excellent), flightGroup.Payload,
                 "PlayerStartingAction".ToKeyValuePair(GeneratorTools.GetPlayerStartingAction(flightGroup.StartLocation)),
                 "PlayerStartingType".ToKeyValuePair(GeneratorTools.GetPlayerStartingType(flightGroup.StartLocation)),
+                "InitialWPName".ToKeyValuePair(Database.Instance.Common.Names.WPInitialName),
                 "FinalWPName".ToKeyValuePair(Database.Instance.Common.Names.WPFinalName),
                 "MissionAirbaseX".ToKeyValuePair(playerAirbase.Coordinates.X),
                 "MissionAirbaseY".ToKeyValuePair(playerAirbase.Coordinates.Y),
