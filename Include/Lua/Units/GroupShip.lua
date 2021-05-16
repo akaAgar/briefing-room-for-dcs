@@ -14,8 +14,8 @@
         ["ETA"] = 0,
         ["alt_type"] = "BARO",
         ["formation_template"] = "",
-        ["y"] = $Y$,
-        ["x"] = $X$,
+        ["y"] = $GROUPY$,
+        ["x"] = $GROUPX$,
         ["name"] = "",
         ["ETA_locked"] = true,
         ["speed"] = 0,
@@ -34,13 +34,13 @@
       }, -- end of [1]
     }, -- end of ["points"]
   }, -- end of ["route"]
-  ["groupId"] = $ID$,
+  ["groupId"] = $GROUPID$,
   ["hidden"] = $HIDDEN$,
   ["units"] =
   {
     $UNITS$
   }, -- end of ["units"]
-  ["y"] = $Y$,
-  ["x"] = $X$,
+  ["y"] = $GROUPY$,
+  ["x"] = $GROUPX$,
   ["name"] = "$NAME$",
   ["start_time"] = 0,

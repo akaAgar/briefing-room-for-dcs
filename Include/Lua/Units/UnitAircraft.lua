@@ -9,11 +9,11 @@ $EXTRALUA$
 $PROPSLUA$
                 }, -- end of ["AddPropAircraft"]
                 ["type"] = "$TYPE$",
-                ["unitId"] = $ID$,
+                ["unitId"] = $UNITID$,
                 ["psi"] = 0,
                 ["parking_id"] = "$PARKINGID$",
-                ["y"] = $Y$,
-                ["x"] = $X$,
+                ["y"] = $UNITY$,
+                ["x"] = $UNITX$,
                 ["name"] = "$NAME$",
                 ["payload"] = 
                 {

@@ -74,7 +74,7 @@
                                         ["params"] = 
                                         {
                                             ["value"] = $EPLRS$,
-                                            ["groupId"] = $ID$,
+                                            ["groupId"] = $GROUPID$,
                                         }, -- end of ["params"]
                                     }, -- end of ["action"]
                                 }, -- end of ["params"]
@@ -135,8 +135,8 @@
                 ["type"] = "Turning Point",
                 ["ETA"] = 0,
                 ["ETA_locked"] = true,
-                ["y"] = $Y$,
-                ["x"] = $X$,
+                ["y"] = $GROUPY$,
+                ["x"] = $GROUPX$,
                 ["name"] = "",
                 ["formation_template"] = "",
                 ["speed_locked"] = true,
@@ -160,22 +160,22 @@
                 ["type"] = "Turning Point",
                 ["ETA"] = 0.0,
                 ["ETA_locked"] = false,
-                ["y"] = $Y2$,
-                ["x"] = $X2$,
+                ["y"] = $GROUPY2$,
+                ["x"] = $GROUPX2$,
                 ["name"] = "",
                 ["formation_template"] = "",
                 ["speed_locked"] = true,
             }, -- end of [2]
         }, -- end of ["points"]
     }, -- end of ["route"]
-    ["groupId"] = $ID$,
+    ["groupId"] = $GROUPID$,
     ["hidden"] = $HIDDEN$,
     ["units"] = 
     {
 $UNITS$
     }, -- end of ["units"]
-    ["y"] = $Y$,
-    ["x"] = $X$,
+    ["y"] = $GROUPY$,
+    ["x"] = $GROUPX$,
     ["name"] = "$NAME$",
     ["communication"] = true,
     ["start_time"] = 0,

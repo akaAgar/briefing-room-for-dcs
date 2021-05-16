@@ -1,9 +1,9 @@
   ["category"] = "",
   ["shape_name"] = "",
   ["type"] = "$TYPE$",
-  ["unitId"] = $ID$,
+  ["unitId"] = $UNITID$,
 $EXTRALUA$
-  ["y"] = $Y$,
-  ["x"] = $X$,
+  ["y"] = $UNITY$,
+  ["x"] = $UNITX$,
   ["name"] = "$NAME$",
   ["heading"] = $HEADING$,
