@@ -76,6 +76,8 @@ namespace BriefingRoom4DCS.Generator
 
         private void CreateCAPGroups(Side side, Coalition coalition, AmountNR capAmount, Coordinates centerPoint, Coordinates opposingPoint, ref List<int> capAircraftGroupIDs)
         {
+            return;
+
             DBCommonCAPLevel capLevelDB = Database.Instance.Common.CAP.CAPLevels[(int)capAmount];
 
             int unitsLeftToSpawn = capLevelDB.AircraftCount.GetValue();
