@@ -21,7 +21,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Template;
 using System;
-using System.Collections.Generic;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -30,11 +29,6 @@ namespace BriefingRoom4DCS.Generator
     /// </summary>
     internal class MissionGeneratorWeather : IDisposable
     {
-        /// <summary>
-        /// Wind altitude levels (in meters) to set in the mission Lua file
-        /// </summary>
-        private static readonly int[] WIND_ALTITUDE = new int[] { 0, 2000, 8000 };
-
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -85,8 +79,10 @@ namespace BriefingRoom4DCS.Generator
         /// <param name="mission">Mission to generate.</param>
         /// <param name="template">Mission template to use.</param>
         /// <param name="turbulenceFromWeather">Amount of turbulence (in m/s) to add to the default wind turbulence.</param>
-        internal void GenerateWind(DCSMission mission, MissionTemplate template, int turbulenceFromWeather)
+        /// <param name="windDirectionAtSeaLevel">Wind direction at sea level, in radians, or null if no wind.</param>
+        internal void GenerateWind(DCSMission mission, MissionTemplate template, int turbulenceFromWeather, out double? windDirectionAtSeaLevel)
         {
+            windDirectionAtSeaLevel = null;
             Wind windLevel = template.EnvironmentWind == Wind.Random ? windLevel = PickRandomWindLevel() : template.EnvironmentWind;
             BriefingRoom.PrintToLog($"Wind speed level set to \"{windLevel}\".");
 
@@ -94,9 +90,12 @@ namespace BriefingRoom4DCS.Generator
             for (int i = 0; i < 3; i++)
             {
                 int windSpeed = Database.Instance.Common.Wind[(int)windLevel].Wind.GetValue();
+                int windDirection = windSpeed > 0 ? Toolbox.RandomInt(0, 360) : 0;
+                if (i == 0) windDirectionAtSeaLevel = windSpeed > 0 ? (double?)(windDirection * Toolbox.DEGREES_TO_RADIANS) : null;
                 windAverage += windSpeed;
+
                 mission.SetValue($"WEATHER_WIND_SPEED{i + 1}", windSpeed);
-                mission.SetValue($"WEATHER_WIND_DIRECTION{i + 1}", windSpeed > 0 ? Toolbox.RandomInt(0, 360) : 0);
+                mission.SetValue($"WEATHER_WIND_DIRECTION{i + 1}", windDirection);
             }
             windAverage /= 3;
 
