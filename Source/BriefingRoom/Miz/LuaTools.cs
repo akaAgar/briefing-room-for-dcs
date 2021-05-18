@@ -56,7 +56,10 @@ namespace BriefingRoom4DCS.Generator
         /// <param name="value">The value to replace the key with.</param>
         internal static void ReplaceKey(ref string lua, string key, object value)
         {
-            lua = lua.Replace($"${key.ToUpperInvariant()}$", Toolbox.ValToString(value));
+            string valueStr = Toolbox.ValToString(value);
+            if (value is bool) valueStr = valueStr.ToLowerInvariant();
+
+            lua = lua.Replace($"${key.ToUpperInvariant()}$", valueStr);
         }
 
         /// <summary>
