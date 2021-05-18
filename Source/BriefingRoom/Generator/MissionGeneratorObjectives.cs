@@ -105,7 +105,7 @@ namespace BriefingRoom4DCS.Generator
                 taskDB.TargetSide,
                 targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
                 spawnPoint.Value.Coordinates,
-                GetObjectiveSkillLevel(template, taskDB.TargetSide, targetFamily),
+                GetObjectiveSkillLevel(template, taskDB.TargetSide, targetFamily), 0,
                 AircraftPayload.Default,
                 "Hidden".ToKeyValuePair(hidden));
 
