@@ -91,6 +91,15 @@ namespace BriefingRoom4DCS
         }
 
         /// <summary>
+        /// Returns a random angle in radians.
+        /// </summary>
+        /// <returns>Random angle, in radians.</returns>
+        internal static double RandomAngle()
+        {
+            return RandomDouble(TWO_PI);
+        }
+
+        /// <summary>
         /// Check if a filepath is valid.
         /// Code by https://stackoverflow.com/questions/6198392/check-whether-a-path-is-valid
         /// </summary>
@@ -439,13 +448,39 @@ namespace BriefingRoom4DCS
         /// <returns>The unit category.</returns>
         public static UnitCategory GetUnitCategory(this UnitFamily unitFamily)
         {
-            string roleStr = unitFamily.ToString().ToLowerInvariant();
-
-            if (roleStr.StartsWith("helicopter")) return UnitCategory.Helicopter;
-            if (roleStr.StartsWith("plane")) return UnitCategory.Plane;
-            if (roleStr.StartsWith("ship")) return UnitCategory.Ship;
-            if (roleStr.StartsWith("static")) return UnitCategory.Static;
-            return UnitCategory.Vehicle;
+            switch (unitFamily)
+            {
+                case UnitFamily.HelicopterAttack:
+                case UnitFamily.HelicopterTransport:
+                case UnitFamily.HelicopterUtility:
+                    return UnitCategory.Helicopter;
+                case UnitFamily.PlaneAttack:
+                case UnitFamily.PlaneAWACS:
+                case UnitFamily.PlaneBomber:
+                case UnitFamily.PlaneDrone:
+                case UnitFamily.PlaneFighter:
+                case UnitFamily.PlaneInterceptor:
+                case UnitFamily.PlaneSEAD:
+                case UnitFamily.PlaneStrike:
+                case UnitFamily.PlaneTankerBasket:
+                case UnitFamily.PlaneTankerBoom:
+                case UnitFamily.PlaneTransport:
+                    return UnitCategory.Plane;
+                case UnitFamily.ShipCarrierCATOBAR:
+                case UnitFamily.ShipCarrierSTOBAR:
+                case UnitFamily.ShipCarrierSTOVL:
+                case UnitFamily.ShipCruiser:
+                case UnitFamily.ShipFrigate:
+                case UnitFamily.ShipSpeedboat:
+                case UnitFamily.ShipSubmarine:
+                case UnitFamily.ShipTransport:
+                    return UnitCategory.Ship;
+                case UnitFamily.StaticStructureMilitary:
+                case UnitFamily.StaticStructureProduction:
+                    return UnitCategory.Static;
+                default:
+                    return UnitCategory.Vehicle;
+            }
         }
 
         /// <summary>
@@ -474,6 +509,24 @@ namespace BriefingRoom4DCS
                 case UnitFamily.VehicleSAMMedium:
                 case UnitFamily.VehicleSAMShort:
                 case UnitFamily.VehicleSAMShortIR:
+                    return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Is this unit family an carrier ship family?
+        /// </summary>
+        /// <param name="unitFamily">An unit family.</param>
+        /// <returns>True if the unit family is an carrier ship family, false otherwise.</returns>
+        public static bool IsCarrier(this UnitFamily unitFamily)
+        {
+            switch (unitFamily)
+            {
+                case UnitFamily.ShipCarrierCATOBAR:
+                case UnitFamily.ShipCarrierSTOBAR:
+                case UnitFamily.ShipCarrierSTOVL:
                     return true;
             }
 
