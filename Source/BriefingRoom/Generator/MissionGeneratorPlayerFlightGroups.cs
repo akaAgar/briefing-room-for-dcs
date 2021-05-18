@@ -46,7 +46,7 @@ namespace BriefingRoom4DCS.Generator
             UnitMaker = unitMaker;
         }
 
-        internal void GeneratePlayerFlightGroup(MissionTemplateFlightGroup flightGroup, DBEntryAirbase playerAirbase, List<Waypoint> waypoints)
+        internal void GeneratePlayerFlightGroup(MissionTemplateFlightGroup flightGroup, DBEntryAirbase playerAirbase, List<Waypoint> waypoints, Dictionary<string, UnitMakerGroupInfo> carrierDictionary)
         {
             DBEntryUnit unit = Database.Instance.GetEntry<DBEntryUnit>(flightGroup.Aircraft);
 
@@ -57,21 +57,37 @@ namespace BriefingRoom4DCS.Generator
             List<int> parkingSpotIDsList = new List<int>();
             List<Coordinates> parkingSpotCoordinatesList = new List<Coordinates>();
 
-            Coordinates? lastParkingCoordinates = null;
-
-            for (int i = 0; i < flightGroup.Count; i++)
+            string groupLuaFile = "GroupAircraftPlayer";
+            int carrierUnitID = 0;
+            if (!string.IsNullOrEmpty(flightGroup.Carrier) && carrierDictionary.ContainsKey(flightGroup.Carrier)) // Carrier take off
             {
-                int parkingSpot = UnitMaker.SpawnPointSelector.GetFreeParkingSpot(playerAirbase.DCSID, out Coordinates parkingSpotCoordinates, lastParkingCoordinates);
-                if (parkingSpot < 0) throw new BriefingRoomException("No parking spot found for player aircraft.");
-                lastParkingCoordinates = parkingSpotCoordinates;
+                groupLuaFile = "GroupAircraftPlayerCarrier";
+                carrierUnitID = carrierDictionary[flightGroup.Carrier].UnitsID[0];
 
-                parkingSpotIDsList.Add(parkingSpot);
-                parkingSpotCoordinatesList.Add(parkingSpotCoordinates);
+                for (int i = 0; i < flightGroup.Count; i++)
+                {
+                    parkingSpotIDsList.Add(i + 1);
+                    parkingSpotCoordinatesList.Add(carrierDictionary[flightGroup.Carrier].Coordinates);
+                }
+            }
+            else // Land base take off
+            {
+                Coordinates? lastParkingCoordinates = null;
+
+                for (int i = 0; i < flightGroup.Count; i++)
+                {
+                    int parkingSpot = UnitMaker.SpawnPointSelector.GetFreeParkingSpot(playerAirbase.DCSID, out Coordinates parkingSpotCoordinates, lastParkingCoordinates);
+                    if (parkingSpot < 0) throw new BriefingRoomException("No parking spot found for player aircraft.");
+                    lastParkingCoordinates = parkingSpotCoordinates;
+
+                    parkingSpotIDsList.Add(parkingSpot);
+                    parkingSpotCoordinatesList.Add(parkingSpotCoordinates);
+                }
             }
 
             if (UnitMaker.AddUnitGroup(
                 Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), Side.Ally, unit.Families[0],
-                "GroupAircraftPlayer", "UnitAircraft", playerAirbase.Coordinates,
+                groupLuaFile, "UnitAircraft", playerAirbase.Coordinates,
                 Toolbox.RandomFrom(DCSSkillLevel.High, DCSSkillLevel.Excellent), 0, flightGroup.Payload,
                 "PlayerStartingAction".ToKeyValuePair(GeneratorTools.GetPlayerStartingAction(flightGroup.StartLocation)),
                 "PlayerStartingType".ToKeyValuePair(GeneratorTools.GetPlayerStartingType(flightGroup.StartLocation)),
@@ -80,6 +96,7 @@ namespace BriefingRoom4DCS.Generator
                 "ParkingID".ToKeyValuePair(parkingSpotIDsList.ToArray()),
                 "PlayerWaypoints".ToKeyValuePair(GenerateFlightPlanLua(waypoints)),
                 "LastPlayerWaypointIndex".ToKeyValuePair(waypoints.Count + 2),
+                "LinkUnit".ToKeyValuePair(carrierUnitID),
                 "UnitX".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.X).ToArray()),
                 "UnitY".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.Y).ToArray()),
                 "MissionAirbaseX".ToKeyValuePair(playerAirbase.Coordinates.X),

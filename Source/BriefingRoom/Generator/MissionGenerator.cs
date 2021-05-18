@@ -148,19 +148,20 @@ namespace BriefingRoom4DCS.Generator
                         lateActivationAircraftGroupsIDs.Add(capGroupID);
             }
 
+            // Generate carrier groups
+            BriefingRoom.PrintToLog("Generating carrier groups...");
+            Dictionary<string, UnitMakerGroupInfo> carrierDictionary;
+            using (MissionGeneratorCarrierGroup carrierGroupGenerator = new MissionGeneratorCarrierGroup(unitMaker))
+                carrierDictionary = carrierGroupGenerator.GenerateCarrierGroup(mission, template, playerAirbase.Coordinates, windDirectionAtSeaLevel);
+
             // Generate player flight groups
             BriefingRoom.PrintToLog("Generating player flight groups...");
             using (MissionGeneratorPlayerFlightGroups playerFlightGroupsGenerator = new MissionGeneratorPlayerFlightGroups(unitMaker))
                 for (i = 0; i < template.PlayerFlightGroups.Count; i++)
-                    playerFlightGroupsGenerator.GeneratePlayerFlightGroup(template.PlayerFlightGroups[i], playerAirbase, waypoints);
+                    playerFlightGroupsGenerator.GeneratePlayerFlightGroup(template.PlayerFlightGroups[i], playerAirbase, waypoints, carrierDictionary);
 
             mission.SetValue("RESOURCES_OGG_FILES", ""); // TODO
             mission.SetValue("MISSION_FEATURES_LUA", ""); // TODO
-
-            // Generate carrier groups
-            BriefingRoom.PrintToLog("Generating carrier groups...");
-            using (MissionGeneratorCarrierGroup carrierGroupGenerator = new MissionGeneratorCarrierGroup(unitMaker))
-                carrierGroupGenerator.GenerateCarrierGroup(mission, template, playerAirbase.Coordinates, windDirectionAtSeaLevel);
 
             // Get unit tables from the unit maker (must be done after all units are generated)
             mission.SetValue("COUNTRIES_BLUE", unitMaker.GetUnitsLuaTable(Coalition.Blue));

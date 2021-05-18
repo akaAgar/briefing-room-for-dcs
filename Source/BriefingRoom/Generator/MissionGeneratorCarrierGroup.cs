@@ -57,12 +57,12 @@ namespace BriefingRoom4DCS.Generator
             UnitMaker = unitMaker;
         }
 
-        internal void GenerateCarrierGroup(DCSMission mission, MissionTemplate template, Coordinates initialCoordinates, double? windDirectionAtSeaLevel)
+        internal Dictionary<string, UnitMakerGroupInfo> GenerateCarrierGroup(DCSMission mission, MissionTemplate template, Coordinates initialCoordinates, double? windDirectionAtSeaLevel)
         {
-            Dictionary<string, int> carrierUnitGroups = new Dictionary<string, int>();
+            Dictionary<string, UnitMakerGroupInfo> carrierDictionary = new Dictionary<string, UnitMakerGroupInfo>(StringComparer.InvariantCultureIgnoreCase);
 
             DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
-            if (theaterDB == null) return; // Theater doesn't exist. Should never happen.
+            if (theaterDB == null) return carrierDictionary; // Theater doesn't exist. Should never happen.
 
             // Pick the carrier spawn point closer from the initial airbase
             Coordinates carrierGroupCoordinates = theaterDB.CarrierGroupWaypoints.OrderBy(x => x.GetDistanceFrom(initialCoordinates)).First();
@@ -73,15 +73,14 @@ namespace BriefingRoom4DCS.Generator
             foreach (MissionTemplateFlightGroup flightGroup in template.PlayerFlightGroups)
             {
                 if (string.IsNullOrEmpty(flightGroup.Carrier)) continue; // No carrier for
-                string carrierID = flightGroup.Carrier.ToLowerInvariant();
-                if (carrierUnitGroups.ContainsKey(carrierID)) continue; // Carrier type already added
-                DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(carrierID);
+                if (carrierDictionary.ContainsKey(flightGroup.Carrier)) continue; // Carrier type already added
+                DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(flightGroup.Carrier);
                 if ((unitDB == null) || !unitDB.Families[0].IsCarrier()) continue; // Unit doesn't exist or is not a carrier
 
-                Coordinates shipCoordinates = carrierGroupCoordinates + Coordinates.FromAngleInRadians(Toolbox.RandomAngle()) * carrierUnitGroups.Count * Toolbox.NM_TO_METERS;
+                Coordinates shipCoordinates = carrierGroupCoordinates + Coordinates.FromAngleInRadians(Toolbox.RandomAngle()) * carrierDictionary.Count * Toolbox.NM_TO_METERS;
                 Coordinates shipDestination = shipCoordinates + destinationPath;
 
-                string cvnID = carrierUnitGroups.Count > 0 ? (carrierUnitGroups.Count + 1).ToString() : "";
+                string cvnID = carrierDictionary.Count > 0 ? (carrierDictionary.Count + 1).ToString() : "";
                 UnitMakerGroupFlags unitMakerGroupFlags = 0;
                 if (template.MissionType == MissionType.SinglePlayer)
                     unitMakerGroupFlags = UnitMakerGroupFlags.FirstUnitIsPlayer;
@@ -93,28 +92,28 @@ namespace BriefingRoom4DCS.Generator
                         shipCoordinates, DCSSkillLevel.Excellent, unitMakerGroupFlags, AircraftPayload.Default,
                         "GroupX2".ToKeyValuePair(shipDestination.X),
                         "GroupY2".ToKeyValuePair(shipDestination.Y),
-                        "ILS".ToKeyValuePair(11 + carrierUnitGroups.Count),
+                        "ILS".ToKeyValuePair(11 + carrierDictionary.Count),
                         "RadioBand".ToKeyValuePair((int)RadioModulation.AM),
-                        "RadioFrequency".ToKeyValuePair(GeneratorTools.GetRadioFrenquency(127.5 + carrierUnitGroups.Count)),
+                        "RadioFrequency".ToKeyValuePair(GeneratorTools.GetRadioFrenquency(127.5 + carrierDictionary.Count)),
                         "Speed".ToKeyValuePair(CARRIER_SPEED * Toolbox.KNOTS_TO_METERS_PER_SECOND),
                         "TACANCallsign".ToKeyValuePair($"CVN{cvnID}"),
-                        "TACANChannel".ToKeyValuePair(74 + carrierUnitGroups.Count),
-                        "TACANFrequency".ToKeyValuePair(GeneratorTools.GetTACANFrequency(74 + carrierUnitGroups.Count, 'X', false)),
+                        "TACANChannel".ToKeyValuePair(74 + carrierDictionary.Count),
+                        "TACANFrequency".ToKeyValuePair(GeneratorTools.GetTACANFrequency(74 + carrierDictionary.Count, 'X', false)),
                         "TACANMode".ToKeyValuePair("X"));
 
-                if (!groupInfo.HasValue) continue; // Couldn't generate group
+                if (!groupInfo.HasValue || (groupInfo.Value.UnitsID.Length == 0)) continue; // Couldn't generate group
 
-                carrierUnitGroups.Add(carrierID, groupInfo.Value.GroupID);
+                carrierDictionary.Add(flightGroup.Carrier, groupInfo.Value);
             }
 
-            if (carrierUnitGroups.Count > 0) // Add escorts, if there's a carrier group
+            if (carrierDictionary.Count > 0) // Add escorts, if there's a carrier group
             {
                 // Randomize escort unit families order so they don't always appear in the same order
                 UnitFamily[] escortUnitFamilies = ESCORT_UNIT_FAMILIES.OrderBy(x => Toolbox.RandomInt()).ToArray();
 
                 foreach (UnitFamily escortUnitFamily in escortUnitFamilies)
                 {
-                    Coordinates shipCoordinates = carrierGroupCoordinates + Coordinates.FromAngleInRadians(Toolbox.RandomAngle()) * carrierUnitGroups.Count * Toolbox.NM_TO_METERS;
+                    Coordinates shipCoordinates = carrierGroupCoordinates + Coordinates.FromAngleInRadians(Toolbox.RandomAngle()) * carrierDictionary.Count * Toolbox.NM_TO_METERS;
                     Coordinates shipDestination = shipCoordinates + destinationPath;
 
                     UnitMakerGroupInfo? groupInfo =
@@ -126,14 +125,16 @@ namespace BriefingRoom4DCS.Generator
                             "GroupX2".ToKeyValuePair(shipDestination.X),
                             "GroupY2".ToKeyValuePair(shipDestination.Y),
                             "RadioBand".ToKeyValuePair((int)RadioModulation.AM),
-                            "RadioFrequency".ToKeyValuePair(GeneratorTools.GetRadioFrenquency(127.5 + carrierUnitGroups.Count))
+                            "RadioFrequency".ToKeyValuePair(GeneratorTools.GetRadioFrenquency(127.5 + carrierDictionary.Count))
                             );
 
-                    if (!groupInfo.HasValue) continue; // Couldn't generate group
+                    if (!groupInfo.HasValue || (groupInfo.Value.UnitsID.Length == 0)) continue; // Couldn't generate group
 
-                    carrierUnitGroups.Add($"*ESCORT{carrierUnitGroups.Count}", groupInfo.Value.GroupID);
+                    carrierDictionary.Add($"*ESCORT{carrierDictionary.Count}", groupInfo.Value);
                 }
             }
+
+            return carrierDictionary;
         }
 
         ///// <summary>
