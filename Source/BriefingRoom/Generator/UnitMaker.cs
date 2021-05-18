@@ -1,56 +1,12 @@
-﻿/*
-==========================================================================
-This file is part of Briefing Room for DCS World, a mission
-generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
-
-Briefing Room for DCS World is free software: you can redistribute it
-and/or modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation, either version 3 of
-the License, or (at your option) any later version.
-
-Briefing Room for DCS World is distributed in the hope that it will
-be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
-of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses/
-==========================================================================
-*/
-
-using BriefingRoom4DCS.Data;
+﻿using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    //internal enum UnitMakerGroupSetting
-    //{
-    //    AirbaseID,
-    //    AircraftPayload,
-    //    CoordinatesDestination,
-    //    Country,
-    //    FirstUnitIsPlayer,
-    //    Hidden,
-    //    PlayerStartLocation,
-    //    RequiresOpenAirParking,
-    //    RequiresParkingSpots,
-    //}
-
-
-    //FirstUnitIsPlayer = 1,
-    //    /// <summary>
-    //    /// Unit group will be hidden in the planning, on MFD SA pages and on the F10 map.
-    //    /// </summary>
-    //    Hidden = 2,
-
-    //     = 4,
-    //     = 8
-
     internal struct UnitMakerGroupInfo
     {
         internal int GroupID { get; }
@@ -113,7 +69,9 @@ namespace BriefingRoom4DCS.Generator
         internal UnitMakerGroupInfo? AddUnitGroup(
             UnitFamily family, int unitCount, Side side,
             string groupLua, string unitLua,
-            Coordinates coordinates, DCSSkillLevel skill, AircraftPayload aircraftPayload = AircraftPayload.Default,
+            Coordinates coordinates, DCSSkillLevel skill,
+            UnitMakerGroupFlags unitMakerGroupFlags = 0,
+            AircraftPayload aircraftPayload = AircraftPayload.Default,
             params KeyValuePair<string, object>[] extraSettings)
         {
             if (unitCount <= 0) return null;
@@ -122,13 +80,14 @@ namespace BriefingRoom4DCS.Generator
             string[] units = unitsCoalitionDB.GetRandomUnits(family, Template.ContextDecade, unitCount, Template.Mods, true);
             if (units.Length == 0) return null;
 
-            return AddUnitGroup(units, side, family, groupLua, unitLua, coordinates, skill, aircraftPayload, extraSettings);
+            return AddUnitGroup(units, side, family, groupLua, unitLua, coordinates, skill, unitMakerGroupFlags, aircraftPayload, extraSettings);
         }
 
         internal UnitMakerGroupInfo? AddUnitGroup(
             string[] units, Side side, UnitFamily unitFamily,
             string groupLua, string unitLua,
             Coordinates coordinates, DCSSkillLevel skill,
+            UnitMakerGroupFlags unitMakerGroupFlags = 0, 
             AircraftPayload aircraftPayload = AircraftPayload.Default,
             params KeyValuePair<string, object>[] extraSettings)
         {
@@ -161,6 +120,7 @@ namespace BriefingRoom4DCS.Generator
 
             string unitLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_UNITS}{Toolbox.AddMissingFileExtension(unitLua, ".lua")}");
             string unitsLuaTable = "";
+            int firstUnitID = UnitID;
             List<int> unitsIDList = new List<int>();
             for (int unitIndex = 0; unitIndex < units.Length; unitIndex++)
             {
@@ -184,6 +144,9 @@ namespace BriefingRoom4DCS.Generator
                 LuaTools.ReplaceKey(ref singleUnitLuaTable, "UnitY", unitCoordinates.Y);
                 if ((unitDB.Category == UnitCategory.Helicopter) || (unitDB.Category == UnitCategory.Plane))
                 {
+                    if ((unitIndex == 0) && unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.FirstUnitIsPlayer))
+                        LuaTools.ReplaceKey(ref singleUnitLuaTable, "Skill", "Player");
+
                     LuaTools.ReplaceKey(ref singleUnitLuaTable, "Altitude", unitDB.AircraftData.CruiseAltitude);
                     LuaTools.ReplaceKey(ref singleUnitLuaTable, "PropsLua", unitDB.AircraftData.PropsLua);
                     LuaTools.ReplaceKey(ref singleUnitLuaTable, "Speed", unitDB.AircraftData.CruiseSpeed);
@@ -217,6 +180,7 @@ namespace BriefingRoom4DCS.Generator
             if (unitsIDList.Count == 0) return null; // No valid units added to this group
             LuaTools.ReplaceKey(ref lua, "Units", unitsLuaTable);
 
+            LuaTools.ReplaceKey(ref lua, "UnitID", firstUnitID); // Must be after units are added
             LuaTools.ReplaceKey(ref lua, "Skill", skill); // Must be after units are added, because skill is set as a unit level
             LuaTools.ReplaceKey(ref lua, "Hidden", GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side)); // If "hidden" was not set through custom values
 
@@ -255,8 +219,9 @@ namespace BriefingRoom4DCS.Generator
 
                     unitsLuaTable += $"[\"{unitCategory.ToString().ToLowerInvariant()}\"] =\n";
                     unitsLuaTable += "{\n";
-
-                    for (int groupIndex = 0; groupIndex < UnitLuaTables[country][unitCategory].Count; groupIndex++)
+                    unitsLuaTable += "[\"group\"] =\n";
+                    unitsLuaTable += "{\n";
+                        for (int groupIndex = 0; groupIndex < UnitLuaTables[country][unitCategory].Count; groupIndex++)
                     {
                         unitsLuaTable += $"[{groupIndex + 1}] =\n";
                         unitsLuaTable += "{\n";
@@ -264,6 +229,7 @@ namespace BriefingRoom4DCS.Generator
                         unitsLuaTable += $"}}, -- end of [{groupIndex + 1}]\n";
                     }
 
+                    unitsLuaTable += $"}}, -- end of [\"group\"]\n";
                     unitsLuaTable += $"}}, -- end of [\"{unitCategory.ToString().ToLowerInvariant()}\"]\n";
                 }
 
