@@ -18,7 +18,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -60,6 +59,11 @@ namespace BriefingRoom4DCS.Data
         /// Sunrise and sunset time (in minutes) for each month (January is 0, December is 11)
         /// </summary>
         internal MinMaxI[] DayTime { get; private set; }
+
+        /// <summary>
+        /// Possible spawn points for carrier groups. Must be at least <see cref="Generator.MissionGeneratorCarrierGroup.CARRIER_COURSE_LENGTH"/> nautical miles from land in all directions.
+        /// </summary>
+        internal Coordinates[] CarrierGroupWaypoints { get; private set; }
 
         /// <summary>
         /// All spawn points in this theater.
@@ -105,6 +109,12 @@ namespace BriefingRoom4DCS.Data
                     DayTime[i] = dayTimeValue ?? DEFAULT_DAYTIME;
                 }
 
+                // [CarrierGroupWaypoints] section
+                List<Coordinates> carrierGroupWaypointsList = new List<Coordinates>();
+                foreach (string key in ini.GetKeysInSection("CarrierGroupWaypoints"))
+                    carrierGroupWaypointsList.Add(ini.GetValue<Coordinates>("CarrierGroupWaypoints", key));
+                CarrierGroupWaypoints = carrierGroupWaypointsList.ToArray();
+
                 // [Temperature] section
                 Temperature = new MinMaxI[12];
                 for (i = 0; i < 12; i++)
@@ -112,10 +122,10 @@ namespace BriefingRoom4DCS.Data
 
                 // [SpawnPoints] section
                 List<DBEntryTheaterSpawnPoint> spawnPointsList = new List<DBEntryTheaterSpawnPoint>();
-                foreach (string k in ini.GetKeysInSection("SpawnPoints"))
+                foreach (string key in ini.GetKeysInSection("SpawnPoints"))
                 {
                     DBEntryTheaterSpawnPoint sp = new DBEntryTheaterSpawnPoint();
-                    if (sp.Load(ini, k))
+                    if (sp.Load(ini, key))
                         spawnPointsList.Add(sp);
                 }
                 SpawnPoints = spawnPointsList.ToArray();
