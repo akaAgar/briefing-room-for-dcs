@@ -43,7 +43,7 @@
                                 ["type"] = 4,
                                 ["AA"] = false,
                                 ["unitId"] = $UNITID$,
-                                ["modeChannel"] = "X",
+                                ["modeChannel"] = "$TACANMODE$",
                                 ["channel"] = $TACANCHANNEL$,
                                 ["system"] = 3,
                                 ["callsign"] = "$TACANCALLSIGN$",

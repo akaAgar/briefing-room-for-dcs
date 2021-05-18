@@ -92,10 +92,11 @@ namespace BriefingRoom4DCS.Generator
 
             // Generate weather and wind
             BriefingRoom.PrintToLog("Generating mission weather...");
+            double? windDirectionAtSeaLevel;
             using (MissionGeneratorWeather weatherGenerator = new MissionGeneratorWeather())
             {
                 weatherGenerator.GenerateWeather(mission, template, theaterDB, month, out int turbulenceFromWeather);
-                weatherGenerator.GenerateWind(mission, template, turbulenceFromWeather);
+                weatherGenerator.GenerateWind(mission, template, turbulenceFromWeather, out windDirectionAtSeaLevel);
             }
 
             // Setup airbases
@@ -132,7 +133,6 @@ namespace BriefingRoom4DCS.Generator
                 flightPlanGenerator.GenerateExtraWaypoints(template, playerAirbase.Coordinates, waypoints, true); // Egress WPs
             }
 
-
             // Generate surface-to-air defenses
             using (MissionGeneratorAirDefense airDefenseGenerator = new MissionGeneratorAirDefense(unitMaker))
                 airDefenseGenerator.GenerateAirDefense(template, playerAirbase.Coordinates, objectivesCenter);
@@ -155,9 +155,12 @@ namespace BriefingRoom4DCS.Generator
                     playerFlightGroupsGenerator.GeneratePlayerFlightGroup(template.PlayerFlightGroups[i], playerAirbase, waypoints);
 
             mission.SetValue("RESOURCES_OGG_FILES", ""); // TODO
+            mission.SetValue("MISSION_FEATURES_LUA", ""); // TODO
 
             // Generate carrier groups
-            // TODO
+            BriefingRoom.PrintToLog("Generating carrier groups...");
+            using (MissionGeneratorCarrierGroup carrierGroupGenerator = new MissionGeneratorCarrierGroup(unitMaker))
+                carrierGroupGenerator.GenerateCarrierGroup(mission, template, playerAirbase.Coordinates, windDirectionAtSeaLevel);
 
             // Get unit tables from the unit maker (must be done after all units are generated)
             mission.SetValue("COUNTRIES_BLUE", unitMaker.GetUnitsLuaTable(Coalition.Blue));
