@@ -103,6 +103,46 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
+        internal static int GetTACANFrequency(int channel, char channelMode, bool AA)
+        {
+            int res;
+
+            if (!AA && channelMode == 'X')
+            {
+                if (channel < 64)
+                {
+                    res = 962 + channel - 1;
+                }
+                else
+                {
+                    res = 1151 + channel - 64;
+                }
+            }
+            else
+            {
+                if (channel < 64)
+                {
+                    res = 1088 + channel - 1;
+                }
+                else
+                {
+                    res = 1025 + channel - 64;
+                }
+            }
+
+            return GetRadioFrenquency(res);
+        }
+
+        /// <summary>
+        /// Converts a radio freqency in Mhz to a radio frequency in Hz.
+        /// </summary>
+        /// <param name="radioFrequency">Radio frequency in Mhz</param>
+        /// <returns>Radio frequency in Hz.</returns>
+        internal static int GetRadioFrenquency(double radioFrequency)
+        {
+            return (int)(radioFrequency * 1000000.0);
+        }
+
         /// <summary>
         /// Checks for a <see cref="DBEntry"/> in <see cref="Database"/> and throws an exception if it isn't found.
         /// </summary>
