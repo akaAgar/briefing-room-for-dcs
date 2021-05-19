@@ -19,8 +19,10 @@ objectivedistance=80
 objectiveslocation=Any
 
 [missionfeatures]
+missionfeatures=SupportFriendlyAWACS,SupportFriendlyTankerBasket,SupportFriendlyTankerBoom
 
 [mods]
+mods=
 
 [objectives]
 objective000.task=DestroyAll
