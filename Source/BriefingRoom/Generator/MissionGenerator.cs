@@ -160,8 +160,13 @@ namespace BriefingRoom4DCS.Generator
                 for (i = 0; i < template.PlayerFlightGroups.Count; i++)
                     playerFlightGroupsGenerator.GeneratePlayerFlightGroup(template.PlayerFlightGroups[i], playerAirbase, waypoints, carrierDictionary);
 
+            // Generate mission features
+            BriefingRoom.PrintToLog("Generating mission features...");
+            using (MissionGeneratorMissionFeatures missionFeaturesGenerator = new MissionGeneratorMissionFeatures(unitMaker))
+                for (i = 0; i  < template.MissionFeatures.Count; i++)
+                    missionFeaturesGenerator.GenerateMissionFeature(mission, template, i, playerAirbase.Coordinates, objectivesCenter);
+
             mission.SetValue("RESOURCES_OGG_FILES", ""); // TODO
-            mission.SetValue("MISSION_FEATURES_LUA", ""); // TODO
 
             // Get unit tables from the unit maker (must be done after all units are generated)
             mission.SetValue("COUNTRIES_BLUE", unitMaker.GetUnitsLuaTable(Coalition.Blue));
