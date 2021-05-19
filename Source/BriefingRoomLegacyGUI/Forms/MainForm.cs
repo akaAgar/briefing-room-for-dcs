@@ -14,54 +14,38 @@ namespace BriefingRoom4DCS.LegacyGUI.Forms
 {
     public partial class MainForm : Form
     {
-        private BriefingRoom BriefingRoom;
+        private readonly BriefingRoom BriefingRoom;
         private MissionTemplate Template;
 
         public MainForm(BriefingRoom briefingRoom)
         {
             InitializeComponent();
-            BriefingRoom = briefingRoom;
 
-            Template = new MissionTemplate();
+            BriefingRoom = briefingRoom;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            TemplateSettingsListView.Columns.Clear();
-            TemplateSettingsListView.Columns.Add("");
-            TemplateSettingsListView.Columns.Add("");
-
-            PlayerFlightGroupsListView.Columns.Clear();
-            PlayerFlightGroupsListView.Columns.Add("Aircraft");
-            PlayerFlightGroupsListView.Columns.Add("Payload");
-
-            MissionFeaturesListView.Items.Clear();
-            foreach (DatabaseEntryInfo dbEntryInfo in BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature))
-            {
-                MissionFeaturesListView.Items.Add(dbEntryInfo.Name);
-            }
-
-            UpdateAllListViews();
+            Template = new MissionTemplate();
+            SetupTemplateControls();
+            UpdateAllTemplateControls();
         }
 
-        private void UpdateAllListViews()
+        private void SetupTemplateControls()
         {
-            TemplateSettingsListView.Items.Clear();
-            TemplateSettingsListView.Items.Add("Coalition, blue").SubItems.Add(Template.ContextCoalitionBlue);
-            TemplateSettingsListView.Items.Add("Coalition, red").SubItems.Add(Template.ContextCoalitionRed);
-            TemplateSettingsListView.Items.Add("Player coalition").SubItems.Add(Template.ContextPlayerCoalition.ToString());
+            LegacyGUITools.PopulateCheckedTreeViewFromEnum<MissionOption>(TreeViewOptions);
+            LegacyGUITools.PopulateCheckedTreeViewFromEnum<RealismOption>(TreeViewRealism);
 
-            PlayerFlightGroupsListView.Items.Clear();
-            foreach (MissionTemplateFlightGroup flightGroup in Template.PlayerFlightGroups)
-                PlayerFlightGroupsListView.Items.Add(flightGroup.Aircraft);
+            TreeViewDCSMods.Nodes.Clear();
+            foreach (DatabaseEntryInfo entryInfo in BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.DCSMod))
+                TreeViewDCSMods.Nodes.Add(entryInfo.ID, entryInfo.Name);
+            TreeViewDCSMods.Sort();
         }
 
-        private void TemplateSettingsListView_MouseClick(object sender, MouseEventArgs e)
+        private void UpdateAllTemplateControls()
         {
-            MainContextMenuStrip.Items.Clear();
-            MainContextMenuStrip.Items.Add("Hello!");
-
-            MainContextMenuStrip.Show(TemplateSettingsListView, e.Location);
+            LegacyGUITools.UpdateCheckedTreeViewFromEnumList(TreeViewOptions, Template.OptionsMission);
+            LegacyGUITools.UpdateCheckedTreeViewFromEnumList(TreeViewRealism, Template.OptionsRealism);
         }
     }
 }

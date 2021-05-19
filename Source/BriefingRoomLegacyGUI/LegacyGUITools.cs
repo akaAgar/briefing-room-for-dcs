@@ -18,33 +18,40 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using BriefingRoom4DCS.LegacyGUI.Forms;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BriefingRoom4DCS.LegacyGUI
 {
-    internal class LegacyGUIProgram : IDisposable
+    public static class LegacyGUITools
     {
-        [STAThread]
-        private static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            using (LegacyGUIProgram legacyGUI = new LegacyGUIProgram()) { }
-        }
 
-        public LegacyGUIProgram()
+
+        public static void PopulateCheckedTreeViewFromEnum<T>(TreeView treeView) where T : Enum
         {
-            using (BriefingRoom briefingRoom = new BriefingRoom())
+            treeView.Nodes.Clear();
+            foreach (T enumValue in (T[])Enum.GetValues(typeof(T)))
             {
-                Application.Run(new MainForm(briefingRoom));
+                string enumValueString = enumValue.ToString();
+                treeView.Nodes.Add(enumValueString, enumValueString);
             }
         }
 
-        public void Dispose()
+        internal static void UpdateCheckedTreeViewFromEnumList<T>(TreeView treeView, List<T> enumList) where T : Enum
         {
+            foreach (TreeNode treeNode in treeView.Nodes) treeNode.Checked = false;
 
+            foreach (T enumValue in enumList)
+            {
+                string enumValueString = enumValue.ToString();
+                if (!treeView.Nodes.ContainsKey(enumValueString)) continue;
+                treeView.Nodes[enumValueString].Checked = true;
+            }
         }
     }
 }
