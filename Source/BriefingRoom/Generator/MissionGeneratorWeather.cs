@@ -79,10 +79,13 @@ namespace BriefingRoom4DCS.Generator
         /// <param name="mission">Mission to generate.</param>
         /// <param name="template">Mission template to use.</param>
         /// <param name="turbulenceFromWeather">Amount of turbulence (in m/s) to add to the default wind turbulence.</param>
-        /// <param name="windDirectionAtSeaLevel">Wind direction at sea level, in radians, or null if no wind.</param>
-        internal void GenerateWind(DCSMission mission, MissionTemplate template, int turbulenceFromWeather, out double? windDirectionAtSeaLevel)
+        /// <param name="windSpeedAtSeaLevel">Wind speed at sea level, in m/s.</param>
+        /// <param name="windDirectionAtSeaLevel">Wind direction at sea level, in radians.</param>
+        internal void GenerateWind(DCSMission mission, MissionTemplate template, int turbulenceFromWeather, out double windSpeedAtSeaLevel, out double windDirectionAtSeaLevel)
         {
-            windDirectionAtSeaLevel = null;
+            windSpeedAtSeaLevel = 0;
+            windDirectionAtSeaLevel = 0;
+            
             Wind windLevel = template.EnvironmentWind == Wind.Random ? windLevel = PickRandomWindLevel() : template.EnvironmentWind;
             BriefingRoom.PrintToLog($"Wind speed level set to \"{windLevel}\".");
 
@@ -91,7 +94,11 @@ namespace BriefingRoom4DCS.Generator
             {
                 int windSpeed = Database.Instance.Common.Wind[(int)windLevel].Wind.GetValue();
                 int windDirection = windSpeed > 0 ? Toolbox.RandomInt(0, 360) : 0;
-                if (i == 0) windDirectionAtSeaLevel = windSpeed > 0 ? (double?)(windDirection * Toolbox.DEGREES_TO_RADIANS) : null;
+                if (i == 0)
+                {
+                    windSpeedAtSeaLevel = windSpeed;
+                    windDirectionAtSeaLevel = windDirection * Toolbox.DEGREES_TO_RADIANS;
+                }
                 windAverage += windSpeed;
 
                 mission.SetValue($"WEATHER_WIND_SPEED{i + 1}", windSpeed);

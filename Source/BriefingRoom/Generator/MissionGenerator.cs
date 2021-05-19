@@ -92,11 +92,11 @@ namespace BriefingRoom4DCS.Generator
 
             // Generate weather and wind
             BriefingRoom.PrintToLog("Generating mission weather...");
-            double? windDirectionAtSeaLevel;
+            double windSpeedAtSeaLevel, windDirectionAtSeaLevel;
             using (MissionGeneratorWeather weatherGenerator = new MissionGeneratorWeather())
             {
                 weatherGenerator.GenerateWeather(mission, template, theaterDB, month, out int turbulenceFromWeather);
-                weatherGenerator.GenerateWind(mission, template, turbulenceFromWeather, out windDirectionAtSeaLevel);
+                weatherGenerator.GenerateWind(mission, template, turbulenceFromWeather, out windSpeedAtSeaLevel, out windDirectionAtSeaLevel);
             }
 
             // Setup airbases
@@ -152,7 +152,7 @@ namespace BriefingRoom4DCS.Generator
             BriefingRoom.PrintToLog("Generating carrier groups...");
             Dictionary<string, UnitMakerGroupInfo> carrierDictionary;
             using (MissionGeneratorCarrierGroup carrierGroupGenerator = new MissionGeneratorCarrierGroup(unitMaker))
-                carrierDictionary = carrierGroupGenerator.GenerateCarrierGroup(mission, template, playerAirbase.Coordinates, windDirectionAtSeaLevel);
+                carrierDictionary = carrierGroupGenerator.GenerateCarrierGroup(template, playerAirbase.Coordinates, windSpeedAtSeaLevel, windDirectionAtSeaLevel);
 
             // Generate player flight groups
             BriefingRoom.PrintToLog("Generating player flight groups...");
