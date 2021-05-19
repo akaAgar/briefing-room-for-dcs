@@ -105,7 +105,7 @@ namespace BriefingRoom4DCS.Generator
                 taskDB.TargetSide,
                 targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
                 spawnPoint.Value.Coordinates,
-                GetObjectiveSkillLevel(template, taskDB.TargetSide, targetFamily), 0,
+                null, 0,
                 AircraftPayload.Default,
                 "Hidden".ToKeyValuePair(hidden));
 
@@ -124,7 +124,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Add objective features Lua for this objective
             string triggerLua = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA_OBJECTIVESTRIGGERS}{taskDB.CompletionTriggerLua}");
-            LuaTools.ReplaceKey(ref triggerLua, "INDEX", objectiveIndex + 1);
+            GeneratorTools.ReplaceKey(ref triggerLua, "INDEX", objectiveIndex + 1);
             mission.AppendValue("OBJECTIVES_TRIGGERS_LUA", triggerLua);
 
             // Add objective features Lua for this objective
@@ -134,7 +134,7 @@ namespace BriefingRoom4DCS.Generator
                 foreach (string scriptFile in featureDB.IncludeLua)
                 {
                     string scriptLua = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA_OBJECTIVEFEATURES}{scriptFile}");
-                    LuaTools.ReplaceKey(ref scriptLua, "INDEX", objectiveIndex + 1);
+                    GeneratorTools.ReplaceKey(ref scriptLua, "INDEX", objectiveIndex + 1);
                     mission.AppendValue("OBJECTIVES_FEATURES_LUA", scriptLua);
                 }
             }
@@ -154,34 +154,6 @@ namespace BriefingRoom4DCS.Generator
                 waypointCoordinates += Coordinates.CreateRandom(3.0, 6.0) * Toolbox.NM_TO_METERS;
 
             return new Waypoint(objectiveName, waypointCoordinates, onGround);
-        }
-
-        private DCSSkillLevel GetObjectiveSkillLevel(MissionTemplate template, Side targetSide, UnitFamily targetFamily)
-        {
-            // Target is an aircraft, air force quality decides skill level
-            if (targetFamily.GetUnitCategory().IsAircraft())
-            {
-                //AmountNR airDefenseIntensity;
-                //if (targetSide == Side.Ally) airDefenseIntensity = template.SituationFriendlyAirForce.Get();
-                //else airDefenseIntensity = template.SituationEnemyAirForce.Get();
-
-                // TODO: return Toolbox.RandomFrom(Database.Instance.Common.CAP.CAPLevels[(int)airDefenseIntensity].SkillLevel);
-
-                return DCSSkillLevel.Average;
-            }
-
-            // Target is a surface-to-air unit, air defense quality decides skill level
-            if (targetFamily.IsAirDefense())
-            {
-                AmountNR airDefenseIntensity;
-                if (targetSide == Side.Ally) airDefenseIntensity = template.SituationFriendlyAirDefense.Get();
-                else airDefenseIntensity = template.SituationEnemyAirDefense.Get();
-
-                return Toolbox.RandomFrom(Database.Instance.Common.AirDefense.AirDefenseLevels[(int)airDefenseIntensity].SkillLevel);
-            }
-
-            // Target is nothing of that, return some random skill
-            return Toolbox.RandomFrom(DCSSkillLevel.Average, DCSSkillLevel.Good, DCSSkillLevel.High);
         }
 
         ///// <summary>

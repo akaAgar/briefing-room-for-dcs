@@ -123,23 +123,23 @@
 //            string campaignName = Path.GetFileNameWithoutExtension(campaignFilePath);
 
 //            string lua = LuaTools.ReadIncludeLuaFile("Campaign\\Campaign.lua");
-//            LuaTools.ReplaceKey(ref lua, "Name", campaignName);
-//            LuaTools.ReplaceKey(ref lua, "Description",
+//            GeneratorTools.ReplaceKey(ref lua, "Name", campaignName);
+//            GeneratorTools.ReplaceKey(ref lua, "Description",
 //                $"This is a {campaignTemplate.ContextCoalitionsBlue} vs {campaignTemplate.ContextCoalitionsRed} randomly-generated campaign created by an early version of the campaign generator of BriefingRoom, a mission generator for DCS World ({Toolbox.WEBSITE_URL}).");
-//            LuaTools.ReplaceKey(ref lua, "Units", "");
+//            GeneratorTools.ReplaceKey(ref lua, "Units", "");
 
 //            string stagesLua = "";
 //            for (int i = 0; i < campaignTemplate.MissionsCount; i++)
 //            {
 //                string nextStageLua = LuaTools.ReadIncludeLuaFile("Campaign\\CampaignStage.lua");
-//                LuaTools.ReplaceKey(ref nextStageLua, "Index", i + 1);
-//                LuaTools.ReplaceKey(ref nextStageLua, "Name", $"Stage {i + 1}");
-//                LuaTools.ReplaceKey(ref nextStageLua, "Description", $"");
-//                LuaTools.ReplaceKey(ref nextStageLua, "File", $"{campaignName}{i + 1:00}.miz");
+//                GeneratorTools.ReplaceKey(ref nextStageLua, "Index", i + 1);
+//                GeneratorTools.ReplaceKey(ref nextStageLua, "Name", $"Stage {i + 1}");
+//                GeneratorTools.ReplaceKey(ref nextStageLua, "Description", $"");
+//                GeneratorTools.ReplaceKey(ref nextStageLua, "File", $"{campaignName}{i + 1:00}.miz");
 
 //                stagesLua += nextStageLua + "\r\n";
 //            }
-//            LuaTools.ReplaceKey(ref lua, "Stages", stagesLua);
+//            GeneratorTools.ReplaceKey(ref lua, "Stages", stagesLua);
 
 //            File.WriteAllText(campaignFilePath, lua.Replace("\r\n", "\n"));
 //        }

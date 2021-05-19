@@ -51,8 +51,8 @@ namespace BriefingRoom4DCS.Generator
             foreach (int airbaseID in mission.Airbases.Keys)
             {
                 string airportLua = airportLuaTemplate;
-                LuaTools.ReplaceKey(ref airportLua, "index", airbaseID);
-                LuaTools.ReplaceKey(ref airportLua, "coalition", mission.Airbases[airbaseID].ToString().ToUpperInvariant());
+                GeneratorTools.ReplaceKey(ref airportLua, "index", airbaseID);
+                GeneratorTools.ReplaceKey(ref airportLua, "coalition", mission.Airbases[airbaseID].ToString().ToUpperInvariant());
 
                 warehousesAirportLua += airportLua + "\r\n";
             }

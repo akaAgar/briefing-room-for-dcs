@@ -45,8 +45,8 @@
 //        {
 //            string lua = LuaTools.ReadIncludeLuaFile("MapResource.lua");
 
-//            LuaTools.ReplaceKey(ref lua, "OggFiles", resourceOggString);
-//            LuaTools.ReplaceKey(ref lua, "MissionID", mission.UniqueID);
+//            GeneratorTools.ReplaceKey(ref lua, "OggFiles", resourceOggString);
+//            GeneratorTools.ReplaceKey(ref lua, "MissionID", mission.UniqueID);
 
 //            return lua;
 //        }

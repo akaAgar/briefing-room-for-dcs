@@ -61,13 +61,13 @@
 //            foreach (int id in missHQ.AirbasesCoalition.Keys)
 //            {
 //                string apLua = WarehouseAirportLua;
-//                LuaTools.ReplaceKey(ref apLua, "Index", id);
-//                LuaTools.ReplaceKey(ref apLua, "Coalition", missHQ.AirbasesCoalition[id].ToString().ToUpperInvariant());
+//                GeneratorTools.ReplaceKey(ref apLua, "Index", id);
+//                GeneratorTools.ReplaceKey(ref apLua, "Coalition", missHQ.AirbasesCoalition[id].ToString().ToUpperInvariant());
 //                airportsLua += apLua + "\n";
 //            }
 
 //            string lua = WarehouseLua;
-//            LuaTools.ReplaceKey(ref lua, "Airports", airportsLua);
+//            GeneratorTools.ReplaceKey(ref lua, "Airports", airportsLua);
 
 //            return lua;
 //        }

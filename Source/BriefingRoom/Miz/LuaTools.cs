@@ -33,54 +33,20 @@ namespace BriefingRoom4DCS.Generator
     /// </summary>
     internal static class LuaTools
     {
-        /// <summary>
-        /// Reads the content of an embedded Lua file in BriefingRoom.Resources.Lua namespace.
-        /// </summary>
-        /// <param name="filePath">Path to resource file from BriefingRoom.Resources.Lua</param>
-        /// <returns>The content of the Lua file, or an empty string if the resource was not found.</returns>
-        internal static string ReadIncludeLuaFile(string filePath)
-        {
-            if (string.IsNullOrEmpty(filePath)) return "";
-            if (!filePath.ToLowerInvariant().EndsWith(".lua")) filePath += ".lua";
-            filePath = $"{BRPaths.INCLUDE_LUA}{filePath}";
+        ///// <summary>
+        ///// Reads the content of an embedded Lua file in BriefingRoom.Resources.Lua namespace.
+        ///// </summary>
+        ///// <param name="filePath">Path to resource file from BriefingRoom.Resources.Lua</param>
+        ///// <returns>The content of the Lua file, or an empty string if the resource was not found.</returns>
+        //internal static string ReadIncludeLuaFile(string filePath)
+        //{
+        //    if (string.IsNullOrEmpty(filePath)) return "";
+        //    if (!filePath.ToLowerInvariant().EndsWith(".lua")) filePath += ".lua";
+        //    filePath = $"{BRPaths.INCLUDE_LUA}{filePath}";
 
-            if (!File.Exists(filePath)) return "";
-            return File.ReadAllText(filePath) + "\n";
-        }
-
-        /// <summary>
-        /// Replaces all instance of "$KEY$" in a Lua script by value.
-        /// </summary>
-        /// <param name="lua">The Lua script.</param>
-        /// <param name="key">The key to replace, without the dollar signs.</param>
-        /// <param name="value">The value to replace the key with.</param>
-        internal static void ReplaceKey(ref string lua, string key, object value)
-        {
-            string valueStr = Toolbox.ValToString(value);
-            if (value is bool) valueStr = valueStr.ToLowerInvariant();
-
-            lua = lua.Replace($"${key.ToUpperInvariant()}$", valueStr);
-        }
-
-        /// <summary>
-        /// Replaces all instance of "$KEY$" in a Lua script by a value from a given index arrayValue.
-        /// </summary>
-        /// <param name="lua">The Lua script.</param>
-        /// <param name="key">The key to replace, without the dollar signs.</param>
-        /// <param name="arrayValue">An array from which to pick the value to replace the key with.</param>
-        /// <param name="arrayIndex">Index of the array from which to pick the value.</param>
-        internal static void ReplaceKey(ref string lua, string key, object arrayValue, int arrayIndex)
-        {
-            try
-            {
-                object value = ((IEnumerable)arrayValue).Cast<object>().Select(x => x).ToArray()[arrayIndex];
-                ReplaceKey(ref lua, key, value);
-            }
-            catch (Exception)
-            {
-                ReplaceKey(ref lua, key, "");
-            }
-        }
+        //    if (!File.Exists(filePath)) return "";
+        //    return File.ReadAllText(filePath) + "\n";
+        //}
 
         ///// <summary>
         ///// Replaces all instance of "$KEY$" in a Lua script by value.

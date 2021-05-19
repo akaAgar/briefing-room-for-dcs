@@ -21,6 +21,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Template;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -85,6 +86,68 @@ namespace BriefingRoom4DCS.Generator
         {
             if (coalition == Coalition.Red) return template.ContextCoalitionRed;
             return template.ContextCoalitionBlue;
+        }
+
+        internal static DCSSkillLevel GetDefaultSkillLevel(MissionTemplate template, UnitFamily unitFamily, Side side)
+        {
+            // Unit is an aircraft, air force quality decides skill level
+            if (unitFamily.GetUnitCategory().IsAircraft())
+            {
+                //AmountNR airDefenseIntensity;
+                //if (targetSide == Side.Ally) airDefenseIntensity = template.SituationFriendlyAirForce.Get();
+                //else airDefenseIntensity = template.SituationEnemyAirForce.Get();
+
+                // TODO: return Toolbox.RandomFrom(Database.Instance.Common.CAP.CAPLevels[(int)airDefenseIntensity].SkillLevel);
+
+                return DCSSkillLevel.Average;
+            }
+
+            // Unit is a surface-to-air unit, air defense quality decides skill level
+            if (unitFamily.IsAirDefense())
+            {
+                AmountNR airDefenseIntensity;
+                if (side == Side.Ally) airDefenseIntensity = template.SituationFriendlyAirDefense.Get();
+                else airDefenseIntensity = template.SituationEnemyAirDefense.Get();
+
+                return Toolbox.RandomFrom(Database.Instance.Common.AirDefense.AirDefenseLevels[(int)airDefenseIntensity].SkillLevel);
+            }
+
+            // Unit is nothing of that, return some random skill
+            return Toolbox.RandomFrom(DCSSkillLevel.Average, DCSSkillLevel.Good, DCSSkillLevel.High);
+        }
+
+        /// <summary>
+        /// Replaces all instance of "$KEY$" in a Lua script by value.
+        /// </summary>
+        /// <param name="lua">The Lua script.</param>
+        /// <param name="key">The key to replace, without the dollar signs.</param>
+        /// <param name="value">The value to replace the key with.</param>
+        internal static void ReplaceKey(ref string lua, string key, object value)
+        {
+            string valueStr = Toolbox.ValToString(value);
+            if (value is bool) valueStr = valueStr.ToLowerInvariant();
+
+            lua = lua.Replace($"${key.ToUpperInvariant()}$", valueStr);
+        }
+
+        /// <summary>
+        /// Replaces all instance of "$KEY$" in a Lua script by a value from a given index arrayValue.
+        /// </summary>
+        /// <param name="lua">The Lua script.</param>
+        /// <param name="key">The key to replace, without the dollar signs.</param>
+        /// <param name="arrayValue">An array from which to pick the value to replace the key with.</param>
+        /// <param name="arrayIndex">Index of the array from which to pick the value.</param>
+        internal static void ReplaceKey(ref string lua, string key, object arrayValue, int arrayIndex)
+        {
+            try
+            {
+                object value = ((IEnumerable)arrayValue).Cast<object>().Select(x => x).ToArray()[arrayIndex];
+                ReplaceKey(ref lua, key, value);
+            }
+            catch (Exception)
+            {
+                ReplaceKey(ref lua, key, "");
+            }
         }
 
         internal static bool GetHiddenStatus(FogOfWar fogOfWar, Side side)

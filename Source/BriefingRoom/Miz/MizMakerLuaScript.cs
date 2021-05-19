@@ -49,17 +49,17 @@
 //            string lua = LuaTools.ReadIncludeLuaFile("Script.lua");
 
 //            BriefingRoom.PrintToLog("Making replacements in the Lua files...");
-//            LuaTools.ReplaceKey(ref lua, "CoreLua", mission.LuaScriptObjectives.Trim('\r', '\n', ' '));
-//            LuaTools.ReplaceKey(ref lua, "RadioSounds", !mission.OptionsMission.Contains(Template.MissionOption.RadioMessagesTextOnly));
-//            //LuaTools.ReplaceKey(ref lua, "LuaSettings", mission.LuaSettings);
-//            LuaTools.ReplaceKey(ref lua, "IncludedLua", GetIncludedMissionFeaturesLua(mission.IncludedLuaScripts));
+//            GeneratorTools.ReplaceKey(ref lua, "CoreLua", mission.LuaScriptObjectives.Trim('\r', '\n', ' '));
+//            GeneratorTools.ReplaceKey(ref lua, "RadioSounds", !mission.OptionsMission.Contains(Template.MissionOption.RadioMessagesTextOnly));
+//            //GeneratorTools.ReplaceKey(ref lua, "LuaSettings", mission.LuaSettings);
+//            GeneratorTools.ReplaceKey(ref lua, "IncludedLua", GetIncludedMissionFeaturesLua(mission.IncludedLuaScripts));
            
-//            LuaTools.ReplaceKey(ref lua, "EnemyCoalition", $"coalition.side.{mission.CoalitionEnemy.ToString().ToUpperInvariant()}");
-//            LuaTools.ReplaceKey(ref lua, "PlayerCoalition", $"coalition.side.{mission.CoalitionPlayer.ToString().ToUpperInvariant()}");
+//            GeneratorTools.ReplaceKey(ref lua, "EnemyCoalition", $"coalition.side.{mission.CoalitionEnemy.ToString().ToUpperInvariant()}");
+//            GeneratorTools.ReplaceKey(ref lua, "PlayerCoalition", $"coalition.side.{mission.CoalitionPlayer.ToString().ToUpperInvariant()}");
 //            //PLAYER TODO actually generate waypoint data
-//            //LuaTools.ReplaceKey(ref lua, "PlayerWaypoints", GetPlayerWaypoints(mission.Waypoints));
-//            LuaTools.ReplaceKey(ref lua, "StaticObjective", mission.ObjectiveIsStatic);
-//            //LuaTools.ReplaceKey(ref lua, "EndMode", (int)mission.EndMode);
+//            //GeneratorTools.ReplaceKey(ref lua, "PlayerWaypoints", GetPlayerWaypoints(mission.Waypoints));
+//            GeneratorTools.ReplaceKey(ref lua, "StaticObjective", mission.ObjectiveIsStatic);
+//            //GeneratorTools.ReplaceKey(ref lua, "EndMode", (int)mission.EndMode);
 
 //            return lua;
 //        }

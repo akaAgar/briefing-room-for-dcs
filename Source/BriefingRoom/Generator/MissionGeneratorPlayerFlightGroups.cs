@@ -115,11 +115,11 @@ namespace BriefingRoom4DCS.Generator
             {
                 string waypointLua = waypointLuaTemplate;
 
-                LuaTools.ReplaceKey(ref waypointLua, "Index", i + 2);
-                LuaTools.ReplaceKey(ref waypointLua, "Name", waypoints[i].Name);
-                LuaTools.ReplaceKey(ref waypointLua, "X", waypoints[i].Coordinates.X);
-                LuaTools.ReplaceKey(ref waypointLua, "Y", waypoints[i].Coordinates.Y);
-                if (waypoints[i].OnGround) LuaTools.ReplaceKey(ref waypointLua, "Altitude", "0");
+                GeneratorTools.ReplaceKey(ref waypointLua, "Index", i + 2);
+                GeneratorTools.ReplaceKey(ref waypointLua, "Name", waypoints[i].Name);
+                GeneratorTools.ReplaceKey(ref waypointLua, "X", waypoints[i].Coordinates.X);
+                GeneratorTools.ReplaceKey(ref waypointLua, "Y", waypoints[i].Coordinates.Y);
+                if (waypoints[i].OnGround) GeneratorTools.ReplaceKey(ref waypointLua, "Altitude", "0");
 
                 flightPlanLua += waypointLua + "\n";
             }
