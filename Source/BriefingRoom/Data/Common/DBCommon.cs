@@ -49,6 +49,11 @@ namespace BriefingRoom4DCS.Data
         internal DBCommonCAP CAP { get; private set; }
 
         /// <summary>
+        /// Stores information about carrier groups.
+        /// </summary>
+        internal DBCommonCarrierGroup CarrierGroup { get; private set; }
+
+        /// <summary>
         /// Stores information about common mission names/wording.
         /// </summary>
         internal DBCommonNames Names { get; private set; }
@@ -93,6 +98,9 @@ namespace BriefingRoom4DCS.Data
 
             BriefingRoom.PrintToLog("Loading common CAP settings...");
             CAP = new DBCommonCAP();
+
+            BriefingRoom.PrintToLog("Loading common carrier group settings...");
+            CarrierGroup = new DBCommonCarrierGroup();
 
             BriefingRoom.PrintToLog("Loading common names settings...");
             Names = new DBCommonNames();

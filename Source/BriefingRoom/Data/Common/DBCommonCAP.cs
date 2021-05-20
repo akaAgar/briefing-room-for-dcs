@@ -29,12 +29,12 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Min/max distance between enemy CAP and the mission objectives.
         /// </summary>
-        internal MinMaxD EnemyCAPDistanceFromObjectives { get; private set; }
+        internal MinMaxD EnemyCAPDistanceFromObjectives { get; }
 
         /// <summary>
         /// Min distance (in nautical miles) between enemy CAP and players take off location.
         /// </summary>
-        internal int EnemyCAPMinDistanceFromTakeOffLocation { get; private set; }
+        internal int EnemyCAPMinDistanceFromTakeOffLocation { get; }
 
         /// <summary>
         /// Settings for CAP at various CAP levels.

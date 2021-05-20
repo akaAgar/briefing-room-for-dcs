@@ -40,7 +40,7 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Random mission name template, where $P1$, $P2$, $P3$, $P4$ is remplaced with a random mission name part.
         /// </summary>
-        internal string MissionNameTemplate { get; private set; }
+        internal string MissionNameTemplate { get; }
 
         /// <summary>
         /// Name (singular -index #0- and plural -index #1) to display in the briefings for each unit family.
@@ -55,22 +55,22 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Name of the final (landing) player waypoint.
         /// </summary>
-        internal string WPFinalName { get; private set; }
+        internal string WPFinalName { get; }
 
         /// <summary>
         /// Name of the initial (takeoff) player waypoint.
         /// </summary>
-        internal string WPInitialName { get; private set; }
+        internal string WPInitialName { get; }
 
         /// <summary>
         /// Name of the navigation player waypoints, where $0$, $00$, $000$... is replaced with the waypoint number.
         /// </summary>
-        internal string WPNavigationName { get; private set; }
+        internal string WPNavigationName { get; }
 
         /// <summary>
         /// Names to use for objectives and objective waypoints.
         /// </summary>
-        internal string[] WPObjectivesNames { get; private set; }
+        internal string[] WPObjectivesNames { get; }
 
         /// <summary>
         /// Constructor.

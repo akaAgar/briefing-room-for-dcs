@@ -31,23 +31,6 @@ namespace BriefingRoom4DCS.Generator
     /// </summary>
     internal class MissionGeneratorCarrierGroup : IDisposable
     {
-        private static readonly UnitFamily[] ESCORT_UNIT_FAMILIES = new UnitFamily[] { UnitFamily.ShipFrigate, UnitFamily.ShipFrigate, UnitFamily.ShipCruiser, UnitFamily.ShipCruiser, UnitFamily.ShipTransport };
-
-        /// <summary>
-        /// Carrier course length (in nautical miles)
-        /// </summary>
-        private const double CARRIER_COURSE_LENGTH = 50.0;
-
-        /// <summary>
-        /// Minimum carrier speed (in knots)
-        /// </summary>
-        private const double MIN_CARRIER_SPEED = 5.0;
-
-        /// <summary>
-        /// Target wind on deck (in knots)
-        /// </summary>
-        private const double IDEAL_WIND_ON_DECK = 20.0;
-
         /// <summary>
         /// Unit maker class to use to generate units.
         /// </summary>
@@ -82,9 +65,11 @@ namespace BriefingRoom4DCS.Generator
 
             if (windSpeedAtSeaLevel == 0) // No wind? Pick a random direction so carriers don't always go to a 0 course when wind is calm.
                 windDirectionAtSeaLevel = Toolbox.RandomDouble(Toolbox.TWO_PI);
-            Coordinates destinationPath = Coordinates.FromAngleInRadians(windDirectionAtSeaLevel + Math.PI) * CARRIER_COURSE_LENGTH * Toolbox.NM_TO_METERS;
+            Coordinates destinationPath = Coordinates.FromAngleInRadians(windDirectionAtSeaLevel + Math.PI) * Database.Instance.Common.CarrierGroup.CourseLength;
 
-            double carrierSpeed = Math.Max(MIN_CARRIER_SPEED * Toolbox.KNOTS_TO_METERS_PER_SECOND, IDEAL_WIND_ON_DECK * Toolbox.KNOTS_TO_METERS_PER_SECOND - windSpeedAtSeaLevel);
+            double carrierSpeed = Math.Max(
+                Database.Instance.Common.CarrierGroup.MinimumCarrierSpeed,
+                Database.Instance.Common.CarrierGroup.IdealWindOfDeck - windSpeedAtSeaLevel);
 
             foreach (MissionTemplateFlightGroup flightGroup in template.PlayerFlightGroups)
             {
@@ -93,7 +78,7 @@ namespace BriefingRoom4DCS.Generator
                 DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(flightGroup.Carrier);
                 if ((unitDB == null) || !unitDB.Families[0].IsCarrier()) continue; // Unit doesn't exist or is not a carrier
 
-                Coordinates shipCoordinates = carrierGroupCoordinates + Coordinates.FromAngleInRadians(Toolbox.RandomAngle()) * carrierDictionary.Count * Toolbox.NM_TO_METERS;
+                Coordinates shipCoordinates = carrierGroupCoordinates + Coordinates.FromAngleInRadians(Toolbox.RandomAngle()) * carrierDictionary.Count * Database.Instance.Common.CarrierGroup.ShipSpacing;
                 Coordinates shipDestination = shipCoordinates + destinationPath;
 
                 string cvnID = carrierDictionary.Count > 0 ? (carrierDictionary.Count + 1).ToString() : "";
@@ -122,11 +107,18 @@ namespace BriefingRoom4DCS.Generator
                 carrierDictionary.Add(flightGroup.Carrier, groupInfo.Value);
             }
 
-            if (carrierDictionary.Count > 0) // Add escorts, if there's a carrier group
+            if (carrierDictionary.Count > 0) // Add escorts if there's a carrier group
             {
-                // Randomize escort unit families order so they don't always appear in the same order
-                UnitFamily[] escortUnitFamilies = ESCORT_UNIT_FAMILIES.OrderBy(x => Toolbox.RandomInt()).ToArray();
+                // Pick the correct number of escorts according to the carrier group size
+                UnitFamily[] escortUnitFamilies = Database.Instance.Common.CarrierGroup.EscortUnitFamilies[DBCommonCarrierGroup.ESCORT_FAMILIES_SHIP_COUNT - 1].ToArray();
+                for (int i = 0; i < DBCommonCarrierGroup.ESCORT_FAMILIES_SHIP_COUNT - 1; i++)
+                    if (i == carrierDictionary.Count - 1)
+                        escortUnitFamilies = Database.Instance.Common.CarrierGroup.EscortUnitFamilies[i].ToArray();
 
+                // Randomize escort unit families order so they don't always appear in the same order
+                escortUnitFamilies = escortUnitFamilies.OrderBy(x => Toolbox.RandomInt()).ToArray();
+
+                // Add escorts
                 foreach (UnitFamily escortUnitFamily in escortUnitFamilies)
                 {
                     Coordinates shipCoordinates = carrierGroupCoordinates + Coordinates.FromAngleInRadians(Toolbox.RandomAngle()) * carrierDictionary.Count * Toolbox.NM_TO_METERS;
