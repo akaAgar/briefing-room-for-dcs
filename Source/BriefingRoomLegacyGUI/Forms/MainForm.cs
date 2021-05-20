@@ -15,6 +15,8 @@ namespace BriefingRoom4DCS.LegacyGUI.Forms
     public partial class MainForm : Form
     {
         private readonly BriefingRoom BriefingRoom;
+        private readonly GUIContextMenu CustomContextMenu;
+        
         private MissionTemplate Template;
 
         public MainForm(BriefingRoom briefingRoom)
@@ -22,6 +24,7 @@ namespace BriefingRoom4DCS.LegacyGUI.Forms
             InitializeComponent();
 
             BriefingRoom = briefingRoom;
+            CustomContextMenu = new GUIContextMenu(BriefingRoom);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -56,10 +59,10 @@ namespace BriefingRoom4DCS.LegacyGUI.Forms
 
         private void FlightGroupsDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            MainContextMenuStrip.Items.Clear();
-            MainContextMenuStrip.Items.Add("Test");
+            Point location = FlightGroupsDataGridView.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Location.Add(e.Location);
+            Wind? result = (Wind?)CustomContextMenu.ShowEnum<Wind>(FlightGroupsDataGridView, location);
 
-            MainContextMenuStrip.Show(FlightGroupsDataGridView, FlightGroupsDataGridView.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Location.Add(e.Location));
+            MessageBox.Show(result.ToString());
         }
     }
 }

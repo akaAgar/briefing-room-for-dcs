@@ -41,6 +41,10 @@
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.TabPageFlightGroups = new System.Windows.Forms.TabPage();
             this.FlightGroupsDataGridView = new System.Windows.Forms.DataGridView();
+            this.DGVC_FGAircraft = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGVC_FGCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGVC_FGPayload = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGVC_FGCarrier = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
@@ -58,10 +62,6 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.MainContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.DGVC_FGAircraft = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGVC_FGCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGVC_FGPayload = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGVC_FGCarrier = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MenuStripMain.SuspendLayout();
             this.TabControlTemplate.SuspendLayout();
             this.TabPageObjectives.SuspendLayout();
@@ -192,6 +192,7 @@
             this.FlightGroupsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FlightGroupsDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.FlightGroupsDataGridView.Location = new System.Drawing.Point(0, 25);
+            this.FlightGroupsDataGridView.MultiSelect = false;
             this.FlightGroupsDataGridView.Name = "FlightGroupsDataGridView";
             this.FlightGroupsDataGridView.ReadOnly = true;
             this.FlightGroupsDataGridView.RowHeadersVisible = false;
@@ -204,6 +205,34 @@
             this.FlightGroupsDataGridView.Size = new System.Drawing.Size(792, 353);
             this.FlightGroupsDataGridView.TabIndex = 2;
             this.FlightGroupsDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.FlightGroupsDataGridView_CellMouseClick);
+            // 
+            // DGVC_FGAircraft
+            // 
+            this.DGVC_FGAircraft.HeaderText = "Aircraft";
+            this.DGVC_FGAircraft.Name = "DGVC_FGAircraft";
+            this.DGVC_FGAircraft.ReadOnly = true;
+            this.DGVC_FGAircraft.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // DGVC_FGCount
+            // 
+            this.DGVC_FGCount.HeaderText = "Count";
+            this.DGVC_FGCount.Name = "DGVC_FGCount";
+            this.DGVC_FGCount.ReadOnly = true;
+            this.DGVC_FGCount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // DGVC_FGPayload
+            // 
+            this.DGVC_FGPayload.HeaderText = "Payload";
+            this.DGVC_FGPayload.Name = "DGVC_FGPayload";
+            this.DGVC_FGPayload.ReadOnly = true;
+            this.DGVC_FGPayload.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // DGVC_FGCarrier
+            // 
+            this.DGVC_FGCarrier.HeaderText = "Carrier";
+            this.DGVC_FGCarrier.Name = "DGVC_FGCarrier";
+            this.DGVC_FGCarrier.ReadOnly = true;
+            this.DGVC_FGCarrier.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // toolStrip2
             // 
@@ -379,34 +408,6 @@
             // 
             this.MainContextMenuStrip.Name = "ContextMenuStripMain";
             this.MainContextMenuStrip.Size = new System.Drawing.Size(61, 4);
-            // 
-            // DGVC_FGAircraft
-            // 
-            this.DGVC_FGAircraft.HeaderText = "Aircraft";
-            this.DGVC_FGAircraft.Name = "DGVC_FGAircraft";
-            this.DGVC_FGAircraft.ReadOnly = true;
-            this.DGVC_FGAircraft.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // DGVC_FGCount
-            // 
-            this.DGVC_FGCount.HeaderText = "Count";
-            this.DGVC_FGCount.Name = "DGVC_FGCount";
-            this.DGVC_FGCount.ReadOnly = true;
-            this.DGVC_FGCount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // DGVC_FGPayload
-            // 
-            this.DGVC_FGPayload.HeaderText = "Payload";
-            this.DGVC_FGPayload.Name = "DGVC_FGPayload";
-            this.DGVC_FGPayload.ReadOnly = true;
-            this.DGVC_FGPayload.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // DGVC_FGCarrier
-            // 
-            this.DGVC_FGCarrier.HeaderText = "Carrier";
-            this.DGVC_FGCarrier.Name = "DGVC_FGCarrier";
-            this.DGVC_FGCarrier.ReadOnly = true;
-            this.DGVC_FGCarrier.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // MainForm
             // 
