@@ -126,15 +126,15 @@ namespace BriefingRoom4DCS.Generator
             objectiveLua += $"unitsID = {{ {string.Join(", ", targetGroupInfo.Value.UnitsID)} }}";
             objectiveLua += "}\n";
             objectiveLua += $"briefingRoom.mission.f10Menu.objectives[{objectiveIndex + 1}] = missionCommands.addSubMenuForCoalition(coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}, \"Objective {objectiveName}\", nil)\n";
-            mission.AppendValue("OBJECTIVES_LUA", objectiveLua);
+            mission.AppendValue("ScriptObjectives", objectiveLua);
 
             // Add objective features Lua for this objective
             string triggerLua = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA_OBJECTIVESTRIGGERS}{taskDB.CompletionTriggerLua}");
-            GeneratorTools.ReplaceKey(ref triggerLua, "INDEX", objectiveIndex + 1);
-            mission.AppendValue("OBJECTIVES_TRIGGERS_LUA", triggerLua);
+            GeneratorTools.ReplaceKey(ref triggerLua, "Index", objectiveIndex + 1);
+            mission.AppendValue("ScriptObjectivesTriggers", triggerLua);
 
             // Add objective features Lua for this objective
-            mission.SetValue("OBJECTIVES_FEATURES_LUA", ""); // Just in case there's no features
+            mission.AppendValue("ScriptObjectivesFeatures", ""); // Just in case there's no features
             foreach (string featureID in objectiveTemplate.Features.ToArray())
                 FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveIndex, targetGroupInfo.Value.GroupID, spawnPoint.Value.Coordinates);
 
@@ -142,7 +142,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 string task = Toolbox.RandomFrom(taskDB.BriefingTask);
                 GeneratorTools.ReplaceKey(ref task, "ObjectiveName", objectiveName);
-                mission.Briefing.AddTask(task);
+                mission.Briefing.AddItem(DCSMissionBriefingItemType.Task, task);
             }
 
             return spawnPoint.Value.Coordinates;

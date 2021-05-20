@@ -58,7 +58,7 @@ namespace BriefingRoom4DCS.Generator
                 warehousesAirportLua += airportLua + "\r\n";
             }
 
-            mission.SetValue("WAREHOUSES_AIRPORTS", warehousesAirportLua);
+            mission.SetValue("WarehousesAirports", warehousesAirportLua);
         }
 
         /// <summary>

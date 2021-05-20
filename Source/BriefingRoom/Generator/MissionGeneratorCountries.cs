@@ -79,9 +79,9 @@ namespace BriefingRoom4DCS.Generator
             List<Country> neutralCountries = new List<Country>(Toolbox.GetEnumValues<Country>());
             for (i = 0; i < 2; i++) neutralCountries = neutralCountries.Except(countries[i]).ToList();
 
-            mission.SetValue("COALITION_NEUTRAL", GetCountriesLuaTable(neutralCountries));
-            mission.SetValue("COALITION_BLUE", GetCountriesLuaTable(countries[(int)Coalition.Blue]));
-            mission.SetValue("COALITION_RED", GetCountriesLuaTable(countries[(int)Coalition.Red]));
+            mission.SetValue("CoalitionNeutral", GetCountriesLuaTable(neutralCountries));
+            mission.SetValue("CoalitionBlue", GetCountriesLuaTable(countries[(int)Coalition.Blue]));
+            mission.SetValue("CoalitionRed", GetCountriesLuaTable(countries[(int)Coalition.Red]));
 
             return new Country[][] { countries[0].ToArray(), countries[1].ToArray(), };
         }

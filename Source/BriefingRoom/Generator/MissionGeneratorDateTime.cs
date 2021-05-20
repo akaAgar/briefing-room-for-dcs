@@ -72,9 +72,10 @@ namespace BriefingRoom4DCS.Generator
                 }
             }
 
-            mission.SetValue("DATE_DAY", day);
-            mission.SetValue("DATE_MONTH", (int)month + 1);
-            mission.SetValue("DATE_YEAR", year);
+            mission.SetValue("DateDay", day);
+            mission.SetValue("DateMonth", (int)month + 1);
+            mission.SetValue("DateYear", year);
+            mission.SetValue("BriefingDate", $"{(int)month + 1:00}/{day:00}/{year:0000}");
 
             BriefingRoom.PrintToLog($"Misson date set to {day} {month} {year}.");
         }
@@ -122,10 +123,9 @@ namespace BriefingRoom4DCS.Generator
 
             hour = Toolbox.Clamp((int)Math.Floor(totalMinutes / 60), 0, 23);
             minute = Toolbox.Clamp((int)Math.Floor((totalMinutes - hour * 60) / 15) * 15, 0, 45);
-            string timeString = $"{hour:00}:{minute:00}";
 
-            mission.SetValue("BRIEFING_TIME", timeString);
-            mission.SetValue("START_TIME", hour * 3600 + minute * 60); // DCS World time is stored in seconds since midnight
+            mission.SetValue("BriefingTime", $"{hour:00}:{minute:00}");
+            mission.SetValue("StartTime", hour * 3600 + minute * 60); // DCS World time is stored in seconds since midnight
         }
 
         /// <summary>

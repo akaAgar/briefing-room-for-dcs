@@ -52,7 +52,7 @@ namespace BriefingRoom4DCS
             AddStringValueToEntries(MizFileEntries, "credits.txt", "Generated with BriefingRoom for DCS World (https://akaagar.itch.io/briefing-room-for-dcs)");
             AddLuaFileToEntries(MizFileEntries, "mission", "Mission.lua", mission);
             AddLuaFileToEntries(MizFileEntries, "options", "Options.lua", null);
-            AddStringValueToEntries(MizFileEntries, "theatre", mission.GetValue("THEATER_ID"));
+            AddStringValueToEntries(MizFileEntries, "theatre", mission.GetValue("TheaterID"));
             AddLuaFileToEntries(MizFileEntries, "warehouses", "Warehouses.lua", mission);
 
             AddLuaFileToEntries(MizFileEntries, "l10n/DEFAULT/dictionary", "Dictionary.lua", null);

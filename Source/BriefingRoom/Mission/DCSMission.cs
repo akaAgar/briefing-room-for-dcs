@@ -77,7 +77,7 @@ namespace BriefingRoom4DCS.Mission
             Values = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
             MediaFilesOgg = new List<string>();
             UniqueID = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()).ToLowerInvariant();
-            SetValue("MISSION_ID", UniqueID);
+            SetValue("MissionID", UniqueID);
             Briefing = new DCSMissionBriefing(this);
         }
 

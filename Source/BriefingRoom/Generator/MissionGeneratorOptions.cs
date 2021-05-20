@@ -18,13 +18,9 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -33,8 +29,6 @@ namespace BriefingRoom4DCS.Generator
     /// </summary>
     internal class MissionGeneratorOptions : IDisposable
     {
-        //private static readonly string HTML_TEMPLATE_FILE = $"{BRPaths.INCLUDE}Briefing.html";
-
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -87,7 +81,7 @@ namespace BriefingRoom4DCS.Generator
                 case FogOfWar.None: forcedOptionsLua += "[\"optionsView\"] = \"optview_onlymap\","; break;
             }
 
-            mission.SetValue("FORCED_OPTIONS", forcedOptionsLua);
+            mission.SetValue("ForcedOptions", forcedOptionsLua);
         }
 
         /// <summary>

@@ -68,7 +68,7 @@ namespace BriefingRoom4DCS.Generator
                 };
 
             // Copy values from the template
-            mission.SetValue("THEATER_ID", theaterDB.DCSID);
+            mission.SetValue("TheaterID", theaterDB.DCSID);
             mission.SetValue("DebugMode", template.OptionsMission.Contains(MissionOption.DebugMode));
 
             // Add common media files
@@ -107,11 +107,12 @@ namespace BriefingRoom4DCS.Generator
             using (MissionGeneratorAirbases airbasesGenerator = new MissionGeneratorAirbases())
             {
                 playerAirbase = airbasesGenerator.SelectStartingAirbase(mission, template);
-                if (playerAirbase == null) return null; // No valid airbase was found
+                if (playerAirbase == null) throw new BriefingRoomException("No valid airbase was found for the player(s).");
                 airbasesGenerator.SetupAirbasesCoalitions(mission, template, playerAirbase);
-                mission.SetValue("PLAYER_AIRBASE_NAME", playerAirbase.Name);
-                mission.SetValue("MISSION_AIRBASE_X", playerAirbase.Coordinates.X);
-                mission.SetValue("MISSION_AIRBASE_Y", playerAirbase.Coordinates.Y);
+                mission.SetValue("PlayerAirbaseName", playerAirbase.Name);
+                mission.SetValue("MissionAirbaseX", playerAirbase.Coordinates.X);
+                mission.SetValue("MissionAirbaseY", playerAirbase.Coordinates.Y);
+                mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{playerAirbase.Name}\t{playerAirbase.Runways}\t{playerAirbase.ATC}\t{playerAirbase.ILS}\t{playerAirbase.TACAN}");
             }
 
             // Generate objectives
@@ -133,6 +134,7 @@ namespace BriefingRoom4DCS.Generator
                 flightPlanGenerator.GenerateBullseyes(mission, objectivesCenter);
                 flightPlanGenerator.GenerateExtraWaypoints(template, playerAirbase.Coordinates, waypoints, false); // Ingress WPs
                 flightPlanGenerator.GenerateExtraWaypoints(template, playerAirbase.Coordinates, waypoints, true); // Egress WPs
+                flightPlanGenerator.SaveWaypointsToBriefing(mission, playerAirbase.Coordinates, waypoints, template.OptionsMission.Contains(MissionOption.ImperialUnitsForBriefing));
             }
 
             // Generate surface-to-air defenses
@@ -154,13 +156,13 @@ namespace BriefingRoom4DCS.Generator
             BriefingRoom.PrintToLog("Generating carrier groups...");
             Dictionary<string, UnitMakerGroupInfo> carrierDictionary;
             using (MissionGeneratorCarrierGroup carrierGroupGenerator = new MissionGeneratorCarrierGroup(unitMaker))
-                carrierDictionary = carrierGroupGenerator.GenerateCarrierGroup(template, playerAirbase.Coordinates, windSpeedAtSeaLevel, windDirectionAtSeaLevel);
+                carrierDictionary = carrierGroupGenerator.GenerateCarrierGroup(mission, template, objectivesCenter, windSpeedAtSeaLevel, windDirectionAtSeaLevel);
 
             // Generate player flight groups
             BriefingRoom.PrintToLog("Generating player flight groups...");
             using (MissionGeneratorPlayerFlightGroups playerFlightGroupsGenerator = new MissionGeneratorPlayerFlightGroups(unitMaker))
                 for (i = 0; i < template.PlayerFlightGroups.Count; i++)
-                    playerFlightGroupsGenerator.GeneratePlayerFlightGroup(template.PlayerFlightGroups[i], playerAirbase, waypoints, carrierDictionary);
+                    playerFlightGroupsGenerator.GeneratePlayerFlightGroup(mission, template.PlayerFlightGroups[i], playerAirbase, waypoints, carrierDictionary);
 
             // Generate mission features
             BriefingRoom.PrintToLog("Generating mission features...");
@@ -168,11 +170,11 @@ namespace BriefingRoom4DCS.Generator
                 for (i = 0; i  < template.MissionFeatures.Count; i++)
                     missionFeaturesGenerator.GenerateMissionFeature(mission, template.MissionFeatures[i], i, playerAirbase.Coordinates, objectivesCenter);
 
-            mission.SetValue("RESOURCES_OGG_FILES", ""); // TODO
+            mission.SetValue("ResourcesOGGFiles", ""); // TODO
 
             // Get unit tables from the unit maker (must be done after all units are generated)
-            mission.SetValue("COUNTRIES_BLUE", unitMaker.GetUnitsLuaTable(Coalition.Blue));
-            mission.SetValue("COUNTRIES_RED", unitMaker.GetUnitsLuaTable(Coalition.Red));
+            mission.SetValue("CountriesBlue", unitMaker.GetUnitsLuaTable(Coalition.Blue));
+            mission.SetValue("CountriesRed", unitMaker.GetUnitsLuaTable(Coalition.Red));
 
             // Generate briefing and additional mission info
             BriefingRoom.PrintToLog("Generating briefing...");

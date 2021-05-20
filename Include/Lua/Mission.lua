@@ -32,9 +32,9 @@ mission =
     }, -- end of ["requiredModules"]
     ["date"] = 
     {
-        ["Day"] = $DATE_DAY$,
-        ["Year"] = $DATE_YEAR$,
-        ["Month"] = $DATE_MONTH$,
+        ["Day"] = $DATEDAY$,
+        ["Year"] = $DATEYEAR$,
+        ["Month"] = $DATEMONTH$,
     }, -- end of ["date"]
     ["result"] = 
     {
@@ -141,26 +141,26 @@ mission =
         {
             ["at8000"] = 
             {
-                ["speed"] = $WEATHER_WIND_SPEED3$,
-                ["dir"] = $WEATHER_WIND_DIRECTION3$,
+                ["speed"] = $WEATHERWINDSPEED3$,
+                ["dir"] = $WEATHERWINDDIRECTION3$,
             }, -- end of ["at8000"]
             ["at2000"] = 
             {
-                ["speed"] = $WEATHER_WIND_SPEED2$,
-                ["dir"] = $WEATHER_WIND_DIRECTION2$,
+                ["speed"] = $WEATHERWINDSPEED2$,
+                ["dir"] = $WEATHERWINDDIRECTION2$,
             }, -- end of ["at2000"]
             ["atGround"] = 
             {
-                ["speed"] = $WEATHER_WIND_SPEED1$,
-                ["dir"] = $WEATHER_WIND_DIRECTION1$,
+                ["speed"] = $WEATHERWINDSPEED1$,
+                ["dir"] = $WEATHERWINDDIRECTION1$,
             }, -- end of ["atGround"]
         }, -- end of ["wind"]
-        ["enable_fog"] = $WEATHER_FOG$,
-        ["groundTurbulence"] = $WEATHER_GROUND_TURBULENCE$,
-        ["enable_dust"] = $WEATHER_DUST$,
+        ["enable_fog"] = $WEATHERFOG$,
+        ["groundTurbulence"] = $WEATHERGROUNDTURBULENCE$,
+        ["enable_dust"] = $WEATHERDUST$,
         ["season"] = 
         {
-            ["temperature"] = $WEATHER_TEMPERATURE$,
+            ["temperature"] = $WEATHERTEMPERATURE$,
         }, -- end of ["season"]
         ["type_weather"] = 0,
         ["modifiedTime"] = false,
@@ -170,25 +170,25 @@ mission =
         ["name"] = "Default",
         ["fog"] = 
         {
-            ["thickness"] = $WEATHER_FOG_THICKNESS$,
-            ["visibility"] = $WEATHER_FOG_VISIBILITY$,
+            ["thickness"] = $WEATHERFOGTHICKNESS$,
+            ["visibility"] = $WEATHERFOGVISIBILITY$,
         }, -- end of ["fog"]
-        ["dust_density"] = $WEATHER_DUST_DENSITY$,
-        ["qnh"] = $WEATHER_QNH$,
+        ["dust_density"] = $WEATHERDUSTDENSITY$,
+        ["qnh"] = $WEATHERQNH$,
         ["visibility"] = 
         {
-            ["distance"] = $WEATHER_VISIBILITY$,
+            ["distance"] = $WEATHERVISIBILITY$,
         }, -- end of ["visibility"]
         ["clouds"] = 
         {
-            ["thickness"] = $WEATHER_CLOUDS_THICKNESS$,
+            ["thickness"] = $WEATHERCLOUDSTHICKNESS$,
             ["density"] = 0,
-            ["preset"] = "$WEATHER_CLOUDS_PRESET$",
-            ["base"] = $WEATHER_CLOUDS_BASE$,
+            ["preset"] = "$WEATHERCLOUDSPRESET$",
+            ["base"] = $WEATHERCLOUDSBASE$,
             ["iprecptns"] = 0,
         }, -- end of ["clouds"]
     }, -- end of ["weather"]
-    ["theatre"] = "$THEATER_ID$",
+    ["theatre"] = "$THEATERID$",
     ["triggers"] = 
     {
         ["zones"] = 
@@ -197,26 +197,26 @@ mission =
     }, -- end of ["triggers"]
     ["map"] = 
     {
-        ["centerY"] = $MISSION_AIRBASE_Y$,
+        ["centerY"] = $MISSIONAIRBASEY$,
         ["zoom"] = 512000.000,
-        ["centerX"] = $MISSION_AIRBASE_X$,
+        ["centerX"] = $MISSIONAIRBASEX$,
     }, -- end of ["map"]
     ["coalitions"] = 
     {
-        ["neutrals"] = $COALITION_NEUTRAL$,
-        ["blue"] = $COALITION_BLUE$,
-        ["red"] = $COALITION_RED$
+        ["neutrals"] = $COALITIONNEUTRAL$,
+        ["blue"] = $COALITIONBLUE$,
+        ["red"] = $COALITIONRED$
     }, -- end of ["coalitions"]
-    ["descriptionText"] = "$BRIEFING_DESCRIPTION$",
+    ["descriptionText"] = "$BRIEFINGDESCRIPTION$",
     ["pictureFileNameR"] = 
     {
-      [1] = "ResKey_TitleImage_$MISSION_ID$",
+      [1] = "ResKey_TitleImage_$MISSIONID$",
     }, -- end of ["pictureFileNameR"]
     ["descriptionBlueTask"] = "",
     ["descriptionRedTask"] = "",
     ["pictureFileNameB"] = 
     {
-      [1] = "ResKey_TitleImage_$MISSION_ID$",
+      [1] = "ResKey_TitleImage_$MISSIONID$",
     }, -- end of ["pictureFileNameB"]
     ["coalition"] = 
     {
@@ -239,8 +239,8 @@ mission =
         {
             ["bullseye"] = 
             {
-                ["y"] = $BULLSEYE_BLUE_Y$,
-                ["x"] = $BULLSEYE_BLUE_X$,
+                ["y"] = $BULLSEYEBLUEY$,
+                ["x"] = $BULLSEYEBLUEX$,
             }, -- end of ["bullseye"]
             ["nav_points"] = 
             {
@@ -248,15 +248,15 @@ mission =
             ["name"] = "blue",
             ["country"] = 
             {
-                $COUNTRIES_BLUE$
+                $COUNTRIESBLUE$
             }, -- end of ["country"]
         }, -- end of ["blue"]
         ["red"] = 
         {
             ["bullseye"] = 
             {
-                ["y"] = $BULLSEYE_RED_Y$,
-                ["x"] = $BULLSEYE_RED_X$,
+                ["y"] = $BULLSEYEREDY$,
+                ["x"] = $BULLSEYEREDX$,
             }, -- end of ["bullseye"]
             ["nav_points"] = 
             {
@@ -264,11 +264,11 @@ mission =
             ["name"] = "red",
             ["country"] = 
             {
-                $COUNTRIES_RED$
+                $COUNTRIESRED$
             }, -- end of ["country"]
         }, -- end of ["red"]
     }, -- end of ["coalition"]
-    ["sortie"] = "$MISSION_NAME$",
+    ["sortie"] = "$MISSIONNAME$",
     ["version"] = 19,
     ["trigrules"] = 
     {
@@ -327,12 +327,12 @@ mission =
         }, -- end of [2]
     }, -- end of ["trigrules"]
     ["currentKey"] = 0,
-    ["start_time"] = $START_TIME$,
+    ["start_time"] = $STARTTIME$,
     ["forcedOptions"] = 
     {
         ["unrestrictedSATNAV"] = true,
         ["userMarks"] = true,
-$FORCED_OPTIONS$
+$FORCEDOPTIONS$
     }, -- end of ["forcedOptions"]
     ["failures"] = 
     {

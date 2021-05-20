@@ -2,7 +2,7 @@ warehouses =
 {
     ["airports"] = 
     {
-$WAREHOUSES_AIRPORTS$
+$WAREHOUSESAIRPORTS$
     }, -- end of ["airports"]
     ["warehouses"] = 
     {
