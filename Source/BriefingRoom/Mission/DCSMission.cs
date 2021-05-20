@@ -24,7 +24,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 
-namespace BriefingRoom4DCS
+namespace BriefingRoom4DCS.Mission
 {
     /// <summary>
     /// Stores a DCS World mission, with all its unit groups, Lua scripts and parameters.
@@ -41,7 +41,9 @@ namespace BriefingRoom4DCS
         /// Unique ID for the mission. Appended to certain filenames so they don't have the same name in every mission and
         /// get confused with one another in the DCS World cache.
         /// </summary>
-        public string UniqueID { get; } = "";
+        private readonly string UniqueID;
+
+        public DCSMissionBriefing Briefing { get; }
 
         private Dictionary<string, string> Values { get; }
 
@@ -87,6 +89,7 @@ namespace BriefingRoom4DCS
             MediaFilesOgg = new List<string>();
             UniqueID = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()).ToLowerInvariant();
             SetValue("MISSION_ID", UniqueID);
+            Briefing = new DCSMissionBriefing();
         }
 
         internal void SetValue(string key, int value)
