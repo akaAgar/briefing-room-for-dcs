@@ -20,17 +20,17 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Reflection;
-using System.Threading.Tasks;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace BriefingRoom4DCS.LegacyGUI
 {
     public static class LegacyGUITools
     {
-
+        public static Point Add(this Point point, Point other)
+        {
+            return new Point(point.X + other.X, point.Y + other.Y);
+        }
 
         public static void PopulateCheckedTreeViewFromEnum<T>(TreeView treeView) where T : Enum
         {

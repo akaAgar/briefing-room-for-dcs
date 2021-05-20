@@ -46,6 +46,20 @@ namespace BriefingRoom4DCS.LegacyGUI.Forms
         {
             LegacyGUITools.UpdateCheckedTreeViewFromEnumList(TreeViewOptions, Template.OptionsMission);
             LegacyGUITools.UpdateCheckedTreeViewFromEnumList(TreeViewRealism, Template.OptionsRealism);
+
+            FlightGroupsDataGridView.Rows.Clear();
+            foreach (MissionTemplateFlightGroup flightGroup in Template.PlayerFlightGroups)
+                FlightGroupsDataGridView.Rows.Add(flightGroup.Aircraft, flightGroup.Count, flightGroup.Payload, flightGroup.Carrier);
+
+            //DGVC_FGAircraft
+        }
+
+        private void FlightGroupsDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            MainContextMenuStrip.Items.Clear();
+            MainContextMenuStrip.Items.Add("Test");
+
+            MainContextMenuStrip.Show(FlightGroupsDataGridView, FlightGroupsDataGridView.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Location.Add(e.Location));
         }
     }
 }
