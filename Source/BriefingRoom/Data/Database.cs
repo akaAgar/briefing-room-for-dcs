@@ -89,6 +89,7 @@ namespace BriefingRoom4DCS.Data
             LoadEntries<DBEntryObjectiveTarget>("ObjectiveTargets");
             LoadEntries<DBEntryObjectiveTargetBehavior>("ObjectiveTargetsBehaviors");
             LoadEntries<DBEntryObjectiveTask>("ObjectiveTasks");
+            LoadEntries<DBEntryObjectivePreset>("ObjectivePresets"); // Must be loaded after other DBEntryObjective*, as it depends on them
             LoadEntries<DBEntryTheater>("Theaters");
             LoadEntries<DBEntryAirbase>("TheatersAirbases"); // Must be loaded after DBEntryTheater, as it depends on it
             LoadEntries<DBEntryDCSMod>("DCSMods");
