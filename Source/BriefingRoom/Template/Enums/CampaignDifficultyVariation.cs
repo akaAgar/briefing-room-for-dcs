@@ -20,7 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using System.ComponentModel.DataAnnotations;
 
-namespace BriefingRoom4DCS.Campaign
+namespace BriefingRoom4DCS.Template
 {
     /// <summary>
     /// Enumerates various possible difficulty variations during the progress of a campaign.
