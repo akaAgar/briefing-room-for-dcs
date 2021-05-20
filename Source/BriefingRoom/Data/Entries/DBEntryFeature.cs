@@ -24,9 +24,10 @@ using System.Linq;
 namespace BriefingRoom4DCS.Data
 {
     /// <summary>
-    /// Stores information about a mission feature.
+    /// Stores information about a feature.
+    /// Abstract parent class of <see cref="DBEntryFeatureMission"/> and <see cref="DBEntryFeatureObjective"/>.
     /// </summary>
-    internal class DBEntryMissionFeature : DBEntry
+    internal abstract class DBEntryFeature : DBEntry
     {
         /// <summary>
         /// Randomly-parsed (<see cref="Toolbox.ParseRandomString(string)"/>) single-line remarks to add to the mission briefing when this feature is enabled.
@@ -65,7 +66,7 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Special flags for this unit group.
         /// </summary>
-        internal MissionFeatureUnitGroupFlags[] UnitGroupFlags { get; private set; }
+        internal FeatureUnitGroupFlags[] UnitGroupFlags { get; private set; }
 
         /// <summary>
         /// Lua script (loaded from Include\Lua\Units) to use for the spawned unit group.
@@ -87,8 +88,15 @@ namespace BriefingRoom4DCS.Data
 
         /// <summary>
         /// Where should the unit group be spawned?
+        /// For <see cref="DBEntryFeatureMission"/>, 0.0 means "starting airbase", 1.0 means "objective center"
+        /// For <see cref="DBEntryFeatureObjective"/>, distance (in nm) from the objective.
         /// </summary>
-        internal MissionFeatureUnitGroupSpawnPoint UnitGroupSpawnLocation { get; private set; }
+        internal double UnitGroupSpawnDistance { get; private set; }
+
+        /// <summary>
+        /// Valid spawn point types for this unit group.
+        /// </summary>
+        internal SpawnPointType[] UnitGroupValidSpawnPoints { get; private set; }
 
         /// <summary>
         /// Loads a database entry from an .ini file.
@@ -118,12 +126,13 @@ namespace BriefingRoom4DCS.Data
                         BriefingRoom.PrintToLog($"File \"Include\\Ogg\\{f}\", required by feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
 
                 // Unit group
+                UnitGroupSpawnDistance = ini.GetValue<double>("UnitGroup", "Distance");
                 UnitGroupFamilies = Toolbox.SetSingleCategoryFamilies(ini.GetValueArray<UnitFamily>("UnitGroup", "Families"));
-                UnitGroupFlags = ini.GetValueArray<MissionFeatureUnitGroupFlags>("UnitGroup", "Flags").Distinct().ToArray();
+                UnitGroupFlags = ini.GetValueArray<FeatureUnitGroupFlags>("UnitGroup", "Flags").Distinct().ToArray();
                 UnitGroupLuaGroup = Toolbox.AddMissingFileExtension(ini.GetValue<string>("UnitGroup", "Lua.Group"), ".lua");
                 UnitGroupLuaUnit = Toolbox.AddMissingFileExtension(ini.GetValue<string>("UnitGroup", "Lua.Unit"), ".lua");
                 UnitGroupSize = ini.GetValue<MinMaxI>("UnitGroup", "Size");
-                UnitGroupSpawnLocation = ini.GetValue<MissionFeatureUnitGroupSpawnPoint>("UnitGroup", "SpawnLocation");
+                UnitGroupValidSpawnPoints = DatabaseTools.CheckSpawnPoints(ini.GetValueArray<SpawnPointType>("UnitGroup", "ValidSpawnPoints"));
             }
 
             return true;

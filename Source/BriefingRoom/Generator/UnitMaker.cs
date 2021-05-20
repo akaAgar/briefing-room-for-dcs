@@ -191,7 +191,7 @@ namespace BriefingRoom4DCS.Generator
 
             GeneratorTools.ReplaceKey(ref lua, "UnitID", firstUnitID); // Must be after units are added
             GeneratorTools.ReplaceKey(ref lua, "Skill", skill.Value); // Must be after units are added, because skill is set as a unit level
-            GeneratorTools.ReplaceKey(ref lua, "Hidden", GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side)); // If "hidden" was not set through custom values
+            GeneratorTools.ReplaceKey(ref lua, "Hidden", GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags)); // If "hidden" was not set through custom values
 
             AddUnitGroupToTable(country, unitFamily.GetUnitCategory(), lua);
 

@@ -143,6 +143,7 @@ namespace BriefingRoom4DCS
         internal void AddOggFiles(params string[] oggFiles)
         {
             oggFiles = Toolbox.AddMissingFileExtensions(oggFiles, ".ogg");
+            oggFiles = (from string oggFile in oggFiles select oggFile.ToLowerInvariant()).ToArray();
             MediaFilesOgg.AddRange(oggFiles);
             MediaFilesOgg = MediaFilesOgg.Distinct().ToList();
         }

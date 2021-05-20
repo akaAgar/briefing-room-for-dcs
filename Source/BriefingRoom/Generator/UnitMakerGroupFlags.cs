@@ -25,6 +25,8 @@ namespace BriefingRoom4DCS.Generator
     [Flags]
     internal enum UnitMakerGroupFlags
     {
-        FirstUnitIsPlayer = 1,
+        AlwaysHidden = 1,
+        FirstUnitIsPlayer = 2,
+        NeverHidden = 4,
     }
 }

@@ -33,7 +33,7 @@ namespace BriefingRoom4DCS.Template
     {
         [Required, DatabaseSourceType(DatabaseEntryType.ObjectiveFeature)]
         [Display(Name = "Objective features", Description = "Special features to include in this objective.")]
-        public List<string> Features { get { return Features_; } set { Features_ = Database.Instance.CheckMissionFeaturesIDs(value.ToArray()).ToList(); } }
+        public List<string> Features { get { return Features_; } set { Features_ = Database.Instance.CheckMissionFeaturesIDs<DBEntryFeatureObjective>(value.ToArray()).ToList(); } }
         private List<string> Features_ = new List<string>();
 
         [Required]
@@ -111,7 +111,7 @@ namespace BriefingRoom4DCS.Template
         /// <param name="key">INI key.</param>
         internal void LoadFromFile(INIFile ini, string section, string key)
         {
-            Features = Database.Instance.CheckIDs<DBEntryObjectiveFeature>(ini.GetValueArray<string>(section, $"{key}.Features")).ToList();
+            Features = Database.Instance.CheckIDs<DBEntryFeatureObjective>(ini.GetValueArray<string>(section, $"{key}.Features")).ToList();
             Options = ini.GetValueArray<ObjectiveOption>(section, $"{key}.Options").ToList();
             Target = ini.GetValue<string>(section, $"{key}.Target");
             TargetBehavior = ini.GetValue<string>(section, $"{key}.TargetBehavior");

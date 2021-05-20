@@ -26,56 +26,57 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// Generates units and Lua script associated with mission features.
-    /// </summary>
-    internal class MissionGeneratorMissionFeatures : IDisposable
+    internal abstract class MissionGeneratorFeatures : IDisposable
     {
         /// <summary>
         /// Unit maker selector to use for mission features generation.
         /// </summary>
-        private readonly UnitMaker UnitMaker;
+        protected readonly UnitMaker UnitMaker;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="unitMaker">Unit maker to use for unit generation.</param>
-        internal MissionGeneratorMissionFeatures(UnitMaker unitMaker)
+        internal MissionGeneratorFeatures(UnitMaker unitMaker)
         {
             UnitMaker = unitMaker;
         }
 
-        internal void GenerateMissionFeature(DCSMission mission, MissionTemplate template, int missionFeatureIndex, Coordinates initialCoordinates, Coordinates objectivesCenter)
+        protected void AddMissionFeature<T>(DCSMission mission, T featureDB, Coordinates coordinates, Coordinates? coordinates2 = null, params KeyValuePair<string, object>[] extraSettings) where T : DBEntryFeature
         {
-            DBEntryMissionFeature featureDB = Database.Instance.GetEntry<DBEntryMissionFeature>(template.MissionFeatures[missionFeatureIndex]);
-            if (featureDB == null) // Feature doesn't exist
+            // Add secondary coordinates (destination point) to the extra settings
+            if (!coordinates2.HasValue) coordinates2 = coordinates; // No destination point? Use initial point
+            List<KeyValuePair<string, object>> extraSettingsList = new List<KeyValuePair<string, object>>(extraSettings)
             {
-                BriefingRoom.PrintToLog($"Mission feature {template.MissionFeatures[missionFeatureIndex]} not found.", LogMessageErrorLevel.Warning);
-                return;
-            }
+                new KeyValuePair<string, object>("GroupX2", coordinates2.Value.X),
+                new KeyValuePair<string, object>("GroupY2", coordinates2.Value.Y)
+            };
 
             // Feature unit group
+            UnitMakerGroupInfo? groupInfo = null;
             if (FeatureHasUnitGroup(featureDB))
             {
-                Coordinates coordinates = Coordinates.Lerp(initialCoordinates, objectivesCenter, 0.75) + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
-                Coordinates coordinates2 = coordinates + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
                 UnitMakerGroupFlags groupFlags = 0;
+                if (featureDB.UnitGroupFlags.Contains(FeatureUnitGroupFlags.AlwaysOnMap)) groupFlags = UnitMakerGroupFlags.AlwaysHidden;
+                else if (featureDB.UnitGroupFlags.Contains(FeatureUnitGroupFlags.NeverOnMap)) groupFlags = UnitMakerGroupFlags.NeverHidden;
 
-                UnitMaker.AddUnitGroup(
+                groupInfo = UnitMaker.AddUnitGroup(
                     Toolbox.RandomFrom(featureDB.UnitGroupFamilies), featureDB.UnitGroupSize.GetValue(),
-                    featureDB.UnitGroupFlags.Contains(MissionFeatureUnitGroupFlags.Friendly) ? Side.Ally : Side.Enemy,
+                    featureDB.UnitGroupFlags.Contains(FeatureUnitGroupFlags.Friendly) ? Side.Ally : Side.Enemy,
                     featureDB.UnitGroupLuaGroup, featureDB.UnitGroupLuaUnit,
                     coordinates, null, groupFlags, AircraftPayload.Default,
-                    "GroupX2".ToKeyValuePair(coordinates2.X),
-                    "GroupY2".ToKeyValuePair(coordinates2.Y)
-                    );
+                    extraSettingsList.ToArray());
             }
 
-            // Feature lua script
+            // Feature Lua script
             string featureLua = "";
             if (!string.IsNullOrEmpty(featureDB.IncludeLuaSettings)) featureLua = featureDB.IncludeLuaSettings + "\n";
             foreach (string luaFile in featureDB.IncludeLua)
                 featureLua += Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA_MISSIONFEATURES}{luaFile}") + "\n";
+            foreach (KeyValuePair<string, object> extraSetting in extraSettings)
+                GeneratorTools.ReplaceKey(ref featureLua, extraSetting.Key, extraSetting.Value);
+            if (groupInfo.HasValue)
+                GeneratorTools.ReplaceKey(ref featureLua, "FeatureGroupID", groupInfo.Value.GroupID);
             mission.AppendValue("MISSION_FEATURES_LUA", featureLua);
 
             // Feature ogg files
@@ -87,7 +88,7 @@ namespace BriefingRoom4DCS.Generator
         /// </summary>
         /// <param name="featureDB">The mission/objective feature to check.</param>
         /// <returns>True if an unit has group must be spawned, false otherwise.</returns>
-        private bool FeatureHasUnitGroup(DBEntryMissionFeature featureDB)
+        protected bool FeatureHasUnitGroup(DBEntryFeature featureDB)
         {
             return (featureDB.UnitGroupFamilies.Length > 0) &&
                  !string.IsNullOrEmpty(featureDB.UnitGroupLuaGroup) &&

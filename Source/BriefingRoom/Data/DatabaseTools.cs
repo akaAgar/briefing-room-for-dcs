@@ -24,7 +24,7 @@ using System.Linq;
 namespace BriefingRoom4DCS.Data
 {
     /// <summary>
-    /// Provides various static functions for database entry management.
+    /// Provides various static functions for database management.
     /// </summary>
     internal static class DatabaseTools
     {

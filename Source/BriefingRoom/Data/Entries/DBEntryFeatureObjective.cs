@@ -22,10 +22,19 @@ namespace BriefingRoom4DCS.Data
 {
     /// <summary>
     /// Stores information about an objective feature.
-    /// Basically a <see cref="DBEntryMissionFeature"/> with another name, so they're not mixed up in the database.
     /// </summary>
-    internal class DBEntryObjectiveFeature : DBEntryMissionFeature
+    internal class DBEntryFeatureObjective : DBEntryFeature
     {
+        /// <summary>
+        /// Loads a database entry from an .ini file.
+        /// </summary>
+        /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
+        /// <returns>True is successful, false if an error happened</returns>
+
+        protected override bool OnLoad(string iniFilePath)
+        {
+            return base.OnLoad(iniFilePath);
+        }
     }
 }
 

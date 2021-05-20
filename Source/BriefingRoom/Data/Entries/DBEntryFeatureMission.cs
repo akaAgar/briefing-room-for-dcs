@@ -21,25 +21,20 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 namespace BriefingRoom4DCS.Data
 {
     /// <summary>
-    /// A type of location spawn point. Used to know what can be spawned at its location.
+    /// Stores information about a mission feature.
     /// </summary>
-    public enum SpawnPointType
+    internal class DBEntryFeatureMission : DBEntryFeature
     {
         /// <summary>
-        /// Small spot on land, maybe in a forest or a street
+        /// Loads a database entry from an .ini file.
         /// </summary>
-        LandSmall,
-        /// <summary>
-        /// Average spot on land, open land but not buildable (field, forest clearing...)
-        /// </summary>
-        LandMedium,
-        /// <summary>
-        /// Large spot on land, big enough and appropriate for a building to stand
-        /// </summary>
-        LandLarge,
-        /// <summary>
-        /// Sea
-        /// </summary>
-        Sea
+        /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
+        /// <returns>True is successful, false if an error happened</returns>
+
+        protected override bool OnLoad(string iniFilePath)
+        {
+            return base.OnLoad(iniFilePath);
+        }
     }
 }
+

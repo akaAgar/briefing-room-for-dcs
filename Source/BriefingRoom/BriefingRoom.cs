@@ -118,10 +118,10 @@ namespace BriefingRoom4DCS
                     return (from DBEntryDCSMod dcsMod in Database.Instance.GetAllEntries<DBEntryDCSMod>() select dcsMod.GetDBEntryInfo()).ToList();
 
                 case DatabaseEntryType.MissionFeature:
-                    return (from DBEntryMissionFeature missionFeature in Database.Instance.GetAllEntries<DBEntryMissionFeature>() select missionFeature.GetDBEntryInfo()).ToList();
+                    return (from DBEntryFeatureMission missionFeature in Database.Instance.GetAllEntries<DBEntryFeatureMission>() select missionFeature.GetDBEntryInfo()).ToList();
 
                 case DatabaseEntryType.ObjectiveFeature:
-                    return (from DBEntryObjectiveFeature objectiveFeature in Database.Instance.GetAllEntries<DBEntryObjectiveFeature>() select objectiveFeature.GetDBEntryInfo()).ToList();
+                    return (from DBEntryFeatureObjective objectiveFeature in Database.Instance.GetAllEntries<DBEntryFeatureObjective>() select objectiveFeature.GetDBEntryInfo()).ToList();
 
                 case DatabaseEntryType.ObjectiveTarget:
                     return (from DBEntryUnit objectiveTarget in Database.Instance.GetAllEntries<DBEntryObjectiveTarget>() select objectiveTarget.GetDBEntryInfo()).ToList();

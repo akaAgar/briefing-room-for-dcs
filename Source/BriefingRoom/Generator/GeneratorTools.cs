@@ -150,8 +150,11 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        internal static bool GetHiddenStatus(FogOfWar fogOfWar, Side side)
+        internal static bool GetHiddenStatus(FogOfWar fogOfWar, Side side, UnitMakerGroupFlags unitMakerGroupFlags)
         {
+            if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.AlwaysHidden)) return true;
+            if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.NeverHidden)) return false;
+
             switch (fogOfWar)
             {
                 default:

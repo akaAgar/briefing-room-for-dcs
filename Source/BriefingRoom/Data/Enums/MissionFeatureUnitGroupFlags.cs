@@ -28,7 +28,7 @@ namespace BriefingRoom4DCS.Data
     /// Enumerates special flags to apply to a <see cref="DBEntryMissionFeature"/>'s unit group.
     /// </summary>
     [Flags]
-    internal enum MissionFeatureUnitGroupFlags
+    internal enum FeatureUnitGroupFlags
     {
         /// <summary>
         /// Unit is always shown on map, no matter the value of <see cref="Template.MissionTemplate.OptionsShowEnemyUnits"/>.

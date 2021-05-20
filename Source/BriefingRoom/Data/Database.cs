@@ -84,8 +84,8 @@ namespace BriefingRoom4DCS.Data
 
             // Load entries into the database
             DBEntries.Clear();
-            LoadEntries<DBEntryMissionFeature>("MissionFeatures");
-            LoadEntries<DBEntryObjectiveFeature>("ObjectiveFeatures");
+            LoadEntries<DBEntryFeatureMission>("MissionFeatures");
+            LoadEntries<DBEntryFeatureObjective>("ObjectiveFeatures");
             LoadEntries<DBEntryObjectiveTarget>("ObjectiveTargets");
             LoadEntries<DBEntryObjectiveTargetBehavior>("ObjectiveTargetsBehaviors");
             LoadEntries<DBEntryObjectiveTask>("ObjectiveTasks");
@@ -129,11 +129,7 @@ namespace BriefingRoom4DCS.Data
 
             foreach (string filePath in Directory.EnumerateFiles(directory, "*.ini", SearchOption.AllDirectories))
             {
-                string id = Path.GetFileNameWithoutExtension(filePath).Trim();
-
-                // Extensions, mission features and units may not have commas in their IDs as these will be used in comma-separated arrays.
-                if ((dbType == typeof(DBEntryMissionFeature)) || (dbType == typeof(DBEntryUnit)))
-                    id = id.Replace(",", "").Trim();
+                string id = Path.GetFileNameWithoutExtension(filePath).Replace(",", "").Trim(); // No commas in file names, so we don't break comma-separated arrays
 
                 if (DBEntries[dbType].ContainsKey(id)) continue;
                 T entry = new T();
@@ -145,8 +141,8 @@ namespace BriefingRoom4DCS.Data
 
             bool mustHaveAtLeastOneEntry = true;
             if ((dbType == typeof(DBEntryDefaultUnitList)) ||
-                (dbType == typeof(DBEntryObjectiveFeature)) ||
-                (dbType == typeof(DBEntryMissionFeature)))
+                (dbType == typeof(DBEntryFeatureMission)) ||
+                (dbType == typeof(DBEntryFeatureObjective)))
                 mustHaveAtLeastOneEntry = false;
 
             // If a required database type has no entries, raise an error.
@@ -185,10 +181,11 @@ namespace BriefingRoom4DCS.Data
         /// </summary>
         /// <param name="ids">Array of IDs to check</param>
         /// <returns>An array of valid IDs</returns>
-        internal string[] CheckMissionFeaturesIDs(string[] ids)
+        internal string[] CheckMissionFeaturesIDs<T>(string[] ids) where T : DBEntryFeature
         {
+            // TODO
             //if (ids.Length < 2)
-                return CheckIDs<DBEntryMissionFeature>(ids);
+            return CheckIDs<T>(ids);
 
             //int i, j;
             //List<string> featureIDs = ids.ToList();

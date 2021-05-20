@@ -69,7 +69,7 @@ namespace BriefingRoom4DCS.Generator
         internal Coordinates GenerateObjective(DCSMission mission, MissionTemplate template, int objectiveIndex, Coordinates lastCoordinates, out string objectiveName)
         {
             MissionTemplateObjective objectiveTemplate = template.Objectives[objectiveIndex];
-            DBEntryObjectiveFeature[] featuresDB = Database.Instance.GetEntries<DBEntryObjectiveFeature>(objectiveTemplate.Features.ToArray());
+            DBEntryFeatureObjective[] featuresDB = Database.Instance.GetEntries<DBEntryFeatureObjective>(objectiveTemplate.Features.ToArray());
             DBEntryObjectiveTarget targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
             DBEntryObjectiveTargetBehavior targetBehaviorDB = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior);
             DBEntryObjectiveTask taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task);
@@ -94,9 +94,9 @@ namespace BriefingRoom4DCS.Generator
             objectiveName = Toolbox.RandomFrom(ObjectiveNames);
             ObjectiveNames.Remove(objectiveName);
 
-            bool hidden = GeneratorTools.GetHiddenStatus(template.OptionsFogOfWar, taskDB.TargetSide);
-            if (objectiveTemplate.Options.Contains(ObjectiveOption.ShowTarget)) hidden = false;
-            else if (objectiveTemplate.Options.Contains(ObjectiveOption.HideTarget)) hidden = true;
+            UnitMakerGroupFlags groupFlags = 0;
+            if (objectiveTemplate.Options.Contains(ObjectiveOption.ShowTarget)) groupFlags = UnitMakerGroupFlags.NeverHidden;
+            else if (objectiveTemplate.Options.Contains(ObjectiveOption.HideTarget)) groupFlags = UnitMakerGroupFlags.AlwaysHidden;
 
             UnitFamily targetFamily = Toolbox.RandomFrom(targetDB.UnitFamilies);
 
@@ -105,9 +105,8 @@ namespace BriefingRoom4DCS.Generator
                 taskDB.TargetSide,
                 targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
                 spawnPoint.Value.Coordinates,
-                null, 0,
-                AircraftPayload.Default,
-                "Hidden".ToKeyValuePair(hidden));
+                null, groupFlags,
+                AircraftPayload.Default);
 
             if (!targetGroupInfo.HasValue) // Failed to generate target group
                 throw new BriefingRoomException($"Failed to generate group for objective {objectiveIndex + 1}");
@@ -129,7 +128,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Add objective features Lua for this objective
             mission.SetValue("OBJECTIVES_FEATURES_LUA", ""); // Just in case there's no features
-            foreach (DBEntryObjectiveFeature featureDB in featuresDB)
+            foreach (DBEntryFeatureObjective featureDB in featuresDB)
             {
                 foreach (string scriptFile in featureDB.IncludeLua)
                 {
