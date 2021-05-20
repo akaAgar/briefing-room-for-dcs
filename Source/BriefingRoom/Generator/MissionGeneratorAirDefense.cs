@@ -87,7 +87,7 @@ namespace BriefingRoom4DCS.Generator
                     break;
                 case AirDefenseRange.LongRange:
                     unitFamilies = new UnitFamily[] { UnitFamily.VehicleSAMLong };
-                    validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandLarge };
+                    validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandMedium, SpawnPointType.LandLarge };
                     break;
             }
 
