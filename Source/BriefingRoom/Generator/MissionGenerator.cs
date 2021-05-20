@@ -69,6 +69,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Copy values from the template
             mission.SetValue("THEATER_ID", theaterDB.DCSID);
+            mission.SetValue("DebugMode", template.OptionsMission.Contains(MissionOption.DebugMode));
 
             // Add common media files
             mission.AddOggFiles(Database.Instance.Common.CommonOGG);
