@@ -138,6 +138,13 @@ namespace BriefingRoom4DCS.Generator
             foreach (string featureID in objectiveTemplate.Features.ToArray())
                 FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveIndex, targetGroupInfo.Value.GroupID, spawnPoint.Value.Coordinates);
 
+            if (taskDB.BriefingTask.Length > 0)
+            {
+                string task = Toolbox.RandomFrom(taskDB.BriefingTask);
+                GeneratorTools.ReplaceKey(ref task, "ObjectiveName", objectiveName);
+                mission.Briefing.AddTask(task);
+            }
+
             return spawnPoint.Value.Coordinates;
         }
 

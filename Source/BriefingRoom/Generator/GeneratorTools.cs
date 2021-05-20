@@ -82,6 +82,22 @@ namespace BriefingRoom4DCS.Generator
             return unitsList.ToArray();
         }
 
+        internal static string MakeHTMLList(params string[] listEntries)
+        {
+            string list = "";
+            foreach (string listEntry in listEntries)
+                list += $"<li>{listEntry}</li>\n";
+            return list;
+        }
+
+        internal static string MakeRawTextList(string newLine = "\n", params string[] listEntries)
+        {
+            string list = "";
+            foreach (string listEntry in listEntries)
+                list += $"- {listEntry}{newLine}";
+            return list;
+        }
+
         internal static string GetTemplateCoalition(MissionTemplate template, Coalition coalition)
         {
             if (coalition == Coalition.Red) return template.ContextCoalitionRed;

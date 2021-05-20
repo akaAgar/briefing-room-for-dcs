@@ -53,17 +53,6 @@ namespace BriefingRoom4DCS.Mission
 
         public string Name { get { return Values.ContainsKey("MISSION_NAME") ? Values["MISSION_NAME"] : ""; } }
 
-        public string GetHTMLBriefing(bool fullHtml)
-        {
-            string html = File.ReadAllText($"{BRPaths.INCLUDE_HTML}Briefing.html");
-            if (fullHtml)
-                html = File.ReadAllText($"{BRPaths.INCLUDE_HTML}BriefingHeader.html") + html + File.ReadAllText($"{BRPaths.INCLUDE_HTML}BriefingFooter.html");
-
-            return ReplaceValues(html);
-        }
-        
-        public string BriefingRawText { get { return ""; } } // TODO
-
         internal string ReplaceValues(string rawText)
         {
             if (rawText == null) return null;
@@ -89,7 +78,7 @@ namespace BriefingRoom4DCS.Mission
             MediaFilesOgg = new List<string>();
             UniqueID = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()).ToLowerInvariant();
             SetValue("MISSION_ID", UniqueID);
-            Briefing = new DCSMissionBriefing();
+            Briefing = new DCSMissionBriefing(this);
         }
 
         internal void SetValue(string key, int value)

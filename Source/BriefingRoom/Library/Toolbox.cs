@@ -171,7 +171,7 @@ namespace BriefingRoom4DCS
             return File.ReadAllText(filePath);
         }
 
-        public static Point Add(this Point point, Point other)
+        internal static Point Add(this Point point, Point other)
         {
             return new Point(point.X + other.X, point.Y + other.Y);
         }

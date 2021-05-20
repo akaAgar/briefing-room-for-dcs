@@ -64,6 +64,8 @@ namespace BriefingRoom4DCS.Generator
                 spawnPoint.Value.Coordinates, coordinates2,
                 "ObjectiveIndex".ToKeyValuePair(objectiveIndex + 1),
                 "ObjectiveGroupID".ToKeyValuePair(objectiveGroupID));
+
+            mission.Briefing.AddRemarkFromFeature(featureDB, false); // TODO: string replacements
         }
     }
 }

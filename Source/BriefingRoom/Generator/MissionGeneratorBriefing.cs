@@ -61,7 +61,8 @@ namespace BriefingRoom4DCS.Generator
                     missionName = missionName.Replace($"$P{i + 1}$", Toolbox.RandomFrom(Database.Instance.Common.Names.MissionNameParts[i]));
             }
 
-            mission.SetValue("MISSION_NAME", missionName);
+            mission.Briefing.Name = missionName;
+            mission.SetValue("MISSIONNAME", missionName);
         }
 
         internal void GenerateMissionBriefingDescription(DCSMission mission, MissionTemplate template)
@@ -76,7 +77,8 @@ namespace BriefingRoom4DCS.Generator
                 briefingDescription = "TODO - MISSING DESCRIPTION";
             }
 
-            mission.SetValue("BRIEFING_DESCRIPTION", briefingDescription);
+            mission.Briefing.Description = briefingDescription;
+            mission.SetValue("BRIEFINGDESCRIPTION", briefingDescription);
         }
         
         /*

@@ -63,6 +63,8 @@ namespace BriefingRoom4DCS.Generator
             Coordinates coordinates2 = spawnPoint.Value.Coordinates + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
 
             AddMissionFeature(mission, featureDB, spawnPoint.Value.Coordinates, coordinates2);
+
+            mission.Briefing.AddRemarkFromFeature(featureDB, false);
         }
     }
 }
