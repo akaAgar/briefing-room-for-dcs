@@ -98,6 +98,21 @@ namespace BriefingRoom4DCS.Generator
             return list;
         }
 
+        internal static string MakeHTMLTable(params string[] tableEntries)
+        {
+            string table = "";
+            foreach (string tableRow in tableEntries)
+            {
+                string[] rowCells = tableRow.Split('\t');
+                table += "<tr>";
+                foreach (string rowCell in rowCells)
+                    table += $"<td>{rowCell}</td>";
+                table += "</tr>\n";
+
+            }
+            return table;
+        }
+
         internal static string GetTemplateCoalition(MissionTemplate template, Coalition coalition)
         {
             if (coalition == Coalition.Red) return template.ContextCoalitionRed;
@@ -130,6 +145,11 @@ namespace BriefingRoom4DCS.Generator
 
             // Unit is nothing of that, return some random skill
             return Toolbox.RandomFrom(DCSSkillLevel.Average, DCSSkillLevel.Good, DCSSkillLevel.High);
+        }
+
+        internal static object FormatRadioFrequency(double radioFrequency)
+        {
+            return radioFrequency.ToString("F1", NumberFormatInfo.InvariantInfo);
         }
 
         /// <summary>

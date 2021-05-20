@@ -34,24 +34,21 @@ namespace BriefingRoom4DCS.Mission
         public string Name { get; internal set; } = "";
         public string Description { get; internal set; } = "";
 
-        private readonly List<string> Remarks;
-        private readonly List<string> Tasks;
+        private readonly List<string>[] Items;
+        //BRIEFINGWAYPOINTS
 
         internal DCSMissionBriefing(DCSMission mission)
         {
             Mission = mission;
 
-            Remarks = new List<string>();
-            Tasks = new List<string>();
+            Items = new List<string>[Toolbox.EnumCount<DCSMissionBriefingItemType>()];
+            for (int i = 0; i < Items.Length; i++)
+                Items[i] = new List<string>();
         }
 
-        public string[] GetTasks() { return Tasks.ToArray(); }
-
-        public string[] GetRemarks() { return Remarks.ToArray(); }
-
-        internal void AddTask(string task) { Tasks.Add(task); }
-
-        internal void AddRemark(string remark) { Remarks.Add(remark); }
+        public string[] GetItems(DCSMissionBriefingItemType briefingItemType) { return Items[(int)briefingItemType].ToArray(); }
+        
+        internal void AddItem(DCSMissionBriefingItemType briefingItemType, string task) { Items[(int)briefingItemType].Add(task); }
 
         internal void AddRemarkFromFeature(DBEntryFeature featureDB, bool useEnemyRemarkIfAvailable, params KeyValuePair<string, string>[] stringReplacements)
         {
@@ -66,7 +63,7 @@ namespace BriefingRoom4DCS.Mission
             foreach (KeyValuePair<string, string> stringReplacement in stringReplacements)
                 GeneratorTools.ReplaceKey(ref remark, stringReplacement.Key, stringReplacement.Value);
 
-            AddRemark(remark);
+            AddItem(DCSMissionBriefingItemType.Remark, remark);
         }
 
         public string GetBriefingAsHTML(bool htmlHeaderAndFooter = true)
@@ -77,8 +74,12 @@ namespace BriefingRoom4DCS.Mission
 
             html = Mission.ReplaceValues(html);
 
-            GeneratorTools.ReplaceKey(ref html, "BriefingRemarks", GeneratorTools.MakeHTMLList(GetRemarks()));
-            GeneratorTools.ReplaceKey(ref html, "BriefingTasks", GeneratorTools.MakeHTMLList(GetTasks()));
+            GeneratorTools.ReplaceKey(ref html, "BriefingAirbases", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.Airbase)));
+            GeneratorTools.ReplaceKey(ref html, "BriefingCarriers", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.Carrier)));
+            GeneratorTools.ReplaceKey(ref html, "BriefingFlightGroups", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.FlightGroup)));
+            GeneratorTools.ReplaceKey(ref html, "BriefingRemarks", GeneratorTools.MakeHTMLList(GetItems(DCSMissionBriefingItemType.Remark)));
+            GeneratorTools.ReplaceKey(ref html, "BriefingTasks", GeneratorTools.MakeHTMLList(GetItems(DCSMissionBriefingItemType.Task)));
+            GeneratorTools.ReplaceKey(ref html, "BriefingWaypoints", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.Waypoint)));
 
             return html;
         }

@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCS.Data;
+using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
@@ -48,12 +49,13 @@ namespace BriefingRoom4DCS.Generator
         /// <summary>
         /// Generates the carrier group.
         /// </summary>
+        /// <param name="mission">The mission to generate.</param>
         /// <param name="template">The mission template to use.</param>
         /// <param name="landbaseCoordinates">Coordinates of the players' land base.</param>
         /// <param name="windSpeedAtSeaLevel">Wind speed at sea level, in m/s.</param>
         /// <param name="windDirectionAtSeaLevel">Wind direction at sea level, in radians.</param>
         /// <returns>A dictionary of carrier group units info, with the database ID of the ship as key.</returns>
-        internal Dictionary<string, UnitMakerGroupInfo> GenerateCarrierGroup(MissionTemplate template, Coordinates landbaseCoordinates, double windSpeedAtSeaLevel, double windDirectionAtSeaLevel)
+        internal Dictionary<string, UnitMakerGroupInfo> GenerateCarrierGroup(DCSMission mission, MissionTemplate template, Coordinates landbaseCoordinates, double windSpeedAtSeaLevel, double windDirectionAtSeaLevel)
         {
             Dictionary<string, UnitMakerGroupInfo> carrierDictionary = new Dictionary<string, UnitMakerGroupInfo>(StringComparer.InvariantCultureIgnoreCase);
 
@@ -86,6 +88,11 @@ namespace BriefingRoom4DCS.Generator
                 if (template.MissionType == MissionType.SinglePlayer)
                     unitMakerGroupFlags = UnitMakerGroupFlags.FirstUnitIsPlayer;
 
+                int ilsChannel = 11 + carrierDictionary.Count;
+                double radioFrequency = 127.5 + carrierDictionary.Count;
+                string tacanCallsign = $"CVN{cvnID}";
+                int tacanChannel = 74 + carrierDictionary.Count;
+
                 UnitMakerGroupInfo? groupInfo =
                     UnitMaker.AddUnitGroup(
                         new string[] { unitDB.DCSIDs[0] }, Side.Ally, unitDB.Families[0],
@@ -93,16 +100,20 @@ namespace BriefingRoom4DCS.Generator
                         shipCoordinates, DCSSkillLevel.Excellent, unitMakerGroupFlags, AircraftPayload.Default,
                         "GroupX2".ToKeyValuePair(shipDestination.X),
                         "GroupY2".ToKeyValuePair(shipDestination.Y),
-                        "ILS".ToKeyValuePair(11 + carrierDictionary.Count),
+                        "ILS".ToKeyValuePair(ilsChannel),
                         "RadioBand".ToKeyValuePair((int)RadioModulation.AM),
-                        "RadioFrequency".ToKeyValuePair(GeneratorTools.GetRadioFrenquency(127.5 + carrierDictionary.Count)),
+                        "RadioFrequency".ToKeyValuePair(GeneratorTools.GetRadioFrenquency(radioFrequency)),
                         "Speed".ToKeyValuePair(carrierSpeed),
-                        "TACANCallsign".ToKeyValuePair($"CVN{cvnID}"),
-                        "TACANChannel".ToKeyValuePair(74 + carrierDictionary.Count),
-                        "TACANFrequency".ToKeyValuePair(GeneratorTools.GetTACANFrequency(74 + carrierDictionary.Count, 'X', false)),
+                        "TACANCallsign".ToKeyValuePair(tacanCallsign),
+                        "TACANChannel".ToKeyValuePair(tacanChannel),
+                        "TACANFrequency".ToKeyValuePair(GeneratorTools.GetTACANFrequency(tacanChannel, 'X', false)),
                         "TACANMode".ToKeyValuePair("X"));
 
                 if (!groupInfo.HasValue || (groupInfo.Value.UnitsID.Length == 0)) continue; // Couldn't generate group
+
+                mission.Briefing.AddItem(
+                    DCSMissionBriefingItemType.Carrier,
+                    $"{unitDB.UIDisplayName}\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t{ilsChannel}\t{tacanCallsign}, {tacanChannel}X");
 
                 carrierDictionary.Add(flightGroup.Carrier, groupInfo.Value);
             }

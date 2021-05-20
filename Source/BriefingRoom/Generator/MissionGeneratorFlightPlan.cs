@@ -18,11 +18,11 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
@@ -52,52 +52,6 @@ namespace BriefingRoom4DCS.Generator
         /// </summary>
         internal MissionGeneratorFlightPlan() { }
 
-        ///// <summary>
-        ///// Adds waypoints for the mission objectives.
-        ///// </summary>
-        ///// <param name="mission">Mission</param>
-        //internal void AddObjectiveWaypoints(DCSMission mission)
-        //{
-        //    BriefingRoom.PrintToLog("Generating objective waypoints...");
-
-        //    for (int i = 0; i < mission.Objectives.Length; i++)
-        //    {
-        //        Coordinates waypointCoordinates = mission.Objectives[i].WaypointCoordinates;
-        //        BriefingRoom.PrintToLog($"Created objective waypoint at {waypointCoordinates}");
-
-        //        mission.Waypoints.Add(
-        //            new DCSMissionWaypoint(
-        //                waypointCoordinates, mission.Objectives[i].Name,
-        //                mission.Objectives[i].WaypointOnGround ? 0.0 : 1.0,
-        //                1.0));
-        //    }
-        //}
-
-        /////// <summary>
-        /////// Adds extra waypoint before and after the objective waypoints, if required.
-        /////// </summary>
-        /////// <param name="mission">Mission</param>
-        /////// <param name="template">Mission template</param>
-        //internal void AddExtraWaypoints(DCSMission mission, MissionTemplate template, bool preObj = true)
-        //{
-        //    // No objective waypoints, or no extra waypoints required, stop here
-        //    if ((template.FlightPlanAddExtraWaypoints == YesNo.No) || (mission.Waypoints.Count == 0))
-        //        return;
-
-        //}
-
-        ///// <summary>
-        ///// Sets the mission bullseye for both coalitions.
-        ///// </summary>
-        ///// <param name="mission">The mission</param>
-        //internal void SetBullseye(DCSMission mission)
-        //{
-        //    for (int i = 0; i < 2; i++)
-        //        mission.Bullseye[i] =
-        //            mission.ObjectivesCenter +
-        //            Coordinates.CreateRandom(20 * Toolbox.NM_TO_METERS, 40 * Toolbox.NM_TO_METERS);
-        //}
-
         private double GetBullseyeRandomDistance()
         {
             return Toolbox.RandomDouble(BULLSEYE_DISTANCE_MIN, BULLSEYE_DISTANCE_MAX) * Toolbox.NM_TO_METERS;
@@ -105,10 +59,10 @@ namespace BriefingRoom4DCS.Generator
 
         internal void GenerateBullseyes(DCSMission mission, Coordinates objectivesCenter)
         {
-            mission.SetValue("BULLSEYE_BLUE_X", objectivesCenter.X + GetBullseyeRandomDistance());
-            mission.SetValue("BULLSEYE_BLUE_Y", objectivesCenter.Y + GetBullseyeRandomDistance());
-            mission.SetValue("BULLSEYE_RED_X", objectivesCenter.X + GetBullseyeRandomDistance());
-            mission.SetValue("BULLSEYE_RED_Y", objectivesCenter.Y + GetBullseyeRandomDistance());
+            mission.SetValue("BullseyeBlueX", objectivesCenter.X + GetBullseyeRandomDistance());
+            mission.SetValue("BullseyeBlueY", objectivesCenter.Y + GetBullseyeRandomDistance());
+            mission.SetValue("BullseyeRedX", objectivesCenter.X + GetBullseyeRandomDistance());
+            mission.SetValue("BullseyeRedY", objectivesCenter.Y + GetBullseyeRandomDistance());
         }
 
         /// <summary>
@@ -142,6 +96,31 @@ namespace BriefingRoom4DCS.Generator
                 waypoints.AddRange(extraWaypoints.Select(wpCoordinates => new Waypoint($"WP{waypoints.Count + count++:00}", wpCoordinates)));
             else // Add waypoints after last objective waypoint
                 waypoints.InsertRange(0, extraWaypoints.Select(wpCoordinates => new Waypoint( $"WP{count++:00}", wpCoordinates)));
+        }
+
+        internal void SaveWaypointsToBriefing(DCSMission mission, Coordinates initialCoordinates, List<Waypoint> waypoints, bool useImperialSystem)
+        {
+            double totalDistance = 0;
+            Coordinates lastWP = initialCoordinates;
+
+            // Add first (takeoff) and last (landing) waypoints to get a complete list of all waypoints
+            List<Waypoint> allWaypoints = new List<Waypoint>(waypoints);
+            allWaypoints.Insert(0, new Waypoint(Database.Instance.Common.Names.WPInitialName, initialCoordinates));
+            allWaypoints.Add(new Waypoint(Database.Instance.Common.Names.WPFinalName, initialCoordinates));
+
+            foreach (Waypoint waypoint in allWaypoints)
+            {
+                double distanceFromLast = waypoint.Coordinates.GetDistanceFrom(lastWP);
+                totalDistance += distanceFromLast;
+                lastWP = waypoint.Coordinates;
+
+                string waypointText =
+                    waypoint.Name + "\t" +
+                    (useImperialSystem ? $"{distanceFromLast * Toolbox.METERS_TO_NM:F0} nm" : $"{distanceFromLast / 1000.0:F0} Km") + "\t" +
+                    (useImperialSystem ? $"{totalDistance * Toolbox.METERS_TO_NM:F0} nm" : $"{totalDistance / 1000.0:F0} Km");
+
+                mission.Briefing.AddItem(DCSMissionBriefingItemType.Waypoint, waypointText);
+            }
         }
     }
 }

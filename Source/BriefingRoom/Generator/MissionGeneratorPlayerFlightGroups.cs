@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCS.Data;
+using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
@@ -46,12 +47,12 @@ namespace BriefingRoom4DCS.Generator
             UnitMaker = unitMaker;
         }
 
-        internal void GeneratePlayerFlightGroup(MissionTemplateFlightGroup flightGroup, DBEntryAirbase playerAirbase, List<Waypoint> waypoints, Dictionary<string, UnitMakerGroupInfo> carrierDictionary)
+        internal void GeneratePlayerFlightGroup(DCSMission mission, MissionTemplateFlightGroup flightGroup, DBEntryAirbase playerAirbase, List<Waypoint> waypoints, Dictionary<string, UnitMakerGroupInfo> carrierDictionary)
         {
-            DBEntryUnit unit = Database.Instance.GetEntry<DBEntryUnit>(flightGroup.Aircraft);
+            DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(flightGroup.Aircraft);
 
             // Not an unit, or not a player-controllable unit, abort.
-            if ((unit == null) || !unit.AircraftData.PlayerControllable)
+            if ((unitDB == null) || !unitDB.AircraftData.PlayerControllable)
                 throw new BriefingRoomException($"Player flight group unit \"{flightGroup.Aircraft}\" does not exist or is not player-controllable.");
 
             List<int> parkingSpotIDsList = new List<int>();
@@ -70,7 +71,7 @@ namespace BriefingRoom4DCS.Generator
                     parkingSpotCoordinatesList.Add(carrierDictionary[flightGroup.Carrier].Coordinates);
                 }
             }
-            else // Land base take off
+            else // Land airbase take off
             {
                 Coordinates? lastParkingCoordinates = null;
 
@@ -85,8 +86,8 @@ namespace BriefingRoom4DCS.Generator
                 }
             }
 
-            if (UnitMaker.AddUnitGroup(
-                Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), Side.Ally, unit.Families[0],
+            UnitMakerGroupInfo? groupInfo = UnitMaker.AddUnitGroup(
+                Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), Side.Ally, unitDB.Families[0],
                 groupLuaFile, "UnitAircraft", playerAirbase.Coordinates,
                 Toolbox.RandomFrom(DCSSkillLevel.High, DCSSkillLevel.Excellent), 0, flightGroup.Payload,
                 "PlayerStartingAction".ToKeyValuePair(GeneratorTools.GetPlayerStartingAction(flightGroup.StartLocation)),
@@ -101,8 +102,19 @@ namespace BriefingRoom4DCS.Generator
                 "UnitY".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.Y).ToArray()),
                 "MissionAirbaseX".ToKeyValuePair(playerAirbase.Coordinates.X),
                 "MissionAirbaseY".ToKeyValuePair(playerAirbase.Coordinates.Y),
-                "MissionAirbaseID".ToKeyValuePair(playerAirbase.DCSID)) == null)
+                "MissionAirbaseID".ToKeyValuePair(playerAirbase.DCSID));
+
+            if (!groupInfo.HasValue)
+            {
                 BriefingRoom.PrintToLog("Failed to generate player flight group.", LogMessageErrorLevel.Warning);
+                return;
+            }
+
+            mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
+                $"{groupInfo.Value.Name}\t" +
+                $"{flightGroup.Count}× {unitDB.UIDisplayName}\t" +
+                $"{GeneratorTools.FormatRadioFrequency(unitDB.AircraftData.RadioFrequency)}\t" +
+                $"{flightGroup.Payload}"); // TODO: human-readable payload name
         }
 
         private string GenerateFlightPlanLua(List<Waypoint> waypoints)

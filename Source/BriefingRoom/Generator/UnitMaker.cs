@@ -9,14 +9,16 @@ namespace BriefingRoom4DCS.Generator
 {
     internal struct UnitMakerGroupInfo
     {
-        internal int GroupID { get; }
-        internal int[] UnitsID { get; }
         internal Coordinates Coordinates { get; }
+        internal int GroupID { get; }
+        internal string Name { get; }
+        internal int[] UnitsID { get; }
 
-        internal UnitMakerGroupInfo(int groupID, Coordinates coordinates, List<int> unitsID)
+        internal UnitMakerGroupInfo(int groupID, Coordinates coordinates, List<int> unitsID, string name)
         {
             GroupID = groupID;
             Coordinates = coordinates;
+            Name = name;
             UnitsID = unitsID.ToArray();
         }
     }
@@ -198,7 +200,7 @@ namespace BriefingRoom4DCS.Generator
             BriefingRoom.PrintToLog($"Added group of {units.Length} {coalition} {unitFamily} at {coordinates}");
 
             GroupID++;
-            return new UnitMakerGroupInfo(GroupID - 1, coordinates, unitsIDList);
+            return new UnitMakerGroupInfo(GroupID - 1, coordinates, unitsIDList, groupName);
         }
 
         private void AddUnitGroupToTable(Country country, UnitCategory category, string unitGroupLua)

@@ -3,10 +3,10 @@
   <p><strong>$MISSIONTYPE$</strong></p>
   
   <p>
-    <strong>Date:</strong> $LONGDATE$<br />
-    <strong>Time:</strong> $LONGTIME$<br />
-    <strong>Weather:</strong> $WEATHER_NAME$<br />
-    <strong>Wind:</strong> $WEATHER_WIND_NAME$ ($WEATHER_WIND_SPEED_AVERAGE$ m/s)
+    <strong>Date:</strong> $BRIEFINGDATE$<br />
+    <strong>Time:</strong> $BRIEFINGTIME$<br />
+    <strong>Weather:</strong> $WEATHERNAME$<br />
+    <strong>Wind:</strong> $WEATHERWINDNAME$ ($WEATHERWINDSPEEDAVERAGE$ m/s)
   </p>
   
   <p>
@@ -25,25 +25,25 @@
 
   <h3>Flight groups</h3>
   <table>
-    <tr><th>Callsign</th><th>Aircraft</th><th>Task</th><th>Radio</th><th>Remarks</th></tr>
-$FLIGHTGROUPS$
+    <tr><th>Callsign</th><th>Aircraft</th><th>Radio</th><th>Payload</th></tr>
+$BRIEFINGFLIGHTGROUPS$
   </table>
 
   <h3>Airbases</h3>
   <table>
     <tr><th>Name</th><th>Runways</th><th>Radio</th><th>ILS</th><th>TACAN</th></tr>
-$AIRBASES$
+$BRIEFINGAIRBASES$
   </table>
 
   <h3>Carriers</h3>
   <table>
     <tr><th>Name</th><th>Radio</th><th>ILS</th><th>TACAN</th></tr>
-$CARRIERS$
+$BRIEFINGCARRIERS$
   </table>
 
  <h3>Flight plan</h3>
  <table>
    <tr><th>WP Name</th><th>Distance from last WP</th><th>Total distance</th></tr>
-$WAYPOINTS$
+$BRIEFINGWAYPOINTS$
  </table>
 </div>
