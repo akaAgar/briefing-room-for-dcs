@@ -31,14 +31,9 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGeneratorCombatAirPatrols : IDisposable
     {
         /// <summary>
-        /// Possible number of units in a CAP group.
+        /// Shorcut to <see cref="Database.Instance.Common.CAP"/>
         /// </summary>
-        private static readonly int[] CAP_GROUP_SIZE = new int[] { 1, 2, 2, 2, 2, 3, 4, 4 };
-
-        /// <summary>
-        /// Possible unit families in a CAP group.
-        /// </summary>
-        private static readonly UnitFamily[] CAP_UNIT_FAMILIES = new UnitFamily[] { UnitFamily.PlaneFighter, UnitFamily.PlaneFighter, UnitFamily.PlaneInterceptor };
+        private DBCommonCAP CommonCAPDB { get { return Database.Instance.Common.CAP; } }
 
         /// <summary>
         /// Unit maker class to use to generate units.
@@ -67,23 +62,26 @@ namespace BriefingRoom4DCS.Generator
                 Coordinates centerPoint = ally ? initialPosition : objectivesCenter;
                 Coordinates opposingPoint = ally ? objectivesCenter : initialPosition;
 
-                CreateCAPGroups(side, coalition, capAmount, centerPoint, opposingPoint, ref capAircraftGroupIDs);
+                CreateCAPGroups(
+                    side, coalition, capAmount,
+                    centerPoint, opposingPoint,
+                    objectivesCenter,
+                    ref capAircraftGroupIDs);
             }
 
             return capAircraftGroupIDs.ToArray();
         }
 
-        private void CreateCAPGroups(Side side, Coalition coalition, AmountNR capAmount, Coordinates centerPoint, Coordinates opposingPoint, ref List<int> capAircraftGroupIDs)
+        private void CreateCAPGroups(Side side, Coalition coalition, AmountNR capAmount, Coordinates centerPoint, Coordinates opposingPoint, Coordinates destination, ref List<int> capAircraftGroupIDs)
         {
-            //DBCommonCAPLevel capLevelDB = Database.Instance.Common.CAP.CAPLevels[(int)capAmount];
+            DBCommonCAPLevel capLevelDB = CommonCAPDB.CAPLevels[(int)capAmount];
 
-            //int unitsLeftToSpawn = capLevelDB.AircraftCount.GetValue();
-            int unitsLeftToSpawn = new MinMaxI(4, 8).GetValue();
+            int unitsLeftToSpawn = capLevelDB.UnitCount.GetValue();
             if (unitsLeftToSpawn < 1) return;  // No groups to add, no need to go any further
 
             do
             {
-                int groupSize = Toolbox.RandomFrom(CAP_GROUP_SIZE);
+                int groupSize = Toolbox.RandomFrom(CommonCAPDB.GroupSize);
                 groupSize = Math.Min(unitsLeftToSpawn, groupSize);
                 unitsLeftToSpawn -= groupSize;
 
@@ -92,9 +90,9 @@ namespace BriefingRoom4DCS.Generator
                     UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         null,
                         centerPoint,
-                        Database.Instance.Common.AirDefense.DistanceFromCenter[(int)side, (int)AirDefenseRange.LongRange],
+                        CommonCAPDB.DistanceFromCenter,
                         opposingPoint,
-                        new MinMaxD(Database.Instance.Common.AirDefense.MinDistanceFromOpposingPoint[(int)side, (int)AirDefenseRange.LongRange], 99999),
+                        new MinMaxD(CommonCAPDB.MinDistanceFromOpposingPoint, 99999),
                         coalition);
 
                 // No spawn point found, stop here.
@@ -104,16 +102,15 @@ namespace BriefingRoom4DCS.Generator
                     return;
                 }
 
-                Coordinates coordinates2 = spawnPoint.Value.Coordinates + Coordinates.CreateRandom(20.0, 30.0) * Toolbox.NM_TO_METERS;
+                Coordinates groupDestination = destination + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
 
                 UnitMakerGroupInfo? groupInfo = UnitMaker.AddUnitGroup(
-                    Toolbox.RandomFrom(CAP_UNIT_FAMILIES), groupSize, side,
-                    "GroupAircraftCAP", "UnitAircraft",
+                    Toolbox.RandomFrom(CommonCAPDB.UnitFamilies), groupSize, side,
+                    CommonCAPDB.LuaGroup, CommonCAPDB.LuaUnit,
                     spawnPoint.Value.Coordinates,
-                    //Toolbox.RandomFrom(capLevelDB.SkillLevel));
-                    Toolbox.RandomFrom(DCSSkillLevel.Good), 0, AircraftPayload.AirToAir,
-                    "GroupX2".ToKeyValuePair(coordinates2.X),
-                    "GroupY2".ToKeyValuePair(coordinates2.Y));
+                    Toolbox.RandomFrom(capLevelDB.SkillLevel), 0, AircraftPayload.AirToAir,
+                    "GroupX2".ToKeyValuePair(groupDestination.X),
+                    "GroupY2".ToKeyValuePair(groupDestination.Y));
 
                 if (!groupInfo.HasValue) // Failed to generate a group
                     BriefingRoom.PrintToLog($"Failed to find units for {coalition} air defense unit group.", LogMessageErrorLevel.Warning);

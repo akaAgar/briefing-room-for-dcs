@@ -28,14 +28,14 @@ namespace BriefingRoom4DCS.Data
     internal struct DBCommonCAPLevel
     {
         /// <summary>
-        /// Number of CAP aircraft (not flight groups) to spawn at this CAP level.
-        /// </summary>
-        internal MinMaxI AircraftCount { get; }
-
-        /// <summary>
         /// Possible AI skill levels for units at this CAP level.
         /// </summary>
         internal DCSSkillLevel[] SkillLevel { get; }
+
+        /// <summary>
+        /// Number of CAP aircraft (not flight groups) to spawn at this CAP level.
+        /// </summary>
+        internal MinMaxI UnitCount { get; }
 
         /// <summary>
         /// Constructor.
@@ -46,15 +46,14 @@ namespace BriefingRoom4DCS.Data
         {
             if ((capLevel == AmountNR.None) || (capLevel == AmountNR.Random))
             {
-                AircraftCount = new MinMaxI(0, 0);
                 SkillLevel = new DCSSkillLevel[] { DCSSkillLevel.Average };
+                UnitCount = new MinMaxI(0, 0);
                 return;
             }
 
-            AircraftCount = ini.GetValue<MinMaxI>("AirDefense", $"{capLevel}.UnitCount");
-
-            SkillLevel = ini.GetValueArray<DCSSkillLevel>("AirDefense", $"{capLevel}.SkillLevel").Distinct().ToArray();
+            SkillLevel = ini.GetValueArray<DCSSkillLevel>("CAPLevels", $"{capLevel}.SkillLevel").Distinct().ToArray();
             if (SkillLevel.Length == 0) SkillLevel = new DCSSkillLevel[] { DCSSkillLevel.Average, DCSSkillLevel.Good, DCSSkillLevel.High, DCSSkillLevel.Excellent };
+            UnitCount = ini.GetValue<MinMaxI>("CAPLevels", $"{capLevel}.UnitCount");
         }
     }
 }

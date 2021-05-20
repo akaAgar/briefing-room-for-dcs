@@ -21,23 +21,49 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using System;
 using System.IO;
+using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
     internal class DBCommonCAP : IDisposable
     {
         /// <summary>
-        /// Min/max distance between enemy CAP and the mission objectives.
+        /// Min/max distance from spawn center (initial airbase for allies, objectives for enemies), in nautical miles.
         /// </summary>
-        internal MinMaxD EnemyCAPDistanceFromObjectives { get; }
+        internal MinMaxD DistanceFromCenter { get; }
 
         /// <summary>
-        /// Min distance (in nautical miles) between enemy CAP and players take off location.
+        /// Length of the CAP "oval" flight path, in nautical miles.
         /// </summary>
-        internal int EnemyCAPMinDistanceFromTakeOffLocation { get; }
+        internal MinMaxD FlightPathLength { get; }
 
         /// <summary>
-        /// Settings for CAP at various CAP levels.
+        /// Possible CAP flight group sizes.
+        /// </summary>
+        internal int[] GroupSize { get; }
+
+        /// <summary>
+        /// Min distance from opposing point (objectives for allies, initial airbase for enemies), in nautical miles.
+        /// </summary>
+        internal double MinDistanceFromOpposingPoint { get; }
+
+        /// <summary>
+        /// Lua file (from <see cref="BRPaths.INCLUDE_LUA_UNITS"/>) for the group.
+        /// </summary>
+        internal string LuaGroup { get; }
+
+        /// <summary>
+        /// Lua file (from <see cref="BRPaths.INCLUDE_LUA_UNITS"/>) for each unit.
+        /// </summary>
+        internal string LuaUnit { get; }
+
+        /// <summary>
+        /// Possible unit families for CAP aircraft.
+        /// </summary>
+        internal UnitFamily[] UnitFamilies { get; }
+
+        /// <summary>
+        /// Settings for various CAP levels.
         /// </summary>
         internal DBCommonCAPLevel[] CAPLevels { get; }
 
@@ -45,22 +71,19 @@ namespace BriefingRoom4DCS.Data
         {
             using (INIFile ini = new INIFile($"{BRPaths.DATABASE}CAP.ini"))
             {
+                DistanceFromCenter = ini.GetValue<MinMaxD>("CAP", "DistanceFromCenter");
+                GroupSize = (from int groupSize in ini.GetValueArray<int>("CAP", "GroupSize") where groupSize > 0 select groupSize).ToArray();
+                if (GroupSize.Length == 0) GroupSize = new int[] { 1 };
+                FlightPathLength = ini.GetValue<MinMaxD>("CAP", "FlightPathLength") * Toolbox.NM_TO_METERS;
+                LuaGroup = Toolbox.AddMissingFileExtension(ini.GetValue<string>("CAP", "Lua.Group"), ".lua");
+                LuaUnit = Toolbox.AddMissingFileExtension(ini.GetValue<string>("CAP", "Lua.Unit"), ".lua");
+                MinDistanceFromOpposingPoint = ini.GetValue<double>("CAP", "MinDistanceFromOpposingPoint");
+                UnitFamilies = (from UnitFamily unitFamily in ini.GetValueArray<UnitFamily>("CAP", "UnitFamilies") where unitFamily.GetUnitCategory() == UnitCategory.Plane select unitFamily).ToArray();  
+                if (UnitFamilies.Length == 0) UnitFamilies = new UnitFamily[] { UnitFamily.PlaneFighter };
 
-
-                //AirDefenseLevels = new DBCommonAirDefenseLevel[Toolbox.EnumCount<AmountNR>()];
-                //for (i = 0; i < Toolbox.EnumCount<AmountNR>(); i++)
-                //    AirDefenseLevels[i] = new DBCommonAirDefenseLevel(ini, (AmountNR)i);
-
-                //DistanceFromCenter = new MinMaxD[2, Toolbox.EnumCount<AirDefenseRange>()];
-                //MinDistanceFromOpposingPoint = new double[2, Toolbox.EnumCount<AirDefenseRange>()];
-                //foreach (Side side in Toolbox.GetEnumValues<Side>())
-                //{
-                //    foreach (AirDefenseRange airDefenseRange in Toolbox.GetEnumValues<AirDefenseRange>())
-                //    {
-                //        DistanceFromCenter[(int)side, (int)airDefenseRange] = ini.GetValue<MinMaxD>($"AirDefenseRange.{side}", $"{airDefenseRange}.DistanceFromCenter");
-                //        MinDistanceFromOpposingPoint[(int)side, (int)airDefenseRange] = ini.GetValue<double>($"AirDefenseRange.{side}", $"{airDefenseRange}.MinDistanceFromOpposingPoint");
-                //    }
-                //}
+                CAPLevels = new DBCommonCAPLevel[Toolbox.EnumCount<AmountNR>()];
+                for (int i = 0; i < Toolbox.EnumCount<AmountNR>(); i++)
+                    CAPLevels[i] = new DBCommonCAPLevel(ini, (AmountNR)i);
             }
         }
 
