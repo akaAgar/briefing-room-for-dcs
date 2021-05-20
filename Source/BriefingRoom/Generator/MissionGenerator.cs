@@ -164,7 +164,7 @@ namespace BriefingRoom4DCS.Generator
             BriefingRoom.PrintToLog("Generating mission features...");
             using (MissionGeneratorFeaturesMission missionFeaturesGenerator = new MissionGeneratorFeaturesMission(unitMaker))
                 for (i = 0; i  < template.MissionFeatures.Count; i++)
-                    missionFeaturesGenerator.GenerateMissionFeature(mission, template, i, playerAirbase.Coordinates, objectivesCenter);
+                    missionFeaturesGenerator.GenerateMissionFeature(mission, template.MissionFeatures[i], i, playerAirbase.Coordinates, objectivesCenter);
 
             mission.SetValue("RESOURCES_OGG_FILES", ""); // TODO
 

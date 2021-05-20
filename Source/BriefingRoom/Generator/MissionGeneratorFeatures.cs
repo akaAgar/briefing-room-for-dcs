@@ -77,7 +77,9 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.ReplaceKey(ref featureLua, extraSetting.Key, extraSetting.Value);
             if (groupInfo.HasValue)
                 GeneratorTools.ReplaceKey(ref featureLua, "FeatureGroupID", groupInfo.Value.GroupID);
-            mission.AppendValue("MISSION_FEATURES_LUA", featureLua);
+
+            if (featureDB is DBEntryFeatureObjective) mission.AppendValue("MISSION_OBJECTIVES_LUA", featureLua);
+            else mission.AppendValue("MISSION_FEATURES_LUA", featureLua);
 
             // Feature ogg files
             mission.AddOggFiles(featureDB.IncludeOgg);

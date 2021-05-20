@@ -57,12 +57,18 @@ namespace BriefingRoom4DCS.Generator
         private readonly UnitMaker UnitMaker;
 
         /// <summary>
+        /// MissionGeneratorFeaturesObjectives to use to generate objective features;
+        /// </summary>
+        private readonly MissionGeneratorFeaturesObjectives FeaturesGenerator;
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="spawnPointSelector">Spawn point selector to use for objective generation</param>
         internal MissionGeneratorObjectives(UnitMaker unitMaker)
         {
             UnitMaker = unitMaker;
+            FeaturesGenerator = new MissionGeneratorFeaturesObjectives(unitMaker);
             ObjectiveNames = new List<string>(Database.Instance.Common.Names.WPObjectivesNames);
         }
 
@@ -128,15 +134,8 @@ namespace BriefingRoom4DCS.Generator
 
             // Add objective features Lua for this objective
             mission.SetValue("OBJECTIVES_FEATURES_LUA", ""); // Just in case there's no features
-            foreach (DBEntryFeatureObjective featureDB in featuresDB)
-            {
-                foreach (string scriptFile in featureDB.IncludeLua)
-                {
-                    string scriptLua = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA_OBJECTIVEFEATURES}{scriptFile}");
-                    GeneratorTools.ReplaceKey(ref scriptLua, "INDEX", objectiveIndex + 1);
-                    mission.AppendValue("OBJECTIVES_FEATURES_LUA", scriptLua);
-                }
-            }
+            foreach (string featureID in objectiveTemplate.Features.ToArray())
+                FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveIndex, targetGroupInfo.Value.GroupID, spawnPoint.Value.Coordinates);
 
             return spawnPoint.Value.Coordinates;
         }
@@ -291,6 +290,9 @@ namespace BriefingRoom4DCS.Generator
         /// <summary>
         /// <see cref="IDisposable"/> implementation.
         /// </summary>
-        public void Dispose() { }
+        public void Dispose()
+        {
+            FeaturesGenerator.Dispose();
+        }
     }
 }

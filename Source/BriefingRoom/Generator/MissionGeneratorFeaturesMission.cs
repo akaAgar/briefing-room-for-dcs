@@ -37,12 +37,12 @@ namespace BriefingRoom4DCS.Generator
         /// <param name="unitMaker">Unit maker to use for unit generation.</param>
         internal MissionGeneratorFeaturesMission(UnitMaker unitMaker) : base(unitMaker) { }
 
-        internal void GenerateMissionFeature(DCSMission mission, MissionTemplate template, int missionFeatureIndex, Coordinates initialCoordinates, Coordinates objectivesCenter)
+        internal void GenerateMissionFeature(DCSMission mission, string featureID, int missionFeatureIndex, Coordinates initialCoordinates, Coordinates objectivesCenter)
         {
-            DBEntryFeatureMission featureDB = Database.Instance.GetEntry<DBEntryFeatureMission>(template.MissionFeatures[missionFeatureIndex]);
+            DBEntryFeatureMission featureDB = Database.Instance.GetEntry<DBEntryFeatureMission>(featureID);
             if (featureDB == null) // Feature doesn't exist
             {
-                BriefingRoom.PrintToLog($"Mission feature {template.MissionFeatures[missionFeatureIndex]} not found.", LogMessageErrorLevel.Warning);
+                BriefingRoom.PrintToLog($"Mission feature {featureID} not found.", LogMessageErrorLevel.Warning);
                 return;
             }
 
@@ -55,7 +55,7 @@ namespace BriefingRoom4DCS.Generator
             DBEntryTheaterSpawnPoint? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(featureDB.UnitGroupValidSpawnPoints, pointSearchCenter, new MinMaxD(0, 10));
             if (!spawnPoint.HasValue) // No spawn point found
             {
-                BriefingRoom.PrintToLog($"No spawn point found for mission feature {template.MissionFeatures[missionFeatureIndex]}.", LogMessageErrorLevel.Warning);
+                BriefingRoom.PrintToLog($"No spawn point found for mission feature {featureID}.", LogMessageErrorLevel.Warning);
                 return;
             }
 
