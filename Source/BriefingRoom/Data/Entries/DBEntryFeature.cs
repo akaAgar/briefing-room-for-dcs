@@ -31,8 +31,9 @@ namespace BriefingRoom4DCS.Data
     {
         /// <summary>
         /// Randomly-parsed (<see cref="Toolbox.ParseRandomString(string)"/>) single-line remarks to add to the mission briefing when this feature is enabled.
+        /// Index #0 is for allies/default, index #1 is for enemies (if not null/empty)
         /// </summary>
-        internal string[] BriefingRemarks { get; private set; }
+        internal string[][] BriefingRemarks { get; private set; }
 
         /// <summary>
         /// Other features whose ID begins with this string are incompatible with this one.
@@ -108,7 +109,9 @@ namespace BriefingRoom4DCS.Data
         {
             using (INIFile ini = new INIFile(iniFilePath))
             {
-                BriefingRemarks = ini.GetValueArray<string>("Briefing", "Remarks", ';');
+                BriefingRemarks = new string[2][];
+                BriefingRemarks[(int)Side.Ally] = ini.GetValueArray<string>("Briefing", "Remarks", ';');
+                BriefingRemarks[(int)Side.Enemy] = ini.GetValueArray<string>("Briefing", "Remarks.Enemy", ';');
 
                 FeatureIncompatiblePrefix = ini.GetValue<string>("Feature", "IncompatiblePrefix").ToLowerInvariant();
 
