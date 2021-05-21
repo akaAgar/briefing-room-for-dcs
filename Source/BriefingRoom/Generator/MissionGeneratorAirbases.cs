@@ -73,24 +73,16 @@ namespace BriefingRoom4DCS.Generator
                 return null;
             }
 
-            // Select all airbases belonging to the player coalition (unless all airbases belong to the same coalition)
-            if ((template.ContextTheaterCountriesCoalitions == CountryCoalition.Default) ||
-                (template.ContextTheaterCountriesCoalitions == CountryCoalition.Inverted))
+            // Select all airbases belonging to the player coalition
+            Coalition requiredCoalition =
+                template.OptionsMission.Contains(MissionOption.InvertCountriesCoalitions) ?
+                template.ContextPlayerCoalition.GetEnemy() : template.ContextPlayerCoalition;
+            airbases = (from DBEntryAirbase airbase in airbases where airbase.Coalition == requiredCoalition select airbase).ToArray();
+            if (airbases.Length == 0)
             {
-                Coalition requiredCoalition =
-                    (template.ContextTheaterCountriesCoalitions == CountryCoalition.Inverted) ?
-                    template.ContextPlayerCoalition.GetEnemy() : template.ContextPlayerCoalition;
-
-                airbases = (from DBEntryAirbase airbase in airbases where airbase.Coalition == requiredCoalition select airbase).ToArray();
-
-                if (airbases.Length == 0)
-                {
-                    BriefingRoom.PrintToLog($"No airbase belonging to coalition {requiredCoalition} was found, cannot spawn player aircraft.", LogMessageErrorLevel.Error);
-                    return null;
-                }
+                BriefingRoom.PrintToLog($"No airbase belonging to player coalition found, cannot spawn player aircraft.", LogMessageErrorLevel.Error);
+                return null;
             }
-            else
-                airbases = airbases.ToArray();
 
             // If some targets are ships, or some player start on a carrier, try to pick an airbase near water
             if (MissionPrefersShoreAirbase(template))
@@ -146,14 +138,9 @@ namespace BriefingRoom4DCS.Generator
                 }
 
                 // Other airbases are assigned to a coalition according to the theater and the template settings
-                Coalition airbaseCoalition;
-                switch (template.ContextTheaterCountriesCoalitions)
-                {
-                    default: airbaseCoalition = airbase.Coalition; break;
-                    case CountryCoalition.AllBlue: airbaseCoalition = Coalition.Blue; break;
-                    case CountryCoalition.AllRed: airbaseCoalition = Coalition.Red; break;
-                    case CountryCoalition.Inverted: airbaseCoalition = (Coalition)(1 - (int)airbase.Coalition); break;
-                }
+                Coalition airbaseCoalition =
+                    template.OptionsMission.Contains(MissionOption.InvertCountriesCoalitions) ?
+                    airbase.Coalition.GetEnemy() : airbase.Coalition;
 
                 mission.SetAirbase(airbase.DCSID, airbaseCoalition);
             }
