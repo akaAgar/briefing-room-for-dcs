@@ -21,7 +21,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Template;
 using System;
-using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -31,6 +30,11 @@ namespace BriefingRoom4DCS.Generator
     /// </summary>
     internal class MissionGeneratorAirDefense : IDisposable
     {
+        /// <summary>
+        /// Shorcut to Database.Instance.Common.AirDefense.
+        /// </summary>
+        private DBCommonAirDefense CommonAirDefenseDB { get { return Database.Instance.Common.AirDefense; } }
+
         /// <summary>
         /// Unit maker class to use to generate units.
         /// </summary>
@@ -45,7 +49,7 @@ namespace BriefingRoom4DCS.Generator
             UnitMaker = unitMaker;
         }
 
-        internal void GenerateAirDefense(MissionTemplate template, Coordinates initialPosition, Coordinates objectivesCenter)
+        internal void GenerateAirDefense(MissionTemplate template, Coordinates averageInitialPosition, Coordinates objectivesCenter)
         {
             foreach (Coalition coalition in Toolbox.GetEnumValues<Coalition>())
             {
@@ -53,25 +57,23 @@ namespace BriefingRoom4DCS.Generator
                 
                 Side side = ally ? Side.Ally : Side.Enemy;
                 AmountNR airDefenseAmount = ally ? template.SituationFriendlyAirDefense.Get() : template.SituationEnemyAirDefense.Get();
-                Coordinates centerPoint = ally ? initialPosition : objectivesCenter;
-                Coordinates opposingPoint = ally ? objectivesCenter : initialPosition;
+                Coordinates centerPoint = ally ? averageInitialPosition : objectivesCenter;
+                Coordinates opposingPoint = ally ? objectivesCenter : averageInitialPosition;
 
                 foreach (AirDefenseRange airDefenseRange in Toolbox.GetEnumValues<AirDefenseRange>())
-                    CreateAirDefenseGroups(side, coalition, airDefenseAmount, airDefenseRange, centerPoint, opposingPoint);
+                    CreateAirDefenseGroups(template, side, coalition, airDefenseAmount, airDefenseRange, centerPoint, opposingPoint);
             }
         }
 
         private void CreateAirDefenseGroups(
-            Side side, Coalition coalition,
+            MissionTemplate template, Side side, Coalition coalition,
             AmountNR airDefenseAmount, AirDefenseRange airDefenseRange,
             Coordinates centerPoint, Coordinates opposingPoint)
         {
-            DBCommonAirDefenseLevel airDefenseLevelDB = Database.Instance.Common.AirDefense.AirDefenseLevels[(int)airDefenseAmount];
+            DBCommonAirDefenseLevel airDefenseLevelDB = CommonAirDefenseDB.AirDefenseLevels[(int)airDefenseAmount];
 
             int groupCount = airDefenseLevelDB.GroupsInArea[(int)airDefenseRange].GetValue();
             if (groupCount < 1) return;  // No groups to add, no need to go any further
-
-            //DCSMissionUnitGroupFlags flags = optionsShowEnemyUnits;
 
             UnitFamily[] unitFamilies;
             SpawnPointType[] validSpawnPoints;
@@ -93,15 +95,15 @@ namespace BriefingRoom4DCS.Generator
 
             for (int i = 0; i < groupCount; i++)
             {
-                // Find spawn point at the proper distance from the objective(s), but not to close from starting airbase
+                // Find spawn point at the proper distance
                 DBEntryTheaterSpawnPoint? spawnPoint =
                     UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         validSpawnPoints,
                         centerPoint,
-                        Database.Instance.Common.AirDefense.DistanceFromCenter[(int)side, (int)airDefenseRange],
+                        CommonAirDefenseDB.DistanceFromCenter[(int)side, (int)airDefenseRange],
                         opposingPoint,
-                        new MinMaxD(Database.Instance.Common.AirDefense.MinDistanceFromOpposingPoint[(int)side, (int)airDefenseRange], 99999),
-                        coalition);
+                        new MinMaxD(CommonAirDefenseDB.MinDistanceFromOpposingPoint[(int)side, (int)airDefenseRange], 99999),
+                        GeneratorTools.GetSpawnPointCoalition(template, side));
 
                 // No spawn point found, stop here.
                 if (!spawnPoint.HasValue)

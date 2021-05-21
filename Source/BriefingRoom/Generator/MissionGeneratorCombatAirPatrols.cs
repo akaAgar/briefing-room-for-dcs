@@ -31,7 +31,7 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGeneratorCombatAirPatrols : IDisposable
     {
         /// <summary>
-        /// Shorcut to <see cref="Database.Instance.Common.CAP"/>
+        /// Shorcut to Database.Instance.Common.CAP.
         /// </summary>
         private DBCommonCAP CommonCAPDB { get { return Database.Instance.Common.CAP; } }
 
@@ -49,7 +49,7 @@ namespace BriefingRoom4DCS.Generator
             UnitMaker = unitMaker;
         }
 
-        internal int[] GenerateCAP(MissionTemplate template, Coordinates initialPosition, Coordinates objectivesCenter)
+        internal int[] GenerateCAP(MissionTemplate template, Coordinates averageInitialPosition, Coordinates objectivesCenter)
         {
             List<int> capAircraftGroupIDs = new List<int>();
 
@@ -59,11 +59,15 @@ namespace BriefingRoom4DCS.Generator
 
                 Side side = ally ? Side.Ally : Side.Enemy;
                 AmountNR capAmount = ally ? template.SituationFriendlyAirForce.Get() : template.SituationEnemyAirForce.Get();
-                Coordinates centerPoint = ally ? initialPosition : objectivesCenter;
-                Coordinates opposingPoint = ally ? objectivesCenter : initialPosition;
+                Coordinates flyPathtoObjectives = (objectivesCenter - averageInitialPosition).Normalize() * Toolbox.NM_TO_METERS * CommonCAPDB.MinDistanceFromOpposingPoint; // TODO: distance according to decade
+                Coordinates centerPoint = objectivesCenter;
+                if (ally) centerPoint -= flyPathtoObjectives;
+                else centerPoint += flyPathtoObjectives;
+
+                Coordinates opposingPoint = objectivesCenter;
 
                 CreateCAPGroups(
-                    side, coalition, capAmount,
+                    template, side, coalition, capAmount,
                     centerPoint, opposingPoint,
                     objectivesCenter,
                     ref capAircraftGroupIDs);
@@ -72,7 +76,7 @@ namespace BriefingRoom4DCS.Generator
             return capAircraftGroupIDs.ToArray();
         }
 
-        private void CreateCAPGroups(Side side, Coalition coalition, AmountNR capAmount, Coordinates centerPoint, Coordinates opposingPoint, Coordinates destination, ref List<int> capAircraftGroupIDs)
+        private void CreateCAPGroups(MissionTemplate template, Side side, Coalition coalition, AmountNR capAmount, Coordinates centerPoint, Coordinates opposingPoint, Coordinates destination, ref List<int> capAircraftGroupIDs)
         {
             DBCommonCAPLevel capLevelDB = CommonCAPDB.CAPLevels[(int)capAmount];
 
@@ -93,7 +97,7 @@ namespace BriefingRoom4DCS.Generator
                         CommonCAPDB.DistanceFromCenter,
                         opposingPoint,
                         new MinMaxD(CommonCAPDB.MinDistanceFromOpposingPoint, 99999),
-                        coalition);
+                        GeneratorTools.GetSpawnPointCoalition(template, side));
 
                 // No spawn point found, stop here.
                 if (!spawnPoint.HasValue)
