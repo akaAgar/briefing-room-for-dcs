@@ -26,13 +26,9 @@ namespace BriefingRoom4DCS.Mission
     public enum DCSMissionBriefingItemType 
     {
         /// <summary>
-        /// Mission airbases.
+        /// Mission airbases and carriers.
         /// </summary>
         Airbase,
-        /// <summary>
-        /// Mission carriers.
-        /// </summary>
-        Carrier,
         /// <summary>
         /// Mission flight groups.
         /// </summary>

@@ -84,10 +84,6 @@ namespace BriefingRoom4DCS.Generator
                 Coordinates shipDestination = shipCoordinates + destinationPath;
 
                 string cvnID = carrierDictionary.Count > 0 ? (carrierDictionary.Count + 1).ToString() : "";
-                UnitMakerGroupFlags unitMakerGroupFlags = 0;
-                if (template.MissionType == MissionType.SinglePlayer)
-                    unitMakerGroupFlags = UnitMakerGroupFlags.FirstUnitIsPlayer;
-
                 int ilsChannel = 11 + carrierDictionary.Count;
                 double radioFrequency = 127.5 + carrierDictionary.Count;
                 string tacanCallsign = $"CVN{cvnID}";
@@ -97,7 +93,7 @@ namespace BriefingRoom4DCS.Generator
                     UnitMaker.AddUnitGroup(
                         new string[] { unitDB.DCSIDs[0] }, Side.Ally, unitDB.Families[0],
                         "GroupShipCarrier", "UnitShip",
-                        shipCoordinates, DCSSkillLevel.Excellent, unitMakerGroupFlags, AircraftPayload.Default,
+                        shipCoordinates, DCSSkillLevel.Excellent, 0, AircraftPayload.Default,
                         "GroupX2".ToKeyValuePair(shipDestination.X),
                         "GroupY2".ToKeyValuePair(shipDestination.Y),
                         "ILS".ToKeyValuePair(ilsChannel),
@@ -112,8 +108,8 @@ namespace BriefingRoom4DCS.Generator
                 if (!groupInfo.HasValue || (groupInfo.Value.UnitsID.Length == 0)) continue; // Couldn't generate group
 
                 mission.Briefing.AddItem(
-                    DCSMissionBriefingItemType.Carrier,
-                    $"{unitDB.UIDisplayName}\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t{ilsChannel}\t{tacanCallsign}, {tacanChannel}X");
+                    DCSMissionBriefingItemType.Airbase,
+                    $"{unitDB.UIDisplayName}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t{ilsChannel}\t{tacanCallsign}, {tacanChannel}X");
 
                 carrierDictionary.Add(flightGroup.Carrier, groupInfo.Value);
             }

@@ -59,13 +59,13 @@ namespace BriefingRoom4DCS.Generator
 
             Coordinates coordinates2 = spawnPoint.Value.Coordinates + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
 
-            AddMissionFeature(
+            UnitMakerGroupInfo? groupInfo = AddMissionFeature(
                 mission, featureDB,
                 spawnPoint.Value.Coordinates, coordinates2,
                 "ObjectiveIndex".ToKeyValuePair(objectiveIndex + 1),
                 "ObjectiveGroupID".ToKeyValuePair(objectiveGroupID));
 
-            mission.Briefing.AddRemarkFromFeature(featureDB, false); // TODO: string replacements
+            AddBriefingRemarkFromFeature(mission, featureDB, false, groupInfo); // TODO: string replacements
         }
     }
 }

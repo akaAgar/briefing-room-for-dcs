@@ -43,7 +43,7 @@ namespace BriefingRoom4DCS.Generator
             UnitMaker = unitMaker;
         }
 
-        protected void AddMissionFeature<T>(DCSMission mission, T featureDB, Coordinates coordinates, Coordinates? coordinates2 = null, params KeyValuePair<string, object>[] extraSettings) where T : DBEntryFeature
+        protected UnitMakerGroupInfo? AddMissionFeature<T>(DCSMission mission, T featureDB, Coordinates coordinates, Coordinates? coordinates2 = null, params KeyValuePair<string, object>[] extraSettings) where T : DBEntryFeature
         {
             // Add secondary coordinates (destination point) to the extra settings
             if (!coordinates2.HasValue) coordinates2 = coordinates; // No destination point? Use initial point
@@ -84,6 +84,8 @@ namespace BriefingRoom4DCS.Generator
 
             // Feature ogg files
             mission.AddOggFiles(featureDB.IncludeOgg);
+
+            return groupInfo;
         }
 
         /// <summary>
@@ -96,6 +98,28 @@ namespace BriefingRoom4DCS.Generator
             return (featureDB.UnitGroupFamilies.Length > 0) &&
                  !string.IsNullOrEmpty(featureDB.UnitGroupLuaGroup) &&
                  !string.IsNullOrEmpty(featureDB.UnitGroupLuaUnit);
+        }
+
+        protected void AddBriefingRemarkFromFeature(DCSMission mission, DBEntryFeature featureDB, bool useEnemyRemarkIfAvailable, UnitMakerGroupInfo? groupInfo = null, params KeyValuePair<string, string>[] stringReplacements)
+        {
+            string[] remarks;
+            if (useEnemyRemarkIfAvailable && featureDB.BriefingRemarks[(int)Side.Enemy].Length > 0)
+                remarks = featureDB.BriefingRemarks[(int)Side.Enemy].ToArray();
+            else
+                remarks = featureDB.BriefingRemarks[(int)Side.Ally].ToArray();
+            if (remarks.Length == 0) return; // No briefing for this feature
+
+            string remark = Toolbox.RandomFrom(remarks);
+            foreach (KeyValuePair<string, string> stringReplacement in stringReplacements)
+                GeneratorTools.ReplaceKey(ref remark, stringReplacement.Key, stringReplacement.Value);
+
+            if (groupInfo.HasValue)
+            {
+                GeneratorTools.ReplaceKey(ref remark, "GroupName", groupInfo.Value.Name);
+                GeneratorTools.ReplaceKey(ref remark, "GroupFrequency", GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency));
+            }
+
+            mission.Briefing.AddItem(DCSMissionBriefingItemType.Remark, remark);
         }
 
         /// <summary>

@@ -50,22 +50,6 @@ namespace BriefingRoom4DCS.Mission
         
         internal void AddItem(DCSMissionBriefingItemType briefingItemType, string task) { Items[(int)briefingItemType].Add(task); }
 
-        internal void AddRemarkFromFeature(DBEntryFeature featureDB, bool useEnemyRemarkIfAvailable, params KeyValuePair<string, string>[] stringReplacements)
-        {
-            string[] remarks;
-            if (useEnemyRemarkIfAvailable && featureDB.BriefingRemarks[(int)Side.Enemy].Length > 0)
-                remarks = featureDB.BriefingRemarks[(int)Side.Enemy].ToArray();
-            else
-                remarks = featureDB.BriefingRemarks[(int)Side.Ally].ToArray();
-            if (remarks.Length == 0) return; // No briefing for this feature
-
-            string remark = Toolbox.RandomFrom(remarks);
-            foreach (KeyValuePair<string, string> stringReplacement in stringReplacements)
-                GeneratorTools.ReplaceKey(ref remark, stringReplacement.Key, stringReplacement.Value);
-
-            AddItem(DCSMissionBriefingItemType.Remark, remark);
-        }
-
         public string GetBriefingAsHTML(bool htmlHeaderAndFooter = true)
         {
             string html = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}Briefing.html");
@@ -75,7 +59,6 @@ namespace BriefingRoom4DCS.Mission
             html = Mission.ReplaceValues(html);
 
             GeneratorTools.ReplaceKey(ref html, "BriefingAirbases", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.Airbase)));
-            GeneratorTools.ReplaceKey(ref html, "BriefingCarriers", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.Carrier)));
             GeneratorTools.ReplaceKey(ref html, "BriefingFlightGroups", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.FlightGroup)));
             GeneratorTools.ReplaceKey(ref html, "BriefingRemarks", GeneratorTools.MakeHTMLList(GetItems(DCSMissionBriefingItemType.Remark)));
             GeneratorTools.ReplaceKey(ref html, "BriefingTasks", GeneratorTools.MakeHTMLList(GetItems(DCSMissionBriefingItemType.Task)));

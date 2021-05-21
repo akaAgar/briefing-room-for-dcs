@@ -14,12 +14,15 @@ namespace BriefingRoom4DCS.Generator
         internal string Name { get; }
         internal int[] UnitsID { get; }
 
-        internal UnitMakerGroupInfo(int groupID, Coordinates coordinates, List<int> unitsID, string name)
+        internal double Frequency { get; }
+
+        internal UnitMakerGroupInfo(int groupID, Coordinates coordinates, List<int> unitsID, string name, double frequency = 0.0)
         {
             GroupID = groupID;
             Coordinates = coordinates;
             Name = name;
             UnitsID = unitsID.ToArray();
+            Frequency = frequency;
         }
     }
 
@@ -134,7 +137,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(units[unitIndex]);
                 if (unitDB == null) continue;
-                if (unitIndex == 0) firstUnitDB = unitDB;
+                if (firstUnitDB == null) firstUnitDB = unitDB;
 
                 SetUnitCoordinatesAndHeading(unitDB, unitIndex, coordinates, out Coordinates unitCoordinates, out double unitHeading);
 
@@ -200,7 +203,10 @@ namespace BriefingRoom4DCS.Generator
             BriefingRoom.PrintToLog($"Added group of {units.Length} {coalition} {unitFamily} at {coordinates}");
 
             GroupID++;
-            return new UnitMakerGroupInfo(GroupID - 1, coordinates, unitsIDList, groupName);
+
+            if (firstUnitDB == null)
+                return new UnitMakerGroupInfo(GroupID - 1, coordinates, unitsIDList, groupName);
+            return new UnitMakerGroupInfo(GroupID - 1, coordinates, unitsIDList, groupName, firstUnitDB.AircraftData.RadioFrequency);
         }
 
         private void AddUnitGroupToTable(Country country, UnitCategory category, string unitGroupLua)
