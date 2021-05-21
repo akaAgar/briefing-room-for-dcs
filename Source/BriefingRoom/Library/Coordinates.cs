@@ -252,7 +252,6 @@ namespace BriefingRoom4DCS
             return $"{{ [\"x\"] = {Toolbox.ValToString(X)}, [\"y\"] = {Toolbox.ValToString(Y)} }}";
         }
 
-
         /// <summary>
         /// Creates a random coordinates set at a distance between min and max from the zero point.
         /// Mostly used to create random inaccuracy from waypoints, etc.
@@ -263,6 +262,18 @@ namespace BriefingRoom4DCS
         public Coordinates CreateNearRandom(double min, double max)
         {
             return CreateNearRandom(new MinMaxD(min, max));
+        }
+
+        internal double GetLength()
+        {
+            return Math.Sqrt(Math.Pow(X, 2) + Math.Pow(Y, 2));
+        }
+
+        internal Coordinates Normalize()
+        {
+            double length = GetLength();
+            if (length == 0) return Zero;
+            return new Coordinates(X / length, Y / length);
         }
 
         /// <summary>
