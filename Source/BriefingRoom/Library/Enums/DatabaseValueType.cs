@@ -30,6 +30,7 @@ namespace BriefingRoom4DCS
         DCSMod,
         MissionFeature,
         ObjectiveFeature,
+        ObjectivePreset,
         ObjectiveTarget,
         ObjectiveTargetBehavior,
         ObjectiveTask,

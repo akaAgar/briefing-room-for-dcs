@@ -123,8 +123,11 @@ namespace BriefingRoom4DCS
                 case DatabaseEntryType.ObjectiveFeature:
                     return (from DBEntryFeatureObjective objectiveFeature in Database.Instance.GetAllEntries<DBEntryFeatureObjective>() select objectiveFeature.GetDBEntryInfo()).ToList();
 
+                case DatabaseEntryType.ObjectivePreset:
+                    return (from DBEntryObjectivePreset objectivePreset in Database.Instance.GetAllEntries<DBEntryObjectivePreset>() select objectivePreset.GetDBEntryInfo()).ToList();
+
                 case DatabaseEntryType.ObjectiveTarget:
-                    return (from DBEntryUnit objectiveTarget in Database.Instance.GetAllEntries<DBEntryObjectiveTarget>() select objectiveTarget.GetDBEntryInfo()).ToList();
+                    return (from DBEntryObjectiveTarget objectiveTarget in Database.Instance.GetAllEntries<DBEntryObjectiveTarget>() select objectiveTarget.GetDBEntryInfo()).ToList();
 
                 case DatabaseEntryType.ObjectiveTargetBehavior:
                     return (from DBEntryObjectiveTargetBehavior objectiveTargetBehavior in Database.Instance.GetAllEntries<DBEntryObjectiveTargetBehavior>() select objectiveTargetBehavior.GetDBEntryInfo()).ToList();
