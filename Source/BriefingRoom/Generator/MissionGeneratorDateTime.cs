@@ -31,6 +31,11 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGeneratorDateTime : IDisposable
     {
         /// <summary>
+        /// The number of days in each month.
+        /// </summary>
+        private static readonly int[] DAYS_PER_MONTH = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         internal MissionGeneratorDateTime() { }
@@ -53,7 +58,7 @@ namespace BriefingRoom4DCS.Generator
             if (template.EnvironmentSeason == Season.Random) // Random season, pick any day of the year.
             {
                 month = (Month)Toolbox.RandomInt(12);
-                day = Toolbox.RandomMinMax(1, Toolbox.GetDaysPerMonth(month, year));
+                day = Toolbox.RandomMinMax(1, GetDaysPerMonth(month, year));
             }
             else // Pick a date according to the desired season
             {
@@ -64,11 +69,11 @@ namespace BriefingRoom4DCS.Generator
                 switch (monthIndex)
                 {
                     case 0: // First month of the season, season begins on the 21st
-                        day = Toolbox.RandomMinMax(21, Toolbox.GetDaysPerMonth(month, year)); break;
+                        day = Toolbox.RandomMinMax(21, GetDaysPerMonth(month, year)); break;
                     case 3: // Last month of the season, season ends on the 20th
                         day = Toolbox.RandomMinMax(1, 20); break;
                     default:
-                        day = Toolbox.RandomMinMax(1, Toolbox.GetDaysPerMonth(month, year)); break;
+                        day = Toolbox.RandomMinMax(1, GetDaysPerMonth(month, year)); break;
                 }
             }
 
@@ -134,7 +139,7 @@ namespace BriefingRoom4DCS.Generator
         /// </summary>
         /// <param name="season">A season</param>
         /// <returns>An array of four months</returns>
-        private Month[] GetMonthsForSeason(Season season)
+        private static Month[] GetMonthsForSeason(Season season)
         {
             switch (season)
             {
@@ -143,6 +148,25 @@ namespace BriefingRoom4DCS.Generator
                 case Season.Fall: return new Month[] { Month.September, Month.October, Month.November, Month.December };
                 case Season.Winter: return new Month[] { Month.December, Month.January, Month.February, Month.March };
             }
+        }
+
+        /// <summary>
+        /// Returns the number of days in a month.
+        /// </summary>
+        /// <param name="month">The month of the year.</param>
+        /// <param name="year">The year. Used to know if it's a leap year.</param>
+        /// <returns>The number of days in the month.</returns>
+        private static int GetDaysPerMonth(Month month, int year)
+        {
+            // Not February, return value stored in DAYS_PER_MONTH array
+            if (month != Month.February) return DAYS_PER_MONTH[(int)month];
+
+            bool leapYear = false;
+            if ((year % 400) == 0) leapYear = true;
+            else if ((year % 100) == 0) leapYear = false;
+            else if ((year % 4) == 0) leapYear = true;
+
+            return leapYear ? 29 : 28;
         }
 
         /// <summary>
