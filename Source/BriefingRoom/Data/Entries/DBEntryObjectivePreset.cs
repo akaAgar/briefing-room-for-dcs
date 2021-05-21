@@ -18,6 +18,8 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCS.Template;
+
 namespace BriefingRoom4DCS.Data
 {
     /// <summary>
@@ -25,6 +27,21 @@ namespace BriefingRoom4DCS.Data
     /// </summary>
     internal class DBEntryObjectivePreset : DBEntry
     {
+        /// <summary>
+        /// <see cref="DBEntryFeatureObjective"/> to add.
+        /// </summary>
+        internal string[] Features { get; private set; }
+
+        /// <summary>
+        /// Miscellaneous options to apply to this mission objective.
+        /// </summary>
+        internal ObjectiveOption[] Options { get; private set; }
+
+        /// <summary>
+        /// The preferred payload for aircraft tasked with this preset.
+        /// </summary>
+        internal AircraftPayload PreferredPayload { get; private set; }
+
         /// <summary>
         /// Random <see cref="DBEntryObjectiveTarget"/> IDs to choose from.
         /// </summary>
@@ -36,15 +53,15 @@ namespace BriefingRoom4DCS.Data
         internal string[] TargetsBehaviors { get; private set; }
 
         /// <summary>
+        /// Possible number of target units at this objective.
+        /// </summary>
+        internal Amount[] TargetCount { get; private set; }
+
+        /// <summary>
         /// Random <see cref="DBEntryObjectiveTask"/> IDs to choose from.
         /// </summary>
         internal string[] Tasks { get; private set; }
-
-        /// <summary>
-        /// <see cref="DBEntryFeatureObjective"/> to add.
-        /// </summary>
-        internal string[] Features { get; private set; }
-
+        
         /// <summary>
         /// Loads a database entry from an .ini file.
         /// </summary>
@@ -55,12 +72,15 @@ namespace BriefingRoom4DCS.Data
             using (INIFile ini = new INIFile(iniFilePath))
             {
                 Features = Database.CheckIDs<DBEntryFeatureObjective>(ini.GetValueArray<string>("ObjectivePreset", "Features"));
+                Options = ini.GetValueArray<ObjectiveOption>("ObjectivePreset", "Options");
+                PreferredPayload = ini.GetValue<AircraftPayload>("ObjectivePreset", "PreferredPayload");
                 Targets = Database.CheckIDs<DBEntryObjectiveTarget>(ini.GetValueArray<string>("ObjectivePreset", "Targets"));
-                TargetsBehaviors = Database.CheckIDs<DBEntryObjectiveTargetBehavior>(ini.GetValueArray<string>("ObjectivePreset", "TargetsBehaviors"));
-                Tasks = Database.CheckIDs<DBEntryObjectiveTask>(ini.GetValueArray<string>("ObjectivePreset", "Tasks"));
-
                 if (Targets.Length == 0) { BriefingRoom.PrintToLog($"No valid targets for objective preset \"{ID}\"", LogMessageErrorLevel.Warning); return false; }
+                TargetsBehaviors = Database.CheckIDs<DBEntryObjectiveTargetBehavior>(ini.GetValueArray<string>("ObjectivePreset", "TargetsBehaviors"));
                 if (TargetsBehaviors.Length == 0) { BriefingRoom.PrintToLog($"No valid target behaviors for objective preset \"{ID}\"", LogMessageErrorLevel.Warning); return false; }
+                TargetCount = ini.GetValueArray<Amount>("ObjectivePreset", "TargetCount");
+                if (TargetCount.Length == 0) TargetCount = Toolbox.GetEnumValues<Amount>();
+                Tasks = Database.CheckIDs<DBEntryObjectiveTask>(ini.GetValueArray<string>("ObjectivePreset", "Tasks"));
                 if (Tasks.Length == 0) { BriefingRoom.PrintToLog($"No valid tasks for objective preset \"{ID}\"", LogMessageErrorLevel.Warning); return false; }
             }
 
