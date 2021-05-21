@@ -119,6 +119,19 @@ namespace BriefingRoom4DCS.Generator
             return template.ContextCoalitionBlue;
         }
 
+        internal static Coalition? GetSpawnPointCoalition(MissionTemplate template, Side side)
+        {
+            // No countries spawning restriction
+            if (!template.OptionsMission.Contains(MissionOption.OnlySpawnInFriendlyCountries)) return null;
+
+            Coalition coalition = side == Side.Ally ? template.ContextPlayerCoalition : template.ContextPlayerCoalition.GetEnemy();
+
+            if (template.OptionsMission.Contains(MissionOption.InvertCountriesCoalitions))
+                coalition = coalition.GetEnemy();
+
+            return coalition;
+        }
+
         internal static DCSSkillLevel GetDefaultSkillLevel(MissionTemplate template, UnitFamily unitFamily, Side side)
         {
             // Unit is an aircraft, air force quality decides skill level
