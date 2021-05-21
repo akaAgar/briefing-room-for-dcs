@@ -65,37 +65,23 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("BullseyeRedY", objectivesCenter.Y + GetBullseyeRandomDistance());
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
-        public void Dispose() { }
-
-        internal void GenerateExtraWaypoints(MissionTemplate template, Coordinates initialCoordinates, List<Waypoint> waypoints, bool afterObjective)
+        internal void GenerateIngressAndEgressWaypoints(MissionTemplate template, List<Waypoint> waypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter)
         {
-            if (!template.OptionsMission.Contains(MissionOption.AddExtraWaypoints))
-                return; // No extra waypoints required
+            BriefingRoom.PrintToLog($"Generating ingress and egress waypoints...");
 
-            BriefingRoom.PrintToLog($"Generating extra {(afterObjective ? "egress" : "ingress")} waypoints...");
+            double flightPathLength = (objectivesCenter - averageInitialLocation).GetLength();
+            double ingressDeviation = Math.Max(4.0, flightPathLength * .15);
+            Coordinates baseIngressPosition = averageInitialLocation + (objectivesCenter - averageInitialLocation) * .7f;
 
-            int extraWaypointsCount = Toolbox.RandomFrom(EXTRA_WAYPOINT_COUNT);
-            List<Coordinates> extraWaypoints = new List<Coordinates>();
+            waypoints.Insert(0,
+                new Waypoint(
+                    Database.Instance.Common.Names.WPIngressName,
+                    baseIngressPosition + Coordinates.CreateRandom(ingressDeviation * 0.9, ingressDeviation * 1.1)));
 
-            Coordinates startingPos = afterObjective ? waypoints.Last().Coordinates : waypoints.First().Coordinates;
-            for (int i = 0; i < extraWaypointsCount; i++)
-            {
-                if (afterObjective)
-                    startingPos = Coordinates.Lerp(startingPos, initialCoordinates, new MinMaxD(0.2, 0.8).GetValue()).CreateNearRandom(0, 20000);
-                else
-                    startingPos = Coordinates.Lerp(startingPos, waypoints.First().Coordinates, new MinMaxD(0.2, 0.8).GetValue()).CreateNearRandom(0, 20000);
-                extraWaypoints.Add(startingPos);
-            }
-
-            int count = 1;
-            extraWaypoints = extraWaypoints.OrderBy(x => afterObjective ? -initialCoordinates.GetDistanceFrom(x) : initialCoordinates.GetDistanceFrom(x)).ToList();
-            if (afterObjective) // Adding waypoints before first objective waypoint
-                waypoints.AddRange(extraWaypoints.Select(wpCoordinates => new Waypoint($"WP{waypoints.Count + count++:00}", wpCoordinates)));
-            else // Add waypoints after last objective waypoint
-                waypoints.InsertRange(0, extraWaypoints.Select(wpCoordinates => new Waypoint( $"WP{count++:00}", wpCoordinates)));
+            waypoints.Add(
+                new Waypoint(
+                    Database.Instance.Common.Names.WPEgressName,
+                    baseIngressPosition + Coordinates.CreateRandom(ingressDeviation * 0.9, ingressDeviation * 1.1)));
         }
 
         internal void SaveWaypointsToBriefing(DCSMission mission, Coordinates initialCoordinates, List<Waypoint> waypoints, bool useImperialSystem)
@@ -120,6 +106,23 @@ namespace BriefingRoom4DCS.Generator
                     (useImperialSystem ? $"{totalDistance * Toolbox.METERS_TO_NM:F0} nm" : $"{totalDistance / 1000.0:F0} Km");
 
                 mission.Briefing.AddItem(DCSMissionBriefingItemType.Waypoint, waypointText);
+            }
+        }
+
+        /// <summary>
+        /// <see cref="IDisposable"/> implementation.
+        /// </summary>
+        public void Dispose() { }
+
+        internal void GenerateObjectiveWPCoordinatesLua(MissionTemplate template, DCSMission mission, List<Waypoint> waypoints)
+        {
+            for (int i = 0; i < waypoints.Count; i++)
+            {
+                mission.AppendValue("ScriptObjectives",
+                    $"briefingRoom.mission.objectives.data[{i + 1}].waypoint = {waypoints[i].Coordinates.ToLuaTable()}\n");
+
+                mission.AppendValue("ScriptObjectives",
+                    $"trigger.action.markToCoalition(0, \"{waypoints[i].Name}\", {{ x={waypoints[i].Coordinates.X.ToInvariantString()}, y=0, z={waypoints[i].Coordinates.Y.ToInvariantString()} }}, coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}, true, nil)\n");
             }
         }
     }

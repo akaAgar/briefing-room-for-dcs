@@ -70,10 +70,11 @@ namespace BriefingRoom4DCS.Generator
             // Copy values from the template
             mission.SetValue("TheaterID", theaterDB.DCSID);
             mission.SetValue("DebugMode", template.OptionsMission.Contains(MissionOption.DebugMode));
+            mission.SetValue("BriefingAllyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition].UIDisplayName);
+            mission.SetValue("BriefingEnemyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition.GetEnemy()].UIDisplayName);
 
             // Add common media files
             mission.AddOggFiles(Database.Instance.Common.CommonOGG);
-            mission.AddOggFiles(Database.Instance.Common.CommonOGGForGameMode[(int)template.MissionType]);
 
             Country[][] coalitionsCountries;
             // Generate list of countries for each coalition
@@ -128,35 +129,37 @@ namespace BriefingRoom4DCS.Generator
                 }
             Coordinates objectivesCenter = (objectiveCoordinates.Count == 0) ? playerAirbase.Coordinates : Coordinates.Sum(objectiveCoordinates) / objectiveCoordinates.Count;
 
+            // Generate carrier groups
+            BriefingRoom.PrintToLog("Generating carrier groups...");
+            Dictionary<string, UnitMakerGroupInfo> carrierDictionary;
+            using (MissionGeneratorCarrierGroup carrierGroupGenerator = new MissionGeneratorCarrierGroup(unitMaker))
+                carrierDictionary = carrierGroupGenerator.GenerateCarrierGroup(mission, template, objectivesCenter, windSpeedAtSeaLevel, windDirectionAtSeaLevel);
+            Coordinates averageInitialPosition = playerAirbase.Coordinates;
+            if (carrierDictionary.Count > 0) averageInitialPosition = (averageInitialPosition + carrierDictionary.First().Value.Coordinates) / 2.0;
+
             // Generate extra flight plan info
             using (MissionGeneratorFlightPlan flightPlanGenerator = new MissionGeneratorFlightPlan())
             {
                 flightPlanGenerator.GenerateBullseyes(mission, objectivesCenter);
-                flightPlanGenerator.GenerateExtraWaypoints(template, playerAirbase.Coordinates, waypoints, false); // Ingress WPs
-                flightPlanGenerator.GenerateExtraWaypoints(template, playerAirbase.Coordinates, waypoints, true); // Egress WPs
+                flightPlanGenerator.GenerateObjectiveWPCoordinatesLua(template, mission, waypoints);
+                flightPlanGenerator.GenerateIngressAndEgressWaypoints(template, waypoints, averageInitialPosition, objectivesCenter);
                 flightPlanGenerator.SaveWaypointsToBriefing(mission, playerAirbase.Coordinates, waypoints, template.OptionsMission.Contains(MissionOption.ImperialUnitsForBriefing));
             }
 
             // Generate surface-to-air defenses
             using (MissionGeneratorAirDefense airDefenseGenerator = new MissionGeneratorAirDefense(unitMaker))
-                airDefenseGenerator.GenerateAirDefense(template, playerAirbase.Coordinates, objectivesCenter);
+                airDefenseGenerator.GenerateAirDefense(template, averageInitialPosition, objectivesCenter);
 
             // Generate combat air patrols
             using (MissionGeneratorCombatAirPatrols capGenerator = new MissionGeneratorCombatAirPatrols(unitMaker))
             {
-                int[] capGroupsID = capGenerator.GenerateCAP(template, playerAirbase.Coordinates, objectivesCenter);
+                int[] capGroupsID = capGenerator.GenerateCAP(template, averageInitialPosition, objectivesCenter);
                 foreach (int capGroupID in capGroupsID) // Add 50% of CAP groups to the list of A/C activated on takeoff, the other 50% to the list of A/C activated later.
                     if (Toolbox.RandomChance(2))
                         immediateActivationAircraftGroupsIDs.Add(capGroupID);
                     else
                         lateActivationAircraftGroupsIDs.Add(capGroupID);
             }
-
-            // Generate carrier groups
-            BriefingRoom.PrintToLog("Generating carrier groups...");
-            Dictionary<string, UnitMakerGroupInfo> carrierDictionary;
-            using (MissionGeneratorCarrierGroup carrierGroupGenerator = new MissionGeneratorCarrierGroup(unitMaker))
-                carrierDictionary = carrierGroupGenerator.GenerateCarrierGroup(mission, template, objectivesCenter, windSpeedAtSeaLevel, windDirectionAtSeaLevel);
 
             // Generate player flight groups
             BriefingRoom.PrintToLog("Generating player flight groups...");
