@@ -28,7 +28,7 @@ namespace BriefingRoom4DCS
         /// <summary>
         /// Default payload for the aircraft, used when a specific payload is not avaiable.
         /// </summary>
-        Default,
+        Default = 0, // Must be 0
         /// <summary>
         /// Air-to-air payload, for CAP, interception...
         /// </summary>

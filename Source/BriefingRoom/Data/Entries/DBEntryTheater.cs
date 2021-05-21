@@ -53,7 +53,7 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Magnetic declination from true north.
         /// </summary>
-        internal float MagneticDeclination { get; private set; }
+        internal double MagneticDeclination { get; private set; }
 
         /// <summary>
         /// Sunrise and sunset time (in minutes) for each month (January is 0, December is 11)
@@ -93,7 +93,7 @@ namespace BriefingRoom4DCS.Data
                 // [Theater] section
                 DCSID = ini.GetValue<string>("Theater", "DCSID");
                 DefaultMapCenter = ini.GetValue<Coordinates>("Theater", "DefaultMapCenter");
-                MagneticDeclination = ini.GetValue<float>("Theater", "MagneticDeclination");
+                MagneticDeclination = ini.GetValue<double>("Theater", "MagneticDeclination");
 
                 // [Daytime] section
                 DayTime = new MinMaxI[12];

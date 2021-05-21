@@ -69,8 +69,8 @@ namespace BriefingRoom4DCS.Generator
             else if (!template.OptionsRealism.Contains(RealismOption.NoBDA))
                 forcedOptionsLua += "[\"RBDAI\"] = true,";
 
+            forcedOptionsLua += $"[\"civTraffic\"] = \"{(template.OptionsMission.Contains(MissionOption.EnableCivilianTraffic) ? "medium" : "false")}\",";
             forcedOptionsLua += $"[\"radio\"] = {(template.OptionsRealism.Contains(RealismOption.DisableDCSRadioAssists) ? "false" : "true")},";
-            forcedOptionsLua += $"[\"civTraffic\"] = \"{(template.OptionsMission.Contains(MissionOption.EnableCivilianTraffic) ? "false" : "medium")}\",";
 
             switch (template.OptionsFogOfWar)
             {

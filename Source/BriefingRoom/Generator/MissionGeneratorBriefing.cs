@@ -80,7 +80,7 @@ namespace BriefingRoom4DCS.Generator
             mission.Briefing.Description = briefingDescription;
             mission.SetValue("BRIEFINGDESCRIPTION", briefingDescription);
         }
-        
+
         /*
     /// <summary>
     /// Generates the mission briefing.

@@ -81,13 +81,12 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Default radio frequency for this aircraft.
         /// </summary>
-        internal float RadioFrequency { get; private set; } = 127.0f;
+        internal double RadioFrequency { get; private set; } = 127.0;
 
         /// <summary>
         /// Default radio modulation for this aircraft.
         /// </summary>
         internal RadioModulation RadioModulation { get; private set; } = RadioModulation.AM;
-
 
         /// <summary>
         /// Radio Preset Lua
@@ -120,7 +119,7 @@ namespace BriefingRoom4DCS.Data
             PlayerControllable = ini.GetValue<bool>("Aircraft", "PlayerControllable");
             PropsLua = ini.GetValue<string>("Aircraft", "PropsLua");
 
-            RadioFrequency = ini.GetValue<float>("Aircraft", "Radio.Frequency");
+            RadioFrequency = ini.GetValue<double>("Aircraft", "Radio.Frequency");
             RadioModulation = ini.GetValue<RadioModulation>("Aircraft", "Radio.Modulation");
 
             PayloadCommon = ini.GetValue<string>("Aircraft", "Payload.Common");
