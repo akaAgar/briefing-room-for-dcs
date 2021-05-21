@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using System;
+using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
@@ -53,19 +54,24 @@ namespace BriefingRoom4DCS.Data
         internal string[] UnitGroupNames { get; } = new string[Toolbox.EnumCount<UnitFamily>()];
 
         /// <summary>
+        /// Name of the egress player waypoint.
+        /// </summary>
+        internal string WPEgressName { get; }
+
+        /// <summary>
         /// Name of the final (landing) player waypoint.
         /// </summary>
         internal string WPFinalName { get; }
 
         /// <summary>
+        /// Name of the ingress player waypoint.
+        /// </summary>
+        internal string WPIngressName { get; }
+
+        /// <summary>
         /// Name of the initial (takeoff) player waypoint.
         /// </summary>
         internal string WPInitialName { get; }
-
-        /// <summary>
-        /// Name of the navigation player waypoints, where $0$, $00$, $000$... is replaced with the waypoint number.
-        /// </summary>
-        internal string WPNavigationName { get; }
 
         /// <summary>
         /// Names to use for objectives and objective waypoints.
@@ -93,10 +99,11 @@ namespace BriefingRoom4DCS.Data
                     UnitGroupNames[i] = ini.GetValue<string>("UnitGroup", ((UnitFamily)i).ToString());
                 }
 
-                WPFinalName = ini.GetValue<string>("Waypoints", "Final");
-                WPInitialName = ini.GetValue<string>("Waypoints", "Initial");
-                WPNavigationName = ini.GetValue<string>("Waypoints", "Navigation");
-                WPObjectivesNames = ini.GetValueArray<string>("Waypoints", "Objectives");
+                WPEgressName = ini.GetValue<string>("Waypoints", "Egress").ToUpperInvariant();
+                WPFinalName = ini.GetValue<string>("Waypoints", "Final").ToUpperInvariant();
+                WPIngressName = ini.GetValue<string>("Waypoints", "Ingress").ToUpperInvariant();
+                WPInitialName = ini.GetValue<string>("Waypoints", "Initial").ToUpperInvariant();
+                WPObjectivesNames = (from string wpName in ini.GetValueArray<string>("Waypoints", "Objectives") select wpName.ToUpperInvariant()).ToArray();
             }
         }
     }
