@@ -34,11 +34,6 @@ namespace BriefingRoom4DCS.Data
         internal string[] CommonOGG { get; private set; }
 
         /// <summary>
-        /// Ogg files to include in every mission of a given game mode.
-        /// </summary>
-        internal string[][] CommonOGGForGameMode { get; private set; }
-
-        /// <summary>
         /// Stores information about surface-to-air defense.
         /// </summary>
         internal DBCommonAirDefense AirDefense { get; private set; }
@@ -82,15 +77,6 @@ namespace BriefingRoom4DCS.Data
                 foreach (string f in CommonOGG)
                     if (!File.Exists($"{BRPaths.INCLUDE_OGG}{f}.ogg"))
                         BriefingRoom.PrintToLog($"File \"Include\\Ogg\\{f}.ogg\" doesn't exist.", LogMessageErrorLevel.Warning);
-
-                CommonOGGForGameMode = new string[Toolbox.EnumCount<MissionType>()][];
-                for (i = 0; i < CommonOGGForGameMode.Length; i++)
-                {
-                    CommonOGGForGameMode[i] = ini.GetValueArray<string>("Include", $"CommonOgg.{(MissionType)i}");
-                    foreach (string f in CommonOGGForGameMode[i])
-                        if (!File.Exists($"{BRPaths.INCLUDE_OGG}{f}.ogg"))
-                            BriefingRoom.PrintToLog($"File \"Include\\Ogg\\{f}.ogg\" doesn't exist.", LogMessageErrorLevel.Warning);
-                }
             }
 
             BriefingRoom.PrintToLog("Loading common air defense settings...");
