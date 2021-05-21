@@ -27,18 +27,21 @@ namespace BriefingRoom4DCS.Template
     /// </summary>
     public enum MissionOption
     {
-        [Display(Name = "Add extra waypoints", Description = "Add ingress and egress waypoints along the flight path in addition to the objective waypoints.")]
-        AddExtraWaypoints,
-
         [Display(Name = "Enable debug mode", Description = "Enable debug output and command in the mission.")]
         DebugMode,
-        
+
         [Display(Name = "Enable civilian traffic", Description = "If true, civilian traffic will be enabled. Can have an impact on performances.")]
         EnableCivilianTraffic,
-        
+
+        [Display(Name = "Only spawn in friendly countries", Description = "Only spawn units in countries aligned with the proper coalition (friendly units in friendly countries, objectives and enemy units in enemy countries). May increase distance to objectives well beyond the preferred distance.")]
+        OnlySpawnInFriendlyCountries,
+
         [Display(Name = "Use imperial units", Description = "Use imperial units for briefing instead of the metric system.")]
         ImperialUnitsForBriefing,
-        
+
+        [Display(Name = "Invert countries coalitions", Description = "Invert blue and red countries on the map (e.g. In Caucasus, Russia becomes blue and Georgia becomes red).")]
+        InvertCountriesCoalitions,
+
         [Display(Name = "Text-only radio messages", Description = "Display radio messages in text-format only (no voiceover). Selecting this option will severly decrease the size of the .miz files.")]
         RadioMessagesTextOnly,
     }

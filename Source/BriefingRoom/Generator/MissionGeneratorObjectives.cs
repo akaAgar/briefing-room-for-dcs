@@ -92,7 +92,9 @@ namespace BriefingRoom4DCS.Generator
                 targetDB.ValidSpawnPoints, lastCoordinates,
                 new MinMaxD(
                     template.FlightPlanObjectiveDistance * OBJECTIVE_DISTANCE_VARIATION_MIN,
-                    template.FlightPlanObjectiveDistance * OBJECTIVE_DISTANCE_VARIATION_MAX));
+                    template.FlightPlanObjectiveDistance * OBJECTIVE_DISTANCE_VARIATION_MAX),
+                null, null,
+                GeneratorTools.GetSpawnPointCoalition(template, Side.Enemy));
 
             if (!spawnPoint.HasValue)
                 throw new BriefingRoomException("Failed to spawn objective unit group.");

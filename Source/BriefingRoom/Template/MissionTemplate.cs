@@ -55,11 +55,6 @@ namespace BriefingRoom4DCS.Template
         /// </summary>
         public const int MAX_OBJECTIVE_DISTANCE = 200;
 
-
-        [Required]
-        [Display(Name = "Mission type", Description = "Is the mission single or multiplayer?")]
-        public MissionType MissionType { get; set; }
-
         [Display(Name = "Mission name", Description = "Name of the mission. If left empty, a random name will be generated.")]
         [Category("Briefing")]
         public string BriefingMissionName { get; set; }
@@ -93,10 +88,10 @@ namespace BriefingRoom4DCS.Template
         [Category("Context")]
         public string ContextTheater { get; set; }
 
-        [Required]
-        [Display(Name = "Countries coalition", Description = "To which coalition do the countries on the map (and their airbases) belong?")]
-        [Category("Context")]
-        public CountryCoalition ContextTheaterCountriesCoalitions { get; set; }
+        //[Required]
+        //[Display(Name = "Countries coalition", Description = "To which coalition do the countries on the map (and their airbases) belong?")]
+        //[Category("Context")]
+        //public CountryCoalition ContextTheaterCountriesCoalitions { get; set; }
 
         [Required]
         [Display(Name = "Season", Description = "Season during which the mission takes place.")]
@@ -124,10 +119,10 @@ namespace BriefingRoom4DCS.Template
         public int FlightPlanObjectiveDistance { get { return FlightPlanObjectiveDistance_; } set { FlightPlanObjectiveDistance_ = Toolbox.Clamp(value, 0, MAX_OBJECTIVE_DISTANCE); } }
         private int FlightPlanObjectiveDistance_;
 
-        [Required]
-        [Display(Name = "Objectives locations", Description = "In which countries should objectives and enemy units be spawned? Be aware that selecting an option other than \"Any\" can greatly increase distance to the objectives.")]
-        [Category("Flight plan")]
-        public ObjectiveCountryLocation FlightPlanObjectivesLocation { get; set; }
+        //[Required]
+        //[Display(Name = "Objectives locations", Description = "In which countries should objectives and enemy units be spawned? Be aware that selecting an option other than \"Any\" can greatly increase distance to the objectives.")]
+        //[Category("Flight plan")]
+        //public ObjectiveCountryLocation FlightPlanObjectivesLocation { get; set; }
 
         [Required, DatabaseSourceType(DatabaseEntryType.Airbase, true)]
         [Display(Name = "Starting airbase", Description = "Airbase from which the player(s) will take off. Leave empty for none")]
@@ -219,8 +214,6 @@ namespace BriefingRoom4DCS.Template
                 return;
             }
 
-            MissionType = MissionType.SinglePlayer;
-
             BriefingMissionName = "";
             BriefingMissionDescription = "";
 
@@ -229,7 +222,7 @@ namespace BriefingRoom4DCS.Template
             ContextDecade = Decade.Decade2000;
             ContextPlayerCoalition = Coalition.Blue;
             ContextTheater = "Caucasus";
-            ContextTheaterCountriesCoalitions = CountryCoalition.Default;
+            //ContextTheaterCountriesCoalitions = CountryCoalition.Default;
 
             EnvironmentSeason = Season.Random;
             EnvironmentTimeOfDay = TimeOfDay.RandomDaytime;
@@ -237,7 +230,7 @@ namespace BriefingRoom4DCS.Template
             EnvironmentWind = Wind.Random;
 
             FlightPlanObjectiveDistance = 80;
-            FlightPlanObjectivesLocation = ObjectiveCountryLocation.Any;
+            //FlightPlanObjectivesLocation = ObjectiveCountryLocation.Any;
             FlightPlanTheaterStartingAirbase = "";
 
             MissionFeatures = new List<string>();
@@ -269,8 +262,6 @@ namespace BriefingRoom4DCS.Template
 
             using (INIFile ini = new INIFile(filePath))
             {
-                MissionType = ini.GetValue("MissionType", "MissionType", MissionType);
-
                 BriefingMissionName = ini.GetValue("Briefing", "MissionName", BriefingMissionName);
                 BriefingMissionDescription = ini.GetValue("Briefing", "MissionDescription", BriefingMissionDescription);
 
@@ -279,7 +270,7 @@ namespace BriefingRoom4DCS.Template
                 ContextDecade = ini.GetValue("Context", "Decade", ContextDecade);
                 ContextPlayerCoalition = ini.GetValue("Context", "PlayerCoalition", ContextPlayerCoalition);
                 ContextTheater = ini.GetValue("Context", "Theater", ContextTheater);
-                ContextTheaterCountriesCoalitions = ini.GetValue("Context", "TheaterCountriesCoalitions", ContextTheaterCountriesCoalitions);
+                //ContextTheaterCountriesCoalitions = ini.GetValue("Context", "TheaterCountriesCoalitions", ContextTheaterCountriesCoalitions);
 
                 EnvironmentSeason = ini.GetValue("Environment", "Season", EnvironmentSeason);
                 EnvironmentTimeOfDay = ini.GetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);
@@ -287,7 +278,7 @@ namespace BriefingRoom4DCS.Template
                 EnvironmentWind = ini.GetValue("Environment", "Wind", EnvironmentWind);
 
                 FlightPlanObjectiveDistance = ini.GetValue("FlightPlan", "ObjectiveDistance", FlightPlanObjectiveDistance);
-                FlightPlanObjectivesLocation = ini.GetValue("FlightPlan", "ObjectivesLocation", FlightPlanObjectivesLocation);
+                //FlightPlanObjectivesLocation = ini.GetValue("FlightPlan", "ObjectivesLocation", FlightPlanObjectivesLocation);
                 FlightPlanTheaterStartingAirbase = ini.GetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
 
                 MissionFeatures = ini.GetValueArray<string>("MissionFeatures", "MissionFeatures").ToList();
@@ -325,8 +316,6 @@ namespace BriefingRoom4DCS.Template
 
             using (INIFile ini = new INIFile())
             {
-                ini.SetValue("MissionType", "MissionType", MissionType);
-
                 ini.SetValue("Briefing", "MissionName", BriefingMissionName);
                 ini.SetValue("Briefing", "MissionDescription", BriefingMissionDescription);
 
@@ -335,7 +324,7 @@ namespace BriefingRoom4DCS.Template
                 ini.SetValue("Context", "Decade", ContextDecade);
                 ini.SetValue("Context", "PlayerCoalition", ContextPlayerCoalition);
                 ini.SetValue("Context", "Theater", ContextTheater);
-                ini.SetValue("Context", "TheaterCountriesCoalitions", ContextTheaterCountriesCoalitions);
+                //ini.SetValue("Context", "TheaterCountriesCoalitions", ContextTheaterCountriesCoalitions);
 
                 ini.SetValue("Environment", "Season", EnvironmentSeason);
                 ini.SetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);
@@ -343,7 +332,7 @@ namespace BriefingRoom4DCS.Template
                 ini.SetValue("Environment", "Wind", EnvironmentWind);
 
                 ini.SetValue("FlightPlan", "ObjectiveDistance", FlightPlanObjectiveDistance);
-                ini.SetValue("FlightPlan", "ObjectivesLocation", FlightPlanObjectivesLocation);
+                //ini.SetValue("FlightPlan", "ObjectivesLocation", FlightPlanObjectivesLocation);
                 ini.SetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
 
                 ini.SetValueArray("MissionFeatures", "MissionFeatures", MissionFeatures.ToArray());

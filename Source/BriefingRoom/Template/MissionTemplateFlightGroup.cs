@@ -33,6 +33,11 @@ namespace BriefingRoom4DCS.Template
         public string Aircraft { get; set; }
 
         /// <summary>
+        /// Should all aircraft in this group except the leader be AI-controlled?
+        /// </summary>
+        public bool AIWingmen { get; set; }
+
+        /// <summary>
         /// Type of carrier this flight group takes off from (empty means "use land airbase").
         /// </summary>
         public string Carrier { get; set; }
@@ -75,9 +80,11 @@ namespace BriefingRoom4DCS.Template
         /// <param name="carrier">Type of carrier this flight group takes off from (empty means "use land airbase").</param>
         /// <param name="country">Country this aircraft group belongs to (mainly used for liveries).</param>
         /// <param name="startLocation">Start location for this flight group.</param>
-        public MissionTemplateFlightGroup(string aircraft, int count, AircraftPayload payload, string carrier, Country country, PlayerStartLocation startLocation)
+        /// <param name="aiWingmen">Should all aircraft in this group except the leader be AI-controlled?</param>
+        public MissionTemplateFlightGroup(string aircraft, int count, AircraftPayload payload, string carrier, Country country, PlayerStartLocation startLocation, bool aiWingmen)
         {
             Aircraft = aircraft;
+            AIWingmen = aiWingmen;
             Count = count;
             Payload = payload;
             Carrier = carrier;
@@ -95,7 +102,8 @@ namespace BriefingRoom4DCS.Template
         {
             Clear();
 
-            Aircraft = ini.GetValue(section, $"{key}.AircraftType", Aircraft); //Database.CheckValue<DBPseudoEntryPlayerAircraft>(ini.GetValue(section, $"{key}.AircraftType", Aircraft));
+            Aircraft = ini.GetValue(section, $"{key}.AircraftType", Aircraft); // TODO: Database.CheckValue<DBPseudoEntryPlayerAircraft>(ini.GetValue(section, $"{key}.AircraftType", Aircraft));
+            AIWingmen = ini.GetValue(section, $"{key}.AIWingmen", AIWingmen);
             Carrier = ini.GetValue(section, $"{key}.Carrier", Carrier);
             Count = ini.GetValue(section, $"{key}.Count", Count);
             Payload = ini.GetValue(section, $"{key}.Payload", Payload);
@@ -109,6 +117,7 @@ namespace BriefingRoom4DCS.Template
         private void Clear()
         {
             Aircraft = "Su-25T"; // Database.CheckValue<DBPseudoEntryPlayerAircraft>("Su-25T", "Su-25T");
+            AIWingmen = false;
             Carrier = "";
             Count = 2;
             Payload = AircraftPayload.Default;
@@ -125,6 +134,7 @@ namespace BriefingRoom4DCS.Template
         internal void SaveToFile(INIFile ini, string section, string key)
         {
             ini.SetValue(section, $"{key}.AircraftType", Aircraft);
+            ini.SetValue(section, $"{key}.AIWingmen", AIWingmen);
             ini.SetValue(section, $"{key}.Carrier", Carrier);
             ini.SetValue(section, $"{key}.Count", Count);
             ini.SetValue(section, $"{key}.Payload", Payload);

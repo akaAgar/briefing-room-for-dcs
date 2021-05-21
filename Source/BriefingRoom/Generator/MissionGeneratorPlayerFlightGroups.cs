@@ -86,10 +86,13 @@ namespace BriefingRoom4DCS.Generator
                 }
             }
 
+            UnitMakerGroupFlags unitMakerGroupFlags = flightGroup.AIWingmen ? UnitMakerGroupFlags.FirstUnitIsPlayer : 0;
+            DCSSkillLevel skillLevel = flightGroup.AIWingmen ? Toolbox.RandomFrom(DCSSkillLevel.High, DCSSkillLevel.Excellent) : DCSSkillLevel.Client;
+
             UnitMakerGroupInfo? groupInfo = UnitMaker.AddUnitGroup(
                 Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), Side.Ally, unitDB.Families[0],
                 groupLuaFile, "UnitAircraft", playerAirbase.Coordinates,
-                Toolbox.RandomFrom(DCSSkillLevel.High, DCSSkillLevel.Excellent), 0, flightGroup.Payload,
+                skillLevel, unitMakerGroupFlags, flightGroup.Payload,
                 "PlayerStartingAction".ToKeyValuePair(GeneratorTools.GetPlayerStartingAction(flightGroup.StartLocation)),
                 "PlayerStartingType".ToKeyValuePair(GeneratorTools.GetPlayerStartingType(flightGroup.StartLocation)),
                 "InitialWPName".ToKeyValuePair(Database.Instance.Common.Names.WPInitialName),
