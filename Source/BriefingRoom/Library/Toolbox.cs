@@ -54,28 +54,9 @@ namespace BriefingRoom4DCS
             return string1.ToLowerInvariant() == string2.ToLowerInvariant();
         }
 
-        /// <summary>
-        /// The number of days in each month.
-        /// </summary>
-        private static readonly int[] DAYS_PER_MONTH = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-
-        /// <summary>
-        /// Returns the number of days in a month.
-        /// </summary>
-        /// <param name="month">The month of the year.</param>
-        /// <param name="year">The year. Used to know if it's a leap year.</param>
-        /// <returns>The number of days in the month.</returns>
-        public static int GetDaysPerMonth(Month month, int year)
+        internal static string ToInvariantString(this double value)
         {
-            // Not february, return value stored in DAYS_PER_MONTH array
-            if (month != Month.February) return DAYS_PER_MONTH[(int)month];
-
-            bool leapYear = false;
-            if ((year % 400) == 0) leapYear = true;
-            else if ((year % 100) == 0) leapYear = false;
-            else if ((year % 4) == 0) leapYear = true;
-
-            return leapYear ? 29 : 28;
+            return value.ToString(NumberFormatInfo.InvariantInfo);
         }
 
         public static string ToLuaName(this UnitCategory unitCategory)
