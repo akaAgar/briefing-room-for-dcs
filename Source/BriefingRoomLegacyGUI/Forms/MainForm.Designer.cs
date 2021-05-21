@@ -62,6 +62,11 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.MainContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MenuStripMain.SuspendLayout();
             this.TabControlTemplate.SuspendLayout();
             this.TabPageObjectives.SuspendLayout();
@@ -76,6 +81,7 @@
             this.groupBox3.SuspendLayout();
             this.TabPageGeneratedMission.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuStripMain
@@ -129,6 +135,7 @@
             // 
             // TabPageObjectives
             // 
+            this.TabPageObjectives.Controls.Add(this.dataGridView1);
             this.TabPageObjectives.Controls.Add(this.toolStrip3);
             this.TabPageObjectives.Location = new System.Drawing.Point(4, 22);
             this.TabPageObjectives.Name = "TabPageObjectives";
@@ -171,6 +178,7 @@
             this.TabPageFlightGroups.Controls.Add(this.toolStrip2);
             this.TabPageFlightGroups.Location = new System.Drawing.Point(4, 22);
             this.TabPageFlightGroups.Name = "TabPageFlightGroups";
+            this.TabPageFlightGroups.Padding = new System.Windows.Forms.Padding(3);
             this.TabPageFlightGroups.Size = new System.Drawing.Size(792, 378);
             this.TabPageFlightGroups.TabIndex = 2;
             this.TabPageFlightGroups.Text = "Player flight groups";
@@ -191,7 +199,7 @@
             this.DGVC_FGCarrier});
             this.FlightGroupsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FlightGroupsDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.FlightGroupsDataGridView.Location = new System.Drawing.Point(0, 25);
+            this.FlightGroupsDataGridView.Location = new System.Drawing.Point(3, 28);
             this.FlightGroupsDataGridView.MultiSelect = false;
             this.FlightGroupsDataGridView.Name = "FlightGroupsDataGridView";
             this.FlightGroupsDataGridView.ReadOnly = true;
@@ -202,7 +210,7 @@
             this.FlightGroupsDataGridView.ShowCellToolTips = false;
             this.FlightGroupsDataGridView.ShowEditingIcon = false;
             this.FlightGroupsDataGridView.ShowRowErrors = false;
-            this.FlightGroupsDataGridView.Size = new System.Drawing.Size(792, 353);
+            this.FlightGroupsDataGridView.Size = new System.Drawing.Size(786, 347);
             this.FlightGroupsDataGridView.TabIndex = 2;
             this.FlightGroupsDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.FlightGroupsDataGridView_CellMouseClick);
             // 
@@ -239,9 +247,9 @@
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton3,
             this.toolStripButton4});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip2.Location = new System.Drawing.Point(3, 3);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(792, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(786, 25);
             this.toolStrip2.TabIndex = 1;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -265,6 +273,7 @@
             // 
             this.TabPageMissionFeatures.Location = new System.Drawing.Point(4, 22);
             this.TabPageMissionFeatures.Name = "TabPageMissionFeatures";
+            this.TabPageMissionFeatures.Padding = new System.Windows.Forms.Padding(3);
             this.TabPageMissionFeatures.Size = new System.Drawing.Size(792, 378);
             this.TabPageMissionFeatures.TabIndex = 5;
             this.TabPageMissionFeatures.Text = "Mission features";
@@ -275,6 +284,7 @@
             this.TabPageOptions.Controls.Add(this.TableLayoutPanelOptions);
             this.TabPageOptions.Location = new System.Drawing.Point(4, 22);
             this.TabPageOptions.Name = "TabPageOptions";
+            this.TabPageOptions.Padding = new System.Windows.Forms.Padding(3);
             this.TabPageOptions.Size = new System.Drawing.Size(792, 378);
             this.TabPageOptions.TabIndex = 3;
             this.TabPageOptions.Text = "Options";
@@ -290,12 +300,12 @@
             this.TableLayoutPanelOptions.Controls.Add(this.groupBox2, 1, 0);
             this.TableLayoutPanelOptions.Controls.Add(this.groupBox3, 2, 0);
             this.TableLayoutPanelOptions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TableLayoutPanelOptions.Location = new System.Drawing.Point(0, 0);
+            this.TableLayoutPanelOptions.Location = new System.Drawing.Point(3, 3);
             this.TableLayoutPanelOptions.Name = "TableLayoutPanelOptions";
             this.TableLayoutPanelOptions.RowCount = 1;
             this.TableLayoutPanelOptions.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.TableLayoutPanelOptions.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 378F));
-            this.TableLayoutPanelOptions.Size = new System.Drawing.Size(792, 378);
+            this.TableLayoutPanelOptions.Size = new System.Drawing.Size(786, 372);
             this.TableLayoutPanelOptions.TabIndex = 0;
             // 
             // groupBox1
@@ -304,7 +314,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(255, 372);
+            this.groupBox1.Size = new System.Drawing.Size(253, 366);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
@@ -318,16 +328,16 @@
             this.TreeViewOptions.ShowLines = false;
             this.TreeViewOptions.ShowPlusMinus = false;
             this.TreeViewOptions.ShowRootLines = false;
-            this.TreeViewOptions.Size = new System.Drawing.Size(249, 353);
+            this.TreeViewOptions.Size = new System.Drawing.Size(247, 347);
             this.TreeViewOptions.TabIndex = 0;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.TreeViewRealism);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(264, 3);
+            this.groupBox2.Location = new System.Drawing.Point(262, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(263, 372);
+            this.groupBox2.Size = new System.Drawing.Size(261, 366);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
@@ -341,16 +351,16 @@
             this.TreeViewRealism.ShowLines = false;
             this.TreeViewRealism.ShowPlusMinus = false;
             this.TreeViewRealism.ShowRootLines = false;
-            this.TreeViewRealism.Size = new System.Drawing.Size(257, 353);
+            this.TreeViewRealism.Size = new System.Drawing.Size(255, 347);
             this.TreeViewRealism.TabIndex = 1;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.TreeViewDCSMods);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(533, 3);
+            this.groupBox3.Location = new System.Drawing.Point(529, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(256, 372);
+            this.groupBox3.Size = new System.Drawing.Size(254, 366);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "groupBox3";
@@ -364,7 +374,7 @@
             this.TreeViewDCSMods.ShowLines = false;
             this.TreeViewDCSMods.ShowPlusMinus = false;
             this.TreeViewDCSMods.ShowRootLines = false;
-            this.TreeViewDCSMods.Size = new System.Drawing.Size(250, 353);
+            this.TreeViewDCSMods.Size = new System.Drawing.Size(248, 347);
             this.TreeViewDCSMods.TabIndex = 1;
             // 
             // TabPageGeneratedMission
@@ -372,6 +382,7 @@
             this.TabPageGeneratedMission.Controls.Add(this.toolStrip1);
             this.TabPageGeneratedMission.Location = new System.Drawing.Point(4, 22);
             this.TabPageGeneratedMission.Name = "TabPageGeneratedMission";
+            this.TabPageGeneratedMission.Padding = new System.Windows.Forms.Padding(3);
             this.TabPageGeneratedMission.Size = new System.Drawing.Size(792, 378);
             this.TabPageGeneratedMission.TabIndex = 4;
             this.TabPageGeneratedMission.Text = "Generated mission";
@@ -382,9 +393,9 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripButton2});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(792, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(786, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -408,6 +419,63 @@
             // 
             this.MainContextMenuStrip.Name = "ContextMenuStripMain";
             this.MainContextMenuStrip.Size = new System.Drawing.Size(61, 4);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 28);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView1.ShowCellErrors = false;
+            this.dataGridView1.ShowCellToolTips = false;
+            this.dataGridView1.ShowEditingIcon = false;
+            this.dataGridView1.ShowRowErrors = false;
+            this.dataGridView1.Size = new System.Drawing.Size(786, 347);
+            this.dataGridView1.TabIndex = 3;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Aircraft";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Count";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Payload";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Carrier";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // MainForm
             // 
@@ -442,6 +510,7 @@
             this.TabPageGeneratedMission.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -481,5 +550,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DGVC_FGCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn DGVC_FGPayload;
         private System.Windows.Forms.DataGridViewTextBoxColumn DGVC_FGCarrier;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
     }
 }
