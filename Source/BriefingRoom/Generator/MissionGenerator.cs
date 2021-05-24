@@ -74,7 +74,8 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("BriefingEnemyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition.GetEnemy()].UIDisplayName);
 
             // Add common media files
-            mission.AddOggFiles(Database.Instance.Common.CommonOGG);
+            foreach (string oggFile in Database.Instance.Common.CommonOGG)
+                mission.AddMediaFile(oggFile, $"{BRPaths.INCLUDE_OGG}{oggFile}");
 
             Country[][] coalitionsCountries;
             // Generate list of countries for each coalition
@@ -196,6 +197,10 @@ namespace BriefingRoom4DCS.Generator
             BriefingRoom.PrintToLog("Generating warehouses...");
             using (MissionGeneratorWarehouses warehousesGenerator = new MissionGeneratorWarehouses())
                 warehousesGenerator.GenerateWarehouses(mission);
+
+            // Generate image files
+            using (MissionGeneratorImages imagesGenerator = new MissionGeneratorImages())
+                imagesGenerator.GenerateTitle(mission, template);
 
             return mission;
         }

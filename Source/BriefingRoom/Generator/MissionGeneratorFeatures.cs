@@ -83,7 +83,7 @@ namespace BriefingRoom4DCS.Generator
             else mission.AppendValue("ScriptMissionFeatures", featureLua);
 
             // Feature ogg files
-            mission.AddOggFiles(featureDB.IncludeOgg);
+            //mission.AddOggFiles(featureDB.IncludeOgg);
 
             return groupInfo;
         }

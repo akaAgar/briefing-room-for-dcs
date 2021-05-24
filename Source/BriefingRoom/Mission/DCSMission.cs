@@ -41,13 +41,13 @@ namespace BriefingRoom4DCS.Mission
         /// Unique ID for the mission. Appended to certain filenames so they don't have the same name in every mission and
         /// get confused with one another in the DCS World cache.
         /// </summary>
-        private readonly string UniqueID;
+        internal string UniqueID { get; }
 
         public DCSMissionBriefing Briefing { get; }
 
         private Dictionary<string, string> Values { get; }
 
-        internal List<string> MediaFilesOgg { get; private set; }
+        private Dictionary<string, byte[]> MediaFiles { get; }
 
         internal Dictionary<int, Coalition> Airbases { get; }
 
@@ -75,7 +75,7 @@ namespace BriefingRoom4DCS.Mission
         {
             Airbases = new Dictionary<int, Coalition>();
             Values = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
-            MediaFilesOgg = new List<string>();
+            MediaFiles = new Dictionary<string, byte[]>(StringComparer.InvariantCultureIgnoreCase);
             UniqueID = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()).ToLowerInvariant();
             SetValue("MissionID", UniqueID);
             Briefing = new DCSMissionBriefing(this);
@@ -132,12 +132,17 @@ namespace BriefingRoom4DCS.Mission
             return Values[key];
         }
 
-        internal void AddOggFiles(params string[] oggFiles)
+        internal void AddMediaFile(string fileName, string sourceFilePath)
         {
-            oggFiles = Toolbox.AddMissingFileExtensions(oggFiles, ".ogg");
-            oggFiles = (from string oggFile in oggFiles select oggFile.ToLowerInvariant()).ToArray();
-            MediaFilesOgg.AddRange(oggFiles);
-            MediaFilesOgg = MediaFilesOgg.Distinct().ToList();
+            if (MediaFiles.ContainsKey(fileName)) return;
+            if (!File.Exists(sourceFilePath)) return;
+            MediaFiles.Add(fileName, File.ReadAllBytes(sourceFilePath));
+        }
+
+        internal void AddMediaFile(string fileName, byte[] mediaFileBytes)
+        {
+            if (MediaFiles.ContainsKey(fileName)) return;
+            MediaFiles.Add(fileName, mediaFileBytes);
         }
 
         public bool SaveToMizFile(string mizFilePath)
@@ -166,6 +171,17 @@ namespace BriefingRoom4DCS.Mission
         {
             using (MizMaker mizMaker = new MizMaker())
                 return mizMaker.ExportToMizBytes(this);
+        }
+
+        internal string[] GetMediaFileNames()
+        {
+            return MediaFiles.Keys.ToArray();
+        }
+
+        internal byte[] GetMediaFile(string mediaFileName)
+        {
+            if (!MediaFiles.ContainsKey(mediaFileName)) return null;
+            return MediaFiles[mediaFileName];
         }
 
         /// <summary>
