@@ -29,6 +29,16 @@ namespace BriefingRoom4DCS.Data
     internal class DBEntryObjectiveTask : DBEntry
     {
         /// <summary>
+        /// Randomly-parsed string displayed for this task in the briefing.
+        /// </summary>
+        internal string BriefingTask { get; private set; }
+
+        /// <summary>
+        /// Lua file containing the script checking the task has been completed.
+        /// </summary>
+        internal string CompletionTriggerLua { get; private set; }
+
+        /// <summary>
         /// On which side will the target units be?
         /// </summary>
         internal Side TargetSide { get; private set; }
@@ -37,10 +47,6 @@ namespace BriefingRoom4DCS.Data
         /// Which units categories are valid targets for this task?
         /// </summary>
         internal UnitCategory[] ValidUnitCategories { get; private set; }
-
-        internal string CompletionTriggerLua { get; private set; }
-
-        internal string BriefingTask { get; private set; }
 
         /// <summary>
         /// Loads a database entry from an .ini file.

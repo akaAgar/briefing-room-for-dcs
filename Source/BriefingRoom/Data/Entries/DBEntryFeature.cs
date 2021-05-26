@@ -36,12 +36,6 @@ namespace BriefingRoom4DCS.Data
         internal string[][] BriefingRemarks { get; private set; }
 
         /// <summary>
-        /// Other features whose ID begins with this string are incompatible with this one.
-        /// E.g. If you create an "TimeLimit30Minutes" and you don't want any other features beginning with "TimeLimit" to be allowed, set the value to "TimeLimit"
-        /// </summary>
-        internal string FeatureIncompatiblePrefix { get; private set; }
-
-        /// <summary>
         /// Lua scripts to include (from Include\Lua\MissionFeatures) when this feature is enabled.
         /// Scripts will be included IN THE ORDER THEY ARE IN THIS ARRAY.
         /// </summary>
@@ -112,8 +106,6 @@ namespace BriefingRoom4DCS.Data
                 BriefingRemarks = new string[2][];
                 BriefingRemarks[(int)Side.Ally] = ini.GetValueArray<string>("Briefing", "Remarks", ';');
                 BriefingRemarks[(int)Side.Enemy] = ini.GetValueArray<string>("Briefing", "Remarks.Enemy", ';');
-
-                FeatureIncompatiblePrefix = ini.GetValue<string>("Feature", "IncompatiblePrefix").ToLowerInvariant();
 
                 // Included files
                 IncludeLua = Toolbox.AddMissingFileExtensions(ini.GetValueArray<string>("Include", "Lua"), ".lua");

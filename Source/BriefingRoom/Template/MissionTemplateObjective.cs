@@ -33,7 +33,7 @@ namespace BriefingRoom4DCS.Template
     {
         [Required, DatabaseSourceType(DatabaseEntryType.ObjectiveFeature)]
         [Display(Name = "Objective features", Description = "Special features to include in this objective.")]
-        public List<string> Features { get { return Features_; } set { Features_ = Database.Instance.CheckMissionFeaturesIDs<DBEntryFeatureObjective>(value.ToArray()).ToList(); } }
+        public List<string> Features { get { return Features_; } set { Features_ = Database.Instance.CheckIDs<DBEntryFeatureObjective>(value.ToArray()).ToList(); } }
         private List<string> Features_ = new List<string>();
 
         [Required]

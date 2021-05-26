@@ -131,7 +131,7 @@ namespace BriefingRoom4DCS.Template
 
         [Required, DatabaseSourceType(DatabaseEntryType.MissionFeature)]
         [Display(Name = "Mission features", Description = "Special features to include in this mission.")]
-        public List<string> MissionFeatures { get { return MissionFeatures_; } set { MissionFeatures_ = Database.Instance.CheckMissionFeaturesIDs<DBEntryFeatureMission>(value.ToArray()).ToList(); } }
+        public List<string> MissionFeatures { get { return MissionFeatures_; } set { MissionFeatures_ = Database.Instance.CheckIDs<DBEntryFeatureMission>(value.ToArray()).ToList(); } }
         private List<string> MissionFeatures_ = new List<string>();
 
         [Required, DatabaseSourceType(DatabaseEntryType.DCSMod)]

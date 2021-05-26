@@ -178,52 +178,6 @@ namespace BriefingRoom4DCS.Data
         }
 
         /// <summary>
-        /// Checks if the proposed IDs exists in the database, remove invalid ones from the array, and make sure incompatible mission features are removed.
-        /// </summary>
-        /// <param name="ids">Array of IDs to check</param>
-        /// <returns>An array of valid IDs</returns>
-        internal string[] CheckMissionFeaturesIDs<T>(string[] ids) where T : DBEntryFeature
-        {
-            // TODO
-            //if (ids.Length < 2)
-            return CheckIDs<T>(ids);
-
-            //int i, j;
-            //List<string> featureIDs = ids.ToList();
-
-            //for (i = featureIDs.Count - 1; i >= 0; i--)
-            //{
-            //    if (!EntryExists<DBEntryMissionFeature>(ids[i]))
-            //    {
-            //        featureIDs.RemoveAt(i);
-            //        continue;
-            //    }
-
-            //    if (i > 0)
-            //    {
-            //        string incompatiblePrefix = GetEntry<DBEntryMissionFeature>(ids[i]).IncompatiblePrefix;
-            //        if (string.IsNullOrEmpty(incompatiblePrefix)) continue;
-
-            //        for (j = i - 1; j >= 0; j--)
-            //        {
-            //            if (!EntryExists<DBEntryMissionFeature>(ids[j])) continue;
-            //            if (entry)
-            //        }
-            //    }
-            //}
-
-            ////List<string> featuresIDs = CheckIDs<DBEntryMissionFeature>(ids).ToList();
-            ////if (featuresIDs.Count == 0) return new string[0];
-
-            ////for (int i )
-
-            ////// TODO: check for incompatible features
-            ////return featuresIDs.ToArray();
-
-            //return CheckIDs<DBEntryMissionFeature>(featureIDs.ToArray());
-        }
-
-        /// <summary>
         /// Does a entry exist?
         /// </summary>
         /// <typeparam name="T">The type of the entry</typeparam>
