@@ -358,6 +358,12 @@ namespace BriefingRoom4DCS.Template
             }
         }
 
+        internal string GetCoalitionID(Coalition coalition)
+        {
+            if (coalition == Coalition.Red) return ContextCoalitionRed;
+            return ContextCoalitionBlue;
+        }
+
         /// <summary>
         /// <see cref="IDisposable"/> implementation.
         /// </summary>
