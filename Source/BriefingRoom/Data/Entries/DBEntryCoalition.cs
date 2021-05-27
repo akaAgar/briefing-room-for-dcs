@@ -30,10 +30,10 @@ namespace BriefingRoom4DCS.Data
     /// </summary>
     internal class DBEntryCoalition : DBEntry
     {
-        /// <summary>
-        /// Flavor text to add to the mission briefing for this coalition.
-        /// </summary>
-        internal string[][] BriefingElements { get; private set; }
+        ///// <summary>
+        ///// Flavor text to add to the mission briefing for this coalition.
+        ///// </summary>
+        //internal string[][] BriefingElements { get; private set; }
 
         /// <summary>
         /// Countries which are part of this coalition.
@@ -57,13 +57,13 @@ namespace BriefingRoom4DCS.Data
         /// <returns>True is successful, false if an error happened</returns>
         protected override bool OnLoad(string iniFilePath)
         {
-            int i;
+            //int i;
 
             using (INIFile ini = new INIFile(iniFilePath))
             {
-                BriefingElements = new string[Toolbox.EnumCount<CoalitionBriefingElement>()][];
-                for (i = 0; i < BriefingElements.Length; i++)
-                    BriefingElements[i] = ini.GetValueArray<string>("Briefing", $"Elements.{(CoalitionBriefingElement)i}");
+                //BriefingElements = new string[Toolbox.EnumCount<CoalitionBriefingElement>()][];
+                //for (i = 0; i < BriefingElements.Length; i++)
+                //    BriefingElements[i] = ini.GetValueArray<string>("Briefing", $"Elements.{(CoalitionBriefingElement)i}");
 
                 string[] badCountries = (from country in ini.GetValueArray<string>("Coalition", "Countries").Distinct() where !Enum.TryParse<Country>(country, true, out _) select country).ToArray();
                 if (badCountries.Length > 0)

@@ -289,21 +289,6 @@ namespace BriefingRoom4DCS.Generator
         }
 
         /// <summary>
-        /// Converts a distance in meters to nautical miles or kilometer (according to the prefered unit system) and
-        /// returns it as a string with the proper unit symbol.
-        /// </summary>
-        /// <param name="distanceInMeters">Distance in meters</param>
-        /// <param name="unitSystem">Unit system to use</param>
-        /// <returns>Distance in nm or Km, with the proper unit symbol</returns>
-        internal static string ConvertDistance(double distanceInMeters, UnitSystem unitSystem)
-        {
-            if (unitSystem == UnitSystem.Imperial)
-                return $"{distanceInMeters * Toolbox.METERS_TO_NM:F0} nm";
-
-            return $"{distanceInMeters / 1000.0:F0} Km";
-        }
-
-        /// <summary>
         /// Returns coordinates situated somewhere between the initial airbase and the center point of objectives.
         /// </summary>
         /// <param name="mission">The DCS mission</param>
