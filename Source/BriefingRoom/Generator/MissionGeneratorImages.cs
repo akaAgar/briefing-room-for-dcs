@@ -25,6 +25,7 @@ using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 
 
@@ -42,12 +43,26 @@ namespace BriefingRoom4DCS.Generator
             ImageMaker = new ImageMaker();
         }
 
+        /// <summary>
+        /// Generates the mission title picture
+        /// </summary>
+        /// <param name="mission">The mission for which a picture must be generated</param>
+        /// <param name="template">Mission template to use</param>
         internal void GenerateTitle(DCSMission mission, MissionTemplate template)
         {
             ImageMaker.TextOverlay.Alignment = ContentAlignment.MiddleCenter;
-            ImageMaker.TextOverlay.Text = mission.Name;
+            ImageMaker.TextOverlay.Text = mission.Briefing.Name;
 
-            byte[] imageBytes = ImageMaker.GetImageBytes($"{template.ContextTheater}{Toolbox.RandomInt(1, 6):00}");
+            List<ImageMakerLayer> imageLayers = new List<ImageMakerLayer>();
+            string[] theaterImages = Directory.GetFiles($"{BRPaths.INCLUDE_JPG}Theaters\\", $"{Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater).DCSID}*.jpg");
+            if (theaterImages.Length == 0)
+                imageLayers.Add(new ImageMakerLayer("_default.jpg"));
+            else
+                imageLayers.Add(new ImageMakerLayer("Theaters\\" + Path.GetFileName(Toolbox.RandomFrom(theaterImages))));
+
+            imageLayers.Add(new ImageMakerLayer($"Flags\\{template.GetCoalitionID(template.ContextPlayerCoalition)}.png", ContentAlignment.TopLeft, 8, 8, 0, .5));
+
+            byte[] imageBytes = ImageMaker.GetImageBytes(imageLayers.ToArray());
 
             mission.AddMediaFile($"title_{mission.UniqueID}.jpg", imageBytes);
         }
