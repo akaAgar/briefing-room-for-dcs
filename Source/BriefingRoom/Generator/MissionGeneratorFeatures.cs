@@ -27,12 +27,22 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal abstract class MissionGeneratorFeatures : IDisposable
+    /// <summary>
+    /// Generates scripts and unit groups associated with a mission feature.
+    /// Abstract parent of <see cref="MissionGeneratorFeaturesMission"/> and <see cref="MissionGeneratorFeaturesObjectives"/>.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    internal abstract class MissionGeneratorFeatures<T> : IDisposable where T : DBEntryFeature
     {
         /// <summary>
         /// Unit maker selector to use for mission features generation.
         /// </summary>
         protected readonly UnitMaker UnitMaker;
+
+        /// <summary>
+        /// Current TACAN index. Incremented each time a TACAN-using unit is added to make sure each has its own frequency.
+        /// </summary>
+        private int TACANIndex = 1;
 
         /// <summary>
         /// Constructor.
@@ -43,15 +53,13 @@ namespace BriefingRoom4DCS.Generator
             UnitMaker = unitMaker;
         }
 
-        protected UnitMakerGroupInfo? AddMissionFeature<T>(DCSMission mission, T featureDB, Coordinates coordinates, Coordinates? coordinates2 = null, params KeyValuePair<string, object>[] extraSettings) where T : DBEntryFeature
+        protected UnitMakerGroupInfo? AddMissionFeature(DCSMission mission, T featureDB, Coordinates coordinates, Coordinates? coordinates2, ref Dictionary<string, object> extraSettings)
         {
             // Add secondary coordinates (destination point) to the extra settings
             if (!coordinates2.HasValue) coordinates2 = coordinates; // No destination point? Use initial point
-            List<KeyValuePair<string, object>> extraSettingsList = new List<KeyValuePair<string, object>>(extraSettings)
-            {
-                new KeyValuePair<string, object>("GroupX2", coordinates2.Value.X),
-                new KeyValuePair<string, object>("GroupY2", coordinates2.Value.Y)
-            };
+            extraSettings.AddIfKeyUnused("GroupX2", coordinates2.Value.X);
+            extraSettings.AddIfKeyUnused("GroupY2", coordinates2.Value.Y);
+            GetExtraSettingsFromFeature(ref extraSettings, featureDB); // Add specific settings for this feature (TACAN frequencies, etc)
 
             // Feature unit group
             UnitMakerGroupInfo? groupInfo = null;
@@ -66,7 +74,7 @@ namespace BriefingRoom4DCS.Generator
                     featureDB.UnitGroupFlags.Contains(FeatureUnitGroupFlags.Friendly) ? Side.Ally : Side.Enemy,
                     featureDB.UnitGroupLuaGroup, featureDB.UnitGroupLuaUnit,
                     coordinates, null, groupFlags, AircraftPayload.Default,
-                    extraSettingsList.ToArray());
+                    extraSettings.ToArray());
             }
 
             // Feature Lua script
@@ -89,6 +97,24 @@ namespace BriefingRoom4DCS.Generator
         }
 
         /// <summary>
+        /// Adds specific settings for this feature (TACAN frequencies, etc).
+        /// </summary>
+        /// <param name="extraSettings">Dictionary of extra settings to add.</param>
+        /// <param name="featureDB">The feature DBEntry to use.</param>
+        /// <returns></returns>
+        protected virtual void GetExtraSettingsFromFeature(ref Dictionary<string, object> extraSettings, T featureDB)
+        {
+            // TODO: Improve
+            if (featureDB.UnitGroupFlags.Contains(FeatureUnitGroupFlags.TACAN) && (featureDB.UnitGroupFamilies.Length > 0))
+            {
+                extraSettings.AddIfKeyUnused("TACANFrequency", 1108000000);
+                extraSettings.AddIfKeyUnused("TACANCallsign", $"{GeneratorTools.GetTACANCallsign(featureDB.UnitGroupFamilies[0])}{TACANIndex}");
+                extraSettings.AddIfKeyUnused("TACANChannel", ((GetType() == typeof(MissionGeneratorFeaturesObjectives)) ? 30 : 20) + TACANIndex);
+                if (TACANIndex < 9) TACANIndex++;
+            }
+        }
+
+        /// <summary>
         /// Does this mission/objective feature requires an unit group to be spawned?
         /// </summary>
         /// <param name="featureDB">The mission/objective feature to check.</param>
@@ -100,7 +126,7 @@ namespace BriefingRoom4DCS.Generator
                  !string.IsNullOrEmpty(featureDB.UnitGroupLuaUnit);
         }
 
-        protected void AddBriefingRemarkFromFeature(DCSMission mission, DBEntryFeature featureDB, bool useEnemyRemarkIfAvailable, UnitMakerGroupInfo? groupInfo = null, params KeyValuePair<string, string>[] stringReplacements)
+        protected void AddBriefingRemarkFromFeature(DCSMission mission, DBEntryFeature featureDB, bool useEnemyRemarkIfAvailable, UnitMakerGroupInfo? groupInfo, Dictionary<string, object> stringReplacements)
         {
             string[] remarks;
             if (useEnemyRemarkIfAvailable && featureDB.BriefingRemarks[(int)Side.Enemy].Length > 0)
@@ -110,8 +136,8 @@ namespace BriefingRoom4DCS.Generator
             if (remarks.Length == 0) return; // No briefing for this feature
 
             string remark = Toolbox.RandomFrom(remarks);
-            foreach (KeyValuePair<string, string> stringReplacement in stringReplacements)
-                GeneratorTools.ReplaceKey(ref remark, stringReplacement.Key, stringReplacement.Value);
+            foreach (KeyValuePair<string, object> stringReplacement in stringReplacements)
+                GeneratorTools.ReplaceKey(ref remark, stringReplacement.Key, stringReplacement.Value.ToString());
 
             if (groupInfo.HasValue)
             {

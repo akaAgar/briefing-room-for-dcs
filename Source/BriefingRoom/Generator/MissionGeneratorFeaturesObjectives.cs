@@ -21,13 +21,14 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
 using System;
+using System.Collections.Generic;
 
 namespace BriefingRoom4DCS.Generator
 {
     /// <summary>
     /// Generates units and Lua script associated with objective features.
     /// </summary>
-    internal class MissionGeneratorFeaturesObjectives : MissionGeneratorFeatures
+    internal class MissionGeneratorFeaturesObjectives : MissionGeneratorFeatures<DBEntryFeatureObjective>
     {
         /// <summary>
         /// Constructor.
@@ -59,13 +60,16 @@ namespace BriefingRoom4DCS.Generator
 
             Coordinates coordinates2 = spawnPoint.Value.Coordinates + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
 
+            Dictionary<string, object> extraSettings = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
+            extraSettings.AddIfKeyUnused("ObjectiveIndex", objectiveIndex + 1);
+            extraSettings.AddIfKeyUnused("ObjectiveGroupID", objectiveGroupID);
+
             UnitMakerGroupInfo? groupInfo = AddMissionFeature(
                 mission, featureDB,
                 spawnPoint.Value.Coordinates, coordinates2,
-                "ObjectiveIndex".ToKeyValuePair(objectiveIndex + 1),
-                "ObjectiveGroupID".ToKeyValuePair(objectiveGroupID));
+                ref extraSettings);
 
-            AddBriefingRemarkFromFeature(mission, featureDB, false, groupInfo); // TODO: string replacements
+            AddBriefingRemarkFromFeature(mission, featureDB, false, groupInfo, extraSettings);
         }
     }
 }

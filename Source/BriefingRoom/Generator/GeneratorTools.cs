@@ -132,6 +132,22 @@ namespace BriefingRoom4DCS.Generator
             return coalition;
         }
 
+        internal static object GetTACANCallsign(UnitFamily unitFamily)
+        {
+            switch (unitFamily)
+            {
+                default:
+                    return "TCN";
+                case UnitFamily.ShipCarrierCATOBAR:
+                case UnitFamily.ShipCarrierSTOBAR:
+                case UnitFamily.ShipCarrierSTOVL:
+                    return "CVN";
+                case UnitFamily.PlaneTankerBasket:
+                case UnitFamily.PlaneTankerBoom:
+                    return "TKR";
+            }
+        }
+
         internal static DCSSkillLevel GetDefaultSkillLevel(MissionTemplate template, UnitFamily unitFamily, Side side)
         {
             // Unit is an aircraft, air force quality decides skill level

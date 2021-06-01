@@ -1,9 +1,10 @@
     ["lateActivation"] = true,
     ["modulation"] = $RADIOBAND$,
+    ["radioSet"] = true,
     ["tasks"] = 
     {
     }, -- end of ["tasks"]
-    ["task"] = "AWACS",
+    ["task"] = "Refueling",
     ["uncontrolled"] = false,
     ["taskSelected"] = true,
     ["route"] = 
@@ -27,7 +28,7 @@
                             {
                                 ["enabled"] = true,
                                 ["auto"] = true,
-                                ["id"] = "AWACS",
+                                ["id"] = "Tanker",
                                 ["number"] = 1,
                                 ["params"] = 
                                 {
@@ -113,7 +114,7 @@
                     }, -- end of ["params"]
                 }, -- end of ["task"]
                 ["type"] = "Turning Point",
-                ["ETA"] = 0,
+                ["ETA"] = 0.0,
                 ["ETA_locked"] = false,
                 ["y"] = $GROUPY2$,
                 ["x"] = $GROUPX2$,

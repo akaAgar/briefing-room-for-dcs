@@ -134,4 +134,3 @@ namespace BriefingRoom4DCS.Data
         }
     }
 }
-

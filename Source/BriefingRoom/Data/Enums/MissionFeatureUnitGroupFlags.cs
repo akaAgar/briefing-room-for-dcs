@@ -77,6 +77,11 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Aircraft should be manually activated by a script, and not added to the queue of aircraft groups to activate
         /// </summary>
-        ManualActivation = 512
+        ManualActivation = 512,
+
+        /// <summary>
+        /// This unit requires a TACAN frequency to be generated
+        /// </summary>
+        TACAN = 1024
     }
 }

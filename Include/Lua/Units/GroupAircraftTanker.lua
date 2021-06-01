@@ -89,24 +89,6 @@
                                 {
                                     ["action"] = 
                                     {
-                                        ["id"] = "SetInvisible",
-                                        ["params"] = 
-                                        {
-                                            ["value"] = true,
-                                        }, -- end of ["params"]
-                                    }, -- end of ["action"]
-                                }, -- end of ["params"]
-                            }, -- end of [4]
-                            [5] = 
-                            {
-                                ["enabled"] = true,
-                                ["auto"] = false,
-                                ["id"] = "WrappedAction",
-                                ["number"] = 5,
-                                ["params"] = 
-                                {
-                                    ["action"] = 
-                                    {
                                         ["id"] = "Option",
                                         ["params"] = 
                                         {
@@ -115,20 +97,20 @@
                                         }, -- end of ["params"]
                                     }, -- end of ["action"]
                                 }, -- end of ["params"]
-                            }, -- end of [5]
-                            [6] = 
+                            }, -- end of [4]
+                            [5] = 
                             {
                                 ["enabled"] = true,
                                 ["auto"] = false,
                                 ["id"] = "Orbit",
-                                ["number"] = 6,
+                                ["number"] = 5,
                                 ["params"] = 
                                 {
                                     ["altitude"] = $ALTITUDE$,
                                     ["pattern"] = "Race-Track",
                                     ["speed"] = $SPEED$,
                                 }, -- end of ["params"]
-                            }, -- end of [6]
+                            }, -- end of [5]
                         }, -- end of ["tasks"]
                     }, -- end of ["params"]
                 }, -- end of ["task"]

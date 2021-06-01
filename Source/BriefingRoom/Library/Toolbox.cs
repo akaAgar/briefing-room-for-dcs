@@ -131,6 +131,13 @@ namespace BriefingRoom4DCS
             return new KeyValuePair<string, object>(key, value);
         }
 
+
+        internal static void AddIfKeyUnused<T1, T2>(this Dictionary<T1, T2> dictionary, T1 key, T2 value)
+        {
+            if (dictionary.ContainsKey(key)) return;
+            dictionary.Add(key, value);
+        }
+
         internal static string ReplaceAll(this string str, string replaceTo, params string[] replaceFrom)
         {
             StringBuilder sb = new StringBuilder(str);
