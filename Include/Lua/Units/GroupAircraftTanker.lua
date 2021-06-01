@@ -107,24 +107,6 @@
                                 {
                                     ["action"] = 
                                     {
-                                        ["id"] = "SetImmortal",
-                                        ["params"] = 
-                                        {
-                                            ["value"] = true,
-                                        }, -- end of ["params"]
-                                    }, -- end of ["action"]
-                                }, -- end of ["params"]
-                            }, -- end of [5]
-                            [6] = 
-                            {
-                                ["enabled"] = true,
-                                ["auto"] = false,
-                                ["id"] = "WrappedAction",
-                                ["number"] = 6,
-                                ["params"] = 
-                                {
-                                    ["action"] = 
-                                    {
                                         ["id"] = "Option",
                                         ["params"] = 
                                         {
@@ -133,20 +115,20 @@
                                         }, -- end of ["params"]
                                     }, -- end of ["action"]
                                 }, -- end of ["params"]
-                            }, -- end of [6]
-                            [7] = 
+                            }, -- end of [5]
+                            [6] = 
                             {
                                 ["enabled"] = true,
                                 ["auto"] = false,
                                 ["id"] = "Orbit",
-                                ["number"] = 7,
+                                ["number"] = 6,
                                 ["params"] = 
                                 {
                                     ["altitude"] = $ALTITUDE$,
                                     ["pattern"] = "Race-Track",
                                     ["speed"] = $SPEED$,
                                 }, -- end of ["params"]
-                            }, -- end of [7]
+                            }, -- end of [6]
                         }, -- end of ["tasks"]
                     }, -- end of ["params"]
                 }, -- end of ["task"]
