@@ -136,8 +136,12 @@ namespace BriefingRoom4DCS.Generator
             for (int unitIndex = 0; unitIndex < units.Length; unitIndex++)
             {
                 DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(units[unitIndex]);
-                if (unitDB == null) continue;
-                if (firstUnitDB == null) firstUnitDB = unitDB;
+                if (unitDB == null)
+                {
+                    BriefingRoom.PrintToLog($"Unit \"{units[unitIndex]}\" not found.", LogMessageErrorLevel.Warning);
+                    continue;
+                }
+                if (firstUnitDB == null) firstUnitDB = unitDB; // Store the first unit, which will be used for group-scope replacements later
 
                 SetUnitCoordinatesAndHeading(unitDB, unitIndex, coordinates, out Coordinates unitCoordinates, out double unitHeading);
 

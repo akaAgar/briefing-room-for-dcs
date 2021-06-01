@@ -20,10 +20,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
-using BriefingRoom4DCS.Template;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -47,13 +43,8 @@ namespace BriefingRoom4DCS.Generator
                 return;
             }
 
-            //Coordinates pointSearchCenter =
-            //    Coordinates.Lerp(initialCoordinates, objectivesCenter, Toolbox.Clamp(featureDB.UnitGroupSpawnDistance, 0.0, 1.0)) +
-            //    Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
-
-            Coordinates pointSearchCenter = Coordinates.Lerp(initialCoordinates, objectivesCenter, Toolbox.Clamp(featureDB.UnitGroupSpawnDistance, 0.0, 1.0));
-
-            DBEntryTheaterSpawnPoint? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(featureDB.UnitGroupValidSpawnPoints, pointSearchCenter, new MinMaxD(0, 10));
+            Coordinates pointSearchCenter = Coordinates.Lerp(initialCoordinates, objectivesCenter, featureDB.UnitGroupSpawnDistance);
+            DBEntryTheaterSpawnPoint? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(featureDB.UnitGroupValidSpawnPoints, pointSearchCenter, new MinMaxD(0, 2.5));
             if (!spawnPoint.HasValue) // No spawn point found
             {
                 BriefingRoom.PrintToLog($"No spawn point found for mission feature {featureID}.", LogMessageErrorLevel.Warning);
@@ -61,7 +52,6 @@ namespace BriefingRoom4DCS.Generator
             }
 
             Coordinates coordinates2 = spawnPoint.Value.Coordinates + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
-
             UnitMakerGroupInfo? groupInfo = AddMissionFeature(mission, featureDB, spawnPoint.Value.Coordinates, coordinates2);
 
             AddBriefingRemarkFromFeature(mission, featureDB, false, groupInfo);

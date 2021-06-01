@@ -121,12 +121,12 @@ namespace BriefingRoom4DCS.Data
                         BriefingRoom.PrintToLog($"File \"Include\\Ogg\\{f}\", required by feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
 
                 // Unit group
-                UnitGroupSpawnDistance = ini.GetValue<double>("UnitGroup", "Distance");
                 UnitGroupFamilies = Toolbox.SetSingleCategoryFamilies(ini.GetValueArray<UnitFamily>("UnitGroup", "Families"));
                 UnitGroupFlags = ini.GetValueArray<FeatureUnitGroupFlags>("UnitGroup", "Flags").Distinct().ToArray();
                 UnitGroupLuaGroup = Toolbox.AddMissingFileExtension(ini.GetValue<string>("UnitGroup", "Lua.Group"), ".lua");
                 UnitGroupLuaUnit = Toolbox.AddMissingFileExtension(ini.GetValue<string>("UnitGroup", "Lua.Unit"), ".lua");
                 UnitGroupSize = ini.GetValue<MinMaxI>("UnitGroup", "Size");
+                UnitGroupSpawnDistance = ini.GetValue<double>("UnitGroup", "SpawnDistance");
                 UnitGroupValidSpawnPoints = DatabaseTools.CheckSpawnPoints(ini.GetValueArray<SpawnPointType>("UnitGroup", "ValidSpawnPoints"));
             }
 
