@@ -119,7 +119,7 @@ namespace BriefingRoom4DCS.Generator
             for (int i = 0; i < waypoints.Count; i++)
             {
                 mission.AppendValue("ScriptObjectives",
-                    $"briefingRoom.mission.objectives.data[{i + 1}].waypoint = {waypoints[i].Coordinates.ToLuaTable()}\n");
+                    $"briefingRoom.mission.objectives[{i + 1}].waypoint = {waypoints[i].Coordinates.ToLuaTable()}\n");
 
                 mission.AppendValue("ScriptObjectives",
                     $"trigger.action.markToCoalition(0, \"{waypoints[i].Name}\", {{ x={waypoints[i].Coordinates.X.ToInvariantString()}, y=0, z={waypoints[i].Coordinates.Y.ToInvariantString()} }}, coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}, true, nil)\n");

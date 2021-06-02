@@ -115,32 +115,38 @@ namespace BriefingRoom4DCS.Generator
             if (!targetGroupInfo.HasValue) // Failed to generate target group
                 throw new BriefingRoomException($"Failed to generate group for objective {objectiveIndex + 1}");
 
-            // Add Lua data table for this objective
-            string objectiveLua = $"briefingRoom.mission.objectives.data[{objectiveIndex + 1}] = {{ ";
+            // Get tasking string for the briefing
+            int pluralIndex = targetGroupInfo.Value.UnitsID.Length == 1 ? 0 : 1; // 0 for singular, 1 for plural. Used for task/names arrays.
+            string taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex]).Replace("\"", "''");
+            if (string.IsNullOrEmpty(taskString)) taskString = "Perform task at objective $OBJECTIVENAME$";
+            GeneratorTools.ReplaceKey(ref taskString, "ObjectiveName", objectiveName);
+            GeneratorTools.ReplaceKey(ref taskString, "UnitFamily", Database.Instance.Common.Names.UnitFamilies[(int)targetFamily][pluralIndex]);
+            mission.Briefing.AddItem(DCSMissionBriefingItemType.Task, taskString);
+
+            // Add Lua table for this objective
+            string objectiveLua = $"briefingRoom.mission.objectives[{objectiveIndex + 1}] = {{ ";
+            objectiveLua += $"complete = false, ";
             objectiveLua += $"groupID = {targetGroupInfo.Value.GroupID}, ";
             objectiveLua += $"name = \"{objectiveName}\", ";
             objectiveLua += $"targetCategory = Unit.Category.{targetDB.UnitCategory.ToLuaName()}, ";
-            objectiveLua += $"unitsID = {{ {string.Join(", ", targetGroupInfo.Value.UnitsID)} }}";
+            objectiveLua += $"task = \"{taskString}\", ";
+            objectiveLua += $"unitsCount = {targetGroupInfo.Value.UnitsID.Length}, ";
+            objectiveLua += $"unitsID = {{ {string.Join(", ", targetGroupInfo.Value.UnitsID)} }} ";
             objectiveLua += "}\n";
-            objectiveLua += $"briefingRoom.mission.f10Menu.objectives[{objectiveIndex + 1}] = missionCommands.addSubMenuForCoalition(coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}, \"Objective {objectiveName}\", nil)\n";
+
+            // Add F10 sub-menu for this objective
+            objectiveLua += $"briefingRoom.f10Menu.objectives[{objectiveIndex + 1}] = missionCommands.addSubMenuForCoalition(coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}, \"Objective {objectiveName}\", nil)\n";
             mission.AppendValue("ScriptObjectives", objectiveLua);
 
-            // Add objective features Lua for this objective
+            // Add objective trigger Lua for this objective
             string triggerLua = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA_OBJECTIVESTRIGGERS}{taskDB.CompletionTriggerLua}");
-            GeneratorTools.ReplaceKey(ref triggerLua, "Index", objectiveIndex + 1);
+            GeneratorTools.ReplaceKey(ref triggerLua, "ObjectiveIndex", objectiveIndex + 1);
             mission.AppendValue("ScriptObjectivesTriggers", triggerLua);
 
             // Add objective features Lua for this objective
             mission.AppendValue("ScriptObjectivesFeatures", ""); // Just in case there's no features
             foreach (string featureID in objectiveTemplate.Features.ToArray())
                 FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveIndex, targetGroupInfo.Value.GroupID, spawnPoint.Value.Coordinates);
-
-            if (taskDB.BriefingTask.Length > 0)
-            {
-                string task = Toolbox.RandomFrom(taskDB.BriefingTask);
-                GeneratorTools.ReplaceKey(ref task, "ObjectiveName", objectiveName);
-                mission.Briefing.AddItem(DCSMissionBriefingItemType.Task, task);
-            }
 
             return spawnPoint.Value.Coordinates;
         }
