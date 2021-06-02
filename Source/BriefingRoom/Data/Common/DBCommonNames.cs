@@ -46,12 +46,12 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Name (singular -index #0- and plural -index #1) to display in the briefings for each unit family.
         /// </summary>
-        internal string[][] UnitBriefingNames { get; } = new string[Toolbox.EnumCount<UnitFamily>()][];
+        internal string[][] UnitFamilies { get; } = new string[Toolbox.EnumCount<UnitFamily>()][];
 
         /// <summary>
         /// Random-parsable (<see cref="Generator.GeneratorTools.ParseRandomString(string)"/>) string for unit group names of each <see cref="UnitFamily"/>.
         /// </summary>
-        internal string[] UnitGroupNames { get; } = new string[Toolbox.EnumCount<UnitFamily>()];
+        internal string[] UnitGroups { get; } = new string[Toolbox.EnumCount<UnitFamily>()];
 
         /// <summary>
         /// Name of the egress player waypoint.
@@ -94,9 +94,9 @@ namespace BriefingRoom4DCS.Data
 
                 for (i = 0; i < Toolbox.EnumCount<UnitFamily>(); i++)
                 {
-                    UnitBriefingNames[i] = ini.GetValueArray<string>("UnitBriefing", ((UnitFamily)i).ToString());
-                    Array.Resize(ref UnitBriefingNames[i], 2);
-                    UnitGroupNames[i] = ini.GetValue<string>("UnitGroup", ((UnitFamily)i).ToString());
+                    UnitFamilies[i] = ini.GetValueArray<string>("UnitFamilies", ((UnitFamily)i).ToString());
+                    Array.Resize(ref UnitFamilies[i], 2);
+                    UnitGroups[i] = ini.GetValue<string>("UnitGroups", ((UnitFamily)i).ToString());
                 }
 
                 WPEgressName = ini.GetValue<string>("Waypoints", "Egress").ToUpperInvariant();

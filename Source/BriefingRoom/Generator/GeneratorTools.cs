@@ -296,7 +296,7 @@ namespace BriefingRoom4DCS.Generator
 
         internal static string GetGroupName(int groupID, UnitFamily family)
         {
-            string name = ParseRandomString(Database.Instance.Common.Names.UnitGroupNames[(int)family]);
+            string name = ParseRandomString(Database.Instance.Common.Names.UnitGroups[(int)family]);
 
             int fakeGroupNumber = groupID * 10 + Toolbox.RandomInt(1, 10);
             name = name.Replace("$N$", fakeGroupNumber.ToString(NumberFormatInfo.InvariantInfo));

@@ -35,7 +35,6 @@ namespace BriefingRoom4DCS.Mission
         public string Description { get; internal set; } = "";
 
         private readonly List<string>[] Items;
-        //BRIEFINGWAYPOINTS
 
         internal DCSMissionBriefing(DCSMission mission)
         {
@@ -48,7 +47,7 @@ namespace BriefingRoom4DCS.Mission
 
         public string[] GetItems(DCSMissionBriefingItemType briefingItemType) { return Items[(int)briefingItemType].ToArray(); }
         
-        internal void AddItem(DCSMissionBriefingItemType briefingItemType, string task) { Items[(int)briefingItemType].Add(task); }
+        internal void AddItem(DCSMissionBriefingItemType briefingItemType, string briefingItem) { Items[(int)briefingItemType].Add(briefingItem); }
 
         public string GetBriefingAsHTML(bool htmlHeaderAndFooter = true)
         {
