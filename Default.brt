@@ -25,6 +25,7 @@ missionfeatures=SupportFriendlyAWACS,SupportFriendlyTankerBasket,SupportFriendly
 mods=
 
 [objectives]
+objective000.features=TargetDesignationCoordinates
 objective000.task=DestroyAll
 objective000.target=VehicleAny
 objective000.targetbehavior=Idle

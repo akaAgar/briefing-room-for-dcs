@@ -81,7 +81,7 @@ namespace BriefingRoom4DCS.Generator
             string featureLua = "";
             if (!string.IsNullOrEmpty(featureDB.IncludeLuaSettings)) featureLua = featureDB.IncludeLuaSettings + "\n";
             foreach (string luaFile in featureDB.IncludeLua)
-                featureLua += Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA_MISSIONFEATURES}{luaFile}") + "\n";
+                featureLua += Toolbox.ReadAllTextIfFileExists($"{featureDB.SourceLuaDirectory}{luaFile}") + "\n";
             foreach (KeyValuePair<string, object> extraSetting in extraSettings)
                 GeneratorTools.ReplaceKey(ref featureLua, extraSetting.Key, extraSetting.Value);
             if (groupInfo.HasValue)

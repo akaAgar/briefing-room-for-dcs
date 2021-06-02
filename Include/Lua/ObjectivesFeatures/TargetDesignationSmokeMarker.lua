@@ -1,0 +1,25 @@
+-- [GUI]
+-- DisplayName=Smoke marker on target
+-- Category=Target designation
+-- Description=Adds an F10 menu command to mark the target with green (if it is an ally) or red (if it is an enemy) smoke.
+
+-- [Feature]
+-- IncompatiblePrefix=
+
+-- [Briefing]
+-- Remarks=Friendly units at objective $OBJECTIVENAME$ can mark their position with smoke.
+-- Remarks.Enemy=JTAC units can mark targets at objective $OBJECTIVENAME$ with smoke.
+
+-- [Include]
+-- Lua=TargetDesignationSmokeMarker
+-- LuaSettings=
+-- Ogg=
+
+-- [UnitGroup]
+-- Families=
+-- Flags=
+-- Lua.Group=
+-- Lua.Unit=
+-- Size=
+-- SpawnDistance=
+-- ValidSpawnPoints=

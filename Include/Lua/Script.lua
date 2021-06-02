@@ -40,6 +40,7 @@
 
 METERS_TO_NM = 0.000539957 -- number of nautical miles in a meter
 NM_TO_METERS = 1852.0 -- number of meters in a nautical mile
+SMOKE_DURATION = 300 -- smoke markers last for 5 minutes (300 seconds) in DCS World
 TWO_PI = math.pi * 2 -- two times Pi
 
 briefingRoom = {} -- Main BriefingRoom table
