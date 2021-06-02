@@ -45,9 +45,9 @@ namespace BriefingRoom4DCS.Mission
 
         public DCSMissionBriefing Briefing { get; }
 
-        private Dictionary<string, string> Values { get; }
+        private readonly Dictionary<string, string> Values;
 
-        private Dictionary<string, byte[]> MediaFiles { get; }
+        private readonly Dictionary<string, object> MediaFiles;
 
         internal Dictionary<int, Coalition> Airbases { get; }
 
@@ -72,11 +72,12 @@ namespace BriefingRoom4DCS.Mission
         internal DCSMission()
         {
             Airbases = new Dictionary<int, Coalition>();
+            Briefing = new DCSMissionBriefing(this);
+            MediaFiles = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
             Values = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
-            MediaFiles = new Dictionary<string, byte[]>(StringComparer.InvariantCultureIgnoreCase);
+
             UniqueID = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()).ToLowerInvariant();
             SetValue("MissionID", UniqueID);
-            Briefing = new DCSMissionBriefing(this);
         }
 
         internal void SetValue(string key, int value)
@@ -134,7 +135,7 @@ namespace BriefingRoom4DCS.Mission
         {
             if (MediaFiles.ContainsKey(fileName)) return;
             if (!File.Exists(sourceFilePath)) return;
-            MediaFiles.Add(fileName, File.ReadAllBytes(sourceFilePath));
+            MediaFiles.Add(fileName, sourceFilePath);
         }
 
         internal void AddMediaFile(string fileName, byte[] mediaFileBytes)
@@ -179,7 +180,13 @@ namespace BriefingRoom4DCS.Mission
         internal byte[] GetMediaFile(string mediaFileName)
         {
             if (!MediaFiles.ContainsKey(mediaFileName)) return null;
-            return MediaFiles[mediaFileName];
+            if (MediaFiles[mediaFileName] is byte[] fileBytes) return fileBytes;
+            if (MediaFiles[mediaFileName] is string filePath)
+            {
+                if (!File.Exists(filePath)) return null;
+                return File.ReadAllBytes(filePath);
+            }
+            return null;
         }
 
         /// <summary>

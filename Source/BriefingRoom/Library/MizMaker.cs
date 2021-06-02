@@ -60,7 +60,11 @@ namespace BriefingRoom4DCS
             AddLuaFileToEntries(MizFileEntries, "l10n/DEFAULT/script.lua", "Script.lua", mission);
 
             foreach (string mediaFile in mission.GetMediaFileNames())
-                MizFileEntries.Add($"l10n/DEFAULT/{mediaFile}", mission.GetMediaFile(mediaFile));
+            {
+                byte[] fileBytes = mission.GetMediaFile(mediaFile);
+                if (fileBytes == null) continue;
+                MizFileEntries.Add($"l10n/DEFAULT/{mediaFile}", fileBytes);
+            }
 
             byte[] mizBytes;
 
