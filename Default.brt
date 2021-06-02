@@ -19,7 +19,7 @@ objectivedistance=80
 objectiveslocation=Any
 
 [missionfeatures]
-missionfeatures=SupportFriendlyAWACS,SupportFriendlyTankerBasket,SupportFriendlyTankerBoom
+missionfeatures=SupportFriendlyAWACS,SupportFriendlyTankerBasket,SupportFriendlyTankerBoom,SystemDebugMode
 
 [mods]
 mods=
@@ -37,6 +37,7 @@ realism=DisableDCSRadioAssists,NoBDA
 
 [playerflightgroups]
 playerflightgroup000.aircrafttype=Su-25T
+playerflightgroup000.aiwingmen=true
 playerflightgroup000.count=2
 playerflightgroup000.payload=Default
 playerflightgroup000.country=CJTFBlue
