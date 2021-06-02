@@ -115,7 +115,7 @@ namespace BriefingRoom4DCS
 
         private static string FindRoot(string path = "", int loop = 0){
             if(string.IsNullOrEmpty(path))
-                path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location.Replace("BriefingRoom.dll", ""));
+                path = AppContext.BaseDirectory;
             path = Path.GetFullPath(path);
             DirectoryInfo di = new DirectoryInfo(path);
             var directories = di.GetDirectories();
