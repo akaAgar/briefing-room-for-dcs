@@ -11,10 +11,12 @@
             if (SelectedValues.Contains((TItemOutput)Value))  
             {  
                 Checked = true;  
-            }  
-            <input type="checkbox" checked=@Checked  
-                   @onchange="eventArgs => { CheckboxClicked((TItemOutput)Value, eventArgs.Value); }" />  
-            @Text <br />  
+            }
+            <label>  
+                <input type="checkbox" checked=@Checked  
+                    @onchange="eventArgs => { CheckboxClicked((TItemOutput)Value, eventArgs.Value); }" />  
+                @Text
+            </label><br />  
         }  
     }  
     @ChildContent  
