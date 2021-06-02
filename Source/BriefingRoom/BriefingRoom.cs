@@ -23,7 +23,6 @@ using BriefingRoom4DCS.Generator;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace BriefingRoom4DCS
@@ -53,110 +52,141 @@ namespace BriefingRoom4DCS
         /// </summary>
         public const string VERSION = "0.4.104.21";
 
+        /// <summary>
+        /// Log message handler delegate.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="errorLevel"></param>
         public delegate void LogHandler(string message, LogMessageErrorLevel errorLevel);
 
-        internal static event LogHandler OnLog;
-
-        internal static void PrintToLog(string message, LogMessageErrorLevel errorLevel = LogMessageErrorLevel.Info)
-        {
-            OnLog?.Invoke(message, errorLevel);
-
-            // Throw an exception if there was an error.
-            if (errorLevel == LogMessageErrorLevel.Error)
-                throw new Exception(message);
-        }
-
-        //private readonly CampaignGenerator CampaignGen;
+        /// <summary>
+        /// Mission generator.
+        /// </summary>
         private readonly MissionGenerator Generator;
 
+        /// <summary>
+        /// Event raised when a message is logged.
+        /// </summary>
+        private static event LogHandler OnMessageLogged;
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="logHandler">Method to call when a message is logged.</param>
         public BriefingRoom(LogHandler logHandler = null)
         {
             using (INIFile ini = new INIFile($"{BRPaths.DATABASE}Common.ini"))
                 TARGETED_DCS_WORLD_VERSION = ini.GetValue("Versions", "DCSVersion", "2.7");
 
-            OnLog += logHandler;
+            OnMessageLogged += logHandler;
             Database.Instance.Initialize();
 
             Generator = new MissionGenerator();
             //CampaignGen = new CampaignGenerator(Database, Generator);
         }
 
-        public DCSMission GenerateMission(string templateFilePath)
-        {
-            return Generator.Generate(new MissionTemplate(templateFilePath));
-        }
-
-        public DCSMission GenerateMission(MissionTemplate template)
-        {
-            return Generator.Generate(template);
-        }
-
-        // public MizFile MissionToMiz(DCSMission mission)
-        // {
-        //     MizFile miz;
-
-        //     using (MizMaker exporter = new MizMaker(Database))
-        //         miz = exporter.ExportToMizFile(mission);
-
-        //     return miz;
-        // }
-
-        public static List<DatabaseEntryInfo> GetDatabaseEntriesInfo(DatabaseEntryType entryType, string parameter = "")
+        /// <summary>
+        /// Returns information about all database entries of a given type.
+        /// </summary>
+        /// <param name="entryType">The type of entry to look for.</param>
+        /// <param name="parameter">A special parameter for certain entry types (e.g. theater an airbase must be located in)</param>
+        /// <returns>An array of <see cref="DatabaseEntryInfo"/></returns>
+        public static DatabaseEntryInfo[] GetDatabaseEntriesInfo(DatabaseEntryType entryType, string parameter = "")
         {
             switch (entryType)
             {
                 case DatabaseEntryType.Airbase:
                     if (string.IsNullOrEmpty(parameter)) // No parameter, return all airbases
-                        return (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>() select airbase.GetDBEntryInfo()).ToList();
+                        return (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>() select airbase.GetDBEntryInfo()).ToArray();
                     else // A parameter was provided, return all airbases from specified theater
-                        return (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>() where airbase.Theater == parameter.ToLowerInvariant() select airbase.GetDBEntryInfo()).ToList();
+                        return (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>() where airbase.Theater == parameter.ToLowerInvariant() select airbase.GetDBEntryInfo()).ToArray();
 
                 case DatabaseEntryType.Coalition:
-                    return (from DBEntryCoalition coalition in Database.Instance.GetAllEntries<DBEntryCoalition>() select coalition.GetDBEntryInfo()).ToList();
+                    return (from DBEntryCoalition coalition in Database.Instance.GetAllEntries<DBEntryCoalition>() select coalition.GetDBEntryInfo()).ToArray();
 
                 case DatabaseEntryType.DCSMod:
-                    return (from DBEntryDCSMod dcsMod in Database.Instance.GetAllEntries<DBEntryDCSMod>() select dcsMod.GetDBEntryInfo()).ToList();
+                    return (from DBEntryDCSMod dcsMod in Database.Instance.GetAllEntries<DBEntryDCSMod>() select dcsMod.GetDBEntryInfo()).ToArray();
 
                 case DatabaseEntryType.MissionFeature:
-                    return (from DBEntryFeatureMission missionFeature in Database.Instance.GetAllEntries<DBEntryFeatureMission>() select missionFeature.GetDBEntryInfo()).ToList();
+                    return (from DBEntryFeatureMission missionFeature in Database.Instance.GetAllEntries<DBEntryFeatureMission>() select missionFeature.GetDBEntryInfo()).ToArray();
 
                 case DatabaseEntryType.ObjectiveFeature:
-                    return (from DBEntryFeatureObjective objectiveFeature in Database.Instance.GetAllEntries<DBEntryFeatureObjective>() select objectiveFeature.GetDBEntryInfo()).ToList();
+                    return (from DBEntryFeatureObjective objectiveFeature in Database.Instance.GetAllEntries<DBEntryFeatureObjective>() select objectiveFeature.GetDBEntryInfo()).ToArray();
 
                 case DatabaseEntryType.ObjectivePreset:
-                    return (from DBEntryObjectivePreset objectivePreset in Database.Instance.GetAllEntries<DBEntryObjectivePreset>() select objectivePreset.GetDBEntryInfo()).ToList();
+                    return (from DBEntryObjectivePreset objectivePreset in Database.Instance.GetAllEntries<DBEntryObjectivePreset>() select objectivePreset.GetDBEntryInfo()).ToArray();
 
                 case DatabaseEntryType.ObjectiveTarget:
-                    return (from DBEntryObjectiveTarget objectiveTarget in Database.Instance.GetAllEntries<DBEntryObjectiveTarget>() select objectiveTarget.GetDBEntryInfo()).ToList();
+                    return (from DBEntryObjectiveTarget objectiveTarget in Database.Instance.GetAllEntries<DBEntryObjectiveTarget>() select objectiveTarget.GetDBEntryInfo()).ToArray();
 
                 case DatabaseEntryType.ObjectiveTargetBehavior:
-                    return (from DBEntryObjectiveTargetBehavior objectiveTargetBehavior in Database.Instance.GetAllEntries<DBEntryObjectiveTargetBehavior>() select objectiveTargetBehavior.GetDBEntryInfo()).ToList();
+                    return (from DBEntryObjectiveTargetBehavior objectiveTargetBehavior in Database.Instance.GetAllEntries<DBEntryObjectiveTargetBehavior>() select objectiveTargetBehavior.GetDBEntryInfo()).ToArray();
 
                 case DatabaseEntryType.ObjectiveTask:
-                    return (from DBEntryObjectiveTask objectiveTask in Database.Instance.GetAllEntries<DBEntryObjectiveTask>() select objectiveTask.GetDBEntryInfo()).ToList();
+                    return (from DBEntryObjectiveTask objectiveTask in Database.Instance.GetAllEntries<DBEntryObjectiveTask>() select objectiveTask.GetDBEntryInfo()).ToArray();
 
                 case DatabaseEntryType.Theater:
-                    return (from DBEntryTheater theater in Database.Instance.GetAllEntries<DBEntryTheater>() select theater.GetDBEntryInfo()).ToList();
+                    return (from DBEntryTheater theater in Database.Instance.GetAllEntries<DBEntryTheater>() select theater.GetDBEntryInfo()).ToArray();
 
                 case DatabaseEntryType.Unit:
-                    return (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>() select unit.GetDBEntryInfo()).ToList();
+                    return (from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>() select unit.GetDBEntryInfo()).ToArray();
 
                 case DatabaseEntryType.UnitCarrier:
-                    return (from DBEntryUnit unitCarrier in Database.Instance.GetAllEntries<DBEntryUnit>() where Toolbox.SHIP_CARRIER_FAMILIES.Intersect(unitCarrier.Families).Count() > 0 select unitCarrier.GetDBEntryInfo()).ToList();
+                    return (from DBEntryUnit unitCarrier in Database.Instance.GetAllEntries<DBEntryUnit>() where Toolbox.SHIP_CARRIER_FAMILIES.Intersect(unitCarrier.Families).Count() > 0 select unitCarrier.GetDBEntryInfo()).ToArray();
 
                 case DatabaseEntryType.UnitFlyableAircraft:
-                    return (from DBEntryUnit unitFlyable in Database.Instance.GetAllEntries<DBEntryUnit>() where unitFlyable.AircraftData.PlayerControllable select unitFlyable.GetDBEntryInfo()).ToList();
+                    return (from DBEntryUnit unitFlyable in Database.Instance.GetAllEntries<DBEntryUnit>() where unitFlyable.AircraftData.PlayerControllable select unitFlyable.GetDBEntryInfo()).ToArray();
 
                 case DatabaseEntryType.WeatherPreset:
-                    return (from DBEntryWeatherPreset weatherPreset in Database.Instance.GetAllEntries<DBEntryWeatherPreset>() select weatherPreset.GetDBEntryInfo()).ToList();                
+                    return (from DBEntryWeatherPreset weatherPreset in Database.Instance.GetAllEntries<DBEntryWeatherPreset>() select weatherPreset.GetDBEntryInfo()).ToArray();
             }
 
-            return new List<DatabaseEntryInfo>{new DatabaseEntryInfo()};
+            return null;
         }
 
-        public static List<string> GetDatabaseEntriesIDs(DatabaseEntryType entryType, string parameter = "")
+        /// <summary>
+        /// Returns the unique IDs of all database entries of a given type.
+        /// </summary>
+        /// <param name="entryType">The type of entry to look for.</param>
+        /// <param name="parameter">A special parameter for certain entry types (e.g. theater an airbase must be located in)</param>
+        /// <returns>An array of strings</returns>
+        public static string[] GetDatabaseEntriesIDs(DatabaseEntryType entryType, string parameter = "")
         {
-            return (from DatabaseEntryInfo entryInfo in GetDatabaseEntriesInfo(entryType, parameter) select entryInfo.ID).ToList();
+            return (from DatabaseEntryInfo entryInfo in GetDatabaseEntriesInfo(entryType, parameter) select entryInfo.ID).ToArray();
+        }
+
+        /// <summary>
+        /// Generates a mission from a BriefingRoom template file.
+        /// </summary>
+        /// <param name="templateFilePath">Path to the BriefingRoom template (.brt) file to use.</param>
+        /// <returns>A DCSMission, or null if mission generation failed.</returns>
+        public DCSMission GenerateMission(string templateFilePath)
+        {
+            return Generator.Generate(new MissionTemplate(templateFilePath));
+        }
+
+        /// <summary>
+        /// Generates a mission from a mission template.
+        /// </summary>
+        /// <param name="template">Mission template from which the mission should be generated.</param>
+        /// <returns>A DCSMission, or null if mission generation failed.</returns>
+        public DCSMission GenerateMission(MissionTemplate template)
+        {
+            return Generator.Generate(template);
+        }
+
+        /// <summary>
+        /// Prints a message to the log.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="errorLevel"></param>
+        internal static void PrintToLog(string message, LogMessageErrorLevel errorLevel = LogMessageErrorLevel.Info)
+        {
+            OnMessageLogged?.Invoke(message, errorLevel);
+
+            // Throw an exception if there was an error.
+            if (errorLevel == LogMessageErrorLevel.Error)
+                throw new BriefingRoomException(message);
         }
 
         /// <summary>
@@ -164,7 +194,7 @@ namespace BriefingRoom4DCS
         /// </summary>
         public void Dispose()
         {
-            //Generator.Dispose();
+            Generator.Dispose();
         }
     }
 }
