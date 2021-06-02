@@ -27,9 +27,6 @@ namespace BriefingRoom4DCS.Template
     /// </summary>
     public enum MissionOption
     {
-        [Display(Name = "Enable debug mode", Description = "Enable debug output and command in the mission.")]
-        DebugMode,
-
         [Display(Name = "Enable civilian traffic", Description = "If true, civilian traffic will be enabled. Can have an impact on performances.")]
         EnableCivilianTraffic,
 
