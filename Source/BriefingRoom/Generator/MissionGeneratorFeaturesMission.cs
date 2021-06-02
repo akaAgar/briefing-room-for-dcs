@@ -45,7 +45,10 @@ namespace BriefingRoom4DCS.Generator
             }
 
             Coordinates pointSearchCenter = Coordinates.Lerp(initialCoordinates, objectivesCenter, featureDB.UnitGroupSpawnDistance);
-            DBEntryTheaterSpawnPoint? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(featureDB.UnitGroupValidSpawnPoints, pointSearchCenter, new MinMaxD(0, 2.5));
+            DBEntryTheaterSpawnPoint? spawnPoint =
+                UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                    featureDB.UnitGroupValidSpawnPoints, pointSearchCenter,
+                    featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.AwayFromMissionArea) ? new MinMaxD(50, 100) : new MinMaxD(0, 2.5));
             if (!spawnPoint.HasValue) // No spawn point found
             {
                 BriefingRoom.PrintToLog($"No spawn point found for mission feature {featureID}.", LogMessageErrorLevel.Warning);

@@ -66,12 +66,12 @@ namespace BriefingRoom4DCS.Generator
             if (FeatureHasUnitGroup(featureDB))
             {
                 UnitMakerGroupFlags groupFlags = 0;
-                if (featureDB.UnitGroupFlags.Contains(FeatureUnitGroupFlags.AlwaysOnMap)) groupFlags = UnitMakerGroupFlags.AlwaysHidden;
-                else if (featureDB.UnitGroupFlags.Contains(FeatureUnitGroupFlags.NeverOnMap)) groupFlags = UnitMakerGroupFlags.NeverHidden;
+                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.AlwaysOnMap)) groupFlags = UnitMakerGroupFlags.AlwaysHidden;
+                else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.NeverOnMap)) groupFlags = UnitMakerGroupFlags.NeverHidden;
 
                 groupInfo = UnitMaker.AddUnitGroup(
                     Toolbox.RandomFrom(featureDB.UnitGroupFamilies), featureDB.UnitGroupSize.GetValue(),
-                    featureDB.UnitGroupFlags.Contains(FeatureUnitGroupFlags.Friendly) ? Side.Ally : Side.Enemy,
+                    featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly) ? Side.Ally : Side.Enemy,
                     featureDB.UnitGroupLuaGroup, featureDB.UnitGroupLuaUnit,
                     coordinates, null, groupFlags, AircraftPayload.Default,
                     extraSettings.ToArray());
@@ -105,7 +105,7 @@ namespace BriefingRoom4DCS.Generator
         protected virtual void GetExtraSettingsFromFeature(ref Dictionary<string, object> extraSettings, T featureDB)
         {
             // TODO: Improve
-            if (featureDB.UnitGroupFlags.Contains(FeatureUnitGroupFlags.TACAN) && (featureDB.UnitGroupFamilies.Length > 0))
+            if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.TACAN) && (featureDB.UnitGroupFamilies.Length > 0))
             {
                 extraSettings.AddIfKeyUnused("TACANFrequency", 1108000000);
                 extraSettings.AddIfKeyUnused("TACANCallsign", $"{GeneratorTools.GetTACANCallsign(featureDB.UnitGroupFamilies[0])}{TACANIndex}");

@@ -61,7 +61,7 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Special flags for this unit group.
         /// </summary>
-        internal FeatureUnitGroupFlags[] UnitGroupFlags { get; private set; }
+        internal FeatureUnitGroupFlags UnitGroupFlags { get; private set; }
 
         /// <summary>
         /// Lua script (loaded from Include\Lua\Units) to use for the spawned unit group.
@@ -122,7 +122,7 @@ namespace BriefingRoom4DCS.Data
 
                 // Unit group
                 UnitGroupFamilies = Toolbox.SetSingleCategoryFamilies(ini.GetValueArray<UnitFamily>("UnitGroup", "Families"));
-                UnitGroupFlags = ini.GetValueArray<FeatureUnitGroupFlags>("UnitGroup", "Flags").Distinct().ToArray();
+                UnitGroupFlags = ini.GetValueArrayAsEnumFlags<FeatureUnitGroupFlags>("UnitGroup", "Flags");
                 UnitGroupLuaGroup = Toolbox.AddMissingFileExtension(ini.GetValue<string>("UnitGroup", "Lua.Group"), ".lua");
                 UnitGroupLuaUnit = Toolbox.AddMissingFileExtension(ini.GetValue<string>("UnitGroup", "Lua.Unit"), ".lua");
                 UnitGroupSize = ini.GetValue<MinMaxI>("UnitGroup", "Size");

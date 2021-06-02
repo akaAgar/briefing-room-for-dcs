@@ -80,8 +80,13 @@ namespace BriefingRoom4DCS.Data
         ManualActivation = 512,
 
         /// <summary>
-        /// This unit requires a TACAN frequency to be generated
+        /// This unit group requires a TACAN frequency to be generated
         /// </summary>
-        TACAN = 1024
+        TACAN = 1024,
+
+        /// <summary>
+        /// This unit group must be spawned away from the mission area
+        /// </summary>
+        AwayFromMissionArea = 2048
     }
 }
