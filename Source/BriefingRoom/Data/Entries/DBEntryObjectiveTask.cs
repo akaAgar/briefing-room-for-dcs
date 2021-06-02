@@ -30,8 +30,9 @@ namespace BriefingRoom4DCS.Data
     {
         /// <summary>
         /// Randomly-parsed string displayed for this task in the briefing.
+        /// Index #0 is singular, index #1 is plural.
         /// </summary>
-        internal string BriefingTask { get; private set; }
+        internal string[] BriefingTask { get; private set; }
 
         /// <summary>
         /// Lua file containing the script checking the task has been completed.
@@ -57,7 +58,9 @@ namespace BriefingRoom4DCS.Data
         {
             using (INIFile ini = new INIFile(iniFilePath))
             {
-                BriefingTask = ini.GetValue<string>("ObjectiveTask", "BriefingTask");
+                BriefingTask = new string[2];
+                BriefingTask[0] = ini.GetValue<string>("ObjectiveTask", "BriefingTask.Singular");
+                BriefingTask[1] = ini.GetValue<string>("ObjectiveTask", "BriefingTask.Plural");
                 CompletionTriggerLua = Toolbox.AddMissingFileExtension(ini.GetValue<string>("ObjectiveTask", "CompletionTriggerLua"), ".lua");
                 if (!File.Exists($"{BRPaths.INCLUDE_LUA_OBJECTIVESTRIGGERS}{CompletionTriggerLua}"))
                 {
