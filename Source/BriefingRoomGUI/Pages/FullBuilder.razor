@@ -4,6 +4,7 @@
 @using BriefingRoom4DCS.Data
 @using BriefingRoom4DCS.Template
 @using BriefingRoom4DCS.Generator
+@using BriefingRoom4DCS.Mission
 @using System.Globalization
 @using System.Linq
 @using Blazored.Typeahead
@@ -90,7 +91,7 @@
                                 }
                             </InputSelect>
                         </div>
-                        <div class="form-group">
+                        @* <div class="form-group"> //REDUNDANT?
                             <label>Countries coalition</label>
                             <InputSelect class="form-control" @bind-Value="Template.ContextTheaterCountriesCoalitions">
                                 @foreach (var value in Enum.GetValues(typeof(CountryCoalition)))
@@ -98,7 +99,7 @@
                                     <option value="@value">@value</option>
                                 }
                             </InputSelect>
-                        </div>
+                        </div> *@
                     </div>
                     break;
                 case "environment": 
@@ -125,6 +126,7 @@
                         <div class="form-group">
                             <label>Weather Preset</label>
                             <InputSelect class="form-control" @bind-Value="Template.EnvironmentWeatherPreset">
+                                <option value="">Random</option>
                                 @foreach (var value in BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.WeatherPreset))
                                 {
                                     <option value="@value.ID">@value.Name</option>
@@ -149,7 +151,7 @@
                             <label>Objective distance</label>
                             <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistance" ></InputNumber>
                         </div>
-                        <div class="form-group">
+                        @* <div class="form-group"> //REDUNDANT?
                             <label>Objectives locations</label>
                             <InputSelect class="form-control" @bind-Value="Template.FlightPlanObjectivesLocation">
                                 @foreach (var value in Enum.GetValues(typeof(ObjectiveCountryLocation)))
@@ -157,7 +159,7 @@
                                     <option value="@value">@value</option>
                                 }
                             </InputSelect>
-                        </div>
+                        </div> *@
                         <div class="form-group">
                             <label>Starting airbase</label>
                             <InputSelect class="form-control" @bind-Value="Template.FlightPlanTheaterStartingAirbase">
@@ -396,14 +398,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Carrier</label>
-                                        TODO: Get List Of Carriers
-                                        @* <InputSelect class="form-control" @bind-Value="flight.Carrier">
+                                        <InputSelect class="form-control" @bind-Value="flight.Carrier">
                                             <option value="">N/A</option>
-                                            @foreach (var value in BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.Carrier))
+                                            @foreach (var value in BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.UnitCarrier))
                                             {
                                                 <option value="@value.ID">@value.Name</option>
                                             }
-                                        </InputSelect> *@
+                                        </InputSelect>
                                     </div>
                                     <div class="form-group">
                                         <label>Country</label>
@@ -439,10 +440,10 @@
             }
         </EditForm>
     </div>
-    @if(!String.IsNullOrEmpty(mission.BriefingHTML)){
+    @if(mission != null){
         <div class="generator-preview">
                 <button class="btn btn-primary form-control" @onclick="DownloadMission">DownloadMission</button>
-            <div>@((MarkupString)mission.BriefingHTML)</div>
+            <div>@((MarkupString)mission.Briefing.GetBriefingAsHTML(false))</div>
         </div>
     }
 </div>
@@ -455,7 +456,7 @@
     private DCSMission mission;
 
     private TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         Template = new MissionTemplate();
         flightGroupTab = Template.PlayerFlightGroups[0];
@@ -471,7 +472,7 @@
         byte[] zipBytes = mission.SaveToMizBytes();
         if (zipBytes == null) return; // Something went wrong during the .miz export
 
-        await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{mission.Name}.miz", "application/octet-stream", zipBytes);
+        await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{mission.Briefing.Name}.miz", "application/octet-stream", zipBytes);
     }
 
     private string tab = "context";
@@ -505,14 +506,12 @@
         MissionTemplateFlightGroup flight = new();
         flightGroupTab = flight;
         Template.PlayerFlightGroups.Add(flight);
-        Template.MissionType = MissionType.Multiplayer;
     }
 
      private void RemoveFlightGroup(MissionTemplateFlightGroup flight)
     {
         Template.PlayerFlightGroups.Remove(flight);
         if(Template.PlayerFlightGroups.Count == 1){
-            Template.MissionType = MissionType.SinglePlayer;
             flightGroupTab = Template.PlayerFlightGroups[0];
         }
     }
