@@ -35,10 +35,7 @@ namespace BriefingRoom4DCS.Generator
         /// <summary>
         /// Constructor.
         /// </summary>
-        internal MissionGenerator()
-        {
-
-        }
+        internal MissionGenerator() { }
 
         /// <summary>
         /// Generates a DCS World mission from a mission template.
@@ -66,20 +63,21 @@ namespace BriefingRoom4DCS.Generator
             // Get required database entries here, so we don't have to look for them each time they're needed.
             DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
             DBEntryCoalition[] coalitionsDB = new DBEntryCoalition[]
-                {
-                    Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionBlue),
-                    Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionRed)
-                };
+            {
+                Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionBlue),
+                Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionRed)
+            };
 
             // Copy values from the template
-            mission.SetValue("TheaterID", theaterDB.DCSID);
-            mission.SetValue("DebugMode", template.OptionsMission.Contains(MissionOption.DebugMode));
             mission.SetValue("BriefingAllyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition].UIDisplayName);
             mission.SetValue("BriefingEnemyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition.GetEnemy()].UIDisplayName);
+            mission.SetValue("EnableAudioRadioMessages", !template.OptionsMission.Contains(MissionOption.RadioMessagesTextOnly));
+            mission.SetValue("LuaPlayerCoalition", $"coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}");
+            mission.SetValue("TheaterID", theaterDB.DCSID);
 
             // Add common media files
             foreach (string oggFile in Database.Instance.Common.CommonOGG)
-                mission.AddMediaFile(oggFile, $"{BRPaths.INCLUDE_OGG}{oggFile}");
+                mission.AddMediaFile(oggFile, $"{BRPaths.INCLUDE_OGG}{Toolbox.AddMissingFileExtension(oggFile, ".ogg")}");
 
             Country[][] coalitionsCountries;
             // Generate list of countries for each coalition
