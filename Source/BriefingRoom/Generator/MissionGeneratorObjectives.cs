@@ -139,7 +139,7 @@ namespace BriefingRoom4DCS.Generator
             mission.AppendValue("ScriptObjectives", objectiveLua);
 
             // Add objective trigger Lua for this objective
-            string triggerLua = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA_OBJECTIVESTRIGGERS}{taskDB.CompletionTriggerLua}");
+            string triggerLua = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA_OBJECTIVETRIGGERS}{taskDB.CompletionTriggerLua}");
             GeneratorTools.ReplaceKey(ref triggerLua, "ObjectiveIndex", objectiveIndex + 1);
             mission.AppendValue("ScriptObjectivesTriggers", triggerLua);
 

@@ -85,7 +85,7 @@ namespace BriefingRoom4DCS
         /// <summary>
         /// Path to the Include\Lua\ObjectivesTriggers subdirectory.
         /// </summary>
-        public static string INCLUDE_LUA_OBJECTIVESTRIGGERS { get; } = $"{INCLUDE_LUA}ObjectivesTriggers\\";
+        public static string INCLUDE_LUA_OBJECTIVETRIGGERS { get; } = $"{INCLUDE_LUA}ObjectiveTriggers\\";
 
         /// <summary>
         /// Path to the Include\Lua\Mission subdirectory.
