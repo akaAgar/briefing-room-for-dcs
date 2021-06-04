@@ -1,5 +1,5 @@
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationCoordinates = function()
-  briefingRoom.radioManager.play("Required update on target coordinates.", "RadioPilotTargetCoordinates")
+  briefingRoom.radioManager.play("Require update on target coordinates.", "RadioPilotTargetCoordinates")
     
   local unit = dcsExtensions.getAliveUnitInGroup(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].groupID)
     

@@ -99,7 +99,7 @@ namespace BriefingRoom4DCS.Mission
 
         internal void SetValue(string key, bool value)
         {
-            SetValue(key, value.ToString(NumberFormatInfo.InvariantInfo), false);
+            SetValue(key, value.ToString(NumberFormatInfo.InvariantInfo).ToLowerInvariant(), false);
         }
 
         internal void SetValue(string key, string value)
