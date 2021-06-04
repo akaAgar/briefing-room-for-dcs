@@ -23,6 +23,7 @@ using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
@@ -77,7 +78,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Add common media files
             foreach (string oggFile in Database.Instance.Common.CommonOGG)
-                mission.AddMediaFile(oggFile, $"{BRPaths.INCLUDE_OGG}{Toolbox.AddMissingFileExtension(oggFile, ".ogg")}");
+                mission.AddMediaFile(Toolbox.AddMissingFileExtension(oggFile, ".ogg"), $"{BRPaths.INCLUDE_OGG}{Toolbox.AddMissingFileExtension(oggFile, ".ogg")}");
 
             Country[][] coalitionsCountries;
             // Generate list of countries for each coalition
@@ -176,7 +177,12 @@ namespace BriefingRoom4DCS.Generator
                 for (i = 0; i  < template.MissionFeatures.Count; i++)
                     missionFeaturesGenerator.GenerateMissionFeature(mission, template.MissionFeatures[i], i, playerAirbase.Coordinates, objectivesCenter);
 
-            mission.SetValue("ResourcesOGGFiles", ""); // TODO
+            // Add ogg files to the media files dictionary
+            foreach (string mediaFile in mission.GetMediaFileNames())
+            {
+                if (!mediaFile.ToLowerInvariant().EndsWith(".ogg")) continue; // Not an .ogg file
+                mission.AppendValue("MapResourcesFiles", $"[\"ResKey_Snd_{Path.GetFileNameWithoutExtension(mediaFile)}\"] = \"{mediaFile}\",\n");
+            }
 
             // Get unit tables from the unit maker (must be done after all units are generated)
             mission.SetValue("CountriesBlue", unitMaker.GetUnitsLuaTable(Coalition.Blue));

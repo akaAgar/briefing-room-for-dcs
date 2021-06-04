@@ -133,14 +133,14 @@ namespace BriefingRoom4DCS.Mission
 
         internal void AddMediaFile(string fileName, string sourceFilePath)
         {
-            if (MediaFiles.ContainsKey(fileName)) return;
+            if (string.IsNullOrEmpty(fileName) || MediaFiles.ContainsKey(fileName)) return;
             if (!File.Exists(sourceFilePath)) return;
             MediaFiles.Add(fileName, sourceFilePath);
         }
 
         internal void AddMediaFile(string fileName, byte[] mediaFileBytes)
         {
-            if (MediaFiles.ContainsKey(fileName)) return;
+            if (string.IsNullOrEmpty(fileName) || MediaFiles.ContainsKey(fileName)) return;
             MediaFiles.Add(fileName, mediaFileBytes);
         }
 
