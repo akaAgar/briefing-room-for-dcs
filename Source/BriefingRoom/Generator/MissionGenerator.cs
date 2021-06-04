@@ -184,7 +184,7 @@ namespace BriefingRoom4DCS.Generator
                 mission.AppendValue("MapResourcesFiles", $"[\"ResKey_Snd_{Path.GetFileNameWithoutExtension(mediaFile)}\"] = \"{mediaFile}\",\n");
             }
 
-            // Get unit tables from the unit maker (must be done after all units are generated)
+            // Get unit tables from the unit maker (MUST BE DONE AFTER ALL UNITS ARE GENERATED)
             mission.SetValue("CountriesBlue", unitMaker.GetUnitsLuaTable(Coalition.Blue));
             mission.SetValue("CountriesRed", unitMaker.GetUnitsLuaTable(Coalition.Red));
 
@@ -207,6 +207,7 @@ namespace BriefingRoom4DCS.Generator
                 warehousesGenerator.GenerateWarehouses(mission);
 
             // Generate image files
+            BriefingRoom.PrintToLog("Generating images...");
             using (MissionGeneratorImages imagesGenerator = new MissionGeneratorImages())
                 imagesGenerator.GenerateTitle(mission, template);
 
