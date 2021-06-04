@@ -182,7 +182,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link @(ObjectiveTab == value ? "active" : "")" aria-current="page"
                             @onclick='() => SetObjectiveTab(value)'>
-                                        @value.Task = @value.Target
+                                        @GetObjectiveTypeDisplayName(value.Task) @value.TargetBehavior @GetObjectiveTargetDisplayName(value.Target)
                                         @if (Template.Objectives.Count > 1)
                                         {
                                             <a class="delete-flight" @onclick="() =>  RemoveObjective(value)">x</a>
@@ -200,6 +200,7 @@
                             if (ObjectiveTab == objective)
                             {
                                 <div class="flight-group">
+                                    <button class="btn btn-secondary" @onclick="() => CloneObjective(objective)">Clone</button>
                                     <div class="form-group">
                                         <label>Task</label>
                                         <InputSelect class="form-control" @bind-Value="objective.Task">
@@ -560,6 +561,18 @@
         Template.Objectives.Add(obj);
     }
 
+    private void CloneObjective(MissionTemplateObjective obj) {
+        MissionTemplateObjective newObj = new(){
+            Target = obj.Target,
+            TargetBehavior = obj.TargetBehavior,
+            TargetCount = obj.TargetCount,
+            Task = obj.Task,
+            Options = obj.Options
+        };
+        ObjectiveTab = newObj;
+        Template.Objectives.Add(newObj);
+    }
+
     private void RemoveObjective(MissionTemplateObjective obj)
     {
         Template.Objectives.Remove(obj);
@@ -577,6 +590,9 @@
     await Typeahead.SearchDB(DatabaseEntryType.ObjectiveTask, searchText);
     private string GetObjectiveTypeDisplayName(string id) =>
     Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTask, id);
+
+    private string GetObjectiveTargetDisplayName(string id) =>
+    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTarget, id);
 
     private async Task<IEnumerable<DatabaseEntryInfo>> SearchCoalition(string searchText) =>
     await Typeahead.SearchDB(DatabaseEntryType.Coalition, searchText);

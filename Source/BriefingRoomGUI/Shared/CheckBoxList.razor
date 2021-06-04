@@ -1,6 +1,6 @@
 @typeparam TItem  
 @typeparam TItemOutput
-<div style=@Style>  
+<div style=@Style class="checkboxList">  
     @if (Data != null)  
     {  
         foreach (var item in Data)  
@@ -12,10 +12,10 @@
             {  
                 Checked = true;  
             }
-            <label>  
+            <label class="checkboxList-item">  
                 <input type="checkbox" checked=@Checked  
                     @onchange="eventArgs => { CheckboxClicked((TItemOutput)Value, eventArgs.Value); }" />  
-                @Text
+                <span>@Text</span>
             </label><br />  
         }  
     }  
