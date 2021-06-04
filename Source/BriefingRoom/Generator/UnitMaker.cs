@@ -1,4 +1,5 @@
 ﻿using BriefingRoom4DCS.Data;
+using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,7 @@ namespace BriefingRoom4DCS.Generator
         private const double SHIP_UNIT_SPACING = 100.0;
         private const double VEHICLE_UNIT_SPACING = 20.0;
 
+        private readonly DCSMission Mission;
         private readonly MissionTemplate Template;
         private readonly DBEntryCoalition[] CoalitionsDB;
         private readonly Coalition PlayerCoalition;
@@ -47,13 +49,14 @@ namespace BriefingRoom4DCS.Generator
         internal UnitMakerCallsignGenerator CallsignGenerator { get; }
 
         internal UnitMaker(
-            MissionTemplate template,
+            DCSMission mission, MissionTemplate template,
             DBEntryCoalition[] coalitionsDB, DBEntryTheater theaterDB,
             Coalition playerCoalition, Country[][] coalitionsCountries)
         {
             CallsignGenerator = new UnitMakerCallsignGenerator(coalitionsDB);
             SpawnPointSelector = new UnitMakerSpawnPointSelector(theaterDB);
 
+            Mission = mission;
             Template = template;
 
             CoalitionsDB = coalitionsDB;
@@ -196,6 +199,11 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.ReplaceKey(ref lua, "RadioBand", (int)firstUnitDB.AircraftData.RadioModulation);
                 GeneratorTools.ReplaceKey(ref lua, "RadioFrequency", firstUnitDB.AircraftData.RadioFrequency);
                 GeneratorTools.ReplaceKey(ref lua, "Speed", firstUnitDB.AircraftData.CruiseSpeed);
+
+                if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ImmediateAircraftSpawn))
+                    Mission.AppendValue("AircraftActivatorCurrentQueue", $"{GroupID},");
+                else
+                    Mission.AppendValue("AircraftActivatorExtraQueue", $"{GroupID},");
             }
 
             GeneratorTools.ReplaceKey(ref lua, "UnitID", firstUnitID); // Must be after units are added

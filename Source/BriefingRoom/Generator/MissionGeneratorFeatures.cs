@@ -66,8 +66,13 @@ namespace BriefingRoom4DCS.Generator
             if (FeatureHasUnitGroup(featureDB))
             {
                 UnitMakerGroupFlags groupFlags = 0;
-                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.AlwaysOnMap)) groupFlags = UnitMakerGroupFlags.AlwaysHidden;
-                else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.NeverOnMap)) groupFlags = UnitMakerGroupFlags.NeverHidden;
+                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.AlwaysOnMap))
+                    groupFlags |= UnitMakerGroupFlags.AlwaysHidden;
+                else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.NeverOnMap))
+                    groupFlags |= UnitMakerGroupFlags.NeverHidden;
+
+                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ImmediateAircraftActivation))
+                    groupFlags |= UnitMakerGroupFlags.ImmediateAircraftSpawn;
 
                 groupInfo = UnitMaker.AddUnitGroup(
                     Toolbox.RandomFrom(featureDB.UnitGroupFamilies), featureDB.UnitGroupSize.GetValue(),

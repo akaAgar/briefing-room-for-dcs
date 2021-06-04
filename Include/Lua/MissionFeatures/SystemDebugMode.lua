@@ -82,11 +82,9 @@ end
 do
   briefingRoom.f10Menu.debug = missionCommands.addSubMenu("(DEBUG MENU)", nil)
   missionCommands.addCommand("Destroy target unit", briefingRoom.f10Menu.debug, briefingRoom.f10MenuCommands.debug.destroyTargetUnit)
+  missionCommands.addCommand("Simulate player takeoff (start mission)", briefingRoom.f10Menu.debug, briefingRoom.mission.coreFunctions.beginMission)
 
-  -- briefingRoom.extensions.debug.menu = missionCommands.addSubMenu("(DEBUG MENU)", nil)
-  -- missionCommands.addCommand("Destroy target unit", briefingRoom.extensions.debug.menu, briefingRoom.extensions.debug.destroyTargetUnit)
   -- missionCommands.addCommand("Destroy enemy unit", briefingRoom.extensions.debug.menu, briefingRoom.extensions.debug.destroyEnemyUnit)
   -- missionCommands.addCommand("Destroy enemy structure", briefingRoom.extensions.debug.menu, briefingRoom.extensions.debug.destroyEnemyStructure)
-  -- missionCommands.addCommand("Simulate player takeoff", briefingRoom.extensions.debug.menu, briefingRoom.mission.functions.beginMission)
   -- missionCommands.addCommand("Activate all aircraft groups", briefingRoom.extensions.debug.menu, briefingRoom.extensions.debug.activateAllAircraft)
 end

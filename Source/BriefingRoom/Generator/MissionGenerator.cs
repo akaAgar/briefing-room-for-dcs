@@ -75,6 +75,8 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("EnableAudioRadioMessages", !template.OptionsMission.Contains(MissionOption.RadioMessagesTextOnly));
             mission.SetValue("LuaPlayerCoalition", $"coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}");
             mission.SetValue("TheaterID", theaterDB.DCSID);
+            mission.SetValue("AircraftActivatorCurrentQueue", ""); // Just to make sure aircraft spawning group queue is empty
+            mission.SetValue("AircraftActivatorExtraQueue", ""); // Just to make sure aircraft spawning group queue is empty
 
             // Add common media files
             foreach (string oggFile in Database.Instance.Common.CommonOGG)
@@ -86,7 +88,7 @@ namespace BriefingRoom4DCS.Generator
                 coalitionsCountries = countriesGenerator.GenerateCountries(mission, template);
 
             // Create unit maker
-            UnitMaker unitMaker = new UnitMaker(template, coalitionsDB, theaterDB, template.ContextPlayerCoalition, coalitionsCountries);
+            UnitMaker unitMaker = new UnitMaker(mission, template, coalitionsDB, theaterDB, template.ContextPlayerCoalition, coalitionsCountries);
 
             // Generate mission date and time
             Month month;

@@ -57,7 +57,7 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// force delay of spawn till after takeoff
         /// </summary>
-        DelaySpawn =32,
+        DelaySpawn = 32,
 
         /// <summary>
         /// Sets waypoint to objective
@@ -87,6 +87,11 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// This unit group must be spawned away from the mission area
         /// </summary>
-        AwayFromMissionArea = 2048
+        AwayFromMissionArea = 2048,
+
+        /// <summary>
+        /// Aircraft should be immediately activated when the first player takes off.
+        /// </summary>
+        ImmediateAircraftActivation = 4096
     }
 }

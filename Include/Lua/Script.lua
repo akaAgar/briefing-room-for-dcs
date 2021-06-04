@@ -29,6 +29,9 @@
 --     1.2.4 - Table extensions
 --   1.3 - DCS World extensions
 -- 2 - Tools
+--   2.1 - Radio manager
+--   2.2 - Aircraft activator
+--   2.3 - Event handler
 
 -- ***********************************************************************************
 -- * 1 - CORE FUNCTIONS                                                              *
@@ -496,12 +499,76 @@ function briefingRoom.radioManager.doRadioMessage(args, time)
 end
 
 -- ===================================================================================
--- 2.2 - EVENT HANDLER: common event handler used during the mission
+-- 2.2 - AIRCRAFT ACTIVATOR: activates aircraft flight groups gradually during the mission
+-- ===================================================================================
+
+briefingRoom.aircraftActivator = { }
+briefingRoom.aircraftActivator.INTERVAL = { 10, 20 } -- min/max interval (in seconds) between two updates
+briefingRoom.aircraftActivator.currentQueue = { $AIRCRAFTACTIVATORCURRENTQUEUE$ } -- current queue of aircraft group IDs to spawn every INTERVAL seconds
+briefingRoom.aircraftActivator.extraQueues = { $AIRCRAFTACTIVATOREXTRAQUEUE$ } -- additional aircraft group IDs to be added to the queue later
+
+function briefingRoom.aircraftActivator.getRandomInterval()
+  return math.random(briefingRoom.aircraftActivator.INTERVAL[1], briefingRoom.aircraftActivator.INTERVAL[2])
+end
+
+function briefingRoom.aircraftActivator.pushNextQueue()
+  if #briefingRoom.aircraftActivator.extraQueues == 0 then -- no extra queues available
+    briefingRoom.debugPrint("Tried to push extra aircraft to the activation queue, but found none")
+    return
+  end
+
+  -- add aircraft in the next extra queue to the current queue
+  for _,g in ipairs(briefingRoom.aircraftActivator.extraQueues[1]) do
+    briefingRoom.debugPrint("Pushed aircraft group #"..tostring(g).." into the activation queue")
+    table.insert(briefingRoom.aircraftActivator.currentQueue, g)
+  end
+  table.remove(briefingRoom.aircraftActivator.extraQueues, 1) -- remove the added extra queue
+end
+
+function briefingRoom.aircraftActivator.spawnGroup(groupID)
+  local acGroup = dcsExtensions.getGroupByID(groupID) -- get the group
+  if acGroup ~= nil then -- activate the group, if it exists
+    acGroup:activate()
+    briefingRoom.debugPrint("Activating aircraft group "..acGroup:getName())
+  else
+    briefingRoom.debugPrint("Failed to activate aircraft group "..tostring(briefingRoom.aircraftActivator.currentQueue[1]))
+  end
+  return nil
+end
+
+-- Every INTERVAL seconds, check for aircraft groups to activate in the queue
+function briefingRoom.aircraftActivator.update(args, time)
+  briefingRoom.debugPrint("Looking for aircraft groups to activate, found "..tostring(#briefingRoom.aircraftActivator.currentQueue), 1)
+  if #briefingRoom.aircraftActivator.currentQueue == 0 then -- no aircraft in the queue at the moment
+    return time + briefingRoom.aircraftActivator.getRandomInterval() -- schedule next update and return
+  end
+
+  local acGroup = dcsExtensions.getGroupByID(briefingRoom.aircraftActivator.currentQueue[1]) -- get the group
+  if acGroup ~= nil then -- activate the group, if it exists
+    acGroup:activate()
+    briefingRoom.debugPrint("Activating aircraft group "..acGroup:getName())
+  else
+    briefingRoom.debugPrint("Failed to activate aircraft group "..tostring(briefingRoom.aircraftActivator.currentQueue[1]))
+  end
+  table.remove(briefingRoom.aircraftActivator.currentQueue, 1) -- remove the ID from the queue
+
+  return time + briefingRoom.aircraftActivator.getRandomInterval() -- schedule next update
+end
+
+-- ===================================================================================
+-- 2.3 - EVENT HANDLER: common event handler used during the mission
 -- ===================================================================================
 
 briefingRoom.eventHandler = {}
 
 function briefingRoom.eventHandler:onEvent(event)
+
+  if event.id == world.event.S_EVENT_TAKEOFF then -- unit took off
+    if event.initiator:getPlayerName() ~= nil then -- unit is a pleyr
+      briefingRoom.mission.functions.beginMission() -- first player to take off triggers the mission start
+    end
+  end
+
   -- Pass the event to the completion trigger of all objectives that have one
   for i=1,#briefingRoom.mission.objectives do
     if briefingRoom.mission.objectiveTriggers[i] ~= nil then
@@ -516,15 +583,16 @@ end
 
 briefingRoom.mission = {} -- Main BriefingRoom mission table
 briefingRoom.mission.complete = false -- Is the mission complete?
+briefingRoom.mission.hasStarted = false -- has at least one player taken off?
 
 -- =============================================
 -- Mission core functions
 -- =============================================
 
-briefingRoom.mission = { }
+briefingRoom.mission.coreFunctions = { }
 
 -- Marks objective index as complete, and completes the mission itself if all objectives are complete
-function briefingRoom.mission.completeObjective(index)
+function briefingRoom.mission.coreFunctions.completeObjective(index)
   if briefingRoom.mission.complete then return end -- mission already complete
   if briefingRoom.mission.objectives[index].complete then return end -- objective already complete
 
@@ -548,6 +616,17 @@ function briefingRoom.mission.completeObjective(index)
   else
     briefingRoom.radioManager.play("Good job! Objective complete, proceed to next objective.", "RadioHQObjectiveComplete", math.random(6, 8))
   end
+end
+
+-- Begins the mission (called when the first player takes off)
+function briefingRoom.mission.coreFunctions.beginMission()
+  if briefingRoom.mission.hasStarted then return end -- mission has already started, do nothing
+
+  briefingRoom.debugPrint("Mission has started")
+
+  -- enable the aircraft activator and start spawning aircraft
+  briefingRoom.mission.hasStarted = true   
+  timer.scheduleFunction(briefingRoom.aircraftActivator.update, nil, timer.getTime() + briefingRoom.aircraftActivator.getRandomInterval())
 end
 
 -- =============================================

@@ -55,7 +55,13 @@ namespace BriefingRoom4DCS.Mission
         {
             if (rawText == null) return null;
 
-            foreach (KeyValuePair<string, string> keyPair in Values)
+            foreach (KeyValuePair<string, string> keyPair in Values) // Replace included scripts first so later replacements (objective count, player coalition, etc) will be applied to them too
+            {
+                if (!keyPair.Key.ToLowerInvariant().StartsWith("script")) continue;
+                rawText = rawText.Replace($"${keyPair.Key.ToUpperInvariant()}$", keyPair.Value);
+            }
+
+            foreach (KeyValuePair<string, string> keyPair in Values) // Replace other values
                 rawText = rawText.Replace($"${keyPair.Key.ToUpperInvariant()}$", keyPair.Value);
 
             return rawText;

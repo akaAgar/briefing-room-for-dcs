@@ -25,8 +25,24 @@ namespace BriefingRoom4DCS.Generator
     [Flags]
     internal enum UnitMakerGroupFlags
     {
+        /// <summary>
+        /// Unit is always hidden.
+        /// </summary>
         AlwaysHidden = 1,
+
+        /// <summary>
+        /// First unit of this group is of skill "Player". Others use the normal group skill level.
+        /// </summary>
         FirstUnitIsPlayer = 2,
-        NeverHidden = 4,
+
+        /// <summary>
+        /// Aircraft should be added to the queue of aircraft to be spawned immediately on player takeoff, and not spawned later during the mission.
+        /// </summary>
+        ImmediateAircraftSpawn = 4,
+
+        /// <summary>
+        /// Unit is always visible.
+        /// </summary>
+        NeverHidden = 8,
     }
 }
