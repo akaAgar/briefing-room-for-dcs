@@ -1,22 +1,16 @@
 briefingRoom.f10MenuCommands.debug = { } -- Create F10 debug sub-menu
 briefingRoom.printDebugMessages = true -- Enable debug messages
 
--- briefingRoom.extensions.debug = { }
+function briefingRoom.f10MenuCommands.debug.activateAllAircraft()
+  if #briefingRoom.aircraftActivator.reserveQueue == 0 then
+    briefingRoom.debugPrint("No groups in the reserve queue")
+    return
+  end
 
--- function briefingRoom.extensions.debug.activateAllAircraft()
-  -- local activatedOk = { }
-  -- local activatedFailed = { }
-
-  -- Dump all extra queues into the current queue
-  -- if #briefingRoom.aircraftActivator.extraQueues > 0 then
-    -- for _,queue in ipairs(briefingRoom.aircraftActivator.extraQueues) do
-      -- for __,g in ipairs(queue) do
-        -- table.insert(briefingRoom.aircraftActivator.currentQueue, g)
-      -- end
-    -- end
-
-    -- briefingRoom.aircraftActivator.extraQueues = { }
-  -- end
+  while #briefingRoom.aircraftActivator.reserveQueue > 0 do
+    briefingRoom.aircraftActivator.pushFromReserveQueue()
+  end
+end
 
   -- activate all groups in the current queue
   -- for _,g in ipairs(briefingRoom.aircraftActivator.currentQueue) do
@@ -83,8 +77,8 @@ do
   briefingRoom.f10Menu.debug = missionCommands.addSubMenu("(DEBUG MENU)", nil)
   missionCommands.addCommand("Destroy target unit", briefingRoom.f10Menu.debug, briefingRoom.f10MenuCommands.debug.destroyTargetUnit)
   missionCommands.addCommand("Simulate player takeoff (start mission)", briefingRoom.f10Menu.debug, briefingRoom.mission.coreFunctions.beginMission)
+  missionCommands.addCommand("Activate all aircraft groups", briefingRoom.f10Menu.debug, briefingRoom.f10MenuCommands.debug.activateAllAircraft)
 
   -- missionCommands.addCommand("Destroy enemy unit", briefingRoom.extensions.debug.menu, briefingRoom.extensions.debug.destroyEnemyUnit)
   -- missionCommands.addCommand("Destroy enemy structure", briefingRoom.extensions.debug.menu, briefingRoom.extensions.debug.destroyEnemyStructure)
-  -- missionCommands.addCommand("Activate all aircraft groups", briefingRoom.extensions.debug.menu, briefingRoom.extensions.debug.activateAllAircraft)
 end

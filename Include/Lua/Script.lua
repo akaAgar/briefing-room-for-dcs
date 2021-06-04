@@ -505,24 +505,26 @@ end
 briefingRoom.aircraftActivator = { }
 briefingRoom.aircraftActivator.INTERVAL = { 10, 20 } -- min/max interval (in seconds) between two updates
 briefingRoom.aircraftActivator.currentQueue = { $AIRCRAFTACTIVATORCURRENTQUEUE$ } -- current queue of aircraft group IDs to spawn every INTERVAL seconds
-briefingRoom.aircraftActivator.extraQueues = { $AIRCRAFTACTIVATOREXTRAQUEUE$ } -- additional aircraft group IDs to be added to the queue later
+briefingRoom.aircraftActivator.reserveQueue = { $AIRCRAFTACTIVATORRESERVEQUEUE$ } -- additional aircraft group IDs to be added to the queue later
 
 function briefingRoom.aircraftActivator.getRandomInterval()
   return math.random(briefingRoom.aircraftActivator.INTERVAL[1], briefingRoom.aircraftActivator.INTERVAL[2])
 end
 
-function briefingRoom.aircraftActivator.pushNextQueue()
-  if #briefingRoom.aircraftActivator.extraQueues == 0 then -- no extra queues available
+function briefingRoom.aircraftActivator.pushFromReserveQueue()
+  if #briefingRoom.aircraftActivator.reserveQueue == 0 then -- no extra queues available
     briefingRoom.debugPrint("Tried to push extra aircraft to the activation queue, but found none")
     return
   end
 
-  -- add aircraft in the next extra queue to the current queue
-  for _,g in ipairs(briefingRoom.aircraftActivator.extraQueues[1]) do
-    briefingRoom.debugPrint("Pushed aircraft group #"..tostring(g).." into the activation queue")
-    table.insert(briefingRoom.aircraftActivator.currentQueue, g)
+  -- add aircraft groups from the reserve queue to the current queue
+  local numberOfGroupsToAdd = math.max(1, math.min(briefingRoom.aircraftActivator.reserveQueueInitialCount / (#briefingRoom.mission.objectives + 1), #briefingRoom.aircraftActivator.reserveQueue))
+
+  for i=0,numberOfGroupsToAdd do
+    briefingRoom.debugPrint("Pushed aircraft group #"..tostring(briefingRoom.aircraftActivator.reserveQueue[1]).." into the activation queue")
+    table.insert(briefingRoom.aircraftActivator.currentQueue, briefingRoom.aircraftActivator.reserveQueue[1])
+    table.remove(briefingRoom.aircraftActivator.reserveQueue, 1)
   end
-  table.remove(briefingRoom.aircraftActivator.extraQueues, 1) -- remove the added extra queue
 end
 
 function briefingRoom.aircraftActivator.spawnGroup(groupID)
@@ -554,6 +556,8 @@ function briefingRoom.aircraftActivator.update(args, time)
 
   return time + briefingRoom.aircraftActivator.getRandomInterval() -- schedule next update
 end
+
+briefingRoom.aircraftActivator.reserveQueueInitialCount = #briefingRoom.aircraftActivator.reserveQueue
 
 -- ===================================================================================
 -- 2.3 - EVENT HANDLER: common event handler used during the mission
@@ -599,7 +603,7 @@ function briefingRoom.mission.coreFunctions.completeObjective(index)
   briefingRoom.debugPrint("Objective "..tostring(index).." marked as complete")
   briefingRoom.mission.objectives[index].complete = true
   briefingRoom.mission.objectivesLeft = briefingRoom.mission.objectivesLeft - 1
-  -- TODO: briefingRoom.aircraftActivator.pushNextQueue() -- activate next batch of aircraft (so more enemy CAP will pop up)
+  briefingRoom.aircraftActivator.pushFromReserveQueue() -- activate next batch of aircraft (so more CAP will pop up)
 
   -- Add a little delay before playing the "mission/objective complete" sounds to make sure all "target destroyed", "target photographed", etc. sounds are done playing
   if briefingRoom.mission.objectivesLeft <= 0 then
@@ -625,7 +629,8 @@ function briefingRoom.mission.coreFunctions.beginMission()
   briefingRoom.debugPrint("Mission has started")
 
   -- enable the aircraft activator and start spawning aircraft
-  briefingRoom.mission.hasStarted = true   
+  briefingRoom.mission.hasStarted = true
+  briefingRoom.aircraftActivator.pushFromReserveQueue()
   timer.scheduleFunction(briefingRoom.aircraftActivator.update, nil, timer.getTime() + briefingRoom.aircraftActivator.getRandomInterval())
 end
 

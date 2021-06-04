@@ -75,8 +75,8 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("EnableAudioRadioMessages", !template.OptionsMission.Contains(MissionOption.RadioMessagesTextOnly));
             mission.SetValue("LuaPlayerCoalition", $"coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}");
             mission.SetValue("TheaterID", theaterDB.DCSID);
-            mission.SetValue("AircraftActivatorCurrentQueue", ""); // Just to make sure aircraft spawning group queue is empty
-            mission.SetValue("AircraftActivatorExtraQueue", ""); // Just to make sure aircraft spawning group queue is empty
+            mission.SetValue("AircraftActivatorCurrentQueue", ""); // Just to make sure aircraft groups spawning queues are empty
+            mission.SetValue("AircraftActivatorReserveQueue", "");
 
             // Add common media files
             foreach (string oggFile in Database.Instance.Common.CommonOGG)

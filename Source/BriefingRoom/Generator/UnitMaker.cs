@@ -203,7 +203,7 @@ namespace BriefingRoom4DCS.Generator
                 if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ImmediateAircraftSpawn))
                     Mission.AppendValue("AircraftActivatorCurrentQueue", $"{GroupID},");
                 else
-                    Mission.AppendValue("AircraftActivatorExtraQueue", $"{GroupID},");
+                    Mission.AppendValue("AircraftActivatorReserveQueue", $"{GroupID},");
             }
 
             GeneratorTools.ReplaceKey(ref lua, "UnitID", firstUnitID); // Must be after units are added
