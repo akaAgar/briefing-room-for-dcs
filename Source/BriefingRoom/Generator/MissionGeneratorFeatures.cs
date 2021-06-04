@@ -90,8 +90,9 @@ namespace BriefingRoom4DCS.Generator
             if (featureDB is DBEntryFeatureObjective) mission.AppendValue("ScriptObjectivesFeatures", featureLua);
             else mission.AppendValue("ScriptMissionFeatures", featureLua);
 
-            // Feature ogg files
-            //mission.AddOggFiles(featureDB.IncludeOgg);
+            // Add feature ogg files
+            foreach (string oggFile in featureDB.IncludeOgg)
+                mission.AddMediaFile(oggFile, $"{BRPaths.INCLUDE_OGG}{oggFile}");
 
             return groupInfo;
         }
