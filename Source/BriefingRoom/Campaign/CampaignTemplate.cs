@@ -29,7 +29,7 @@
 //using System.IO;
 //using System.Linq;
 
-//namespace BriefingRoom4DCS.Template
+//namespace BriefingRoom4DCS.Campaign
 //{
 //    /// <summary>
 //    /// A campaign template
@@ -149,14 +149,14 @@
 
 //            EnvironmentBadWeatherChance = AmountN.Random;
 //            EnvironmentNightMissionChance = AmountN.Random;
-            
+
 //            MissionsCount = 5;
 //            MissionsDifficultyVariation = CampaignDifficultyVariation.Random;
 //            MissionsObjectiveCount = Amount.Average;
 //            MissionsObjectiveDistance = Amount.Average;
-            
+
 //            //Objectives = new string[0];
-            
+
 //            OptionsTheaterCountriesCoalitions = CountryCoalition.Default;
 //            OptionsCivilianTraffic = CivilianTraffic.Low;
 
@@ -212,7 +212,7 @@
 //                PlayerStartLocation = ini.GetValue("Player", "StartLocation", PlayerStartLocation);
 
 //                Realism = ini.GetValueArray<RealismOption>("Realism", "Realism");
-                
+
 //                SituationEnemyAirDefense = ini.GetValue("Situation", "Enemy.AirDefense", SituationEnemyAirDefense);
 //                SituationEnemyAirForce = ini.GetValue("Situation", "Enemy.AirForce", SituationEnemyAirForce);
 //                SituationFriendlyAirDefense = ini.GetValue("Situation", "Friendly.AirDefense", SituationFriendlyAirDefense);
