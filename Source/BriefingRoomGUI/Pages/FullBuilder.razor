@@ -4,6 +4,7 @@
 @using BriefingRoom4DCS.Data
 @using BriefingRoom4DCS.Template
 @using BriefingRoom4DCS.Generator
+@using BriefingRoom4DCS.Mission
 @using System.Globalization
 @using System.Linq
 @using Blazored.Typeahead
@@ -15,29 +16,31 @@
             <DataAnnotationsValidator />
             <ValidationSummary />
             <button type="submit form-control" disabled style="display: none" aria-hidden="true"></button>
+            @if(!string.IsNullOrEmpty(generateErrorMessage)){
+            <div class="alert alert-danger" role="alert">
+                Error: @generateErrorMessage
+            </div>
+            }
             <button class="btn btn-primary form-control" type="submit">Generate</button>
             <ul class="nav nav-tabs">
                 @foreach (var value in tabs)
                 {
                     <li class="nav-item">
-                        <a class="nav-link @(tab == value ? "active" : "")" aria-current="page"  @onclick='() => SetTab(value)'>@textInfo.ToTitleCase(value)</a>
+                        <a class="nav-link @(tab == value ? "active" : "")" aria-current="page"
+                        @onclick='() => SetTab(value)'>@textInfo.ToTitleCase(value)</a>
                     </li>
                 }
             </ul>
             @switch (tab)
             {
                 case "context":
-                    <div id="context"  class="generator-block">
+                    <div id="context" class="generator-block">
                         <h3>Context</h3>
                         <div class="form-group">
                             <label>Blue Coalition</label>
-                            <BlazoredTypeahead  SearchMethod="SearchCoalition"
-                                                @bind-Value="Template.ContextCoalitionBlue"
-                                                EnableDropDown="true"
-                                                ConvertMethod="Typeahead.ConvertDB"
-                                                DisableClear="true"
-                                                MaximumSuggestions="100"
-                                                >
+                            <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionBlue"
+                        EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
+                        MaximumSuggestions="100">
                                 <SelectedTemplate Context="coalitionId">
                                     @GetCoalitionDisplayName(@coalitionId)
                                 </SelectedTemplate>
@@ -48,13 +51,9 @@
                         </div>
                         <div class="form-group">
                             <label>Red Coalition</label>
-                            <BlazoredTypeahead  SearchMethod="SearchCoalition"
-                                            @bind-Value="Template.ContextCoalitionRed"
-                                            EnableDropDown="true"
-                                            ConvertMethod="Typeahead.ConvertDB"
-                                            DisableClear="true"
-                                            MaximumSuggestions="100"
-                                            >
+                            <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionRed"
+                        EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
+                        MaximumSuggestions="100">
                                 <SelectedTemplate Context="coalitionId">
                                     @GetCoalitionDisplayName(@coalitionId)
                                 </SelectedTemplate>
@@ -84,24 +83,25 @@
                         <div class="form-group">
                             <label>Theater @Template.ContextTheater</label>
                             <InputSelect class="form-control" @bind-Value="Template.ContextTheater">
-                                @foreach (var value in BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.Theater))
+                                @foreach (var value in
+                               BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.Theater))
                                 {
                                     <option value="@value.ID">@value.Name</option>
                                 }
                             </InputSelect>
                         </div>
-                        <div class="form-group">
+                        @* <div class="form-group"> //REDUNDANT?
                             <label>Countries coalition</label>
                             <InputSelect class="form-control" @bind-Value="Template.ContextTheaterCountriesCoalitions">
-                                @foreach (var value in Enum.GetValues(typeof(CountryCoalition)))
-                                {
-                                    <option value="@value">@value</option>
-                                }
+                            @foreach (var value in Enum.GetValues(typeof(CountryCoalition)))
+                            {
+                            <option value="@value">@value</option>
+                            }
                             </InputSelect>
-                        </div>
+                            </div> *@
                     </div>
                     break;
-                case "environment": 
+                case "environment":
                     <div id="environment" class="generator-block">
                         <h3>Environment</h3>
                         <div class="form-group">
@@ -125,7 +125,9 @@
                         <div class="form-group">
                             <label>Weather Preset</label>
                             <InputSelect class="form-control" @bind-Value="Template.EnvironmentWeatherPreset">
-                                @foreach (var value in BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.WeatherPreset))
+                                <option value="">Random</option>
+                                @foreach (var value in
+                               BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.WeatherPreset))
                                 {
                                     <option value="@value.ID">@value.Name</option>
                                 }
@@ -147,39 +149,41 @@
                         <h3>Flight Plan</h3>
                         <div class="form-group">
                             <label>Objective distance</label>
-                            <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistance" ></InputNumber>
+                            <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistance"></InputNumber>
                         </div>
-                        <div class="form-group">
+                        @* <div class="form-group"> //REDUNDANT?
                             <label>Objectives locations</label>
                             <InputSelect class="form-control" @bind-Value="Template.FlightPlanObjectivesLocation">
-                                @foreach (var value in Enum.GetValues(typeof(ObjectiveCountryLocation)))
-                                {
-                                    <option value="@value">@value</option>
-                                }
+                            @foreach (var value in Enum.GetValues(typeof(ObjectiveCountryLocation)))
+                            {
+                            <option value="@value">@value</option>
+                            }
                             </InputSelect>
-                        </div>
+                            </div> *@
                         <div class="form-group">
                             <label>Starting airbase</label>
                             <InputSelect class="form-control" @bind-Value="Template.FlightPlanTheaterStartingAirbase">
                                 <option value="">Random</option>
-                                @foreach (var value in BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.Airbase))
+                                @foreach (var value in
+                               BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.Airbase))
                                 {
                                     <option value="@value.ID">@value.Name</option>
                                 }
                             </InputSelect>
-                        </div>  
+                        </div>
                     </div>
                     break;
-                case "objective": 
+                case "objective":
                     <div id="objective" class="generator-block">
                         <h3>Objective</h3>
                         <ul class="nav nav-tabs">
                             @foreach (var value in Template.Objectives)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link @(ObjectiveTab == value ? "active" : "")" aria-current="page"  @onclick='() => SetObjectiveTab(value)'>
-                                        @value.Task = @value.Target
-                                        @if(Template.Objectives.Count > 1)
+                                    <a class="nav-link @(ObjectiveTab == value ? "active" : "")" aria-current="page"
+                            @onclick='() => SetObjectiveTab(value)'>
+                                        @GetObjectiveTypeDisplayName(value.Task) @value.TargetBehavior @GetObjectiveTargetDisplayName(value.Target)
+                                        @if (Template.Objectives.Count > 1)
                                         {
                                             <a class="delete-flight" @onclick="() =>  RemoveObjective(value)">x</a>
                                         }
@@ -190,15 +194,18 @@
                                 <a class="nav-link" @onclick="AddObjective">+</a>
                             </li>
                         </ul>
-                        
+
                         @foreach (var objective in Template.Objectives)
                         {
-                            if(ObjectiveTab == objective){
+                            if (ObjectiveTab == objective)
+                            {
                                 <div class="flight-group">
+                                    <button class="btn btn-secondary" @onclick="() => CloneObjective(objective)">Clone</button>
                                     <div class="form-group">
                                         <label>Task</label>
                                         <InputSelect class="form-control" @bind-Value="objective.Task">
-                                            @foreach (var value in BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveTask))
+                                            @foreach (var value in
+                                           BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveTask))
                                             {
                                                 <option value="@value.ID">@value.Name</option>
                                             }
@@ -207,7 +214,8 @@
                                     <div class="form-group">
                                         <label>Target</label>
                                         <InputSelect class="form-control" @bind-Value="objective.Target">
-                                            @foreach (var value in BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveTarget))
+                                            @foreach (var value in
+                                           BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveTarget))
                                             {
                                                 <option value="@value.ID">@value.Name</option>
                                             }
@@ -216,7 +224,8 @@
                                     <div class="form-group">
                                         <label>Target behavior</label>
                                         <InputSelect class="form-control" @bind-Value="objective.TargetBehavior">
-                                            @foreach (var value in BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveTargetBehavior))
+                                            @foreach (var value in
+                                           BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveTargetBehavior))
                                             {
                                                 <option value="@value.ID">@value.Name</option>
                                             }
@@ -233,27 +242,26 @@
                                     </div>
                                     <div class="form-group">
                                         <h4>Options</h4>
-                                        <CheckBoxList Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"  
-                                            TextField="@((item)=>item.ToString())"  
-                                            ValueField="@((item)=>item)"
-                                            SelectedValues="objective.Options" TItem="ObjectiveOption" TItemOutput="ObjectiveOption" >  
-                                        </CheckBoxList> 
+                                        <CheckBoxList Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
+                            TextField="@((item)=>item.ToString())" ValueField="@((item)=>item)"
+                            SelectedValues="objective.Options" TItem="ObjectiveOption" TItemOutput="ObjectiveOption">
+                                        </CheckBoxList>
                                     </div>
                                 </div>
                             }
                         }
                     </div>
                     break;
-                case "options": 
+                case "options":
                     <div id="options" class="generator-block">
                         <h3>Options</h3>
                         <div class="form-group">
                             <h4>Mission Features</h4>
-                            <CheckBoxList Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"  
-                                TextField="@((item)=>item.Name)"  
-                                ValueField="@((item)=>item.ID)"  
-                                SelectedValues="Template.MissionFeatures" TItem="DatabaseEntryInfo" TItemOutput="string" > 
-                            </CheckBoxList> 
+                            <CheckBoxList
+                        Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"
+                        TextField="@((item)=>item.Name)" ValueField="@((item)=>item.ID)"
+                        SelectedValues="Template.MissionFeatures" TItem="DatabaseEntryInfo" TItemOutput="string">
+                            </CheckBoxList>
                         </div>
                         <div class="form-group">
                             <label>Fog of War</label>
@@ -266,38 +274,37 @@
                         </div>
                         <div class="form-group">
                             <h4>Realism</h4>
-                            <CheckBoxList Data="Enum.GetValues(typeof(RealismOption)).Cast<RealismOption>()"  
-                                TextField="@((item)=>item.ToString())"  
-                                ValueField="@((item)=>item)"
-                                SelectedValues="Template.OptionsRealism" TItem="RealismOption" TItemOutput="RealismOption" >  
-                            </CheckBoxList> 
+                            <CheckBoxList Data="Enum.GetValues(typeof(RealismOption)).Cast<RealismOption>()"
+                        TextField="@((item)=>item.ToString())" ValueField="@((item)=>item)"
+                        SelectedValues="Template.OptionsRealism" TItem="RealismOption" TItemOutput="RealismOption">
+                            </CheckBoxList>
                         </div>
                         <div class="form-group">
                             <h4>Unit mods</h4>
-                            <CheckBoxList Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.DCSMod).ToList()"  
-                                TextField="@((item)=>item.Name)"  
-                                ValueField="@((item)=>item.ID)"  
-                                SelectedValues="Template.Mods" TItem="DatabaseEntryInfo" TItemOutput="string" > 
-                            </CheckBoxList> 
+                            <CheckBoxList
+                        Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.DCSMod).ToList()"
+                        TextField="@((item)=>item.Name)" ValueField="@((item)=>item.ID)" SelectedValues="Template.Mods"
+                        TItem="DatabaseEntryInfo" TItemOutput="string">
+                            </CheckBoxList>
                         </div>
                         <div class="form-group">
                             <h4>Mission options</h4>
-                            <CheckBoxList Data="Enum.GetValues(typeof(MissionOption)).Cast<MissionOption>()"  
-                                TextField="@((item)=>item.ToString())"  
-                                ValueField="@((item)=>item)"
-                                SelectedValues="Template.OptionsMission" TItem="MissionOption" TItemOutput="MissionOption" >
-                            </CheckBoxList>  
+                            <CheckBoxList Data="Enum.GetValues(typeof(MissionOption)).Cast<MissionOption>()"
+                        TextField="@((item)=>item.ToString())" ValueField="@((item)=>item)"
+                        SelectedValues="Template.OptionsMission" TItem="MissionOption" TItemOutput="MissionOption">
+                            </CheckBoxList>
                         </div>
                     </div>
                     break;
-                case "situation": 
+                case "situation":
                     <div id="situation" class="generator-block">
                         <h3>Situation</h3>
                         <ul class="nav nav-tabs">
                             @foreach (var value in situationTabs)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link @(situationTab == value ? "active" : "")" aria-current="page"  @onclick='() => SetSituationTab(value)'>@textInfo.ToTitleCase(value)</a>
+                                    <a class="nav-link @(situationTab == value ? "active" : "")" aria-current="page"
+                            @onclick='() => SetSituationTab(value)'>@textInfo.ToTitleCase(value)</a>
                                 </li>
                             }
                         </ul>
@@ -359,9 +366,10 @@
                             @foreach (var value in Template.PlayerFlightGroups)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link @(flightGroupTab == value ? "active" : "")" aria-current="page"  @onclick='() => SetFlightGroupTab(value)'>
-                                        @GetAircraftDisplayName(@value.Aircraft)
-                                        @if(Template.PlayerFlightGroups.Count > 1)
+                                    <a class="nav-link @(flightGroupTab == value ? "active" : "")" aria-current="page"
+                            @onclick='() => SetFlightGroupTab(value)'>
+                                        @GetAircraftDisplayName(@value.Aircraft) x @value.Count
+                                        @if (Template.PlayerFlightGroups.Count > 1)
                                         {
                                             <a class="delete-flight" @onclick="() =>  RemoveFlightGroup(value)">x</a>
                                         }
@@ -372,20 +380,17 @@
                                 <a class="nav-link" @onclick="AddFlightGroup">+</a>
                             </li>
                         </ul>
-                        
+
                         @foreach (var flight in Template.PlayerFlightGroups)
                         {
-                            if(flightGroupTab == flight){
+                            if (flightGroupTab == flight)
+                            {
                                 <div class="flight-group">
                                     <div class="form-group">
                                         <label>Aircraft</label>
-                                        <BlazoredTypeahead  SearchMethod="SearchAircraft"
-                                                            @bind-Value="flight.Aircraft"
-                                                            EnableDropDown="true"
-                                                            ConvertMethod="Typeahead.ConvertDB"
-                                                            DisableClear="true"
-                                                            MaximumSuggestions="100"
-                                                            >
+                                        <BlazoredTypeahead SearchMethod="SearchAircraft" @bind-Value="flight.Aircraft"
+                                            EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
+                                            MaximumSuggestions="100">
                                             <SelectedTemplate Context="aircraftId">
                                                 @GetAircraftDisplayName(@aircraftId)
                                             </SelectedTemplate>
@@ -395,31 +400,17 @@
                                         </BlazoredTypeahead>
                                     </div>
                                     <div class="form-group">
-                                        <label>Carrier</label>
-                                        TODO: Get List Of Carriers
-                                        @* <InputSelect class="form-control" @bind-Value="flight.Carrier">
-                                            <option value="">N/A</option>
-                                            @foreach (var value in BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.Carrier))
-                                            {
-                                                <option value="@value.ID">@value.Name</option>
-                                            }
-                                        </InputSelect> *@
+                                        <label>Count</label>
+                                        <InputNumber class="form-control" @bind-Value="flight.Count"></InputNumber>
                                     </div>
                                     <div class="form-group">
-                                        <label>Country</label>
-                                        <BlazoredTypeahead  SearchMethod="SearchCountry"
-                                                            @bind-Value="flight.Country"
-                                                            EnableDropDown="true"
-                                                            DisableClear="true"
-                                                            MaximumSuggestions="100"
-                                                            >
-                                            <SelectedTemplate Context="country">
-                                                @country
-                                            </SelectedTemplate>
-                                            <ResultTemplate Context="country">
-                                                @country
-                                            </ResultTemplate>
-                                        </BlazoredTypeahead>
+                                        <label>Payload</label>
+                                        <InputSelect class="form-control" @bind-Value="flight.Payload">
+                                            @foreach (var value in Enum.GetValues(typeof(AircraftPayload)))
+                                            {
+                                                <option value="@value">@value</option>
+                                            }
+                                        </InputSelect>
                                     </div>
                                     <div class="form-group">
                                         <label>Start Location</label>
@@ -430,6 +421,35 @@
                                             }
                                         </InputSelect>
                                     </div>
+                                    <div class="form-group">
+                                        <label>Carrier</label>
+                                        <InputSelect class="form-control" @bind-Value="flight.Carrier">
+                                            <option value="">N/A</option>
+                                            @foreach (var value in
+                                           BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.UnitCarrier))
+                                            {
+                                                <option value="@value.ID">@value.Name</option>
+                                            }
+                                        </InputSelect>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <BlazoredTypeahead SearchMethod="SearchCountry" @bind-Value="flight.Country"
+                                            EnableDropDown="true" DisableClear="true" MaximumSuggestions="100">
+                                            <SelectedTemplate Context="country">
+                                                @country
+                                            </SelectedTemplate>
+                                            <ResultTemplate Context="country">
+                                                @country
+                                            </ResultTemplate>
+                                        </BlazoredTypeahead>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>
+                                        <input type="checkbox" checked=@flight.AIWingmen
+                            @onchange="eventArgs => { flight.AIWingmen = (bool)eventArgs.Value; StateHasChanged();}" /> AI Wingmen
+                            </label>
+                                    </div>
                                 </div>
                             }
                         }
@@ -439,10 +459,11 @@
             }
         </EditForm>
     </div>
-    @if(!String.IsNullOrEmpty(mission.BriefingHTML)){
+    @if (mission != null)
+    {
         <div class="generator-preview">
-                <button class="btn btn-primary form-control" @onclick="DownloadMission">DownloadMission</button>
-            <div>@((MarkupString)mission.BriefingHTML)</div>
+            <button class="btn btn-primary form-control" @onclick="DownloadMission">DownloadMission</button>
+            <div>@((MarkupString)mission.Briefing.GetBriefingAsHTML(false))</div>
         </div>
     }
 </div>
@@ -453,9 +474,10 @@
     private BriefingRoom4DCS.BriefingRoom briefingRoom = new BriefingRoom4DCS.BriefingRoom();
     private MissionTemplate Template;
     private DCSMission mission;
+    private string generateErrorMessage;
 
     private TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         Template = new MissionTemplate();
         flightGroupTab = Template.PlayerFlightGroups[0];
@@ -463,7 +485,13 @@
 
     private void GenerateMission()
     {
-        mission = briefingRoom.GenerateMission(Template);
+        try {
+            mission = null;
+            generateErrorMessage = "";
+            mission = briefingRoom.GenerateMission(Template);
+        } catch (Exception ex){
+            generateErrorMessage = ex.Message;
+        }
     }
 
     async Task DownloadMission()
@@ -471,32 +499,36 @@
         byte[] zipBytes = mission.SaveToMizBytes();
         if (zipBytes == null) return; // Something went wrong during the .miz export
 
-        await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{mission.Name}.miz", "application/octet-stream", zipBytes);
+        await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{mission.Briefing.Name}.miz", "application/octet-stream",
+        zipBytes);
     }
 
     private string tab = "context";
     private List<string> tabs = new List<string>{
-        "context",
-        "environment",
-        "objective",
-        "flight-groups",
-        "flight-plan",
-        "situation",
-        "options",
-        };
-    private void SetTab(string var){
+"context",
+"environment",
+"objective",
+"flight-groups",
+"flight-plan",
+"situation",
+"options",
+};
+    private void SetTab(string var)
+    {
         tab = var;
     }
 
 
     private string situationTab = "enemies";
-    private List<string> situationTabs = new List<string>{"enemies","friendlies"};
-    private void SetSituationTab(string var){
+    private List<string> situationTabs = new List<string> { "enemies", "friendlies" };
+    private void SetSituationTab(string var)
+    {
         situationTab = var;
     }
 
     private MissionTemplateFlightGroup flightGroupTab;
-    private void SetFlightGroupTab(MissionTemplateFlightGroup var){
+    private void SetFlightGroupTab(MissionTemplateFlightGroup var)
+    {
         flightGroupTab = var;
     }
 
@@ -505,20 +537,20 @@
         MissionTemplateFlightGroup flight = new();
         flightGroupTab = flight;
         Template.PlayerFlightGroups.Add(flight);
-        Template.MissionType = MissionType.Multiplayer;
     }
 
-     private void RemoveFlightGroup(MissionTemplateFlightGroup flight)
+    private void RemoveFlightGroup(MissionTemplateFlightGroup flight)
     {
         Template.PlayerFlightGroups.Remove(flight);
-        if(Template.PlayerFlightGroups.Count == 1){
-            Template.MissionType = MissionType.SinglePlayer;
+        if (Template.PlayerFlightGroups.Count == 1)
+        {
             flightGroupTab = Template.PlayerFlightGroups[0];
         }
     }
 
     private MissionTemplateObjective ObjectiveTab;
-    private void SetObjectiveTab(MissionTemplateObjective var){
+    private void SetObjectiveTab(MissionTemplateObjective var)
+    {
         ObjectiveTab = var;
     }
 
@@ -529,27 +561,42 @@
         Template.Objectives.Add(obj);
     }
 
-     private void RemoveObjective(MissionTemplateObjective obj)
+    private void CloneObjective(MissionTemplateObjective obj) {
+        MissionTemplateObjective newObj = new(){
+            Target = obj.Target,
+            TargetBehavior = obj.TargetBehavior,
+            TargetCount = obj.TargetCount,
+            Task = obj.Task,
+            Options = obj.Options
+        };
+        ObjectiveTab = newObj;
+        Template.Objectives.Add(newObj);
+    }
+
+    private void RemoveObjective(MissionTemplateObjective obj)
     {
         Template.Objectives.Remove(obj);
     }
 
     private async Task<IEnumerable<Country>> SearchCountry(string searchText) =>
-        await Typeahead.SearchEnum<Country>(searchText);
+    await Typeahead.SearchEnum<Country>(searchText);
 
-    private async Task<IEnumerable<DatabaseEntryInfo>> SearchAircraft(string searchText) => 
-            await Typeahead.SearchDB(DatabaseEntryType.UnitFlyableAircraft, searchText);
-    private string GetAircraftDisplayName(string id) => 
-        Typeahead.GetDBDisplayName(DatabaseEntryType.UnitFlyableAircraft, id);
+    private async Task<IEnumerable<DatabaseEntryInfo>> SearchAircraft(string searchText) =>
+    await Typeahead.SearchDB(DatabaseEntryType.UnitFlyableAircraft, searchText);
+    private string GetAircraftDisplayName(string id) =>
+    Typeahead.GetDBDisplayName(DatabaseEntryType.UnitFlyableAircraft, id);
 
     private async Task<IEnumerable<DatabaseEntryInfo>> SearchObjectiveType(string searchText) =>
-        await Typeahead.SearchDB(DatabaseEntryType.ObjectiveTask, searchText);
-    private string GetObjectiveTypeDisplayName(string id) => 
-        Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTask, id);
-        
-    private async Task<IEnumerable<DatabaseEntryInfo>> SearchCoalition(string searchText) => 
-        await Typeahead.SearchDB(DatabaseEntryType.Coalition, searchText); 
+    await Typeahead.SearchDB(DatabaseEntryType.ObjectiveTask, searchText);
+    private string GetObjectiveTypeDisplayName(string id) =>
+    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTask, id);
+
+    private string GetObjectiveTargetDisplayName(string id) =>
+    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTarget, id);
+
+    private async Task<IEnumerable<DatabaseEntryInfo>> SearchCoalition(string searchText) =>
+    await Typeahead.SearchDB(DatabaseEntryType.Coalition, searchText);
 
     private string GetCoalitionDisplayName(string id) =>
-        Typeahead.GetDBDisplayName(DatabaseEntryType.Coalition, id);
+    Typeahead.GetDBDisplayName(DatabaseEntryType.Coalition, id);
 }
