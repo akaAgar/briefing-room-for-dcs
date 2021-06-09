@@ -126,6 +126,11 @@ namespace BriefingRoom4DCS
             return value[0].ToString().ToUpperInvariant() + (castRestOfStringToLowerCase ? value.Substring(1).ToLowerInvariant() : value.Substring(1));
         }
 
+        internal static T[] ShuffleArray<T>(T[] array)
+        {
+            return array.OrderBy(x => Rnd.Next()).ToArray();
+        }
+
         internal static KeyValuePair<string, object> ToKeyValuePair(this string key, object value)
         {
             return new KeyValuePair<string, object>(key, value);

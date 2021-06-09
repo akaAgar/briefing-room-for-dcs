@@ -29,7 +29,7 @@
 //using System.IO;
 //using System.Linq;
 
-//namespace BriefingRoom4DCS.Template
+//namespace BriefingRoom4DCS.Campaign
 //{
 //    public class CampaignGenerator : IDisposable
 //    {

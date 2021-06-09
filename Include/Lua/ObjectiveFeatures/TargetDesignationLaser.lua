@@ -1,0 +1,25 @@
+-- [GUI]
+-- DisplayName=Laser designation
+-- Category=Target designation
+-- Description=Adds F10 menu commands to toggle laser designation of targets. Laser code is 1688.
+
+-- [Feature]
+-- IncompatiblePrefix=
+
+-- [Briefing]
+-- Remarks=Friendly units at objective $OBJECTIVENAME$ can designate their position with laser. Laser code is 1688.
+-- Remarks.Enemy=JTAC units can designate targets at objective $OBJECTIVENAME$ with laser. Laser code is 1688.
+
+-- [Include]
+-- Lua=TargetDesignationLaser
+-- LuaSettings=
+-- Ogg=
+
+-- [UnitGroup]
+-- Families=
+-- Flags=
+-- Lua.Group=
+-- Lua.Unit=
+-- Size=
+-- SpawnDistance=
+-- ValidSpawnPoints=

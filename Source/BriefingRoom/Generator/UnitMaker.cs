@@ -1,4 +1,5 @@
 ﻿using BriefingRoom4DCS.Data;
+using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,7 @@ namespace BriefingRoom4DCS.Generator
         private const double SHIP_UNIT_SPACING = 100.0;
         private const double VEHICLE_UNIT_SPACING = 20.0;
 
+        private readonly DCSMission Mission;
         private readonly MissionTemplate Template;
         private readonly DBEntryCoalition[] CoalitionsDB;
         private readonly Coalition PlayerCoalition;
@@ -47,13 +49,14 @@ namespace BriefingRoom4DCS.Generator
         internal UnitMakerCallsignGenerator CallsignGenerator { get; }
 
         internal UnitMaker(
-            MissionTemplate template,
+            DCSMission mission, MissionTemplate template,
             DBEntryCoalition[] coalitionsDB, DBEntryTheater theaterDB,
             Coalition playerCoalition, Country[][] coalitionsCountries)
         {
             CallsignGenerator = new UnitMakerCallsignGenerator(coalitionsDB);
             SpawnPointSelector = new UnitMakerSpawnPointSelector(theaterDB);
 
+            Mission = mission;
             Template = template;
 
             CoalitionsDB = coalitionsDB;
@@ -135,6 +138,7 @@ namespace BriefingRoom4DCS.Generator
             DBEntryUnit firstUnitDB = null;
             for (int unitIndex = 0; unitIndex < units.Length; unitIndex++)
             {
+                int unitRealIndex = 1;
                 DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(units[unitIndex]);
                 if (unitDB == null)
                 {
@@ -143,45 +147,49 @@ namespace BriefingRoom4DCS.Generator
                 }
                 if (firstUnitDB == null) firstUnitDB = unitDB; // Store the first unit, which will be used for group-scope replacements later
 
-                SetUnitCoordinatesAndHeading(unitDB, unitIndex, coordinates, out Coordinates unitCoordinates, out double unitHeading);
-
-                string singleUnitLuaTable = unitLuaTemplate;
-                foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
-                    if (extraSetting.Value is Array)
-                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value, unitIndex);
-                    else
-                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value);
-
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "ExtraLua", unitDB.ExtraLua);
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Heading", unitHeading);
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Type", units[unitIndex]);
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitID", UnitID);
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitX", unitCoordinates.X);
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitY", unitCoordinates.Y);
-                if ((unitDB.Category == UnitCategory.Helicopter) || (unitDB.Category == UnitCategory.Plane))
+                foreach (string unitDCSType in unitDB.DCSIDs)
                 {
-                    if ((unitIndex == 0) && unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.FirstUnitIsPlayer))
-                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Skill", "Player");
+                    SetUnitCoordinatesAndHeading(unitDB, unitRealIndex, coordinates, out Coordinates unitCoordinates, out double unitHeading);
 
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Callsign", callsign.Value.GetLua(unitIndex + 1));
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", callsign.Value.GetUnitName(unitIndex + 1));
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "OnBoardNumber", Toolbox.RandomInt(1, 1000).ToString("000"));
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PropsLua", unitDB.AircraftData.PropsLua);
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "RadioPresetsLua", string.Join("", unitDB.AircraftData.RadioPresets.Select((x, index) => $"[{index + 1}] = {x.ToLuaString()}")));
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Speed", unitDB.AircraftData.CruiseSpeed);
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadCommon", unitDB.AircraftData.PayloadCommon);
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadPylons", unitDB.AircraftData.GetPayloadLua(aircraftPayload, Template.ContextDecade));
+                    string singleUnitLuaTable = unitLuaTemplate;
+                    foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
+                        if (extraSetting.Value is Array)
+                            GeneratorTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value, unitIndex);
+                        else
+                            GeneratorTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value);
+
+                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "ExtraLua", unitDB.ExtraLua);
+                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Heading", unitHeading);
+                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Type", unitDCSType);
+                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitID", UnitID);
+                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitX", unitCoordinates.X);
+                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitY", unitCoordinates.Y);
+                    if ((unitDB.Category == UnitCategory.Helicopter) || (unitDB.Category == UnitCategory.Plane))
+                    {
+                        if ((unitRealIndex == 1) && unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.FirstUnitIsPlayer))
+                            GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Skill", "Player");
+
+                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Callsign", callsign.Value.GetLua(unitIndex + 1));
+                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", callsign.Value.GetUnitName(unitIndex + 1));
+                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "OnBoardNumber", Toolbox.RandomInt(1, 1000).ToString("000"));
+                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PropsLua", unitDB.AircraftData.PropsLua);
+                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "RadioPresetsLua", string.Join("", unitDB.AircraftData.RadioPresets.Select((x, index) => $"[{index + 1}] = {x.ToLuaString()}")));
+                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Speed", unitDB.AircraftData.CruiseSpeed);
+                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadCommon", unitDB.AircraftData.PayloadCommon);
+                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadPylons", unitDB.AircraftData.GetPayloadLua(aircraftPayload, Template.ContextDecade));
+                    }
+                    else
+                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", $"{groupName} {unitIndex + 1}");
+
+                    unitsLuaTable += $"[{unitRealIndex}] =\n";
+                    unitsLuaTable += "{\n";
+                    unitsLuaTable += $"{singleUnitLuaTable}\n";
+                    unitsLuaTable += $"}}, -- end of [{unitRealIndex}]\n";
+
+                    unitsIDList.Add(UnitID);
+                    UnitID++;
+                    unitRealIndex++;
                 }
-                else
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", $"{groupName} {unitIndex + 1}");
-
-                unitsLuaTable += $"[{unitIndex + 1}] =\n";
-                unitsLuaTable += "{\n";
-                unitsLuaTable += $"{singleUnitLuaTable}\n";
-                unitsLuaTable += $"}}, -- end of [{unitIndex + 1}]\n";
-
-                unitsIDList.Add(UnitID);
-                UnitID++;
             }
 
             if (unitsIDList.Count == 0) return null; // No valid units added to this group
@@ -196,6 +204,11 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.ReplaceKey(ref lua, "RadioBand", (int)firstUnitDB.AircraftData.RadioModulation);
                 GeneratorTools.ReplaceKey(ref lua, "RadioFrequency", firstUnitDB.AircraftData.RadioFrequency);
                 GeneratorTools.ReplaceKey(ref lua, "Speed", firstUnitDB.AircraftData.CruiseSpeed);
+
+                if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ImmediateAircraftSpawn))
+                    Mission.AppendValue("AircraftActivatorCurrentQueue", $"{GroupID},");
+                else
+                    Mission.AppendValue("AircraftActivatorReserveQueue", $"{GroupID},");
             }
 
             GeneratorTools.ReplaceKey(ref lua, "UnitID", firstUnitID); // Must be after units are added

@@ -112,11 +112,18 @@ namespace BriefingRoom4DCS.Generator
                     return;
                 }
 
-                UnitMakerGroupInfo? groupInfo = UnitMaker.AddUnitGroup(
-                    Toolbox.RandomFrom(unitFamilies), 1, side,
-                    "GroupVehicle", "UnitVehicle",
-                    spawnPoint.Value.Coordinates,
-                    Toolbox.RandomFrom(airDefenseLevelDB.SkillLevel));
+                UnitMakerGroupInfo? groupInfo = null;
+                unitFamilies = Toolbox.ShuffleArray(unitFamilies);
+                for (int j = 0; j < unitFamilies.Length; j++) // Try picking for various families until a valid one is found
+                {
+                    groupInfo = UnitMaker.AddUnitGroup(
+                        unitFamilies[j], 1, side,
+                        "GroupVehicle", "UnitVehicle",
+                        spawnPoint.Value.Coordinates,
+                        Toolbox.RandomFrom(airDefenseLevelDB.SkillLevel));
+
+                    if (groupInfo.HasValue) break;
+                }
 
                 if (!groupInfo.HasValue) // Failed to generate a group
                     BriefingRoom.PrintToLog(

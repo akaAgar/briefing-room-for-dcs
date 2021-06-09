@@ -19,7 +19,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using System.IO;
-using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
@@ -29,6 +28,11 @@ namespace BriefingRoom4DCS.Data
     /// </summary>
     internal abstract class DBEntryFeature : DBEntry
     {
+        /// <summary>
+        /// Directory from which Lua files should be loaded.
+        /// </summary>
+        internal abstract string SourceLuaDirectory { get; }
+
         /// <summary>
         /// Randomly-parsed (<see cref="Toolbox.ParseRandomString(string)"/>) single-line remarks to add to the mission briefing when this feature is enabled.
         /// Index #0 is for allies/default, index #1 is for enemies (if not null/empty)
@@ -113,12 +117,12 @@ namespace BriefingRoom4DCS.Data
                 IncludeOgg = Toolbox.AddMissingFileExtensions(ini.GetValueArray<string>("Include", "Ogg"), ".ogg");
 
                 foreach (string f in IncludeLua)
-                    if (!File.Exists($"{BRPaths.INCLUDE_LUA_MISSIONFEATURES}{f}"))
-                        BriefingRoom.PrintToLog($"File \"Include\\Lua\\MissionFeatures\\{f}\", required by feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
+                    if (!File.Exists($"{SourceLuaDirectory}{f}"))
+                        BriefingRoom.PrintToLog($"File \"{SourceLuaDirectory}{f}\", required by feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
 
                 foreach (string f in IncludeOgg)
                     if (!File.Exists($"{BRPaths.INCLUDE_OGG}{f}"))
-                        BriefingRoom.PrintToLog($"File \"Include\\Ogg\\{f}\", required by feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
+                        BriefingRoom.PrintToLog($"File \"{BRPaths.INCLUDE_OGG}{f}\", required by feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
 
                 // Unit group
                 UnitGroupFamilies = Toolbox.SetSingleCategoryFamilies(ini.GetValueArray<UnitFamily>("UnitGroup", "Families"));

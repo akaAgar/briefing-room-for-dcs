@@ -55,7 +55,13 @@ namespace BriefingRoom4DCS.Mission
         {
             if (rawText == null) return null;
 
-            foreach (KeyValuePair<string, string> keyPair in Values)
+            foreach (KeyValuePair<string, string> keyPair in Values) // Replace included scripts first so later replacements (objective count, player coalition, etc) will be applied to them too
+            {
+                if (!keyPair.Key.ToLowerInvariant().StartsWith("script")) continue;
+                rawText = rawText.Replace($"${keyPair.Key.ToUpperInvariant()}$", keyPair.Value);
+            }
+
+            foreach (KeyValuePair<string, string> keyPair in Values) // Replace other values
                 rawText = rawText.Replace($"${keyPair.Key.ToUpperInvariant()}$", keyPair.Value);
 
             return rawText;
@@ -93,7 +99,7 @@ namespace BriefingRoom4DCS.Mission
 
         internal void SetValue(string key, bool value)
         {
-            SetValue(key, value.ToString(NumberFormatInfo.InvariantInfo), false);
+            SetValue(key, value.ToString(NumberFormatInfo.InvariantInfo).ToLowerInvariant(), false);
         }
 
         internal void SetValue(string key, string value)
@@ -133,14 +139,14 @@ namespace BriefingRoom4DCS.Mission
 
         internal void AddMediaFile(string fileName, string sourceFilePath)
         {
-            if (MediaFiles.ContainsKey(fileName)) return;
+            if (string.IsNullOrEmpty(fileName) || MediaFiles.ContainsKey(fileName)) return;
             if (!File.Exists(sourceFilePath)) return;
             MediaFiles.Add(fileName, sourceFilePath);
         }
 
         internal void AddMediaFile(string fileName, byte[] mediaFileBytes)
         {
-            if (MediaFiles.ContainsKey(fileName)) return;
+            if (string.IsNullOrEmpty(fileName) || MediaFiles.ContainsKey(fileName)) return;
             MediaFiles.Add(fileName, mediaFileBytes);
         }
 

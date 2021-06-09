@@ -66,8 +66,13 @@ namespace BriefingRoom4DCS.Generator
             if (FeatureHasUnitGroup(featureDB))
             {
                 UnitMakerGroupFlags groupFlags = 0;
-                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.AlwaysOnMap)) groupFlags = UnitMakerGroupFlags.AlwaysHidden;
-                else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.NeverOnMap)) groupFlags = UnitMakerGroupFlags.NeverHidden;
+                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.AlwaysOnMap))
+                    groupFlags |= UnitMakerGroupFlags.AlwaysHidden;
+                else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.NeverOnMap))
+                    groupFlags |= UnitMakerGroupFlags.NeverHidden;
+
+                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ImmediateAircraftActivation))
+                    groupFlags |= UnitMakerGroupFlags.ImmediateAircraftSpawn;
 
                 groupInfo = UnitMaker.AddUnitGroup(
                     Toolbox.RandomFrom(featureDB.UnitGroupFamilies), featureDB.UnitGroupSize.GetValue(),
@@ -81,7 +86,7 @@ namespace BriefingRoom4DCS.Generator
             string featureLua = "";
             if (!string.IsNullOrEmpty(featureDB.IncludeLuaSettings)) featureLua = featureDB.IncludeLuaSettings + "\n";
             foreach (string luaFile in featureDB.IncludeLua)
-                featureLua += Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA_MISSIONFEATURES}{luaFile}") + "\n";
+                featureLua += Toolbox.ReadAllTextIfFileExists($"{featureDB.SourceLuaDirectory}{luaFile}") + "\n";
             foreach (KeyValuePair<string, object> extraSetting in extraSettings)
                 GeneratorTools.ReplaceKey(ref featureLua, extraSetting.Key, extraSetting.Value);
             if (groupInfo.HasValue)
@@ -90,8 +95,9 @@ namespace BriefingRoom4DCS.Generator
             if (featureDB is DBEntryFeatureObjective) mission.AppendValue("ScriptObjectivesFeatures", featureLua);
             else mission.AppendValue("ScriptMissionFeatures", featureLua);
 
-            // Feature ogg files
-            //mission.AddOggFiles(featureDB.IncludeOgg);
+            // Add feature ogg files
+            foreach (string oggFile in featureDB.IncludeOgg)
+                mission.AddMediaFile(oggFile, $"{BRPaths.INCLUDE_OGG}{oggFile}");
 
             return groupInfo;
         }

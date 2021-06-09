@@ -23,6 +23,7 @@ using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
@@ -74,10 +75,12 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("EnableAudioRadioMessages", !template.OptionsMission.Contains(MissionOption.RadioMessagesTextOnly));
             mission.SetValue("LuaPlayerCoalition", $"coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}");
             mission.SetValue("TheaterID", theaterDB.DCSID);
+            mission.SetValue("AircraftActivatorCurrentQueue", ""); // Just to make sure aircraft groups spawning queues are empty
+            mission.SetValue("AircraftActivatorReserveQueue", "");
 
             // Add common media files
             foreach (string oggFile in Database.Instance.Common.CommonOGG)
-                mission.AddMediaFile(oggFile, $"{BRPaths.INCLUDE_OGG}{Toolbox.AddMissingFileExtension(oggFile, ".ogg")}");
+                mission.AddMediaFile(Toolbox.AddMissingFileExtension(oggFile, ".ogg"), $"{BRPaths.INCLUDE_OGG}{Toolbox.AddMissingFileExtension(oggFile, ".ogg")}");
 
             Country[][] coalitionsCountries;
             // Generate list of countries for each coalition
@@ -85,7 +88,7 @@ namespace BriefingRoom4DCS.Generator
                 coalitionsCountries = countriesGenerator.GenerateCountries(mission, template);
 
             // Create unit maker
-            UnitMaker unitMaker = new UnitMaker(template, coalitionsDB, theaterDB, template.ContextPlayerCoalition, coalitionsCountries);
+            UnitMaker unitMaker = new UnitMaker(mission, template, coalitionsDB, theaterDB, template.ContextPlayerCoalition, coalitionsCountries);
 
             // Generate mission date and time
             Month month;
@@ -176,9 +179,14 @@ namespace BriefingRoom4DCS.Generator
                 for (i = 0; i  < template.MissionFeatures.Count; i++)
                     missionFeaturesGenerator.GenerateMissionFeature(mission, template.MissionFeatures[i], i, playerAirbase.Coordinates, objectivesCenter);
 
-            mission.SetValue("ResourcesOGGFiles", ""); // TODO
+            // Add ogg files to the media files dictionary
+            foreach (string mediaFile in mission.GetMediaFileNames())
+            {
+                if (!mediaFile.ToLowerInvariant().EndsWith(".ogg")) continue; // Not an .ogg file
+                mission.AppendValue("MapResourcesFiles", $"[\"ResKey_Snd_{Path.GetFileNameWithoutExtension(mediaFile)}\"] = \"{mediaFile}\",\n");
+            }
 
-            // Get unit tables from the unit maker (must be done after all units are generated)
+            // Get unit tables from the unit maker (MUST BE DONE AFTER ALL UNITS ARE GENERATED)
             mission.SetValue("CountriesBlue", unitMaker.GetUnitsLuaTable(Coalition.Blue));
             mission.SetValue("CountriesRed", unitMaker.GetUnitsLuaTable(Coalition.Red));
 
@@ -201,6 +209,7 @@ namespace BriefingRoom4DCS.Generator
                 warehousesGenerator.GenerateWarehouses(mission);
 
             // Generate image files
+            BriefingRoom.PrintToLog("Generating images...");
             using (MissionGeneratorImages imagesGenerator = new MissionGeneratorImages())
                 imagesGenerator.GenerateTitle(mission, template);
 

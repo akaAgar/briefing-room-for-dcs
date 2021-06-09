@@ -27,6 +27,11 @@ namespace BriefingRoom4DCS.Data
     /// </summary>
     internal class DBEntryObjectiveTargetBehavior : DBEntry
     {
+        /// <summary>
+        /// Special location/destination for the target.
+        /// </summary>
+        internal DBEntryObjectiveTargetBehaviorLocation Location { get; private set; }
+
         internal string[] GroupLua { get; private set; }
         internal string[] UnitLua { get; private set; }
 
@@ -40,6 +45,8 @@ namespace BriefingRoom4DCS.Data
         {
             using (INIFile ini = new INIFile(iniFilePath))
             {
+                Location = ini.GetValue<DBEntryObjectiveTargetBehaviorLocation>("Behavior", "Location");
+
                 GroupLua = new string[Toolbox.EnumCount<UnitCategory>()];
                 foreach (UnitCategory unitCategory in Toolbox.GetEnumValues<UnitCategory>())
                     GroupLua[(int)unitCategory] = ini.GetValue<string>("Lua", $"Group.{unitCategory}");

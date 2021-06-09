@@ -26,6 +26,11 @@ namespace BriefingRoom4DCS.Data
     internal class DBEntryFeatureObjective : DBEntryFeature
     {
         /// <summary>
+        /// Directory from which Lua files should be loaded.
+        /// </summary>
+        internal override string SourceLuaDirectory { get { return BRPaths.INCLUDE_LUA_OBJECTIVEFEATURES; } }
+
+        /// <summary>
         /// Loads a database entry from an .ini file.
         /// </summary>
         /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
