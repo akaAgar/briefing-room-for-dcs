@@ -1,5 +1,3 @@
-[$INDEX$] =
-{
   ["visible"] = false,
   ["lateActivation"] = false,
   ["tasks"] =
@@ -22,8 +20,8 @@
         ["ETA"] = 0,
         ["alt_type"] = "BARO",
         ["formation_template"] = "",
-        ["y"] = $Y$,
-        ["x"] = $X$,
+        ["y"] = $GROUPY$,
+        ["x"] = $GROUPX$,
         ["name"] = "$NAME$",
         ["ETA_locked"] = true,
         ["speed"] = 5.5555555555556,
@@ -109,15 +107,14 @@
     }, -- end of ["points"]
     ["routeRelativeTOT"] = false,
   }, -- end of ["route"]
-  ["groupId"] = $ID$,
+  ["groupId"] = $GROUPID$,
   ["hidden"] = $HIDDEN$,
   ["units"] =
   {
     $UNITS$
   }, -- end of ["units"]
-  ["y"] = $Y$,
-  ["x"] = $X$,
+  ["y"] = $GROUPY$,
+  ["x"] = $GROUPX$,
   ["name"] = "$NAME$",
   ["start_time"] = 0,
   ["hiddenOnPlanner"] = $HIDDEN$,
-}, -- end of [$INDEX$]

@@ -1,14 +1,20 @@
+/.vs
+/.vscode
 [Dd]ebug[Oo]utput/
 [Ss]ource/.vs/
-[Ss]ource/[Oo]bj/
+[Ss]ource/**/[Bb]in/
+[Ss]ource/**/[Oo]bj/
 
 *.*.config
 *.cache
+*.dll
 *.exe
 *.log
+*.miz
 *.pdb
 *.user
 *.xml
 *.zip
 *.dll
-/.vs
+
+/*.txt

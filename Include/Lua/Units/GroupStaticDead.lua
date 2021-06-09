@@ -1,5 +1,3 @@
-[$INDEX$] =
-{
   ["heading"] = 0,
   ["route"] =
   {
@@ -10,21 +8,20 @@
         ["alt"] = 0,
         ["type"] = "",
         ["name"] = "",
-        ["y"] = $Y$,
+        ["y"] = $GROUPY$,
         ["speed"] = 0,
-        ["x"] = $X$,
+        ["x"] = $GROUPX$,
         ["formation_template"] = "",
         ["action"] = "",
       }, -- end of [1]
     }, -- end of ["points"]
   }, -- end of ["route"]
-  ["groupId"] = $ID$,
+  ["groupId"] = $GROUPID$,
   ["units"] =
   {
 $UNITS$
   }, -- end of ["units"]
-  ["y"] = $Y$,
-  ["x"] = $X$,
+  ["y"] = $GROUPY$,
+  ["x"] = $GROUPX$,
   ["name"] = "$NAME$",
   ["dead"] = true,
-}, -- end of [$INDEX$]

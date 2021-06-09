@@ -1,5 +1,3 @@
-            [$INDEX$] = 
-            {
                 ["alt"] = $ALTITUDE$,
                 ["alt_type"] = "BARO",
                 ["livery_id"] = "default",
@@ -11,11 +9,11 @@ $EXTRALUA$
 $PROPSLUA$
                 }, -- end of ["AddPropAircraft"]
                 ["type"] = "$TYPE$",
-                ["unitId"] = $ID$,
+                ["unitId"] = $UNITID$,
                 ["psi"] = 0,
                 ["parking_id"] = "$PARKINGID$",
-                ["y"] = $Y$,
-                ["x"] = $X$,
+                ["y"] = $UNITY$,
+                ["x"] = $UNITX$,
                 ["name"] = "$NAME$",
                 ["payload"] = 
                 {
@@ -32,4 +30,3 @@ $PAYLOADCOMMON$
                 {
 $RADIOPRESETSLUA$
                 }
-            }, -- end of [$INDEX$]

@@ -1,5 +1,3 @@
-[$INDEX$] = 
-{
   ["lateActivation"] = true,
   ["tasks"] =
   {
@@ -31,8 +29,8 @@
           ["type"] = "Turning Point",
           ["ETA"] = 0,
           ["ETA_locked"] = true,
-          ["y"] = $Y$,
-          ["x"] = $X$,
+          ["y"] = $GROUPY$,
+          ["x"] = $GROUPX$,
           ["formation_template"] = "",
           ["speed_locked"] = true,
       }, -- end of [1]
@@ -61,13 +59,13 @@
                               ["attackQtyLimit"] = false,
                               ["attackQty"] = 4,
                               ["expend"] = "Quarter",
-                              ["y"] = $Y2$,
+                              ["y"] = $GROUPY2$,
                               ["directionEnabled"] = false,
                               ["groupAttack"] = true,
                               ["altitude"] =  $ALTITUDE$,
                               ["altitudeEnabled"] = false,
                               ["weaponType"] = 2147485694,
-                              ["x"] = $X2$,
+                              ["x"] = $GROUPX2$,
                           }, -- end of ["params"]
                       }, -- end of [1]
                   }, -- end of ["tasks"]
@@ -76,8 +74,8 @@
           ["type"] = "Turning Point",
           ["ETA"] = 0,
           ["ETA_locked"] = false,
-          ["y"] = $Y2$,
-          ["x"] = $X2$,
+          ["y"] = $GROUPY2$,
+          ["x"] = $GROUPX2$,
           ["formation_template"] = "",
           ["speed_locked"] = false,
       }, -- end of [2]
@@ -100,24 +98,23 @@
           ["type"] = "Turning Point",
           ["ETA"] = 0,
           ["ETA_locked"] = true,
-          ["y"] = $Y$,
-          ["x"] = $X$,
+          ["y"] = $GROUPY$,
+          ["x"] = $GROUPX$,
           ["formation_template"] = "",
           ["speed_locked"] = true,
       }, -- end of [3]
     }, -- end of ["points"]
   }, -- end of ["route"]
-  ["groupId"] = $ID$,
+  ["groupId"] = $GROUPID$,
   ["hidden"] = $HIDDEN$,
   ["units"] =
   {
 $UNITS$
   }, -- end of ["units"]
-  ["y"] = $Y$,
-  ["x"] = $X$,
+  ["y"] = $GROUPY$,
+  ["x"] = $GROUPX$,
   ["name"] = "$NAME$",
   ["communication"] = true,
   ["start_time"] = 0,
   ["modulation"] = $RADIOBAND$,
   ["frequency"] = $RADIOFREQUENCY$,
-}, -- end of [$INDEX$]

@@ -1,5 +1,3 @@
-[$INDEX$] = 
-{
   ["lateActivation"] = true,
   ["tasks"] =
   {
@@ -44,25 +42,24 @@
         ["type"] = "Turning Point",
         ["ETA"] = 0,
         ["ETA_locked"] = true,
-        ["y"] = $Y$,
-        ["x"] = $X$,
+        ["y"] = $GROUPY$,
+        ["x"] = $GROUPX$,
         ["name"] = "",
         ["formation_template"] = "",
         ["speed_locked"] = true,
       }, -- end of [1]
     }, -- end of ["points"]
   }, -- end of ["route"]
-  ["groupId"] = $ID$,
+  ["groupId"] = $GROUPID$,
   ["hidden"] = $HIDDEN$,
   ["units"] =
   {
 $UNITS$
   }, -- end of ["units"]
-  ["y"] = $Y$,
-  ["x"] = $X$,
+  ["y"] = $GROUPY$,
+  ["x"] = $GROUPX$,
   ["name"] = "$NAME$",
   ["communication"] = true,
   ["start_time"] = 0,
   ["modulation"] = $RADIOBAND$,
   ["frequency"] = $RADIOFREQUENCY$,
-}, -- end of [$INDEX$]

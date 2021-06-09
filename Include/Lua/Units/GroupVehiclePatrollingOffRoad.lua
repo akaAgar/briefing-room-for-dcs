@@ -1,5 +1,3 @@
-[$INDEX$] =
-{
   ["visible"] = false,
   ["tasks"] =
   {
@@ -18,8 +16,8 @@
         ["ETA"] = 0,
         ["alt_type"] = "BARO",
         ["formation_template"] = "",
-        ["y"] = $Y$,
-        ["x"] = $X$,
+        ["y"] = $GROUPY$,
+        ["x"] = $GROUPX$,
         ["name"] = "",
         ["ETA_locked"] = true,
         ["speed"] = 5.5555555555556,
@@ -43,8 +41,8 @@
         ["ETA"] = 0.0,
         ["alt_type"] = "BARO",
         ["formation_template"] = "",
-        ["y"] = $Y2$,
-        ["x"] = $X2$,
+        ["y"] = $GROUPY2$,
+        ["x"] = $GROUPX2$,
         ["name"] = "",
         ["ETA_locked"] = false,
         ["speed"] = 5.5555555555556,
@@ -75,15 +73,14 @@
       }, -- end of [2]
     }, -- end of ["points"]
   }, -- end of ["route"]
-  ["groupId"] = $ID$,
+  ["groupId"] = $GROUPID$,
   ["hidden"] = $HIDDEN$,
   ["hiddenOnMFD"] = $HIDDEN$,
   ["units"] =
   {
     $UNITS$
   }, -- end of ["units"]
-  ["y"] = $Y$,
-  ["x"] = $X$,
+  ["y"] = $GROUPY$,
+  ["x"] = $GROUPX$,
   ["name"] = "$NAME$",
   ["start_time"] = 0,
-}, -- end of [$INDEX$]

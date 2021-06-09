@@ -1,17 +1,14 @@
-[$INDEX$] =
-{
   ["transportable"] =
   {
     ["randomTransportable"] = false,
   }, -- end of ["transportable"]
   ["skill"] = "$SKILL$",
   ["type"] = "$TYPE$",
-  ["unitId"] = $ID$,
+  ["unitId"] = $UNITID$,
 $EXTRALUA$
-  ["y"] = $Y$,
-  ["x"] = $X$,
+  ["y"] = $UNITY$,
+  ["x"] = $UNITX$,
   ["name"] = "$NAME$",
   ["heading"] = $HEADING$,
   ["modulation"] = $RADIOBAND$,
   ["frequency"] = $RADIOFREQUENCY$,
-}, -- end of [$INDEX$]

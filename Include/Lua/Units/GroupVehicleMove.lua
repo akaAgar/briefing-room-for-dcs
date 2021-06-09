@@ -1,5 +1,3 @@
-[$INDEX$] =
-{
   ["visible"] = false,
   ["lateActivation"] = true,
   ["tasks"] =
@@ -22,8 +20,8 @@
         ["ETA"] = 0,
         ["alt_type"] = "BARO",
         ["formation_template"] = "",
-        ["y"] = $Y$,
-        ["x"] = $X$,
+        ["y"] = $GROUPY$,
+        ["x"] = $GROUPX$,
         ["name"] = "",
         ["ETA_locked"] = true,
         ["speed"] = 5.5555555555556,
@@ -59,8 +57,8 @@
           ["type"] = "Turning Point",
           ["ETA"] = 0,
           ["ETA_locked"] = false,
-          ["y"] = $Y$,
-          ["x"] = $X$,
+          ["y"] = $GROUPY$,
+          ["x"] = $GROUPX$,
           ["name"] = "",
           ["formation_template"] = "",
           ["speed_locked"] = true,
@@ -85,8 +83,8 @@
           ["type"] = "Turning Point",
           ["ETA"] = 0,
           ["ETA_locked"] = false,
-          ["y"] = $Y2$,
-          ["x"] = $X2$,
+          ["y"] = $GROUPY2$,
+          ["x"] = $GROUPX2$,
           ["name"] = "",
           ["formation_template"] = "",
           ["speed_locked"] = true,
@@ -111,8 +109,8 @@
           ["type"] = "Turning Point",
           ["ETA"] = 0,
           ["ETA_locked"] = false,
-          ["y"] = $Y2$,
-          ["x"] = $X2$,
+          ["y"] = $GROUPY2$,
+          ["x"] = $GROUPX2$,
           ["name"] = "",
           ["formation_template"] = "",
           ["speed_locked"] = true,
@@ -121,15 +119,14 @@
     }, -- end of ["points"]
     ["routeRelativeTOT"] = false,
   }, -- end of ["route"]
-  ["groupId"] = $ID$,
+  ["groupId"] = $GROUPID$,
   ["hidden"] = $HIDDEN$,
   ["units"] =
   {
 $UNITS$
   }, -- end of ["units"]
-  ["y"] = $Y$,
-  ["x"] = $X$,
+  ["y"] = $GROUPY$,
+  ["x"] = $GROUPX$,
   ["name"] = "$NAME$",
   ["start_time"] = 0,
   ["hiddenOnPlanner"] = $HIDDEN$,
-}, -- end of [$INDEX$]

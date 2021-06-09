@@ -1,20 +1,9 @@
 mission = 
 {
-    ["requiredModules"] = 
-    {
-    }, -- end of ["requiredModules"]
-    ["date"] = 
-    {
-        ["Day"] = $DATEDAY$,
-        ["Year"] = $DATEYEAR$,
-        ["Month"] = $DATEMONTH$,
-    }, -- end of ["date"]
     ["trig"] = 
     {
         ["actions"] = 
         {
-            [1] = "a_do_script_file(getValueResourceByKey(\"ResKey_Script\"));",
-            [2] = "a_end_mission(\"$PLAYERCOALITION$\", \"\", 0); mission.trig.func[2]=nil;",
         }, -- end of ["actions"]
         ["events"] = 
         {
@@ -24,26 +13,29 @@ mission =
         }, -- end of ["custom"]
         ["func"] = 
         {
-            [2] = "if mission.trig.conditions[2]() then mission.trig.actions[2]() end",
         }, -- end of ["func"]
         ["flag"] = 
         {
-            [1] = true,
-            [2] = true,
         }, -- end of ["flag"]
         ["conditions"] = 
         {
-            [1] = "return(true)",
-            [2] = "return(c_flag_is_true(2) )",
         }, -- end of ["conditions"]
         ["customStartup"] = 
         {
         }, -- end of ["customStartup"]
         ["funcStartup"] = 
         {
-            [1] = "if mission.trig.conditions[1]() then mission.trig.actions[1]() end",
         }, -- end of ["funcStartup"]
     }, -- end of ["trig"]
+    ["requiredModules"] = 
+    {
+    }, -- end of ["requiredModules"]
+    ["date"] = 
+    {
+        ["Day"] = $DATEDAY$,
+        ["Year"] = $DATEYEAR$,
+        ["Month"] = $DATEMONTH$,
+    }, -- end of ["date"]
     ["result"] = 
     {
         ["offline"] = 
@@ -87,11 +79,6 @@ mission =
             }, -- end of ["func"]
         }, -- end of ["red"]
     }, -- end of ["result"]
-    ["maxDictId"] = 0,
-    ["pictureFileNameN"] = 
-    {
-      [1] = "ResKey_TitleImage_$MISSIONID$",
-    }, -- end of ["pictureFileNameN"]
     ["groundControl"] = 
     {
         ["isPilotControlVehicles"] = false,
@@ -123,6 +110,10 @@ mission =
             }, -- end of ["forward_observer"]
         }, -- end of ["roles"]
     }, -- end of ["groundControl"]
+    ["maxDictId"] = 0,
+    ["pictureFileNameN"] = 
+    {
+    }, -- end of ["pictureFileNameN"]
     ["goals"] = 
     {
         [1] = 
@@ -142,57 +133,59 @@ mission =
             ["comment"] = "",
         }, -- end of [1]
     }, -- end of ["goals"]
+    ["descriptionNeutralsTask"] = "",
     ["weather"] = 
     {
         ["atmosphere_type"] = 0,
-        ["groundTurbulence"] = $WEATHERGROUNDTURBULENCE$,
-        ["enable_fog"] = $WEATHERFOGENABLED$,
         ["wind"] = 
         {
             ["at8000"] = 
             {
-                ["speed"] = $WEATHERWIND3$,
-                ["dir"] = $WEATHERWIND3DIR$,
+                ["speed"] = $WEATHERWINDSPEED3$,
+                ["dir"] = $WEATHERWINDDIRECTION3$,
             }, -- end of ["at8000"]
-            ["atGround"] = 
-            {
-                ["speed"] = $WEATHERWIND1$,
-                ["dir"] = $WEATHERWIND1DIR$,
-            }, -- end of ["atGround"]
             ["at2000"] = 
             {
-                ["speed"] = $WEATHERWIND2$,
-                ["dir"] = $WEATHERWIND2DIR$,
+                ["speed"] = $WEATHERWINDSPEED2$,
+                ["dir"] = $WEATHERWINDDIRECTION2$,
             }, -- end of ["at2000"]
+            ["atGround"] = 
+            {
+                ["speed"] = $WEATHERWINDSPEED1$,
+                ["dir"] = $WEATHERWINDDIRECTION1$,
+            }, -- end of ["atGround"]
         }, -- end of ["wind"]
+        ["enable_fog"] = $WEATHERFOG$,
+        ["groundTurbulence"] = $WEATHERGROUNDTURBULENCE$,
+        ["enable_dust"] = $WEATHERDUST$,
         ["season"] = 
         {
             ["temperature"] = $WEATHERTEMPERATURE$,
         }, -- end of ["season"]
         ["type_weather"] = 0,
-        ["qnh"] = $WEATHERQNH$,
+        ["modifiedTime"] = false,
         ["cyclones"] = 
         {
         }, -- end of ["cyclones"]
-        ["name"] = "Winter, clean sky",
+        ["name"] = "Default",
         ["fog"] = 
         {
             ["thickness"] = $WEATHERFOGTHICKNESS$,
             ["visibility"] = $WEATHERFOGVISIBILITY$,
         }, -- end of ["fog"]
         ["dust_density"] = $WEATHERDUSTDENSITY$,
-        ["enable_dust"] = $WEATHERDUSTENABLED$,
+        ["qnh"] = $WEATHERQNH$,
         ["visibility"] = 
         {
-            ["distance"] = $WEATHERVISIBILITYDISTANCE$,
+            ["distance"] = $WEATHERVISIBILITY$,
         }, -- end of ["visibility"]
         ["clouds"] = 
         {
             ["thickness"] = $WEATHERCLOUDSTHICKNESS$,
-            ["density"] = $WEATHERCLOUDSDENSITY$,
+            ["density"] = 0,
             ["preset"] = "$WEATHERCLOUDSPRESET$",
             ["base"] = $WEATHERCLOUDSBASE$,
-            ["iprecptns"] = $WEATHERCLOUDSPRECIPITATION$,
+            ["iprecptns"] = 0,
         }, -- end of ["clouds"]
     }, -- end of ["weather"]
     ["theatre"] = "$THEATERID$",
@@ -210,16 +203,15 @@ mission =
     }, -- end of ["map"]
     ["coalitions"] = 
     {
-        ["neutrals"] = $NEUTRALS$,
-        ["blue"] = $BLUES$,
-        ["red"] = $REDS$,
+        ["neutrals"] = $COALITIONNEUTRAL$,
+        ["blue"] = $COALITIONBLUE$,
+        ["red"] = $COALITIONRED$
     }, -- end of ["coalitions"]
     ["descriptionText"] = "$BRIEFINGDESCRIPTION$",
     ["pictureFileNameR"] = 
     {
       [1] = "ResKey_TitleImage_$MISSIONID$",
     }, -- end of ["pictureFileNameR"]
-    ["descriptionNeutralsTask"] = "",
     ["descriptionBlueTask"] = "",
     ["descriptionRedTask"] = "",
     ["pictureFileNameB"] = 
@@ -256,7 +248,7 @@ mission =
             ["name"] = "blue",
             ["country"] = 
             {
-                $COUNTRYSBLUE$
+                $COUNTRIESBLUE$
             }, -- end of ["country"]
         }, -- end of ["blue"]
         ["red"] = 
@@ -272,12 +264,12 @@ mission =
             ["name"] = "red",
             ["country"] = 
             {
-                $COUNTRYSRED$
+                $COUNTRIESRED$
             }, -- end of ["country"]
         }, -- end of ["red"]
     }, -- end of ["coalition"]
     ["sortie"] = "$MISSIONNAME$",
-    ["version"] = 18,
+    ["version"] = 19,
     ["trigrules"] = 
     {
         [1] = 
@@ -332,7 +324,7 @@ mission =
                     ["meters"] = 1000,
                 }, -- end of [1]
             }, -- end of ["actions"]
-        }, -- end of [2]        
+        }, -- end of [2]
     }, -- end of ["trigrules"]
     ["currentKey"] = 0,
     ["start_time"] = $STARTTIME$,

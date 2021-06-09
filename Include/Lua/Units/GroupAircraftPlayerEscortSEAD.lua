@@ -1,5 +1,3 @@
-[$INDEX$] = 
-{
     ["modulation"] = $RADIOBAND$,
     ["tasks"] = 
     {
@@ -73,7 +71,7 @@
                                         ["params"] = 
                                         {
                                             ["value"] = $EPLRS$,
-                                            ["groupId"] = $ID$,
+                                            ["groupId"] = $GROUPID$,
                                         }, -- end of ["params"]
                                     }, -- end of ["action"]
                                 }, -- end of ["params"]
@@ -113,8 +111,8 @@
                 ["type"] = "$PLAYERESCORTSTARTINGTYPE$",
                 ["ETA"] = 0,
                 ["ETA_locked"] = true,
-                ["y"] = $Y$,
-                ["x"] = $X$,
+                ["y"] = $GROUPY$,
+                ["x"] = $GROUPX$,
                 ["name"] = "",
                 ["formation_template"] = "",
                 ["airdromeId"] = $MISSIONAIRBASEID$,
@@ -122,16 +120,15 @@
             }, -- end of [1]
         }, -- end of ["points"]
     }, -- end of ["route"]
-    ["groupId"] = $ID$,
+    ["groupId"] = $GROUPID$,
     ["hidden"] = $HIDDEN$,
     ["units"] = 
     {
 $UNITS$
     }, -- end of ["units"]
-    ["y"] = $Y$,
-    ["x"] = $X$,
+    ["y"] = $GROUPY$,
+    ["x"] = $GROUPX$,
     ["name"] = "$NAME$",
     ["communication"] = true,
     ["start_time"] = 0,
     ["frequency"] = $RADIOFREQUENCY$,
-}, -- end of [$INDEX$]

@@ -4,6 +4,7 @@ Database\**\**\*.ini
 Database\**\**\**\*.ini
 Include\Briefing.html
 Include\*.cmp
+Include\Html\*.html
 Include\Jpg\*.jpg
 Include\Jpg\*.png
 Include\Jpg\**\*.jpg

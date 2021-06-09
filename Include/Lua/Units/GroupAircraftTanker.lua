@@ -1,5 +1,3 @@
-[$INDEX$] = 
-{
     ["lateActivation"] = true,
     ["modulation"] = $RADIOBAND$,
     ["radioSet"] = true,
@@ -76,7 +74,7 @@
                                         ["params"] = 
                                         {
                                             ["value"] = $EPLRS$,
-                                            ["groupId"] = $ID$,
+                                            ["groupId"] = $GROUPID$,
                                         }, -- end of ["params"]
                                     }, -- end of ["action"]
                                 }, -- end of ["params"]
@@ -91,42 +89,6 @@
                                 {
                                     ["action"] = 
                                     {
-                                        ["id"] = "SetInvisible",
-                                        ["params"] = 
-                                        {
-                                            ["value"] = true,
-                                        }, -- end of ["params"]
-                                    }, -- end of ["action"]
-                                }, -- end of ["params"]
-                            }, -- end of [4]
-                            [5] = 
-                            {
-                                ["enabled"] = true,
-                                ["auto"] = false,
-                                ["id"] = "WrappedAction",
-                                ["number"] = 5,
-                                ["params"] = 
-                                {
-                                    ["action"] = 
-                                    {
-                                        ["id"] = "SetImmortal",
-                                        ["params"] = 
-                                        {
-                                            ["value"] = true,
-                                        }, -- end of ["params"]
-                                    }, -- end of ["action"]
-                                }, -- end of ["params"]
-                            }, -- end of [5]
-                            [6] = 
-                            {
-                                ["enabled"] = true,
-                                ["auto"] = false,
-                                ["id"] = "WrappedAction",
-                                ["number"] = 6,
-                                ["params"] = 
-                                {
-                                    ["action"] = 
-                                    {
                                         ["id"] = "Option",
                                         ["params"] = 
                                         {
@@ -135,28 +97,28 @@
                                         }, -- end of ["params"]
                                     }, -- end of ["action"]
                                 }, -- end of ["params"]
-                            }, -- end of [6]
-                            [7] = 
+                            }, -- end of [4]
+                            [5] = 
                             {
                                 ["enabled"] = true,
                                 ["auto"] = false,
                                 ["id"] = "Orbit",
-                                ["number"] = 7,
+                                ["number"] = 5,
                                 ["params"] = 
                                 {
                                     ["altitude"] = $ALTITUDE$,
                                     ["pattern"] = "Race-Track",
                                     ["speed"] = $SPEED$,
                                 }, -- end of ["params"]
-                            }, -- end of [7]
+                            }, -- end of [5]
                         }, -- end of ["tasks"]
                     }, -- end of ["params"]
                 }, -- end of ["task"]
                 ["type"] = "Turning Point",
                 ["ETA"] = 0,
                 ["ETA_locked"] = true,
-                ["y"] = $Y$,
-                ["x"] = $X$,
+                ["y"] = $GROUPY$,
+                ["x"] = $GROUPX$,
                 ["name"] = "",
                 ["formation_template"] = "",
                 ["speed_locked"] = true,
@@ -180,24 +142,23 @@
                 ["type"] = "Turning Point",
                 ["ETA"] = 0.0,
                 ["ETA_locked"] = false,
-                ["y"] = $Y2$,
-                ["x"] = $X2$,
+                ["y"] = $GROUPY2$,
+                ["x"] = $GROUPX2$,
                 ["name"] = "",
                 ["formation_template"] = "",
                 ["speed_locked"] = true,
             }, -- end of [2]
         }, -- end of ["points"]
     }, -- end of ["route"]
-    ["groupId"] = $ID$,
+    ["groupId"] = $GROUPID$,
     ["hidden"] = $HIDDEN$,
     ["units"] = 
     {
 $UNITS$
     }, -- end of ["units"]
-    ["y"] = $Y$,
-    ["x"] = $X$,
+    ["y"] = $GROUPY$,
+    ["x"] = $GROUPX$,
     ["name"] = "$NAME$",
     ["communication"] = true,
     ["start_time"] = 0,
     ["frequency"] = $RADIOFREQUENCY$,
-}, -- end of [$INDEX$]
