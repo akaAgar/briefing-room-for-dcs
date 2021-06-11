@@ -114,41 +114,6 @@ namespace BriefingRoom4DCS.Generator
                 carrierDictionary.Add(flightGroup.Carrier, groupInfo.Value);
             }
 
-            // if (carrierDictionary.Count > 0) // Add escorts if there's a carrier group
-            // {
-            //     // Pick the correct number of escorts according to the carrier group size
-            //     UnitFamily[] escortUnitFamilies = Database.Instance.Common.CarrierGroup.EscortUnitFamilies[DBCommonCarrierGroup.ESCORT_FAMILIES_SHIP_COUNT - 1].ToArray();
-            //     for (int i = 0; i < DBCommonCarrierGroup.ESCORT_FAMILIES_SHIP_COUNT - 1; i++)
-            //         if (i == carrierDictionary.Count - 1)
-            //             escortUnitFamilies = Database.Instance.Common.CarrierGroup.EscortUnitFamilies[i].ToArray();
-
-            //     // Randomize escort unit families order so they don't always appear in the same order
-            //     escortUnitFamilies = escortUnitFamilies.OrderBy(x => Toolbox.RandomInt()).ToArray();
-
-            //     // Add escorts
-            //     foreach (UnitFamily escortUnitFamily in escortUnitFamilies)
-            //     {
-            //         Coordinates shipCoordinates = carrierGroupCoordinates + Coordinates.FromAngleInRadians(Toolbox.RandomAngle()) * carrierDictionary.Count * Toolbox.NM_TO_METERS;
-            //         Coordinates shipDestination = shipCoordinates + destinationPath;
-
-            //         UnitMakerGroupInfo? groupInfo =
-            //             UnitMaker.AddUnitGroup(
-            //                 escortUnitFamily, 1, Side.Ally,
-            //                 "GroupShipMoving", "UnitShip",
-            //                 shipCoordinates, DCSSkillLevel.Excellent,
-            //                 0, AircraftPayload.Default,
-            //                 "GroupX2".ToKeyValuePair(shipDestination.X),
-            //                 "GroupY2".ToKeyValuePair(shipDestination.Y),
-            //                 "RadioBand".ToKeyValuePair((int)RadioModulation.AM),
-            //                 "RadioFrequency".ToKeyValuePair(GeneratorTools.GetRadioFrenquency(127.5 + carrierDictionary.Count))
-            //                 );
-
-            //         if (!groupInfo.HasValue || (groupInfo.Value.UnitsID.Length == 0)) continue; // Couldn't generate group
-
-            //         carrierDictionary.Add($"*ESCORT{carrierDictionary.Count}", groupInfo.Value);
-            //     }
-            // }
-
             return carrierDictionary;
         }
 
