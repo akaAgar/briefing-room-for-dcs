@@ -149,7 +149,7 @@ namespace BriefingRoom4DCS.Generator
 
                 foreach (string unitDCSType in unitDB.DCSIDs)
                 {
-                    SetUnitCoordinatesAndHeading(unitDB, unitRealIndex, coordinates, out Coordinates unitCoordinates, out double unitHeading);
+                    SetUnitCoordinatesAndHeading(unitDB, unitRealIndex -1, coordinates, out Coordinates unitCoordinates, out double unitHeading);
 
                     string singleUnitLuaTable = unitLuaTemplate;
                     foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
