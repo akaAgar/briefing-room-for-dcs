@@ -80,7 +80,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Add common media files
             foreach (string oggFile in Database.Instance.Common.CommonOGG)
-                mission.AddMediaFile(Toolbox.AddMissingFileExtension(oggFile, ".ogg"), $"{BRPaths.INCLUDE_OGG}{Toolbox.AddMissingFileExtension(oggFile, ".ogg")}");
+                mission.AddMediaFile($"l10n/DEFAULT/{Toolbox.AddMissingFileExtension(oggFile, ".ogg")}", $"{BRPaths.INCLUDE_OGG}{Toolbox.AddMissingFileExtension(oggFile, ".ogg")}");
 
             Country[][] coalitionsCountries;
             // Generate list of countries for each coalition
@@ -210,8 +210,10 @@ namespace BriefingRoom4DCS.Generator
 
             // Generate image files
             BriefingRoom.PrintToLog("Generating images...");
-            using (MissionGeneratorImages imagesGenerator = new MissionGeneratorImages())
+            using (MissionGeneratorImages imagesGenerator = new MissionGeneratorImages()) {
                 imagesGenerator.GenerateTitle(mission, template);
+                imagesGenerator.GenerateKneeboardImage(mission);
+            }
 
             return mission;
         }

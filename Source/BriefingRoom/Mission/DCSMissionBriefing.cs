@@ -18,12 +18,8 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Generator;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace BriefingRoom4DCS.Mission
 {
@@ -64,6 +60,22 @@ namespace BriefingRoom4DCS.Mission
             GeneratorTools.ReplaceKey(ref html, "BriefingWaypoints", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.Waypoint)));
 
             return html;
+        }
+
+        public string GetBriefingKneeBoardText()
+        {
+
+            string kneeboardText = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KNEEBOARD.html");
+
+            kneeboardText = Mission.ReplaceValues(kneeboardText);
+
+            GeneratorTools.ReplaceKey(ref kneeboardText, "BriefingAirbases", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Airbase)).Replace("\t","    "));
+            GeneratorTools.ReplaceKey(ref kneeboardText, "BriefingFlightGroups", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.FlightGroup)).Replace("\t","    "));
+            GeneratorTools.ReplaceKey(ref kneeboardText, "BriefingRemarks", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Remark)).Replace("\t","    "));
+            GeneratorTools.ReplaceKey(ref kneeboardText, "BriefingTasks", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Task)).Replace("\t","    "));
+            GeneratorTools.ReplaceKey(ref kneeboardText, "BriefingWaypoints", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Waypoint)).Replace("\t","    "));
+
+            return kneeboardText;
         }
 
         public string GetBriefingAsRawText(string newLine = "\n")
