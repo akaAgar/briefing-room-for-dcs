@@ -8,7 +8,7 @@ $EXTRALUA$
                 {
 $PROPSLUA$
                 }, -- end of ["AddPropAircraft"]
-                ["type"] = "$TYPE$",
+                ["type"] = "$DCSID$",
                 ["unitId"] = $UNITID$,
                 ["psi"] = 0,
                 ["parking_id"] = "$PARKINGID$",

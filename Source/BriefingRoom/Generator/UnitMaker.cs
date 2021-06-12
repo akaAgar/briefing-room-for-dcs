@@ -95,7 +95,7 @@ namespace BriefingRoom4DCS.Generator
 
         internal UnitMakerGroupInfo? AddUnitGroup(
             string[] units, Side side, UnitFamily unitFamily,
-            string groupLua, string unitLua,
+            string groupTypeLua, string unitTypeLua,
             Coordinates coordinates, DCSSkillLevel? skill = null,
             UnitMakerGroupFlags unitMakerGroupFlags = 0, 
             AircraftPayload aircraftPayload = AircraftPayload.Default,
@@ -105,11 +105,6 @@ namespace BriefingRoom4DCS.Generator
 
             Coalition coalition = (side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy();
             Country country = (coalition == Coalition.Blue) ? Country.CJTFBlue : Country.CJTFRed;
-
-            string lua = File.ReadAllText($"{BRPaths.INCLUDE_LUA_UNITS}{Toolbox.AddMissingFileExtension(groupLua, ".lua")}");
-            foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
-                if (!(extraSetting.Value is Array)) // Array extra settings are treated on a per-unit basis
-                    GeneratorTools.ReplaceKey(ref lua, extraSetting.Key, extraSetting.Value);
 
             if (!skill.HasValue)
                 skill = GeneratorTools.GetDefaultSkillLevel(Template, unitFamily, side);
@@ -123,99 +118,51 @@ namespace BriefingRoom4DCS.Generator
             }
             else
                 groupName = GeneratorTools.GetGroupName(GroupID, unitFamily);
+
             
-            GeneratorTools.ReplaceKey(ref lua, "GroupID", GroupID);
-            GeneratorTools.ReplaceKey(ref lua, "GroupX", coordinates.X);
-            GeneratorTools.ReplaceKey(ref lua, "GroupY", coordinates.Y);
-            GeneratorTools.ReplaceKey(ref lua, "GroupX2", coordinates.X); // GroupX2 and GroupY2 are replaced by the default coordinates only if they were not replaced earlier in extraSetting replacements. 
-            GeneratorTools.ReplaceKey(ref lua, "GroupY2", coordinates.Y);
-            GeneratorTools.ReplaceKey(ref lua, "Name", groupName);
 
-            string unitLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_UNITS}{Toolbox.AddMissingFileExtension(unitLua, ".lua")}");
-            string unitsLuaTable = "";
+            var groupLua = CreateGroup(
+                groupTypeLua,
+                coordinates,
+                groupName,
+                extraSettings
+            );
+            
+
             int firstUnitID = UnitID;
-            List<int> unitsIDList = new List<int>();
-            DBEntryUnit firstUnitDB = null;
-            int unitRealIndex = 1;
-            for (int unitIndex = 0; unitIndex < units.Length; unitIndex++)
-            {
-                DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(units[unitIndex]);
-                if (unitDB == null)
-                {
-                    BriefingRoom.PrintToLog($"Unit \"{units[unitIndex]}\" not found.", LogMessageErrorLevel.Warning);
-                    continue;
-                }
-                if (firstUnitDB == null) firstUnitDB = unitDB; // Store the first unit, which will be used for group-scope replacements later
+            var (unitsLuaTable, unitsIDList) = AddUnits(
+                units,
+                groupName,
+                callsign,
+                unitTypeLua,
+                coordinates,
+                aircraftPayload,
+                unitMakerGroupFlags,
+                extraSettings
+            );
 
-                foreach (string unitDCSType in unitDB.DCSIDs)
-                {
-                    SetUnitCoordinatesAndHeading(unitDB, unitRealIndex, coordinates, out Coordinates unitCoordinates, out double unitHeading);
-
-                    string singleUnitLuaTable = unitLuaTemplate;
-                    foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
-                        if (extraSetting.Value is Array)
-                            GeneratorTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value, unitIndex);
-                        else
-                            GeneratorTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value);
-
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "ExtraLua", unitDB.ExtraLua);
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Heading", unitHeading);
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Type", unitDCSType);
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitID", UnitID);
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitX", unitCoordinates.X);
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitY", unitCoordinates.Y);
-                    if ((unitDB.Category == UnitCategory.Helicopter) || (unitDB.Category == UnitCategory.Plane))
-                    {
-                        if ((unitRealIndex == 1) && unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.FirstUnitIsPlayer))
-                            GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Skill", "Player");
-
-                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Callsign", callsign.Value.GetLua(unitIndex + 1));
-                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", callsign.Value.GetUnitName(unitIndex + 1));
-                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "OnBoardNumber", Toolbox.RandomInt(1, 1000).ToString("000"));
-                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PropsLua", unitDB.AircraftData.PropsLua);
-                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "RadioPresetsLua", string.Join("", unitDB.AircraftData.RadioPresets.Select((x, index) => $"[{index + 1}] = {x.ToLuaString()}")));
-                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Speed", unitDB.AircraftData.CruiseSpeed);
-                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadCommon", unitDB.AircraftData.PayloadCommon);
-                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadPylons", unitDB.AircraftData.GetPayloadLua(aircraftPayload, Template.ContextDecade));
-                    }
-                    else
-                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", $"{groupName} {unitRealIndex + 1}");
-
-                    unitsLuaTable += $"[{unitRealIndex}] =\n";
-                    unitsLuaTable += "{\n";
-                    unitsLuaTable += $"{singleUnitLuaTable}\n";
-                    unitsLuaTable += $"}}, -- end of [{unitRealIndex}]\n";
-
-                    unitsIDList.Add(UnitID);
-                    UnitID++;
-                    unitRealIndex++;
-                }
-            }
 
             if (unitsIDList.Count == 0) return null; // No valid units added to this group
-            GeneratorTools.ReplaceKey(ref lua, "Units", unitsLuaTable);
-
-            if ((firstUnitDB != null) && ((firstUnitDB.Category == UnitCategory.Helicopter) || (firstUnitDB.Category == UnitCategory.Plane)))
+            GeneratorTools.ReplaceKey(ref groupLua, "Units", unitsLuaTable);
+                
+            DBEntryUnit firstUnitDB = units.Select(x => Database.Instance.GetEntry<DBEntryUnit>(x)).First(x => x != null);
+            var aircraftCategories = new UnitCategory[]{UnitCategory.Helicopter, UnitCategory.Plane};
+            var isAircraft = firstUnitDB != null && aircraftCategories.Contains(firstUnitDB.Category);
+    
+            if(isAircraft)
             {
-                GeneratorTools.ReplaceKey(ref lua, "Altitude", firstUnitDB.AircraftData.CruiseAltitude);
-                GeneratorTools.ReplaceKey(ref lua, "AltitudeHalf", firstUnitDB.AircraftData.CruiseAltitude / 2);
-                GeneratorTools.ReplaceKey(ref lua, "EPLRS", firstUnitDB.Flags.HasFlag(DBEntryUnitFlags.EPLRS));
-                GeneratorTools.ReplaceKey(ref lua, "ParkingID", 0);
-                GeneratorTools.ReplaceKey(ref lua, "RadioBand", (int)firstUnitDB.AircraftData.RadioModulation);
-                GeneratorTools.ReplaceKey(ref lua, "RadioFrequency", firstUnitDB.AircraftData.RadioFrequency);
-                GeneratorTools.ReplaceKey(ref lua, "Speed", firstUnitDB.AircraftData.CruiseSpeed);
-
+                groupLua = ApplyAircraftFields(groupLua, firstUnitDB);
                 if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ImmediateAircraftSpawn))
                     Mission.AppendValue("AircraftActivatorCurrentQueue", $"{GroupID},");
                 else
                     Mission.AppendValue("AircraftActivatorReserveQueue", $"{GroupID},");
             }
 
-            GeneratorTools.ReplaceKey(ref lua, "UnitID", firstUnitID); // Must be after units are added
-            GeneratorTools.ReplaceKey(ref lua, "Skill", skill.Value); // Must be after units are added, because skill is set as a unit level
-            GeneratorTools.ReplaceKey(ref lua, "Hidden", GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags)); // If "hidden" was not set through custom values
+            GeneratorTools.ReplaceKey(ref groupLua, "UnitID", firstUnitID); // Must be after units are added
+            GeneratorTools.ReplaceKey(ref groupLua, "Skill", skill.Value); // Must be after units are added, because skill is set as a unit level
+            GeneratorTools.ReplaceKey(ref groupLua, "Hidden", GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags)); // If "hidden" was not set through custom values
 
-            AddUnitGroupToTable(country, unitFamily.GetUnitCategory(), lua);
+            AddUnitGroupToTable(country, unitFamily.GetUnitCategory(), groupLua);
 
             BriefingRoom.PrintToLog($"Added group of {units.Length} {coalition} {unitFamily} at {coordinates}");
 
@@ -224,6 +171,143 @@ namespace BriefingRoom4DCS.Generator
             if (firstUnitDB == null)
                 return new UnitMakerGroupInfo(GroupID - 1, coordinates, unitsIDList, groupName);
             return new UnitMakerGroupInfo(GroupID - 1, coordinates, unitsIDList, groupName, firstUnitDB.AircraftData.RadioFrequency);
+        }
+
+
+        private string CreateGroup(
+            string groupTypeLua,
+            Coordinates coordinates,
+            string groupName,
+            params KeyValuePair<string, object>[] extraSettings
+        )
+        {
+            string lua = File.ReadAllText($"{BRPaths.INCLUDE_LUA_UNITS}{Toolbox.AddMissingFileExtension(groupTypeLua, ".lua")}");
+            foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
+                if (!(extraSetting.Value is Array)) // Array extra settings are treated on a per-unit basis
+                    GeneratorTools.ReplaceKey(ref lua, extraSetting.Key, extraSetting.Value);
+            
+            GeneratorTools.ReplaceKey(ref lua, "GroupID", GroupID);
+            GeneratorTools.ReplaceKey(ref lua, "GroupX", coordinates.X);
+            GeneratorTools.ReplaceKey(ref lua, "GroupY", coordinates.Y);
+            GeneratorTools.ReplaceKey(ref lua, "GroupX2", coordinates.X); // GroupX2 and GroupY2 are replaced by the default coordinates only if they were not replaced earlier in extraSetting replacements. 
+            GeneratorTools.ReplaceKey(ref lua, "GroupY2", coordinates.Y);
+            GeneratorTools.ReplaceKey(ref lua, "Name", groupName);
+
+            return lua;
+        }
+
+        private string ApplyAircraftFields(string groupLua, DBEntryUnit firstUnitDB){
+            GeneratorTools.ReplaceKey(ref groupLua, "Altitude", firstUnitDB.AircraftData.CruiseAltitude);
+            GeneratorTools.ReplaceKey(ref groupLua, "AltitudeHalf", firstUnitDB.AircraftData.CruiseAltitude / 2);
+            GeneratorTools.ReplaceKey(ref groupLua, "EPLRS", firstUnitDB.Flags.HasFlag(DBEntryUnitFlags.EPLRS));
+            GeneratorTools.ReplaceKey(ref groupLua, "ParkingID", 0);
+            GeneratorTools.ReplaceKey(ref groupLua, "RadioBand", (int)firstUnitDB.AircraftData.RadioModulation);
+            GeneratorTools.ReplaceKey(ref groupLua, "RadioFrequency", firstUnitDB.AircraftData.RadioFrequency);
+            GeneratorTools.ReplaceKey(ref groupLua, "Speed", firstUnitDB.AircraftData.CruiseSpeed);
+            return groupLua;
+        }
+
+        private (string unitsLua, List<int> unitsIDList) AddUnits(
+            string[] unitSets,
+            string groupName,
+            UnitCallsign? callsign,
+            string unitTypeLua,
+            Coordinates coordinates,
+            AircraftPayload aircraftPayload,
+            UnitMakerGroupFlags unitMakerGroupFlags,
+            params KeyValuePair<string, object>[] extraSettings
+            )
+        {
+            string unitsLuaTable = "";
+            int unitLuaIndex = 1;
+            List<int> unitsIDList = new List<int>();
+            foreach (var unitSet in unitSets)
+            {
+                DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(unitSet);
+                if (unitDB == null)
+                {
+                    BriefingRoom.PrintToLog($"Unit \"{unitSet}\" not found.", LogMessageErrorLevel.Warning);
+                    continue;
+                }
+                int unitSetIndex = 0;
+                foreach (string DCSID in unitDB.DCSIDs)
+                {
+                    unitsLuaTable += AddUnit(
+                        DCSID,
+                        groupName,
+                        callsign,
+                        unitLuaIndex,
+                        unitSetIndex,
+                        unitDB,
+                        unitTypeLua,
+                        coordinates,
+                        aircraftPayload,
+                        unitMakerGroupFlags,
+                        extraSettings
+                        );
+
+                    unitsIDList.Add(UnitID);
+                    unitSetIndex++;
+                    unitLuaIndex++;
+                    UnitID++;   
+                }
+            }
+            return (unitsLuaTable, unitsIDList);
+        }
+
+
+        private string AddUnit(
+            string DCSID,
+            string groupName,
+            UnitCallsign? callsign,
+            int unitLuaIndex,
+            int unitSetIndex,
+            DBEntryUnit unitDB,
+            string unitTypeLua,
+            Coordinates coordinates,
+            AircraftPayload aircraftPayload,
+            UnitMakerGroupFlags unitMakerGroupFlags,
+            params KeyValuePair<string, object>[] extraSettings)
+        {
+            string unitLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_UNITS}{Toolbox.AddMissingFileExtension(unitTypeLua, ".lua")}");
+            SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, out Coordinates unitCoordinates, out double unitHeading);
+
+                    string singleUnitLuaTable = String.Copy(unitLuaTemplate);
+                    foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
+                        if (extraSetting.Value is Array)
+                            GeneratorTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value, unitSetIndex);
+                        else
+                            GeneratorTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value);
+
+                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "ExtraLua", unitDB.ExtraLua);
+                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Heading", unitHeading);
+                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "DCSID", DCSID);
+                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitID", UnitID);
+                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitX", unitCoordinates.X);
+                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitY", unitCoordinates.Y);
+                    if ((unitDB.Category == UnitCategory.Helicopter) || (unitDB.Category == UnitCategory.Plane))
+                    {
+                        if ((unitLuaIndex == 1) && unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.FirstUnitIsPlayer))
+                            GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Skill", "Client"); //Must Always be client to support SP and MP AI wingmen
+
+                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Callsign", callsign.Value.GetLua(unitLuaIndex + 1));
+                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", callsign.Value.GetUnitName(unitLuaIndex + 1));
+                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "OnBoardNumber", Toolbox.RandomInt(1, 1000).ToString("000"));
+                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PropsLua", unitDB.AircraftData.PropsLua);
+                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "RadioPresetsLua", string.Join("", unitDB.AircraftData.RadioPresets.Select((x, index) => $"[{index + 1}] = {x.ToLuaString()}")));
+                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Speed", unitDB.AircraftData.CruiseSpeed);
+                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadCommon", unitDB.AircraftData.PayloadCommon);
+                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadPylons", unitDB.AircraftData.GetPayloadLua(aircraftPayload, Template.ContextDecade));
+                    }
+                    else
+                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", $"{groupName} {unitLuaIndex + 1}");
+
+                    var unitString = $"[{unitLuaIndex}] =\n";
+                    unitString += "{\n";
+                    unitString += $"{singleUnitLuaTable}\n";
+                    unitString += $"}}, -- end of [{unitLuaIndex}]\n";
+
+                    return unitString;
         }
 
         private void AddUnitGroupToTable(Country country, UnitCategory category, string unitGroupLua)
@@ -273,38 +357,6 @@ namespace BriefingRoom4DCS.Generator
             return unitsLuaTable;
         }
 
-        //    internal int AddUnitGroup(
-        //string[] units, Side side,
-        //string groupLua, string unitLua,
-        //Coordinates coordinates, Coordinates? coordinates2,
-        //DCSSkillLevel skill, DCSMissionUnitGroupFlags flags = 0, AircraftPayload payload = AircraftPayload.Default,
-        //int airbaseID = 0, Country? country = null, PlayerStartLocation startLocation = PlayerStartLocation.Runway)
-        //    {
-
-
-        //        GroupID++;
-        //        return GroupID - 1;
-        //    }
-
-        //    internal int AddUnitGroup(
-        //string[] units, Side side,
-        //string groupLua, string unitLua,
-        //Coordinates coordinates, Coordinates? coordinates2,
-        //DCSSkillLevel skill, DCSMissionUnitGroupFlags flags = 0, AircraftPayload payload = AircraftPayload.Default,
-        //int airbaseID = 0, Country? country = null, PlayerStartLocation startLocation = PlayerStartLocation.Runway)
-        //    {
-
-
-        //        GroupID++;
-        //        return GroupID - 1;
-        //    }
-
-        /*
-         * public void MyFunction(params KeyValuePair<string, object>[] pairs)
-{
-    // ...
-}*/
-
         private void SetUnitCoordinatesAndHeading(
             DBEntryUnit unitDB, int unitIndex, Coordinates groupCoordinates,
             out Coordinates unitCoordinates, out double unitHeading)
@@ -353,170 +405,3 @@ namespace BriefingRoom4DCS.Generator
         }
     }
 }
-
-//namespace BriefingRoom4DCS.Generator
-//{
-//    internal class UnitMaker : IDisposable
-//    {
-//        private int NextGroupID;
-//        private int NextUnitID;
-
-//        internal UnitMakerSpawnPointSelector SpawnPointSelector { get; }
-//        internal UnitMakerCallsignGenerator CallsignGenerator { get; }
-
-//        internal UnitMaker(DBEntryCoalition[] coalitionsDB, DBEntryTheater theaterDB)
-//        {
-//            CallsignGenerator = new UnitMakerCallsignGenerator(coalitionsDB);
-//            SpawnPointSelector = new UnitMakerSpawnPointSelector(theaterDB);
-
-//            NextGroupID = 1;
-//            NextUnitID = 1;
-//        }
-
-//        internal DCSMissionUnitGroup AddUnitGroup(
-//            DCSMission mission, string[] units, Side side,
-//            Coordinates coordinates, string groupLua, string unitLua,
-//            DCSSkillLevel skill, DCSMissionUnitGroupFlags flags = 0, AircraftPayload payload = AircraftPayload.Default,
-//            Coordinates? coordinates2 = null, int airbaseID = 0, bool requiresParkingSpots = false, bool requiresOpenAirParking = false, Country? country = null, PlayerStartLocation startLocation = PlayerStartLocation.Runway)
-//        {
-//            if (units.Length == 0) return null; // No units database entries ID provided, cancel group creation
-
-//            // TODO: check for missing units
-//            DBEntryUnit[] unitsBP = (from string u in units where Database.Instance.EntryExists<DBEntryUnit>(u) select Database.Instance.GetEntry<DBEntryUnit>(u)).ToArray();
-//            unitsBP = (from DBEntryUnit u in unitsBP where u != null select u).ToArray();
-//            if (unitsBP.Length == 0) return null; // All database entries were null, cancel group creation
-
-//            Coalition coalition = (side == Side.Ally) ? mission.CoalitionPlayer : mission.CoalitionEnemy; // Pick group coalition
-//            if(!country.HasValue)
-//                country = coalition == Coalition.Blue? Country.CJTFBlue : Country.CJTFRed;
-
-//            double groupHeading = unitsBP[0].IsAircraft ? 0 : Toolbox.RandomDouble(Toolbox.TWO_PI); // Generate global group heading
-
-//            // Generate units in the group
-//            int unitIndex = 0;
-//            Coordinates? lastSpot = null;
-//            List<DCSMissionUnitGroupUnit> groupUnits = new List<DCSMissionUnitGroupUnit>();
-//            foreach (DBEntryUnit unitBP in unitsBP)
-//            {
-//                if (unitBP == null) continue;
-
-//                for (int i = 0; i < unitBP.DCSIDs.Length; i++)
-//                {
-//                    // Set unit coordinates and heading
-//                    Coordinates unitCoordinates = coordinates;
-//                    double unitHeading = groupHeading;
-
-//                    SetUnitCoordinatesAndHeading(ref unitCoordinates, ref unitHeading, unitBP, unitIndex);
-
-//                    // Get parking spot for the unit, if unit is parked at an airdrome
-//                    int parkingSpot = 0;
-//                    if (airbaseID > 0)
-//                    {
-//                        if (requiresParkingSpots)
-//                        {
-//                            parkingSpot = SpawnPointSelector.GetFreeParkingSpot(airbaseID, lastSpot, out Coordinates parkingCoordinates, requiresOpenAirParking);
-//                            if (parkingSpot >= 0)
-//                               unitCoordinates = parkingCoordinates;
-//                            else
-//                               parkingSpot = 0;
-//                            lastSpot = unitCoordinates;
-//                        }
-//                    } else if(airbaseID == -99) //carrier code always parks 1 maybe will need more
-//                        parkingSpot = 1;
-//                    // Add unit to the list of units
-//                    DCSMissionUnitGroupUnit unit = new DCSMissionUnitGroupUnit
-//                    {
-//                        Coordinates = unitCoordinates,
-//                        Heading = unitHeading,
-//                        ID = NextUnitID,
-//                        Type = unitBP.DCSIDs[i],
-//                        ParkingSpot = parkingSpot,
-//                        Name = unitBP.ID
-//                    };
-//                    groupUnits.Add(unit);
-//                    unitIndex++; NextUnitID++;
-//                }
-//            }
-
-//            // Generate group name
-//            string groupName;
-//            UnitCallsign callsign = new UnitCallsign();
-//            if (unitsBP[0].IsAircraft) // Aircraft group, name is a callsign
-//            {
-//                callsign = CallsignGenerator.GetCallsign(unitsBP[0].Families[0], coalition);
-//                groupName = callsign.GroupName;
-//            }
-//            else // Vehicle/ship/static group, name is a random group name
-//                groupName = GetGroupName(unitsBP[0].Families[0]);
-
-//            // Add group to the mission
-//            DCSMissionUnitGroup group = new DCSMissionUnitGroup
-//            {
-//                AirbaseID = airbaseID,
-//                CallsignLua = callsign.Lua,
-//                Category = unitsBP[0].Category,
-//                Coalition = coalition,
-//                Country = country.Value,
-//                Coordinates = airbaseID != 0?  groupUnits[0].Coordinates : coordinates,
-//                Coordinates2 = coordinates2 ?? coordinates + Coordinates.CreateRandom(1, 2) * Toolbox.NM_TO_METERS,
-//                Flags = flags,
-//                GroupID = NextGroupID,
-//                LuaGroup = groupLua,
-//                Name = groupName,
-//                Skill = skill,
-//                Payload = payload,
-//                UnitID = units[0],
-//                LuaUnit = unitLua,
-//                Units = groupUnits.ToArray(),
-//                StartLocation = startLocation
-//            };
-//            mission.UnitGroups.Add(group);
-
-//            NextGroupID++;
-
-//            BriefingRoom.PrintToLog($"Added \"{group.Units[0].Type}\" unit group \"{group.Name}\" for coalition {group.Coalition.ToString().ToUpperInvariant()}");
-
-//            return group;
-//        }
-
-//        private void SetUnitCoordinatesAndHeading(ref Coordinates unitCoordinates, ref double unitHeading, DBEntryUnit unitBP, int unitIndex)
-//        {
-//            if (unitBP.IsAircraft)
-//                unitCoordinates += new Coordinates(AIRCRAFT_UNIT_SPACING, AIRCRAFT_UNIT_SPACING) * unitIndex;
-//            else
-//            {
-//                if (unitBP.OffsetCoordinates.Length > unitIndex) // Unit has a fixed set of coordinates (for SAM sites, etc.)
-//                {
-//                    double s = Math.Sin(unitHeading);
-//                    double c = Math.Cos(unitHeading);
-//                    Coordinates offsetCoordinates= unitBP.OffsetCoordinates[unitIndex];
-//                    unitCoordinates += new Coordinates( offsetCoordinates.X * c - offsetCoordinates.Y * s, offsetCoordinates.X * s + offsetCoordinates.Y * c);
-//                }
-//                else // No fixed coordinates, generate random coordinates
-//                {
-//                    switch (unitBP.Category)
-//                    {
-//                        case UnitCategory.Ship:
-//                            unitCoordinates = unitCoordinates.CreateNearRandom(SHIP_UNIT_SPACING, SHIP_UNIT_SPACING * 10);
-//                            break;
-//                        case UnitCategory.Static: // Static units are spawned exactly on the group location (and there's only a single unit per group)
-//                            break;
-//                        default:
-//                            unitCoordinates = unitCoordinates.CreateNearRandom(VEHICLE_UNIT_SPACING, VEHICLE_UNIT_SPACING * 10);
-//                            break;
-//                    }
-//                }
-
-//                if (unitBP.OffsetHeading.Length > unitIndex) // Unit has a fixed heading (for SAM sites, etc.)
-//                    unitHeading = Toolbox.ClampAngle(unitHeading + unitBP.OffsetHeading[unitIndex]); // editor looks odd but works fine if negative or over 2Pi
-//                else if(unitBP.Category != UnitCategory.Ship)
-//                    unitHeading = Toolbox.RandomDouble(Toolbox.TWO_PI);
-//            }
-//        }
-
-//        /// <summary>
-//        /// <see cref="IDisposable"/> implementation.
-//        /// </summary>
-//        public void Dispose() { }
-//    }
-//}
