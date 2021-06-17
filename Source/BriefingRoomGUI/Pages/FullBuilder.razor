@@ -498,6 +498,7 @@
             generateErrorMessage = "";
             mission = briefingRoom.GenerateMission(Template);
         } catch (Exception ex){
+            Console.WriteLine(ex);
             generateErrorMessage = ex.Message;
         }
     }
