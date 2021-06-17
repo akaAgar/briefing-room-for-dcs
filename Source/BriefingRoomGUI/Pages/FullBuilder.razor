@@ -165,7 +165,7 @@
                             <InputSelect class="form-control" @bind-Value="Template.FlightPlanTheaterStartingAirbase">
                                 <option value="">Random</option>
                                 @foreach (var value in
-                               BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.Airbase))
+                               BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.Airbase, Template.ContextTheater))
                                 {
                                     <option value="@value.ID">@value.Name</option>
                                 }
@@ -241,10 +241,18 @@
                                         </InputSelect>
                                     </div>
                                     <div class="form-group">
+                                        <h4>Features</h4>
+                                        <CheckBoxList
+                                            Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveFeature).ToList()"
+                                            TextField="@((item)=>item.Name)" ValueField="@((item)=>item.ID)"
+                                            SelectedValues="objective.Features" TItem="DatabaseEntryInfo" TItemOutput="string">
+                                        </CheckBoxList>
+                                    </div>
+                                    <div class="form-group">
                                         <h4>Options</h4>
                                         <CheckBoxList Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
-                            TextField="@((item)=>item.ToString())" ValueField="@((item)=>item)"
-                            SelectedValues="objective.Options" TItem="ObjectiveOption" TItemOutput="ObjectiveOption">
+                                            TextField="@((item)=>item.ToString())" ValueField="@((item)=>item)"
+                                            SelectedValues="objective.Options" TItem="ObjectiveOption" TItemOutput="ObjectiveOption">
                                         </CheckBoxList>
                                     </div>
                                 </div>
@@ -567,7 +575,8 @@
             TargetBehavior = obj.TargetBehavior,
             TargetCount = obj.TargetCount,
             Task = obj.Task,
-            Options = obj.Options
+            Options = obj.Options,
+            Features = obj.Features
         };
         ObjectiveTab = newObj;
         Template.Objectives.Add(newObj);
