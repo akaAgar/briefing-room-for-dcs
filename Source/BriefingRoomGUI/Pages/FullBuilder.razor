@@ -12,13 +12,23 @@
 <h1>Mission Generator</h1>
 <div class="generator-group">
     <div class="generator-form">
+        <div>
+            @if(!string.IsNullOrEmpty(tempateMessage)){
+                <div class="alert alert-info" role="info">
+                    @tempateMessage
+                </div>
+                }
+            <label for="fileUpload">Template File</label>
+            <input class="form-control" type="text" id="fileUpload" value="@DEFAULT_TEMPLATE_FILEPATH"/>
+            <button type="btn btn-primary" aria-hidden="true" @onclick="() => LoadTemplate()">Load</button>
+            <button type="btn btn-primary" aria-hidden="true" @onclick="() => SaveTemplate()">Save</button>
+        </div>
         <EditForm Model="Template" OnSubmit="GenerateMission">
             <DataAnnotationsValidator />
             <ValidationSummary />
-            <button type="submit form-control" disabled style="display: none" aria-hidden="true"></button>
-            @if(!string.IsNullOrEmpty(generateErrorMessage)){
+            @if(!string.IsNullOrEmpty(errorMessage)){
             <div class="alert alert-danger" role="alert">
-                Error: @generateErrorMessage
+                Error: @errorMessage
             </div>
             }
             <button class="btn btn-primary form-control" type="submit">Generate</button>
@@ -482,7 +492,11 @@
     private BriefingRoom4DCS.BriefingRoom briefingRoom = new BriefingRoom4DCS.BriefingRoom();
     private MissionTemplate Template;
     private DCSMission mission;
-    private string generateErrorMessage;
+    private string errorMessage;
+
+    private string tempateMessage;
+
+    private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BRPaths.ROOT}Default.brt";
 
     private TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
     protected override void OnInitialized()
@@ -491,14 +505,42 @@
         flightGroupTab = Template.PlayerFlightGroups[0];
     }
 
+    private void clearTemplateMessageDelay()
+    {
+        Task.Delay(1000).ContinueWith(t=> clearTemplateMessage());
+    }
+
+    private void clearTemplateMessage()
+    {
+     tempateMessage = "";
+     StateHasChanged();
+    }
+
+    private async Task LoadTemplate()
+    {
+        var path = await JSRuntime.InvokeAsync<string>("getTemplateFilePath");
+        Template.LoadFromFile(path); 
+        tempateMessage = "Template Loaded";
+        clearTemplateMessageDelay();
+    }
+
+    private async Task SaveTemplate()
+    {
+        var path = await JSRuntime.InvokeAsync<string>("getTemplateFilePath");
+        Template.SaveToFile(path); 
+        tempateMessage = "Template Saved"; 
+        clearTemplateMessageDelay();
+    }
+
     private void GenerateMission()
     {
         try {
             mission = null;
-            generateErrorMessage = "";
+            errorMessage = "";
             mission = briefingRoom.GenerateMission(Template);
         } catch (Exception ex){
-            generateErrorMessage = ex.Message;
+            Console.WriteLine(ex);
+            errorMessage = ex.Message;
         }
     }
 
