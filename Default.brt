@@ -25,11 +25,16 @@ missionfeatures=SupportFriendlyAWACS,SupportFriendlyTankerBasket,SupportFriendly
 mods=
 
 [objectives]
-objective000.features=TargetDesignationCoordinates,TargetDesignationSmokeMarker
+objective000.features=TargetDesignationCoordinates,TargetDesignationLaser,TargetDesignationSmokeMarker
 objective000.task=DestroyAll
 objective000.target=VehicleAny
 objective000.targetbehavior=Idle
 objective000.targetcount=Average
+objective001.features=TargetDesignationCoordinates,TargetDesignationLaser,TargetDesignationSmokeMarker
+objective001.task=DestroyAll
+objective001.target=VehicleAny
+objective001.targetbehavior=Idle
+objective001.targetcount=Average
 
 [options]
 fogofwar=All
