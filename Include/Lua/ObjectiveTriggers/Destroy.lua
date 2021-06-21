@@ -9,8 +9,13 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
   -- Not a "destruction" event
   if event.id ~= world.event.S_EVENT_DEAD and event.id ~= world.event.S_EVENT_CRASH then return end
 
+  -- Initiator was nil
+  if event.initiator == nil then return end
+
+  local unitID = event.initiator:getID()
+
   -- Destroyed unit wasn't a target
-  if not table.contains(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID, event.initiator) then return end
+  if not table.contains(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID, unitID) then return end
 
   -- Remove the unit from the list of targets
   table.removeValue(briefingRoom.mission.objectives[index].unitsID, unitID)
