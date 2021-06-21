@@ -68,7 +68,7 @@ namespace BriefingRoom4DCS.Generator
             ObjectiveNames = new List<string>(Database.Instance.Common.Names.WPObjectivesNames);
         }
 
-        internal Coordinates GenerateObjective(DCSMission mission, MissionTemplate template, int objectiveIndex, Coordinates lastCoordinates, Coordinates playerAirbaseCoordinates, out string objectiveName)
+        internal Coordinates GenerateObjective(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, int objectiveIndex, Coordinates lastCoordinates, DBEntryAirbase playerAirbase, out string objectiveName)
         {
             MissionTemplateObjective objectiveTemplate = template.Objectives[objectiveIndex];
             DBEntryFeatureObjective[] featuresDB = Database.Instance.GetEntries<DBEntryFeatureObjective>(objectiveTemplate.Features.ToArray());
@@ -88,11 +88,26 @@ namespace BriefingRoom4DCS.Generator
                 new MinMaxD(
                     template.FlightPlanObjectiveDistance * OBJECTIVE_DISTANCE_VARIATION_MIN,
                     template.FlightPlanObjectiveDistance * OBJECTIVE_DISTANCE_VARIATION_MAX),
-                null, null,
-                GeneratorTools.GetSpawnPointCoalition(template, Side.Enemy));
+                null, null, GeneratorTools.GetSpawnPointCoalition(template, Side.Enemy));
 
-            if (!spawnPoint.HasValue)
-                throw new BriefingRoomException("Failed to spawn objective unit group.");
+            if (!spawnPoint.HasValue) throw new BriefingRoomException("Failed to spawn objective unit group.");
+
+            Coordinates objectiveCoordinates = spawnPoint.Value.Coordinates;
+
+            // Spawn target on airbase
+            int airbaseID = 0;
+            switch (targetBehaviorDB.Location)
+            {
+                case DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbase:
+                case DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking:
+                case DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter:
+                    DBEntryAirbase targetAirbase =
+                        (from DBEntryAirbase airbaseDB in theaterDB.GetAirbases()
+                         where airbaseDB.DCSID != playerAirbase.DCSID
+                         select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(objectiveCoordinates)).FirstOrDefault();
+                    objectiveCoordinates = targetAirbase.Coordinates;
+                    break;
+            }
 
             // Pick a name, then remove it from the list
             objectiveName = Toolbox.RandomFrom(ObjectiveNames);
@@ -104,38 +119,35 @@ namespace BriefingRoom4DCS.Generator
 
             UnitFamily targetFamily = Toolbox.RandomFrom(targetDB.UnitFamilies);
 
-            Dictionary<string, object> extraValues = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
-
-            if (targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.GoToPlayerAirbase)
+            // Set destination point for moving unit groups
+            Coordinates destinationPoint = objectiveCoordinates;
+            switch (targetDB.UnitCategory)
             {
-                extraValues.Add("GroupX2", playerAirbaseCoordinates.X);
-                extraValues.Add("GroupY2", playerAirbaseCoordinates.Y);
+                default:
+                    destinationPoint += Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
+                    break;
+                case UnitCategory.Plane:
+                    destinationPoint += Coordinates.CreateRandom(30, 60) * Toolbox.NM_TO_METERS;
+                    break;
             }
-            else
-            {
-                Coordinates destinationPoint = spawnPoint.Value.Coordinates;
-                
-                switch (targetDB.UnitCategory)
-                {
-                    default:
-                        destinationPoint += Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
-                        break;
-                    case UnitCategory.Plane:
-                        destinationPoint += Coordinates.CreateRandom(30, 60) * Toolbox.NM_TO_METERS;
-                        break;
-                }
 
-                extraValues.Add("GroupX2", destinationPoint.X);
-                extraValues.Add("GroupY2", destinationPoint.Y);
+            switch (targetBehaviorDB.Location)
+            {
+                case DBEntryObjectiveTargetBehaviorLocation.GoToPlayerAirbase:
+                    destinationPoint = playerAirbase.Coordinates;
+                    break;
             }
 
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
                 targetFamily, targetDB.UnitCount[(int)objectiveTemplate.TargetCount].GetValue(),
                 taskDB.TargetSide,
                 targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
-                spawnPoint.Value.Coordinates,
+                objectiveCoordinates,
                 null, groupFlags,
-                AircraftPayload.Default, extraValues.ToArray());
+                AircraftPayload.Default,
+                "GroupX2".ToKeyValuePair(destinationPoint.X),
+                "GroupY2".ToKeyValuePair(destinationPoint.Y),
+                "GroupAirbaseID".ToKeyValuePair(airbaseID));
 
             if (!targetGroupInfo.HasValue) // Failed to generate target group
                 throw new BriefingRoomException($"Failed to generate group for objective {objectiveIndex + 1}");
@@ -171,9 +183,9 @@ namespace BriefingRoom4DCS.Generator
             // Add objective features Lua for this objective
             mission.AppendValue("ScriptObjectivesFeatures", ""); // Just in case there's no features
             foreach (string featureID in objectiveTemplate.Features.ToArray())
-                FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveIndex, targetGroupInfo.Value.GroupID, spawnPoint.Value.Coordinates);
+                FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveIndex, targetGroupInfo.Value.GroupID, objectiveCoordinates);
 
-            return spawnPoint.Value.Coordinates;
+            return objectiveCoordinates;
         }
 
         internal Waypoint GenerateObjectiveWaypoint(MissionTemplateObjective objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName)

@@ -32,7 +32,7 @@
           ["y"] = $GROUPY$,
           ["x"] = $GROUPX$,
           ["formation_template"] = "",
-          ["airdromeId"] = $OBJECTIVEAIRBASEID$,
+          ["airdromeId"] = $GROUPAIRBASEID$,
           ["speed_locked"] = true,
       }, -- end of [1]
     }, -- end of ["points"]
