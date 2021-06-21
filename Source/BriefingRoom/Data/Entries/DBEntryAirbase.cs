@@ -105,6 +105,7 @@ namespace BriefingRoom4DCS.Data
                 Flags = ini.GetValueArrayAsEnumFlags<AirbaseFlag>("Airbase", "Flags");
                 ILS = ini.GetValue<string>("Airbase", "ILS");
                 Name = ini.GetValue<string>("Airbase", "Name");
+                UIDisplayName = ini.GetValue<string>("Airbase", "Name");
                 Runways = ini.GetValue<string>("Airbase", "Runways");
                 TACAN = ini.GetValue<string>("Airbase", "TACAN");
                 Theater = ini.GetValue<string>("Airbase", "Theater").ToLowerInvariant();
