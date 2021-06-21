@@ -64,7 +64,51 @@ namespace BriefingRoom4DCS.Generator
 
             byte[] imageBytes = ImageMaker.GetImageBytes(imageLayers.ToArray());
 
-            mission.AddMediaFile($"title_{mission.UniqueID}.jpg", imageBytes);
+            mission.AddMediaFile($"l10n/DEFAULT/title_{mission.UniqueID}.jpg", imageBytes);
+        }
+
+        internal void GenerateKneeboardImage(DCSMission mission)
+        {
+            var text = mission.Briefing.GetBriefingKneeBoardText();
+            var blocks = text.Split(new string[] {"\r\n\r\n"}, StringSplitOptions.RemoveEmptyEntries);
+            var pages = new List<string>();
+            var buildingPage = "";
+            foreach (var block in blocks)
+            {
+                if(buildingPage.Count(f => f =='\n') + block.Count(f => f =='\n') > 32) {
+                    pages.Add(buildingPage);
+                    buildingPage = "";
+                }
+                buildingPage = $"{buildingPage}{block}\n\n";  
+            }
+            if(!String.IsNullOrWhiteSpace(buildingPage))
+                pages.Add(buildingPage);
+
+
+            var inc = 1;
+            foreach (var page in pages)
+            {
+                byte[] imageBytes;
+                using (ImageMaker imgMaker = new ImageMaker())
+                {
+                    imgMaker.ImageSizeX = 800;
+                    imgMaker.ImageSizeY = 1200;
+                    imgMaker.TextOverlay.Shadow = false;
+                    imgMaker.TextOverlay.Color = Color.Black;
+                    imgMaker.TextOverlay.Text =  $"{page}\n {inc}/{pages.Count()}";
+                    imgMaker.TextOverlay.FontSize = 14.0f;
+                    imgMaker.TextOverlay.FontFamily = "Segoe Script";
+                    imgMaker.TextOverlay.Alignment = ContentAlignment.TopLeft;
+
+                    List<ImageMakerLayer> layers = new List<ImageMakerLayer>{
+                        new ImageMakerLayer("notebook.png")
+                    };
+
+                    imageBytes = imgMaker.GetImageBytes(layers.ToArray());
+                }
+                mission.AddMediaFile($"KNEEBOARD/IMAGES/comms_{mission.UniqueID}_{inc}.jpg", imageBytes);
+                inc++;
+            }
         }
 
         /// <summary>

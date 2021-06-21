@@ -63,7 +63,7 @@ namespace BriefingRoom4DCS
             {
                 byte[] fileBytes = mission.GetMediaFile(mediaFile);
                 if (fileBytes == null) continue;
-                MizFileEntries.Add($"l10n/DEFAULT/{mediaFile}", fileBytes);
+                MizFileEntries.Add(mediaFile, fileBytes);
             }
 
             byte[] mizBytes;
