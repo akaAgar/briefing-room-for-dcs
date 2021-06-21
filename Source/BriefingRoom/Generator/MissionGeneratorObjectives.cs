@@ -68,7 +68,7 @@ namespace BriefingRoom4DCS.Generator
             ObjectiveNames = new List<string>(Database.Instance.Common.Names.WPObjectivesNames);
         }
 
-        internal Coordinates GenerateObjective(DCSMission mission, MissionTemplate template, int objectiveIndex, Coordinates lastCoordinates, out string objectiveName)
+        internal Coordinates GenerateObjective(DCSMission mission, MissionTemplate template, int objectiveIndex, Coordinates lastCoordinates, Coordinates playerAirbaseCoordinates, out string objectiveName)
         {
             MissionTemplateObjective objectiveTemplate = template.Objectives[objectiveIndex];
             DBEntryFeatureObjective[] featuresDB = Database.Instance.GetEntries<DBEntryFeatureObjective>(objectiveTemplate.Features.ToArray());
@@ -104,13 +104,38 @@ namespace BriefingRoom4DCS.Generator
 
             UnitFamily targetFamily = Toolbox.RandomFrom(targetDB.UnitFamilies);
 
+            Dictionary<string, object> extraValues = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
+
+            if (targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.GoToPlayerAirbase)
+            {
+                extraValues.Add("GroupX2", playerAirbaseCoordinates.X);
+                extraValues.Add("GroupY2", playerAirbaseCoordinates.Y);
+            }
+            else
+            {
+                Coordinates destinationPoint = spawnPoint.Value.Coordinates;
+                
+                switch (targetDB.UnitCategory)
+                {
+                    default:
+                        destinationPoint += Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
+                        break;
+                    case UnitCategory.Plane:
+                        destinationPoint += Coordinates.CreateRandom(30, 60) * Toolbox.NM_TO_METERS;
+                        break;
+                }
+
+                extraValues.Add("GroupX2", destinationPoint.X);
+                extraValues.Add("GroupY2", destinationPoint.Y);
+            }
+
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
                 targetFamily, targetDB.UnitCount[(int)objectiveTemplate.TargetCount].GetValue(),
                 taskDB.TargetSide,
                 targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
                 spawnPoint.Value.Coordinates,
                 null, groupFlags,
-                AircraftPayload.Default);
+                AircraftPayload.Default, extraValues.ToArray());
 
             if (!targetGroupInfo.HasValue) // Failed to generate target group
                 throw new BriefingRoomException($"Failed to generate group for objective {objectiveIndex + 1}");

@@ -127,7 +127,7 @@ namespace BriefingRoom4DCS.Generator
             GeneratorTools.ReplaceKey(ref lua, "GroupID", GroupID);
             GeneratorTools.ReplaceKey(ref lua, "GroupX", coordinates.X);
             GeneratorTools.ReplaceKey(ref lua, "GroupY", coordinates.Y);
-            GeneratorTools.ReplaceKey(ref lua, "GroupX2", coordinates.X);
+            GeneratorTools.ReplaceKey(ref lua, "GroupX2", coordinates.X); // GroupX2 and GroupY2 are replaced by the default coordinates only if they were not replaced earlier in extraSetting replacements. 
             GeneratorTools.ReplaceKey(ref lua, "GroupY2", coordinates.Y);
             GeneratorTools.ReplaceKey(ref lua, "Name", groupName);
 

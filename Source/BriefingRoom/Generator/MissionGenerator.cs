@@ -129,7 +129,7 @@ namespace BriefingRoom4DCS.Generator
             using (MissionGeneratorObjectives objectivesGenerator = new MissionGeneratorObjectives(unitMaker))
                 for (i = 0; i < template.Objectives.Count; i++)
                 {
-                    lastObjectiveCoordinates = objectivesGenerator.GenerateObjective(mission, template, i, lastObjectiveCoordinates, out string objectiveName);
+                    lastObjectiveCoordinates = objectivesGenerator.GenerateObjective(mission, template, i, lastObjectiveCoordinates, playerAirbase.Coordinates, out string objectiveName);
                     objectiveCoordinates.Add(lastObjectiveCoordinates);
                     waypoints.Add(objectivesGenerator.GenerateObjectiveWaypoint(template.Objectives[i], lastObjectiveCoordinates, objectiveName));
                 }
