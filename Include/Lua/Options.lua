@@ -53,7 +53,7 @@ options =
         ["RBDAI"] = true,
         ["tips"] = true,
         ["userMarks"] = true,
-        ["labels"] = 0,
+        ["labels"] = 1,
     }, -- end of ["difficulty"]
     ["VR"] = 
     {
