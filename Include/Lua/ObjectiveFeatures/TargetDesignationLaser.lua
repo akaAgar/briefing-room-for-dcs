@@ -46,9 +46,10 @@ function briefingRoom.mission.objectiveFeaturesCommon.targetDesignationLaserUpda
 
     return time + 1 -- next update in one second
   end
+end
 
-  -- Begins lasing the target
-  briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.turnOn = function()
+-- Begins lasing the target
+briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.turnOn = function()
   briefingRoom.radioManager.play("Can you paint the target for me?", "RadioPilotLaseTarget")
 
   -- already lasing something
