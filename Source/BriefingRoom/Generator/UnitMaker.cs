@@ -136,9 +136,9 @@ namespace BriefingRoom4DCS.Generator
             int firstUnitID = UnitID;
             List<int> unitsIDList = new List<int>();
             DBEntryUnit firstUnitDB = null;
+            int unitRealIndex = 1;
             for (int unitIndex = 0; unitIndex < units.Length; unitIndex++)
             {
-                int unitRealIndex = 1;
                 DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(units[unitIndex]);
                 if (unitDB == null)
                 {
@@ -179,7 +179,7 @@ namespace BriefingRoom4DCS.Generator
                         GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadPylons", unitDB.AircraftData.GetPayloadLua(aircraftPayload, Template.ContextDecade));
                     }
                     else
-                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", $"{groupName} {unitIndex + 1}");
+                        GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", $"{groupName} {unitRealIndex + 1}");
 
                     unitsLuaTable += $"[{unitRealIndex}] =\n";
                     unitsLuaTable += "{\n";
