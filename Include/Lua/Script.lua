@@ -574,18 +574,54 @@ briefingRoom.aircraftActivator.reserveQueueInitialCount = #briefingRoom.aircraft
 
 briefingRoom.eventHandler = {}
 
-function briefingRoom.eventHandler:onEvent(event)
-  if event.id == world.event.S_EVENT_TAKEOFF then -- unit took off
-    if event.initiator:getPlayerName() ~= nil then -- unit is a pleyr
-      briefingRoom.mission.coreFunctions.beginMission() -- first player to take off triggers the mission start
+function briefingRoom.handleGeneralKill(event) 
+  if event.id == world.event.S_EVENT_DEAD or event.id == world.event.S_EVENT_CRASH then
+    if event.initiator == nil then return end -- no initiator
+    if event.initiator:getCategory() ~= Object.Category.UNIT and event.initiator:getCategory() ~= Object.Category.STATIC then return end -- initiator was not an unit or static
+    
+    if event.initiator:getCoalition() ~= $LUAPLAYERCOALITION$ then -- unit is an enemy, radio some variation of a "enemy destroyed" message
+      local soundName = "UnitDestroyed"
+      local messages = { "Weapon was effective.", "Good hit! Good hit!", "They're going down.", "Splashed one!" }
+      local messageIndex = math.random(1, 2)
+      local messageIndexOffset = 0
+
+
+
+      local targetType = "Ground"
+      if event.id == world.event.S_EVENT_CRASH then
+        messageIndexOffset = 2
+        if event.initiator:inAir() then
+          targetType = "Air"
+          messageIndexOffset = 2
+        elseif unitWasAMissionTarget then
+          return -- No "target splashed" message when destroying a target aircraft on the ground (mostly for OCA missions)
+        end
+      end
+
+      briefingRoom.radioManager.play(messages[messageIndex + messageIndexOffset], "RadioHQ"..soundName..targetType..tostring(messageIndex), math.random(1, 3))
     end
   end
+end
 
+function briefingRoom.eventHandler:onEvent(event)
+
+  if event.id == world.event.S_EVENT_TAKEOFF and -- unit took off
+    event.initiator:getPlayerName() ~= nil then -- unit is a pleyr
+      briefingRoom.mission.coreFunctions.beginMission() -- first player to take off triggers the mission start
+  end
+
+  local eventHandled = false
   -- Pass the event to the completion trigger of all objectives that have one
   for i=1,#briefingRoom.mission.objectives do
     if briefingRoom.mission.objectiveTriggers[i] ~= nil then
-      briefingRoom.mission.objectiveTriggers[i](event)
+      local didHandle = briefingRoom.mission.objectiveTriggers[i](event)
+      if didHandle then
+        eventHandled = true
+      end
     end
+  end 
+  if eventHandled == false then
+    briefingRoom.handleGeneralKill(event)
   end
 end
 

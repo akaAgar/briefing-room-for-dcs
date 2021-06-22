@@ -1,5 +1,6 @@
 -- Triggers the completion of objective $OBJECTIVEINDEX$ when player flies near/other the target
 briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
+  return false
 end
 
 function briefingRoom.mission.objectiveTriggersCommon.flyByCheck(player, unit)
