@@ -72,10 +72,7 @@ namespace BriefingRoom4DCS.Generator
 
             // No custom description found, generate one.
             if (string.IsNullOrEmpty(briefingDescription))
-            {
-                // TODO
-                briefingDescription = "TODO - MISSING DESCRIPTION";
-            }
+                briefingDescription = $"A mission generated with BriefingRoom for DCSWorld {BriefingRoom.VERSION}."; // TODO
 
             mission.Briefing.Description = briefingDescription;
             mission.SetValue("BRIEFINGDESCRIPTION", briefingDescription);

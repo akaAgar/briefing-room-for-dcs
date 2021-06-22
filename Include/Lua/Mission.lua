@@ -207,7 +207,7 @@ mission =
         ["blue"] = $COALITIONBLUE$,
         ["red"] = $COALITIONRED$
     }, -- end of ["coalitions"]
-    ["descriptionText"] = "$BRIEFINGDESCRIPTION$",
+    ["descriptionText"] = "$DESCRIPTIONTEXT$",
     ["pictureFileNameR"] = 
     {
       [1] = "ResKey_TitleImage_$MISSIONID$",

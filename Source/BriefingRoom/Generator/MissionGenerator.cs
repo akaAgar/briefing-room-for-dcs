@@ -196,6 +196,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 briefingGenerator.GenerateMissionName(mission, template);
                 briefingGenerator.GenerateMissionBriefingDescription(mission, template);
+                mission.SetValue("DescriptionText", mission.Briefing.GetBriefingAsRawText("\\\n"));
             }
 
             // Generate mission options

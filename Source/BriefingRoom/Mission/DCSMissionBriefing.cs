@@ -64,7 +64,6 @@ namespace BriefingRoom4DCS.Mission
 
         public string GetBriefingKneeBoardText()
         {
-
             string kneeboardText = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KNEEBOARD.html");
 
             kneeboardText = Mission.ReplaceValues(kneeboardText);
@@ -80,7 +79,16 @@ namespace BriefingRoom4DCS.Mission
 
         public string GetBriefingAsRawText(string newLine = "\n")
         {
-            return ""; // TODO
+            string text = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}Briefing.txt");
+            text = Mission.ReplaceValues(text);
+
+            GeneratorTools.ReplaceKey(ref text, "BriefingAirbases", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Airbase)).Replace("\t", "    "));
+            GeneratorTools.ReplaceKey(ref text, "BriefingFlightGroups", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.FlightGroup)).Replace("\t", "    "));
+            GeneratorTools.ReplaceKey(ref text, "BriefingRemarks", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Remark)).Replace("\t", "    "));
+            GeneratorTools.ReplaceKey(ref text, "BriefingTasks", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Task)).Replace("\t", "    "));
+            GeneratorTools.ReplaceKey(ref text, "BriefingWaypoints", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Waypoint)).Replace("\t", "    "));
+
+            return text.Replace("\r\n", "\n").Replace("\n", newLine).Replace("\"", "''");
         }
     }
 }
