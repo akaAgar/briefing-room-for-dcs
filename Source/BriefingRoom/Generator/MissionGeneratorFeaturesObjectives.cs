@@ -36,7 +36,7 @@ namespace BriefingRoom4DCS.Generator
         /// <param name="unitMaker">Unit maker to use for unit generation.</param>
         internal MissionGeneratorFeaturesObjectives(UnitMaker unitMaker) : base(unitMaker) { }
 
-        internal void GenerateMissionFeature(DCSMission mission, string featureID, int objectiveIndex, int objectiveGroupID, Coordinates objectiveCoordinates)
+        internal void GenerateMissionFeature(DCSMission mission, string featureID, string objectiveName, int objectiveIndex, int objectiveGroupID, Coordinates objectiveCoordinates)
         {
             DBEntryFeatureObjective featureDB = Database.Instance.GetEntry<DBEntryFeatureObjective>(featureID);
             if (featureDB == null) // Feature doesn't exist
@@ -61,6 +61,7 @@ namespace BriefingRoom4DCS.Generator
             Coordinates coordinates2 = spawnPoint.Value.Coordinates + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
 
             Dictionary<string, object> extraSettings = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
+            extraSettings.AddIfKeyUnused("ObjectiveName", objectiveName);
             extraSettings.AddIfKeyUnused("ObjectiveIndex", objectiveIndex + 1);
             extraSettings.AddIfKeyUnused("ObjectiveGroupID", objectiveGroupID);
 
