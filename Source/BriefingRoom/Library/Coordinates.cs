@@ -157,6 +157,19 @@ namespace BriefingRoom4DCS
         }
 
         /// <summary>
+        /// Gets Angle in Radias from center coordinate to 
+        /// </summary>
+        /// <param name="center">Coordinates of center</param>
+        /// <param name="waypoint">Coordinates of waypoint</param>
+        /// <returns>Angle in Radians (always positive)</returns>
+        public static double ToAngleInRadians(Coordinates center, Coordinates waypoint)
+        {
+            var delta = waypoint - center;
+            var rawRads =  Math.Atan2(delta.Y, delta.X);
+            return rawRads > 0? rawRads : Toolbox.TWO_PI + rawRads;
+        }
+
+        /// <summary>
         /// Interpolates two sets of coordinates.
         /// </summary>
         /// <param name="coo1">A set of coordinates</param>
