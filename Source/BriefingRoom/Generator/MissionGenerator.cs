@@ -185,7 +185,7 @@ namespace BriefingRoom4DCS.Generator
             foreach (string mediaFile in mission.GetMediaFileNames())
             {
                 if (!mediaFile.ToLowerInvariant().EndsWith(".ogg")) continue; // Not an .ogg file
-                mission.AppendValue("MapResourcesFiles", $"[\"ResKey_Snd_{Path.GetFileNameWithoutExtension(mediaFile)}\"] = \"{mediaFile}\",\n");
+                mission.AppendValue("MapResourcesFiles", $"[\"ResKey_Snd_{Path.GetFileNameWithoutExtension(mediaFile)}\"] = \"{Path.GetFileName(mediaFile)}\",\n");
             }
 
             // Get unit tables from the unit maker (MUST BE DONE AFTER ALL UNITS ARE GENERATED)
