@@ -84,11 +84,12 @@ namespace BriefingRoom4DCS.Data
 
             // Load entries into the database
             DBEntries.Clear();
+            LoadEntries<DBEntryBriefingDescription>("BriefingDescriptions");
             LoadEntries<DBEntryFeatureMission>("MissionFeatures");
             LoadEntries<DBEntryFeatureObjective>("ObjectiveFeatures");
             LoadEntries<DBEntryObjectiveTarget>("ObjectiveTargets");
             LoadEntries<DBEntryObjectiveTargetBehavior>("ObjectiveTargetsBehaviors");
-            LoadEntries<DBEntryObjectiveTask>("ObjectiveTasks");
+            LoadEntries<DBEntryObjectiveTask>("ObjectiveTasks"); // Must be loaded after other DBEntryBriefingDescription, as it depends on it
             LoadEntries<DBEntryObjectivePreset>("ObjectivePresets"); // Must be loaded after other DBEntryObjective*, as it depends on them
             LoadEntries<DBEntryTheater>("Theaters");
             LoadEntries<DBEntryAirbase>("TheatersAirbases"); // Must be loaded after DBEntryTheater, as it depends on it

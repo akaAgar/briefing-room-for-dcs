@@ -68,7 +68,7 @@ namespace BriefingRoom4DCS.Generator
             ObjectiveNames = new List<string>(Database.Instance.Common.Names.WPObjectivesNames);
         }
 
-        internal Coordinates GenerateObjective(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, int objectiveIndex, Coordinates lastCoordinates, DBEntryAirbase playerAirbase, out string objectiveName)
+        internal Coordinates GenerateObjective(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, int objectiveIndex, Coordinates lastCoordinates, DBEntryAirbase playerAirbase, out string objectiveName, out UnitFamily objectiveTargetUnitFamily)
         {
             MissionTemplateObjective objectiveTemplate = template.Objectives[objectiveIndex];
             DBEntryFeatureObjective[] featuresDB = Database.Instance.GetEntries<DBEntryFeatureObjective>(objectiveTemplate.Features.ToArray());
@@ -117,7 +117,7 @@ namespace BriefingRoom4DCS.Generator
             if (objectiveTemplate.Options.Contains(ObjectiveOption.ShowTarget)) groupFlags = UnitMakerGroupFlags.NeverHidden;
             else if (objectiveTemplate.Options.Contains(ObjectiveOption.HideTarget)) groupFlags = UnitMakerGroupFlags.AlwaysHidden;
 
-            UnitFamily targetFamily = Toolbox.RandomFrom(targetDB.UnitFamilies);
+            objectiveTargetUnitFamily = Toolbox.RandomFrom(targetDB.UnitFamilies);
 
             // Set destination point for moving unit groups
             Coordinates destinationPoint = objectiveCoordinates;
@@ -139,7 +139,7 @@ namespace BriefingRoom4DCS.Generator
             }
 
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
-                targetFamily, targetDB.UnitCount[(int)objectiveTemplate.TargetCount].GetValue(),
+                objectiveTargetUnitFamily, targetDB.UnitCount[(int)objectiveTemplate.TargetCount].GetValue(),
                 taskDB.TargetSide,
                 targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
                 objectiveCoordinates,
@@ -157,7 +157,7 @@ namespace BriefingRoom4DCS.Generator
             string taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex]).Replace("\"", "''");
             if (string.IsNullOrEmpty(taskString)) taskString = "Perform task at objective $OBJECTIVENAME$";
             GeneratorTools.ReplaceKey(ref taskString, "ObjectiveName", objectiveName);
-            GeneratorTools.ReplaceKey(ref taskString, "UnitFamily", Database.Instance.Common.Names.UnitFamilies[(int)targetFamily][pluralIndex]);
+            GeneratorTools.ReplaceKey(ref taskString, "UnitFamily", Database.Instance.Common.Names.UnitFamilies[(int)objectiveTargetUnitFamily][pluralIndex]);
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Task, taskString);
 
             // Add Lua table for this objective

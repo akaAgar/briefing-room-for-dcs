@@ -18,6 +18,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using System;
 using System.IO;
 using System.Linq;
 
@@ -28,6 +29,11 @@ namespace BriefingRoom4DCS.Data
     /// </summary>
     internal class DBEntryObjectiveTask : DBEntry
     {
+        /// <summary>
+        /// ID of the <see cref="DBEntryBriefingDescription"/> to use for main briefing description text when most objectives use this task.
+        /// </summary>
+        internal string BriefingDescription { get; private set; }
+
         /// <summary>
         /// Randomly-parsed string displayed for this task in the briefing.
         /// Index #0 is singular, index #1 is plural.
@@ -58,16 +64,23 @@ namespace BriefingRoom4DCS.Data
         {
             using (INIFile ini = new INIFile(iniFilePath))
             {
+                BriefingDescription = ini.GetValue<string>("ObjectiveTask", "BriefingDescription");
+                if (!Database.Instance.EntryExists<DBEntryBriefingDescription>(BriefingDescription))
+                    throw new Exception($"Objective task \"{ID}\" references non-existing briefing description \"{BriefingDescription}\".");
+
                 BriefingTask = new string[2];
                 BriefingTask[0] = ini.GetValue<string>("ObjectiveTask", "BriefingTask.Singular");
                 BriefingTask[1] = ini.GetValue<string>("ObjectiveTask", "BriefingTask.Plural");
+
                 CompletionTriggerLua = Toolbox.AddMissingFileExtension(ini.GetValue<string>("ObjectiveTask", "CompletionTriggerLua"), ".lua");
                 if (!File.Exists($"{BRPaths.INCLUDE_LUA_OBJECTIVETRIGGERS}{CompletionTriggerLua}"))
                 {
                     BriefingRoom.PrintToLog($"Completion trigger Lua file {CompletionTriggerLua} for objective task \"{ID}\" not found.", LogMessageErrorLevel.Warning);
                     return false;
                 }
+                
                 TargetSide = ini.GetValue<Side>("ObjectiveTask", "TargetSide");
+                
                 ValidUnitCategories = ini.GetValueArray<UnitCategory>("ObjectiveTask", "ValidUnitCategories").Distinct().ToArray();
                 if (ValidUnitCategories.Length == 0) ValidUnitCategories = Toolbox.GetEnumValues<UnitCategory>(); // No category means all categories
             }

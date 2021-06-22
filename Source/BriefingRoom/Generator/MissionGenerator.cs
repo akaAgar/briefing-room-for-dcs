@@ -125,13 +125,15 @@ namespace BriefingRoom4DCS.Generator
             // Generate objectives
             BriefingRoom.PrintToLog("Generating objectives...");
             List<Coordinates> objectiveCoordinates = new List<Coordinates>();
+            List<UnitFamily> objectiveTargetUnitFamilies = new List<UnitFamily>();
             Coordinates lastObjectiveCoordinates = playerAirbase.Coordinates;
             using (MissionGeneratorObjectives objectivesGenerator = new MissionGeneratorObjectives(unitMaker))
                 for (i = 0; i < template.Objectives.Count; i++)
                 {
-                    lastObjectiveCoordinates = objectivesGenerator.GenerateObjective(mission, template, theaterDB, i, lastObjectiveCoordinates, playerAirbase, out string objectiveName);
+                    lastObjectiveCoordinates = objectivesGenerator.GenerateObjective(mission, template, theaterDB, i, lastObjectiveCoordinates, playerAirbase, out string objectiveName, out UnitFamily objectiveTargetUnitFamily);
                     objectiveCoordinates.Add(lastObjectiveCoordinates);
                     waypoints.Add(objectivesGenerator.GenerateObjectiveWaypoint(template.Objectives[i], lastObjectiveCoordinates, objectiveName));
+                    objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);
                 }
             Coordinates objectivesCenter = (objectiveCoordinates.Count == 0) ? playerAirbase.Coordinates : Coordinates.Sum(objectiveCoordinates) / objectiveCoordinates.Count;
 
@@ -176,7 +178,7 @@ namespace BriefingRoom4DCS.Generator
             // Generate mission features
             BriefingRoom.PrintToLog("Generating mission features...");
             using (MissionGeneratorFeaturesMission missionFeaturesGenerator = new MissionGeneratorFeaturesMission(unitMaker))
-                for (i = 0; i  < template.MissionFeatures.Count; i++)
+                for (i = 0; i < template.MissionFeatures.Count; i++)
                     missionFeaturesGenerator.GenerateMissionFeature(mission, template.MissionFeatures[i], i, playerAirbase.Coordinates, objectivesCenter);
 
             // Add ogg files to the media files dictionary
@@ -195,7 +197,7 @@ namespace BriefingRoom4DCS.Generator
             using (MissionGeneratorBriefing briefingGenerator = new MissionGeneratorBriefing())
             {
                 briefingGenerator.GenerateMissionName(mission, template);
-                briefingGenerator.GenerateMissionBriefingDescription(mission, template);
+                briefingGenerator.GenerateMissionBriefingDescription(mission, template, objectiveTargetUnitFamilies);
                 mission.SetValue("DescriptionText", mission.Briefing.GetBriefingAsRawText("\\\n"));
             }
 
