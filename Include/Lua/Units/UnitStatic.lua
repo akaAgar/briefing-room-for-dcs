@@ -1,6 +1,6 @@
   ["category"] = "",
   ["shape_name"] = "",
-  ["type"] = "$TYPE$",
+  ["type"] = "$DCSID$",
   ["unitId"] = $UNITID$,
 $EXTRALUA$
   ["y"] = $UNITY$,

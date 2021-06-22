@@ -3,7 +3,7 @@
     ["randomTransportable"] = false,
   }, -- end of ["transportable"]
   ["skill"] = "$SKILL$",
-  ["type"] = "$TYPE$",
+  ["type"] = "$DCSID$",
   ["unitId"] = $UNITID$,
 $EXTRALUA$
   ["y"] = $UNITY$,
