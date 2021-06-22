@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoom", "BriefingRoo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoomGUI", "BriefingRoomGUI\BriefingRoomGUI.csproj", "{1721B4FA-181B-4BB3-8D1F-67F639A52C6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BriefingRoomLegacyGUI", "BriefingRoomLegacyGUI\BriefingRoomLegacyGUI.csproj", "{C5AC868B-A5A7-4AD5-9C56-D7557AA78E31}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{1721B4FA-181B-4BB3-8D1F-67F639A52C6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1721B4FA-181B-4BB3-8D1F-67F639A52C6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1721B4FA-181B-4BB3-8D1F-67F639A52C6A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C5AC868B-A5A7-4AD5-9C56-D7557AA78E31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5AC868B-A5A7-4AD5-9C56-D7557AA78E31}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5AC868B-A5A7-4AD5-9C56-D7557AA78E31}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5AC868B-A5A7-4AD5-9C56-D7557AA78E31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
