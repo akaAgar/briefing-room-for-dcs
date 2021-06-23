@@ -270,7 +270,8 @@ namespace BriefingRoom4DCS.Generator
             params KeyValuePair<string, object>[] extraSettings)
         {
             string unitLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_UNITS}{Toolbox.AddMissingFileExtension(unitTypeLua, ".lua")}");
-            SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, out Coordinates unitCoordinates, out double unitHeading);
+            var groupHeading = GetGroupHeading(coordinates, extraSettings);
+            SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates,  groupHeading, out Coordinates unitCoordinates, out double unitHeading);
 
                     string singleUnitLuaTable = String.Copy(unitLuaTemplate);
                     foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
@@ -357,8 +358,15 @@ namespace BriefingRoom4DCS.Generator
             return unitsLuaTable;
         }
 
+        private double GetGroupHeading(Coordinates groupCoordinates, params KeyValuePair<string, object>[] extraSettings){
+            if(!extraSettings.Any(x => x.Key == "GroupX2"))
+                return 0.0;
+            var waypointCoor = new Coordinates((double)extraSettings.First(x => x.Key == "GroupX2").Value, (double)extraSettings.First(x => x.Key == "GroupY2").Value);
+            return Coordinates.ToAngleInRadians(groupCoordinates, waypointCoor);
+        }
+
         private void SetUnitCoordinatesAndHeading(
-            DBEntryUnit unitDB, int unitIndex, Coordinates groupCoordinates,
+            DBEntryUnit unitDB, int unitIndex, Coordinates groupCoordinates, double groupHeading,
             out Coordinates unitCoordinates, out double unitHeading)
         {
             unitCoordinates = groupCoordinates;
@@ -370,10 +378,10 @@ namespace BriefingRoom4DCS.Generator
             {
                 if (unitDB.OffsetCoordinates.Length > unitIndex) // Unit has a fixed set of coordinates (for SAM sites, etc.)
                 {
-                    double s = Math.Sin(unitHeading);
-                    double c = Math.Cos(unitHeading);
+                    double s = Math.Sin(groupHeading);
+                    double c = Math.Cos(groupHeading);
                     Coordinates offsetCoordinates = unitDB.OffsetCoordinates[unitIndex];
-                    unitCoordinates = groupCoordinates + new Coordinates(offsetCoordinates.X * c - offsetCoordinates.Y * s, offsetCoordinates.X * s + offsetCoordinates.Y * c);
+                    unitCoordinates = groupCoordinates + new Coordinates(offsetCoordinates.X * c + offsetCoordinates.Y * s, -offsetCoordinates.X * s + offsetCoordinates.Y * c);
                 }
                 else // No fixed coordinates, generate random coordinates
                 {
