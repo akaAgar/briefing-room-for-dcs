@@ -18,7 +18,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using BriefingRoom4DCS.Data;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -36,10 +35,10 @@ namespace BriefingRoom4DCS
     /// </summary>
     public static class Toolbox
     {
+        /// <summary>
+        /// Unit families which can be used as carriers.
+        /// </summary>
         public static readonly UnitFamily[] SHIP_CARRIER_FAMILIES = new UnitFamily[] { UnitFamily.ShipCarrierCATOBAR, UnitFamily.ShipCarrierSTOBAR, UnitFamily.ShipCarrierSTOVL };
-
-        public static readonly int DECADES_COUNT = EnumCount<Decade>();
-        public static readonly int UNITFAMILIES_COUNT = EnumCount<UnitFamily>();
 
         /// <summary>
         /// Case insensitive string comparison.
@@ -54,11 +53,21 @@ namespace BriefingRoom4DCS
             return string1.ToLowerInvariant() == string2.ToLowerInvariant();
         }
 
+        /// <summary>
+        /// Converts a number to an invariant culture string. Just to make sure decimal separator is always a dot, not a comma like in some languages (which can cause problems).
+        /// </summary>
+        /// <param name="value">The number to convert</param>
+        /// <returns>A string</returns>
         internal static string ToInvariantString(this double value)
         {
             return value.ToString(NumberFormatInfo.InvariantInfo);
         }
 
+        /// <summary>
+        /// Returns the DCS World unit category Lua game for an unit category (see https://wiki.hoggitworld.com/view/DCS_Class_Unit)
+        /// </summary>
+        /// <param name="unitCategory">The unit category</param>
+        /// <returns>A string</returns>
         public static string ToLuaName(this UnitCategory unitCategory)
         {
             switch (unitCategory)
@@ -126,16 +135,27 @@ namespace BriefingRoom4DCS
             return value[0].ToString().ToUpperInvariant() + (castRestOfStringToLowerCase ? value.Substring(1).ToLowerInvariant() : value.Substring(1));
         }
 
+        /// <summary>
+        /// Randomize the items in an array.
+        /// </summary>
+        /// <typeparam name="T">Type of the array elements.</typeparam>
+        /// <param name="array">An array</param>
+        /// <returns>A shuffled array.</returns>
         internal static T[] ShuffleArray<T>(T[] array)
         {
             return array.OrderBy(x => Rnd.Next()).ToArray();
         }
 
+        /// <summary>
+        /// Create a string/object from a string, which is used a the key.
+        /// </summary>
+        /// <param name="key">The string, to use as a key.</param>
+        /// <param name="value">The pairs's value.</param>
+        /// <returns>A string/object key value pair.</returns>
         internal static KeyValuePair<string, object> ToKeyValuePair(this string key, object value)
         {
             return new KeyValuePair<string, object>(key, value);
         }
-
 
         internal static void AddIfKeyUnused<T1, T2>(this Dictionary<T1, T2> dictionary, T1 key, T2 value)
         {

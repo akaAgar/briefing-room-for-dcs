@@ -43,9 +43,9 @@ namespace BriefingRoom4DCS.Data
         {
             int i, j;
 
-            DefaultUnits = new string[Toolbox.UNITFAMILIES_COUNT, Toolbox.DECADES_COUNT][];
-            for (i = 0; i < Toolbox.UNITFAMILIES_COUNT; i++)
-                for (j = 0; j < Toolbox.DECADES_COUNT; j++)
+            DefaultUnits = new string[Toolbox.EnumCount<UnitFamily>(), Toolbox.EnumCount<Decade>()][];
+            for (i = 0; i < Toolbox.EnumCount<UnitFamily>(); i++)
+                for (j = 0; j < Toolbox.EnumCount<Decade>(); j++)
                     DefaultUnits[i, j] = new string[0];
 
             using (INIFile ini = new INIFile(iniFilePath))
@@ -65,8 +65,8 @@ namespace BriefingRoom4DCS.Data
                     }
             }
 
-            for (i = 0; i < Toolbox.UNITFAMILIES_COUNT; i++)
-                for (j = 0; j < Toolbox.DECADES_COUNT; j++)
+            for (i = 0; i < Toolbox.EnumCount<UnitFamily>(); i++)
+                for (j = 0; j < Toolbox.EnumCount<Decade>(); j++)
                     if (DefaultUnits[i, j].Length == 0)
                     {
                         BriefingRoom.PrintToLog($"Default unit list \"{ID}\" has no unit of family \"{(UnitFamily)i}\" during {(Decade)j}, unit list was ignored.", LogMessageErrorLevel.Warning);
