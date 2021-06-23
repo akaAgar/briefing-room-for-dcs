@@ -272,6 +272,15 @@ namespace BriefingRoom4DCS.Generator
             string unitLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_UNITS}{Toolbox.AddMissingFileExtension(unitTypeLua, ".lua")}");
             var groupHeading = GetGroupHeading(coordinates, extraSettings);
             SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates,  groupHeading, out Coordinates unitCoordinates, out double unitHeading);
+            // LEAVE UNTIL SURE ALL BUGS GONE
+             Console.WriteLine($"Group Heading for {DCSID}: {groupHeading}");
+            // Console.WriteLine("TEST BLOCK");
+            // Console.WriteLine($"{TransformFromOffset(1.5708, new Coordinates(0,0), new Coordinates(3,4))} = (X: 3.99999, Y: -3.00001)");
+            // Console.WriteLine($"{TransformFromOffset(3.14159, new Coordinates(0,0), new Coordinates(3,4))} = (X: -2.9999, Y: -4)");
+            // Console.WriteLine($"{TransformFromOffset(4.71239, new Coordinates(0,0), new Coordinates(3,4))} = (X: -4, Y: -3)");
+            // Console.WriteLine($"{TransformFromOffset(1.5708, new Coordinates(0,0), new Coordinates(15,3))} = (X: 2.99994, Y: -15)");
+            // Console.WriteLine($"{TransformFromOffset(3.14159, new Coordinates(0,0), new Coordinates(15,3))} = (X: -15, Y: 3)");
+            // Console.WriteLine("DONE");
 
                     string singleUnitLuaTable = String.Copy(unitLuaTemplate);
                     foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
@@ -378,10 +387,8 @@ namespace BriefingRoom4DCS.Generator
             {
                 if (unitDB.OffsetCoordinates.Length > unitIndex) // Unit has a fixed set of coordinates (for SAM sites, etc.)
                 {
-                    double s = Math.Sin(groupHeading);
-                    double c = Math.Cos(groupHeading);
                     Coordinates offsetCoordinates = unitDB.OffsetCoordinates[unitIndex];
-                    unitCoordinates = groupCoordinates + new Coordinates(offsetCoordinates.X * c + offsetCoordinates.Y * s, -offsetCoordinates.X * s + offsetCoordinates.Y * c);
+                    unitCoordinates = TransformFromOffset(groupHeading, groupCoordinates, offsetCoordinates);
                 }
                 else // No fixed coordinates, generate random coordinates
                 {
@@ -404,6 +411,15 @@ namespace BriefingRoom4DCS.Generator
                 else if (unitDB.Category != UnitCategory.Ship)
                     unitHeading = Toolbox.RandomDouble(Toolbox.TWO_PI);
             }
+        }
+
+        private Coordinates TransformFromOffset(double groupHeading, Coordinates groupCoordinates, Coordinates offsetCoordinates)
+        {
+                    double sinTheta = Math.Sin(groupHeading);
+                    double cosTheta = Math.Cos(groupHeading);
+                    return groupCoordinates + new Coordinates(
+                        (offsetCoordinates.X * cosTheta) + (offsetCoordinates.Y * sinTheta),
+                        (-offsetCoordinates.X * sinTheta) + (offsetCoordinates.Y * cosTheta));
         }
 
         public void Dispose()
