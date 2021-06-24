@@ -6,8 +6,12 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
   -- Objective complete, nothing to do
   if briefingRoom.mission.objectives[$OBJECTIVEINDEX$].complete then return false end
 
-  -- Not a "destruction" event
-  if event.id ~= world.event.S_EVENT_DEAD and event.id ~= world.event.S_EVENT_CRASH then return false end
+  -- Check if event is a "destruction" event
+  local destructionEvent = false
+  if event.id == world.event.S_EVENT_DEAD or event.id == world.event.S_EVENT_CRASH then destructionEvent = true end
+  -- "Landing" events are considered kills for helicopter targets
+  if briefingRoom.mission.objectives[$OBJECTIVEINDEX$].targetCategory = Unit.Category.HELICOPTER and event.id == world.event.S_EVENT_LAND then destructionEvent = true end
+  if not destructionEvent then return false end
 
   -- Initiator was nil
   if event.initiator == nil then return false end
