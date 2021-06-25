@@ -273,14 +273,21 @@ namespace BriefingRoom4DCS.Generator
             var groupHeading = GetGroupHeading(coordinates, extraSettings);
             SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates,  groupHeading, out Coordinates unitCoordinates, out double unitHeading);
             // LEAVE UNTIL SURE ALL BUGS GONE
-             Console.WriteLine($"Group Heading for {DCSID}: {groupHeading}");
-            // Console.WriteLine("TEST BLOCK");
-            // Console.WriteLine($"{TransformFromOffset(1.5708, new Coordinates(0,0), new Coordinates(3,4))} = (X: 3.99999, Y: -3.00001)");
-            // Console.WriteLine($"{TransformFromOffset(3.14159, new Coordinates(0,0), new Coordinates(3,4))} = (X: -2.9999, Y: -4)");
-            // Console.WriteLine($"{TransformFromOffset(4.71239, new Coordinates(0,0), new Coordinates(3,4))} = (X: -4, Y: -3)");
-            // Console.WriteLine($"{TransformFromOffset(1.5708, new Coordinates(0,0), new Coordinates(15,3))} = (X: 2.99994, Y: -15)");
-            // Console.WriteLine($"{TransformFromOffset(3.14159, new Coordinates(0,0), new Coordinates(15,3))} = (X: -15, Y: 3)");
-            // Console.WriteLine("DONE");
+            if (unitLuaIndex == 1) {
+                Console.WriteLine($"Group Heading for {DCSID}: {groupHeading}");
+                Console.WriteLine("TEST BLOCK -> GetGroupHeading");
+                Console.WriteLine($"{GetGroupHeading(new Coordinates(0,0),"GroupX2".ToKeyValuePair(0.0),"GroupY2".ToKeyValuePair(1.0))} = 1.5708");
+                Console.WriteLine($"{GetGroupHeading(new Coordinates(0,0),"GroupX2".ToKeyValuePair(1.0),"GroupY2".ToKeyValuePair(1.0))} = 1.5708");
+                Console.WriteLine($"{GetGroupHeading(new Coordinates(0,0),"GroupX2".ToKeyValuePair(1.0),"GroupY2".ToKeyValuePair(0.0))} = 0");
+                Console.WriteLine($"{GetGroupHeading(new Coordinates(0,0),"GroupX2".ToKeyValuePair(-1.0),"GroupY2".ToKeyValuePair(0.0))} = 3.14159");
+                Console.WriteLine("TEST BLOCK -> TransformFromOffset");
+                Console.WriteLine($"{TransformFromOffset(1.5708, new Coordinates(0,0), new Coordinates(3,4))} = (X: 3.99999, Y: -3.00001)");
+                Console.WriteLine($"{TransformFromOffset(3.14159, new Coordinates(0,0), new Coordinates(3,4))} = (X: -2.9999, Y: -4)");
+                Console.WriteLine($"{TransformFromOffset(4.71239, new Coordinates(0,0), new Coordinates(3,4))} = (X: -4, Y: -3)");
+                Console.WriteLine($"{TransformFromOffset(1.5708, new Coordinates(0,0), new Coordinates(15,3))} = (X: 2.99994, Y: -15)");
+                Console.WriteLine($"{TransformFromOffset(3.14159, new Coordinates(0,0), new Coordinates(15,3))} = (X: -15, Y: 3)");
+                Console.WriteLine("DONE");
+            }
 
                     string singleUnitLuaTable = String.Copy(unitLuaTemplate);
                     foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
