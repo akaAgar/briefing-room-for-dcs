@@ -1,5 +1,6 @@
 @page "/FullBuilder"
 @inject IJSRuntime JSRuntime
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
 @using BriefingRoom4DCS
 @using BriefingRoom4DCS.Data
 @using BriefingRoom4DCS.Template
@@ -18,8 +19,8 @@
                     @tempateMessage
                 </div>
                 }
-            <label for="fileUpload">Template File</label>
-            <input class="form-control" type="text" id="fileUpload" value="@DEFAULT_TEMPLATE_FILEPATH"/>
+            <label for="fileUpload">Template File Path</label>
+            <input class="form-control" type="text" id="fileUpload" value="@templatePath" @oninput="eventArgs => SetTemplatePath((string)eventArgs.Value)" />
             <button type="btn btn-primary" aria-hidden="true" @onclick="() => LoadTemplate()">Load</button>
             <button type="btn btn-primary" aria-hidden="true" @onclick="() => SaveTemplate()">Save</button>
         </div>
@@ -100,15 +101,6 @@
                                 }
                             </InputSelect>
                         </div>
-                        @* <div class="form-group"> //REDUNDANT?
-                            <label>Countries coalition</label>
-                            <InputSelect class="form-control" @bind-Value="Template.ContextTheaterCountriesCoalitions">
-                            @foreach (var value in Enum.GetValues(typeof(CountryCoalition)))
-                            {
-                            <option value="@value">@value</option>
-                            }
-                            </InputSelect>
-                            </div> *@
                     </div>
                     break;
                 case "environment":
@@ -161,15 +153,6 @@
                             <label>Objective distance</label>
                             <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistance"></InputNumber>
                         </div>
-                        @* <div class="form-group"> //REDUNDANT?
-                            <label>Objectives locations</label>
-                            <InputSelect class="form-control" @bind-Value="Template.FlightPlanObjectivesLocation">
-                            @foreach (var value in Enum.GetValues(typeof(ObjectiveCountryLocation)))
-                            {
-                            <option value="@value">@value</option>
-                            }
-                            </InputSelect>
-                            </div> *@
                         <div class="form-group">
                             <label>Starting airbase</label>
                             <InputSelect class="form-control" @bind-Value="Template.FlightPlanTheaterStartingAirbase">
@@ -496,6 +479,8 @@
 
     private string tempateMessage;
 
+    private string templatePath;
+
     private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BRPaths.ROOT}Default.brt";
 
     private TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
@@ -503,6 +488,15 @@
     {
         Template = new MissionTemplate();
         flightGroupTab = Template.PlayerFlightGroups[0];
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(firstRender)
+        {
+            var path = await localStorage.GetItemAsync<string>("DCSTemplatePath");
+            SetTemplatePath(path);
+        }
     }
 
     private void clearTemplateMessageDelay()
@@ -516,19 +510,25 @@
      StateHasChanged();
     }
 
+    private void SetTemplatePath(string path)
+    {
+        templatePath = string.IsNullOrEmpty(path)? DEFAULT_TEMPLATE_FILEPATH: path;
+        StateHasChanged();
+    }
+
     private async Task LoadTemplate()
     {
-        var path = await JSRuntime.InvokeAsync<string>("getTemplateFilePath");
-        Template.LoadFromFile(path); 
+        Template.LoadFromFile(templatePath); 
         tempateMessage = "Template Loaded";
+        await localStorage.SetItemAsync("DCSTemplatePath", templatePath);
         clearTemplateMessageDelay();
     }
 
     private async Task SaveTemplate()
     {
-        var path = await JSRuntime.InvokeAsync<string>("getTemplateFilePath");
-        Template.SaveToFile(path); 
+        Template.SaveToFile(templatePath); 
         tempateMessage = "Template Saved"; 
+        await localStorage.SetItemAsync("DCSTemplatePath", templatePath);
         clearTemplateMessageDelay();
     }
 
