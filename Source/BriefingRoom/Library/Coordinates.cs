@@ -166,7 +166,7 @@ namespace BriefingRoom4DCS
         {
             var delta = waypoint - center;
             var rawRads =  Math.Atan2(delta.Y, delta.X);
-            return rawRads > 0? rawRads : Toolbox.TWO_PI + rawRads;
+            return rawRads >= 0? rawRads : Toolbox.TWO_PI + rawRads;
         }
 
         /// <summary>
