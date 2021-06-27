@@ -36,46 +36,42 @@ namespace BriefingRoom4DCS.CommandLineTool
         /// </summary>
         private const int MAX_MISSION_COUNT = 10;
 
+        /// <summary>
+        /// Path to the log file where BriefingRoom output must be written.
+        /// </summary>
         private static readonly string LOG_FILE = $"{Application.StartupPath}\\BriefingRoomCommandLineDebugLog.txt";
 
+        /// <summary>
+        /// StreamWriter used to write the log to the disk.
+        /// </summary>
         private readonly StreamWriter LogWriter;
 
+        /// <summary>
+        /// BriefingRoom library instance.
+        /// </summary>
+        private readonly BriefingRoom BriefingRoomGenerator;
+
+        /// <summary>
+        /// Application entry point.
+        /// </summary>
+        /// <param name="args">Command-line parameters.</param>
         [STAThread]
         private static void Main(string[] args)
         {
 #if DEBUG
-            args = new string[] { "Default.brt" };
+            if (args.Length == 0) args = new string[] { "Default.brt" };
 #endif
 
-            if (args.Length <= 0) // No arguments
-            {
-                return;
-            }
-
-            //            if (DebugLog.Instance.ErrorCount > 0) return; // Errors found, abort! abort!
-
-#if !DEBUG
             try
             {
-#endif
                 using (CommandLine cl = new CommandLine())
                     cl.DoCommandLine(args);
-#if !DEBUG
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                Console.WriteLine($"CRITICAL ERROR: {ex.Message}");
+                Console.WriteLine($"CRITICAL ERROR: {e.Message}");
             }
-#endif
-
-#if DEBUG
-            Console.WriteLine();
-            Console.WriteLine("Press any key to close this window");
-            Console.ReadKey();
-#endif
         }
-
-        private readonly BriefingRoom4DCS.BriefingRoom BriefingRoomGenerator;
 
         /// <summary>
         /// Constructor.
@@ -104,14 +100,14 @@ namespace BriefingRoom4DCS.CommandLineTool
         /// Generates mission(s) from command line arguments.
         /// </summary>
         /// <param name="args">Command line arguments</param>
-        /// <returns>True if everything when wrong, false otherwise</returns>
-        public bool DoCommandLine(params string[] args)
+        /// <returns>True if everything when right, false otherwise.</returns>
+        public bool DoCommandLine(string[] args)
         {
             ParseCommandLineArguments(args, out string[] templateFiles, out int missionCount);
 
             if (templateFiles.Length == 0)
             {
-                WriteToDebugLog("No mission template files provided.", LogMessageErrorLevel.Warning);
+                WriteToDebugLog("No valid mission template files given as parameters.", LogMessageErrorLevel.Warning);
                 return false;
             }
 
@@ -126,7 +122,11 @@ namespace BriefingRoom4DCS.CommandLineTool
                         continue;
                     }
 
-                    string mizFileName = Path.Combine(Application.StartupPath, Path.GetFileNameWithoutExtension(t) + ".miz");
+                    string mizFileName;
+                    if (templateFiles.Length == 1) // Single template file provided, use the mission name as file name.
+                        mizFileName = Path.Combine(Application.StartupPath, RemoveInvalidPathCharacters(mission.Briefing.Name) + ".miz");
+                    else // Multiple template files provided, use the template name as file name so we know from which template mission was generated.
+                        mizFileName = Path.Combine(Application.StartupPath, Path.GetFileNameWithoutExtension(t) + ".miz");
                     mizFileName = GetUnusedFileName(mizFileName);
 
                     if (!mission.SaveToMizFile(mizFileName))
@@ -143,11 +143,22 @@ namespace BriefingRoom4DCS.CommandLineTool
         }
 
         /// <summary>
-        /// Parse command line arguments to 
+        /// Removed invalid path characters from a filename and replaces them with underscores.
         /// </summary>
-        /// <param name="args"></param>
-        /// <param name="templates"></param>
-        /// <param name="missionCount"></param>
+        /// <param name="fileName">A filename.</param>
+        /// <returns>The filename, without invalid characters.</returns>
+        private string RemoveInvalidPathCharacters(string fileName)
+        {
+            if (string.IsNullOrEmpty(fileName)) return "_";
+            return string.Join("_", fileName.Split(Path.GetInvalidFileNameChars()));
+        }
+
+        /// <summary>
+        /// Parse command line arguments to find if they're valid .brt files.
+        /// </summary>
+        /// <param name="args">Command-line arguments.</param>
+        /// <param name="templates">Valid mission templates.</param>
+        /// <param name="missionCount">Number of missions to generate.</param>
         private void ParseCommandLineArguments(string[] args, out string[] templates, out int missionCount)
         {
             missionCount = 0;
@@ -169,6 +180,12 @@ namespace BriefingRoom4DCS.CommandLineTool
             templates = templateFiles.ToArray();
         }
 
+        /// <summary>
+        /// Gets an unused filename. If the provided filepath is not used, returns it.
+        /// Else, tries to append some extra number (1, 2, 3) until it found an unused filename.
+        /// </summary>
+        /// <param name="filePath">Desired filepath.</param>
+        /// <returns>Path to unused file.</returns>
         private string GetUnusedFileName(string filePath)
         {
             if (!File.Exists(filePath)) return filePath; // File doesn't exist, use the desired name
