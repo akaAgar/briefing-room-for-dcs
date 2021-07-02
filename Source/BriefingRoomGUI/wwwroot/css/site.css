@@ -123,3 +123,44 @@ a, .btn-link {
     .landing-screen .misc-info .ver {
         float: right;
     }
+
+
+    .checkboxList-item > input {
+        display: none;
+    }
+    
+    .checkboxList-item > span {
+        padding: 5px;
+        border: solid 1px #0366d6;
+        border-radius: .25rem;
+        margin: 2px;
+        display: block;
+    }
+    
+    .checkboxList-item > input:checked + span {
+        background-color: #0366d6;
+        border-color: #0C3050;
+        color: white;
+    }
+
+    .min-width {
+        width: initial;
+    }
+
+    .flex-block {
+        display: block;
+        padding: 10px;
+        flex-grow: 1;
+    }
+
+    .flex-justify-spaced {
+        justify-content: space-evenly;
+    }
+
+    .row-button {
+        margin-top: 2em;
+    }
+
+    .row-checkbox {
+        margin-top: 1.5em;
+    }

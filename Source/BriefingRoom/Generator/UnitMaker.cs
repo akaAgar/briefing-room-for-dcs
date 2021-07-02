@@ -382,7 +382,6 @@ namespace BriefingRoom4DCS.Generator
                 {
                     Coordinates offsetCoordinates = unitDB.OffsetCoordinates[unitIndex];
                     unitCoordinates = TransformFromOffset(unitHeading, groupCoordinates, offsetCoordinates);
-                    Console.WriteLine($"{unitDB.DCSIDs[unitIndex]} = {offsetCoordinates.X} {offsetCoordinates.Y} => {unitCoordinates.X},{unitCoordinates.Y}");
                 }
                 else // No fixed coordinates, generate random coordinates
                 {

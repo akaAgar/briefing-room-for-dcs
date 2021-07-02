@@ -21,8 +21,10 @@
                 }
             <label for="fileUpload">Template File Path</label>
             <input class="form-control" type="text" id="fileUpload" value="@templatePath" @oninput="eventArgs => SetTemplatePath((string)eventArgs.Value)" />
-            <button type="btn btn-primary" aria-hidden="true" @onclick="() => LoadTemplate()">Load</button>
-            <button type="btn btn-primary" aria-hidden="true" @onclick="() => SaveTemplate()">Save</button>
+            <div class="btn-group" role="group">
+                <button class="btn btn-secondary" aria-hidden="true" @onclick="() => LoadTemplate()">Load</button>
+                <button class="btn btn-secondary" aria-hidden="true" @onclick="() => SaveTemplate()">Save</button>
+            </div>
         </div>
         <EditForm Model="Template" OnSubmit="GenerateMission">
             <DataAnnotationsValidator />
@@ -193,7 +195,7 @@
                             if (ObjectiveTab == objective)
                             {
                                 <div class="flight-group">
-                                    <button class="btn btn-secondary" @onclick="() => CloneObjective(objective)">Clone</button>
+                                    <button type="button" class="btn btn-secondary" @onclick="() => CloneObjective(objective)">Clone</button>
                                     <div class="form-group">
                                         <label>Task</label>
                                         <InputSelect class="form-control" @bind-Value="objective.Task">
@@ -488,6 +490,7 @@
     {
         Template = new MissionTemplate();
         flightGroupTab = Template.PlayerFlightGroups[0];
+        ObjectiveTab = Template.Objectives[0];
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
