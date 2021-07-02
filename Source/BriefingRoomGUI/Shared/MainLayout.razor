@@ -1,7 +1,7 @@
 @inherits LayoutComponentBase
 @using BriefingRoom4DCS
 
-<div class="page">
+<div class="page @((darkmode? "darkMode" : ""))">
     <div class="sidebar">
         <NavMenu />
     </div>
@@ -10,6 +10,11 @@
         <div class="top-row px-4">
             <a href="@BriefingRoom.WEBSITE_URL" target="_blank">About</a>
             <a href="@BriefingRoom.REPO_URL" target="_blank">GitHub</a>
+            <label class="bulb">
+                <input type="checkbox" checked=@darkmode
+                    @onchange="eventArgs => { darkmode = (bool)eventArgs.Value; StateHasChanged();}" />
+                <span class="oi oi-@((darkmode? "sun" : "moon"))"></span>
+            </label>
         </div>
 
         <div class="content px-4">
@@ -17,3 +22,7 @@
         </div>
     </div>
 </div>
+
+@code { 
+    private bool darkmode = false;
+}

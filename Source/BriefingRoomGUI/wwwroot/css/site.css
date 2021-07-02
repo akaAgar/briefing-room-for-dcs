@@ -164,3 +164,8 @@ a, .btn-link {
     .row-checkbox {
         margin-top: 1.5em;
     }
+
+    .uploadPath {
+        width: 75%;
+        display: inline-block;
+    }

@@ -19,21 +19,24 @@
                     @tempateMessage
                 </div>
                 }
-            <label for="fileUpload">Template File Path (sets values not shown in quick builder)</label>
-            <input class="form-control" type="text" id="fileUpload" value="@templatePath" @oninput="eventArgs => SetTemplatePath((string)eventArgs.Value)" />
-            <div class="btn-group" role="group">
-                <button class="btn btn-secondary" aria-hidden="true" @onclick="() => LoadTemplate()">Load</button>
-                <button class="btn btn-secondary" aria-hidden="true" @onclick="() => SaveTemplate()">Save</button>
-            </div>
-        </div>
-        <EditForm Model="Template" OnSubmit="GenerateMission">
-            <DataAnnotationsValidator />
-            <ValidationSummary />
             @if(!string.IsNullOrEmpty(errorMessage)){
             <div class="alert alert-danger" role="alert">
                 Error: @errorMessage
             </div>
             }
+            <label for="fileUpload">Template File Path (sets values not shown in quick builder)</label>
+            <input class="form-control uploadPath" type="text" id="fileUpload" value="@templatePath" @oninput="eventArgs => SetTemplatePath((string)eventArgs.Value)" title="Yeah I know this isn't ideal but browser security. - J" />
+            <div class="btn-group" role="group">
+                <button class="btn btn-primary" aria-hidden="true" @onclick="() => LoadTemplate()">Load</button>
+                <button class="btn btn-secondary" aria-hidden="true" @onclick="() => SaveTemplate()">Save</button>
+                <button class="btn btn-warning" aria-hidden="true" @onclick="() => ClearTemplate()">Clear</button>
+            </div>
+            <hr>
+        </div>
+        <EditForm Model="Template" OnSubmit="GenerateMission">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
             <button class="btn btn-primary form-control" type="submit">Generate</button>
             <hr/>
             <div id="context" class="generator-block">
@@ -270,6 +273,13 @@
         Template.SaveToFile(templatePath); 
         tempateMessage = "Template Saved"; 
         await localStorage.SetItemAsync("DCSTemplatePath", templatePath);
+        clearTemplateMessageDelay();
+    }
+
+    private async void ClearTemplate()
+    {
+        tempateMessage = "Template Reset"; 
+        Template.Clear();
         clearTemplateMessageDelay();
     }
 
