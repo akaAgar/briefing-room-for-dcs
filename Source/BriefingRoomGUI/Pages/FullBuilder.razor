@@ -10,6 +10,7 @@
 @using System.Linq
 @using Blazored.Typeahead
 @using BriefingRoom4DCS.GUI.Utils
+@using System.Text
 <h1>Mission Generator</h1>
 <div class="generator-group">
     <div class="generator-form">
@@ -465,7 +466,8 @@
     @if (mission != null)
     {
         <div class="generator-preview">
-            <button class="btn btn-primary form-control" @onclick="DownloadMission">DownloadMission</button>
+            <button class="btn btn-primary form-control" @onclick="DownloadMission">Download Mission</button>
+            <button class="btn btn-primary form-control" @onclick="DownloadBriefing">Download Briefing</button>
             <div>@((MarkupString)mission.Briefing.GetBriefingAsHTML(false))</div>
         </div>
     }
@@ -553,6 +555,15 @@
         if (zipBytes == null) return; // Something went wrong during the .miz export
 
         await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{Template.ContextTheater}-{mission.Briefing.Name}.miz", "application/octet-stream",
+        zipBytes);
+    }
+
+    async Task DownloadBriefing()
+    {
+        byte[] zipBytes = Encoding.ASCII.GetBytes(mission.Briefing.GetBriefingAsHTML());
+        if (zipBytes == null) return; // Something went wrong during the .miz export
+
+        await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{Template.ContextTheater}-{mission.Briefing.Name}.html", "text/html",
         zipBytes);
     }
 
