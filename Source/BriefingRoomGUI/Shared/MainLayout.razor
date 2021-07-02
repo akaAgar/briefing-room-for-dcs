@@ -1,5 +1,6 @@
 @inherits LayoutComponentBase
 @using BriefingRoom4DCS
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
 
 <div class="page @((darkmode? "darkMode" : ""))">
     <div class="sidebar">
@@ -12,7 +13,7 @@
             <a href="@BriefingRoom.REPO_URL" target="_blank">GitHub</a>
             <label class="bulb">
                 <input type="checkbox" checked=@darkmode
-                    @onchange="eventArgs => { darkmode = (bool)eventArgs.Value; StateHasChanged();}" />
+                    @onchange="eventArgs => SetDarkMode((bool)eventArgs.Value)" />
                 <span class="oi oi-@((darkmode? "sun" : "moon"))"></span>
             </label>
         </div>
@@ -25,4 +26,21 @@
 
 @code { 
     private bool darkmode = false;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(firstRender)
+        {
+            darkmode = await localStorage.GetItemAsync<bool>("DCSUseDarkMode");
+            StateHasChanged();
+        }
+    }
+
+
+    private async Task SetDarkMode(bool darkModeOn)
+    {
+        darkmode = darkModeOn;
+        StateHasChanged();
+        await localStorage.SetItemAsync("DCSUseDarkMode", darkModeOn);
+    }
 }

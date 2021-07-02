@@ -10,7 +10,7 @@
 @using System.Linq
 @using Blazored.Typeahead
 @using BriefingRoom4DCS.GUI.Utils
-<h1>Mission Generator</h1>
+<h1>Quick Mission Generator</h1>
 <div class="generator-group">
     <div class="generator-form">
         <div>
@@ -240,6 +240,7 @@
         {
             var path = await localStorage.GetItemAsync<string>("DCSTemplatePath");
             SetTemplatePath(path);
+            StateHasChanged();
         }
     }
 
