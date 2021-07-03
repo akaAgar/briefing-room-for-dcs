@@ -32,7 +32,7 @@ namespace BriefingRoom4DCS.CommandLineTool
     public class CommandLine : IDisposable
     {
 
-        private static readonly string BASE_PATH = Assembly.GetExecutingAssembly().Location.Replace("BriefingRoomCommandLine.dll", "");
+        private static readonly string BASE_PATH = AppDomain.CurrentDomain.BaseDirectory;
         /// <summary>
         /// Path to the log file where BriefingRoom output must be written.
         /// </summary>
