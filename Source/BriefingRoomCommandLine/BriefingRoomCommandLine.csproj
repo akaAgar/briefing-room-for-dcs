@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0-windows</TargetFramework>
     <RootNamespace>BriefingRoom4DCS.CommandLineTool</RootNamespace>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <PublishSingleFile>true</PublishSingleFile>
     <SelfContained>true</SelfContained>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
