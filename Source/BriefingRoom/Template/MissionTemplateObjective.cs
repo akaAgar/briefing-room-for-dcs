@@ -20,6 +20,7 @@ If not, see https://www.gnu.org/licenses/
 */
 
 using BriefingRoom4DCS.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -133,6 +134,25 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue(section, $"{key}.Target", Target);
             ini.SetValue(section, $"{key}.TargetBehavior", TargetBehavior);
             ini.SetValue(section, $"{key}.TargetCount", TargetCount);
+        }
+
+        /// <summary>
+        /// Creates an objective from an objective preset.
+        /// </summary>
+        /// <param name="presetID">ID of the <see cref="DBEntryObjectivePreset"/> from which to build the mission objective.</param>
+        /// <returns>A mission objective.</returns>
+        internal static MissionTemplateObjective FromObjectivePreset(string presetID)
+        {
+            DBEntryObjectivePreset preset = Database.Instance.GetEntry<DBEntryObjectivePreset>(presetID);
+            if (preset == null) return new MissionTemplateObjective(); // Preset doesn't exist.
+
+            return new MissionTemplateObjective(
+                Toolbox.RandomFrom(preset.Targets),
+                Toolbox.RandomFrom(preset.TargetsBehaviors),
+                Toolbox.RandomFrom(preset.Tasks),
+                preset.Features,
+                Toolbox.RandomFrom(preset.TargetCount),
+                preset.Options);
         }
     }
 }
