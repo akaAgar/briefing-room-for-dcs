@@ -22,7 +22,7 @@ using BriefingRoom4DCS.Mission;
 using System;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
+using System.Reflection;
 
 namespace BriefingRoom4DCS.CommandLineTool
 {
@@ -31,10 +31,12 @@ namespace BriefingRoom4DCS.CommandLineTool
     /// </summary>
     public class CommandLine : IDisposable
     {
+
+        private static readonly string BASE_PATH = Assembly.GetExecutingAssembly().Location.Replace("BriefingRoomCommandLine.dll", "");
         /// <summary>
         /// Path to the log file where BriefingRoom output must be written.
         /// </summary>
-        private static readonly string LOG_FILE = $"{Application.StartupPath}\\BriefingRoomCommandLineDebugLog.txt";
+        private static readonly string LOG_FILE = $"{BASE_PATH}\\BriefingRoomCommandLineDebugLog.txt";
 
         /// <summary>
         /// StreamWriter used to write the log to the disk.
@@ -56,6 +58,7 @@ namespace BriefingRoom4DCS.CommandLineTool
 #if DEBUG
             if (args.Length == 0) args = new string[] { "Default.brt" };
 #endif
+Console.WriteLine(Assembly.GetExecutingAssembly().Location);
 
             try
             {
@@ -125,12 +128,12 @@ namespace BriefingRoom4DCS.CommandLineTool
                     Console.WriteLine($"Failed to generate a mission from template {Path.GetFileName(t)}");
                     continue;
                 }
-
+                
                 string mizFileName;
                 if (templateFiles.Length == 1) // Single template file provided, use the mission name as file name.
-                    mizFileName = Path.Combine(Application.StartupPath, RemoveInvalidPathCharacters(mission.Briefing.Name) + ".miz");
+                    mizFileName = Path.Combine(BASE_PATH, RemoveInvalidPathCharacters(mission.Briefing.Name) + ".miz");
                 else // Multiple template files provided, use the template name as file name so we know from which template mission was generated.
-                    mizFileName = Path.Combine(Application.StartupPath, Path.GetFileNameWithoutExtension(t) + ".miz");
+                    mizFileName = Path.Combine(BASE_PATH, Path.GetFileNameWithoutExtension(t) + ".miz");
                 mizFileName = GetUnusedFileName(mizFileName);
 
                 if (!mission.SaveToMizFile(mizFileName))
