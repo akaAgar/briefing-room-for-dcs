@@ -454,10 +454,11 @@
                                         </BlazoredTypeahead>
                                     </div>
                                     <div class="form-group">
-                                        <label>
-                                        <input type="checkbox" checked=@flight.AIWingmen
-                            @onchange="eventArgs => { flight.AIWingmen = (bool)eventArgs.Value; StateHasChanged();}" /> AI Wingmen
-                            </label>
+                                        <label class="checkboxList-item">
+                                            <input type="checkbox" checked=@flight.AIWingmen
+                                                @onchange="eventArgs => { flight.AIWingmen = (bool)eventArgs.Value; StateHasChanged();}" />
+                                                <span>AI Wingmen</span>
+                                        </label>
                                     </div>
                                 </div>
                             }

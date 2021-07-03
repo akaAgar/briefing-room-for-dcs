@@ -30,3 +30,17 @@
 .darkMode .navbar-brand > img {
     filter: drop-shadow(0 0 1rem rgb(255, 255, 255));
 }
+
+
+.darkMode .blazored-typeahead__input, .darkMode .blazored-typeahead__results {
+    background-color: #0a263f;
+    color: white;
+}
+
+.darkMode .blazored-typeahead__selected-item-highlighted, .darkMode .blazored-typeahead__selected-item {
+    color: black;
+}
+
+.darkMode select option {
+    background-color: #0a263f;
+}
