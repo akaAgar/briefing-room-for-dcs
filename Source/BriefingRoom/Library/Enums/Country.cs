@@ -29,7 +29,7 @@ namespace BriefingRoom4DCS
         /// <summary>
         /// Special BriefingRoom country used for unit operators
         /// </summary>
-        ALL = 1,
+        ALL = -1,
 
         Russia = 0,
         Ukraine = 1,
