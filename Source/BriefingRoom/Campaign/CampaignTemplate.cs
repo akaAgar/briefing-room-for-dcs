@@ -21,6 +21,7 @@ If not, see https://www.gnu.org/licenses/
 */
 
 using BriefingRoom4DCS.Data;
+using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,7 +29,7 @@ using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 
-namespace BriefingRoom4DCS.Template
+namespace BriefingRoom4DCS.Campaign
 {
 /// <summary>
 /// A campaign template.
@@ -73,12 +74,12 @@ namespace BriefingRoom4DCS.Template
         [Required]
         [Display(Name = "Bad weather chance", Description = "Chance for a mission of this campaign to take place in bad weather.")]
         [Category("Environment")]
-        public AmountNR EnvironmentBadWeatherChance { get; set; }
+        public Amount EnvironmentBadWeatherChance { get; set; }
 
         [Required]
         [Display(Name = "Night mission chance", Description = "Chance for a mission of this campaign to take place during the night.")]
         [Category("Environment")]
-        public AmountNR EnvironmentNightMissionChance { get; set; }
+        public Amount EnvironmentNightMissionChance { get; set; }
 
         [Required]
         [Display(Name = "Mission count", Description = "Number of missions in the campaign.")]
@@ -203,8 +204,8 @@ namespace BriefingRoom4DCS.Template
             ContextDecade = Decade.Decade2000;
             ContextTheater = "Caucasus";
 
-            EnvironmentBadWeatherChance = AmountNR.Random;
-            EnvironmentNightMissionChance = AmountNR.Random;
+            EnvironmentBadWeatherChance = Amount.VeryLow;
+            EnvironmentNightMissionChance = Amount.VeryLow;
 
             MissionsCount = 5;
             MissionsDifficultyVariation = CampaignDifficultyVariation.Random;

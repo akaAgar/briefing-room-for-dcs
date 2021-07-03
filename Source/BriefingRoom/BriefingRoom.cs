@@ -18,6 +18,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCS.Campaign;
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Generator;
 using BriefingRoom4DCS.Mission;
@@ -60,6 +61,11 @@ namespace BriefingRoom4DCS
         public delegate void LogHandler(string message, LogMessageErrorLevel errorLevel);
 
         /// <summary>
+        /// Campaign generator.
+        /// </summary>
+        private readonly CampaignGenerator CampaignGen;
+
+        /// <summary>
         /// Mission generator.
         /// </summary>
         private readonly MissionGenerator Generator;
@@ -82,7 +88,7 @@ namespace BriefingRoom4DCS
             Database.Instance.Initialize();
 
             Generator = new MissionGenerator();
-            //CampaignGen = new CampaignGenerator(Database, Generator);
+            CampaignGen = new CampaignGenerator(Generator);
         }
 
         /// <summary>
