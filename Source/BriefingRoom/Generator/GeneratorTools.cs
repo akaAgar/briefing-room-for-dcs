@@ -35,6 +35,11 @@ namespace BriefingRoom4DCS.Generator
     internal static class GeneratorTools
     {
         /// <summary>
+        /// The number of days in each month.
+        /// </summary>
+        private static readonly int[] DAYS_PER_MONTH = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+        /// <summary>
         /// List of possible unit families to choose from for "embedded" air defense.
         /// Some families are more frequent than other.
         /// </summary>
@@ -131,6 +136,26 @@ namespace BriefingRoom4DCS.Generator
 
             return coalition;
         }
+
+        /// <summary>
+        /// Returns the number of days in a month.
+        /// </summary>
+        /// <param name="month">The month of the year.</param>
+        /// <param name="year">The year. Used to know if it's a leap year.</param>
+        /// <returns>The number of days in the month.</returns>
+        internal static int GetDaysPerMonth(Month month, int year)
+        {
+            // Not February, return value stored in DAYS_PER_MONTH array
+            if (month != Month.February) return DAYS_PER_MONTH[(int)month];
+
+            bool leapYear = false;
+            if ((year % 400) == 0) leapYear = true;
+            else if ((year % 100) == 0) leapYear = false;
+            else if ((year % 4) == 0) leapYear = true;
+
+            return leapYear ? 29 : 28;
+        }
+
 
         internal static object GetTACANCallsign(UnitFamily unitFamily)
         {
