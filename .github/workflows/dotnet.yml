@@ -36,10 +36,7 @@ jobs:
         utcOffset: "+00:00"
       
     - name: Zip Release
-      uses: TheDoctor0/zip-release@0.4.1
-      with:
-        filename: "test-net5-release-${{ steps.current-time.outputs.formattedTime }}.zip"
-        exclusions: '*.git* /*net48/* /*docs/* /*Source/* *.bat *.filelist'
+      run: 7z a -tzip test-net5-release-${{ steps.current-time.outputs.formattedTime }}.zip . 
 
 
     - name: Upload Release
