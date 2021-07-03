@@ -36,7 +36,7 @@ jobs:
         utcOffset: "+00:00"
       
     - name: Zip Release
-      run: 7z a -tzip test-net5-release-${{ steps.current-time.outputs.formattedTime }}.zip . 
+      run: 7z a -tzip test-net5-release-${{ steps.current-time.outputs.formattedTime }}.zip . "-xr!.git\" "-xr!.github\" "-xr!.git*" "-xr!.vscode\" "-xr!dataExtractors\"  "-xr!Source\" "-xr!docs\" "-x!*.bat" "-x!*.filelist" 
 
 
     - name: Upload Release
