@@ -1,0 +1,53 @@
+
+name: .NET
+
+on:
+  push:
+    branches: [ beta-release ]
+ 
+jobs:
+  build:
+ 
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - name: Set git to use LF
+      run: |
+          git config --global core.autocrlf false
+          git config --global core.eol crlf
+    - uses: actions/checkout@v1
+      name: Checkout Code
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v1.7.2
+      with:
+        dotnet-version: 5.0.x
+
+    - name: Restore NuGet Packages
+      run: dotnet restore Source/BriefingRoom.sln
+ 
+    - name: Build and Publish App
+      run: dotnet publish Source/BriefingRoom.sln -o . -c Release
+
+    - name: Get current time
+      uses: 1466587594/get-current-time@v2
+      id: current-time
+      with:
+        format: YYMMDD-HHMM
+        utcOffset: "+00:00"
+      
+    - name: Zip Release
+      uses: TheDoctor0/zip-release@0.4.1
+      with:
+        filename: "test-net5-release-${{ steps.current-time.outputs.formattedTime }}.zip"
+        exclusions: '*.git* /*net48/* /*docs/* /*Source/* *.bat *.filelist'
+
+
+    - name: Upload Release
+      uses: ncipollo/release-action@v1
+      with:
+          tag: "test-net5-${{ steps.current-time.outputs.formattedTime }}"
+          name: "test-net5-${{ steps.current-time.outputs.formattedTime }}"
+          body: "This is a test build using .Net5 use at your peril"
+          prerelease: true
+          artifacts: "test-net5-release-${{ steps.current-time.outputs.formattedTime }}.zip"
+          token: ${{ secrets.GITHUB_TOKEN }}
