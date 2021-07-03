@@ -88,11 +88,6 @@ namespace BriefingRoom4DCS.Template
         [Category("Context")]
         public string ContextTheater { get; set; }
 
-        //[Required]
-        //[Display(Name = "Countries coalition", Description = "To which coalition do the countries on the map (and their airbases) belong?")]
-        //[Category("Context")]
-        //public CountryCoalition ContextTheaterCountriesCoalitions { get; set; }
-
         [Required]
         [Display(Name = "Season", Description = "Season during which the mission takes place.")]
         [Category("Environment")]
@@ -145,6 +140,7 @@ namespace BriefingRoom4DCS.Template
 
         [Required]
         [Display(Name = "Fog of war", Description = "Fog of war settings for this mission.")]
+        [Category("Options")]
         public FogOfWar OptionsFogOfWar { get; set; }
 
         [Required]
