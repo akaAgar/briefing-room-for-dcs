@@ -12,6 +12,8 @@ namespace BriefingRoom4DCS.WindowsTool.Forms
 {
     public partial class ConsoleForm : Form
     {
+        public bool EnableClosing { get; set; } = false;
+
         public ConsoleForm()
         {
             InitializeComponent();
@@ -32,6 +34,8 @@ namespace BriefingRoom4DCS.WindowsTool.Forms
 
         private void ConsoleForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (EnableClosing) return;
+
             if (e.CloseReason == CloseReason.UserClosing)
                 e.Cancel = true;
         }

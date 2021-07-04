@@ -67,6 +67,7 @@
             this.ClientSize = new System.Drawing.Size(464, 561);
             this.ControlBox = false;
             this.Controls.Add(this.PaddingPanel);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

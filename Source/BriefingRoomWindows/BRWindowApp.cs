@@ -43,6 +43,7 @@ namespace BriefingRoom4DCS.WindowsTool
 
         private readonly BriefingRoom BriefingRoomLibrary;
         private readonly ConsoleForm ConsoleWinForm;
+        private readonly MainForm MainWinForm;
 
         /// <summary>
         /// Constructor.
@@ -51,7 +52,9 @@ namespace BriefingRoom4DCS.WindowsTool
         {
             // Setup console output form.
             ConsoleWinForm = new ConsoleForm();
+#if !DEBUG
             ConsoleWinForm.Show();
+#endif
 
             // Show splash screen while library is loading.
             using (SplashForm splashForm = new SplashForm())
@@ -62,7 +65,18 @@ namespace BriefingRoom4DCS.WindowsTool
                 splashForm.Close();
             }
 
-            Application.Run(new Forms.MainForm(BriefingRoomLibrary));
+#if DEBUG
+            ConsoleWinForm.Show();
+#endif
+
+            MainWinForm = new MainForm(BriefingRoomLibrary, ConsoleWinForm);
+
+            Application.Run(MainWinForm);
+
+            ConsoleWinForm.EnableClosing = true;
+
+            MainWinForm.Dispose();
+            ConsoleWinForm.Dispose();
         }
 
         /// <summary>
