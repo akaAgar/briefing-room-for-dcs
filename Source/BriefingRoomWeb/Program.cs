@@ -3,7 +3,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace BriefingRoom4DCS.GUI
+namespace BriefingRoom4DCS.Web
 {
     public class Program
     {

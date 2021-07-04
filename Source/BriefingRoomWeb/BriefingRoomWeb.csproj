@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0-windows</TargetFramework>
-    <RootNamespace>BriefingRoom4DCS.GUI</RootNamespace>
+    <RootNamespace>BriefingRoom4DCS.Web</RootNamespace>
     <OutputType>Exe</OutputType>
     <PublishSingleFile>true</PublishSingleFile>
     <SelfContained>true</SelfContained>

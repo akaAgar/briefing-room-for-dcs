@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BriefingRoom4DCS.GUI.Utils
+namespace BriefingRoom4DCS.Web.Utils
 {
     public class Typeahead
     {

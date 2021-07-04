@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoomCommandLine", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoom", "BriefingRoom\BriefingRoom.csproj", "{375F253A-7FD6-4930-A80A-05F2A885C793}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoomGUI", "BriefingRoomGUI\BriefingRoomGUI.csproj", "{1721B4FA-181B-4BB3-8D1F-67F639A52C6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoomWeb", "BriefingRoomWeb\BriefingRoomWeb.csproj", "{1721B4FA-181B-4BB3-8D1F-67F639A52C6A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BriefingRoomWindows", "BriefingRoomWindows\BriefingRoomWindows.csproj", "{CCC1AC99-35D3-4287-88C6-37416F40F21F}"
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BriefingRoomDesktop", "BriefingRoomDesktop\BriefingRoomDesktop.csproj", "{F7E7F19B-841E-40BE-8D58-205CE0FA7F08}"
