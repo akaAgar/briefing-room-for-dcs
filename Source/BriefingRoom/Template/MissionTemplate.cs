@@ -114,11 +114,6 @@ namespace BriefingRoom4DCS.Template
         public int FlightPlanObjectiveDistance { get { return FlightPlanObjectiveDistance_; } set { FlightPlanObjectiveDistance_ = Toolbox.Clamp(value, 0, MAX_OBJECTIVE_DISTANCE); } }
         private int FlightPlanObjectiveDistance_;
 
-        //[Required]
-        //[Display(Name = "Objectives locations", Description = "In which countries should objectives and enemy units be spawned? Be aware that selecting an option other than \"Any\" can greatly increase distance to the objectives.")]
-        //[Category("Flight plan")]
-        //public ObjectiveCountryLocation FlightPlanObjectivesLocation { get; set; }
-
         [Required, DatabaseSourceType(DatabaseEntryType.Airbase, true)]
         [Display(Name = "Starting airbase", Description = "Airbase from which the player(s) will take off. Leave empty for none")]
         [Category("Flight plan")]
@@ -218,7 +213,6 @@ namespace BriefingRoom4DCS.Template
             ContextDecade = Decade.Decade2000;
             ContextPlayerCoalition = Coalition.Blue;
             ContextTheater = "Caucasus";
-            //ContextTheaterCountriesCoalitions = CountryCoalition.Default;
 
             EnvironmentSeason = Season.Random;
             EnvironmentTimeOfDay = TimeOfDay.RandomDaytime;
@@ -226,7 +220,6 @@ namespace BriefingRoom4DCS.Template
             EnvironmentWind = Wind.Random;
 
             FlightPlanObjectiveDistance = 80;
-            //FlightPlanObjectivesLocation = ObjectiveCountryLocation.Any;
             FlightPlanTheaterStartingAirbase = "";
 
             MissionFeatures = new List<string>();
@@ -266,7 +259,6 @@ namespace BriefingRoom4DCS.Template
                 ContextDecade = ini.GetValue("Context", "Decade", ContextDecade);
                 ContextPlayerCoalition = ini.GetValue("Context", "PlayerCoalition", ContextPlayerCoalition);
                 ContextTheater = ini.GetValue("Context", "Theater", ContextTheater);
-                //ContextTheaterCountriesCoalitions = ini.GetValue("Context", "TheaterCountriesCoalitions", ContextTheaterCountriesCoalitions);
 
                 EnvironmentSeason = ini.GetValue("Environment", "Season", EnvironmentSeason);
                 EnvironmentTimeOfDay = ini.GetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);
@@ -274,7 +266,6 @@ namespace BriefingRoom4DCS.Template
                 EnvironmentWind = ini.GetValue("Environment", "Wind", EnvironmentWind);
 
                 FlightPlanObjectiveDistance = ini.GetValue("FlightPlan", "ObjectiveDistance", FlightPlanObjectiveDistance);
-                //FlightPlanObjectivesLocation = ini.GetValue("FlightPlan", "ObjectivesLocation", FlightPlanObjectivesLocation);
                 FlightPlanTheaterStartingAirbase = ini.GetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
 
                 MissionFeatures = ini.GetValueArray<string>("MissionFeatures", "MissionFeatures").ToList();
@@ -320,7 +311,6 @@ namespace BriefingRoom4DCS.Template
                 ini.SetValue("Context", "Decade", ContextDecade);
                 ini.SetValue("Context", "PlayerCoalition", ContextPlayerCoalition);
                 ini.SetValue("Context", "Theater", ContextTheater);
-                //ini.SetValue("Context", "TheaterCountriesCoalitions", ContextTheaterCountriesCoalitions);
 
                 ini.SetValue("Environment", "Season", EnvironmentSeason);
                 ini.SetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);
@@ -328,7 +318,6 @@ namespace BriefingRoom4DCS.Template
                 ini.SetValue("Environment", "Wind", EnvironmentWind);
 
                 ini.SetValue("FlightPlan", "ObjectiveDistance", FlightPlanObjectiveDistance);
-                //ini.SetValue("FlightPlan", "ObjectivesLocation", FlightPlanObjectivesLocation);
                 ini.SetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
 
                 ini.SetValueArray("MissionFeatures", "MissionFeatures", MissionFeatures.ToArray());
@@ -354,6 +343,11 @@ namespace BriefingRoom4DCS.Template
             }
         }
 
+        /// <summary>
+        /// Returns the value of <see cref="ContextCoalitionBlue"/> or <see cref="ContextCoalitionRed"/> according to the provided coalition enum.
+        /// </summary>
+        /// <param name="coalition">The coalition to return.</param>
+        /// <returns>A coalition ID.</returns>
         internal string GetCoalitionID(Coalition coalition)
         {
             if (coalition == Coalition.Red) return ContextCoalitionRed;
