@@ -151,6 +151,24 @@ namespace BriefingRoom4DCS
         }
 
         /// <summary>
+        /// Returns information about a single database entry.
+        /// </summary>
+        /// <param name="entryType">The type of entry to look for.</param>
+        /// <param name="id">ID of the entry to look for.</param>
+        /// <returns>A <see cref="DatabaseEntryInfo"/> or null if ID doesn't exist.</returns>
+        public static DatabaseEntryInfo? GetSingleDatabaseEntryInfo(DatabaseEntryType entryType, string id)
+        {
+            // Database entry ID doesn't exist
+            if (!GetDatabaseEntriesIDs(entryType).Contains(id)) return null;
+
+            DatabaseEntryInfo[] databaseEntryInfos = GetDatabaseEntriesInfo(entryType);
+            return
+                (from DatabaseEntryInfo databaseEntryInfo in databaseEntryInfos
+                 where databaseEntryInfo.ID.ToLowerInvariant() == id.ToLowerInvariant()
+                 select databaseEntryInfo).First();
+        }
+
+        /// <summary>
         /// Returns the unique IDs of all database entries of a given type.
         /// </summary>
         /// <param name="entryType">The type of entry to look for.</param>
