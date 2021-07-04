@@ -1,0 +1,42 @@
+﻿@using BriefingRoom4DCS
+<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href=""><img src="/img/br-logo-blue-horiz.png" alt="Briefing Room Logo"</a>
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="QuickBuilder" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span>Quick Mission Builder
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="FullBuilder" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span>Full Mission Builder
+            </NavLink>
+        </li>
+        @* <li class="nav-item px-3">
+            <NavLink class="nav-link" href="CampaignBuilder" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span>Campaign Builder
+            </NavLink>
+        </li> *@
+    </ul>
+</div>
+<div class="bottom-logo">
+    <img src="/img/br-logo-white.png" alt="Briefing Room Logo"/>
+    <span class="ver">@BriefingRoom.VERSION for DCS @BriefingRoom.TARGETED_DCS_WORLD_VERSION</span>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

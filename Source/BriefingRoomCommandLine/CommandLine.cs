@@ -58,7 +58,6 @@ namespace BriefingRoom4DCS.CommandLineTool
 #if DEBUG
             if (args.Length == 0) args = new string[] { "Default.brt" };
 #endif
-Console.WriteLine(Assembly.GetExecutingAssembly().Location);
 
             try
             {

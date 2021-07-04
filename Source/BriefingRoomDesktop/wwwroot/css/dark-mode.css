@@ -1,0 +1,46 @@
+.bulb {
+    margin-left: 10px;
+}
+.bulb > input {
+    display: none;
+    margin-left: 5px;
+}
+
+.darkMode .main {
+    background-color: #020A10;
+    color: white;
+}
+
+.darkMode .main .top-row, .darkMode .sidebar .top-row {
+    background-color: #0a263f;
+    color: white;
+    border-color: black;
+}
+
+.darkMode .form-control {
+    background-color: transparent;
+    color: white;
+}
+
+.darkMode .nav-link.active {
+    background-color: transparent;
+    color: white;
+}
+
+.darkMode .navbar-brand > img {
+    filter: drop-shadow(0 0 1rem rgb(255, 255, 255));
+}
+
+
+.darkMode .blazored-typeahead__input, .darkMode .blazored-typeahead__results {
+    background-color: #0a263f;
+    color: white;
+}
+
+.darkMode .blazored-typeahead__selected-item-highlighted, .darkMode .blazored-typeahead__selected-item {
+    color: black;
+}
+
+.darkMode select option {
+    background-color: #0a263f;
+}
