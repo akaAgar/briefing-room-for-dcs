@@ -34,6 +34,7 @@ namespace BriefingRoomDesktop
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Text = "BriefingRoom";
+            this.Icon = new Icon("Resources/icon.ico");
         }
 
         #endregion
