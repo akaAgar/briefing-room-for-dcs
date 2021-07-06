@@ -40,6 +40,10 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Sea
         /// </summary>
-        Sea
+        Sea,
+        /// <summary>
+        /// Airbase
+        /// </summary>
+        Airbase
     }
 }
