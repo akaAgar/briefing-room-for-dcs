@@ -37,6 +37,11 @@ namespace BriefingRoom4DCS.Campaign
     public sealed class CampaignTemplate : IDisposable
     {
         /// <summary>
+        /// Path to the default campaign template file storing default values.
+        /// </summary>
+        private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BRPaths.ROOT}Default.cbrt";
+
+        /// <summary>
         /// Minimum number of missions in a campaign.
         /// </summary>
         private const int MIN_CAMPAIGN_MISSIONS = 2;
@@ -198,6 +203,13 @@ namespace BriefingRoom4DCS.Campaign
         /// </summary>
         public void Clear()
         {
+            // If the default template is found, load it.
+            if (File.Exists(DEFAULT_TEMPLATE_FILEPATH))
+            {
+                LoadFromFile(DEFAULT_TEMPLATE_FILEPATH);
+                return;
+            }
+
             ContextCoalitionsBlue = "USA";
             ContextCoalitionPlayer = Coalition.Blue;
             ContextCoalitionsRed = "Russia";
