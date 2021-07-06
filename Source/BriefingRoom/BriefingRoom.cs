@@ -24,6 +24,7 @@ using BriefingRoom4DCS.Generator;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
+using System.IO;
 using System.Linq;
 
 namespace BriefingRoom4DCS
@@ -197,6 +198,24 @@ namespace BriefingRoom4DCS
         public DCSMission GenerateMission(MissionTemplate template)
         {
             return Generator.Generate(template);
+        }
+
+        /// <summary>
+        /// Returns the DCS world custom mission path ([User]\Saved Games\DCS\Missions\).
+        /// Looks first for DCS.earlyaccess, then DCS.openbeta, then DCS.
+        /// </summary>
+        /// <returns>The path, or the user My document folder if none is found.</returns>
+        public static string GetDCSMissionPath()
+        {
+            string[] possibleDCSPaths = new string[] { "DCS.earlyaccess", "DCS.openbeta", "DCS" };
+
+            for (int i = 0; i < possibleDCSPaths.Length; i++)
+            {
+                string dcsPath = Toolbox.PATH_USER + "Saved Games\\" + possibleDCSPaths[i] + "\\Missions\\";
+                if (Directory.Exists(dcsPath)) return dcsPath;
+            }
+
+            return Toolbox.PATH_USER_DOCS;
         }
 
         /// <summary>
