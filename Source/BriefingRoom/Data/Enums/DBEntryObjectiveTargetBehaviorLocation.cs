@@ -25,7 +25,7 @@ namespace BriefingRoom4DCS.Data
     /// </summary>
     internal enum DBEntryObjectiveTargetBehaviorLocation
     {
-        Default = 0,
+        Default,
         GoToPlayerAirbase,
         SpawnOnAirbase,
         SpawnOnAirbaseParking,

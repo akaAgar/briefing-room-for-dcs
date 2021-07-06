@@ -39,7 +39,7 @@ namespace BriefingRoom4DCS.Template
         /// Path to the default template file storing default values.
         /// </summary>
         private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BRPaths.ROOT}Default.brt";
-
+        
         /// <summary>
         /// Maximum number of objectives.
         /// </summary>
