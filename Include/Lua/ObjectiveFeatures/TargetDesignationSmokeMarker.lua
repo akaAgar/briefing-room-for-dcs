@@ -37,7 +37,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeM
   
   -- Play radio message and setup smoke creating function
   local args = { position = unit:getPoint(), color = trigger.smokeColor.Red }
-  if unit:getCoalition() == $LUAPLAYERCOALITION$ then color = trigger.smokeColor.Green end
+  if unit:getCoalition() == $LUAPLAYERCOALITION$ then args.color = trigger.smokeColor.Green end
   briefingRoom.radioManager.play("Affirm, target marked with smoke.", "RadioSupportTargetMarkedWithSmoke", briefingRoom.radioManager.getAnswerDelay(), briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerDoSmoke, args)
 end
       
