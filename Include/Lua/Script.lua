@@ -49,6 +49,7 @@
 -- 1.1 - CONSTANTS AND INITIALIZATION
 -- ===================================================================================
 
+DEGREES_TO_RADIANS = 0.0174533 -- multiply by this constant to convert degrees to radians
 LASER_CODE = 1688 -- laser code to use for AI target designation
 METERS_TO_NM = 0.000539957 -- number of nautical miles in a meter
 NM_TO_METERS = 1852.0 -- number of meters in a nautical mile
@@ -258,6 +259,14 @@ end
 -- ===================================================================================
 
 dcsExtensions = { } -- main dcsExtensions table
+
+-- Returns an angle in degrees to the nearest cardinal direction, as a string
+function dcsExtensions.degreesToCardinalDirection(angle)
+  angle = math.clamp(angle % 360, 0, 359)
+  local val = math.floor((angle / 22.5) + 0.5)
+  local directions = array { "north", "north-north-east", "north-east", "east-north-east", "east", "east-south-east", "south-east", "south-south-east", "south", "south-south-west", "south-west", "west-south-west", "west", "west-north-west", "north-west", "north-north-west" }
+  return directions[(val % 16) + 1]
+end
 
 -- Returns a table with all units controlled by a player
 function dcsExtensions.getAllPlayers()
