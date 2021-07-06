@@ -4,6 +4,7 @@
 [Ss]ource/.vs/
 [Ss]ource/**/[Bb]in/
 [Ss]ource/**/[Oo]bj/
+[Rr]elease/
 
 *.*.config
 *.cache
