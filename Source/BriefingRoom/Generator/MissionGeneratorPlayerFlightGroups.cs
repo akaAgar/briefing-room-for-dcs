@@ -124,7 +124,6 @@ namespace BriefingRoom4DCS.Generator
         {
             string flightPlanLua = "";
             string waypointLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_MISSION}WaypointPlayer.lua");
-            // TODO: throw exception if file doesn't exist
 
             for (int i = 0; i < waypoints.Count; i++)
             {
