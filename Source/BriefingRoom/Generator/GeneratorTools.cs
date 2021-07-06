@@ -178,13 +178,8 @@ namespace BriefingRoom4DCS.Generator
             // Unit is an aircraft, air force quality decides skill level
             if (unitFamily.GetUnitCategory().IsAircraft())
             {
-                //AmountNR airDefenseIntensity;
-                //if (targetSide == Side.Ally) airDefenseIntensity = template.SituationFriendlyAirForce.Get();
-                //else airDefenseIntensity = template.SituationEnemyAirForce.Get();
-
-                // TODO: return Toolbox.RandomFrom(Database.Instance.Common.CAP.CAPLevels[(int)airDefenseIntensity].SkillLevel);
-
-                return DCSSkillLevel.Average;
+                AmountNR capLevel = (side == Side.Ally ? template.SituationFriendlyAirForce : template.SituationEnemyAirForce).Get();
+                return Toolbox.RandomFrom(Database.Instance.Common.CAP.CAPLevels[(int)capLevel].SkillLevel);
             }
 
             // Unit is a surface-to-air unit, air defense quality decides skill level
