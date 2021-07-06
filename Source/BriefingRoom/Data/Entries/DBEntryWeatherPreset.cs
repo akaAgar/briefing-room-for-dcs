@@ -26,6 +26,11 @@ namespace BriefingRoom4DCS.Data
     internal class DBEntryWeatherPreset : DBEntry
     {
         /// <summary>
+        /// Is this weather considered bad weather (for "bad weather chance" in Campaign generation) ?
+        /// </summary>
+        internal bool BadWeather { get; private set; }
+
+        /// <summary>
         /// String to display in the briefing when this weather preset is selected.
         /// </summary>
         internal string BriefingDescription { get; private set; }
@@ -108,6 +113,7 @@ namespace BriefingRoom4DCS.Data
                 FogThickness = ini.GetValue<MinMaxI>("Weather", "Fog.Thickness");
                 FogVisibility = ini.GetValue<MinMaxI>("Weather", "Fog.Visibility");
 
+                BadWeather = ini.GetValue<bool>("Weather", "IsBadWeather");
                 QNH = ini.GetValue<MinMaxI>("Weather", "QNH");
                 Turbulence = ini.GetValue<MinMaxI>("Weather", "Turbulence");
                 Visibility = ini.GetValue<MinMaxI>("Weather", "Visibility");
