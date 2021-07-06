@@ -36,7 +36,7 @@ function briefingRoom.mission.objectiveFeaturesCommon.targetDesignationLaserUpda
 
           -- spot doesn't exist, create it
           if briefingRoom.mission.objectiveFeatures[i].targetDesignationLaser.laserSpot == nil then
-            briefingRoom.mission.objectiveFeatures[i].targetDesignationLaser.laserSpot = Spot.createLaser(briefingRoom.mission.features.supportLaserDesignation.laserTarget[i], { x = 0, y = 2.0, z = 0 }, targetPos, briefingRoom.mission.features.supportLaserDesignation.LASER_CODE)
+            briefingRoom.mission.objectiveFeatures[i].targetDesignationLaser.laserSpot = Spot.createLaser(briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.laserTarget, { x = 0, y = 2.0, z = 0 }, targetPos, LASER_CODE)
           else -- spot already exists, update its position
             briefingRoom.mission.objectiveFeatures[i].targetDesignationLaser.laserSpot:setPoint(targetPos)
           end
