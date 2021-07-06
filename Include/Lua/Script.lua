@@ -363,7 +363,7 @@ function dcsExtensions.getUnitByID(id)
   for i=1,2 do
     for _,g in pairs(coalition.getGroups(i)) do
       for __,u in pairs(g:getUnits()) do
-        if u:getID() == id then
+        if tonumber(u:getID()) == tonumber(id) then
           return u
         end
       end
