@@ -92,21 +92,36 @@ namespace BriefingRoom4DCS.Generator
 
             if (!spawnPoint.HasValue) throw new BriefingRoomException("Failed to spawn objective unit group.");
 
+            int unitCount = targetDB.UnitCount[(int)objectiveTemplate.TargetCount].GetValue();
+
             Coordinates objectiveCoordinates = spawnPoint.Value.Coordinates;
 
             // Spawn target on airbase
             int airbaseID = 0;
-            switch (targetBehaviorDB.Location)
+            List<int> parkingID = new List<int>();
+            if ((targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbase) ||
+                (targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking) ||
+                (targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter))
             {
-                case DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbase:
-                case DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking:
-                case DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter:
-                    DBEntryAirbase targetAirbase =
-                        (from DBEntryAirbase airbaseDB in theaterDB.GetAirbases()
-                         where airbaseDB.DCSID != playerAirbase.DCSID
-                         select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(objectiveCoordinates)).FirstOrDefault();
-                    objectiveCoordinates = targetAirbase.Coordinates;
-                    break;
+                DBEntryAirbase targetAirbase =
+                    (from DBEntryAirbase airbaseDB in theaterDB.GetAirbases()
+                     where airbaseDB.DCSID != playerAirbase.DCSID
+                     select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(objectiveCoordinates)).FirstOrDefault();
+                objectiveCoordinates = targetAirbase.Coordinates;
+                // Make sure the airbase belongs to the proper coalition
+                mission.SetAirbase(targetAirbase.DCSID, (taskDB.TargetSide == Side.Ally) ? template.ContextPlayerCoalition : template.ContextPlayerCoalition.GetEnemy());
+
+                switch (targetBehaviorDB.Location)
+                {
+                    case DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbase:
+                        objectiveCoordinates += Coordinates.CreateRandom(0, 500.0);
+                        break;
+                    case DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking:
+                    case DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter:
+                        for (int i = 0; i < unitCount; i++)
+                            parkingID.Add(UnitMaker.SpawnPointSelector.GetFreeParkingSpot(targetAirbase.DCSID, out objectiveCoordinates, null, (targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter)));
+                        break;
+                }
             }
 
             // Pick a name, then remove it from the list
@@ -139,7 +154,7 @@ namespace BriefingRoom4DCS.Generator
             }
 
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
-                objectiveTargetUnitFamily, targetDB.UnitCount[(int)objectiveTemplate.TargetCount].GetValue(),
+                objectiveTargetUnitFamily, unitCount,
                 taskDB.TargetSide,
                 targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
                 objectiveCoordinates,
@@ -147,7 +162,8 @@ namespace BriefingRoom4DCS.Generator
                 AircraftPayload.Default,
                 "GroupX2".ToKeyValuePair(destinationPoint.X),
                 "GroupY2".ToKeyValuePair(destinationPoint.Y),
-                "GroupAirbaseID".ToKeyValuePair(airbaseID));
+                "GroupAirbaseID".ToKeyValuePair(airbaseID),
+                "ParkingID".ToKeyValuePair(parkingID.ToArray()));
 
             if (!targetGroupInfo.HasValue) // Failed to generate target group
                 throw new BriefingRoomException($"Failed to generate group for objective {objectiveIndex + 1}");

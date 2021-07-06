@@ -161,6 +161,7 @@ namespace BriefingRoom4DCS.Generator
             GeneratorTools.ReplaceKey(ref groupLua, "UnitID", firstUnitID); // Must be after units are added
             GeneratorTools.ReplaceKey(ref groupLua, "Skill", skill.Value); // Must be after units are added, because skill is set as a unit level
             GeneratorTools.ReplaceKey(ref groupLua, "Hidden", GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags)); // If "hidden" was not set through custom values
+            GeneratorTools.ReplaceKey(ref groupLua, "ParkingID", "0"); // Must be after units are added, because skill is set as a unit level
 
             AddUnitGroupToTable(country, unitFamily.GetUnitCategory(), groupLua);
 
@@ -201,7 +202,6 @@ namespace BriefingRoom4DCS.Generator
             GeneratorTools.ReplaceKey(ref groupLua, "Altitude", firstUnitDB.AircraftData.CruiseAltitude);
             GeneratorTools.ReplaceKey(ref groupLua, "AltitudeHalf", firstUnitDB.AircraftData.CruiseAltitude / 2);
             GeneratorTools.ReplaceKey(ref groupLua, "EPLRS", firstUnitDB.Flags.HasFlag(DBEntryUnitFlags.EPLRS));
-            GeneratorTools.ReplaceKey(ref groupLua, "ParkingID", 0);
             GeneratorTools.ReplaceKey(ref groupLua, "RadioBand", (int)firstUnitDB.AircraftData.RadioModulation);
             GeneratorTools.ReplaceKey(ref groupLua, "RadioFrequency", firstUnitDB.AircraftData.RadioFrequency);
             GeneratorTools.ReplaceKey(ref groupLua, "Speed", firstUnitDB.AircraftData.CruiseSpeed);
