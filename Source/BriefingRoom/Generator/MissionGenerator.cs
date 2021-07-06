@@ -74,6 +74,7 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("BriefingEnemyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition.GetEnemy()].UIDisplayName);
             mission.SetValue("EnableAudioRadioMessages", !template.OptionsMission.Contains(MissionOption.RadioMessagesTextOnly));
             mission.SetValue("LuaPlayerCoalition", $"coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}");
+            mission.SetValue("LuaEnemyCoalition", $"coalition.side.{template.ContextPlayerCoalition.GetEnemy().ToString().ToUpperInvariant()}");
             mission.SetValue("TheaterID", theaterDB.DCSID);
             mission.SetValue("AircraftActivatorCurrentQueue", ""); // Just to make sure aircraft groups spawning queues are empty
             mission.SetValue("AircraftActivatorReserveQueue", "");
