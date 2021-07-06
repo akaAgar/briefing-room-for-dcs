@@ -15,6 +15,7 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
 
   -- Initiator was nil
   if event.initiator == nil then return false end
+  if Object.getCategory(event.initiator) ~= Object.Category.UNIT and Object.getCategory(event.initiator) ~= Object.Category.STATIC then return false end
 
   local unitID = tonumber(event.initiator:getID())
   -- Destroyed unit wasn't a target
