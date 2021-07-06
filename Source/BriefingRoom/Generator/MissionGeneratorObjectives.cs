@@ -115,7 +115,11 @@ namespace BriefingRoom4DCS.Generator
 
                     for (int i = 0; i < unitCount; i++)
                     {
-                        int parkingSpot = UnitMaker.SpawnPointSelector.GetFreeParkingSpot(targetAirbase.DCSID, out Coordinates parkingSpotCoordinates, lastParkingCoordinates);
+                        int parkingSpot = UnitMaker.SpawnPointSelector.GetFreeParkingSpot(
+                            targetAirbase.DCSID,
+                            out Coordinates parkingSpotCoordinates,
+                            lastParkingCoordinates,
+                            targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter);
                         if (parkingSpot < 0) throw new BriefingRoomException("No parking spot found for aircraft.");
                         lastParkingCoordinates = parkingSpotCoordinates;
 
@@ -160,8 +164,9 @@ namespace BriefingRoom4DCS.Generator
                 "GroupAirbaseID".ToKeyValuePair(airbaseID),
                 "ParkingID".ToKeyValuePair(parkingSpotIDsList.ToArray())
             };
-            if(parkingSpotCoordinatesList.Count > 1)
-            {   extraSettings.Add("UnitX".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.X).ToArray()));
+            if (parkingSpotCoordinatesList.Count > 1)
+            {
+                extraSettings.Add("UnitX".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.X).ToArray()));
                 extraSettings.Add("UnitY".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.Y).ToArray()));
             }
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
