@@ -23,7 +23,7 @@ namespace BriefingRoom4DCS
     /// <summary>
     /// Enumerates all "families" of units, each consisting of a DCS World category (Plane, Vehicle...) and a role (Attack, Transport...)
     /// </summary>
-    public enum UnitFamily
+    internal enum UnitFamily
     {
         /// <summary>
         /// Attack helicopters

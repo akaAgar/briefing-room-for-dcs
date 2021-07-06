@@ -27,47 +27,47 @@ namespace BriefingRoom4DCS
     /// <summary>
     /// Stores a set of X, Y map coordinates as doubles.
     /// </summary>
-    public struct Coordinates : ICloneable
+    internal struct Coordinates : ICloneable
     {
         /// <summary>
         /// Constant "zero" coordinates, with both X and Y set to zero.
         /// </summary>
-        public static readonly Coordinates Zero = new Coordinates(0, 0);
+        internal static readonly Coordinates Zero = new Coordinates(0, 0);
 
         /// <summary>
         /// The X coordinate.
         /// </summary>
-        public readonly double X;
+        internal readonly double X;
 
         /// <summary>
         /// The Y coordinate.
         /// </summary>
-        public readonly double Y;
+        internal readonly double Y;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="both">X and Y coordinate.</param>
-        public Coordinates(double both) { X = both; Y = both; }
+        internal Coordinates(double both) { X = both; Y = both; }
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="x">The X coordinate.</param>
         /// <param name="y">The Y coordinate.</param>
-        public Coordinates(double x, double y) { X = x; Y = y; }
+        internal Coordinates(double x, double y) { X = x; Y = y; }
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="source">Source coordinates set to duplicate.</param>
-        public Coordinates(Coordinates source) { X = source.X; Y = source.Y; }
+        internal Coordinates(Coordinates source) { X = source.X; Y = source.Y; }
 
         /// <summary>
         /// Constructor. Parses the X and Y coordinates from a string (format is "1.2345,6.7890")
         /// </summary>
         /// <param name="coordinatesString">The string containing the coordinates.</param>
-        public Coordinates(string coordinatesString)
+        internal Coordinates(string coordinatesString)
         {
             try
             {
@@ -141,7 +141,7 @@ namespace BriefingRoom4DCS
         /// </summary>
         /// <param name="angle">Angle in degrees</param>
         /// <returns>A set of coordinates</returns>
-        public static Coordinates FromAngleInDegrees(double angle)
+        internal static Coordinates FromAngleInDegrees(double angle)
         {
             return FromAngleInRadians(angle * Toolbox.DEGREES_TO_RADIANS);
         }
@@ -151,7 +151,7 @@ namespace BriefingRoom4DCS
         /// </summary>
         /// <param name="angle">Angle in radians</param>
         /// <returns>A set of coordinates</returns>
-        public static Coordinates FromAngleInRadians(double angle)
+        internal static Coordinates FromAngleInRadians(double angle)
         {
             return new Coordinates(Math.Cos(angle), Math.Sin(angle));
         }
@@ -162,7 +162,7 @@ namespace BriefingRoom4DCS
         /// <param name="center">Coordinates of center</param>
         /// <param name="waypoint">Coordinates of waypoint</param>
         /// <returns>Angle in Radians (always positive)</returns>
-        public static double ToAngleInRadians(Coordinates center, Coordinates waypoint)
+        internal static double ToAngleInRadians(Coordinates center, Coordinates waypoint)
         {
             var delta = waypoint - center;
             var rawRads =  Math.Atan2(delta.Y, delta.X);
@@ -176,7 +176,7 @@ namespace BriefingRoom4DCS
         /// <param name="coo2">Another set of coordinates</param>
         /// <param name="value">A value between</param>
         /// <returns>The interpolated set of coordinates</returns>
-        public static Coordinates Lerp(Coordinates coo1, Coordinates coo2, double value)
+        internal static Coordinates Lerp(Coordinates coo1, Coordinates coo2, double value)
         {
             return new Coordinates(Toolbox.Lerp(coo1.X, coo2.X, value), Toolbox.Lerp(coo1.Y, coo2.Y, value));
         }
@@ -188,7 +188,7 @@ namespace BriefingRoom4DCS
         /// <param name="coo2">Another set of coordinates</param>
         /// <param name="value">A value between</param>
         /// <returns>The interpolated set of coordinates</returns>
-        public static Coordinates FromAngleAndDistance(Coordinates coordinates, double distance/*, double angle*/)
+        internal static Coordinates FromAngleAndDistance(Coordinates coordinates, double distance/*, double angle*/)
         {
             return new Coordinates(
                 coordinates.X + distance * Math.Cos(distance * Toolbox.DEGREES_TO_RADIANS),
@@ -203,7 +203,7 @@ namespace BriefingRoom4DCS
         /// <param name="min">Minimum distance (in meters) from 0,0</param>
         /// <param name="max">Maximum distance (in meters) from 0,0</param>
         /// <returns>A set of coordinates</returns>
-        public static Coordinates CreateRandom(double min, double max)
+        internal static Coordinates CreateRandom(double min, double max)
         {
             return CreateRandom(new MinMaxD(min, max));
         }
@@ -224,7 +224,7 @@ namespace BriefingRoom4DCS
         /// </summary>
         /// <param name="coordinates">The coordinates.</param>
         /// <returns>The center, or 0,0 if no coordinates were passed as parameters.</returns>
-        public static Coordinates GetCenter(params Coordinates[] coordinates)
+        internal static Coordinates GetCenter(params Coordinates[] coordinates)
         {
             if ((coordinates == null) || (coordinates.Length == 0)) return new Coordinates();
 
@@ -241,14 +241,14 @@ namespace BriefingRoom4DCS
         /// </summary>
         /// <param name="other">The other set of coordinates.</param>
         /// <returns>The distance.</returns>
-        public double GetDistanceFrom(Coordinates other) { return Math.Sqrt(GetSquaredDistanceFrom(other)); }
+        internal double GetDistanceFrom(Coordinates other) { return Math.Sqrt(GetSquaredDistanceFrom(other)); }
 
         /// <summary>
         /// Returns the square of the distance between this set of coordinates and another (for quick distance comparison withtout square root).
         /// </summary>
         /// <param name="other">The other set of coordinates.</param>
         /// <returns>The square of the distance.</returns>
-        public double GetSquaredDistanceFrom(Coordinates other) { return Math.Pow(X - other.X, 2) + Math.Pow(Y - other.Y, 2); }
+        internal double GetSquaredDistanceFrom(Coordinates other) { return Math.Pow(X - other.X, 2) + Math.Pow(Y - other.Y, 2); }
 
         /// <summary>
         /// ICloneable implementation.
@@ -260,7 +260,7 @@ namespace BriefingRoom4DCS
         /// Returns a string describing the coordinates as a Lua table of format "{ x = <see cref="X"/>, y = <see cref="Y"/> }"
         /// </summary>
         /// <returns>A string</returns>
-        public string ToLuaTable()
+        internal string ToLuaTable()
         {
             return $"{{ [\"x\"] = {Toolbox.ValToString(X)}, [\"y\"] = {Toolbox.ValToString(Y)} }}";
         }
@@ -272,7 +272,7 @@ namespace BriefingRoom4DCS
         /// <param name="min">Minimum distance (in meters) from 0,0</param>
         /// <param name="max">Maximum distance (in meters) from 0,0</param>
         /// <returns>A set of coordinates</returns>
-        public Coordinates CreateNearRandom(double min, double max)
+        internal Coordinates CreateNearRandom(double min, double max)
         {
             return CreateNearRandom(new MinMaxD(min, max));
         }

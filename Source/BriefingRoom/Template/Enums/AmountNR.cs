@@ -18,22 +18,46 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using System.ComponentModel.DataAnnotations;
-
-namespace BriefingRoom4DCS
+namespace BriefingRoom4DCS.Template
 {
     /// <summary>
-    /// A possible player flight group start location (runway, parking, in air...)
+    /// Enumerates various relative amount values, from "None" to "Very high", with a "Random" value
     /// </summary>
-    public enum PlayerStartLocation
+    public enum AmountNR
     {
-        [Display(Name = "Parking, cold", Description = "Player(s) start on ramp, plane cold, and must perform the start up procedure.")]
-        ParkingCold,
+        /// <summary>
+        /// Use a random value.
+        /// </summary>
+        Random,
 
-        [Display(Name = "Parking, hot", Description = "Player(s) start on ramp, plane hot, ready to taxi to the runway.")]
-        ParkingHot,
+        /// <summary>
+        /// None at all.
+        /// </summary>
+        None,
 
-        [Display(Name = "Runway", Description = "Player(s) start on the runway, ready to takoff. Not available in multiplayer missions (automatically changed to \"Parking, hot\").")]
-        Runway
+        /// <summary>
+        /// Very low amount.
+        /// </summary>
+        VeryLow,
+
+        /// <summary>
+        /// Low amount.
+        /// </summary>
+        Low,
+
+        /// <summary>
+        /// Average/balanced amount.
+        /// </summary>
+        Average,
+
+        /// <summary>
+        /// High amount.
+        /// </summary>
+        High,
+
+        /// <summary>
+        /// Very high amount.
+        /// </summary>
+        VeryHigh
     }
 }

@@ -18,36 +18,32 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-namespace BriefingRoom4DCS
+namespace BriefingRoom4DCS.Template
 {
     /// <summary>
-    /// Enumerates various relative amount values, from "Very low" to "Very high"
+    /// Enumerates the various parking spots in DCS World
     /// </summary>
-    public enum Amount
+    public enum ParkingSpotType
     {
         /// <summary>
-        /// Very low amount.
+        /// Runway spawn spot
         /// </summary>
-        VeryLow,
-
+        Runway,
         /// <summary>
-        /// Low amount.
+        /// Only helicopters can be spawned on this open air parking spot.
         /// </summary>
-        Low,
-
+        HelicopterOnly,
         /// <summary>
-        /// Average/balanced amount.
+        /// Hardened hard shelter, only planes can be spawned.
         /// </summary>
-        Average,
-
+        HardenedAirShelter,
         /// <summary>
-        /// High amount.
+        /// Only planes can be spawned on this open air or closed parking spot.
         /// </summary>
-        High,
-
+        AirplaneOnly,
         /// <summary>
-        /// Very high amount.
+        /// Open air spawned, anything can be spawned.
         /// </summary>
-        VeryHigh
+        OpenAirSpawn
     }
 }

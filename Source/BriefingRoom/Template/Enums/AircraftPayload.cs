@@ -18,33 +18,32 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-namespace BriefingRoom4DCS
+namespace BriefingRoom4DCS.Template
 {
     /// <summary>
-    /// All four seasons, plus a "Random" value".
+    /// Enumerates the type of payloads aircraft can carry according to their task.
     /// </summary>
-    public enum Season
+    public enum AircraftPayload
     {
         /// <summary>
-        /// Any/random season
+        /// Default payload for the aircraft, used when a specific payload is not avaiable.
         /// </summary>
-        Random,
-
+        Default = 0, // Must be 0
         /// <summary>
-        /// Spring
+        /// Air-to-air payload, for CAP, interception...
         /// </summary>
-        Spring,
+        AirToAir,
         /// <summary>
-        /// Summer
+        /// Air-to-ground payload, for Pinpoint strike, CAS...
         /// </summary>
-        Summer,
+        AirToGround,
         /// <summary>
-        /// Fall
+        /// Anti-ship payload
         /// </summary>
-        Fall,
+        AntiShip,
         /// <summary>
-        /// Winter
+        /// SEAD payload
         /// </summary>
-        Winter
+        SEAD
     }
 }

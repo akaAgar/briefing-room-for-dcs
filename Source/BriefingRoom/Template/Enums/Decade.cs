@@ -20,7 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using System.ComponentModel.DataAnnotations;
 
-namespace BriefingRoom4DCS
+namespace BriefingRoom4DCS.Template
 {
     /// <summary>
     /// Enumerates all decades between 1940 and 2010.

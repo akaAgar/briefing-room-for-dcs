@@ -18,31 +18,36 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using System.ComponentModel.DataAnnotations;
-
-namespace BriefingRoom4DCS
+namespace BriefingRoom4DCS.Template
 {
     /// <summary>
-    /// The time of the day (used by mission starting time), with "Random" and "Random, but not at night" options.
+    /// Enumerates various relative amount values, from "Very low" to "Very high"
     /// </summary>
-    public enum TimeOfDay
+    public enum Amount
     {
-        [Display(Name = "Random", Description = "Any time of the day or night.")]
-        Random,
-        
-        [Display(Name = "Random, daytime", Description = "Any time during daylight hours.")]
-        RandomDaytime,
+        /// <summary>
+        /// Very low amount.
+        /// </summary>
+        VeryLow,
 
-        [Display(Name = "Dawn", Description = "Just after sunrise.")]
-        Dawn,
+        /// <summary>
+        /// Low amount.
+        /// </summary>
+        Low,
 
-        [Display(Name = "Noon", Description = "In the middle of the day.")]
-        Noon,
-        
-        [Display(Name = "Twilight", Description = "Just before sunset.")]
-        Twilight,
-        
-        [Display(Name = "Night", Description = "At night.")]
-        Night
+        /// <summary>
+        /// Average/balanced amount.
+        /// </summary>
+        Average,
+
+        /// <summary>
+        /// High amount.
+        /// </summary>
+        High,
+
+        /// <summary>
+        /// Very high amount.
+        /// </summary>
+        VeryHigh
     }
 }

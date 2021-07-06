@@ -18,46 +18,33 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-namespace BriefingRoom4DCS
+namespace BriefingRoom4DCS.Template
 {
     /// <summary>
-    /// Enumerates various relative amount values, from "None" to "Very high", with a "Random" value
+    /// All four seasons, plus a "Random" value".
     /// </summary>
-    public enum AmountNR
+    public enum Season
     {
         /// <summary>
-        /// Use a random value.
+        /// Any/random season
         /// </summary>
         Random,
 
         /// <summary>
-        /// None at all.
+        /// Spring
         /// </summary>
-        None,
-
+        Spring,
         /// <summary>
-        /// Very low amount.
+        /// Summer
         /// </summary>
-        VeryLow,
-
+        Summer,
         /// <summary>
-        /// Low amount.
+        /// Fall
         /// </summary>
-        Low,
-
+        Fall,
         /// <summary>
-        /// Average/balanced amount.
+        /// Winter
         /// </summary>
-        Average,
-
-        /// <summary>
-        /// High amount.
-        /// </summary>
-        High,
-
-        /// <summary>
-        /// Very high amount.
-        /// </summary>
-        VeryHigh
+        Winter
     }
 }

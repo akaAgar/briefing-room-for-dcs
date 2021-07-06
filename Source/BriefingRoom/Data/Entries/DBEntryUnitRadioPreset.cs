@@ -18,28 +18,32 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-
-using System.Collections.Generic;
-
 namespace BriefingRoom4DCS.Data
 {
-    public class RadioPreset
+    internal struct DBEntryUnitRadioPreset
     {
-        public int[] Modulations {get; set;}
-        public int[] Channels {get; set;}
+        internal int[] Modulations { get; }
 
+        internal int[] Channels { get; }
 
-        public string ToLuaString() {
-            var lua = @"{[""modulations""] = {";
+        internal DBEntryUnitRadioPreset(int[] channels, int[] modulations)
+        {
+            Channels = channels;
+            Modulations = modulations;
+        }
+
+        internal string ToLuaString()
+        {
+            string lua = @"{[""modulations""] = {";
+
             for (int index = 1; index < Modulations.Length; index++)
-            {
                 lua += $"[{index}] = {Modulations[index]},";
-            }
+
             lua += @"},[""channels""] = {";
+
             for (int index = 1; index < Channels.Length; index++)
-            {
                 lua += $"[{index}] = {Channels[index]},";
-            }   
+
             lua += "},},";
             return lua;
         }

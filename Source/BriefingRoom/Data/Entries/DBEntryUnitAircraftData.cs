@@ -18,7 +18,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-
+using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -91,7 +91,7 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Radio Preset Lua
         /// </summary>
-        internal List<RadioPreset> RadioPresets {get; private set;}
+        internal List<DBEntryUnitRadioPreset> RadioPresets {get; private set;}
 
         /// <summary>
         /// Props Lua
@@ -132,14 +132,14 @@ namespace BriefingRoom4DCS.Data
                         PayloadTasks[decade][task][pylonIndex] = ini.GetValue<string>("Aircraft", $"Payload.{decade}.Task.{task}.Pylon{pylonIndex + 1:00}");
                 }
             }
-            RadioPresets = new List<RadioPreset>();
+            RadioPresets = new List<DBEntryUnitRadioPreset>();
             for (int i = 0; i < 4; i++)
-            {   
+            {
                 if (ini.ValueExists("Aircraft", $"Radio.Presets.{i}.Channels"))
-                    RadioPresets.Add(new RadioPreset{
-                        Channels = ini.GetValueArray<int>("Aircraft", $"Radio.Presets.{i}.Channels"),
-                        Modulations = ini.GetValueArray<int>("Aircraft", $"Radio.Presets.{i}.Modulations")
-                });
+                    RadioPresets.Add(
+                        new DBEntryUnitRadioPreset(
+                            ini.GetValueArray<int>("Aircraft", $"Radio.Presets.{i}.Channels"),
+                            ini.GetValueArray<int>("Aircraft", $"Radio.Presets.{i}.Modulations")));
             }
         }
 

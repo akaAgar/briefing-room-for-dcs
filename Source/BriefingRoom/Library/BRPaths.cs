@@ -28,89 +28,89 @@ namespace BriefingRoom4DCS
     /// <summary>
     /// Stores the various paths to the files used by BriefingRoom.
     /// </summary>
-    public static class BRPaths
+    internal static class BRPaths
     {
         /// <summary>
         /// Path to the application.
         /// </summary>
-        public static string ROOT { get; } = FindRoot();
+        internal static string ROOT { get; } = FindRoot();
 
         /// <summary>
         /// Path to the database subdirectory.
         /// </summary>
-        public static string DATABASE { get; } = $"{ROOT}Database\\";
+        internal static string DATABASE { get; } = $"{ROOT}Database\\";
 
 #if DEBUG
         /// <summary>
         /// Path to the debug output directory
         /// </summary>
-        public static string DEBUGOUTPUT { get; } = $"{ROOT}DebugOutput\\";
+        internal static string DEBUGOUTPUT { get; } = $"{ROOT}DebugOutput\\";
 #endif
 
         /// <summary>
         /// Path to the Include subdirectory.
         /// </summary>
-        public static string INCLUDE { get; } = $"{ROOT}Include\\";
+        internal static string INCLUDE { get; } = $"{ROOT}Include\\";
 
         /// <summary>
         /// Path to the Include\Html subdirectory.
         /// </summary>
-        public static string INCLUDE_HTML { get; } = $"{INCLUDE}Html\\";
+        internal static string INCLUDE_HTML { get; } = $"{INCLUDE}Html\\";
 
         /// <summary>
         /// Path to the Include\Jpg subdirectory.
         /// </summary>
-        public static string INCLUDE_JPG { get; } = $"{INCLUDE}Jpg\\";
+        internal static string INCLUDE_JPG { get; } = $"{INCLUDE}Jpg\\";
 
         /// <summary>
         /// Path to the Include\Lua subdirectory.
         /// </summary>
-        public static string INCLUDE_LUA { get; } = $"{INCLUDE}Lua\\";
+        internal static string INCLUDE_LUA { get; } = $"{INCLUDE}Lua\\";
 
         ///// <summary>
         ///// Path to the Include\Lua\IncludedScripts subdirectory.
         ///// </summary>
-        //public static string INCLUDE_LUA_INCLUDEDSCRIPTS { get; } = $"{INCLUDE_LUA}IncludedScripts\\";
+        //internal static string INCLUDE_LUA_INCLUDEDSCRIPTS { get; } = $"{INCLUDE_LUA}IncludedScripts\\";
 
         /// <summary>
         /// Path to the Include\Lua\MissionFeatures subdirectory.
         /// </summary>
-        public static string INCLUDE_LUA_MISSIONFEATURES { get; } = $"{INCLUDE_LUA}MissionFeatures\\";
+        internal static string INCLUDE_LUA_MISSIONFEATURES { get; } = $"{INCLUDE_LUA}MissionFeatures\\";
 
         /// <summary>
         /// Path to the Include\Lua\ObjectiveFeatures subdirectory.
         /// </summary>
-        public static string INCLUDE_LUA_OBJECTIVEFEATURES { get; } = $"{INCLUDE_LUA}ObjectiveFeatures\\";
+        internal static string INCLUDE_LUA_OBJECTIVEFEATURES { get; } = $"{INCLUDE_LUA}ObjectiveFeatures\\";
 
         /// <summary>
         /// Path to the Include\Lua\ObjectivesTriggers subdirectory.
         /// </summary>
-        public static string INCLUDE_LUA_OBJECTIVETRIGGERS { get; } = $"{INCLUDE_LUA}ObjectiveTriggers\\";
+        internal static string INCLUDE_LUA_OBJECTIVETRIGGERS { get; } = $"{INCLUDE_LUA}ObjectiveTriggers\\";
 
         /// <summary>
         /// Path to the Include\Lua\Mission subdirectory.
         /// </summary>
-        public static string INCLUDE_LUA_MISSION { get; } = $"{INCLUDE_LUA}Mission\\";
+        internal static string INCLUDE_LUA_MISSION { get; } = $"{INCLUDE_LUA}Mission\\";
 
         /// <summary>
         /// Path to the Include\Lua\Units subdirectory.
         /// </summary>
-        public static string INCLUDE_LUA_UNITS { get; } = $"{INCLUDE_LUA}Units\\";
+        internal static string INCLUDE_LUA_UNITS { get; } = $"{INCLUDE_LUA}Units\\";
 
         /// <summary>
         /// Path to the Include\Lua subdirectory.
         /// </summary>
-        public static string INCLUDE_OGG { get; } = $"{INCLUDE}Ogg\\";
+        internal static string INCLUDE_OGG { get; } = $"{INCLUDE}Ogg\\";
 
         /// <summary>
         /// Path to the Media subdirectory.
         /// </summary>
-        public static string MEDIA { get; } = $"{ROOT}Media\\";
+        internal static string MEDIA { get; } = $"{ROOT}Media\\";
 
         /// <summary>
         /// Path to the Media\Icons16 subdirectory.
         /// </summary>
-        public static string MEDIA_ICONS16 { get; } = $"{MEDIA}Icons16\\";
+        internal static string MEDIA_ICONS16 { get; } = $"{MEDIA}Icons16\\";
 
 
         private static string FindRoot(string path = "", int loop = 0){

@@ -20,32 +20,29 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using System.ComponentModel.DataAnnotations;
 
-namespace BriefingRoom4DCS
+namespace BriefingRoom4DCS.Template
 {
     /// <summary>
-    /// How windy should the weather be during a mission.
+    /// The time of the day (used by mission starting time), with "Random" and "Random, but not at night" options.
     /// </summary>
-    public enum Wind
+    public enum TimeOfDay
     {
-        [Display(Name = "Random", Description = "Wind level will be picked randomly")]
-        Random = -1, // Auto must be < 0 for casts from Int32
+        [Display(Name = "Random", Description = "Any time of the day or night.")]
+        Random,
+        
+        [Display(Name = "Random, daytime", Description = "Any time during daylight hours.")]
+        RandomDaytime,
 
-        [Display(Name = "Calm", Description = "Force 0, No wind at all. ")]
-        Calm,
+        [Display(Name = "Dawn", Description = "Just after sunrise.")]
+        Dawn,
 
-        [Display(Name = "Light Breeze", Description = "Force 1-2, Light wind.")]
-        LightBreeze,
-
-        [Display(Name = "Moderate breeze", Description = "Force 3-4, Average wind.")]
-        ModerateBreeze,
-
-        [Display(Name = "Strong breeze", Description = "Force 5-6, Noticeable wind, flying and aiming may require skill.")]
-        StrongBreeze,
-
-        [Display(Name = "Gale", Description = "Force 7-8, Strong wind. Flying and aiming will be heavily impaired.")]
-        Gale,
-
-        [Display(Name = "Storm", Description = "Force 9-10, Very strong wind. Flying in these condition may prove dangerous.")]
-        Storm
+        [Display(Name = "Noon", Description = "In the middle of the day.")]
+        Noon,
+        
+        [Display(Name = "Twilight", Description = "Just before sunset.")]
+        Twilight,
+        
+        [Display(Name = "Night", Description = "At night.")]
+        Night
     }
 }

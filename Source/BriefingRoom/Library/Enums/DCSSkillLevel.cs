@@ -21,12 +21,10 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 namespace BriefingRoom4DCS
 {
     /// <summary>
-    /// Enumeates all skill levels to be used in the mission
-    /// (unlike <see cref="BRSkillLevel"/>, which is used for skill selection in the mission template).
-    /// MUST MATCH NAMES USED BY DCS WORLD!
-    /// Can be converted from a <see cref="BRSkillLevel"/> by <see cref="Toolbox.BRSkillLevelToDCSSkillLevel(BRSkillLevel)"
+    /// Enumeates all DCS World skill levels.
+    /// Must match names used by DCS World (https://wiki.hoggitworld.com/view/DCS_enum_AI) !!
     /// </summary>
-    public enum DCSSkillLevel
+    internal enum DCSSkillLevel
     {
         /// <summary>
         /// The (only) player in a single player mission controls this aircraft

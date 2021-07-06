@@ -18,32 +18,22 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-namespace BriefingRoom4DCS
+using System.ComponentModel.DataAnnotations;
+
+namespace BriefingRoom4DCS.Template
 {
     /// <summary>
-    /// Enumerates the various parking spots in DCS World
+    /// A possible player flight group start location (runway, parking, in air...)
     /// </summary>
-    public enum ParkingSpotType
+    public enum PlayerStartLocation
     {
-        /// <summary>
-        /// Runway spawn spot
-        /// </summary>
-        Runway,
-        /// <summary>
-        /// Only helicopters can be spawned on this open air parking spot.
-        /// </summary>
-        HelicopterOnly,
-        /// <summary>
-        /// Hardened hard shelter, only planes can be spawned.
-        /// </summary>
-        HardenedAirShelter,
-        /// <summary>
-        /// Only planes can be spawned on this open air or closed parking spot.
-        /// </summary>
-        AirplaneOnly,
-        /// <summary>
-        /// Open air spawned, anything can be spawned.
-        /// </summary>
-        OpenAirSpawn
+        [Display(Name = "Parking, cold", Description = "Player(s) start on ramp, plane cold, and must perform the start up procedure.")]
+        ParkingCold,
+
+        [Display(Name = "Parking, hot", Description = "Player(s) start on ramp, plane hot, ready to taxi to the runway.")]
+        ParkingHot,
+
+        [Display(Name = "Runway", Description = "Player(s) start on the runway, ready to takoff. Not available in multiplayer missions (automatically changed to \"Parking, hot\").")]
+        Runway
     }
 }
