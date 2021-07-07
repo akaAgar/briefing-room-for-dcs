@@ -156,7 +156,7 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.ReplaceKey(ref remark, "GroupFrequency", GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency));
             }
 
-            mission.Briefing.AddItem(DCSMissionBriefingItemType.Remark, remark);
+            mission.Briefing.AddItem(DCSMissionBriefingItemType.Remark, remark, featureDB is DBEntryFeatureMission);
         }
 
         /// <summary>

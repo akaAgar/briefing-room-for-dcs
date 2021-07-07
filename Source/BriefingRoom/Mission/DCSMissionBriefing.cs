@@ -41,9 +41,18 @@ namespace BriefingRoom4DCS.Mission
                 Items[i] = new List<string>();
         }
 
-        public string[] GetItems(DCSMissionBriefingItemType briefingItemType) { return Items[(int)briefingItemType].ToArray(); }
-        
-        internal void AddItem(DCSMissionBriefingItemType briefingItemType, string briefingItem) { Items[(int)briefingItemType].Add(briefingItem); }
+        public string[] GetItems(DCSMissionBriefingItemType briefingItemType)
+        {
+            return Items[(int)briefingItemType].ToArray();
+        }
+
+        internal void AddItem(DCSMissionBriefingItemType briefingItemType, string briefingItem, bool insertFirst = false)
+        {
+            if (insertFirst)
+                Items[(int)briefingItemType].Insert(0, briefingItem);
+            else
+                Items[(int)briefingItemType].Add(briefingItem);
+        }
 
         public string GetBriefingAsHTML(bool htmlHeaderAndFooter = true)
         {
