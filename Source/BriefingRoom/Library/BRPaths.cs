@@ -28,12 +28,12 @@ namespace BriefingRoom4DCS
     /// <summary>
     /// Stores the various paths to the files used by BriefingRoom.
     /// </summary>
-    public static class BRPaths
+    internal static class BRPaths
     {
         /// <summary>
         /// Path to the application.
         /// </summary>
-        public static string ROOT { get; } = FindRoot();
+        internal static string ROOT { get; } = FindRoot();
 
         /// <summary>
         /// Path to the database subdirectory.
