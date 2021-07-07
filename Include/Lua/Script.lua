@@ -613,7 +613,6 @@ function briefingRoom.handleGeneralKill(event)
 end
 
 function briefingRoom.eventHandler:onEvent(event)
-
   if event.id == world.event.S_EVENT_TAKEOFF and -- unit took off
     event.initiator:getPlayerName() ~= nil then -- unit is a pleyr
       briefingRoom.mission.coreFunctions.beginMission() -- first player to take off triggers the mission start
