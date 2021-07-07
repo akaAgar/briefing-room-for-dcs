@@ -66,7 +66,10 @@ namespace BriefingRoom4DCS.Data
             {
                 BriefingDescription = ini.GetValue<string>("ObjectiveTask", "BriefingDescription");
                 if (!Database.Instance.EntryExists<DBEntryBriefingDescription>(BriefingDescription))
-                    throw new Exception($"Objective task \"{ID}\" references non-existing briefing description \"{BriefingDescription}\".");
+                {
+                    BriefingRoom.PrintToLog($"Objective task \"{ID}\" references non-existing briefing description \"{BriefingDescription}\".", LogMessageErrorLevel.Warning);
+                    return false;
+                }
 
                 BriefingTask = new string[2];
                 BriefingTask[0] = ini.GetValue<string>("ObjectiveTask", "BriefingTask.Singular");
