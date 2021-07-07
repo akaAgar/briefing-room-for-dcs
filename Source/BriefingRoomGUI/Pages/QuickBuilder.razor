@@ -226,7 +226,7 @@
 
     private string templatePath;
 
-    private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BRPaths.ROOT}Default.brt";
+    private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BriefingRoom.GetBriefingRoomRootPath()}Default.brt";
 
     private TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
     protected override void OnInitialized()
