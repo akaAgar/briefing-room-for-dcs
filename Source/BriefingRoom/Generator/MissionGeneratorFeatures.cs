@@ -84,6 +84,11 @@ namespace BriefingRoom4DCS.Generator
 
             // Feature Lua script
             string featureLua = "";
+
+            // Adds the features' group ID to the briefingRoom.mission.missionFeatures.groupsID table
+            if (this is MissionGeneratorFeaturesMission)
+                featureLua += $"briefingRoom.mission.missionFeatures.groupsID.{GeneratorTools.LowercaseFirstCharacter(featureDB.ID)} = {(groupInfo.HasValue ? groupInfo.Value.GroupID : 0)}\n";
+
             if (!string.IsNullOrEmpty(featureDB.IncludeLuaSettings)) featureLua = featureDB.IncludeLuaSettings + "\n";
             foreach (string luaFile in featureDB.IncludeLua)
                 featureLua += Toolbox.ReadAllTextIfFileExists($"{featureDB.SourceLuaDirectory}{luaFile}") + "\n";

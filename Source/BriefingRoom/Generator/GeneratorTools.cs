@@ -87,6 +87,13 @@ namespace BriefingRoom4DCS.Generator
             return unitsList.ToArray();
         }
 
+        internal static object LowercaseFirstCharacter(string str)
+        {
+            if (string.IsNullOrEmpty(str)) return str;
+            if (str.Length == 1) return str.ToLowerInvariant();
+            return str.Substring(0, 1).ToLowerInvariant() + str.Substring(1);
+        }
+
         internal static string MakeHTMLList(params string[] listEntries)
         {
             string list = "";
