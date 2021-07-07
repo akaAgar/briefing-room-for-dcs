@@ -355,6 +355,15 @@ namespace BriefingRoom4DCS.Template
         }
 
         /// <summary>
+        /// Returns the total number of player slots in all player flight groups.
+        /// </summary>
+        /// <returns></returns>
+        internal int GetPlayerSlotsCount()
+        {
+            return (from MissionTemplateFlightGroup flightGroup in PlayerFlightGroups_ select flightGroup.PlayerSlots).Sum();
+        }
+
+        /// <summary>
         /// <see cref="IDisposable"/> implementation.
         /// </summary>
         public void Dispose() { }

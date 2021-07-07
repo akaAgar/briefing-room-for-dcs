@@ -43,6 +43,7 @@ namespace BriefingRoom4DCS.Generator
 
         private int GroupID;
         private int UnitID;
+        private bool SinglePlayerMission;
 
         internal UnitMakerSpawnPointSelector SpawnPointSelector { get; }
 
@@ -51,7 +52,8 @@ namespace BriefingRoom4DCS.Generator
         internal UnitMaker(
             DCSMission mission, MissionTemplate template,
             DBEntryCoalition[] coalitionsDB, DBEntryTheater theaterDB,
-            Coalition playerCoalition, Country[][] coalitionsCountries)
+            Coalition playerCoalition, Country[][] coalitionsCountries,
+            bool singlePlayerMission)
         {
             CallsignGenerator = new UnitMakerCallsignGenerator(coalitionsDB);
             SpawnPointSelector = new UnitMakerSpawnPointSelector(theaterDB);
@@ -62,6 +64,7 @@ namespace BriefingRoom4DCS.Generator
             CoalitionsDB = coalitionsDB;
             PlayerCoalition = playerCoalition;
             CoalitionsCountries = coalitionsCountries;
+            SinglePlayerMission = singlePlayerMission;
 
             Clear();
         }
@@ -289,8 +292,8 @@ namespace BriefingRoom4DCS.Generator
             GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitY", unitCoordinates.Y);
             if ((unitDB.Category == UnitCategory.Helicopter) || (unitDB.Category == UnitCategory.Plane))
             {
-                if ((unitLuaIndex == 1) && unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.FirstUnitIsPlayer))
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Skill", "Client"); //Must Always be client to support SP and MP AI wingmen
+                if ((unitLuaIndex == 1) && unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.FirstUnitIsClient))
+                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Skill", SinglePlayerMission ? "Player" : "Client");
 
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Callsign", callsign.Value.GetLua(unitLuaIndex + 1));
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", callsign.Value.GetUnitName(unitLuaIndex + 1));

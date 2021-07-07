@@ -64,6 +64,11 @@ namespace BriefingRoom4DCS.Template
         public PlayerStartLocation StartLocation { get; set; }
 
         /// <summary>
+        /// Returns the number of player slots in this flight group.
+        /// </summary>
+        public int PlayerSlots { get { return AIWingmen ? 1 : _Count; } }
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         public MissionTemplateFlightGroup()

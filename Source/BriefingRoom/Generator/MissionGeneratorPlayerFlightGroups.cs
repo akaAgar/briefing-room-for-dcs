@@ -86,7 +86,7 @@ namespace BriefingRoom4DCS.Generator
                 }
             }
 
-            UnitMakerGroupFlags unitMakerGroupFlags = flightGroup.AIWingmen ? UnitMakerGroupFlags.FirstUnitIsPlayer : 0;
+            UnitMakerGroupFlags unitMakerGroupFlags = flightGroup.AIWingmen ? UnitMakerGroupFlags.FirstUnitIsClient : 0;
             DCSSkillLevel skillLevel = flightGroup.AIWingmen ? Toolbox.RandomFrom(DCSSkillLevel.High, DCSSkillLevel.Excellent) : DCSSkillLevel.Client;
 
             UnitMakerGroupInfo? groupInfo = UnitMaker.AddUnitGroup(

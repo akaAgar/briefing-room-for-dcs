@@ -31,9 +31,9 @@ namespace BriefingRoom4DCS.Generator
         AlwaysHidden = 1,
 
         /// <summary>
-        /// First unit of this group is of skill "Player". Others use the normal group skill level.
+        /// First unit of this group is of skill "Client". Others use the normal group skill level.
         /// </summary>
-        FirstUnitIsPlayer = 2,
+        FirstUnitIsClient = 2,
 
         /// <summary>
         /// Aircraft should be added to the queue of aircraft to be spawned immediately on player takeoff, and not spawned later during the mission.

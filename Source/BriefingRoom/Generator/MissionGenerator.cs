@@ -78,6 +78,7 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("TheaterID", theaterDB.DCSID);
             mission.SetValue("AircraftActivatorCurrentQueue", ""); // Just to make sure aircraft groups spawning queues are empty
             mission.SetValue("AircraftActivatorReserveQueue", "");
+            mission.SetValue("MissionPlayerSlots", template.GetPlayerSlotsCount() == 1 ? "Single-player mission" : $"{template.GetPlayerSlotsCount()}-players mission");
 
             // Add common media files
             foreach (string oggFile in Database.Instance.Common.CommonOGG)
@@ -89,7 +90,7 @@ namespace BriefingRoom4DCS.Generator
                 coalitionsCountries = countriesGenerator.GenerateCountries(mission, template);
 
             // Create unit maker
-            UnitMaker unitMaker = new UnitMaker(mission, template, coalitionsDB, theaterDB, template.ContextPlayerCoalition, coalitionsCountries);
+            UnitMaker unitMaker = new UnitMaker(mission, template, coalitionsDB, theaterDB, template.ContextPlayerCoalition, coalitionsCountries, template.GetPlayerSlotsCount() == 1);
 
             // Generate mission date and time
             Month month;
