@@ -751,7 +751,19 @@ end
 -- ===================================================================================
 
 briefingRoom.mission.objectiveTriggers = { } -- Objective triggers (checks objective completion)
-briefingRoom.mission.objectiveTriggersCommon = { } -- Common objective triggers functions
+briefingRoom.mission.objectiveTimers = { } -- Objective timers (called every second)
+
+function briefingRoom.mission.objectiveTimerSchedule(args, time)
+  for i=1,#briefingRoom.mission.objectives do
+    if briefingRoom.mission.objectiveTimers[i] ~= nil then
+      briefingRoom.mission.objectiveTimers[i]()
+    end
+  end
+
+  return time + 1
+end
+
+timer.scheduleFunction(briefingRoom.mission.objectiveTimerSchedule, nil, timer.getTime() + 1)
 $SCRIPTOBJECTIVESTRIGGERS$
 
 -- ===================================================================================
