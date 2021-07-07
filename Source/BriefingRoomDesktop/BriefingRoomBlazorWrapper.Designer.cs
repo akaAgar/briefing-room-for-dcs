@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace BriefingRoomDesktop
+namespace BriefingRoom4DCS.GUI.Desktop
 {
     partial class BriefingRoomBlazorWrapper
     {
@@ -32,7 +32,7 @@ namespace BriefingRoomDesktop
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 1080);
+            this.ClientSize = new System.Drawing.Size(1800, 1080);
             this.Text = "BriefingRoom";
             this.Icon = new Icon("Resources/icon.ico");
         }

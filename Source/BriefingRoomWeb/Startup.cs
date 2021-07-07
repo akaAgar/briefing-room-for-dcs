@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
-namespace BriefingRoom4DCS.GUI
+namespace BriefingRoom4DCS.GUI.Web
 {
     public class Startup
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace BriefingRoomDesktop
+namespace BriefingRoom4DCS.GUI.Desktop
 {
     static class Program
     {

@@ -4,7 +4,7 @@ using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.WebView.WindowsForms;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BriefingRoomDesktop
+namespace BriefingRoom4DCS.GUI.Desktop
 {
     public partial class BriefingRoomBlazorWrapper : Form
     {
