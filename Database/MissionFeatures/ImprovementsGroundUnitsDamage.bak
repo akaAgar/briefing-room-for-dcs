@@ -1,0 +1,22 @@
+[GUI]
+DisplayName=Better ground unit damage
+Category=Improvements
+Description=Improves damage to ground and naval units with secondary explosions, mobility kills, system damage...
+
+[Briefing]
+Remarks=
+Remarks.Enemy=
+
+[Include]
+Lua=ImprovementsGroundUnitsDamage
+LuaSettings=
+Ogg=
+
+[UnitGroup]
+Families=
+Flags=
+Lua.Group=
+Lua.Unit=
+Size=
+SpawnDistance=
+ValidSpawnPoints=
