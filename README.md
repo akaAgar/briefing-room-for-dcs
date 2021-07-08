@@ -35,6 +35,7 @@ BriefingRoom is free and open source and will always remain so, but if you want 
 * Source code repository: [github.com/akaAgar/briefing-room-for-dcs](https://github.com/akaAgar/briefing-room-for-dcs)
 * Uses the Silk icon set [famfamfam.com/lab/icons/silk/](https://famfamfam.com/lab/icons/silk/)
 * Requires the .NET Framework 4.8 (already installed on modern Windows systems) [dotnet.microsoft.com/download/dotnet-framework/thank-you/net48-web-installer](https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net48-web-installer)
+* Desktop version requires [WebView2 Runtime](https://developer.microsoft.com/en-us/microsoft-edge/webview2/#download-section) 
 
 ### Planned for future versions
 

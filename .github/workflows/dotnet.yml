@@ -1,14 +1,13 @@
-
 name: .NET
 
 on:
   push:
-    branches: [ net5upgrade ]
+    branches: [ beta-release ]
  
 jobs:
   build:
  
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
  
     steps:
     - name: Set git to use LF
@@ -18,15 +17,16 @@ jobs:
     - uses: actions/checkout@v1
       name: Checkout Code
     - name: Setup .NET Core SDK
-      uses: actions/setup-dotnet@v1.7.2
+      uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.x
+        dotnet-version: '6.0.x'
+        include-prerelease: true
 
     - name: Restore NuGet Packages
       run: dotnet restore Source/BriefingRoom.sln
  
     - name: Build and Publish App
-      run: dotnet publish Source/BriefingRoom.sln -o . -c Release
+      run: dotnet publish Source/BriefingRoom.sln -o Release -c Release
 
     - name: Get current time
       uses: 1466587594/get-current-time@v2
@@ -36,18 +36,15 @@ jobs:
         utcOffset: "+00:00"
       
     - name: Zip Release
-      uses: TheDoctor0/zip-release@0.4.1
-      with:
-        filename: "test-net5-release-${{ steps.current-time.outputs.formattedTime }}.zip"
-        exclusions: '*.git* /*net48/* /*docs/* /*Source/* *.bat *.filelist'
+      run: 7z a -tzip beta-release-${{ steps.current-time.outputs.formattedTime }}.zip Release "-xr!.git\" "-xr!.github\" "-xr!.git*" "-xr!.vscode\" "-xr!dataExtractors\"  "-xr!Source\" "-xr!docs\" "-x!*.bat" "-x!*.filelist" 
 
 
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
-          tag: "test-net5-${{ steps.current-time.outputs.formattedTime }}"
-          name: "test-net5-${{ steps.current-time.outputs.formattedTime }}"
-          body: "This is a test build using .Net5 use at your peril"
+          tag: "beta-release-${{ steps.current-time.outputs.formattedTime }}"
+          name: "beta-release-${{ steps.current-time.outputs.formattedTime }}"
+          body: "This is a automated beta build. This may not work. Its not recommend to overwrite a official release with this."
           prerelease: true
-          artifacts: "test-net5-release-${{ steps.current-time.outputs.formattedTime }}.zip"
+          artifacts: "beta-release-release-${{ steps.current-time.outputs.formattedTime }}.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
