@@ -4,7 +4,7 @@ using BriefingRoom4DCS;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 
-namespace BriefingRoom4DCS.GUI.API.Controllers
+namespace BriefingRoom4DCS.GUI.Web.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

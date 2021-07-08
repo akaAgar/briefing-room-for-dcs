@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>BriefingRoom4DCS.GUI.Desktop</RootNamespace>
+    <UseWindowsForms>true</UseWindowsForms>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishTrimmed>false</PublishTrimmed>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <PublishReadyToRunShowWarnings>true</PublishReadyToRunShowWarnings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebView.WindowsForms" Version="6.0.0-preview.4.21253.5" />
+    <ProjectReference Include="../BriefingRoomCommonGUI/BriefingRoomCommonGUI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\Database\**" LinkBase="Database" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\Include\**" LinkBase="Include" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\Media\**" LinkBase="Media" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="Resources\**" LinkBase="Resources" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+</Project>
