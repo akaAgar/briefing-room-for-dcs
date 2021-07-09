@@ -46,5 +46,5 @@ jobs:
           name: "beta-release-${{ steps.current-time.outputs.formattedTime }}"
           body: "This is a automated beta build. This may not work. Its not recommend to overwrite a official release with this."
           prerelease: true
-          artifacts: "beta-release-release-${{ steps.current-time.outputs.formattedTime }}.zip"
+          artifacts: "beta-release-${{ steps.current-time.outputs.formattedTime }}.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
