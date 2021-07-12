@@ -27,6 +27,9 @@ namespace BriefingRoom4DCS.Template
     /// </summary>
     public enum ObjectiveOption
     {
+        [Display(Name = "Embedded air defense", Description = "Spawn a short-range air defense group near the target, if air defense is enabled for the target's coalition in the mission template.")]
+        EmbeddedAirDefense,
+
         [Display(Name = "Hide target", Description = "Target is always hidden on the map, no matter the \"fog of war\" preferences. Ignored if \"Show target\" is set.")]
         HideTarget,
 
