@@ -11,6 +11,9 @@ namespace BriefingRoom4DCS.GUI.Desktop
         public BriefingRoomBlazorWrapper()
         {
             InitializeComponent();
+
+            Text = $"BriefingRoom {BriefingRoom.VERSION} for DCS World";
+
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddBlazorWebView();
             serviceCollection.AddBlazoredLocalStorage();
@@ -18,7 +21,7 @@ namespace BriefingRoom4DCS.GUI.Desktop
             {
                 Dock = DockStyle.Fill,
                 HostPage = "wwwroot/index.html",
-                Services = serviceCollection.BuildServiceProvider(),
+                Services = serviceCollection.BuildServiceProvider()
             };
             blazor.RootComponents.Add<App>("#app");
             Controls.Add(blazor);

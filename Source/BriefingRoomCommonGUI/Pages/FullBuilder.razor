@@ -57,29 +57,23 @@
                         <h3>Context</h3>
                         <div class="form-group">
                             <label>Blue coalition</label>
-                            <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionBlue"
-                        EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
-                        MaximumSuggestions="100">
-                                <SelectedTemplate Context="coalitionId">
-                                    @GetCoalitionDisplayName(@coalitionId)
-                                </SelectedTemplate>
-                                <ResultTemplate Context="coalition">
-                                    @coalition.Name
-                                </ResultTemplate>
-                            </BlazoredTypeahead>
+                            <InputSelect class="form-control min-width" @bind-Value="Template.ContextCoalitionBlue">
+                                @foreach (var value in
+                                BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.Coalition))
+                                {
+                                    <option value="@value.ID">@value.Name</option>
+                                }
+                            </InputSelect>
                         </div>
                         <div class="form-group">
                             <label>Red coalition</label>
-                            <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionRed"
-                        EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
-                        MaximumSuggestions="100">
-                                <SelectedTemplate Context="coalitionId">
-                                    @GetCoalitionDisplayName(@coalitionId)
-                                </SelectedTemplate>
-                                <ResultTemplate Context="coalition">
-                                    @coalition.Name
-                                </ResultTemplate>
-                            </BlazoredTypeahead>
+                            <InputSelect class="form-control min-width" @bind-Value="Template.ContextCoalitionRed">
+                                @foreach (var value in
+                                BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.Coalition))
+                                {
+                                    <option value="@value.ID">@value.Name</option>
+                                }
+                            </InputSelect>
                         </div>
                         <div class="form-group">
                             <label>Time period</label>
