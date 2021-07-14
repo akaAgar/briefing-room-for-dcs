@@ -9,9 +9,8 @@ echo - .NET 6.0 x64 SDK: https://dotnet.microsoft.com/download/dotnet/6.0
 echo =========================================================================================================
 echo.
 pause
-md bin
-md Release\bin
-copy BriefingRoomDesktop.bat Release\
+md Release
+md Release\Bin
 copy Default.brt Release\
 copy Default.cbrt Release\
 copy LICENSE Release\
@@ -26,18 +25,22 @@ cd Source\BriefingRoomCommandLine
 dotnet build -c Release
 IF ERRORLEVEL 1 GOTO Error
 cd..
+cd BriefingRoomGUI
+dotnet build -c Release
+IF ERRORLEVEL 1 GOTO Error
+cd..
 cd BriefingRoomDesktop
 xcopy Resources\ ..\..\Release\Resources\ /E /Y
 xcopy wwwroot\ ..\..\Release\wwwroot\ /E /Y
 IF ERRORLEVEL 1 GOTO Error
 dotnet build -c Release
 IF ERRORLEVEL 1 GOTO Error
-xcopy bin\Release\net6.0-windows\win-x64\ ..\..\Release\bin\ /E /Y
+xcopy bin\Release\net6.0-windows\win-x64\ ..\..\Release\Bin\ /E /Y
 IF ERRORLEVEL 1 GOTO Error
 cd..
 cd..
 cd Release
-copy BriefingRoom.dll bin\
+copy BriefingRoom.dll Bin\
 if exist *.config del *.config
 echo.
 echo =============================
