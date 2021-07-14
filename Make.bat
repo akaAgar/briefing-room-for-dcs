@@ -1,5 +1,6 @@
 @echo off
 cls
+echo [33m
 echo =========================================================================================================
 echo This will build the BriefingRoom library, command-line tool and Desktop webapp to the Release\ directory.
 echo.
@@ -7,6 +8,7 @@ echo You'll need the following SDKs for the build to complete successfully:
 echo - Microsoft Edge WebView2: https://developer.microsoft.com/en-us/microsoft-edge/webview2/#download-section
 echo - .NET 6.0 x64 SDK: https://dotnet.microsoft.com/download/dotnet/6.0
 echo =========================================================================================================
+echo [0m
 echo.
 pause
 md Release
@@ -43,16 +45,20 @@ cd Release
 copy BriefingRoom.dll Bin\
 if exist *.config del *.config
 echo.
+echo [32m
 echo =============================
 echo Build completed successfully.
 echo =============================
+echo [0m
 goto End
 
 :Error
 echo.
+echo [31m
 echo ================================
 echo An error occured. Build aborted.
 echo ================================
+echo [0m
 goto End
 
 :End
