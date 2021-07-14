@@ -176,12 +176,13 @@
                     <div id="objectives" class="generator-block">
                         <h3>Objectives</h3>
                         <ul class="nav nav-tabs">
+                            @{objectiveIndex = 1;}
                             @foreach (var value in Template.Objectives)
                             {
                                 <li class="nav-item">
                                     <a class="nav-link @(ObjectiveTab == value ? "active" : "")" aria-current="page"
                             @onclick='() => SetObjectiveTab(value)'>
-                                        Objective
+                                        Objective @(objectiveIndex++)
                                         @if (Template.Objectives.Count > 1)
                                         {
                                             <a class="delete-flight" @onclick="() =>  RemoveObjective(value)">x</a>
@@ -480,6 +481,8 @@
 
 
 @code {
+
+    private int objectiveIndex;
 
     private BriefingRoom4DCS.BriefingRoom briefingRoom = new BriefingRoom4DCS.BriefingRoom();
     private MissionTemplate Template;
