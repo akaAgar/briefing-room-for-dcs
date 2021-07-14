@@ -46,7 +46,7 @@
                 {
                     <li class="nav-item">
                         <a class="nav-link @(tab == value ? "active" : "")" aria-current="page"
-                        @onclick='() => SetTab(value)'>@textInfo.ToTitleCase(value)</a>
+                        @onclick='() => SetTab(value)'>@textInfo.ToTitleCase(value).Replace("-", " ")</a>
                     </li>
                 }
             </ul>
@@ -89,7 +89,7 @@
                             </InputSelect>
                         </div>
                         <div class="form-group">
-                            <label>Player Coalition</label>
+                            <label>Player coalition</label>
                             <InputSelect class="form-control" @bind-Value="Template.ContextPlayerCoalition">
                                 @foreach (var value in Enum.GetValues(typeof(Coalition)))
                                 {
@@ -122,7 +122,7 @@
                             </InputSelect>
                         </div>
                         <div class="form-group">
-                            <label>Time Of day</label>
+                            <label>Time of day</label>
                             <InputSelect class="form-control" @bind-Value="Template.EnvironmentTimeOfDay">
                                 @foreach (var value in Enum.GetValues(typeof(TimeOfDay)))
                                 {
@@ -131,7 +131,7 @@
                             </InputSelect>
                         </div>
                         <div class="form-group">
-                            <label>Weather Preset</label>
+                            <label>Weather preset</label>
                             <InputSelect class="form-control" @bind-Value="Template.EnvironmentWeatherPreset">
                                 <option value="">Random</option>
                                 @foreach (var value in
@@ -172,16 +172,16 @@
                         </div>
                     </div>
                     break;
-                case "objective":
-                    <div id="objective" class="generator-block">
-                        <h3>Objective</h3>
+                case "objectives":
+                    <div id="objectives" class="generator-block">
+                        <h3>Objectives</h3>
                         <ul class="nav nav-tabs">
                             @foreach (var value in Template.Objectives)
                             {
                                 <li class="nav-item">
                                     <a class="nav-link @(ObjectiveTab == value ? "active" : "")" aria-current="page"
                             @onclick='() => SetObjectiveTab(value)'>
-                                        @GetObjectiveTypeDisplayName(value.Task) @value.TargetBehavior @GetObjectiveTargetDisplayName(value.Target)
+                                        Objective
                                         @if (Template.Objectives.Count > 1)
                                         {
                                             <a class="delete-flight" @onclick="() =>  RemoveObjective(value)">x</a>
@@ -199,7 +199,7 @@
                             if (ObjectiveTab == objective)
                             {
                                 <div class="flight-group">
-                                    <button type="button" class="btn btn-secondary" @onclick="() => CloneObjective(objective)">Clone</button>
+                                    <button type="button" class="btn btn-secondary" @onclick="() => CloneObjective(objective)">Duplicate</button>
                                     <div class="form-group">
                                         <label>Task</label>
                                         <InputSelect class="form-control" @bind-Value="objective.Task">
@@ -240,7 +240,7 @@
                                         </InputSelect>
                                     </div>
                                     <div class="form-group">
-                                        <h4>Features</h4>
+                                        <h4>Objective features</h4>
                                         <CheckBoxList
                                             Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveFeature).ToList()"
                                             TextField="@((item)=>item.Name)" ValueField="@((item)=>item.ID)"
@@ -248,9 +248,9 @@
                                         </CheckBoxList>
                                     </div>
                                     <div class="form-group">
-                                        <h4>Options</h4>
+                                        <h4>Objective options</h4>
                                         <CheckBoxList Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
-                                            TextField="@((item)=>item.ToString())" ValueField="@((item)=>item)"
+                                            TextField="@((item)=>BriefingRoomGUITools.GetHumanReadableEnum(item))" ValueField="@((item)=>item)"
                                             SelectedValues="objective.Options" TItem="ObjectiveOption" TItemOutput="ObjectiveOption">
                                         </CheckBoxList>
                                     </div>
@@ -263,7 +263,7 @@
                     <div id="options" class="generator-block">
                         <h3>Options</h3>
                         <div class="form-group">
-                            <h4>Mission Features</h4>
+                            <h4>Mission features</h4>
                             <CheckBoxList
                         Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"
                         TextField="@((item)=>item.Name)" ValueField="@((item)=>item.ID)"
@@ -271,7 +271,21 @@
                             </CheckBoxList>
                         </div>
                         <div class="form-group">
-                            <label>Fog of War</label>
+                            <h4>Mission options</h4>
+                            <CheckBoxList Data="Enum.GetValues(typeof(MissionOption)).Cast<MissionOption>()"
+                        TextField="@((item)=>BriefingRoomGUITools.GetHumanReadableEnum(item))" ValueField="@((item)=>item)"
+                        SelectedValues="Template.OptionsMission" TItem="MissionOption" TItemOutput="MissionOption">
+                            </CheckBoxList>
+                        </div>
+                        <div class="form-group">
+                            <h4>Realism options</h4>
+                            <CheckBoxList Data="Enum.GetValues(typeof(RealismOption)).Cast<RealismOption>()"
+                        TextField="@((item)=>BriefingRoomGUITools.GetHumanReadableEnum(item))" ValueField="@((item)=>item)"
+                        SelectedValues="Template.OptionsRealism" TItem="RealismOption" TItemOutput="RealismOption">
+                            </CheckBoxList>
+                        </div>
+                        <div class="form-group">
+                            <label>Fog of war</label>
                             <InputSelect class="form-control" @bind-Value="Template.OptionsFogOfWar">
                                 @foreach (var value in Enum.GetValues(typeof(FogOfWar)))
                                 {
@@ -280,25 +294,11 @@
                             </InputSelect>
                         </div>
                         <div class="form-group">
-                            <h4>Realism</h4>
-                            <CheckBoxList Data="Enum.GetValues(typeof(RealismOption)).Cast<RealismOption>()"
-                        TextField="@((item)=>item.ToString())" ValueField="@((item)=>item)"
-                        SelectedValues="Template.OptionsRealism" TItem="RealismOption" TItemOutput="RealismOption">
-                            </CheckBoxList>
-                        </div>
-                        <div class="form-group">
                             <h4>Unit mods</h4>
                             <CheckBoxList
                         Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.DCSMod).ToList()"
                         TextField="@((item)=>item.Name)" ValueField="@((item)=>item.ID)" SelectedValues="Template.Mods"
                         TItem="DatabaseEntryInfo" TItemOutput="string">
-                            </CheckBoxList>
-                        </div>
-                        <div class="form-group">
-                            <h4>Mission options</h4>
-                            <CheckBoxList Data="Enum.GetValues(typeof(MissionOption)).Cast<MissionOption>()"
-                        TextField="@((item)=>item.ToString())" ValueField="@((item)=>item)"
-                        SelectedValues="Template.OptionsMission" TItem="MissionOption" TItemOutput="MissionOption">
                             </CheckBoxList>
                         </div>
                     </div>
@@ -311,7 +311,7 @@
                             {
                                 <li class="nav-item">
                                     <a class="nav-link @(situationTab == value ? "active" : "")" aria-current="page"
-                            @onclick='() => SetSituationTab(value)'>@textInfo.ToTitleCase(value)</a>
+                            @onclick='() => SetSituationTab(value)'>@textInfo.ToTitleCase(value).Replace("-", " ")</a>
                                 </li>
                             }
                         </ul>
@@ -321,7 +321,7 @@
                                 <div id="enemies">
                                     <h4>Enemies</h4>
                                     <div class="form-group">
-                                        <label>Air Defense</label>
+                                        <label>Air defense</label>
                                         <InputSelect class="form-control" @bind-Value="Template.SituationEnemyAirDefense">
                                             @foreach (var value in Enum.GetValues(typeof(AmountNR)))
                                             {
@@ -330,7 +330,7 @@
                                         </InputSelect>
                                     </div>
                                     <div class="form-group">
-                                        <label>Air Force</label>
+                                        <label>Air force</label>
                                         <InputSelect class="form-control" @bind-Value="Template.SituationEnemyAirForce">
                                             @foreach (var value in Enum.GetValues(typeof(AmountNR)))
                                             {
@@ -344,7 +344,7 @@
                                 <div id="friendlies">
                                     <h4>Friendlies</h4>
                                     <div class="form-group">
-                                        <label>Air Defense</label>
+                                        <label>Air defense</label>
                                         <InputSelect class="form-control" @bind-Value="Template.SituationFriendlyAirDefense">
                                             @foreach (var value in Enum.GetValues(typeof(AmountNR)))
                                             {
@@ -353,7 +353,7 @@
                                         </InputSelect>
                                     </div>
                                     <div class="form-group">
-                                        <label>Air Force</label>
+                                        <label>Air force</label>
                                         <InputSelect class="form-control" @bind-Value="Template.SituationFriendlyAirForce">
                                             @foreach (var value in Enum.GetValues(typeof(AmountNR)))
                                             {
@@ -420,7 +420,7 @@
                                         </InputSelect>
                                     </div>
                                     <div class="form-group">
-                                        <label>Start Location</label>
+                                        <label>Start location</label>
                                         <InputSelect class="form-control" @bind-Value="flight.StartLocation">
                                             @foreach (var value in Enum.GetValues(typeof(PlayerStartLocation)))
                                             {
@@ -584,7 +584,7 @@
     private List<string> tabs = new List<string>{
 "context",
 "environment",
-"objective",
+"objectives",
 "flight-groups",
 "flight-plan",
 "situation",

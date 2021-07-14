@@ -98,7 +98,7 @@
                 </div>
                 <hr/>
             </div>
-            <div id="objective" class="generator-block">
+            <div id="objectives" class="generator-block">
                 <h3>Objectives</h3>
                 @foreach (var objective in Template.Objectives)
                 {
@@ -143,7 +143,7 @@
                                 </InputSelect>
                             </div>
                             <div class="form-group flex-box">
-                                <button type="button" class="btn btn-secondary row-button" @onclick="() => CloneObjective(objective)">Clone</button>
+                                <button type="button" class="btn btn-secondary row-button" @onclick="() => CloneObjective(objective)">Duplicate</button>
                                 <button type="button" class="btn btn-secondary row-button" @onclick="() => RemoveObjective(objective)">Delete</button>
                             </div>
                         </div>
@@ -193,7 +193,7 @@
                             </label>
                         </div>
                         <div class="form-group flex-box">
-                            @* <button type="button" class="btn btn-secondary row-button" @onclick="() => CloneFlight(objective)">Clone</button> *@
+                            @* <button type="button" class="btn btn-secondary row-button" @onclick="() => CloneFlight(objective)">Duplicate</button> *@
                             <button type="button" class="btn btn-secondary row-button" @onclick="() => RemoveFlightGroup(flight)">Delete</button>
                         </div>
                     </div>
