@@ -25,7 +25,7 @@
                 Error: @errorMessage
             </div>
             }
-            <label for="fileUpload">Template File Path (sets values not shown in quick builder)</label>
+            <label for="fileUpload">Template file path (sets values not shown in quick builder)</label>
             <input class="form-control uploadPath" type="text" id="fileUpload" value="@templatePath" @oninput="eventArgs => SetTemplatePath((string)eventArgs.Value)" title="Yeah I know this isn't ideal but browser security. - J" />
             <div class="btn-group" role="group">
                 <button class="btn btn-primary" aria-hidden="true" @onclick="() => LoadTemplate()">Load</button>
@@ -44,7 +44,7 @@
                 <h3>Context</h3>
                 <div class="generator-group flex-justify-spaced">
                     <div class="form-group flex-block">
-                        <label>Blue Coalition</label>
+                        <label>Blue coalition</label>
                         <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionBlue"
                     EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
                     MaximumSuggestions="100">
@@ -57,7 +57,7 @@
                         </BlazoredTypeahead>
                     </div>
                     <div class="form-group flex-block">
-                        <label>Red Coalition</label>
+                        <label>Red coalition</label>
                         <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionRed"
                     EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
                     MaximumSuggestions="100">
@@ -79,7 +79,7 @@
                         </InputSelect>
                     </div>
                     <div class="form-group flex-block">
-                        <label>Player Coalition</label>
+                        <label>Player coalition</label>
                         <InputSelect class="form-control min-width" @bind-Value="Template.ContextPlayerCoalition">
                             @foreach (var value in Enum.GetValues(typeof(Coalition)))
                             {
@@ -207,8 +207,8 @@
     @if (mission != null)
     {
         <div class="generator-preview">
-            <button class="btn btn-primary form-control" @onclick="DownloadMission">DownloadMission</button>
-            <button class="btn btn-primary form-control" @onclick="DownloadBriefing">Download Briefing</button>
+            <button class="btn btn-primary form-control" @onclick="DownloadMission">Export mission</button>
+            <button class="btn btn-primary form-control" @onclick="DownloadBriefing">Export briefing</button>
             <div>@((MarkupString)mission.Briefing.GetBriefingAsHTML(false))</div>
         </div>
     }
