@@ -14,7 +14,11 @@ md Release\bin
 copy BriefingRoomDesktop.bat Release\
 copy Default.brt Release\
 copy Default.cbrt Release\
+copy LICENSE Release\
+copy *.html Release\
+copy *.md Release\
 xcopy Database\ Release\Database\ /E /Y
+xcopy docs\ Release\Docs\ /E /Y
 xcopy Include\ Release\Include\ /E /Y
 xcopy Media\ Release\Media\ /E /Y
 IF ERRORLEVEL 1 GOTO Error
