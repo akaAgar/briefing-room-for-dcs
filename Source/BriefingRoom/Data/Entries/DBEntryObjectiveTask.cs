@@ -18,7 +18,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using System;
 using System.IO;
 using System.Linq;
 
@@ -56,6 +55,11 @@ namespace BriefingRoom4DCS.Data
         internal UnitCategory[] ValidUnitCategories { get; private set; }
 
         /// <summary>
+        /// Ogg files to include in the .miz file when this objective task is enabled.
+        /// </summary>
+        internal string[] IncludeOgg { get; private set; }
+
+        /// <summary>
         /// Loads a database entry from an .ini file.
         /// </summary>
         /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
@@ -86,6 +90,9 @@ namespace BriefingRoom4DCS.Data
                 
                 ValidUnitCategories = ini.GetValueArray<UnitCategory>("ObjectiveTask", "ValidUnitCategories").Distinct().ToArray();
                 if (ValidUnitCategories.Length == 0) ValidUnitCategories = Toolbox.GetEnumValues<UnitCategory>(); // No category means all categories
+
+                // Included files
+                IncludeOgg = Toolbox.AddMissingFileExtensions(ini.GetValueArray<string>("Include", "Ogg"), ".ogg");
             }
 
             return true;

@@ -83,6 +83,10 @@ namespace BriefingRoom4DCS.Generator
             if (!taskDB.ValidUnitCategories.Contains(targetDB.UnitCategory))
                 throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not valid for objective #{objectiveIndex + 1} targets, which belong to category \"{targetDB.UnitCategory}\".");
 
+            // Add feature ogg files
+            foreach (string oggFile in taskDB.IncludeOgg)
+                mission.AddMediaFile($"l10n/DEFAULT/{oggFile}", $"{BRPaths.INCLUDE_OGG}{oggFile}");
+
             DBEntryTheaterSpawnPoint? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                 targetDB.ValidSpawnPoints, lastCoordinates,
                 new MinMaxD(
@@ -193,6 +197,7 @@ namespace BriefingRoom4DCS.Generator
             string objectiveLua = $"briefingRoom.mission.objectives[{objectiveIndex + 1}] = {{ ";
             objectiveLua += $"complete = false, ";
             objectiveLua += $"groupID = {targetGroupInfo.Value.GroupID}, ";
+            objectiveLua += $"hideTargetCount = false, ";
             objectiveLua += $"name = \"{objectiveName}\", ";
             objectiveLua += $"targetCategory = Unit.Category.{targetDB.UnitCategory.ToLuaName()}, ";
             objectiveLua += $"task = \"{taskString}\", ";
