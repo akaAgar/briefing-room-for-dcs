@@ -219,9 +219,9 @@ function table.deepCopy(orig)
 
   local copy = {}
   for orig_key, orig_value in next, orig, nil do
-    copy[deepcopy(orig_key)] = deepcopy(orig_value)
+    copy[table.deepCopy(orig_key)] = table.deepCopy(orig_value)
   end
-  setmetatable(copy, deepcopy(getmetatable(orig)))
+  setmetatable(copy, table.deepCopy(getmetatable(orig)))
 
   return copy
 end
