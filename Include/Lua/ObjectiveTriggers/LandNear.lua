@@ -24,3 +24,5 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
       end
     end
 end
+
+briefingRoom.mission.objectives[$OBJECTIVEINDEX$].hideTargetCount = true

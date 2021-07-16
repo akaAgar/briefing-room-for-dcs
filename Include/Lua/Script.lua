@@ -712,7 +712,7 @@ function briefingRoom.f10MenuCommands.missionStatus()
     end
 
     local objectiveProgress = ""
-    if o.unitsCount > 0 then
+    if o.unitsCount > 0 and o.hideTargetCount ~= true then
       local targetsDone = math.max(0, o.unitsCount - #o.unitsID)
       objectiveProgress = " ("..tostring(targetsDone).."/"..tostring(o.unitsCount)..")"
     end
