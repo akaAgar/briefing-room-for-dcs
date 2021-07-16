@@ -96,6 +96,16 @@ namespace BriefingRoom4DCS.GUI
                     case MissionOption.RadioMessagesTextOnly: return "Text-only radio messages (no audio)";
                 }
             }
+            else if (enumValue is ObjectiveOption)
+            {
+                switch ((ObjectiveOption)enumValue)
+                {
+                    case ObjectiveOption.EmbeddedAirDefense: return "Add embedded shot-range air defense";
+                    case ObjectiveOption.HideTarget: return "Always hide target on map";
+                    case ObjectiveOption.InaccurateWaypoint: return "Inaccurate waypoint (not exactly on target)";
+                    case ObjectiveOption.ShowTarget: return "Always show target on map";
+                }
+            }
             else if (enumValue is PlayerStartLocation)
             {
                 switch ((PlayerStartLocation)enumValue)
