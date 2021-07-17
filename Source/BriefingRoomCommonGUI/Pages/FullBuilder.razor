@@ -84,7 +84,7 @@
                             <InputSelect class="form-control" @bind-Value="Template.ContextDecade">
                                 @foreach (var value in Enum.GetValues(typeof(Decade)))
                                 {
-                                    <option value="@value">@BriefingRoomGUITools.GetHumanReadableEnum(value)</option>
+                                    <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
                                 }
                             </InputSelect>
                         </div>
@@ -93,7 +93,7 @@
                             <InputSelect class="form-control" @bind-Value="Template.ContextPlayerCoalition">
                                 @foreach (var value in Enum.GetValues(typeof(Coalition)))
                                 {
-                                    <option value="@value">@BriefingRoomGUITools.GetHumanReadableEnum(value)</option>
+                                    <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
                                 }
                             </InputSelect>
                         </div>
@@ -117,7 +117,7 @@
                             <InputSelect class="form-control" @bind-Value="Template.EnvironmentSeason">
                                 @foreach (var value in Enum.GetValues(typeof(Season)))
                                 {
-                                    <option value="@value">@BriefingRoomGUITools.GetHumanReadableEnum(value)</option>
+                                    <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
                                 }
                             </InputSelect>
                         </div>
@@ -126,7 +126,7 @@
                             <InputSelect class="form-control" @bind-Value="Template.EnvironmentTimeOfDay">
                                 @foreach (var value in Enum.GetValues(typeof(TimeOfDay)))
                                 {
-                                    <option value="@value">@BriefingRoomGUITools.GetHumanReadableEnum(value)</option>
+                                    <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
                                 }
                             </InputSelect>
                         </div>
@@ -146,7 +146,7 @@
                             <InputSelect class="form-control" @bind-Value="Template.EnvironmentWind">
                                 @foreach (var value in Enum.GetValues(typeof(Wind)))
                                 {
-                                    <option value="@value">@BriefingRoomGUITools.GetHumanReadableEnum(value)</option>
+                                    <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
                                 }
                             </InputSelect>
                         </div>
@@ -236,7 +236,7 @@
                                         <InputSelect class="form-control" @bind-Value="objective.TargetCount">
                                             @foreach (var value in Enum.GetValues(typeof(Amount)))
                                             {
-                                                <option value="@value">@BriefingRoomGUITools.GetHumanReadableEnum(value)</option>
+                                                <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
                                             }
                                         </InputSelect>
                                     </div>
@@ -244,14 +244,14 @@
                                         <h4>Objective features</h4>
                                         <CheckBoxList
                                             Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveFeature).ToList()"
-                                            TextField="@((item)=>item.Name)" ValueField="@((item)=>item.ID)"
+                                            TextField="@((item)=>item.Name + "|" + item.Description)" ValueField="@((item)=>item.ID)"
                                             SelectedValues="objective.Features" TItem="DatabaseEntryInfo" TItemOutput="string">
                                         </CheckBoxList>
                                     </div>
                                     <div class="form-group">
                                         <h4>Objective options</h4>
                                         <CheckBoxList Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
-                                            TextField="@((item)=>BriefingRoomGUITools.GetHumanReadableEnum(item))" ValueField="@((item)=>item)"
+                                            TextField="@((item)=>BriefingRoomGUITools.GetEnumName(item) + "|" + BriefingRoomGUITools.GetEnumDescription(item))" ValueField="@((item)=>item)"
                                             SelectedValues="objective.Options" TItem="ObjectiveOption" TItemOutput="ObjectiveOption">
                                         </CheckBoxList>
                                     </div>
@@ -264,41 +264,41 @@
                     <div id="options" class="generator-block">
                         <h3>Options</h3>
                         <div class="form-group">
+                            <h4>Fog of war</h4>
+                            <InputSelect class="form-control" @bind-Value="Template.OptionsFogOfWar">
+                                @foreach (var value in Enum.GetValues(typeof(FogOfWar)))
+                                {
+                                    <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
+                                }
+                            </InputSelect>
+                        </div>
+                        <div class="form-group">
                             <h4>Mission features</h4>
                             <CheckBoxList
                         Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"
-                        TextField="@((item)=>item.Name)" ValueField="@((item)=>item.ID)"
+                        TextField="@((item)=>item.Name + "|" + item.Description)" ValueField="@((item)=>item.ID)"
                         SelectedValues="Template.MissionFeatures" TItem="DatabaseEntryInfo" TItemOutput="string">
                             </CheckBoxList>
                         </div>
                         <div class="form-group">
                             <h4>Mission options</h4>
                             <CheckBoxList Data="Enum.GetValues(typeof(MissionOption)).Cast<MissionOption>()"
-                        TextField="@((item)=>BriefingRoomGUITools.GetHumanReadableEnum(item))" ValueField="@((item)=>item)"
+                        TextField="@((item)=>BriefingRoomGUITools.GetEnumName(item) + "|" + BriefingRoomGUITools.GetEnumDescription(item))" ValueField="@((item)=>item)"
                         SelectedValues="Template.OptionsMission" TItem="MissionOption" TItemOutput="MissionOption">
                             </CheckBoxList>
                         </div>
                         <div class="form-group">
                             <h4>Realism options</h4>
                             <CheckBoxList Data="Enum.GetValues(typeof(RealismOption)).Cast<RealismOption>()"
-                        TextField="@((item)=>BriefingRoomGUITools.GetHumanReadableEnum(item))" ValueField="@((item)=>item)"
+                        TextField="@((item)=>BriefingRoomGUITools.GetEnumName(item))" ValueField="@((item)=>item)"
                         SelectedValues="Template.OptionsRealism" TItem="RealismOption" TItemOutput="RealismOption">
                             </CheckBoxList>
-                        </div>
-                        <div class="form-group">
-                            <label>Fog of war</label>
-                            <InputSelect class="form-control" @bind-Value="Template.OptionsFogOfWar">
-                                @foreach (var value in Enum.GetValues(typeof(FogOfWar)))
-                                {
-                                    <option value="@value">@BriefingRoomGUITools.GetHumanReadableEnum(value)</option>
-                                }
-                            </InputSelect>
                         </div>
                         <div class="form-group">
                             <h4>Unit mods</h4>
                             <CheckBoxList
                         Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.DCSMod).ToList()"
-                        TextField="@((item)=>item.Name)" ValueField="@((item)=>item.ID)" SelectedValues="Template.Mods"
+                        TextField="@((item)=>item.Name + "|" + item.Description)" ValueField="@((item)=>item.ID)" SelectedValues="Template.Mods"
                         TItem="DatabaseEntryInfo" TItemOutput="string">
                             </CheckBoxList>
                         </div>
@@ -326,7 +326,7 @@
                                         <InputSelect class="form-control" @bind-Value="Template.SituationEnemyAirDefense">
                                             @foreach (var value in Enum.GetValues(typeof(AmountNR)))
                                             {
-                                                <option value="@value">@BriefingRoomGUITools.GetHumanReadableEnum(value)</option>
+                                                <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
                                             }
                                         </InputSelect>
                                     </div>
@@ -335,7 +335,7 @@
                                         <InputSelect class="form-control" @bind-Value="Template.SituationEnemyAirForce">
                                             @foreach (var value in Enum.GetValues(typeof(AmountNR)))
                                             {
-                                                <option value="@value">@BriefingRoomGUITools.GetHumanReadableEnum(value)</option>
+                                                <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
                                             }
                                         </InputSelect>
                                     </div>
@@ -349,7 +349,7 @@
                                         <InputSelect class="form-control" @bind-Value="Template.SituationFriendlyAirDefense">
                                             @foreach (var value in Enum.GetValues(typeof(AmountNR)))
                                             {
-                                                <option value="@value">@BriefingRoomGUITools.GetHumanReadableEnum(value)</option>
+                                                <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
                                             }
                                         </InputSelect>
                                     </div>
@@ -358,7 +358,7 @@
                                         <InputSelect class="form-control" @bind-Value="Template.SituationFriendlyAirForce">
                                             @foreach (var value in Enum.GetValues(typeof(AmountNR)))
                                             {
-                                                <option value="@value">@BriefingRoomGUITools.GetHumanReadableEnum(value)</option>
+                                                <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
                                             }
                                         </InputSelect>
                                     </div>
@@ -416,7 +416,7 @@
                                         <InputSelect class="form-control" @bind-Value="flight.Payload">
                                             @foreach (var value in Enum.GetValues(typeof(AircraftPayload)))
                                             {
-                                                <option value="@value">@BriefingRoomGUITools.GetHumanReadableEnum(value)</option>
+                                                <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
                                             }
                                         </InputSelect>
                                     </div>
@@ -425,7 +425,7 @@
                                         <InputSelect class="form-control" @bind-Value="flight.StartLocation">
                                             @foreach (var value in Enum.GetValues(typeof(PlayerStartLocation)))
                                             {
-                                                <option value="@value">@BriefingRoomGUITools.GetHumanReadableEnum(value)</option>
+                                                <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
                                             }
                                         </InputSelect>
                                     </div>

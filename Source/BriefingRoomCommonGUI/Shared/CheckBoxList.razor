@@ -5,8 +5,19 @@
     {  
         foreach (var item in Data)  
         {  
-            var Text = TextField?.Invoke(item);  
-            var Value = ValueField?.Invoke(item);  
+            var Text = TextField?.Invoke(item);
+            var Value = ValueField?.Invoke(item);
+            var Description = "";
+
+            if (Text.Contains('|'))
+            {
+                var textParts = Text.Split('|');
+                Text = textParts[0];
+
+                if (textParts.Length > 1)
+                    Description = textParts[1];
+            }
+
             bool Checked = false;  
             if (SelectedValues.Contains((TItemOutput)Value))  
             {  
@@ -15,7 +26,7 @@
             <label class="checkboxList-item">  
                 <input type="checkbox" checked=@Checked  
                     @onchange="eventArgs => { CheckboxClicked((TItemOutput)Value, eventArgs.Value); }" />  
-                <span>@Text</span>
+                <span>@Text<br /><span style='font-size:70%'>@Description</span></span>
             </label><br />  
         }  
     }  

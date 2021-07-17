@@ -28,11 +28,11 @@ namespace BriefingRoom4DCS.GUI
     public static class BriefingRoomGUITools
     {
         /// <summary>
-        /// Returns a human-readable string for an enum value.
+        /// Returns a human-readable name for an enum value.
         /// </summary>
         /// <param name="enumValue"></param>
         /// <returns></returns>
-        public static string GetHumanReadableEnum(object enumValue)
+        public static string GetEnumName(object enumValue)
         {
             if (enumValue == null) return "";
 
@@ -100,10 +100,10 @@ namespace BriefingRoom4DCS.GUI
             {
                 switch ((ObjectiveOption)enumValue)
                 {
-                    case ObjectiveOption.EmbeddedAirDefense: return "Add embedded shot-range air defense";
-                    case ObjectiveOption.HideTarget: return "Always hide target on map";
-                    case ObjectiveOption.InaccurateWaypoint: return "Inaccurate waypoint (not exactly on target)";
-                    case ObjectiveOption.ShowTarget: return "Always show target on map";
+                    case ObjectiveOption.EmbeddedAirDefense: return "Embedded air defense";
+                    case ObjectiveOption.HideTarget: return "Always hide";
+                    case ObjectiveOption.InaccurateWaypoint: return "Inaccurate waypoint";
+                    case ObjectiveOption.ShowTarget: return "Always show";
                 }
             }
             else if (enumValue is PlayerStartLocation)
@@ -153,6 +153,71 @@ namespace BriefingRoom4DCS.GUI
             }
 
             return enumValue.ToString();
+        }
+
+        /// <summary>
+        /// Returns a human-readable description for an enum value.
+        /// </summary>
+        /// <param name="enumValue"></param>
+        /// <returns></returns>
+        public static string GetEnumDescription(object enumValue)
+        {
+            if (enumValue == null) return "";
+
+            if (enumValue is FogOfWar)
+            {
+                switch ((FogOfWar)enumValue)
+                {
+                    case FogOfWar.All: return "Show all units on the F10 map and the players' mission planner, perfect intelligence.";
+                    case FogOfWar.AlliesOnly: return "Show only allied units on the F10 map and the players' mission planner.";
+                    case FogOfWar.KnownUnitsOnly: return "Hide all units except those in view of an ally unit.";
+                    case FogOfWar.SelfOnly: return "Hide all units except the player on the F10 map.";
+                    case FogOfWar.None: return "Hide all units (INCLUDING the player) on the F10 map.";
+                }
+            }
+            else if (enumValue is MissionOption)
+            {
+                switch ((MissionOption)enumValue)
+                {
+                    case MissionOption.EnableCivilianTraffic: return "Civilian traffic will be enabled. Can have an impact on performances.";
+                    case MissionOption.ImperialUnitsForBriefing: return "Only spawn friendly and enemy units in countries aligned with the proper coalition. May increase distance to objectives.";
+                    case MissionOption.InvertCountriesCoalitions: return "Use imperial units for briefing instead of the metric system.";
+                    case MissionOption.OnlySpawnInFriendlyCountries: return "Invert blue and red countries on the map (Russia becomes blue, Georgia becomes red, etc)";
+                    case MissionOption.RadioMessagesTextOnly: return "Display radio messages in text-format only (no voice).";
+                }
+            }
+            else if (enumValue is ObjectiveOption)
+            {
+                switch ((ObjectiveOption)enumValue)
+                {
+                    case ObjectiveOption.EmbeddedAirDefense: return "Adds short-range air-defense near the target.";
+                    case ObjectiveOption.HideTarget: return "Targets are always hidden on the map";
+                    case ObjectiveOption.InaccurateWaypoint: return "Waypoint will be spawned a few miles away from the targets.";
+                    case ObjectiveOption.ShowTarget: return "Targets are always visible on the map";
+                }
+            }
+            else if (enumValue is RealismOption)
+            {
+                switch ((RealismOption)enumValue)
+                {
+                    case RealismOption.BirdStrikes: return "Bird strikes";
+                    case RealismOption.DisableDCSRadioAssists: return "Disable DCS radio assists";
+                    case RealismOption.HideLabels: return "Hide labels";
+                    case RealismOption.NoBDA: return "Disable DCS battle damage assessment log";
+                    case RealismOption.NoCheats: return "No cheats";
+                    case RealismOption.NoCrashRecovery: return "No crash recovery";
+                    case RealismOption.NoEasyComms: return "No easy comms";
+                    case RealismOption.NoExternalViews: return "No external views";
+                    case RealismOption.NoGameMode: return "No game mode";
+                    case RealismOption.NoOverlays: return "No overlays";
+                    case RealismOption.NoPadlock: return "No padlock";
+                    case RealismOption.RandomFailures: return "Random failures";
+                    case RealismOption.RealisticGEffects: return "Realistic G-effects";
+                    case RealismOption.WakeTurbulence: return "Wake turbulence";
+                }
+            }
+
+            return "";
         }
     }
 }
