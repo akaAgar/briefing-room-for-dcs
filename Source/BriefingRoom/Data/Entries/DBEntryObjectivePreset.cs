@@ -53,11 +53,6 @@ namespace BriefingRoom4DCS.Data
         internal string[] TargetsBehaviors { get; private set; }
 
         /// <summary>
-        /// Possible number of target units at this objective.
-        /// </summary>
-        internal Amount[] TargetCount { get; private set; }
-
-        /// <summary>
         /// Random <see cref="DBEntryObjectiveTask"/> IDs to choose from.
         /// </summary>
         internal string[] Tasks { get; private set; }
@@ -78,8 +73,6 @@ namespace BriefingRoom4DCS.Data
                 if (Targets.Length == 0) { BriefingRoom.PrintToLog($"No valid targets for objective preset \"{ID}\"", LogMessageErrorLevel.Warning); return false; }
                 TargetsBehaviors = Database.CheckIDs<DBEntryObjectiveTargetBehavior>(ini.GetValueArray<string>("ObjectivePreset", "TargetsBehaviors"));
                 if (TargetsBehaviors.Length == 0) { BriefingRoom.PrintToLog($"No valid target behaviors for objective preset \"{ID}\"", LogMessageErrorLevel.Warning); return false; }
-                TargetCount = ini.GetValueArray<Amount>("ObjectivePreset", "TargetCount");
-                if (TargetCount.Length == 0) TargetCount = Toolbox.GetEnumValues<Amount>();
                 Tasks = Database.CheckIDs<DBEntryObjectiveTask>(ini.GetValueArray<string>("ObjectivePreset", "Tasks"));
                 if (Tasks.Length == 0) { BriefingRoom.PrintToLog($"No valid tasks for objective preset \"{ID}\"", LogMessageErrorLevel.Warning); return false; }
             }
