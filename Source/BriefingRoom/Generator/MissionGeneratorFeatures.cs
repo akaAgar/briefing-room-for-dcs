@@ -144,7 +144,7 @@ namespace BriefingRoom4DCS.Generator
                 remarks = featureDB.BriefingRemarks[(int)Side.Enemy].ToArray();
             else
                 remarks = featureDB.BriefingRemarks[(int)Side.Ally].ToArray();
-            if (remarks.Length == 0) return; // No briefing for this feature
+            if (remarks.Length == 0) return; // No briefing remarks for this feature
 
             string remark = Toolbox.RandomFrom(remarks);
             foreach (KeyValuePair<string, object> stringReplacement in stringReplacements)

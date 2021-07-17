@@ -192,7 +192,7 @@ namespace BriefingRoom4DCS.Generator
             // Get tasking string for the briefing
             int pluralIndex = targetGroupInfo.Value.UnitsID.Length == 1 ? 0 : 1; // 0 for singular, 1 for plural. Used for task/names arrays.
             string taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex]).Replace("\"", "''");
-            if (string.IsNullOrEmpty(taskString)) taskString = "Perform task at objective $OBJECTIVENAME$";
+            if (string.IsNullOrEmpty(taskString)) taskString = "Complete objective $OBJECTIVENAME$";
             GeneratorTools.ReplaceKey(ref taskString, "ObjectiveName", objectiveName);
             GeneratorTools.ReplaceKey(ref taskString, "UnitFamily", Database.Instance.Common.Names.UnitFamilies[(int)objectiveTargetUnitFamily][pluralIndex]);
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Task, taskString);
@@ -217,6 +217,15 @@ namespace BriefingRoom4DCS.Generator
             string triggerLua = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA_OBJECTIVETRIGGERS}{taskDB.CompletionTriggerLua}");
             GeneratorTools.ReplaceKey(ref triggerLua, "ObjectiveIndex", objectiveIndex + 1);
             mission.AppendValue("ScriptObjectivesTriggers", triggerLua);
+
+            // Add briefing remarks for this objective task
+            if (taskDB.BriefingRemarks.Length > 0)
+            {
+                string remark = Toolbox.RandomFrom(taskDB.BriefingRemarks);
+                GeneratorTools.ReplaceKey(ref remark, "ObjectiveName", objectiveName);
+                GeneratorTools.ReplaceKey(ref remark, "UnitFamily", Database.Instance.Common.Names.UnitFamilies[(int)objectiveTargetUnitFamily][pluralIndex]);
+                mission.Briefing.AddItem(DCSMissionBriefingItemType.Remark, remark);
+            }
 
             // Add objective features Lua for this objective
             mission.AppendValue("ScriptObjectivesFeatures", ""); // Just in case there's no features
