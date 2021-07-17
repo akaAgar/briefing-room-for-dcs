@@ -50,7 +50,7 @@ do
   
   for _,i in ipairs(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID) do
     local unit = dcsExtensions.getUnitByID(i)
-    if unit ~= nil and unit:getDesc().attributes["SAM TR"] == true then
+    if unit ~= nil and unit:hasAttribute("SAM TR") then
       table.insert(newTargetTable, i)
     end
   end
