@@ -1,5 +1,16 @@
 ## Changelog
 
+* Version 0.5.107.18 (July 18, 2021)
+  * Virtually rewrote everything from scratch, countless bugs fixed
+  * Most notable new features
+    * Project split between a library (BriefingRoom.dll), a command-line interface and a Razor/WebView GUI
+    * New GUI (by John Harvey) allows both quick mission generation (for quick skirmish generation) and full mission generation (for complete control over all aspect of the mission)
+    * New objective system with custom selection of task and target type, count and behavior for each objective
+    * New objective/mission feature system allows for fine selection of mission elements, from target designation to rules of engagement
+    * Proper carrier group generation (by John Harvey)
+    * Graphical kneeboard briefing (by John Harvey)
+  * Regressions
+    * Campaign generator temporarily disabled, will be restored in the next version
 * Version 0.4.104.21 (April 21, 2021)
   * All new UI
   * Bug fixes
