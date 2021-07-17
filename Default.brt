@@ -19,20 +19,24 @@ objectivedistance=80
 objectiveslocation=Any
 
 [missionfeatures]
-missionfeatures=SupportFriendlyAWACS,SupportFriendlyTankerBasket,SupportFriendlyTankerBoom,SystemDebugMode
+missionfeatures=SupportFriendlyAWACS,SupportFriendlyTankerBasket,SupportFriendlyTankerBoom
 
 [mods]
 mods=
 
 [objectives]
 objective000.features=TargetDesignationCoordinates,TargetDesignationLaser,TargetDesignationSmokeMarker
-objective000.task=DestroyAll
+objective000.options=EmbeddedAirDefense,InaccurateWaypoint
+objective000.preset=InterdictionJTAC
+objective000.task=DestroyAllExceptAirDefense
 objective000.target=VehicleAny
 objective000.targetbehavior=Idle
 objective000.targetcount=Average
-objective001.features=TargetDesignationCoordinates,TargetDesignationLaser,TargetDesignationSmokeMarker
+objective001.features=SceneryInfantryNearObjective,TargetDesignationCoordinates,TargetDesignationLaser
+objective001.options=EmbeddedAirDefense
+objective001.preset=DeepStrike
 objective001.task=DestroyAll
-objective001.target=VehicleAny
+objective001.target=StructureAny
 objective001.targetbehavior=Idle
 objective001.targetcount=Average
 
@@ -53,4 +57,4 @@ playerflightgroup000.startlocation=Runway
 enemyairdefense=Random
 enemyairforce=Random
 friendlyairdefense=Random
-friendlyairforce=None
+friendlyairforce=Random
