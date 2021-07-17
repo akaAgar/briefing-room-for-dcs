@@ -87,6 +87,30 @@ namespace BriefingRoom4DCS.Generator
             return unitsList.ToArray();
         }
 
+        internal static string[] GetEmbeddedAirDefenseUnits(MissionTemplate template, Side side)
+        {
+            DBCommonAirDefenseLevel airDefenseInfo = (side == Side.Ally) ?
+                 Database.Instance.Common.AirDefense.AirDefenseLevels[(int)template.SituationFriendlyAirDefense.Get()] :
+                  Database.Instance.Common.AirDefense.AirDefenseLevels[(int)template.SituationEnemyAirDefense.Get()];
+
+            DBEntryCoalition unitsCoalitionDB = Database.Instance.GetEntry<DBEntryCoalition>(template.GetCoalitionID(side));
+            if (unitsCoalitionDB == null) return new string[0];
+
+            List<string> units = new List<string>();
+
+            if (Toolbox.RandomDouble() >= airDefenseInfo.EmbeddedChance) return new string[0];
+
+            int airDefenseUnitsCount = airDefenseInfo.EmbeddedUnitCount.GetValue();
+
+            for (int i = 0; i < airDefenseUnitsCount; i++)
+            {
+                UnitFamily airDefenseFamily = Toolbox.RandomFrom(UnitFamily.VehicleAAA, UnitFamily.VehicleAAA, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShort);
+                units.AddRange(unitsCoalitionDB.GetRandomUnits(airDefenseFamily, template.ContextDecade, 1, template.Mods, true));
+            }
+
+            return units.ToArray();
+        }
+
         internal static object LowercaseFirstCharacter(string str)
         {
             if (string.IsNullOrEmpty(str)) return str;

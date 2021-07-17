@@ -95,23 +95,11 @@ namespace BriefingRoom4DCS.Generator
 
             if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.EmbeddedAirDefense) && (family.GetUnitCategory() == UnitCategory.Vehicle))
             {
-                DBCommonAirDefenseLevel airDefenseInfo = (side == Side.Ally) ?
-                     Database.Instance.Common.AirDefense.AirDefenseLevels[(int)Template.SituationFriendlyAirDefense.Get()] :
-                      Database.Instance.Common.AirDefense.AirDefenseLevels[(int)Template.SituationEnemyAirDefense.Get()];
-
-                if (Toolbox.RandomDouble() < airDefenseInfo.EmbeddedChance)
-                {
-                    int airDefenseUnitsCount = airDefenseInfo.EmbeddedUnitCount.GetValue();
-
-                    for (int i = 0; i < airDefenseUnitsCount; i++)
-                    {
-                        UnitFamily airDefenseFamily = Toolbox.RandomFrom(UnitFamily.VehicleAAA, UnitFamily.VehicleAAA, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShort);
-                        units.AddRange(unitsCoalitionDB.GetRandomUnits(airDefenseFamily, Template.ContextDecade, 1, Template.Mods, true));
-                    }
-                }
+                string[] airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(Template, side);
+                units.AddRange(airDefenseUnits);
             }
 
-            return AddUnitGroup(units.ToArray(), side, family, groupLua, unitLua, coordinates, skill, unitMakerGroupFlags, aircraftPayload, extraSettings);
+            return AddUnitGroup(Toolbox.ShuffleArray(units.ToArray()), side, family, groupLua, unitLua, coordinates, skill, unitMakerGroupFlags, aircraftPayload, extraSettings);
         }
 
         internal UnitMakerGroupInfo? AddUnitGroup(

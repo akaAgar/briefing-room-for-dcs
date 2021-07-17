@@ -51,7 +51,7 @@ namespace BriefingRoom4DCS.Generator
 
             if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.SpawnOnObjective))
             {
-                coordinates = objectiveCoordinates;
+                coordinates = objectiveCoordinates + Coordinates.CreateRandom(10, 50);
             }
             else
             {

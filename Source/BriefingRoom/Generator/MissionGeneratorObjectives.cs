@@ -147,7 +147,6 @@ namespace BriefingRoom4DCS.Generator
             UnitMakerGroupFlags groupFlags = 0;
             if (objectiveTemplate.Options.Contains(ObjectiveOption.ShowTarget)) groupFlags = UnitMakerGroupFlags.NeverHidden;
             else if (objectiveTemplate.Options.Contains(ObjectiveOption.HideTarget)) groupFlags = UnitMakerGroupFlags.AlwaysHidden;
-            
             if (objectiveTemplate.Options.Contains(ObjectiveOption.EmbeddedAirDefense)) groupFlags |= UnitMakerGroupFlags.EmbeddedAirDefense;
 
             objectiveTargetUnitFamily = Toolbox.RandomFrom(targetDB.UnitFamilies);
@@ -193,6 +192,22 @@ namespace BriefingRoom4DCS.Generator
 
             if (!targetGroupInfo.HasValue) // Failed to generate target group
                 throw new BriefingRoomException($"Failed to generate group for objective {objectiveIndex + 1}");
+
+            // Static targets (aka buildings) need to have their "embedded" air defenses spawned in another group
+            if (objectiveTemplate.Options.Contains(ObjectiveOption.EmbeddedAirDefense) && (targetDB.UnitCategory == UnitCategory.Static))
+            {
+                string[] airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(template, taskDB.TargetSide);
+
+                if (airDefenseUnits.Length > 0)
+                    UnitMaker.AddUnitGroup(
+                        airDefenseUnits,
+                        taskDB.TargetSide, UnitFamily.VehicleAAA,
+                        targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
+                        objectiveCoordinates + Coordinates.CreateRandom(100, 500),
+                        null, groupFlags,
+                        AircraftPayload.Default,
+                        extraSettings.ToArray());
+            }
 
             // Get tasking string for the briefing
             int pluralIndex = targetGroupInfo.Value.UnitsID.Length == 1 ? 0 : 1; // 0 for singular, 1 for plural. Used for task/names arrays.
