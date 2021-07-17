@@ -47,11 +47,13 @@ end
 -- Destroys the next active target unit
 function briefingRoom.f10MenuCommands.debug.destroyTargetUnit()
   for index,objective in ipairs(briefingRoom.mission.objectives) do
-    local u = dcsExtensions.getAliveUnitInGroup(objective.groupID)
-    if u ~= nil then
-      trigger.action.outText("Destroyed "..u:getName(), 2)
-      trigger.action.explosion(u:getPoint(), 100)
-      return
+    if (#objective.unitsID > 0) then
+      local u = dcsExtensions.getUnitByID(objective.unitsID[1])
+      if u ~= nil then
+        trigger.action.outText("Destroyed "..u:getName(), 2)
+        trigger.action.explosion(u:getPoint(), 100)
+        return
+      end
     end
   end
 
