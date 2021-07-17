@@ -115,21 +115,25 @@ namespace BriefingRoom4DCS.Generator
                     objectiveCoordinates = targetAirbase.Coordinates;
                     airbaseID = targetAirbase.DCSID;
 
-                    Coordinates? lastParkingCoordinates = null;
-
-                    for (int i = 0; i < unitCount; i++)
+                    if ((targetBehaviorDB.Location != DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbase) && targetDB.UnitCategory.IsAircraft())
                     {
-                        int parkingSpot = UnitMaker.SpawnPointSelector.GetFreeParkingSpot(
-                            targetAirbase.DCSID,
-                            out Coordinates parkingSpotCoordinates,
-                            lastParkingCoordinates,
-                            targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter);
-                        if (parkingSpot < 0) throw new BriefingRoomException("No parking spot found for aircraft.");
-                        lastParkingCoordinates = parkingSpotCoordinates;
+                        Coordinates? lastParkingCoordinates = null;
 
-                        parkingSpotIDsList.Add(parkingSpot);
-                        parkingSpotCoordinatesList.Add(parkingSpotCoordinates);
+                        for (int i = 0; i < unitCount; i++)
+                        {
+                            int parkingSpot = UnitMaker.SpawnPointSelector.GetFreeParkingSpot(
+                                targetAirbase.DCSID,
+                                out Coordinates parkingSpotCoordinates,
+                                lastParkingCoordinates,
+                                targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter);
+                            if (parkingSpot < 0) throw new BriefingRoomException("No parking spot found for aircraft.");
+                            lastParkingCoordinates = parkingSpotCoordinates;
+
+                            parkingSpotIDsList.Add(parkingSpot);
+                            parkingSpotCoordinatesList.Add(parkingSpotCoordinates);
+                        }
                     }
+
                     break;
             }
 
