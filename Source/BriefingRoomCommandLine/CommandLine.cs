@@ -127,8 +127,8 @@ namespace BriefingRoom4DCS.CommandLineTool
                 }
 
                 string mizFileName;
-                if (templateFiles.Length == 1) // Single template file provided, use the mission name as file name.
-                    mizFileName = Path.Combine(Application.StartupPath, RemoveInvalidPathCharacters(mission.Briefing.Name) + ".miz");
+                if (templateFiles.Length == 1) // Single template file provided, use "theater + mission name" as file name.
+                    mizFileName = Path.Combine(Application.StartupPath, $"{mission.TheaterID} - {RemoveInvalidPathCharacters(mission.Briefing.Name)}.miz");
                 else // Multiple template files provided, use the template name as file name so we know from which template mission was generated.
                     mizFileName = Path.Combine(Application.StartupPath, Path.GetFileNameWithoutExtension(t) + ".miz");
                 mizFileName = GetUnusedFileName(mizFileName);

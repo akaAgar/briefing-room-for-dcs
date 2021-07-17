@@ -43,6 +43,11 @@ namespace BriefingRoom4DCS.Mission
         /// </summary>
         internal string UniqueID { get; }
 
+        /// <summary>
+        /// DCS ID of the theater on which the mission takes place.
+        /// </summary>
+        public string TheaterID { get { return GetValue("TheaterID"); } }
+
         public DCSMissionBriefing Briefing { get; }
 
         private readonly Dictionary<string, string> Values;
@@ -95,7 +100,6 @@ namespace BriefingRoom4DCS.Mission
         {
             SetValue(key, value.ToString(NumberFormatInfo.InvariantInfo), false);
         }
-
 
         internal void SetValue(string key, bool value)
         {
