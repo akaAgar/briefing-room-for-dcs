@@ -656,6 +656,12 @@ function briefingRoom.mission.coreFunctions.completeObjective(index)
   briefingRoom.mission.objectivesLeft = briefingRoom.mission.objectivesLeft - 1
   briefingRoom.aircraftActivator.pushFromReserveQueue() -- activate next batch of aircraft (so more CAP will pop up)
 
+  -- Remove objective menu from the F10 menu
+  if briefingRoom.f10Menu.objectives[index] ~= nil then
+    missionCommands.removeItemForCoalition($LUAPLAYERCOALITION$, briefingRoom.f10Menu.objectives[index])
+    briefingRoom.f10Menu.objectives[index] = nil
+  end
+
   -- Add a little delay before playing the "mission/objective complete" sounds to make sure all "target destroyed", "target photographed", etc. sounds are done playing
   if briefingRoom.mission.objectivesLeft <= 0 then
     briefingRoom.debugPrint("Mission marked as complete")
