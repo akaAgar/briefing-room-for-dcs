@@ -18,7 +18,9 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using System;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace BriefingRoom4DCS.GUI
 {
@@ -38,7 +40,19 @@ namespace BriefingRoom4DCS.GUI
                 WorkingDirectory = "."
             };
 
-            Process.Start(processStartInfo);
+            try
+            {
+                if (Process.Start(processStartInfo) == null)
+                    throw new Exception("GUI failed to launch.");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(
+                    "Looks like the BriefingRoom GUI crashed or failed to start.\r\n\r\n" +
+                    "Make sure you downloaded and installed the Microsoft WebView2 Runtime (https://go.microsoft.com/fwlink/p/?LinkId=2124703).\r\n\r\n" +
+                    "Error was:\r\n" + e.Message,
+                    "Uh oh...", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }
