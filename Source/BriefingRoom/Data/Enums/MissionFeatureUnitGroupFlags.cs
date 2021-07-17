@@ -65,6 +65,16 @@ namespace BriefingRoom4DCS.Data
         ///// <summary>
         ///// Aircraft should be immediately activated when the first player takes off.
         ///// </summary>
-        ImmediateAircraftActivation = 64
+        ImmediateAircraftActivation = 64,
+
+        /// <summary>
+        /// Spawn unit group directly on top the objective (Objective Features only).
+        /// </summary>
+        SpawnOnObjective = 128,
+
+        /// <summary>
+        /// Spawned unit group is on the same side as the target (Objective Features only) (default is enemy).
+        /// </summary>
+        SameSideAsTarget = 256
     }
 }

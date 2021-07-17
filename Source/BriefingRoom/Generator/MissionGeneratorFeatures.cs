@@ -53,7 +53,7 @@ namespace BriefingRoom4DCS.Generator
             UnitMaker = unitMaker;
         }
 
-        protected UnitMakerGroupInfo? AddMissionFeature(DCSMission mission, T featureDB, Coordinates coordinates, Coordinates? coordinates2, ref Dictionary<string, object> extraSettings)
+        protected UnitMakerGroupInfo? AddMissionFeature(DCSMission mission, T featureDB, Coordinates coordinates, Coordinates? coordinates2, ref Dictionary<string, object> extraSettings, Side? objectiveTargetSide = null)
         {
             // Add secondary coordinates (destination point) to the extra settings
             if (!coordinates2.HasValue) coordinates2 = coordinates; // No destination point? Use initial point
@@ -74,9 +74,13 @@ namespace BriefingRoom4DCS.Generator
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ImmediateAircraftActivation))
                     groupFlags |= UnitMakerGroupFlags.ImmediateAircraftSpawn;
 
+                Side groupSide = Side.Enemy;
+                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly)) groupSide = Side.Ally;
+                else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.SameSideAsTarget) && objectiveTargetSide.HasValue) groupSide = objectiveTargetSide.Value;
+
                 groupInfo = UnitMaker.AddUnitGroup(
                     Toolbox.RandomFrom(featureDB.UnitGroupFamilies), featureDB.UnitGroupSize.GetValue(),
-                    featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly) ? Side.Ally : Side.Enemy,
+                    groupSide,
                     featureDB.UnitGroupLuaGroup, featureDB.UnitGroupLuaUnit,
                     coordinates, null, groupFlags, AircraftPayload.Default,
                     extraSettings.ToArray());

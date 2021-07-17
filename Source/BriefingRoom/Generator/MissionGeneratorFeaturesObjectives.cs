@@ -36,7 +36,7 @@ namespace BriefingRoom4DCS.Generator
         /// <param name="unitMaker">Unit maker to use for unit generation.</param>
         internal MissionGeneratorFeaturesObjectives(UnitMaker unitMaker) : base(unitMaker) { }
 
-        internal void GenerateMissionFeature(DCSMission mission, string featureID, string objectiveName, int objectiveIndex, int objectiveGroupID, Coordinates objectiveCoordinates)
+        internal void GenerateMissionFeature(DCSMission mission, string featureID, string objectiveName, int objectiveIndex, int objectiveGroupID, Coordinates objectiveCoordinates, Side objectiveTargetSide)
         {
             DBEntryFeatureObjective featureDB = Database.Instance.GetEntry<DBEntryFeatureObjective>(featureID);
             if (featureDB == null) // Feature doesn't exist
@@ -47,18 +47,29 @@ namespace BriefingRoom4DCS.Generator
 
             double spawnDistance = Math.Max(1.0, featureDB.UnitGroupSpawnDistance) * Toolbox.NM_TO_METERS;
 
-            DBEntryTheaterSpawnPoint? spawnPoint =
-                UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                    featureDB.UnitGroupValidSpawnPoints, objectiveCoordinates,
-                    new MinMaxD(spawnDistance * .75, spawnDistance * 1.5));
+            Coordinates coordinates;
 
-            if (!spawnPoint.HasValue) // No spawn point found
+            if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.SpawnOnObjective))
             {
-                BriefingRoom.PrintToLog($"No spawn point found for objective feature {featureID}.", LogMessageErrorLevel.Warning);
-                return;
+                coordinates = objectiveCoordinates;
+            }
+            else
+            {
+                DBEntryTheaterSpawnPoint? spawnPoint =
+                    UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                        featureDB.UnitGroupValidSpawnPoints, objectiveCoordinates,
+                        new MinMaxD(spawnDistance * .75, spawnDistance * 1.5));
+
+                if (!spawnPoint.HasValue) // No spawn point found
+                {
+                    BriefingRoom.PrintToLog($"No spawn point found for objective feature {featureID}.", LogMessageErrorLevel.Warning);
+                    return;
+                }
+
+                coordinates = spawnPoint.Value.Coordinates;
             }
 
-            Coordinates coordinates2 = spawnPoint.Value.Coordinates + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
+            Coordinates coordinates2 = coordinates + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
 
             Dictionary<string, object> extraSettings = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
             extraSettings.AddIfKeyUnused("ObjectiveName", objectiveName);
@@ -67,8 +78,8 @@ namespace BriefingRoom4DCS.Generator
 
             UnitMakerGroupInfo? groupInfo = AddMissionFeature(
                 mission, featureDB,
-                spawnPoint.Value.Coordinates, coordinates2,
-                ref extraSettings);
+                coordinates, coordinates2,
+                ref extraSettings, objectiveTargetSide);
 
             AddBriefingRemarkFromFeature(mission, featureDB, false, groupInfo, extraSettings);
         }
