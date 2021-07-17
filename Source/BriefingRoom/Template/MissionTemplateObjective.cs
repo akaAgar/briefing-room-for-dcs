@@ -20,7 +20,6 @@ If not, see https://www.gnu.org/licenses/
 */
 
 using BriefingRoom4DCS.Data;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -41,6 +40,11 @@ namespace BriefingRoom4DCS.Template
         [Display(Name = "Options", Description = "Miscellaneous options for this mission objective.")]
         public List<ObjectiveOption> Options { get { return Options_; } set { Options_ = value.Distinct().ToList(); } }
         private List<ObjectiveOption> Options_;
+
+        [Required, DatabaseSourceType(DatabaseEntryType.ObjectivePreset)]
+        [Display(Name = "Preset", Description = "Objective preset to use for this objective if mission is generated with the useObjectivePresets option.")]
+        public string Preset { get { return Preset_; } set { Preset_ = Database.Instance.CheckID<DBEntryObjectivePreset>(value); } }
+        private string Preset_;
 
         [Required, DatabaseSourceType(DatabaseEntryType.ObjectiveTarget)]
         [Display(Name = "Target", Description = "Family of units to use as a target for this objective.")]
@@ -68,6 +72,7 @@ namespace BriefingRoom4DCS.Template
         {
             Features = new List<string>();
             Options = new List<ObjectiveOption>();
+            Preset = "Interdiction";
             Target = "VehicleAny";
             TargetBehavior = "Idle";
             TargetCount = Amount.Average;
@@ -87,10 +92,42 @@ namespace BriefingRoom4DCS.Template
         {
             Features = new List<string>(features);
             Options = new List<ObjectiveOption>(options);
+            Preset = "";
             Target = target;
             TargetBehavior = targetBehavior;
             TargetCount = targetCount;
             Task = task;
+        }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="presetID">ID of the <see cref="DBEntryObjectivePreset"/> from which to build the mission objective.</param>
+        /// <param name="targetCount">Number of target units at this objective.</param>
+        public MissionTemplateObjective(string presetID, Amount targetCount = Amount.Average)
+        {
+            DBEntryObjectivePreset preset = Database.Instance.GetEntry<DBEntryObjectivePreset>(presetID);
+
+            if (preset == null) // Preset doesn't exist.
+            {
+                Features = new List<string>();
+                Options = new List<ObjectiveOption>();
+                Preset = "";
+                Target = "VehicleAny";
+                TargetBehavior = "Idle";
+                TargetCount = Amount.Average;
+                Task = "DestroyAll";
+            }
+            else
+            {
+                Features = preset.Features.ToList();
+                Options = preset.Options.ToList();
+                Preset = presetID;
+                Target = Toolbox.RandomFrom(preset.Targets);
+                TargetBehavior = Toolbox.RandomFrom(preset.TargetsBehaviors);
+                TargetCount = targetCount;
+                Task = Toolbox.RandomFrom(preset.Tasks);
+            }
         }
 
         /// <summary>
@@ -114,6 +151,7 @@ namespace BriefingRoom4DCS.Template
         {
             Features = Database.Instance.CheckIDs<DBEntryFeatureObjective>(ini.GetValueArray<string>(section, $"{key}.Features")).ToList();
             Options = ini.GetValueArray<ObjectiveOption>(section, $"{key}.Options").ToList();
+            Preset = ini.GetValue<string>(section, $"{key}.Preset");
             Target = ini.GetValue<string>(section, $"{key}.Target");
             TargetBehavior = ini.GetValue<string>(section, $"{key}.TargetBehavior");
             TargetCount = ini.GetValue<Amount>(section, $"{key}.TargetCount");
@@ -130,29 +168,11 @@ namespace BriefingRoom4DCS.Template
         {
             ini.SetValueArray(section, $"{key}.Features", Features.ToArray());
             ini.SetValueArray(section, $"{key}.Options", Options.ToArray());
+            ini.SetValue(section, $"{key}.Preset", Preset);
             ini.SetValue(section, $"{key}.Task", Task);
             ini.SetValue(section, $"{key}.Target", Target);
             ini.SetValue(section, $"{key}.TargetBehavior", TargetBehavior);
             ini.SetValue(section, $"{key}.TargetCount", TargetCount);
-        }
-
-        /// <summary>
-        /// Creates an objective from an objective preset.
-        /// </summary>
-        /// <param name="presetID">ID of the <see cref="DBEntryObjectivePreset"/> from which to build the mission objective.</param>
-        /// <returns>A mission objective.</returns>
-        internal static MissionTemplateObjective FromObjectivePreset(string presetID)
-        {
-            DBEntryObjectivePreset preset = Database.Instance.GetEntry<DBEntryObjectivePreset>(presetID);
-            if (preset == null) return new MissionTemplateObjective(); // Preset doesn't exist.
-
-            return new MissionTemplateObjective(
-                Toolbox.RandomFrom(preset.Targets),
-                Toolbox.RandomFrom(preset.TargetsBehaviors),
-                Toolbox.RandomFrom(preset.Tasks),
-                preset.Features,
-                Toolbox.RandomFrom(preset.TargetCount),
-                preset.Options);
         }
     }
 }

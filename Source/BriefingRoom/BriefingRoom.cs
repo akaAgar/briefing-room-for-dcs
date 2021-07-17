@@ -184,20 +184,22 @@ namespace BriefingRoom4DCS
         /// Generates a mission from a BriefingRoom template file.
         /// </summary>
         /// <param name="templateFilePath">Path to the BriefingRoom template (.brt) file to use.</param>
+        /// <param name="useObjectivePresets">If true, <see cref="MissionTemplateObjective.Preset"/> will be used to generate the objective. Otherwise, specific objective parameters will be used.</param>
         /// <returns>A DCSMission, or null if mission generation failed.</returns>
-        public DCSMission GenerateMission(string templateFilePath)
+        public DCSMission GenerateMission(string templateFilePath, bool useObjectivePresets = false)
         {
-            return Generator.Generate(new MissionTemplate(templateFilePath));
+            return Generator.Generate(new MissionTemplate(templateFilePath), useObjectivePresets);
         }
 
         /// <summary>
         /// Generates a mission from a mission template.
         /// </summary>
         /// <param name="template">Mission template from which the mission should be generated.</param>
+        /// <param name="useObjectivePresets">If true, <see cref="MissionTemplateObjective.Preset"/> will be used to generate the objective. Otherwise, specific objective parameters will be used.</param>
         /// <returns>A DCSMission, or null if mission generation failed.</returns>
-        public DCSMission GenerateMission(MissionTemplate template)
+        public DCSMission GenerateMission(MissionTemplate template, bool useObjectivePresets = false)
         {
-            return Generator.Generate(template);
+            return Generator.Generate(template, useObjectivePresets);
         }
 
         /// <summary>

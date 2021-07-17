@@ -42,8 +42,9 @@ namespace BriefingRoom4DCS.Generator
         /// Generates a DCS World mission from a mission template.
         /// </summary>
         /// <param name="template">The mission template to use.</param>
+        /// <param name="useObjectivePresets">If true, <see cref="MissionTemplateObjective.Preset"/> will be used to generate the objective. Otherwise, specific objective parameters will be used.</param>
         /// <returns>A DCS World mission, or null if something went wrong.</returns>
-        internal DCSMission Generate(MissionTemplate template)
+        internal DCSMission Generate(MissionTemplate template, bool useObjectivePresets)
         {
             int i;
 
@@ -132,7 +133,7 @@ namespace BriefingRoom4DCS.Generator
             using (MissionGeneratorObjectives objectivesGenerator = new MissionGeneratorObjectives(unitMaker))
                 for (i = 0; i < template.Objectives.Count; i++)
                 {
-                    lastObjectiveCoordinates = objectivesGenerator.GenerateObjective(mission, template, theaterDB, i, lastObjectiveCoordinates, playerAirbase, out string objectiveName, out UnitFamily objectiveTargetUnitFamily);
+                    lastObjectiveCoordinates = objectivesGenerator.GenerateObjective(mission, template, theaterDB, i, lastObjectiveCoordinates, playerAirbase, useObjectivePresets, out string objectiveName, out UnitFamily objectiveTargetUnitFamily);
                     objectiveCoordinates.Add(lastObjectiveCoordinates);
                     waypoints.Add(objectivesGenerator.GenerateObjectiveWaypoint(template.Objectives[i], lastObjectiveCoordinates, objectiveName));
                     objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);

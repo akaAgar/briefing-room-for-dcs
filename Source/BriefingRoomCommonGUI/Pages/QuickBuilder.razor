@@ -104,32 +104,12 @@
                 {
                     <div class="generator-group flex-justify-spaced">
                             <div class="form-group flex-block">
-                                <label>Task</label>
-                                <InputSelect class="form-control" @bind-Value="objective.Task">
+                                <label>Objective</label>
+                                <InputSelect class="form-control" @bind-Value="objective.Preset">
                                     @foreach (var value in
-                                    BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveTask))
+                                    BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectivePreset))
                                     {
-                                        <option value="@value.ID">@value.Name</option>
-                                    }
-                                </InputSelect>
-                            </div>
-                            <div class="form-group flex-block">
-                                <label>Target</label>
-                                <InputSelect class="form-control" @bind-Value="objective.Target">
-                                    @foreach (var value in
-                                    BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveTarget))
-                                    {
-                                        <option value="@value.ID">@value.Name</option>
-                                    }
-                                </InputSelect>
-                            </div>
-                            <div class="form-group flex-block">
-                                <label>Target behavior</label>
-                                <InputSelect class="form-control" @bind-Value="objective.TargetBehavior">
-                                    @foreach (var value in
-                                    BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveTargetBehavior))
-                                    {
-                                        <option value="@value.ID">@value.Name</option>
+                                        <option value="@value.ID">@value.GetNameAndDescription(": ", true)</option>
                                     }
                                 </InputSelect>
                             </div>
@@ -199,6 +179,15 @@
                     </div>
                 }
                 <button type="button" class="btn btn-secondary" @onclick="AddFlightGroup">+</button>
+                <hr/>
+            </div>
+            <div id="mission-features" class="generator-block">
+                <h3>Mission features</h3>
+                <CheckBoxList
+                    Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"
+                    TextField="@((item)=>item.Name + "|" + item.Description)" ValueField="@((item)=>item.ID)"
+                    SelectedValues="Template.MissionFeatures" TItem="DatabaseEntryInfo" TItemOutput="string">
+                </CheckBoxList>
             </div>
         </EditForm>
     </div>
@@ -289,7 +278,7 @@
         try {
             mission = null;
             errorMessage = "";
-            mission = briefingRoom.GenerateMission(Template);
+            mission = briefingRoom.GenerateMission(Template, true);
         } catch (Exception ex){
             Console.WriteLine(ex);
             errorMessage = ex.Message;
@@ -305,7 +294,7 @@
         catch (Exception) { }
     }
 
-        async Task DownloadBriefing()
+    async Task DownloadBriefing()
     {
         byte[] zipBytes = Encoding.ASCII.GetBytes(mission.Briefing.GetBriefingAsHTML());
         if (zipBytes == null) return; // Something went wrong during the .miz export

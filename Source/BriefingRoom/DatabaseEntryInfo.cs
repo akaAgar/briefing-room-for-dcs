@@ -52,5 +52,19 @@ namespace BriefingRoom4DCS
             Category = category;
             Description = description;
         }
+
+        /// <summary>
+        /// Returns a single string with both name and description.
+        /// </summary>
+        /// <param name="separator">The separator between name and description.</param>
+        /// <param name="upperCaseName">Should the name be cast to upper case?</param>
+        /// <returns>A string.</returns>
+        public string GetNameAndDescription(string separator = " - ", bool upperCaseName = false)
+        {
+            string casedName = upperCaseName ? Name.ToUpperInvariant() : Name;
+
+            if (string.IsNullOrEmpty(Description)) return casedName;
+            return $"{casedName}{separator}{Description}";
+        }
     }
 }

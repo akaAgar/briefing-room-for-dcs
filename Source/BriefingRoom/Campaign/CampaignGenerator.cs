@@ -68,7 +68,7 @@ namespace BriefingRoom4DCS.Campaign
 
                 MissionTemplate template = CreateMissionTemplate(campaignTemplate, campaignName,  i);
 
-                DCSMission mission = MissionGenerator.Generate(template);
+                DCSMission mission = MissionGenerator.Generate(template, true);
                 // TODO: mission.DateTime.Day = date.Day; mission.DateTime.Month = date.Month; mission.DateTime.Year = date.Year;
 
                 string missionFilePath = Path.Combine(campaignDirectory, $"{campaignName}{i + 1:00}.miz");
@@ -192,7 +192,7 @@ namespace BriefingRoom4DCS.Campaign
 
             int objectiveCount = GetObjectiveCountForMission(campaignTemplate.MissionsObjectiveCount);
             for (int i = 0; i < objectiveCount; i++)
-                template.Objectives.Add(MissionTemplateObjective.FromObjectivePreset(Toolbox.RandomFrom(campaignTemplate.MissionsObjectives)));
+                template.Objectives.Add(new MissionTemplateObjective(Toolbox.RandomFrom(campaignTemplate.MissionsObjectives)));
 
             /*
             template.PlayerFlightGroups = new MissionTemplateFlightGroup[]

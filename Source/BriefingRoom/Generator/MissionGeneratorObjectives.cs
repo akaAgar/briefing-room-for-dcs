@@ -68,13 +68,28 @@ namespace BriefingRoom4DCS.Generator
             ObjectiveNames = new List<string>(Database.Instance.Common.Names.WPObjectivesNames);
         }
 
-        internal Coordinates GenerateObjective(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, int objectiveIndex, Coordinates lastCoordinates, DBEntryAirbase playerAirbase, out string objectiveName, out UnitFamily objectiveTargetUnitFamily)
+        internal Coordinates GenerateObjective(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, int objectiveIndex, Coordinates lastCoordinates, DBEntryAirbase playerAirbase, bool useObjectivePreset, out string objectiveName, out UnitFamily objectiveTargetUnitFamily)
         {
             MissionTemplateObjective objectiveTemplate = template.Objectives[objectiveIndex];
-            DBEntryFeatureObjective[] featuresDB = Database.Instance.GetEntries<DBEntryFeatureObjective>(objectiveTemplate.Features.ToArray());
+
+            string[] featuresID = objectiveTemplate.Features.ToArray();
             DBEntryObjectiveTarget targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
             DBEntryObjectiveTargetBehavior targetBehaviorDB = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior);
             DBEntryObjectiveTask taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task);
+            ObjectiveOption[] objectiveOptions = objectiveTemplate.Options.ToArray();
+
+            if (useObjectivePreset)
+            {
+                DBEntryObjectivePreset presetDB = Database.Instance.GetEntry<DBEntryObjectivePreset>(objectiveTemplate.Preset);
+                if (presetDB != null)
+                {
+                    featuresID = presetDB.Features.ToArray();
+                    targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(Toolbox.RandomFrom(presetDB.Targets));
+                    targetBehaviorDB = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(Toolbox.RandomFrom(presetDB.TargetsBehaviors));
+                    taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(Toolbox.RandomFrom(presetDB.Tasks));
+                    objectiveOptions = presetDB.Options.ToArray();
+                }
+            }
 
             if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective #{objectiveIndex + 1}.");
             if (targetBehaviorDB == null) throw new BriefingRoomException($"Target behavior \"{targetBehaviorDB.UIDisplayName}\" not found for objective #{objectiveIndex + 1}.");
@@ -97,7 +112,8 @@ namespace BriefingRoom4DCS.Generator
                     objectiveDistance * OBJECTIVE_DISTANCE_VARIATION_MAX),
                 null, null, GeneratorTools.GetSpawnPointCoalition(template, Side.Enemy));
 
-            if (!spawnPoint.HasValue) throw new BriefingRoomException($"Failed to spawn objective unit group. {String.Join(",", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList())}");
+            if (!spawnPoint.HasValue)
+                throw new BriefingRoomException($"Failed to spawn objective unit group. {String.Join(",", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList())}");
 
             Coordinates objectiveCoordinates = spawnPoint.Value.Coordinates;
 
@@ -145,9 +161,9 @@ namespace BriefingRoom4DCS.Generator
             ObjectiveNames.Remove(objectiveName);
 
             UnitMakerGroupFlags groupFlags = 0;
-            if (objectiveTemplate.Options.Contains(ObjectiveOption.ShowTarget)) groupFlags = UnitMakerGroupFlags.NeverHidden;
-            else if (objectiveTemplate.Options.Contains(ObjectiveOption.HideTarget)) groupFlags = UnitMakerGroupFlags.AlwaysHidden;
-            if (objectiveTemplate.Options.Contains(ObjectiveOption.EmbeddedAirDefense)) groupFlags |= UnitMakerGroupFlags.EmbeddedAirDefense;
+            if (objectiveOptions.Contains(ObjectiveOption.ShowTarget)) groupFlags = UnitMakerGroupFlags.NeverHidden;
+            else if (objectiveOptions.Contains(ObjectiveOption.HideTarget)) groupFlags = UnitMakerGroupFlags.AlwaysHidden;
+            if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense)) groupFlags |= UnitMakerGroupFlags.EmbeddedAirDefense;
 
             objectiveTargetUnitFamily = Toolbox.RandomFrom(targetDB.UnitFamilies);
 
@@ -194,7 +210,7 @@ namespace BriefingRoom4DCS.Generator
                 throw new BriefingRoomException($"Failed to generate group for objective {objectiveIndex + 1}");
 
             // Static targets (aka buildings) need to have their "embedded" air defenses spawned in another group
-            if (objectiveTemplate.Options.Contains(ObjectiveOption.EmbeddedAirDefense) && (targetDB.UnitCategory == UnitCategory.Static))
+            if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense) && (targetDB.UnitCategory == UnitCategory.Static))
             {
                 string[] airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(template, taskDB.TargetSide);
 
@@ -249,7 +265,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Add objective features Lua for this objective
             mission.AppendValue("ScriptObjectivesFeatures", ""); // Just in case there's no features
-            foreach (string featureID in objectiveTemplate.Features.ToArray())
+            foreach (string featureID in featuresID)
                 FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value.GroupID, objectiveCoordinates, taskDB.TargetSide);
 
             return objectiveCoordinates;
