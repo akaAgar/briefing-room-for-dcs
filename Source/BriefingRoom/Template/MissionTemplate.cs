@@ -355,6 +355,16 @@ namespace BriefingRoom4DCS.Template
         }
 
         /// <summary>
+        /// Returns the value of <see cref="ContextCoalitionBlue"/> or <see cref="ContextCoalitionRed"/> according to the provided side.
+        /// </summary>
+        /// <param name="side">The side of coalition to return.</param>
+        /// <returns>A coalition ID.</returns>
+        internal string GetCoalitionID(Side side)
+        {
+            return GetCoalitionID((side == Side.Ally) ? ContextPlayerCoalition : ContextPlayerCoalition.GetEnemy());
+        }
+
+        /// <summary>
         /// Returns the total number of player slots in all player flight groups.
         /// </summary>
         /// <returns></returns>

@@ -144,6 +144,8 @@ namespace BriefingRoom4DCS.Generator
             UnitMakerGroupFlags groupFlags = 0;
             if (objectiveTemplate.Options.Contains(ObjectiveOption.ShowTarget)) groupFlags = UnitMakerGroupFlags.NeverHidden;
             else if (objectiveTemplate.Options.Contains(ObjectiveOption.HideTarget)) groupFlags = UnitMakerGroupFlags.AlwaysHidden;
+            
+            if (objectiveTemplate.Options.Contains(ObjectiveOption.EmbeddedAirDefense)) groupFlags |= UnitMakerGroupFlags.EmbeddedAirDefense;
 
             objectiveTargetUnitFamily = Toolbox.RandomFrom(targetDB.UnitFamilies);
 

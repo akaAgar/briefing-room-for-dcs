@@ -44,5 +44,10 @@ namespace BriefingRoom4DCS.Generator
         /// Unit is always visible.
         /// </summary>
         NeverHidden = 8,
+
+        /// <summary>
+        /// Add embedded short-range air defense (ground vehicles groups only).
+        /// </summary>
+        EmbeddedAirDefense = 16,
     }
 }

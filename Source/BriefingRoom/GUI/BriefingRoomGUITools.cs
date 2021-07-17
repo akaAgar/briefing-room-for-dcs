@@ -190,7 +190,7 @@ namespace BriefingRoom4DCS.GUI
             {
                 switch ((ObjectiveOption)enumValue)
                 {
-                    case ObjectiveOption.EmbeddedAirDefense: return "Adds short-range air-defense near the target.";
+                    case ObjectiveOption.EmbeddedAirDefense: return "Chance (according to coalition air defense settings) to spawn short-range air-defense near the target.";
                     case ObjectiveOption.HideTarget: return "Targets are always hidden on the map";
                     case ObjectiveOption.InaccurateWaypoint: return "Waypoint will be spawned a few miles away from the targets.";
                     case ObjectiveOption.ShowTarget: return "Targets are always visible on the map";
