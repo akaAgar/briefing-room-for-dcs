@@ -4,7 +4,6 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationFlareF
 -- Spawn flare
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationFlareDoFlare = function(args)
   trigger.action.signalFlare(args.position, trigger.flareColor.Yellow, 0)
-  return nil
 end
 
 -- "Signal position with flare" F10 radio command
@@ -32,7 +31,8 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationFlare 
   briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationFlareFlaresLeft = briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationFlareFlaresLeft - 1
 
   local args = { ["position"] = unit:getPoint() }
-  briefingRoom.radioManager.play("Affirm, shooting a flare now (flare(s) left: "..tostring(briefingRoom.mission.features.supportLaunchFlare.flaresLeft[index])..")", "RadioSupportShootingFlare", briefingRoom.radioManager.getAnswerDelay(), briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationFlareDoFlare, args)
+
+  briefingRoom.radioManager.play("Affirm, shooting a flare now (flare(s) left: "..tostring(briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationFlareFlaresLeft)..")", "RadioSupportShootingFlare", briefingRoom.radioManager.getAnswerDelay(), briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationFlareDoFlare, args)
 end
       
 -- Add the command to the F10 menu
