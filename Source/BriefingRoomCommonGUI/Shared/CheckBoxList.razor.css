@@ -4,5 +4,22 @@
     text-align: center;
 }
 
+.checkboxList-item .description {
+    font-size: 70%;
+    display: none;
+}
+
+.checkboxList-item:hover .description {
+    font-size: 70%;
+    display: block;
+    position: absolute;
+    background-color: #F6F7FF;
+    padding: 5px;
+    border: solid 1px #0366d6;
+    border-radius: .25rem;
+    margin: 2px;
+    color: black;
+}
+
 
 

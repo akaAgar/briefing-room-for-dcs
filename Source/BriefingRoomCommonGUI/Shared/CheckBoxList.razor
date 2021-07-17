@@ -26,7 +26,12 @@
             <label class="checkboxList-item">  
                 <input type="checkbox" checked=@Checked  
                     @onchange="eventArgs => { CheckboxClicked((TItemOutput)Value, eventArgs.Value); }" />  
-                <span>@Text<br /><span style='font-size:70%'>@Description</span></span>
+                <span>@Text<br />
+                @if(!String.IsNullOrEmpty(Description))
+                {
+                    <span class="description">@Description</span>
+                }
+                </span>
             </label><br />  
         }  
     }  
