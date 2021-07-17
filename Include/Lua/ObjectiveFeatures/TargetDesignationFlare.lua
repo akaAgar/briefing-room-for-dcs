@@ -1,5 +1,5 @@
 -- Number of flares available
-briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationFlareFlaresLeft = 12
+briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationFlareFlaresLeft = 5
 
 -- Spawn flare
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationFlareDoFlare = function(args)
