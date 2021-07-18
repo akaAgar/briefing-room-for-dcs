@@ -27,10 +27,6 @@ cd Source\BriefingRoomCommandLine
 dotnet build -c Release
 IF ERRORLEVEL 1 GOTO Error
 cd..
-cd BriefingRoomGUI
-dotnet build -c Release
-IF ERRORLEVEL 1 GOTO Error
-cd..
 cd BriefingRoomDesktop
 xcopy Resources\ ..\..\Release\Resources\ /E /Y
 xcopy wwwroot\ ..\..\Release\wwwroot\ /E /Y
