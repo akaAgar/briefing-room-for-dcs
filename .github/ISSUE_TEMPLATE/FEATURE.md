@@ -7,8 +7,6 @@ assignees: ''
 
 ---
 
-#### BR Version: x.x.x  DCS Version: x.x.x
-
 ### Brief Description: 
  <!--What is the feature -->
 
