@@ -115,6 +115,9 @@ namespace BriefingRoom4DCS.Generator
             Coalition coalition = (side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy();
             Country country = (coalition == Coalition.Blue) ? Country.CJTFBlue : Country.CJTFRed;
 
+            if (extraSettings.Any(x => x.Key == "Country"))
+                country = (Country)extraSettings.First(x => x.Key == "Country").Value;
+
             if (!skill.HasValue)
                 skill = GeneratorTools.GetDefaultSkillLevel(Template, unitFamily, side);
 

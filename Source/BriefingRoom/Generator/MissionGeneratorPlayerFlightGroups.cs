@@ -95,6 +95,7 @@ namespace BriefingRoom4DCS.Generator
                 skillLevel, unitMakerGroupFlags, flightGroup.Payload,
                 "PlayerStartingAction".ToKeyValuePair(GeneratorTools.GetPlayerStartingAction(flightGroup.StartLocation)),
                 "PlayerStartingType".ToKeyValuePair(GeneratorTools.GetPlayerStartingType(flightGroup.StartLocation)),
+                "Country".ToKeyValuePair(flightGroup.Country),
                 "InitialWPName".ToKeyValuePair(Database.Instance.Common.Names.WPInitialName),
                 "FinalWPName".ToKeyValuePair(Database.Instance.Common.Names.WPFinalName),
                 "ParkingID".ToKeyValuePair(parkingSpotIDsList.ToArray()),
