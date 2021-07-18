@@ -180,6 +180,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Generate mission features
             BriefingRoom.PrintToLog("Generating mission features...");
+            mission.AppendValue("ScriptMissionFeatures", ""); // Just in case there's no features
             using (MissionGeneratorFeaturesMission missionFeaturesGenerator = new MissionGeneratorFeaturesMission(unitMaker))
                 for (i = 0; i < template.MissionFeatures.Count; i++)
                     missionFeaturesGenerator.GenerateMissionFeature(mission, template.MissionFeatures[i], i, playerAirbase.Coordinates, objectivesCenter);
