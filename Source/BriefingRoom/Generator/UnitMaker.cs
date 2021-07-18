@@ -286,7 +286,7 @@ namespace BriefingRoom4DCS.Generator
             var groupHeading = GetGroupHeading(coordinates, extraSettings);
             SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading, out Coordinates unitCoordinates, out double unitHeading);
 
-            string singleUnitLuaTable = String.Copy(unitLuaTemplate);
+            string singleUnitLuaTable = new string(unitLuaTemplate);
             foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
                 if (extraSetting.Value is Array)
                     GeneratorTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value, unitSetIndex);
