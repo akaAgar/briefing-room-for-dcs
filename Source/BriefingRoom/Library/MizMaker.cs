@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace BriefingRoom4DCS
 {
@@ -103,6 +104,10 @@ namespace BriefingRoom4DCS
             string luaContent = File.ReadAllText(sourceFile);
             if (mission != null) // A mission was provided, do the required replacements in the file.
                 luaContent = mission.ReplaceValues(luaContent);
+
+            foreach (Match match in Regex.Matches(luaContent, "\\$.*?\\$"))
+                BriefingRoom.PrintToLog($"Found a non-assigned value ({match.Value}) in Lua file \"{mizEntryKey}\".", LogMessageErrorLevel.Warning);
+            luaContent = Regex.Replace(luaContent, "\\$.*?\\$", "0");
 
             mizFileEntries.Add(mizEntryKey, Encoding.UTF8.GetBytes(luaContent));
             return true;
