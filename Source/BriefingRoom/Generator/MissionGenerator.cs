@@ -139,6 +139,8 @@ namespace BriefingRoom4DCS.Generator
                     objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);
                 }
             Coordinates objectivesCenter = (objectiveCoordinates.Count == 0) ? playerAirbase.Coordinates : Coordinates.Sum(objectiveCoordinates) / objectiveCoordinates.Count;
+            mission.SetValue("MissionCenterX", objectivesCenter.X);
+            mission.SetValue("MissionCenterY", objectivesCenter.Y);
 
             // Generate carrier groups
             BriefingRoom.PrintToLog("Generating carrier groups...");
