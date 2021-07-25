@@ -46,6 +46,7 @@ The development roadmap and a list of features planned for future versions can b
 (Changelog for older versions can be found in Changelog.md or Changelog.html)
 
 * New mission features: frontline friendly units, frontline enemy units
+* New objective feature: target emits radio transmission
 * New units: NASAMS (AIM-120C) air defense system
 * Added check for non-replaced values in the .miz Lua files 
 * Fixed briefing HTML encoding (now UTF-8) (by John Harvey)
