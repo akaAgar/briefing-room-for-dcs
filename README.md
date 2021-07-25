@@ -45,17 +45,7 @@ The development roadmap and a list of features planned for future versions can b
 
 (Changelog for older versions can be found in Changelog.md or Changelog.html)
 
-* Version 0.5.107.18 (July 18, 2021)
-
-* Virtually rewrote everything from scratch, countless bugs fixed
-* Most notable new features
-* Project split between a library (BriefingRoom.dll), a command-line interface and a Razor/WebView GUI
-* New GUI (by John Harvey) allows both quick mission generation (for quick skirmish generation) and full mission generation (for complete control over all aspect of the mission)
-* New objective system with custom selection of task and target type, count and behavior for each objective
-* New objective/mission feature system allows for fine selection of mission elements, from target designation to rules of engagement
-* Proper carrier group generation (by John Harvey)
-* Graphical kneeboard briefing (by John Harvey)
-* Regressions
-* Campaign generator temporarily disabled, will be restored in the next version
-
-
+* New mission features: frontline friendly units, frontline enemy units
+* New units: NASAMS (AIM-120C) air defense system
+* Added check for non-replaced values in the .miz Lua files 
+* Fixed briefing HTML encoding (now UTF-8) (by John Harvey)
