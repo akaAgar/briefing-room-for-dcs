@@ -48,6 +48,6 @@ The development roadmap and a list of features planned for future versions can b
 * New mission features: frontline friendly units, frontline enemy units
 * New objective feature: target emits radio transmission
 * New units: NASAMS (AIM-120C) air defense system
-* New DCS World mods supported: C-130J, F-117A, F-35A/B/C (planned for mod release), French Pack
+* New DCS World mods supported: A-29B Super Tucano, C-130J, F-117A, F-35A/B/C (planned for mod release), French Pack, Rafales Pack
 * Added check for non-replaced values in the .miz Lua files 
 * Fixed briefing HTML encoding (now UTF-8) (by John Harvey)
