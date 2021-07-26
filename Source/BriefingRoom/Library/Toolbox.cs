@@ -80,6 +80,24 @@ namespace BriefingRoom4DCS
         /// </summary>
         internal const double KNOTS_TO_METERS_PER_SECOND = 0.514444;
 
+        /// <summary>
+        /// Tries to create a directory if it doesn't exist already.
+        /// </summary>
+        /// <param name="path">The directory to create.</param>
+        /// <returns>True if the directory already exists or was created successfully, false otherwise.</returns>
+        internal static bool CreateMissingDirectory(string path)
+        {
+            if (Directory.Exists(path)) return true;
+
+            try
+            {
+                Directory.CreateDirectory(path);
+            }
+            catch (Exception) { return false; }
+
+            return true;
+        }
+
 
         /// <summary>
         /// meters per second to Knots multiplier.
@@ -140,6 +158,18 @@ namespace BriefingRoom4DCS
                 default: return "GROUND_UNIT"; // case UnitCategory.Vehicle
             }
         }
+
+        /// <summary>
+        /// Removes invalid path characters from a filename and replaces them with underscores.
+        /// </summary>
+        /// <param name="fileName">A filename.</param>
+        /// <returns>The filename, without invalid characters.</returns>
+        internal static string RemoveInvalidPathCharacters(string fileName)
+        {
+            if (string.IsNullOrEmpty(fileName)) return "_";
+            return string.Join("_", fileName.Split(Path.GetInvalidFileNameChars()));
+        }
+
 
         /// <summary>
         /// Returns a random angle in radians.
