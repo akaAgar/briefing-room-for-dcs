@@ -18,6 +18,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCS.Campaign;
 using BriefingRoom4DCS.Mission;
 using System;
 using System.IO;
@@ -119,34 +120,61 @@ namespace BriefingRoom4DCS.CommandLineTool
 
             foreach (string t in templateFiles)
             {
-                DCSMission mission = BriefingRoomGenerator.GenerateMission(t);
-                if (mission == null)
+                if (Path.GetExtension(t).ToLowerInvariant() == ".cbrt") // Template file is a campaign template
                 {
-                    Console.WriteLine($"Failed to generate a mission from template {Path.GetFileName(t)}");
-                    continue;
+                    DCSCampaign campaign = BriefingRoomGenerator.GenerateCampaign(t);
+                    if (campaign == null)
+                    {
+                        Console.WriteLine($"Failed to generate a campaign from template {Path.GetFileName(t)}");
+                        continue;
+                    }
+
+                    string campaignDirectory;
+                    if (templateFiles.Length == 1) // Single template file provided, use  campaign name as campaign path.
+                        campaignDirectory = Path.Combine(Application.StartupPath, RemoveInvalidPathCharacters(mission.Briefing.Name));
+                    else // Multiple template files provided, use the template name as campaign name so we know from which template campaign was generated.
+                        campaignDirectory = Path.Combine(Application.StartupPath, Path.GetFileNameWithoutExtension(t));
+                    campaignDirectory = GetUnusedFileName(campaignDirectory);
+
+                    if (!campaign.ExportToDirectory(Application.StartupPath))
+                    {
+                        WriteToDebugLog($"Failed to export campaign directory from template {Path.GetFileName(t)}", LogMessageErrorLevel.Warning);
+                        continue;
+                    }
+                    else
+                        WriteToDebugLog($"Campaign {Path.GetFileName(campaignDirectory)} exported to directory from template {Path.GetFileName(t)}");
                 }
-
-                string mizFileName;
-                if (templateFiles.Length == 1) // Single template file provided, use "theater + mission name" as file name.
-                    mizFileName = Path.Combine(Application.StartupPath, $"{mission.TheaterID} - {RemoveInvalidPathCharacters(mission.Briefing.Name)}.miz");
-                else // Multiple template files provided, use the template name as file name so we know from which template mission was generated.
-                    mizFileName = Path.Combine(Application.StartupPath, Path.GetFileNameWithoutExtension(t) + ".miz");
-                mizFileName = GetUnusedFileName(mizFileName);
-
-                if (!mission.SaveToMizFile(mizFileName))
+                else // Template file is a mission template
                 {
-                    WriteToDebugLog($"Failed to export .miz file from template {Path.GetFileName(t)}", LogMessageErrorLevel.Warning);
-                    continue;
+                    DCSMission mission = BriefingRoomGenerator.GenerateMission(t);
+                    if (mission == null)
+                    {
+                        Console.WriteLine($"Failed to generate a mission from template {Path.GetFileName(t)}");
+                        continue;
+                    }
+
+                    string mizFileName;
+                    if (templateFiles.Length == 1) // Single template file provided, use "theater + mission name" as file name.
+                        mizFileName = Path.Combine(Application.StartupPath, $"{mission.TheaterID} - {RemoveInvalidPathCharacters(mission.Briefing.Name)}.miz");
+                    else // Multiple template files provided, use the template name as file name so we know from which template mission was generated.
+                        mizFileName = Path.Combine(Application.StartupPath, Path.GetFileNameWithoutExtension(t) + ".miz");
+                    mizFileName = GetUnusedFileName(mizFileName);
+
+                    if (!mission.SaveToMizFile(mizFileName))
+                    {
+                        WriteToDebugLog($"Failed to export .miz file from template {Path.GetFileName(t)}", LogMessageErrorLevel.Warning);
+                        continue;
+                    }
+                    else
+                        WriteToDebugLog($"Mission {Path.GetFileName(mizFileName)} exported to .miz file from template {Path.GetFileName(t)}");
                 }
-                else
-                    WriteToDebugLog($"Mission {Path.GetFileName(mizFileName)} exported to .miz file from template {Path.GetFileName(t)}");
             }
 
             return true;
         }
 
         /// <summary>
-        /// Removed invalid path characters from a filename and replaces them with underscores.
+        /// Removes invalid path characters from a filename and replaces them with underscores.
         /// </summary>
         /// <param name="fileName">A filename.</param>
         /// <returns>The filename, without invalid characters.</returns>

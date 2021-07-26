@@ -1,4 +1,7 @@
-﻿[context]
+﻿[briefing]
+campaignname=
+
+[context]
 coalitions.blue=USA
 coalitions.player=Blue
 coalitions.red=Russia
