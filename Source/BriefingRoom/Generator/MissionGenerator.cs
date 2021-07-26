@@ -202,7 +202,10 @@ namespace BriefingRoom4DCS.Generator
             BriefingRoom.PrintToLog("Generating briefing...");
             using (MissionGeneratorBriefing briefingGenerator = new MissionGeneratorBriefing())
             {
-                briefingGenerator.GenerateMissionName(mission, template);
+                string missionName = GeneratorTools.GenerateMissionName(template.BriefingMissionName);
+                mission.Briefing.Name = missionName;
+                mission.SetValue("MISSIONNAME", missionName);
+                
                 briefingGenerator.GenerateMissionBriefingDescription(mission, template, objectiveTargetUnitFamilies);
                 mission.SetValue("DescriptionText", mission.Briefing.GetBriefingAsRawText("\\\n"));
             }

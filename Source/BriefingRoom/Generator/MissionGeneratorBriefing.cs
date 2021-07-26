@@ -42,28 +42,6 @@ namespace BriefingRoom4DCS.Generator
 
         }
 
-        /// <summary>
-        /// Generate a random mission name if none is provided in the template, or returns the provided name if there is one.
-        /// </summary>
-        /// <param name="mission">A mission</param>
-        /// <param name="template">Mission template to use</param>
-        internal void GenerateMissionName(DCSMission mission, MissionTemplate template)
-        {
-            // Try to get the provided custom mission name.
-            string missionName = (template.BriefingMissionName ?? "").ReplaceAll("", "\r", "\n", "\t").Trim();
-
-            // No custom name found, generate one.
-            if (string.IsNullOrEmpty(missionName))
-            {
-                missionName = Database.Instance.Common.Names.MissionNameTemplate;
-                for (int i = 0; i < DBCommonNames.MISSION_NAMES_PART_COUNT; i++)
-                    missionName = missionName.Replace($"$P{i + 1}$", Toolbox.RandomFrom(Database.Instance.Common.Names.MissionNameParts[i]));
-            }
-
-            mission.Briefing.Name = missionName;
-            mission.SetValue("MISSIONNAME", missionName);
-        }
-
         internal void GenerateMissionBriefingDescription(DCSMission mission, MissionTemplate template, List<UnitFamily> objectiveTargetUnitFamilies)
         {
             // Try to get the provided custom mission description.
