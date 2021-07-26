@@ -51,6 +51,10 @@ namespace BriefingRoom4DCS.Campaign
         /// </summary>
         private const int MAX_CAMPAIGN_MISSIONS = 20;
 
+        [Display(Name = "Campaign name", Description = "Name of the campaign. If left empty, a random name will be generated.")]
+        [Category("Briefing")]
+        public string BriefingCampaignName { get; set; }
+
         [Required, DatabaseSourceType(DatabaseEntryType.Coalition)]
         [Display(Name = "Blue coalition", Description = "Which countries belong to the blue coalition?")]
         [Category("Context")]
@@ -210,6 +214,8 @@ namespace BriefingRoom4DCS.Campaign
                 return;
             }
 
+            BriefingCampaignName = "";
+
             ContextCoalitionsBlue = "USA";
             ContextCoalitionPlayer = Coalition.Blue;
             ContextCoalitionsRed = "Russia";
@@ -254,6 +260,8 @@ namespace BriefingRoom4DCS.Campaign
 
             using (INIFile ini = new INIFile(filePath))
             {
+                BriefingCampaignName = ini.GetValue("Briefing", "CampaignName", BriefingCampaignName);
+
                 ContextCoalitionsBlue = ini.GetValue("Context", "Coalitions.Blue", ContextCoalitionsBlue);
                 ContextCoalitionPlayer = ini.GetValue("Context", "Coalitions.Player", ContextCoalitionPlayer);
                 ContextCoalitionsRed = ini.GetValue("Context", "Coalitions.Red", ContextCoalitionsRed);
@@ -297,6 +305,8 @@ namespace BriefingRoom4DCS.Campaign
         {
             using (INIFile ini = new INIFile())
             {
+                ini.SetValue("Briefing", "CampaignName", BriefingCampaignName);
+
                 ini.SetValue("Context", "Coalitions.Blue", ContextCoalitionsBlue);
                 ini.SetValue("Context", "Coalitions.Player", ContextCoalitionPlayer);
                 ini.SetValue("Context", "Coalitions.Red", ContextCoalitionsRed);

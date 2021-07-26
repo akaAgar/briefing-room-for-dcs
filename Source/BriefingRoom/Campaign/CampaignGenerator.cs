@@ -18,6 +18,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Generator;
 using BriefingRoom4DCS.Media;
 using BriefingRoom4DCS.Mission;
@@ -35,6 +36,9 @@ namespace BriefingRoom4DCS.Campaign
     /// </summary>
     internal class CampaignGenerator : IDisposable
     {
+        private static readonly string CAMPAIGN_LUA_TEMPLATE = $"{BRPaths.INCLUDE_LUA}Campaign\\Campaign.lua";
+        private static readonly string CAMPAIGN_STAGE_LUA_TEMPLATE = $"{BRPaths.INCLUDE_LUA}Campaign\\CampaignStage.lua";
+
         /// <summary>
         /// Mission generator to use for mission generations.
         /// </summary>
@@ -50,14 +54,16 @@ namespace BriefingRoom4DCS.Campaign
         }
 
         /// <summary>
-        /// Generates a campaign and output .miz files and campaign data to the provided path.
+        /// Generates a campaign from a campaign template.
         /// </summary>
         /// <param name="campaignTemplate">Campaign template to use.</param>
-        /// <param name="campaignName">Campaign name.</param>
-        /// <param name="campaignFilePath">Path in which campaign files must be written.</param>
-        internal void Generate(CampaignTemplate campaignTemplate, string campaignName, string campaignFilePath)
+        /// <returns>A <see cref="DCSCampaign"/> or null is something went wrong</returns>
+        internal DCSCampaign Generate(CampaignTemplate campaignTemplate)
         {
-            string campaignDirectory = Path.GetDirectoryName(campaignFilePath);
+            DCSCampaign campaign = new();
+
+            string campaignName = GeneratorTools.GenerateMissionName(campaignTemplate.BriefingCampaignName);
+            string baseFileName = Toolbox.RemoveInvalidPathCharacters(campaignName);
 
             DateTime date = GenerateCampaignDate(campaignTemplate);
 
@@ -66,17 +72,30 @@ namespace BriefingRoom4DCS.Campaign
                 // Increment the date by a few days for each mission after the first
                 if (i > 0) date = IncrementDate(date);
 
-                MissionTemplate template = CreateMissionTemplate(campaignTemplate, campaignName,  i);
+                MissionTemplate template = CreateMissionTemplate(campaignTemplate, campaignName,  i, campaignTemplate.MissionsObjectiveCount);
 
                 DCSMission mission = MissionGenerator.Generate(template, true);
                 // TODO: mission.DateTime.Day = date.Day; mission.DateTime.Month = date.Month; mission.DateTime.Year = date.Year;
+                if (mission == null)
+                {
+                    BriefingRoom.PrintToLog($"Failed to generate mission {i + 1} in the campaign.", LogMessageErrorLevel.Warning);
+                    continue;
+                }
 
-                string missionFilePath = Path.Combine(campaignDirectory, $"{campaignName}{i + 1:00}.miz");
-                mission.SaveToMizFile(missionFilePath);
+                campaign.AddMission(mission);
             }
 
-            CreateImageFiles(campaignTemplate, campaignFilePath);
-            //CreateCMPFile(campaignTemplate, campaignFilePath);
+            if (campaign.MissionCount < 1) // No missions generated, something went very wrong.
+            {
+                BriefingRoom.PrintToLog($"Campaign has no valid mission.", LogMessageErrorLevel.Error);
+                return null;
+            }
+
+            CreateImageFiles(campaignTemplate, campaign, campaignName, baseFileName);
+
+            campaign.CMPFile = GetCMPFile(campaignTemplate, campaignName);
+
+            return null;
         }
 
         private DateTime GenerateCampaignDate(CampaignTemplate campaignTemplate)
@@ -89,13 +108,12 @@ namespace BriefingRoom4DCS.Campaign
             return date;
         }
 
-        private void CreateImageFiles(CampaignTemplate campaignTemplate, string campaignFilePath)
+        private void CreateImageFiles(CampaignTemplate campaignTemplate, DCSCampaign campaign, string campaignName, string baseFileName)
         {
-            string baseFileName = Path.Combine(Path.GetDirectoryName(campaignFilePath), Path.GetFileNameWithoutExtension(campaignFilePath));
             string allyFlagName = campaignTemplate.GetCoalition(campaignTemplate.ContextCoalitionPlayer);
             string enemyFlagName = campaignTemplate.GetCoalition((Coalition)(1 - (int)campaignTemplate.ContextCoalitionPlayer));
 
-            using (ImageMaker imgMaker = new ImageMaker())
+            using (ImageMaker imgMaker = new())
             {
                 string theaterImage;
                 string[] theaterImages = Directory.GetFiles($"{BRPaths.INCLUDE_JPG}Theaters\\", $"{campaignTemplate.ContextTheater}*.jpg");
@@ -105,7 +123,7 @@ namespace BriefingRoom4DCS.Campaign
                     theaterImage = "Theaters\\" + Path.GetFileName(Toolbox.RandomFrom(theaterImages));
 
                 // Print the name of the campaign over the campaign "title picture"
-                imgMaker.TextOverlay.Text = Path.GetFileNameWithoutExtension(campaignFilePath);
+                imgMaker.TextOverlay.Text = campaignName;
                 imgMaker.TextOverlay.Alignment = ContentAlignment.TopCenter;
                 File.WriteAllBytes($"{baseFileName}_Title.jpg",
                     imgMaker.GetImageBytes(
@@ -117,42 +135,39 @@ namespace BriefingRoom4DCS.Campaign
                 imgMaker.BackgroundColor = Color.Black;
                 imgMaker.TextOverlay.Text = "";
 
-                File.WriteAllBytes($"{baseFileName}_Success.jpg",
-                    imgMaker.GetImageBytes("Sky.jpg", $"Flags\\{allyFlagName}.png"));
-
-                File.WriteAllBytes($"{baseFileName}_Failure.jpg",
-                    imgMaker.GetImageBytes("Fire.jpg", $"Flags\\{allyFlagName}.png", "Burning.png"));
+                campaign.AddMediaFile($"{baseFileName}_Success.jpg", imgMaker.GetImageBytes("Sky.jpg", $"Flags\\{allyFlagName}.png"));
+                campaign.AddMediaFile($"{baseFileName}_Failure.jpg", imgMaker.GetImageBytes("Fire.jpg", $"Flags\\{allyFlagName}.png", "Burning.png"));
             }
         }
 
-        //private void CreateCMPFile(CampaignTemplate campaignTemplate, string campaignFilePath)
-        //{
-        //    string campaignName = Path.GetFileNameWithoutExtension(campaignFilePath);
-
-        //    string lua = LuaTools.ReadIncludeLuaFile("Campaign\\Campaign.lua");
-        //    GeneratorTools.ReplaceKey(ref lua, "Name", campaignName);
-        //    GeneratorTools.ReplaceKey(ref lua, "Description",
-        //        $"This is a {campaignTemplate.ContextCoalitionsBlue} vs {campaignTemplate.ContextCoalitionsRed} randomly-generated campaign created by an early version of the campaign generator of BriefingRoom, a mission generator for DCS World ({BriefingRoom.WEBSITE_URL}).");
-        //    GeneratorTools.ReplaceKey(ref lua, "Units", "");
-
-        //    string stagesLua = "";
-        //    for (int i = 0; i < campaignTemplate.MissionsCount; i++)
-        //    {
-        //        string nextStageLua = LuaTools.ReadIncludeLuaFile("Campaign\\CampaignStage.lua");
-        //        GeneratorTools.ReplaceKey(ref nextStageLua, "Index", i + 1);
-        //        GeneratorTools.ReplaceKey(ref nextStageLua, "Name", $"Stage {i + 1}");
-        //        GeneratorTools.ReplaceKey(ref nextStageLua, "Description", $"");
-        //        GeneratorTools.ReplaceKey(ref nextStageLua, "File", $"{campaignName}{i + 1:00}.miz");
-
-        //        stagesLua += nextStageLua + "\r\n";
-        //    }
-        //    GeneratorTools.ReplaceKey(ref lua, "Stages", stagesLua);
-
-        //    File.WriteAllText(campaignFilePath, lua.Replace("\r\n", "\n"));
-        //}
-
-        private MissionTemplate CreateMissionTemplate(CampaignTemplate campaignTemplate, string campaignName, int missionIndex)
+        private string GetCMPFile(CampaignTemplate campaignTemplate, string campaignName)
         {
+            string lua = File.ReadAllText(CAMPAIGN_LUA_TEMPLATE);
+            GeneratorTools.ReplaceKey(ref lua, "Name", campaignName);
+            GeneratorTools.ReplaceKey(ref lua, "Description",
+                $"This is a {campaignTemplate.ContextCoalitionsBlue} vs {campaignTemplate.ContextCoalitionsRed} randomly-generated campaign created by an early version of the campaign generator of BriefingRoom, a mission generator for DCS World ({BriefingRoom.WEBSITE_URL}).");
+            GeneratorTools.ReplaceKey(ref lua, "Units", "");
+
+            string stagesLua = "";
+            for (int i = 0; i < campaignTemplate.MissionsCount; i++)
+            {
+                string nextStageLua = File.ReadAllText(CAMPAIGN_STAGE_LUA_TEMPLATE);
+                GeneratorTools.ReplaceKey(ref nextStageLua, "Index", i + 1);
+                GeneratorTools.ReplaceKey(ref nextStageLua, "Name", $"Stage {i + 1}");
+                GeneratorTools.ReplaceKey(ref nextStageLua, "Description", $"");
+                GeneratorTools.ReplaceKey(ref nextStageLua, "File", $"{campaignName}{i + 1:00}.miz");
+
+                stagesLua += nextStageLua + "\r\n";
+            }
+            GeneratorTools.ReplaceKey(ref lua, "Stages", stagesLua);
+
+            return lua.Replace("\r\n", "\n");
+        }
+
+        private MissionTemplate CreateMissionTemplate(CampaignTemplate campaignTemplate, string campaignName, int missionIndex, int missionCount)
+        {
+            string weatherPreset = GetWeatherForMission(campaignTemplate.EnvironmentBadWeatherChance);
+
             MissionTemplate template = new MissionTemplate
             {
                 BriefingMissionName = $"{campaignName}, phase {missionIndex + 1}",
@@ -166,46 +181,82 @@ namespace BriefingRoom4DCS.Campaign
 
                 EnvironmentSeason = Season.Random,
                 EnvironmentTimeOfDay = GetTimeOfDayForMission(campaignTemplate.EnvironmentNightMissionChance),
-                EnvironmentWeatherPreset = "",
-                EnvironmentWind = Wind.Random,
+                EnvironmentWeatherPreset = weatherPreset,
+                EnvironmentWind = GetWindForMission(campaignTemplate.EnvironmentBadWeatherChance, weatherPreset),
 
-                FlightPlanObjectiveDistance = 80,
-                FlightPlanTheaterStartingAirbase = "",
+                FlightPlanObjectiveDistance = GetObjectiveDistance(campaignTemplate.MissionsObjectiveDistance),
+                FlightPlanTheaterStartingAirbase = campaignTemplate.PlayerStartingAirbase,
 
                 MissionFeatures = new List<string>(),
 
                 Mods = campaignTemplate.OptionsMods.ToList(),
 
-                Objectives = new MissionTemplateObjective[] { new MissionTemplateObjective() }.ToList(),
+                Objectives = new(),
 
                 OptionsFogOfWar = campaignTemplate.OptionsFogOfWar,
                 OptionsMission = campaignTemplate.OptionsMission.ToList(),
                 OptionsRealism = campaignTemplate.OptionsRealism.ToList(),
 
-                PlayerFlightGroups = new MissionTemplateFlightGroup[] { new MissionTemplateFlightGroup() }.ToList(),
+                PlayerFlightGroups = new(),
 
-                SituationEnemyAirDefense = campaignTemplate.SituationEnemyAirDefense,
-                SituationEnemyAirForce = campaignTemplate.SituationEnemyAirForce,
-                SituationFriendlyAirDefense = campaignTemplate.SituationFriendlyAirDefense,
-                SituationFriendlyAirForce = campaignTemplate.SituationFriendlyAirForce,
+                SituationEnemyAirDefense = GetPowerLevel(campaignTemplate.SituationEnemyAirDefense, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount),
+                SituationEnemyAirForce = GetPowerLevel(campaignTemplate.SituationEnemyAirForce, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount),
+                SituationFriendlyAirDefense = GetPowerLevel(campaignTemplate.SituationFriendlyAirDefense, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount, true),
+                SituationFriendlyAirForce = GetPowerLevel(campaignTemplate.SituationFriendlyAirForce, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount, true),
             };
 
             int objectiveCount = GetObjectiveCountForMission(campaignTemplate.MissionsObjectiveCount);
             for (int i = 0; i < objectiveCount; i++)
                 template.Objectives.Add(new MissionTemplateObjective(Toolbox.RandomFrom(campaignTemplate.MissionsObjectives)));
 
-            /*
-            template.PlayerFlightGroups = new MissionTemplateFlightGroup[]
-                { new MissionTemplateFlightGroup(
-                    campaignTemplate.PlayerAircraft, Toolbox.RandomFrom(2, 2, 2, 2, 3, 4, 4),
-                    MissionTemplateFlightGroupTask.Objectives, campaignTemplate.PlayerCarrier, Country.CJTFBlue, PlayerStartLocation.Runway) }; //TODO Make country selectable
-
-            template.ContextTheater = campaignTemplate.ContextTheaterID;
-            template.OptionsTheaterCountriesCoalitions = campaignTemplate.OptionsTheaterCountriesCoalitions;
-            template.FlightPlanTheaterStartingAirbase = campaignTemplate.PlayerStartingAirbase;
-            */
+            for (int i = 0; i < objectiveCount; i++)
+                template.PlayerFlightGroups.Add(
+                    new(campaignTemplate.PlayerAircraft, Toolbox.RandomFrom(2, 2, 2, 2, 3, 4, 4),
+                    AircraftPayload.Default, campaignTemplate.PlayerCarrier,
+                    campaignTemplate.ContextCoalitionPlayer == Coalition.Red ? Country.CJTFRed : Country.CJTFBlue,
+                    campaignTemplate.PlayerStartLocation, true));
 
             return template;
+        }
+
+        /// <summary>
+        /// Returns a random distance to the mission objective(s).
+        /// </summary>
+        /// <param name="objectiveDistance">Objective distance setting in the campaign template.</param>
+        /// <returns>A distance, in nautical miles.</returns>
+        private int GetObjectiveDistance(Amount objectiveDistance)
+        {
+            switch (objectiveDistance)
+            {
+                case Amount.VeryLow: return Toolbox.RandomMinMax(40, 80);
+                case Amount.Low: return Toolbox.RandomMinMax(60, 100);
+                default: return Toolbox.RandomMinMax(80, 120); // case Amount.Average
+                case Amount.High: return Toolbox.RandomMinMax(100, 140);
+                case Amount.VeryHigh: return Toolbox.RandomMinMax(120, 160);
+            }
+        }
+
+        private Wind GetWindForMission(Amount badWeatherChance, string weatherPreset)
+        {
+            // Pick a max wind force
+            Wind maxWind;
+            switch (badWeatherChance)
+            {
+                case Amount.VeryLow: maxWind = Wind.Calm; break;
+                case Amount.Low: maxWind = Wind.LightBreeze; break;
+                default: maxWind = Wind.ModerateBreeze; break; // case Amount.Average
+                case Amount.High: maxWind = Wind.ModerateBreeze; break;
+                case Amount.VeryHigh: maxWind = Wind.StrongBreeze; break;
+            }
+
+            // Select a random wind force
+            Wind wind = (Wind)Toolbox.RandomMinMax((int)Wind.Calm, (int)maxWind);
+
+            // Makes the wind stronger if the weather preset is classified as "bad weather"
+            if (Database.Instance.GetEntry<DBEntryWeatherPreset>(weatherPreset).BadWeather)
+                wind += Toolbox.RandomMinMax(0, 2);
+
+            return (Wind)Toolbox.Clamp((int)wind, (int)Wind.Calm, (int)Wind.Storm);
         }
 
         //private DCSSkillLevel GetSkillLevel(AmountNR amount, CampaignDifficultyVariation variation, int missionIndex, int missionsCount)
@@ -240,7 +291,7 @@ namespace BriefingRoom4DCS.Campaign
         //    return (DCSSkillLevel)Toolbox.Clamp((int)skillDouble, (int)DCSSkillLevel.Regular, (int)DCSSkillLevel.Ace);
         //}
 
-        private AmountNR GetPowerLevel(AmountNR amount, CampaignDifficultyVariation variation, int missionIndex, int missionsCount)
+        private AmountNR GetPowerLevel(AmountNR amount, CampaignDifficultyVariation variation, int missionIndex, int missionsCount, bool reverseVariation = false)
         {
             if (amount == AmountNR.Random) return AmountNR.Random;
             if (variation == CampaignDifficultyVariation.Steady) return amount;
@@ -258,30 +309,42 @@ namespace BriefingRoom4DCS.Campaign
                 case CampaignDifficultyVariation.ConsiderablyHarder: amountOffset = 3.5; break;
             }
             double amountDouble = (double)amount + amountOffset * campaignProgress;
+            if (reverseVariation) amountDouble = -amountDouble;
 
             return (AmountNR)Toolbox.Clamp((int)amountDouble, (int)AmountNR.VeryLow, (int)AmountNR.VeryHigh);
         }
 
-        //private Weather GetWeatherForMission(AmountNR badWeatherChance)
-        //{
-        //    int chance;
-        //    switch (badWeatherChance.Get())
-        //    {
-        //        case AmountNR.VeryLow: chance = 0; break;
-        //        case AmountNR.Low: chance = 10; break;
-        //        default: chance = 25; break; // case AmountN.Average
-        //        case AmountNR.High: chance = 40; break;
-        //        case AmountNR.VeryHigh: chance = 60; break;
-        //    }
+        /// <summary>
+        /// Gets a random weather preset for missions of this campaign.
+        /// </summary>
+        /// <param name="badWeatherChance">Chance to have bad weather during this campaign's missions.</param>
+        /// <returns>A weather preset ID</returns>
+        private string GetWeatherForMission(Amount badWeatherChance)
+        {
+            // Chance to have bad weather
+            int chance;
+            switch (badWeatherChance)
+            {
+                case Amount.VeryLow: chance = 0; break;
+                case Amount.Low: chance = 10; break;
+                default: chance = 25; break; // case Amount.Average
+                case Amount.High: chance = 40; break;
+                case Amount.VeryHigh: chance = 60; break;
+            }
 
-        //    if (Toolbox.RandomInt(100) < chance)
-        //        return Toolbox.RandomFrom(Weather.Precipitation, Weather.Precipitation, Weather.Precipitation, Weather.Storm);
-        //    else
-        //        return Toolbox.RandomFrom(
-        //            Weather.Clear, Weather.Clear, Weather.Clear, Weather.Clear,
-        //            Weather.LightClouds, Weather.LightClouds, Weather.LightClouds,
-        //            Weather.SomeClouds, Weather.Overcast);
-        //}
+            // Pick a random weather preset matching the good/bad weather chance
+            string weather =
+                (from DBEntryWeatherPreset weatherDB
+                 in Database.Instance.GetAllEntries<DBEntryWeatherPreset>()
+                 where weatherDB.BadWeather == (Toolbox.RandomInt(100) < chance)
+                 select weatherDB.ID).OrderBy(x => Toolbox.RandomInt()).FirstOrDefault();
+
+            // Just to make sure weather ID is not null
+            if (weather == null)
+                return Toolbox.RandomFrom(Database.Instance.GetAllEntriesIDs<DBEntryWeatherPreset>());
+
+            return weather;
+        }
 
         private TimeOfDay GetTimeOfDayForMission(Amount nightMissionChance)
         {

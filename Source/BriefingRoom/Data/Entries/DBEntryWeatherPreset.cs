@@ -26,7 +26,7 @@ namespace BriefingRoom4DCS.Data
     internal class DBEntryWeatherPreset : DBEntry
     {
         /// <summary>
-        /// Is this weather considered bad weather (for "bad weather chance" in Campaign generation) ?
+        /// Is this weather considered bad weather (for "bad weather chance" in campaign generation)?
         /// </summary>
         internal bool BadWeather { get; private set; }
 

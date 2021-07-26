@@ -185,7 +185,7 @@ namespace BriefingRoom4DCS
         /// </summary>
         /// <param name="templateFilePath">Path to the BriefingRoom template (.brt) file to use.</param>
         /// <param name="useObjectivePresets">If true, <see cref="MissionTemplateObjective.Preset"/> will be used to generate the objective. Otherwise, specific objective parameters will be used.</param>
-        /// <returns>A DCSMission, or null if mission generation failed.</returns>
+        /// <returns>A <see cref="DCSMission"/>, or null if mission generation failed.</returns>
         public DCSMission GenerateMission(string templateFilePath, bool useObjectivePresets = false)
         {
             return Generator.Generate(new MissionTemplate(templateFilePath), useObjectivePresets);
@@ -196,10 +196,30 @@ namespace BriefingRoom4DCS
         /// </summary>
         /// <param name="template">Mission template from which the mission should be generated.</param>
         /// <param name="useObjectivePresets">If true, <see cref="MissionTemplateObjective.Preset"/> will be used to generate the objective. Otherwise, specific objective parameters will be used.</param>
-        /// <returns>A DCSMission, or null if mission generation failed.</returns>
+        /// <returns>A <see cref="DCSMission"/>, or null if mission generation failed.</returns>
         public DCSMission GenerateMission(MissionTemplate template, bool useObjectivePresets = false)
         {
             return Generator.Generate(template, useObjectivePresets);
+        }
+
+        /// <summary>
+        /// Generates a campaign from a BriefingRoom campaign template file.
+        /// </summary>
+        /// <param name="templateFilePath">Path to the BriefingRoom campaign template (.cbrt) file to use.</param>
+        /// <returns>A <see cref="DCSCampaign"/>, or null if mission generation failed.</returns>
+        public DCSCampaign GenerateCampaign(string templateFilePath, bool useObjectivePresets = false)
+        {
+            return CampaignGen.Generate(new CampaignTemplate(templateFilePath));
+        }
+
+        /// <summary>
+        /// Generates a campaign from a campaign template.
+        /// </summary>
+        /// <param name="template">Campaign template from which the campaign should be generated.</param>
+        /// <returns>A <see cref="DCSCampaign"/>, or null if campaign generation failed.</returns>
+        public DCSCampaign GenerateCampaign(CampaignTemplate template)
+        {
+            return CampaignGen.Generate(template);
         }
 
         /// <summary>
@@ -209,10 +229,10 @@ namespace BriefingRoom4DCS
         public static string GetBriefingRoomRootPath() { return BRPaths.ROOT; }
 
         /// <summary>
-        /// Returns the DCS world custom mission path ([User]\Saved Games\DCS\Missions\).
+        /// Returns the DCS World custom mission path ([User]\Saved Games\DCS\Missions\).
         /// Looks first for DCS.earlyaccess, then DCS.openbeta, then DCS.
         /// </summary>
-        /// <returns>The path, or the user My document folder if none is found.</returns>
+        /// <returns>The path, or the user's My document folder if none is found.</returns>
         public static string GetDCSMissionPath()
         {
             string[] possibleDCSPaths = new string[] { "DCS.earlyaccess", "DCS.openbeta", "DCS" };
@@ -222,6 +242,20 @@ namespace BriefingRoom4DCS
                 string dcsPath = Toolbox.PATH_USER + "Saved Games\\" + possibleDCSPaths[i] + "\\Missions\\";
                 if (Directory.Exists(dcsPath)) return dcsPath;
             }
+
+            return Toolbox.PATH_USER_DOCS;
+        }
+
+        /// <summary>
+        /// Returns the DCS World custom campaign path ([User]\Saved Games\DCS\Missions\Campaigns\multilang\).
+        /// Looks first for DCS.earlyaccess, then DCS.openbeta, then DCS.
+        /// </summary>
+        /// <returns>The path, or the user's My document folder if none is found.</returns>
+        public static string GetDCSCampaignPath()
+        {
+            string campaignPath = $"{GetDCSMissionPath()}Campaigns\\multilang\\";
+
+            if (Directory.Exists(campaignPath)) return campaignPath;
 
             return Toolbox.PATH_USER_DOCS;
         }
