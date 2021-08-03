@@ -4,6 +4,8 @@ mission =
     {
         ["actions"] = 
         {
+            [1] = "a_do_script_file(getValueResourceByKey(\"ResKey_Script\"));",
+            [2] = "a_end_mission(\"$LUAPLAYERCOALITION$\", \"\", 0); mission.trig.func[2]=nil;",
         }, -- end of ["actions"]
         ["events"] = 
         {
@@ -13,18 +15,24 @@ mission =
         }, -- end of ["custom"]
         ["func"] = 
         {
+            [2] = "if mission.trig.conditions[2]() then mission.trig.actions[2]() end",
         }, -- end of ["func"]
         ["flag"] = 
         {
+            [1] = true,
+            [2] = true,
         }, -- end of ["flag"]
         ["conditions"] = 
         {
+            [1] = "return(true)",
+            [2] = "return(c_flag_is_true(2) )",
         }, -- end of ["conditions"]
         ["customStartup"] = 
         {
         }, -- end of ["customStartup"]
         ["funcStartup"] = 
         {
+            [1] = "if mission.trig.conditions[1]() then mission.trig.actions[1]() end",
         }, -- end of ["funcStartup"]
     }, -- end of ["trig"]
     ["requiredModules"] = 

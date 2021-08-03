@@ -72,7 +72,7 @@ namespace BriefingRoom4DCS.Campaign
                 // Increment the date by a few days for each mission after the first
                 if (i > 0) date = IncrementDate(date);
 
-                MissionTemplate template = CreateMissionTemplate(campaignTemplate, campaignName,  i, campaignTemplate.MissionsObjectiveCount);
+                MissionTemplate template = CreateMissionTemplate(campaignTemplate, campaignName,  i, (int)campaignTemplate.MissionsObjectiveCount);
 
                 DCSMission mission = MissionGenerator.Generate(template, true);
                 // TODO: mission.DateTime.Day = date.Day; mission.DateTime.Month = date.Month; mission.DateTime.Year = date.Year;
