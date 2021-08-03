@@ -131,7 +131,7 @@ namespace BriefingRoom4DCS.CommandLineTool
 
                     string campaignDirectory;
                     if (templateFiles.Length == 1) // Single template file provided, use  campaign name as campaign path.
-                        campaignDirectory = Path.Combine(Application.StartupPath, RemoveInvalidPathCharacters(mission.Briefing.Name));
+                        campaignDirectory = Path.Combine(Application.StartupPath, RemoveInvalidPathCharacters(campaign.Name));
                     else // Multiple template files provided, use the template name as campaign name so we know from which template campaign was generated.
                         campaignDirectory = Path.Combine(Application.StartupPath, Path.GetFileNameWithoutExtension(t));
                     campaignDirectory = GetUnusedFileName(campaignDirectory);
