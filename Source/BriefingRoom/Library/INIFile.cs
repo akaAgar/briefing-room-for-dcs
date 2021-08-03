@@ -105,25 +105,7 @@ namespace BriefingRoom4DCS
         {
             try
             {
-                string fileContent = "";
-
-                foreach (string s in Sections.Keys)
-                {
-                    if (string.IsNullOrEmpty(s)) continue;
-                    fileContent += $"[{s}]\r\n";
-
-                    foreach (string v in Sections[s].Keys)
-                    {
-                        if (string.IsNullOrEmpty(v)) continue;
-                        if (string.IsNullOrEmpty(Sections[s][v])) continue;
-
-                        fileContent += $"{v}={Sections[s][v]}\r\n";
-                    }
-
-                    fileContent += "\r\n";
-                }
-
-                File.WriteAllText(filePath, fileContent, encoding ?? Encoding.UTF8);
+                File.WriteAllText(filePath, GetFileData(), encoding ?? Encoding.UTF8);
 
                 return true;
             }
@@ -131,6 +113,28 @@ namespace BriefingRoom4DCS
             {
                 return false;
             }
+        }
+
+        internal string GetFileData()
+        {
+            string fileContent = "";
+
+            foreach (string s in Sections.Keys)
+            {
+                if (string.IsNullOrEmpty(s)) continue;
+                fileContent += $"[{s}]\r\n";
+
+                foreach (string v in Sections[s].Keys)
+                {
+                    if (string.IsNullOrEmpty(v)) continue;
+                    if (string.IsNullOrEmpty(Sections[s][v])) continue;
+
+                    fileContent += $"{v}={Sections[s][v]}\r\n";
+                }
+
+                fileContent += "\r\n";
+            }
+            return fileContent;
         }
 
 

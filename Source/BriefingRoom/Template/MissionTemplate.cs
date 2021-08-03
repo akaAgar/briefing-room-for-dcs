@@ -27,6 +27,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace BriefingRoom4DCS.Template
 {
@@ -249,46 +250,53 @@ namespace BriefingRoom4DCS.Template
         {
             if (!File.Exists(filePath)) return false;
 
-            using (INIFile ini = new INIFile(filePath))
-            {
-                BriefingMissionName = ini.GetValue("Briefing", "MissionName", BriefingMissionName);
-                BriefingMissionDescription = ini.GetValue("Briefing", "MissionDescription", BriefingMissionDescription);
+            return Load(new INIFile(filePath));
+        }
 
-                ContextCoalitionBlue = ini.GetValue("Context", "CoalitionBlue", ContextCoalitionBlue);
-                ContextCoalitionRed = ini.GetValue("Context", "CoalitionRed", ContextCoalitionRed);
-                ContextDecade = ini.GetValue("Context", "Decade", ContextDecade);
-                ContextPlayerCoalition = ini.GetValue("Context", "PlayerCoalition", ContextPlayerCoalition);
-                ContextTheater = ini.GetValue("Context", "Theater", ContextTheater);
+        public bool LoadFromString(string data)
+        {
+            return Load(INIFile.CreateFromRawINIString(data));
+        }
 
-                EnvironmentSeason = ini.GetValue("Environment", "Season", EnvironmentSeason);
-                EnvironmentTimeOfDay = ini.GetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);
-                EnvironmentWeatherPreset = ini.GetValue("Environment", "WeatherPreset", EnvironmentWeatherPreset);
-                EnvironmentWind = ini.GetValue("Environment", "Wind", EnvironmentWind);
+        private bool Load(INIFile ini)
+        {
+            BriefingMissionName = ini.GetValue("Briefing", "MissionName", BriefingMissionName);
+            BriefingMissionDescription = ini.GetValue("Briefing", "MissionDescription", BriefingMissionDescription);
 
-                FlightPlanObjectiveDistance = ini.GetValue("FlightPlan", "ObjectiveDistance", FlightPlanObjectiveDistance);
-                FlightPlanTheaterStartingAirbase = ini.GetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
+            ContextCoalitionBlue = ini.GetValue("Context", "CoalitionBlue", ContextCoalitionBlue);
+            ContextCoalitionRed = ini.GetValue("Context", "CoalitionRed", ContextCoalitionRed);
+            ContextDecade = ini.GetValue("Context", "Decade", ContextDecade);
+            ContextPlayerCoalition = ini.GetValue("Context", "PlayerCoalition", ContextPlayerCoalition);
+            ContextTheater = ini.GetValue("Context", "Theater", ContextTheater);
 
-                MissionFeatures = ini.GetValueArray<string>("MissionFeatures", "MissionFeatures").ToList();
+            EnvironmentSeason = ini.GetValue("Environment", "Season", EnvironmentSeason);
+            EnvironmentTimeOfDay = ini.GetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);
+            EnvironmentWeatherPreset = ini.GetValue("Environment", "WeatherPreset", EnvironmentWeatherPreset);
+            EnvironmentWind = ini.GetValue("Environment", "Wind", EnvironmentWind);
 
-                Mods = ini.GetValueArray<string>("Mods", "Mods").ToList();
+            FlightPlanObjectiveDistance = ini.GetValue("FlightPlan", "ObjectiveDistance", FlightPlanObjectiveDistance);
+            FlightPlanTheaterStartingAirbase = ini.GetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
 
-                Objectives.Clear();
-                foreach (string key in ini.GetTopLevelKeysInSection("Objectives"))
-                    Objectives.Add(new MissionTemplateObjective(ini, "Objectives", key));
+            MissionFeatures = ini.GetValueArray<string>("MissionFeatures", "MissionFeatures").ToList();
 
-                OptionsFogOfWar = ini.GetValue("Options", "FogOfWar", OptionsFogOfWar);
-                OptionsMission = ini.GetValueArray<MissionOption>("Options", "Mission").ToList();
-                OptionsRealism = ini.GetValueArray<RealismOption>("Options", "Realism").ToList();
+            Mods = ini.GetValueArray<string>("Mods", "Mods").ToList();
 
-                PlayerFlightGroups.Clear();
-                foreach (string key in ini.GetTopLevelKeysInSection("PlayerFlightGroups"))
-                    PlayerFlightGroups.Add(new MissionTemplateFlightGroup(ini, "PlayerFlightGroups", key));
+            Objectives.Clear();
+            foreach (string key in ini.GetTopLevelKeysInSection("Objectives"))
+                Objectives.Add(new MissionTemplateObjective(ini, "Objectives", key));
 
-                SituationEnemyAirDefense = ini.GetValue("Situation", "EnemyAirDefense", SituationEnemyAirDefense);
-                SituationEnemyAirForce = ini.GetValue("Situation", "EnemyAirForce", SituationEnemyAirForce);
-                SituationFriendlyAirDefense = ini.GetValue("Situation", "FriendlyAirDefense", SituationFriendlyAirDefense);
-                SituationFriendlyAirForce = ini.GetValue("Situation", "FriendlyAirForce", SituationFriendlyAirForce);
-            }
+            OptionsFogOfWar = ini.GetValue("Options", "FogOfWar", OptionsFogOfWar);
+            OptionsMission = ini.GetValueArray<MissionOption>("Options", "Mission").ToList();
+            OptionsRealism = ini.GetValueArray<RealismOption>("Options", "Realism").ToList();
+
+            PlayerFlightGroups.Clear();
+            foreach (string key in ini.GetTopLevelKeysInSection("PlayerFlightGroups"))
+                PlayerFlightGroups.Add(new MissionTemplateFlightGroup(ini, "PlayerFlightGroups", key));
+
+            SituationEnemyAirDefense = ini.GetValue("Situation", "EnemyAirDefense", SituationEnemyAirDefense);
+            SituationEnemyAirForce = ini.GetValue("Situation", "EnemyAirForce", SituationEnemyAirForce);
+            SituationFriendlyAirDefense = ini.GetValue("Situation", "FriendlyAirDefense", SituationFriendlyAirDefense);
+            SituationFriendlyAirForce = ini.GetValue("Situation", "FriendlyAirForce", SituationFriendlyAirForce);
 
             return true;
         }
@@ -299,48 +307,57 @@ namespace BriefingRoom4DCS.Template
         /// <param name="filePath">Path to the .ini file.</param>
         public void SaveToFile(string filePath)
         {
-            int i;
-
-            using (INIFile ini = new INIFile())
-            {
-                ini.SetValue("Briefing", "MissionName", BriefingMissionName);
-                ini.SetValue("Briefing", "MissionDescription", BriefingMissionDescription);
-
-                ini.SetValue("Context", "CoalitionBlue", ContextCoalitionBlue);
-                ini.SetValue("Context", "CoalitionRed", ContextCoalitionRed);
-                ini.SetValue("Context", "Decade", ContextDecade);
-                ini.SetValue("Context", "PlayerCoalition", ContextPlayerCoalition);
-                ini.SetValue("Context", "Theater", ContextTheater);
-
-                ini.SetValue("Environment", "Season", EnvironmentSeason);
-                ini.SetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);
-                ini.SetValue("Environment", "WeatherPreset", EnvironmentWeatherPreset);
-                ini.SetValue("Environment", "Wind", EnvironmentWind);
-
-                ini.SetValue("FlightPlan", "ObjectiveDistance", FlightPlanObjectiveDistance);
-                ini.SetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
-
-                ini.SetValueArray("MissionFeatures", "MissionFeatures", MissionFeatures.ToArray());
-
-                ini.SetValueArray("Mods", "Mods", Mods.ToArray());
-
-                for (i = 0; i < Objectives.Count; i++)
-                    Objectives[i].SaveToFile(ini, "Objectives", $"Objective{i:000}");
-
-                ini.SetValue("Options", "FogOfWar", OptionsFogOfWar);
-                ini.SetValueArray("Options", "Mission", OptionsMission.ToArray());
-                ini.SetValueArray("Options", "Realism", OptionsRealism.ToArray());
-
-                for (i = 0; i < PlayerFlightGroups.Count; i++)
-                    PlayerFlightGroups[i].SaveToFile(ini, "PlayerFlightGroups", $"PlayerFlightGroup{i:000}");
-
-                ini.SetValue("Situation", "EnemyAirDefense", SituationEnemyAirDefense);
-                ini.SetValue("Situation", "EnemyAirForce", SituationEnemyAirForce);
-                ini.SetValue("Situation", "FriendlyAirDefense", SituationFriendlyAirDefense);
-                ini.SetValue("Situation", "FriendlyAirForce", SituationFriendlyAirForce);
-
+                var ini = GetAsIni();
                 ini.SaveToFile(filePath);
-            }
+        }
+
+        public byte[] GetIniBytes()
+        {
+                var ini = GetAsIni();
+                return Encoding.ASCII.GetBytes(ini.GetFileData());
+        }
+
+        private INIFile GetAsIni(){
+            int i;
+            var ini = new INIFile();
+
+            ini.SetValue("Briefing", "MissionName", BriefingMissionName);
+            ini.SetValue("Briefing", "MissionDescription", BriefingMissionDescription);
+
+            ini.SetValue("Context", "CoalitionBlue", ContextCoalitionBlue);
+            ini.SetValue("Context", "CoalitionRed", ContextCoalitionRed);
+            ini.SetValue("Context", "Decade", ContextDecade);
+            ini.SetValue("Context", "PlayerCoalition", ContextPlayerCoalition);
+            ini.SetValue("Context", "Theater", ContextTheater);
+
+            ini.SetValue("Environment", "Season", EnvironmentSeason);
+            ini.SetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);
+            ini.SetValue("Environment", "WeatherPreset", EnvironmentWeatherPreset);
+            ini.SetValue("Environment", "Wind", EnvironmentWind);
+
+            ini.SetValue("FlightPlan", "ObjectiveDistance", FlightPlanObjectiveDistance);
+            ini.SetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
+
+            ini.SetValueArray("MissionFeatures", "MissionFeatures", MissionFeatures.ToArray());
+
+            ini.SetValueArray("Mods", "Mods", Mods.ToArray());
+
+            for (i = 0; i < Objectives.Count; i++)
+                Objectives[i].SaveToFile(ini, "Objectives", $"Objective{i:000}");
+
+            ini.SetValue("Options", "FogOfWar", OptionsFogOfWar);
+            ini.SetValueArray("Options", "Mission", OptionsMission.ToArray());
+            ini.SetValueArray("Options", "Realism", OptionsRealism.ToArray());
+
+            for (i = 0; i < PlayerFlightGroups.Count; i++)
+                PlayerFlightGroups[i].SaveToFile(ini, "PlayerFlightGroups", $"PlayerFlightGroup{i:000}");
+
+            ini.SetValue("Situation", "EnemyAirDefense", SituationEnemyAirDefense);
+            ini.SetValue("Situation", "EnemyAirForce", SituationEnemyAirForce);
+            ini.SetValue("Situation", "FriendlyAirDefense", SituationFriendlyAirDefense);
+            ini.SetValue("Situation", "FriendlyAirForce", SituationFriendlyAirForce);
+
+            return ini;
         }
 
         /// <summary>
