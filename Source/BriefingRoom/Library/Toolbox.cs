@@ -112,7 +112,7 @@ namespace BriefingRoom4DCS
         /// <summary>
         /// Unit families which can be used as carriers.
         /// </summary>
-        internal static readonly UnitFamily[] SHIP_CARRIER_FAMILIES = new UnitFamily[] { UnitFamily.ShipCarrierCATOBAR, UnitFamily.ShipCarrierSTOBAR, UnitFamily.ShipCarrierSTOVL };
+        internal static readonly UnitFamily[] SHIP_CARRIER_FAMILIES = new UnitFamily[] { UnitFamily.ShipCarrierCATOBAR, UnitFamily.ShipCarrierSTOBAR, UnitFamily.ShipCarrierSTOVL, UnitFamily.FOB };
 
         /// <summary>
         /// An instance of the Random class for all randomization methods.
@@ -481,6 +481,7 @@ namespace BriefingRoom4DCS
                     return UnitCategory.Ship;
                 case UnitFamily.StaticStructureMilitary:
                 case UnitFamily.StaticStructureProduction:
+                case UnitFamily.FOB:
                     return UnitCategory.Static;
                 default:
                     return UnitCategory.Vehicle;

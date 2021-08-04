@@ -146,7 +146,7 @@ namespace BriefingRoom4DCS.Generator
             BriefingRoom.PrintToLog("Generating carrier groups...");
             Dictionary<string, UnitMakerGroupInfo> carrierDictionary;
             using (MissionGeneratorCarrierGroup carrierGroupGenerator = new MissionGeneratorCarrierGroup(unitMaker))
-                carrierDictionary = carrierGroupGenerator.GenerateCarrierGroup(mission, template, objectivesCenter, windSpeedAtSeaLevel, windDirectionAtSeaLevel);
+                carrierDictionary = carrierGroupGenerator.GenerateCarrierGroup(mission, template, playerAirbase.Coordinates, objectivesCenter, windSpeedAtSeaLevel, windDirectionAtSeaLevel);
             Coordinates averageInitialPosition = playerAirbase.Coordinates;
             if (carrierDictionary.Count > 0) averageInitialPosition = (averageInitialPosition + carrierDictionary.First().Value.Coordinates) / 2.0;
 

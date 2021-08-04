@@ -55,7 +55,7 @@ namespace BriefingRoom4DCS.Generator
         /// <param name="windSpeedAtSeaLevel">Wind speed at sea level, in m/s.</param>
         /// <param name="windDirectionAtSeaLevel">Wind direction at sea level, in radians.</param>
         /// <returns>A dictionary of carrier group units info, with the database ID of the ship as key.</returns>
-        internal Dictionary<string, UnitMakerGroupInfo> GenerateCarrierGroup(DCSMission mission, MissionTemplate template, Coordinates landbaseCoordinates, double windSpeedAtSeaLevel, double windDirectionAtSeaLevel)
+        internal Dictionary<string, UnitMakerGroupInfo> GenerateCarrierGroup(DCSMission mission, MissionTemplate template, Coordinates landbaseCoordinates, Coordinates objectivesCenter, double windSpeedAtSeaLevel, double windDirectionAtSeaLevel)
         {
             Dictionary<string, UnitMakerGroupInfo> carrierDictionary = new Dictionary<string, UnitMakerGroupInfo>(StringComparer.InvariantCultureIgnoreCase);
 
@@ -76,6 +76,12 @@ namespace BriefingRoom4DCS.Generator
             foreach (MissionTemplateFlightGroup flightGroup in template.PlayerFlightGroups)
             {
                 if (string.IsNullOrEmpty(flightGroup.Carrier)) continue; // No carrier for
+                if (flightGroup.Carrier == "FOB")
+                {
+                    //It Carries therefore carrier not because I can't think of a name to rename this lot
+                    GenerateFOB(flightGroup, carrierDictionary, mission, template, landbaseCoordinates, objectivesCenter);
+                    continue;
+                }
                 if (carrierDictionary.ContainsKey(flightGroup.Carrier)) continue; // Carrier type already added
                 DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(flightGroup.Carrier);
                 if ((unitDB == null) || !unitDB.Families[0].IsCarrier()) continue; // Unit doesn't exist or is not a carrier
@@ -115,6 +121,55 @@ namespace BriefingRoom4DCS.Generator
             }
 
             return carrierDictionary;
+        }
+
+        internal void GenerateFOB(MissionTemplateFlightGroup flightGroup, Dictionary<string, UnitMakerGroupInfo> carrierDictionary, DCSMission mission, MissionTemplate template, Coordinates landbaseCoordinates, Coordinates objectivesCenter)
+        {
+            DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
+            if (theaterDB == null) return; // Theater doesn't exist. Should never happen.
+
+
+            DBEntryTheaterSpawnPoint? spawnPoint =
+                    UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                        new SpawnPointType[] { SpawnPointType.LandLarge },
+                        landbaseCoordinates,
+                        new MinMaxD(10, 50),
+                        objectivesCenter,
+                        new MinMaxD(10, template.FlightPlanObjectiveDistance));
+
+            if (!spawnPoint.HasValue)
+            {
+                BriefingRoom.PrintToLog($"No spawn point found for FOB air defense unit groups", LogMessageErrorLevel.Warning);
+                return;
+            }
+
+            DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(flightGroup.Carrier);
+            if (unitDB == null) return; // Unit doesn't exist or is not a carrier
+
+            double radioFrequency = 127.5 + carrierDictionary.Count;
+
+            UnitMakerGroupInfo? groupInfo =
+                UnitMaker.AddUnitGroup(
+                    unitDB.Families[0], 1, Side.Ally,
+                    "GroupStatic", "UnitStaticFOB",
+                    spawnPoint.Value.Coordinates, DCSSkillLevel.Excellent, 0, AircraftPayload.Default,
+                    "FOBCallSignIndex".ToKeyValuePair(carrierDictionary.Count + 1),
+                    "RadioBand".ToKeyValuePair((int)RadioModulation.AM),
+                    "RadioFrequency".ToKeyValuePair(GeneratorTools.GetRadioFrenquency(radioFrequency)));
+            if (!groupInfo.HasValue || (groupInfo.Value.UnitsID.Length == 0)) return; // Couldn't generate group
+
+            var FOBNames = new string[]{
+                "London",
+                "Dallas",
+                "Paris",
+                "Moscow",
+                "Berlin"
+            };
+           mission.Briefing.AddItem(
+                    DCSMissionBriefingItemType.Airbase,
+                    $"FOB {FOBNames[carrierDictionary.Count(x => x.Key == "FOB")]}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t\t");
+
+            carrierDictionary.Add(flightGroup.Carrier, groupInfo.Value);
         }
 
         /// <summary>

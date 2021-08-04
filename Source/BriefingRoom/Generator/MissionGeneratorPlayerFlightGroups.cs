@@ -57,19 +57,26 @@ namespace BriefingRoom4DCS.Generator
 
             List<int> parkingSpotIDsList = new List<int>();
             List<Coordinates> parkingSpotCoordinatesList = new List<Coordinates>();
-
+            List<Waypoint> flightWaypoints = new List<Waypoint>(waypoints);
             string groupLuaFile = "GroupAircraftPlayer";
             int carrierUnitID = 0;
+            Coordinates groupStartingCoords = playerAirbase.Coordinates;
             if (!string.IsNullOrEmpty(flightGroup.Carrier) && carrierDictionary.ContainsKey(flightGroup.Carrier)) // Carrier take off
             {
+                var carrier = carrierDictionary[flightGroup.Carrier];
                 groupLuaFile = "GroupAircraftPlayerCarrier";
-                carrierUnitID = carrierDictionary[flightGroup.Carrier].UnitsID[0];
+                carrierUnitID = carrier.UnitsID[0];
 
                 for (int i = 0; i < flightGroup.Count; i++)
                 {
                     parkingSpotIDsList.Add(i + 1);
-                    parkingSpotCoordinatesList.Add(carrierDictionary[flightGroup.Carrier].Coordinates);
+                    parkingSpotCoordinatesList.Add(carrier.Coordinates);
                 }
+                groupStartingCoords = carrier.Coordinates;
+                
+                //overwrite waypoints
+                flightWaypoints[0] = new Waypoint(flightWaypoints.First().Name, carrier.Coordinates);
+                flightWaypoints[flightWaypoints.Count -1] = new Waypoint(flightWaypoints.Last().Name, carrier.Coordinates);
             }
             else // Land airbase take off
             {
@@ -91,7 +98,7 @@ namespace BriefingRoom4DCS.Generator
 
             UnitMakerGroupInfo? groupInfo = UnitMaker.AddUnitGroup(
                 Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), Side.Ally, unitDB.Families[0],
-                groupLuaFile, "UnitAircraft", playerAirbase.Coordinates,
+                groupLuaFile, "UnitAircraft", groupStartingCoords,
                 skillLevel, unitMakerGroupFlags, flightGroup.Payload,
                 "PlayerStartingAction".ToKeyValuePair(GeneratorTools.GetPlayerStartingAction(flightGroup.StartLocation)),
                 "PlayerStartingType".ToKeyValuePair(GeneratorTools.GetPlayerStartingType(flightGroup.StartLocation)),
@@ -99,13 +106,13 @@ namespace BriefingRoom4DCS.Generator
                 "InitialWPName".ToKeyValuePair(Database.Instance.Common.Names.WPInitialName),
                 "FinalWPName".ToKeyValuePair(Database.Instance.Common.Names.WPFinalName),
                 "ParkingID".ToKeyValuePair(parkingSpotIDsList.ToArray()),
-                "PlayerWaypoints".ToKeyValuePair(GenerateFlightPlanLua(waypoints)),
-                "LastPlayerWaypointIndex".ToKeyValuePair(waypoints.Count + 2),
+                "PlayerWaypoints".ToKeyValuePair(GenerateFlightPlanLua(flightWaypoints)),
+                "LastPlayerWaypointIndex".ToKeyValuePair(flightWaypoints.Count + 2),
                 "LinkUnit".ToKeyValuePair(carrierUnitID),
                 "UnitX".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.X).ToArray()),
                 "UnitY".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.Y).ToArray()),
-                "MissionAirbaseX".ToKeyValuePair(playerAirbase.Coordinates.X),
-                "MissionAirbaseY".ToKeyValuePair(playerAirbase.Coordinates.Y),
+                "MissionAirbaseX".ToKeyValuePair(groupStartingCoords.X),
+                "MissionAirbaseY".ToKeyValuePair(groupStartingCoords.Y),
                 "MissionAirbaseID".ToKeyValuePair(playerAirbase.DCSID));
 
             if (!groupInfo.HasValue)
