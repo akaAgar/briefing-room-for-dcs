@@ -11,7 +11,7 @@ async function BlazorDownloadFile(filename, contentType, content) {
         types: [{
           description: 'Text documents',
           accept: {
-            'text/plain': ['.miz'],
+            'text/plain': ['.miz','.brt'],
           },
         }],
       });

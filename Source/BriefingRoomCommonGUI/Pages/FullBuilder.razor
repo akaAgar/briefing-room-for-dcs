@@ -11,7 +11,26 @@
 @using Blazored.Typeahead
 @using BriefingRoom4DCS.GUI.Utils
 @using System.Text
-<h1>Full Mission Generator</h1>
+@using System.IO
+<div class="title-bar">
+    <h1>Full Mission Generator</h1>
+    @* TODO: COMPONENT CANDIDATE *@
+    <div class="template-box">
+        <p>Template</p>
+        <div class="btn-group" role="group">
+            <div class="btn btn-primary hidden-input-file">
+                <InputFile i OnChange="@LoadTemplate" />
+                <span class="oi oi-data-transfer-upload"></span>
+            </div>
+            <button class="btn btn-secondary" aria-hidden="true" @onclick="() => SaveTemplate()">
+                <span class="oi oi-data-transfer-download"></span>
+            </button>
+            <button class="btn btn-warning" aria-hidden="true" @onclick="() => ClearTemplate()">
+                <span class="oi oi-reload"></span>
+            </button>
+        </div>
+    </div>
+</div>
 <div class="generator-group">
     <div class="generator-form">
         <div>
@@ -25,14 +44,7 @@
                 Error: @errorMessage
             </div>
             }
-            @* TODO: COMPONENT CANDIDATE *@
-            <label for="fileUpload">Template file path</label>
-            <input class="form-control uploadPath" type="text" id="fileUpload" value="@templatePath" @oninput="eventArgs => SetTemplatePath((string)eventArgs.Value)" title="Yeah I know this isn't ideal but browser security. - J" />
-            <div class="btn-group" role="group">
-                <button class="btn btn-primary" aria-hidden="true" @onclick="() => LoadTemplate()">Load</button>
-                <button class="btn btn-secondary" aria-hidden="true" @onclick="() => SaveTemplate()">Save</button>
-                <button class="btn btn-warning" aria-hidden="true" @onclick="() => ClearTemplate()">Clear</button>
-            </div>
+
             <hr>
         </div>
         <EditForm Model="Template" OnSubmit="GenerateMission">
@@ -491,8 +503,6 @@
 
     private string tempateMessage;
 
-    private string templatePath;
-
     private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BriefingRoom.GetBriefingRoomRootPath()}Default.brt";
 
     private TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
@@ -501,16 +511,6 @@
         Template = new MissionTemplate();
         flightGroupTab = Template.PlayerFlightGroups[0];
         ObjectiveTab = Template.Objectives[0];
-    }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if(firstRender)
-        {
-            var path = await localStorage.GetItemAsync<string>("DCSTemplatePath");
-            SetTemplatePath(path);
-            StateHasChanged();
-        }
     }
 
     private void clearTemplateMessageDelay()
@@ -524,25 +524,30 @@
      StateHasChanged();
     }
 
-    private void SetTemplatePath(string path)
+    private async void LoadTemplate(InputFileChangeEventArgs e)
     {
-        templatePath = string.IsNullOrEmpty(path)? DEFAULT_TEMPLATE_FILEPATH: path;
-        StateHasChanged();
-    }
-
-    private async Task LoadTemplate()
-    {
-        Template.LoadFromFile(templatePath); 
-        tempateMessage = "Template Loaded";
-        await localStorage.SetItemAsync("DCSTemplatePath", templatePath);
-        clearTemplateMessageDelay();
+        try
+        {
+            using var reader = new StreamReader(e.File.OpenReadStream());
+            var data = await reader.ReadToEndAsync();
+            Template.LoadFromString(data); 
+            tempateMessage = "Template Loaded";
+            clearTemplateMessageDelay();
+            
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            errorMessage = ex.Message;
+        }
     }
 
     private async Task SaveTemplate()
     {
-        Template.SaveToFile(templatePath); 
+        var fileBytes = Template.GetIniBytes();
+        try { await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"Default.brt", "application/octet-stream", fileBytes); }
+        catch (Exception) { }
         tempateMessage = "Template Saved"; 
-        await localStorage.SetItemAsync("DCSTemplatePath", templatePath);
         clearTemplateMessageDelay();
     }
 
