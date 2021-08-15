@@ -93,16 +93,7 @@
                         </div>
                         <InputEnum Label="Time period" @bind-Value="Template.ContextDecade" EnumType="Decade"/>
                         <InputEnum Label="Player coalition" @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition"/>
-                        <div class="form-group">
-                            <label>Theater</label>
-                            <InputSelect class="form-control" @bind-Value="Template.ContextTheater">
-                                @foreach (var value in
-                               BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.Theater))
-                                {
-                                    <option value="@value.ID">@value.Name</option>
-                                }
-                            </InputSelect>
-                        </div>
+                        <InputDataBase Label="Theater" @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater"/>
                     </div>
                     break;
                 case "environment":
@@ -110,17 +101,7 @@
                         <h3>Environment</h3>
                         <InputEnum Label="Season" @bind-Value="Template.EnvironmentSeason" EnumType="Season"/>
                         <InputEnum Label="Time of day" @bind-Value="Template.EnvironmentTimeOfDay" EnumType="TimeOfDay"/>
-                        <div class="form-group">
-                            <label>Weather preset</label>
-                            <InputSelect class="form-control" @bind-Value="Template.EnvironmentWeatherPreset">
-                                <option value="">Random</option>
-                                @foreach (var value in
-                               BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.WeatherPreset))
-                                {
-                                    <option value="@value.ID">@value.Name</option>
-                                }
-                            </InputSelect>
-                        </div>
+                        <InputDataBase Label="Weather preset" @bind-Value="Template.EnvironmentWeatherPreset" DataBaseType="DatabaseEntryType.WeatherPreset" EmptOpt="Random"/>
                         <InputEnum Label="Wind" @bind-Value="Template.EnvironmentWind" EnumType="Wind"/>
                     </div>
                     break;
@@ -131,17 +112,7 @@
                             <label>Objective distance (zero means random)</label>
                             <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistance"></InputNumber>
                         </div>
-                        <div class="form-group">
-                            <label>Starting airbase</label>
-                            <InputSelect class="form-control" @bind-Value="Template.FlightPlanTheaterStartingAirbase">
-                                <option value="">Random</option>
-                                @foreach (var value in
-                               BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.Airbase, Template.ContextTheater))
-                                {
-                                    <option value="@value.ID">@value.Name</option>
-                                }
-                            </InputSelect>
-                        </div>
+                        <InputDataBase Label="Starting airbase" @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="Template.ContextTheater" EmptOpt="Random"/>
                     </div>
                     break;
                 case "objectives":
@@ -173,36 +144,9 @@
                             {
                                 <div class="flight-group">
                                     <button type="button" class="btn btn-secondary" @onclick="() => CloneObjective(objective)">Duplicate</button>
-                                    <div class="form-group">
-                                        <label>Task</label>
-                                        <InputSelect class="form-control" @bind-Value="objective.Task">
-                                            @foreach (var value in
-                                           BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveTask))
-                                            {
-                                                <option value="@value.ID">@value.Name</option>
-                                            }
-                                        </InputSelect>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Target</label>
-                                        <InputSelect class="form-control" @bind-Value="objective.Target">
-                                            @foreach (var value in
-                                           BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveTarget))
-                                            {
-                                                <option value="@value.ID">@value.Name</option>
-                                            }
-                                        </InputSelect>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Target behavior</label>
-                                        <InputSelect class="form-control" @bind-Value="objective.TargetBehavior">
-                                            @foreach (var value in
-                                           BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveTargetBehavior))
-                                            {
-                                                <option value="@value.ID">@value.Name</option>
-                                            }
-                                        </InputSelect>
-                                    </div>
+                                    <InputDataBase Label="Task" @bind-Value="objective.Task" DataBaseType="DatabaseEntryType.ObjectiveTask"/>
+                                    <InputDataBase Label="Target" @bind-Value="objective.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget"/>
+                                    <InputDataBase Label="Target behavior" @bind-Value="objective.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior"/>
                                     <InputEnum Label="Target count" @bind-Value="objective.TargetCount" EnumType="Amount"/>
                                     <div class="form-group">
                                         <h4>Objective features</h4>
@@ -337,17 +281,7 @@
                                     </div>
                                     <InputEnum Label="Payload" @bind-Value="flight.Payload" EnumType="AircraftPayload"/>
                                     <InputEnum Label="Start location" @bind-Value="flight.StartLocation" EnumType="PlayerStartLocation"/>
-                                    <div class="form-group">
-                                        <label>Carrier</label>
-                                        <InputSelect class="form-control" @bind-Value="flight.Carrier">
-                                            <option value="">N/A</option>
-                                            @foreach (var value in
-                                           BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.UnitCarrier))
-                                            {
-                                                <option value="@value.ID">@value.Name</option>
-                                            }
-                                        </InputSelect>
-                                    </div>
+                                    <InputDataBase Label="Carrier" @bind-Value="flight.Carrier" DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="N/A"/>
                                     <div class="form-group">
                                         <label>Country</label>
                                         <BlazoredTypeahead SearchMethod="SearchCountry" @bind-Value="flight.Country"

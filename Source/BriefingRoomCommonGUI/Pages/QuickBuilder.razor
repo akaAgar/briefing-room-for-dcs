@@ -80,16 +80,7 @@
                     </div>
                     <InputEnum ClassString="flex-block" Label="Time period" @bind-Value="Template.ContextDecade" EnumType="Decade"/>
                     <InputEnum ClassString="flex-block" Label="Player coalition" @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition"/>
-                    <div class="form-group flex-block">
-                        <label>Theater</label>
-                        <InputSelect class="form-control min-width" @bind-Value="Template.ContextTheater">
-                            @foreach (var value in
-                            BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.Theater))
-                            {
-                                <option value="@value.ID">@value.Name</option>
-                            }
-                        </InputSelect>
-                    </div>
+                    <InputDataBase ClassString="flex-block" Label="Theater" @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater"/>
                 </div>
                 <hr/>
             </div>
@@ -98,16 +89,7 @@
                 @foreach (var objective in Template.Objectives)
                 {
                     <div class="generator-group flex-justify-spaced">
-                            <div class="form-group flex-block">
-                                <label>Objective</label>
-                                <InputSelect class="form-control" @bind-Value="objective.Preset">
-                                    @foreach (var value in
-                                    BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectivePreset))
-                                    {
-                                        <option value="@value.ID">@value.GetNameAndDescription(": ", true)</option>
-                                    }
-                                </InputSelect>
-                            </div>
+                            <InputDataBase ClassString="flex-block" Label="Objective" @bind-Value="objective.Preset" DataBaseType="DatabaseEntryType.ObjectivePreset" HasDescription/>
                              <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="objective.TargetCount" EnumType="Amount"/>
                             <div class="form-group flex-box">
                                 <button type="button" class="btn btn-secondary row-button" @onclick="() => CloneObjective(objective)">Duplicate</button>
@@ -141,17 +123,7 @@
                             <label>Count</label>
                             <InputNumber class="form-control" @bind-Value="flight.Count"></InputNumber>
                         </div>
-                        <div class="form-group flex-block">
-                            <label>Carrier</label>
-                            <InputSelect class="form-control" @bind-Value="flight.Carrier">
-                                <option value="">N/A</option>
-                                @foreach (var value in
-                                BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.UnitCarrier))
-                                {
-                                    <option value="@value.ID">@value.Name</option>
-                                }
-                            </InputSelect>
-                        </div>
+                        <InputDataBase ClassString="flex-block" Label="Carrier" @bind-Value="flight.Carrier" DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="N/A" />
                         <div class="form-group flex-block">
                             <label class="checkboxList-item row-checkbox">
                                 <input type="checkbox" checked=@flight.AIWingmen
