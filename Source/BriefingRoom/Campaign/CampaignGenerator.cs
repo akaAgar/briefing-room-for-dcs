@@ -62,8 +62,8 @@ namespace BriefingRoom4DCS.Campaign
         {
             DCSCampaign campaign = new();
 
-            string campaignName = GeneratorTools.GenerateMissionName(campaignTemplate.BriefingCampaignName);
-            string baseFileName = Toolbox.RemoveInvalidPathCharacters(campaignName);
+            campaign.Name = GeneratorTools.GenerateMissionName(campaignTemplate.BriefingCampaignName);;
+            string baseFileName = Toolbox.RemoveInvalidPathCharacters(campaign.Name);
 
             DateTime date = GenerateCampaignDate(campaignTemplate);
 
@@ -72,7 +72,7 @@ namespace BriefingRoom4DCS.Campaign
                 // Increment the date by a few days for each mission after the first
                 if (i > 0) date = IncrementDate(date);
 
-                MissionTemplate template = CreateMissionTemplate(campaignTemplate, campaignName,  i, (int)campaignTemplate.MissionsObjectiveCount);
+                MissionTemplate template = CreateMissionTemplate(campaignTemplate, campaign.Name,  i, (int)campaignTemplate.MissionsObjectiveCount);
 
                 DCSMission mission = MissionGenerator.Generate(template, true);
                 // TODO: mission.DateTime.Day = date.Day; mission.DateTime.Month = date.Month; mission.DateTime.Year = date.Year;
@@ -91,11 +91,11 @@ namespace BriefingRoom4DCS.Campaign
                 return null;
             }
 
-            CreateImageFiles(campaignTemplate, campaign, campaignName, baseFileName);
+            CreateImageFiles(campaignTemplate, campaign, baseFileName);
 
-            campaign.CMPFile = GetCMPFile(campaignTemplate, campaignName);
+            campaign.CMPFile = GetCMPFile(campaignTemplate, campaign.Name);
 
-            return null;
+            return campaign;
         }
 
         private DateTime GenerateCampaignDate(CampaignTemplate campaignTemplate)
@@ -108,7 +108,7 @@ namespace BriefingRoom4DCS.Campaign
             return date;
         }
 
-        private void CreateImageFiles(CampaignTemplate campaignTemplate, DCSCampaign campaign, string campaignName, string baseFileName)
+        private void CreateImageFiles(CampaignTemplate campaignTemplate, DCSCampaign campaign, string baseFileName)
         {
             string allyFlagName = campaignTemplate.GetCoalition(campaignTemplate.ContextCoalitionPlayer);
             string enemyFlagName = campaignTemplate.GetCoalition((Coalition)(1 - (int)campaignTemplate.ContextCoalitionPlayer));
@@ -123,7 +123,7 @@ namespace BriefingRoom4DCS.Campaign
                     theaterImage = "Theaters\\" + Path.GetFileName(Toolbox.RandomFrom(theaterImages));
 
                 // Print the name of the campaign over the campaign "title picture"
-                imgMaker.TextOverlay.Text = campaignName;
+                imgMaker.TextOverlay.Text = campaign.Name;
                 imgMaker.TextOverlay.Alignment = ContentAlignment.TopCenter;
                 File.WriteAllBytes($"{baseFileName}_Title.jpg",
                     imgMaker.GetImageBytes(
@@ -386,25 +386,7 @@ namespace BriefingRoom4DCS.Campaign
         /// </summary>
         /// <param name="dateTime">Date of the current mission.</param>
         /// <returns>Date of the new mission.</returns>
-        private DateTime IncrementDate(DateTime dateTime)
-        {
-            int day = dateTime.Day + Toolbox.RandomMinMax(1, 3);
-            int month = dateTime.Month;
-            int year = dateTime.Year;
-
-            if (day > GeneratorTools.GetDaysPerMonth((Month)(month - 1), year))
-            {
-                if (month == 12)
-                {
-                    month = 1;
-                    year++;
-                }
-                else
-                    month++;
-            }
-
-            return new DateTime(year, month, day);
-        }
+        private DateTime IncrementDate(DateTime dateTime) => dateTime.AddDays(Toolbox.RandomMinMax(1, 3));
 
         /// <summary>
         /// <see cref="IDisposable"/> implementation.

@@ -1,0 +1,391 @@
+@page "/CampaignBuilder"
+@inject IJSRuntime JSRuntime
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
+@using BriefingRoom4DCS
+@using BriefingRoom4DCS.Campaign
+@using BriefingRoom4DCS.Data
+@using BriefingRoom4DCS.Template
+@using BriefingRoom4DCS.Generator
+@using BriefingRoom4DCS.Mission
+@using System.Globalization
+@using System.Linq
+@using Blazored.Typeahead
+@using BriefingRoom4DCS.GUI.Utils
+@using System.Text
+@using System.IO
+<div class="title-bar">
+    <h1>Campaign builder BETA</h1>
+    @* TODO: COMPONENT CANDIDATE *@
+    <div class="template-box">
+        <p>Template</p>
+        <div class="btn-group" role="group">
+            <div class="btn btn-primary hidden-input-file">
+                <InputFile i OnChange="@LoadTemplate" />
+                <span class="oi oi-data-transfer-upload"></span>
+            </div>
+            <button class="btn btn-secondary" aria-hidden="true" @onclick="() => SaveTemplate()">
+                <span class="oi oi-data-transfer-download"></span>
+            </button>
+            <button class="btn btn-warning" aria-hidden="true" @onclick="() => ClearTemplate()">
+                <span class="oi oi-reload"></span>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="generator-group">
+    <div class="generator-form">
+        <div>
+            @if(!string.IsNullOrEmpty(tempateMessage)){
+                <div class="alert alert-info" role="info">
+                    @tempateMessage
+                </div>
+                }
+            @if(!string.IsNullOrEmpty(errorMessage)){
+            <div class="alert alert-danger" role="alert">
+                Error: @errorMessage
+            </div>
+            }
+
+            <hr>
+        </div>
+        <EditForm Model="Template" OnSubmit="GenerateCampaign">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            
+            <button class="btn btn-primary form-control" type="submit">Generate</button>
+            <hr>
+            <ul class="nav nav-tabs">
+                @foreach (var value in tabs)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link @(tab == value ? "active" : "")" aria-current="page"
+                        @onclick='() => SetTab(value)'>@textInfo.ToTitleCase(value).Replace("-", " ")</a>
+                    </li>
+                }
+            </ul>
+            @switch (tab)
+            {
+                case "context":
+                    <div id="context" class="generator-block">
+                        <h3>Context</h3>
+                        <div class="form-group">
+                            <label>Blue coalition</label>
+                        <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionsBlue" 
+                        EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true" MaximumSuggestions="10">
+                            <SelectedTemplate Context="coalitionId">
+                                @GetCoalitionDisplayName(@coalitionId)
+                            </SelectedTemplate>
+                            <ResultTemplate Context="coalition">
+                                @coalition.Name
+                            </ResultTemplate>
+                        </BlazoredTypeahead>
+                        </div>
+                        <div class="form-group">
+                            <label>Red coalition</label>
+                        <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionsRed" 
+                        EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true" MaximumSuggestions="10">
+                            <SelectedTemplate Context="coalitionId">
+                                @GetCoalitionDisplayName(@coalitionId)
+                            </SelectedTemplate>
+                            <ResultTemplate Context="coalition">
+                                @coalition.Name
+                            </ResultTemplate>
+                        </BlazoredTypeahead>
+                        </div>
+                        <InputEnum Label="Time period" @bind-Value="Template.ContextDecade" EnumType="Decade"/>
+                        <InputEnum Label="Player coalition" @bind-Value="Template.ContextCoalitionPlayer" EnumType="Coalition"/>
+                        <InputDataBase Label="Theater" @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater"/>
+                    </div>
+                    break;
+                case "environment":
+                    <div id="environment" class="generator-block">
+                        <h3>Environment</h3>
+                        <InputEnum Label="Bad weather chance" @bind-Value="Template.EnvironmentBadWeatherChance" EnumType="Amount"/>
+                        <InputEnum Label="Night mission chance" @bind-Value="Template.EnvironmentNightMissionChance" EnumType="Amount"/>
+                    </div>
+                    break;
+                case "flight-plan":
+                    <div id="flight-plan" class="generator-block">
+                        <h3>Flight Plan</h3>
+                        <InputDataBase Label="Starting airbase" @bind-Value="Template.PlayerStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="Template.ContextTheater" EmptOpt="Random"/>
+                        <InputEnum Label="Start location" @bind-Value="Template.PlayerStartLocation" EnumType="PlayerStartLocation"/>
+                    </div>
+                    break;
+                case "missions":
+                    <div id="missions" class="generator-block">
+                        <h3>Missions</h3>
+                        <div class="form-group">
+                            <label>Mission count (zero means random)</label>
+                            <InputNumber class="form-control" @bind-Value="Template.MissionsCount"></InputNumber>
+                        </div>
+                        <div class="form-group">
+                            <label>Mission Features</label>
+                            <CheckBoxList
+                                Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"
+                                TextField="@((item)=>item.Name + "|" + item.Description)" ValueField="@((item)=>item.ID)"
+                                SelectedValues="Template.MissionsFeatures" TItem="DatabaseEntryInfo" TItemOutput="string">
+                            </CheckBoxList>
+                        </div>
+                        <InputEnum Label="Mission difficulty variation" @bind-Value="Template.MissionsDifficultyVariation" EnumType="CampaignDifficultyVariation"/>
+                        <div class="form-group">
+                            <label>Objectives</label>
+                            <CheckBoxList
+                                Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectivePreset).ToList()"
+                                TextField="@((item)=>item.Name + "|" + item.Description)" ValueField="@((item)=>item.ID)"
+                                SelectedValues="Template.MissionsObjectives" TItem="DatabaseEntryInfo" TItemOutput="string">
+                            </CheckBoxList>
+                        </div>
+                        <InputEnum Label="Objectives count" @bind-Value="Template.MissionsObjectiveCount" EnumType="Amount"/>
+                        <InputEnum Label="Objectives distance" @bind-Value="Template.MissionsObjectiveDistance" EnumType="Amount"/>
+                    </div>
+                    break;
+                case "options":
+                    <div id="options" class="generator-block">
+                        <h3>Options</h3>
+                        <InputEnum Label="Fog of war" @bind-Value="Template.OptionsFogOfWar" EnumType="FogOfWar"/>
+                        <div class="form-group">
+                            <h4>Mission options</h4>
+                            <CheckBoxList Data="Enum.GetValues(typeof(MissionOption)).Cast<MissionOption>()"
+                        TextField="@((item)=>BriefingRoomGUITools.GetEnumName(item) + "|" + BriefingRoomGUITools.GetEnumDescription(item))" ValueField="@((item)=>item)"
+                        SelectedValues="Template.OptionsMission" TItem="MissionOption" TItemOutput="MissionOption">
+                            </CheckBoxList>
+                        </div>
+                        <div class="form-group">
+                            <h4>Realism options</h4>
+                            <CheckBoxList Data="Enum.GetValues(typeof(RealismOption)).Cast<RealismOption>()"
+                        TextField="@((item)=>BriefingRoomGUITools.GetEnumName(item))" ValueField="@((item)=>item)"
+                        SelectedValues="Template.OptionsRealism" TItem="RealismOption" TItemOutput="RealismOption">
+                            </CheckBoxList>
+                        </div>
+                        <div class="form-group">
+                            <h4>Unit mods</h4>
+                            <CheckBoxList
+                        Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.DCSMod).ToList()"
+                        TextField="@((item)=>item.Name + "|" + item.Description)" ValueField="@((item)=>item.ID)" SelectedValues="Template.OptionsMods"
+                        TItem="DatabaseEntryInfo" TItemOutput="string">
+                            </CheckBoxList>
+                        </div>
+                    </div>
+                    break;
+                case "situation":
+                    <div id="situation" class="generator-block">
+                        <h3>Situation</h3>
+                        <ul class="nav nav-tabs">
+                            @foreach (var value in situationTabs)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link @(situationTab == value ? "active" : "")" aria-current="page"
+                            @onclick='() => SetSituationTab(value)'>@textInfo.ToTitleCase(value).Replace("-", " ")</a>
+                                </li>
+                            }
+                        </ul>
+                        @switch (situationTab)
+                        {
+                            case "enemies":
+                                <div id="enemies">
+                                    <h4>Enemies</h4>
+                                    <InputEnum Label="Air defense" @bind-Value="Template.SituationEnemyAirDefense" EnumType="AmountNR"/>
+                                    <InputEnum Label="Air force" @bind-Value="Template.SituationEnemyAirForce" EnumType="AmountNR"/>
+                                </div>
+                                break;
+                            case "friendlies":
+                                <div id="friendlies">
+                                    <h4>Friendlies</h4>
+                                    <InputEnum Label="Air defense" @bind-Value="Template.SituationFriendlyAirDefense" EnumType="AmountNR"/>
+                                    <InputEnum Label="Air force" @bind-Value="Template.SituationFriendlyAirForce" EnumType="AmountNR"/>
+                                </div>
+                                break;
+                        }
+                    </div>
+                    break;
+                case "player":
+                    <div id="player" class="generator-block">
+                        <h3>Player</h3
+                        <div class="form-group">
+                            <label>Aircraft</label>
+                            <BlazoredTypeahead SearchMethod="SearchAircraft" @bind-Value="Template.PlayerAircraft"
+                                EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
+                                MaximumSuggestions="100">
+                                <SelectedTemplate Context="aircraftId">
+                                    @GetAircraftDisplayName(@aircraftId)
+                                </SelectedTemplate>
+                                <ResultTemplate Context="aircraft">
+                                    @aircraft.Name
+                                </ResultTemplate>
+                            </BlazoredTypeahead>
+                        </div>
+                        <InputDataBase Label="Carrier" @bind-Value="Template.PlayerCarrier" DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="N/A"/>
+                    </div>
+                    break;
+            }
+        </EditForm>
+    </div>
+    @if (campaign != null)
+    {
+        <div class="generator-preview">
+            <button class="btn btn-primary form-control" @onclick="DownloadMission">Download Mission</button>
+            <button class="btn btn-primary form-control" @onclick="DownloadBriefing">Download Briefing</button>
+            <h3>@campaign.Name (@campaign.MissionCount)</h3>
+            <ul class="nav nav-tabs">
+                @foreach (var mission in campaign.Missions)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link @(missionTab == mission ? "active" : "")" aria-current="page"
+                            @onclick='() => SetMissionTab(mission)'>@(campaign.Missions.IndexOf(mission) + 1)</a>
+                    </li>
+                }
+            </ul>
+            <div>@((MarkupString)missionTab.Briefing.GetBriefingAsHTML(false))</div>
+        </div>
+    }
+</div>
+
+
+@code {
+    private BriefingRoom4DCS.BriefingRoom briefingRoom = new BriefingRoom4DCS.BriefingRoom();
+    private CampaignTemplate Template;
+    private DCSCampaign campaign;
+    private string errorMessage;
+
+    private string tempateMessage;
+
+    private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BriefingRoom.GetBriefingRoomRootPath()}Default.cbrt";
+
+    private TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+    protected override void OnInitialized()
+    {
+        Template = new CampaignTemplate();
+    }
+
+    private void clearTemplateMessageDelay()
+    {
+        Task.Delay(1000).ContinueWith(t=> clearTemplateMessage());
+    }
+
+    private void clearTemplateMessage()
+    {
+        tempateMessage = "";
+        StateHasChanged();
+    }
+
+    private async void LoadTemplate(InputFileChangeEventArgs e)
+    {
+        try
+        {
+            using var reader = new StreamReader(e.File.OpenReadStream());
+            var data = await reader.ReadToEndAsync();
+            //Template.LoadFromString(data); 
+            tempateMessage = "Template Loaded";
+            clearTemplateMessageDelay();
+            
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            errorMessage = ex.Message;
+        }
+    }
+
+    private async Task SaveTemplate()
+    {
+        var fileBytes = Template.GetIniBytes();
+        try { await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"Default.cbrt", "application/octet-stream", fileBytes); }
+        catch (Exception) { }
+        tempateMessage = "Template Saved"; 
+        clearTemplateMessageDelay();
+    }
+
+    private void ClearTemplate()
+    {
+        tempateMessage = "Template Reset"; 
+        Template.Clear();
+        clearTemplateMessageDelay();
+    }
+
+    private void GenerateCampaign()
+    {
+        try {
+            campaign = null;
+            errorMessage = "";
+            campaign = briefingRoom.GenerateCampaign(Template);
+            missionTab = campaign.Missions.First();
+        } catch (Exception ex){
+            Console.WriteLine(ex);
+            errorMessage = ex.Message;
+        }
+    }
+
+    async Task DownloadMission()
+    {
+        foreach(var mission in campaign.Missions){
+            byte[] zipBytes = mission.SaveToMizBytes();
+            if (zipBytes == null) return; // Something went wrong during the .miz export
+
+            try { await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{Template.ContextTheater} - {campaign.Name}.miz", "application/octet-stream", zipBytes); }
+            catch (Exception) { }
+        }
+    }
+
+    async Task DownloadBriefing()
+    {
+        foreach(var mission in campaign.Missions){
+            byte[] zipBytes = Encoding.UTF8.GetBytes(mission.Briefing.GetBriefingAsHTML());
+            if (zipBytes == null) return; // Something went wrong during the .miz export
+
+            try { await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{Template.ContextTheater} - {campaign.Name} - {mission.Briefing.Name}.html", "text/html", zipBytes); }
+            catch (Exception) { }
+        }
+    }
+
+    private string tab = "context";
+    private List<string> tabs = new List<string>{
+    "context",
+    "environment",
+    "missions",
+    "player",
+    "flight-plan",
+    "situation",
+    "options",
+    };
+    private void SetTab(string var)
+    {
+        tab = var;
+    }
+
+
+    private string situationTab = "enemies";
+    private List<string> situationTabs = new List<string> { "enemies", "friendlies" };
+    private void SetSituationTab(string var)
+    {
+        situationTab = var;
+    }
+
+
+    private DCSMission missionTab;
+    private void SetMissionTab(DCSMission var)
+    {
+        missionTab = var;
+    }
+
+    private async Task<IEnumerable<Country>> SearchCountry(string searchText) =>
+    await Typeahead.SearchEnum<Country>(searchText);
+
+    private async Task<IEnumerable<DatabaseEntryInfo>> SearchAircraft(string searchText) =>
+    await Typeahead.SearchDB(DatabaseEntryType.UnitFlyableAircraft, searchText);
+    private string GetAircraftDisplayName(string id) =>
+    Typeahead.GetDBDisplayName(DatabaseEntryType.UnitFlyableAircraft, id);
+
+    private async Task<IEnumerable<DatabaseEntryInfo>> SearchObjectiveType(string searchText) =>
+    await Typeahead.SearchDB(DatabaseEntryType.ObjectiveTask, searchText);
+    private string GetObjectiveTypeDisplayName(string id) =>
+    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTask, id);
+
+    private string GetObjectiveTargetDisplayName(string id) =>
+    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTarget, id);
+
+    private async Task<IEnumerable<DatabaseEntryInfo>> SearchCoalition(string searchText) =>
+    await Typeahead.SearchDB(DatabaseEntryType.Coalition, searchText);
+
+    private string GetCoalitionDisplayName(string id) =>
+    Typeahead.GetDBDisplayName(DatabaseEntryType.Coalition, id);
+}

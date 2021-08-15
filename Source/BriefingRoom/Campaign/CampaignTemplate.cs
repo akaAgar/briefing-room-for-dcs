@@ -28,12 +28,13 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace BriefingRoom4DCS.Campaign
 {
-/// <summary>
-/// A campaign template.
-/// </summary>
+    /// <summary>
+    /// A campaign template.
+    /// </summary>
     public sealed class CampaignTemplate : IDisposable
     {
         /// <summary>
@@ -255,7 +256,6 @@ namespace BriefingRoom4DCS.Campaign
         /// <returns></returns>
         public bool LoadFromFile(string filePath)
         {
-            Clear();
             if (!File.Exists(filePath)) return false;
 
             using (INIFile ini = new INIFile(filePath))
@@ -303,43 +303,53 @@ namespace BriefingRoom4DCS.Campaign
         /// <param name="filePath">Path to the .ini file.</param>
         public void SaveToFile(string filePath)
         {
-            using (INIFile ini = new INIFile())
-            {
-                ini.SetValue("Briefing", "CampaignName", BriefingCampaignName);
+            var ini = GetAsIni();
+            ini.SaveToFile(filePath);
+        }
 
-                ini.SetValue("Context", "Coalitions.Blue", ContextCoalitionsBlue);
-                ini.SetValue("Context", "Coalitions.Player", ContextCoalitionPlayer);
-                ini.SetValue("Context", "Coalitions.Red", ContextCoalitionsRed);
-                ini.SetValue("Context", "Decade", ContextDecade);
-                ini.SetValue("Context", "Theater", ContextTheater);
+        public byte[] GetIniBytes()
+        {
+            var ini = GetAsIni();
+            return Encoding.ASCII.GetBytes(ini.GetFileData());
+        }
 
-                ini.SetValue("Environment", "BadWeatherChance", EnvironmentBadWeatherChance);
-                ini.SetValue("Environment", "NightMissionChance", EnvironmentBadWeatherChance);
+        private INIFile GetAsIni()
+        {
+            var ini = new INIFile();
+            ini.SetValue("Briefing", "CampaignName", BriefingCampaignName);
 
-                ini.SetValue("Missions", "Count", MissionsCount);
-                ini.SetValue("Missions", "DifficultyVariation", MissionsDifficultyVariation);
-                ini.SetValueArray("Missions", "Features", MissionsFeatures.ToArray());
-                ini.SetValueArray("Missions", "Objectives", MissionsObjectives.ToArray());
-                ini.SetValue("Missions", "ObjectiveCount", MissionsObjectiveCount);
-                ini.SetValue("Missions", "ObjectiveDistance", MissionsObjectiveDistance);
+            ini.SetValue("Context", "Coalitions.Blue", ContextCoalitionsBlue);
+            ini.SetValue("Context", "Coalitions.Player", ContextCoalitionPlayer);
+            ini.SetValue("Context", "Coalitions.Red", ContextCoalitionsRed);
+            ini.SetValue("Context", "Decade", ContextDecade);
+            ini.SetValue("Context", "Theater", ContextTheater);
 
-                ini.SetValue("Options", "FogOfWar", OptionsFogOfWar);
-                ini.SetValueArray("Options", "Mods", OptionsMods.ToArray());
-                ini.SetValueArray("Options", "Mission", OptionsMission.ToArray());
-                ini.SetValueArray("Options", "Realism", OptionsRealism.ToArray());
+            ini.SetValue("Environment", "BadWeatherChance", EnvironmentBadWeatherChance);
+            ini.SetValue("Environment", "NightMissionChance", EnvironmentBadWeatherChance);
 
-                ini.SetValue("Player", "Aircraft", PlayerAircraft);
-                ini.SetValue("Player", "Carrier", PlayerCarrier);
-                ini.SetValue("Player", "StartingAirbase", PlayerStartingAirbase);
-                ini.SetValue("Player", "StartLocation", PlayerStartLocation);
+            ini.SetValue("Missions", "Count", MissionsCount);
+            ini.SetValue("Missions", "DifficultyVariation", MissionsDifficultyVariation);
+            ini.SetValueArray("Missions", "Features", MissionsFeatures.ToArray());
+            ini.SetValueArray("Missions", "Objectives", MissionsObjectives.ToArray());
+            ini.SetValue("Missions", "ObjectiveCount", MissionsObjectiveCount);
+            ini.SetValue("Missions", "ObjectiveDistance", MissionsObjectiveDistance);
 
-                ini.SetValue("Situation", "EnemyAirDefense", SituationEnemyAirDefense);
-                ini.SetValue("Situation", "EnemyAirForce", SituationEnemyAirForce);
-                ini.SetValue("Situation", "FriendlyAirDefense", SituationFriendlyAirDefense);
-                ini.SetValue("Situation", "FriendlyAirForce", SituationFriendlyAirForce);
+            ini.SetValue("Options", "FogOfWar", OptionsFogOfWar);
+            ini.SetValueArray("Options", "Mods", OptionsMods.ToArray());
+            ini.SetValueArray("Options", "Mission", OptionsMission.ToArray());
+            ini.SetValueArray("Options", "Realism", OptionsRealism.ToArray());
 
-                ini.SaveToFile(filePath);
-            }
+            ini.SetValue("Player", "Aircraft", PlayerAircraft);
+            ini.SetValue("Player", "Carrier", PlayerCarrier);
+            ini.SetValue("Player", "StartingAirbase", PlayerStartingAirbase);
+            ini.SetValue("Player", "StartLocation", PlayerStartLocation);
+
+            ini.SetValue("Situation", "EnemyAirDefense", SituationEnemyAirDefense);
+            ini.SetValue("Situation", "EnemyAirForce", SituationEnemyAirForce);
+            ini.SetValue("Situation", "FriendlyAirDefense", SituationFriendlyAirDefense);
+            ini.SetValue("Situation", "FriendlyAirForce", SituationFriendlyAirForce);
+
+            return ini;
         }
 
         /// <summary>

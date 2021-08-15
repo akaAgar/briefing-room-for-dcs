@@ -51,7 +51,7 @@ namespace BriefingRoom4DCS.Campaign
         /// <summary>
         /// The missions in this campaign.
         /// </summary>
-        private readonly List<DCSMission> Missions;
+        public readonly List<DCSMission> Missions;
 
         /// <summary>
         /// The name of this campaign.
