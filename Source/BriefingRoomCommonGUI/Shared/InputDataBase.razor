@@ -1,0 +1,40 @@
+<div class="form-group inputEnum @ClassString">
+    <label>@Label</label>
+    <InputSelect 
+    class="form-control" 
+    Value="Value"
+    ValueExpression="@(()=>Value)" 
+    ValueChanged="@((string s) => ValueChangedChild(s))">
+        @foreach (var value in
+        BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DataBaseType))
+        {
+            <option value="@value.ID">@value.GetNameAndDescription(": ", true)</option>
+        }
+    </InputSelect>
+</div>
+  
+@code {
+
+    [Parameter]
+    public bool HasDescription { get; set; } = false;
+
+    [Parameter]
+    public string ClassString { get; set; } = "";
+
+    [Parameter]
+    public string Label { get; set; } 
+
+    [Parameter]
+    public DatabaseEntryType DataBaseType { get; set; }
+ 
+    [Parameter]
+    public string Value { get; set; } 
+
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; } 
+  
+    private async Task ValueChangedChild(string value)
+    {
+        await ValueChanged.InvokeAsync(value);
+    } 
+}

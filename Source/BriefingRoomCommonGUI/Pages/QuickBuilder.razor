@@ -78,24 +78,8 @@
                             </ResultTemplate>
                         </BlazoredTypeahead>
                     </div>
-                    <div class="form-group flex-block">
-                        <label>Time period</label>
-                        <InputSelect class="form-control min-width" @bind-Value="Template.ContextDecade">
-                            @foreach (var value in Enum.GetValues(typeof(Decade)))
-                            {
-                                <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
-                            }
-                        </InputSelect>
-                    </div>
-                    <div class="form-group flex-block">
-                        <label>Player coalition</label>
-                        <InputSelect class="form-control min-width" @bind-Value="Template.ContextPlayerCoalition">
-                            @foreach (var value in Enum.GetValues(typeof(Coalition)))
-                            {
-                                <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
-                            }
-                        </InputSelect>
-                    </div>
+                    <InputEnum ClassString="flex-block" Label="Time period" @bind-Value="Template.ContextDecade" EnumType="Decade"/>
+                    <InputEnum ClassString="flex-block" Label="Player coalition" @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition"/>
                     <div class="form-group flex-block">
                         <label>Theater</label>
                         <InputSelect class="form-control min-width" @bind-Value="Template.ContextTheater">
@@ -124,15 +108,7 @@
                                     }
                                 </InputSelect>
                             </div>
-                            <div class="form-group flex-block">
-                                <label>Target count</label>
-                                <InputSelect class="form-control" @bind-Value="objective.TargetCount">
-                                    @foreach (var value in Enum.GetValues(typeof(Amount)))
-                                    {
-                                        <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
-                                    }
-                                </InputSelect>
-                            </div>
+                             <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="objective.TargetCount" EnumType="Amount"/>
                             <div class="form-group flex-box">
                                 <button type="button" class="btn btn-secondary row-button" @onclick="() => CloneObjective(objective)">Duplicate</button>
                                 <button type="button" class="btn btn-secondary row-button" @onclick="() => RemoveObjective(objective)">Delete</button>

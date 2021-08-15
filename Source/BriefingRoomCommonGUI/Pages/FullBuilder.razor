@@ -91,24 +91,8 @@
                             </ResultTemplate>
                         </BlazoredTypeahead>
                         </div>
-                        <div class="form-group">
-                            <label>Time period</label>
-                            <InputSelect class="form-control" @bind-Value="Template.ContextDecade">
-                                @foreach (var value in Enum.GetValues(typeof(Decade)))
-                                {
-                                    <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
-                                }
-                            </InputSelect>
-                        </div>
-                        <div class="form-group">
-                            <label>Player coalition</label>
-                            <InputSelect class="form-control" @bind-Value="Template.ContextPlayerCoalition">
-                                @foreach (var value in Enum.GetValues(typeof(Coalition)))
-                                {
-                                    <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
-                                }
-                            </InputSelect>
-                        </div>
+                        <InputEnum Label="Time period" @bind-Value="Template.ContextDecade" EnumType="Decade"/>
+                        <InputEnum Label="Player coalition" @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition"/>
                         <div class="form-group">
                             <label>Theater</label>
                             <InputSelect class="form-control" @bind-Value="Template.ContextTheater">
@@ -124,24 +108,8 @@
                 case "environment":
                     <div id="environment" class="generator-block">
                         <h3>Environment</h3>
-                        <div class="form-group">
-                            <label>Season</label>
-                            <InputSelect class="form-control" @bind-Value="Template.EnvironmentSeason">
-                                @foreach (var value in Enum.GetValues(typeof(Season)))
-                                {
-                                    <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
-                                }
-                            </InputSelect>
-                        </div>
-                        <div class="form-group">
-                            <label>Time of day</label>
-                            <InputSelect class="form-control" @bind-Value="Template.EnvironmentTimeOfDay">
-                                @foreach (var value in Enum.GetValues(typeof(TimeOfDay)))
-                                {
-                                    <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
-                                }
-                            </InputSelect>
-                        </div>
+                        <InputEnum Label="Season" @bind-Value="Template.EnvironmentSeason" EnumType="Season"/>
+                        <InputEnum Label="Time of day" @bind-Value="Template.EnvironmentTimeOfDay" EnumType="TimeOfDay"/>
                         <div class="form-group">
                             <label>Weather preset</label>
                             <InputSelect class="form-control" @bind-Value="Template.EnvironmentWeatherPreset">
@@ -153,15 +121,7 @@
                                 }
                             </InputSelect>
                         </div>
-                        <div class="form-group">
-                            <label>Wind</label>
-                            <InputSelect class="form-control" @bind-Value="Template.EnvironmentWind">
-                                @foreach (var value in Enum.GetValues(typeof(Wind)))
-                                {
-                                    <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
-                                }
-                            </InputSelect>
-                        </div>
+                        <InputEnum Label="Wind" @bind-Value="Template.EnvironmentWind" EnumType="Wind"/>
                     </div>
                     break;
                 case "flight-plan":
@@ -243,15 +203,7 @@
                                             }
                                         </InputSelect>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Target count</label>
-                                        <InputSelect class="form-control" @bind-Value="objective.TargetCount">
-                                            @foreach (var value in Enum.GetValues(typeof(Amount)))
-                                            {
-                                                <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
-                                            }
-                                        </InputSelect>
-                                    </div>
+                                    <InputEnum Label="Target count" @bind-Value="objective.TargetCount" EnumType="Amount"/>
                                     <div class="form-group">
                                         <h4>Objective features</h4>
                                         <CheckBoxList
@@ -275,15 +227,7 @@
                 case "options":
                     <div id="options" class="generator-block">
                         <h3>Options</h3>
-                        <div class="form-group">
-                            <h4>Fog of war</h4>
-                            <InputSelect class="form-control" @bind-Value="Template.OptionsFogOfWar">
-                                @foreach (var value in Enum.GetValues(typeof(FogOfWar)))
-                                {
-                                    <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
-                                }
-                            </InputSelect>
-                        </div>
+                        <InputEnum Label="Fog of war" @bind-Value="Template.OptionsFogOfWar" EnumType="FogOfWar"/>
                         <div class="form-group">
                             <h4>Mission features</h4>
                             <CheckBoxList
@@ -333,47 +277,15 @@
                             case "enemies":
                                 <div id="enemies">
                                     <h4>Enemies</h4>
-                                    <div class="form-group">
-                                        <label>Air defense</label>
-                                        <InputSelect class="form-control" @bind-Value="Template.SituationEnemyAirDefense">
-                                            @foreach (var value in Enum.GetValues(typeof(AmountNR)))
-                                            {
-                                                <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
-                                            }
-                                        </InputSelect>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Air force</label>
-                                        <InputSelect class="form-control" @bind-Value="Template.SituationEnemyAirForce">
-                                            @foreach (var value in Enum.GetValues(typeof(AmountNR)))
-                                            {
-                                                <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
-                                            }
-                                        </InputSelect>
-                                    </div>
+                                    <InputEnum Label="Air defense" @bind-Value="Template.SituationEnemyAirDefense" EnumType="AmountNR"/>
+                                    <InputEnum Label="Air force" @bind-Value="Template.SituationEnemyAirForce" EnumType="AmountNR"/>
                                 </div>
                                 break;
                             case "friendlies":
                                 <div id="friendlies">
                                     <h4>Friendlies</h4>
-                                    <div class="form-group">
-                                        <label>Air defense</label>
-                                        <InputSelect class="form-control" @bind-Value="Template.SituationFriendlyAirDefense">
-                                            @foreach (var value in Enum.GetValues(typeof(AmountNR)))
-                                            {
-                                                <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
-                                            }
-                                        </InputSelect>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Air force</label>
-                                        <InputSelect class="form-control" @bind-Value="Template.SituationFriendlyAirForce">
-                                            @foreach (var value in Enum.GetValues(typeof(AmountNR)))
-                                            {
-                                                <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
-                                            }
-                                        </InputSelect>
-                                    </div>
+                                    <InputEnum Label="Air defense" @bind-Value="Template.SituationFriendlyAirDefense" EnumType="AmountNR"/>
+                                    <InputEnum Label="Air force" @bind-Value="Template.SituationFriendlyAirForce" EnumType="AmountNR"/>
                                 </div>
                                 break;
                         }
@@ -423,24 +335,8 @@
                                         <label>Count</label>
                                         <InputNumber class="form-control" @bind-Value="flight.Count"></InputNumber>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Payload</label>
-                                        <InputSelect class="form-control" @bind-Value="flight.Payload">
-                                            @foreach (var value in Enum.GetValues(typeof(AircraftPayload)))
-                                            {
-                                                <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
-                                            }
-                                        </InputSelect>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Start location</label>
-                                        <InputSelect class="form-control" @bind-Value="flight.StartLocation">
-                                            @foreach (var value in Enum.GetValues(typeof(PlayerStartLocation)))
-                                            {
-                                                <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
-                                            }
-                                        </InputSelect>
-                                    </div>
+                                    <InputEnum Label="Payload" @bind-Value="flight.Payload" EnumType="AircraftPayload"/>
+                                    <InputEnum Label="Start location" @bind-Value="flight.StartLocation" EnumType="PlayerStartLocation"/>
                                     <div class="form-group">
                                         <label>Carrier</label>
                                         <InputSelect class="form-control" @bind-Value="flight.Carrier">
