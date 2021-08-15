@@ -176,6 +176,10 @@ namespace BriefingRoom4DCS
         /// <summary>
         /// Transport vehicle
         /// </summary>
-        VehicleTransport
+        VehicleTransport,
+        /// <summary>
+        /// FOB or FARP
+        /// </summary>
+        FOB
     }
 }
