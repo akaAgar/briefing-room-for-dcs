@@ -14,21 +14,7 @@
 @using System.IO
 <div class="title-bar">
     <h1>Quick Mission Generator</h1>
-    <div class="template-box">
-        <p>Template</p>
-        <div class="btn-group" role="group">
-            <div class="btn btn-primary hidden-input-file">
-                <InputFile i OnChange="@LoadTemplate" />
-                <span class="oi oi-data-transfer-upload"></span>
-            </div>
-            <button class="btn btn-secondary" aria-hidden="true" @onclick="() => SaveTemplate()">
-                <span class="oi oi-data-transfer-download"></span>
-            </button>
-            <button class="btn btn-warning" aria-hidden="true" @onclick="() => ClearTemplate()">
-                <span class="oi oi-reload"></span>
-            </button>
-        </div>
-    </div>
+    <TemplateButtons LoadTemplate="LoadTemplate" SaveTemplate="SaveTemplate" ClearTemplate="ClearTemplate" />
 </div>
 <div class="generator-group">
     <div class="generator-form">
@@ -167,8 +153,11 @@
     @if (mission != null)
     {
         <div class="generator-preview">
-            <button class="btn btn-primary form-control" @onclick="DownloadMission">Export mission</button>
-            <button class="btn btn-primary form-control" @onclick="DownloadBriefing">Export briefing</button>
+            <ButtonTrio
+              PrimaryFunc="DownloadMission"  PrimaryLabel="Mission" PrimaryIcon="data-transfer-download"
+              SecondaryFunc="DownloadBriefing"  SecondaryLabel="Briefing" SecondaryIcon="browser"
+              TertiaryFunc="ClearMission"  TertiaryLabel="" TertiaryIcon="x"
+            />
             <div>@((MarkupString)mission.Briefing.GetBriefingAsHTML(false))</div>
         </div>
     }
@@ -205,7 +194,7 @@
         StateHasChanged();
     }
 
-    private async void LoadTemplate(InputFileChangeEventArgs e)
+    private async Task LoadTemplate(InputFileChangeEventArgs e)
     {
         try
         {
@@ -232,11 +221,13 @@
         clearTemplateMessageDelay();
     }
 
-    private void ClearTemplate()
+    private Task ClearTemplate()
     {
         tempateMessage = "Template Reset";
         Template.Clear();
         clearTemplateMessageDelay();
+        StateHasChanged();
+        return Task.CompletedTask;
     }
 
     private void GenerateMission()
@@ -252,6 +243,13 @@
             Console.WriteLine(ex);
             errorMessage = ex.Message;
         }
+    }
+
+    private Task ClearMission()
+    {
+        mission = null;
+        StateHasChanged();
+        return Task.CompletedTask;
     }
 
     async Task DownloadMission()

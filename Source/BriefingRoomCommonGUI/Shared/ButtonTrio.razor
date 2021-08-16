@@ -1,0 +1,25 @@
+<div class="btn-group" role="group">
+    <button class="btn btn-primary" aria-hidden="true" @onclick="() => PrimaryFunc()">
+        <span class="oi oi-@(PrimaryIcon)"></span> @PrimaryLabel
+    </button>
+    <button class="btn btn-secondary" aria-hidden="true" @onclick="() => SecondaryFunc()">
+        <span class="oi oi-@(SecondaryIcon)"></span> @SecondaryLabel
+    </button>
+    <button class="btn btn-warning" aria-hidden="true" @onclick="() => TertiaryFunc()">
+        <span class="oi oi-@(TertiaryIcon)"></span> @TertiaryLabel
+    </button>
+</div>
+
+@code {
+    [Parameter] public Func<Task> PrimaryFunc { get; set; }
+    [Parameter] public string PrimaryLabel { get; set; } = "";
+    [Parameter] public string PrimaryIcon { get; set; }
+
+    [Parameter] public Func<Task> SecondaryFunc { get; set; }
+    [Parameter] public string SecondaryLabel { get; set; } = "";
+    [Parameter] public string SecondaryIcon { get; set; }
+
+    [Parameter] public Func<Task> TertiaryFunc { get; set; }
+    [Parameter] public string TertiaryLabel { get; set; } = "";
+    [Parameter] public string TertiaryIcon { get; set; }
+}

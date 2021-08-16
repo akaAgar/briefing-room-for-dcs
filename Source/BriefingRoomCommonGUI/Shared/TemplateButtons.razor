@@ -1,0 +1,21 @@
+<div class="template-box">
+    <p>Template</p>
+    <div class="btn-group" role="group">
+        <div class="btn btn-primary hidden-input-file">
+            <InputFile i OnChange="@LoadTemplate" />
+            <span class="oi oi-data-transfer-upload"></span>
+        </div>
+        <button class="btn btn-secondary" aria-hidden="true" @onclick="() => SaveTemplate()">
+            <span class="oi oi-data-transfer-download"></span>
+        </button>
+        <button class="btn btn-warning" aria-hidden="true" @onclick="() => ClearTemplate()">
+            <span class="oi oi-reload"></span>
+        </button>
+    </div>
+</div>
+
+@code {
+    [Parameter] public Func<InputFileChangeEventArgs ,Task> LoadTemplate { get; set; }
+    [Parameter] public Func<Task> SaveTemplate { get; set; }
+    [Parameter] public Func<Task> ClearTemplate { get; set; }
+}
