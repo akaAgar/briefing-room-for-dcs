@@ -27,6 +27,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Text;
+using System.IO.Compression;
 
 namespace BriefingRoom4DCS
 {
@@ -717,6 +718,41 @@ namespace BriefingRoom4DCS
             if (numberStr.EndsWith("1")) return $"{number}st";
 
             return $"{number}th";
+        }
+
+        /// <summary>
+        /// Returns a ByteArray of a Zipped folder
+        /// </summary>
+        /// <param name="FileEntries">Files to be Zipped.</param>
+        /// <returns>Returns a ByteArray of a Zipped folder</returns>
+        internal static byte[] ZipData(Dictionary<string, byte[]> FileEntries)
+        {
+            byte[] mizBytes;
+
+            try
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (ZipArchive zip = new ZipArchive(ms, ZipArchiveMode.Update))
+                    {
+                        foreach (string entryKey in FileEntries.Keys)
+                        {
+                            ZipArchiveEntry entry = zip.CreateEntry(entryKey, CompressionLevel.Optimal);
+                            using (BinaryWriter writer = new BinaryWriter(entry.Open()))
+                                writer.Write(FileEntries[entryKey]);
+                        }
+                    }
+
+                    mizBytes = ms.ToArray();
+                }
+            }
+            catch (Exception ex)
+            {
+                BriefingRoom.PrintToLog(ex.Message, LogMessageErrorLevel.Error);
+                return null;
+            }
+
+            return mizBytes;
         }
     }
 }

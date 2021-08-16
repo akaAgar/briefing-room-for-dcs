@@ -67,32 +67,7 @@ namespace BriefingRoom4DCS
                 MizFileEntries.Add(mediaFile, fileBytes);
             }
 
-            byte[] mizBytes;
-
-            try
-            {
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    using (ZipArchive zip = new ZipArchive(ms, ZipArchiveMode.Update))
-                    {
-                        foreach (string entryKey in MizFileEntries.Keys)
-                        {
-                            ZipArchiveEntry entry = zip.CreateEntry(entryKey, CompressionLevel.Optimal);
-                            using (BinaryWriter writer = new BinaryWriter(entry.Open()))
-                                writer.Write(MizFileEntries[entryKey]);
-                        }
-                    }
-
-                    mizBytes = ms.ToArray();
-                }
-            }
-            catch (Exception ex)
-            {
-                BriefingRoom.PrintToLog(ex.Message, LogMessageErrorLevel.Error);
-                return null;
-            }
-
-            return mizBytes;
+            return Toolbox.ZipData(MizFileEntries);
         }
 
         private bool AddLuaFileToEntries(Dictionary<string, byte[]> mizFileEntries, string mizEntryKey, string sourceFile, DCSMission mission = null)

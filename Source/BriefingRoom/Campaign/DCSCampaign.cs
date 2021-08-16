@@ -23,7 +23,9 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Text;
 
 namespace BriefingRoom4DCS.Campaign
 {
@@ -96,6 +98,41 @@ namespace BriefingRoom4DCS.Campaign
                 Missions[i].SaveToMizFile($"{exportPath}{Name}{i + 1:00}.miz");
 
             return false;
+        }
+
+        /// <summary>
+        /// Exports the campaign as a zip.
+        /// </summary>
+        /// <returns>ByteArray of data</returns>
+        public byte[] ExportToCompressedByteArray()
+        {
+            Dictionary<string, byte[]> FileEntries = new Dictionary<string, byte[]>();
+
+            FileEntries.Add("Campaign.cmp", Encoding.UTF8.GetBytes(CMPFile));
+
+            foreach (string key in MediaFiles.Keys)
+            {
+                FileEntries.Add(key, MediaFiles[key]);
+            }
+
+            for (int i = 0; i < Missions.Count; i++)
+                    FileEntries.Add($"{Name}{i + 1:00}.miz", Missions[i].SaveToMizBytes());
+
+            return Toolbox.ZipData(FileEntries);
+        }
+
+        /// <summary>
+        /// Exports the campaign as a zip.
+        /// </summary>
+        /// <returns>ByteArray of data</returns>
+        public byte[] ExportBriefingsToCompressedByteArray()
+        {
+            Dictionary<string, byte[]> FileEntries = new Dictionary<string, byte[]>();
+
+            for (int i = 0; i < Missions.Count; i++)
+                    FileEntries.Add($"{Name}{i + 1:00}.html", Encoding.UTF8.GetBytes(Missions[i].Briefing.GetBriefingAsHTML()));
+                
+            return Toolbox.ZipData(FileEntries);
         }
 
         /// <summary>

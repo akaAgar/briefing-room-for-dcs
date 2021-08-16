@@ -125,7 +125,7 @@ namespace BriefingRoom4DCS.Campaign
                 // Print the name of the campaign over the campaign "title picture"
                 imgMaker.TextOverlay.Text = campaign.Name;
                 imgMaker.TextOverlay.Alignment = ContentAlignment.TopCenter;
-                File.WriteAllBytes($"{baseFileName}_Title.jpg",
+                campaign.AddMediaFile($"{baseFileName}_Title.jpg",
                     imgMaker.GetImageBytes(
                         new ImageMakerLayer(theaterImage),
                         new ImageMakerLayer($"Flags\\{enemyFlagName}.png", ContentAlignment.MiddleCenter, -32, -32),
