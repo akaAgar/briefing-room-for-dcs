@@ -12,8 +12,7 @@
             <a href="@BriefingRoom.WEBSITE_URL" target="_blank">About</a>
             <a href="@BriefingRoom.REPO_URL" target="_blank">GitHub</a>
             <label class="bulb">
-                <input type="checkbox" checked=@darkmode
-                    @onchange="eventArgs => SetDarkMode((bool)eventArgs.Value)" />
+                <input type="checkbox" checked=@darkmode @onchange="eventArgs => SetDarkMode((bool)eventArgs.Value)" />
                 <span class="oi oi-@((darkmode? "sun" : "moon"))"></span>
             </label>
         </div>
@@ -24,12 +23,12 @@
     </div>
 </div>
 
-@code { 
+@code {
     private bool darkmode = false;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if(firstRender)
+        if (firstRender)
         {
             darkmode = await localStorage.GetItemAsync<bool>("DCSUseDarkMode");
             StateHasChanged();

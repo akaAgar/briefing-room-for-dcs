@@ -70,7 +70,7 @@
                         <div class="form-group">
                             <label>Blue coalition</label>
                         <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionBlue" 
-                        EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true" MaximumSuggestions="10">
+                        EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true" MaximumSuggestions="1000">
                             <SelectedTemplate Context="coalitionId">
                                 @GetCoalitionDisplayName(@coalitionId)
                             </SelectedTemplate>
@@ -82,7 +82,7 @@
                         <div class="form-group">
                             <label>Red coalition</label>
                         <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionRed" 
-                        EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true" MaximumSuggestions="10">
+                        EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true" MaximumSuggestions="1000">
                             <SelectedTemplate Context="coalitionId">
                                 @GetCoalitionDisplayName(@coalitionId)
                             </SelectedTemplate>
@@ -266,7 +266,7 @@
                                         <label>Aircraft</label>
                                         <BlazoredTypeahead SearchMethod="SearchAircraft" @bind-Value="flight.Aircraft"
                                             EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
-                                            MaximumSuggestions="100">
+                                            MaximumSuggestions="1000">
                                             <SelectedTemplate Context="aircraftId">
                                                 @GetAircraftDisplayName(@aircraftId)
                                             </SelectedTemplate>
@@ -285,7 +285,7 @@
                                     <div class="form-group">
                                         <label>Country</label>
                                         <BlazoredTypeahead SearchMethod="SearchCountry" @bind-Value="flight.Country"
-                                            EnableDropDown="true" DisableClear="true" MaximumSuggestions="100">
+                                            EnableDropDown="true" DisableClear="true" MaximumSuggestions="1000">
                                             <SelectedTemplate Context="country">
                                                 @country
                                             </SelectedTemplate>

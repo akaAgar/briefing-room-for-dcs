@@ -1,34 +1,31 @@
 @typeparam EnumType
 <div class="form-group inputEnum @ClassString">
     <label>@Label</label>
-    <InputSelect 
-    class="form-control" 
-    Value="Value"
-    ValueExpression="@(()=>Value)" 
-    ValueChanged="@((EnumType s) => ValueChangedChild(s))">
+    <InputSelect class="form-control" Value="Value" ValueExpression="@(()=>Value)"
+        ValueChanged="@((EnumType s) => ValueChangedChild(s))">
         @foreach (var value in Enum.GetValues(typeof(EnumType)))
         {
             <option value="@value">@BriefingRoomGUITools.GetEnumName(value)</option>
         }
     </InputSelect>
 </div>
-  
-@code {  
+
+@code {
 
     [Parameter]
     public string ClassString { get; set; } = "";
 
     [Parameter]
-    public string Label { get; set; }  
- 
-    [Parameter]
-    public EnumType Value { get; set; } 
+    public string Label { get; set; }
 
     [Parameter]
-    public EventCallback<EnumType> ValueChanged { get; set; } 
-  
+    public EnumType Value { get; set; }
+
+    [Parameter]
+    public EventCallback<EnumType> ValueChanged { get; set; }
+
     private async Task ValueChangedChild(EnumType value)
     {
         await ValueChanged.InvokeAsync(value);
-    } 
+    }
 }

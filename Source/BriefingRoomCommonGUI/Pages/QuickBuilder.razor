@@ -33,15 +33,17 @@
 <div class="generator-group">
     <div class="generator-form">
         <div>
-            @if(!string.IsNullOrEmpty(tempateMessage)){
+            @if (!string.IsNullOrEmpty(tempateMessage))
+            {
                 <div class="alert alert-info" role="info">
                     @tempateMessage
                 </div>
-                }
-            @if(!string.IsNullOrEmpty(errorMessage)){
-            <div class="alert alert-danger" role="alert">
-                Error: @errorMessage
-            </div>
+            }
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="alert alert-danger" role="alert">
+                    Error: @errorMessage
+                </div>
             }
             <hr>
         </div>
@@ -50,14 +52,15 @@
             <ValidationSummary />
 
             <button class="btn btn-primary form-control" type="submit">Generate</button>
-            <hr/>
+            <hr />
             <div id="context" class="generator-block">
                 <h3>Context</h3>
                 <div class="generator-group flex-justify-spaced">
                     <div class="form-group flex-block">
                         <label>Blue coalition</label>
-                        <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionBlue" 
-                        EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true" MaximumSuggestions="10">
+                        <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionBlue"
+                            EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
+                            MaximumSuggestions="1000">
                             <SelectedTemplate Context="coalitionId">
                                 @GetCoalitionDisplayName(@coalitionId)
                             </SelectedTemplate>
@@ -68,8 +71,9 @@
                     </div>
                     <div class="form-group flex-block">
                         <label>Red coalition</label>
-                        <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionRed" 
-                        EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true" MaximumSuggestions="10">
+                        <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionRed"
+                            EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
+                            MaximumSuggestions="1000">
                             <SelectedTemplate Context="coalitionId">
                                 @GetCoalitionDisplayName(@coalitionId)
                             </SelectedTemplate>
@@ -78,27 +82,34 @@
                             </ResultTemplate>
                         </BlazoredTypeahead>
                     </div>
-                    <InputEnum ClassString="flex-block" Label="Time period" @bind-Value="Template.ContextDecade" EnumType="Decade"/>
-                    <InputEnum ClassString="flex-block" Label="Player coalition" @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition"/>
-                    <InputDataBase ClassString="flex-block" Label="Theater" @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater"/>
+                    <InputEnum ClassString="flex-block" Label="Time period" @bind-Value="Template.ContextDecade"
+                        EnumType="Decade" />
+                    <InputEnum ClassString="flex-block" Label="Player coalition"
+                        @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition" />
+                    <InputDataBase ClassString="flex-block" Label="Theater" @bind-Value="Template.ContextTheater"
+                        DataBaseType="DatabaseEntryType.Theater" />
                 </div>
-                <hr/>
+                <hr />
             </div>
             <div id="objectives" class="generator-block">
                 <h3>Objectives</h3>
                 @foreach (var objective in Template.Objectives)
                 {
                     <div class="generator-group flex-justify-spaced">
-                            <InputDataBase ClassString="flex-block" Label="Objective" @bind-Value="objective.Preset" DataBaseType="DatabaseEntryType.ObjectivePreset" HasDescription/>
-                             <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="objective.TargetCount" EnumType="Amount"/>
-                            <div class="form-group flex-box">
-                                <button type="button" class="btn btn-secondary row-button" @onclick="() => CloneObjective(objective)">Duplicate</button>
-                                <button type="button" class="btn btn-secondary row-button" @onclick="() => RemoveObjective(objective)">Delete</button>
-                            </div>
+                        <InputDataBase ClassString="flex-block" Label="Objective" @bind-Value="objective.Preset"
+                        DataBaseType="DatabaseEntryType.ObjectivePreset" HasDescription />
+                        <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="objective.TargetCount"
+                        EnumType="Amount" />
+                        <div class="form-group flex-box">
+                            <button type="button" class="btn btn-secondary row-button"
+                            @onclick="() => CloneObjective(objective)">Duplicate</button>
+                            <button type="button" class="btn btn-secondary row-button"
+                            @onclick="() => RemoveObjective(objective)">Delete</button>
                         </div>
+                    </div>
                 }
                 <button type="button" class="btn btn-secondary" @onclick="AddObjective">+</button>
-                <hr/>
+                <hr />
             </div>
             <div id="flight-groups" class="generator-block">
                 <h3>Player flight groups</h3>
@@ -109,8 +120,8 @@
                         <div class="form-group flex-block">
                             <label>Aircraft</label>
                             <BlazoredTypeahead SearchMethod="SearchAircraft" @bind-Value="flight.Aircraft"
-                                EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
-                                MaximumSuggestions="100">
+                            EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
+                            MaximumSuggestions="1000">
                                 <SelectedTemplate Context="aircraftId">
                                     @GetAircraftDisplayName(@aircraftId)
                                 </SelectedTemplate>
@@ -123,22 +134,25 @@
                             <label>Count</label>
                             <InputNumber class="form-control" @bind-Value="flight.Count"></InputNumber>
                         </div>
-                        <InputDataBase ClassString="flex-block" Label="Carrier" @bind-Value="flight.Carrier" DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="N/A" />
+                        <InputDataBase ClassString="flex-block" Label="Carrier" @bind-Value="flight.Carrier"
+                        DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="N/A" />
                         <div class="form-group flex-block">
                             <label class="checkboxList-item row-checkbox">
                                 <input type="checkbox" checked=@flight.AIWingmen
-                                    @onchange="eventArgs => { flight.AIWingmen = (bool)eventArgs.Value; StateHasChanged();}" />
+                                @onchange="eventArgs => { flight.AIWingmen = (bool)eventArgs.Value; StateHasChanged();}" />
                                 <span>AI Wingmen</span>
                             </label>
                         </div>
                         <div class="form-group flex-box">
-                            @* <button type="button" class="btn btn-secondary row-button" @onclick="() => CloneFlight(objective)">Duplicate</button> *@
-                            <button type="button" class="btn btn-secondary row-button" @onclick="() => RemoveFlightGroup(flight)">Delete</button>
+                            @* <button type="button" class="btn btn-secondary row-button" @onclick="() =>
+                                CloneFlight(objective)">Duplicate</button> *@
+                            <button type="button" class="btn btn-secondary row-button"
+                            @onclick="() => RemoveFlightGroup(flight)">Delete</button>
                         </div>
                     </div>
                 }
                 <button type="button" class="btn btn-secondary" @onclick="AddFlightGroup">+</button>
-                <hr/>
+                <hr />
             </div>
             <div id="mission-features" class="generator-block">
                 <h3>Mission features</h3>
@@ -182,13 +196,13 @@
 
     private void clearTemplateMessageDelay()
     {
-        Task.Delay(1000).ContinueWith(t=> clearTemplateMessage());
+        Task.Delay(1000).ContinueWith(t => clearTemplateMessage());
     }
 
     private void clearTemplateMessage()
     {
-     tempateMessage = "";
-     StateHasChanged();
+        tempateMessage = "";
+        StateHasChanged();
     }
 
     private async void LoadTemplate(InputFileChangeEventArgs e)
@@ -197,10 +211,10 @@
         {
             using var reader = new StreamReader(e.File.OpenReadStream());
             var data = await reader.ReadToEndAsync();
-            Template.LoadFromString(data); 
+            Template.LoadFromString(data);
             tempateMessage = "Template Loaded";
             clearTemplateMessageDelay();
-            
+
         }
         catch (Exception ex)
         {
@@ -214,24 +228,27 @@
         var fileBytes = Template.GetIniBytes();
         try { await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"Default.brt", "application/octet-stream", fileBytes); }
         catch (Exception) { }
-        tempateMessage = "Template Saved"; 
+        tempateMessage = "Template Saved";
         clearTemplateMessageDelay();
     }
 
     private void ClearTemplate()
     {
-        tempateMessage = "Template Reset"; 
+        tempateMessage = "Template Reset";
         Template.Clear();
         clearTemplateMessageDelay();
     }
 
     private void GenerateMission()
     {
-        try {
+        try
+        {
             mission = null;
             errorMessage = "";
             mission = briefingRoom.GenerateMission(Template, true);
-        } catch (Exception ex){
+        }
+        catch (Exception ex)
+        {
             Console.WriteLine(ex);
             errorMessage = ex.Message;
         }
@@ -242,7 +259,11 @@
         byte[] zipBytes = mission.SaveToMizBytes();
         if (zipBytes == null) return; // Something went wrong during the .miz export
 
-        try { await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{Template.ContextTheater} - {mission.Briefing.Name}.miz", "application/octet-stream", zipBytes); }
+        try
+        {
+            await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{Template.ContextTheater} - {mission.Briefing.Name}.miz",
+            "application/octet-stream", zipBytes);
+        }
         catch (Exception) { }
     }
 
@@ -251,7 +272,11 @@
         byte[] zipBytes = Encoding.ASCII.GetBytes(mission.Briefing.GetBriefingAsHTML());
         if (zipBytes == null) return; // Something went wrong during the .miz export
 
-        try { await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{Template.ContextTheater} - {mission.Briefing.Name}.html", "text/html", zipBytes); }
+        try
+        {
+            await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{Template.ContextTheater} - {mission.Briefing.Name}.html",
+            "text/html", zipBytes);
+        }
         catch (Exception) { }
     }
 
@@ -290,8 +315,10 @@
         Template.Objectives.Add(obj);
     }
 
-    private void CloneObjective(MissionTemplateObjective obj) {
-        MissionTemplateObjective newObj = new(){
+    private void CloneObjective(MissionTemplateObjective obj)
+    {
+        MissionTemplateObjective newObj = new()
+        {
             Target = obj.Target,
             TargetBehavior = obj.TargetBehavior,
             TargetCount = obj.TargetCount,

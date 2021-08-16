@@ -1,11 +1,8 @@
 <div class="form-group inputEnum @ClassString">
     <label>@Label</label>
-    <InputSelect 
-    class="form-control" 
-    Value="Value"
-    ValueExpression="@(()=>Value)" 
-    ValueChanged="@((string s) => ValueChangedChild(s))">
-        @if(!String.IsNullOrEmpty(EmptOpt))
+    <InputSelect class="form-control" Value="Value" ValueExpression="@(()=>Value)"
+        ValueChanged="@((string s) => ValueChangedChild(s))">
+        @if (!String.IsNullOrEmpty(EmptOpt))
         {
             <option value="">@EmptOpt</option>
         }
@@ -15,14 +12,16 @@
                 @if (HasDescription)
                 {
                     @value.GetNameAndDescription(": ", true)
-                } else {
+                }
+                else
+                {
                     @value.Name
                 }
             </option>
         }
     </InputSelect>
 </div>
-  
+
 @code {
 
     [Parameter]
@@ -35,7 +34,7 @@
     public string ClassString { get; set; } = "";
 
     [Parameter]
-    public string Label { get; set; } 
+    public string Label { get; set; }
 
     [Parameter]
     public DatabaseEntryType DataBaseType { get; set; }
@@ -44,19 +43,19 @@
     public string Grouping { get; set; }
 
     [Parameter]
-    public string Value { get; set; } 
+    public string Value { get; set; }
 
     [Parameter]
-    public EventCallback<string> ValueChanged { get; set; } 
-  
+    public EventCallback<string> ValueChanged { get; set; }
+
     private async Task ValueChangedChild(string value)
     {
         await ValueChanged.InvokeAsync(value);
-    } 
+    }
 
     private DatabaseEntryInfo[] GetData()
     {
-        if(String.IsNullOrEmpty(Grouping))
+        if (String.IsNullOrEmpty(Grouping))
             return BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DataBaseType, Grouping);
         return BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DataBaseType);
     }
