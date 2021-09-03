@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using System.IO;
+using BriefingRoom4DCS.Template;
 
 namespace BriefingRoom4DCS.Data
 {
@@ -92,6 +93,8 @@ namespace BriefingRoom4DCS.Data
         /// </summary>
         internal double UnitGroupSpawnDistance { get; private set; }
 
+        internal AircraftPayload UnitGroupPayload { get; private set; }
+
         /// <summary>
         /// Valid spawn point types for this unit group.
         /// </summary>
@@ -131,6 +134,7 @@ namespace BriefingRoom4DCS.Data
                 UnitGroupLuaUnit = Toolbox.AddMissingFileExtension(ini.GetValue<string>("UnitGroup", "Lua.Unit"), ".lua");
                 UnitGroupSize = ini.GetValue<MinMaxI>("UnitGroup", "Size");
                 UnitGroupSpawnDistance = ini.GetValue<double>("UnitGroup", "SpawnDistance");
+                UnitGroupPayload = ini.GetValue<AircraftPayload>("UnitGroup", "Payload", AircraftPayload.Default);
                 UnitGroupValidSpawnPoints = DatabaseTools.CheckSpawnPoints(ini.GetValueArray<SpawnPointType>("UnitGroup", "ValidSpawnPoints"));
             }
 

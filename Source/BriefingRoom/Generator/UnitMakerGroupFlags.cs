@@ -49,5 +49,10 @@ namespace BriefingRoom4DCS.Generator
         /// Add embedded short-range air defense (ground vehicles groups only).
         /// </summary>
         EmbeddedAirDefense = 16,
+
+        /// <summary>
+        /// Aircraft should be activated when the player radios for it.
+        /// </summary>
+        RadioAircraftSpawn = 32,
     }
 }

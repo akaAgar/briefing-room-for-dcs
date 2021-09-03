@@ -166,6 +166,8 @@ namespace BriefingRoom4DCS.Generator
                 groupLua = ApplyAircraftFields(groupLua, firstUnitDB, extraSettings);
                 if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ImmediateAircraftSpawn))
                     Mission.AppendValue("AircraftActivatorCurrentQueue", $"{GroupID},");
+                else if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.RadioAircraftSpawn))
+                     Mission.AppendValue("AircraftRadioActivator", $"{{{GroupID}, \"{groupName}\"}},");
                 else
                     Mission.AppendValue("AircraftActivatorReserveQueue", $"{GroupID},");
             }
