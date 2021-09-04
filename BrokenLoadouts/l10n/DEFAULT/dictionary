@@ -1,0 +1,3 @@
+dictionary = 
+{
+} -- end of dictionary
