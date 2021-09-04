@@ -82,7 +82,7 @@ function briefingRoom.mission.missionFeatures.supportFriendlyCAP.setTask()
         wp.airdromeId = nil
         wp.helipadId = nil
         wp.name = "CAP"
-        wp.task = { id = 'Orbit', params = { point = dcsExtensions.toVec2(m.pos), pattern  = "Circle", speed = 200, altitude = 7620}} 
+        wp.task = { id = 'EngageTargets', params = { targetTypes = { [1] = "Air"} }} 
         
         local newRoute = {}
         newRoute[1]=wp
@@ -97,6 +97,7 @@ function briefingRoom.mission.missionFeatures.supportFriendlyCAP.setTask()
             },
         }
         group:getController():setTask(newTask)
+        group:getController():pushTask({ id = 'Orbit', params = { point = dcsExtensions.toVec2(m.pos), pattern  = "Circle", speed = 200, altitude = 7620}})
       end
       return
     end

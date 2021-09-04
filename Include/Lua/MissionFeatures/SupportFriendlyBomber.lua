@@ -47,19 +47,13 @@ end
 function briefingRoom.mission.missionFeatures.supportFriendlyBomber.launchBombingRun()
   briefingRoom.radioManager.play("Bomber, begin your run.", "RadioPilotBeginYourBombingRun")
  
-  -- if briefingRoom.mission.missionFeatures.supportFriendlyBomber.fireMissionsLeft <= 0 then
-  --   briefingRoom.radioManager.play("Negative, no fire missions available.", "RadioArtilleryNoAmmo", briefingRoom.radioManager.getAnswerDelay())
-  --   return
-  -- end
-
   local marks = world.getMarkPanels()
   for _,m in ipairs(marks) do
     if briefingRoom.mission.missionFeatures.supportFriendlyBomber.markID ~= nil and m.idx == briefingRoom.mission.missionFeatures.supportFriendlyBomber.markID then
-      --local args = { ["position"] = m.pos }
       local group = dcsExtensions.getGroupByID(briefingRoom.mission.missionFeatures.groupsID.supportFriendlyBomber)
       if group ~= nil then
         group:activate()
-        timer.scheduleFunction(briefingRoom.mission.missionFeatures.supportFriendlyBomber.setTask, {}, timer.getTime() + 10) --just re-run after 10 s
+        timer.scheduleFunction(briefingRoom.mission.missionFeatures.supportFriendlyBomber.setTask, {}, timer.getTime() + 10)
         briefingRoom.radioManager.play("Copy, beginning bombing run on coordinates.", "RadioArtilleryFiring", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
       end
       return

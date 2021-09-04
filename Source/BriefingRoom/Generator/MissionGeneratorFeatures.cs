@@ -20,7 +20,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
-using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,8 +72,8 @@ namespace BriefingRoom4DCS.Generator
 
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ImmediateAircraftActivation))
                     groupFlags |= UnitMakerGroupFlags.ImmediateAircraftSpawn;
-                
-                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.RadioAircraftActivation))
+
+                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.RadioAircraftActivation))
                     groupFlags |= UnitMakerGroupFlags.RadioAircraftSpawn;
 
                 Side groupSide = Side.Enemy;
@@ -89,7 +88,11 @@ namespace BriefingRoom4DCS.Generator
                     featureDB.UnitGroupLuaGroup, featureDB.UnitGroupLuaUnit,
                     coordinates, null, groupFlags, featureDB.UnitGroupPayload,
                     extraSettings.ToArray());
-                if(groupSide == Side.Ally && groupInfo.HasValue && groupInfo.Value.UnitDB != null)
+                if (
+                    groupSide == Side.Ally &&
+                    groupInfo.HasValue &&
+                    groupInfo.Value.UnitDB != null &&
+                    groupInfo.Value.UnitDB.IsAircraft)
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
                             $"{groupInfo.Value.Name}\t" +
                             $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName}\t" +

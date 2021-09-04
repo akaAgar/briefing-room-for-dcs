@@ -83,7 +83,7 @@ function briefingRoom.mission.missionFeatures.supportFriendlySEAD.setTask()
         wp.airdromeId = nil
         wp.helipadId = nil
         wp.name = "SEAD"
-        wp.task = { id = 'Orbit', params = { point = dcsExtensions.toVec2(m.pos), pattern  = "Circle", speed = 200, altitude = 7620}} 
+        wp.task = { id = 'EngageTargets', params = { targetTypes = { [1] = "Air Defence"} }} 
         
         local newRoute = {}
         newRoute[1]=wp
@@ -98,6 +98,7 @@ function briefingRoom.mission.missionFeatures.supportFriendlySEAD.setTask()
             },
         }
         group:getController():setTask(newTask)
+        group:getController():pushTask({ id = 'EngageTargetsInZone', params = { targetTypes = { [1] = "Air Defence"}, point = dcsExtensions.toVec2(m.pos), zoneRadius = 15000 }})
       end
       return
     end
