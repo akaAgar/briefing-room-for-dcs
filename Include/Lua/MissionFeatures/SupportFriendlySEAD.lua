@@ -45,7 +45,7 @@ end
 
 -- Radio command to launch bombing run (called from F10 menu)
 function briefingRoom.mission.missionFeatures.supportFriendlySEAD.launchBombingRun()
-  briefingRoom.radioManager.play("SEAD, begin your patrol.", "RadioPilotBeginYourBombingRun")
+  briefingRoom.radioManager.play("SEAD, begin your patrol.", "RadioPilotSEADSupport")
 
   local marks = world.getMarkPanels()
   for _,m in ipairs(marks) do
@@ -54,7 +54,7 @@ function briefingRoom.mission.missionFeatures.supportFriendlySEAD.launchBombingR
       if group ~= nil then
         group:activate()
         timer.scheduleFunction(briefingRoom.mission.missionFeatures.supportFriendlySEAD.setTask, {}, timer.getTime() + 10) --just re-run after 10 s
-        briefingRoom.radioManager.play("Copy, beginning patrol run on coordinates.", "RadioArtilleryFiring", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
+        briefingRoom.radioManager.play("Copy, beginning patrol run on coordinates.", "RadioHQSEADSupport", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
       end
       return
     end

@@ -54,7 +54,7 @@ function briefingRoom.mission.missionFeatures.supportFriendlyBomber.launchBombin
       if group ~= nil then
         group:activate()
         timer.scheduleFunction(briefingRoom.mission.missionFeatures.supportFriendlyBomber.setTask, {}, timer.getTime() + 10)
-        briefingRoom.radioManager.play("Copy, beginning bombing run on coordinates.", "RadioArtilleryFiring", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
+        briefingRoom.radioManager.play("Copy, beginning bombing run on coordinates.", "RadioOtherPilotBeginBombing", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
       end
       return
     end

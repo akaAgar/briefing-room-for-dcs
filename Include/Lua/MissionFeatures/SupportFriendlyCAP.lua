@@ -45,7 +45,7 @@ end
 
 -- Radio command to launch bombing run (called from F10 menu)
 function briefingRoom.mission.missionFeatures.supportFriendlyCAP.launchBombingRun()
-  briefingRoom.radioManager.play("CAP, begin your patrol.", "RadioPilotBeginYourBombingRun")
+  briefingRoom.radioManager.play("CAP, begin your patrol.", "RadioPilotCAPSupport")
   local marks = world.getMarkPanels()
   for _,m in ipairs(marks) do
     if briefingRoom.mission.missionFeatures.supportFriendlyCAP.markID ~= nil and m.idx == briefingRoom.mission.missionFeatures.supportFriendlyCAP.markID then
@@ -53,7 +53,7 @@ function briefingRoom.mission.missionFeatures.supportFriendlyCAP.launchBombingRu
       if group ~= nil then
         group:activate()
         timer.scheduleFunction(briefingRoom.mission.missionFeatures.supportFriendlyCAP.setTask, {}, timer.getTime() + 10) --just re-run after 10 s
-        briefingRoom.radioManager.play("Copy, beginning patrol run on coordinates.", "RadioArtilleryFiring", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
+        briefingRoom.radioManager.play("Copy, beginning patrol run on coordinates.", "RadioHQCAPSupport", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
       end
       return
     end
