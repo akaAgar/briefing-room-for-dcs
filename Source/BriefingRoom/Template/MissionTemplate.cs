@@ -230,7 +230,7 @@ namespace BriefingRoom4DCS.Template
             Objectives = new MissionTemplateObjective[] { new MissionTemplateObjective() }.ToList();
 
             OptionsFogOfWar = FogOfWar.All;
-            OptionsMission = new MissionOption[] { MissionOption.ImperialUnitsForBriefing }.ToList();
+            OptionsMission = new MissionOption[] { MissionOption.ImperialUnitsForBriefing, MissionOption.MarkWaypoints }.ToList();
             OptionsRealism = new RealismOption[] { RealismOption.DisableDCSRadioAssists, RealismOption.NoBDA }.ToList();
 
             PlayerFlightGroups = new MissionTemplateFlightGroup[] { new MissionTemplateFlightGroup() }.ToList();

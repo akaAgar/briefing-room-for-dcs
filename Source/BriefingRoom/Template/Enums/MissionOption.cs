@@ -39,6 +39,9 @@ namespace BriefingRoom4DCS.Template
         [Display(Name = "Invert countries coalitions", Description = "Invert blue and red countries on the map (e.g. In Caucasus, Russia becomes blue and Georgia becomes red).")]
         InvertCountriesCoalitions,
 
+        [Display(Name = "Mark waypoints", Description = "Create Markers on waypoints.")]
+        MarkWaypoints,
+
         [Display(Name = "Text-only radio messages", Description = "Display radio messages in text-format only (no voiceover). Selecting this option will severly decrease the size of the .miz files.")]
         RadioMessagesTextOnly,
     }
