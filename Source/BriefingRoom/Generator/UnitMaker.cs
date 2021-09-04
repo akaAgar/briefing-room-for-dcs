@@ -17,13 +17,16 @@ namespace BriefingRoom4DCS.Generator
 
         internal double Frequency { get; }
 
-        internal UnitMakerGroupInfo(int groupID, Coordinates coordinates, List<int> unitsID, string name, double frequency = 0.0)
+        internal DBEntryUnit UnitDB { get; } 
+
+        internal UnitMakerGroupInfo(int groupID, Coordinates coordinates, List<int> unitsID, string name, double frequency = 0.0, DBEntryUnit unitDB = null)
         {
             GroupID = groupID;
             Coordinates = coordinates;
             Name = name;
             UnitsID = unitsID.ToArray();
             Frequency = frequency;
+            UnitDB = unitDB;
         }
     }
 
@@ -166,6 +169,8 @@ namespace BriefingRoom4DCS.Generator
                 groupLua = ApplyAircraftFields(groupLua, firstUnitDB, extraSettings);
                 if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ImmediateAircraftSpawn))
                     Mission.AppendValue("AircraftActivatorCurrentQueue", $"{GroupID},");
+                else if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.RadioAircraftSpawn))
+                     Mission.AppendValue("AircraftRadioActivator", $"{{{GroupID}, \"{groupName}\"}},");
                 else
                     Mission.AppendValue("AircraftActivatorReserveQueue", $"{GroupID},");
             }
@@ -182,7 +187,7 @@ namespace BriefingRoom4DCS.Generator
 
             if (firstUnitDB == null)
                 return new UnitMakerGroupInfo(GroupID - 1, coordinates, unitsIDList, groupName);
-            return new UnitMakerGroupInfo(GroupID - 1, coordinates, unitsIDList, groupName, firstUnitDB.AircraftData.RadioFrequency);
+            return new UnitMakerGroupInfo(GroupID - 1, coordinates, unitsIDList, groupName, firstUnitDB.AircraftData.RadioFrequency, firstUnitDB);
         }
 
 

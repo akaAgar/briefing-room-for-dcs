@@ -75,6 +75,12 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Spawned unit group is on the same side as the target (Objective Features only) (default is enemy).
         /// </summary>
-        SameSideAsTarget = 256
+        SameSideAsTarget = 256,
+
+
+        /// <summary>
+        /// Aircraft should be activated when the player radios for it.
+        /// </summary>
+        RadioAircraftActivation = 512,
     }
 }

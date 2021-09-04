@@ -55,7 +55,7 @@ namespace BriefingRoom4DCS.Generator
                 return;
             }
 
-            Coordinates coordinates2 = spawnPoint.Value.Coordinates + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
+            Coordinates coordinates2 = spawnPoint.Value.Coordinates + Coordinates.CreateRandom(5, 20) * Toolbox.NM_TO_METERS;
             Dictionary<string, object> extraSettings = new Dictionary<string, object>();
             UnitMakerGroupInfo? groupInfo = AddMissionFeature(mission, featureDB, spawnPoint.Value.Coordinates, coordinates2, ref extraSettings);
 

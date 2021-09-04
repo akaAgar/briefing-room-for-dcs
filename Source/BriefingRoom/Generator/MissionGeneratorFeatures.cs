@@ -20,7 +20,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
-using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,16 +73,31 @@ namespace BriefingRoom4DCS.Generator
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ImmediateAircraftActivation))
                     groupFlags |= UnitMakerGroupFlags.ImmediateAircraftSpawn;
 
+                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.RadioAircraftActivation))
+                    groupFlags |= UnitMakerGroupFlags.RadioAircraftSpawn;
+
                 Side groupSide = Side.Enemy;
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly)) groupSide = Side.Ally;
                 else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.SameSideAsTarget) && objectiveTargetSide.HasValue) groupSide = objectiveTargetSide.Value;
+
+                var unitCount = featureDB.UnitGroupSize.GetValue();
 
                 groupInfo = UnitMaker.AddUnitGroup(
                     Toolbox.RandomFrom(featureDB.UnitGroupFamilies), featureDB.UnitGroupSize.GetValue(),
                     groupSide,
                     featureDB.UnitGroupLuaGroup, featureDB.UnitGroupLuaUnit,
-                    coordinates, null, groupFlags, AircraftPayload.Default,
+                    coordinates, null, groupFlags, featureDB.UnitGroupPayload,
                     extraSettings.ToArray());
+                if (
+                    groupSide == Side.Ally &&
+                    groupInfo.HasValue &&
+                    groupInfo.Value.UnitDB != null &&
+                    groupInfo.Value.UnitDB.IsAircraft)
+                    mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
+                            $"{groupInfo.Value.Name}\t" +
+                            $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName}\t" +
+                            $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
+                            $"{featureDB.UnitGroupPayload}"); // TODO: human-readable payload name
             }
 
             // Feature Lua script
