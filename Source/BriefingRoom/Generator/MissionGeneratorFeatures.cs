@@ -81,6 +81,7 @@ namespace BriefingRoom4DCS.Generator
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly)) groupSide = Side.Ally;
                 else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.SameSideAsTarget) && objectiveTargetSide.HasValue) groupSide = objectiveTargetSide.Value;
 
+                var unitCount = featureDB.UnitGroupSize.GetValue();
 
                 groupInfo = UnitMaker.AddUnitGroup(
                     Toolbox.RandomFrom(featureDB.UnitGroupFamilies), featureDB.UnitGroupSize.GetValue(),
@@ -88,6 +89,12 @@ namespace BriefingRoom4DCS.Generator
                     featureDB.UnitGroupLuaGroup, featureDB.UnitGroupLuaUnit,
                     coordinates, null, groupFlags, featureDB.UnitGroupPayload,
                     extraSettings.ToArray());
+                if(groupSide == Side.Ally && groupInfo.HasValue && groupInfo.Value.UnitDB != null)
+                    mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
+                            $"{groupInfo.Value.Name}\t" +
+                            $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName}\t" +
+                            $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
+                            $"{featureDB.UnitGroupPayload}"); // TODO: human-readable payload name
             }
 
             // Feature Lua script
