@@ -84,8 +84,7 @@ namespace BriefingRoom4DCS.Generator
                 }
                 if (carrierDictionary.ContainsKey(flightGroup.Carrier)) continue; // Carrier type already added
                 DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(flightGroup.Carrier);
-                if ((unitDB == null) || !unitDB.Families[0].IsCarrier()) continue; // Unit doesn't exist or is not a carrier
-
+                if ((unitDB == null) || !unitDB.Families.Any(x => x.IsCarrier())) continue; // Unit doesn't exist or is not a carrier
                 Coordinates shipCoordinates = carrierGroupCoordinates + Coordinates.FromAngleInRadians(Toolbox.RandomAngle()) * carrierDictionary.Count * Database.Instance.Common.CarrierGroup.ShipSpacing;
                 Coordinates shipDestination = shipCoordinates + destinationPath;
 
