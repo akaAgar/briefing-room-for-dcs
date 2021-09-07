@@ -21,10 +21,11 @@
     [Parameter] public List<Tuple<LogMessageErrorLevel, string>> logs {get; set;}
     private bool showLogs = false;  
 
-    private void ClearLogs()
+    public void ClearLogs()
     {
-        logs = new List<Tuple<LogMessageErrorLevel, string>>();
+        logs.Clear();
         showLogs = false;
+        StateHasChanged();
     }
 
     private void ToggleShowLogs()

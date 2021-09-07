@@ -48,7 +48,7 @@ namespace BriefingRoom4DCS.Generator
             DBEntryTheaterSpawnPoint? spawnPoint =
                 UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                     featureDB.UnitGroupValidSpawnPoints, pointSearchCenter,
-                    featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.AwayFromMissionArea) ? new MinMaxD(50, 100) : new MinMaxD(0, 2.5));
+                    featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.AwayFromMissionArea) ? new MinMaxD(50, 100) : new MinMaxD(0, 5));
             if (!spawnPoint.HasValue) // No spawn point found
             {
                 BriefingRoom.PrintToLog($"No spawn point found for mission feature {featureID}.", LogMessageErrorLevel.Warning);

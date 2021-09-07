@@ -304,6 +304,7 @@
     private void GenerateCampaign()
     {
         try {
+            logs.Clear();
             campaign = null;
             errorMessage = "";
             campaign = briefingRoom.GenerateCampaign(Template);
