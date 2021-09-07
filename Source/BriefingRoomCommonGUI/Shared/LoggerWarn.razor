@@ -1,0 +1,37 @@
+ @if(logs.Count(LogsIfAboveWarn) > 0){
+    @if(showLogs){
+        <div class="alert alert-warning"  role="warning">
+                <div>
+                    <div class="btn-group" role="group">
+                    <button class="btn btn-warning" @onclick="() => ToggleShowLogs()"><span class="oi oi-warning"></span>@logs.Count(LogsIfAboveWarn)</button> 
+                    <button class="btn btn-warning" @onclick="() => ClearLogs()"><span class="oi oi-reload"></span>Clear</button>
+                    </div>
+                    @foreach (var log in logs.Where(LogsIfAboveWarn).ToList())
+                    {
+                        <p>@log.Item1: @log.Item2</p>
+                    }
+                </div>
+        </div>
+    } else {
+        <button class="btn btn-warning" @onclick="() => ToggleShowLogs()"><span class="oi oi-warning"></span>@logs.Count(LogsIfAboveWarn)</button>    
+    }
+}
+
+@code {
+    [Parameter] public List<Tuple<LogMessageErrorLevel, string>> logs {get; set;}
+    private bool showLogs = false;  
+
+    private void ClearLogs()
+    {
+        logs = new List<Tuple<LogMessageErrorLevel, string>>();
+        showLogs = false;
+    }
+
+    private void ToggleShowLogs()
+    {
+        showLogs = !showLogs;
+    }
+
+    private bool LogsIfAboveWarn(Tuple<LogMessageErrorLevel, string> x) => 
+        x.Item1 == LogMessageErrorLevel.Warning || x.Item1 == LogMessageErrorLevel.Error;
+}

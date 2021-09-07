@@ -153,6 +153,7 @@
     @if (mission != null)
     {
         <div class="generator-preview">
+            <LoggerWarn logs="logs"/>
             <ButtonTrio
               PrimaryFunc="DownloadMission"  PrimaryLabel="Mission" PrimaryIcon="data-transfer-download"
               SecondaryFunc="DownloadBriefing"  SecondaryLabel="Briefing" SecondaryIcon="browser"
@@ -166,12 +167,14 @@
 
 @code {
 
-    private BriefingRoom4DCS.BriefingRoom briefingRoom = new BriefingRoom4DCS.BriefingRoom();
+    private BriefingRoom4DCS.BriefingRoom briefingRoom = new BriefingRoom4DCS.BriefingRoom(WriteToDebugLog);
     private MissionTemplate Template;
     private DCSMission mission;
     private string errorMessage;
 
     private string tempateMessage;
+
+    public static List<Tuple<LogMessageErrorLevel, string>> logs = new List<Tuple<LogMessageErrorLevel, string>>();
 
     private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BriefingRoom.GetBriefingRoomRootPath()}Default.brt";
 
@@ -181,6 +184,11 @@
         Template = new MissionTemplate();
         flightGroupTab = Template.PlayerFlightGroups[0];
         ObjectiveTab = Template.Objectives[0];
+    }
+
+    public static void WriteToDebugLog(string message, LogMessageErrorLevel errorLevel = LogMessageErrorLevel.Info)
+    {
+        logs.Add(new(errorLevel, message));
     }
 
     private void clearTemplateMessageDelay()

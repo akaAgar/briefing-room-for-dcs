@@ -208,6 +208,7 @@
     @if (campaign != null)
     {
         <div class="generator-preview">
+            <LoggerWarn logs="logs"/>
             <ButtonTrio
               PrimaryFunc="DownloadCampaign"  PrimaryLabel="Campaign" PrimaryIcon="data-transfer-download"
               SecondaryFunc="DownloadBriefing"  SecondaryLabel="Briefings" SecondaryIcon="browser"
@@ -230,12 +231,14 @@
 
 
 @code {
-    private BriefingRoom4DCS.BriefingRoom briefingRoom = new BriefingRoom4DCS.BriefingRoom();
+    private BriefingRoom4DCS.BriefingRoom briefingRoom = new BriefingRoom4DCS.BriefingRoom(WriteToDebugLog);
     private CampaignTemplate Template;
     private DCSCampaign campaign;
     private string errorMessage;
 
     private string tempateMessage;
+
+    public static List<Tuple<LogMessageErrorLevel, string>> logs = new List<Tuple<LogMessageErrorLevel, string>>();
 
     private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BriefingRoom.GetBriefingRoomRootPath()}Default.cbrt";
 
@@ -243,6 +246,11 @@
     protected override void OnInitialized()
     {
         Template = new CampaignTemplate();
+    }
+
+    public static void WriteToDebugLog(string message, LogMessageErrorLevel errorLevel = LogMessageErrorLevel.Info)
+    {
+        logs.Add(new(errorLevel, message));
     }
 
     private void clearTemplateMessageDelay()
