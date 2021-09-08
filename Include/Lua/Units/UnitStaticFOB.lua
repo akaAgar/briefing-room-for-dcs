@@ -9,5 +9,5 @@ $EXTRALUA$
   ["heading"] = $HEADING$,
   ["heliport_modulation"] = $RADIOBAND$,
   ["heliport_callsign_id"] = $FOBCALLSIGNINDEX$,
-  ["heliport_frequency"] = $RADIOFREQUENCY$,
+  ["heliport_frequency"] = "$RADIOFREQUENCY$",
 

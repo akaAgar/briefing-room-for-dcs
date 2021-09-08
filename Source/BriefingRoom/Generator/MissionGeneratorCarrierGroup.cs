@@ -76,13 +76,13 @@ namespace BriefingRoom4DCS.Generator
             foreach (MissionTemplateFlightGroup flightGroup in template.PlayerFlightGroups)
             {
                 if (string.IsNullOrEmpty(flightGroup.Carrier)) continue; // No carrier for
-                if (flightGroup.Carrier == "FOB")
+                if (carrierDictionary.ContainsKey(flightGroup.Carrier)) continue; // Carrier type already added
+                if (flightGroup.Carrier.StartsWith("FOB"))
                 {
                     //It Carries therefore carrier not because I can't think of a name to rename this lot
                     GenerateFOB(flightGroup, carrierDictionary, mission, template, landbaseCoordinates, objectivesCenter);
                     continue;
                 }
-                if (carrierDictionary.ContainsKey(flightGroup.Carrier)) continue; // Carrier type already added
                 DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(flightGroup.Carrier);
                 if ((unitDB == null) || !unitDB.Families.Any(x => x.IsCarrier())) continue; // Unit doesn't exist or is not a carrier
                 Coordinates shipCoordinates = carrierGroupCoordinates + Coordinates.FromAngleInRadians(Toolbox.RandomAngle()) * carrierDictionary.Count * Database.Instance.Common.CarrierGroup.ShipSpacing;
@@ -146,29 +146,28 @@ namespace BriefingRoom4DCS.Generator
             if (unitDB == null) return; // Unit doesn't exist or is not a carrier
 
             double radioFrequency = 127.5 + carrierDictionary.Count;
+            var FOBNames = new List<string>{
+                "FOB_London",
+                "FOB_Dallas",
+                "FOB_Paris",
+                "FOB_Moscow",
+                "FOB_Berlin"
+            };
 
             UnitMakerGroupInfo? groupInfo =
                 UnitMaker.AddUnitGroup(
                     unitDB.Families[0], 1, Side.Ally,
                     "GroupStatic", "UnitStaticFOB",
                     spawnPoint.Value.Coordinates, DCSSkillLevel.Excellent, 0, AircraftPayload.Default,
-                    "FOBCallSignIndex".ToKeyValuePair(carrierDictionary.Count + 1),
+                    "FOBCallSignIndex".ToKeyValuePair(FOBNames.IndexOf(flightGroup.Carrier) + 1),
                     "RadioBand".ToKeyValuePair((int)RadioModulation.AM),
                     "RadioFrequency".ToKeyValuePair(GeneratorTools.GetRadioFrenquency(radioFrequency)));
             if (!groupInfo.HasValue || (groupInfo.Value.UnitsID.Length == 0)) return; // Couldn't generate group
-
-            var FOBNames = new string[]{
-                "London",
-                "Dallas",
-                "Paris",
-                "Moscow",
-                "Berlin"
-            };
+       
            mission.Briefing.AddItem(
                     DCSMissionBriefingItemType.Airbase,
-                    $"FOB {FOBNames[carrierDictionary.Count(x => x.Key == "FOB")]}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t\t");
-
-            carrierDictionary.Add(flightGroup.Carrier, groupInfo.Value);
+                    $"{unitDB.UIDisplayName}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t\t");
+            carrierDictionary.Add(flightGroup.Carrier, groupInfo.Value); // This bit limits FOBS to one per game think about how we can fix this
         }
 
         /// <summary>
