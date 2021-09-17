@@ -37,7 +37,8 @@ namespace BriefingRoom4DCS.Generator
 
         // Just a bit of fun
         private static List<ImageMakerLayer> easterEggLogos = new List<ImageMakerLayer> {
-            new ImageMakerLayer("icon.png", ContentAlignment.BottomRight, offsetX:-20, offsetY: -20, scale: 0.3)
+            new ImageMakerLayer("icon.png", ContentAlignment.BottomRight, offsetX:-20, offsetY: -20, scale: 0.3),
+            new ImageMakerLayer("razbari.png", ContentAlignment.BottomRight, offsetX:-20, offsetY: -20, scale: 0.1),
         };
 
         /// <summary>
@@ -111,7 +112,7 @@ namespace BriefingRoom4DCS.Generator
 
                     var random = new Random();
 
-                    if(random.Next(100) < 5)
+                    if(random.Next(100) < 3)
                         layers.Add(easterEggLogos[random.Next(easterEggLogos.Count)]);
 
 
