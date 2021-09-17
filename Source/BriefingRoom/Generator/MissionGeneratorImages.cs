@@ -35,6 +35,11 @@ namespace BriefingRoom4DCS.Generator
     {
         private readonly ImageMaker ImageMaker;
 
+        // Just a bit of fun
+        private static List<ImageMakerLayer> easterEggLogos = new List<ImageMakerLayer> {
+            new ImageMakerLayer("icon.png", ContentAlignment.BottomRight, offsetX:-20, offsetY: -20, scale: 0.3)
+        };
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -97,12 +102,18 @@ namespace BriefingRoom4DCS.Generator
                     imgMaker.TextOverlay.Color = Color.Black;
                     imgMaker.TextOverlay.Text =  $"{page}\n {inc}/{pages.Count()}";
                     imgMaker.TextOverlay.FontSize = 14.0f;
-                    imgMaker.TextOverlay.FontFamily = "Segoe Script";
+                    imgMaker.TextOverlay.FontFamily = "Arial";
                     imgMaker.TextOverlay.Alignment = ContentAlignment.TopLeft;
 
                     List<ImageMakerLayer> layers = new List<ImageMakerLayer>{
                         new ImageMakerLayer("notebook.png")
                     };
+
+                    var random = new Random();
+
+                    if(random.Next(100) < 5)
+                        layers.Add(easterEggLogos[random.Next(easterEggLogos.Count)]);
+
 
                     imageBytes = imgMaker.GetImageBytes(layers.ToArray());
                 }
