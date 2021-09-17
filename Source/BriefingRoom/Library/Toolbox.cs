@@ -113,7 +113,7 @@ namespace BriefingRoom4DCS
         /// <summary>
         /// Unit families which can be used as carriers.
         /// </summary>
-        internal static readonly UnitFamily[] CARRIER_FAMILIES = new UnitFamily[] { UnitFamily.ShipCarrierCATOBAR, UnitFamily.ShipCarrierSTOBAR, UnitFamily.ShipCarrierSTOVL, UnitFamily.FOB };
+        internal static readonly UnitFamily[] CARRIER_FAMILIES = new UnitFamily[] { UnitFamily.ShipCarrierCATOBAR, UnitFamily.ShipCarrierSTOBAR, UnitFamily.FOB };
 
         /// <summary>
         /// An instance of the Random class for all randomization methods.
