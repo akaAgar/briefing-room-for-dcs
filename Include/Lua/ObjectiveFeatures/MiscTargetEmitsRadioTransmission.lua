@@ -4,5 +4,5 @@ do
     unit = dcsExtensions.getStaticByID(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID[1])
   end
  
-  trigger.action.radioTransmission('l10n/DEFAULT/FXRadioSignal.ogg', unit:getPoint(), 0, true, 124000000, 100)
+  trigger.action.radioTransmission('l10n/DEFAULT/FXRadioSignal.ogg', unit:getPoint(), 0, true, 124000000, 100, "-- Morse Code --")
 end
