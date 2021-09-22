@@ -367,6 +367,31 @@ namespace BriefingRoom4DCS.Generator
             return true;
         }
 
+        /// <summary>
+        /// Randomizes parts of a string.
+        /// </summary>
+        /// <param name="randomString">The string to randomize</param>
+        /// <returns>A randomized string.</returns>
+        internal static string ParseRandomString(string randomString)
+        {
+            while (randomString.Contains("{") && randomString.Contains("{"))
+            {
+                int start = randomString.LastIndexOf("{");
+                string stringLeft = randomString.Substring(start);
+                if (!stringLeft.Contains("}")) break;
+                int end = stringLeft.IndexOf("}") + 1;
+
+                string segment = randomString.Substring(start, end);
+                string parsedSegment = segment.Replace("{", "").Replace("}", "").Trim();
+                string[] items = parsedSegment.Split('|');
+                string selItem = Toolbox.RandomFrom(items);
+
+                randomString = randomString.Replace(segment, selItem);
+            }
+
+            return randomString.Replace("{", "").Replace("}", "").Trim();
+        }
+
         internal static string GetGroupName(int groupID, UnitFamily family)
         {
             string name = ParseRandomString(Database.Instance.Common.Names.UnitGroups[(int)family]);
