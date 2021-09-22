@@ -32,7 +32,6 @@ namespace BriefingRoom4DCS.Generator
     /// </summary>
     internal class MissionGeneratorBriefing : IDisposable
     {
-        //private static readonly string HTML_TEMPLATE_FILE = $"{BRPaths.INCLUDE}Briefing.html";
 
         /// <summary>
         /// Constructor.

@@ -56,12 +56,6 @@ namespace BriefingRoom4DCS
             ParseINIString(iniString);
         }
 
-        //internal string GetSectionParentSection(string section)
-        //{
-        //    if (!Sections.ContainsKey(section)) return "";
-
-        //    return Sections[section].ParentSection ?? "";
-        //}
 
         /// <summary>
         /// Creates an instance of INIFile from a raw INI string

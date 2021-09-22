@@ -30,10 +30,6 @@ namespace BriefingRoom4DCS.Data
     /// </summary>
     internal class DBEntryCoalition : DBEntry
     {
-        ///// <summary>
-        ///// Flavor text to add to the mission briefing for this coalition.
-        ///// </summary>
-        //internal string[][] BriefingElements { get; private set; }
 
         /// <summary>
         /// Countries which are part of this coalition.

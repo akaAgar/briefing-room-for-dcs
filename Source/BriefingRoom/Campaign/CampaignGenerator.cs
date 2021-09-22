@@ -259,38 +259,6 @@ namespace BriefingRoom4DCS.Campaign
             return (Wind)Toolbox.Clamp((int)wind, (int)Wind.Calm, (int)Wind.Storm);
         }
 
-        //private DCSSkillLevel GetSkillLevel(AmountNR amount, CampaignDifficultyVariation variation, int missionIndex, int missionsCount)
-        //{
-        //    if (amount == AmountNR.Random) return DCSSkillLevel.Random;
-        //    double campaignProgress = missionIndex / (double)(Math.Max(2, missionsCount) - 1.0);
-
-        //    DCSSkillLevel baseSkillLevel = DCSSkillLevel.Regular;
-        //    switch (amount)
-        //    {
-        //        case AmountNR.VeryLow: baseSkillLevel = DCSSkillLevel.Rookie; break;
-        //        case AmountNR.Low: baseSkillLevel = Toolbox.RandomFrom(DCSSkillLevel.Rookie, DCSSkillLevel.Regular); break;
-        //        case AmountNR.Average: baseSkillLevel = Toolbox.RandomFrom(DCSSkillLevel.Rookie, DCSSkillLevel.Regular, DCSSkillLevel.Veteran); break;
-        //        case AmountNR.High: baseSkillLevel = Toolbox.RandomFrom(DCSSkillLevel.Veteran, DCSSkillLevel.Ace); break;
-        //        case AmountNR.VeryHigh: baseSkillLevel = DCSSkillLevel.Ace; break;
-        //    }
-
-        //    if (variation == CampaignDifficultyVariation.Steady) return baseSkillLevel;
-
-        //    double amountOffset = 0;
-        //    switch (variation)
-        //    {
-        //        case CampaignDifficultyVariation.ConsiderablyEasier: amountOffset = -2.25; break;
-        //        case CampaignDifficultyVariation.MuchEasier: amountOffset = -1.5; break;
-        //        case CampaignDifficultyVariation.SomewhatEasier: amountOffset = -1.0; break;
-        //        case CampaignDifficultyVariation.SomewhatHarder: amountOffset = 1.0; break;
-        //        case CampaignDifficultyVariation.MuchHarder: amountOffset = 1.5; break;
-        //        case CampaignDifficultyVariation.ConsiderablyHarder: amountOffset = 2.25; break;
-        //    }
-        //    double skillDouble = (double)baseSkillLevel + amountOffset * campaignProgress;
-
-        //    return (DCSSkillLevel)Toolbox.Clamp((int)skillDouble, (int)DCSSkillLevel.Regular, (int)DCSSkillLevel.Ace);
-        //}
-
         private AmountNR GetPowerLevel(AmountNR amount, CampaignDifficultyVariation variation, int missionIndex, int missionsCount, bool reverseVariation = false)
         {
             if (amount == AmountNR.Random) return AmountNR.Random;
