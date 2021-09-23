@@ -19,7 +19,7 @@ objectivedistance=80
 objectiveslocation=Any
 
 [missionfeatures]
-missionfeatures=SupportFriendlyAWACS,SupportFriendlyTankerBasket,SupportFriendlyTankerBoom
+missionfeatures=SupportFriendlyAWACS,SupportFriendlyTankerBasket,SupportFriendlyTankerBoom,IngressEgressWaypoints
 
 [mods]
 mods=

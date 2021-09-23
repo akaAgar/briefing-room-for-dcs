@@ -67,6 +67,9 @@ namespace BriefingRoom4DCS.Generator
 
         internal void GenerateIngressAndEgressWaypoints(MissionTemplate template, List<Waypoint> waypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter)
         {
+            if(!template.MissionFeatures.Contains("IngressEgressWaypoints"))
+                return;
+
             BriefingRoom.PrintToLog($"Generating ingress and egress waypoints...");
 
             double flightPathLength = (objectivesCenter - averageInitialLocation).GetLength();
