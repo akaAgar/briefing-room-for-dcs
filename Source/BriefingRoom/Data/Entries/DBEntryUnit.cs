@@ -86,6 +86,12 @@ namespace BriefingRoom4DCS.Data
         /// </summary>
         internal string RequiredMod { get; private set; }
 
+
+        internal void Merge(DBEntryUnit entry)
+        {
+            AircraftData.Merge(entry.AircraftData);
+        }
+
         /// <summary>
         /// Loads a database entry from an .ini file.
         /// </summary>

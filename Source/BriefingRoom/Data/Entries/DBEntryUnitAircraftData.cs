@@ -83,6 +83,16 @@ namespace BriefingRoom4DCS.Data
         /// </summary>
         internal double RadioFrequency { get; private set; } = 127.0;
 
+        internal void Merge(DBEntryUnitAircraftData aircraftData)
+        {
+            Liveries = Liveries.Union(aircraftData.Liveries).ToList();
+            PayloadTasks = PayloadTasks
+                .Union(aircraftData.PayloadTasks)
+                .GroupBy(g => g.Key)
+                .ToDictionary(pair => pair.Key, pair => pair.Last().Value);
+            Console.WriteLine("bla");
+        }
+
         /// <summary>
         /// Default radio modulation for this aircraft.
         /// </summary>

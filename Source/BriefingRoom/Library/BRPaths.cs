@@ -40,6 +40,8 @@ namespace BriefingRoom4DCS
         /// </summary>
         internal static string DATABASE { get; } = $"{ROOT}Database\\";
 
+        internal static string CUSTOMDATABASE { get; } = $"{ROOT}CustomConfigs\\";
+
 #if DEBUG
         /// <summary>
         /// Path to the debug output directory

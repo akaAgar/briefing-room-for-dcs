@@ -95,6 +95,7 @@ namespace BriefingRoom4DCS.Data
             LoadEntries<DBEntryAirbase>("TheatersAirbases"); // Must be loaded after DBEntryTheater, as it depends on it
             LoadEntries<DBEntryDCSMod>("DCSMods");
             LoadEntries<DBEntryUnit>("Units"); // Must be loaded after DBEntryDCSMod, as it depends on it
+            LoadCustomUnitEntries("Units");
             LoadEntries<DBEntryDefaultUnitList>("DefaultUnitLists"); // Must be loaded after DBEntryUnit, as it depends on it
             LoadEntries<DBEntryCoalition>("Coalitions"); // Must be loaded after DBEntryUnit and DBEntryDefaultUnitList, as it depends on them
             LoadEntries<DBEntryWeatherPreset>("WeatherPresets");
@@ -151,6 +152,47 @@ namespace BriefingRoom4DCS.Data
             if ((DBEntries[dbType].Count == 0) && mustHaveAtLeastOneEntry)
                 BriefingRoom.PrintToLog($"No valid database entries found in the \"{subDirectory}\" directory", LogMessageErrorLevel.Error);
         }
+
+        private void LoadCustomUnitEntries(string subDirectory)
+        {
+            BriefingRoom.PrintToLog($"Loading {subDirectory.ToLowerInvariant()}...");
+
+            string directory = $"{BRPaths.CUSTOMDATABASE}{subDirectory}";
+            if (!Directory.Exists(directory))
+                return;
+
+            Type dbType = typeof(DBEntryUnit);
+            string shortTypeName = dbType.Name.Substring(7).ToLowerInvariant();
+
+            foreach (string filePath in Directory.EnumerateFiles(directory, "*.ini", SearchOption.AllDirectories))
+            {
+                string id = Path.GetFileNameWithoutExtension(filePath).Replace(",", "").Trim(); // No commas in file names, so we don't break comma-separated arrays
+
+                var entry = new DBEntryUnit();
+                if (!entry.Load(this, id, filePath)) continue;
+                if (DBEntries[dbType].ContainsKey(id))
+                {
+                    ((DBEntryUnit)DBEntries[dbType][id]).Merge(entry);
+                    BriefingRoom.PrintToLog($"Updated {shortTypeName} \"{id}\"");
+
+                } else {
+                    DBEntries[dbType].Add(id, entry);
+                    BriefingRoom.PrintToLog($"Loaded {shortTypeName} \"{id}\"");
+                }
+            }
+            BriefingRoom.PrintToLog($"Found {DBEntries[dbType].Count} custom database entries of type \"{typeof(DBEntryUnit).Name}\"");
+
+            bool mustHaveAtLeastOneEntry = true;
+            if ((dbType == typeof(DBEntryDefaultUnitList)) ||
+                (dbType == typeof(DBEntryFeatureMission)) ||
+                (dbType == typeof(DBEntryFeatureObjective)))
+                mustHaveAtLeastOneEntry = false;
+
+            // If a required database type has no entries, raise an error.
+            if ((DBEntries[dbType].Count == 0) && mustHaveAtLeastOneEntry)
+                BriefingRoom.PrintToLog($"No valid database entries found in the \"{subDirectory}\" directory", LogMessageErrorLevel.Error);
+        }
+
 
         /// <summary>
         /// Checks if the proposed ID exists in the database, or return a default ID if it doesn't.

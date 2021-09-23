@@ -19,3 +19,5 @@
 *.dll
 
 /*.txt
+
+CustomConfigs/**/*.ini
