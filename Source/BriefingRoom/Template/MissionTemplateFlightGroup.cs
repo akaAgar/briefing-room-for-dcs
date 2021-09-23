@@ -68,6 +68,8 @@ namespace BriefingRoom4DCS.Template
         /// </summary>
         public int PlayerSlots { get { return AIWingmen ? 1 : _Count; } }
 
+        public string Livery { get; set; } = "default";
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -86,7 +88,7 @@ namespace BriefingRoom4DCS.Template
         /// <param name="country">Country this aircraft group belongs to (mainly used for liveries).</param>
         /// <param name="startLocation">Start location for this flight group.</param>
         /// <param name="aiWingmen">Should all aircraft in this group except the leader be AI-controlled?</param>
-        public MissionTemplateFlightGroup(string aircraft, int count, AircraftPayload payload, string carrier, Country country, PlayerStartLocation startLocation, bool aiWingmen)
+        public MissionTemplateFlightGroup(string aircraft, int count, AircraftPayload payload, string carrier, Country country, PlayerStartLocation startLocation, bool aiWingmen, string livery)
         {
             Aircraft = aircraft;
             AIWingmen = aiWingmen;
@@ -95,6 +97,7 @@ namespace BriefingRoom4DCS.Template
             Carrier = carrier;
             Country = country;
             StartLocation = startLocation;
+            Livery = livery;
         }
 
         /// <summary>
@@ -114,6 +117,7 @@ namespace BriefingRoom4DCS.Template
             Payload = ini.GetValue(section, $"{key}.Payload", Payload);
             Country = ini.GetValue(section, $"{key}.Country", Country);
             StartLocation = ini.GetValue(section, $"{key}.StartLocation", StartLocation);
+            Livery = ini.GetValue(section, $"{key}.Livery", Livery);
         }
 
         /// <summary>
@@ -128,6 +132,7 @@ namespace BriefingRoom4DCS.Template
             Payload = AircraftPayload.Default;
             Country = Country.CJTFBlue;
             StartLocation = PlayerStartLocation.Runway;
+            Livery = "default";
         }
 
         /// <summary>
@@ -145,6 +150,7 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue(section, $"{key}.Payload", Payload);
             ini.SetValue(section, $"{key}.Country", Country);
             ini.SetValue(section, $"{key}.StartLocation", StartLocation);
+            ini.SetValue(section, $"{key}.Livery", Livery);
         }
 
         /// <summary>

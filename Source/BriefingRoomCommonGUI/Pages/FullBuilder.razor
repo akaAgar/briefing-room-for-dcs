@@ -278,6 +278,15 @@
                                         </BlazoredTypeahead>
                                     </div>
                                     <div class="form-group">
+                                        <label>Livery <span class="note">Note leveries may be limited to country and may not show if not setup right</span></label>
+                                        <select class="form-control selectpicker" @bind=flight.Livery>
+                                        @foreach (var item in GetLiveries(flight.Aircraft))
+                                        {
+                                            <option value="@item">@item</option> // Blazor needs to know what values it binds to!
+                                        }
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="checkboxList-item">
                                             <input type="checkbox" checked=@flight.AIWingmen
                                                 @onchange="eventArgs => { flight.AIWingmen = (bool)eventArgs.Value; StateHasChanged();}" />
@@ -498,6 +507,9 @@
     {
         Template.Objectives.Remove(obj);
     }
+
+    private List<string> GetLiveries(string aircraftId) =>
+    BriefingRoom.GetAircraftLiveries(aircraftId);
 
     private async Task<IEnumerable<Country>> SearchCountry(string searchText) =>
     await Typeahead.SearchEnum<Country>(searchText);

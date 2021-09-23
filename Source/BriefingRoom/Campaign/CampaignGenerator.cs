@@ -214,7 +214,7 @@ namespace BriefingRoom4DCS.Campaign
                     new(campaignTemplate.PlayerAircraft, Toolbox.RandomFrom(2, 2, 2, 2, 3, 4, 4),
                     AircraftPayload.Default, campaignTemplate.PlayerCarrier,
                     campaignTemplate.ContextCoalitionPlayer == Coalition.Red ? Country.CJTFRed : Country.CJTFBlue,
-                    campaignTemplate.PlayerStartLocation, true));
+                    campaignTemplate.PlayerStartLocation, true, "default"));
 
             return template;
         }

@@ -97,6 +97,8 @@ namespace BriefingRoom4DCS.Data
         /// Props Lua
         /// </summary>
         internal string PropsLua {get; private set;} = "";
+
+        internal List<string> Liveries {get; private set; }
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -141,6 +143,10 @@ namespace BriefingRoom4DCS.Data
                             ini.GetValueArray<int>("Aircraft", $"Radio.Presets.{i}.Channels"),
                             ini.GetValueArray<int>("Aircraft", $"Radio.Presets.{i}.Modulations")));
             }
+            Liveries = new List<string>{
+                "default"
+            };
+            Liveries.AddRange(ini.GetValueArray<string>("Aircraft","Liveries"));
         }
 
         /// <summary>

@@ -24,6 +24,7 @@ using BriefingRoom4DCS.Generator;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -167,6 +168,16 @@ namespace BriefingRoom4DCS
                 (from DatabaseEntryInfo databaseEntryInfo in databaseEntryInfos
                  where databaseEntryInfo.ID.ToLowerInvariant() == id.ToLowerInvariant()
                  select databaseEntryInfo).First();
+        }
+
+        /// <summary>
+        /// Returns livery ids for an aircraft.
+        /// </summary>
+        /// <param name="aircraftID">Id of the aircraft.</param>
+        /// <returns>An array of strings</returns>
+        public static List<string> GetAircraftLiveries(string aircraftID)
+        {
+            return Database.Instance.GetEntry<DBEntryUnit>(aircraftID).AircraftData.Liveries;
         }
 
         /// <summary>

@@ -1,6 +1,6 @@
                 ["alt"] = $ALTITUDE$,
                 ["alt_type"] = "BARO",
-                ["livery_id"] = "default",
+                ["livery_id"] = "$LIVERY$",
                 ["skill"] = "$SKILL$",
                 ["speed"] = 138.88888888889,
 $EXTRALUA$

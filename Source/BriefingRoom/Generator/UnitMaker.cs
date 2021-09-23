@@ -17,7 +17,7 @@ namespace BriefingRoom4DCS.Generator
 
         internal double Frequency { get; }
 
-        internal DBEntryUnit UnitDB { get; } 
+        internal DBEntryUnit UnitDB { get; }
 
         internal UnitMakerGroupInfo(int groupID, Coordinates coordinates, List<int> unitsID, string name, double frequency = 0.0, DBEntryUnit unitDB = null)
         {
@@ -170,7 +170,7 @@ namespace BriefingRoom4DCS.Generator
                 if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ImmediateAircraftSpawn))
                     Mission.AppendValue("AircraftActivatorCurrentQueue", $"{GroupID},");
                 else if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.RadioAircraftSpawn))
-                     Mission.AppendValue("AircraftRadioActivator", $"{{{GroupID}, \"{groupName}\"}},");
+                    Mission.AppendValue("AircraftRadioActivator", $"{{{GroupID}, \"{groupName}\"}},");
                 else
                     Mission.AppendValue("AircraftActivatorReserveQueue", $"{GroupID},");
             }
@@ -213,12 +213,12 @@ namespace BriefingRoom4DCS.Generator
             return lua;
         }
 
-        private string ApplyAircraftFields(string groupLua, DBEntryUnit firstUnitDB,  params KeyValuePair<string, object>[] extraSettings)
+        private string ApplyAircraftFields(string groupLua, DBEntryUnit firstUnitDB, params KeyValuePair<string, object>[] extraSettings)
         {
             GeneratorTools.ReplaceKey(ref groupLua, "Altitude", firstUnitDB.AircraftData.CruiseAltitude);
             GeneratorTools.ReplaceKey(ref groupLua, "AltitudeHalf", firstUnitDB.AircraftData.CruiseAltitude / 2);
             GeneratorTools.ReplaceKey(ref groupLua, "EPLRS", firstUnitDB.Flags.HasFlag(DBEntryUnitFlags.EPLRS));
-            GeneratorTools.ReplaceKey(ref groupLua, "ParkingID", extraSettings.Any(x => x.Key == "GroupAirbaseID")? extraSettings.First(x => x.Key == "GroupAirbaseID").Value : 0);
+            GeneratorTools.ReplaceKey(ref groupLua, "ParkingID", extraSettings.Any(x => x.Key == "GroupAirbaseID") ? extraSettings.First(x => x.Key == "GroupAirbaseID").Value : 0);
             GeneratorTools.ReplaceKey(ref groupLua, "RadioBand", (int)firstUnitDB.AircraftData.RadioModulation);
             GeneratorTools.ReplaceKey(ref groupLua, "RadioFrequency", firstUnitDB.AircraftData.RadioFrequency);
             GeneratorTools.ReplaceKey(ref groupLua, "Speed", firstUnitDB.AircraftData.CruiseSpeed);
@@ -317,6 +317,7 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Speed", unitDB.AircraftData.CruiseSpeed);
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadCommon", unitDB.AircraftData.PayloadCommon);
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadPylons", unitDB.AircraftData.GetPayloadLua(aircraftPayload, Template.ContextDecade));
+                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Livery", extraSettings.Any(x => x.Key == "Livery") ? extraSettings.First(x => x.Key == "Livery").Value : "default");
             }
             else
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", $"{groupName} {unitLuaIndex + 1}");

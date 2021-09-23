@@ -113,7 +113,8 @@ namespace BriefingRoom4DCS.Generator
                 "UnitY".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.Y).ToArray()),
                 "MissionAirbaseX".ToKeyValuePair(groupStartingCoords.X),
                 "MissionAirbaseY".ToKeyValuePair(groupStartingCoords.Y),
-                "MissionAirbaseID".ToKeyValuePair(playerAirbase.DCSID));
+                "MissionAirbaseID".ToKeyValuePair(playerAirbase.DCSID),
+                "Livery".ToKeyValuePair(flightGroup.Livery));
 
             if (!groupInfo.HasValue)
             {
