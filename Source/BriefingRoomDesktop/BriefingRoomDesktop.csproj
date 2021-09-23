@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Content Include="..\..\Database\**" LinkBase="Database" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\CustomConfigs\**" LinkBase="Database" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="..\..\Include\**" LinkBase="Include" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="..\..\Media\**" LinkBase="Media" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="Resources\**" LinkBase="Resources" CopyToPublishDirectory="PreserveNewest" />
