@@ -90,7 +90,6 @@ namespace BriefingRoom4DCS.Data
                 .Union(aircraftData.PayloadTasks)
                 .GroupBy(g => g.Key)
                 .ToDictionary(pair => pair.Key, pair => pair.Last().Value);
-            Console.WriteLine("bla");
         }
 
         /// <summary>
