@@ -43,6 +43,11 @@ namespace BriefingRoom4DCS.GUI
                     case AircraftPayload.AirToAir: return "Air-to-air";
                     case AircraftPayload.AirToGround: return "Air-to-ground";
                     case AircraftPayload.AntiShip: return "Anti-ship";
+                    case AircraftPayload.CustomOne: return "Custom 1";
+                    case AircraftPayload.CustomTwo: return "Custom 2";
+                    case AircraftPayload.CustomThree: return "Custom 3";
+                    case AircraftPayload.CustomFour: return "Custom 4";
+                    case AircraftPayload.CustomFive: return "Custom 5";
                 }
             }
             else if (enumValue is Amount)

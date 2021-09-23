@@ -44,6 +44,12 @@ namespace BriefingRoom4DCS.Template
         /// <summary>
         /// SEAD payload
         /// </summary>
-        SEAD
+        SEAD,
+
+        CustomOne,
+        CustomTwo,
+        CustomThree,
+        CustomFour,
+        CustomFive,
     }
 }
