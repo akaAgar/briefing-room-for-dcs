@@ -203,7 +203,7 @@ namespace BriefingRoom4DCS.Generator
                 targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
                 objectiveCoordinates,
                 null, groupFlags,
-                AircraftPayload.Default,
+                "default",
                 extraSettings.ToArray());
 
             if (!targetGroupInfo.HasValue) // Failed to generate target group
@@ -221,7 +221,7 @@ namespace BriefingRoom4DCS.Generator
                         targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
                         objectiveCoordinates + Coordinates.CreateRandom(100, 500),
                         null, groupFlags,
-                        AircraftPayload.Default,
+                        "default",
                         extraSettings.ToArray());
             }
 

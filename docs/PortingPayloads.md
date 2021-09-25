@@ -66,15 +66,15 @@ Porting a payload its relatively simple.
 1. Format Payload into config like so *once again my AT config*
  
     ```ini
-    Payload.Decade2000.Task.Default.Pylon01={AIM-9L}
-    Payload.Decade2000.Task.Default.Pylon02=LAU_117_AGM_65F
-    Payload.Decade2000.Task.Default.Pylon03=LAU_117_AGM_65F
-    Payload.Decade2000.Task.Default.Pylon04={AAQ-28_LEFT}
-    Payload.Decade2000.Task.Default.Pylon05={FPU_8A_FUEL_TANK}
-    Payload.Decade2000.Task.Default.Pylon06={40EF17B7-F508-45de-8566-6FFECC0C1AB8}
-    Payload.Decade2000.Task.Default.Pylon07=LAU_117_AGM_65F
-    Payload.Decade2000.Task.Default.Pylon08=LAU_117_AGM_65F
-    Payload.Decade2000.Task.Default.Pylon09={AIM-9L}
+    Payload.Task.Default.Pylon01={AIM-9L}
+    Payload.Task.Default.Pylon02=LAU_117_AGM_65F
+    Payload.Task.Default.Pylon03=LAU_117_AGM_65F
+    Payload.Task.Default.Pylon04={AAQ-28_LEFT}
+    Payload.Task.Default.Pylon05={FPU_8A_FUEL_TANK}
+    Payload.Task.Default.Pylon06={40EF17B7-F508-45de-8566-6FFECC0C1AB8}
+    Payload.Task.Default.Pylon07=LAU_117_AGM_65F
+    Payload.Task.Default.Pylon08=LAU_117_AGM_65F
+    Payload.Task.Default.Pylon09={AIM-9L}
     ```
     **Be careful of to copy the exact weapon format**
 1. Save file

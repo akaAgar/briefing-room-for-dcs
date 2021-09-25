@@ -212,7 +212,7 @@ namespace BriefingRoom4DCS.Campaign
             for (int i = 0; i < objectiveCount; i++)
                 template.PlayerFlightGroups.Add(
                     new(campaignTemplate.PlayerAircraft, Toolbox.RandomFrom(2, 2, 2, 2, 3, 4, 4),
-                    AircraftPayload.Default, campaignTemplate.PlayerCarrier,
+                    "default", campaignTemplate.PlayerCarrier,
                     campaignTemplate.ContextCoalitionPlayer == Coalition.Red ? Country.CJTFRed : Country.CJTFBlue,
                     campaignTemplate.PlayerStartLocation, true, "default"));
 

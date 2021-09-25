@@ -87,7 +87,7 @@ namespace BriefingRoom4DCS.Generator
             string groupLua, string unitLua,
             Coordinates coordinates, DCSSkillLevel? skill = null,
             UnitMakerGroupFlags unitMakerGroupFlags = 0,
-            AircraftPayload aircraftPayload = AircraftPayload.Default,
+            string aircraftPayload = "default",
             params KeyValuePair<string, object>[] extraSettings)
         {
             if (unitCount <= 0) return null;
@@ -110,7 +110,7 @@ namespace BriefingRoom4DCS.Generator
             string groupTypeLua, string unitTypeLua,
             Coordinates coordinates, DCSSkillLevel? skill = null,
             UnitMakerGroupFlags unitMakerGroupFlags = 0,
-            AircraftPayload aircraftPayload = AircraftPayload.Default,
+            string aircraftPayload = "default",
             params KeyValuePair<string, object>[] extraSettings)
         {
             if (units.Length == 0) return null;
@@ -231,7 +231,7 @@ namespace BriefingRoom4DCS.Generator
             UnitCallsign? callsign,
             string unitTypeLua,
             Coordinates coordinates,
-            AircraftPayload aircraftPayload,
+            string aircraftPayload,
             UnitMakerGroupFlags unitMakerGroupFlags,
             params KeyValuePair<string, object>[] extraSettings
             )
@@ -283,7 +283,7 @@ namespace BriefingRoom4DCS.Generator
             DBEntryUnit unitDB,
             string unitTypeLua,
             Coordinates coordinates,
-            AircraftPayload aircraftPayload,
+            string aircraftPayload,
             UnitMakerGroupFlags unitMakerGroupFlags,
             params KeyValuePair<string, object>[] extraSettings)
         {
@@ -316,7 +316,7 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "RadioPresetsLua", string.Join("", unitDB.AircraftData.RadioPresets.Select((x, index) => $"[{index + 1}] = {x.ToLuaString()}")));
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Speed", unitDB.AircraftData.CruiseSpeed);
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadCommon", unitDB.AircraftData.PayloadCommon);
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadPylons", unitDB.AircraftData.GetPayloadLua(aircraftPayload, Template.ContextDecade));
+                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadPylons", unitDB.AircraftData.GetPayloadLua(aircraftPayload));
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Livery", extraSettings.Any(x => x.Key == "Livery") ? extraSettings.First(x => x.Key == "Livery").Value : "default");
             }
             else

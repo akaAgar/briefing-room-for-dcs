@@ -71,7 +71,7 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Payload for each pylon and each mission type.
         /// </summary>
-        private Dictionary<Decade,Dictionary<AircraftPayload,string[]>> PayloadTasks { get; set; } = new Dictionary<Decade,Dictionary<AircraftPayload,string[]>>();
+        internal Dictionary<string,string[]> PayloadTasks { get; private set; } = new Dictionary<string,string[]>();
 
         /// <summary>
         /// Is this aircraft player-controllable?
@@ -134,15 +134,18 @@ namespace BriefingRoom4DCS.Data
             RadioModulation = ini.GetValue<RadioModulation>("Aircraft", "Radio.Modulation");
 
             PayloadCommon = ini.GetValue<string>("Aircraft", "Payload.Common");
-            foreach (Decade decade in Enum.GetValues(typeof(Decade))){
-                PayloadTasks.Add(decade, new Dictionary<AircraftPayload, string[]>());
-                foreach (AircraftPayload task in Enum.GetValues(typeof(AircraftPayload)))
-                {
-                    PayloadTasks[decade].Add(task, new string[MAX_PYLONS]);
-                    for (var pylonIndex = 0; pylonIndex < MAX_PYLONS; pylonIndex++)
-                        PayloadTasks[decade][task][pylonIndex] = ini.GetValue<string>("Aircraft", $"Payload.{decade}.Task.{task}.Pylon{pylonIndex + 1:00}");
-                }
+
+            var payloads = ini.GetKeysInSection("Aircraft").Where(x => x.StartsWith("payload.task")).Select(x => x.Split('.')[2]).Distinct().ToList();
+            PayloadTasks.Add("default", new string[MAX_PYLONS]);
+
+            foreach (string task in payloads)
+            {   
+                if(task != "default")
+                    PayloadTasks.Add(task, new string[MAX_PYLONS]);
+                for (var pylonIndex = 0; pylonIndex < MAX_PYLONS; pylonIndex++)
+                    PayloadTasks[task][pylonIndex] = ini.GetValue<string>("Aircraft", $"Payload.Task.{task}.Pylon{pylonIndex + 1:00}");
             }
+
             RadioPresets = new List<DBEntryUnitRadioPreset>();
             for (int i = 0; i < 4; i++)
             {
@@ -173,16 +176,14 @@ namespace BriefingRoom4DCS.Data
         /// <param name="taskPayload">Task the aircraft should perform.</param>
         /// <param name="decade">Decade during which the mission will take place.</param>
         /// <returns>An Lua table, as a string</returns>
-        internal string GetPayloadLua(AircraftPayload aircraftPayload, Decade decade)
+        internal string GetPayloadLua(string aircraftPayload)
         {
             string[] payload;
 
-            if (TaskPayloadExists(aircraftPayload, decade))
-                payload = PayloadTasks[decade][aircraftPayload];
-            else if (TaskPayloadExists(AircraftPayload.Default, decade))
-                payload = PayloadTasks[decade][AircraftPayload.Default];
-            else
-                payload = PayloadTasks[DEFAULT_PAYLOAD_DECADE][AircraftPayload.Default];
+            if (TaskPayloadExists(aircraftPayload))
+                payload = PayloadTasks[aircraftPayload];
+            else 
+                payload = PayloadTasks["default"];
 
             string pylonsLua = "";
             for (int i = 0; i < MAX_PYLONS; i++)
@@ -201,15 +202,7 @@ namespace BriefingRoom4DCS.Data
         /// </summary>
         /// <param name="task">A task</param>
         /// <returns>True if a payload have been defined for this task, false otherwise</returns>
-        private bool TaskPayloadExists(AircraftPayload task, Decade decade)
-        {
-            // If at least one pylon has been defined for this task, return true
-            for (int i = 0; i < MAX_PYLONS; i++)
-                if (!string.IsNullOrEmpty(PayloadTasks[decade][task][i]))
-                    return true;
-
-            return false;
-        }
+        private bool TaskPayloadExists(string task) => PayloadTasks.ContainsKey(task);
     }
 }
 

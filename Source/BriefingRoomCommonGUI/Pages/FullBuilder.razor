@@ -262,7 +262,13 @@
                                         <label>Count</label>
                                         <InputNumber class="form-control" @bind-Value="flight.Count"></InputNumber>
                                     </div>
-                                    <InputEnum Label="Payload" @bind-Value="flight.Payload" EnumType="AircraftPayload"/>
+                                    <label>Payload</label>
+                                    <select class="form-control selectpicker" @bind=flight.Payload>
+                                        @foreach (var item in GetAircraftPayloads(flight.Aircraft))
+                                        {
+                                            <option value="@item">@FormatLoadout(item)</option> // Blazor needs to know what values it binds to!
+                                        }
+                                    </select>
                                     <InputEnum Label="Start location" @bind-Value="flight.StartLocation" EnumType="PlayerStartLocation"/>
                                     <InputDataBase Label="Carrier" @bind-Value="flight.Carrier" DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="N/A"/>
                                     <div class="form-group">
@@ -508,8 +514,17 @@
         Template.Objectives.Remove(obj);
     }
 
+    private string FormatLoadout(string key)
+    {
+        var textInfo = new CultureInfo("en-US", false).TextInfo;
+        return textInfo.ToTitleCase(key.Replace("-"," "));
+    }
+
     private List<string> GetLiveries(string aircraftId) =>
-    BriefingRoom.GetAircraftLiveries(aircraftId);
+        BriefingRoom.GetAircraftLiveries(aircraftId);
+
+    private List<string> GetAircraftPayloads(string aircraftId) =>
+        BriefingRoom.GetAircraftPayloads(aircraftId);
 
     private async Task<IEnumerable<Country>> SearchCountry(string searchText) =>
     await Typeahead.SearchEnum<Country>(searchText);

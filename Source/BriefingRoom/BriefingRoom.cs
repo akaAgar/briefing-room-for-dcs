@@ -175,10 +175,16 @@ namespace BriefingRoom4DCS
         /// </summary>
         /// <param name="aircraftID">Id of the aircraft.</param>
         /// <returns>An array of strings</returns>
-        public static List<string> GetAircraftLiveries(string aircraftID)
-        {
-            return Database.Instance.GetEntry<DBEntryUnit>(aircraftID).AircraftData.Liveries;
-        }
+        public static List<string> GetAircraftLiveries(string aircraftID) =>
+            Database.Instance.GetEntry<DBEntryUnit>(aircraftID).AircraftData.Liveries;
+
+        /// <summary>
+        /// Returns livery ids for an aircraft.
+        /// </summary>
+        /// <param name="aircraftID">Id of the aircraft.</param>
+        /// <returns>An array of strings</returns>
+        public static List<string> GetAircraftPayloads(string aircraftID) =>
+            Database.Instance.GetEntry<DBEntryUnit>(aircraftID).AircraftData.PayloadTasks.Keys.ToList();
 
         /// <summary>
         /// Returns the unique IDs of all database entries of a given type.

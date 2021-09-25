@@ -56,7 +56,7 @@ namespace BriefingRoom4DCS.Template
         /// <summary>
         /// Payload this aircraft group will carry.
         /// </summary>
-        public AircraftPayload Payload { get; set; }
+        public string Payload { get; set; } = "default";
 
         /// <summary>
         /// Start location for this flight group.
@@ -88,7 +88,7 @@ namespace BriefingRoom4DCS.Template
         /// <param name="country">Country this aircraft group belongs to (mainly used for liveries).</param>
         /// <param name="startLocation">Start location for this flight group.</param>
         /// <param name="aiWingmen">Should all aircraft in this group except the leader be AI-controlled?</param>
-        public MissionTemplateFlightGroup(string aircraft, int count, AircraftPayload payload, string carrier, Country country, PlayerStartLocation startLocation, bool aiWingmen, string livery)
+        public MissionTemplateFlightGroup(string aircraft, int count, string payload, string carrier, Country country, PlayerStartLocation startLocation, bool aiWingmen, string livery)
         {
             Aircraft = aircraft;
             AIWingmen = aiWingmen;
@@ -129,7 +129,7 @@ namespace BriefingRoom4DCS.Template
             AIWingmen = false;
             Carrier = "";
             Count = 2;
-            Payload = AircraftPayload.Default;
+            Payload = "default";
             Country = Country.CJTFBlue;
             StartLocation = PlayerStartLocation.Runway;
             Livery = "default";

@@ -49,7 +49,7 @@ realism=DisableDCSRadioAssists,NoBDA
 playerflightgroup000.aircrafttype=Su-25T
 playerflightgroup000.aiwingmen=true
 playerflightgroup000.count=2
-playerflightgroup000.payload=Default
+playerflightgroup000.payload=default
 playerflightgroup000.country=CJTFBlue
 playerflightgroup000.startlocation=Runway
 
