@@ -116,9 +116,10 @@ namespace BriefingRoom4DCS.Generator
             BriefingRoom.PrintToLog("Setting up airbases...");
             using (MissionGeneratorAirbases airbasesGenerator = new MissionGeneratorAirbases())
             {
-                playerAirbase = airbasesGenerator.SelectStartingAirbase(mission, template);
+                playerAirbase = airbasesGenerator.SelectStartingAirbase(mission, template, template.FlightPlanTheaterStartingAirbase);
                 if (playerAirbase == null) throw new BriefingRoomException("No valid airbase was found for the player(s).");
                 airbasesGenerator.SetupAirbasesCoalitions(mission, template, playerAirbase);
+                airbasesGenerator.SelectStartingAirbaseForPackages(mission, template, playerAirbase);
                 mission.SetValue("PlayerAirbaseName", playerAirbase.Name);
                 mission.SetValue("MissionAirbaseX", playerAirbase.Coordinates.X);
                 mission.SetValue("MissionAirbaseY", playerAirbase.Coordinates.Y);
@@ -155,8 +156,8 @@ namespace BriefingRoom4DCS.Generator
             {
                 flightPlanGenerator.GenerateBullseyes(mission, objectivesCenter);
                 flightPlanGenerator.GenerateObjectiveWPCoordinatesLua(template, mission, waypoints);
+                flightPlanGenerator.GenerateAircraftPackageWaypoints(template,waypoints, averageInitialPosition, objectivesCenter);
                 flightPlanGenerator.GenerateIngressAndEgressWaypoints(template, waypoints, averageInitialPosition, objectivesCenter);
-                flightPlanGenerator.SaveWaypointsToBriefing(mission, playerAirbase.Coordinates, waypoints, template.OptionsMission.Contains(MissionOption.ImperialUnitsForBriefing));
             }
 
             // Generate surface-to-air defenses
@@ -178,7 +179,7 @@ namespace BriefingRoom4DCS.Generator
             BriefingRoom.PrintToLog("Generating player flight groups...");
             using (MissionGeneratorPlayerFlightGroups playerFlightGroupsGenerator = new MissionGeneratorPlayerFlightGroups(unitMaker))
                 for (i = 0; i < template.PlayerFlightGroups.Count; i++)
-                    playerFlightGroupsGenerator.GeneratePlayerFlightGroup(mission, template.PlayerFlightGroups[i], playerAirbase, waypoints, carrierDictionary);
+                    playerFlightGroupsGenerator.GeneratePlayerFlightGroup(mission, template, i, playerAirbase, waypoints, carrierDictionary, averageInitialPosition, objectivesCenter);
 
             // Generate mission features
             BriefingRoom.PrintToLog("Generating mission features...");

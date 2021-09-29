@@ -186,6 +186,10 @@ namespace BriefingRoom4DCS
         public static List<string> GetAircraftPayloads(string aircraftID) =>
             Database.Instance.GetEntry<DBEntryUnit>(aircraftID).AircraftData.PayloadTasks.Keys.ToList();
 
+
+        public static string GetAlias(int index) => Toolbox.GetAlias(index);
+
+         public static string FormatPayload(string payload) => Toolbox.FormatPayload(payload);
         /// <summary>
         /// Returns the unique IDs of all database entries of a given type.
         /// </summary>

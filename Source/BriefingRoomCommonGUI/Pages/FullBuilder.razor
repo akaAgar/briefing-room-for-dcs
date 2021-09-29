@@ -95,20 +95,19 @@
                             <label>Objective distance (zero means random)</label>
                             <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistance"></InputNumber>
                         </div>
-                        <InputDataBase Label="Starting airbase" @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="Template.ContextTheater" EmptOpt="Random"/>
+                        <InputDataBase Label="Main airbase" @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
                     </div>
                     break;
                 case "objectives":
                     <div id="objectives" class="generator-block">
                         <h3>Objectives</h3>
                         <ul class="nav nav-tabs">
-                            @{objectiveIndex = 1;}
                             @foreach (var value in Template.Objectives)
                             {
                                 <li class="nav-item">
                                     <a class="nav-link @(ObjectiveTab == value ? "active" : "")" aria-current="page"
                             @onclick='() => SetObjectiveTab(value)'>
-                                        Objective @(objectiveIndex++)
+                                        Objective @value.Alias
                                         @if (Template.Objectives.Count > 1)
                                         {
                                             <a class="delete-flight" @onclick="() =>  RemoveObjective(value)">x</a>
@@ -227,7 +226,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link @(flightGroupTab == value ? "active" : "")" aria-current="page"
                             @onclick='() => SetFlightGroupTab(value)'>
-                                        @GetAircraftDisplayName(@value.Aircraft) x @value.Count
+                                       @value.Alias: @GetAircraftDisplayName(@value.Aircraft) x @value.Count
                                         @if (Template.PlayerFlightGroups.Count > 1)
                                         {
                                             <a class="delete-flight" @onclick="() =>  RemoveFlightGroup(value)">x</a>
@@ -266,7 +265,7 @@
                                     <select class="form-control selectpicker" @bind=flight.Payload>
                                         @foreach (var item in GetAircraftPayloads(flight.Aircraft))
                                         {
-                                            <option value="@item">@FormatLoadout(item)</option> // Blazor needs to know what values it binds to!
+                                            <option value="@item">@BriefingRoom.FormatPayload(item)</option> // Blazor needs to know what values it binds to!
                                         }
                                     </select>
                                     <InputEnum Label="Start location" @bind-Value="flight.StartLocation" EnumType="PlayerStartLocation"/>
@@ -304,6 +303,70 @@
                         }
                     </div>
                     break;
+                case "packages":
+                    <div id="flight-groups" class="generator-block">
+                        <h3>Packages</h3>
+                        <ul class="nav nav-tabs">
+                            @foreach (var value in Template.AircraftPackages)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link @(packageTab == value ? "active" : "")" aria-current="page"
+                            @onclick='() => SetPackageTab(value)'>
+                                        @value.Alias
+                                            <a class="delete-flight" @onclick="() =>  RemovePackage(value)">x</a>
+                                    </a>
+                                </li>
+                            }
+                            @if(Template.PlayerFlightGroups.Count > 1)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" @onclick="AddPackage">+</a>
+                                </li>
+                            } else {
+                            <li class="nav-item">
+                                <p>Must have more than one flight group to use Packaging</p>
+                            </li>
+                            }
+                        </ul>
+
+                        @foreach (var package in Template.AircraftPackages)
+                        {
+                            if (packageTab == package)
+                            {
+                                <div class="flight-group">
+                                    <div class="form-group">
+                                        <label>Objectives</label>
+                                         <CheckBoxList
+                                            Data="Template.Objectives"
+                                            TextField="@((item)=>item.Alias + ": " + item.Task + "-" + item.Target)"
+                                            ValueField="@((item)=>Template.Objectives.IndexOf(item))"
+                                            SelectedValues="package.ObjectiveIndexes"
+                                            TItem="MissionTemplateObjective" TItemOutput="int">
+                                        </CheckBoxList>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Flight Groups</label>
+                                         @* TODO: Filter for flights in other packages *@
+                                        <CheckBoxList
+                                            Data="GetAvailableFlightGroups(package)"
+                                            TextField="@((item)=>item.Alias + ": " + item.Aircraft + " x " + item.Count)"
+                                            ValueField="@((item)=>Template.PlayerFlightGroups.IndexOf(item))"
+                                            SelectedValues="package.FlightGroupIndexes"
+                                            TItem="MissionTemplateFlightGroup" TItemOutput="int">
+                                        </CheckBoxList>
+                                    </div>
+                                    <InputDataBase 
+                                        Label="Starting airbase"
+                                        @bind-Value="package.StartingAirbase"
+                                        DataBaseType="DatabaseEntryType.Airbase"
+                                        Grouping="@Template.ContextTheater"
+                                        CustomOpt="Home Base,home"
+                                        />
+                                </div>
+                            }
+                        }
+                    </div>
+                    break;
 
             }
         </EditForm>
@@ -325,9 +388,6 @@
 
 
 @code {
-
-    private int objectiveIndex;
-
     private BriefingRoom4DCS.BriefingRoom briefingRoom = new BriefingRoom4DCS.BriefingRoom(WriteToDebugLog);
     private MissionTemplate Template;
     private DCSMission mission;
@@ -445,6 +505,7 @@
 "objectives",
 "flight-groups",
 "flight-plan",
+"packages",
 "situation",
 "options",
 };
@@ -452,6 +513,7 @@
     {
         tab = var;
     }
+
 
 
     private string situationTab = "enemies";
@@ -471,6 +533,7 @@
     {
         MissionTemplateFlightGroup flight = new();
         flightGroupTab = flight;
+        flight.Alias = BriefingRoom.GetAlias(Template.PlayerFlightGroups.Count);
         Template.PlayerFlightGroups.Add(flight);
     }
 
@@ -483,6 +546,36 @@
         }
     }
 
+
+    private MissionTemplatePackage packageTab;
+    private void SetPackageTab(MissionTemplatePackage var)
+    {
+        packageTab = var;
+    }
+
+    private void AddPackage()
+    {
+        MissionTemplatePackage package = new();
+        packageTab = package;
+        package.Alias = BriefingRoom.GetAlias(Template.AircraftPackages.Count);
+        Template.AircraftPackages.Add(package);
+    }
+
+    private void RemovePackage(MissionTemplatePackage package)
+    {
+        Template.AircraftPackages.Remove(package);
+        if (Template.AircraftPackages.Count == 1)
+        {
+            packageTab = Template.AircraftPackages[0];
+        }
+    }
+
+    private List<MissionTemplateFlightGroup> GetAvailableFlightGroups(MissionTemplatePackage package)
+    {
+        var restOfPackages = Template.AircraftPackages.Where(x => x != package);
+        return Template.PlayerFlightGroups.Where((v,i) => package.FlightGroupIndexes.Contains(i) || !restOfPackages.Any(y => y.FlightGroupIndexes.Contains(i))).ToList();
+    }
+
     private MissionTemplateObjective ObjectiveTab;
     private void SetObjectiveTab(MissionTemplateObjective var)
     {
@@ -493,6 +586,7 @@
     {
         MissionTemplateObjective obj = new();
         ObjectiveTab = obj;
+        obj.Alias = BriefingRoom.GetAlias(Template.Objectives.Count);
         Template.Objectives.Add(obj);
     }
 
@@ -506,18 +600,13 @@
             Features = obj.Features
         };
         ObjectiveTab = newObj;
+        newObj.Alias = BriefingRoom.GetAlias(Template.Objectives.Count);
         Template.Objectives.Add(newObj);
     }
 
     private void RemoveObjective(MissionTemplateObjective obj)
     {
         Template.Objectives.Remove(obj);
-    }
-
-    private string FormatLoadout(string key)
-    {
-        var textInfo = new CultureInfo("en-US", false).TextInfo;
-        return textInfo.ToTitleCase(key.Replace("-"," "));
     }
 
     private List<string> GetLiveries(string aircraftId) =>

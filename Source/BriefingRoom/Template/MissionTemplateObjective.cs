@@ -29,7 +29,7 @@ namespace BriefingRoom4DCS.Template
     /// <summary>
     /// Stores information about a mission template objective.
     /// </summary>
-    public class MissionTemplateObjective
+    public class MissionTemplateObjective: MissionTemplateGroup
     {
         [Required, DatabaseSourceType(DatabaseEntryType.ObjectiveFeature)]
         [Display(Name = "Objective features", Description = "Special features to include in this objective.")]

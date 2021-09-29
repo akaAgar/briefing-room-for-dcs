@@ -156,6 +156,11 @@ namespace BriefingRoom4DCS.Template
         public List<MissionTemplateFlightGroup> PlayerFlightGroups { get { return PlayerFlightGroups_; } set { PlayerFlightGroups_ = value.Take(MAX_PLAYER_FLIGHT_GROUPS).ToList(); } }
         private List<MissionTemplateFlightGroup> PlayerFlightGroups_ = new List<MissionTemplateFlightGroup>();
 
+        [Required, MinLength(0), MaxLength(MAX_PLAYER_FLIGHT_GROUPS)]
+        [Display(Name = "Aircraft Packages", Description = "Group player flight groups to starting base and objectives.")]
+        public List<MissionTemplatePackage> AircraftPackages { get { return AircraftPackages_; } set { AircraftPackages_ = value.Take(MAX_PLAYER_FLIGHT_GROUPS).ToList(); } }
+        private List<MissionTemplatePackage> AircraftPackages_ = new List<MissionTemplatePackage>();
+
         [Required]
         [Display(Name = "Enemy air defense", Description = "Quality and quantity of enemy surface-to-air defense.")]
         [Category("Situation")]
@@ -234,11 +239,13 @@ namespace BriefingRoom4DCS.Template
             OptionsRealism = new RealismOption[] { RealismOption.DisableDCSRadioAssists, RealismOption.NoBDA }.ToList();
 
             PlayerFlightGroups = new MissionTemplateFlightGroup[] { new MissionTemplateFlightGroup() }.ToList();
+            AircraftPackages = new();
 
             SituationEnemyAirDefense = AmountNR.Random;
             SituationEnemyAirForce = AmountNR.Random;
             SituationFriendlyAirDefense = AmountNR.Random;
             SituationFriendlyAirForce = AmountNR.None;
+            AssignAliases();
         }
 
         /// <summary>
@@ -292,12 +299,17 @@ namespace BriefingRoom4DCS.Template
             PlayerFlightGroups.Clear();
             foreach (string key in ini.GetTopLevelKeysInSection("PlayerFlightGroups"))
                 PlayerFlightGroups.Add(new MissionTemplateFlightGroup(ini, "PlayerFlightGroups", key));
+            
+            AircraftPackages.Clear();
+            foreach (string key in ini.GetTopLevelKeysInSection("AircraftPackages"))
+                AircraftPackages.Add(new MissionTemplatePackage(ini, "AircraftPackages", key));
 
             SituationEnemyAirDefense = ini.GetValue("Situation", "EnemyAirDefense", SituationEnemyAirDefense);
             SituationEnemyAirForce = ini.GetValue("Situation", "EnemyAirForce", SituationEnemyAirForce);
             SituationFriendlyAirDefense = ini.GetValue("Situation", "FriendlyAirDefense", SituationFriendlyAirDefense);
             SituationFriendlyAirForce = ini.GetValue("Situation", "FriendlyAirForce", SituationFriendlyAirForce);
 
+            AssignAliases();
             return true;
         }
 
@@ -351,6 +363,9 @@ namespace BriefingRoom4DCS.Template
 
             for (i = 0; i < PlayerFlightGroups.Count; i++)
                 PlayerFlightGroups[i].SaveToFile(ini, "PlayerFlightGroups", $"PlayerFlightGroup{i:000}");
+            
+            for (i = 0; i < AircraftPackages.Count; i++)
+                AircraftPackages[i].SaveToFile(ini, "AircraftPackages", $"AircraftPackage{i:000}");
 
             ini.SetValue("Situation", "EnemyAirDefense", SituationEnemyAirDefense);
             ini.SetValue("Situation", "EnemyAirForce", SituationEnemyAirForce);
@@ -388,6 +403,16 @@ namespace BriefingRoom4DCS.Template
         internal int GetPlayerSlotsCount()
         {
             return (from MissionTemplateFlightGroup flightGroup in PlayerFlightGroups_ select flightGroup.PlayerSlots).Sum();
+        }
+
+        internal void AssignAliases()
+        {
+            foreach (var item in PlayerFlightGroups)
+                item.AssignAlias(PlayerFlightGroups.IndexOf(item));
+            foreach (var item in Objectives)
+                item.AssignAlias(Objectives.IndexOf(item));
+            foreach (var item in AircraftPackages)
+                item.AssignAlias(AircraftPackages.IndexOf(item));
         }
 
         /// <summary>

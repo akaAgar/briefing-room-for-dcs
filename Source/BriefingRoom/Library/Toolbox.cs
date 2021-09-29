@@ -81,6 +81,20 @@ namespace BriefingRoom4DCS
         /// </summary>
         internal const double KNOTS_TO_METERS_PER_SECOND = 0.514444;
 
+        internal static List<string> ALIASES = new List<string>{
+                "Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliet", "Kilo",
+                "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Romeo", "Sierra", "Tango", "Uniform", "Victor",
+                "Whiskey", "X-Ray", "Yankee", "Zulu"};
+
+        internal static string FormatPayload(string key)
+        {
+            if (key == "default")
+            {
+                return "General";
+            }
+            var textInfo = new CultureInfo("en-US", false).TextInfo;
+            return textInfo.ToTitleCase(key.Replace("-"," "));
+        }
         /// <summary>
         /// Tries to create a directory if it doesn't exist already.
         /// </summary>
@@ -98,6 +112,9 @@ namespace BriefingRoom4DCS
 
             return true;
         }
+
+        internal static string GetAlias(int index) =>
+            ALIASES[index % ALIASES.Count];
 
 
         /// <summary>
@@ -203,7 +220,7 @@ namespace BriefingRoom4DCS
                 else
                 {
                     string root = Path.GetPathRoot(path);
-                    isValid = string.IsNullOrEmpty(root.Trim(new char[] { '\\', '/' })) == false;
+                    isValid = string.IsNullOrEmpty(root.Trim(new char[] { '/' })) == false;
                 }
             }
             catch (Exception)
@@ -345,6 +362,7 @@ namespace BriefingRoom4DCS
         /// Path to the Windows "My Documents" directory.
         /// </summary>
         internal static string PATH_USER_DOCS { get; } = NormalizeDirectoryPath(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+
 
         /// <summary>
         /// Flags required to center text properly.

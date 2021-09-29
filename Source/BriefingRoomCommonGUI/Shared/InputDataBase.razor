@@ -2,6 +2,10 @@
     <label>@Label</label>
     <InputSelect class="form-control" Value="Value" ValueExpression="@(()=>Value)"
         ValueChanged="@((string s) => ValueChangedChild(s))">
+        @if (!String.IsNullOrEmpty(CustomOpt))
+        {
+            <option value="@CustomOpt.Split(",")[1]">@CustomOpt.Split(",")[0]</option>
+        }
         @if (!String.IsNullOrEmpty(EmptOpt))
         {
             <option value="">@EmptOpt</option>
@@ -26,6 +30,9 @@
 
     [Parameter]
     public string EmptOpt { get; set; } = "";
+
+    [Parameter]
+    public string CustomOpt { get; set; } = "";
 
     [Parameter]
     public bool HasDescription { get; set; } = false;
@@ -55,7 +62,7 @@
 
     private DatabaseEntryInfo[] GetData()
     {
-        if (String.IsNullOrEmpty(Grouping))
+        if (!String.IsNullOrEmpty(Grouping))
             return BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DataBaseType, Grouping);
         return BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DataBaseType);
     }

@@ -33,32 +33,46 @@ namespace BriefingRoom4DCS.Generator
         /// </summary>
         internal MissionGeneratorAirbases() { }
 
+        internal void SelectStartingAirbaseForPackages(DCSMission mission, MissionTemplate template, DBEntryAirbase homeBase)
+        {
+            foreach (var package in template.AircraftPackages)
+            {
+                if(package.StartingAirbase == "home")
+                {
+                    package.Airbase = homeBase;
+                    continue;
+                }
+                var requiredSpots = template.PlayerFlightGroups.Where((v, i) => package.FlightGroupIndexes.Contains(i)).Sum(x => x.Count);
+                package.Airbase = SelectStartingAirbase(mission, template, package.StartingAirbase, requiredSpots);
+            }
+        }
+
         /// <summary>
         /// Picks a starting airbase for the player(s)
         /// </summary>
         /// <param name="mission">Mission for which the starting airbase must be set</param>
         /// <param name="template">Mission template to use</param>
         /// <returns>Players' takeoff/landing airbase</returns>
-        internal DBEntryAirbase SelectStartingAirbase(DCSMission mission, MissionTemplate template)
+        internal DBEntryAirbase SelectStartingAirbase(DCSMission mission, MissionTemplate template, string selectedAirbaseID, int requiredParkingSpots = 0)
         {
             // Get total number of required parking spots for flight groups
-            int requiredParkingSpots = (from MissionTemplateFlightGroup flightGroup in template.PlayerFlightGroups select flightGroup.Count).Sum();
-
+            if (requiredParkingSpots == 0)
+                requiredParkingSpots = (from MissionTemplateFlightGroup flightGroup in template.PlayerFlightGroups select flightGroup.Count).Sum();
             // Select all airbases for this theater
             DBEntryAirbase[] airbases = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater).GetAirbases();
 
             // If a particular airbase name has been specified and an airbase with this name exists, pick it
-            if (!string.IsNullOrEmpty(template.FlightPlanTheaterStartingAirbase))
+            if (!string.IsNullOrEmpty(selectedAirbaseID))
             {
-                airbases = (from DBEntryAirbase airbase in airbases where airbase.ID == template.FlightPlanTheaterStartingAirbase select airbase).ToArray();
+                airbases = (from DBEntryAirbase airbase in airbases where airbase.ID == selectedAirbaseID select airbase).ToArray();
                 if (airbases.Length == 0)
                 {
-                    BriefingRoom.PrintToLog($"No airbase found with ID \"{template.FlightPlanTheaterStartingAirbase}\", cannot spawn player aircraft.", LogMessageErrorLevel.Error);
+                    BriefingRoom.PrintToLog($"No airbase found with ID \"{selectedAirbaseID}\", cannot spawn player aircraft.", LogMessageErrorLevel.Error);
                     return null;
                 }
                 if (airbases[0].ParkingSpots.Length < requiredParkingSpots)
                 {
-                    BriefingRoom.PrintToLog($"Airbase \"{template.FlightPlanTheaterStartingAirbase}\" has less than {requiredParkingSpots} parking spots, cannot spawn player aircraft.", LogMessageErrorLevel.Error);
+                    BriefingRoom.PrintToLog($"Airbase \"{selectedAirbaseID}\" has less than {requiredParkingSpots} parking spots, cannot spawn player aircraft.", LogMessageErrorLevel.Error);
                     return null;
                 }
 

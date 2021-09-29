@@ -25,7 +25,7 @@ namespace BriefingRoom4DCS.Template
     /// <summary>
     /// A player flight group, to be stored in <see cref="MissionTemplate.PlayerFlightGroups"/>
     /// </summary>
-    public sealed class MissionTemplateFlightGroup
+    public sealed class MissionTemplateFlightGroup: MissionTemplateGroup
     {
         /// <summary>
         /// Type of aircraft in this flight group.

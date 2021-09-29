@@ -65,6 +65,16 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("BullseyeRedY", objectivesCenter.Y + GetBullseyeRandomDistance());
         }
 
+        internal void GenerateAircraftPackageWaypoints(MissionTemplate template, List<Waypoint> waypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter)
+        {
+            foreach (var package in template.AircraftPackages)
+            {
+                package.Waypoints = waypoints.Where((v, i) => package.ObjectiveIndexes.Contains(i)).ToList();
+                GenerateIngressAndEgressWaypoints(template, package.Waypoints, averageInitialLocation, objectivesCenter);
+            }
+        }
+
+
         internal void GenerateIngressAndEgressWaypoints(MissionTemplate template, List<Waypoint> waypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter)
         {
             if(!template.MissionFeatures.Contains("IngressEgressWaypoints"))
@@ -85,32 +95,7 @@ namespace BriefingRoom4DCS.Generator
                 new Waypoint(
                     Database.Instance.Common.Names.WPEgressName,
                     baseIngressPosition + Coordinates.CreateRandom(ingressDeviation * 0.9, ingressDeviation * 1.1)));
-        }
-
-        internal void SaveWaypointsToBriefing(DCSMission mission, Coordinates initialCoordinates, List<Waypoint> waypoints, bool useImperialSystem)
-        {
-            double totalDistance = 0;
-            Coordinates lastWP = initialCoordinates;
-
-            // Add first (takeoff) and last (landing) waypoints to get a complete list of all waypoints
-            List<Waypoint> allWaypoints = new List<Waypoint>(waypoints);
-            allWaypoints.Insert(0, new Waypoint(Database.Instance.Common.Names.WPInitialName, initialCoordinates));
-            allWaypoints.Add(new Waypoint(Database.Instance.Common.Names.WPFinalName, initialCoordinates));
-
-            foreach (Waypoint waypoint in allWaypoints)
-            {
-                double distanceFromLast = waypoint.Coordinates.GetDistanceFrom(lastWP);
-                totalDistance += distanceFromLast;
-                lastWP = waypoint.Coordinates;
-
-                string waypointText =
-                    waypoint.Name + "\t" +
-                    (useImperialSystem ? $"{distanceFromLast * Toolbox.METERS_TO_NM:F0} nm" : $"{distanceFromLast / 1000.0:F0} Km") + "\t" +
-                    (useImperialSystem ? $"{totalDistance * Toolbox.METERS_TO_NM:F0} nm" : $"{totalDistance / 1000.0:F0} Km");
-
-                mission.Briefing.AddItem(DCSMissionBriefingItemType.Waypoint, waypointText);
-            }
-        }
+        }   
 
         /// <summary>
         /// <see cref="IDisposable"/> implementation.
