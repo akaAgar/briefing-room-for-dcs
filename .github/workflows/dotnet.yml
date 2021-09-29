@@ -37,7 +37,6 @@ jobs:
       id: change_log
       run: |
         LOGS=$(git log --pretty=oneline HEAD...${{ steps.previous_version.outputs.version_tag}})
-      # Replace all forms of new line with actions output friendly variants, without this we only get the first line of commits
         LOGS="${LOGS//'%'/'%25'}"
         LOGS="${LOGS//$'\n'/'%0A'}"
         LOGS="${LOGS//$'\r'/'%0D'}"
