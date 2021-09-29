@@ -268,7 +268,7 @@
                                             <option value="@item">@BriefingRoom.FormatPayload(item)</option> // Blazor needs to know what values it binds to!
                                         }
                                     </select>
-                                    <InputEnum Label="Start location" @bind-Value="flight.StartLocation" EnumType="PlayerStartLocation"/>
+                                    <InputEnum Label="Home Base" @bind-Value="flight.StartLocation" EnumType="PlayerStartLocation"/>
                                     <InputDataBase Label="Carrier" @bind-Value="flight.Carrier" DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="N/A"/>
                                     <div class="form-group">
                                         <label>Country</label>
@@ -356,10 +356,11 @@
                                         </CheckBoxList>
                                     </div>
                                     <InputDataBase 
-                                        Label="Starting airbase"
+                                        Label="Starting Airbase"
                                         @bind-Value="package.StartingAirbase"
                                         DataBaseType="DatabaseEntryType.Airbase"
                                         Grouping="@Template.ContextTheater"
+                                        EmptOpt="Random"
                                         CustomOpt="Home Base,home"
                                         />
                                 </div>
