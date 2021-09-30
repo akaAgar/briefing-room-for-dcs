@@ -303,9 +303,9 @@
                         }
                     </div>
                     break;
-                case "packages":
+                case "strike-packages":
                     <div id="flight-groups" class="generator-block">
-                        <h3>Packages</h3>
+                        <h3>Strike Packages</h3>
                         <ul class="nav nav-tabs">
                             @foreach (var value in Template.AircraftPackages)
                             {
@@ -324,7 +324,7 @@
                                 </li>
                             } else {
                             <li class="nav-item">
-                                <p>Must have more than one flight group to use Packaging</p>
+                                <p>Must have more than one flight group to use Strike Packaging</p>
                             </li>
                             }
                         </ul>
@@ -346,7 +346,6 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Flight Groups</label>
-                                         @* TODO: Filter for flights in other packages *@
                                         <CheckBoxList
                                             Data="GetAvailableFlightGroups(package)"
                                             TextField="@((item)=>item.Alias + ": " + item.Aircraft + " x " + item.Count)"
@@ -505,8 +504,8 @@
 "environment",
 "objectives",
 "flight-groups",
+"strike-packages",
 "flight-plan",
-"packages",
 "situation",
 "options",
 };
