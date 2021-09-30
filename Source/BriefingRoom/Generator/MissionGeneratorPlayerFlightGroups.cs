@@ -97,9 +97,6 @@ namespace BriefingRoom4DCS.Generator
                 }
                 groupStartingCoords = carrier.Coordinates;
                 
-                //overwrite waypoints
-                flightWaypoints[0] = new Waypoint(flightWaypoints.First().Name, carrier.Coordinates);
-                flightWaypoints[flightWaypoints.Count -1] = new Waypoint(flightWaypoints.Last().Name, carrier.Coordinates);
             }
             else // Land airbase take off
             {
