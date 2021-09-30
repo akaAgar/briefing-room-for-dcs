@@ -100,8 +100,8 @@ namespace BriefingRoom4DCS.Template
         /// <param name="key">The ini key to save to</param>
         internal void SaveToFile(INIFile ini, string section, string key)
         {
-            ini.SetValue(section, $"{key}.FlightGroupIndexes", FlightGroupIndexes);
-            ini.SetValue(section, $"{key}.ObjectiveIndexes", ObjectiveIndexes);
+            ini.SetValueArray(section, $"{key}.FlightGroupIndexes", FlightGroupIndexes.Select(x => x.ToString()).ToArray());
+            ini.SetValueArray(section, $"{key}.ObjectiveIndexes", ObjectiveIndexes.Select(x => x.ToString()).ToArray());
             ini.SetValue(section, $"{key}.StartingAirbase", StartingAirbase);
         }
 
