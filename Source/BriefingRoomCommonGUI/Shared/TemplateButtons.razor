@@ -4,12 +4,15 @@
         <label class="btn btn-primary hidden-input-file">
             <InputFile OnChange="@LoadTemplate" />
             <span class="oi oi-data-transfer-upload"></span>
+            <span class="template-box-button-text">Load</span>
         </label>
         <button class="btn btn-secondary" aria-hidden="true" @onclick="() => SaveTemplate()">
             <span class="oi oi-data-transfer-download"></span>
+            <span class="template-box-button-text">Save</span>
         </button>
         <button class="btn btn-warning" aria-hidden="true" @onclick="() => ClearTemplate()">
             <span class="oi oi-reload"></span>
+            <span class="template-box-button-text">Reset</span>
         </button>
     </div>
 </div>
