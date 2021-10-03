@@ -65,6 +65,10 @@ namespace BriefingRoom4DCS.Data
         /// </summary>
         internal Coordinates[] CarrierGroupWaypoints { get; private set; }
 
+        internal List<Coordinates> WaterCoordinates { get; private set; }
+
+        internal List<List<Coordinates>> WaterExclusionCoordinates { get; private set; }
+
         /// <summary>
         /// All spawn points in this theater.
         /// </summary>
@@ -110,10 +114,38 @@ namespace BriefingRoom4DCS.Data
                 }
 
                 // [CarrierGroupWaypoints] section
-                List<Coordinates> carrierGroupWaypointsList = new List<Coordinates>();
+                var carrierGroupWaypointsList = new List<Coordinates>();
                 foreach (string key in ini.GetKeysInSection("CarrierGroupWaypoints"))
                     carrierGroupWaypointsList.Add(ini.GetValue<Coordinates>("CarrierGroupWaypoints", key));
                 CarrierGroupWaypoints = carrierGroupWaypointsList.ToArray();
+
+                if(ini.GetSections().Contains("WaterCoordinates"))
+                {
+                    // Water Coordinates
+                    WaterCoordinates = new List<Coordinates>();
+                    foreach (string key in ini.GetKeysInSection("WaterCoordinates"))
+                        WaterCoordinates.Add(ini.GetValue<Coordinates>("WaterCoordinates", key));
+                }
+
+                WaterExclusionCoordinates = new List<List<Coordinates>>();
+                if(ini.GetSections().Contains("WaterExclusionCoordinates"))
+                {
+                    // Water Exclusion Coordinates
+                    var tempList = new List<Coordinates>();
+                    var groupID = ini.GetKeysInSection("WaterExclusionCoordinates").First().Split(".")[0];
+                    foreach (string key in ini.GetKeysInSection("WaterExclusionCoordinates"))
+                    {
+                        var newGroupId = key.Split(".")[0];
+                        if(groupID != newGroupId)
+                        {
+                            groupID = newGroupId;
+                            WaterExclusionCoordinates.Add(tempList);
+                            tempList = new List<Coordinates>();
+                        }
+                        tempList.Add(ini.GetValue<Coordinates>("WaterExclusionCoordinates", key));
+                    }
+                    WaterExclusionCoordinates.Add(tempList);
+                }
 
                 // [Temperature] section
                 Temperature = new MinMaxI[12];
