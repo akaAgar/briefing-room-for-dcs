@@ -103,9 +103,9 @@ namespace BriefingRoom4DCS.Generator
                 mission.AddMediaFile($"l10n/DEFAULT/{oggFile}", $"{BRPaths.INCLUDE_OGG}{oggFile}");
 
             int objectiveDistance = template.FlightPlanObjectiveDistance;
-            if (objectiveDistance < 1) objectiveDistance = Toolbox.RandomInt(40, 160);
+            if (objectiveDistance < 1) objectiveDistance = Toolbox.RandomInt(40, 160); //TODO look how this works MAYBE DO DISTANCE FROM BASE NOT FROM LAST WAYPOINT
 
-            DBEntryTheaterSpawnPoint? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+            Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                 targetDB.ValidSpawnPoints, lastCoordinates,
                 new MinMaxD(
                     objectiveDistance * OBJECTIVE_DISTANCE_VARIATION_MIN,
@@ -115,7 +115,7 @@ namespace BriefingRoom4DCS.Generator
             if (!spawnPoint.HasValue)
                 throw new BriefingRoomException($"Failed to spawn objective unit group. {String.Join(",", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList())}");
 
-            Coordinates objectiveCoordinates = spawnPoint.Value.Coordinates;
+            Coordinates objectiveCoordinates = spawnPoint.Value;
 
             // Spawn target on airbase
             int airbaseID = 0;

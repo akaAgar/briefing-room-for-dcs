@@ -37,13 +37,18 @@ namespace BriefingRoom4DCS.Data
         /// Large spot on land, big enough and appropriate for a building to stand
         /// </summary>
         LandLarge,
+
         /// <summary>
-        /// Sea
+        /// Sea, Positions chosen should be in water area but outside of exclusion areas
         /// </summary>
         Sea,
         /// <summary>
         /// Airbase
         /// </summary>
-        Airbase
+        Airbase,
+        /// <summary>
+        /// Air, Any position
+        /// </summary>
+        Air
     }
 }

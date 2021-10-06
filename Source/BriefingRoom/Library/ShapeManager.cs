@@ -10,15 +10,6 @@ using System.Collections.Generic;
 using BriefingRoom4DCS;
 namespace BriefingRoom4DCS
 {
-	internal class Shape {
-
-		internal Shape(List<Coordinates> coordinates)
-		{
-			Coordinates = coordinates;
-		}
-
-		internal List<Coordinates> Coordinates {get; set;}
-	}
 
 
 	internal class ShapeManager
@@ -154,12 +145,14 @@ namespace BriefingRoom4DCS
 			return (count % 2 == 1); // Same as (count%2 == 1)
 		}
 
-		internal static bool IsPosValid(Coordinates coords, Shape InclusionShape, List<Shape> exclusionShapes)
-		{   var outcome  = isInside(InclusionShape.Coordinates, coords);
-			foreach (var shape in exclusionShapes)
-			{
-				if(isInside(shape.Coordinates, coords))
-					return false;
+		internal static bool IsPosValid(Coordinates coords, List<Coordinates> InclusionShape, List<List<Coordinates>> exclusionShapes = null)
+		{   var outcome  = isInside(InclusionShape, coords);
+			if(exclusionShapes is not null){
+				foreach (var shape in exclusionShapes)
+				{
+					if(isInside(shape, coords))
+						return false;
+				}
 			}
 			return outcome;
 		}

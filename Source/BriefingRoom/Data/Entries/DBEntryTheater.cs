@@ -65,6 +65,10 @@ namespace BriefingRoom4DCS.Data
         /// </summary>
         internal Coordinates[] CarrierGroupWaypoints { get; private set; }
 
+        internal List<Coordinates> RedCoordinates { get; private set; }
+
+        internal List<Coordinates> BlueCoordinates { get; private set; }
+
         internal List<Coordinates> WaterCoordinates { get; private set; }
 
         internal List<List<Coordinates>> WaterExclusionCoordinates { get; private set; }
@@ -78,6 +82,8 @@ namespace BriefingRoom4DCS.Data
         /// Min and max temperature (in degrees Celsius) for each month (January is 0, December is 11)
         /// </summary>
         internal MinMaxI[] Temperature { get; private set; }
+
+        internal bool ShapeSpawnSystem { get; private set; } = false;
 
         /// <summary>
         /// Loads a database entry from an .ini file.
@@ -119,7 +125,23 @@ namespace BriefingRoom4DCS.Data
                     carrierGroupWaypointsList.Add(ini.GetValue<Coordinates>("CarrierGroupWaypoints", key));
                 CarrierGroupWaypoints = carrierGroupWaypointsList.ToArray();
 
-                if(ini.GetSections().Contains("WaterCoordinates"))
+
+                 if(ini.GetSections().Contains("redcoordinates"))
+                 {
+                    ShapeSpawnSystem = true;
+                    RedCoordinates = new List<Coordinates>();
+                    foreach (string key in ini.GetKeysInSection("RedCoordinates"))
+                        RedCoordinates.Add(ini.GetValue<Coordinates>("RedCoordinates", key));
+                 }
+
+                 if(ini.GetSections().Contains("bluecoordinates"))
+                 {
+                    BlueCoordinates = new List<Coordinates>();
+                    foreach (string key in ini.GetKeysInSection("BlueCoordinates"))
+                        BlueCoordinates.Add(ini.GetValue<Coordinates>("BlueCoordinates", key));
+                 }
+
+                if(ini.GetSections().Contains("watercoordinates"))
                 {
                     // Water Coordinates
                     WaterCoordinates = new List<Coordinates>();
@@ -128,7 +150,7 @@ namespace BriefingRoom4DCS.Data
                 }
 
                 WaterExclusionCoordinates = new List<List<Coordinates>>();
-                if(ini.GetSections().Contains("WaterExclusionCoordinates"))
+                if(ini.GetSections().Contains("waterexclusioncoordinates"))
                 {
                     // Water Exclusion Coordinates
                     var tempList = new List<Coordinates>();

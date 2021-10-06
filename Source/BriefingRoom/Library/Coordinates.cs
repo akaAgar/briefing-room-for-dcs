@@ -188,11 +188,11 @@ namespace BriefingRoom4DCS
         /// <param name="coo2">Another set of coordinates</param>
         /// <param name="value">A value between</param>
         /// <returns>The interpolated set of coordinates</returns>
-        internal static Coordinates FromAngleAndDistance(Coordinates coordinates, double distance/*, double angle*/)
+        internal static Coordinates FromAngleAndDistance(Coordinates coordinates, MinMaxD distanceMinMax, double angle)
         {
             return new Coordinates(
-                coordinates.X + distance * Math.Cos(distance * Toolbox.DEGREES_TO_RADIANS),
-                coordinates.Y + distance * Math.Sin(distance * Toolbox.DEGREES_TO_RADIANS));
+                coordinates.X + distanceMinMax.GetValue() * Math.Cos(angle * Toolbox.DEGREES_TO_RADIANS),
+                coordinates.Y + distanceMinMax.GetValue() * Math.Sin(angle * Toolbox.DEGREES_TO_RADIANS));
         }
 
 
@@ -218,6 +218,9 @@ namespace BriefingRoom4DCS
         {
             return FromAngleInDegrees(Toolbox.RandomDouble(360.0)) * minMax.GetValue();
         }
+
+
+        internal static Coordinates CreateRandom(Coordinates coordinates, MinMaxD minMax) => FromAngleAndDistance(coordinates, minMax, Toolbox.RandomDouble(360.0));
 
         /// <summary>
         /// Returns the center of all coordintes passed as parameters.

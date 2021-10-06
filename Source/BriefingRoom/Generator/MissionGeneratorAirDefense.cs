@@ -96,7 +96,7 @@ namespace BriefingRoom4DCS.Generator
             for (int i = 0; i < groupCount; i++)
             {
                 // Find spawn point at the proper distance
-                DBEntryTheaterSpawnPoint? spawnPoint =
+                Coordinates? spawnPoint =
                     UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         validSpawnPoints,
                         centerPoint,
@@ -119,7 +119,7 @@ namespace BriefingRoom4DCS.Generator
                     groupInfo = UnitMaker.AddUnitGroup(
                         unitFamilies[j], 1, side,
                         "GroupVehicle", "UnitVehicle",
-                        spawnPoint.Value.Coordinates,
+                        spawnPoint.Value,
                         Toolbox.RandomFrom(airDefenseLevelDB.SkillLevel));
 
                     if (groupInfo.HasValue) break;
