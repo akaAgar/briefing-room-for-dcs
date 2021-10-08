@@ -27,9 +27,9 @@ async function BlazorDownloadFile(filename, contentType, data) {
     a.download = filename;
     a.target = "_self";
     a.click();
+    // We don't need to keep the url, let's release the memory
+    // On Safari it seems you need to comment this line... (please let me know if you know why)
+    URL.revokeObjectURL(exportUrl);
   }
 
-  // We don't need to keep the url, let's release the memory
-  // On Safari it seems you need to comment this line... (please let me know if you know why)
-  URL.revokeObjectURL(exportUrl);
 }
