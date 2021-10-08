@@ -103,14 +103,16 @@ namespace BriefingRoom4DCS.Generator
                 mission.AddMediaFile($"l10n/DEFAULT/{oggFile}", $"{BRPaths.INCLUDE_OGG}{oggFile}");
 
             int objectiveDistance = template.FlightPlanObjectiveDistance;
-            if (objectiveDistance < 1) objectiveDistance = Toolbox.RandomInt(40, 160); //TODO look how this works MAYBE DO DISTANCE FROM BASE NOT FROM LAST WAYPOINT
+            if (objectiveDistance < 1) objectiveDistance = Toolbox.RandomInt(40, 160);
 
             Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                targetDB.ValidSpawnPoints, lastCoordinates,
+                targetDB.ValidSpawnPoints, playerAirbase.Coordinates,
                 new MinMaxD(
                     objectiveDistance * OBJECTIVE_DISTANCE_VARIATION_MIN,
                     objectiveDistance * OBJECTIVE_DISTANCE_VARIATION_MAX),
-                null, null, GeneratorTools.GetSpawnPointCoalition(template, Side.Enemy));
+                lastCoordinates,
+                new MinMaxD(10, 50), // TODO replace with Objective seperation value
+                GeneratorTools.GetSpawnPointCoalition(template, Side.Enemy));
 
             if (!spawnPoint.HasValue)
                 throw new BriefingRoomException($"Failed to spawn objective unit group. {String.Join(",", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList())}");
