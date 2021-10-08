@@ -91,7 +91,7 @@ namespace BriefingRoom4DCS.Generator
 
                 // Find spawn point at the proper distance from the objective(s), but not to close from starting airbase
                 Coordinates? spawnPoint =
-                    UnitMaker.SpawnPointSelector.GetRandomSpawnPoint( //TODO FIX
+                    UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         new SpawnPointType[] {SpawnPointType.Air},
                         centerPoint,
                         CommonCAPDB.DistanceFromCenter,
