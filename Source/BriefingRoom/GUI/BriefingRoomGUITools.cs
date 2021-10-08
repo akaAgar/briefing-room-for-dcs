@@ -172,10 +172,10 @@ namespace BriefingRoom4DCS.GUI
                 switch ((MissionOption)enumValue)
                 {
                     case MissionOption.EnableCivilianTraffic: return "Civilian traffic will be enabled. Can have an impact on performances.";
-                    case MissionOption.ImperialUnitsForBriefing: return "Only spawn friendly and enemy units in countries aligned with the proper coalition. May increase distance to objectives.";
-                    case MissionOption.InvertCountriesCoalitions: return "Create Markers on waypoints.";
-                    case MissionOption.MarkWaypoints: return "Use imperial units for briefing instead of the metric system.";
-                    case MissionOption.OnlySpawnInFriendlyCountries: return "Invert blue and red countries on the map (Russia becomes blue, Georgia becomes red, etc)";
+                    case MissionOption.OnlySpawnInFriendlyCountries: return "Only spawn friendly and enemy units in countries aligned with the proper coalition. May increase distance to objectives.";
+                    case MissionOption.MarkWaypoints: return "Create Markers on waypoints.";
+                    case MissionOption.ImperialUnitsForBriefing: return "Use imperial units for briefing instead of the metric system.";
+                    case MissionOption.InvertCountriesCoalitions: return "Invert blue and red countries on the map (Russia becomes blue, Georgia becomes red, etc)";
                     case MissionOption.RadioMessagesTextOnly: return "Display radio messages in text-format only (no voice).";
                 }
             }
