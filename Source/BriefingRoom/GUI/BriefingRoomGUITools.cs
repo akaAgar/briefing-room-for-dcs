@@ -84,8 +84,9 @@ namespace BriefingRoom4DCS.GUI
                     case MissionOption.ImperialUnitsForBriefing: return "Imperial units for briefing";
                     case MissionOption.InvertCountriesCoalitions: return "Invert countries coalitions on map";
                     case MissionOption.MarkWaypoints: return "Mark Waypoints";
-                    case MissionOption.OnlySpawnInFriendlyCountries: return "Only spawn units in allied countries";
+                    case MissionOption.SpawnAnywhere: return "Insurgency Spawning";
                     case MissionOption.RadioMessagesTextOnly: return "Text-only radio messages (no audio)";
+                    case MissionOption.ForceOldSpawning: return "Force old spawning method.";
                 }
             }
             else if (enumValue is ObjectiveOption)
@@ -172,11 +173,12 @@ namespace BriefingRoom4DCS.GUI
                 switch ((MissionOption)enumValue)
                 {
                     case MissionOption.EnableCivilianTraffic: return "Civilian traffic will be enabled. Can have an impact on performances.";
-                    case MissionOption.OnlySpawnInFriendlyCountries: return "Only spawn friendly and enemy units in countries aligned with the proper coalition. May increase distance to objectives.";
+                    case MissionOption.SpawnAnywhere: return "Units spawn irrespective of country (like an insurgency)";
                     case MissionOption.MarkWaypoints: return "Create Markers on waypoints.";
                     case MissionOption.ImperialUnitsForBriefing: return "Use imperial units for briefing instead of the metric system.";
                     case MissionOption.InvertCountriesCoalitions: return "Invert blue and red countries on the map (Russia becomes blue, Georgia becomes red, etc)";
                     case MissionOption.RadioMessagesTextOnly: return "Display radio messages in text-format only (no voice).";
+                    case MissionOption.ForceOldSpawning: return "Forces the system to use a older spawning logic.";
                 }
             }
             else if (enumValue is ObjectiveOption)

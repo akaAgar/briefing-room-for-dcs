@@ -35,8 +35,8 @@ LandMediumIndex = 1
 LandLarge = ""
 LandLargeIndex = 1
 
-for key in config["SpawnPoints"]:
-    data = config["SpawnPoints"][key].split(",")
+for key in config["OldSpawnPoints"]:
+    data = config["OldSpawnPoints"][key].split(",")
     datValue = template.replace("$X$", data[0])
     datValue = datValue.replace("$Y$", data[1])
     if data[2] == "LandSmall":

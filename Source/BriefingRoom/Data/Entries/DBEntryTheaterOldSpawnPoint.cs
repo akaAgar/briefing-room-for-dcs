@@ -25,7 +25,7 @@ namespace BriefingRoom4DCS.Data
     /// <summary>
     /// Sotres location about a spawn point: a set of X,Y coordinates where a group of unit can be spawned.
     /// </summary>
-    internal struct DBEntryTheaterSpawnPoint
+    internal struct DBEntryTheaterOldSpawnPoint
     {
         /// <summary>
         /// ID of this spawn point. Must be unique at each location.
@@ -43,6 +43,11 @@ namespace BriefingRoom4DCS.Data
         internal SpawnPointType PointType { get; private set; }
 
         /// <summary>
+        /// Default coalition the country this point is located in belongs to.
+        /// </summary>
+        internal Coalition Coalition { get; private set; }
+
+        /// <summary>
         /// Load data for this spawn point.
         /// </summary>
         /// <param name="ini">Theater database entry ini file</param>
@@ -50,15 +55,16 @@ namespace BriefingRoom4DCS.Data
         /// <returns>True if data is valid, false otherwise</returns>
         internal bool Load(INIFile ini, string key)
         {
-            string[] vals = ini.GetValueArray<string>("SpawnPoints", key, ',');
+            string[] vals = ini.GetValueArray<string>("OldSpawnPoints", key, ',');
             UniqueID = key;
 
-            if (vals.Length < 3) return false;
+            if (vals.Length < 4) return false;
 
             try
             {
                 Coordinates = new Coordinates(Toolbox.StringToDouble(vals[0]), Toolbox.StringToDouble(vals[1]));
                 PointType = (SpawnPointType)Enum.Parse(typeof(SpawnPointType), vals[2], true);
+                Coalition = (Coalition)Enum.Parse(typeof(Coalition), vals[3], true);
             }
             catch (Exception)
             {

@@ -12,6 +12,7 @@
 *.exe
 *.log
 *.miz
+!dataExtractors/PositioningMissions/*.miz
 *.pdb
 *.user
 *.xml

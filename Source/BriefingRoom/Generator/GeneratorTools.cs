@@ -180,7 +180,7 @@ namespace BriefingRoom4DCS.Generator
         internal static Coalition? GetSpawnPointCoalition(MissionTemplate template, Side side)
         {
             // No countries spawning restriction
-            if (!template.OptionsMission.Contains(MissionOption.OnlySpawnInFriendlyCountries)) return null;
+            if (template.OptionsMission.Contains(MissionOption.SpawnAnywhere)) return null;
 
             Coalition coalition = side == Side.Ally ? template.ContextPlayerCoalition : template.ContextPlayerCoalition.GetEnemy();
 

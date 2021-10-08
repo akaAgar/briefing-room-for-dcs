@@ -59,7 +59,7 @@ namespace BriefingRoom4DCS.Generator
             bool singlePlayerMission)
         {
             CallsignGenerator = new UnitMakerCallsignGenerator(coalitionsDB);
-            SpawnPointSelector = new UnitMakerSpawnPointSelector(theaterDB);
+            SpawnPointSelector = new UnitMakerSpawnPointSelector(theaterDB,!template.OptionsMission.Contains(MissionOption.ForceOldSpawning));
 
             Mission = mission;
             Template = template;

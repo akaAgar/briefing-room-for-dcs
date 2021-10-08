@@ -73,10 +73,11 @@ namespace BriefingRoom4DCS.Data
 
         internal List<List<Coordinates>> WaterExclusionCoordinates { get; private set; }
 
+        internal DBEntryTheaterSpawnPoint[] SpawnPoints { get; private set; }
         /// <summary>
         /// All spawn points in this theater.
         /// </summary>
-        internal DBEntryTheaterSpawnPoint[] SpawnPoints { get; private set; }
+        internal DBEntryTheaterOldSpawnPoint[] OldSpawnPoints { get; private set; }
 
         /// <summary>
         /// Min and max temperature (in degrees Celsius) for each month (January is 0, December is 11)
@@ -149,6 +150,18 @@ namespace BriefingRoom4DCS.Data
                         WaterCoordinates.Add(ini.GetValue<Coordinates>("WaterCoordinates", key));
                 }
 
+                if(ini.GetSections().Contains("spawnpoints"))
+                {
+                     List<DBEntryTheaterSpawnPoint> spawnPointsList = new List<DBEntryTheaterSpawnPoint>();
+                    foreach (string key in ini.GetKeysInSection("SpawnPoints"))
+                    {
+                        DBEntryTheaterSpawnPoint sp = new DBEntryTheaterSpawnPoint();
+                        if (sp.Load(ini, key))
+                            spawnPointsList.Add(sp);
+                    }
+                    SpawnPoints = spawnPointsList.ToArray();
+                }
+
                 WaterExclusionCoordinates = new List<List<Coordinates>>();
                 if(ini.GetSections().Contains("waterexclusioncoordinates"))
                 {
@@ -174,15 +187,15 @@ namespace BriefingRoom4DCS.Data
                 for (i = 0; i < 12; i++)
                     Temperature[i] = ini.GetValue<MinMaxI>("Temperature", ((Month)i).ToString());
 
-                // [SpawnPoints] section
-                List<DBEntryTheaterSpawnPoint> spawnPointsList = new List<DBEntryTheaterSpawnPoint>();
-                foreach (string key in ini.GetKeysInSection("SpawnPoints"))
+                // [OldSpawnPoints] section
+                List<DBEntryTheaterOldSpawnPoint> oldSpawnPointsList = new List<DBEntryTheaterOldSpawnPoint>();
+                foreach (string key in ini.GetKeysInSection("OldSpawnPoints"))
                 {
-                    DBEntryTheaterSpawnPoint sp = new DBEntryTheaterSpawnPoint();
+                    DBEntryTheaterOldSpawnPoint sp = new DBEntryTheaterOldSpawnPoint();
                     if (sp.Load(ini, key))
-                        spawnPointsList.Add(sp);
+                        oldSpawnPointsList.Add(sp);
                 }
-                SpawnPoints = spawnPointsList.ToArray();
+                OldSpawnPoints = oldSpawnPointsList.ToArray();
             }
 
             return true;

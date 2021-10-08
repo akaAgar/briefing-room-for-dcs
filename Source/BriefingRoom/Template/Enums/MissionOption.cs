@@ -30,8 +30,11 @@ namespace BriefingRoom4DCS.Template
         [Display(Name = "Enable civilian traffic", Description = "If true, civilian traffic will be enabled. Can have an impact on performances.")]
         EnableCivilianTraffic,
 
-        [Display(Name = "Only spawn in friendly countries", Description = "Only spawn units in countries aligned with the proper coalition (friendly units in friendly countries, objectives and enemy units in enemy countries). May increase distance to objectives well beyond the preferred distance.")]
-        OnlySpawnInFriendlyCountries,
+        [Display(Name = "Allow spawning anywhere", Description = "Allows spawing anywhere on the map not just in areas of control or neutural zones.")]
+        SpawnAnywhere,
+
+        [Display(Name = "ForceOldSpawning", Description = "Forces the system to use a older spawning logic.")]
+        ForceOldSpawning,
 
         [Display(Name = "Use imperial units", Description = "Use imperial units for briefing instead of the metric system.")]
         ImperialUnitsForBriefing,
