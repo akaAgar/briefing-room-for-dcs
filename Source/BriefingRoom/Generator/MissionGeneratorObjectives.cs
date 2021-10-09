@@ -105,13 +105,18 @@ namespace BriefingRoom4DCS.Generator
             int objectiveDistance = template.FlightPlanObjectiveDistance;
             if (objectiveDistance < 1) objectiveDistance = Toolbox.RandomInt(40, 160);
 
+            int objectiveSeperation = template.FlightPlanObjectiveSeperation;
+            if (objectiveSeperation < 1) objectiveSeperation = Toolbox.RandomInt(10, 100);
+
             Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                 targetDB.ValidSpawnPoints, playerAirbase.Coordinates,
                 new MinMaxD(
                     objectiveDistance * OBJECTIVE_DISTANCE_VARIATION_MIN,
                     objectiveDistance * OBJECTIVE_DISTANCE_VARIATION_MAX),
                 lastCoordinates,
-                new MinMaxD(10, 50), // TODO replace with Objective seperation value
+                new MinMaxD(
+                    objectiveSeperation * OBJECTIVE_DISTANCE_VARIATION_MIN,
+                    objectiveSeperation * OBJECTIVE_DISTANCE_VARIATION_MAX),
                 GeneratorTools.GetSpawnPointCoalition(template, Side.Enemy));
 
             if (!spawnPoint.HasValue)

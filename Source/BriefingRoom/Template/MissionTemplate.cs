@@ -54,7 +54,8 @@ namespace BriefingRoom4DCS.Template
         /// <summary>
         /// Maximum distance to the objective, in nautical miles.
         /// </summary>
-        public const int MAX_OBJECTIVE_DISTANCE = 200;
+        public const int MAX_OBJECTIVE_DISTANCE = 300;
+        public const int MAX_OBJECTIVE_SEPERATION = 100;
 
         [Display(Name = "Mission name", Description = "Name of the mission. If left empty, a random name will be generated.")]
         [Category("Briefing")]
@@ -114,6 +115,12 @@ namespace BriefingRoom4DCS.Template
         [Category("Flight plan")]
         public int FlightPlanObjectiveDistance { get { return FlightPlanObjectiveDistance_; } set { FlightPlanObjectiveDistance_ = Toolbox.Clamp(value, 0, MAX_OBJECTIVE_DISTANCE); } }
         private int FlightPlanObjectiveDistance_;
+
+        [Required, Range(0, MAX_OBJECTIVE_SEPERATION, ErrorMessage = "Objective Seperation must be between {1} and {2} nautical miles.")]
+        [Display(Name = "Objective Seperation", Description = "Seperation to the objectives, in nautical miles. \"Zero\" means \"random\".")]
+        [Category("Flight plan")]
+        public int FlightPlanObjectiveSeperation { get { return FlightPlanObjectiveSeperation_; } set { FlightPlanObjectiveSeperation_ = Toolbox.Clamp(value, 0, MAX_OBJECTIVE_SEPERATION); } }
+        private int FlightPlanObjectiveSeperation_;
 
         [Required, DatabaseSourceType(DatabaseEntryType.Airbase, true)]
         [Display(Name = "Starting airbase", Description = "Airbase from which the player(s) will take off. Leave empty for none")]
@@ -226,6 +233,7 @@ namespace BriefingRoom4DCS.Template
             EnvironmentWind = Wind.Random;
 
             FlightPlanObjectiveDistance = 80;
+            FlightPlanObjectiveSeperation = 30;
             FlightPlanTheaterStartingAirbase = "";
 
             MissionFeatures = new List<string>();
@@ -282,6 +290,7 @@ namespace BriefingRoom4DCS.Template
             EnvironmentWind = ini.GetValue("Environment", "Wind", EnvironmentWind);
 
             FlightPlanObjectiveDistance = ini.GetValue("FlightPlan", "ObjectiveDistance", FlightPlanObjectiveDistance);
+            FlightPlanObjectiveSeperation = ini.GetValue("FlightPlan", "ObjectiveSeperation", FlightPlanObjectiveSeperation);
             FlightPlanTheaterStartingAirbase = ini.GetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
 
             MissionFeatures = ini.GetValueArray<string>("MissionFeatures", "MissionFeatures").ToList();
@@ -348,6 +357,7 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue("Environment", "Wind", EnvironmentWind);
 
             ini.SetValue("FlightPlan", "ObjectiveDistance", FlightPlanObjectiveDistance);
+            ini.SetValue("FlightPlan", "ObjectiveSeperation", FlightPlanObjectiveSeperation);
             ini.SetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
 
             ini.SetValueArray("MissionFeatures", "MissionFeatures", MissionFeatures.ToArray());
