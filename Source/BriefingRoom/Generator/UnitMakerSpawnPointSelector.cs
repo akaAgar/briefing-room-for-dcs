@@ -101,7 +101,8 @@ namespace BriefingRoom4DCS.Generator
         {
             AirbaseParkingSpots.Clear();
             SpawnPoints.Clear();
-            SpawnPoints.AddRange(TheaterDB.SpawnPoints);
+            if(TheaterDB.SpawnPoints is not null)
+                SpawnPoints.AddRange(TheaterDB.SpawnPoints);
 
             OldSpawnPoints.Clear();
             OldSpawnPoints.AddRange(TheaterDB.OldSpawnPoints);
