@@ -250,6 +250,11 @@ namespace BriefingRoom4DCS.Generator
             Coalition? coalition = null)
         {
             var searchRange = distanceFrom1 * Toolbox.NM_TO_METERS;
+
+            MinMaxD? secondSearchRange = null;
+            if (distanceOrigin2.HasValue && distanceFrom2.HasValue)
+                secondSearchRange = distanceFrom2.Value * Toolbox.NM_TO_METERS;
+            
             var iterations = 0;
             do
             {   
@@ -257,19 +262,24 @@ namespace BriefingRoom4DCS.Generator
                     .Select(x => Coordinates.CreateRandom(distanceOrigin1, searchRange))
                     .Where(x => CheckNotInHostileCoords(x, coalition));
 
-                if (distanceOrigin2.HasValue && distanceFrom2.HasValue)
-                {   
-                    coordOptionsLinq = coordOptionsLinq.Where(x => distanceFrom2.Value.Contains(distanceOrigin2.Value.GetDistanceFrom(x)));
-                }
+                if (secondSearchRange.HasValue) 
+                    coordOptionsLinq = coordOptionsLinq.Where(x => secondSearchRange.Value.Contains(distanceOrigin2.Value.GetDistanceFrom(x)));
+
                 if (validTypes.First() == SpawnPointType.Sea) //sea position
                     coordOptionsLinq = coordOptionsLinq.Where(x => ShapeManager.IsPosValid(x, TheaterDB.WaterCoordinates, TheaterDB.WaterExclusionCoordinates));
+
                 var coordOptions = coordOptionsLinq.ToArray();
-                if(coordOptionsLinq.Count() > 0)
+                if(coordOptions.Count() > 0)
                     return Toolbox.RandomFrom(coordOptions);
 
                 searchRange = new MinMaxD(searchRange.Min * 0.9, searchRange.Max * 1.1);
+
+                if(secondSearchRange.HasValue)
+                    secondSearchRange = new MinMaxD(secondSearchRange.Value.Min * 0.9, secondSearchRange.Value.Max * 1.1);
+
                 iterations++;
             } while (iterations < MAX_RADIUS_SEARCH_ITERATIONS);
+            
             return null;
         }
 
@@ -291,7 +301,7 @@ namespace BriefingRoom4DCS.Generator
         {
             if (!coalition.HasValue)
                 return true;
-            if (coalition == Coalition.Blue)
+            if (coalition.Value == Coalition.Blue)
                 return !ShapeManager.IsPosValid(coordinates, TheaterDB.RedCoordinates);
             return !ShapeManager.IsPosValid(coordinates, TheaterDB.BlueCoordinates);
         }
