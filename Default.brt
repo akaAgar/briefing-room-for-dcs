@@ -16,6 +16,7 @@ wind=Random
 
 [flightplan]
 objectivedistance=80
+objectiveseperation=30
 objectiveslocation=Any
 
 [missionfeatures]

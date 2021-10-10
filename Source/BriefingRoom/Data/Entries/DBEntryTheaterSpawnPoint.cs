@@ -43,11 +43,6 @@ namespace BriefingRoom4DCS.Data
         internal SpawnPointType PointType { get; private set; }
 
         /// <summary>
-        /// Default coalition the country this point is located in belongs to.
-        /// </summary>
-        internal Coalition Coalition { get; private set; }
-
-        /// <summary>
         /// Load data for this spawn point.
         /// </summary>
         /// <param name="ini">Theater database entry ini file</param>
@@ -58,13 +53,12 @@ namespace BriefingRoom4DCS.Data
             string[] vals = ini.GetValueArray<string>("SpawnPoints", key, ',');
             UniqueID = key;
 
-            if (vals.Length < 4) return false;
+            if (vals.Length < 3) return false;
 
             try
             {
                 Coordinates = new Coordinates(Toolbox.StringToDouble(vals[0]), Toolbox.StringToDouble(vals[1]));
                 PointType = (SpawnPointType)Enum.Parse(typeof(SpawnPointType), vals[2], true);
-                Coalition = (Coalition)Enum.Parse(typeof(Coalition), vals[3], true);
             }
             catch (Exception)
             {

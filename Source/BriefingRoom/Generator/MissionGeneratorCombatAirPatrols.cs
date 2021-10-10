@@ -90,9 +90,9 @@ namespace BriefingRoom4DCS.Generator
                 unitsLeftToSpawn -= groupSize;
 
                 // Find spawn point at the proper distance from the objective(s), but not to close from starting airbase
-                DBEntryTheaterSpawnPoint? spawnPoint =
+                Coordinates? spawnPoint =
                     UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                        null,
+                        new SpawnPointType[] {SpawnPointType.Air},
                         centerPoint,
                         CommonCAPDB.DistanceFromCenter,
                         opposingPoint,
@@ -111,7 +111,7 @@ namespace BriefingRoom4DCS.Generator
                 UnitMakerGroupInfo? groupInfo = UnitMaker.AddUnitGroup(
                     Toolbox.RandomFrom(CommonCAPDB.UnitFamilies), groupSize, side,
                     CommonCAPDB.LuaGroup, CommonCAPDB.LuaUnit,
-                    spawnPoint.Value.Coordinates,
+                    spawnPoint.Value,
                     Toolbox.RandomFrom(capLevelDB.SkillLevel), 0, "air-to-air",
                     "GroupX2".ToKeyValuePair(groupDestination.X),
                     "GroupY2".ToKeyValuePair(groupDestination.Y));

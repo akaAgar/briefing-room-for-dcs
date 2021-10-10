@@ -85,18 +85,18 @@ namespace BriefingRoom4DCS.Generator
                     break;
                 case AirDefenseRange.MediumRange:
                     unitFamilies = new UnitFamily[] { UnitFamily.VehicleSAMMedium };
-                    validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandMedium, SpawnPointType.LandLarge };
+                    validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandLarge };
                     break;
                 case AirDefenseRange.LongRange:
                     unitFamilies = new UnitFamily[] { UnitFamily.VehicleSAMLong };
-                    validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandMedium, SpawnPointType.LandLarge };
+                    validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandLarge };
                     break;
             }
 
             for (int i = 0; i < groupCount; i++)
             {
                 // Find spawn point at the proper distance
-                DBEntryTheaterSpawnPoint? spawnPoint =
+                Coordinates? spawnPoint =
                     UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         validSpawnPoints,
                         centerPoint,
@@ -119,7 +119,7 @@ namespace BriefingRoom4DCS.Generator
                     groupInfo = UnitMaker.AddUnitGroup(
                         unitFamilies[j], 1, side,
                         "GroupVehicle", "UnitVehicle",
-                        spawnPoint.Value.Coordinates,
+                        spawnPoint.Value,
                         Toolbox.RandomFrom(airDefenseLevelDB.SkillLevel));
 
                     if (groupInfo.HasValue) break;

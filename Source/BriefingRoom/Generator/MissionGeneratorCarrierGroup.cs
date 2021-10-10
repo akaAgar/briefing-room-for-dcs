@@ -62,12 +62,40 @@ namespace BriefingRoom4DCS.Generator
             DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
             if (theaterDB == null) return carrierDictionary; // Theater doesn't exist. Should never happen.
 
-            // Pick the carrier spawn point closer from the initial airbase
-            Coordinates carrierGroupCoordinates = theaterDB.CarrierGroupWaypoints.OrderBy(x => x.GetDistanceFrom(landbaseCoordinates)).First();
+            Coordinates? carrierGroupCoordinates = null;
+            Coordinates? destinationPath = null;
 
-            if (windSpeedAtSeaLevel == 0) // No wind? Pick a random direction so carriers don't always go to a 0 course when wind is calm.
-                windDirectionAtSeaLevel = Toolbox.RandomDouble(Toolbox.TWO_PI);
-            Coordinates destinationPath = Coordinates.FromAngleInRadians(windDirectionAtSeaLevel + Math.PI) * Database.Instance.Common.CarrierGroup.CourseLength;
+            if(theaterDB.ShapeSpawnSystem) {
+                
+                var iteration = 0;
+                while (iteration < 5)
+                {
+                    carrierGroupCoordinates  = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                        new SpawnPointType[] {SpawnPointType.Sea},
+                        landbaseCoordinates,
+                        new MinMaxD(15, 300),
+                        objectivesCenter,
+                        new MinMaxD(15, 99999),
+                        GeneratorTools.GetSpawnPointCoalition(template, Side.Ally));
+
+                    if (windSpeedAtSeaLevel == 0) // No wind? Pick a random direction so carriers don't always go to a 0 course when wind is calm.
+                        windDirectionAtSeaLevel = Toolbox.RandomDouble(Toolbox.TWO_PI);
+                    destinationPath = Coordinates.FromAngleInRadians(windDirectionAtSeaLevel + Math.PI) * Database.Instance.Common.CarrierGroup.CourseLength;
+
+                    if(ShapeManager.IsPosValid(destinationPath.Value, theaterDB.WaterCoordinates, theaterDB.WaterExclusionCoordinates))
+                        break;
+                    iteration++;
+                }
+                if(!carrierGroupCoordinates.HasValue)
+                    return carrierDictionary;
+            } else {
+                // Pick the carrier spawn point closer from the initial airbase
+                carrierGroupCoordinates = theaterDB.CarrierGroupWaypoints.OrderBy(x => x.GetDistanceFrom(landbaseCoordinates)).First();
+
+                if (windSpeedAtSeaLevel == 0) // No wind? Pick a random direction so carriers don't always go to a 0 course when wind is calm.
+                    windDirectionAtSeaLevel = Toolbox.RandomDouble(Toolbox.TWO_PI);
+                destinationPath = Coordinates.FromAngleInRadians(windDirectionAtSeaLevel + Math.PI) * Database.Instance.Common.CarrierGroup.CourseLength;
+            }
 
             double carrierSpeed = Math.Max(
                 Database.Instance.Common.CarrierGroup.MinimumCarrierSpeed,
@@ -85,8 +113,8 @@ namespace BriefingRoom4DCS.Generator
                 }
                 DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(flightGroup.Carrier);
                 if ((unitDB == null) || !unitDB.Families.Any(x => x.IsCarrier())) continue; // Unit doesn't exist or is not a carrier
-                Coordinates shipCoordinates = carrierGroupCoordinates + Coordinates.FromAngleInRadians(Toolbox.RandomAngle()) * carrierDictionary.Count * Database.Instance.Common.CarrierGroup.ShipSpacing;
-                Coordinates shipDestination = shipCoordinates + destinationPath;
+                Coordinates shipCoordinates = carrierGroupCoordinates.Value + Coordinates.FromAngleInRadians(Toolbox.RandomAngle()) * carrierDictionary.Count * Database.Instance.Common.CarrierGroup.ShipSpacing;
+                Coordinates shipDestination = shipCoordinates + destinationPath.Value;
 
                 string cvnID = carrierDictionary.Count > 0 ? (carrierDictionary.Count + 1).ToString() : "";
                 int ilsChannel = 11 + carrierDictionary.Count;
@@ -128,7 +156,7 @@ namespace BriefingRoom4DCS.Generator
             if (theaterDB == null) return; // Theater doesn't exist. Should never happen.
 
 
-            DBEntryTheaterSpawnPoint? spawnPoint =
+            Coordinates? spawnPoint =
                     UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         new SpawnPointType[] { SpawnPointType.LandLarge },
                         landbaseCoordinates,
@@ -158,7 +186,7 @@ namespace BriefingRoom4DCS.Generator
                 UnitMaker.AddUnitGroup(
                     unitDB.Families[0], 1, Side.Ally,
                     "GroupStatic", "UnitStaticFOB",
-                    spawnPoint.Value.Coordinates, DCSSkillLevel.Excellent, 0, "Default",
+                    spawnPoint.Value, DCSSkillLevel.Excellent, 0, "Default",
                     "FOBCallSignIndex".ToKeyValuePair(FOBNames.IndexOf(flightGroup.Carrier) + 1),
                     "RadioBand".ToKeyValuePair((int)RadioModulation.AM),
                     "RadioFrequency".ToKeyValuePair(GeneratorTools.GetRadioFrenquency(radioFrequency)));

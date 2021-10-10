@@ -95,6 +95,10 @@
                             <label>Objective distance (zero means random)</label>
                             <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistance"></InputNumber>
                         </div>
+                        <div class="form-group">
+                            <label>Objective seperation (zero means random)</label>
+                            <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveSeperation"></InputNumber>
+                        </div>
                         <InputDataBase Label="Main airbase" @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
                     </div>
                     break;

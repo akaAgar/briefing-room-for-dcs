@@ -44,6 +44,8 @@ namespace BriefingRoom4DCS.Generator
         /// <summary>
         /// List of available spawn points.
         /// </summary>
+        private readonly List<DBEntryTheaterOldSpawnPoint> OldSpawnPoints;
+
         private readonly List<DBEntryTheaterSpawnPoint> SpawnPoints;
 
         /// <summary>
@@ -51,16 +53,20 @@ namespace BriefingRoom4DCS.Generator
         /// </summary>
         private readonly DBEntryTheater TheaterDB;
 
+        private readonly bool UseShapeSpawningSystem;
+
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="theaterDB">Theater database entry to use</param>
-        internal UnitMakerSpawnPointSelector(DBEntryTheater theaterDB)
+        internal UnitMakerSpawnPointSelector(DBEntryTheater theaterDB, bool useShapeSpawningSystem)
         {
             TheaterDB = theaterDB;
+            UseShapeSpawningSystem = useShapeSpawningSystem;
 
             AirbaseParkingSpots = new Dictionary<int, List<DBEntryAirbaseParkingSpot>>();
             SpawnPoints = new List<DBEntryTheaterSpawnPoint>();
+            OldSpawnPoints = new List<DBEntryTheaterOldSpawnPoint>();
 
             Clear();
         }
@@ -95,8 +101,12 @@ namespace BriefingRoom4DCS.Generator
         {
             AirbaseParkingSpots.Clear();
             SpawnPoints.Clear();
+            if(TheaterDB.SpawnPoints is not null)
+                SpawnPoints.AddRange(TheaterDB.SpawnPoints);
 
-            SpawnPoints.AddRange(TheaterDB.SpawnPoints);
+            OldSpawnPoints.Clear();
+            OldSpawnPoints.AddRange(TheaterDB.OldSpawnPoints);
+
             foreach (DBEntryAirbase airbase in TheaterDB.GetAirbases())
             {
                 if (airbase.ParkingSpots.Length < 1) continue;
@@ -115,22 +125,31 @@ namespace BriefingRoom4DCS.Generator
         /// <param name="distanceFrom2">Min/max distance from second origin point, in nautical miles</param>
         /// <param name="coalition">Which coalition should the spawn point belong to?</param>
         /// <returns>A spawn point, or null if none found matching the provided criteria</returns>
-        internal DBEntryTheaterSpawnPoint? GetRandomSpawnPoint(
-            SpawnPointType[] validTypes = null,
-            Coordinates? distanceOrigin1 = null, MinMaxD? distanceFrom1 = null,
+        internal Coordinates? GetRandomSpawnPoint(
+            SpawnPointType[] validTypes,
+            Coordinates distanceOrigin1, MinMaxD distanceFrom1,
             Coordinates? distanceOrigin2 = null, MinMaxD? distanceFrom2 = null,
             Coalition? coalition = null)
         {
-            // Select all spoint points
-            IEnumerable<DBEntryTheaterSpawnPoint> validSP = from DBEntryTheaterSpawnPoint pt in SpawnPoints select pt;
 
-            if (validTypes != null) // Remove spawn points of invalid types
-                validSP = (from DBEntryTheaterSpawnPoint pt in validSP where validTypes.Contains(pt.PointType) select pt);
+            if (TheaterDB.ShapeSpawnSystem && UseShapeSpawningSystem)
+                return GetRandomSpawnPointShapeSystem(
+                    validTypes,
+                    distanceOrigin1, distanceFrom1,
+                    distanceOrigin2, distanceFrom2,
+                    coalition
+                    );
+
+            // Select all spoint points
+            IEnumerable<DBEntryTheaterOldSpawnPoint> validSP = from DBEntryTheaterOldSpawnPoint pt in OldSpawnPoints select pt;
+
+            if (!validTypes.Contains(SpawnPointType.Air)) // Remove spawn points of invalid types
+                validSP = (from DBEntryTheaterOldSpawnPoint pt in validSP where validTypes.Contains(pt.PointType) select pt);
 
             if (coalition.HasValue) // Select spawn points belonging to the proper coalition
             {
-                IEnumerable<DBEntryTheaterSpawnPoint> coalitionValidSP =
-                    coalitionValidSP = (from DBEntryTheaterSpawnPoint sp in validSP where sp.Coalition == coalition.Value select sp);
+                IEnumerable<DBEntryTheaterOldSpawnPoint> coalitionValidSP =
+                    coalitionValidSP = (from DBEntryTheaterOldSpawnPoint sp in validSP where sp.Coalition == coalition.Value select sp);
 
                 // At least one spawn point found, only use SP for the preferred coalition
                 if (coalitionValidSP.Count() > 0)
@@ -147,6 +166,60 @@ namespace BriefingRoom4DCS.Generator
 
                 MinMaxD searchRange = distanceFrom[i].Value * Toolbox.NM_TO_METERS; // convert distance to meters
 
+                IEnumerable<DBEntryTheaterOldSpawnPoint> validSPInRange = (from DBEntryTheaterOldSpawnPoint s in validSP select s);
+
+                int iterationsLeft = MAX_RADIUS_SEARCH_ITERATIONS;
+
+                do
+                {
+                    Coordinates origin = distanceOrigin[i].Value;
+
+                    validSPInRange = (from DBEntryTheaterOldSpawnPoint s in validSP
+                                      where searchRange.Contains(origin.GetDistanceFrom(s.Coordinates))
+                                      select s);
+                    searchRange = new MinMaxD(searchRange.Min * 0.9, Math.Max(100, searchRange.Max * 1.1));
+                    iterationsLeft--;
+                } while ((validSPInRange.Count() == 0) && (iterationsLeft > 0));
+
+                validSP = (from DBEntryTheaterOldSpawnPoint s in validSPInRange select s);
+            }
+
+            if (validSP.Count() == 0) return null;
+
+            DBEntryTheaterOldSpawnPoint selectedSpawnPoint = Toolbox.RandomFrom(validSP.ToArray());
+            OldSpawnPoints.Remove(selectedSpawnPoint); // Remove spawn point so it won't be used again
+            return selectedSpawnPoint.Coordinates;
+        }
+
+        private Coordinates? GetRandomSpawnPointShapeSystem(
+            SpawnPointType[] validTypes,
+            Coordinates distanceOrigin1, MinMaxD distanceFrom1,
+            Coordinates? distanceOrigin2 = null, MinMaxD? distanceFrom2 = null,
+            Coalition? coalition = null)
+        {
+            if (validTypes.Contains(SpawnPointType.Air) || validTypes.Contains(SpawnPointType.Sea))
+                return GetAirOrSeaCoordinates(validTypes, distanceOrigin1, distanceFrom1, distanceOrigin2, distanceFrom2, coalition);
+            return GetLandCoordinates(validTypes, distanceOrigin1, distanceFrom1, distanceOrigin2, distanceFrom2, coalition);
+        }
+
+        private Coordinates? GetLandCoordinates(
+            SpawnPointType[] validTypes,
+            Coordinates distanceOrigin1, MinMaxD distanceFrom1,
+            Coordinates? distanceOrigin2 = null, MinMaxD? distanceFrom2 = null,
+            Coalition? coalition = null
+        )
+        {
+            var validSP = (from DBEntryTheaterSpawnPoint pt in SpawnPoints where validTypes.Contains(pt.PointType) select pt);
+            Coordinates?[] distanceOrigin = new Coordinates?[] { distanceOrigin1, distanceOrigin2 };
+            MinMaxD?[] distanceFrom = new MinMaxD?[] { distanceFrom1, distanceFrom2 };
+
+            for (int i = 0; i < 2; i++) // Remove spawn points too far or too close from distanceOrigin1 and distanceOrigin2
+            {
+                if (validSP.Count() == 0) return null;
+                if (!distanceFrom[i].HasValue || !distanceOrigin[i].HasValue) continue;
+
+                var searchRange = distanceFrom[i].Value * Toolbox.NM_TO_METERS; // convert distance to meters
+
                 IEnumerable<DBEntryTheaterSpawnPoint> validSPInRange = (from DBEntryTheaterSpawnPoint s in validSP select s);
 
                 int iterationsLeft = MAX_RADIUS_SEARCH_ITERATIONS;
@@ -156,20 +229,71 @@ namespace BriefingRoom4DCS.Generator
                     Coordinates origin = distanceOrigin[i].Value;
 
                     validSPInRange = (from DBEntryTheaterSpawnPoint s in validSP
-                                      where searchRange.Contains(origin.GetDistanceFrom(s.Coordinates))
+                                      where searchRange.Contains(origin.GetDistanceFrom(s.Coordinates)) && CheckNotInHostileCoords(s.Coordinates, coalition)
                                       select s);
                     searchRange = new MinMaxD(searchRange.Min * 0.9, Math.Max(100, searchRange.Max * 1.1));
+                    validSP = (from DBEntryTheaterSpawnPoint s in validSPInRange select s);
                     iterationsLeft--;
                 } while ((validSPInRange.Count() == 0) && (iterationsLeft > 0));
-
-                validSP = (from DBEntryTheaterSpawnPoint s in validSPInRange select s);
             }
 
             if (validSP.Count() == 0) return null;
-
             DBEntryTheaterSpawnPoint selectedSpawnPoint = Toolbox.RandomFrom(validSP.ToArray());
             SpawnPoints.Remove(selectedSpawnPoint); // Remove spawn point so it won't be used again
-            return selectedSpawnPoint;
+            return selectedSpawnPoint.Coordinates;
+        }
+
+        private Coordinates? GetAirOrSeaCoordinates(
+            SpawnPointType[] validTypes,
+            Coordinates distanceOrigin1, MinMaxD distanceFrom1,
+            Coordinates? distanceOrigin2 = null, MinMaxD? distanceFrom2 = null,
+            Coalition? coalition = null)
+        {
+            var searchRange = distanceFrom1 * Toolbox.NM_TO_METERS;
+            var iterations = 0;
+            do
+            {   
+                var coordOptionsLinq = Enumerable.Range(0, 50)
+                    .Select(x => Coordinates.CreateRandom(distanceOrigin1, searchRange))
+                    .Where(x => CheckNotInHostileCoords(x, coalition));
+
+                if (distanceOrigin2.HasValue && distanceFrom2.HasValue)
+                {   
+                    coordOptionsLinq = coordOptionsLinq.Where(x => distanceFrom2.Value.Contains(distanceOrigin2.Value.GetDistanceFrom(x)));
+                }
+                if (validTypes.First() == SpawnPointType.Sea) //sea position
+                    coordOptionsLinq = coordOptionsLinq.Where(x => ShapeManager.IsPosValid(x, TheaterDB.WaterCoordinates, TheaterDB.WaterExclusionCoordinates));
+                var coordOptions = coordOptionsLinq.ToArray();
+                if(coordOptionsLinq.Count() > 0)
+                    return Toolbox.RandomFrom(coordOptions);
+
+                searchRange = new MinMaxD(searchRange.Min * 0.9, searchRange.Max * 1.1);
+                iterations++;
+            } while (iterations < MAX_RADIUS_SEARCH_ITERATIONS);
+            return null;
+        }
+
+
+        internal static Coalition? GetSpawnPointCoalition(MissionTemplate template, Side side)
+        {
+            // No countries spawning restriction
+            if (template.OptionsMission.Contains(MissionOption.SpawnAnywhere)) return null;
+
+            Coalition coalition = side == Side.Ally ? template.ContextPlayerCoalition : template.ContextPlayerCoalition.GetEnemy();
+
+            if (template.OptionsMission.Contains(MissionOption.InvertCountriesCoalitions))
+                coalition = coalition.GetEnemy();
+
+            return coalition;
+        }
+
+        private bool CheckNotInHostileCoords(Coordinates coordinates, Coalition? coalition = null)
+        {
+            if (!coalition.HasValue)
+                return true;
+            if (coalition == Coalition.Blue)
+                return !ShapeManager.IsPosValid(coordinates, TheaterDB.RedCoordinates);
+            return !ShapeManager.IsPosValid(coordinates, TheaterDB.BlueCoordinates);
         }
 
         /// <summary>

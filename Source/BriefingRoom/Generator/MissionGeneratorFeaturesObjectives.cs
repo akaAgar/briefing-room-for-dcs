@@ -55,7 +55,7 @@ namespace BriefingRoom4DCS.Generator
             }
             else
             {
-                DBEntryTheaterSpawnPoint? spawnPoint =
+                Coordinates? spawnPoint =
                     UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         featureDB.UnitGroupValidSpawnPoints, objectiveCoordinates,
                         new MinMaxD(spawnDistance * .75, spawnDistance * 1.5));
@@ -66,7 +66,7 @@ namespace BriefingRoom4DCS.Generator
                     return;
                 }
 
-                coordinates = spawnPoint.Value.Coordinates;
+                coordinates = spawnPoint.Value;
             }
 
             Coordinates coordinates2 = coordinates + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;

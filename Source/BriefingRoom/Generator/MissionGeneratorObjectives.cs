@@ -105,17 +105,24 @@ namespace BriefingRoom4DCS.Generator
             int objectiveDistance = template.FlightPlanObjectiveDistance;
             if (objectiveDistance < 1) objectiveDistance = Toolbox.RandomInt(40, 160);
 
-            DBEntryTheaterSpawnPoint? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                targetDB.ValidSpawnPoints, lastCoordinates,
+            int objectiveSeperation = template.FlightPlanObjectiveSeperation;
+            if (objectiveSeperation < 1) objectiveSeperation = Toolbox.RandomInt(10, 100);
+
+            Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                targetDB.ValidSpawnPoints, playerAirbase.Coordinates,
                 new MinMaxD(
                     objectiveDistance * OBJECTIVE_DISTANCE_VARIATION_MIN,
                     objectiveDistance * OBJECTIVE_DISTANCE_VARIATION_MAX),
-                null, null, GeneratorTools.GetSpawnPointCoalition(template, Side.Enemy));
+                lastCoordinates,
+                new MinMaxD(
+                    objectiveSeperation * OBJECTIVE_DISTANCE_VARIATION_MIN,
+                    objectiveSeperation * OBJECTIVE_DISTANCE_VARIATION_MAX),
+                GeneratorTools.GetSpawnPointCoalition(template, Side.Enemy));
 
             if (!spawnPoint.HasValue)
                 throw new BriefingRoomException($"Failed to spawn objective unit group. {String.Join(",", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList())}");
 
-            Coordinates objectiveCoordinates = spawnPoint.Value.Coordinates;
+            Coordinates objectiveCoordinates = spawnPoint.Value;
 
             // Spawn target on airbase
             int airbaseID = 0;
