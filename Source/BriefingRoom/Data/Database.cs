@@ -155,7 +155,7 @@ namespace BriefingRoom4DCS.Data
 
         private void LoadCustomUnitEntries(string subDirectory)
         {
-            BriefingRoom.PrintToLog($"Loading {subDirectory.ToLowerInvariant()}...");
+            BriefingRoom.PrintToLog($"Custom Loading {subDirectory.ToLowerInvariant()}...");
 
             string directory = $"{BRPaths.CUSTOMDATABASE}{subDirectory}";
             if (!Directory.Exists(directory))

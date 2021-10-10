@@ -117,7 +117,7 @@ namespace BriefingRoom4DCS.Data
         /// Constructor.
         /// </summary>
         /// <param name="ini">INI file</param>
-        internal DBEntryUnitAircraftData(INIFile ini)
+        internal DBEntryUnitAircraftData(INIFile ini, bool custom = false)
         {
             AirToAirRating[0] = Math.Max(1, ini.GetValue<int>("Aircraft", "A2ARating.Default"));
             AirToAirRating[1] = Math.Max(1, ini.GetValue<int>("Aircraft", "A2ARating.AirToAir"));
@@ -136,11 +136,13 @@ namespace BriefingRoom4DCS.Data
             PayloadCommon = ini.GetValue<string>("Aircraft", "Payload.Common");
 
             var payloads = ini.GetKeysInSection("Aircraft").Where(x => x.StartsWith("payload.task")).Select(x => x.Split('.')[2]).Distinct().ToList();
-            PayloadTasks.Add("default", new string[MAX_PYLONS]);
+            
+            if(!custom)
+                PayloadTasks.Add("default", new string[MAX_PYLONS]);
 
             foreach (string task in payloads)
             {   
-                if(task != "default")
+                if(task != "default" || custom)
                     PayloadTasks.Add(task, new string[MAX_PYLONS]);
                 for (var pylonIndex = 0; pylonIndex < MAX_PYLONS; pylonIndex++)
                     PayloadTasks[task][pylonIndex] = ini.GetValue<string>("Aircraft", $"Payload.Task.{task}.Pylon{pylonIndex + 1:00}");

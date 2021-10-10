@@ -143,7 +143,7 @@ namespace BriefingRoom4DCS.Data
                 if (IsAircraft) // Load aircraft-specific data, if required
                 {
                     DCSIDs = new string[] { DCSIDs[0] }; // Aircraft can not have multiple unit types in their group
-                    AircraftData = new DBEntryUnitAircraftData(ini);
+                    AircraftData = new DBEntryUnitAircraftData(ini, iniFilePath.Contains(BRPaths.CUSTOMDATABASE));
                 }
             }
 
