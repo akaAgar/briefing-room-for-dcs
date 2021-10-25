@@ -71,27 +71,35 @@ namespace BriefingRoom4DCS.Generator
                 index++;
             }
             GeneratorTools.ReplaceKey(ref drawingLuaTemplate, "POINTS", points);
-            AddToList(drawingLuaTemplate, coordinates);
+            DrawingColour colour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "Colour").Value ?? DrawingColour.Red);  
+            DrawingColour fillColour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "FillColour").Value ?? DrawingColour.RedFill);
+            AddToList(drawingLuaTemplate, coordinates, colour, fillColour); 
         }
 
         private void AddOval(Coordinates coordinates, params KeyValuePair<string, object>[] extraSettings)
         {
             string drawingLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_MISSION}\\Drawing\\Circle.lua");
             GeneratorTools.ReplaceKey(ref drawingLuaTemplate, "Radius", extraSettings.First(x => x.Key == "Radius").Value);  
-            AddToList(drawingLuaTemplate, coordinates); 
+            DrawingColour colour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "Colour").Value ?? DrawingColour.Red);  
+            DrawingColour fillColour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "FillColour").Value ?? DrawingColour.Clear);
+            AddToList(drawingLuaTemplate, coordinates, colour, fillColour); 
         }
 
         private void AddTextBox(Coordinates coordinates, params KeyValuePair<string, object>[] extraSettings)
         {
             string drawingLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_MISSION}\\Drawing\\TextBox.lua");
-            GeneratorTools.ReplaceKey(ref drawingLuaTemplate, "Text", extraSettings.First(x => x.Key == "Text").Value);  
-            AddToList(drawingLuaTemplate, coordinates);  
+            GeneratorTools.ReplaceKey(ref drawingLuaTemplate, "Text", extraSettings.First(x => x.Key == "Text").Value);
+            DrawingColour colour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "Colour").Value ?? DrawingColour.Red);  
+            DrawingColour fillColour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "FillColour").Value ?? DrawingColour.Clear);
+            AddToList(drawingLuaTemplate, coordinates, colour, fillColour);  
         }
 
-        private void AddToList(string template, Coordinates coordinates)
+        private void AddToList(string template, Coordinates coordinates, DrawingColour colour, DrawingColour fillColour)
         {
             GeneratorTools.ReplaceKey(ref template, "X", coordinates.X);
             GeneratorTools.ReplaceKey(ref template, "Y", coordinates.Y);
+            GeneratorTools.ReplaceKey(ref template, "Colour", colour.ToValue());
+            GeneratorTools.ReplaceKey(ref template, "FillColour", fillColour.ToValue());
             LuaDrawings.Add(template);
         }
 
@@ -100,7 +108,11 @@ namespace BriefingRoom4DCS.Generator
             if(!TheaterDB.ShapeSpawnSystem || Template.OptionsMission.Contains(MissionOption.ForceOldSpawning))
                 return;
             AddFree(TheaterDB.RedCoordinates.First(), "Points".ToKeyValuePair(TheaterDB.RedCoordinates));
-            AddFree(TheaterDB.RedCoordinates.First(), "Points".ToKeyValuePair(TheaterDB.BlueCoordinates));
+            AddFree(
+                TheaterDB.RedCoordinates.First(),
+                "Points".ToKeyValuePair(TheaterDB.BlueCoordinates),
+                "Colour".ToKeyValuePair(DrawingColour.Blue),
+                "FillColour".ToKeyValuePair(DrawingColour.BlueFill));
         }
 
         internal string GetLuaDrawings()

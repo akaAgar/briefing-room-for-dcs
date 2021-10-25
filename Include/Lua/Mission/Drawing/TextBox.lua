@@ -2,7 +2,7 @@
 {
     ["visible"] = true,
     ["borderThickness"] = 4,
-    ["fillColorString"] = "0xff000080",
+    ["fillColorString"] = "$FILLCOLOUR$",
     ["fontSize"] = 24,
     ["mapY"] = $Y$,
     ["layerName"] = "Common",
@@ -11,6 +11,6 @@
     ["text"] = "$TEXT%",
     ["mapX"] = $X$,
     ["name"] = "Text Box",
-    ["colorString"] = "0x00ff00ff",
+    ["colorString"] = "$COLOUR$",
     ["angle"] = 0,
 }, -- end of [$INDEX$]

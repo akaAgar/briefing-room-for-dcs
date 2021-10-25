@@ -1,11 +1,11 @@
 [$INDEX$] =
     {
         ["visible"] = true,
-        ["fillColorString"] = "0xff000080",
+        ["fillColorString"] = "$FILLCOLOUR$",
         ["polygonMode"] = "free",
         ["mapY"] = $Y$,
         ["primitiveType"] = "Polygon",
-        ["colorString"] = "0xff0000ff",
+        ["colorString"] = "$COLOUR$",
         ["style"] = "solid",
         ["thickness"] = 8,
         ["mapX"] = $X$,
