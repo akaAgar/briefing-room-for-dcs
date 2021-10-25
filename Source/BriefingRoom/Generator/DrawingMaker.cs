@@ -107,12 +107,29 @@ namespace BriefingRoom4DCS.Generator
         {
             if(!TheaterDB.ShapeSpawnSystem || Template.OptionsMission.Contains(MissionOption.ForceOldSpawning))
                 return;
-            AddFree(TheaterDB.RedCoordinates.First(), "Points".ToKeyValuePair(TheaterDB.RedCoordinates));
+            AddFree(TheaterDB.RedCoordinates.First(), "Points".ToKeyValuePair(TheaterDB.RedCoordinates.Select(coord => coord - TheaterDB.RedCoordinates.First()).ToList()));
             AddFree(
-                TheaterDB.RedCoordinates.First(),
-                "Points".ToKeyValuePair(TheaterDB.BlueCoordinates),
+                TheaterDB.BlueCoordinates.First(),
+                "Points".ToKeyValuePair(TheaterDB.BlueCoordinates.Select(coord => coord - TheaterDB.BlueCoordinates.First()).ToList()),
                 "Colour".ToKeyValuePair(DrawingColour.Blue),
                 "FillColour".ToKeyValuePair(DrawingColour.BlueFill));
+
+            // DEBUG water
+            AddFree(
+                TheaterDB.WaterCoordinates.First(),
+                "Points".ToKeyValuePair(TheaterDB.WaterCoordinates.Select(coord => coord - TheaterDB.WaterCoordinates.First()).ToList()),
+                "Colour".ToKeyValuePair(DrawingColour.Clear),
+                "FillColour".ToKeyValuePair(DrawingColour.Clear));
+
+            foreach (var item in TheaterDB.WaterExclusionCoordinates)
+            {
+                AddFree(
+                item.First(),
+                "Points".ToKeyValuePair(item.Select(coord => coord - item.First()).ToList()),
+                "Colour".ToKeyValuePair(DrawingColour.Clear),
+                "FillColour".ToKeyValuePair(DrawingColour.Clear));
+            }
+            
         }
 
         internal string GetLuaDrawings()
