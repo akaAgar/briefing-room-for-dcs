@@ -93,6 +93,8 @@ namespace BriefingRoom4DCS.Generator
             // Create unit maker
             UnitMaker unitMaker = new UnitMaker(mission, template, coalitionsDB, theaterDB, template.ContextPlayerCoalition, coalitionsCountries, template.GetPlayerSlotsCount() == 1);
 
+            DrawingMaker drawingMaker = new DrawingMaker(mission, template, theaterDB);
+
             // Generate mission date and time
             Month month;
             BriefingRoom.PrintToLog("Generating mission date and time...");
@@ -131,12 +133,12 @@ namespace BriefingRoom4DCS.Generator
             List<Coordinates> objectiveCoordinates = new List<Coordinates>();
             List<UnitFamily> objectiveTargetUnitFamilies = new List<UnitFamily>();
             Coordinates lastObjectiveCoordinates = playerAirbase.Coordinates;
-            using (MissionGeneratorObjectives objectivesGenerator = new MissionGeneratorObjectives(unitMaker))
+            using (MissionGeneratorObjectives objectivesGenerator = new MissionGeneratorObjectives(unitMaker, drawingMaker))
                 for (i = 0; i < template.Objectives.Count; i++)
                 {
                     lastObjectiveCoordinates = objectivesGenerator.GenerateObjective(mission, template, theaterDB, i, lastObjectiveCoordinates, playerAirbase, useObjectivePresets, out string objectiveName, out UnitFamily objectiveTargetUnitFamily);
                     objectiveCoordinates.Add(lastObjectiveCoordinates);
-                    waypoints.Add(objectivesGenerator.GenerateObjectiveWaypoint(template.Objectives[i], lastObjectiveCoordinates, objectiveName));
+                    waypoints.Add(objectivesGenerator.GenerateObjectiveWaypoint(template.Objectives[i], lastObjectiveCoordinates, objectiveName, template));
                     objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);
                 }
             Coordinates objectivesCenter = (objectiveCoordinates.Count == 0) ? playerAirbase.Coordinates : Coordinates.Sum(objectiveCoordinates) / objectiveCoordinates.Count;
@@ -198,6 +200,7 @@ namespace BriefingRoom4DCS.Generator
             // Get unit tables from the unit maker (MUST BE DONE AFTER ALL UNITS ARE GENERATED)
             mission.SetValue("CountriesBlue", unitMaker.GetUnitsLuaTable(Coalition.Blue));
             mission.SetValue("CountriesRed", unitMaker.GetUnitsLuaTable(Coalition.Red));
+            mission.SetValue("Drawings", drawingMaker.GetLuaDrawings());
 
             // Generate briefing and additional mission info
             BriefingRoom.PrintToLog("Generating briefing...");

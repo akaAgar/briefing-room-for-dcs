@@ -122,6 +122,95 @@ mission =
     ["pictureFileNameN"] = 
     {
     }, -- end of ["pictureFileNameN"]
+    ["drawings"] = 
+    {
+        ["options"] = 
+        {
+            ["hiddenOnF10Map"] = 
+            {
+                ["Observer"] = 
+                {
+                    ["Neutral"] = false,
+                    ["Blue"] = false,
+                    ["Red"] = false,
+                }, -- end of ["Observer"]
+                ["Instructor"] = 
+                {
+                    ["Neutral"] = false,
+                    ["Blue"] = false,
+                    ["Red"] = false,
+                }, -- end of ["Instructor"]
+                ["ForwardObserver"] = 
+                {
+                    ["Neutral"] = false,
+                    ["Blue"] = false,
+                    ["Red"] = false,
+                }, -- end of ["ForwardObserver"]
+                ["Spectrator"] = 
+                {
+                    ["Neutral"] = false,
+                    ["Blue"] = false,
+                    ["Red"] = false,
+                }, -- end of ["Spectrator"]
+                ["ArtilleryCommander"] = 
+                {
+                    ["Neutral"] = false,
+                    ["Blue"] = false,
+                    ["Red"] = false,
+                }, -- end of ["ArtilleryCommander"]
+                ["Pilot"] = 
+                {
+                    ["Neutral"] = false,
+                    ["Blue"] = false,
+                    ["Red"] = false,
+                }, -- end of ["Pilot"]
+            }, -- end of ["hiddenOnF10Map"]
+        }, -- end of ["options"]
+        ["layers"] = 
+        {
+            [1] = 
+            {
+                ["visible"] = true,
+                ["name"] = "Red",
+                ["objects"] = 
+                {
+                }, -- end of ["objects"]
+            }, -- end of [1]
+            [2] = 
+            {
+                ["visible"] = true,
+                ["name"] = "Blue",
+                ["objects"] = 
+                {
+                }, -- end of ["objects"]
+            }, -- end of [2]
+            [3] = 
+            {
+                ["visible"] = true,
+                ["name"] = "Neutral",
+                ["objects"] = 
+                {
+                }, -- end of ["objects"]
+            }, -- end of [3]
+            [4] = 
+            {
+                ["visible"] = true,
+                ["name"] = "Common",
+                ["objects"] = 
+                {
+                    $DRAWINGS$
+                }, -- end of ["objects"]
+            }, -- end of [4]
+            [5] = 
+            {
+                ["visible"] = true,
+                ["name"] = "Author",
+                ["objects"] = 
+                {
+                }, -- end of ["objects"]
+            }, -- end of [5]
+        }, -- end of ["layers"]
+    }, -- end of ["drawings"]
     ["goals"] = 
     {
         [1] = 

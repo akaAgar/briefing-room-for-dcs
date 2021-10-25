@@ -52,6 +52,8 @@ namespace BriefingRoom4DCS.Generator
         /// </summary>
         private readonly UnitMaker UnitMaker;
 
+        private readonly DrawingMaker DrawingMaker;
+
         /// <summary>
         /// MissionGeneratorFeaturesObjectives to use to generate objective features;
         /// </summary>
@@ -61,9 +63,10 @@ namespace BriefingRoom4DCS.Generator
         /// Constructor.
         /// </summary>
         /// <param name="spawnPointSelector">Spawn point selector to use for objective generation</param>
-        internal MissionGeneratorObjectives(UnitMaker unitMaker)
+        internal MissionGeneratorObjectives(UnitMaker unitMaker, DrawingMaker drawingMaker)
         {
             UnitMaker = unitMaker;
+            DrawingMaker = drawingMaker;
             FeaturesGenerator = new MissionGeneratorFeaturesObjectives(unitMaker);
             ObjectiveNames = new List<string>(Database.Instance.Common.Names.WPObjectivesNames);
         }
@@ -278,7 +281,7 @@ namespace BriefingRoom4DCS.Generator
             return objectiveCoordinates;
         }
 
-        internal Waypoint GenerateObjectiveWaypoint(MissionTemplateObjective objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName)
+        internal Waypoint GenerateObjectiveWaypoint(MissionTemplateObjective objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName, MissionTemplate template)
         {
             DBEntryObjectiveTarget targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
             if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective.");
@@ -287,7 +290,11 @@ namespace BriefingRoom4DCS.Generator
             bool onGround = !targetDB.UnitCategory.IsAircraft(); // Ground targets = waypoint on the ground
 
             if (objectiveTemplate.Options.Contains(ObjectiveOption.InaccurateWaypoint))
+            {
                 waypointCoordinates += Coordinates.CreateRandom(3.0, 6.0) * Toolbox.NM_TO_METERS;
+                if(template.OptionsMission.Contains(MissionOption.MarkWaypoints))
+                    DrawingMaker.AddDrawing(DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(6.0 * Toolbox.NM_TO_METERS));
+            }
 
             return new Waypoint(objectiveName, waypointCoordinates, onGround);
         }
