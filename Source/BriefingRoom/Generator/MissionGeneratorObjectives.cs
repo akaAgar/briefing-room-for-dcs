@@ -293,7 +293,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 waypointCoordinates += Coordinates.CreateRandom(3.0, 6.0) * Toolbox.NM_TO_METERS;
                 if(template.OptionsMission.Contains(MissionOption.MarkWaypoints))
-                    DrawingMaker.AddDrawing(DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(6.0 * Toolbox.NM_TO_METERS));
+                    DrawingMaker.AddDrawing("Target Zone",DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(6.0 * Toolbox.NM_TO_METERS));
             }
 
             return new Waypoint(objectiveName, waypointCoordinates, onGround);

@@ -10,7 +10,7 @@
         ["thickness"] = 8,
         ["mapX"] = $X$,
         ["layerName"] = "Common",
-        ["name"] = "Free",
+        ["name"] = "$UINAME$",
         ["points"] = 
         { 
            $POINTS$

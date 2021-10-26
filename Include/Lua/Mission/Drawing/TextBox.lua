@@ -10,7 +10,7 @@
     ["font"] = "DejaVuLGCSansCondensed.ttf",
     ["text"] = "$TEXT%",
     ["mapX"] = $X$,
-    ["name"] = "Text Box",
+    ["name"] = "$UINAME$",
     ["colorString"] = "$COLOUR$",
     ["angle"] = 0,
 }, -- end of [$INDEX$]

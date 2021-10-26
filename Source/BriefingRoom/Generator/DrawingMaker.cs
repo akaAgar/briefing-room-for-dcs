@@ -33,6 +33,7 @@ namespace BriefingRoom4DCS.Generator
 
 
         internal void AddDrawing(
+            string UIName,
             DrawingType type,
             Coordinates coordinates,
             params KeyValuePair<string, object>[] extraSettings)
@@ -40,13 +41,13 @@ namespace BriefingRoom4DCS.Generator
             switch (type)
             {
                 case DrawingType.Free:
-                    AddFree(coordinates, extraSettings);
+                    AddFree(UIName, coordinates, extraSettings);
                     break;
                 case DrawingType.Circle:
-                    AddOval(coordinates, extraSettings);
+                    AddOval(UIName, coordinates, extraSettings);
                     break;
                 case DrawingType.TextBox:
-                    AddTextBox(coordinates, extraSettings);
+                    AddTextBox(UIName, coordinates, extraSettings);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), $"Not expected drawing value: {type}");
@@ -54,11 +55,11 @@ namespace BriefingRoom4DCS.Generator
             };
         }
 
-        private void AddFree(Coordinates coordinates, params KeyValuePair<string, object>[] extraSettings)
+        private void AddFree(string UIName, Coordinates coordinates, params KeyValuePair<string, object>[] extraSettings)
         {
             string drawingLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_MISSION}\\Drawing\\Free.lua");
             string freePosLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_MISSION}\\Drawing\\FreePos.lua");
-            
+
             var points = "";
             var index = 1;
             foreach (Coordinates pos in (List<Coordinates>)extraSettings.First(x => x.Key == "Points").Value)
@@ -71,31 +72,32 @@ namespace BriefingRoom4DCS.Generator
                 index++;
             }
             GeneratorTools.ReplaceKey(ref drawingLuaTemplate, "POINTS", points);
-            DrawingColour colour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "Colour").Value ?? DrawingColour.Red);  
+            DrawingColour colour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "Colour").Value ?? DrawingColour.Red);
             DrawingColour fillColour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "FillColour").Value ?? DrawingColour.RedFill);
-            AddToList(drawingLuaTemplate, coordinates, colour, fillColour); 
+            AddToList(UIName, drawingLuaTemplate, coordinates, colour, fillColour);
         }
 
-        private void AddOval(Coordinates coordinates, params KeyValuePair<string, object>[] extraSettings)
+        private void AddOval(string UIName, Coordinates coordinates, params KeyValuePair<string, object>[] extraSettings)
         {
             string drawingLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_MISSION}\\Drawing\\Circle.lua");
-            GeneratorTools.ReplaceKey(ref drawingLuaTemplate, "Radius", extraSettings.First(x => x.Key == "Radius").Value);  
-            DrawingColour colour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "Colour").Value ?? DrawingColour.Red);  
+            GeneratorTools.ReplaceKey(ref drawingLuaTemplate, "Radius", extraSettings.First(x => x.Key == "Radius").Value);
+            DrawingColour colour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "Colour").Value ?? DrawingColour.Red);
             DrawingColour fillColour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "FillColour").Value ?? DrawingColour.Clear);
-            AddToList(drawingLuaTemplate, coordinates, colour, fillColour); 
+            AddToList(UIName, drawingLuaTemplate, coordinates, colour, fillColour);
         }
 
-        private void AddTextBox(Coordinates coordinates, params KeyValuePair<string, object>[] extraSettings)
+        private void AddTextBox(string UIName, Coordinates coordinates, params KeyValuePair<string, object>[] extraSettings)
         {
             string drawingLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_MISSION}\\Drawing\\TextBox.lua");
             GeneratorTools.ReplaceKey(ref drawingLuaTemplate, "Text", extraSettings.First(x => x.Key == "Text").Value);
-            DrawingColour colour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "Colour").Value ?? DrawingColour.Red);  
+            DrawingColour colour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "Colour").Value ?? DrawingColour.Red);
             DrawingColour fillColour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "FillColour").Value ?? DrawingColour.Clear);
-            AddToList(drawingLuaTemplate, coordinates, colour, fillColour);  
+            AddToList(UIName, drawingLuaTemplate, coordinates, colour, fillColour);
         }
 
-        private void AddToList(string template, Coordinates coordinates, DrawingColour colour, DrawingColour fillColour)
+        private void AddToList(string UIName, string template, Coordinates coordinates, DrawingColour colour, DrawingColour fillColour)
         {
+            GeneratorTools.ReplaceKey(ref template, "UIName", UIName);
             GeneratorTools.ReplaceKey(ref template, "X", coordinates.X);
             GeneratorTools.ReplaceKey(ref template, "Y", coordinates.Y);
             GeneratorTools.ReplaceKey(ref template, "Colour", colour.ToValue());
@@ -105,17 +107,19 @@ namespace BriefingRoom4DCS.Generator
 
         private void AddTheaterZones()
         {
-            if(!TheaterDB.ShapeSpawnSystem || Template.OptionsMission.Contains(MissionOption.ForceOldSpawning))
+            if (!TheaterDB.ShapeSpawnSystem || Template.OptionsMission.Contains(MissionOption.ForceOldSpawning))
                 return;
-            AddFree(TheaterDB.RedCoordinates.First(), "Points".ToKeyValuePair(TheaterDB.RedCoordinates.Select(coord => coord - TheaterDB.RedCoordinates.First()).ToList()));
+            AddFree("Red Control", TheaterDB.RedCoordinates.First(), "Points".ToKeyValuePair(TheaterDB.RedCoordinates.Select(coord => coord - TheaterDB.RedCoordinates.First()).ToList()), "Colour".ToKeyValuePair(DrawingColour.RedFill));
             AddFree(
+                "Blue Control",
                 TheaterDB.BlueCoordinates.First(),
                 "Points".ToKeyValuePair(TheaterDB.BlueCoordinates.Select(coord => coord - TheaterDB.BlueCoordinates.First()).ToList()),
-                "Colour".ToKeyValuePair(DrawingColour.Blue),
+                "Colour".ToKeyValuePair(DrawingColour.BlueFill),
                 "FillColour".ToKeyValuePair(DrawingColour.BlueFill));
 
             // DEBUG water
             AddFree(
+                "Water",
                 TheaterDB.WaterCoordinates.First(),
                 "Points".ToKeyValuePair(TheaterDB.WaterCoordinates.Select(coord => coord - TheaterDB.WaterCoordinates.First()).ToList()),
                 "Colour".ToKeyValuePair(DrawingColour.Clear),
@@ -124,12 +128,13 @@ namespace BriefingRoom4DCS.Generator
             foreach (var item in TheaterDB.WaterExclusionCoordinates)
             {
                 AddFree(
-                item.First(),
-                "Points".ToKeyValuePair(item.Select(coord => coord - item.First()).ToList()),
-                "Colour".ToKeyValuePair(DrawingColour.Clear),
-                "FillColour".ToKeyValuePair(DrawingColour.Clear));
+                    "Water Exclusion",
+                    item.First(),
+                    "Points".ToKeyValuePair(item.Select(coord => coord - item.First()).ToList()),
+                    "Colour".ToKeyValuePair(DrawingColour.Clear),
+                    "FillColour".ToKeyValuePair(DrawingColour.Clear));
             }
-            
+
         }
 
         internal string GetLuaDrawings()
