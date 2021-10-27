@@ -1,31 +1,35 @@
 # BriefingRoom for DCS World - User's manual
+__Last Edited: 27/8/2021__
 
-This manual contains everything you need to know in order to create mods for BriefingRoom. If you only want to generate missions, please read the User's manual.
+This manual contains everything you need to know in order to modify BriefingRoom to your needs [for Aircraft Payloads and Liveries use Custom Configs](Custom_Configs.md).
+If you only want to generate missions, please read the User's manual.
 
-**This manual is not complete yet, additional information will be added in future revisions.**
+**This manual is not complete detail as code is often changing. This should give you an idea about what is where. Some folders will have more detail than others**
 
 ## Table of contents
 1. [Database directory](#database-directory)
     1. [Database/Common.ini](#databasecommonini)
-    1. [Database/Defaults.ini](#databasedefaultsini)
     1. [Database/EnemyAirDefense.ini](#databaseenemyairdefenseini)
     1. [Database/Names.ini](#databasenamesini)
     1. [Database/Objectives.ini](#databaseobjectivesini)
     1. [Database/Coalitions directory](#databasecoalitions-directory)
     1. [Database/Extensions directory](#databaseextensions-directory)
     1. [Database/MissionFeatures directory](#databasemissionfeatures-directory)
-    1. [Database/Objectives directory](#databaseobjectives-directory)
+    1. [Database/ObjectiveFeatures directory](#databaseobjectivefeatures-directory)
+    1. [Database/ObjectiveTargets directory](#databaseobjectivetargets-directory)
+    1. [Database/ObjectiveTargetBehaviors directory](#databaseobjectivetargetbehaviors-directory)
+    1. [Database/ObjectiveTasks directory](#databaseobjectivetasks-directory)
+    1. [Database/ObjectivePresets directory](#databaseobjectivepresets-directory)
     1. [Database/Theaters directory](#databasetheaters-directory)
+    1. [Database/TheatersAirbases directory](#databasetheatersairbases-directory)
+    1. [Database/WeatherPresets directory](#databaseweatherpresets-directory)
     1. [Database/Units directory](#databaseunits-directory)
 1. [Include directory](#include-directory)
-    1. [Include/Briefing.html](#includebriefinghtml)
+    1. [Include/Html](#includehtml)
     1. [Include/Jpg directory](#includejpg-directory)
     1. [Include/Lua directory](#includelua-directory)
-        1. [Include/Lua/IncludedScripts directory](#includeluaincludedscripts-directory)
-        1. [Include/Lua/Mission directory](#includeluamission-directory)
-        1. [Include/Lua/Units directory](#includeluaunits-directory)
-        1. [Include/Lua/Warehouses directory](#includeluawarehouses-directory)
     1. [Include/Ogg directory](#includeogg-directory)
+    1. [Include/Markdown/Manuals directory](#includemarkdownmanuals-directory)
 
 ## Database directory
 
@@ -39,13 +43,40 @@ The database directory contains a series of .ini files used to describe almost e
 * ***[Versions]* section**
   * **DCSVersion**: Targeted DCS World version. Just for informational purpose, BriefingRoom should work with another version provided Eagle Dynamics made no major changes to the mission format.
 
-### Database/Defaults.ini
-
-Documentation coming soon
 
 ### Database/EnemyAirDefense.ini
 
-Documentation coming soon
+Configuration for Air Defense (SAMs,AAA)
+
+* ***[AirDefense]* section**
+
+  \<ChanceSetting>.Embedded.Chance=\<chance of 100>
+
+  \<ChanceSetting>.Embedded.UnitCount=\<min>,\<max>
+
+  \<ChanceSetting>.GroupsInArea.ShortRange=\<min>,\<max>
+
+  \<ChanceSetting>.GroupsInArea.MediumRange=\<min>,\<max>
+
+  \<ChanceSetting>.GroupsInArea.LongRange=\<min>,\<max>
+
+  \<ChanceSetting>.SkillLevel=\<Skill Setting>
+
+* ***[AirDefenseRange.Ally/Enemy]* section**
+  For allies, center is initial airbase, opposing point is objectives
+  For enemies, center is objectives, opposing point is initial airbase
+
+  ShortRange.DistanceFromCenter=\<min Nm>,\<max Nm>
+
+  ShortRange.MinDistanceFromOpposingPoint=\<distance Nm>
+
+  MediumRange.DistanceFromCenter=\<min Nm>,\<max Nm>
+
+  MediumRange.MinDistanceFromOpposingPoint=\<distance Nm>
+
+  LongRange.DistanceFromCenter=\<min Nm>,\<max Nm>
+
+  LongRange.MinDistanceFromOpposingPoint=\<distance Nm>
 
 ### Database/Names.ini
 
@@ -55,14 +86,6 @@ This files stores information about names and string constants used by the missi
 Stores random names to be used for unit groups, by unit family. Helicopter and plane groups won't use these as they use callsigns instead, but they're included nevertheless.
   * $NTH$ is replaced with an ordinal adjective based on the group number.
   * $N$ is replaced with a number number based on the group number.
-
-### Database/Objectives.ini
-
-This files stores information about common objective settings.
-
-* ***[DistanceToObjective]* section**
-  * **[DISTANCECATEGORY].DistanceFromTakeOffLocation**: Approximate distance (in nautical miles) between the player(s) starting location and the objectives when this "Distance to objective" category is picked in the mission template.
-  * **[DISTANCECATEGORY].DistanceBetweenObjectives**: Approximate distance (in nautical miles) between objectives when this "Distance to objective" category is picked in the mission template.
 
 ### Database/Coalitions directory
 Configuration of nations/coalitions that are available.
@@ -93,27 +116,71 @@ Common Features/Script configs needed for objectives
 * Specific Lua Script Settings
 * Units needed
 
-More detailed documentation coming soon
-
-### Database/Objectives directory
-Core configuration of available mission types includes
-* Briefing templates
+### Database/ObjectiveFeatures directory
+All Features you can add to a single Objective
+* GUI
 * Remarks
-* Objective Features and flags
-* Required Aircraft Loadout type
-* Hostile and Friendly units involved
-* Waypoint accuracy
-More detailed documentation coming soon
+* Lua Script files needed
+* Ogg Sound Files needed
+* Specific Lua Script Settings
+* Units needed
+
+### Database/ObjectiveTargets directory
+Type Of targets for an objective
+* GUI
+* Briefing Name (single and plural)
+* Unit Families (Group of units to be selected)
+* Units.Count.\<amount>=\<min>,\<max>
+* ValidSpawnPoints (Size/Type of spawn points)
+
+### Database/ObjectiveTargetsBehaviors directory
+What your target will be doing
+* GUI
+* Location (Where to start or what to do)
+* Lua Group and unit custom lua to use
+
+### Database/ObjectiveTasks directory
+What to do with your target
+* GUI
+* Briefing Info
+* Remarks
+* Trigger Lua
+* Target Side
+* Valid targets
+* Ogg files to include
+
+### Database/ObjectivePresets directory
+Pre Made Objectives for Quick Builder
+* GUI
+* Options (Objective features)
+* Targets (Objective Targets)
+* TargetsBehaviors (Objective Target Behaviours)
+* Tasks (Objective Task)
 
 ### Database/Theaters directory
 Map Configuration covers
 * Map DCS config
 * Local Daylight
 * Temps
-* Airbase Info
-* Spawn points
 
-More detailed documentation coming soon
+Following reccomended to use `dataExtractors\ZoneExtractor.lua` and example mission under `dataExtractors\PositioningMissions` to generate
+* Spawn points
+* Water Area
+* Water Exclusion Areas (Islands)
+* Red Control Area
+* Blue Control Area
+
+### Database/TheaterAirbases directory
+Configuration of airbases (\<Theatre>\<AirbaseName>)
+* General Airbase config
+* Runway Spawn points
+* Parking Spawn Points
+
+### Database/WeatherPresets directory
+Configuration of Cloud Weather Presets (As per Inital Cloud Presets)
+* GUI
+* Briefing Display
+* ED Cloud config (hopefully once they add more options we can do more here)
 
 ### Database/Units directory
 Configuration of units playable or spawnable in missions.
@@ -215,41 +282,35 @@ SA-10 Grumble.ini Example(03/21)
     Venezuela=Decade2010,Decade2020
     Vietnam=Decade2000,Decade2020
 
-
-
-
 ## Include directory
 
 The include directory stores all Lua scripts, sound and images to be included in the output .miz files.
 
-### Include/Briefing.html
+### Include/Html 
 
-Documentation coming soon
+Templates in html or text mainly for Briefing but also for Kneeboard 
 
 ### Include/Jpg directory
 
-Documentation coming soon
+Images (of course) of interest to you:
+*  Flags (links to Coalitions)
+* Theatres (background mission images based of DCSID)
 
 ### Include/Lua directory
 
-Documentation coming soon
-
-#### Include/Lua/IncludedScripts directory
-
-Documentation coming soon
-
-#### Include/Lua/Mission directory
-
-Documentation coming soon
-
-#### Include/Lua/Units directory
-
-Documentation coming soon
-
-#### Include/Lua/Warehouses directory
-
-Documentation coming soon
+Segments and Templates of Lua including scripting sections of intrest to you:
+* Mission Features (Lua Script location referenced in Database)
+* Objective Features (Lua Script location referenced in Database)
+* Objective Triggers (Lua Script location referenced in Database (Tasks))
+* Units 
+  * Group (Group stuff like waypoints)
+  * Unit (Single Unit level stuff)
+* Script Lua (Base Lua template)
 
 ### Include/Ogg directory
 
-Documentation coming soon
+Ogg Sound files used in Lua Scripts
+
+### Include/Markdown/Manuals directory
+
+Markdown files for Manual in UI (Your reading one)

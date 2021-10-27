@@ -1,5 +1,5 @@
 # BriefingRoom for DCS World - User's manual
-
+__Last Edited: 27/8/2021__
 This manual contains everything you need to know if you just plan to use BriefingRoom to generate missions. If you plan on modding BriefingRoom, please read the Modder's manual.
 
 **This manual is not complete yet, additional information will be added in future revisions.**
