@@ -1,0 +1,46 @@
+@page "/Manual"
+@using Markdig
+@using System.Reflection
+@using BriefingRoom4DCS
+@using System.IO
+
+<div class="title-bar">
+    <h1>Manual</h1>
+</div>
+<div>
+  <ul class="nav nav-tabs">
+      @foreach (var value in Documents.Keys.ToList())
+      {
+          <li class="nav-item">
+              <a class="nav-link @(DocTab == value ? "active" : "")" aria-current="page"
+                @onclick="() => SetDocTab(value)">
+                  @value
+              </a>
+          </li>
+      }
+  </ul>
+  <br/>
+  @foreach (var key in Documents.Keys.ToList())
+  {
+    @if (DocTab == key)
+    {  
+      @((MarkupString) @Documents[key])
+    }
+  }
+</div>
+
+@code {
+
+  private string DocTab  ="README";
+  private void SetDocTab(string var)
+  {
+      DocTab = var;
+  }
+  private Dictionary<string, string> Documents { get; set;}
+
+  protected override void OnInitialized()
+    {
+        var files =  Directory.GetFiles($"{BriefingRoom.GetBriefingRoomMarkdownPath()}Manuals\\", "*.md");
+        Documents = files.ToDictionary(x => x.Split("\\").Last().Replace(".md", ""), x => Markdown.ToHtml(File.ReadAllText(x).Replace("Media/SplashScreen.png", "_content/BriefingRoomCommonGUI/img/br-logo-white.png")));
+    }
+}

@@ -249,6 +249,8 @@ namespace BriefingRoom4DCS
         /// <returns>Path to the directory, as a string.</returns>
         public static string GetBriefingRoomRootPath() { return BRPaths.ROOT; }
 
+        public static string GetBriefingRoomMarkdownPath() { return BRPaths.INCLUDE_MARKDOWN; }
+
         /// <summary>
         /// Returns the DCS World custom mission path ([User]\Saved Games\DCS\Missions\).
         /// Looks first for DCS.earlyaccess, then DCS.openbeta, then DCS.

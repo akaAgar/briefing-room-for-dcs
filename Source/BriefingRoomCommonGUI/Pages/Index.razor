@@ -1,5 +1,5 @@
 @page "/"
-@using Markdig
+
 @using System.Reflection
 @using BriefingRoom4DCS
 
@@ -9,18 +9,14 @@
     <a href="/QuickBuilder" class="btn btn-primary">Quick mission builder</a>
     <a href="/FullBuilder" class="btn btn-primary">Full mission builder</a>
     <a href="/CampaignBuilder" class="btn btn-primary">Campaign builder BETA</a>
+    <a href="/Manual" class="btn btn-primary">Manual</a>
   </div>
   <div class="misc-info">
     Generator by <strong>Ambroise Garel (@@akaAgar)</strong>, user interace by <strong>John Harvey
       (@@john681611)</strong><br />
     Version @BriefingRoom.VERSION for DCS World
   </div>
-  <div>
-    @((MarkupString) @Preview)
-  </div>
 </div>
 
 @code {
-  public string Body { get; set; } = "# Hello";
-  public string Preview => Markdown.ToHtml(Body);
 }

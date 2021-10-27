@@ -69,6 +69,8 @@ namespace BriefingRoom4DCS
         /// </summary>
         internal static string INCLUDE_LUA { get; } = $"{INCLUDE}Lua\\";
 
+        internal static string INCLUDE_MARKDOWN { get; } = $"{INCLUDE}Markdown\\";
+
 
         /// <summary>
         /// Path to the Include\Lua\MissionFeatures subdirectory.
