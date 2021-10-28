@@ -75,8 +75,9 @@
                         </BlazoredTypeahead>
                         </div>
                         <InputEnum Label="Time period" @bind-Value="Template.ContextDecade" EnumType="Decade"/>
-                        <InputEnum Label="Player coalition" @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition"/>
+                        <InputEnum Label="Player Side" @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition"/>
                         <InputDataBase Label="Theater" @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater"/>
+                        <InputDataBase Label="Home airbase" @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
                     </div>
                     break;
                 case "environment":
@@ -88,23 +89,19 @@
                         <InputEnum Label="Wind" @bind-Value="Template.EnvironmentWind" EnumType="Wind"/>
                     </div>
                     break;
-                case "flight-plan":
-                    <div id="flight-plan" class="generator-block">
-                        <h3>Flight Plan</h3>
-                        <div class="form-group">
-                            <label>Objective distance (zero means random)</label>
-                            <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistance"></InputNumber>
-                        </div>
-                        <div class="form-group">
-                            <label>Objective seperation (zero means random)</label>
-                            <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveSeperation"></InputNumber>
-                        </div>
-                        <InputDataBase Label="Main airbase" @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
-                    </div>
-                    break;
                 case "objectives":
                     <div id="objectives" class="generator-block">
                         <h3>Objectives</h3>
+                        <div class="generator-group flex-justify-spaced">
+                            <div class="form-group flex-block">
+                                <label>Objective distance (zero means random)</label>
+                                <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistance"></InputNumber>
+                            </div>
+                            <div class="form-group flex-block">
+                                <label>Objective seperation (zero means random)</label>
+                                <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveSeperation"></InputNumber>
+                            </div>
+                        </div>
                         <ul class="nav nav-tabs">
                             @foreach (var value in Template.Objectives)
                             {
@@ -131,9 +128,11 @@
                                 <div class="flight-group">
                                     <button type="button" class="btn btn-secondary" @onclick="() => CloneObjective(objective)">Duplicate</button>
                                     <InputDataBase Label="Task" @bind-Value="objective.Task" DataBaseType="DatabaseEntryType.ObjectiveTask"/>
-                                    <InputDataBase Label="Target" @bind-Value="objective.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget"/>
-                                    <InputDataBase Label="Target behavior" @bind-Value="objective.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior"/>
-                                    <InputEnum Label="Target count" @bind-Value="objective.TargetCount" EnumType="Amount"/>
+                                    <div class="generator-group flex-justify-spaced">
+                                        <InputDataBase ClassString="flex-block" Label="Target" @bind-Value="objective.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget"/>
+                                        <InputDataBase ClassString="flex-block" Label="Target behavior" @bind-Value="objective.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior"/>
+                                        <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="objective.TargetCount" EnumType="Amount"/>
+                                    </div>
                                     <div class="form-group">
                                         <h4>Objective features</h4>
                                         <CheckBoxList
@@ -193,32 +192,18 @@
                 case "situation":
                     <div id="situation" class="generator-block">
                         <h3>Situation</h3>
-                        <ul class="nav nav-tabs">
-                            @foreach (var value in situationTabs)
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link @(situationTab == value ? "active" : "")" aria-current="page"
-                            @onclick='() => SetSituationTab(value)'>@textInfo.ToTitleCase(value).Replace("-", " ")</a>
-                                </li>
-                            }
-                        </ul>
-                        @switch (situationTab)
-                        {
-                            case "enemies":
-                                <div id="enemies">
-                                    <h4>Enemies</h4>
-                                    <InputEnum Label="Air defense" @bind-Value="Template.SituationEnemyAirDefense" EnumType="AmountNR"/>
-                                    <InputEnum Label="Air force" @bind-Value="Template.SituationEnemyAirForce" EnumType="AmountNR"/>
-                                </div>
-                                break;
-                            case "friendlies":
-                                <div id="friendlies">
-                                    <h4>Friendlies</h4>
-                                    <InputEnum Label="Air defense" @bind-Value="Template.SituationFriendlyAirDefense" EnumType="AmountNR"/>
-                                    <InputEnum Label="Air force" @bind-Value="Template.SituationFriendlyAirForce" EnumType="AmountNR"/>
-                                </div>
-                                break;
-                        }
+                        <div class="generator-group flex-justify-spaced">
+                            <div class="flex-block">
+                            <h4>Enemies</h4>
+                                <InputEnum Label="Air defense" @bind-Value="Template.SituationEnemyAirDefense" EnumType="AmountNR"/>
+                                <InputEnum Label="Air force" @bind-Value="Template.SituationEnemyAirForce" EnumType="AmountNR"/>
+                            </div>
+                            <div class="flex-block">
+                                <h4>Friendlies</h4>
+                                <InputEnum Label="Air defense" @bind-Value="Template.SituationFriendlyAirDefense" EnumType="AmountNR"/>
+                                <InputEnum Label="Air force" @bind-Value="Template.SituationFriendlyAirForce" EnumType="AmountNR"/>
+                            </div>
+                        </div>
                     </div>
                     break;
                 case "flight-groups":
@@ -272,7 +257,7 @@
                                             <option value="@item">@BriefingRoom.FormatPayload(item)</option> // Blazor needs to know what values it binds to!
                                         }
                                     </select>
-                                    <InputEnum Label="Home Base" @bind-Value="flight.StartLocation" EnumType="PlayerStartLocation"/>
+                                    <InputEnum Label="Starting Setup" @bind-Value="flight.StartLocation" EnumType="PlayerStartLocation"/>
                                     <InputDataBase Label="Carrier" @bind-Value="flight.Carrier" DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="N/A"/>
                                     <div class="form-group">
                                         <label>Country</label>
@@ -517,22 +502,12 @@
 "objectives",
 "flight-groups",
 "strike-packages",
-"flight-plan",
 "situation",
 "options",
 };
     private void SetTab(string var)
     {
         tab = var;
-    }
-
-
-
-    private string situationTab = "enemies";
-    private List<string> situationTabs = new List<string> { "enemies", "friendlies" };
-    private void SetSituationTab(string var)
-    {
-        situationTab = var;
     }
 
     private MissionTemplateFlightGroup flightGroupTab;
