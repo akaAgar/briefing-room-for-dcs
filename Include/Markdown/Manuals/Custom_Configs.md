@@ -1,5 +1,5 @@
 # Custom Configs
-__Last Edited: 27/8/2021__
+__Last Edited: 27/10/2021__
 
 Briefing Room (BR) allows you to create custom configs. For now (Oct 2021) this is limited to Aircraft Payloads and Liveries.
 
