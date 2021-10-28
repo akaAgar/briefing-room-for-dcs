@@ -31,7 +31,7 @@
 
 @code {
 
-  private string DocTab  ="User Manual";
+  private string DocTab = "User Manual";
   private void SetDocTab(string var)
   {
       DocTab = var;
@@ -40,7 +40,8 @@
 
   protected override void OnInitialized()
     {
+        var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
         var files =  Directory.GetFiles($"{BriefingRoom.GetBriefingRoomMarkdownPath()}Manuals\\", "*.md");
-        Documents = files.ToDictionary(x => x.Split("\\").Last().Replace(".md", "").Replace("_", " "), x => Markdown.ToHtml(File.ReadAllText(x).Replace("Media/SplashScreen.png", "_content/BriefingRoomCommonGUI/img/br-logo-white.png")));
+        Documents = files.ToDictionary(x => x.Split("\\").Last().Replace(".md", "").Replace("_", " "), x => Markdown.ToHtml(File.ReadAllText(x).Replace("Media/SplashScreen.png", "_content/BriefingRoomCommonGUI/img/br-logo-white.png"), pipeline));
     }
 }

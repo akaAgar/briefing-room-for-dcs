@@ -1,82 +1,163 @@
 # BriefingRoom for DCS World - User's manual
-__Last Edited: 27/8/2021__
+__Last Edited: 28/8/2021__
+
 This manual contains everything you need to know if you just plan to use BriefingRoom to generate missions. If you plan on modding BriefingRoom, please read the Modder's manual.
 
 **This manual is not complete yet, additional information will be added in future revisions.**
 
 ## Table of contents
 1. [Graphical user interface](#graphical-user-interface)
-    1. [Mission template settings](#mission-template-settings)
+    1. [Quick Builder](#quick-builder)
+    1. [Full Builder](#full-builder)
+    1. [Campaign Builder](#campaign-builder)
 1. [Command-line tool](#command-line-tool)
     1. [Command-line syntax](#command-line-syntax)
     1. [Using the command-line tool from the Windows file explorer](#using-the-command-line-tool-from-the-windows-file-explorer)
 
 ## Graphical user interface
 
-When ran without any command-line parameters, BriefingRoom starts in GUI mode, which allows you to edit your mission parameters using an user-friendly interface, export mission to .miz directly or save your mission templates for later use, or to use them with the command-line tool (see below).
+Comes in 2 forms Desktop and Web. Most use desktop but if you have issues its recommended to try Web. Everything is tested with Chrome so odd browsers may have issues (that can show on desktop too its a browser underneath)
 
-You can setup a default template by overwriting or editing the "Default.brt" template in the program directory, which is loaded each time you start Briefing Room.
+There are 3 ways of generating missions:
+* Quick Builder
+* Full Builder
+* Campaign Builder (BETA)
 
-### Mission template settings
+The basics are:
+* **Lots of options** Check Full Builder section fo descriptions of each
+* **Templates** saving/loading settings for the tool always on the upper right. Reset returns it to default file (you can overwrite that file)
+* **Generate Button** Generates missions/campings.
+* **Mission Download** as .Miz file (Save window should pop up)
+* **Briefing Download** as .html file (Save window should pop up)
+* **Warnings** Errors occurred in generator that mean mission may be lacking requested features
+* **Clear Mission Button** clears the mission for full screen options again.
 
-On the left side of the screen you can see a list of all settings currently used by the mission template. 
+**Note**: we do not generate missions for maximum realism we generally try and strike a balance between realism and game play this means we do expect you to have to make changes in the ME if you require a particular setup.
 
-**Briefing**
-* **Mission date**: The exact date at which the mission should take place. If enabled, the "Season" setting from the "Environment" category will be ignored. If not enabled, a random year will be selected according to the selected coalitions.
-* **Mission description**: Description of the mission to display in the briefing. If left empty, a random description will be generated.
-* **Mission name**: Name/title of the mission. If left empty, a random name will be generated.
-* **Unit system**: Unit system (metric or imperial) to use in the mission briefing.
 
-**Coalitions**
-* **Coalition, blue**: Who belongs to the blue coalition?
-* **Coalition, red**: Who belongs to the red coalition?
-* **Mission date**: During which decade will this mission take place? This value is ignored if "Briefing > Mission date" is set.
-* **Player coalition**: Which coalition does the player(s) belong to?
+### Quick Builder
 
-**Environment**
-* **Season**: Season during which the mission will take place.
-* **Time of day**: Starting time of the mission.
-* **Weather**: What the weather be like during the mission.
-* **Wind**: How windy will the weather be during the mission. "Auto" means "choose according to the weather".
+The quick builder is a very cut down version of the Full Builder as is intended to be used in conjunction with a template created in the full builder. Think of it as *"I liked that mission I want similar mission".* It uses the same generator behind the scenes as the full builder so any options you can't see will be set when you load your template.
 
-**Objectives**
-* **Objective count**: How many objectives/targets will be present in the mission.
-* **Objective distance**: How far from the player's starting location will the objectives be.
-* **Objective type**: The type of task player must accomplish in this mission.
+Its all on one page and as stated you only see a subset of the full options. The only major difference is the Objectives which instead of using the full options list it uses Presets configured in the Database (see Modder Manual if you want to adjust these)
 
-**Opposition**
-* **Air defense**: Intensity and quality of enemy surface-to-air defense.
-* **Air force**: Relative power of the enemy air force. Enemy air force will always be proportional to the number and air-to-air efficiency of aircraft in the player mission package, so more player/AI friendly aircraft means more enemy aircraft, regardless of this setting.
-* **CAP on station**: Chance that enemy fighter planes will already be patrolling on mission start rather than popping up during the mission on objective completion.
-* **Enemy units location**: Can enemy units be spawned in any country (recommended) or only in countries aligned with a given coalition? Be aware that when choosing an option other than "Any", depending on the theater and the "Theater region coalitions" setting, objectives may end up VERY far from the player(s) starting location, no matter the value of "Objective distance". Keep in mind that "Theaters regions coalitions" has a influence on this setting.
-* **Skill level, aircraft**: Skill level of enemy planes and helicopters.
-* **Skill level, ground units**: Skill level of enemy ground units and air defense.
+### Full Builder
 
-**Options**
-* **End mode**: When (and if) should the mission automatically end after all objectives are complete?
-* **Preferences**: Preferences and options to apply to this mission.
-* **Script extensions**: (advanced) Script extensions to include in this mission to provide additional features.
-* **Unit mods**: Which unit mods should be enabled in this mission? Make sure units mods are installed and active in your version of DCS World or the units won't be spawned.
+Hold all possible options for generating a single mission. Options are split into tabs in which we will go through each one.
 
-**Player**
-* **AI CAP escort**: Number of AI aircraft tasked with escorting the player against enemy fighters. In single-player missions, escorts will be spawned on the ramp if the player starts from the ramp (cold or hot), or in the air above the airbase if the player starts on the runway. In multiplayer missions, escorts will be spawned as soon as one player takes off.
-* **AI SEAD escort**: Number of AI aircraft tasked with escorting the player against enemy SAMs. In single-player missions, escorts will be spawned on the ramp if the player starts from the ramp (cold or hot), or in the air above the airbase if the player starts on the runway. In multiplayer missions, escorts will be spawned as soon as one player takes off.
-* **AI skill level**: Skill level of AI wingmen and escort aircraft.
-* **Air defense**: Intensity and quality of friendly air defense.
-* **Carrier**: Type of aircraft carrier spawned. If none, player(s) will take off from an airbase. In single player, the player's aircraft will be spawed on the carrier. In multiplayer, aircraft will spawn on carrier if the option is set for their flight group. Make sure aircraft are suitable for the carrier type.
-* **Start location**: Where should the player(s) take off from?
+#### Context
+`TDLR: Who, When, Where`
 
-**Player, single-player only**
-* **Aircraft**: Type of aircraft the player will fly. As with all values in the "Player, single player only" category, this value is ignored if any flight group is specified in "MP flight groups", the multiplayer flight groups are then used instead.
-* **Wingmen**: Number of AI wingmen in the player's flight group. As with all values in the "Player, single player only" category, this value is ignored if any flight group is specified in "MP flight groups", the multiplayer flight groups are then used instead.
+**Blue/Red Coalitions (Type to search)**: Primary faction on each side (other factions may spawn)
 
-**Player, multiplayer only**
-* **MP flight groups**: Multiplayer flight groups. If any flight group is specified here, the mission then becomes a multiplayer mission and all values in the "Player, single player only" are ignored.
+**Time Period**: Decade that mission takes place
 
-**Theater**
-* **Theater ID**: DCS World theater in which the mission will take place.
-* **Theater regions coalitions**: To which coalitions should the countries on the map (and their airbases) belong to?
-* **Theater starting airbase**: Name of the airbase the player must take off from. If left empty, or if the airbase doesn't exist in this theater, a random airbase will be selected. Be aware that if the selected airbase doesn't have enough parking spots for the player mission package, some units may not spawn properly.
+**Player Side**: Blue/Red
+
+**Theater**: Map
+
+**Home Airbase**: Where is the main airbase for the mission? (objectives and other stuff uses this base to calculate distances)
+
+#### Environment
+`TDLR: Whats the weather do I need NVGs?`
+
+**Season**: General time of year
+
+**Time Of Day**: Start time of the mission
+
+**Weather Preset**: Pretty Pretty clouds preset
+
+**Wind**: Force scale. Do I need to land sideways?
+
+#### Objectives
+`TDLR: What am I to do?`
+
+**Objective Distance (Nautical Miles)**: How far is the objective from the home base? (certain variation applied)
+
+**Objective Separation (Nautical Miles)**: How far between objectives?
+
+Set of tabs for ach objective can duplicate if you like
+
+**Task**: Generally Blow it all up, Disable the Radars, Fly over (recon) or land near it
+
+**Target**: What kinda stuff is there, ships, vehicles, planes, infantry, Daves house.
+
+**Target Behavior**: What is the target doing? Idle, Advancing on you, patrolling ect.
+
+**Target Count**: Generally how many targets are there, more players/capable aircraft you have add more targets
+
+**Objective Features**: Designation items through F-10 radio options on each objective, Scenery items ect.
+
+**Objective Options**: Can it have AA, Is the waypoint accurate (imagine known area objective)
+
+#### Flight Groups
+`TDLR: What am I to Fly`
+
+Set of tabs for each flyable set of aircraft.
+
+**Aircraft (Type to search)**: What model?
+
+**Count**: How many Max 4.
+
+**Payload**: What weapons (extra options addable through custom configs)?
+
+**Starting Setup**: Runway, Parking Hot or Cold.
+
+**Carrier**: Aircraft Carriers or FARPS (Note you can't have more than one of the same carrier it will just put more than one group on the same carrier) N/A = spawn at airbase
+
+**Country**: Where is the aircraft from?
+
+**Livery**: What paint job do you have (extra options addable through custom configs)?
+
+**AI wingmen**: If on only first unit will be playable rest will be AI.
+
+
+#### Strike Packages
+`TDLR: How do you breakdown the work in MP`
+
+Only usable if you have more than one Flight group. Set of tabs to group flights up to attack specific objectives
+
+**Objectives**: What are you doing in this group (sorts out waypoints)?
+
+**Flight Groups**: Who is involved?
+
+**Starting Base**: Custom starting base overriding the general home base.
+
+#### Situation
+`TDLR: How strong are us/them?`
+
+Two tabs containing the same options for Enemies and Friendlies
+
+**Air Defense**: How strong is AA systems?
+
+**Air Force**: How many aircraft are they likely to send?
+
+#### Options
+`TDLR: What else?`
+
+**Fog Of war**: F-10 Map settings and Labels (DCS setting)
+
+**Mission Features**: Various options of what is going on. Hover to see extra info
+
+**Mission Options**: Options around spawning logic, areas used to spawn, Waypoint markers and audio messages
+
+**Realism Options**: DCS mission options about realism
+
+**Unit Mods**: What extra modded units do you want to spawn.
+
+
+### Campaign Builder (Beta)
+`TDLR: No its not dynamic look at Liberation for that`
+
+Builds campaigns in a simplistic way. More accurately it generates a bunch of missions in a campaign format based off the same settings.
+
+Many options are shared with the Full Builder but some are more orientated around progression and multi missions. 
+
+Standout options are:
+
+**Environment**: Uses Bad Weather and Night chance rather than detailed weather.
+
+**Missions**: How many missions what features, Difficulty variation, Objectives (based of presets), per mission objective count and distance.
 
 ## Command-line tool
 

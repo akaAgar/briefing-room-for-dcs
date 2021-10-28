@@ -70,15 +70,26 @@
                     </div>
                     <InputEnum ClassString="flex-block" Label="Time period" @bind-Value="Template.ContextDecade"
                         EnumType="Decade" />
-                    <InputEnum ClassString="flex-block" Label="Player coalition"
+                    <InputEnum ClassString="flex-block" Label="Player Side"
                         @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition" />
                     <InputDataBase ClassString="flex-block" Label="Theater" @bind-Value="Template.ContextTheater"
                         DataBaseType="DatabaseEntryType.Theater" />
+                    <InputDataBase ClassString="flex-block" Label="Home airbase" @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
                 </div>
                 <hr />
             </div>
             <div id="objectives" class="generator-block">
                 <h3>Objectives</h3>
+                <div class="generator-group flex-justify-spaced">
+                    <div class="form-group flex-block">
+                        <label>Objective distance (zero means random)</label>
+                        <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistance"></InputNumber>
+                    </div>
+                    <div class="form-group flex-block">
+                        <label>Objective seperation (zero means random)</label>
+                        <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveSeperation"></InputNumber>
+                    </div>
+                </div>
                 @foreach (var objective in Template.Objectives)
                 {
                     <div class="generator-group flex-justify-spaced">
@@ -139,18 +150,6 @@
                 }
                 <button type="button" class="btn btn-secondary" @onclick="AddFlightGroup">+</button>
                 <hr />
-            </div>
-            <div id="flight-plan" class="generator-block">
-                <h3>Flight Plan</h3>
-                <div class="form-group">
-                    <label>Objective distance (zero means random)</label>
-                    <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistance"></InputNumber>
-                </div>
-                <div class="form-group">
-                    <label>Objective seperation (zero means random)</label>
-                    <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveSeperation"></InputNumber>
-                </div>
-                <InputDataBase Label="Main airbase" @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
             </div>
             <div id="mission-features" class="generator-block">
                 <h3>Mission features</h3>
