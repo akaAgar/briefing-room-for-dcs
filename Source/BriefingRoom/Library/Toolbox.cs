@@ -502,8 +502,6 @@ namespace BriefingRoom4DCS
                 case UnitFamily.StaticStructureProduction:
                 case UnitFamily.FOB:
                     return UnitCategory.Static;
-                case UnitFamily.StaticGroup:
-                    return UnitCategory.StaticGroup;
                 default:
                     return UnitCategory.Vehicle;
             }

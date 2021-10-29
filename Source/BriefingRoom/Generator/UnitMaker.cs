@@ -134,7 +134,7 @@ namespace BriefingRoom4DCS.Generator
             else
                 groupName = GeneratorTools.GetGroupName(GroupID, unitFamily);
 
-            if(unitFamily.GetUnitCategory() == UnitCategory.StaticGroup)
+            if(unitFamily.GetUnitCategory() == UnitCategory.Static)
                 return AddStaticGroup(
                     country,
                     coalition,

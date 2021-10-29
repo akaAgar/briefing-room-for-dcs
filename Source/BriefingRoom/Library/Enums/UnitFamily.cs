@@ -180,7 +180,6 @@ namespace BriefingRoom4DCS
         /// <summary>
         /// FOB or FARP
         /// </summary>
-        FOB,
-        StaticGroup
+        FOB
     }
 }

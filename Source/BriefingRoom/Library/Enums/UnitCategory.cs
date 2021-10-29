@@ -30,7 +30,6 @@ namespace BriefingRoom4DCS
         Plane,
         Ship,
         Static,
-        Vehicle,
-        StaticGroup
+        Vehicle
     }
 }
