@@ -359,6 +359,9 @@
 
             }
         </EditForm>
+        <div class=bottom-bar>
+            <LoggerAll logs="logs"/>
+        </div>
     </div>
     @* TODO: COMPONENT CANDIDATE *@
     @if (mission != null)
@@ -373,9 +376,6 @@
             <div>@((MarkupString)mission.Briefing.GetBriefingAsHTML(false))</div>
         </div>
     }
-</div>
-<div class=bottom-bar>
-    <LoggerAll logs="logs"/>
 </div>
 
 

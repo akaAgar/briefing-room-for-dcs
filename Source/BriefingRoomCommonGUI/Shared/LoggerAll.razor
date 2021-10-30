@@ -1,10 +1,10 @@
 
 @if(showLogs){
-    <div class="alert alert-info"  role="info">
+    <div class="alert alert-secondary"  role="info">
             <div>
                 <div class="btn-group" role="group">
-                <button class="btn btn-info" @onclick="() => ToggleShowLogs()"><span class="oi oi-info"></span>@logs.Count()</button> 
-                <button class="btn btn-info" @onclick="() => ClearLogs()"><span class="oi oi-reload"></span>Clear</button>
+                <button class="btn btn-secondary" @onclick="() => ToggleShowLogs()"><span class="oi oi-bug"></span>@logs.Count()</button> 
+                <button class="btn btn-secondary" @onclick="() => ClearLogs()"><span class="oi oi-reload"></span>Clear</button>
                 </div>
                 @foreach (var log in logs)
                 {
@@ -13,7 +13,7 @@
             </div>
     </div>
 } else {
-    <button class="btn btn-info" @onclick="() => ToggleShowLogs()"><span class="oi oi-info"></span> Logs @logs.Count()</button>    
+    <button class="btn btn-secondary btn-sm" @onclick="() => ToggleShowLogs()"><span class="oi oi-bug"></span></button>    
 }
 
 @code {
