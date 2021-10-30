@@ -134,7 +134,7 @@ namespace BriefingRoom4DCS.Generator
             else
                 groupName = GeneratorTools.GetGroupName(GroupID, unitFamily);
 
-            if(unitFamily.GetUnitCategory() == UnitCategory.Static)
+            if(unitFamily.GetUnitCategory() == UnitCategory.Static && unitFamily != UnitFamily.FOB)
                 return AddStaticGroup(
                     country,
                     coalition,
@@ -359,7 +359,7 @@ namespace BriefingRoom4DCS.Generator
                 }
             }
 
-            if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.EmbeddedAirDefense))
+            if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.EmbeddedAirDefense) && unitFamily != UnitFamily.StaticStructureOffshore)
             {
                 var firstUnitID = UnitID;
                 string[] airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(Template, side);
@@ -443,7 +443,8 @@ namespace BriefingRoom4DCS.Generator
             }
             else if(unitDB.Category == UnitCategory.Static)
             {
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Shape", unitDB.Shape[unitSetIndex]);
+                if (unitDB.Shape.Length -1 > unitSetIndex)
+                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Shape", unitDB.Shape[unitSetIndex]);
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", $"{groupName} {unitLuaIndex + 1}");
             }
             else

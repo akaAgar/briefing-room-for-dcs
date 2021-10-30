@@ -1,4 +1,4 @@
-require "Zones_out" -- Mission lua file
+require "mission" -- Mission lua file
 
 function __genOrderedIndex( t )
     local orderedIndex = {}

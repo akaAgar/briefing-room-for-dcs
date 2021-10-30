@@ -501,6 +501,7 @@ namespace BriefingRoom4DCS
                 case UnitFamily.StaticStructureMilitary:
                 case UnitFamily.StaticStructureProduction:
                 case UnitFamily.FOB:
+                case UnitFamily.StaticStructureOffshore:
                     return UnitCategory.Static;
                 default:
                     return UnitCategory.Vehicle;
