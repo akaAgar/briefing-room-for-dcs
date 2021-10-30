@@ -125,6 +125,8 @@ namespace BriefingRoom4DCS
         /// </summary>
         StaticStructureProduction,
 
+        StaticStructureOffshore,
+
         /// <summary>
         /// Mobile AAA
         /// </summary>

@@ -1,5 +1,5 @@
   ["category"] = "",
-  ["shape_name"] = "",
+  ["shape_name"] = "$SHAPE$",
   ["type"] = "$DCSID$",
   ["unitId"] = $UNITID$,
 $EXTRALUA$

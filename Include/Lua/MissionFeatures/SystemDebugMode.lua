@@ -12,38 +12,6 @@ function briefingRoom.f10MenuCommands.debug.activateAllAircraft()
   end
 end
 
-  -- activate all groups in the current queue
-  -- for _,g in ipairs(briefingRoom.aircraftActivator.currentQueue) do
-    -- local acGroup = dcsExtensions.getGroupByID(g) -- get the group
-    -- if acGroup ~= nil then -- activate the group, if it exists
-      -- acGroup:activate()
-      -- table.insert(activatedOk, tostring(g).." ("..acGroup:getName()..")")
-    -- else
-      -- table.insert(activatedFailed, tostring(g))
-    -- end
-  -- end
-
-  -- briefingRoom.aircraftActivator.currentQueue = { }
-
-  -- local activationSummary = "ACTIVATED:\n"
-  -- for _,s in ipairs(activatedOk) do activationSummary = activationSummary..s.." " end
-  -- activationSummary = activationSummary.."\n\nFAILED:\n"
-  -- for _,s in ipairs(activatedFailed) do activationSummary = activationSummary..s.." " end
-  -- trigger.action.outText(activationSummary, 15)
--- end
-
--- Destroys the next active enemy structure
--- function briefingRoom.extensions.debug.destroyEnemyStructure()
-  -- for _,s in ipairs(coalition.getStaticObjects($ENEMYCOALITION$)) do
-    -- if s:getLife() > 0 then
-      -- trigger.action.outText("Destroyed "..s:getName(), 2)
-      -- for i=1,32 do trigger.action.explosion(s:getPoint(), 100) end -- structures are tough, multiple explosions required
-      -- return
-    -- end
-  -- end
-  -- trigger.action.outText("No enemy structures found", 2)
--- end
-
 -- Destroys the next active target unit
 function briefingRoom.f10MenuCommands.debug.destroyTargetUnit()
   for index,objective in ipairs(briefingRoom.mission.objectives) do

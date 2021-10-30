@@ -76,6 +76,12 @@ namespace BriefingRoom4DCS.Data
         /// </summary>
         internal double[] OffsetHeading { get; private set; }
 
+
+        /// <summary>
+        /// Shape Values to get some static objects working
+        /// </summary>
+        internal string[] Shape {get; private set;}
+
         /// <summary>
         /// Dictionary of countries operating the unit, with min (index #0) and max (index #1) decade of operation.
         /// </summary>
@@ -122,6 +128,7 @@ namespace BriefingRoom4DCS.Data
                 Flags = ini.GetValueArrayAsEnumFlags<DBEntryUnitFlags>("Unit", "Flags");
                 OffsetCoordinates = (from string s in ini.GetValueArray<string>("Unit", "Offset.Coordinates", ';') select new Coordinates(s)).ToArray();
                 OffsetHeading = ini.GetValueArray<double>("Unit", "Offset.Heading");
+                Shape = ini.GetValueArray<string>("Unit", "Shape");
                 RequiredMod = ini.GetValue<string>("Unit", "RequiredMod");
 
                 AircraftData = new DBEntryUnitAircraftData();
