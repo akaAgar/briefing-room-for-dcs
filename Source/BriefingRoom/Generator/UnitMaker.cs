@@ -409,6 +409,11 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadPylons", unitDB.AircraftData.GetPayloadLua(aircraftPayload));
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Livery", extraSettings.Any(x => x.Key == "Livery") ? extraSettings.First(x => x.Key == "Livery").Value : "default");
             }
+            else if(unitDB.Category == UnitCategory.Static)
+            {
+                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Shape", unitDB.Shape[unitSetIndex]);
+                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", $"{groupName} {unitLuaIndex + 1}");
+            }
             else
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", $"{groupName} {unitLuaIndex + 1}");
 
