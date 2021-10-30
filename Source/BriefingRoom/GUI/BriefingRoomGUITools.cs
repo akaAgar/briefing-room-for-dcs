@@ -86,7 +86,6 @@ namespace BriefingRoom4DCS.GUI
                     case MissionOption.MarkWaypoints: return "Mark Waypoints";
                     case MissionOption.SpawnAnywhere: return "Insurgency Spawning";
                     case MissionOption.RadioMessagesTextOnly: return "Text-only radio messages (no audio)";
-                    case MissionOption.ForceOldSpawning: return "Force old spawning method.";
                 }
             }
             else if (enumValue is ObjectiveOption)
@@ -178,7 +177,6 @@ namespace BriefingRoom4DCS.GUI
                     case MissionOption.ImperialUnitsForBriefing: return "Use imperial units for briefing instead of the metric system.";
                     case MissionOption.InvertCountriesCoalitions: return "Invert blue and red countries on the map (Russia becomes blue, Georgia becomes red, etc)";
                     case MissionOption.RadioMessagesTextOnly: return "Display radio messages in text-format only (no voice).";
-                    case MissionOption.ForceOldSpawning: return "Forces the system to use a older spawning logic.";
                 }
             }
             else if (enumValue is ObjectiveOption)

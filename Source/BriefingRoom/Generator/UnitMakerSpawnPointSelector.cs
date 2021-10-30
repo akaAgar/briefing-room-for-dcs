@@ -44,8 +44,6 @@ namespace BriefingRoom4DCS.Generator
         /// <summary>
         /// List of available spawn points.
         /// </summary>
-        private readonly List<DBEntryTheaterOldSpawnPoint> OldSpawnPoints;
-
         private readonly List<DBEntryTheaterSpawnPoint> SpawnPoints;
 
         /// <summary>
@@ -53,20 +51,15 @@ namespace BriefingRoom4DCS.Generator
         /// </summary>
         private readonly DBEntryTheater TheaterDB;
 
-        private readonly bool UseShapeSpawningSystem;
-
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="theaterDB">Theater database entry to use</param>
-        internal UnitMakerSpawnPointSelector(DBEntryTheater theaterDB, bool useShapeSpawningSystem)
+        internal UnitMakerSpawnPointSelector(DBEntryTheater theaterDB)
         {
             TheaterDB = theaterDB;
-            UseShapeSpawningSystem = useShapeSpawningSystem;
-
             AirbaseParkingSpots = new Dictionary<int, List<DBEntryAirbaseParkingSpot>>();
             SpawnPoints = new List<DBEntryTheaterSpawnPoint>();
-            OldSpawnPoints = new List<DBEntryTheaterOldSpawnPoint>();
 
             Clear();
         }
@@ -104,9 +97,6 @@ namespace BriefingRoom4DCS.Generator
             if(TheaterDB.SpawnPoints is not null)
                 SpawnPoints.AddRange(TheaterDB.SpawnPoints);
 
-            OldSpawnPoints.Clear();
-            OldSpawnPoints.AddRange(TheaterDB.OldSpawnPoints);
-
             foreach (DBEntryAirbase airbase in TheaterDB.GetAirbases())
             {
                 if (airbase.ParkingSpots.Length < 1) continue;
@@ -126,72 +116,6 @@ namespace BriefingRoom4DCS.Generator
         /// <param name="coalition">Which coalition should the spawn point belong to?</param>
         /// <returns>A spawn point, or null if none found matching the provided criteria</returns>
         internal Coordinates? GetRandomSpawnPoint(
-            SpawnPointType[] validTypes,
-            Coordinates distanceOrigin1, MinMaxD distanceFrom1,
-            Coordinates? distanceOrigin2 = null, MinMaxD? distanceFrom2 = null,
-            Coalition? coalition = null)
-        {
-
-            if (TheaterDB.ShapeSpawnSystem && UseShapeSpawningSystem)
-                return GetRandomSpawnPointShapeSystem(
-                    validTypes,
-                    distanceOrigin1, distanceFrom1,
-                    distanceOrigin2, distanceFrom2,
-                    coalition
-                    );
-
-            // Select all spoint points
-            IEnumerable<DBEntryTheaterOldSpawnPoint> validSP = from DBEntryTheaterOldSpawnPoint pt in OldSpawnPoints select pt;
-
-            if (!validTypes.Contains(SpawnPointType.Air)) // Remove spawn points of invalid types
-                validSP = (from DBEntryTheaterOldSpawnPoint pt in validSP where validTypes.Contains(pt.PointType) select pt);
-
-            if (coalition.HasValue) // Select spawn points belonging to the proper coalition
-            {
-                IEnumerable<DBEntryTheaterOldSpawnPoint> coalitionValidSP =
-                    coalitionValidSP = (from DBEntryTheaterOldSpawnPoint sp in validSP where sp.Coalition == coalition.Value select sp);
-
-                // At least one spawn point found, only use SP for the preferred coalition
-                if (coalitionValidSP.Count() > 0)
-                    validSP = coalitionValidSP;
-            }
-
-            Coordinates?[] distanceOrigin = new Coordinates?[] { distanceOrigin1, distanceOrigin2 };
-            MinMaxD?[] distanceFrom = new MinMaxD?[] { distanceFrom1, distanceFrom2 };
-
-            for (int i = 0; i < 2; i++) // Remove spawn points too far or too close from distanceOrigin1 and distanceOrigin2
-            {
-                if (validSP.Count() == 0) return null;
-                if (!distanceFrom[i].HasValue || !distanceOrigin[i].HasValue) continue;
-
-                MinMaxD searchRange = distanceFrom[i].Value * Toolbox.NM_TO_METERS; // convert distance to meters
-
-                IEnumerable<DBEntryTheaterOldSpawnPoint> validSPInRange = (from DBEntryTheaterOldSpawnPoint s in validSP select s);
-
-                int iterationsLeft = MAX_RADIUS_SEARCH_ITERATIONS;
-
-                do
-                {
-                    Coordinates origin = distanceOrigin[i].Value;
-
-                    validSPInRange = (from DBEntryTheaterOldSpawnPoint s in validSP
-                                      where searchRange.Contains(origin.GetDistanceFrom(s.Coordinates))
-                                      select s);
-                    searchRange = new MinMaxD(searchRange.Min * 0.9, Math.Max(100, searchRange.Max * 1.1));
-                    iterationsLeft--;
-                } while ((validSPInRange.Count() == 0) && (iterationsLeft > 0));
-
-                validSP = (from DBEntryTheaterOldSpawnPoint s in validSPInRange select s);
-            }
-
-            if (validSP.Count() == 0) return null;
-
-            DBEntryTheaterOldSpawnPoint selectedSpawnPoint = Toolbox.RandomFrom(validSP.ToArray());
-            OldSpawnPoints.Remove(selectedSpawnPoint); // Remove spawn point so it won't be used again
-            return selectedSpawnPoint.Coordinates;
-        }
-
-        private Coordinates? GetRandomSpawnPointShapeSystem(
             SpawnPointType[] validTypes,
             Coordinates distanceOrigin1, MinMaxD distanceFrom1,
             Coordinates? distanceOrigin2 = null, MinMaxD? distanceFrom2 = null,

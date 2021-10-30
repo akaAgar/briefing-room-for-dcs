@@ -107,8 +107,6 @@ namespace BriefingRoom4DCS.Generator
 
         private void AddTheaterZones()
         {
-            if (!TheaterDB.ShapeSpawnSystem || Template.OptionsMission.Contains(MissionOption.ForceOldSpawning))
-                return;
             AddFree("Red Control", TheaterDB.RedCoordinates.First(), "Points".ToKeyValuePair(TheaterDB.RedCoordinates.Select(coord => coord - TheaterDB.RedCoordinates.First()).ToList()), "Colour".ToKeyValuePair(DrawingColour.RedFill));
             AddFree(
                 "Blue Control",

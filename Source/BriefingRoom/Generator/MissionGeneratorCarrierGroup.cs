@@ -64,38 +64,28 @@ namespace BriefingRoom4DCS.Generator
 
             Coordinates? carrierGroupCoordinates = null;
             Coordinates? destinationPath = null;
-
-            if(theaterDB.ShapeSpawnSystem) {
                 
-                var iteration = 0;
-                while (iteration < 5)
-                {
-                    carrierGroupCoordinates  = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                        new SpawnPointType[] {SpawnPointType.Sea},
-                        landbaseCoordinates,
-                        new MinMaxD(15, 300),
-                        objectivesCenter,
-                        new MinMaxD(15, 99999),
-                        GeneratorTools.GetSpawnPointCoalition(template, Side.Ally));
-
-                    if (windSpeedAtSeaLevel == 0) // No wind? Pick a random direction so carriers don't always go to a 0 course when wind is calm.
-                        windDirectionAtSeaLevel = Toolbox.RandomDouble(Toolbox.TWO_PI);
-                    destinationPath = Coordinates.FromAngleInRadians(windDirectionAtSeaLevel + Math.PI) * Database.Instance.Common.CarrierGroup.CourseLength;
-
-                    if(ShapeManager.IsPosValid(destinationPath.Value, theaterDB.WaterCoordinates, theaterDB.WaterExclusionCoordinates))
-                        break;
-                    iteration++;
-                }
-                if(!carrierGroupCoordinates.HasValue)
-                    return carrierDictionary;
-            } else {
-                // Pick the carrier spawn point closer from the initial airbase
-                carrierGroupCoordinates = theaterDB.CarrierGroupWaypoints.OrderBy(x => x.GetDistanceFrom(landbaseCoordinates)).First();
+            var iteration = 0;
+            while (iteration < 5)
+            {
+                carrierGroupCoordinates  = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                    new SpawnPointType[] {SpawnPointType.Sea},
+                    landbaseCoordinates,
+                    new MinMaxD(15, 300),
+                    objectivesCenter,
+                    new MinMaxD(15, 99999),
+                    GeneratorTools.GetSpawnPointCoalition(template, Side.Ally));
 
                 if (windSpeedAtSeaLevel == 0) // No wind? Pick a random direction so carriers don't always go to a 0 course when wind is calm.
                     windDirectionAtSeaLevel = Toolbox.RandomDouble(Toolbox.TWO_PI);
                 destinationPath = Coordinates.FromAngleInRadians(windDirectionAtSeaLevel + Math.PI) * Database.Instance.Common.CarrierGroup.CourseLength;
+
+                if(ShapeManager.IsPosValid(destinationPath.Value, theaterDB.WaterCoordinates, theaterDB.WaterExclusionCoordinates))
+                    break;
+                iteration++;
             }
+            if(!carrierGroupCoordinates.HasValue)
+                return carrierDictionary;
 
             double carrierSpeed = Math.Max(
                 Database.Instance.Common.CarrierGroup.MinimumCarrierSpeed,

@@ -60,11 +60,6 @@ namespace BriefingRoom4DCS.Data
         /// </summary>
         internal MinMaxI[] DayTime { get; private set; }
 
-        /// <summary>
-        /// Possible spawn points for carrier groups. Must be at least <see cref="Generator.MissionGeneratorCarrierGroup.CARRIER_COURSE_LENGTH"/> nautical miles from land in all directions.
-        /// </summary>
-        internal Coordinates[] CarrierGroupWaypoints { get; private set; }
-
         internal List<Coordinates> RedCoordinates { get; private set; }
 
         internal List<Coordinates> BlueCoordinates { get; private set; }
@@ -75,16 +70,9 @@ namespace BriefingRoom4DCS.Data
 
         internal DBEntryTheaterSpawnPoint[] SpawnPoints { get; private set; }
         /// <summary>
-        /// All spawn points in this theater.
-        /// </summary>
-        internal DBEntryTheaterOldSpawnPoint[] OldSpawnPoints { get; private set; }
-
-        /// <summary>
         /// Min and max temperature (in degrees Celsius) for each month (January is 0, December is 11)
         /// </summary>
         internal MinMaxI[] Temperature { get; private set; }
-
-        internal bool ShapeSpawnSystem { get; private set; } = false;
 
         /// <summary>
         /// Loads a database entry from an .ini file.
@@ -120,47 +108,32 @@ namespace BriefingRoom4DCS.Data
                     DayTime[i] = dayTimeValue ?? DEFAULT_DAYTIME;
                 }
 
-                // [CarrierGroupWaypoints] section
-                var carrierGroupWaypointsList = new List<Coordinates>();
-                foreach (string key in ini.GetKeysInSection("CarrierGroupWaypoints"))
-                    carrierGroupWaypointsList.Add(ini.GetValue<Coordinates>("CarrierGroupWaypoints", key));
-                CarrierGroupWaypoints = carrierGroupWaypointsList.ToArray();
 
 
-                 if(ini.GetSections().Contains("redcoordinates"))
-                 {
-                    ShapeSpawnSystem = true;
-                    RedCoordinates = new List<Coordinates>();
-                    foreach (string key in ini.GetKeysInSection("RedCoordinates"))
-                        RedCoordinates.Add(ini.GetValue<Coordinates>("RedCoordinates", key));
-                 }
+                RedCoordinates = new List<Coordinates>();
+                foreach (string key in ini.GetKeysInSection("RedCoordinates"))
+                    RedCoordinates.Add(ini.GetValue<Coordinates>("RedCoordinates", key));
 
-                 if(ini.GetSections().Contains("bluecoordinates"))
-                 {
-                    BlueCoordinates = new List<Coordinates>();
-                    foreach (string key in ini.GetKeysInSection("BlueCoordinates"))
-                        BlueCoordinates.Add(ini.GetValue<Coordinates>("BlueCoordinates", key));
-                 }
 
-                if(ini.GetSections().Contains("watercoordinates"))
+                BlueCoordinates = new List<Coordinates>();
+                foreach (string key in ini.GetKeysInSection("BlueCoordinates"))
+                    BlueCoordinates.Add(ini.GetValue<Coordinates>("BlueCoordinates", key));
+
+
+                // Water Coordinates
+                WaterCoordinates = new List<Coordinates>();
+                foreach (string key in ini.GetKeysInSection("WaterCoordinates"))
+                    WaterCoordinates.Add(ini.GetValue<Coordinates>("WaterCoordinates", key));
+
+
+                    List<DBEntryTheaterSpawnPoint> spawnPointsList = new List<DBEntryTheaterSpawnPoint>();
+                foreach (string key in ini.GetKeysInSection("SpawnPoints"))
                 {
-                    // Water Coordinates
-                    WaterCoordinates = new List<Coordinates>();
-                    foreach (string key in ini.GetKeysInSection("WaterCoordinates"))
-                        WaterCoordinates.Add(ini.GetValue<Coordinates>("WaterCoordinates", key));
+                    DBEntryTheaterSpawnPoint sp = new DBEntryTheaterSpawnPoint();
+                    if (sp.Load(ini, key))
+                        spawnPointsList.Add(sp);
                 }
-
-                if(ini.GetSections().Contains("spawnpoints"))
-                {
-                     List<DBEntryTheaterSpawnPoint> spawnPointsList = new List<DBEntryTheaterSpawnPoint>();
-                    foreach (string key in ini.GetKeysInSection("SpawnPoints"))
-                    {
-                        DBEntryTheaterSpawnPoint sp = new DBEntryTheaterSpawnPoint();
-                        if (sp.Load(ini, key))
-                            spawnPointsList.Add(sp);
-                    }
-                    SpawnPoints = spawnPointsList.ToArray();
-                }
+                SpawnPoints = spawnPointsList.ToArray();
 
                 WaterExclusionCoordinates = new List<List<Coordinates>>();
                 if(ini.GetSections().Contains("waterexclusioncoordinates"))
@@ -186,16 +159,6 @@ namespace BriefingRoom4DCS.Data
                 Temperature = new MinMaxI[12];
                 for (i = 0; i < 12; i++)
                     Temperature[i] = ini.GetValue<MinMaxI>("Temperature", ((Month)i).ToString());
-
-                // [OldSpawnPoints] section
-                List<DBEntryTheaterOldSpawnPoint> oldSpawnPointsList = new List<DBEntryTheaterOldSpawnPoint>();
-                foreach (string key in ini.GetKeysInSection("OldSpawnPoints"))
-                {
-                    DBEntryTheaterOldSpawnPoint sp = new DBEntryTheaterOldSpawnPoint();
-                    if (sp.Load(ini, key))
-                        oldSpawnPointsList.Add(sp);
-                }
-                OldSpawnPoints = oldSpawnPointsList.ToArray();
             }
 
             return true;

@@ -33,9 +33,6 @@ namespace BriefingRoom4DCS.Template
         [Display(Name = "Allow spawning anywhere", Description = "Allows spawing anywhere on the map not just in areas of control or neutural zones.")]
         SpawnAnywhere,
 
-        [Display(Name = "ForceOldSpawning", Description = "Forces the system to use a older spawning logic.")]
-        ForceOldSpawning,
-
         [Display(Name = "Use imperial units", Description = "Use imperial units for briefing instead of the metric system.")]
         ImperialUnitsForBriefing,
 
