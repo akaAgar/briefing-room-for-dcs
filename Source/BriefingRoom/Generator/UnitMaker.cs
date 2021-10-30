@@ -138,6 +138,7 @@ namespace BriefingRoom4DCS.Generator
                 return AddStaticGroup(
                     country,
                     coalition,
+                    skill,
                     unitFamily,
                     side,
                     units,
@@ -290,6 +291,7 @@ namespace BriefingRoom4DCS.Generator
         private UnitMakerGroupInfo? AddStaticGroup(
             Country country,
             Coalition coalition,
+            DCSSkillLevel? skill,
             UnitFamily unitFamily,
             Side side,
             string[] unitSets,
@@ -346,7 +348,7 @@ namespace BriefingRoom4DCS.Generator
 
 
                     GeneratorTools.ReplaceKey(ref groupLua, "UnitID", firstUnitID); // Must be after units are added
-                    GeneratorTools.ReplaceKey(ref groupLua, "Skill", DCSSkillLevel.Average); // Must be after units are added, because skill is set as a unit level
+                    GeneratorTools.ReplaceKey(ref groupLua, "Skill", skill); // Must be after units are added, because skill is set as a unit level
                     GeneratorTools.ReplaceKey(ref groupLua, "Hidden", GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags)); // If "hidden" was not set through custom values
 
                     AddUnitGroupToTable(country, UnitCategory.Static, groupLua);
@@ -355,6 +357,36 @@ namespace BriefingRoom4DCS.Generator
 
                     GroupID++;
                 }
+            }
+
+            if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.EmbeddedAirDefense))
+            {
+                var firstUnitID = UnitID;
+                string[] airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(Template, side);
+                var groupLua = CreateGroup(
+                        "GroupVehicle",
+                        coordinates,
+                        groupName,
+                        extraSettings
+                    );
+                    var (unitsLuaTable, embeddedunitsIDList) = AddUnits(
+                        airDefenseUnits,
+                        groupName,
+                        callsign,
+                        "UnitVehicle",
+                        coordinates,
+                        aircraftPayload,
+                        unitMakerGroupFlags,
+                        extraSettings
+                    );
+                    GeneratorTools.ReplaceKey(ref groupLua, "Units", unitsLuaTable);
+                    GeneratorTools.ReplaceKey(ref groupLua, "UnitID", firstUnitID); // Must be after units are added
+                    GeneratorTools.ReplaceKey(ref groupLua, "Skill", skill); // Must be after units are added, because skill is set as a unit level
+                    GeneratorTools.ReplaceKey(ref groupLua, "Hidden", GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags)); // If "hidden" was not set through custom values
+                    GroupID++;
+                    unitsIDList.AddRange(embeddedunitsIDList);
+                    AddUnitGroupToTable(country, UnitCategory.Vehicle, groupLua);
+                    BriefingRoom.PrintToLog($"Added group of Embedded Air Defense for Static {coalition} {unitFamily} at {coordinates}");
             }
 
             DBEntryUnit firstUnitDB = Database.Instance.GetEntry<DBEntryUnit>(unitSets.First());
