@@ -46,7 +46,7 @@ Its all on one page and as stated you only see a subset of the full options. The
 Hold all possible options for generating a single mission. Options are split into tabs in which we will go through each one.
 
 #### Context
-`TDLR: Who, When, Where`
+`TLDR: Who, When, Where`
 
 **Blue/Red Coalitions (Type to search)**: Primary faction on each side (other factions may spawn)
 
@@ -59,7 +59,7 @@ Hold all possible options for generating a single mission. Options are split int
 **Home Airbase**: Where is the main airbase for the mission? (objectives and other stuff uses this base to calculate distances)
 
 #### Environment
-`TDLR: Whats the weather do I need NVGs?`
+`TLDR: Whats the weather do I need NVGs?`
 
 **Season**: General time of year
 
@@ -70,7 +70,7 @@ Hold all possible options for generating a single mission. Options are split int
 **Wind**: Force scale. Do I need to land sideways?
 
 #### Objectives
-`TDLR: What am I to do?`
+`TLDR: What am I to do?`
 
 **Objective Distance (Nautical Miles)**: How far is the objective from the home base? (certain variation applied)
 
@@ -91,7 +91,7 @@ Set of tabs for ach objective can duplicate if you like
 **Objective Options**: Can it have AA, Is the waypoint accurate (imagine known area objective)
 
 #### Flight Groups
-`TDLR: What am I to Fly`
+`TLDR: What am I to Fly`
 
 Set of tabs for each flyable set of aircraft.
 
@@ -113,7 +113,7 @@ Set of tabs for each flyable set of aircraft.
 
 
 #### Strike Packages
-`TDLR: How do you breakdown the work in MP`
+`TLDR: How do you breakdown the work in MP`
 
 Only usable if you have more than one Flight group. Set of tabs to group flights up to attack specific objectives
 
@@ -124,7 +124,7 @@ Only usable if you have more than one Flight group. Set of tabs to group flights
 **Starting Base**: Custom starting base overriding the general home base.
 
 #### Situation
-`TDLR: How strong are us/them?`
+`TLDR: How strong are us/them?`
 
 Two tabs containing the same options for Enemies and Friendlies
 
@@ -133,7 +133,7 @@ Two tabs containing the same options for Enemies and Friendlies
 **Air Force**: How many aircraft are they likely to send?
 
 #### Options
-`TDLR: What else?`
+`TLDR: What else?`
 
 **Fog Of war**: F-10 Map settings and Labels (DCS setting)
 
@@ -147,7 +147,7 @@ Two tabs containing the same options for Enemies and Friendlies
 
 
 ### Campaign Builder (Beta)
-`TDLR: No its not dynamic look at Liberation for that`
+`TLDR: No its not dynamic look at Liberation for that`
 
 Builds campaigns in a simplistic way. More accurately it generates a bunch of missions in a campaign format based off the same settings.
 
