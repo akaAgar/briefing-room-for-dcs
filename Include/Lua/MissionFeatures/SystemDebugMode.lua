@@ -17,6 +17,9 @@ function briefingRoom.f10MenuCommands.debug.destroyTargetUnit()
   for index,objective in ipairs(briefingRoom.mission.objectives) do
     if (#objective.unitsID > 0) then
       local u = dcsExtensions.getUnitByID(objective.unitsID[1])
+      if u == nil then
+        u = dcsExtensions.getStaticByID(objective.unitsID[1])
+      end
       if u ~= nil then
         trigger.action.outText("Destroyed "..u:getName(), 2)
         trigger.action.explosion(u:getPoint(), 100)

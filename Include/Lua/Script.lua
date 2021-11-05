@@ -316,7 +316,7 @@ end
 function dcsExtensions.getStaticByID(id)
   for i=1,2 do
     for _,g in pairs(coalition.getStaticObjects(i)) do
-      if g:getID() == id then return g end
+      if tonumber(g:getID()) == tonumber(id) then return g end
     end
   end
 
