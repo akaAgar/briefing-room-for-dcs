@@ -45,9 +45,83 @@ The development roadmap and a list of features planned for future versions can b
 
 (Changelog for older versions can be found in Changelog.md or Changelog.html)
 
-* New mission features: frontline friendly units, frontline enemy units
-* New objective feature: target emits radio transmission
-* New units: NASAMS (AIM-120C) air defense system
-* New DCS World mods supported: A-29B Super Tucano, Armed Boats, C-130J, F-117A, French Pack, Rafales Pack
-* Added check for non-replaced values in the .miz Lua files 
-* Fixed briefing HTML encoding (now UTF-8) (by John Harvey)
+* Version 0.5.111.18 (Nov, 9, 2021)
+  * New spawning system:
+    * Aircraft can spawn anywhere
+    * Sea zoned out with island exclusions (not limited by spawn points, carriers affected too)
+    * Blue and Red Areas of control (rest is neutral)
+    * Spawn points don't have hardcoded side (checks run to see if side zones for limitation)
+    * Insurgency mission option to allow spawning irrespective of side zoning (replaces "Only spawn in friendly countries")
+    * Maps with added spawn points
+      * Caucasus (Spawn points added to south and Mountains)
+      * PersianGulf (Spawn points added for mountains, islands & cities)
+      * Syria (Completely new set of spawn points ~200 => ~3700)
+      * Marianas Islands (Completely new set of spawn points ~200 => ~900)
+  * General spawning changes:
+    * Objective distance is now between home base and objective no matter if first objective or not
+    * Objective distance now on quick generator
+    * Objective distance max 200 => 300
+    * Objective separation option on Full and Quick generator
+    * Make Medium air defences large space only
+    * FOB as Carrier Option
+    * Improve spawning of objective units
+  * Map Changes:
+    * Add Mariansas Islands
+    * Add Syria Gaziantep Airbase
+    * Fix Syria H4 airbase
+  * Units:
+    * Added NASAMS
+    * Added Mosquito FB Mk VI
+    * Added SA-5 site
+    * Added H-6J Bomber
+    * Added some missing ships
+    * Add USS Forrestal
+    * Add JAS-39-C Grippen Mod
+  * Customisation:
+    * Add custom db for liveries and loadouts
+    * Add Implement custom loadout names
+    * Add Implement basic custom loadouts
+  * Add Campaign Beta (Don't report bugs on this please its too early)
+  * Add Set aircraft liveries
+  * Add Radio Transmission Objective Feature
+  * Add Taskable Bomber, CAS, CAP & SEAD (Known issues with AI and callouts)
+  * Add Implement Strike Packages setup
+  * Add a ton of default liveries
+  * Added UI Show warnings from generation (warnings may indicate some features requested could not be spawned)
+  * Add Ingress and Egress waypoints optional
+  * Add FX radio sound
+  * Add Text to Template buttons
+  * Add Custom Config Docs
+  * Add colouring to map
+  * Add drawings maker
+  * Add Tarwa back in as usable by adding temp extra family
+  * Add logs on all pages
+  * Add more structures
+  * Add embedded air defence for structures
+  * Add Static groups
+  * Add more target options
+  * Add Manual Page
+  * Add MarianaIslands images
+  * Update to .Net 6 main release
+  * Rename Packages => Strike Packages
+  * Remove carrier waypoint faff
+  * Fix Typehead removed scroll limit
+  * Fix Template Load/Save improvements
+  * Fix Scenery infantry is no longer immortal #253
+  * Fix Improve Kneeboard Font
+  * Fix Move awacs back towards base
+  * Fix UI Improvements
+  * Fix stop Custom config deleting default payload
+  * Fix description error
+  * Fix spawn selector for CAP
+  * Fix Briefing Encoding
+  * Fix MP script not loading
+  * Fix Ships breaking mission
+  * Fix to Various payloads not being editable in ME #168  (please report any remaining buggy aircraft)
+  * Fix Load Template click issues
+  * Fix Mark Waypoints #247  migrated to new mission option - default on
+  * Fix multiple FOBS wouldn't spawn
+  * Fix download UI issue
+  * Fix Package Saving logic
+  * Fix missing config folder in release
+  * Fix Static Buildings not seen in JTAC and other marking features

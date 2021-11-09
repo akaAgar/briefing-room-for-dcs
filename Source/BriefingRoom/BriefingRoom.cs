@@ -53,7 +53,7 @@ namespace BriefingRoom4DCS
         /// <summary>
         /// The current version of BriefingRoom.
         /// </summary>
-        public const string VERSION = "0.5.107.18";
+        public const string VERSION = "0.5.111.18";
 
         /// <summary>
         /// Log message handler delegate.
