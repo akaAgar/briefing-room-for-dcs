@@ -71,7 +71,7 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Payload for each pylon and each mission type.
         /// </summary>
-        internal Dictionary<string,string[]> PayloadTasks { get; private set; } = new Dictionary<string,string[]>();
+        internal Dictionary<string, string[]> PayloadTasks { get; private set; } = new Dictionary<string, string[]>();
 
         /// <summary>
         /// Is this aircraft player-controllable?
@@ -100,14 +100,14 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Radio Preset Lua
         /// </summary>
-        internal List<DBEntryUnitRadioPreset> RadioPresets {get; private set;}
+        internal List<DBEntryUnitRadioPreset> RadioPresets { get; private set; }
 
         /// <summary>
         /// Props Lua
         /// </summary>
-        internal string PropsLua {get; private set;} = "";
+        internal string PropsLua { get; private set; } = "";
 
-        internal List<string> Liveries {get; private set; }
+        internal List<string> Liveries { get; private set; }
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -136,13 +136,13 @@ namespace BriefingRoom4DCS.Data
             PayloadCommon = ini.GetValue<string>("Aircraft", "Payload.Common");
 
             var payloads = ini.GetKeysInSection("Aircraft").Where(x => x.StartsWith("payload.task")).Select(x => x.Split('.')[2]).Distinct().ToList();
-            
-            if(!custom)
+
+            if (!custom)
                 PayloadTasks.Add("default", new string[MAX_PYLONS]);
 
             foreach (string task in payloads)
-            {   
-                if(task != "default" || custom)
+            {
+                if (task != "default" || custom)
                     PayloadTasks.Add(task, new string[MAX_PYLONS]);
                 for (var pylonIndex = 0; pylonIndex < MAX_PYLONS; pylonIndex++)
                     PayloadTasks[task][pylonIndex] = ini.GetValue<string>("Aircraft", $"Payload.Task.{task}.Pylon{pylonIndex + 1:00}");
@@ -160,7 +160,7 @@ namespace BriefingRoom4DCS.Data
             Liveries = new List<string>{
                 "default"
             };
-            Liveries.AddRange(ini.GetValueArray<string>("Aircraft","Liveries"));
+            Liveries.AddRange(ini.GetValueArray<string>("Aircraft", "Liveries"));
         }
 
         /// <summary>
@@ -181,10 +181,10 @@ namespace BriefingRoom4DCS.Data
         internal string GetPayloadLua(string aircraftPayload)
         {
             string[] payload;
-
+            aircraftPayload = aircraftPayload.ToLower();
             if (TaskPayloadExists(aircraftPayload))
                 payload = PayloadTasks[aircraftPayload];
-            else 
+            else
                 payload = PayloadTasks["default"];
 
             string pylonsLua = "";
