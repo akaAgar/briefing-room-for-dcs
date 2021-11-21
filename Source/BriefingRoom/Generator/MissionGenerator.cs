@@ -104,14 +104,6 @@ namespace BriefingRoom4DCS.Generator
                 dateTimeGenerator.GenerateMissionTime(mission, template, theaterDB, month);
             }
 
-            // Generate weather and wind
-            BriefingRoom.PrintToLog("Generating mission weather...");
-            double windSpeedAtSeaLevel, windDirectionAtSeaLevel;
-            using (MissionGeneratorWeather weatherGenerator = new MissionGeneratorWeather())
-            {
-                weatherGenerator.GenerateWeather(mission, template, theaterDB, month, out int turbulenceFromWeather);
-                weatherGenerator.GenerateWind(mission, template, turbulenceFromWeather, out windSpeedAtSeaLevel, out windDirectionAtSeaLevel);
-            }
 
             // Setup airbases
             DBEntryAirbase playerAirbase;
@@ -126,6 +118,15 @@ namespace BriefingRoom4DCS.Generator
                 mission.SetValue("MissionAirbaseX", playerAirbase.Coordinates.X);
                 mission.SetValue("MissionAirbaseY", playerAirbase.Coordinates.Y);
                 mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{playerAirbase.Name}\t{playerAirbase.Runways}\t{playerAirbase.ATC}\t{playerAirbase.ILS}\t{playerAirbase.TACAN}");
+            }
+
+            // Generate weather and wind
+            BriefingRoom.PrintToLog("Generating mission weather...");
+            double windSpeedAtSeaLevel, windDirectionAtSeaLevel;
+            using (MissionGeneratorWeather weatherGenerator = new MissionGeneratorWeather())
+            {
+                weatherGenerator.GenerateWeather(mission, template, theaterDB, month, playerAirbase, out int turbulenceFromWeather);
+                weatherGenerator.GenerateWind(mission, template, turbulenceFromWeather, out windSpeedAtSeaLevel, out windDirectionAtSeaLevel);
             }
 
             // Generate objectives

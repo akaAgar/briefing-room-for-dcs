@@ -49,8 +49,10 @@ namespace BriefingRoom4DCS.Generator
         /// <param name="theaterDB">Theater database entry.</param>
         /// <param name="month">Month during which the mission takes place.</param>
         /// <param name="turbulenceFromWeather">Amount of turbulence (in m/s) to add to the default wind turbulence.</param>
-        internal void GenerateWeather(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, Month month, out int turbulenceFromWeather)
+        internal void GenerateWeather(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, Month month, DBEntryAirbase playerAirbase, out int turbulenceFromWeather)
         {
+            var baseAlt = template.MissionFeatures.Contains("SeaLevelRefCloud") ? 0.0 : playerAirbase.Elevation;
+
             DBEntryWeatherPreset weatherDB;
             if (string.IsNullOrEmpty(template.EnvironmentWeatherPreset)) // Random weather
                 weatherDB = Toolbox.RandomFrom(Database.Instance.GetAllEntries<DBEntryWeatherPreset>());
@@ -58,7 +60,7 @@ namespace BriefingRoom4DCS.Generator
                 weatherDB = Database.Instance.GetEntry<DBEntryWeatherPreset>(template.EnvironmentWeatherPreset);
 
             mission.SetValue("WeatherName", weatherDB.BriefingDescription);
-            mission.SetValue("WeatherCloudsBase", weatherDB.CloudsBase.GetValue());
+            mission.SetValue("WeatherCloudsBase", weatherDB.CloudsBase.GetValue() + baseAlt);
             mission.SetValue("WeatherCloudsPreset", Toolbox.RandomFrom(weatherDB.CloudsPresets));
             mission.SetValue("WeatherCloudsThickness", weatherDB.CloudsThickness.GetValue());
             mission.SetValue("WeatherDust", weatherDB.Dust);
@@ -86,7 +88,7 @@ namespace BriefingRoom4DCS.Generator
         {
             windSpeedAtSeaLevel = 0;
             windDirectionAtSeaLevel = 0;
-            
+
             Wind windLevel = template.EnvironmentWind == Wind.Random ? PickRandomWindLevel() : template.EnvironmentWind;
             BriefingRoom.PrintToLog($"Wind speed level set to \"{windLevel}\".");
 
