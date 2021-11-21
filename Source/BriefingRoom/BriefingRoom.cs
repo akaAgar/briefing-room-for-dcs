@@ -117,6 +117,9 @@ namespace BriefingRoom4DCS
 
                 case DatabaseEntryType.MissionFeature:
                     return (from DBEntryFeatureMission missionFeature in Database.Instance.GetAllEntries<DBEntryFeatureMission>() select missionFeature.GetDBEntryInfo()).OrderBy(x => x.Name).ToArray();
+                
+                case DatabaseEntryType.OptionsMission:
+                    return (from DBEntryOptionsMission missionFeature in Database.Instance.GetAllEntries<DBEntryOptionsMission>() select missionFeature.GetDBEntryInfo()).OrderBy(x => x.Name).ToArray();
 
                 case DatabaseEntryType.ObjectiveFeature:
                     return (from DBEntryFeatureObjective objectiveFeature in Database.Instance.GetAllEntries<DBEntryFeatureObjective>() select objectiveFeature.GetDBEntryInfo()).OrderBy(x => x.Name).ToArray();

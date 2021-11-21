@@ -167,9 +167,9 @@
                         </div>
                         <div class="form-group">
                             <h4>Mission options</h4>
-                            <CheckBoxList Data="Enum.GetValues(typeof(MissionOption)).Cast<MissionOption>()"
-                        TextField="@((item)=>BriefingRoomGUITools.GetEnumName(item) + "|" + BriefingRoomGUITools.GetEnumDescription(item))" ValueField="@((item)=>item)"
-                        SelectedValues="Template.OptionsMission" TItem="MissionOption" TItemOutput="MissionOption">
+                            <CheckBoxList Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.OptionsMission).ToList()"
+                        TextField="@((item)=>item.Name + "|" + item.Description)" ValueField="@((item)=>item.ID)"
+                        SelectedValues="Template.OptionsMission" TItem="DatabaseEntryInfo" TItemOutput="string">
                             </CheckBoxList>
                         </div>
                         <div class="form-group">

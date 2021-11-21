@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -18,27 +18,28 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-namespace BriefingRoom4DCS
+namespace BriefingRoom4DCS.Data
 {
     /// <summary>
-    /// Enumerates all database entry types.
+    /// Stores information about a mission feature.
     /// </summary>
-    public enum DatabaseEntryType
+    internal class DBEntryOptionsMission : DBEntryFeature
     {
-        Airbase,
-        Coalition,
-        DCSMod,
-        MissionFeature,
-        OptionsMission,
-        ObjectiveFeature,
-        ObjectivePreset,
-        ObjectiveTarget,
-        ObjectiveTargetBehavior,
-        ObjectiveTask,
-        Theater,
-        Unit,
-        UnitCarrier,
-        UnitFlyableAircraft,
-        WeatherPreset
+        /// <summary>
+        /// Directory from which Lua files should be loaded.
+        /// </summary>
+        internal override string SourceLuaDirectory { get { return BRPaths.INCLUDE_LUA_OPTIONSMISSION; } }
+
+        /// <summary>
+        /// Loads a database entry from an .ini file.
+        /// </summary>
+        /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
+        /// <returns>True is successful, false if an error happened</returns>
+
+        protected override bool OnLoad(string iniFilePath)
+        {
+            return base.OnLoad(iniFilePath);
+        }
     }
 }
+

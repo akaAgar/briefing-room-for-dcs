@@ -51,7 +51,7 @@ namespace BriefingRoom4DCS.Generator
         /// <param name="turbulenceFromWeather">Amount of turbulence (in m/s) to add to the default wind turbulence.</param>
         internal void GenerateWeather(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, Month month, DBEntryAirbase playerAirbase, out int turbulenceFromWeather)
         {
-            var baseAlt = template.MissionFeatures.Contains("SeaLevelRefCloud") ? 0.0 : playerAirbase.Elevation;
+            var baseAlt = template.OptionsMission.Contains("SeaLevelRefCloud") ? 0.0 : playerAirbase.Elevation;
 
             DBEntryWeatherPreset weatherDB;
             if (string.IsNullOrEmpty(template.EnvironmentWeatherPreset)) // Random weather

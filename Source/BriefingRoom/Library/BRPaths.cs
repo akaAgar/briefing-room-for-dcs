@@ -77,6 +77,8 @@ namespace BriefingRoom4DCS
         /// </summary>
         internal static string INCLUDE_LUA_MISSIONFEATURES { get; } = $"{INCLUDE_LUA}MissionFeatures\\";
 
+        internal static string INCLUDE_LUA_OPTIONSMISSION { get; } = $"{INCLUDE_LUA}OptionsMission\\";
+
         /// <summary>
         /// Path to the Include\Lua\ObjectiveFeatures subdirectory.
         /// </summary>

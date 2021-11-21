@@ -86,6 +86,7 @@ namespace BriefingRoom4DCS.Data
             DBEntries.Clear();
             LoadEntries<DBEntryBriefingDescription>("BriefingDescriptions");
             LoadEntries<DBEntryFeatureMission>("MissionFeatures");
+            LoadEntries<DBEntryOptionsMission>("OptionsMission");
             LoadEntries<DBEntryFeatureObjective>("ObjectiveFeatures");
             LoadEntries<DBEntryObjectiveTarget>("ObjectiveTargets");
             LoadEntries<DBEntryObjectiveTargetBehavior>("ObjectiveTargetsBehaviors");

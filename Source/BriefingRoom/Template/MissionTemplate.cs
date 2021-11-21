@@ -146,11 +146,12 @@ namespace BriefingRoom4DCS.Template
         [Category("Options")]
         public FogOfWar OptionsFogOfWar { get; set; }
 
-        [Required]
+        [Required, DatabaseSourceType(DatabaseEntryType.OptionsMission)]
         [Display(Name = "Mission options", Description = "Miscellaneous options to customize the mission's feel.")]
         [Category("Options")]
-        public List<MissionOption> OptionsMission { get { return OptionsMission_; } set { OptionsMission_ = value.Distinct().ToList(); } }
-        private List<MissionOption> OptionsMission_ = new List<MissionOption>();
+        public List<string> OptionsMission { get { return OptionsMission_; } set { OptionsMission_ = Database.Instance.CheckIDs<DBEntryOptionsMission>(value.ToArray()).ToList(); } }
+        private List<string> OptionsMission_ = new List<string>();
+
 
         [Required]
         [Display(Name = "Realism options", Description = "Realism options to enforce.")]
@@ -243,7 +244,7 @@ namespace BriefingRoom4DCS.Template
             Objectives = new MissionTemplateObjective[] { new MissionTemplateObjective() }.ToList();
 
             OptionsFogOfWar = FogOfWar.All;
-            OptionsMission = new MissionOption[] { MissionOption.ImperialUnitsForBriefing, MissionOption.MarkWaypoints }.ToList();
+            OptionsMission = new List<string>{ "ImperialUnitsForBriefing", "MarkWaypoints" };
             OptionsRealism = new RealismOption[] { RealismOption.DisableDCSRadioAssists, RealismOption.NoBDA }.ToList();
 
             PlayerFlightGroups = new MissionTemplateFlightGroup[] { new MissionTemplateFlightGroup() }.ToList();
@@ -293,7 +294,7 @@ namespace BriefingRoom4DCS.Template
             FlightPlanObjectiveSeperation = ini.GetValue("FlightPlan", "ObjectiveSeperation", FlightPlanObjectiveSeperation);
             FlightPlanTheaterStartingAirbase = ini.GetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
 
-            MissionFeatures = ini.GetValueArray<string>("MissionFeatures", "MissionFeatures").ToList();
+            MissionFeatures = ini.GetValueDistinctList<string>("MissionFeatures", "MissionFeatures");
 
             Mods = ini.GetValueArray<string>("Mods", "Mods").ToList();
 
@@ -302,8 +303,8 @@ namespace BriefingRoom4DCS.Template
                 Objectives.Add(new MissionTemplateObjective(ini, "Objectives", key));
 
             OptionsFogOfWar = ini.GetValue("Options", "FogOfWar", OptionsFogOfWar);
-            OptionsMission = ini.GetValueArray<MissionOption>("Options", "Mission").ToList();
-            OptionsRealism = ini.GetValueArray<RealismOption>("Options", "Realism").ToList();
+            OptionsMission = ini.GetValueDistinctList<string>("Options", "Mission");
+            OptionsRealism = ini.GetValueDistinctList<RealismOption>("Options", "Realism");
 
             PlayerFlightGroups.Clear();
             foreach (string key in ini.GetTopLevelKeysInSection("PlayerFlightGroups"))

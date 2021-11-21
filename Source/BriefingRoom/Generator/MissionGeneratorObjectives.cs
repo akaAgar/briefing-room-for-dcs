@@ -292,7 +292,7 @@ namespace BriefingRoom4DCS.Generator
             if (objectiveTemplate.Options.Contains(ObjectiveOption.InaccurateWaypoint))
             {
                 waypointCoordinates += Coordinates.CreateRandom(3.0, 6.0) * Toolbox.NM_TO_METERS;
-                if(template.OptionsMission.Contains(MissionOption.MarkWaypoints))
+                if(template.OptionsMission.Contains("MarkWaypoints"))
                     DrawingMaker.AddDrawing("Target Zone",DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(6.0 * Toolbox.NM_TO_METERS));
             }
 

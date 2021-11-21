@@ -76,18 +76,6 @@ namespace BriefingRoom4DCS.GUI
                     case FogOfWar.SelfOnly: return "Self only";
                 }
             }
-            else if (enumValue is MissionOption)
-            {
-                switch ((MissionOption)enumValue)
-                {
-                    case MissionOption.EnableCivilianTraffic: return "Enable civilian traffic";
-                    case MissionOption.ImperialUnitsForBriefing: return "Imperial units for briefing";
-                    case MissionOption.InvertCountriesCoalitions: return "Invert countries coalitions on map";
-                    case MissionOption.MarkWaypoints: return "Mark Waypoints";
-                    case MissionOption.SpawnAnywhere: return "Insurgency Spawning";
-                    case MissionOption.RadioMessagesTextOnly: return "Text-only radio messages (no audio)";
-                }
-            }
             else if (enumValue is ObjectiveOption)
             {
                 switch ((ObjectiveOption)enumValue)
@@ -165,18 +153,6 @@ namespace BriefingRoom4DCS.GUI
                     case FogOfWar.KnownUnitsOnly: return "Hide all units except those in view of an ally unit.";
                     case FogOfWar.SelfOnly: return "Hide all units except the player on the F10 map.";
                     case FogOfWar.None: return "Hide all units (INCLUDING the player) on the F10 map.";
-                }
-            }
-            else if (enumValue is MissionOption)
-            {
-                switch ((MissionOption)enumValue)
-                {
-                    case MissionOption.EnableCivilianTraffic: return "Civilian traffic will be enabled. Can have an impact on performances.";
-                    case MissionOption.SpawnAnywhere: return "Units spawn irrespective of country (like an insurgency)";
-                    case MissionOption.MarkWaypoints: return "Create Markers on waypoints.";
-                    case MissionOption.ImperialUnitsForBriefing: return "Use imperial units for briefing instead of the metric system.";
-                    case MissionOption.InvertCountriesCoalitions: return "Invert blue and red countries on the map (Russia becomes blue, Georgia becomes red, etc)";
-                    case MissionOption.RadioMessagesTextOnly: return "Display radio messages in text-format only (no voice).";
                 }
             }
             else if (enumValue is ObjectiveOption)

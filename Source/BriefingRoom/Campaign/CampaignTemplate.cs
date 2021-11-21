@@ -128,11 +128,11 @@ namespace BriefingRoom4DCS.Campaign
         [Category("Options")]
         public FogOfWar OptionsFogOfWar { get; set; }
 
-        [Required]
+        [Required, DatabaseSourceType(DatabaseEntryType.OptionsMission)]
         [Display(Name = "Mission options", Description = "Miscellaneous options to customize the mission's feel.")]
         [Category("Options")]
-        public List<MissionOption> OptionsMission { get { return OptionsMission_; } set { OptionsMission_ = value.Distinct().ToList(); } }
-        private List<MissionOption> OptionsMission_ = new List<MissionOption>();
+        public List<string> OptionsMission { get { return OptionsMission_; } set { OptionsMission_ = Database.Instance.CheckIDs<DBEntryOptionsMission>(value.ToArray()).ToList(); } }
+        private List<string> OptionsMission_ = new List<string>();
 
         [Required, DatabaseSourceType(DatabaseEntryType.DCSMod)]
         [Display(Name = "DCS World mods", Description = "DCS unit mods to use for this mission.")]
@@ -235,7 +235,7 @@ namespace BriefingRoom4DCS.Campaign
 
             OptionsFogOfWar = FogOfWar.All;
             OptionsMods = new List<string>();
-            OptionsMission = new MissionOption[] { MissionOption.ImperialUnitsForBriefing }.ToList();
+            OptionsMission = new List<string>{ "ImperialUnitsForBriefing" };
             OptionsRealism = new RealismOption[] { RealismOption.DisableDCSRadioAssists, RealismOption.NoBDA }.ToList();
 
             PlayerAircraft = "Su-25T";
@@ -273,15 +273,15 @@ namespace BriefingRoom4DCS.Campaign
 
                 MissionsCount = ini.GetValue("Missions", "Count", MissionsCount);
                 MissionsDifficultyVariation = ini.GetValue("Missions", "DifficultyVariation", MissionsDifficultyVariation);
-                MissionsFeatures = ini.GetValueArray<string>("Missions", "Features").ToList();
-                MissionsObjectives = ini.GetValueArray<string>("Missions", "Objectives").ToList();
+                MissionsFeatures = ini.GetValueDistinctList<string>("Missions", "Features");
+                MissionsObjectives = ini.GetValueList<string>("Missions", "Objectives");
                 MissionsObjectiveCount = ini.GetValue("Missions", "ObjectiveCount", MissionsObjectiveCount);
                 MissionsObjectiveDistance = ini.GetValue("Missions", "ObjectiveDistance", MissionsObjectiveDistance);
 
                 OptionsFogOfWar = ini.GetValue("Options", "FogOfWar", OptionsFogOfWar);
-                OptionsMods = ini.GetValueArray<string>("Options", "Mods").Distinct().ToList();
-                OptionsMission = ini.GetValueArray<MissionOption>("Options", "Mission").Distinct().ToList();
-                OptionsRealism = ini.GetValueArray<RealismOption>("Options", "Realism").Distinct().ToList();
+                OptionsMods = ini.GetValueDistinctList<string>("Options", "Mods");
+                OptionsMission = ini.GetValueDistinctList<string>("Options", "Mission");
+                OptionsRealism = ini.GetValueDistinctList<RealismOption>("Options", "Realism");
 
                 PlayerAircraft = ini.GetValue("Player", "Aircraft", PlayerAircraft);
                 PlayerCarrier = ini.GetValue("Player", "Carrier", PlayerCarrier);

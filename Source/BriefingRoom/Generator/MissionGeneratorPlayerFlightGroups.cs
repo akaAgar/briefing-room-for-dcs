@@ -148,7 +148,7 @@ namespace BriefingRoom4DCS.Generator
                 mission,
                 groupStartingCoords,
                 flightWaypoints,
-                template.OptionsMission.Contains(MissionOption.ImperialUnitsForBriefing),
+                template.OptionsMission.Contains("ImperialUnitsForBriefing"),
                 groupInfo);
         }
 

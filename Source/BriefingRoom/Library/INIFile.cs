@@ -208,6 +208,9 @@ namespace BriefingRoom4DCS
             }
         }
 
+        internal List<T> GetValueList<T>(string section, string key, char separator = ',') => GetValueArray<T>(section, key, separator).ToList();
+        internal List<T> GetValueDistinctList<T>(string section, string key, char separator = ',') => GetValueArray<T>(section, key, separator).Distinct().ToList();
+
         internal T GetValueArrayAsEnumFlags<T>(string section, string key, char separator = ',') where T : Enum
         {
             T[] enumArray = GetValueArray<T>(section, key, separator).Distinct().ToArray();

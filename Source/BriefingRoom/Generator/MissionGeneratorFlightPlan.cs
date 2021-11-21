@@ -108,7 +108,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 mission.AppendValue("ScriptObjectives",
                     $"briefingRoom.mission.objectives[{i + 1}].waypoint = {waypoints[i].Coordinates.ToLuaTable()}\n");
-                if(template.OptionsMission.Contains(MissionOption.MarkWaypoints))
+                if(template.OptionsMission.Contains("MarkWaypoints"))
                     mission.AppendValue("ScriptObjectives",
                         $"trigger.action.markToCoalition({i + 1}, \"{waypoints[i].Name}\", {{ x={waypoints[i].Coordinates.X.ToInvariantString()}, y=0, z={waypoints[i].Coordinates.Y.ToInvariantString()} }}, coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}, true, nil)\n");
             }
