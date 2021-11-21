@@ -287,11 +287,16 @@ namespace BriefingRoom4DCS.Generator
 
         internal Waypoint GenerateObjectiveWaypoint(MissionTemplateObjective objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName, MissionTemplate template)
         {
+            var AirOnGroundBehaviorLocations = new List<DBEntryObjectiveTargetBehaviorLocation>{
+                DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking,
+                DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter};
+            
             DBEntryObjectiveTarget targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
+            DBEntryObjectiveTargetBehaviorLocation targetBehaviorLocation = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior).Location;
             if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective.");
 
             Coordinates waypointCoordinates = objectiveCoordinates;
-            bool onGround = !targetDB.UnitCategory.IsAircraft(); // Ground targets = waypoint on the ground
+            bool onGround = !targetDB.UnitCategory.IsAircraft() || AirOnGroundBehaviorLocations.Contains(targetBehaviorLocation); // Ground targets = waypoint on the ground
 
             if (objectiveTemplate.Options.Contains(ObjectiveOption.InaccurateWaypoint))
             {
