@@ -137,10 +137,14 @@ namespace BriefingRoom4DCS.Generator
                 case DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbase:
                 case DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking:
                 case DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter:
-                    DBEntryAirbase targetAirbase =
+                    var targetAirbaseOptions =
                         (from DBEntryAirbase airbaseDB in theaterDB.GetAirbases()
                          where airbaseDB.DCSID != playerAirbase.DCSID
-                         select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(objectiveCoordinates)).FirstOrDefault();
+                         select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(objectiveCoordinates));
+                    Coalition requiredCoalition =
+                        template.OptionsMission.Contains("InvertCountriesCoalitions") ?
+                        template.ContextPlayerCoalition : template.ContextPlayerCoalition.GetEnemy();
+                    DBEntryAirbase targetAirbase = targetAirbaseOptions.FirstOrDefault(x => template.OptionsMission.Contains("SpawnAnywhere")? true : x.Coalition == requiredCoalition);
                     objectiveCoordinates = targetAirbase.Coordinates;
                     airbaseID = targetAirbase.DCSID;
 
