@@ -17,8 +17,6 @@ assignees: ''
  <!-- What should of happened? -->
 
 
-#### Template File: <!-- Drag and drop your template (.brt) file here. So we can generate more example missions-->
-
-####  Example Mission File: <!--Drag and drop your example mission (.miz) file here.-->
+#### Mission and Template Zip: <!-- Drag and drop a zip of your template (.brt) file and an example mission file (.miz) here. So we can debug-->
 
 Mission modified: Y/N <!--Note if you have significantly modified the mission we may not be able to help you. Please try and get an example right after generation.-->
