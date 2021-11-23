@@ -118,6 +118,16 @@ function math.randomFromTable(t)
   return t[math.random(#t)]
 end
 
+-- Returns a random value from hash table t
+function math.randomFromHashTable(t)
+  local keyset = {}
+  for k in pairs(t) do
+      table.insert(keyset, k)
+  end
+  -- now you can reliably return a random key
+  return t[keyset[math.random(#keyset)]]
+end
+
 -- Returns a random point in circle of center center and of radius radius
 function math.randomPointInCircle(center, radius)
   local dist = math.random() * radius

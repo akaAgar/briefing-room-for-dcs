@@ -4,24 +4,25 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
 
 -- Update active lasers every second
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.laserWatch = function(args, time)
-  local obj = briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$]
+  local objFeature = briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$]
+  local objective = briefingRoom.mission.objectives[$OBJECTIVEINDEX$]
   -- if lasing target is set...
-  if obj.targetDesignationLaser.laserTarget == nil then
+  if objFeature.targetDesignationLaser.laserTarget == nil then
     return time + 1 -- next update in one second
   end
 
-  if briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID[tonumber(obj.targetDesignationLaser.laserTarget:getID())] == nil then -- target is considered complete
+  if not table.contains(objective.unitsID, tonumber(objFeature.targetDesignationLaser.laserTarget:getID())) then -- target is considered complete
     briefingRoom.debugPrint("JTAC $OBJECTIVEINDEX$: Target Complete finding new target", 1)
-    local unit = obj.targetDesignationLaser.setRandomTarget()
+    local unit = objFeature.targetDesignationLaser.setRandomTarget()
     if unit == nil then
-      obj.targetDesignationLaser.deleteLaser()
+      objFeature.targetDesignationLaser.deleteLaser()
       briefingRoom.radioManager.play("No visual on any target, laser is off.", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay()) -- TODO new sound
       return
     end
     briefingRoom.radioManager.play("Painting next target", "RadioSupportLasingOk", briefingRoom.radioManager.getAnswerDelay()) -- TODO new Sound
   end
 
-  obj.targetDesignationLaser.updateLaserPos()
+  objFeature.targetDesignationLaser.updateLaserPos()
   return time + 1
 end
 
@@ -61,18 +62,16 @@ end
 -- Get Random Target
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.setRandomTarget = function()
   local objective = briefingRoom.mission.objectives[$OBJECTIVEINDEX$]
-  local randomId = math.random(#objective.unitsID)
-  briefingRoom.debugPrint("JTAC $OBJECTIVEINDEX$: DEBUG GOT RANDOM ID:"..randomId, 1)
-  local unit = dcsExtensions.getUnitByID(objective.unitsID[randomId])
+  local randomUnitID = math.randomFromHashTable(objective.unitsID)
+  local unit = dcsExtensions.getUnitByID(randomUnitID)
   if unit == nil then -- no unit found with the ID, try searching for a static
-    unit = dcsExtensions.getStaticByID(objective.unitsID[randomId])
+    unit = dcsExtensions.getStaticByID(randomUnitID)
     if unit == nil then -- no unit nor static found with the ID
-      briefingRoom.debugPrint("JTAC $OBJECTIVEINDEX$: FOUND NOTHING", 1)
-      return
+      return nil
     end
   end
   briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.laserTarget = unit
-  briefingRoom.debugPrint("JTAC $OBJECTIVEINDEX$: Assigned Laser Target:"..randomId, 1)
+  briefingRoom.debugPrint("JTAC $OBJECTIVEINDEX$: Assigned Laser Target:"..randomUnitID, 1)
   return unit
 end
 
@@ -96,6 +95,8 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
     return
   end
   briefingRoom.radioManager.play("Affirm. Laser on, painting the target now. Laser code is "..tostring(LASER_CODE)..".", "RadioSupportLasingOk", briefingRoom.radioManager.getAnswerDelay())
+  missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Get a diffrent lasing target", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.newTarget)
+  missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Stop lasing target", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.turnOff)
 end
 
 -- Stops lasing the target
@@ -112,7 +113,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
   briefingRoom.radioManager.play("Copy. Terminate, laser is off.", "RadioSupportLasingStopped", briefingRoom.radioManager.getAnswerDelay())
 end
 
--- Begins lasing the target
+-- Get new target
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.newTarget = function()
   briefingRoom.radioManager.play("Can you paint a diffrent target for me?", "RadioPilotLaseTarget")
 
@@ -129,7 +130,4 @@ end
 -- Begin updating laser designation
 timer.scheduleFunction(briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.laserWatch, nil, timer.getTime() + 1)
 
-
 missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Designate target with laser", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.turnOn)
-missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Stop lasing target", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.turnOff)
-missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Get a diffrent lasing target", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.newTarget)
