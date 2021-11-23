@@ -28,6 +28,10 @@ BriefingRoom is free and open source and will always remain so, but if you want 
 * No units spawned through runtime scripting. All units are added to the mission itself, so they can be edited with DCS World's mission editor for further customization.
 * **Please read the user's manual and the modder's manual for more information**
 
+### Included Scripted systems (Thanks to them)
+
+* Skynet IADS by walder
+
 ### Additional information
 
 * Created by Ambroise Garel (@akaAgar), with additional code by John Harvey (@john681611)
