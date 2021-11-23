@@ -160,6 +160,10 @@ namespace BriefingRoom4DCS
         /// </summary>
         VehicleMissile,
         /// <summary>
+        /// Early-warning-radar
+        /// </summary>
+        VehicleEWR,
+        /// <summary>
         /// SAM, long range
         /// </summary>
         VehicleSAMLong,

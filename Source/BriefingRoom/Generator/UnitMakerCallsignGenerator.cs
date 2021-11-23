@@ -95,14 +95,14 @@ namespace BriefingRoom4DCS.Generator
         /// <param name="unitFamily">The unit family</param>
         /// <param name="natoCallsign">Should this callsign be in the NATO format (true) or the Russian format (false)</param>
         /// <returns></returns>
-        internal UnitCallsign GetCallsign(UnitFamily unitFamily, Coalition coalition)
+        internal UnitCallsign GetCallsign(UnitFamily unitFamily, Coalition coalition, Side side, bool isUsingSkynet)
         {
             UnitCallsignFamily callsignFamily = GetCallsignFamilyFromUnitFamily(unitFamily);
 
             if (CoalitionsDB[(int)coalition].NATOCallsigns)
-                return GetNATOCallsign(callsignFamily);
+                return GetNATOCallsign(callsignFamily, unitFamily, side, isUsingSkynet);
 
-            return GetRussianCallsign();
+            return GetRussianCallsign(unitFamily, side, isUsingSkynet);
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace BriefingRoom4DCS.Generator
         /// </summary>
         /// <param name="callsignFamily">A callsign family</param>
         /// <returns>The callsign</returns>
-        private UnitCallsign GetNATOCallsign(UnitCallsignFamily callsignFamily)
+        private UnitCallsign GetNATOCallsign(UnitCallsignFamily callsignFamily, UnitFamily unitFamily, Side side, bool isUsingSkynet)
         {
             int callsignIndex;
 
@@ -132,28 +132,17 @@ namespace BriefingRoom4DCS.Generator
                 $"[2]={Toolbox.ValToString(NATOCallsigns[(int)callsignFamily][callsignIndex])}, " +
                 "[3]=$INDEX$, " +
                 $"[\"name\"] = \"{unitName.Replace(" ", "")}\", }}";
-
+            if(isUsingSkynet && unitFamily == UnitFamily.PlaneAWACS)
+                unitName = SetSkyNetPrefix(unitName, side);
             return new UnitCallsign(groupName, unitName/*, onboardNum*/, lua);
         }
 
-        internal string SetSkyNetPrefix(string groupName, UnitFamily unitFamily, Side side)
-        {
-            var intrestedTypes = new List<UnitFamily> { UnitFamily.VehicleSAMMedium, UnitFamily.VehicleSAMLong };
-            if (intrestedTypes.Contains(unitFamily))
-            {
-                var newGroupName = $"SAM-{groupName}";
-                if (side == Side.Ally)
-                    newGroupName = $"BLUE-{newGroupName}";
-                return newGroupName;
-            }
-            return groupName;
-        }
 
         /// <summary>
         /// Returns an unique callsign in the russian format (3-digits)
         /// </summary>
         /// <returns>The callsign</returns>
-        private UnitCallsign GetRussianCallsign()
+        private UnitCallsign GetRussianCallsign(UnitFamily unitFamily, Side side, bool isUsingSkynet)
         {
             string fgName;
             int[] fgNumber = new int[2];
@@ -169,8 +158,18 @@ namespace BriefingRoom4DCS.Generator
             RussianCallsigns.Add(fgName);
 
             string unitName = fgName + "$INDEX$";
+            string oldUnitName = unitName;
+            
+            if(isUsingSkynet && unitFamily == UnitFamily.PlaneAWACS)
+                unitName = SetSkyNetPrefix(unitName, side);
 
-            return new UnitCallsign(fgName + "0", unitName, unitName);
+            return new UnitCallsign(fgName + "0", unitName, oldUnitName);
+        }
+
+        private string SetSkyNetPrefix(string unitName, Side side)
+        {
+            var prefix = side == Side.Ally? "BLUE-" : "";
+            return $"{prefix}EW-{unitName}";
         }
 
         /// <summary>

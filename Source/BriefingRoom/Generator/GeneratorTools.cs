@@ -392,13 +392,40 @@ namespace BriefingRoom4DCS.Generator
             return randomString.Replace("{", "").Replace("}", "").Trim();
         }
 
-        internal static string GetGroupName(int groupID, UnitFamily family)
+        private static string SetSkyNetPrefix(string groupName, UnitFamily unitFamily, Side side)
+        {
+            var ewrTypes = new List<UnitFamily> { 
+                UnitFamily.VehicleEWR,
+                UnitFamily.ShipCarrierCATOBAR,
+                UnitFamily.ShipCarrierSTOBAR,
+                UnitFamily.ShipCarrierSTOVL,
+                UnitFamily.ShipCruiser,
+                UnitFamily.ShipFrigate};
+            var samTypes = new List<UnitFamily> { 
+                UnitFamily.VehicleSAMMedium,
+                UnitFamily.VehicleSAMLong
+                };
+            var isEWR = ewrTypes.Contains(unitFamily);
+            if (isEWR || samTypes.Contains(unitFamily))
+            {
+                var prefix = isEWR ? "EW" : "SAM";
+                var newGroupName = $"{prefix}-{groupName}";
+                if (side == Side.Ally)
+                    newGroupName = $"BLUE-{newGroupName}";
+                return newGroupName;
+            }
+            return groupName;
+        }
+
+        internal static string GetGroupName(int groupID, UnitFamily family, Side side, bool isUsingSkynet)
         {
             string name = ParseRandomString(Database.Instance.Common.Names.UnitGroups[(int)family]);
 
             int fakeGroupNumber = groupID * 10 + Toolbox.RandomInt(1, 10);
             name = name.Replace("$N$", fakeGroupNumber.ToString(NumberFormatInfo.InvariantInfo));
             name = name.Replace("$NTH$", Toolbox.GetOrdinalAdjective(fakeGroupNumber));
+            if(isUsingSkynet)
+                return SetSkyNetPrefix(name, family, side);
             return name;
         }
 

@@ -124,18 +124,16 @@ namespace BriefingRoom4DCS.Generator
             if (!skill.HasValue)
                 skill = GeneratorTools.GetDefaultSkillLevel(Template, unitFamily, side);
 
+            var isUsingSkynet = Template.MissionFeatures.Contains("SkynetIADS");
             string groupName;
             UnitCallsign? callsign = null;
             if (unitFamily.GetUnitCategory().IsAircraft())
             {
-                callsign = CallsignGenerator.GetCallsign(unitFamily, coalition);
+                callsign = CallsignGenerator.GetCallsign(unitFamily, coalition, side, isUsingSkynet);
                 groupName = callsign.Value.GroupName;
             }
             else
-                groupName = GeneratorTools.GetGroupName(GroupID, unitFamily);
-
-            if(Template.MissionFeatures.Contains("SkynetIADS"))
-                groupName = CallsignGenerator.SetSkyNetPrefix(groupName, unitFamily, side);
+                groupName = GeneratorTools.GetGroupName(GroupID, unitFamily, side, isUsingSkynet);
 
             if(unitFamily.GetUnitCategory() == UnitCategory.Static && unitFamily != UnitFamily.FOB)
                 return AddStaticGroup(
