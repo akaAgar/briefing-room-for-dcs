@@ -1,5 +1,6 @@
 async function BlazorDownloadFile(filename, contentType, data) {
   // Create the URL
+  const fileType = filename.split(".").at(-1)
   const file = new File([data], filename, { type: contentType });
   if (self.showSaveFilePicker) {
     const fileHandle = await self.showSaveFilePicker({
@@ -7,7 +8,7 @@ async function BlazorDownloadFile(filename, contentType, data) {
       types: [{
         description: 'Text documents',
         accept: {
-          'text/plain': ['.miz', '.brt', '.cbrt'],
+          'text/plain': [`.${fileType}`],
         },
       }],
     });
