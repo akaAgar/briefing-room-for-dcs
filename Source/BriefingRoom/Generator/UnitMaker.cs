@@ -134,6 +134,9 @@ namespace BriefingRoom4DCS.Generator
             else
                 groupName = GeneratorTools.GetGroupName(GroupID, unitFamily);
 
+            if(Template.MissionFeatures.Contains("SkynetIADS"))
+                groupName = CallsignGenerator.SetSkyNetPrefix(groupName, unitFamily, side);
+
             if(unitFamily.GetUnitCategory() == UnitCategory.Static && unitFamily != UnitFamily.FOB)
                 return AddStaticGroup(
                     country,

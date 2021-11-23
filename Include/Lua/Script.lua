@@ -392,6 +392,19 @@ function dcsExtensions.getUnitByID(id)
   return nil
 end
 
+-- Returns the unit with ID id, or nil if no unit with this ID is found
+function dcsExtensions.getGroupByPrefix(prefix)
+  for i=1,2 do
+    for _,g in pairs(coalition.getGroups(i)) do
+        if string.startsWith(g:getName(), prefix) then
+          return g
+      end
+    end
+  end
+
+  return nil
+end
+
 -- Converts a timecode (in seconds since midnight) in a hh:mm:ss string
 function dcsExtensions.timeToHMS(timecode)
   local h = math.floor(timecode / 3600)

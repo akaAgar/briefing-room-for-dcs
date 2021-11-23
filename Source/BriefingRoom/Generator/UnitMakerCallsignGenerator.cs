@@ -136,6 +136,19 @@ namespace BriefingRoom4DCS.Generator
             return new UnitCallsign(groupName, unitName/*, onboardNum*/, lua);
         }
 
+        internal string SetSkyNetPrefix(string groupName, UnitFamily unitFamily, Side side)
+        {
+            var intrestedTypes = new List<UnitFamily> { UnitFamily.VehicleSAMMedium, UnitFamily.VehicleSAMLong };
+            if (intrestedTypes.Contains(unitFamily))
+            {
+                var newGroupName = $"SAM-{groupName}";
+                if (side == Side.Ally)
+                    newGroupName = $"BLUE-{newGroupName}";
+                return newGroupName;
+            }
+            return groupName;
+        }
+
         /// <summary>
         /// Returns an unique callsign in the russian format (3-digits)
         /// </summary>
