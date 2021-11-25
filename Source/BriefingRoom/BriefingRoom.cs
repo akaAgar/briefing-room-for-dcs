@@ -104,10 +104,16 @@ namespace BriefingRoom4DCS
             switch (entryType)
             {
                 case DatabaseEntryType.Airbase:
-                    if (string.IsNullOrEmpty(parameter)) // No parameter, return all airbases
-                        return (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>() select airbase.GetDBEntryInfo()).OrderBy(x => x.Name).ToArray();
+                    if (string.IsNullOrEmpty(parameter)) // No parameter, return none
+                        return new DatabaseEntryInfo[]{};
                     else // A parameter was provided, return all airbases from specified theater
                         return (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>() where airbase.Theater == parameter.ToLowerInvariant() select airbase.GetDBEntryInfo()).OrderBy(x => x.Name).ToArray();
+                
+                case DatabaseEntryType.Situation:
+                    if (string.IsNullOrEmpty(parameter)) // No parameter, return none
+                        return new DatabaseEntryInfo[]{};
+                    else // A parameter was provided, return all airbases from specified theater
+                        return (from DBEntrySituation situation in Database.Instance.GetAllEntries<DBEntrySituation>() where situation.Theater == parameter.ToLowerInvariant() select situation.GetDBEntryInfo()).OrderBy(x => x.Name).ToArray();
 
                 case DatabaseEntryType.Coalition:
                     return (from DBEntryCoalition coalition in Database.Instance.GetAllEntries<DBEntryCoalition>() select coalition.GetDBEntryInfo()).OrderBy(x => x.Name).ToArray();

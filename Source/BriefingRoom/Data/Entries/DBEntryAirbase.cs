@@ -36,7 +36,7 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Which coalition this airbase belongs to?
         /// </summary>
-        internal Coalition Coalition { get; private set; }
+        internal Coalition Coalition { get; set; } = Coalition.Neutural;
 
         /// <summary>
         /// Map X,Y coordinates of this airbase
@@ -98,7 +98,6 @@ namespace BriefingRoom4DCS.Data
             using (INIFile ini = new INIFile(iniFilePath))
             {
                 ATC = ini.GetValue<string>("Airbase", "ATC");
-                Coalition = ini.GetValue<Coalition>("Airbase", "Coalition");
                 Coordinates = ini.GetValue<Coordinates>("Airbase", "Coordinates");
                 DCSID = ini.GetValue<int>("Airbase", "DCSID");
                 Elevation = ini.GetValue<double>("Airbase", "Elevation");

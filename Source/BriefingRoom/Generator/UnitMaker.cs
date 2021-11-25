@@ -54,12 +54,12 @@ namespace BriefingRoom4DCS.Generator
 
         internal UnitMaker(
             DCSMission mission, MissionTemplate template,
-            DBEntryCoalition[] coalitionsDB, DBEntryTheater theaterDB,
+            DBEntryCoalition[] coalitionsDB, DBEntryTheater theaterDB, DBEntrySituation situationDB,
             Coalition playerCoalition, Country[][] coalitionsCountries,
             bool singlePlayerMission)
         {
             CallsignGenerator = new UnitMakerCallsignGenerator(coalitionsDB);
-            SpawnPointSelector = new UnitMakerSpawnPointSelector(theaterDB);
+            SpawnPointSelector = new UnitMakerSpawnPointSelector(theaterDB, situationDB);
 
             Mission = mission;
             Template = template;

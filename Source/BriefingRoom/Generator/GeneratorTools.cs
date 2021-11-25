@@ -184,9 +184,6 @@ namespace BriefingRoom4DCS.Generator
 
             Coalition coalition = side == Side.Ally ? template.ContextPlayerCoalition : template.ContextPlayerCoalition.GetEnemy();
 
-            if (template.OptionsMission.Contains("InvertCountriesCoalitions"))
-                coalition = coalition.GetEnemy();
-
             return coalition;
         }
 

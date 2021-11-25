@@ -90,6 +90,11 @@ namespace BriefingRoom4DCS.Template
         [Category("Context")]
         public string ContextTheater { get; set; }
 
+        [Required, DatabaseSourceType(DatabaseEntryType.Situation)]
+        [Display(Name = "Situation", Description = "Situation in which the mission takes place.")]
+        [Category("Context")]
+        public string ContextSituation { get; set; }
+
         [Required]
         [Display(Name = "Season", Description = "Season during which the mission takes place.")]
         [Category("Environment")]
@@ -227,6 +232,7 @@ namespace BriefingRoom4DCS.Template
             ContextDecade = Decade.Decade2000;
             ContextPlayerCoalition = Coalition.Blue;
             ContextTheater = "Caucasus";
+            ContextSituation = "CaucasusDefault";
 
             EnvironmentSeason = Season.Random;
             EnvironmentTimeOfDay = TimeOfDay.RandomDaytime;
@@ -284,6 +290,7 @@ namespace BriefingRoom4DCS.Template
             ContextDecade = ini.GetValue("Context", "Decade", ContextDecade);
             ContextPlayerCoalition = ini.GetValue("Context", "PlayerCoalition", ContextPlayerCoalition);
             ContextTheater = ini.GetValue("Context", "Theater", ContextTheater);
+            ContextSituation = ini.GetValue("Context", "Situation", ContextSituation);
 
             EnvironmentSeason = ini.GetValue("Environment", "Season", EnvironmentSeason);
             EnvironmentTimeOfDay = ini.GetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);
@@ -351,6 +358,7 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue("Context", "Decade", ContextDecade);
             ini.SetValue("Context", "PlayerCoalition", ContextPlayerCoalition);
             ini.SetValue("Context", "Theater", ContextTheater);
+            ini.SetValue("Context", "Situation", ContextSituation);
 
             ini.SetValue("Environment", "Season", EnvironmentSeason);
             ini.SetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);

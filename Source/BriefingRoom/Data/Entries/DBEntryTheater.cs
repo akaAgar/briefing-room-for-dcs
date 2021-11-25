@@ -60,10 +60,6 @@ namespace BriefingRoom4DCS.Data
         /// </summary>
         internal MinMaxI[] DayTime { get; private set; }
 
-        internal List<Coordinates> RedCoordinates { get; private set; }
-
-        internal List<Coordinates> BlueCoordinates { get; private set; }
-
         internal List<Coordinates> WaterCoordinates { get; private set; }
 
         internal List<List<Coordinates>> WaterExclusionCoordinates { get; private set; }
@@ -107,17 +103,6 @@ namespace BriefingRoom4DCS.Data
 
                     DayTime[i] = dayTimeValue ?? DEFAULT_DAYTIME;
                 }
-
-
-
-                RedCoordinates = new List<Coordinates>();
-                foreach (string key in ini.GetKeysInSection("RedCoordinates"))
-                    RedCoordinates.Add(ini.GetValue<Coordinates>("RedCoordinates", key));
-
-
-                BlueCoordinates = new List<Coordinates>();
-                foreach (string key in ini.GetKeysInSection("BlueCoordinates"))
-                    BlueCoordinates.Add(ini.GetValue<Coordinates>("BlueCoordinates", key));
 
 
                 // Water Coordinates
@@ -195,18 +180,6 @@ namespace BriefingRoom4DCS.Data
             if (vals[0] > vals[1]) return null; // Min value > Max value. BAD!
 
             return new MinMaxI(vals[0], vals[1]);
-        }
-
-        /// <summary>
-        /// Returns an array of all airbases in this theater.
-        /// </summary>
-        /// <returns>An array of <see cref="DBEntryAirbase"/></returns>
-        public DBEntryAirbase[] GetAirbases()
-        {
-            return
-                (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>()
-                 where Toolbox.StringICompare(airbase.Theater, ID)
-                 select airbase).ToArray();
         }
     }
 }

@@ -71,7 +71,16 @@ namespace BriefingRoom4DCS.Generator
             ObjectiveNames = new List<string>(Database.Instance.Common.Names.WPObjectivesNames);
         }
 
-        internal Coordinates GenerateObjective(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, int objectiveIndex, Coordinates lastCoordinates, DBEntryAirbase playerAirbase, bool useObjectivePreset, out string objectiveName, out UnitFamily objectiveTargetUnitFamily)
+        internal Coordinates GenerateObjective(
+            DCSMission mission,
+            MissionTemplate template,
+            DBEntrySituation situationDB,
+            int objectiveIndex,
+            Coordinates lastCoordinates,
+            DBEntryAirbase playerAirbase,
+            bool useObjectivePreset,
+            out string objectiveName,
+            out UnitFamily objectiveTargetUnitFamily)
         {
             MissionTemplateObjective objectiveTemplate = template.Objectives[objectiveIndex];
 
@@ -138,13 +147,10 @@ namespace BriefingRoom4DCS.Generator
                 case DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking:
                 case DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter:
                     var targetAirbaseOptions =
-                        (from DBEntryAirbase airbaseDB in theaterDB.GetAirbases()
+                        (from DBEntryAirbase airbaseDB in situationDB.GetAirbases()
                          where airbaseDB.DCSID != playerAirbase.DCSID
                          select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(objectiveCoordinates));
-                    Coalition requiredCoalition =
-                        template.OptionsMission.Contains("InvertCountriesCoalitions") ?
-                        template.ContextPlayerCoalition : template.ContextPlayerCoalition.GetEnemy();
-                    DBEntryAirbase targetAirbase = targetAirbaseOptions.FirstOrDefault(x => template.OptionsMission.Contains("SpawnAnywhere")? true : x.Coalition == requiredCoalition);
+                    DBEntryAirbase targetAirbase = targetAirbaseOptions.FirstOrDefault(x => template.OptionsMission.Contains("SpawnAnywhere")? true : x.Coalition == template.ContextPlayerCoalition.GetEnemy());
                     objectiveCoordinates = targetAirbase.Coordinates;
                     airbaseID = targetAirbase.DCSID;
 

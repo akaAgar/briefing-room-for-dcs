@@ -65,6 +65,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Get required database entries here, so we don't have to look for them each time they're needed.
             DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
+            DBEntrySituation situationDB = Database.Instance.GetEntry<DBEntrySituation>(template.ContextSituation);
             DBEntryCoalition[] coalitionsDB = new DBEntryCoalition[]
             {
                 Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionBlue),
@@ -92,9 +93,9 @@ namespace BriefingRoom4DCS.Generator
                 coalitionsCountries = countriesGenerator.GenerateCountries(mission, template);
 
             // Create unit maker
-            UnitMaker unitMaker = new UnitMaker(mission, template, coalitionsDB, theaterDB, template.ContextPlayerCoalition, coalitionsCountries, template.GetPlayerSlotsCount() == 1);
+            UnitMaker unitMaker = new UnitMaker(mission, template, coalitionsDB, theaterDB, situationDB, template.ContextPlayerCoalition, coalitionsCountries, template.GetPlayerSlotsCount() == 1);
 
-            DrawingMaker drawingMaker = new DrawingMaker(mission, template, theaterDB);
+            DrawingMaker drawingMaker = new DrawingMaker(mission, template, theaterDB, situationDB);
 
             // Generate mission date and time
             Month month;
@@ -138,7 +139,7 @@ namespace BriefingRoom4DCS.Generator
             using (MissionGeneratorObjectives objectivesGenerator = new MissionGeneratorObjectives(unitMaker, drawingMaker))
                 for (i = 0; i < template.Objectives.Count; i++)
                 {
-                    lastObjectiveCoordinates = objectivesGenerator.GenerateObjective(mission, template, theaterDB, i, lastObjectiveCoordinates, playerAirbase, useObjectivePresets, out string objectiveName, out UnitFamily objectiveTargetUnitFamily);
+                    lastObjectiveCoordinates = objectivesGenerator.GenerateObjective(mission, template, situationDB, i, lastObjectiveCoordinates, playerAirbase, useObjectivePresets, out string objectiveName, out UnitFamily objectiveTargetUnitFamily);
                     objectiveCoordinates.Add(lastObjectiveCoordinates);
                     waypoints.Add(objectivesGenerator.GenerateObjectiveWaypoint(template.Objectives[i], lastObjectiveCoordinates, objectiveName, template));
                     objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);

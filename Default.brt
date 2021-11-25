@@ -7,6 +7,7 @@ coalitionred=Russia
 decade=Decade2000
 playercoalition=Blue
 theater=Caucasus
+situation=CaucasusDefault
 theatercountriescoalitions=Default
 
 [environment]

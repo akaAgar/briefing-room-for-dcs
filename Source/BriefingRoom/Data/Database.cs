@@ -94,6 +94,7 @@ namespace BriefingRoom4DCS.Data
             LoadEntries<DBEntryObjectivePreset>("ObjectivePresets"); // Must be loaded after other DBEntryObjective*, as it depends on them
             LoadEntries<DBEntryTheater>("Theaters");
             LoadEntries<DBEntryAirbase>("TheatersAirbases"); // Must be loaded after DBEntryTheater, as it depends on it
+            LoadEntries<DBEntrySituation>("TheaterSituations"); // Must be loaded after DBEntryTheater, as it depends on it
             LoadEntries<DBEntryDCSMod>("DCSMods");
             LoadEntries<DBEntryUnit>("Units"); // Must be loaded after DBEntryDCSMod, as it depends on it
             LoadCustomUnitEntries("Units");

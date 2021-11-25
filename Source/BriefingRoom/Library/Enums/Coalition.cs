@@ -33,6 +33,8 @@ namespace BriefingRoom4DCS
         /// <summary>
         /// The red coalition.
         /// </summary>
-        Red = 1
+        Red = 1,
+
+        Neutural = 2,
     }
 }

@@ -39,6 +39,7 @@ namespace BriefingRoom4DCS
         Unit,
         UnitCarrier,
         UnitFlyableAircraft,
-        WeatherPreset
+        WeatherPreset,
+        Situation
     }
 }

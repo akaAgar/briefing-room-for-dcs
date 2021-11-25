@@ -51,13 +51,16 @@ namespace BriefingRoom4DCS.Generator
         /// </summary>
         private readonly DBEntryTheater TheaterDB;
 
+        private readonly DBEntrySituation SituationDB;
+
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="theaterDB">Theater database entry to use</param>
-        internal UnitMakerSpawnPointSelector(DBEntryTheater theaterDB)
+        internal UnitMakerSpawnPointSelector(DBEntryTheater theaterDB, DBEntrySituation situationDB)
         {
             TheaterDB = theaterDB;
+            SituationDB = situationDB;
             AirbaseParkingSpots = new Dictionary<int, List<DBEntryAirbaseParkingSpot>>();
             SpawnPoints = new List<DBEntryTheaterSpawnPoint>();
 
@@ -76,7 +79,7 @@ namespace BriefingRoom4DCS.Generator
         {
             parkingSpotCoordinates = new Coordinates();
             if (!AirbaseParkingSpots.ContainsKey(airbaseID) || (AirbaseParkingSpots[airbaseID].Count == 0)) return -1;
-            DBEntryAirbase[] airbaseDB = (from DBEntryAirbase ab in TheaterDB.GetAirbases() where ab.DCSID == airbaseID select ab).ToArray();
+            DBEntryAirbase[] airbaseDB = (from DBEntryAirbase ab in SituationDB.GetAirbases() where ab.DCSID == airbaseID select ab).ToArray();
             if (airbaseDB.Length == 0) return -1; // No airbase with proper DCSID
             DBEntryAirbaseParkingSpot? parkingSpot = null;
             if (lastSpotCoordinates != null) //find nearest spot distance wise in attempt to cluster
@@ -97,7 +100,7 @@ namespace BriefingRoom4DCS.Generator
             if(TheaterDB.SpawnPoints is not null)
                 SpawnPoints.AddRange(TheaterDB.SpawnPoints);
 
-            foreach (DBEntryAirbase airbase in TheaterDB.GetAirbases())
+            foreach (DBEntryAirbase airbase in SituationDB.GetAirbases())
             {
                 if (airbase.ParkingSpots.Length < 1) continue;
                 if (AirbaseParkingSpots.ContainsKey(airbase.DCSID)) continue;
@@ -207,27 +210,13 @@ namespace BriefingRoom4DCS.Generator
             return null;
         }
 
-
-        internal static Coalition? GetSpawnPointCoalition(MissionTemplate template, Side side)
-        {
-            // No countries spawning restriction
-            if (template.OptionsMission.Contains("SpawnAnywhere")) return null;
-
-            Coalition coalition = side == Side.Ally ? template.ContextPlayerCoalition : template.ContextPlayerCoalition.GetEnemy();
-
-            if (template.OptionsMission.Contains("InvertCountriesCoalitions"))
-                coalition = coalition.GetEnemy();
-
-            return coalition;
-        }
-
         private bool CheckNotInHostileCoords(Coordinates coordinates, Coalition? coalition = null)
         {
             if (!coalition.HasValue)
                 return true;
             if (coalition.Value == Coalition.Blue)
-                return !ShapeManager.IsPosValid(coordinates, TheaterDB.RedCoordinates);
-            return !ShapeManager.IsPosValid(coordinates, TheaterDB.BlueCoordinates);
+                return !ShapeManager.IsPosValid(coordinates, SituationDB.RedCoordinates);
+            return !ShapeManager.IsPosValid(coordinates, SituationDB.BlueCoordinates);
         }
 
         /// <summary>

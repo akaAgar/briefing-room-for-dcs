@@ -14,14 +14,16 @@ namespace BriefingRoom4DCS.Generator
         private readonly DCSMission Mission;
         private readonly MissionTemplate Template;
         private readonly DBEntryTheater TheaterDB;
+        private readonly DBEntrySituation SituationDB;
         private readonly List<string> LuaDrawings = new List<string>();
 
         internal DrawingMaker(
-            DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB)
+            DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, DBEntrySituation situationDB)
         {
             Mission = mission;
             Template = template;
             TheaterDB = theaterDB;
+            SituationDB = situationDB;
             Clear();
             AddTheaterZones();
         }
@@ -107,11 +109,11 @@ namespace BriefingRoom4DCS.Generator
 
         private void AddTheaterZones()
         {
-            AddFree("Red Control", TheaterDB.RedCoordinates.First(), "Points".ToKeyValuePair(TheaterDB.RedCoordinates.Select(coord => coord - TheaterDB.RedCoordinates.First()).ToList()), "Colour".ToKeyValuePair(DrawingColour.RedFill));
+            AddFree("Red Control", SituationDB.RedCoordinates.First(), "Points".ToKeyValuePair(SituationDB.RedCoordinates.Select(coord => coord - SituationDB.RedCoordinates.First()).ToList()), "Colour".ToKeyValuePair(DrawingColour.RedFill));
             AddFree(
                 "Blue Control",
-                TheaterDB.BlueCoordinates.First(),
-                "Points".ToKeyValuePair(TheaterDB.BlueCoordinates.Select(coord => coord - TheaterDB.BlueCoordinates.First()).ToList()),
+                SituationDB.BlueCoordinates.First(),
+                "Points".ToKeyValuePair(SituationDB.BlueCoordinates.Select(coord => coord - SituationDB.BlueCoordinates.First()).ToList()),
                 "Colour".ToKeyValuePair(DrawingColour.BlueFill),
                 "FillColour".ToKeyValuePair(DrawingColour.BlueFill));
 

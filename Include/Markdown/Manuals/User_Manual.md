@@ -56,6 +56,8 @@ Hold all possible options for generating a single mission. Options are split int
 
 **Theater**: Map
 
+**Situation**: Particular layout of Red and Blue areas of influence (default national borders)
+
 **Home Airbase**: Where is the main airbase for the mission? (objectives and other stuff uses this base to calculate distances)
 
 #### Environment

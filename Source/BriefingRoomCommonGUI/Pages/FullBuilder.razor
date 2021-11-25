@@ -77,6 +77,7 @@
                         <InputEnum Label="Time period" @bind-Value="Template.ContextDecade" EnumType="Decade"/>
                         <InputEnum Label="Player Side" @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition"/>
                         <InputDataBase Label="Theater" @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater"/>
+                        <InputDataBase Label="Situation" @bind-Value="Template.ContextSituation" DataBaseType="DatabaseEntryType.Situation" Grouping="@Template.ContextTheater"/>
                         <InputDataBase Label="Home airbase" @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
                     </div>
                     break;

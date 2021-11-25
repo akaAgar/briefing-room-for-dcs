@@ -59,8 +59,7 @@ namespace BriefingRoom4DCS.Generator
             if (requiredParkingSpots == 0)
                 requiredParkingSpots = (from MissionTemplateFlightGroup flightGroup in template.PlayerFlightGroups select flightGroup.Count).Sum();
             // Select all airbases for this theater
-            DBEntryAirbase[] airbases = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater).GetAirbases();
-
+            DBEntryAirbase[] airbases = Database.Instance.GetEntry<DBEntrySituation>(template.ContextSituation).GetAirbases();
             // If a particular airbase name has been specified and an airbase with this name exists, pick it
             if (!string.IsNullOrEmpty(selectedAirbaseID))
             {
@@ -88,10 +87,7 @@ namespace BriefingRoom4DCS.Generator
             }
 
             // Select all airbases belonging to the player coalition
-            Coalition requiredCoalition =
-                template.OptionsMission.Contains("InvertCountriesCoalitions") ?
-                template.ContextPlayerCoalition.GetEnemy() : template.ContextPlayerCoalition;
-            airbases = (from DBEntryAirbase airbase in airbases where airbase.Coalition == requiredCoalition select airbase).ToArray();
+            airbases = (from DBEntryAirbase airbase in airbases where airbase.Coalition == template.ContextPlayerCoalition select airbase).ToArray();
             if (airbases.Length == 0)
             {
                 BriefingRoom.PrintToLog($"No airbase belonging to player coalition found, cannot spawn player aircraft.", LogMessageErrorLevel.Error);
@@ -140,9 +136,9 @@ namespace BriefingRoom4DCS.Generator
         internal void SetupAirbasesCoalitions(DCSMission mission, MissionTemplate template, DBEntryAirbase playerAirbase)
         {
             // Select all airbases for this theater
-            DBEntryAirbase[] theaterAirbases = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater).GetAirbases();
+            DBEntryAirbase[] situationAirbases = Database.Instance.GetEntry<DBEntrySituation>(template.ContextSituation).GetAirbases();
 
-            foreach (DBEntryAirbase airbase in theaterAirbases)
+            foreach (DBEntryAirbase airbase in situationAirbases)
             {
                 // Airbase is the player starting airbase, always set it to the player coalition
                 if (airbase.DCSID == playerAirbase.DCSID)
@@ -152,11 +148,8 @@ namespace BriefingRoom4DCS.Generator
                 }
 
                 // Other airbases are assigned to a coalition according to the theater and the template settings
-                Coalition airbaseCoalition =
-                    template.OptionsMission.Contains("InvertCountriesCoalitions") ?
-                    airbase.Coalition.GetEnemy() : airbase.Coalition;
 
-                mission.SetAirbase(airbase.DCSID, airbaseCoalition);
+                mission.SetAirbase(airbase.DCSID, airbase.Coalition);
             }
         }
 
