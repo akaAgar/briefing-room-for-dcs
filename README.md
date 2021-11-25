@@ -34,7 +34,7 @@ BriefingRoom is free and open source and will always remain so, but if you want 
 
 ### Additional information
 
-* Created by Ambroise Garel (@akaAgar), with additional code by John Harvey (@john681611)
+* Created by Ambroise Garel (@akaAgar), maintained by John Harvey (@john681611)
 * Released under the [GNU General Public License 3.0](https://www.gnu.org/licenses/gpl-3.0.en.html)
 * Project website: [akaagar.itch.io/briefing-room-for-dcs](https://akaagar.itch.io/briefing-room-for-dcs/)
 * Source code repository: [github.com/akaAgar/briefing-room-for-dcs](https://github.com/akaAgar/briefing-room-for-dcs)
