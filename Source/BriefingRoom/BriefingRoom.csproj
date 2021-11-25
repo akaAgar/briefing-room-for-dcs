@@ -4,4 +4,7 @@
     <RootNamespace>BriefingRoom4DCS</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Polly" Version="7.2.2" />
+  </ItemGroup>
 </Project>

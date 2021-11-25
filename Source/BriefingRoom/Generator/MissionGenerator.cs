@@ -21,6 +21,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
+using Polly;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -57,7 +58,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Create mission class and other fields
             DCSMission mission = new DCSMission();
-            
+
             List<Waypoint> waypoints = new List<Waypoint>();
             List<int> immediateActivationAircraftGroupsIDs = new List<int>();
             List<int> lateActivationAircraftGroupsIDs = new List<int>();
@@ -159,7 +160,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 flightPlanGenerator.GenerateBullseyes(mission, objectivesCenter);
                 flightPlanGenerator.GenerateObjectiveWPCoordinatesLua(template, mission, waypoints);
-                flightPlanGenerator.GenerateAircraftPackageWaypoints(template,waypoints, averageInitialPosition, objectivesCenter);
+                flightPlanGenerator.GenerateAircraftPackageWaypoints(template, waypoints, averageInitialPosition, objectivesCenter);
                 flightPlanGenerator.GenerateIngressAndEgressWaypoints(template, waypoints, averageInitialPosition, objectivesCenter);
             }
 
@@ -210,7 +211,7 @@ namespace BriefingRoom4DCS.Generator
                 string missionName = GeneratorTools.GenerateMissionName(template.BriefingMissionName);
                 mission.Briefing.Name = missionName;
                 mission.SetValue("MISSIONNAME", missionName);
-                
+
                 briefingGenerator.GenerateMissionBriefingDescription(mission, template, objectiveTargetUnitFamilies);
                 mission.SetValue("DescriptionText", mission.Briefing.GetBriefingAsRawText("\\\n"));
             }
@@ -227,11 +228,24 @@ namespace BriefingRoom4DCS.Generator
 
             // Generate image files
             BriefingRoom.PrintToLog("Generating images...");
-            using (MissionGeneratorImages imagesGenerator = new MissionGeneratorImages()) {
+            using (MissionGeneratorImages imagesGenerator = new MissionGeneratorImages())
+            {
                 imagesGenerator.GenerateTitle(mission, template);
                 imagesGenerator.GenerateKneeboardImage(mission);
             }
 
+            return mission;
+        }
+
+        internal DCSMission GenerateRetryable(MissionTemplate template, bool useObjectivePresets)
+        {
+            DCSMission mission = Policy.HandleResult<DCSMission>(x => x.IsExtremeDistance(template))
+                .Retry(3)
+                .Execute(() => Generate(template, useObjectivePresets));
+            
+            if (mission.IsExtremeDistance(template))
+                BriefingRoom.PrintToLog($"Distance to objectives exceeds 1.7x of requested distance.", LogMessageErrorLevel.Warning);
+            
             return mission;
         }
 

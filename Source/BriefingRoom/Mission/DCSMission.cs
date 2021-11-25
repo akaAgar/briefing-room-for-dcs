@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using BriefingRoom4DCS.Template;
 
 namespace BriefingRoom4DCS.Mission
 {
@@ -197,6 +198,20 @@ namespace BriefingRoom4DCS.Mission
                 return File.ReadAllBytes(filePath);
             }
             return null;
+        }
+
+        /// <summary>
+        /// Is Airbase to Objective over 1.7 FlightPlanObjectiveDistance
+        /// </summary>
+        internal bool IsExtremeDistance(MissionTemplate template)
+        {
+            var objCenter = new Coordinates(
+                double.Parse(GetValue("MissionCenterX")),
+                double.Parse(GetValue("MissionCenterY")));
+            var missionCenter = new Coordinates(
+                double.Parse(GetValue("MissionAirbaseX")),
+                double.Parse(GetValue("MissionAirbaseY")));
+            return objCenter.GetDistanceFrom(missionCenter) * Toolbox.METERS_TO_NM < template.FlightPlanObjectiveDistance * 1.7;
         }
 
         /// <summary>

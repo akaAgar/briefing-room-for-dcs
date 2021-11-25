@@ -212,7 +212,7 @@ namespace BriefingRoom4DCS
         /// <returns>A <see cref="DCSMission"/>, or null if mission generation failed.</returns>
         public DCSMission GenerateMission(string templateFilePath, bool useObjectivePresets = false)
         {
-            return Generator.Generate(new MissionTemplate(templateFilePath), useObjectivePresets);
+            return Generator.GenerateRetryable(new MissionTemplate(templateFilePath), useObjectivePresets);
         }
 
         /// <summary>
@@ -223,7 +223,7 @@ namespace BriefingRoom4DCS
         /// <returns>A <see cref="DCSMission"/>, or null if mission generation failed.</returns>
         public DCSMission GenerateMission(MissionTemplate template, bool useObjectivePresets = false)
         {
-            return Generator.Generate(template, useObjectivePresets);
+            return Generator.GenerateRetryable(template, useObjectivePresets);
         }
 
         /// <summary>
