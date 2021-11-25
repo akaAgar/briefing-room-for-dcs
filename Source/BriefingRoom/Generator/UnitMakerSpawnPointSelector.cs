@@ -53,16 +53,19 @@ namespace BriefingRoom4DCS.Generator
 
         private readonly DBEntrySituation SituationDB;
 
+        private readonly bool InvertCoalition;
+
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="theaterDB">Theater database entry to use</param>
-        internal UnitMakerSpawnPointSelector(DBEntryTheater theaterDB, DBEntrySituation situationDB)
+        internal UnitMakerSpawnPointSelector(DBEntryTheater theaterDB, DBEntrySituation situationDB, bool invertCoalition)
         {
             TheaterDB = theaterDB;
             SituationDB = situationDB;
             AirbaseParkingSpots = new Dictionary<int, List<DBEntryAirbaseParkingSpot>>();
             SpawnPoints = new List<DBEntryTheaterSpawnPoint>();
+            InvertCoalition = invertCoalition;
 
             Clear();
         }
@@ -79,7 +82,7 @@ namespace BriefingRoom4DCS.Generator
         {
             parkingSpotCoordinates = new Coordinates();
             if (!AirbaseParkingSpots.ContainsKey(airbaseID) || (AirbaseParkingSpots[airbaseID].Count == 0)) return -1;
-            DBEntryAirbase[] airbaseDB = (from DBEntryAirbase ab in SituationDB.GetAirbases() where ab.DCSID == airbaseID select ab).ToArray();
+            DBEntryAirbase[] airbaseDB = (from DBEntryAirbase ab in SituationDB.GetAirbases(InvertCoalition) where ab.DCSID == airbaseID select ab).ToArray();
             if (airbaseDB.Length == 0) return -1; // No airbase with proper DCSID
             DBEntryAirbaseParkingSpot? parkingSpot = null;
             if (lastSpotCoordinates != null) //find nearest spot distance wise in attempt to cluster
@@ -100,7 +103,7 @@ namespace BriefingRoom4DCS.Generator
             if(TheaterDB.SpawnPoints is not null)
                 SpawnPoints.AddRange(TheaterDB.SpawnPoints);
 
-            foreach (DBEntryAirbase airbase in SituationDB.GetAirbases())
+            foreach (DBEntryAirbase airbase in SituationDB.GetAirbases(InvertCoalition))
             {
                 if (airbase.ParkingSpots.Length < 1) continue;
                 if (AirbaseParkingSpots.ContainsKey(airbase.DCSID)) continue;
@@ -187,7 +190,7 @@ namespace BriefingRoom4DCS.Generator
             {   
                 var coordOptionsLinq = Enumerable.Range(0, 50)
                     .Select(x => Coordinates.CreateRandom(distanceOrigin1, searchRange))
-                    .Where(x => CheckNotInHostileCoords(x, coalition));
+                    .Where(x => CheckNotInHostileCoords(x));
 
                 if (secondSearchRange.HasValue) 
                     coordOptionsLinq = coordOptionsLinq.Where(x => secondSearchRange.Value.Contains(distanceOrigin2.Value.GetDistanceFrom(x)));
@@ -214,9 +217,13 @@ namespace BriefingRoom4DCS.Generator
         {
             if (!coalition.HasValue)
                 return true;
+
+            var red  =  SituationDB.GetRedZone(InvertCoalition);
+            var blue = SituationDB.GetBlueZone(InvertCoalition);
+
             if (coalition.Value == Coalition.Blue)
-                return !ShapeManager.IsPosValid(coordinates, SituationDB.RedCoordinates);
-            return !ShapeManager.IsPosValid(coordinates, SituationDB.BlueCoordinates);
+                return !ShapeManager.IsPosValid(coordinates, red);
+            return !ShapeManager.IsPosValid(coordinates, blue);
         }
 
         /// <summary>

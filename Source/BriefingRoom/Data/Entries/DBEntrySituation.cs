@@ -30,9 +30,9 @@ namespace BriefingRoom4DCS.Data
     internal class DBEntrySituation : DBEntry
     {
 
-        internal List<Coordinates> RedCoordinates { get; private set; }
+        private List<Coordinates> RedCoordinates { get; set; }
 
-        internal List<Coordinates> BlueCoordinates { get; private set; }
+        private List<Coordinates> BlueCoordinates { get; set; }
 
         /// <summary>
         /// ID of the theater this airbase is located on.
@@ -61,20 +61,23 @@ namespace BriefingRoom4DCS.Data
             return true;
         }
 
+        internal List<Coordinates> GetRedZone(bool invertCoalition) => !invertCoalition ? RedCoordinates : BlueCoordinates;
+        internal List<Coordinates> GetBlueZone(bool invertCoalition) => !invertCoalition ? BlueCoordinates : RedCoordinates;
+
         /// <summary>
         /// Returns an array of all airbases in this theater.
         /// </summary>
         /// <returns>An array of <see cref="DBEntryAirbase"/></returns>
-        public DBEntryAirbase[] GetAirbases()
+        internal DBEntryAirbase[] GetAirbases(bool invertCoalition)
         {
             var airbases = (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>()
                  where Toolbox.StringICompare(airbase.Theater, Theater)
                  select airbase).ToArray();
             foreach (var airbase in airbases)
             {
-                if(ShapeManager.IsPosValid(airbase.Coordinates, BlueCoordinates))
+                if(ShapeManager.IsPosValid(airbase.Coordinates, GetBlueZone(invertCoalition)))
                     airbase.Coalition = Coalition.Blue;
-                if(ShapeManager.IsPosValid(airbase.Coordinates, RedCoordinates))
+                if(ShapeManager.IsPosValid(airbase.Coordinates, GetRedZone(invertCoalition)))
                     airbase.Coalition = Coalition.Red;
             }
             return airbases;

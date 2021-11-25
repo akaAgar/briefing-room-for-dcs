@@ -121,7 +121,8 @@ namespace BriefingRoom4DCS.Generator
             if (objectiveSeperation < 1) objectiveSeperation = Toolbox.RandomInt(10, 100);
 
             Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                targetDB.ValidSpawnPoints, playerAirbase.Coordinates,
+                targetDB.ValidSpawnPoints,
+                 playerAirbase.Coordinates,
                 new MinMaxD(
                     objectiveDistance * OBJECTIVE_DISTANCE_VARIATION_MIN,
                     objectiveDistance * OBJECTIVE_DISTANCE_VARIATION_MAX),
@@ -147,7 +148,7 @@ namespace BriefingRoom4DCS.Generator
                 case DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking:
                 case DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter:
                     var targetAirbaseOptions =
-                        (from DBEntryAirbase airbaseDB in situationDB.GetAirbases()
+                        (from DBEntryAirbase airbaseDB in situationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"))
                          where airbaseDB.DCSID != playerAirbase.DCSID
                          select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(objectiveCoordinates));
                     DBEntryAirbase targetAirbase = targetAirbaseOptions.FirstOrDefault(x => template.OptionsMission.Contains("SpawnAnywhere")? true : x.Coalition == template.ContextPlayerCoalition.GetEnemy());
