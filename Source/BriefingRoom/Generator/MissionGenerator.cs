@@ -239,7 +239,9 @@ namespace BriefingRoom4DCS.Generator
 
         internal DCSMission GenerateRetryable(MissionTemplate template, bool useObjectivePresets)
         {
-            DCSMission mission = Policy.HandleResult<DCSMission>(x => x.IsExtremeDistance(template))
+            DCSMission mission = Policy
+                .HandleResult<DCSMission>(x => x.IsExtremeDistance(template))
+                .Or<BriefingRoomException>()
                 .Retry(3)
                 .Execute(() => Generate(template, useObjectivePresets));
             
