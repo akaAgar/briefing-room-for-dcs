@@ -203,15 +203,17 @@ namespace BriefingRoom4DCS.Mission
         /// <summary>
         /// Is Airbase to Objective over 1.7 FlightPlanObjectiveDistance
         /// </summary>
-        internal bool IsExtremeDistance(MissionTemplate template)
+        internal bool IsExtremeDistance(MissionTemplate template, out double distance)
         {
             var objCenter = new Coordinates(
                 double.Parse(GetValue("MissionCenterX")),
                 double.Parse(GetValue("MissionCenterY")));
-            var missionCenter = new Coordinates(
+            var playerAirbase = new Coordinates(
                 double.Parse(GetValue("MissionAirbaseX")),
                 double.Parse(GetValue("MissionAirbaseY")));
-            return objCenter.GetDistanceFrom(missionCenter) * Toolbox.METERS_TO_NM < template.FlightPlanObjectiveDistance * 1.7;
+            distance = objCenter.GetDistanceFrom(playerAirbase) * Toolbox.METERS_TO_NM;
+            var extremeLimit = template.FlightPlanObjectiveDistance * 1.7;
+            return distance > extremeLimit;
         }
 
         /// <summary>

@@ -241,13 +241,13 @@ namespace BriefingRoom4DCS.Generator
         internal DCSMission GenerateRetryable(MissionTemplate template, bool useObjectivePresets)
         {
             DCSMission mission = Policy
-                .HandleResult<DCSMission>(x => x.IsExtremeDistance(template))
+                .HandleResult<DCSMission>(x => x.IsExtremeDistance(template, out double distance))
                 .Or<BriefingRoomException>()
                 .Retry(3)
                 .Execute(() => Generate(template, useObjectivePresets));
             
-            if (mission.IsExtremeDistance(template))
-                BriefingRoom.PrintToLog($"Distance to objectives exceeds 1.7x of requested distance.", LogMessageErrorLevel.Warning);
+            if (mission.IsExtremeDistance(template, out double distance))
+                BriefingRoom.PrintToLog($"Distance to objectives exceeds 1.7x of requested distance. ({Math.Round(distance, 2)}NM)", LogMessageErrorLevel.Warning);
             
             return mission;
         }
