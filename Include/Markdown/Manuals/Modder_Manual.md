@@ -21,6 +21,7 @@ If you only want to generate missions, please read the User's manual.
     1. [Database/ObjectiveTasks directory](#databaseobjectivetasks-directory)
     1. [Database/ObjectivePresets directory](#databaseobjectivepresets-directory)
     1. [Database/Theaters directory](#databasetheaters-directory)
+    1. [Database/Situations directory](#databasesituations-directory)
     1. [Database/TheatersAirbases directory](#databasetheatersairbases-directory)
     1. [Database/WeatherPresets directory](#databaseweatherpresets-directory)
     1. [Database/Units directory](#databaseunits-directory)
@@ -163,10 +164,15 @@ Map Configuration covers
 * Local Daylight
 * Temps
 
-Following reccomended to use `dataExtractors\ZoneExtractor.lua` and example mission under `dataExtractors\PositioningMissions` to generate
+Following recommended to use `dataExtractors\ZoneExtractor.lua` and example mission under `dataExtractors\PositioningMissions` to generate
 * Spawn points
 * Water Area
 * Water Exclusion Areas (Islands)
+
+
+### Database/Situations directory
+A Situation is red and blue control areas.
+Its  recommended to use `dataExtractors\ZoneExtractor.lua` using a mission that has one Red Side polygon and one Blue side Polygon
 * Red Control Area
 * Blue Control Area
 
