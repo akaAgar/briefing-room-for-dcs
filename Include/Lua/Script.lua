@@ -810,6 +810,7 @@ $SCRIPTOBJECTIVESFEATURES$
 
 briefingRoom.mission.missionFeatures = { } -- Mission features
 briefingRoom.mission.missionFeatures.groupsID = { } -- Mission features group ID
+briefingRoom.mission.missionFeatures.unitsID = { } -- Mission features units ID
 $SCRIPTMISSIONFEATURES$
 
 -- ===================================================================================

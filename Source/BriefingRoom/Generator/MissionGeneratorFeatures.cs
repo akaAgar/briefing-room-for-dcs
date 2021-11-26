@@ -105,7 +105,10 @@ namespace BriefingRoom4DCS.Generator
 
             // Adds the features' group ID to the briefingRoom.mission.missionFeatures.groupsID table
             if (this is MissionGeneratorFeaturesMission)
+            {
                 featureLua += $"briefingRoom.mission.missionFeatures.groupsID.{GeneratorTools.LowercaseFirstCharacter(featureDB.ID)} = {(groupInfo.HasValue ? groupInfo.Value.GroupID : 0)}\n";
+                featureLua += $"briefingRoom.mission.missionFeatures.unitsID.{GeneratorTools.LowercaseFirstCharacter(featureDB.ID)} = {{{(groupInfo.HasValue ? string.Join(",", groupInfo.Value.UnitsID) : "")}}}\n";
+            }
 
             if (!string.IsNullOrEmpty(featureDB.IncludeLuaSettings)) featureLua = featureDB.IncludeLuaSettings + "\n";
             foreach (string luaFile in featureDB.IncludeLua)
@@ -172,6 +175,8 @@ namespace BriefingRoom4DCS.Generator
             {
                 GeneratorTools.ReplaceKey(ref remark, "GroupName", groupInfo.Value.Name);
                 GeneratorTools.ReplaceKey(ref remark, "GroupFrequency", GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency));
+                GeneratorTools.ReplaceKey(ref remark, "GroupUnitName", groupInfo.Value.UnitDB.UIDisplayName);
+                
             }
 
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Remark, remark, featureDB is DBEntryFeatureMission);
