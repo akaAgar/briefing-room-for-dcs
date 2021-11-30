@@ -11,7 +11,7 @@ $PROPSLUA$
                 ["type"] = "$DCSID$",
                 ["unitId"] = $UNITID$,
                 ["psi"] = 0,
-                ["parking_id"] = "$PARKINGID$",
+                ["parking"] = "$PARKINGID$",
                 ["y"] = $UNITY$,
                 ["x"] = $UNITX$,
                 ["name"] = "$NAME$",
