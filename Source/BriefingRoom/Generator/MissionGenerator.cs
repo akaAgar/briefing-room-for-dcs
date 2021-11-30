@@ -65,6 +65,8 @@ namespace BriefingRoom4DCS.Generator
 
             // Get required database entries here, so we don't have to look for them each time they're needed.
             DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
+            if(!template.ContextSituation.StartsWith(template.ContextTheater))
+               template.ContextSituation = template.ContextTheater + "Default";
             DBEntrySituation situationDB = Database.Instance.GetEntry<DBEntrySituation>(template.ContextSituation);
             DBEntryCoalition[] coalitionsDB = new DBEntryCoalition[]
             {
