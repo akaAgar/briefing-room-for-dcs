@@ -79,11 +79,6 @@ namespace BriefingRoom4DCS.Data
         internal string Runways { get; private set; }
 
         /// <summary>
-        /// Runway spawn spots spots of this airbase.
-        /// </summary>
-        internal DBEntryAirbaseParkingSpot[] RunwaySpawns { get; private set; }
-
-        /// <summary>
         /// TACAN frequency (null or empty if none).
         /// </summary>
         internal string TACAN { get; private set; }
@@ -111,9 +106,6 @@ namespace BriefingRoom4DCS.Data
 
                 if (!Database.Instance.EntryExists<DBEntryTheater>(Theater))
                     throw new Exception($"Airbase \"{ID}\" located on non-existing theater \"{Theater}\".");
-
-                RunwaySpawns = LoadParkingSpots(ini, "RunwaySpawns", true);
-                if (RunwaySpawns.Length == 0) throw new Exception($"No runway spawns for airbase \"{ID}\".");
              
                 ParkingSpots = LoadParkingSpots(ini, "Parking");
                 if (ParkingSpots.Length == 0) throw new Exception($"No parking spots for airbase \"{ID}\".");

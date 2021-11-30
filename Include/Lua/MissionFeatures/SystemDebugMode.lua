@@ -31,19 +31,39 @@ function briefingRoom.f10MenuCommands.debug.destroyTargetUnit()
   trigger.action.outText("No target units found", 2)
 end
 
--- Destroys the next active enemy unit
--- function briefingRoom.extensions.debug.destroyEnemyUnit()
-  -- for _,g in ipairs(coalition.getGroups($ENEMYCOALITION$)) do
-    -- for __,u in ipairs(g:getUnits()) do
-      -- if u:getLife() > 0 then
-        -- trigger.action.outText("Destroyed "..u:getName(), 2)
-        -- trigger.action.explosion(u:getPoint(), 100)
-        -- return
-      -- end
-    -- end
-  -- end
-  -- trigger.action.outText("No enemy units found", 2)
--- end
+
+function  briefingRoom.f10MenuCommands.debug.dumpAirbaseDataType(o)
+ if o == 16 then return "Runway" end
+ if o == 40 then return "HelicopterOnly" end
+ if o == 68 then return "HardenedAirShelter" end
+ if o == 72 then return "AirplaneOnly" end
+ if o == 104 then return "OpenAirSpawn" end
+ return "UNKNOWN"
+end
+
+function briefingRoom.f10MenuCommands.debug.dumpAirbaseData()
+  briefingRoom.debugPrint("STARTING AIRBASE DUMP");
+  local base = world.getAirbases()
+   for i = 1, #base do
+      briefingRoom.debugPrint(base[i]:getID()..":\n")
+      local parkingData = base[i]:getParking()
+      local parkingString = ""
+      for j = 1, #parkingData do
+        if parkingData[j].Term_Type ~= 16 then
+          parkingString = parkingString.."\nSpot"..j..".Coordinates="..parkingData[j].vTerminalPos.x..","..parkingData[j].vTerminalPos.z
+          parkingString = parkingString.."\nSpot"..j..".DCSID="..parkingData[j].Term_Index
+          parkingString = parkingString.."\nSpot"..j..".Type="..briefingRoom.f10MenuCommands.debug.dumpAirbaseDataType(parkingData[j].Term_Type)
+        end
+        if j % 10 == 5 then
+          briefingRoom.debugPrint(parkingString)
+          parkingString = ""
+        end
+      end
+      briefingRoom.debugPrint(parkingString..";")
+   end
+   briefingRoom.debugPrint("DONE AIRBASE DUMP");
+end
+
 
 -- Create the debug menu
 do
@@ -51,7 +71,6 @@ do
   missionCommands.addCommand("Destroy target unit", briefingRoom.f10Menu.debug, briefingRoom.f10MenuCommands.debug.destroyTargetUnit)
   missionCommands.addCommand("Simulate player takeoff (start mission)", briefingRoom.f10Menu.debug, briefingRoom.mission.coreFunctions.beginMission)
   missionCommands.addCommand("Activate all aircraft groups", briefingRoom.f10Menu.debug, briefingRoom.f10MenuCommands.debug.activateAllAircraft)
+  missionCommands.addCommand("Dump All Airbase Data", briefingRoom.f10Menu.debug, briefingRoom.f10MenuCommands.debug.dumpAirbaseData)
 
-  -- missionCommands.addCommand("Destroy enemy unit", briefingRoom.extensions.debug.menu, briefingRoom.extensions.debug.destroyEnemyUnit)
-  -- missionCommands.addCommand("Destroy enemy structure", briefingRoom.extensions.debug.menu, briefingRoom.extensions.debug.destroyEnemyStructure)
 end
