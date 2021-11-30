@@ -271,7 +271,7 @@ namespace BriefingRoom4DCS
 
         internal static Coalition GetEnemy(this Coalition coalition)
         {
-            return (Coalition)(1 - (int)coalition);
+            return coalition == Coalition.Blue ? Coalition.Red : Coalition.Blue; 
         }
 
         internal static string ReadAllTextIfFileExists(string filePath)

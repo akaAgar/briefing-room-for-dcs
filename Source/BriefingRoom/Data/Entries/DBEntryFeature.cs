@@ -87,6 +87,12 @@ namespace BriefingRoom4DCS.Data
         internal MinMaxI UnitGroupSize { get; private set; }
 
         /// <summary>
+        /// Min/max number of extra groups
+        /// These will not be usable in scripting. 
+        /// </summary>
+        internal MinMaxI ExtraGroups { get; private set; }
+
+        /// <summary>
         /// Where should the unit group be spawned?
         /// For <see cref="DBEntryFeatureMission"/>, 0.0 means "starting airbase", 1.0 means "objective center"
         /// For <see cref="DBEntryFeatureObjective"/>, distance (in nm) from the objective.
@@ -133,6 +139,7 @@ namespace BriefingRoom4DCS.Data
                 UnitGroupLuaGroup = Toolbox.AddMissingFileExtension(ini.GetValue<string>("UnitGroup", "Lua.Group"), ".lua");
                 UnitGroupLuaUnit = Toolbox.AddMissingFileExtension(ini.GetValue<string>("UnitGroup", "Lua.Unit"), ".lua");
                 UnitGroupSize = ini.GetValue<MinMaxI>("UnitGroup", "Size");
+                ExtraGroups = ini.GetValue<MinMaxI>("UnitGroup", "ExtraGroups");
                 UnitGroupSpawnDistance = ini.GetValue<double>("UnitGroup", "SpawnDistance");
                 UnitGroupPayload = ini.GetValue<string>("UnitGroup", "Payload", "default");
                 UnitGroupValidSpawnPoints = DatabaseTools.CheckSpawnPoints(ini.GetValueArray<SpawnPointType>("UnitGroup", "ValidSpawnPoints"));

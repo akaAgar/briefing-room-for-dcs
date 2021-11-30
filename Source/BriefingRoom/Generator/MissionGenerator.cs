@@ -136,7 +136,7 @@ namespace BriefingRoom4DCS.Generator
             List<Coordinates> objectiveCoordinates = new List<Coordinates>();
             List<UnitFamily> objectiveTargetUnitFamilies = new List<UnitFamily>();
             Coordinates lastObjectiveCoordinates = playerAirbase.Coordinates;
-            using (MissionGeneratorObjectives objectivesGenerator = new MissionGeneratorObjectives(unitMaker, drawingMaker))
+            using (MissionGeneratorObjectives objectivesGenerator = new MissionGeneratorObjectives(unitMaker, drawingMaker, template))
                 for (i = 0; i < template.Objectives.Count; i++)
                 {
                     lastObjectiveCoordinates = objectivesGenerator.GenerateObjective(mission, template, situationDB, i, lastObjectiveCoordinates, playerAirbase, useObjectivePresets, out string objectiveName, out UnitFamily objectiveTargetUnitFamily);
@@ -189,7 +189,7 @@ namespace BriefingRoom4DCS.Generator
             // Generate mission features
             BriefingRoom.PrintToLog("Generating mission features...");
             mission.AppendValue("ScriptMissionFeatures", ""); // Just in case there's no features
-            using (MissionGeneratorFeaturesMission missionFeaturesGenerator = new MissionGeneratorFeaturesMission(unitMaker))
+            using (MissionGeneratorFeaturesMission missionFeaturesGenerator = new MissionGeneratorFeaturesMission(unitMaker, template))
                 for (i = 0; i < template.MissionFeatures.Count; i++)
                     missionFeaturesGenerator.GenerateMissionFeature(mission, template.MissionFeatures[i], i, playerAirbase.Coordinates, objectivesCenter);
 

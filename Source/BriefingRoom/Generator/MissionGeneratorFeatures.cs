@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
+using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,8 @@ namespace BriefingRoom4DCS.Generator
         /// </summary>
         protected readonly UnitMaker UnitMaker;
 
+        protected readonly MissionTemplate Template;
+
         /// <summary>
         /// Current TACAN index. Incremented each time a TACAN-using unit is added to make sure each has its own frequency.
         /// </summary>
@@ -47,9 +50,10 @@ namespace BriefingRoom4DCS.Generator
         /// Constructor.
         /// </summary>
         /// <param name="unitMaker">Unit maker to use for unit generation.</param>
-        internal MissionGeneratorFeatures(UnitMaker unitMaker)
+        internal MissionGeneratorFeatures(UnitMaker unitMaker, MissionTemplate template)
         {
             UnitMaker = unitMaker;
+            Template = template;
         }
 
         protected UnitMakerGroupInfo? AddMissionFeature(DCSMission mission, T featureDB, Coordinates coordinates, Coordinates? coordinates2, ref Dictionary<string, object> extraSettings, Side? objectiveTargetSide = null)
@@ -83,7 +87,7 @@ namespace BriefingRoom4DCS.Generator
                 var unitCount = featureDB.UnitGroupSize.GetValue();
 
                 groupInfo = UnitMaker.AddUnitGroup(
-                    Toolbox.RandomFrom(featureDB.UnitGroupFamilies), featureDB.UnitGroupSize.GetValue(),
+                    Toolbox.RandomFrom(featureDB.UnitGroupFamilies), unitCount,
                     groupSide,
                     featureDB.UnitGroupLuaGroup, featureDB.UnitGroupLuaUnit,
                     coordinates, null, groupFlags, featureDB.UnitGroupPayload,
@@ -98,6 +102,9 @@ namespace BriefingRoom4DCS.Generator
                             $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName}\t" +
                             $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
                             $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}"); // TODO: human-readable payload name
+
+                if(featureDB.ExtraGroups.Max > 1)
+                    SpawnExtraGroups(featureDB, groupSide, groupFlags, coordinates, extraSettings);
             }
 
             // Feature Lua script
@@ -180,6 +187,26 @@ namespace BriefingRoom4DCS.Generator
             }
 
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Remark, remark, featureDB is DBEntryFeatureMission);
+        }
+
+        private void SpawnExtraGroups(T featureDB, Side groupSide, UnitMakerGroupFlags groupFlags, Coordinates coordinates, Dictionary<string, object> extraSettings)
+        {
+            foreach (var i in Enumerable.Range(1, featureDB.ExtraGroups.GetValue()))
+            {
+                var spawnCoords = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                    featureDB.UnitGroupValidSpawnPoints, coordinates,
+                    new MinMaxD(0, 5),
+                    coalition: GeneratorTools.GetSpawnPointCoalition(Template, groupSide)
+                    );
+                if(!spawnCoords.HasValue)
+                    continue;
+                 UnitMaker.AddUnitGroup(
+                    Toolbox.RandomFrom(featureDB.UnitGroupFamilies), featureDB.UnitGroupSize.GetValue(),
+                    groupSide,
+                    featureDB.UnitGroupLuaGroup, featureDB.UnitGroupLuaUnit,
+                    spawnCoords.Value, null, groupFlags, featureDB.UnitGroupPayload,
+                    extraSettings.ToArray());
+            }
         }
 
         /// <summary>

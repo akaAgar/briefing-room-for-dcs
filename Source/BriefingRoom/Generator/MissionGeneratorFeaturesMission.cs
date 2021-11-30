@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
+using BriefingRoom4DCS.Template;
 using System.Collections.Generic;
 
 namespace BriefingRoom4DCS.Generator
@@ -33,7 +34,7 @@ namespace BriefingRoom4DCS.Generator
         /// Constructor.
         /// </summary>
         /// <param name="unitMaker">Unit maker to use for unit generation.</param>
-        internal MissionGeneratorFeaturesMission(UnitMaker unitMaker) : base(unitMaker) { }
+        internal MissionGeneratorFeaturesMission(UnitMaker unitMaker, MissionTemplate template) : base(unitMaker, template) { }
 
         internal void GenerateMissionFeature(DCSMission mission, string featureID, int missionFeatureIndex, Coordinates initialCoordinates, Coordinates objectivesCenter)
         {
@@ -44,11 +45,15 @@ namespace BriefingRoom4DCS.Generator
                 return;
             }
 
+            Coalition coalition = featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly)? Template.ContextPlayerCoalition :Template.ContextPlayerCoalition.GetEnemy();
+
             Coordinates pointSearchCenter = Coordinates.Lerp(initialCoordinates, objectivesCenter, featureDB.UnitGroupSpawnDistance);
             Coordinates? spawnPoint =
                 UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                     featureDB.UnitGroupValidSpawnPoints, pointSearchCenter,
-                    featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.AwayFromMissionArea) ? new MinMaxD(50, 100) : new MinMaxD(0, 5));
+                    featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.AwayFromMissionArea) ? new MinMaxD(50, 100) : new MinMaxD(0, 5),
+                    coalition: featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.IgnoreBorders) ? null : coalition
+                    );
             if (!spawnPoint.HasValue) // No spawn point found
             {
                 BriefingRoom.PrintToLog($"No spawn point found for mission feature {featureID}.", LogMessageErrorLevel.Warning);

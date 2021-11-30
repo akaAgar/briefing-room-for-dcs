@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
+using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
 
@@ -34,7 +35,7 @@ namespace BriefingRoom4DCS.Generator
         /// Constructor.
         /// </summary>
         /// <param name="unitMaker">Unit maker to use for unit generation.</param>
-        internal MissionGeneratorFeaturesObjectives(UnitMaker unitMaker) : base(unitMaker) { }
+        internal MissionGeneratorFeaturesObjectives(UnitMaker unitMaker, MissionTemplate template) : base(unitMaker, template) { }
 
         internal void GenerateMissionFeature(DCSMission mission, string featureID, string objectiveName, int objectiveIndex, int objectiveGroupID, Coordinates objectiveCoordinates, Side objectiveTargetSide)
         {

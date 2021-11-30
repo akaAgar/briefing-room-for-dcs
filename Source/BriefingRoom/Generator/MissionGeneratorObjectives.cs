@@ -63,11 +63,11 @@ namespace BriefingRoom4DCS.Generator
         /// Constructor.
         /// </summary>
         /// <param name="spawnPointSelector">Spawn point selector to use for objective generation</param>
-        internal MissionGeneratorObjectives(UnitMaker unitMaker, DrawingMaker drawingMaker)
+        internal MissionGeneratorObjectives(UnitMaker unitMaker, DrawingMaker drawingMaker, MissionTemplate template)
         {
             UnitMaker = unitMaker;
             DrawingMaker = drawingMaker;
-            FeaturesGenerator = new MissionGeneratorFeaturesObjectives(unitMaker);
+            FeaturesGenerator = new MissionGeneratorFeaturesObjectives(unitMaker, template);
             ObjectiveNames = new List<string>(Database.Instance.Common.Names.WPObjectivesNames);
         }
 

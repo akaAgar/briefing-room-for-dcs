@@ -82,5 +82,10 @@ namespace BriefingRoom4DCS.Data
         /// Aircraft should be activated when the player radios for it.
         /// </summary>
         RadioAircraftActivation = 512,
+
+        /// <summary>
+        /// Units ignore borders
+        /// </summary>
+        IgnoreBorders = 1024
     }
 }
