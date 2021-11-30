@@ -110,6 +110,7 @@ namespace BriefingRoom4DCS.Generator
                     parkingSpotIDsList.Add(parkingSpot);
                     parkingSpotCoordinatesList.Add(parkingSpotCoordinates);
                 }
+                groupStartingCoords = parkingSpotCoordinatesList.First();
             }
 
             
