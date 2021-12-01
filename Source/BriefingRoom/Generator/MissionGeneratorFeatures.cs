@@ -84,13 +84,14 @@ namespace BriefingRoom4DCS.Generator
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly)) groupSide = Side.Ally;
                 else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.SameSideAsTarget) && objectiveTargetSide.HasValue) groupSide = objectiveTargetSide.Value;
 
-                var unitCount = featureDB.UnitGroupSize.GetValue();
+                extraSettings.AddIfKeyUnused("Payload", featureDB.UnitGroupPayload);
 
+                var unitCount = featureDB.UnitGroupSize.GetValue();
                 groupInfo = UnitMaker.AddUnitGroup(
                     Toolbox.RandomFrom(featureDB.UnitGroupFamilies), unitCount,
                     groupSide,
                     featureDB.UnitGroupLuaGroup, featureDB.UnitGroupLuaUnit,
-                    coordinates, null, groupFlags, featureDB.UnitGroupPayload,
+                    coordinates, groupFlags,
                     extraSettings.ToArray());
                 if (
                     groupSide == Side.Ally &&
@@ -103,7 +104,7 @@ namespace BriefingRoom4DCS.Generator
                             $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
                             $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}"); // TODO: human-readable payload name
 
-                if(featureDB.ExtraGroups.Max > 1)
+                if (featureDB.ExtraGroups.Max > 1)
                     SpawnExtraGroups(featureDB, groupSide, groupFlags, coordinates, extraSettings);
             }
 
@@ -183,7 +184,7 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.ReplaceKey(ref remark, "GroupName", groupInfo.Value.Name);
                 GeneratorTools.ReplaceKey(ref remark, "GroupFrequency", GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency));
                 GeneratorTools.ReplaceKey(ref remark, "GroupUnitName", groupInfo.Value.UnitDB.UIDisplayName);
-                
+
             }
 
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Remark, remark, featureDB is DBEntryFeatureMission);
@@ -198,14 +199,14 @@ namespace BriefingRoom4DCS.Generator
                     new MinMaxD(0, 5),
                     coalition: GeneratorTools.GetSpawnPointCoalition(Template, groupSide)
                     );
-                if(!spawnCoords.HasValue)
+                if (!spawnCoords.HasValue)
                     continue;
-                 UnitMaker.AddUnitGroup(
-                    Toolbox.RandomFrom(featureDB.UnitGroupFamilies), featureDB.UnitGroupSize.GetValue(),
-                    groupSide,
-                    featureDB.UnitGroupLuaGroup, featureDB.UnitGroupLuaUnit,
-                    spawnCoords.Value, null, groupFlags, featureDB.UnitGroupPayload,
-                    extraSettings.ToArray());
+                UnitMaker.AddUnitGroup(
+                   Toolbox.RandomFrom(featureDB.UnitGroupFamilies), featureDB.UnitGroupSize.GetValue(),
+                   groupSide,
+                   featureDB.UnitGroupLuaGroup, featureDB.UnitGroupLuaUnit,
+                   spawnCoords.Value, groupFlags,
+                   extraSettings.ToArray());
             }
         }
 

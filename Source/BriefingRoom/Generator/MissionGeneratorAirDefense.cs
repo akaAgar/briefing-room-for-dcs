@@ -119,8 +119,7 @@ namespace BriefingRoom4DCS.Generator
                     groupInfo = UnitMaker.AddUnitGroup(
                         unitFamilies[j], 1, side,
                         "GroupVehicle", "UnitVehicle",
-                        spawnPoint.Value,
-                        Toolbox.RandomFrom(airDefenseLevelDB.SkillLevel));
+                        spawnPoint.Value);
 
                     if (groupInfo.HasValue) break;
                 }

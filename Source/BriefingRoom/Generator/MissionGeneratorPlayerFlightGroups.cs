@@ -121,7 +121,9 @@ namespace BriefingRoom4DCS.Generator
             UnitMakerGroupInfo? groupInfo = UnitMaker.AddUnitGroup(
                 Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), Side.Ally, unitDB.Families[0],
                 groupLuaFile, "UnitAircraft", groupStartingCoords,
-                skillLevel, unitMakerGroupFlags, flightGroup.Payload,
+                unitMakerGroupFlags,
+                "Payload".ToKeyValuePair(flightGroup.Payload),
+                "Skill".ToKeyValuePair(skillLevel),
                 "PlayerStartingAction".ToKeyValuePair(GeneratorTools.GetPlayerStartingAction(flightGroup.StartLocation)),
                 "PlayerStartingType".ToKeyValuePair(GeneratorTools.GetPlayerStartingType(flightGroup.StartLocation)),
                 "Country".ToKeyValuePair(flightGroup.Country),

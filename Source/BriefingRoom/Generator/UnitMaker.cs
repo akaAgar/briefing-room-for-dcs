@@ -85,9 +85,8 @@ namespace BriefingRoom4DCS.Generator
         internal UnitMakerGroupInfo? AddUnitGroup(
             UnitFamily family, int unitCount, Side side,
             string groupLua, string unitLua,
-            Coordinates coordinates, DCSSkillLevel? skill = null,
+            Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags = 0,
-            string aircraftPayload = "default",
             params KeyValuePair<string, object>[] extraSettings)
         {
             if (unitCount <= 0) return null;
@@ -102,15 +101,14 @@ namespace BriefingRoom4DCS.Generator
                 units.AddRange(airDefenseUnits);
             }
 
-            return AddUnitGroup(Toolbox.ShuffleArray(units.ToArray()), side, family, groupLua, unitLua, coordinates, skill, unitMakerGroupFlags, aircraftPayload, extraSettings);
+            return AddUnitGroup(Toolbox.ShuffleArray(units.ToArray()), side, family, groupLua, unitLua, coordinates, unitMakerGroupFlags, extraSettings);
         }
 
         internal UnitMakerGroupInfo? AddUnitGroup(
             string[] units, Side side, UnitFamily unitFamily,
             string groupTypeLua, string unitTypeLua,
-            Coordinates coordinates, DCSSkillLevel? skill = null,
+            Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags = 0,
-            string aircraftPayload = "default",
             params KeyValuePair<string, object>[] extraSettings)
         {
             if (units.Length == 0) return null;
@@ -120,9 +118,12 @@ namespace BriefingRoom4DCS.Generator
 
             if (extraSettings.Any(x => x.Key == "Country"))
                 country = (Country)extraSettings.First(x => x.Key == "Country").Value;
+            
+            var skill =GeneratorTools.GetDefaultSkillLevel(Template, side);
 
-            if (!skill.HasValue)
-                skill = GeneratorTools.GetDefaultSkillLevel(Template, unitFamily, side);
+            if (extraSettings.Any(x => x.Key == "Skill"))
+                skill = (DCSSkillLevel)extraSettings.First(x => x.Key == "Skill").Value;
+                
 
             var isUsingSkynet = Template.MissionFeatures.Contains("SkynetIADS");
             string groupName;
@@ -147,7 +148,6 @@ namespace BriefingRoom4DCS.Generator
                     callsign,
                     groupTypeLua,
                     coordinates,
-                    aircraftPayload,
                     unitMakerGroupFlags,
                     extraSettings
                 );
@@ -167,7 +167,6 @@ namespace BriefingRoom4DCS.Generator
                 callsign,
                 unitTypeLua,
                 coordinates,
-                aircraftPayload,
                 unitMakerGroupFlags,
                 extraSettings
             );
@@ -192,7 +191,7 @@ namespace BriefingRoom4DCS.Generator
             }
 
             GeneratorTools.ReplaceKey(ref groupLua, "UnitID", firstUnitID); // Must be after units are added
-            GeneratorTools.ReplaceKey(ref groupLua, "Skill", skill.Value); // Must be after units are added, because skill is set as a unit level
+            GeneratorTools.ReplaceKey(ref groupLua, "Skill", skill); // Must be after units are added, because skill is set as a unit level
             GeneratorTools.ReplaceKey(ref groupLua, "Hidden", GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags)); // If "hidden" was not set through custom values
 
             AddUnitGroupToTable(country, unitFamily.GetUnitCategory(), groupLua);
@@ -247,7 +246,6 @@ namespace BriefingRoom4DCS.Generator
             UnitCallsign? callsign,
             string unitTypeLua,
             Coordinates coordinates,
-            string aircraftPayload,
             UnitMakerGroupFlags unitMakerGroupFlags,
             params KeyValuePair<string, object>[] extraSettings
             )
@@ -275,7 +273,6 @@ namespace BriefingRoom4DCS.Generator
                         unitDB,
                         unitTypeLua,
                         coordinates,
-                        aircraftPayload,
                         unitMakerGroupFlags,
                         extraSettings
                         );
@@ -300,7 +297,6 @@ namespace BriefingRoom4DCS.Generator
             UnitCallsign? callsign,
             string groupTypeLua,
             Coordinates coordinates,
-            string aircraftPayload,
             UnitMakerGroupFlags unitMakerGroupFlags,
             params KeyValuePair<string, object>[] extraSettings
         )
@@ -336,7 +332,6 @@ namespace BriefingRoom4DCS.Generator
                         unitDB,
                         "UnitStatic",
                         coordinates,
-                        aircraftPayload,
                         unitMakerGroupFlags,
                         extraSettings
                         );
@@ -376,7 +371,6 @@ namespace BriefingRoom4DCS.Generator
                         callsign,
                         "UnitVehicle",
                         coordinates,
-                        aircraftPayload,
                         unitMakerGroupFlags,
                         extraSettings
                     );
@@ -406,7 +400,6 @@ namespace BriefingRoom4DCS.Generator
             DBEntryUnit unitDB,
             string unitTypeLua,
             Coordinates coordinates,
-            string aircraftPayload,
             UnitMakerGroupFlags unitMakerGroupFlags,
             params KeyValuePair<string, object>[] extraSettings)
         {
@@ -439,7 +432,9 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "RadioPresetsLua", string.Join("", unitDB.AircraftData.RadioPresets.Select((x, index) => $"[{index + 1}] = {x.ToLuaString()}")));
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Speed", unitDB.AircraftData.CruiseSpeed);
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadCommon", unitDB.AircraftData.PayloadCommon);
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadPylons", unitDB.AircraftData.GetPayloadLua(aircraftPayload));
+                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadPylons", unitDB.AircraftData.GetPayloadLua(
+                    extraSettings.Any(x => x.Key == "Payload") ? extraSettings.First(x => x.Key == "Payload").Value.ToString() : "default"
+                    ));
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Livery", extraSettings.Any(x => x.Key == "Livery") ? extraSettings.First(x => x.Key == "Livery").Value : "default");
             }
             else if(unitDB.Category == UnitCategory.Static)

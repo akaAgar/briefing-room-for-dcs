@@ -1,5 +1,5 @@
 # BriefingRoom for DCS World - User's manual
-__Last Edited: 28/10/2021__
+__Last Edited: 01/12/2021__
 
 This manual contains everything you need to know if you just plan to use BriefingRoom to generate missions. If you plan on modding BriefingRoom, please read the Modder's manual.
 
@@ -130,7 +130,9 @@ Only usable if you have more than one Flight group. Set of tabs to group flights
 
 Two tabs containing the same options for Enemies and Friendlies
 
-**Air Defense**: How strong is AA systems?
+**Training**: How well trained are the troops? (None & Very low are the same)
+
+**Air Defense**: How many is AA systems are in the area?
 
 **Air Force**: How many aircraft are they likely to send?
 

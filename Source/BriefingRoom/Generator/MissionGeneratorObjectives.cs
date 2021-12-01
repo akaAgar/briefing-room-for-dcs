@@ -223,8 +223,7 @@ namespace BriefingRoom4DCS.Generator
                 taskDB.TargetSide,
                 targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
                 objectiveCoordinates,
-                null, groupFlags,
-                "default",
+                groupFlags,
                 extraSettings.ToArray());
 
             if (!targetGroupInfo.HasValue) // Failed to generate target group
@@ -241,8 +240,7 @@ namespace BriefingRoom4DCS.Generator
                         taskDB.TargetSide, UnitFamily.VehicleAAA,
                         targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
                         objectiveCoordinates + Coordinates.CreateRandom(100, 500),
-                        null, groupFlags,
-                        "default",
+                        groupFlags,
                         extraSettings.ToArray());
             }
 

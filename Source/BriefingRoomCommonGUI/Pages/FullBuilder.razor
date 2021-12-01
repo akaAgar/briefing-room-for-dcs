@@ -196,11 +196,13 @@
                         <div class="generator-group flex-justify-spaced">
                             <div class="flex-block">
                             <h4>Enemies</h4>
+                                <InputEnum Label="Training" @bind-Value="Template.SituationEnemySkill" EnumType="AmountNR"/>
                                 <InputEnum Label="Air defense" @bind-Value="Template.SituationEnemyAirDefense" EnumType="AmountNR"/>
                                 <InputEnum Label="Air force" @bind-Value="Template.SituationEnemyAirForce" EnumType="AmountNR"/>
                             </div>
                             <div class="flex-block">
                                 <h4>Friendlies</h4>
+                                <InputEnum Label="Training" @bind-Value="Template.SituationFriendlySkill" EnumType="AmountNR"/>
                                 <InputEnum Label="Air defense" @bind-Value="Template.SituationFriendlyAirDefense" EnumType="AmountNR"/>
                                 <InputEnum Label="Air force" @bind-Value="Template.SituationFriendlyAirForce" EnumType="AmountNR"/>
                             </div>

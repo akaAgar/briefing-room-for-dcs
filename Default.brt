@@ -53,8 +53,10 @@ playerflightgroup000.startlocation=Runway
 playerflightgroup000.livery=default
 
 [situation]
+enemyskill=Random
 enemyairdefense=Random
 enemyairforce=Random
+friendlyskill=Random
 friendlyairdefense=Random
 friendlyairforce=Random
 

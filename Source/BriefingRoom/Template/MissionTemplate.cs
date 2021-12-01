@@ -175,22 +175,32 @@ namespace BriefingRoom4DCS.Template
         private List<MissionTemplatePackage> AircraftPackages_ = new List<MissionTemplatePackage>();
 
         [Required]
-        [Display(Name = "Enemy air defense", Description = "Quality and quantity of enemy surface-to-air defense.")]
+        [Display(Name = "Enemy training", Description = "Quality of enemy training.")]
+        [Category("Situation")]
+        public AmountNR SituationEnemySkill { get; set; }
+
+        [Required]
+        [Display(Name = "Enemy air defense", Description = "Quantity of enemy surface-to-air defense.")]
         [Category("Situation")]
         public AmountNR SituationEnemyAirDefense { get; set; }
 
         [Required]
-        [Display(Name = "Enemy air force", Description = "Quality and quantity of enemy fighter patrols.")]
+        [Display(Name = "Enemy air force", Description = "Quantity of enemy fighter patrols.")]
         [Category("Situation")]
         public AmountNR SituationEnemyAirForce { get; set; }
 
         [Required]
-        [Display(Name = "Friendly air defense", Description = "Quality and quantity of enemy surface-to-air defense.")]
+        [Display(Name = "Friendly training", Description = "Quality of friendly training.")]
+        [Category("Situation")]
+        public AmountNR SituationFriendlySkill { get; set; }
+
+        [Required]
+        [Display(Name = "Friendly air defense", Description = "Quantity of enemy surface-to-air defense.")]
         [Category("Situation")]
         public AmountNR SituationFriendlyAirDefense { get; set; }
 
         [Required]
-        [Display(Name = "Friendly air force", Description = "Quality and quantity of friendly fighter patrols.")]
+        [Display(Name = "Friendly air force", Description = "Quantity of friendly fighter patrols.")]
         [Category("Situation")]
         public AmountNR SituationFriendlyAirForce { get; set; }
 
@@ -256,10 +266,13 @@ namespace BriefingRoom4DCS.Template
             PlayerFlightGroups = new MissionTemplateFlightGroup[] { new MissionTemplateFlightGroup() }.ToList();
             AircraftPackages = new();
 
+            SituationEnemySkill = AmountNR.Random;
             SituationEnemyAirDefense = AmountNR.Random;
             SituationEnemyAirForce = AmountNR.Random;
+
+            SituationFriendlySkill = AmountNR.Random;
             SituationFriendlyAirDefense = AmountNR.Random;
-            SituationFriendlyAirForce = AmountNR.None;
+            SituationFriendlyAirForce = AmountNR.Random;
             AssignAliases();
         }
 
@@ -321,8 +334,11 @@ namespace BriefingRoom4DCS.Template
             foreach (string key in ini.GetTopLevelKeysInSection("AircraftPackages"))
                 AircraftPackages.Add(new MissionTemplatePackage(ini, "AircraftPackages", key));
 
+            SituationEnemySkill = ini.GetValue("Situation", "EnemySkill", SituationEnemySkill);
             SituationEnemyAirDefense = ini.GetValue("Situation", "EnemyAirDefense", SituationEnemyAirDefense);
             SituationEnemyAirForce = ini.GetValue("Situation", "EnemyAirForce", SituationEnemyAirForce);
+
+            SituationFriendlySkill = ini.GetValue("Situation", "FriendlySkill", SituationFriendlySkill);
             SituationFriendlyAirDefense = ini.GetValue("Situation", "FriendlyAirDefense", SituationFriendlyAirDefense);
             SituationFriendlyAirForce = ini.GetValue("Situation", "FriendlyAirForce", SituationFriendlyAirForce);
 
@@ -386,8 +402,11 @@ namespace BriefingRoom4DCS.Template
             for (i = 0; i < AircraftPackages.Count; i++)
                 AircraftPackages[i].SaveToFile(ini, "AircraftPackages", $"AircraftPackage{i:000}");
 
+            ini.SetValue("Situation", "EnemySkill", SituationEnemySkill);
             ini.SetValue("Situation", "EnemyAirDefense", SituationEnemyAirDefense);
             ini.SetValue("Situation", "EnemyAirForce", SituationEnemyAirForce);
+
+            ini.SetValue("Situation", "FriendlySkill", SituationFriendlySkill);
             ini.SetValue("Situation", "FriendlyAirDefense", SituationFriendlyAirDefense);
             ini.SetValue("Situation", "FriendlyAirForce", SituationFriendlyAirForce);
 

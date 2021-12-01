@@ -223,28 +223,16 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        internal static DCSSkillLevel GetDefaultSkillLevel(MissionTemplate template, UnitFamily unitFamily, Side side)
+        internal static DCSSkillLevel GetDefaultSkillLevel(MissionTemplate template, Side side) => (Side.Ally == side? template.SituationFriendlySkill : template.SituationEnemySkill) switch 
         {
-            // Unit is an aircraft, air force quality decides skill level
-            if (unitFamily.GetUnitCategory().IsAircraft())
-            {
-                AmountNR capLevel = (side == Side.Ally ? template.SituationFriendlyAirForce : template.SituationEnemyAirForce).Get();
-                return Toolbox.RandomFrom(Database.Instance.Common.CAP.CAPLevels[(int)capLevel].SkillLevel);
-            }
-
-            // Unit is a surface-to-air unit, air defense quality decides skill level
-            if (unitFamily.IsAirDefense())
-            {
-                AmountNR airDefenseIntensity;
-                if (side == Side.Ally) airDefenseIntensity = template.SituationFriendlyAirDefense.Get();
-                else airDefenseIntensity = template.SituationEnemyAirDefense.Get();
-
-                return Toolbox.RandomFrom(Database.Instance.Common.AirDefense.AirDefenseLevels[(int)airDefenseIntensity].SkillLevel);
-            }
-
-            // Unit is nothing of that, return some random skill
-            return Toolbox.RandomFrom(DCSSkillLevel.Average, DCSSkillLevel.Good, DCSSkillLevel.High);
-        }
+            AmountNR.None => DCSSkillLevel.Average,
+            AmountNR.VeryLow => DCSSkillLevel.Average,
+            AmountNR.Low => Toolbox.RandomFrom(DCSSkillLevel.Average, DCSSkillLevel.Good),
+            AmountNR.Average => Toolbox.RandomFrom(DCSSkillLevel.Average, DCSSkillLevel.Good, DCSSkillLevel.High),
+            AmountNR.High => Toolbox.RandomFrom(DCSSkillLevel.Good, DCSSkillLevel.High),
+            AmountNR.VeryHigh => Toolbox.RandomFrom(DCSSkillLevel.High, DCSSkillLevel.Excellent),
+            _ => Toolbox.RandomFrom(DCSSkillLevel.Average, DCSSkillLevel.Good, DCSSkillLevel.High, DCSSkillLevel.Excellent),
+        };
 
         internal static object FormatRadioFrequency(double radioFrequency)
         {
