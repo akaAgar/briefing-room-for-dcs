@@ -56,6 +56,9 @@ namespace BriefingRoom4DCS.Generator
 
             foreach (Coalition coalition in Toolbox.GetEnumValues<Coalition>())
             {
+                if(coalition == Coalition.Neutural) // Skip Neutural
+                    continue;
+
                 bool ally = coalition == template.ContextPlayerCoalition;
 
                 Side side = ally ? Side.Ally : Side.Enemy;

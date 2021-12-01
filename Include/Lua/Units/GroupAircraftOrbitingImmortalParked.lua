@@ -2,8 +2,8 @@
   ["tasks"] =
   {
   }, -- end of ["tasks"]
-  ["task"] = "SEAD",
-  ["uncontrolled"] = true,
+  ["task"] = "CAP",
+  ["uncontrolled"] = false,
   ["taskSelected"] = true,
   ["route"] =
   {
@@ -36,6 +36,24 @@
                   ["speed"] = $SPEED$,
                 }, -- end of ["params"]
               }, -- end of [1]
+              [2] = 
+              {
+                  ["enabled"] = true,
+                  ["auto"] = false,
+                  ["id"] = "WrappedAction",
+                  ["number"] = 3,
+                  ["params"] = 
+                  {
+                      ["action"] = 
+                      {
+                          ["id"] = "SetInvisible",
+                          ["params"] = 
+                          {
+                              ["value"] = true,
+                          }, -- end of ["params"]
+                      }, -- end of ["action"]
+                  }, -- end of ["params"]
+              }, -- end of [2]
             }, -- end of ["tasks"]
           }, -- end of ["params"]
         }, -- end of ["task"]
