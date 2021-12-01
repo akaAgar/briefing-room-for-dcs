@@ -41,7 +41,7 @@
             <hr />
             <div id="context" class="generator-block">
                 <h3>Context</h3>
-                <div class="generator-group flex-justify-spaced">
+                <div class="generator-group flex-justify-spaced flex-margin-fix">
                     <div class="form-group flex-block">
                         <label>Blue coalition</label>
                         <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionBlue"
@@ -70,6 +70,8 @@
                     </div>
                     <InputEnum ClassString="flex-block" Label="Time period" @bind-Value="Template.ContextDecade"
                         EnumType="Decade" />
+                </div>
+                <div class="generator-group flex-justify-spaced flex-margin-fix">
                     <InputEnum ClassString="flex-block" Label="Player Side"
                         @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition" />
                     <InputDataBase ClassString="flex-block" Label="Theater" @bind-Value="Template.ContextTheater"
@@ -77,38 +79,7 @@
                     <InputDataBase ClassString="flex-block" Label="Situation" @bind-Value="Template.ContextSituation"
                         Grouping="@Template.ContextTheater"
                         DataBaseType="DatabaseEntryType.Situation" />
-                    <InputDataBase ClassString="flex-block" Label="Home airbase" @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
                 </div>
-                <hr />
-            </div>
-            <div id="objectives" class="generator-block">
-                <h3>Objectives</h3>
-                <div class="generator-group flex-justify-spaced">
-                    <div class="form-group flex-block">
-                        <label>Objective distance (zero means random)</label>
-                        <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistance"></InputNumber>
-                    </div>
-                    <div class="form-group flex-block">
-                        <label>Objective seperation (zero means random)</label>
-                        <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveSeperation"></InputNumber>
-                    </div>
-                </div>
-                @foreach (var objective in Template.Objectives)
-                {
-                    <div class="generator-group flex-justify-spaced">
-                        <InputDataBase ClassString="flex-block" Label="Objective" @bind-Value="objective.Preset"
-                        DataBaseType="DatabaseEntryType.ObjectivePreset" HasDescription />
-                        <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="objective.TargetCount"
-                        EnumType="Amount" />
-                        <div class="form-group flex-box">
-                            <button type="button" class="btn btn-secondary row-button"
-                            @onclick="() => CloneObjective(objective)">Duplicate</button>
-                            <button type="button" class="btn btn-secondary row-button"
-                            @onclick="() => RemoveObjective(objective)">Delete</button>
-                        </div>
-                    </div>
-                }
-                <button type="button" class="btn btn-secondary" @onclick="AddObjective">+</button>
                 <hr />
             </div>
             <div id="flight-groups" class="generator-block">
@@ -116,7 +87,7 @@
 
                 @foreach (var flight in Template.PlayerFlightGroups)
                 {
-                    <div class="generator-group flex-justify-spaced">
+                    <div class="generator-group flex-justify-spaced flex-margin-fix">
                         <div class="form-group flex-block">
                             <label>Aircraft</label>
                             <BlazoredTypeahead SearchMethod="SearchAircraft" @bind-Value="flight.Aircraft"
@@ -134,8 +105,16 @@
                             <label>Count</label>
                             <InputNumber class="form-control" @bind-Value="flight.Count"></InputNumber>
                         </div>
-                        <InputDataBase ClassString="flex-block" Label="Carrier" @bind-Value="flight.Carrier"
-                        DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="N/A" />
+                        <InputDataBase ClassString="flex-block" Label="Carrier" @bind-Value="flight.Carrier" DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="N/A" />
+                        <div class="flex-block form-group">
+                            <label>Livery</label>
+                            <select class="form-control selectpicker" @bind=flight.Livery>
+                            @foreach (var item in GetLiveries(flight.Aircraft))
+                            {
+                                <option value="@item">@item</option> // Blazor needs to know what values it binds to!
+                            }
+                            </select>
+                        </div>
                         <div class="form-group flex-block">
                             <label class="checkboxList-item row-checkbox">
                                 <input type="checkbox" checked=@flight.AIWingmen
@@ -144,14 +123,44 @@
                             </label>
                         </div>
                         <div class="form-group flex-box">
-                            @* <button type="button" class="btn btn-secondary row-button" @onclick="() =>
-                                CloneFlight(objective)">Duplicate</button> *@
                             <button type="button" class="btn btn-secondary row-button"
-                            @onclick="() => RemoveFlightGroup(flight)">Delete</button>
+                            @onclick="() => CloneFlightGroup(flight)"><span class="oi oi-layers"></span></button>
+                            <button type="button" class="btn btn-secondary row-button"
+                            @onclick="() => RemoveFlightGroup(flight)"><span class="oi oi-x"></span></button>
                         </div>
                     </div>
                 }
                 <button type="button" class="btn btn-secondary" @onclick="AddFlightGroup">+</button>
+                <hr />
+            </div>
+            <div id="objectives" class="generator-block">
+                <h3>Objectives</h3>
+                <div class="generator-group flex-justify-spaced flex-margin-fix">
+                    <div class="form-group flex-block">
+                        <label>Objective distance (zero means random)</label>
+                        <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistance"></InputNumber>
+                    </div>
+                    <div class="form-group flex-block">
+                        <label>Objective seperation (zero means random)</label>
+                        <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveSeperation"></InputNumber>
+                    </div>
+                </div>
+                @foreach (var objective in Template.Objectives)
+                {
+                    <div class="generator-group flex-justify-spaced flex-margin-fix">
+                        <InputDataBase ClassString="flex-block" Label="Objective" @bind-Value="objective.Preset"
+                        DataBaseType="DatabaseEntryType.ObjectivePreset" HasDescription />
+                        <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="objective.TargetCount"
+                        EnumType="Amount" />
+                        <div class="form-group flex-box">
+                            <button type="button" class="btn btn-secondary row-button"
+                            @onclick="() => CloneObjective(objective)"><span class="oi oi-layers"></span></button>
+                            <button type="button" class="btn btn-secondary row-button"
+                            @onclick="() => RemoveObjective(objective)"><span class="oi oi-x"></span></button>
+                        </div>
+                    </div>
+                }
+                <button type="button" class="btn btn-secondary" @onclick="AddObjective">+</button>
                 <hr />
             </div>
             <div id="mission-features" class="generator-block">
@@ -317,6 +326,22 @@
         Template.PlayerFlightGroups.Add(flight);
     }
 
+    private void CloneFlightGroup(MissionTemplateFlightGroup flight) {
+        MissionTemplateFlightGroup newflight = new(){
+            Aircraft = flight.Aircraft,
+            AIWingmen = flight.AIWingmen,
+            Carrier = flight.Carrier,
+            Count = flight.Count,
+            Country = flight.Country,
+            Payload = flight.Payload,
+            StartLocation = flight.StartLocation,
+            Livery = flight.Livery
+        };
+        newflight.Alias = BriefingRoom.GetAlias(Template.PlayerFlightGroups.Count);
+        Template.PlayerFlightGroups.Add(newflight);
+        flightGroupTab = newflight;
+    }
+
     private void RemoveFlightGroup(MissionTemplateFlightGroup flight)
     {
         Template.PlayerFlightGroups.Remove(flight);
@@ -358,6 +383,9 @@
     {
         Template.Objectives.Remove(obj);
     }
+
+    private List<string> GetLiveries(string aircraftId) =>
+        BriefingRoom.GetAircraftLiveries(aircraftId);
 
     private async Task<IEnumerable<Country>> SearchCountry(string searchText) =>
     await Typeahead.SearchEnum<Country>(searchText);

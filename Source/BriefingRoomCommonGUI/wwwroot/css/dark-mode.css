@@ -24,6 +24,7 @@
 
 .darkMode .nav-link.active {
     background-color: transparent;
+    border-color: #dee2e6 #dee2e6 #020A10;
     color: white;
 }
 
