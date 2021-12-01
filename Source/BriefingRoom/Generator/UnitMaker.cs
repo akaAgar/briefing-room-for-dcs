@@ -408,6 +408,9 @@ namespace BriefingRoom4DCS.Generator
             SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading, out Coordinates unitCoordinates, out double unitHeading);
 
             string singleUnitLuaTable = new string(unitLuaTemplate);
+            if (Toolbox.IsAircraft(unitDB.Category) &&(unitLuaIndex == 1) && unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.FirstUnitIsClient))
+                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Skill", SinglePlayerMission ? "Player" : "Client");
+        
             foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
                 if (extraSetting.Value is Array)
                     GeneratorTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value, unitSetIndex);
@@ -420,11 +423,8 @@ namespace BriefingRoom4DCS.Generator
             GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitID", UnitID);
             GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitX", unitCoordinates.X);
             GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitY", unitCoordinates.Y);
-            if ((unitDB.Category == UnitCategory.Helicopter) || (unitDB.Category == UnitCategory.Plane))
+            if (Toolbox.IsAircraft(unitDB.Category))
             {
-                if ((unitLuaIndex == 1) && unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.FirstUnitIsClient))
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Skill", SinglePlayerMission ? "Player" : "Client");
-
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Callsign", callsign.Value.GetLua(unitLuaIndex + 1));
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", callsign.Value.GetUnitName(unitLuaIndex + 1));
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "OnBoardNumber", Toolbox.RandomInt(1, 1000).ToString("000"));
