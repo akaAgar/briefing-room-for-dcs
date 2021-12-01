@@ -136,8 +136,8 @@ namespace BriefingRoom4DCS.Data
                 // Unit group
                 UnitGroupFamilies = Toolbox.SetSingleCategoryFamilies(ini.GetValueArray<UnitFamily>("UnitGroup", "Families"));
                 UnitGroupFlags = ini.GetValueArrayAsEnumFlags<FeatureUnitGroupFlags>("UnitGroup", "Flags");
-                UnitGroupLuaGroup = Toolbox.AddMissingFileExtension(ini.GetValue<string>("UnitGroup", "Lua.Group"), ".lua");
-                UnitGroupLuaUnit = Toolbox.AddMissingFileExtension(ini.GetValue<string>("UnitGroup", "Lua.Unit"), ".lua");
+                UnitGroupLuaGroup = ini.GetValue<string>("UnitGroup", "Lua.Group");
+                UnitGroupLuaUnit = ini.GetValue<string>("UnitGroup", "Lua.Unit");
                 UnitGroupSize = ini.GetValue<MinMaxI>("UnitGroup", "Size");
                 ExtraGroups = ini.GetValue<MinMaxI>("UnitGroup", "ExtraGroups");
                 UnitGroupSpawnDistance = ini.GetValue<double>("UnitGroup", "SpawnDistance");

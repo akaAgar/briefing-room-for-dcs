@@ -100,7 +100,7 @@ namespace BriefingRoom4DCS.Generator
         {
             AirbaseParkingSpots.Clear();
             SpawnPoints.Clear();
-            if(TheaterDB.SpawnPoints is not null)
+            if (TheaterDB.SpawnPoints is not null)
                 SpawnPoints.AddRange(TheaterDB.SpawnPoints);
 
             foreach (DBEntryAirbase airbase in SituationDB.GetAirbases(InvertCoalition))
@@ -184,33 +184,62 @@ namespace BriefingRoom4DCS.Generator
             MinMaxD? secondSearchRange = null;
             if (distanceOrigin2.HasValue && distanceFrom2.HasValue)
                 secondSearchRange = distanceFrom2.Value * Toolbox.NM_TO_METERS;
-            
+
             var iterations = 0;
             do
-            {   
+            {
                 var coordOptionsLinq = Enumerable.Range(0, 50)
                     .Select(x => Coordinates.CreateRandom(distanceOrigin1, searchRange))
                     .Where(x => CheckNotInHostileCoords(x));
 
-                if (secondSearchRange.HasValue) 
+                if (secondSearchRange.HasValue)
                     coordOptionsLinq = coordOptionsLinq.Where(x => secondSearchRange.Value.Contains(distanceOrigin2.Value.GetDistanceFrom(x)));
 
                 if (validTypes.First() == SpawnPointType.Sea) //sea position
                     coordOptionsLinq = coordOptionsLinq.Where(x => ShapeManager.IsPosValid(x, TheaterDB.WaterCoordinates, TheaterDB.WaterExclusionCoordinates));
 
                 var coordOptions = coordOptionsLinq.ToArray();
-                if(coordOptions.Count() > 0)
+                if (coordOptions.Count() > 0)
                     return Toolbox.RandomFrom(coordOptions);
 
                 searchRange = new MinMaxD(searchRange.Min * 0.9, searchRange.Max * 1.1);
 
-                if(secondSearchRange.HasValue)
+                if (secondSearchRange.HasValue)
                     secondSearchRange = new MinMaxD(secondSearchRange.Value.Min * 0.9, secondSearchRange.Value.Max * 1.1);
 
                 iterations++;
             } while (iterations < MAX_RADIUS_SEARCH_ITERATIONS);
-            
+
             return null;
+        }
+
+        public Tuple<DBEntryAirbase, List<int>, List<Coordinates>> GetAirbaseAndParking(MissionTemplate template, Coordinates coordinates, int unitCount, Coalition coalition)
+        {
+            var targetAirbaseOptions =
+                        (from DBEntryAirbase airbaseDB in SituationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"))
+                         where airbaseDB.Coalition == coalition
+                         select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(coordinates));
+            if (targetAirbaseOptions.Count() == 0) throw new BriefingRoomException("No airbase found for aircraft.");
+            DBEntryAirbase targetAirbase = targetAirbaseOptions.First();
+            var objectiveCoordinates = targetAirbase.Coordinates;
+            var airbaseID = targetAirbase.DCSID;
+            Coordinates? lastParkingCoordinates = null;
+            List<int> parkingSpotIDsList = new List<int>();
+            List<Coordinates> parkingSpotCoordinatesList = new List<Coordinates>();
+            for (int i = 0; i < unitCount; i++)
+            {
+                int parkingSpot = GetFreeParkingSpot(
+                    targetAirbase.DCSID,
+                    out Coordinates parkingSpotCoordinates,
+                    lastParkingCoordinates,
+                    true);
+                if (parkingSpot < 0) throw new BriefingRoomException("No parking spot found for aircraft.");
+                lastParkingCoordinates = parkingSpotCoordinates;
+
+                parkingSpotIDsList.Add(parkingSpot);
+                parkingSpotCoordinatesList.Add(parkingSpotCoordinates);
+            }
+            return Tuple.Create(targetAirbase, parkingSpotIDsList, parkingSpotCoordinatesList);
         }
 
         private bool CheckNotInHostileCoords(Coordinates coordinates, Coalition? coalition = null)
@@ -218,7 +247,7 @@ namespace BriefingRoom4DCS.Generator
             if (!coalition.HasValue)
                 return true;
 
-            var red  =  SituationDB.GetRedZone(InvertCoalition);
+            var red = SituationDB.GetRedZone(InvertCoalition);
             var blue = SituationDB.GetBlueZone(InvertCoalition);
 
             if (coalition.Value == Coalition.Blue)

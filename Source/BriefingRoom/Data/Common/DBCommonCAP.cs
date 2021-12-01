@@ -74,8 +74,8 @@ namespace BriefingRoom4DCS.Data
                 GroupSize = (from int groupSize in ini.GetValueArray<int>("CAP", "GroupSize") where groupSize > 0 select groupSize).ToArray();
                 if (GroupSize.Length == 0) GroupSize = new int[] { 1 };
                 FlightPathLength = ini.GetValue<MinMaxD>("CAP", "FlightPathLength") * Toolbox.NM_TO_METERS;
-                LuaGroup = Toolbox.AddMissingFileExtension(ini.GetValue<string>("CAP", "Lua.Group"), ".lua");
-                LuaUnit = Toolbox.AddMissingFileExtension(ini.GetValue<string>("CAP", "Lua.Unit"), ".lua");
+                LuaGroup = ini.GetValue<string>("CAP", "Lua.Group");
+                LuaUnit = ini.GetValue<string>("CAP", "Lua.Unit");
                 MinDistanceFromOpposingPoint = ini.GetValue<double>("CAP", "MinDistanceFromOpposingPoint");
                 UnitFamilies = (from UnitFamily unitFamily in ini.GetValueArray<UnitFamily>("CAP", "UnitFamilies") where unitFamily.GetUnitCategory() == UnitCategory.Plane select unitFamily).ToArray();  
                 if (UnitFamilies.Length == 0) UnitFamilies = new UnitFamily[] { UnitFamily.PlaneFighter };

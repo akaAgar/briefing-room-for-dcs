@@ -85,12 +85,25 @@ namespace BriefingRoom4DCS.Generator
                 else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.SameSideAsTarget) && objectiveTargetSide.HasValue) groupSide = objectiveTargetSide.Value;
 
                 extraSettings.AddIfKeyUnused("Payload", featureDB.UnitGroupPayload);
-
+                var groupLua = featureDB.UnitGroupLuaGroup;
                 var unitCount = featureDB.UnitGroupSize.GetValue();
+                var unitFamily = Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
+
+                if(Template.MissionFeatures.Contains("GroundStartAircraft") && Toolbox.IsAircraft(unitFamily.GetUnitCategory()))
+                {
+                    groupLua += "Parked";
+                    var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = UnitMaker.SpawnPointSelector.GetAirbaseAndParking(Template, coordinates, unitCount, GeneratorTools.GetSpawnPointCoalition(Template, groupSide).Value);
+                    coordinates = airbase.Coordinates;
+                    extraSettings.AddIfKeyUnused("ParkingID", parkingSpotIDsList.ToArray());
+                    extraSettings.AddIfKeyUnused("GroupAirbaseID", airbase.DCSID);
+                    extraSettings.AddIfKeyUnused("UnitX",(from Coordinates unitCoordinates in parkingSpotCoordinatesList select unitCoordinates.X).ToArray());
+                    extraSettings.AddIfKeyUnused("UnitY",(from Coordinates unitCoordinates in parkingSpotCoordinatesList select unitCoordinates.Y).ToArray());
+                }
+
                 groupInfo = UnitMaker.AddUnitGroup(
-                    Toolbox.RandomFrom(featureDB.UnitGroupFamilies), unitCount,
+                    unitFamily, unitCount,
                     groupSide,
-                    featureDB.UnitGroupLuaGroup, featureDB.UnitGroupLuaUnit,
+                    groupLua, featureDB.UnitGroupLuaUnit,
                     coordinates, groupFlags,
                     extraSettings.ToArray());
                 if (

@@ -22,6 +22,7 @@ using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -108,14 +109,32 @@ namespace BriefingRoom4DCS.Generator
 
                 Coordinates groupDestination = destination + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
 
+                var extraSettings = new Dictionary<string, object>{
+                    {"Payload", "air-to-air"},
+                    {"GroupX2", groupDestination.X},
+                    {"GroupY2", groupDestination.Y}
+                };
+
+                var luaGroup =  CommonCAPDB.LuaGroup;
+                var spawnpointCoordinates = spawnPoint.Value;
+                if(template.MissionFeatures.Contains("GroundStartAircraft"))
+                {
+                    luaGroup += "Parked";
+                    var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = UnitMaker.SpawnPointSelector.GetAirbaseAndParking(template, spawnPoint.Value, groupSize, coalition);
+                    spawnpointCoordinates = airbase.Coordinates;
+                    extraSettings.AddIfKeyUnused("ParkingID", parkingSpotIDsList.ToArray());
+                    extraSettings.AddIfKeyUnused("GroupAirbaseID", airbase.DCSID);
+                    extraSettings.AddIfKeyUnused("UnitX",(from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.X).ToArray());
+                    extraSettings.AddIfKeyUnused("UnitY",(from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.Y).ToArray());
+                }
+
+
                 UnitMakerGroupInfo? groupInfo = UnitMaker.AddUnitGroup(
                     Toolbox.RandomFrom(CommonCAPDB.UnitFamilies), groupSize, side,
-                    CommonCAPDB.LuaGroup, CommonCAPDB.LuaUnit,
-                    spawnPoint.Value,
+                    luaGroup, CommonCAPDB.LuaUnit,
+                    spawnpointCoordinates,
                     0,
-                    "Payload".ToKeyValuePair("air-to-air"),
-                    "GroupX2".ToKeyValuePair(groupDestination.X),
-                    "GroupY2".ToKeyValuePair(groupDestination.Y));
+                    extraSettings.ToArray());
 
                 if (!groupInfo.HasValue) // Failed to generate a group
                     BriefingRoom.PrintToLog($"Failed to find units for {coalition} air defense unit group.", LogMessageErrorLevel.Warning);
