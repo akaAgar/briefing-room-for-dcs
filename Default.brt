@@ -1,5 +1,4 @@
-﻿[missiontype]
-missiontype=SinglePlayer
+[briefing]
 
 [context]
 coalitionblue=USA
@@ -8,7 +7,6 @@ decade=Decade2000
 playercoalition=Blue
 theater=Caucasus
 situation=CaucasusDefault
-theatercountriescoalitions=Default
 
 [environment]
 season=Random
@@ -18,13 +16,11 @@ wind=Random
 [flightplan]
 objectivedistance=80
 objectiveseperation=30
-objectiveslocation=Any
 
 [missionfeatures]
-missionfeatures=SupportFriendlyAWACS,SupportFriendlyTankerBasket,SupportFriendlyTankerBoom,IngressEgressWaypoints
+missionfeatures=IngressEgressWaypoints,SupportFriendlyAWACS,SupportFriendlyTankerBasket,SupportFriendlyTankerBoom
 
 [mods]
-mods=
 
 [objectives]
 objective000.features=TargetDesignationCoordinates,TargetDesignationLaser,TargetDesignationSmokeMarker
@@ -49,14 +45,16 @@ realism=DisableDCSRadioAssists,NoBDA
 
 [playerflightgroups]
 playerflightgroup000.aircrafttype=Su-25T
-playerflightgroup000.aiwingmen=true
+playerflightgroup000.aiwingmen=True
 playerflightgroup000.count=2
 playerflightgroup000.payload=default
 playerflightgroup000.country=CJTFBlue
 playerflightgroup000.startlocation=Runway
+playerflightgroup000.livery=default
 
 [situation]
 enemyairdefense=Random
 enemyairforce=Random
 friendlyairdefense=Random
 friendlyairforce=Random
+
