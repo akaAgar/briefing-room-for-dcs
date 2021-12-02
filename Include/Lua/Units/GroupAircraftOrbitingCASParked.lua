@@ -3,8 +3,7 @@
   {
   }, -- end of ["tasks"]
   ["task"] = "CAS",
-  ["uncontrolled"] = true,
-  ["taskSelected"] = true,
+  ["uncontrolled"] = false,
   ["route"] =
   {
     ["routeRelativeTOT"] = true,
