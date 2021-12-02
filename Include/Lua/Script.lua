@@ -589,6 +589,12 @@ function briefingRoom.aircraftActivator.update(args, time)
   local acGroup = dcsExtensions.getGroupByID(briefingRoom.aircraftActivator.currentQueue[1]) -- get the group
   if acGroup ~= nil then -- activate the group, if it exists
     acGroup:activate()
+    local Start = {
+      id = 'Start',
+      params = {
+      }
+    }
+    acGroup:getController():setCommand(Start)
     briefingRoom.debugPrint("Activating aircraft group "..acGroup:getName())
   else
     briefingRoom.debugPrint("Failed to activate aircraft group "..tostring(briefingRoom.aircraftActivator.currentQueue[1]))
