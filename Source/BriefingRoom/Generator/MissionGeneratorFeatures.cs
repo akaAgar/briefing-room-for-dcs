@@ -89,9 +89,10 @@ namespace BriefingRoom4DCS.Generator
                 var unitCount = featureDB.UnitGroupSize.GetValue();
                 var unitFamily = Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
 
-                if(Template.MissionFeatures.Contains("GroundStartAircraft") && Toolbox.IsAircraft(unitFamily.GetUnitCategory()))
+                if((Template.MissionFeatures.Contains("GroundStartAircraft") || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.GroundStart)) && Toolbox.IsAircraft(unitFamily.GetUnitCategory()))
                 {
-                    groupLua += "Parked";
+                    if(groupLua != "GroupAircraftParkedUncontrolled")
+                        groupLua += "Parked";
                     var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = UnitMaker.SpawnPointSelector.GetAirbaseAndParking(Template, coordinates, unitCount, GeneratorTools.GetSpawnPointCoalition(Template, groupSide).Value);
                     coordinates = airbase.Coordinates;
                     extraSettings.AddIfKeyUnused("ParkingID", parkingSpotIDsList.ToArray());
@@ -207,6 +208,9 @@ namespace BriefingRoom4DCS.Generator
         {
             foreach (var i in Enumerable.Range(1, featureDB.ExtraGroups.GetValue()))
             {
+                var groupLua = featureDB.UnitGroupLuaGroup;
+                var unitCount = featureDB.UnitGroupSize.GetValue();
+                var unitFamily = Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
                 var spawnCoords = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                     featureDB.UnitGroupValidSpawnPoints, coordinates,
                     new MinMaxD(0, 5),
@@ -214,10 +218,23 @@ namespace BriefingRoom4DCS.Generator
                     );
                 if (!spawnCoords.HasValue)
                     continue;
+                
+                if((Template.MissionFeatures.Contains("GroundStartAircraft") || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.GroundStart)) && Toolbox.IsAircraft(unitFamily.GetUnitCategory()))
+                {
+                    if(groupLua != "GroupAircraftParkedUncontrolled")
+                        groupLua += "Parked";
+                    var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = UnitMaker.SpawnPointSelector.GetAirbaseAndParking(Template, coordinates, unitCount, GeneratorTools.GetSpawnPointCoalition(Template, groupSide).Value);
+                    coordinates = airbase.Coordinates;
+                    extraSettings["ParkingID"] =parkingSpotIDsList.ToArray();
+                    extraSettings["GroupAirbaseID"] =airbase.DCSID;
+                    extraSettings["UnitX"] = (from Coordinates unitCoordinates in parkingSpotCoordinatesList select unitCoordinates.X).ToArray();
+                    extraSettings["UnitY"] = (from Coordinates unitCoordinates in parkingSpotCoordinatesList select unitCoordinates.Y).ToArray();
+                }
+
                 UnitMaker.AddUnitGroup(
-                   Toolbox.RandomFrom(featureDB.UnitGroupFamilies), featureDB.UnitGroupSize.GetValue(),
+                   unitFamily, unitCount,
                    groupSide,
-                   featureDB.UnitGroupLuaGroup, featureDB.UnitGroupLuaUnit,
+                   groupLua, featureDB.UnitGroupLuaUnit,
                    spawnCoords.Value, groupFlags,
                    extraSettings.ToArray());
             }

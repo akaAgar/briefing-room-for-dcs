@@ -86,6 +86,8 @@ namespace BriefingRoom4DCS.Data
         /// <summary>
         /// Units ignore borders
         /// </summary>
-        IgnoreBorders = 1024
+        IgnoreBorders = 1024,
+
+        GroundStart = 2048,
     }
 }

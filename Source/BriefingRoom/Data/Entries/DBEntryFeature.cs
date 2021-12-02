@@ -134,7 +134,7 @@ namespace BriefingRoom4DCS.Data
                         BriefingRoom.PrintToLog($"File \"{BRPaths.INCLUDE_OGG}{f}\", required by feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
 
                 // Unit group
-                UnitGroupFamilies = Toolbox.SetSingleCategoryFamilies(ini.GetValueArray<UnitFamily>("UnitGroup", "Families"));
+                UnitGroupFamilies = ini.GetValueArray<UnitFamily>("UnitGroup", "Families");
                 UnitGroupFlags = ini.GetValueArrayAsEnumFlags<FeatureUnitGroupFlags>("UnitGroup", "Flags");
                 UnitGroupLuaGroup = ini.GetValue<string>("UnitGroup", "Lua.Group");
                 UnitGroupLuaUnit = ini.GetValue<string>("UnitGroup", "Lua.Unit");
