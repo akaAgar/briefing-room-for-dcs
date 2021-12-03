@@ -1,5 +1,5 @@
 # BriefingRoom for DCS World - User's manual
-__Last Edited: 01/12/2021__
+__Last Edited: 03/12/2021__
 
 This manual contains everything you need to know if you just plan to use BriefingRoom to generate missions. If you plan on modding BriefingRoom, please read the Modder's manual.
 
@@ -21,7 +21,7 @@ Comes in 2 forms Desktop and Web. Most use desktop but if you have issues its re
 There are 3 ways of generating missions:
 * Quick Builder
 * Full Builder
-* Campaign Builder (BETA)
+* Campaign Builder
 
 The basics are:
 * **Lots of options** Check Full Builder section fo descriptions of each
@@ -60,7 +60,7 @@ Hold all possible options for generating a single mission. Options are split int
 
 **Home Airbase**: Where is the main airbase for the mission? (objectives and other stuff uses this base to calculate distances)
 
-#### Environment
+##### Environment
 `TLDR: Whats the weather do I need NVGs?`
 
 **Season**: General time of year
@@ -113,8 +113,7 @@ Set of tabs for each flyable set of aircraft.
 
 **AI wingmen**: If on only first unit will be playable rest will be AI.
 
-
-#### Strike Packages
+##### Strike Packages
 `TLDR: How do you breakdown the work in MP`
 
 Only usable if you have more than one Flight group. Set of tabs to group flights up to attack specific objectives
@@ -150,7 +149,7 @@ Two tabs containing the same options for Enemies and Friendlies
 **Unit Mods**: What extra modded units do you want to spawn.
 
 
-### Campaign Builder (Beta)
+### Campaign Builder
 `TLDR: No its not dynamic look at Liberation for that`
 
 Builds campaigns in a simplistic way. More accurately it generates a bunch of missions in a campaign format based off the same settings.

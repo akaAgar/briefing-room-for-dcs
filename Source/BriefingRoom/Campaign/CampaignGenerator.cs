@@ -66,6 +66,8 @@ namespace BriefingRoom4DCS.Campaign
             string baseFileName = Toolbox.RemoveInvalidPathCharacters(campaign.Name);
 
             DateTime date = GenerateCampaignDate(campaignTemplate);
+            
+            campaignTemplate.Player.AIWingmen = true; //Make sure wingmen is always true for campaign
 
             for (int i = 0; i < campaignTemplate.MissionsCount; i++)
             {
@@ -110,8 +112,8 @@ namespace BriefingRoom4DCS.Campaign
 
         private void CreateImageFiles(CampaignTemplate campaignTemplate, DCSCampaign campaign, string baseFileName)
         {
-            string allyFlagName = campaignTemplate.GetCoalition(campaignTemplate.ContextCoalitionPlayer);
-            string enemyFlagName = campaignTemplate.GetCoalition((Coalition)(1 - (int)campaignTemplate.ContextCoalitionPlayer));
+            string allyFlagName = campaignTemplate.GetCoalition(campaignTemplate.ContextPlayerCoalition);
+            string enemyFlagName = campaignTemplate.GetCoalition((Coalition)(1 - (int)campaignTemplate.ContextPlayerCoalition));
 
             using (ImageMaker imgMaker = new())
             {
@@ -145,7 +147,7 @@ namespace BriefingRoom4DCS.Campaign
             string lua = File.ReadAllText(CAMPAIGN_LUA_TEMPLATE);
             GeneratorTools.ReplaceKey(ref lua, "Name", campaignName);
             GeneratorTools.ReplaceKey(ref lua, "Description",
-                $"This is a {campaignTemplate.ContextCoalitionsBlue} vs {campaignTemplate.ContextCoalitionsRed} randomly-generated campaign created by an early version of the campaign generator of BriefingRoom, a mission generator for DCS World ({BriefingRoom.WEBSITE_URL}).");
+                $"This is a {campaignTemplate.ContextCoalitionBlue} vs {campaignTemplate.ContextCoalitionRed} randomly-generated campaign created by an early version of the campaign generator of BriefingRoom, a mission generator for DCS World ({BriefingRoom.WEBSITE_URL}).");
             GeneratorTools.ReplaceKey(ref lua, "Units", "");
 
             string stagesLua = "";
@@ -173,11 +175,12 @@ namespace BriefingRoom4DCS.Campaign
                 BriefingMissionName = $"{campaignName}, phase {missionIndex + 1}",
                 BriefingMissionDescription = "",
 
-                ContextCoalitionBlue = campaignTemplate.ContextCoalitionsBlue,
-                ContextCoalitionRed = campaignTemplate.ContextCoalitionsRed,
+                ContextCoalitionBlue = campaignTemplate.ContextCoalitionBlue,
+                ContextCoalitionRed = campaignTemplate.ContextCoalitionRed,
                 ContextDecade = campaignTemplate.ContextDecade,
-                ContextPlayerCoalition = campaignTemplate.ContextCoalitionPlayer,
+                ContextPlayerCoalition = campaignTemplate.ContextPlayerCoalition,
                 ContextTheater = campaignTemplate.ContextTheater,
+                ContextSituation = campaignTemplate.ContextSituation,
 
                 EnvironmentSeason = Season.Random,
                 EnvironmentTimeOfDay = GetTimeOfDayForMission(campaignTemplate.EnvironmentNightMissionChance),
@@ -187,7 +190,7 @@ namespace BriefingRoom4DCS.Campaign
                 FlightPlanObjectiveDistance = GetObjectiveDistance(campaignTemplate.MissionsObjectiveDistance),
                 FlightPlanTheaterStartingAirbase = campaignTemplate.PlayerStartingAirbase,
 
-                MissionFeatures = new List<string>(),
+                MissionFeatures = campaignTemplate.MissionsFeatures.ToList(),
 
                 Mods = campaignTemplate.OptionsMods.ToList(),
 
@@ -197,10 +200,13 @@ namespace BriefingRoom4DCS.Campaign
                 OptionsMission = campaignTemplate.OptionsMission.ToList(),
                 OptionsRealism = campaignTemplate.OptionsRealism.ToList(),
 
-                PlayerFlightGroups = new(),
-
+                PlayerFlightGroups = new List<MissionTemplateFlightGroup>{campaignTemplate.Player},
+                
+                SituationEnemySkill = GetPowerLevel(campaignTemplate.SituationEnemySkill, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount),
                 SituationEnemyAirDefense = GetPowerLevel(campaignTemplate.SituationEnemyAirDefense, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount),
                 SituationEnemyAirForce = GetPowerLevel(campaignTemplate.SituationEnemyAirForce, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount),
+                
+                SituationFriendlySkill = GetPowerLevel(campaignTemplate.SituationFriendlySkill, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount, true),
                 SituationFriendlyAirDefense = GetPowerLevel(campaignTemplate.SituationFriendlyAirDefense, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount, true),
                 SituationFriendlyAirForce = GetPowerLevel(campaignTemplate.SituationFriendlyAirForce, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount, true),
             };
@@ -208,13 +214,6 @@ namespace BriefingRoom4DCS.Campaign
             int objectiveCount = GetObjectiveCountForMission(campaignTemplate.MissionsObjectiveCount);
             for (int i = 0; i < objectiveCount; i++)
                 template.Objectives.Add(new MissionTemplateObjective(Toolbox.RandomFrom(campaignTemplate.MissionsObjectives)));
-
-            for (int i = 0; i < objectiveCount; i++)
-                template.PlayerFlightGroups.Add(
-                    new(campaignTemplate.PlayerAircraft, Toolbox.RandomFrom(2, 2, 2, 2, 3, 4, 4),
-                    "default", campaignTemplate.PlayerCarrier,
-                    campaignTemplate.ContextCoalitionPlayer == Coalition.Red ? Country.CJTFRed : Country.CJTFBlue,
-                    campaignTemplate.PlayerStartLocation, true, "default"));
 
             return template;
         }

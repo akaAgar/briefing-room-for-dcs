@@ -14,7 +14,7 @@
 @using System.Text
 @using System.IO
 <div class="title-bar">
-    <h1>Campaign builder BETA</h1>
+    <h1>Campaign builder</h1>
     <TemplateButtons LoadTemplate="LoadTemplate" SaveTemplate="SaveTemplate" ClearTemplate="ClearTemplate" />
 </div>
 <div class="generator-group">
@@ -50,58 +50,61 @@
             </ul>
             @switch (tab)
             {
-                case "context":
+                case "context-&-enviroment":
                     <div id="context" class="generator-block">
                         <h3>Context</h3>
-                        <div class="form-group">
-                            <label>Blue coalition</label>
-                        <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionsBlue" 
-                        EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true" MaximumSuggestions="1000">
-                            <SelectedTemplate Context="coalitionId">
-                                @GetCoalitionDisplayName(@coalitionId)
-                            </SelectedTemplate>
-                            <ResultTemplate Context="coalition">
-                                @coalition.Name
-                            </ResultTemplate>
-                        </BlazoredTypeahead>
+                        <div class="generator-group flex-justify-spaced flex-margin-fix">
+                            <div class="form-group flex-block">
+                                <label>Blue coalition</label>
+                                <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionBlue" 
+                                EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true" MaximumSuggestions="1000">
+                                    <SelectedTemplate Context="coalitionId">
+                                        @GetCoalitionDisplayName(@coalitionId)
+                                    </SelectedTemplate>
+                                    <ResultTemplate Context="coalition">
+                                        @coalition.Name
+                                    </ResultTemplate>
+                                </BlazoredTypeahead>
+                            </div>
+                            <div class="form-group flex-block">
+                                    <label>Red coalition</label>
+                                <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionRed" 
+                                EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true" MaximumSuggestions="1000">
+                                    <SelectedTemplate Context="coalitionId">
+                                        @GetCoalitionDisplayName(@coalitionId)
+                                    </SelectedTemplate>
+                                    <ResultTemplate Context="coalition">
+                                        @coalition.Name
+                                    </ResultTemplate>
+                                </BlazoredTypeahead>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Red coalition</label>
-                        <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionsRed" 
-                        EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true" MaximumSuggestions="1000">
-                            <SelectedTemplate Context="coalitionId">
-                                @GetCoalitionDisplayName(@coalitionId)
-                            </SelectedTemplate>
-                            <ResultTemplate Context="coalition">
-                                @coalition.Name
-                            </ResultTemplate>
-                        </BlazoredTypeahead>
+                        <div class="generator-group flex-justify-spaced flex-margin-fix">
+                            <InputDataBase ClassString="flex-block" Label="Theater" @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater"/>
+                            <InputDataBase ClassString="flex-block" Label="Situation" @bind-Value="Template.ContextSituation" DataBaseType="DatabaseEntryType.Situation" Grouping="@Template.ContextTheater"/>
                         </div>
+                        <InputDataBase Label="Home airbase" @bind-Value="Template.PlayerStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="Template.ContextTheater" EmptOpt="Random"/>
                         <InputEnum Label="Time period" @bind-Value="Template.ContextDecade" EnumType="Decade"/>
-                        <InputEnum Label="Player coalition" @bind-Value="Template.ContextCoalitionPlayer" EnumType="Coalition"/>
-                        <InputDataBase Label="Theater" @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater"/>
+                        <InputEnum Label="Player Side" @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition"/>
                     </div>
-                    break;
-                case "environment":
+                    <hr />
                     <div id="environment" class="generator-block">
                         <h3>Environment</h3>
-                        <InputEnum Label="Bad weather chance" @bind-Value="Template.EnvironmentBadWeatherChance" EnumType="Amount"/>
-                        <InputEnum Label="Night mission chance" @bind-Value="Template.EnvironmentNightMissionChance" EnumType="Amount"/>
-                    </div>
-                    break;
-                case "flight-plan":
-                    <div id="flight-plan" class="generator-block">
-                        <h3>Flight Plan</h3>
-                        <InputDataBase Label="Starting airbase" @bind-Value="Template.PlayerStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="Template.ContextTheater" EmptOpt="Random"/>
-                        <InputEnum Label="Start location" @bind-Value="Template.PlayerStartLocation" EnumType="PlayerStartLocation"/>
+                        <div class="generator-group flex-justify-spaced flex-margin-fix">
+                            <InputEnum ClassString="flex-block" Label="Bad weather chance" @bind-Value="Template.EnvironmentBadWeatherChance" EnumType="Amount"/>
+                            <InputEnum ClassString="flex-block" Label="Night mission chance" @bind-Value="Template.EnvironmentNightMissionChance" EnumType="Amount"/>
+                        </div>
                     </div>
                     break;
                 case "missions":
                     <div id="missions" class="generator-block">
                         <h3>Missions</h3>
-                        <div class="form-group">
-                            <label>Mission count (zero means random)</label>
-                            <InputNumber class="form-control" @bind-Value="Template.MissionsCount"></InputNumber>
+                        <div class="generator-group flex-justify-spaced flex-margin-fix">
+                            <div class="form-group flex-block">
+                                <label>Mission count (zero means random)</label>
+                                <InputNumber class="form-control" @bind-Value="Template.MissionsCount"></InputNumber>
+                            </div>
+                            <InputEnum ClassString="flex-block" Label="Mission difficulty variation" @bind-Value="Template.MissionsDifficultyVariation" EnumType="CampaignDifficultyVariation"/>
                         </div>
                         <div class="form-group">
                             <label>Mission Features</label>
@@ -109,15 +112,15 @@
                                 Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"
                                 TextField="@(item =>item.Name)"
                                 DescriptionField="@(item => item.Description)"
+                                GroupingField="@(item => item.Category)"
                                 ValueField="@(item =>item.ID)"
                                 SelectedValues="Template.MissionsFeatures"
                                 TItem="DatabaseEntryInfo"
                                 TItemOutput="string">
                             </CheckBoxList>
                         </div>
-                        <InputEnum Label="Mission difficulty variation" @bind-Value="Template.MissionsDifficultyVariation" EnumType="CampaignDifficultyVariation"/>
                         <div class="form-group">
-                            <label>Objectives</label>
+                            <h4>Objectives</h4>
                             <CheckBoxList
                                 Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectivePreset).ToList()"
                                 TextField="@(item =>item.Name)"
@@ -128,8 +131,10 @@
                                 TItemOutput="string">
                             </CheckBoxList>
                         </div>
-                        <InputEnum Label="Objectives count" @bind-Value="Template.MissionsObjectiveCount" EnumType="Amount"/>
-                        <InputEnum Label="Objectives distance" @bind-Value="Template.MissionsObjectiveDistance" EnumType="Amount"/>
+                        <div class="generator-group flex-justify-spaced flex-margin-fix">
+                            <InputEnum ClassString="flex-block" Label="Objectives count" @bind-Value="Template.MissionsObjectiveCount" EnumType="Amount"/>
+                            <InputEnum ClassString="flex-block" Label="Objectives distance" @bind-Value="Template.MissionsObjectiveDistance" EnumType="Amount"/>
+                        </div>
                     </div>
                     break;
                 case "options":
@@ -170,53 +175,81 @@
                     </div>
                     break;
                 case "situation":
-                    <div id="situation" class="generator-block">
+                     <div id="situation" class="generator-block">
                         <h3>Situation</h3>
-                        <ul class="nav nav-tabs">
-                            @foreach (var value in situationTabs)
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link @(situationTab == value ? "active" : "")" aria-current="page"
-                            @onclick='() => SetSituationTab(value)'>@textInfo.ToTitleCase(value).Replace("-", " ")</a>
-                                </li>
-                            }
-                        </ul>
-                        @switch (situationTab)
-                        {
-                            case "enemies":
-                                <div id="enemies">
-                                    <h4>Enemies</h4>
-                                    <InputEnum Label="Air defense" @bind-Value="Template.SituationEnemyAirDefense" EnumType="AmountNR"/>
-                                    <InputEnum Label="Air force" @bind-Value="Template.SituationEnemyAirForce" EnumType="AmountNR"/>
-                                </div>
-                                break;
-                            case "friendlies":
-                                <div id="friendlies">
-                                    <h4>Friendlies</h4>
-                                    <InputEnum Label="Air defense" @bind-Value="Template.SituationFriendlyAirDefense" EnumType="AmountNR"/>
-                                    <InputEnum Label="Air force" @bind-Value="Template.SituationFriendlyAirForce" EnumType="AmountNR"/>
-                                </div>
-                                break;
-                        }
+                        <div class="generator-group flex-justify-spaced flex-margin-fix">
+                            <div class="flex-block">
+                           <h4>Enemies</h4>
+                                <InputEnum Label="Training" @bind-Value="Template.SituationEnemySkill" EnumType="AmountNR"/>
+                                <InputEnum Label="Air defense" @bind-Value="Template.SituationEnemyAirDefense" EnumType="AmountNR"/>
+                                <InputEnum Label="Air force" @bind-Value="Template.SituationEnemyAirForce" EnumType="AmountNR"/>
+                            </div>
+                            <div class="flex-block">
+                                <h4>Friendlies</h4>
+                                <InputEnum Label="Training" @bind-Value="Template.SituationFriendlySkill" EnumType="AmountNR"/>
+                                <InputEnum Label="Air defense" @bind-Value="Template.SituationFriendlyAirDefense" EnumType="AmountNR"/>
+                                <InputEnum Label="Air force" @bind-Value="Template.SituationFriendlyAirForce" EnumType="AmountNR"/>
+                            </div>
+                        </div>
                     </div>
                     break;
                 case "player":
-                    <div id="player" class="generator-block">
-                        <h3>Player</h3
-                        <div class="form-group">
-                            <label>Aircraft</label>
-                            <BlazoredTypeahead SearchMethod="SearchAircraft" @bind-Value="Template.PlayerAircraft"
-                                EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
-                                MaximumSuggestions="1000">
-                                <SelectedTemplate Context="aircraftId">
-                                    @GetAircraftDisplayName(@aircraftId)
-                                </SelectedTemplate>
-                                <ResultTemplate Context="aircraft">
-                                    @aircraft.Name
-                                </ResultTemplate>
-                            </BlazoredTypeahead>
+                    <div class="flight-group">
+                        <div class="generator-group flex-justify-spaced flex-margin-fix">
+                            <div class="form-group flex-block">
+                                <label>Aircraft</label>
+                                <BlazoredTypeahead SearchMethod="SearchAircraft" @bind-Value="Template.Player.Aircraft"
+                                    EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
+                                    MaximumSuggestions="1000">
+                                    <SelectedTemplate Context="aircraftId">
+                                        @GetAircraftDisplayName(@aircraftId)
+                                    </SelectedTemplate>
+                                    <ResultTemplate Context="aircraft">
+                                        @aircraft.Name
+                                    </ResultTemplate>
+                                </BlazoredTypeahead>
+                            </div>
+                            <div class="form-group flex-block">
+                                <label>Count</label>
+                                <InputNumber class="form-control" @bind-Value="Template.Player.Count"></InputNumber>
+                            </div>
+                            <div class="form-group flex-block">
+                                <label>Payload</label>
+                                <select class="form-control selectpicker" @bind=Template.Player.Payload>
+                                    @foreach (var item in GetAircraftPayloads(Template.Player.Aircraft))
+                                    {
+                                        <option value="@item">@BriefingRoom.FormatPayload(item)</option> // Blazor needs to know what values it binds to!
+                                    }
+                                </select>
+                            </div>
                         </div>
-                        <InputDataBase Label="Carrier" @bind-Value="Template.PlayerCarrier" DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="N/A"/>
+                        <div class="generator-group flex-justify-spaced flex-margin-fix">
+                            <InputEnum ClassString="flex-block" Label="Starting Setup" @bind-Value="Template.Player.StartLocation" EnumType="PlayerStartLocation"/>
+                            <InputDataBase ClassString="flex-block" Label="Carrier" @bind-Value="Template.Player.Carrier" DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="N/A"/>
+                        </div>
+                        <div class="generator-group flex-justify-spaced flex-margin-fix">
+                            <div class="flex-block form-group">
+                                <label>Livery</label>
+                                <select class="form-control selectpicker" @bind=Template.Player.Livery>
+                                @foreach (var item in GetLiveries(Template.Player.Aircraft))
+                                {
+                                    <option value="@item">@item</option> // Blazor needs to know what values it binds to!
+                                }
+                                </select>
+                            </div>
+                            <div class="flex-block form-group">
+                                <label>Country</label>
+                                <BlazoredTypeahead SearchMethod="SearchCountry" @bind-Value="Template.Player.Country"
+                                    EnableDropDown="true" DisableClear="true" MaximumSuggestions="1000">
+                                    <SelectedTemplate Context="country">
+                                        @country
+                                    </SelectedTemplate>
+                                    <ResultTemplate Context="country">
+                                        @country
+                                    </ResultTemplate>
+                                </BlazoredTypeahead>
+                            </div>
+                        </div>
                     </div>
                     break;
             }
@@ -361,13 +394,11 @@
             catch (Exception) { }
     }
 
-    private string tab = "context";
+    private string tab = "context-&-enviroment";
     private List<string> tabs = new List<string>{
-    "context",
-    "environment",
-    "missions",
+    "context-&-enviroment",
     "player",
-    "flight-plan",
+    "missions",
     "situation",
     "options",
     };
@@ -377,19 +408,17 @@
     }
 
 
-    private string situationTab = "enemies";
-    private List<string> situationTabs = new List<string> { "enemies", "friendlies" };
-    private void SetSituationTab(string var)
-    {
-        situationTab = var;
-    }
-
-
     private DCSMission missionTab;
     private void SetMissionTab(DCSMission var)
     {
         missionTab = var;
     }
+
+    private List<string> GetLiveries(string aircraftId) =>
+        BriefingRoom.GetAircraftLiveries(aircraftId);
+
+    private List<string> GetAircraftPayloads(string aircraftId) =>
+        BriefingRoom.GetAircraftPayloads(aircraftId);
 
     private async Task<IEnumerable<Country>> SearchCountry(string searchText) =>
     await Typeahead.SearchEnum<Country>(searchText);

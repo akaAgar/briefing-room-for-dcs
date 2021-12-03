@@ -1,5 +1,4 @@
-﻿[briefing]
-campaignname=
+[briefing]
 
 [context]
 coalitions.blue=USA
@@ -7,6 +6,7 @@ coalitions.player=Blue
 coalitions.red=Russia
 decade=Decade2000
 theater=Caucasus
+situation=CaucasusDefault
 
 [environment]
 badweatherchance=VeryLow
@@ -24,13 +24,22 @@ fogofwar=All
 mission=ImperialUnitsForBriefing
 realism=DisableDCSRadioAssists,NoBDA
 
+[playerflightgroups]
+player.aircrafttype=Su-25T
+player.aiwingmen=False
+player.count=2
+player.payload=default
+player.country=CJTFBlue
+player.startlocation=Runway
+player.livery=default
+
 [player]
-aircraft=Su-25T
-startlocation=Runway
 
 [situation]
+enemyskill=Random
 enemyairdefense=Random
 enemyairforce=Random
+friendlyskill=Random
 friendlyairdefense=Random
 friendlyairforce=Random
 
