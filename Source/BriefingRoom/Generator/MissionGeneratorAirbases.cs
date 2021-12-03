@@ -28,16 +28,13 @@ namespace BriefingRoom4DCS.Generator
 {
     internal class MissionGeneratorAirbases : IDisposable
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         internal MissionGeneratorAirbases() { }
 
         internal void SelectStartingAirbaseForPackages(DCSMission mission, MissionTemplate template, DBEntryAirbase homeBase)
         {
             foreach (var package in template.AircraftPackages)
             {
-                if(package.StartingAirbase == "home")
+                if (package.StartingAirbase == "home")
                 {
                     package.Airbase = homeBase;
                     continue;
@@ -47,12 +44,6 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        /// <summary>
-        /// Picks a starting airbase for the player(s)
-        /// </summary>
-        /// <param name="mission">Mission for which the starting airbase must be set</param>
-        /// <param name="template">Mission template to use</param>
-        /// <returns>Players' takeoff/landing airbase</returns>
         internal DBEntryAirbase SelectStartingAirbase(DCSMission mission, MissionTemplate template, string selectedAirbaseID, int requiredParkingSpots = 0)
         {
             // Get total number of required parking spots for flight groups
@@ -106,11 +97,6 @@ namespace BriefingRoom4DCS.Generator
             return Toolbox.RandomFrom(airbases);
         }
 
-        /// <summary>
-        /// Should airbases near the sea be preferred as starting/landing airbases?
-        /// </summary>
-        /// <param name="template">Mission template to check.</param>
-        /// <returns>True or false</returns>
         private bool MissionPrefersShoreAirbase(MissionTemplate template)
         {
             // If any objective target is a ship, return true
@@ -127,12 +113,6 @@ namespace BriefingRoom4DCS.Generator
             return false;
         }
 
-        /// <summary>
-        /// Sets the coalition to which the various airbases on the theater belong.
-        /// </summary>
-        /// <param name="mission">Mission for which airbase coalitions must be set</param>
-        /// <param name="template">Mission template</param>
-        /// <param name="playerAirbase">Players' takeoff/landing airbase</param>
         internal void SetupAirbasesCoalitions(DCSMission mission, MissionTemplate template, DBEntryAirbase playerAirbase)
         {
             // Select all airbases for this theater
@@ -153,9 +133,6 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose() { }
     }
 }

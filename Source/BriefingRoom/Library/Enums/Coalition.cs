@@ -20,19 +20,9 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS
 {
-    /// <summary>
-    /// A DCS World coalition color. Blue or red.
-    /// Cast to Int32 must be 0 or 1 so coalition can be changed by computing "1 - Coalition"
-    /// </summary>
     public enum Coalition
     {
-        /// <summary>
-        /// The blue coalition.
-        /// </summary>
         Blue = 0,
-        /// <summary>
-        /// The red coalition.
-        /// </summary>
         Red = 1,
 
         Neutural = 2,

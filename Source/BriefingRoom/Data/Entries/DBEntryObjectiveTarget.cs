@@ -22,42 +22,18 @@ using BriefingRoom4DCS.Template;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Stores information about a possible target for an objective.
-    /// </summary>
     internal class DBEntryObjectiveTarget : DBEntry
     {
-        /// <summary>
-        /// Name as displayed .
-        /// Index #0 is singular form, index #1 is plural form.
-        /// </summary>
         internal string[] BriefingName { get; private set; }
 
-        /// <summary>
-        /// Unit category these target units belong to.
-        /// </summary>
         internal UnitCategory UnitCategory { get { return UnitFamilies[0].GetUnitCategory(); } }
 
-        /// <summary>
-        /// Minimum/maximum number of units in this group, for each "target group size" setting.
-        /// </summary>
         internal MinMaxI[] UnitCount { get; private set; }
 
-        /// <summary>
-        /// Valid unit families for this target.
-        /// </summary>
         internal UnitFamily[] UnitFamilies { get; private set; }
 
-        /// <summary>
-        /// Valid spawn points on which to spawn this item.
-        /// </summary>
         internal SpawnPointType[] ValidSpawnPoints { get; private set; }
 
-        /// <summary>
-        /// Loads a database entry from an .ini file.
-        /// </summary>
-        /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
-        /// <returns>True is successful, false if an error happened</returns>
         protected override bool OnLoad(string iniFilePath)
         {
             using (INIFile ini = new INIFile(iniFilePath))

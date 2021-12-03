@@ -23,37 +23,18 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Abstract parent class for all database entries. The Load() method loads data from an .ini file.
-    /// </summary>
     internal abstract class DBEntry : IDisposable
     {
         protected Database Database { get; set; }
 
-        /// <summary>
-        /// Unique ID used by this entry in the database dictionary. Same as the dictionary key.
-        /// Duplicated here to make things easier in some methods using Linq queries on Database entries.
-        /// </summary>
         internal string ID { get; set; }
 
-        /// <summary>
-        /// Display name to show for this database entry in the user interface. If null or empty, <see cref="ID"/> will be used instead.
-        /// </summary>
         internal string UIDisplayName { get; set; }
 
-        /// <summary>
-        /// Category in which to sort this database entry in the user interface.
-        /// </summary>
         internal string UICategory { get; set; }
 
-        /// <summary>
-        /// Description to show for this database entry in the user interface.
-        /// </summary>
         internal string UIDescription { get; set; }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         internal DBEntry() { }
 
         internal virtual DatabaseEntryInfo GetDBEntryInfo()
@@ -61,12 +42,6 @@ namespace BriefingRoom4DCS.Data
             return new DatabaseEntryInfo(ID, UIDisplayName, UICategory, UIDescription);
         }
 
-        /// <summary>
-        /// Loads a database entry from an .ini file.
-        /// </summary>
-        /// <param name="id">Unique ID of the database entry</param>
-        /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
-        /// <returns>True is successful, false if an error happened</returns>
         internal bool Load(Database database, string id, string iniFilePath)
         {
             Database = database;
@@ -82,26 +57,10 @@ namespace BriefingRoom4DCS.Data
             return OnLoad(iniFilePath);
         }
 
-        /// <summary>
-        /// Loads a database entry from an .ini file.
-        /// </summary>
-        /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
-        /// <returns>True is successful, false if an error happened</returns>
         protected abstract bool OnLoad(string iniFilePath);
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public virtual void Dispose() { }
 
-        /// <summary>
-        /// Checks an array of <see cref="DBEntry"/> ids of type to see which ones exist in the database.
-        /// Returns an array of valid IDs and outputs (rejected) an array of invalid ones so warnings can be displayed.
-        /// </summary>
-        /// <typeparam name="T">Type of <see cref="DBEntry"/> to look for</typeparam>
-        /// <param name="values">Array of <see cref="DBEntry"/> ids to check</param>
-        /// <param name="rejected">Array of <see cref="DBEntry"/> or type T which are neither null nor empty but DO NOT exist in the database</param>
-        /// <returns>Array of <see cref="DBEntry"/> or type T which are neither null nor empty AND exist in the database</returns>
         protected string[] GetValidDBEntryIDs<T>(string[] values, out string[] rejected) where T : DBEntry
         {
             values = values ?? new string[0]; // Make sure values is not null

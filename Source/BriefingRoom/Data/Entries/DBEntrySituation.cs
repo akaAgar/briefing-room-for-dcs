@@ -24,9 +24,6 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Stores information about a DCS World theater airbase
-    /// </summary>
     internal class DBEntrySituation : DBEntry
     {
 
@@ -34,9 +31,6 @@ namespace BriefingRoom4DCS.Data
 
         private List<Coordinates> BlueCoordinates { get; set; }
 
-        /// <summary>
-        /// ID of the theater this airbase is located on.
-        /// </summary>
         internal string Theater { get; private set; }
 
         protected override bool OnLoad(string iniFilePath)
@@ -64,20 +58,16 @@ namespace BriefingRoom4DCS.Data
         internal List<Coordinates> GetRedZone(bool invertCoalition) => !invertCoalition ? RedCoordinates : BlueCoordinates;
         internal List<Coordinates> GetBlueZone(bool invertCoalition) => !invertCoalition ? BlueCoordinates : RedCoordinates;
 
-        /// <summary>
-        /// Returns an array of all airbases in this theater.
-        /// </summary>
-        /// <returns>An array of <see cref="DBEntryAirbase"/></returns>
         internal DBEntryAirbase[] GetAirbases(bool invertCoalition)
         {
             var airbases = (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>()
-                 where Toolbox.StringICompare(airbase.Theater, Theater)
-                 select airbase).ToArray();
+                            where Toolbox.StringICompare(airbase.Theater, Theater)
+                            select airbase).ToArray();
             foreach (var airbase in airbases)
             {
-                if(ShapeManager.IsPosValid(airbase.Coordinates, GetBlueZone(invertCoalition)))
+                if (ShapeManager.IsPosValid(airbase.Coordinates, GetBlueZone(invertCoalition)))
                     airbase.Coalition = Coalition.Blue;
-                if(ShapeManager.IsPosValid(airbase.Coordinates, GetRedZone(invertCoalition)))
+                if (ShapeManager.IsPosValid(airbase.Coordinates, GetRedZone(invertCoalition)))
                     airbase.Coalition = Coalition.Red;
             }
             return airbases;

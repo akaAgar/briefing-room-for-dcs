@@ -23,69 +23,30 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Stores information about a DCS World theater airbase
-    /// </summary>
     internal class DBEntryAirbase : DBEntry
     {
-        /// <summary>
-        /// ATC frequencies.
-        /// </summary>
         internal string ATC { get; private set; }
 
-        /// <summary>
-        /// Which coalition this airbase belongs to?
-        /// </summary>
         internal Coalition Coalition { get; set; } = Coalition.Neutural;
 
-        /// <summary>
-        /// Map X,Y coordinates of this airbase
-        /// </summary>
         internal Coordinates Coordinates { get; private set; }
 
-        /// <summary>
-        /// Internal ID of this airbase in DCS World.
-        /// </summary>
         internal int DCSID { get; private set; }
 
-        /// <summary>
-        /// Elevation of this airbase, in meters.
-        /// </summary>
         internal double Elevation { get; private set; }
 
-        /// <summary>
-        /// Array of special flags for this airbase.
-        /// </summary>
         internal AirbaseFlag Flags { get; private set; }
 
-        /// <summary>
-        /// ILS frequency (null or empty if none).
-        /// </summary>
         internal string ILS { get; private set; }
 
-        /// <summary>
-        /// The name of the airbase.
-        /// </summary>
         internal string Name { get; private set; }
 
-        /// <summary>
-        /// Parking spots of this airbase.
-        /// </summary>
         internal DBEntryAirbaseParkingSpot[] ParkingSpots { get; private set; }
 
-        /// <summary>
-        /// A list of runway orientations.
-        /// </summary>
         internal string Runways { get; private set; }
 
-        /// <summary>
-        /// TACAN frequency (null or empty if none).
-        /// </summary>
         internal string TACAN { get; private set; }
 
-        /// <summary>
-        /// ID of the theater this airbase is located on.
-        /// </summary>
         internal string Theater { get; private set; }
 
         protected override bool OnLoad(string iniFilePath)
@@ -106,7 +67,7 @@ namespace BriefingRoom4DCS.Data
 
                 if (!Database.Instance.EntryExists<DBEntryTheater>(Theater))
                     throw new Exception($"Airbase \"{ID}\" located on non-existing theater \"{Theater}\".");
-             
+
                 ParkingSpots = LoadParkingSpots(ini, "Parking");
                 if (ParkingSpots.Length == 0) throw new Exception($"No parking spots for airbase \"{ID}\".");
             }

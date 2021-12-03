@@ -32,9 +32,6 @@ namespace BriefingRoom4DCS.Generator
     {
         private static readonly string AIRPORT_TEMPLATE_FILEPATH = $"{BRPaths.INCLUDE_LUA}Warehouses\\Airport.lua";
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         internal MissionGeneratorWarehouses()
         {
 
@@ -61,9 +58,6 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("WarehousesAirports", warehousesAirportLua);
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose() { }
 
     }

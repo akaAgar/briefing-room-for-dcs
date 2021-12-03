@@ -23,26 +23,12 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Stores settings (number of units, etc.) about a level of CAP.
-    /// </summary>
     internal struct DBCommonCAPLevel
     {
-        /// <summary>
-        /// Possible AI skill levels for units at this CAP level.
-        /// </summary>
         internal DCSSkillLevel[] SkillLevel { get; }
 
-        /// <summary>
-        /// Number of CAP aircraft (not flight groups) to spawn at this CAP level.
-        /// </summary>
         internal MinMaxI UnitCount { get; }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="ini">.ini file from which to load air defense common settings</param>
-        /// <param name="capLevel">Level of CAP for which this setting applies.</param>
         internal DBCommonCAPLevel(INIFile ini, AmountNR capLevel)
         {
             if ((capLevel == AmountNR.None) || (capLevel == AmountNR.Random))

@@ -22,32 +22,14 @@ using BriefingRoom4DCS.Template;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Stores information about a parking spot in a <see cref="DBEntryAirbase"/>
-    /// </summary>
     internal struct DBEntryAirbaseParkingSpot
     {
-        /// <summary>
-        /// Unique internal DCSID for this parking spot.
-        /// </summary>
         internal int DCSID { get; }
 
-        /// <summary>
-        /// Coordinates where this parking spot is located.
-        /// </summary>
         internal Coordinates Coordinates { get; }
 
-        /// <summary>
-        /// Type of parking spot.
-        /// </summary>
         internal ParkingSpotType ParkingType { get; }
-        
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="ini">The .ini file to load parking spot data from.</param>
-        /// <param name="parkingKey">The top-level key (parking spot unique ID)</param>
-        /// <param name="isRunway">Is this parking spot a runway spawn spot</param>
+
         internal DBEntryAirbaseParkingSpot(INIFile ini, string section, string parkingKey, bool isRunway)
         {
             DCSID = ini.GetValue<int>(section, $"{parkingKey}.DCSID");

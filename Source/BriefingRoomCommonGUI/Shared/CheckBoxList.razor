@@ -10,7 +10,7 @@
             var Description = DescriptionField?.Invoke(item);
             var Grouping = GroupingField?.Invoke(item);
             var Value = ValueField?.Invoke(item);
-            if(GroupingField != null && prevGrouping != Grouping)
+            if (GroupingField != null && prevGrouping != Grouping)
             {
                 prevGrouping = Grouping;
                 <div class="checkboxList-break"></div>
@@ -41,7 +41,7 @@
     [Parameter] public Func<TItem, string> TextField { get; set; }
 
     [Parameter] public Func<TItem, string> DescriptionField { get; set; }
-    
+
     [Parameter] public Func<TItem, string> GroupingField { get; set; }
     // The Value which checkbox will return when checked
     [Parameter] public Func<TItem, object> ValueField { get; set; }

@@ -26,15 +26,8 @@ using System.Collections.Generic;
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// Generates units and Lua script associated with objective features.
-    /// </summary>
     internal class MissionGeneratorFeaturesObjectives : MissionGeneratorFeatures<DBEntryFeatureObjective>
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="unitMaker">Unit maker to use for unit generation.</param>
         internal MissionGeneratorFeaturesObjectives(UnitMaker unitMaker, MissionTemplate template) : base(unitMaker, template) { }
 
         internal void GenerateMissionFeature(DCSMission mission, string featureID, string objectiveName, int objectiveIndex, int objectiveGroupID, Coordinates objectiveCoordinates, Side objectiveTargetSide)

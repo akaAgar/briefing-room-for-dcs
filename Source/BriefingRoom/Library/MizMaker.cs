@@ -30,21 +30,10 @@ using System.Text.RegularExpressions;
 
 namespace BriefingRoom4DCS
 {
-    /// <summary>
-    /// Exports HQ4DCS missions to DCS World .miz files.
-    /// </summary>
     internal class MizMaker : IDisposable
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         internal MizMaker() { }
 
-        /// <summary>
-        /// Exports a BriefingRoom mission to a zip file.
-        /// </summary>
-        /// <param name="mission">The mission to export.</param>
-        /// <returns>The zip file, as a byte array.</returns>
         internal byte[] ExportToMizBytes(DCSMission mission)
         {
             Dictionary<string, byte[]> MizFileEntries = new Dictionary<string, byte[]>();
@@ -95,9 +84,6 @@ namespace BriefingRoom4DCS
             return true;
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose() { }
     }
 }

@@ -24,26 +24,12 @@ using System;
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// Generates enemy surface-to-air defense unit groups,
-    /// except "embedded" air defense, which is generated at the same time as the group objectives.
-    /// </summary>
     internal class MissionGeneratorAirDefense : IDisposable
     {
-        /// <summary>
-        /// Shorcut to Database.Instance.Common.AirDefense.
-        /// </summary>
         private DBCommonAirDefense CommonAirDefenseDB { get { return Database.Instance.Common.AirDefense; } }
 
-        /// <summary>
-        /// Unit maker class to use to generate units.
-        /// </summary>
         private readonly UnitMaker UnitMaker;
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="unitMaker">Unit maker class to use to generate units</param>
         internal MissionGeneratorAirDefense(UnitMaker unitMaker)
         {
             UnitMaker = unitMaker;
@@ -54,7 +40,7 @@ namespace BriefingRoom4DCS.Generator
             foreach (Coalition coalition in Toolbox.GetEnumValues<Coalition>())
             {
                 bool ally = coalition == template.ContextPlayerCoalition;
-                
+
                 Side side = ally ? Side.Ally : Side.Enemy;
                 AmountNR airDefenseAmount = ally ? template.SituationFriendlyAirDefense.Get() : template.SituationEnemyAirDefense.Get();
                 Coordinates centerPoint = ally ? averageInitialPosition : objectivesCenter;
@@ -131,9 +117,6 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose()
         {
 

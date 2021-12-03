@@ -22,63 +22,31 @@ using System.Drawing;
 
 namespace BriefingRoom4DCS.Media
 {
-    /// <summary>
-    /// Describes a layer of text to draw in a <see cref="ImageMaker"/>
-    /// </summary>
     internal class ImageMakerTextOverlay
     {
-        /// <summary>
-        /// Alignment of the text overlay.
-        /// </summary>
         internal ContentAlignment Alignment { get; set; } = ContentAlignment.MiddleCenter;
 
-        /// <summary>
-        /// Color to use fot the text overlay.
-        /// </summary>
         internal Color Color { get; set; } = Color.White;
 
-        /// <summary>
-        /// Font to use for the text overlay.
-        /// </summary>
         internal string FontFamily { get; set; } = "Arial";
 
-        /// <summary>
-        /// Size (in pixels) of the font to use.
-        /// </summary>
         internal float FontSize { get; set; } = 36.0f;
 
-        /// <summary>
-        /// Syle to use for the overlay text font.
-        /// </summary>
         internal FontStyle FontStyle { get; set; } = FontStyle.Regular;
 
-        /// <summary>
-        /// Rotation of the image, in degrees.
-        /// </summary>
         internal int Rotation { get; set; } = 0;
 
-        /// <summary>
-        /// Text to draw over all generated images.
-        /// </summary>
         internal string Text { get; set; } = "";
 
-        internal bool Shadow {get; set;} = true;
+        internal bool Shadow { get; set; } = true;
 
         private ImageMaker ImageMaker;
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="rotationInDegrees">Rotation of the image, in degrees</param>
         internal ImageMakerTextOverlay(ImageMaker imageMaker)
         {
             ImageMaker = imageMaker;
         }
 
-        /// <summary>
-        /// Draw the text overlay on the provided <see cref="Graphics"/>.
-        /// </summary>
-        /// <param name="graphics"><see cref="Graphics"/> to use to draw the text overlay</param>
         internal void Draw(Graphics graphics)
         {
             if (string.IsNullOrEmpty(Text)) return; // No text, nothing to draw
@@ -94,19 +62,15 @@ namespace BriefingRoom4DCS.Media
                     for (int x = -1; x <= 1; x++)
                         for (int y = -1; y <= 1; y++)
                             graphics.DrawString(Text, font, Brushes.Black,
-                                new RectangleF(3 * x + 10, 3 * y + 10, ImageMaker.ImageSizeX -10, ImageMaker.ImageSizeY -10), stringFormat);
+                                new RectangleF(3 * x + 10, 3 * y + 10, ImageMaker.ImageSizeX - 10, ImageMaker.ImageSizeY - 10), stringFormat);
                 }
 
                 using (SolidBrush brush = new SolidBrush(Color))
                     graphics.DrawString(Text, font, brush,
-                        new RectangleF(10, 10, ImageMaker.ImageSizeX - 10, ImageMaker.ImageSizeY -10), stringFormat);
+                        new RectangleF(10, 10, ImageMaker.ImageSizeX - 10, ImageMaker.ImageSizeY - 10), stringFormat);
             }
         }
 
-        /// <summary>
-        /// Returns string format information generated from <see cref="this.ContentAlignment"/>.
-        /// </summary>
-        /// <returns>A string format</returns>
         private StringFormat GetStringFormat()
         {
             StringFormat stringFormat = new StringFormat();

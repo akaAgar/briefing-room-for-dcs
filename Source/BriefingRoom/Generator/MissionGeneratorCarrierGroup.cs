@@ -27,34 +27,15 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// Generates friendly carrier group.
-    /// </summary>
     internal class MissionGeneratorCarrierGroup : IDisposable
     {
-        /// <summary>
-        /// Unit maker class to use to generate units.
-        /// </summary>
         private readonly UnitMaker UnitMaker;
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="unitMaker">Unit maker class to use to generate units</param>
         internal MissionGeneratorCarrierGroup(UnitMaker unitMaker)
         {
             UnitMaker = unitMaker;
         }
 
-        /// <summary>
-        /// Generates the carrier group.
-        /// </summary>
-        /// <param name="mission">The mission to generate.</param>
-        /// <param name="template">The mission template to use.</param>
-        /// <param name="landbaseCoordinates">Coordinates of the players' land base.</param>
-        /// <param name="windSpeedAtSeaLevel">Wind speed at sea level, in m/s.</param>
-        /// <param name="windDirectionAtSeaLevel">Wind direction at sea level, in radians.</param>
-        /// <returns>A dictionary of carrier group units info, with the database ID of the ship as key.</returns>
         internal Dictionary<string, UnitMakerGroupInfo> GenerateCarrierGroup(DCSMission mission, MissionTemplate template, Coordinates landbaseCoordinates, Coordinates objectivesCenter, double windSpeedAtSeaLevel, double windDirectionAtSeaLevel)
         {
             Dictionary<string, UnitMakerGroupInfo> carrierDictionary = new Dictionary<string, UnitMakerGroupInfo>(StringComparer.InvariantCultureIgnoreCase);
@@ -64,12 +45,12 @@ namespace BriefingRoom4DCS.Generator
 
             Coordinates? carrierGroupCoordinates = null;
             Coordinates? destinationPath = null;
-                
+
             var iteration = 0;
             while (iteration < 5)
             {
-                carrierGroupCoordinates  = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                    new SpawnPointType[] {SpawnPointType.Sea},
+                carrierGroupCoordinates = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                    new SpawnPointType[] { SpawnPointType.Sea },
                     landbaseCoordinates,
                     new MinMaxD(15, 300),
                     objectivesCenter,
@@ -80,11 +61,11 @@ namespace BriefingRoom4DCS.Generator
                     windDirectionAtSeaLevel = Toolbox.RandomDouble(Toolbox.TWO_PI);
                 destinationPath = Coordinates.FromAngleInRadians(windDirectionAtSeaLevel + Math.PI) * Database.Instance.Common.CarrierGroup.CourseLength;
 
-                if(ShapeManager.IsPosValid(destinationPath.Value, theaterDB.WaterCoordinates, theaterDB.WaterExclusionCoordinates))
+                if (ShapeManager.IsPosValid(destinationPath.Value, theaterDB.WaterCoordinates, theaterDB.WaterExclusionCoordinates))
                     break;
                 iteration++;
             }
-            if(!carrierGroupCoordinates.HasValue)
+            if (!carrierGroupCoordinates.HasValue)
                 return carrierDictionary;
 
             double carrierSpeed = Math.Max(
@@ -181,16 +162,13 @@ namespace BriefingRoom4DCS.Generator
                     "RadioBand".ToKeyValuePair((int)RadioModulation.AM),
                     "RadioFrequency".ToKeyValuePair(GeneratorTools.GetRadioFrenquency(radioFrequency)));
             if (!groupInfo.HasValue || (groupInfo.Value.UnitsID.Length == 0)) return; // Couldn't generate group
-       
-           mission.Briefing.AddItem(
-                    DCSMissionBriefingItemType.Airbase,
-                    $"{unitDB.UIDisplayName}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t\t");
+
+            mission.Briefing.AddItem(
+                     DCSMissionBriefingItemType.Airbase,
+                     $"{unitDB.UIDisplayName}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t\t");
             carrierDictionary.Add(flightGroup.Carrier, groupInfo.Value); // This bit limits FOBS to one per game think about how we can fix this
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose() { }
     }
 }

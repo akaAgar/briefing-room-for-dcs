@@ -22,45 +22,18 @@ using System.Drawing;
 
 namespace BriefingRoom4DCS.Media
 {
-    /// <summary>
-    /// Describes a layer of image to draw with <see cref="ImageMaker"/>
-    /// </summary>
     internal struct ImageMakerLayer
     {
-        /// <summary>
-        /// Filename of the image to draw on this layer (from <see cref="BRPaths.INCLUDE_JPG"/>
-        /// </summary>
         internal string FileName { get; }
 
-        /// <summary>
-        /// Alignment of the image on the layer.
-        /// </summary>
         internal ContentAlignment Alignment { get; }
 
-        /// <summary>
-        /// Offset of the image.
-        /// </summary>
         internal Point Offset { get; }
 
-        /// <summary>
-        /// Rotation of the image, in degrees.
-        /// </summary>
         internal int Rotation { get; }
 
-        /// <summary>
-        /// Scale of the image
-        /// </summary>
         internal double Scale { get; }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="fileName"></param>
-        /// <param name="alignment">Alignment of the image on the layer</param>
-        /// <param name="offsetX">X-offset of the image</param>
-        /// <param name="offsetY">Y-offset of the image</param>
-        /// <param name="rotation">Rotation of the image, in degrees</param>
-        /// <param name="scale">Scale of the image</param>
         internal ImageMakerLayer(
             string fileName,
             ContentAlignment alignment = ContentAlignment.MiddleCenter,

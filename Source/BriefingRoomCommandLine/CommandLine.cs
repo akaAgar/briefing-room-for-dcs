@@ -27,30 +27,14 @@ using System.Windows.Forms;
 
 namespace BriefingRoom4DCS.CommandLineTool
 {
-    /// <summary>
-    /// Tool to generate mission(s) from command-line parameters.
-    /// </summary>
     public class CommandLine : IDisposable
     {
-        /// <summary>
-        /// Path to the log file where BriefingRoom output must be written.
-        /// </summary>
         private static readonly string LOG_FILE = $"{Application.StartupPath}\\BriefingRoomCommandLineDebugLog.txt";
 
-        /// <summary>
-        /// StreamWriter used to write the log to the disk.
-        /// </summary>
         private readonly StreamWriter LogWriter;
 
-        /// <summary>
-        /// BriefingRoom library instance.
-        /// </summary>
         private readonly BriefingRoom BriefingRoomGenerator;
 
-        /// <summary>
-        /// Application entry point.
-        /// </summary>
-        /// <param name="args">Command-line parameters.</param>
         [STAThread]
         private static void Main(string[] args)
         {
@@ -69,9 +53,6 @@ namespace BriefingRoom4DCS.CommandLineTool
             }
         }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         public CommandLine()
         {
             if (File.Exists(LOG_FILE)) File.Delete(LOG_FILE);
@@ -80,11 +61,6 @@ namespace BriefingRoom4DCS.CommandLineTool
             BriefingRoomGenerator = new BriefingRoom(WriteToDebugLog);
         }
 
-        /// <summary>
-        /// Debug log writer method.
-        /// </summary>
-        /// <param name="message">Message to write.</param>
-        /// <param name="errorLevel">Error level (info, warning, error).</param>
         private void WriteToDebugLog(string message, LogMessageErrorLevel errorLevel = LogMessageErrorLevel.Info)
         {
             switch (errorLevel)
@@ -97,11 +73,6 @@ namespace BriefingRoom4DCS.CommandLineTool
             Console.WriteLine(message);
         }
 
-        /// <summary>
-        /// Generates mission(s) from command line arguments.
-        /// </summary>
-        /// <param name="args">Command line arguments</param>
-        /// <returns>True if everything when right, false otherwise.</returns>
         public bool DoCommandLine(string[] args)
         {
             string[] templateFiles = (from string arg in args where File.Exists(arg) select arg).ToArray();
@@ -173,23 +144,12 @@ namespace BriefingRoom4DCS.CommandLineTool
             return true;
         }
 
-        /// <summary>
-        /// Removes invalid path characters from a filename and replaces them with underscores.
-        /// </summary>
-        /// <param name="fileName">A filename.</param>
-        /// <returns>The filename, without invalid characters.</returns>
         private string RemoveInvalidPathCharacters(string fileName)
         {
             if (string.IsNullOrEmpty(fileName)) return "_";
             return string.Join("_", fileName.Split(Path.GetInvalidFileNameChars()));
         }
 
-        /// <summary>
-        /// Gets an unused filename. If the provided filepath is not used, returns it.
-        /// Else, tries to append some extra number (1, 2, 3) until it found an unused filename.
-        /// </summary>
-        /// <param name="filePath">Desired filepath.</param>
-        /// <returns>Path to unused file.</returns>
         private string GetUnusedFileName(string filePath)
         {
             if (!File.Exists(filePath)) return filePath; // File doesn't exist, use the desired name
@@ -206,9 +166,6 @@ namespace BriefingRoom4DCS.CommandLineTool
             return newName;
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose()
         {
             BriefingRoomGenerator.Dispose();

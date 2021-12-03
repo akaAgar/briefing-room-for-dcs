@@ -20,31 +20,13 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS.Template
 {
-    /// <summary>
-    /// All four seasons, plus a "Random" value".
-    /// </summary>
     public enum Season
     {
-        /// <summary>
-        /// Any/random season
-        /// </summary>
         Random,
 
-        /// <summary>
-        /// Spring
-        /// </summary>
         Spring,
-        /// <summary>
-        /// Summer
-        /// </summary>
         Summer,
-        /// <summary>
-        /// Fall
-        /// </summary>
         Fall,
-        /// <summary>
-        /// Winter
-        /// </summary>
         Winter
     }
 }

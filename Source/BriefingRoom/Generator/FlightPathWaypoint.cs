@@ -20,32 +20,14 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// Stores information about a player waypoint.
-    /// </summary>
     internal struct Waypoint
     {
-        /// <summary>
-        /// Name of the waypoint.
-        /// </summary>
         internal string Name { get; }
 
-        /// <summary>
-        /// Coordinates of the waypoint.
-        /// </summary>
         internal Coordinates Coordinates { get; }
 
-        /// <summary>
-        /// Is the waypoint on the ground?
-        /// </summary>
         internal bool OnGround { get; }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="name">Name of the waypoint.</param>
-        /// <param name="coordinates">Coordinates of the waypoint.</param>
-        /// <param name="onGround">Is the waypoint on the ground?</param>
         internal Waypoint(string name, Coordinates coordinates, bool onGround = false)
         {
             Name = name;

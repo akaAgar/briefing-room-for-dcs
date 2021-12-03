@@ -18,7 +18,7 @@
 </div>
 
 @code {
-    [Parameter] public Func<InputFileChangeEventArgs ,Task> LoadTemplate { get; set; }
+    [Parameter] public Func<InputFileChangeEventArgs, Task> LoadTemplate { get; set; }
     [Parameter] public Func<Task> SaveTemplate { get; set; }
     [Parameter] public Func<Task> ClearTemplate { get; set; }
 }

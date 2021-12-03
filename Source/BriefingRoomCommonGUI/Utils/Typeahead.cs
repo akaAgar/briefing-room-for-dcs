@@ -14,15 +14,16 @@ namespace BriefingRoom4DCS.GUI.Utils
             return Task.FromResult(list.Where(x => x.Name.ToLower().Contains(searchText.ToLower())).ToList());
         }
 
-        public static string GetDBDisplayName(DatabaseEntryType entryType, string id) {
-            if(String.IsNullOrEmpty(id))
+        public static string GetDBDisplayName(DatabaseEntryType entryType, string id)
+        {
+            if (String.IsNullOrEmpty(id))
                 return "Random";
             return BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(entryType).First(x => x.ID == id).Name;
         }
 
         public static string ConvertDB(DatabaseEntryInfo entry) => entry.ID;
 
-        public static async Task<List<T>> SearchEnum<T>(string searchText) 
+        public static async Task<List<T>> SearchEnum<T>(string searchText)
         {
             var list = new List<T>((T[])Enum.GetValues(typeof(T)));
             return await Task.FromResult(list.Where(x => x.ToString().ToLower().Contains(searchText.ToLower())).ToList());

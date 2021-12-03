@@ -5,9 +5,6 @@ namespace BriefingRoom4DCS.GUI.Desktop
 {
     static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
@@ -27,7 +24,7 @@ namespace BriefingRoom4DCS.GUI.Desktop
         internal static void HandleException(Exception ex)
         {
             string LF = Environment.NewLine + Environment.NewLine;
-            string title = $"FUBAR... I got a crash at {DateTime.Now}";            
+            string title = $"FUBAR... I got a crash at {DateTime.Now}";
             string infos = $"Please take a screenshot of this message\n\r\n\r" +
                         $"Message : {LF}{ex.Message}{LF}" +
                         $"Source : {LF}{ex.Source}{LF}" +

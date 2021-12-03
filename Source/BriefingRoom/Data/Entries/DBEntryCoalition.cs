@@ -25,32 +25,15 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Stores information about a coalition.
-    /// </summary>
     internal class DBEntryCoalition : DBEntry
     {
 
-        /// <summary>
-        /// Countries which are part of this coalition.
-        /// </summary>
         internal Country[] Countries { get; private set; }
 
-        /// <summary>
-        /// Default unit list this coalition should use.
-        /// </summary>
         internal string DefaultUnitList { get; private set; }
 
-        /// <summary>
-        /// Does this coalition use NATO callsigns for its units?
-        /// </summary>
         internal bool NATOCallsigns { get; private set; }
 
-        /// <summary>
-        /// Loads a database entry from an .ini file.
-        /// </summary>
-        /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
-        /// <returns>True is successful, false if an error happened</returns>
         protected override bool OnLoad(string iniFilePath)
         {
             //int i;
@@ -81,27 +64,18 @@ namespace BriefingRoom4DCS.Data
 
                 NATOCallsigns = ini.GetValue("Coalition", "NATOCallsigns", false);
             }
-         
+
             return true;
         }
 
-        /// <summary>
-        /// Returns the ID of a random <see cref="DBEntryUnit"/> belonging to one (or more) of the <see cref="UnitFamily"/> passed as parameters.
-        /// </summary>
-        /// <param name="family">Family of units to choose from</param>
-        /// <param name="decade">Decade during which the units must be operated</param>
-        /// <param name="count">Number of units to generate</param>
-        /// <param name="unitMods">Unit mods units can belong to</param>
-        /// <param name="useDefaultList">If true, and no unit of the proper family is found in the coalition countries, a unit will be selected from the default list. If false, and not unit is found, no unit will be returned.</param>
-        /// <returns>Array of IDs of <see cref="DBEntryUnit"/></returns>
         internal string[] GetRandomUnits(UnitFamily family, Decade decade, int count, List<string> unitMods, bool useDefaultList = true)
         {
             // Count is zero, return an empty array.
             if (count < 1) return new string[0];
-            
+
             UnitCategory category = family.GetUnitCategory();
             bool allowDifferentUnitTypes = false;
-            
+
             switch (category)
             {
                 // Units are planes or helicopters, make sure unit count does not exceed the maximum flight group size
@@ -139,14 +113,6 @@ namespace BriefingRoom4DCS.Data
             }
         }
 
-        /// <summary>
-        /// Picks valid units from a family, for a given decade, from the specified unit mods.
-        /// </summary>
-        /// <param name="family">Unit family to choose from.</param>
-        /// <param name="decade">Decade during which the unit must be in use.</param>
-        /// <param name="unitMods">Unit mods from which units can be picked.</param>
-        /// <param name="useDefaultList">Should units from the default list be return if no matching units are found?</param>
-        /// <returns>An array of <see cref="DBEntryUnit"/> ids.</returns>
         private string[] SelectValidUnits(UnitFamily family, Decade decade, List<string> unitMods, bool useDefaultList)
         {
             List<string> validUnits = new List<string>();
@@ -158,7 +124,7 @@ namespace BriefingRoom4DCS.Data
                     (string.IsNullOrEmpty(unit.RequiredMod) || unitMods.Contains(unit.RequiredMod, StringComparer.InvariantCultureIgnoreCase)) &&
                     (unit.Operators[country][0] <= decade) && (unit.Operators[country][1] >= decade)
                     select unit.ID);
-            
+
             validUnits = validUnits.Distinct().ToList();
 
             // At least one unit found, return it

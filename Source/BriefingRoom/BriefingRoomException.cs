@@ -22,17 +22,8 @@ using System;
 
 namespace BriefingRoom4DCS
 {
-    /// <summary>
-    /// BriefingRoom specific exception.
-    /// Basically the same as a normal <see cref="Exception"/>, but with a different type so exceptions thrown by BriefingRoom
-    /// (e.g. mission generation failures, etc) can be easily differenciated from a "regular" exception (file access error, etc.) in a try...catch loop.
-    /// </summary>
     public class BriefingRoomException : Exception
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="message">Message to display in the exception.</param>
         public BriefingRoomException(string message) : base(message) { }
     }
 }

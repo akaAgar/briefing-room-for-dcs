@@ -20,19 +20,9 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS
 {
-    /// <summary>
-    /// Enumerates possible IFF values: friend or foe.
-    /// Cast to Int32 must be 0 or 1 so IFF can be changed by computing "1 - IFF"
-    /// </summary>
     public enum Side
     {
-        /// <summary>
-        /// Friendly unit
-        /// </summary>
         Ally = 0,
-        /// <summary>
-        /// Enemy unit
-        /// </summary>
         Enemy = 1,
     }
 }

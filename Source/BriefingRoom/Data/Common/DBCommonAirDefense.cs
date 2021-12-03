@@ -25,19 +25,10 @@ namespace BriefingRoom4DCS.Data
 {
     internal class DBCommonAirDefense : IDisposable
     {
-        /// <summary>
-        /// Settings for enemy air defense levels at various air defense <see cref="Amount"/>.
-        /// </summary>
         internal DBCommonAirDefenseLevel[] AirDefenseLevels { get; }
 
-        /// <summary>
-        /// Min/max distance from spawn center (initial airbase for allies, objectives for enemies), in nautical miles, for each air defense range category.
-        /// </summary>
         internal MinMaxD[,] DistanceFromCenter { get; }
 
-        /// <summary>
-        /// Min distance from opposing point (objectives for allies, initial airbase for enemies), in nautical miles, for each air defense range category.
-        /// </summary>
         internal double[,] MinDistanceFromOpposingPoint { get; }
 
         internal DBCommonAirDefense()
@@ -63,9 +54,6 @@ namespace BriefingRoom4DCS.Data
             }
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose() { }
     }
 }

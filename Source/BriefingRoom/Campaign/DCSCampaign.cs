@@ -29,40 +29,18 @@ using System.Text;
 
 namespace BriefingRoom4DCS.Campaign
 {
-    /// <summary>
-    /// Stores a DCS World campaign, with all its unit groups, Lua scripts and parameters.
-    /// Can be exported to a directory through use of the <see cref="ExportToMiz"/> method.
-    /// </summary>
     public sealed class DCSCampaign : IDisposable
     {
-        /// <summary>
-        /// Contents of the campaign's CMP file.
-        /// </summary>
         internal string CMPFile { get; set; }
 
-        /// <summary>
-        /// The media files (pictures, etc) to add to the campaign directory.
-        /// </summary>
         private readonly Dictionary<string, byte[]> MediaFiles;
 
-        /// <summary>
-        /// The total number of missions in the campaign.
-        /// </summary>
         public int MissionCount { get { return Missions.Count; } }
 
-        /// <summary>
-        /// The missions in this campaign.
-        /// </summary>
         public readonly List<DCSMission> Missions;
 
-        /// <summary>
-        /// The name of this campaign.
-        /// </summary>
         public string Name { get; internal set; }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
         public DCSCampaign()
         {
             CMPFile = "";
@@ -71,11 +49,6 @@ namespace BriefingRoom4DCS.Campaign
             Name = "";
         }
 
-        /// <summary>
-        /// Exports the campaign to a directory. Preferably <see cref="BriefingRoom.GetDCSCampaignPath()"/>.
-        /// </summary>
-        /// <param name="exportPath">The path to export to.</param>
-        /// <returns>True if the export was completed successfully, false otherwise.</returns>
         public bool ExportToDirectory(string exportPath)
         {
             // Try to create the directory if it doesn't exist.
@@ -100,10 +73,6 @@ namespace BriefingRoom4DCS.Campaign
             return false;
         }
 
-        /// <summary>
-        /// Exports the campaign as a zip.
-        /// </summary>
-        /// <returns>ByteArray of data</returns>
         public byte[] ExportToCompressedByteArray()
         {
             Dictionary<string, byte[]> FileEntries = new Dictionary<string, byte[]>();
@@ -116,40 +85,27 @@ namespace BriefingRoom4DCS.Campaign
             }
 
             for (int i = 0; i < Missions.Count; i++)
-                    FileEntries.Add($"{Name}{i + 1:00}.miz", Missions[i].SaveToMizBytes());
+                FileEntries.Add($"{Name}{i + 1:00}.miz", Missions[i].SaveToMizBytes());
 
             return Toolbox.ZipData(FileEntries);
         }
 
-        /// <summary>
-        /// Exports the campaign as a zip.
-        /// </summary>
-        /// <returns>ByteArray of data</returns>
         public byte[] ExportBriefingsToCompressedByteArray()
         {
             Dictionary<string, byte[]> FileEntries = new Dictionary<string, byte[]>();
 
             for (int i = 0; i < Missions.Count; i++)
-                    FileEntries.Add($"{Name}{i + 1:00}.html", Encoding.UTF8.GetBytes(Missions[i].Briefing.GetBriefingAsHTML()));
-                
+                FileEntries.Add($"{Name}{i + 1:00}.html", Encoding.UTF8.GetBytes(Missions[i].Briefing.GetBriefingAsHTML()));
+
             return Toolbox.ZipData(FileEntries);
         }
 
-        /// <summary>
-        /// Adds a mission to the campaign.
-        /// </summary>
-        /// <param name="mission">The mission to add.</param>
         internal void AddMission(DCSMission mission)
         {
             if (mission == null) return;
             Missions.Add(mission);
         }
 
-        /// <summary>
-        /// Adds a media file to the campaign.
-        /// </summary>
-        /// <param name="fileName">Name of the media file.</param>
-        /// <param name="mediaFileBytes">Bytes of the file.</param>
         internal void AddMediaFile(string fileName, byte[] mediaFileBytes)
         {
             if (MediaFiles.ContainsKey(fileName))
@@ -158,9 +114,6 @@ namespace BriefingRoom4DCS.Campaign
                 MediaFiles.Add(fileName, mediaFileBytes);
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose()
         {
 

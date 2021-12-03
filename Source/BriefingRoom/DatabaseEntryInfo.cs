@@ -20,29 +20,14 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS
 {
-    /// <summary>
-    /// Stores a summary of a database entry to display in an user interface.
-    /// </summary>
     public struct DatabaseEntryInfo
     {
-        /// <summary>
-        /// Category in which to sort this database entry in the user interface.
-        /// </summary>
         public string Category { get; }
 
-        /// <summary>
-        /// Description to show for this database entry in the user interface.
-        /// </summary>
         public string Description { get; }
 
-        /// <summary>
-        /// Unique ID used by this entry in the database.
-        /// </summary>
         public string ID { get; }
 
-        /// <summary>
-        /// Display name to show for this database entry in the user interface. If null or empty, <see cref="ID"/> will be used instead.
-        /// </summary>
         public string Name { get; }
 
         public DatabaseEntryInfo(string id, string name, string category, string description)
@@ -53,12 +38,6 @@ namespace BriefingRoom4DCS
             Description = description;
         }
 
-        /// <summary>
-        /// Returns a single string with both name and description.
-        /// </summary>
-        /// <param name="separator">The separator between name and description.</param>
-        /// <param name="upperCaseName">Should the name be cast to upper case?</param>
-        /// <returns>A string.</returns>
         public string GetNameAndDescription(string separator = " - ", bool upperCaseName = false)
         {
             string casedName = upperCaseName ? Name.ToUpperInvariant() : Name;

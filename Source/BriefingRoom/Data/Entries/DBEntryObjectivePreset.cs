@@ -22,46 +22,20 @@ using BriefingRoom4DCS.Template;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Stores information about an objective preset.
-    /// </summary>
     internal class DBEntryObjectivePreset : DBEntry
     {
-        /// <summary>
-        /// <see cref="DBEntryFeatureObjective"/> to add.
-        /// </summary>
         internal string[] Features { get; private set; }
 
-        /// <summary>
-        /// Miscellaneous options to apply to this mission objective.
-        /// </summary>
         internal ObjectiveOption[] Options { get; private set; }
 
-        /// <summary>
-        /// The preferred payload for aircraft tasked with this preset.
-        /// </summary>
         internal string PreferredPayload { get; private set; }
 
-        /// <summary>
-        /// Random <see cref="DBEntryObjectiveTarget"/> IDs to choose from.
-        /// </summary>
         internal string[] Targets { get; private set; }
 
-        /// <summary>
-        /// Random <see cref="DBEntryObjectiveTargetBehavior"/> IDs to choose from.
-        /// </summary>
         internal string[] TargetsBehaviors { get; private set; }
 
-        /// <summary>
-        /// Random <see cref="DBEntryObjectiveTask"/> IDs to choose from.
-        /// </summary>
         internal string[] Tasks { get; private set; }
-        
-        /// <summary>
-        /// Loads a database entry from an .ini file.
-        /// </summary>
-        /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
-        /// <returns>True is successful, false if an error happened</returns>
+
         protected override bool OnLoad(string iniFilePath)
         {
             using (INIFile ini = new INIFile(iniFilePath))

@@ -22,9 +22,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BriefingRoom4DCS.Template
 {
-    /// <summary>
-    /// Enumerates various possible difficulty variations during the progress of a campaign.
-    /// </summary>
     public enum CampaignDifficultyVariation
     {
         [Display(Name = "Random", Description = "Pick a difficulty variation randomly.")]

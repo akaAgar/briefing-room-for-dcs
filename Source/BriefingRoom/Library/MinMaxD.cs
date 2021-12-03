@@ -22,32 +22,14 @@ using System;
 
 namespace BriefingRoom4DCS
 {
-    /// <summary>
-    /// Stores a minimum and a maximum double value.
-    /// </summary>
     internal struct MinMaxD
     {
-        /// <summary>
-        /// The minimum value.
-        /// </summary>
         internal readonly double Min;
 
-        /// <summary>
-        /// The maximum value.
-        /// </summary>
         internal readonly double Max;
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="min">The minimum value.</param>
-        /// <param name="max">The maximum value.</param>
         internal MinMaxD(double min, double max) { Min = Math.Min(min, max); Max = Math.Max(min, max); }
 
-        /// <summary>
-        /// Constructor. Parses the min and max coordinates from a string (format is "1.2345,6.7890")
-        /// </summary>
-        /// <param name="minMaxString">The string containing the min and max value.</param>
         internal MinMaxD(string minMaxString)
         {
             try
@@ -66,34 +48,16 @@ namespace BriefingRoom4DCS
             }
         }
 
-        /// <summary>
-        /// Returns a random value between Min and Max.
-        /// </summary>
-        /// <returns>A random value.</returns>
         internal double GetValue() { return Toolbox.RandomDouble(Min, Max); }
 
-        /// <summary>
-        /// Returns the MinMax value as a string.
-        /// </summary>
-        /// <returns>A string</returns>
         public override string ToString() { return ToString(null); }
 
-        /// <summary>
-        /// Returns the MinMax value as a string.
-        /// </summary>
-        /// <param name="stringFormat">A format string.</param>
-        /// <returns>A string</returns>
         internal string ToString(string stringFormat)
         { return Toolbox.ValToString(Min, stringFormat) + "," + Toolbox.ValToString(Max, stringFormat); }
 
         public static MinMaxD operator *(MinMaxD mm, double mult) { return new MinMaxD(mm.Min * mult, mm.Max * mult); }
         public static MinMaxD operator /(MinMaxD mm, double mult) { return new MinMaxD(mm.Min / mult, mm.Max / mult); }
 
-        /// <summary>
-        /// Is the value passed as parameter between the min and the max values?
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <returns>True if the value passed as parameter is between the min and the max values, false otherwise.</returns>
         internal bool Contains(double value) { return (value >= Min) && (value <= Max); }
     }
 }

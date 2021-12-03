@@ -22,9 +22,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BriefingRoom4DCS.Template
 {
-    /// <summary>
-    /// A possible player flight group start location (runway, parking, in air...)
-    /// </summary>
     public enum PlayerStartLocation
     {
         [Display(Name = "Parking, cold", Description = "Player(s) start on ramp, plane cold, and must perform the start up procedure.")]

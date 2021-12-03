@@ -22,32 +22,14 @@ using System;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Sotres location about a spawn point: a set of X,Y coordinates where a group of unit can be spawned.
-    /// </summary>
     internal struct DBEntryTheaterSpawnPoint
     {
-        /// <summary>
-        /// ID of this spawn point. Must be unique at each location.
-        /// </summary>
         internal string UniqueID { get; private set; }
 
-        /// <summary>
-        /// DCS map coordinates of this spawn point.
-        /// </summary>
         internal Coordinates Coordinates { get; private set; }
 
-        /// <summary>
-        /// The type of spawn point.
-        /// </summary>
         internal SpawnPointType PointType { get; private set; }
 
-        /// <summary>
-        /// Load data for this spawn point.
-        /// </summary>
-        /// <param name="ini">Theater database entry ini file</param>
-        /// <param name="key">.Ini key to load the spawnpoint from</param>
-        /// <returns>True if data is valid, false otherwise</returns>
         internal bool Load(INIFile ini, string key)
         {
             string[] vals = ini.GetValueArray<string>("SpawnPoints", key, ',');

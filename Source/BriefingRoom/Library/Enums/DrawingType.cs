@@ -20,10 +20,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS
 {
-    /// <summary>
-    /// Enumerates all unit categories (helicopter, plane, ground vehicle...).
-    /// Must match the names used in DCS World.
-    /// </summary>
     public enum DrawingType
     {
         Free,

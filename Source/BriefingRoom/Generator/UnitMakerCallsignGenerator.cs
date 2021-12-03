@@ -26,21 +26,10 @@ using System.Collections.Generic;
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// Generates unique callsigns for each aircraft group and unit in the mission.
-    /// Used by <see cref="UnitMaker"/>.
-    /// </summary>
     internal class UnitMakerCallsignGenerator : IDisposable
     {
-        /// <summary>
-        /// Total number of different NATO callsigns "families".
-        /// </summary>
         private static readonly int NATO_CALLSIGN_COUNT = Toolbox.EnumCount<UnitCallsignFamily>();
 
-        /// <summary>
-        /// List of NATO callsigns.
-        /// Must match names and indices in DCS World: https://wiki.hoggitworld.com/view/DCS_enum_callsigns
-        /// </summary>
         private static readonly string[][] NATO_CALLSIGN_NAMES = new string[][]
         {
             new string[] { "Enfield", "Springfield", "Uzi", "Colt", "Dodge", "Ford", "Chevy", "Pontiac" },
@@ -49,25 +38,12 @@ namespace BriefingRoom4DCS.Generator
             new string[] { "Texaco", "Arco", "Shell" },
         };
 
-        /// <summary>
-        /// Blue and red coalitions database entries.
-        /// </summary>
         private readonly DBEntryCoalition[] CoalitionsDB;
 
-        /// <summary>
-        /// How many groups already use each of the NATO callsigns.
-        /// So for instance, if "Enfield 1" is already in use, next "Enfield" group will be "Enfield 2"
-        /// </summary>
         private readonly int[][] NATOCallsigns = new int[NATO_CALLSIGN_COUNT][];
 
-        /// <summary>
-        /// List of already used Russian callsigns.
-        /// </summary>
         private readonly List<string> RussianCallsigns = new List<string>();
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         internal UnitMakerCallsignGenerator(DBEntryCoalition[] coalitionsDB)
         {
             CoalitionsDB = coalitionsDB;
@@ -89,12 +65,6 @@ namespace BriefingRoom4DCS.Generator
             RussianCallsigns.Clear();
         }
 
-        /// <summary>
-        /// Returns an unique callsign for an aircraft group.
-        /// </summary>
-        /// <param name="unitFamily">The unit family</param>
-        /// <param name="natoCallsign">Should this callsign be in the NATO format (true) or the Russian format (false)</param>
-        /// <returns></returns>
         internal UnitCallsign GetCallsign(UnitFamily unitFamily, Coalition coalition, Side side, bool isUsingSkynet)
         {
             UnitCallsignFamily callsignFamily = GetCallsignFamilyFromUnitFamily(unitFamily);
@@ -105,11 +75,6 @@ namespace BriefingRoom4DCS.Generator
             return GetRussianCallsign(unitFamily, side, isUsingSkynet);
         }
 
-        /// <summary>
-        /// Returns an unique callsign in the NATO format (Callsign Number Number)
-        /// </summary>
-        /// <param name="callsignFamily">A callsign family</param>
-        /// <returns>The callsign</returns>
         private UnitCallsign GetNATOCallsign(UnitCallsignFamily callsignFamily, UnitFamily unitFamily, Side side, bool isUsingSkynet)
         {
             int callsignIndex;
@@ -132,16 +97,12 @@ namespace BriefingRoom4DCS.Generator
                 $"[2]={Toolbox.ValToString(NATOCallsigns[(int)callsignFamily][callsignIndex])}, " +
                 "[3]=$INDEX$, " +
                 $"[\"name\"] = \"{unitName.Replace(" ", "")}\", }}";
-            if(isUsingSkynet && unitFamily == UnitFamily.PlaneAWACS)
+            if (isUsingSkynet && unitFamily == UnitFamily.PlaneAWACS)
                 unitName = SetSkyNetPrefix(unitName, side);
             return new UnitCallsign(groupName, unitName/*, onboardNum*/, lua);
         }
 
 
-        /// <summary>
-        /// Returns an unique callsign in the russian format (3-digits)
-        /// </summary>
-        /// <returns>The callsign</returns>
         private UnitCallsign GetRussianCallsign(UnitFamily unitFamily, Side side, bool isUsingSkynet)
         {
             string fgName;
@@ -159,8 +120,8 @@ namespace BriefingRoom4DCS.Generator
 
             string unitName = fgName + "$INDEX$";
             string oldUnitName = unitName;
-            
-            if(isUsingSkynet && unitFamily == UnitFamily.PlaneAWACS)
+
+            if (isUsingSkynet && unitFamily == UnitFamily.PlaneAWACS)
                 unitName = SetSkyNetPrefix(unitName, side);
 
             return new UnitCallsign(fgName + "0", unitName, oldUnitName);
@@ -168,16 +129,10 @@ namespace BriefingRoom4DCS.Generator
 
         private string SetSkyNetPrefix(string unitName, Side side)
         {
-            var prefix = side == Side.Ally? "BLUE-" : "";
+            var prefix = side == Side.Ally ? "BLUE-" : "";
             return $"{prefix}EW-{unitName}";
         }
 
-        /// <summary>
-        /// Gets the NATO callsign family to use depending on the unit family
-        /// (tankers don't use the same callsigns as early warning aircraft, etc)
-        /// </summary>
-        /// <param name="unitFamily">Unit family the unit group belongs to</param>
-        /// <returns>A callsign family</returns>
         private static UnitCallsignFamily GetCallsignFamilyFromUnitFamily(UnitFamily unitFamily)
         {
             switch (unitFamily)
@@ -192,9 +147,6 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose() { }
     }
 }

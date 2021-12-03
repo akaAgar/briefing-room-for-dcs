@@ -20,18 +20,9 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Enumerates possible flags for a <see cref="DBEntryAirbase"/>
-    /// </summary>
     internal enum AirbaseFlag
     {
-        /// <summary>
-        /// This is a military airbase.
-        /// </summary>
         Military,
-        /// <summary>
-        /// Airbase is located near (< 10-20nm) the sea or an ocean.
-        /// </summary>
         NearWater
     }
 }

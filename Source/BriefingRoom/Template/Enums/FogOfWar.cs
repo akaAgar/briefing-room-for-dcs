@@ -22,9 +22,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BriefingRoom4DCS.Template
 {
-    /// <summary>
-    /// Enumerates possible fog of war settings.
-    /// </summary>
     public enum FogOfWar
     {
         [Display(Name = "Show all units", Description = "Show all units on the F10 map and the players' mission planner, perfect intelligence.")]

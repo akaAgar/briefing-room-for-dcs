@@ -20,34 +20,16 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS.Template
 {
-    /// <summary>
-    /// Enumerates various relative amount values, from "Very low" to "Very high"
-    /// </summary>
     public enum Amount
     {
-        /// <summary>
-        /// Very low amount.
-        /// </summary>
         VeryLow,
 
-        /// <summary>
-        /// Low amount.
-        /// </summary>
         Low,
 
-        /// <summary>
-        /// Average/balanced amount.
-        /// </summary>
         Average,
 
-        /// <summary>
-        /// High amount.
-        /// </summary>
         High,
 
-        /// <summary>
-        /// Very high amount.
-        /// </summary>
         VeryHigh
     }
 }

@@ -23,22 +23,10 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Stores information about a default unit list.
-    /// Used by <see cref="DBEntryCoalition.GetRandomUnits(UnitFamily, Decade, int, string[], bool)"/> when no matching unit are found for a Coalition/Decade/UnitFamily combination.
-    /// </summary>
     internal class DBEntryDefaultUnitList : DBEntry
     {
-        /// <summary>
-        /// Default units for each decade and unit category
-        /// </summary>
         internal string[,][] DefaultUnits { get; private set; }
 
-        /// <summary>
-        /// Loads a database entry from an .ini file.
-        /// </summary>
-        /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
-        /// <returns>True is successful, false if an error happened</returns>
         protected override bool OnLoad(string iniFilePath)
         {
             int i, j;

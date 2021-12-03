@@ -26,61 +26,26 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Stores data for an aircraft unit.
-    /// </summary>
     internal class DBEntryUnitAircraftData
     {
-        /// <summary>
-        /// Default decade to use for payload if no payload was found for a given decade.
-        /// </summary>
         private const Decade DEFAULT_PAYLOAD_DECADE = Decade.Decade2000;
 
-        /// <summary>
-        /// Maximum number of payload pylons per aircraft.
-        /// </summary>
         internal const int MAX_PYLONS = 24;
 
-        /// <summary>
-        /// How powerful this aircraft is relative to other aircraft.
-        /// Used to know how many enemy aircraft should be spawned.
-        /// Index #0 is the rating with a non air-to-air loadout, index #1 is the rating with an air-to-air loadout.
-        /// </summary>
         internal int[] AirToAirRating { get; private set; } = new int[] { 1, 1 };
 
-        /// <summary>
-        /// Type of carrier ships this aircraft can take off from/land on.
-        /// </summary>
         internal CarrierType[] CarrierTypes { get; private set; } = new CarrierType[0];
 
-        /// <summary>
-        /// Cruise speed, in knots.
-        /// </summary>
         internal int CruiseSpeed { get; private set; } = (int)(300 * Toolbox.KNOTS_TO_METERS_PER_SECOND);
 
-        /// <summary>
-        /// Cruise altitude, in feet.
-        /// </summary>
         internal int CruiseAltitude { get; private set; } = (int)(15000 * Toolbox.FEET_TO_METERS);
 
-        /// <summary>
-        /// Common payload (fuel, chaff, flares, cannon...) for this aircraft.
-        /// </summary>
         internal string PayloadCommon { get; private set; } = "";
 
-        /// <summary>
-        /// Payload for each pylon and each mission type.
-        /// </summary>
         internal Dictionary<string, string[]> PayloadTasks { get; private set; } = new Dictionary<string, string[]>();
 
-        /// <summary>
-        /// Is this aircraft player-controllable?
-        /// </summary>
         internal bool PlayerControllable { get; private set; } = false;
 
-        /// <summary>
-        /// Default radio frequency for this aircraft.
-        /// </summary>
         internal double RadioFrequency { get; private set; } = 127.0;
 
         internal void Merge(DBEntryUnitAircraftData aircraftData)
@@ -92,31 +57,15 @@ namespace BriefingRoom4DCS.Data
                 .ToDictionary(pair => pair.Key, pair => pair.Last().Value);
         }
 
-        /// <summary>
-        /// Default radio modulation for this aircraft.
-        /// </summary>
         internal RadioModulation RadioModulation { get; private set; } = RadioModulation.AM;
 
-        /// <summary>
-        /// Radio Preset Lua
-        /// </summary>
         internal List<DBEntryUnitRadioPreset> RadioPresets { get; private set; }
 
-        /// <summary>
-        /// Props Lua
-        /// </summary>
         internal string PropsLua { get; private set; } = "";
 
         internal List<string> Liveries { get; private set; }
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         internal DBEntryUnitAircraftData() { }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="ini">INI file</param>
         internal DBEntryUnitAircraftData(INIFile ini, bool custom = false)
         {
             AirToAirRating[0] = Math.Max(1, ini.GetValue<int>("Aircraft", "A2ARating.Default"));
@@ -163,21 +112,11 @@ namespace BriefingRoom4DCS.Data
             Liveries.AddRange(ini.GetValueArray<string>("Aircraft", "Liveries"));
         }
 
-        /// <summary>
-        /// Returns the <see cref="RadioFrequency"/> and <see cref="RadioModulation"/> as a nice clean string for briefings.
-        /// </summary>
-        /// <returns>A string with radio frequency and modulation</returns>
         internal string GetRadioAsString()
         {
             return $"{RadioFrequency.ToString("F1", NumberFormatInfo.InvariantInfo)} {RadioModulation}";
         }
 
-        /// <summary>
-        /// Returns the Lua table for the payload for a given task, or the default payload if required payload is not available.
-        /// </summary>
-        /// <param name="taskPayload">Task the aircraft should perform.</param>
-        /// <param name="decade">Decade during which the mission will take place.</param>
-        /// <returns>An Lua table, as a string</returns>
         internal string GetPayloadLua(string aircraftPayload)
         {
             string[] payload;
@@ -198,12 +137,6 @@ namespace BriefingRoom4DCS.Data
             return pylonsLua;
         }
 
-        /// <summary>
-        /// Is a payload available for the given task?
-        /// Basically used to know if the default task should be used instead of the required task.
-        /// </summary>
-        /// <param name="task">A task</param>
-        /// <returns>True if a payload have been defined for this task, false otherwise</returns>
         private bool TaskPayloadExists(string task) => PayloadTasks.ContainsKey(task);
     }
 }

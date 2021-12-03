@@ -20,19 +20,9 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS
 {
-    /// <summary>
-    /// Enumerates possible radio modulations.
-    /// Must match the values in DCS World: https://wiki.hoggitworld.com/view/DCS_enum_radio
-    /// </summary>
     public enum RadioModulation
     {
-        /// <summary>
-        /// AM band
-        /// </summary>
         AM = 0,
-        /// <summary>
-        /// FM band
-        /// </summary>
         FM = 1,
     }
 }

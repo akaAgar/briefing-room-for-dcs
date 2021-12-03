@@ -20,22 +20,10 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS
 {
-    /// <summary>
-    /// Enumerates the various error level a debug log message can have.
-    /// </summary>
     public enum LogMessageErrorLevel
     {
-        /// <summary>
-        /// Default 
-        /// </summary>
         Info,
-        /// <summary>
-        /// Something went wrong, but not wrong enough to stop the mission generation or database loading
-        /// </summary>
         Warning,
-        /// <summary>
-        /// Something went wrong enough to stop the mission generation or database loading
-        /// </summary>
         Error
     }
 }

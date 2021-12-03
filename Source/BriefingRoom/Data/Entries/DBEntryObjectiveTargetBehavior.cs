@@ -22,24 +22,13 @@ using System.IO;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Stores information about the behavior of an objective target.
-    /// </summary>
     internal class DBEntryObjectiveTargetBehavior : DBEntry
     {
-        /// <summary>
-        /// Special location/destination for the target.
-        /// </summary>
         internal DBEntryObjectiveTargetBehaviorLocation Location { get; private set; }
 
         internal string[] GroupLua { get; private set; }
         internal string[] UnitLua { get; private set; }
 
-        /// <summary>
-        /// Loads a database entry from an .ini file.
-        /// </summary>
-        /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
-        /// <returns>True is successful, false if an error happened</returns>
 
         protected override bool OnLoad(string iniFilePath)
         {

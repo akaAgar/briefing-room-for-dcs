@@ -5,25 +5,24 @@
 @using System.IO
 
 <div class="title-bar">
-    <h1>Manual</h1>
+  <h1>Manual</h1>
 </div>
 <div>
   <ul class="nav nav-tabs">
-      @foreach (var value in Documents.Keys.ToList())
-      {
-          <li class="nav-item">
-              <a class="nav-link @(DocTab == value ? "active" : "")" aria-current="page"
-                @onclick="() => SetDocTab(value)">
-                  @value
-              </a>
-          </li>
-      }
+    @foreach (var value in Documents.Keys.ToList())
+    {
+      <li class="nav-item">
+        <a class="nav-link @(DocTab == value ? "active" : "")" aria-current="page" @onclick="() => SetDocTab(value)">
+          @value
+        </a>
+      </li>
+    }
   </ul>
-  <br/>
+  <br />
   @foreach (var key in Documents.Keys.ToList())
   {
     @if (DocTab == key)
-    {  
+    {
       @((MarkupString) @Documents[key])
     }
   }
@@ -34,14 +33,16 @@
   private string DocTab = "User Manual";
   private void SetDocTab(string var)
   {
-      DocTab = var;
+    DocTab = var;
   }
-  private Dictionary<string, string> Documents { get; set;}
+  private Dictionary<string, string> Documents { get; set; }
 
   protected override void OnInitialized()
-    {
-        var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
-        var files =  Directory.GetFiles($"{BriefingRoom.GetBriefingRoomMarkdownPath()}Manuals\\", "*.md");
-        Documents = files.ToDictionary(x => x.Split("\\").Last().Replace(".md", "").Replace("_", " "), x => Markdown.ToHtml(File.ReadAllText(x).Replace("Media/SplashScreen.png", "_content/BriefingRoomCommonGUI/img/br-logo-white.png"), pipeline));
-    }
+  {
+    var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+    var files = Directory.GetFiles($"{BriefingRoom.GetBriefingRoomMarkdownPath()}Manuals\\", "*.md");
+    Documents = files.ToDictionary(x => x.Split("\\").Last().Replace(".md", "").Replace("_", " "), x =>
+    Markdown.ToHtml(File.ReadAllText(x).Replace("Media/SplashScreen.png",
+    "_content/BriefingRoomCommonGUI/img/br-logo-white.png"), pipeline));
+  }
 }

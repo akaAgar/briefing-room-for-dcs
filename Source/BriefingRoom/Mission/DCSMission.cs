@@ -27,26 +27,12 @@ using BriefingRoom4DCS.Template;
 
 namespace BriefingRoom4DCS.Mission
 {
-    /// <summary>
-    /// Stores a DCS World mission, with all its unit groups, Lua scripts and parameters.
-    /// Can be exported to a <see cref="Miz.MizFile"/> through use of the <see cref="ExportToMiz"/> method.
-    /// </summary>
     public sealed class DCSMission : IDisposable
     {
-        /// <summary>
-        /// If a value is longer than this, <see cref="SetValue(string, string, bool)" /> will not output it to the debug log.
-        /// </summary>
         private const int MAX_VALUE_LENGTH_DISPLAY = 16;
 
-        /// <summary>
-        /// Unique ID for the mission. Appended to certain filenames so they don't have the same name in every mission and
-        /// get confused with one another in the DCS World cache.
-        /// </summary>
         internal string UniqueID { get; }
 
-        /// <summary>
-        /// DCS ID of the theater on which the mission takes place.
-        /// </summary>
         public string TheaterID { get { return GetValue("TheaterID"); } }
 
         public DCSMissionBriefing Briefing { get; }
@@ -200,9 +186,6 @@ namespace BriefingRoom4DCS.Mission
             return null;
         }
 
-        /// <summary>
-        /// Is Airbase to Objective over 1.7 FlightPlanObjectiveDistance
-        /// </summary>
         internal bool IsExtremeDistance(MissionTemplate template, out double distance)
         {
             var objCenter = new Coordinates(
@@ -216,9 +199,6 @@ namespace BriefingRoom4DCS.Mission
             return distance > extremeLimit;
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose()
         {
 

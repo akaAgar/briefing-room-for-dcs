@@ -26,10 +26,7 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Template
 {
-    /// <summary>
-    /// Stores information about a mission template objective.
-    /// </summary>
-    public class MissionTemplateObjective: MissionTemplateGroup
+    public class MissionTemplateObjective : MissionTemplateGroup
     {
         [Required, DatabaseSourceType(DatabaseEntryType.ObjectiveFeature)]
         [Display(Name = "Objective features", Description = "Special features to include in this objective.")]
@@ -65,9 +62,6 @@ namespace BriefingRoom4DCS.Template
         public string Task { get { return Task_; } set { Task_ = Database.Instance.CheckID<DBEntryObjectiveTask>(value); } }
         private string Task_;
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         public MissionTemplateObjective()
         {
             Features = new List<string>();
@@ -79,15 +73,6 @@ namespace BriefingRoom4DCS.Template
             Task = "DestroyAll";
         }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="target">Family of units to use as a target for this objective.</param>
-        /// <param name="targetBehavior"></param>
-        /// <param name="task">Task to accomplish at this objective.</param>
-        /// <param name="features">Special features to include in this objective.</param>
-        /// <param name="targetCount">Number of target units at this objective.</param>
-        /// <param name="options">Special options to apply to this objective.</param>
         public MissionTemplateObjective(string target, string targetBehavior, string task, string[] features, Amount targetCount = Amount.Average, params ObjectiveOption[] options)
         {
             Features = new List<string>(features);
@@ -99,11 +84,6 @@ namespace BriefingRoom4DCS.Template
             Task = task;
         }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="presetID">ID of the <see cref="DBEntryObjectivePreset"/> from which to build the mission objective.</param>
-        /// <param name="targetCount">Number of target units at this objective.</param>
         public MissionTemplateObjective(string presetID, Amount targetCount = Amount.Average)
         {
             DBEntryObjectivePreset preset = Database.Instance.GetEntry<DBEntryObjectivePreset>(presetID);
@@ -130,23 +110,11 @@ namespace BriefingRoom4DCS.Template
             }
         }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="ini">INI file to load from.</param>
-        /// <param name="section">INI section.</param>
-        /// <param name="key">INI key.</param>
         internal MissionTemplateObjective(INIFile ini, string section, string key)
         {
             LoadFromFile(ini, section, key);
         }
 
-        /// <summary>
-        /// Loads the objective template from an .ini file.
-        /// </summary>
-        /// <param name="ini">INI file to save to.</param>
-        /// <param name="section">INI section.</param>
-        /// <param name="key">INI key.</param>
         internal void LoadFromFile(INIFile ini, string section, string key)
         {
             Features = Database.Instance.CheckIDs<DBEntryFeatureObjective>(ini.GetValueArray<string>(section, $"{key}.Features")).ToList();
@@ -158,12 +126,6 @@ namespace BriefingRoom4DCS.Template
             Task = ini.GetValue<string>(section, $"{key}.Task");
         }
 
-        /// <summary>
-        /// Saves the objective template to an .ini file.
-        /// </summary>
-        /// <param name="ini">INI file to save to.</param>
-        /// <param name="section">INI section.</param>
-        /// <param name="key">INI key.</param>
         internal void SaveToFile(INIFile ini, string section, string key)
         {
             ini.SetValueArray(section, $"{key}.Features", Features.ToArray());

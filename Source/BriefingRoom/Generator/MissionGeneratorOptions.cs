@@ -24,14 +24,8 @@ using System;
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// Generates the mission's DCS options/settings/preferences.
-    /// </summary>
     internal class MissionGeneratorOptions : IDisposable
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         internal MissionGeneratorOptions()
         {
 
@@ -84,9 +78,6 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("ForcedOptions", forcedOptionsLua);
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose() { }
 
     }

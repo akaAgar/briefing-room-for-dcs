@@ -27,29 +27,14 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// Generates the player's flight plan and waypoints.
-    /// </summary>
     internal class MissionGeneratorFlightPlan : IDisposable
     {
-        /// <summary>
-        /// An array with some random count of extra waypoints to add before and after the objective waypoints.
-        /// </summary>
         private static readonly int[] EXTRA_WAYPOINT_COUNT = new int[] { 1, 1, 2, 2, 2, 2, 3 };
 
-        /// <summary>
-        /// Minimum distance between the bullseyes and the objective's center, in nautical miles.
-        /// </summary>
         private const double BULLSEYE_DISTANCE_MIN = 20.0;
 
-        /// <summary>
-        /// Maximum distance between the bullseyes and the objective's center, in nautical miles.
-        /// </summary>
         private const double BULLSEYE_DISTANCE_MAX = 40.0;
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         internal MissionGeneratorFlightPlan() { }
 
         private double GetBullseyeRandomDistance()
@@ -77,7 +62,7 @@ namespace BriefingRoom4DCS.Generator
 
         internal void GenerateIngressAndEgressWaypoints(MissionTemplate template, List<Waypoint> waypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter)
         {
-            if(!template.MissionFeatures.Contains("IngressEgressWaypoints"))
+            if (!template.MissionFeatures.Contains("IngressEgressWaypoints"))
                 return;
 
             BriefingRoom.PrintToLog($"Generating ingress and egress waypoints...");
@@ -95,11 +80,8 @@ namespace BriefingRoom4DCS.Generator
                 new Waypoint(
                     Database.Instance.Common.Names.WPEgressName,
                     baseIngressPosition + Coordinates.CreateRandom(ingressDeviation * 0.9, ingressDeviation * 1.1)));
-        }   
+        }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose() { }
 
         internal void GenerateObjectiveWPCoordinatesLua(MissionTemplate template, DCSMission mission, List<Waypoint> waypoints)
@@ -108,7 +90,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 mission.AppendValue("ScriptObjectives",
                     $"briefingRoom.mission.objectives[{i + 1}].waypoint = {waypoints[i].Coordinates.ToLuaTable()}\n");
-                if(template.OptionsMission.Contains("MarkWaypoints"))
+                if (template.OptionsMission.Contains("MarkWaypoints"))
                     mission.AppendValue("ScriptObjectives",
                         $"trigger.action.markToCoalition({i + 1}, \"{waypoints[i].Name}\", {{ x={waypoints[i].Coordinates.X.ToInvariantString()}, y=0, z={waypoints[i].Coordinates.Y.ToInvariantString()} }}, coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}, true, nil)\n");
             }

@@ -23,52 +23,22 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Stores information about a task to accomplish on an objective.
-    /// </summary>
     internal class DBEntryObjectiveTask : DBEntry
     {
-        /// <summary>
-        /// ID of the <see cref="DBEntryBriefingDescription"/> to use for main briefing description text when most objectives use this task.
-        /// </summary>
         internal string BriefingDescription { get; private set; }
 
-        /// <summary>
-        /// Randomly-parsed string displayed for this task in the briefing.
-        /// Index #0 is singular, index #1 is plural.
-        /// </summary>
         internal string[] BriefingTask { get; private set; }
 
-        /// <summary>
-        /// Randomly-parsed (<see cref="Toolbox.ParseRandomString(string)"/>) single-line remarks to add to the mission briefing when this objective task is selected.
-        /// </summary>
         internal string[] BriefingRemarks { get; private set; }
 
-        /// <summary>
-        /// Lua file containing the script checking the task has been completed.
-        /// </summary>
         internal string CompletionTriggerLua { get; private set; }
 
-        /// <summary>
-        /// On which side will the target units be?
-        /// </summary>
         internal Side TargetSide { get; private set; }
 
-        /// <summary>
-        /// Which units categories are valid targets for this task?
-        /// </summary>
         internal UnitCategory[] ValidUnitCategories { get; private set; }
 
-        /// <summary>
-        /// Ogg files to include in the .miz file when this objective task is enabled.
-        /// </summary>
         internal string[] IncludeOgg { get; private set; }
 
-        /// <summary>
-        /// Loads a database entry from an .ini file.
-        /// </summary>
-        /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
-        /// <returns>True is successful, false if an error happened</returns>
         protected override bool OnLoad(string iniFilePath)
         {
             using (INIFile ini = new INIFile(iniFilePath))
@@ -92,9 +62,9 @@ namespace BriefingRoom4DCS.Data
                     BriefingRoom.PrintToLog($"Completion trigger Lua file {CompletionTriggerLua} for objective task \"{ID}\" not found.", LogMessageErrorLevel.Warning);
                     return false;
                 }
-                
+
                 TargetSide = ini.GetValue<Side>("ObjectiveTask", "TargetSide");
-                
+
                 ValidUnitCategories = ini.GetValueArray<UnitCategory>("ObjectiveTask", "ValidUnitCategories").Distinct().ToArray();
                 if (ValidUnitCategories.Length == 0) ValidUnitCategories = Toolbox.GetEnumValues<UnitCategory>(); // No category means all categories
 

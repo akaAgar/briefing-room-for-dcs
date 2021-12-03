@@ -25,34 +25,16 @@ namespace BriefingRoom4DCS.Generator
     [Flags]
     internal enum UnitMakerGroupFlags
     {
-        /// <summary>
-        /// Unit is always hidden.
-        /// </summary>
         AlwaysHidden = 1,
 
-        /// <summary>
-        /// First unit of this group is of skill "Client". Others use the normal group skill level.
-        /// </summary>
         FirstUnitIsClient = 2,
 
-        /// <summary>
-        /// Aircraft should be added to the queue of aircraft to be spawned immediately on player takeoff, and not spawned later during the mission.
-        /// </summary>
         ImmediateAircraftSpawn = 4,
 
-        /// <summary>
-        /// Unit is always visible.
-        /// </summary>
         NeverHidden = 8,
 
-        /// <summary>
-        /// Add embedded short-range air defense (ground vehicles groups only).
-        /// </summary>
         EmbeddedAirDefense = 16,
 
-        /// <summary>
-        /// Aircraft should be activated when the player radios for it.
-        /// </summary>
         RadioAircraftSpawn = 32,
     }
 }

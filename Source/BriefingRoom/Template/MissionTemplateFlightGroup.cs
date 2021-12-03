@@ -22,72 +22,32 @@ If not, see https://www.gnu.org/licenses/
 
 namespace BriefingRoom4DCS.Template
 {
-    /// <summary>
-    /// A player flight group, to be stored in <see cref="MissionTemplate.PlayerFlightGroups"/>
-    /// </summary>
-    public sealed class MissionTemplateFlightGroup: MissionTemplateGroup
+    public sealed class MissionTemplateFlightGroup : MissionTemplateGroup
     {
-        /// <summary>
-        /// Type of aircraft in this flight group.
-        /// </summary>
         public string Aircraft { get; set; }
 
-        /// <summary>
-        /// Should all aircraft in this group except the leader be AI-controlled?
-        /// </summary>
         public bool AIWingmen { get; set; }
 
-        /// <summary>
-        /// Type of carrier this flight group takes off from (empty means "use land airbase").
-        /// </summary>
         public string Carrier { get; set; }
 
-        /// <summary>
-        /// Number of aircraft in the group.
-        /// </summary>
         public int Count { get { return _Count; } set { _Count = Toolbox.Clamp(value, 1, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE); } }
         private int _Count = 1;
 
-        /// <summary>
-        /// Country this aircraft group belongs to (mainly used for liveries).
-        /// </summary>
         public Country Country { get; set; }
 
-        /// <summary>
-        /// Payload this aircraft group will carry.
-        /// </summary>
         public string Payload { get; set; } = "default";
 
-        /// <summary>
-        /// Start location for this flight group.
-        /// </summary>
         public PlayerStartLocation StartLocation { get; set; }
 
-        /// <summary>
-        /// Returns the number of player slots in this flight group.
-        /// </summary>
         public int PlayerSlots { get { return AIWingmen ? 1 : _Count; } }
 
         public string Livery { get; set; } = "default";
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         public MissionTemplateFlightGroup()
         {
             Clear();
         }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="aircraft">Payload this aircraft group will carry.</param>
-        /// <param name="count">Number of aircraft in the group.</param>
-        /// <param name="payload">Payload this aircraft group will carry.</param>
-        /// <param name="carrier">Type of carrier this flight group takes off from (empty means "use land airbase").</param>
-        /// <param name="country">Country this aircraft group belongs to (mainly used for liveries).</param>
-        /// <param name="startLocation">Start location for this flight group.</param>
-        /// <param name="aiWingmen">Should all aircraft in this group except the leader be AI-controlled?</param>
         public MissionTemplateFlightGroup(string aircraft, int count, string payload, string carrier, Country country, PlayerStartLocation startLocation, bool aiWingmen, string livery)
         {
             Aircraft = aircraft;
@@ -100,12 +60,6 @@ namespace BriefingRoom4DCS.Template
             Livery = livery;
         }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="ini">The .ini file to load from</param>
-        /// <param name="section">The ini section to load from</param>
-        /// <param name="key">The ini key to load from</param>
         internal MissionTemplateFlightGroup(INIFile ini, string section, string key)
         {
             Clear();
@@ -120,9 +74,6 @@ namespace BriefingRoom4DCS.Template
             Livery = ini.GetValue(section, $"{key}.Livery", Livery);
         }
 
-        /// <summary>
-        /// Resets all settings to their default values.
-        /// </summary>
         private void Clear()
         {
             Aircraft = "Su-25T"; // Database.CheckValue<DBPseudoEntryPlayerAircraft>("Su-25T", "Su-25T");
@@ -135,12 +86,6 @@ namespace BriefingRoom4DCS.Template
             Livery = "default";
         }
 
-        /// <summary>
-        /// Saves the flight group to an .ini file.
-        /// </summary>
-        /// <param name="ini"></param>
-        /// <param name="section">The ini section to save to</param>
-        /// <param name="key">The ini key to save to</param>
         internal void SaveToFile(INIFile ini, string section, string key)
         {
             ini.SetValue(section, $"{key}.AircraftType", Aircraft);
@@ -153,9 +98,6 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue(section, $"{key}.Livery", Livery);
         }
 
-        /// <summary>
-        /// IDispose implementation.
-        /// </summary>
         public void Dispose() { }
     }
 }

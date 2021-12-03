@@ -25,22 +25,10 @@ using System;
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// Generates a <see cref="DCSMission"/> date and time parameters
-    /// </summary>
     internal class MissionGeneratorDateTime : IDisposable
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         internal MissionGeneratorDateTime() { }
 
-        /// <summary>
-        /// Picks a date (day, month and year) for the mission.
-        /// </summary>
-        /// <param name="mission">The mission</param>
-        /// <param name="template">Mission template to use</param>
-        /// <param name="month">Selected month (used for weather generation)</param>
         internal void GenerateMissionDate(DCSMission mission, MissionTemplate template, out Month month)
         {
             int day, year;
@@ -80,13 +68,6 @@ namespace BriefingRoom4DCS.Generator
             BriefingRoom.PrintToLog($"Misson date set to {day} {month} {year}.");
         }
 
-        /// <summary>
-        /// Picks a starting time for the mission.
-        /// </summary>
-        /// <param name="mission">Mission to generate.</param>
-        /// <param name="template">Mission template to use.</param>
-        /// <param name="theaterDB">Theater database entry.</param>
-        /// <param name="month">Month during which the mission takes place.</param>
         internal void GenerateMissionTime(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, Month month)
         {
             double totalMinutes;
@@ -128,12 +109,6 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("StartTime", hour * 3600 + minute * 60); // DCS World time is stored in seconds since midnight
         }
 
-        /// <summary>
-        /// Returns the months of a given season.
-        /// Season begins on the 21st of the first month and ends on the 20th of the last month.
-        /// </summary>
-        /// <param name="season">A season</param>
-        /// <returns>An array of four months</returns>
         private static Month[] GetMonthsForSeason(Season season)
         {
             switch (season)
@@ -145,9 +120,6 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        /// <summary>
-        /// IDispose implementation.
-        /// </summary>
         public void Dispose() { }
     }
 }

@@ -30,7 +30,7 @@ namespace BriefingRoom4DCS.Template
 
     public class MissionTemplateGroup
     {
-        public string Alias {get; set;}
+        public string Alias { get; set; }
 
         public void AssignAlias(int index) => Alias = Toolbox.GetAlias(index);
     }

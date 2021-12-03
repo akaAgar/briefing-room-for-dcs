@@ -9,7 +9,7 @@ namespace BriefingRoom4DCS.GUI.Web
     {
         public static void Main(string[] args)
         {
-             Console.WriteLine(@"
+            Console.WriteLine(@"
         @@@@@@@@@@  .@@@@@@@@@@  @@@&  @@@@@@@@@@  @@@@@@@@@/ @@@   @@@@,   @@@   *@@@@@@@@@#       
         @@@    @@@  .@@@    @@@  @@@&  @@@         @@@        @@@   @@@@@@  @@@  @@@@               
         @@@@@@@@@@  .@@@@@@@@@.  @@@&  @@@@@@@@@   @@@@@@@@@  @@@   @@@ @@@@@@@  @@@   (@@@@@       

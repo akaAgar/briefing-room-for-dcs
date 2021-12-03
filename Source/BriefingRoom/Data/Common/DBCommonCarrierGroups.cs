@@ -22,44 +22,20 @@ using System;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Stores information about carrier groups.
-    /// </summary>
     internal class DBCommonCarrierGroup : IDisposable
     {
-        /// <summary>
-        /// Number of carriers beyond which carrier group will have the maximum number of escorts.
-        /// </summary>
         internal const int ESCORT_FAMILIES_SHIP_COUNT = 3;
 
-        /// <summary>
-        /// Carrier course length (in nautical miles).
-        /// </summary>
         internal double CourseLength { get; }
 
-        /// <summary>
-        /// Families escort families belongs to.
-        /// </summary>
         internal UnitFamily[][] EscortUnitFamilies { get; }
 
-        /// <summary>
-        /// Target wind on deck (in knots).
-        /// </summary>
         internal double IdealWindOfDeck { get; }
 
-        /// <summary>
-        /// Minimum carrier speed (in knots).
-        /// </summary>
         internal double MinimumCarrierSpeed { get; }
 
-        /// <summary>
-        /// Distance between ships of a carrier group (in nautical miles).
-        /// </summary>
         internal double ShipSpacing { get; }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         internal DBCommonCarrierGroup()
         {
             using (INIFile ini = new INIFile($"{BRPaths.DATABASE}CarrierGroup.ini"))
@@ -77,9 +53,6 @@ namespace BriefingRoom4DCS.Data
             }
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose() { }
     }
 }

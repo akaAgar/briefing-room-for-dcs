@@ -27,29 +27,14 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// Generates scripts and unit groups associated with a mission feature.
-    /// Abstract parent of <see cref="MissionGeneratorFeaturesMission"/> and <see cref="MissionGeneratorFeaturesObjectives"/>.
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
     internal abstract class MissionGeneratorFeatures<T> : IDisposable where T : DBEntryFeature
     {
-        /// <summary>
-        /// Unit maker selector to use for mission features generation.
-        /// </summary>
         protected readonly UnitMaker UnitMaker;
 
         protected readonly MissionTemplate Template;
 
-        /// <summary>
-        /// Current TACAN index. Incremented each time a TACAN-using unit is added to make sure each has its own frequency.
-        /// </summary>
         private int TACANIndex = 1;
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="unitMaker">Unit maker to use for unit generation.</param>
         internal MissionGeneratorFeatures(UnitMaker unitMaker, MissionTemplate template)
         {
             UnitMaker = unitMaker;
@@ -140,12 +125,6 @@ namespace BriefingRoom4DCS.Generator
             return groupInfo;
         }
 
-        /// <summary>
-        /// Adds specific settings for this feature (TACAN frequencies, etc).
-        /// </summary>
-        /// <param name="extraSettings">Dictionary of extra settings to add.</param>
-        /// <param name="featureDB">The feature DBEntry to use.</param>
-        /// <returns></returns>
         protected virtual void GetExtraSettingsFromFeature(ref Dictionary<string, object> extraSettings, T featureDB)
         {
             // TODO: Improve
@@ -158,11 +137,6 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        /// <summary>
-        /// Does this mission/objective feature requires an unit group to be spawned?
-        /// </summary>
-        /// <param name="featureDB">The mission/objective feature to check.</param>
-        /// <returns>True if an unit has group must be spawned, false otherwise.</returns>
         protected bool FeatureHasUnitGroup(DBEntryFeature featureDB)
         {
             return (featureDB.UnitGroupFamilies.Length > 0) &&
@@ -238,9 +212,6 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose() { }
     }
 }

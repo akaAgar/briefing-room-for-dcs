@@ -1,5 +1,4 @@
-﻿///*
-//==========================================================================
+﻿//==========================================================================
 //This file is part of Briefing Room for DCS World, a mission
 //generator for DCS World, by @akaAgar
 //(https://github.com/akaAgar/briefing-room-for-dcs)
@@ -24,28 +23,14 @@
 
 //namespace BriefingRoom4DCS
 //{
-//    /// <summary>
-//    /// Stores information to display an enum value in a human-readable way.
-//    /// </summary>
-//    [AttributeUsage(AttributeTargets.Field)]
+////////    [AttributeUsage(AttributeTargets.Field)]
 //    public class EnumValueInfoAttribute : Attribute
 //    {
-//        /// <summary>
-//        /// Human-readable name.
-//        /// </summary>
-//        public string DisplayName { get; }
-        
-//        /// <summary>
-//        /// Description, to display as a tooltip.
-//        /// </summary>
-//        public string Description { get; }
+////////        public string DisplayName { get; }
 
-//        /// <summary>
-//        /// Constructor.
-//        /// </summary>
-//        /// <param name="displayName">Human-readable name.</param>
-//        /// <param name="description">Description, to display as a tooltip.</param>
-//        public EnumValueInfoAttribute(string displayName, string description = null)
+////////        public string Description { get; }
+
+////////////        public EnumValueInfoAttribute(string displayName, string description = null)
 //        {
 //            DisplayName = displayName;
 //            Description = description;

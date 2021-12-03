@@ -24,49 +24,22 @@ using System.IO;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Stores miscellaneous shared settings for mission generation.
-    /// </summary>
     internal class DatabaseCommon : IDisposable
     {
-        /// <summary>
-        /// Ogg files to include in every mission.
-        /// </summary>
         internal string[] CommonOGG { get; private set; }
 
-        /// <summary>
-        /// Stores information about surface-to-air defense.
-        /// </summary>
         internal DBCommonAirDefense AirDefense { get; private set; }
 
-        /// <summary>
-        /// Stores information about combat air patrols.
-        /// </summary>
         internal DBCommonCAP CAP { get; private set; }
 
-        /// <summary>
-        /// Stores information about carrier groups.
-        /// </summary>
         internal DBCommonCarrierGroup CarrierGroup { get; private set; }
 
-        /// <summary>
-        /// Stores information about common mission names/wording.
-        /// </summary>
         internal DBCommonNames Names { get; private set; }
 
-        /// <summary>
-        /// Data about wind speeds.
-        /// </summary>
         internal DBCommonWind[] Wind { get; private set; }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         internal DatabaseCommon() { }
 
-        /// <summary>
-        /// Loads common settings from <see cref="COMMON_SETTINGS_FILE"/>
-        /// </summary>
         internal void Load()
         {
             int i;
@@ -101,9 +74,6 @@ namespace BriefingRoom4DCS.Data
             }
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose() { }
     }
 }

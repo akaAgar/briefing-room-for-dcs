@@ -25,39 +25,18 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Stores information about a DCS World theater.
-    /// </summary>
     internal class DBEntryTheater : DBEntry
     {
-        /// <summary>
-        /// Default daytime value to use when failed to read from the .ini file.
-        /// </summary>
         private static readonly MinMaxI DEFAULT_DAYTIME = new MinMaxI(8 * 60, 19 * 60);
 
-        /// <summary>
-        /// Names to use for this theater in briefings.
-        /// </summary>
         internal string[] BriefingNames { get; private set; }
 
-        /// <summary>
-        /// The default coordinates of the map center.
-        /// </summary>
         internal Coordinates DefaultMapCenter { get; private set; }
 
-        /// <summary>
-        /// The internal ID of the theater in DCS World.
-        /// </summary>
         internal string DCSID { get; private set; }
 
-        /// <summary>
-        /// Magnetic declination from true north.
-        /// </summary>
         internal double MagneticDeclination { get; private set; }
 
-        /// <summary>
-        /// Sunrise and sunset time (in minutes) for each month (January is 0, December is 11)
-        /// </summary>
         internal MinMaxI[] DayTime { get; private set; }
 
         internal List<Coordinates> WaterCoordinates { get; private set; }
@@ -65,16 +44,8 @@ namespace BriefingRoom4DCS.Data
         internal List<List<Coordinates>> WaterExclusionCoordinates { get; private set; }
 
         internal DBEntryTheaterSpawnPoint[] SpawnPoints { get; private set; }
-        /// <summary>
-        /// Min and max temperature (in degrees Celsius) for each month (January is 0, December is 11)
-        /// </summary>
         internal MinMaxI[] Temperature { get; private set; }
 
-        /// <summary>
-        /// Loads a database entry from an .ini file.
-        /// </summary>
-        /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
-        /// <returns>True is successful, false if an error happened</returns>
 
         protected override bool OnLoad(string iniFilePath)
         {
@@ -111,7 +82,7 @@ namespace BriefingRoom4DCS.Data
                     WaterCoordinates.Add(ini.GetValue<Coordinates>("WaterCoordinates", key));
 
 
-                    List<DBEntryTheaterSpawnPoint> spawnPointsList = new List<DBEntryTheaterSpawnPoint>();
+                List<DBEntryTheaterSpawnPoint> spawnPointsList = new List<DBEntryTheaterSpawnPoint>();
                 foreach (string key in ini.GetKeysInSection("SpawnPoints"))
                 {
                     DBEntryTheaterSpawnPoint sp = new DBEntryTheaterSpawnPoint();
@@ -121,7 +92,7 @@ namespace BriefingRoom4DCS.Data
                 SpawnPoints = spawnPointsList.ToArray();
 
                 WaterExclusionCoordinates = new List<List<Coordinates>>();
-                if(ini.GetSections().Contains("waterexclusioncoordinates"))
+                if (ini.GetSections().Contains("waterexclusioncoordinates"))
                 {
                     // Water Exclusion Coordinates
                     var tempList = new List<Coordinates>();
@@ -129,7 +100,7 @@ namespace BriefingRoom4DCS.Data
                     foreach (string key in ini.GetKeysInSection("WaterExclusionCoordinates"))
                     {
                         var newGroupId = key.Split(".")[0];
-                        if(groupID != newGroupId)
+                        if (groupID != newGroupId)
                         {
                             groupID = newGroupId;
                             WaterExclusionCoordinates.Add(tempList);
@@ -149,12 +120,6 @@ namespace BriefingRoom4DCS.Data
             return true;
         }
 
-        /// <summary>
-        /// Converts a pair of time strings in the "hh:mm" format into a MinMaxI with the times converted in minutes since midnight.
-        /// Value #0 is the minimum value, value #1 is the maximum value.
-        /// </summary>
-        /// <param name="timeValues">An array containing two time strings in the "hh:mm" format</param>
-        /// <returns>MinMax values with the number of minutes since midnight, or null if an error happened</returns>
         private MinMaxI? ParseMinMaxTime(string[] timeValues)
         {
             if (timeValues.Length != 2) return null;

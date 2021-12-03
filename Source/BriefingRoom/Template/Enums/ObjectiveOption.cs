@@ -22,9 +22,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BriefingRoom4DCS.Template
 {
-    /// <summary>
-    /// Enumerates various possible mission objective options.
-    /// </summary>
     public enum ObjectiveOption
     {
         [Display(Name = "Embedded air defense", Description = "Spawn a short-range air defense group near the target, if air defense is enabled for the target's coalition in the mission template.")]

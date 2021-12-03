@@ -77,8 +77,7 @@
                     <InputDataBase ClassString="flex-block" Label="Theater" @bind-Value="Template.ContextTheater"
                         DataBaseType="DatabaseEntryType.Theater" />
                     <InputDataBase ClassString="flex-block" Label="Situation" @bind-Value="Template.ContextSituation"
-                        Grouping="@Template.ContextTheater"
-                        DataBaseType="DatabaseEntryType.Situation" />
+                        Grouping="@Template.ContextTheater" DataBaseType="DatabaseEntryType.Situation" />
                 </div>
                 <hr />
             </div>
@@ -105,14 +104,16 @@
                             <label>Count</label>
                             <InputNumber class="form-control" @bind-Value="flight.Count"></InputNumber>
                         </div>
-                        <InputDataBase ClassString="flex-block" Label="Carrier" @bind-Value="flight.Carrier" DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="N/A" />
+                        <InputDataBase ClassString="flex-block" Label="Carrier" @bind-Value="flight.Carrier"
+                        DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="N/A" />
                         <div class="flex-block form-group">
                             <label>Livery</label>
                             <select class="form-control selectpicker" @bind=flight.Livery>
-                            @foreach (var item in GetLiveries(flight.Aircraft))
-                            {
-                                <option value="@item">@item</option> // Blazor needs to know what values it binds to!
-                            }
+                                @foreach (var item in GetLiveries(flight.Aircraft))
+                                {
+                                    <option value="@item">@item</option>
+                                    // Blazor needs to know what values it binds to!
+                                }
                             </select>
                         </div>
                         <div class="form-group flex-block">
@@ -138,11 +139,13 @@
                 <div class="generator-group flex-justify-spaced flex-margin-fix">
                     <div class="form-group flex-block">
                         <label>Objective distance (zero means random)</label>
-                        <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistance"></InputNumber>
+                        <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistance">
+                        </InputNumber>
                     </div>
                     <div class="form-group flex-block">
                         <label>Objective seperation (zero means random)</label>
-                        <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveSeperation"></InputNumber>
+                        <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveSeperation">
+                        </InputNumber>
                     </div>
                 </div>
                 @foreach (var objective in Template.Objectives)
@@ -167,29 +170,23 @@
                 <h3>Mission features</h3>
                 <CheckBoxList
                     Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"
-                    TextField="@(item =>item.Name)"
-                    DescriptionField="@(item => item.Description)"
-                    GroupingField="@(item => item.Category)"
-                    ValueField="@(item =>item.ID)"
-                    SelectedValues="Template.MissionFeatures"
-                    TItem="DatabaseEntryInfo"
-                    TItemOutput="string">
+                    TextField="@(item =>item.Name)" DescriptionField="@(item => item.Description)"
+                    GroupingField="@(item => item.Category)" ValueField="@(item =>item.ID)"
+                    SelectedValues="Template.MissionFeatures" TItem="DatabaseEntryInfo" TItemOutput="string">
                 </CheckBoxList>
             </div>
         </EditForm>
         <div class=bottom-bar>
-            <LoggerAll logs="logs"/>
+            <LoggerAll logs="logs" />
         </div>
     </div>
     @if (mission != null)
     {
         <div class="generator-preview">
-            <LoggerWarn logs="logs"/>
-            <ButtonTrio
-              PrimaryFunc="DownloadMission"  PrimaryLabel="Mission" PrimaryIcon="data-transfer-download"
-              SecondaryFunc="DownloadBriefing"  SecondaryLabel="Briefing" SecondaryIcon="browser"
-              TertiaryFunc="ClearMission"  TertiaryLabel="" TertiaryIcon="x"
-            />
+            <LoggerWarn logs="logs" />
+            <ButtonTrio PrimaryFunc="DownloadMission" PrimaryLabel="Mission" PrimaryIcon="data-transfer-download"
+            SecondaryFunc="DownloadBriefing" SecondaryLabel="Briefing" SecondaryIcon="browser"
+            TertiaryFunc="ClearMission" TertiaryLabel="" TertiaryIcon="x" />
             <div>@((MarkupString)mission.Briefing.GetBriefingAsHTML(false))</div>
         </div>
     }
@@ -331,8 +328,10 @@
         Template.PlayerFlightGroups.Add(flight);
     }
 
-    private void CloneFlightGroup(MissionTemplateFlightGroup flight) {
-        MissionTemplateFlightGroup newflight = new(){
+    private void CloneFlightGroup(MissionTemplateFlightGroup flight)
+    {
+        MissionTemplateFlightGroup newflight = new()
+        {
             Aircraft = flight.Aircraft,
             AIWingmen = flight.AIWingmen,
             Carrier = flight.Carrier,
@@ -390,7 +389,7 @@
     }
 
     private List<string> GetLiveries(string aircraftId) =>
-        BriefingRoom.GetAircraftLiveries(aircraftId);
+    BriefingRoom.GetAircraftLiveries(aircraftId);
 
     private async Task<IEnumerable<Country>> SearchCountry(string searchText) =>
     await Typeahead.SearchEnum<Country>(searchText);

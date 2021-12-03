@@ -22,15 +22,9 @@ using System;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Enumerates special flags for <see cref="DBEntryUnit"/>
-    /// </summary>
     [Flags]
     internal enum DBEntryUnitFlags
     {
-        /// <summary>
-        /// Unit can use Enhanced Position Location Reporting System
-        /// </summary>
         EPLRS
     }
 }

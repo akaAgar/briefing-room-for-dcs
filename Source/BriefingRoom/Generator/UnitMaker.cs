@@ -118,12 +118,12 @@ namespace BriefingRoom4DCS.Generator
 
             if (extraSettings.Any(x => x.Key == "Country"))
                 country = (Country)extraSettings.First(x => x.Key == "Country").Value;
-            
-            var skill =GeneratorTools.GetDefaultSkillLevel(Template, side);
+
+            var skill = GeneratorTools.GetDefaultSkillLevel(Template, side);
 
             if (extraSettings.Any(x => x.Key == "Skill"))
                 skill = (DCSSkillLevel)extraSettings.First(x => x.Key == "Skill").Value;
-                
+
 
             var isUsingSkynet = Template.MissionFeatures.Contains("SkynetIADS");
             string groupName;
@@ -136,7 +136,7 @@ namespace BriefingRoom4DCS.Generator
             else
                 groupName = GeneratorTools.GetGroupName(GroupID, unitFamily, side, isUsingSkynet);
 
-            if(unitFamily.GetUnitCategory() == UnitCategory.Static && unitFamily != UnitFamily.FOB)
+            if (unitFamily.GetUnitCategory() == UnitCategory.Static && unitFamily != UnitFamily.FOB)
                 return AddStaticGroup(
                     country,
                     coalition,
@@ -313,7 +313,7 @@ namespace BriefingRoom4DCS.Generator
                 }
                 int unitSetIndex = 0;
                 foreach (string DCSID in unitDB.DCSIDs)
-                {   
+                {
                     var groupHeading = GetGroupHeading(coordinates, extraSettings);
                     SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading, out Coordinates unitCoordinates, out double unitHeading);
                     var firstUnitID = UnitID;
@@ -365,23 +365,23 @@ namespace BriefingRoom4DCS.Generator
                         groupName,
                         extraSettings
                     );
-                    var (unitsLuaTable, embeddedunitsIDList) = AddUnits(
-                        airDefenseUnits,
-                        groupName,
-                        callsign,
-                        "UnitVehicle",
-                        coordinates,
-                        unitMakerGroupFlags,
-                        extraSettings
-                    );
-                    GeneratorTools.ReplaceKey(ref groupLua, "Units", unitsLuaTable);
-                    GeneratorTools.ReplaceKey(ref groupLua, "UnitID", firstUnitID); // Must be after units are added
-                    GeneratorTools.ReplaceKey(ref groupLua, "Skill", skill); // Must be after units are added, because skill is set as a unit level
-                    GeneratorTools.ReplaceKey(ref groupLua, "Hidden", GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags)); // If "hidden" was not set through custom values
-                    GroupID++;
-                    unitsIDList.AddRange(embeddedunitsIDList);
-                    AddUnitGroupToTable(country, UnitCategory.Vehicle, groupLua);
-                    BriefingRoom.PrintToLog($"Added group of Embedded Air Defense for Static {coalition} {unitFamily} at {coordinates}");
+                var (unitsLuaTable, embeddedunitsIDList) = AddUnits(
+                    airDefenseUnits,
+                    groupName,
+                    callsign,
+                    "UnitVehicle",
+                    coordinates,
+                    unitMakerGroupFlags,
+                    extraSettings
+                );
+                GeneratorTools.ReplaceKey(ref groupLua, "Units", unitsLuaTable);
+                GeneratorTools.ReplaceKey(ref groupLua, "UnitID", firstUnitID); // Must be after units are added
+                GeneratorTools.ReplaceKey(ref groupLua, "Skill", skill); // Must be after units are added, because skill is set as a unit level
+                GeneratorTools.ReplaceKey(ref groupLua, "Hidden", GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags)); // If "hidden" was not set through custom values
+                GroupID++;
+                unitsIDList.AddRange(embeddedunitsIDList);
+                AddUnitGroupToTable(country, UnitCategory.Vehicle, groupLua);
+                BriefingRoom.PrintToLog($"Added group of Embedded Air Defense for Static {coalition} {unitFamily} at {coordinates}");
             }
 
             DBEntryUnit firstUnitDB = Database.Instance.GetEntry<DBEntryUnit>(unitSets.First());
@@ -408,9 +408,9 @@ namespace BriefingRoom4DCS.Generator
             SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading, out Coordinates unitCoordinates, out double unitHeading);
 
             string singleUnitLuaTable = new string(unitLuaTemplate);
-            if (Toolbox.IsAircraft(unitDB.Category) &&(unitLuaIndex == 1) && unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.FirstUnitIsClient))
+            if (Toolbox.IsAircraft(unitDB.Category) && (unitLuaIndex == 1) && unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.FirstUnitIsClient))
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Skill", SinglePlayerMission ? "Player" : "Client");
-        
+
             foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
                 if (extraSetting.Value is Array)
                     GeneratorTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value, unitSetIndex);
@@ -437,9 +437,9 @@ namespace BriefingRoom4DCS.Generator
                     ));
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Livery", extraSettings.Any(x => x.Key == "Livery") ? extraSettings.First(x => x.Key == "Livery").Value : "default");
             }
-            else if(unitDB.Category == UnitCategory.Static)
+            else if (unitDB.Category == UnitCategory.Static)
             {
-                if (unitDB.Shape.Length -1 > unitSetIndex)
+                if (unitDB.Shape.Length - 1 > unitSetIndex)
                     GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Shape", unitDB.Shape[unitSetIndex]);
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", $"{groupName} {unitLuaIndex + 1}");
             }

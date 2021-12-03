@@ -20,27 +20,11 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// A "family" of NATO callsign names (generic aircraft, JTAC, tanker, AWACS...)
-    /// Used by <see cref="UnitMakerCallsignGenerator"/>
-    /// </summary>
     internal enum UnitCallsignFamily
     {
-        /// <summary>
-        /// Default aircraft, not belonging to any of the following categories.
-        /// </summary>
         Aircraft,
-        /// <summary>
-        /// AWACS/early warning aircraft.
-        /// </summary>
         AWACS,
-        /// <summary>
-        /// JTAC.
-        /// </summary>
         JTAC,
-        /// <summary>
-        /// Tanker aircraft.
-        /// </summary>
         Tanker
     }
 }

@@ -31,42 +31,27 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Campaign
 {
-    /// <summary>
-    /// The main campaign generator class.
-    /// </summary>
     internal class CampaignGenerator : IDisposable
     {
         private static readonly string CAMPAIGN_LUA_TEMPLATE = $"{BRPaths.INCLUDE_LUA}Campaign\\Campaign.lua";
         private static readonly string CAMPAIGN_STAGE_LUA_TEMPLATE = $"{BRPaths.INCLUDE_LUA}Campaign\\CampaignStage.lua";
 
-        /// <summary>
-        /// Mission generator to use for mission generations.
-        /// </summary>
         private readonly MissionGenerator MissionGenerator;
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="missionGenerator">Mission generator to use for mission generations.</param>
         internal CampaignGenerator(MissionGenerator missionGenerator)
         {
             MissionGenerator = missionGenerator;
         }
 
-        /// <summary>
-        /// Generates a campaign from a campaign template.
-        /// </summary>
-        /// <param name="campaignTemplate">Campaign template to use.</param>
-        /// <returns>A <see cref="DCSCampaign"/> or null is something went wrong</returns>
         internal DCSCampaign Generate(CampaignTemplate campaignTemplate)
         {
             DCSCampaign campaign = new();
 
-            campaign.Name = GeneratorTools.GenerateMissionName(campaignTemplate.BriefingCampaignName);;
+            campaign.Name = GeneratorTools.GenerateMissionName(campaignTemplate.BriefingCampaignName); ;
             string baseFileName = Toolbox.RemoveInvalidPathCharacters(campaign.Name);
 
             DateTime date = GenerateCampaignDate(campaignTemplate);
-            
+
             campaignTemplate.Player.AIWingmen = true; //Make sure wingmen is always true for campaign
 
             for (int i = 0; i < campaignTemplate.MissionsCount; i++)
@@ -74,7 +59,7 @@ namespace BriefingRoom4DCS.Campaign
                 // Increment the date by a few days for each mission after the first
                 if (i > 0) date = IncrementDate(date);
 
-                MissionTemplate template = CreateMissionTemplate(campaignTemplate, campaign.Name,  i, (int)campaignTemplate.MissionsObjectiveCount);
+                MissionTemplate template = CreateMissionTemplate(campaignTemplate, campaign.Name, i, (int)campaignTemplate.MissionsObjectiveCount);
 
                 DCSMission mission = MissionGenerator.Generate(template, true);
                 // TODO: mission.DateTime.Day = date.Day; mission.DateTime.Month = date.Month; mission.DateTime.Year = date.Year;
@@ -200,12 +185,12 @@ namespace BriefingRoom4DCS.Campaign
                 OptionsMission = campaignTemplate.OptionsMission.ToList(),
                 OptionsRealism = campaignTemplate.OptionsRealism.ToList(),
 
-                PlayerFlightGroups = new List<MissionTemplateFlightGroup>{campaignTemplate.Player},
-                
+                PlayerFlightGroups = new List<MissionTemplateFlightGroup> { campaignTemplate.Player },
+
                 SituationEnemySkill = GetPowerLevel(campaignTemplate.SituationEnemySkill, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount),
                 SituationEnemyAirDefense = GetPowerLevel(campaignTemplate.SituationEnemyAirDefense, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount),
                 SituationEnemyAirForce = GetPowerLevel(campaignTemplate.SituationEnemyAirForce, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount),
-                
+
                 SituationFriendlySkill = GetPowerLevel(campaignTemplate.SituationFriendlySkill, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount, true),
                 SituationFriendlyAirDefense = GetPowerLevel(campaignTemplate.SituationFriendlyAirDefense, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount, true),
                 SituationFriendlyAirForce = GetPowerLevel(campaignTemplate.SituationFriendlyAirForce, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount, true),
@@ -218,11 +203,6 @@ namespace BriefingRoom4DCS.Campaign
             return template;
         }
 
-        /// <summary>
-        /// Returns a random distance to the mission objective(s).
-        /// </summary>
-        /// <param name="objectiveDistance">Objective distance setting in the campaign template.</param>
-        /// <returns>A distance, in nautical miles.</returns>
         private int GetObjectiveDistance(Amount objectiveDistance)
         {
             switch (objectiveDistance)
@@ -281,11 +261,6 @@ namespace BriefingRoom4DCS.Campaign
             return (AmountNR)Toolbox.Clamp((int)amountDouble, (int)AmountNR.VeryLow, (int)AmountNR.VeryHigh);
         }
 
-        /// <summary>
-        /// Gets a random weather preset for missions of this campaign.
-        /// </summary>
-        /// <param name="badWeatherChance">Chance to have bad weather during this campaign's missions.</param>
-        /// <returns>A weather preset ID</returns>
         private string GetWeatherForMission(Amount badWeatherChance)
         {
             // Chance to have bad weather
@@ -348,16 +323,8 @@ namespace BriefingRoom4DCS.Campaign
             }
         }
 
-        /// <summary>
-        /// Increment the date after each mission.
-        /// </summary>
-        /// <param name="dateTime">Date of the current mission.</param>
-        /// <returns>Date of the new mission.</returns>
         private DateTime IncrementDate(DateTime dateTime) => dateTime.AddDays(Toolbox.RandomMinMax(1, 3));
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose() { }
     }
 }

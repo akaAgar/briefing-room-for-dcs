@@ -23,36 +23,16 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Stores settings (number of units, etc.) about a level of air defense.
-    /// </summary>
     internal struct DBCommonAirDefenseLevel
     {
-        /// <summary>
-        /// Chance (percentage) to have "embedded" short-range air-defense units included in objective groups.
-        /// </summary>
         internal double EmbeddedChance { get; }
-        
-        /// <summary>
-        /// Min/max number of short-range air-defense units to "embed" in objective groups.
-        /// </summary>
+
         internal MinMaxI EmbeddedUnitCount { get; }
 
-        /// <summary>
-        /// Min/max number of air-defense groups of each range to add near the objectives.
-        /// </summary>
         internal MinMaxI[] GroupsInArea { get; }
 
-        /// <summary>
-        /// Possible AI skill levels for air defense units.
-        /// </summary>
         internal DCSSkillLevel[] SkillLevel { get; }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="ini">.ini file from which to load air defense common settings</param>
-        /// <param name="airDefenseLevel">Level of air defense for which this setting applies.</param>
         internal DBCommonAirDefenseLevel(INIFile ini, AmountNR airDefenseLevel)
         {
             int i;

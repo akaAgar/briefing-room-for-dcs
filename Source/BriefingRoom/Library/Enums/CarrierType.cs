@@ -20,22 +20,10 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS
 {
-    /// <summary>
-    /// Enumerates all type of ships aircraft can take off from.
-    /// </summary>
     public enum CarrierType
     {
-        /// <summary>
-        /// CATOBAR (catapult) carrier
-        /// </summary>
         CATOBAR,
-        /// <summary>
-        /// STOBAR (ramp) carrier
-        /// </summary>
         STOBAR,
-        /// <summary>
-        /// STOVL (short takeoff) carrier/assault ship
-        /// </summary>
         STOVL
     }
 }

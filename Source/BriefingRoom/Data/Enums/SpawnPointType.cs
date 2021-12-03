@@ -20,35 +20,14 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// A type of location spawn point. Used to know what can be spawned at its location.
-    /// </summary>
     public enum SpawnPointType
     {
-        /// <summary>
-        /// Small spot on land, maybe in a forest or a street
-        /// </summary>
         LandSmall,
-        /// <summary>
-        /// Average spot on land, open land but not buildable (field, forest clearing...)
-        /// </summary>
         LandMedium,
-        /// <summary>
-        /// Large spot on land, big enough and appropriate for a building to stand
-        /// </summary>
         LandLarge,
 
-        /// <summary>
-        /// Sea, Positions chosen should be in water area but outside of exclusion areas
-        /// </summary>
         Sea,
-        /// <summary>
-        /// Airbase
-        /// </summary>
         Airbase,
-        /// <summary>
-        /// Air, Any position
-        /// </summary>
         Air
     }
 }

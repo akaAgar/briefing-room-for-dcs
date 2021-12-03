@@ -20,36 +20,14 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS
 {
-    /// <summary>
-    /// Enumeates all DCS World skill levels.
-    /// Must match names used by DCS World (https://wiki.hoggitworld.com/view/DCS_enum_AI) !!
-    /// </summary>
     internal enum DCSSkillLevel
     {
-        /// <summary>
-        /// The (only) player in a single player mission controls this aircraft
-        /// </summary>
         Player,
-        /// <summary>
-        /// A multiplayer client controls this aircraft
-        /// </summary>
         Client,
 
-        /// <summary>
-        /// Easy AI
-        /// </summary>
         Average,
-        /// <summary>
-        /// Average AI
-        /// </summary>
         Good,
-        /// <summary>
-        /// Hard AI
-        /// </summary>
         High,
-        /// <summary>
-        /// Elite AI
-        /// </summary>
         Excellent
     }
 }

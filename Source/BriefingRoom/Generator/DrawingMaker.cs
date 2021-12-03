@@ -110,7 +110,7 @@ namespace BriefingRoom4DCS.Generator
         private void AddTheaterZones()
         {
             var invertCoalition = Template.OptionsMission.Contains("InvertCountriesCoalitions");
-            var red  =  SituationDB.GetRedZone(invertCoalition);
+            var red = SituationDB.GetRedZone(invertCoalition);
             var blue = SituationDB.GetBlueZone(invertCoalition);
             AddFree("Red Control", red.First(), "Points".ToKeyValuePair(red.Select(coord => coord - red.First()).ToList()), "Colour".ToKeyValuePair(DrawingColour.RedFill));
             AddFree(

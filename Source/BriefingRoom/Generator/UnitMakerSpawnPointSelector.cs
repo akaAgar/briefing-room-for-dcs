@@ -26,39 +26,20 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// Selects random spawn points and airbase parking spots from a theater.
-    /// </summary>
     internal class UnitMakerSpawnPointSelector : IDisposable
     {
-        /// <summary>
-        /// How many times should GetRandomSpawnPoint() expand its search radius when no nodes are found?
-        /// </summary>
         private const int MAX_RADIUS_SEARCH_ITERATIONS = 32;
 
-        /// <summary>
-        /// List of available airbase parking spots for each airbase.
-        /// </summary>
         private readonly Dictionary<int, List<DBEntryAirbaseParkingSpot>> AirbaseParkingSpots;
 
-        /// <summary>
-        /// List of available spawn points.
-        /// </summary>
         private readonly List<DBEntryTheaterSpawnPoint> SpawnPoints;
 
-        /// <summary>
-        /// Theater database entry
-        /// </summary>
         private readonly DBEntryTheater TheaterDB;
 
         private readonly DBEntrySituation SituationDB;
 
         private readonly bool InvertCoalition;
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="theaterDB">Theater database entry to use</param>
         internal UnitMakerSpawnPointSelector(DBEntryTheater theaterDB, DBEntrySituation situationDB, bool invertCoalition)
         {
             TheaterDB = theaterDB;
@@ -70,14 +51,6 @@ namespace BriefingRoom4DCS.Generator
             Clear();
         }
 
-        /// <summary>
-        /// Returns a free parking spot for the given airbase.
-        /// </summary>
-        /// <param name="airbaseID">Internal ID of the airbase in DCS World</param>
-        /// <param name="parkingSpotCoordinates">Coordinates of the selected parking spot</param>
-        /// <param name="lastSpotCoordinates">Coordinates of the last aircraft spot picked, if any. Will try to pick a spot near this one.</param>
-        /// <param name="requiresOpenAirParking">Should the aircraft be spawned on an opened parking spot (not in a hangar)?</param>
-        /// <returns>A parking spot ID, or -1 if none found or if airbase doesn't exist</returns>
         internal List<DBEntryAirbaseParkingSpot> GetFreeParkingSpots(int airbaseID, int unitCount, bool requiresOpenAirParking = false)
         {
             if (!AirbaseParkingSpots.ContainsKey(airbaseID) ||
@@ -119,16 +92,6 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        /// <summary>
-        /// Gets a random spawn point around a given point.
-        /// </summary>
-        /// <param name="validTypes">Valid spawn point types</param>
-        /// <param name="distanceOrigin1">Origin point distance must be computed from</param>
-        /// <param name="distanceFrom1">Min/max distance from origin point, in nautical miles</param>
-        /// <param name="distanceOrigin2">Second origin point distance must be computed from</param>
-        /// <param name="distanceFrom2">Min/max distance from second origin point, in nautical miles</param>
-        /// <param name="coalition">Which coalition should the spawn point belong to?</param>
-        /// <returns>A spawn point, or null if none found matching the provided criteria</returns>
         internal Coordinates? GetRandomSpawnPoint(
             SpawnPointType[] validTypes,
             Coordinates distanceOrigin1, MinMaxD distanceFrom1,
@@ -257,9 +220,6 @@ namespace BriefingRoom4DCS.Generator
             return !ShapeManager.IsPosValid(coordinates, blue);
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose() { }
     }
 }

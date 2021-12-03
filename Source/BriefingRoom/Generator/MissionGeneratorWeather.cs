@@ -25,30 +25,12 @@ using System;
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// Generates a <see cref="DCSMission"/>'s weather
-    /// </summary>
     internal class MissionGeneratorWeather : IDisposable
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         internal MissionGeneratorWeather() { }
 
-        /// <summary>
-        /// IDispose implementation.
-        /// </summary>
         public void Dispose() { }
 
-        /// <summary>
-        /// Generates weather settings (precipitation, cloud coverage, temperature...) for the mission.
-        /// Must be called after mission date has been set because min/max temperature changes every month.
-        /// </summary>
-        /// <param name="mission">Mission to generate.</param>
-        /// <param name="template">Mission template to use.</param>
-        /// <param name="theaterDB">Theater database entry.</param>
-        /// <param name="month">Month during which the mission takes place.</param>
-        /// <param name="turbulenceFromWeather">Amount of turbulence (in m/s) to add to the default wind turbulence.</param>
         internal void GenerateWeather(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, Month month, DBEntryAirbase playerAirbase, out int turbulenceFromWeather)
         {
             var baseAlt = template.OptionsMission.Contains("SeaLevelRefCloud") ? 0.0 : playerAirbase.Elevation;
@@ -75,15 +57,6 @@ namespace BriefingRoom4DCS.Generator
             turbulenceFromWeather = weatherDB.Turbulence.GetValue();
         }
 
-        /// <summary>
-        /// Generates wind settings for the mission.
-        /// Must be called once mission weather level has been set, as weather is used for auto wind.
-        /// </summary>
-        /// <param name="mission">Mission to generate.</param>
-        /// <param name="template">Mission template to use.</param>
-        /// <param name="turbulenceFromWeather">Amount of turbulence (in m/s) to add to the default wind turbulence.</param>
-        /// <param name="windSpeedAtSeaLevel">Wind speed at sea level, in m/s.</param>
-        /// <param name="windDirectionAtSeaLevel">Wind direction at sea level, in radians.</param>
         internal void GenerateWind(DCSMission mission, MissionTemplate template, int turbulenceFromWeather, out double windSpeedAtSeaLevel, out double windDirectionAtSeaLevel)
         {
             windSpeedAtSeaLevel = 0;
@@ -115,10 +88,6 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("WeatherGroundTurbulence", Database.Instance.Common.Wind[(int)windLevel].Turbulence.GetValue() + turbulenceFromWeather);
         }
 
-        /// <summary>
-        /// Picks a random wind level, with a major chance of calm wind and very little chance of powerful wind, so most missions don't take place during a storm.
-        /// </summary>
-        /// <returns>A wind level</returns>
         private Wind PickRandomWindLevel()
         {
             return Toolbox.RandomFrom(

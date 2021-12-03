@@ -29,20 +29,10 @@ using System.Text.RegularExpressions;
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// A static library of tools to help mission generation.
-    /// </summary>
     internal static class GeneratorTools
     {
-        /// <summary>
-        /// The number of days in each month.
-        /// </summary>
         private static readonly int[] DAYS_PER_MONTH = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-        /// <summary>
-        /// List of possible unit families to choose from for "embedded" air defense.
-        /// Some families are more frequent than other.
-        /// </summary>
         private static readonly UnitFamily[] EMBEDDED_AIR_DEFENSE_FAMILIES = new UnitFamily[]
         {
             UnitFamily.VehicleAAA, UnitFamily.VehicleAAA, UnitFamily.VehicleAAA,
@@ -50,15 +40,6 @@ namespace BriefingRoom4DCS.Generator
             UnitFamily.VehicleSAMShort
         };
 
-        /// <summary>
-        /// Adds "embedded" short-range air-defense units to an unit group.
-        /// </summary>
-        /// <param name="units">Array of units in the group</param>
-        /// <param name="airDefenseLevel">Air defense level setting to use, from the mission template</param>
-        /// <param name="coalitionDB">Database entry for the coalition to use for air-defense units</param>
-        /// <param name="decade">Decade during which the units must be operated</param>
-        /// <param name="unitMods">Unit mods the units can belong to</param>
-        /// <returns>Updated array of units with added embedded air defense units</returns>
         internal static string[] AddEmbeddedAirDefense(string[] units, AmountNR airDefenseLevel, DBEntryCoalition coalitionDB, Decade decade, List<string> unitMods)
         {
             int airDefenseLevelInt = (int)airDefenseLevel.Get();
@@ -126,11 +107,6 @@ namespace BriefingRoom4DCS.Generator
             return list;
         }
 
-        /// <summary>
-        /// Generate a random mission name if none is provided in the template, or returns the provided name if there is one.
-        /// </summary>
-        /// <param name="mission">A mission</param>
-        /// <param name="template">Mission template to use</param>
         internal static string GenerateMissionName(string desiredName)
         {
             // Try to get the provided custom mission name.
@@ -187,12 +163,6 @@ namespace BriefingRoom4DCS.Generator
             return coalition;
         }
 
-        /// <summary>
-        /// Returns the number of days in a month.
-        /// </summary>
-        /// <param name="month">The month of the year.</param>
-        /// <param name="year">The year. Used to know if it's a leap year.</param>
-        /// <returns>The number of days in the month.</returns>
         internal static int GetDaysPerMonth(Month month, int year)
         {
             // Not February, return value stored in DAYS_PER_MONTH array
@@ -223,7 +193,7 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        internal static DCSSkillLevel GetDefaultSkillLevel(MissionTemplate template, Side side) => (Side.Ally == side? template.SituationFriendlySkill : template.SituationEnemySkill) switch 
+        internal static DCSSkillLevel GetDefaultSkillLevel(MissionTemplate template, Side side) => (Side.Ally == side ? template.SituationFriendlySkill : template.SituationEnemySkill) switch
         {
             AmountNR.None => DCSSkillLevel.Average,
             AmountNR.VeryLow => DCSSkillLevel.Average,
@@ -239,12 +209,6 @@ namespace BriefingRoom4DCS.Generator
             return radioFrequency.ToString("F1", NumberFormatInfo.InvariantInfo);
         }
 
-        /// <summary>
-        /// Replaces all instance of "$KEY$" in a Lua script by value.
-        /// </summary>
-        /// <param name="lua">The Lua script.</param>
-        /// <param name="key">The key to replace, without the dollar signs.</param>
-        /// <param name="value">The value to replace the key with.</param>
         internal static void ReplaceKey(ref string lua, string key, object value)
         {
             string valueStr = Toolbox.ValToString(value);
@@ -253,13 +217,6 @@ namespace BriefingRoom4DCS.Generator
             lua = lua.Replace($"${key.ToUpperInvariant()}$", valueStr);
         }
 
-        /// <summary>
-        /// Replaces all instance of "$KEY$" in a Lua script by a value from a given index arrayValue.
-        /// </summary>
-        /// <param name="lua">The Lua script.</param>
-        /// <param name="key">The key to replace, without the dollar signs.</param>
-        /// <param name="arrayValue">An array from which to pick the value to replace the key with.</param>
-        /// <param name="arrayIndex">Index of the array from which to pick the value.</param>
         internal static void ReplaceKey(ref string lua, string key, object arrayValue, int arrayIndex)
         {
             try
@@ -322,23 +279,11 @@ namespace BriefingRoom4DCS.Generator
             return GetRadioFrenquency(res);
         }
 
-        /// <summary>
-        /// Converts a radio freqency in Mhz to a radio frequency in Hz.
-        /// </summary>
-        /// <param name="radioFrequency">Radio frequency in Mhz</param>
-        /// <returns>Radio frequency in Hz.</returns>
         internal static int GetRadioFrenquency(double radioFrequency)
         {
             return (int)(radioFrequency * 1000000.0);
         }
 
-        /// <summary>
-        /// Checks for a <see cref="DBEntry"/> in <see cref="Database"/> and throws an exception if it isn't found.
-        /// </summary>
-        /// <typeparam name="T">The type of <see cref="DBEntry"/> to look for</typeparam>
-        /// <param name="id">The id of the entry to look for</param>
-        /// <param name="allowEmpty">If true, null or empty strings will be allowed</param>
-        /// <returns></returns>
         internal static bool CheckDBForMissingEntry<T>(string id, bool allowEmpty = false) where T : DBEntry
         {
             if (string.IsNullOrEmpty(id) && allowEmpty) return true;
@@ -352,11 +297,6 @@ namespace BriefingRoom4DCS.Generator
             return true;
         }
 
-        /// <summary>
-        /// Randomizes parts of a string.
-        /// </summary>
-        /// <param name="randomString">The string to randomize</param>
-        /// <returns>A randomized string.</returns>
         internal static string ParseRandomString(string randomString)
         {
             while (randomString.Contains("{") && randomString.Contains("{"))
@@ -379,14 +319,14 @@ namespace BriefingRoom4DCS.Generator
 
         private static string SetSkyNetPrefix(string groupName, UnitFamily unitFamily, Side side)
         {
-            var ewrTypes = new List<UnitFamily> { 
+            var ewrTypes = new List<UnitFamily> {
                 UnitFamily.VehicleEWR,
                 UnitFamily.ShipCarrierCATOBAR,
                 UnitFamily.ShipCarrierSTOBAR,
                 UnitFamily.ShipCarrierSTOVL,
                 UnitFamily.ShipCruiser,
                 UnitFamily.ShipFrigate};
-            var samTypes = new List<UnitFamily> { 
+            var samTypes = new List<UnitFamily> {
                 UnitFamily.VehicleSAMMedium,
                 UnitFamily.VehicleSAMLong
                 };
@@ -409,7 +349,7 @@ namespace BriefingRoom4DCS.Generator
             int fakeGroupNumber = groupID * 10 + Toolbox.RandomInt(1, 10);
             name = name.Replace("$N$", fakeGroupNumber.ToString(NumberFormatInfo.InvariantInfo));
             name = name.Replace("$NTH$", Toolbox.GetOrdinalAdjective(fakeGroupNumber));
-            if(isUsingSkynet)
+            if (isUsingSkynet)
                 return SetSkyNetPrefix(name, family, side);
             return name;
         }

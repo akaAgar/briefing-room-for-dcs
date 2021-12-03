@@ -27,26 +27,12 @@ using System.Text;
 
 namespace BriefingRoom4DCS
 {
-    /// <summary>
-    /// Provides reading and writing method from/to a .ini file.
-    /// </summary>
     internal class INIFile : IDisposable
     {
-        /// <summary>
-        /// Dictionary of all sections in this INI file.
-        /// </summary>
         private readonly Dictionary<string, INIFileSection> Sections = new Dictionary<string, INIFileSection>(StringComparer.InvariantCultureIgnoreCase);
 
-        /// <summary>
-        /// Constructor. Creates an empty file with no sections or values.
-        /// </summary>
         internal INIFile() { Clear(); }
 
-        /// <summary>
-        /// Constructor. Load data from an INI file.
-        /// </summary>
-        /// <param name="filePath">Path to the INI file</param>
-        /// <param name="encoding">Text encoding to use. Default is UTF-8</param>
         internal INIFile(string filePath, Encoding encoding = null)
         {
             Clear();
@@ -57,11 +43,6 @@ namespace BriefingRoom4DCS
         }
 
 
-        /// <summary>
-        /// Creates an instance of INIFile from a raw INI string
-        /// </summary>
-        /// <param name="iniString">String containing INI data</param>
-        /// <returns>An INIFile</returns>
         internal static INIFile CreateFromRawINIString(string iniString)
         {
             INIFile ini = new INIFile();
@@ -70,17 +51,11 @@ namespace BriefingRoom4DCS
             return ini;
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose()
         {
             Clear();
         }
 
-        /// <summary>
-        /// Clears all sections and values.
-        /// </summary>
         internal void Clear()
         {
             foreach (string s in Sections.Keys)
@@ -89,12 +64,6 @@ namespace BriefingRoom4DCS
             Sections.Clear();
         }
 
-        /// <summary>
-        /// Saves the current state of the INIFile to a file.
-        /// </summary>
-        /// <param name="filePath">Path to the file to write</param>
-        /// <param name="encoding">Text encoding to use. Default is UTF-8</param>
-        /// <returns>True if everything went right, false if an error happened</returns>
         internal bool SaveToFile(string filePath, Encoding encoding = null)
         {
             try
@@ -132,11 +101,6 @@ namespace BriefingRoom4DCS
         }
 
 
-        /// <summary>
-        /// Returns the names of all sections.
-        /// </summary>
-        /// <param name="showAbstractSections">If true, abstract sections will be displayed (default is false)</param>
-        /// <returns>A string array</returns>
         internal string[] GetSections(bool showAbstractSections = false)
         {
             if (showAbstractSections)
@@ -145,14 +109,6 @@ namespace BriefingRoom4DCS
             return (from string s in Sections.Keys where !Sections[s].Abstract select s).OrderBy(x => x).ToArray();
         }
 
-        /// <summary>
-        /// Reads and returns a value from the ini file.
-        /// </summary>
-        /// <typeparam name="T">Type of the value to read</typeparam>
-        /// <param name="section">Section in which to read the value</param>
-        /// <param name="key">Key of the value</param>
-        /// <param name="defaultValue">Default value to return if the values doesn't exist or is invalid</param>
-        /// <returns>A value</returns>
         internal T GetValue<T>(string section, string key, T defaultValue = default)
         {
             if (!ValueExists(section, key))
@@ -176,14 +132,6 @@ namespace BriefingRoom4DCS
             }
         }
 
-        /// <summary>
-        /// Reads and returns an array of value from the ini file.
-        /// </summary>
-        /// <typeparam name="T">Type of the value to read</typeparam>
-        /// <param name="section">Section in which to read the value</param>
-        /// <param name="key">Key of the value</param>
-        /// <param name="separator">Separator character to use between values in the array</param>
-        /// <returns>An array of values</returns>
         internal T[] GetValueArray<T>(string section, string key, char separator = ',')
         {
             if (string.IsNullOrEmpty(GetValue<string>(section, key))) return new T[0];
@@ -229,13 +177,6 @@ namespace BriefingRoom4DCS
             return new T[] { (T)(object)Math.Min((int)(object)minMaxEnum[0], (int)(object)minMaxEnum[1]), (T)(object)Math.Max((int)(object)minMaxEnum[0], (int)(object)minMaxEnum[1]) };
         }
 
-        /// <summary>
-        /// Sets a value in the INI file.
-        /// </summary>
-        /// <typeparam name="T">Type of the value to set</typeparam>
-        /// <param name="section">Section in which to set the value</param>
-        /// <param name="key">Key of the value to set</param>
-        /// <param name="value">Value</param>
         internal void SetValue<T>(string section, string key, T value)
         {
             if (CanConvertStringFrom<T>())
@@ -244,14 +185,6 @@ namespace BriefingRoom4DCS
                 WriteValue(section, key, "");
         }
 
-        /// <summary>
-        /// Sets an value array in the INI file.
-        /// </summary>
-        /// <typeparam name="T">Type of the value array to set</typeparam>
-        /// <param name="section">Section in which to set the value array</param>
-        /// <param name="key">Key of the value array to set</param>
-        /// <param name="value">Value array</param>
-        /// <param name="separator">Separator character to use between values in the array</param>
         internal void SetValueArray<T>(string section, string key, T[] value, char separator = ',')
         {
             value = value ?? new T[0];
@@ -265,12 +198,6 @@ namespace BriefingRoom4DCS
                 WriteValue(section, key, value.ToString());
         }
 
-        /// <summary>
-        /// Gets or sets a value.
-        /// </summary>
-        /// <param name="section">Section in which to set the value</param>
-        /// <param name="key">Key of the value to set</param>
-        /// <returns>The value</returns>
         internal string this[string section, string key]
         {
             get
@@ -283,11 +210,6 @@ namespace BriefingRoom4DCS
             }
         }
 
-        /// <summary>
-        /// Returns all keys in a section.
-        /// </summary>
-        /// <param name="section"></param>
-        /// <returns></returns>
         internal string[] GetKeysInSection(string section)
         {
             if (!Sections.ContainsKey(section)) return new string[0];
@@ -310,12 +232,6 @@ namespace BriefingRoom4DCS
             return keys.Distinct().OrderBy(x => x).ToArray();
         }
 
-        /// <summary>
-        /// Returns all top-level keys in a section.
-        /// Top-level keys are keys before the first dot in the name. For instance, if keys are "client1.name", "client1.adress", "client2.name" and "client2.adress", top-level keys are "client1" and "client2"
-        /// </summary>
-        /// <param name="section"></param>
-        /// <returns></returns>
         internal string[] GetTopLevelKeysInSection(string section)
         {
             string[] keys = GetKeysInSection(section);
@@ -329,23 +245,11 @@ namespace BriefingRoom4DCS
             return keys.Distinct().ToArray();
         }
 
-        /// <summary>
-        /// Does the value exist?
-        /// </summary>
-        /// <param name="section">Section in which the value is stored</param>
-        /// <param name="key">Value key</param>
-        /// <returns>True if the value exists, false if it doesn't</returns>
         internal bool ValueExists(string section, string key)
         {
             return ReadValue(section, key) != null;
         }
 
-        /// <summary>
-        /// Returns a raw string value or null if it doesn't exist.
-        /// </summary>
-        /// <param name="section"></param>
-        /// <param name="key"></param>
-        /// <returns></returns>
         private string ReadValue(string section, string key)
         {
             if (string.IsNullOrEmpty(section) || string.IsNullOrEmpty(key)) return null;
@@ -370,13 +274,6 @@ namespace BriefingRoom4DCS
             return null;
         }
 
-        /// <summary>
-        /// Write a value into the INI file.
-        /// </summary>
-        /// <param name="section">Section to write to</param>
-        /// <param name="key">Key to write</param>
-        /// <param name="value">Value</param>
-        /// <returns>True if written successfully, false otherwise</returns>
         private bool WriteValue(string section, string key, string value)
         {
             section = (section ?? "").ToLowerInvariant().Trim();
@@ -392,10 +289,6 @@ namespace BriefingRoom4DCS
             return true;
         }
 
-        /// <summary>
-        /// Parses a INI string to populate sections, keys and values.
-        /// </summary>
-        /// <param name="iniString">A string containing INI data</param>
         private void ParseINIString(string iniString)
         {
             string[] lines = (iniString + "\n").Replace("\r\n", "\n").Split('\n');
@@ -454,12 +347,6 @@ namespace BriefingRoom4DCS
             }
         }
 
-        /// <summary>
-        /// Can a string be converted to a value type for reading from the INI file?
-        /// Can be overridden to add more supported types.
-        /// </summary>
-        /// <typeparam name="T">Type to convert to</typeparam>
-        /// <returns>True or false</returns>
         private bool CanConvertStringTo<T>()
         {
             Type type = typeof(T);
@@ -479,12 +366,6 @@ namespace BriefingRoom4DCS
             return false;
         }
 
-        /// <summary>
-        /// Can a value type be converted to a string for writing into the INI file?
-        /// Can be overridden to add more supported types.
-        /// </summary>
-        /// <typeparam name="T">Type to convert from</typeparam>
-        /// <returns>True or false</returns>
         private bool CanConvertStringFrom<T>()
         {
             Type type = typeof(T);
@@ -501,14 +382,6 @@ namespace BriefingRoom4DCS
             return false;
         }
 
-        /// <summary>
-        /// Converts a string to a value type for reading from the INI file.
-        /// Can be overridden to add more supported types.
-        /// </summary>
-        /// <typeparam name="T">Type to convert to</typeparam>
-        /// <param name="value">Value</param>
-        /// <param name="defaultValue">Default value to return if something goes wrong</param>
-        /// <returns>A value of type T</returns>
         private T ConvertStringTo<T>(string value, T defaultValue = default)
         {
             Type type = typeof(T);
@@ -562,13 +435,6 @@ namespace BriefingRoom4DCS
             return (T)outObject;
         }
 
-        /// <summary>
-        /// Converts a string from a value type for writing into the INI file.
-        /// Can be overridden to add more supported types.
-        /// </summary>
-        /// <typeparam name="T">Type to convert from</typeparam>
-        /// <param name="value">Value</param>
-        /// <returns>A string</returns>
         private string ConvertStringFrom<T>(T value)
         {
             Type type = typeof(T);
@@ -588,12 +454,6 @@ namespace BriefingRoom4DCS
             return outString;
         }
 
-        /// <summary>
-        /// Calls ConvertStringTo<T> on all elements in a array to convert a string[] array to a T[] array.
-        /// </summary>
-        /// <typeparam name="T">Type of array to convert to</typeparam>
-        /// <param name="sourceArray">Source string array</param>
-        /// <returns>An array of type T</returns>
         private T[] ConvertArray<T>(string[] sourceArray)
         {
             try

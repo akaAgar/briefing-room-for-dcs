@@ -22,36 +22,14 @@ using System;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Enumerates special flags for <see cref="DBEntryObjectiveFlags"/>
-    /// </summary>
     [Flags]
     internal enum DBEntryObjectiveFlags
     {
-        /// <summary>
-        /// Player(s) must take off from an airbase situated near water.
-        /// Mostly used by antiship missions, so players don't start 200 nm inland.
-        /// </summary>
         MustStartNearWater = 1,
-        /// <summary>
-        /// No enemy short-range air defense will be spawned in this mission, regardless of template settings.
-        /// </summary>
         NoEnemyAirDefenseShort = 2,
-        /// <summary>
-        /// No enemy medium-range air defense will be spawned in this mission, regardless of template settings.
-        /// </summary>
         NoEnemyAirDefenseMedium = 4,
-        /// <summary>
-        /// No enemy long-range air defense will be spawned in this mission, regardless of template settings.
-        /// </summary>
         NoEnemyAirDefenseLong = 8,
-        /// <summary>
-        /// No enemy CAP will be spawned in this mission, regardless of template settings.
-        /// </summary>
         NoEnemyCAP = 16,
-        /// <summary>
-        /// A single target unit family will be used for all targets.
-        /// </summary>
         SingleTargetUnitFamily = 32
     }
 }

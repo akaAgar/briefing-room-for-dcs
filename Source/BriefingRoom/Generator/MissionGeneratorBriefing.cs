@@ -27,15 +27,9 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// Generates the mission name and briefing (both raw text and HTML version).
-    /// </summary>
     internal class MissionGeneratorBriefing : IDisposable
     {
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         internal MissionGeneratorBriefing()
         {
 
@@ -71,9 +65,6 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("BRIEFINGDESCRIPTION", briefingDescription);
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose() { }
     }
 }

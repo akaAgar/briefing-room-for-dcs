@@ -20,15 +20,8 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS
 {
-    /// <summary>
-    /// Enumerates DCS World countries.
-    /// Values must match the ones from DCS (full list here: https://wiki.hoggitworld.com/view/DCS_enum_country)
-    /// </summary>
     public enum Country
     {
-        /// <summary>
-        /// Special BriefingRoom country used for unit operators
-        /// </summary>
         ALL = -1,
 
         Russia = 0,
@@ -94,7 +87,7 @@ namespace BriefingRoom4DCS
         Honduras = 61,
         Ethiopia = 62,
         Chile = 63,
-        Brazil  = 64,
+        Brazil = 64,
         Bahrain = 65,
         Thirdreich = 66,
         Yugoslavia = 67,

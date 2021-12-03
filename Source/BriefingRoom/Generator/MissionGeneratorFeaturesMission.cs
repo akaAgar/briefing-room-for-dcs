@@ -26,15 +26,8 @@ using System.Collections.Generic;
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// Generates units and Lua script associated with mission features.
-    /// </summary>
     internal class MissionGeneratorFeaturesMission : MissionGeneratorFeatures<DBEntryFeatureMission>
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="unitMaker">Unit maker to use for unit generation.</param>
         internal MissionGeneratorFeaturesMission(UnitMaker unitMaker, MissionTemplate template) : base(unitMaker, template) { }
 
         internal void GenerateMissionFeature(DCSMission mission, string featureID, int missionFeatureIndex, Coordinates initialCoordinates, Coordinates objectivesCenter)
@@ -45,7 +38,7 @@ namespace BriefingRoom4DCS.Generator
                 BriefingRoom.PrintToLog($"Mission feature {featureID} not found.", LogMessageErrorLevel.Warning);
                 return;
             }
-            Coalition coalition = featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly)? Template.ContextPlayerCoalition :Template.ContextPlayerCoalition.GetEnemy();
+            Coalition coalition = featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly) ? Template.ContextPlayerCoalition : Template.ContextPlayerCoalition.GetEnemy();
 
             Coordinates pointSearchCenter = Coordinates.Lerp(initialCoordinates, objectivesCenter, featureDB.UnitGroupSpawnDistance);
             Coordinates? spawnPoint =

@@ -25,71 +25,31 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Stores information about a DCS World unit.
-    /// </summary>
     internal class DBEntryUnit : DBEntry
     {
-        /// <summary>
-        /// Specific data for aircraft units.
-        /// </summary>
         internal DBEntryUnitAircraftData AircraftData { get; private set; }
 
-        /// <summary>
-        /// DCS World unit category this unit belongs to.
-        /// </summary>
         internal UnitCategory Category { get { return Families[0].GetUnitCategory(); } }
-        
-        /// <summary>
-        /// Internal DCS World IDs for this unit.
-        /// A vehicle/static unit database entry can be made of multiple units (e.g. SAM sites, factories...)
-        /// </summary>
+
         internal string[] DCSIDs { get; private set; }
 
-        /// <summary>
-        /// Families this unit belongs to.
-        /// </summary>
         internal UnitFamily[] Families { get; private set; }
 
-        /// <summary>
-        /// Extra lua to add for units of this type.
-        /// </summary>
         internal string ExtraLua { get; private set; }
 
-        /// <summary>
-        /// Special flags for this unit.
-        /// </summary>
         internal DBEntryUnitFlags Flags { get; private set; }
 
-        /// <summary>
-        /// True if unit is a helicopter or plane, false otherwise.
-        /// </summary>
         internal bool IsAircraft { get { return (Category == UnitCategory.Helicopter) || (Category == UnitCategory.Plane); } }
 
-        /// <summary>
-        /// Coordinates offset for each unit in the group.
-        /// </summary>
         internal Coordinates[] OffsetCoordinates { get; private set; }
 
-        /// <summary>
-        /// Heading offset for each unit in the group.
-        /// </summary>
         internal double[] OffsetHeading { get; private set; }
 
 
-        /// <summary>
-        /// Shape Values to get some static objects working
-        /// </summary>
-        internal string[] Shape {get; private set;}
+        internal string[] Shape { get; private set; }
 
-        /// <summary>
-        /// Dictionary of countries operating the unit, with min (index #0) and max (index #1) decade of operation.
-        /// </summary>
         internal Dictionary<Country, Decade[]> Operators { get; private set; }
 
-        /// <summary>
-        /// Name of the unit mod required for this unit to be available.
-        /// </summary>
         internal string RequiredMod { get; private set; }
 
 
@@ -98,11 +58,6 @@ namespace BriefingRoom4DCS.Data
             AircraftData.Merge(entry.AircraftData);
         }
 
-        /// <summary>
-        /// Loads a database entry from an .ini file.
-        /// </summary>
-        /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
-        /// <returns>True is successful, false if an error happened</returns>
 
         protected override bool OnLoad(string iniFilePath)
         {

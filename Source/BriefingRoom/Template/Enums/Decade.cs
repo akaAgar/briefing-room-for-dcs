@@ -22,9 +22,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BriefingRoom4DCS.Template
 {
-    /// <summary>
-    /// Enumerates all decades between 1940 and 2010.
-    /// </summary>
     public enum Decade
     {
         [Display(Name = "1940s (World war 2)", Description = "A random year between 1942 and 1945.")]

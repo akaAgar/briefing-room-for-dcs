@@ -41,19 +41,11 @@ namespace BriefingRoom4DCS.Generator
             new ImageMakerLayer("razbari.png", ContentAlignment.BottomRight, offsetX:-20, offsetY: -20, scale: 0.1),
         };
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         internal MissionGeneratorImages()
         {
             ImageMaker = new ImageMaker();
         }
 
-        /// <summary>
-        /// Generates the mission title picture
-        /// </summary>
-        /// <param name="mission">The mission for which a picture must be generated</param>
-        /// <param name="template">Mission template to use</param>
         internal void GenerateTitle(DCSMission mission, MissionTemplate template)
         {
             ImageMaker.TextOverlay.Alignment = ContentAlignment.MiddleCenter;
@@ -76,18 +68,19 @@ namespace BriefingRoom4DCS.Generator
         internal void GenerateKneeboardImage(DCSMission mission)
         {
             var text = mission.Briefing.GetBriefingKneeBoardText();
-            var blocks = text.Split(new string[] {"\r\n\r\n"}, StringSplitOptions.RemoveEmptyEntries);
+            var blocks = text.Split(new string[] { "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             var pages = new List<string>();
             var buildingPage = "";
             foreach (var block in blocks)
             {
-                if(buildingPage.Count(f => f =='\n') + block.Count(f => f =='\n') > 32) {
+                if (buildingPage.Count(f => f == '\n') + block.Count(f => f == '\n') > 32)
+                {
                     pages.Add(buildingPage);
                     buildingPage = "";
                 }
-                buildingPage = $"{buildingPage}{block}\n\n";  
+                buildingPage = $"{buildingPage}{block}\n\n";
             }
-            if(!String.IsNullOrWhiteSpace(buildingPage))
+            if (!String.IsNullOrWhiteSpace(buildingPage))
                 pages.Add(buildingPage);
 
 
@@ -101,7 +94,7 @@ namespace BriefingRoom4DCS.Generator
                     imgMaker.ImageSizeY = 1200;
                     imgMaker.TextOverlay.Shadow = false;
                     imgMaker.TextOverlay.Color = Color.Black;
-                    imgMaker.TextOverlay.Text =  $"{page}\n {inc}/{pages.Count()}";
+                    imgMaker.TextOverlay.Text = $"{page}\n {inc}/{pages.Count()}";
                     imgMaker.TextOverlay.FontSize = 14.0f;
                     imgMaker.TextOverlay.FontFamily = "Arial";
                     imgMaker.TextOverlay.Alignment = ContentAlignment.TopLeft;
@@ -112,7 +105,7 @@ namespace BriefingRoom4DCS.Generator
 
                     var random = new Random();
 
-                    if(random.Next(100) < 3)
+                    if (random.Next(100) < 3)
                         layers.Add(easterEggLogos[random.Next(easterEggLogos.Count)]);
 
 
@@ -123,9 +116,6 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose()
         {
             ImageMaker.Dispose();

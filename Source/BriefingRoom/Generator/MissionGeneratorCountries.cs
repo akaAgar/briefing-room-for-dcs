@@ -27,32 +27,14 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// Generates list of countries for each coalition.
-    /// </summary>
     internal class MissionGeneratorCountries : IDisposable
     {
-        /// <summary>
-        /// Default country for <see cref="Coalition.Blue"/> (#0) and <see cref="Coalition.Red"/> (#1) coalitions.
-        /// </summary>
         private static readonly Country[] DEFAULT_COUNTRIES = new Country[] { Country.CJTFBlue, Country.CJTFRed };
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         internal MissionGeneratorCountries() { }
 
-        /// <summary>
-        /// IDispose implementation.
-        /// </summary>
         public void Dispose() { }
 
-        /// <summary>
-        /// Generates list of countries for each coalition.
-        /// </summary>
-        /// <param name="mission">Mission to generate.</param>
-        /// <param name="template">Mission template to use.</param>
-        /// <returns>Countries in each coalition</returns>
         internal Country[][] GenerateCountries(DCSMission mission, MissionTemplate template)
         {
             int i;

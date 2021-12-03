@@ -26,25 +26,12 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// Generates friendly and enemy combat air patrols in the mission area.
-    /// </summary>
     internal class MissionGeneratorCombatAirPatrols : IDisposable
     {
-        /// <summary>
-        /// Shorcut to Database.Instance.Common.CAP.
-        /// </summary>
         private DBCommonCAP CommonCAPDB { get { return Database.Instance.Common.CAP; } }
 
-        /// <summary>
-        /// Unit maker class to use to generate units.
-        /// </summary>
         private readonly UnitMaker UnitMaker;
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="unitMaker">Unit maker class to use to generate units</param>
         internal MissionGeneratorCombatAirPatrols(UnitMaker unitMaker)
         {
             UnitMaker = unitMaker;
@@ -56,7 +43,7 @@ namespace BriefingRoom4DCS.Generator
 
             foreach (Coalition coalition in Toolbox.GetEnumValues<Coalition>())
             {
-                if(coalition == Coalition.Neutural) // Skip Neutural
+                if (coalition == Coalition.Neutural) // Skip Neutural
                     continue;
 
                 bool ally = coalition == template.ContextPlayerCoalition;
@@ -96,7 +83,7 @@ namespace BriefingRoom4DCS.Generator
                 // Find spawn point at the proper distance from the objective(s), but not to close from starting airbase
                 Coordinates? spawnPoint =
                     UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                        new SpawnPointType[] {SpawnPointType.Air},
+                        new SpawnPointType[] { SpawnPointType.Air },
                         centerPoint,
                         CommonCAPDB.DistanceFromCenter,
                         opposingPoint,
@@ -118,17 +105,17 @@ namespace BriefingRoom4DCS.Generator
                     {"GroupY2", groupDestination.Y}
                 };
 
-                var luaGroup =  CommonCAPDB.LuaGroup;
+                var luaGroup = CommonCAPDB.LuaGroup;
                 var spawnpointCoordinates = spawnPoint.Value;
-                if(template.MissionFeatures.Contains("ContextGroundStartAircraft"))
+                if (template.MissionFeatures.Contains("ContextGroundStartAircraft"))
                 {
                     luaGroup += "Parked";
                     var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = UnitMaker.SpawnPointSelector.GetAirbaseAndParking(template, spawnPoint.Value, groupSize, coalition, false);
                     spawnpointCoordinates = airbase.Coordinates;
                     extraSettings.AddIfKeyUnused("ParkingID", parkingSpotIDsList.ToArray());
                     extraSettings.AddIfKeyUnused("GroupAirbaseID", airbase.DCSID);
-                    extraSettings.AddIfKeyUnused("UnitX",(from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.X).ToArray());
-                    extraSettings.AddIfKeyUnused("UnitY",(from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.Y).ToArray());
+                    extraSettings.AddIfKeyUnused("UnitX", (from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.X).ToArray());
+                    extraSettings.AddIfKeyUnused("UnitY", (from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.Y).ToArray());
                 }
 
 
@@ -146,9 +133,6 @@ namespace BriefingRoom4DCS.Generator
             } while (unitsLeftToSpawn > 0);
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose() { }
     }
 }

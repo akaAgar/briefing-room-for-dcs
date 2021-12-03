@@ -20,30 +20,12 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS.Mission
 {
-    /// <summary>
-    /// Enumerates various items stored in briefing data.
-    /// </summary>
-    public enum DCSMissionBriefingItemType 
+    public enum DCSMissionBriefingItemType
     {
-        /// <summary>
-        /// Mission airbases and carriers.
-        /// </summary>
         Airbase,
-        /// <summary>
-        /// Mission flight groups.
-        /// </summary>
         FlightGroup,
-        /// <summary>
-        /// Mission remarks.
-        /// </summary>
         Remark,
-        /// <summary>
-        /// Mission tasks.
-        /// </summary>
         Task,
-        /// <summary>
-        /// Mission waypoints.
-        /// </summary>
         Waypoint
     }
 }

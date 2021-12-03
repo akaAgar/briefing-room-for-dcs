@@ -26,9 +26,6 @@ using System.Linq;
 
 namespace BriefingRoom4DCS
 {
-    ///// <summary>
-    ///// Stores information about the possible database entries IDs to use for a template property.
-    ///// </summary>
     public class DatabaseSourceTypeAttribute : ValidationAttribute
     {
         public DatabaseEntryType EntryType { get; }

@@ -23,7 +23,7 @@ using System.Collections.Generic;
 
 namespace BriefingRoom4DCS.Mission
 {
-    public sealed class DCSMissionBriefing 
+    public sealed class DCSMissionBriefing
     {
         private readonly DCSMission Mission;
 
@@ -77,11 +77,11 @@ namespace BriefingRoom4DCS.Mission
 
             kneeboardText = Mission.ReplaceValues(kneeboardText);
 
-            GeneratorTools.ReplaceKey(ref kneeboardText, "BriefingAirbases", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Airbase)).Replace("\t","    "));
-            GeneratorTools.ReplaceKey(ref kneeboardText, "BriefingFlightGroups", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.FlightGroup)).Replace("\t","    "));
-            GeneratorTools.ReplaceKey(ref kneeboardText, "BriefingRemarks", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Remark)).Replace("\t","    "));
-            GeneratorTools.ReplaceKey(ref kneeboardText, "BriefingTasks", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Task)).Replace("\t","    "));
-            GeneratorTools.ReplaceKey(ref kneeboardText, "BriefingWaypoints", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Waypoint)).Replace("\t","    "));
+            GeneratorTools.ReplaceKey(ref kneeboardText, "BriefingAirbases", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Airbase)).Replace("\t", "    "));
+            GeneratorTools.ReplaceKey(ref kneeboardText, "BriefingFlightGroups", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.FlightGroup)).Replace("\t", "    "));
+            GeneratorTools.ReplaceKey(ref kneeboardText, "BriefingRemarks", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Remark)).Replace("\t", "    "));
+            GeneratorTools.ReplaceKey(ref kneeboardText, "BriefingTasks", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Task)).Replace("\t", "    "));
+            GeneratorTools.ReplaceKey(ref kneeboardText, "BriefingWaypoints", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Waypoint)).Replace("\t", "    "));
 
             return kneeboardText;
         }

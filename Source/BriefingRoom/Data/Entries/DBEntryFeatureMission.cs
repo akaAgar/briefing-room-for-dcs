@@ -20,21 +20,10 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Stores information about a mission feature.
-    /// </summary>
     internal class DBEntryFeatureMission : DBEntryFeature
     {
-        /// <summary>
-        /// Directory from which Lua files should be loaded.
-        /// </summary>
         internal override string SourceLuaDirectory { get { return BRPaths.INCLUDE_LUA_MISSIONFEATURES; } }
 
-        /// <summary>
-        /// Loads a database entry from an .ini file.
-        /// </summary>
-        /// <param name="iniFilePath">Path to the .ini file where entry inforation is stored</param>
-        /// <returns>True is successful, false if an error happened</returns>
 
         protected override bool OnLoad(string iniFilePath)
         {

@@ -20,30 +20,12 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS.Template
 {
-    /// <summary>
-    /// Enumerates the various parking spots in DCS World
-    /// </summary>
     public enum ParkingSpotType
     {
-        /// <summary>
-        /// Runway spawn spot
-        /// </summary>
         Runway,
-        /// <summary>
-        /// Only helicopters can be spawned on this open air parking spot.
-        /// </summary>
         HelicopterOnly,
-        /// <summary>
-        /// Hardened hard shelter, only planes can be spawned.
-        /// </summary>
         HardenedAirShelter,
-        /// <summary>
-        /// Only planes can be spawned on this open air or closed parking spot.
-        /// </summary>
         AirplaneOnly,
-        /// <summary>
-        /// Open air spawned, anything can be spawned.
-        /// </summary>
         OpenAirSpawn
     }
 }

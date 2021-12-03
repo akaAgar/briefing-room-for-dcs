@@ -20,22 +20,10 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS
 {
-    /// <summary>
-    /// Enumerates the various range categories for surface-to-air defense
-    /// </summary>
     public enum AirDefenseRange
     {
-        /// <summary>
-        /// Short-range, whether radar or IR-guided, or AAA (SA-8, SA-9, ZSU-23-4...)
-        /// </summary>
         ShortRange,
-        /// <summary>
-        /// Medium-range (SA-6...)
-        /// </summary>
         MediumRange,
-        /// <summary>
-        /// Long-range (Patriot, SA-10...)
-        /// </summary>
         LongRange
     }
 }

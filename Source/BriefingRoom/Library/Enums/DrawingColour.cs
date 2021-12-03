@@ -22,10 +22,6 @@ using System;
 
 namespace BriefingRoom4DCS
 {
-    /// <summary>
-    /// Enumerates all unit categories (helicopter, plane, ground vehicle...).
-    /// Must match the names used in DCS World.
-    /// </summary>
     public enum DrawingColour
     {
         Red,
@@ -35,14 +31,14 @@ namespace BriefingRoom4DCS
         Clear,
     }
 
-     public static class DrawingColourExtensions
+    public static class DrawingColourExtensions
     {
         public static string ToValue(this DrawingColour colour) => colour switch
         {
-            DrawingColour.Red    => "0xff0000ff",
+            DrawingColour.Red => "0xff0000ff",
             DrawingColour.RedFill => "0xff000022",
-            DrawingColour.Blue  => "0x0000ffff",
-            DrawingColour.BlueFill  => "0x0000ff22",
+            DrawingColour.Blue => "0x0000ffff",
+            DrawingColour.BlueFill => "0x0000ff22",
             DrawingColour.Clear => "0xff000000",
             _ => throw new ArgumentOutOfRangeException(nameof(colour), $"Not expected colour value: {colour}"),
         };

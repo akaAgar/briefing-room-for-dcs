@@ -23,16 +23,8 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
-    /// <summary>
-    /// Provides various static functions for database management.
-    /// </summary>
     internal static class DatabaseTools
     {
-        /// <summary>
-        /// Checks a <see cref="SpawnPointType"/> to make sure it's not empty and implied spawn points (<see cref="SpawnPointType.LandSmall"/> for <see cref="SpawnPointType.LandLarge"/>, etc) are present.
-        /// </summary>
-        /// <param name="spawnPointTypes">A <see cref="SpawnPointType"/> array.</param>
-        /// <returns>The checked/updated <see cref="SpawnPointType"/> array.</returns>
         internal static SpawnPointType[] CheckSpawnPoints(params SpawnPointType[] spawnPointTypes)
         {
             List<SpawnPointType> spawnPointsList = new List<SpawnPointType>(spawnPointTypes).Distinct().ToList();

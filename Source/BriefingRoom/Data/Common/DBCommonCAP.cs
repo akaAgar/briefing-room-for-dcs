@@ -26,44 +26,20 @@ namespace BriefingRoom4DCS.Data
 {
     internal class DBCommonCAP : IDisposable
     {
-        /// <summary>
-        /// Min/max distance from spawn center (initial airbase for allies, objectives for enemies), in nautical miles.
-        /// </summary>
         internal MinMaxD DistanceFromCenter { get; }
 
-        /// <summary>
-        /// Length of the CAP "oval" flight path, in nautical miles.
-        /// </summary>
         internal MinMaxD FlightPathLength { get; }
 
-        /// <summary>
-        /// Possible CAP flight group sizes.
-        /// </summary>
         internal int[] GroupSize { get; }
 
-        /// <summary>
-        /// Min distance from opposing point (objectives for allies, initial airbase for enemies), in nautical miles.
-        /// </summary>
         internal double MinDistanceFromOpposingPoint { get; }
 
-        /// <summary>
-        /// Lua file (from <see cref="BRPaths.INCLUDE_LUA_UNITS"/>) for the group.
-        /// </summary>
         internal string LuaGroup { get; }
 
-        /// <summary>
-        /// Lua file (from <see cref="BRPaths.INCLUDE_LUA_UNITS"/>) for each unit.
-        /// </summary>
         internal string LuaUnit { get; }
 
-        /// <summary>
-        /// Possible unit families for CAP aircraft.
-        /// </summary>
         internal UnitFamily[] UnitFamilies { get; }
 
-        /// <summary>
-        /// Settings for various CAP levels.
-        /// </summary>
         internal DBCommonCAPLevel[] CAPLevels { get; }
 
         internal DBCommonCAP()
@@ -77,7 +53,7 @@ namespace BriefingRoom4DCS.Data
                 LuaGroup = ini.GetValue<string>("CAP", "Lua.Group");
                 LuaUnit = ini.GetValue<string>("CAP", "Lua.Unit");
                 MinDistanceFromOpposingPoint = ini.GetValue<double>("CAP", "MinDistanceFromOpposingPoint");
-                UnitFamilies = (from UnitFamily unitFamily in ini.GetValueArray<UnitFamily>("CAP", "UnitFamilies") where unitFamily.GetUnitCategory() == UnitCategory.Plane select unitFamily).ToArray();  
+                UnitFamilies = (from UnitFamily unitFamily in ini.GetValueArray<UnitFamily>("CAP", "UnitFamilies") where unitFamily.GetUnitCategory() == UnitCategory.Plane select unitFamily).ToArray();
                 if (UnitFamilies.Length == 0) UnitFamilies = new UnitFamily[] { UnitFamily.PlaneFighter };
 
                 CAPLevels = new DBCommonCAPLevel[Toolbox.EnumCount<AmountNR>()];
@@ -86,9 +62,6 @@ namespace BriefingRoom4DCS.Data
             }
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose() { }
     }
 }

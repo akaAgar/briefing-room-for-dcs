@@ -29,20 +29,10 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// Generates player-controlled unit groups (and their AI CAP/SEAD escort for single-player missions)
-    /// </summary>
     internal class MissionGeneratorPlayerFlightGroups : IDisposable
     {
-        /// <summary>
-        /// Unit maker class to use to generate units.
-        /// </summary>
         private readonly UnitMaker UnitMaker;
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="unitMaker">Unit maker class to use to generate units</param>
         internal MissionGeneratorPlayerFlightGroups(UnitMaker unitMaker)
         {
             UnitMaker = unitMaker;
@@ -62,9 +52,9 @@ namespace BriefingRoom4DCS.Generator
             DBEntryAirbase airbase = playerAirbase;
             List<Waypoint> flightWaypoints = new List<Waypoint>(waypoints);
             Coordinates groupStartingCoords = playerAirbase.Coordinates;
-            
+
             var package = template.AircraftPackages.FirstOrDefault(x => x.FlightGroupIndexes.Contains(flightGroupIndex));
-            if(package is not null)
+            if (package is not null)
             {
                 flightWaypoints = package.Waypoints;
                 airbase = package.Airbase;
@@ -96,7 +86,7 @@ namespace BriefingRoom4DCS.Generator
                     parkingSpotCoordinatesList.Add(carrier.Coordinates);
                 }
                 groupStartingCoords = carrier.Coordinates;
-                
+
             }
             else // Land airbase take off
             {
@@ -106,7 +96,7 @@ namespace BriefingRoom4DCS.Generator
                 groupStartingCoords = parkingSpotCoordinatesList.First();
             }
 
-            
+
 
             UnitMakerGroupFlags unitMakerGroupFlags = flightGroup.AIWingmen ? UnitMakerGroupFlags.FirstUnitIsClient : 0;
             DCSSkillLevel skillLevel = flightGroup.AIWingmen ? Toolbox.RandomFrom(DCSSkillLevel.High, DCSSkillLevel.Excellent) : DCSSkillLevel.Client;
@@ -139,7 +129,7 @@ namespace BriefingRoom4DCS.Generator
                 return;
             }
 
-            SaveFlightGroup(mission,groupInfo,flightGroup,unitDB, carrierName ?? airbase.Name);
+            SaveFlightGroup(mission, groupInfo, flightGroup, unitDB, carrierName ?? airbase.Name);
             SaveWaypointsToBriefing(
                 mission,
                 groupStartingCoords,
@@ -179,7 +169,7 @@ namespace BriefingRoom4DCS.Generator
                 $"{homeBase}");
         }
 
-        
+
 
 
         internal void SaveWaypointsToBriefing(DCSMission mission, Coordinates initialCoordinates, List<Waypoint> waypoints, bool useImperialSystem, UnitMakerGroupInfo? groupInfo)
@@ -191,7 +181,7 @@ namespace BriefingRoom4DCS.Generator
             List<Waypoint> allWaypoints = new List<Waypoint>(waypoints);
             allWaypoints.Insert(0, new Waypoint(Database.Instance.Common.Names.WPInitialName, initialCoordinates));
             allWaypoints.Add(new Waypoint(Database.Instance.Common.Names.WPFinalName, initialCoordinates));
-            mission.Briefing.AddItem(DCSMissionBriefingItemType.Waypoint,  $"\t{groupInfo.Value.Name}\t");
+            mission.Briefing.AddItem(DCSMissionBriefingItemType.Waypoint, $"\t{groupInfo.Value.Name}\t");
             foreach (Waypoint waypoint in allWaypoints)
             {
                 double distanceFromLast = waypoint.Coordinates.GetDistanceFrom(lastWP);
@@ -207,9 +197,6 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose()
         {
 

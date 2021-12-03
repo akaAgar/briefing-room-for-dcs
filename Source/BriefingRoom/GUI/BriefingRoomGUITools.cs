@@ -22,16 +22,8 @@ using BriefingRoom4DCS.Template;
 
 namespace BriefingRoom4DCS.GUI
 {
-    /// <summary>
-    /// Static "toolbox" class which provides various methods for graphical user interfaces.
-    /// </summary>
     public static class BriefingRoomGUITools
     {
-        /// <summary>
-        /// Returns a human-readable name for an enum value.
-        /// </summary>
-        /// <param name="enumValue"></param>
-        /// <returns></returns>
         public static string GetEnumName(object enumValue)
         {
             if (enumValue == null) return "";
@@ -135,11 +127,6 @@ namespace BriefingRoom4DCS.GUI
             return enumValue.ToString();
         }
 
-        /// <summary>
-        /// Returns a human-readable description for an enum value.
-        /// </summary>
-        /// <param name="enumValue"></param>
-        /// <returns></returns>
         public static string GetEnumDescription(object enumValue)
         {
             if (enumValue == null) return "";

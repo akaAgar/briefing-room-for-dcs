@@ -29,22 +29,10 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// The main mission generator class. Generates a <see cref="DCSMission"/> from a <see cref="MissionTemplate"/>.
-    /// </summary>
     internal class MissionGenerator : IDisposable
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         internal MissionGenerator() { }
 
-        /// <summary>
-        /// Generates a DCS World mission from a mission template.
-        /// </summary>
-        /// <param name="template">The mission template to use.</param>
-        /// <param name="useObjectivePresets">If true, <see cref="MissionTemplateObjective.Preset"/> will be used to generate the objective. Otherwise, specific objective parameters will be used.</param>
-        /// <returns>A DCS World mission, or null if something went wrong.</returns>
         internal DCSMission Generate(MissionTemplate template, bool useObjectivePresets)
         {
             int i;
@@ -65,8 +53,8 @@ namespace BriefingRoom4DCS.Generator
 
             // Get required database entries here, so we don't have to look for them each time they're needed.
             DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
-            if(!template.ContextSituation.StartsWith(template.ContextTheater))
-               template.ContextSituation = template.ContextTheater + "Default";
+            if (!template.ContextSituation.StartsWith(template.ContextTheater))
+                template.ContextSituation = template.ContextTheater + "Default";
             DBEntrySituation situationDB = Database.Instance.GetEntry<DBEntrySituation>(template.ContextSituation);
             DBEntryCoalition[] coalitionsDB = new DBEntryCoalition[]
             {
@@ -247,16 +235,13 @@ namespace BriefingRoom4DCS.Generator
                 .Or<BriefingRoomException>()
                 .Retry(3)
                 .Execute(() => Generate(template, useObjectivePresets));
-            
+
             if (mission.IsExtremeDistance(template, out double distance))
                 BriefingRoom.PrintToLog($"Distance to objectives exceeds 1.7x of requested distance. ({Math.Round(distance, 2)}NM)", LogMessageErrorLevel.Warning);
-            
+
             return mission;
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose() { }
     }
 }

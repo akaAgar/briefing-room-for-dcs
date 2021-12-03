@@ -22,14 +22,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BriefingRoom4DCS.Template
 {
-    /// <summary>
-    /// The time of the day (used by mission starting time), with "Random" and "Random, but not at night" options.
-    /// </summary>
     public enum TimeOfDay
     {
         [Display(Name = "Random", Description = "Any time of the day or night.")]
         Random,
-        
+
         [Display(Name = "Random, daytime", Description = "Any time during daylight hours.")]
         RandomDaytime,
 
@@ -38,10 +35,10 @@ namespace BriefingRoom4DCS.Template
 
         [Display(Name = "Noon", Description = "In the middle of the day.")]
         Noon,
-        
+
         [Display(Name = "Twilight", Description = "Just before sunset.")]
         Twilight,
-        
+
         [Display(Name = "Night", Description = "At night.")]
         Night
     }

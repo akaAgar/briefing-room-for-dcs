@@ -22,9 +22,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BriefingRoom4DCS.Template
 {
-    /// <summary>
-    /// How windy should the weather be during a mission.
-    /// </summary>
     public enum Wind
     {
         [Display(Name = "Random", Description = "Wind level will be picked randomly")]

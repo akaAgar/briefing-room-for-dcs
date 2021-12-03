@@ -22,9 +22,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BriefingRoom4DCS.Template
 {
-    /// <summary>
-    /// Enumerates DCS realism options.
-    /// </summary>
     public enum RealismOption
     {
         [Display(Name = "Bird strikes", Description = "Enable bird strikes.")]

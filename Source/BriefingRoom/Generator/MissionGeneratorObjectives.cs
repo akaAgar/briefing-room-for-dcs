@@ -27,42 +27,20 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    /// <summary>
-    /// Generates the <see cref="DCSMissionObjective"/> array.
-    /// </summary>
     internal class MissionGeneratorObjectives : IDisposable
     {
-        /// <summary>
-        /// List of available objective names, to make sure each one is different.
-        /// </summary>
         private readonly List<string> ObjectiveNames = new List<string>();
 
-        /// <summary>
-        /// Minimum objective distance variation.
-        /// </summary>
         private const double OBJECTIVE_DISTANCE_VARIATION_MIN = 0.75;
 
-        /// <summary>
-        /// Maximum objective distance variation.
-        /// </summary>
         private const double OBJECTIVE_DISTANCE_VARIATION_MAX = 1.25;
 
-        /// <summary>
-        /// Unit maker selector to use for objective generation.
-        /// </summary>
         private readonly UnitMaker UnitMaker;
 
         private readonly DrawingMaker DrawingMaker;
 
-        /// <summary>
-        /// MissionGeneratorFeaturesObjectives to use to generate objective features;
-        /// </summary>
         private readonly MissionGeneratorFeaturesObjectives FeaturesGenerator;
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="spawnPointSelector">Spawn point selector to use for objective generation</param>
         internal MissionGeneratorObjectives(UnitMaker unitMaker, DrawingMaker drawingMaker, MissionTemplate template)
         {
             UnitMaker = unitMaker;
@@ -151,19 +129,19 @@ namespace BriefingRoom4DCS.Generator
                         (from DBEntryAirbase airbaseDB in situationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"))
                          where airbaseDB.DCSID != playerAirbase.DCSID
                          select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(objectiveCoordinates));
-                    DBEntryAirbase targetAirbase = targetAirbaseOptions.FirstOrDefault(x => template.OptionsMission.Contains("SpawnAnywhere")? true : x.Coalition == template.ContextPlayerCoalition.GetEnemy());
+                    DBEntryAirbase targetAirbase = targetAirbaseOptions.FirstOrDefault(x => template.OptionsMission.Contains("SpawnAnywhere") ? true : x.Coalition == template.ContextPlayerCoalition.GetEnemy());
                     objectiveCoordinates = targetAirbase.Coordinates;
                     airbaseID = targetAirbase.DCSID;
 
                     if ((targetBehaviorDB.Location != DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbase) && targetDB.UnitCategory.IsAircraft())
                     {
-                            var parkingSpots = UnitMaker.SpawnPointSelector.GetFreeParkingSpots(
-                                targetAirbase.DCSID,
-                                unitCount,
-                                targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter);
+                        var parkingSpots = UnitMaker.SpawnPointSelector.GetFreeParkingSpots(
+                            targetAirbase.DCSID,
+                            unitCount,
+                            targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter);
 
-                            parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
-                            parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
+                        parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
+                        parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
                     }
 
                     break;
@@ -287,7 +265,7 @@ namespace BriefingRoom4DCS.Generator
             var AirOnGroundBehaviorLocations = new List<DBEntryObjectiveTargetBehaviorLocation>{
                 DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking,
                 DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter};
-            
+
             DBEntryObjectiveTarget targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
             DBEntryObjectiveTargetBehaviorLocation targetBehaviorLocation = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior).Location;
             if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective.");
@@ -298,16 +276,13 @@ namespace BriefingRoom4DCS.Generator
             if (objectiveTemplate.Options.Contains(ObjectiveOption.InaccurateWaypoint))
             {
                 waypointCoordinates += Coordinates.CreateRandom(3.0, 6.0) * Toolbox.NM_TO_METERS;
-                if(template.OptionsMission.Contains("MarkWaypoints"))
-                    DrawingMaker.AddDrawing("Target Zone",DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(6.0 * Toolbox.NM_TO_METERS));
+                if (template.OptionsMission.Contains("MarkWaypoints"))
+                    DrawingMaker.AddDrawing("Target Zone", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(6.0 * Toolbox.NM_TO_METERS));
             }
 
             return new Waypoint(objectiveName, waypointCoordinates, onGround);
         }
 
-        /// <summary>
-        /// <see cref="IDisposable"/> implementation.
-        /// </summary>
         public void Dispose()
         {
             FeaturesGenerator.Dispose();
