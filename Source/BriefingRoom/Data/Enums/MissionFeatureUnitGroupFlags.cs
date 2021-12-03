@@ -89,5 +89,7 @@ namespace BriefingRoom4DCS.Data
         IgnoreBorders = 1024,
 
         GroundStart = 2048,
+
+        RequiresOpenAirParking = 4096,
     }
 }

@@ -89,18 +89,21 @@ namespace BriefingRoom4DCS.Generator
                 var unitCount = featureDB.UnitGroupSize.GetValue();
                 var unitFamily = Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
 
-                if((Template.MissionFeatures.Contains("GroundStartAircraft") || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.GroundStart)) && Toolbox.IsAircraft(unitFamily.GetUnitCategory()))
+                if ((Template.MissionFeatures.Contains("GroundStartAircraft") || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.GroundStart)) && Toolbox.IsAircraft(unitFamily.GetUnitCategory()))
                 {
-                    if(groupLua != "GroupAircraftParkedUncontrolled")
+                    if (groupLua != "GroupAircraftParkedUncontrolled")
                         groupLua += "Parked";
-                    var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = UnitMaker.SpawnPointSelector.GetAirbaseAndParking(Template, coordinates, unitCount, GeneratorTools.GetSpawnPointCoalition(Template, groupSide).Value);
+                    var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = UnitMaker.SpawnPointSelector.GetAirbaseAndParking(
+                        Template, coordinates, unitCount,
+                        GeneratorTools.GetSpawnPointCoalition(Template, groupSide).Value,
+                        featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.RequiresOpenAirParking));
+
                     coordinates = airbase.Coordinates;
                     extraSettings.AddIfKeyUnused("ParkingID", parkingSpotIDsList.ToArray());
                     extraSettings.AddIfKeyUnused("GroupAirbaseID", airbase.DCSID);
-                    extraSettings.AddIfKeyUnused("UnitX",(from Coordinates unitCoordinates in parkingSpotCoordinatesList select unitCoordinates.X).ToArray());
-                    extraSettings.AddIfKeyUnused("UnitY",(from Coordinates unitCoordinates in parkingSpotCoordinatesList select unitCoordinates.Y).ToArray());
+                    extraSettings.AddIfKeyUnused("UnitX", (from Coordinates unitCoordinates in parkingSpotCoordinatesList select unitCoordinates.X).ToArray());
+                    extraSettings.AddIfKeyUnused("UnitY", (from Coordinates unitCoordinates in parkingSpotCoordinatesList select unitCoordinates.Y).ToArray());
                 }
-
                 groupInfo = UnitMaker.AddUnitGroup(
                     unitFamily, unitCount,
                     groupSide,
@@ -218,15 +221,18 @@ namespace BriefingRoom4DCS.Generator
                     );
                 if (!spawnCoords.HasValue)
                     continue;
-                
-                if((Template.MissionFeatures.Contains("GroundStartAircraft") || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.GroundStart)) && Toolbox.IsAircraft(unitFamily.GetUnitCategory()))
+
+                if ((Template.MissionFeatures.Contains("GroundStartAircraft") || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.GroundStart)) && Toolbox.IsAircraft(unitFamily.GetUnitCategory()))
                 {
-                    if(groupLua != "GroupAircraftParkedUncontrolled")
+                    if (groupLua != "GroupAircraftParkedUncontrolled")
                         groupLua += "Parked";
-                    var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = UnitMaker.SpawnPointSelector.GetAirbaseAndParking(Template, coordinates, unitCount, GeneratorTools.GetSpawnPointCoalition(Template, groupSide).Value);
+                    var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = UnitMaker.SpawnPointSelector.GetAirbaseAndParking(
+                        Template, coordinates, unitCount,
+                        GeneratorTools.GetSpawnPointCoalition(Template, groupSide).Value,
+                        featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.RequiresOpenAirParking));
                     coordinates = airbase.Coordinates;
-                    extraSettings["ParkingID"] =parkingSpotIDsList.ToArray();
-                    extraSettings["GroupAirbaseID"] =airbase.DCSID;
+                    extraSettings["ParkingID"] = parkingSpotIDsList.ToArray();
+                    extraSettings["GroupAirbaseID"] = airbase.DCSID;
                     extraSettings["UnitX"] = (from Coordinates unitCoordinates in parkingSpotCoordinatesList select unitCoordinates.X).ToArray();
                     extraSettings["UnitY"] = (from Coordinates unitCoordinates in parkingSpotCoordinatesList select unitCoordinates.Y).ToArray();
                 }

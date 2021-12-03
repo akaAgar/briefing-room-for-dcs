@@ -21,6 +21,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
+using System;
 using System.Collections.Generic;
 
 namespace BriefingRoom4DCS.Generator
@@ -44,7 +45,6 @@ namespace BriefingRoom4DCS.Generator
                 BriefingRoom.PrintToLog($"Mission feature {featureID} not found.", LogMessageErrorLevel.Warning);
                 return;
             }
-
             Coalition coalition = featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly)? Template.ContextPlayerCoalition :Template.ContextPlayerCoalition.GetEnemy();
 
             Coordinates pointSearchCenter = Coordinates.Lerp(initialCoordinates, objectivesCenter, featureDB.UnitGroupSpawnDistance);

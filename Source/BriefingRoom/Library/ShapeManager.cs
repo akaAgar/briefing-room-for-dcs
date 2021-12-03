@@ -156,29 +156,6 @@ namespace BriefingRoom4DCS
 			}
 			return outcome;
 		}
-
-		// // Driver Code
-		// public static void Main(String[] args)
-		// {
-		// 	var polygon1 = new List<Coordinates> {new Coordinates(0, 0),
-		// 						new Coordinates(10, 0),
-		// 						new Coordinates(10, 10),
-		// 						new Coordinates(0, 10)};
-		//     var polygon2 = new List<Coordinates> {new Coordinates(1, 1),
-		// 						new Coordinates(5, 0),
-		// 						new Coordinates(5, 5),
-		// 						new Coordinates(0, 5)};
-		// 	Coordinates p = new Coordinates(20, 20);
-		// 	Console.WriteLine(isInside(polygon1, p));
-		// 	p = new Coordinates(5, 5);
-		// 	Console.WriteLine(isInside(polygon1, p));
-
-		//     var area = new Shape(polygon1);
-		//     var exclusion = new Shape(polygon2);
-		//     p = new Coordinates(1, 1);
-		//     Console.WriteLine(IsPosValid(p, area, new List<Shape>{exclusion}));
-			
-		// }
 	}
 }
 

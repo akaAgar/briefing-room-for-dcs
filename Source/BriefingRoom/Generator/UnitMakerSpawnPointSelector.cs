@@ -78,22 +78,30 @@ namespace BriefingRoom4DCS.Generator
         /// <param name="lastSpotCoordinates">Coordinates of the last aircraft spot picked, if any. Will try to pick a spot near this one.</param>
         /// <param name="requiresOpenAirParking">Should the aircraft be spawned on an opened parking spot (not in a hangar)?</param>
         /// <returns>A parking spot ID, or -1 if none found or if airbase doesn't exist</returns>
-        internal int GetFreeParkingSpot(int airbaseID, out Coordinates parkingSpotCoordinates, Coordinates? lastSpotCoordinates = null, bool requiresOpenAirParking = false)
+        internal List<DBEntryAirbaseParkingSpot> GetFreeParkingSpots(int airbaseID, int unitCount, bool requiresOpenAirParking = false)
         {
-            parkingSpotCoordinates = new Coordinates();
-            if (!AirbaseParkingSpots.ContainsKey(airbaseID) || (AirbaseParkingSpots[airbaseID].Count == 0)) return -1;
-            DBEntryAirbase[] airbaseDB = (from DBEntryAirbase ab in SituationDB.GetAirbases(InvertCoalition) where ab.DCSID == airbaseID select ab).ToArray();
-            if (airbaseDB.Length == 0) return -1; // No airbase with proper DCSID
-            DBEntryAirbaseParkingSpot? parkingSpot = null;
-            if (lastSpotCoordinates != null) //find nearest spot distance wise in attempt to cluster
-                parkingSpot = AirbaseParkingSpots[airbaseID].FindAll(x => (!requiresOpenAirParking || x.ParkingType != ParkingSpotType.HardenedAirShelter))
-                    .ToList()
-                    .Aggregate((acc, x) => acc.Coordinates.GetDistanceFrom(lastSpotCoordinates.Value) > x.Coordinates.GetDistanceFrom(lastSpotCoordinates.Value) && x.Coordinates.GetDistanceFrom(lastSpotCoordinates.Value) != 0 ? x : acc);
-            else
-                parkingSpot = Toolbox.RandomFrom(AirbaseParkingSpots[airbaseID]);
-            AirbaseParkingSpots[airbaseID].Remove(parkingSpot.Value);
-            parkingSpotCoordinates = parkingSpot.Value.Coordinates;
-            return parkingSpot.Value.DCSID;
+            if (!AirbaseParkingSpots.ContainsKey(airbaseID) ||
+                (AirbaseParkingSpots[airbaseID].Count(x => !requiresOpenAirParking || x.ParkingType != ParkingSpotType.HardenedAirShelter) < unitCount))
+                throw new BriefingRoomException("Airbase didn't have enough parking spots. ");
+
+            var airbaseDB = SituationDB.GetAirbases(InvertCoalition).First(x => x.DCSID == airbaseID);
+            var parkingSpots = new List<DBEntryAirbaseParkingSpot>();
+            Coordinates? lastSpotCoordinates = null;
+            for (int i = 0; i < unitCount; i++)
+            {
+                var viableSpots = AirbaseParkingSpots[airbaseID].FindAll(x => (!requiresOpenAirParking || x.ParkingType != ParkingSpotType.HardenedAirShelter)).ToList();
+                if (viableSpots.Count == 0) throw new BriefingRoomException("Airbase didn't have enough parking spots. POST CHECK!");
+                var parkingSpot = Toolbox.RandomFrom(viableSpots);
+                if (lastSpotCoordinates.HasValue) //find nearest spot distance wise in attempt to cluster
+                    parkingSpot = viableSpots
+                        .Aggregate((acc, x) => acc.Coordinates.GetDistanceFrom(lastSpotCoordinates.Value) > x.Coordinates.GetDistanceFrom(lastSpotCoordinates.Value) && x.Coordinates.GetDistanceFrom(lastSpotCoordinates.Value) > 3 ? x : acc);
+
+                lastSpotCoordinates = parkingSpot.Coordinates;
+                AirbaseParkingSpots[airbaseID].Remove(parkingSpot);
+                parkingSpots.Add(parkingSpot);
+            }
+
+            return parkingSpots;
         }
 
         internal void Clear()
@@ -213,32 +221,26 @@ namespace BriefingRoom4DCS.Generator
             return null;
         }
 
-        public Tuple<DBEntryAirbase, List<int>, List<Coordinates>> GetAirbaseAndParking(MissionTemplate template, Coordinates coordinates, int unitCount, Coalition coalition)
+        public Tuple<DBEntryAirbase, List<int>, List<Coordinates>> GetAirbaseAndParking(MissionTemplate template, Coordinates coordinates, int unitCount, Coalition coalition, bool requiresOpenAirParking)
         {
             var targetAirbaseOptions =
                         (from DBEntryAirbase airbaseDB in SituationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"))
                          where airbaseDB.Coalition == coalition
                          select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(coordinates));
+
             if (targetAirbaseOptions.Count() == 0) throw new BriefingRoomException("No airbase found for aircraft.");
-            DBEntryAirbase targetAirbase = targetAirbaseOptions.First();
+
+            DBEntryAirbase targetAirbase = targetAirbaseOptions.First(x => AirbaseParkingSpots[x.DCSID].Count() >= unitCount);
+
             var objectiveCoordinates = targetAirbase.Coordinates;
             var airbaseID = targetAirbase.DCSID;
-            Coordinates? lastParkingCoordinates = null;
             List<int> parkingSpotIDsList = new List<int>();
             List<Coordinates> parkingSpotCoordinatesList = new List<Coordinates>();
-            for (int i = 0; i < unitCount; i++)
-            {
-                int parkingSpot = GetFreeParkingSpot(
-                    targetAirbase.DCSID,
-                    out Coordinates parkingSpotCoordinates,
-                    lastParkingCoordinates,
-                    true);
-                if (parkingSpot < 0) throw new BriefingRoomException("No parking spot found for aircraft.");
-                lastParkingCoordinates = parkingSpotCoordinates;
 
-                parkingSpotIDsList.Add(parkingSpot);
-                parkingSpotCoordinatesList.Add(parkingSpotCoordinates);
-            }
+            var parkingSpots = GetFreeParkingSpots(airbaseID, unitCount, requiresOpenAirParking);
+            parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
+            parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
+
             return Tuple.Create(targetAirbase, parkingSpotIDsList, parkingSpotCoordinatesList);
         }
 

@@ -100,16 +100,9 @@ namespace BriefingRoom4DCS.Generator
             }
             else // Land airbase take off
             {
-                Coordinates? lastParkingCoordinates = null;
-                for (int i = 0; i < flightGroup.Count; i++)
-                {   
-                    int parkingSpot = UnitMaker.SpawnPointSelector.GetFreeParkingSpot(airbase.DCSID, out Coordinates parkingSpotCoordinates, lastParkingCoordinates);
-                    if (parkingSpot < 0) throw new BriefingRoomException("No parking spot found for player aircraft.");
-                    lastParkingCoordinates = parkingSpotCoordinates;
-
-                    parkingSpotIDsList.Add(parkingSpot);
-                    parkingSpotCoordinatesList.Add(parkingSpotCoordinates);
-                }
+                var parkingSpots = UnitMaker.SpawnPointSelector.GetFreeParkingSpots(airbase.DCSID, flightGroup.Count);
+                parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
+                parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
                 groupStartingCoords = parkingSpotCoordinatesList.First();
             }
 

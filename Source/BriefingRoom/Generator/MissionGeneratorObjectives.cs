@@ -157,21 +157,13 @@ namespace BriefingRoom4DCS.Generator
 
                     if ((targetBehaviorDB.Location != DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbase) && targetDB.UnitCategory.IsAircraft())
                     {
-                        Coordinates? lastParkingCoordinates = null;
-
-                        for (int i = 0; i < unitCount; i++)
-                        {
-                            int parkingSpot = UnitMaker.SpawnPointSelector.GetFreeParkingSpot(
+                            var parkingSpots = UnitMaker.SpawnPointSelector.GetFreeParkingSpots(
                                 targetAirbase.DCSID,
-                                out Coordinates parkingSpotCoordinates,
-                                lastParkingCoordinates,
+                                unitCount,
                                 targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter);
-                            if (parkingSpot < 0) throw new BriefingRoomException("No parking spot found for aircraft.");
-                            lastParkingCoordinates = parkingSpotCoordinates;
 
-                            parkingSpotIDsList.Add(parkingSpot);
-                            parkingSpotCoordinatesList.Add(parkingSpotCoordinates);
-                        }
+                            parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
+                            parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
                     }
 
                     break;
