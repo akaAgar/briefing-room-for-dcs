@@ -120,7 +120,7 @@ namespace BriefingRoom4DCS.Generator
 
                 var luaGroup =  CommonCAPDB.LuaGroup;
                 var spawnpointCoordinates = spawnPoint.Value;
-                if(template.MissionFeatures.Contains("GroundStartAircraft"))
+                if(template.MissionFeatures.Contains("ContextGroundStartAircraft"))
                 {
                     luaGroup += "Parked";
                     var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = UnitMaker.SpawnPointSelector.GetAirbaseAndParking(template, spawnPoint.Value, groupSize, coalition, false);
