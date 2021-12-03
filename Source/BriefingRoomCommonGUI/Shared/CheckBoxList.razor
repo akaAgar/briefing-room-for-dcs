@@ -3,21 +3,19 @@
 <div style=@Style class="checkboxList">
     @if (Data != null)
     {
-        foreach (var item in Data)
+        var prevGrouping = "";
+        foreach (var item in Data.OrderBy(x => GroupingField?.Invoke(x)))
         {
             var Text = TextField?.Invoke(item);
+            var Description = DescriptionField?.Invoke(item);
+            var Grouping = GroupingField?.Invoke(item);
             var Value = ValueField?.Invoke(item);
-            var Description = "";
-
-            if (Text.Contains('|'))
+            if(GroupingField != null && prevGrouping != Grouping)
             {
-                var textParts = Text.Split('|');
-                Text = textParts[0];
-
-                if (textParts.Length > 1)
-                    Description = textParts[1];
+                prevGrouping = Grouping;
+                <div class="checkboxList-break"></div>
+                <div class="checkboxList-group">@Grouping:</div>
             }
-
             bool Checked = false;
             if (SelectedValues.Contains((TItemOutput)Value))
             {
@@ -26,13 +24,11 @@
             <label class="checkboxList-item">
                 <input type="checkbox" checked=@Checked
             @onchange="eventArgs => { CheckboxClicked((TItemOutput)Value, eventArgs.Value); }" />
-                <span>@Text<br />
-                    @if (!String.IsNullOrEmpty(Description))
-                    {
-                        <span class="description">@Description</span>
-                    }
+                <span>
+                    @Text
+                    <span class="description">@Description</span>
                 </span>
-            </label><br />
+            </label>
         }
     }
     @ChildContent
@@ -43,6 +39,10 @@
     [Parameter] public IEnumerable<TItem> Data { get; set; }
     // The field to be shown adjacent to checkbox
     [Parameter] public Func<TItem, string> TextField { get; set; }
+
+    [Parameter] public Func<TItem, string> DescriptionField { get; set; }
+    
+    [Parameter] public Func<TItem, string> GroupingField { get; set; }
     // The Value which checkbox will return when checked
     [Parameter] public Func<TItem, object> ValueField { get; set; }
     // CSS Style for the Checkbox container

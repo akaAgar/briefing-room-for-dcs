@@ -167,8 +167,13 @@
                 <h3>Mission features</h3>
                 <CheckBoxList
                     Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"
-                    TextField="@((item)=>item.Name + "|" + item.Description)" ValueField="@((item)=>item.ID)"
-                    SelectedValues="Template.MissionFeatures" TItem="DatabaseEntryInfo" TItemOutput="string">
+                    TextField="@(item =>item.Name)"
+                    DescriptionField="@(item => item.Description)"
+                    GroupingField="@(item => item.Category)"
+                    ValueField="@(item =>item.ID)"
+                    SelectedValues="Template.MissionFeatures"
+                    TItem="DatabaseEntryInfo"
+                    TItemOutput="string">
                 </CheckBoxList>
             </div>
         </EditForm>

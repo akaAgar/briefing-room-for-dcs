@@ -4,6 +4,29 @@
     text-align: center;
 }
 
+.checkboxList-group {
+    margin-top: .5em;
+    margin-right: .1em;
+}
+
+.checkboxList-item > input {
+    display: none;
+}
+
+.checkboxList-item > span {
+    padding: 5px;
+    border: solid 1px #0366d6;
+    border-radius: .25rem;
+    margin: 4px;
+    display: block;
+}
+
+.checkboxList-item > input:checked + span {
+    background-color: #0366d6;
+    border-color: #0C3050;
+    color: white;
+}
+
 .checkboxList-item .description {
     font-size: 70%;
     display: none;
@@ -20,6 +43,11 @@
     margin: 2px;
     color: black;
 }
+
+.checkboxList-break {
+    flex-basis: 100%;
+    height: 0;
+  }
 
 
 

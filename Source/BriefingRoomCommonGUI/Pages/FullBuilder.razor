@@ -148,15 +148,24 @@
                                         <h4>Objective features</h4>
                                         <CheckBoxList
                                             Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveFeature).ToList()"
-                                            TextField="@((item)=>item.Name + "|" + item.Description)" ValueField="@((item)=>item.ID)"
-                                            SelectedValues="objective.Features" TItem="DatabaseEntryInfo" TItemOutput="string">
+                                            TextField="@(item =>item.Name)"
+                                            DescriptionField="@(item =>item.Description)"
+                                            ValueField="@(item =>item.ID)"
+                                            SelectedValues="objective.Features"
+                                            TItem="DatabaseEntryInfo"
+                                            TItemOutput="string">
                                         </CheckBoxList>
                                     </div>
                                     <div class="form-group">
                                         <h4>Objective options</h4>
-                                        <CheckBoxList Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
-                                            TextField="@((item)=>BriefingRoomGUITools.GetEnumName(item) + "|" + BriefingRoomGUITools.GetEnumDescription(item))" ValueField="@((item)=>item)"
-                                            SelectedValues="objective.Options" TItem="ObjectiveOption" TItemOutput="ObjectiveOption">
+                                        <CheckBoxList
+                                            Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
+                                            TextField="@(item =>BriefingRoomGUITools.GetEnumName(item))"
+                                            DescriptionField="@(item => BriefingRoomGUITools.GetEnumDescription(item))"
+                                            ValueField="@(item =>item)"
+                                            SelectedValues="objective.Options"
+                                            TItem="ObjectiveOption"
+                                            TItemOutput="ObjectiveOption">
                                         </CheckBoxList>
                                     </div>
                                 </div>
@@ -171,31 +180,49 @@
                         <div class="form-group">
                             <h4>Mission features</h4>
                             <CheckBoxList
-                        Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"
-                        TextField="@((item)=>item.Name + "|" + item.Description)" ValueField="@((item)=>item.ID)"
-                        SelectedValues="Template.MissionFeatures" TItem="DatabaseEntryInfo" TItemOutput="string">
+                                Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"
+                                TextField="@(item =>item.Name)"
+                                DescriptionField="@(item => item.Description)"
+                                GroupingField="@(item => item.Category)"
+                                ValueField="@(item =>item.ID)"
+                                SelectedValues="Template.MissionFeatures"
+                                TItem="DatabaseEntryInfo"
+                                TItemOutput="string">
                             </CheckBoxList>
                         </div>
                         <div class="form-group">
                             <h4>Mission options</h4>
-                            <CheckBoxList Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.OptionsMission).ToList()"
-                        TextField="@((item)=>item.Name + "|" + item.Description)" ValueField="@((item)=>item.ID)"
-                        SelectedValues="Template.OptionsMission" TItem="DatabaseEntryInfo" TItemOutput="string">
+                            <CheckBoxList
+                                Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.OptionsMission).ToList()"
+                                TextField="@(item =>item.Name)"
+                                DescriptionField="@(item => item.Description)"
+                                ValueField="@(item =>item.ID)"
+                                SelectedValues="Template.OptionsMission"
+                                TItem="DatabaseEntryInfo"
+                                TItemOutput="string">
                             </CheckBoxList>
                         </div>
                         <div class="form-group">
                             <h4>Realism options</h4>
-                            <CheckBoxList Data="Enum.GetValues(typeof(RealismOption)).Cast<RealismOption>()"
-                        TextField="@((item)=>BriefingRoomGUITools.GetEnumName(item))" ValueField="@((item)=>item)"
-                        SelectedValues="Template.OptionsRealism" TItem="RealismOption" TItemOutput="RealismOption">
+                            <CheckBoxList
+                                Data="Enum.GetValues(typeof(RealismOption)).Cast<RealismOption>()"
+                                TextField="@(item => BriefingRoomGUITools.GetEnumName(item))"
+                                ValueField="@(item =>item)"
+                                SelectedValues="Template.OptionsRealism"
+                                TItem="RealismOption"
+                                TItemOutput="RealismOption">
                             </CheckBoxList>
                         </div>
                         <div class="form-group">
                             <h4>Unit mods</h4>
                             <CheckBoxList
-                        Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.DCSMod).ToList()"
-                        TextField="@((item)=>item.Name + "|" + item.Description)" ValueField="@((item)=>item.ID)" SelectedValues="Template.Mods"
-                        TItem="DatabaseEntryInfo" TItemOutput="string">
+                                Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.DCSMod).ToList()"
+                                TextField="@(item =>item.Name)"
+                                DescriptionField="@(item => item.Description)"
+                                ValueField="@(item =>item.ID)"
+                                SelectedValues="Template.Mods"
+                                TItem="DatabaseEntryInfo"
+                                TItemOutput="string">
                             </CheckBoxList>
                         </div>
                     </div>
@@ -347,8 +374,8 @@
                                         <label>Objectives</label>
                                          <CheckBoxList
                                             Data="Template.Objectives"
-                                            TextField="@((item)=>item.Alias + ": " + item.Task + "-" + item.Target)"
-                                            ValueField="@((item)=>Template.Objectives.IndexOf(item))"
+                                            TextField="@(item =>item.Alias + ": " + item.Task + "-" + item.Target)"
+                                            ValueField="@(item =>Template.Objectives.IndexOf(item))"
                                             SelectedValues="package.ObjectiveIndexes"
                                             TItem="MissionTemplateObjective" TItemOutput="int">
                                         </CheckBoxList>
@@ -357,8 +384,8 @@
                                         <label>Flight Groups</label>
                                         <CheckBoxList
                                             Data="GetAvailableFlightGroups(package)"
-                                            TextField="@((item)=>item.Alias + ": " + item.Aircraft + " x " + item.Count)"
-                                            ValueField="@((item)=>Template.PlayerFlightGroups.IndexOf(item))"
+                                            TextField="@(item =>item.Alias + ": " + item.Aircraft + " x " + item.Count)"
+                                            ValueField="@(item =>Template.PlayerFlightGroups.IndexOf(item))"
                                             SelectedValues="package.FlightGroupIndexes"
                                             TItem="MissionTemplateFlightGroup" TItemOutput="int">
                                         </CheckBoxList>
