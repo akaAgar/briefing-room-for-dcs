@@ -130,7 +130,10 @@ namespace BriefingRoom4DCS.Generator
                     Coordinates origin = distanceOrigin[i].Value;
 
                     validSPInRange = (from DBEntryTheaterSpawnPoint s in validSP
-                                      where searchRange.Contains(origin.GetDistanceFrom(s.Coordinates)) && CheckNotInHostileCoords(s.Coordinates, coalition)
+                                        where 
+                                            searchRange.Contains(origin.GetDistanceFrom(s.Coordinates)) &&
+                                            CheckNotInHostileCoords(s.Coordinates, coalition) && 
+                                            CheckNotInNoSpawnCoords(s.Coordinates)
                                       select s);
                     searchRange = new MinMaxD(searchRange.Min * 0.9, Math.Max(100, searchRange.Max * 1.1));
                     validSP = (from DBEntryTheaterSpawnPoint s in validSPInRange select s);
@@ -161,7 +164,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 var coordOptionsLinq = Enumerable.Range(0, 50)
                     .Select(x => Coordinates.CreateRandom(distanceOrigin1, searchRange))
-                    .Where(x => CheckNotInHostileCoords(x));
+                    .Where(x => CheckNotInHostileCoords(x) && CheckNotInNoSpawnCoords(x));
 
                 if (secondSearchRange.HasValue)
                     coordOptionsLinq = coordOptionsLinq.Where(x => secondSearchRange.Value.Contains(distanceOrigin2.Value.GetDistanceFrom(x)));
@@ -218,6 +221,13 @@ namespace BriefingRoom4DCS.Generator
             if (coalition.Value == Coalition.Blue)
                 return !ShapeManager.IsPosValid(coordinates, red);
             return !ShapeManager.IsPosValid(coordinates, blue);
+        }
+
+        private bool CheckNotInNoSpawnCoords(Coordinates coordinates)
+        {
+            if(SituationDB.NoSpawnCoordinates is null)
+                return true;
+            return !ShapeManager.IsPosValid(coordinates, SituationDB.NoSpawnCoordinates);
         }
 
         public void Dispose() { }

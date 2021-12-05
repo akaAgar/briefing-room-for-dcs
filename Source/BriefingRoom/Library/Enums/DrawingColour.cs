@@ -28,6 +28,7 @@ namespace BriefingRoom4DCS
         RedFill,
         Blue,
         BlueFill,
+        GreenFill,
         Clear,
     }
 
@@ -40,6 +41,7 @@ namespace BriefingRoom4DCS
             DrawingColour.Blue => "0x0000ffff",
             DrawingColour.BlueFill => "0x0000ff22",
             DrawingColour.Clear => "0xff000000",
+            DrawingColour.GreenFill => "0x00800022",
             _ => throw new ArgumentOutOfRangeException(nameof(colour), $"Not expected colour value: {colour}"),
         };
     }

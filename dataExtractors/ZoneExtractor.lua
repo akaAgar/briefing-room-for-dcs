@@ -51,7 +51,7 @@ io.output(file)
 -- WATER
 local first = true
 local groupIndex = 1;
-for _,group in orderedPairs(mission.drawings.layers[3].objects) do --actualcode
+for _,group in orderedPairs(mission.drawings.layers[3].objects) do -- Neutral Markers
     if first then
         io.write("\n[WaterCoordinates]\n")
         local originX = group.mapX
@@ -75,18 +75,26 @@ end
 
 
 -- Areas of Influence
-io.write("\n[RedCoordinates]\n")
+io.write("\n[RedCoordinates]\n") -- RED Markers
 local originX = mission.drawings.layers[1].objects[1].mapX
 local originY = mission.drawings.layers[1].objects[1].mapY
 io.write("Waypoint"..string.format("%04d", 0).."="..originX..","..originY.."\n")
 for key,value in orderedPairs(mission.drawings.layers[1].objects[1].points) do --actualcode
     io.write("Waypoint"..string.format("%04d", key).."="..(originX +value.x)..","..(originY + value.y).."\n")
 end
-io.write("\n[BlueCoordinates]\n")
+io.write("\n[BlueCoordinates]\n")-- BLUE Markers
 local originX = mission.drawings.layers[2].objects[1].mapX
 local originY = mission.drawings.layers[2].objects[1].mapY
 io.write("Waypoint"..string.format("%04d", 0).."="..originX..","..originY.."\n")
 for key,value in orderedPairs(mission.drawings.layers[2].objects[1].points) do --actualcode
+    io.write("Waypoint"..string.format("%04d", key).."="..(originX +value.x)..","..(originY + value.y).."\n")
+end
+
+io.write("\n[NoSpawnCoordinates]\n") -- Common Markers
+local originX = mission.drawings.layers[4].objects[1].mapX
+local originY = mission.drawings.layers[4].objects[1].mapY
+io.write("Waypoint"..string.format("%04d", 0).."="..originX..","..originY.."\n")
+for key,value in orderedPairs(mission.drawings.layers[4].objects[1].points) do --actualcode
     io.write("Waypoint"..string.format("%04d", key).."="..(originX +value.x)..","..(originY + value.y).."\n")
 end
 

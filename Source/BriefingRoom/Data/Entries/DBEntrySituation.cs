@@ -31,6 +31,8 @@ namespace BriefingRoom4DCS.Data
 
         private List<Coordinates> BlueCoordinates { get; set; }
 
+        internal List<Coordinates> NoSpawnCoordinates { get; set; }
+
         internal string Theater { get; private set; }
 
         protected override bool OnLoad(string iniFilePath)
@@ -46,6 +48,13 @@ namespace BriefingRoom4DCS.Data
                 BlueCoordinates = new List<Coordinates>();
                 foreach (string key in ini.GetKeysInSection("BlueCoordinates"))
                     BlueCoordinates.Add(ini.GetValue<Coordinates>("BlueCoordinates", key));
+                
+                if(ini.GetSections().Contains("nospawncoordinates"))
+                {
+                    NoSpawnCoordinates = new List<Coordinates>();
+                    foreach (string key in ini.GetKeysInSection("NoSpawnCoordinates"))
+                        NoSpawnCoordinates.Add(ini.GetValue<Coordinates>("NoSpawnCoordinates", key));
+                }
 
                 if (!Database.Instance.EntryExists<DBEntryTheater>(Theater))
                     throw new Exception($"Situation \"{ID}\" located on non-existing theater \"{Theater}\".");
