@@ -13,6 +13,7 @@
 *.log
 *.miz
 !dataExtractors/PositioningMissions/*.miz
+!dataExtractors/SituationMissions/*.miz
 *.pdb
 *.user
 *.xml
