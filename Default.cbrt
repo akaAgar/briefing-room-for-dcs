@@ -6,7 +6,6 @@ coalitions.player=Blue
 coalitions.red=Russia
 decade=Decade2000
 theater=Caucasus
-situation=CaucasusDefault
 
 [environment]
 badweatherchance=VeryLow
@@ -15,7 +14,7 @@ nightmissionchance=VeryLow
 [missions]
 count=5
 difficultyvariation=Random
-objectives=CAS
+objectives=AirbaseStrike,AntiShipStrike,CloseAirSupport,CombatAirPatrol,CombatSearchAndRescue,CommandoDrop,DeepStrike,DeepStrikeJTAC,DEAD,HeloHunt,Interception,Interdiction,InterdictionJTAC,OffensiveCounterAir,Reconnaissance
 objectivecount=Average
 objectivedistance=Average
 

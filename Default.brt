@@ -6,7 +6,6 @@ coalitionred=Russia
 decade=Decade2000
 playercoalition=Blue
 theater=Caucasus
-situation=CaucasusDefault
 
 [environment]
 season=Random
@@ -18,34 +17,24 @@ objectivedistance=80
 objectiveseperation=30
 
 [missionfeatures]
-missionfeatures=IngressEgressWaypoints
 
 [mods]
 
 [objectives]
-objective000.features=TargetDesignationCoordinates,TargetDesignationLaser,TargetDesignationSmokeMarker
-objective000.options=EmbeddedAirDefense,InaccurateWaypoint
-objective000.preset=InterdictionJTAC
-objective000.task=DestroyAllExceptAirDefense
+objective000.preset=Interdiction
+objective000.task=DestroyAll
 objective000.target=VehicleAny
 objective000.targetbehavior=Idle
 objective000.targetcount=Average
-objective001.features=SceneryInfantryNearObjective,TargetDesignationCoordinates,TargetDesignationLaser
-objective001.options=EmbeddedAirDefense
-objective001.preset=DeepStrike
-objective001.task=DestroyAll
-objective001.target=StructureAny
-objective001.targetbehavior=Idle
-objective001.targetcount=Average
 
 [options]
 fogofwar=All
-mission=ImperialUnitsForBriefing
+mission=ImperialUnitsForBriefing,MarkWaypoints
 realism=DisableDCSRadioAssists,NoBDA
 
 [playerflightgroups]
 playerflightgroup000.aircrafttype=Su-25T
-playerflightgroup000.aiwingmen=True
+playerflightgroup000.aiwingmen=False
 playerflightgroup000.count=2
 playerflightgroup000.payload=default
 playerflightgroup000.country=CJTFBlue
