@@ -53,9 +53,15 @@ namespace BriefingRoom4DCS.Generator
 
             // Get required database entries here, so we don't have to look for them each time they're needed.
             DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
-            if (!template.ContextSituation.StartsWith(template.ContextTheater))
-                template.ContextSituation = template.ContextTheater + "Default";
-            DBEntrySituation situationDB = Database.Instance.GetEntry<DBEntrySituation>(template.ContextSituation);
+            DBEntrySituation situationDB = Toolbox.RandomFrom(
+                Database.Instance.GetAllEntries<DBEntrySituation>()
+                    .Where(x => x.Theater == template.ContextTheater.ToLower())
+                    .ToArray()
+                );
+            if (template.ContextSituation.StartsWith(template.ContextTheater))
+                situationDB = Database.Instance.GetEntry<DBEntrySituation>(template.ContextSituation);
+
+            
             DBEntryCoalition[] coalitionsDB = new DBEntryCoalition[]
             {
                 Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionBlue),
@@ -63,6 +69,8 @@ namespace BriefingRoom4DCS.Generator
             };
 
             // Copy values from the template
+            mission.SetValue("BriefingTheater", theaterDB.UIDisplayName);
+            mission.SetValue("BriefingSituation", situationDB.UIDisplayName);
             mission.SetValue("BriefingAllyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition].UIDisplayName);
             mission.SetValue("BriefingEnemyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition.GetEnemy()].UIDisplayName);
             mission.SetValue("EnableAudioRadioMessages", !template.OptionsMission.Contains("RadioMessagesTextOnly"));
@@ -102,10 +110,10 @@ namespace BriefingRoom4DCS.Generator
             BriefingRoom.PrintToLog("Setting up airbases...");
             using (MissionGeneratorAirbases airbasesGenerator = new MissionGeneratorAirbases())
             {
-                playerAirbase = airbasesGenerator.SelectStartingAirbase(mission, template, template.FlightPlanTheaterStartingAirbase);
+                playerAirbase = airbasesGenerator.SelectStartingAirbase(mission, template, situationDB, template.FlightPlanTheaterStartingAirbase);
                 if (playerAirbase == null) throw new BriefingRoomException("No valid airbase was found for the player(s).");
-                airbasesGenerator.SetupAirbasesCoalitions(mission, template, playerAirbase);
-                airbasesGenerator.SelectStartingAirbaseForPackages(mission, template, playerAirbase);
+                airbasesGenerator.SetupAirbasesCoalitions(mission, template, situationDB, playerAirbase);
+                airbasesGenerator.SelectStartingAirbaseForPackages(mission, template, situationDB, playerAirbase);
                 mission.SetValue("PlayerAirbaseName", playerAirbase.Name);
                 mission.SetValue("MissionAirbaseX", playerAirbase.Coordinates.X);
                 mission.SetValue("MissionAirbaseY", playerAirbase.Coordinates.Y);

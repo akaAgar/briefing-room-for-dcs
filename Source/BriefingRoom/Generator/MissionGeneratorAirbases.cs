@@ -30,7 +30,7 @@ namespace BriefingRoom4DCS.Generator
     {
         internal MissionGeneratorAirbases() { }
 
-        internal void SelectStartingAirbaseForPackages(DCSMission mission, MissionTemplate template, DBEntryAirbase homeBase)
+        internal void SelectStartingAirbaseForPackages(DCSMission mission, MissionTemplate template, DBEntrySituation situationDB, DBEntryAirbase homeBase)
         {
             foreach (var package in template.AircraftPackages)
             {
@@ -40,17 +40,17 @@ namespace BriefingRoom4DCS.Generator
                     continue;
                 }
                 var requiredSpots = template.PlayerFlightGroups.Where((v, i) => package.FlightGroupIndexes.Contains(i)).Sum(x => x.Count);
-                package.Airbase = SelectStartingAirbase(mission, template, package.StartingAirbase, requiredSpots);
+                package.Airbase = SelectStartingAirbase(mission, template, situationDB, package.StartingAirbase, requiredSpots);
             }
         }
 
-        internal DBEntryAirbase SelectStartingAirbase(DCSMission mission, MissionTemplate template, string selectedAirbaseID, int requiredParkingSpots = 0)
+        internal DBEntryAirbase SelectStartingAirbase(DCSMission mission, MissionTemplate template, DBEntrySituation situationDB, string selectedAirbaseID, int requiredParkingSpots = 0)
         {
             // Get total number of required parking spots for flight groups
             if (requiredParkingSpots == 0)
                 requiredParkingSpots = (from MissionTemplateFlightGroup flightGroup in template.PlayerFlightGroups select flightGroup.Count).Sum();
             // Select all airbases for this theater
-            DBEntryAirbase[] airbases = Database.Instance.GetEntry<DBEntrySituation>(template.ContextSituation).GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"));
+            DBEntryAirbase[] airbases = situationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"));
             // If a particular airbase name has been specified and an airbase with this name exists, pick it
             if (!string.IsNullOrEmpty(selectedAirbaseID))
             {
@@ -113,10 +113,10 @@ namespace BriefingRoom4DCS.Generator
             return false;
         }
 
-        internal void SetupAirbasesCoalitions(DCSMission mission, MissionTemplate template, DBEntryAirbase playerAirbase)
+        internal void SetupAirbasesCoalitions(DCSMission mission, MissionTemplate template, DBEntrySituation situationDB, DBEntryAirbase playerAirbase)
         {
             // Select all airbases for this theater
-            DBEntryAirbase[] situationAirbases = Database.Instance.GetEntry<DBEntrySituation>(template.ContextSituation).GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"));
+            DBEntryAirbase[] situationAirbases = situationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"));
 
             foreach (DBEntryAirbase airbase in situationAirbases)
             {

@@ -102,7 +102,7 @@ namespace BriefingRoom4DCS.Template
             ContextDecade = Decade.Decade2000;
             ContextPlayerCoalition = Coalition.Blue;
             ContextTheater = "Caucasus";
-            ContextSituation = "CaucasusDefault";
+            ContextSituation = "";
 
             EnvironmentSeason = Season.Random;
             EnvironmentTimeOfDay = TimeOfDay.RandomDaytime;

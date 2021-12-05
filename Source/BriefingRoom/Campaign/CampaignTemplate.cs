@@ -95,7 +95,7 @@ namespace BriefingRoom4DCS.Campaign
             ContextCoalitionRed = "Russia";
             ContextDecade = Decade.Decade2000;
             ContextTheater = "Caucasus";
-            ContextSituation = "CaucasusDefault";
+            ContextSituation = "";
 
             EnvironmentBadWeatherChance = Amount.VeryLow;
             EnvironmentNightMissionChance = Amount.VeryLow;
