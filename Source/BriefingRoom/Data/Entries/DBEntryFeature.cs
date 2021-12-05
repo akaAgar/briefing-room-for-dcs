@@ -56,36 +56,34 @@ namespace BriefingRoom4DCS.Data
 
         protected override bool OnLoad(string iniFilePath)
         {
-            using (INIFile ini = new INIFile(iniFilePath))
-            {
-                BriefingRemarks = new string[2][];
-                BriefingRemarks[(int)Side.Ally] = ini.GetValueArray<string>("Briefing", "Remarks", ';');
-                BriefingRemarks[(int)Side.Enemy] = ini.GetValueArray<string>("Briefing", "Remarks.Enemy", ';');
+            var ini = new INIFile(iniFilePath);
+            BriefingRemarks = new string[2][];
+            BriefingRemarks[(int)Side.Ally] = ini.GetValueArray<string>("Briefing", "Remarks", ';');
+            BriefingRemarks[(int)Side.Enemy] = ini.GetValueArray<string>("Briefing", "Remarks.Enemy", ';');
 
-                // Included files
-                IncludeLua = Toolbox.AddMissingFileExtensions(ini.GetValueArray<string>("Include", "Lua"), ".lua");
-                IncludeLuaSettings = ini.GetValue<string>("Lua", "LuaSettings");
-                IncludeOgg = Toolbox.AddMissingFileExtensions(ini.GetValueArray<string>("Include", "Ogg"), ".ogg");
+            // Included files
+            IncludeLua = Toolbox.AddMissingFileExtensions(ini.GetValueArray<string>("Include", "Lua"), ".lua");
+            IncludeLuaSettings = ini.GetValue<string>("Lua", "LuaSettings");
+            IncludeOgg = Toolbox.AddMissingFileExtensions(ini.GetValueArray<string>("Include", "Ogg"), ".ogg");
 
-                foreach (string f in IncludeLua)
-                    if (!File.Exists($"{SourceLuaDirectory}{f}"))
-                        BriefingRoom.PrintToLog($"File \"{SourceLuaDirectory}{f}\", required by feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
+            foreach (string f in IncludeLua)
+                if (!File.Exists($"{SourceLuaDirectory}{f}"))
+                    BriefingRoom.PrintToLog($"File \"{SourceLuaDirectory}{f}\", required by feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
 
-                foreach (string f in IncludeOgg)
-                    if (!File.Exists($"{BRPaths.INCLUDE_OGG}{f}"))
-                        BriefingRoom.PrintToLog($"File \"{BRPaths.INCLUDE_OGG}{f}\", required by feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
+            foreach (string f in IncludeOgg)
+                if (!File.Exists($"{BRPaths.INCLUDE_OGG}{f}"))
+                    BriefingRoom.PrintToLog($"File \"{BRPaths.INCLUDE_OGG}{f}\", required by feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
 
-                // Unit group
-                UnitGroupFamilies = ini.GetValueArray<UnitFamily>("UnitGroup", "Families");
-                UnitGroupFlags = ini.GetValueArrayAsEnumFlags<FeatureUnitGroupFlags>("UnitGroup", "Flags");
-                UnitGroupLuaGroup = ini.GetValue<string>("UnitGroup", "Lua.Group");
-                UnitGroupLuaUnit = ini.GetValue<string>("UnitGroup", "Lua.Unit");
-                UnitGroupSize = ini.GetValue<MinMaxI>("UnitGroup", "Size");
-                ExtraGroups = ini.GetValue<MinMaxI>("UnitGroup", "ExtraGroups");
-                UnitGroupSpawnDistance = ini.GetValue<double>("UnitGroup", "SpawnDistance");
-                UnitGroupPayload = ini.GetValue<string>("UnitGroup", "Payload", "default");
-                UnitGroupValidSpawnPoints = DatabaseTools.CheckSpawnPoints(ini.GetValueArray<SpawnPointType>("UnitGroup", "ValidSpawnPoints"));
-            }
+            // Unit group
+            UnitGroupFamilies = ini.GetValueArray<UnitFamily>("UnitGroup", "Families");
+            UnitGroupFlags = ini.GetValueArrayAsEnumFlags<FeatureUnitGroupFlags>("UnitGroup", "Flags");
+            UnitGroupLuaGroup = ini.GetValue<string>("UnitGroup", "Lua.Group");
+            UnitGroupLuaUnit = ini.GetValue<string>("UnitGroup", "Lua.Unit");
+            UnitGroupSize = ini.GetValue<MinMaxI>("UnitGroup", "Size");
+            ExtraGroups = ini.GetValue<MinMaxI>("UnitGroup", "ExtraGroups");
+            UnitGroupSpawnDistance = ini.GetValue<double>("UnitGroup", "SpawnDistance");
+            UnitGroupPayload = ini.GetValue<string>("UnitGroup", "Payload", "default");
+            UnitGroupValidSpawnPoints = DatabaseTools.CheckSpawnPoints(ini.GetValueArray<SpawnPointType>("UnitGroup", "ValidSpawnPoints"));
 
             return true;
         }

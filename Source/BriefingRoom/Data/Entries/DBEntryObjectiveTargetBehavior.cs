@@ -32,18 +32,16 @@ namespace BriefingRoom4DCS.Data
 
         protected override bool OnLoad(string iniFilePath)
         {
-            using (INIFile ini = new INIFile(iniFilePath))
-            {
-                Location = ini.GetValue<DBEntryObjectiveTargetBehaviorLocation>("Behavior", "Location");
+            var ini = new INIFile(iniFilePath);
+            Location = ini.GetValue<DBEntryObjectiveTargetBehaviorLocation>("Behavior", "Location");
 
-                GroupLua = new string[Toolbox.EnumCount<UnitCategory>()];
-                foreach (UnitCategory unitCategory in Toolbox.GetEnumValues<UnitCategory>())
-                    GroupLua[(int)unitCategory] = ini.GetValue<string>("Lua", $"Group.{unitCategory}");
+            GroupLua = new string[Toolbox.EnumCount<UnitCategory>()];
+            foreach (UnitCategory unitCategory in Toolbox.GetEnumValues<UnitCategory>())
+                GroupLua[(int)unitCategory] = ini.GetValue<string>("Lua", $"Group.{unitCategory}");
 
-                UnitLua = new string[Toolbox.EnumCount<UnitCategory>()];
-                foreach (UnitCategory unitLua in Toolbox.GetEnumValues<UnitCategory>())
-                    UnitLua[(int)unitLua] = ini.GetValue<string>("Lua", $"Unit.{unitLua}");
-            }
+            UnitLua = new string[Toolbox.EnumCount<UnitCategory>()];
+            foreach (UnitCategory unitLua in Toolbox.GetEnumValues<UnitCategory>())
+                UnitLua[(int)unitLua] = ini.GetValue<string>("Lua", $"Unit.{unitLua}");
 
             return true;
         }

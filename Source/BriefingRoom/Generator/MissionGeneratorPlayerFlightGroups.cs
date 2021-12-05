@@ -29,31 +29,26 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal class MissionGeneratorPlayerFlightGroups : IDisposable
+    internal class MissionGeneratorPlayerFlightGroups
     {
-        private readonly UnitMaker UnitMaker;
 
-        internal MissionGeneratorPlayerFlightGroups(UnitMaker unitMaker)
-        {
-            UnitMaker = unitMaker;
-        }
 
-        internal void GeneratePlayerFlightGroup(
+        internal static void GeneratePlayerFlightGroup(
+            UnitMaker unitMaker,
             DCSMission mission,
             MissionTemplate template,
-            int flightGroupIndex,
+            MissionTemplateFlightGroup flightGroup,
             DBEntryAirbase playerAirbase,
             List<Waypoint> waypoints,
             Dictionary<string, UnitMakerGroupInfo> carrierDictionary,
             Coordinates averageInitialLocation,
             Coordinates objectivesCenter)
         {
-            var flightGroup = template.PlayerFlightGroups[flightGroupIndex];
             DBEntryAirbase airbase = playerAirbase;
             List<Waypoint> flightWaypoints = new List<Waypoint>(waypoints);
             Coordinates groupStartingCoords = playerAirbase.Coordinates;
 
-            var package = template.AircraftPackages.FirstOrDefault(x => x.FlightGroupIndexes.Contains(flightGroupIndex));
+            var package = template.AircraftPackages.FirstOrDefault(x => x.FlightGroupIndexes.Contains(template.PlayerFlightGroups.IndexOf(flightGroup)));
             if (package is not null)
             {
                 flightWaypoints = package.Waypoints;
@@ -90,7 +85,7 @@ namespace BriefingRoom4DCS.Generator
             }
             else // Land airbase take off
             {
-                var parkingSpots = UnitMaker.SpawnPointSelector.GetFreeParkingSpots(airbase.DCSID, flightGroup.Count);
+                var parkingSpots = unitMaker.SpawnPointSelector.GetFreeParkingSpots(airbase.DCSID, flightGroup.Count);
                 parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
                 parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
                 groupStartingCoords = parkingSpotCoordinatesList.First();
@@ -101,7 +96,7 @@ namespace BriefingRoom4DCS.Generator
             UnitMakerGroupFlags unitMakerGroupFlags = flightGroup.AIWingmen ? UnitMakerGroupFlags.FirstUnitIsClient : 0;
             DCSSkillLevel skillLevel = flightGroup.AIWingmen ? Toolbox.RandomFrom(DCSSkillLevel.High, DCSSkillLevel.Excellent) : DCSSkillLevel.Client;
 
-            UnitMakerGroupInfo? groupInfo = UnitMaker.AddUnitGroup(
+            UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(
                 Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), Side.Ally, unitDB.Families[0],
                 groupLuaFile, "UnitAircraft", groupStartingCoords,
                 unitMakerGroupFlags,
@@ -138,7 +133,7 @@ namespace BriefingRoom4DCS.Generator
                 groupInfo);
         }
 
-        private string GenerateFlightPlanLua(List<Waypoint> waypoints)
+        private static string GenerateFlightPlanLua(List<Waypoint> waypoints)
         {
             string flightPlanLua = "";
             string waypointLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_MISSION}WaypointPlayer.lua");
@@ -159,7 +154,7 @@ namespace BriefingRoom4DCS.Generator
             return flightPlanLua;
         }
 
-        internal void SaveFlightGroup(DCSMission mission, UnitMakerGroupInfo? groupInfo, MissionTemplateFlightGroup flightGroup, DBEntryUnit unitDB, string homeBase)
+        private static void SaveFlightGroup(DCSMission mission, UnitMakerGroupInfo? groupInfo, MissionTemplateFlightGroup flightGroup, DBEntryUnit unitDB, string homeBase)
         {
             mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
                 $"{groupInfo.Value.Name}\t" +
@@ -169,10 +164,7 @@ namespace BriefingRoom4DCS.Generator
                 $"{homeBase}");
         }
 
-
-
-
-        internal void SaveWaypointsToBriefing(DCSMission mission, Coordinates initialCoordinates, List<Waypoint> waypoints, bool useImperialSystem, UnitMakerGroupInfo? groupInfo)
+        private static void SaveWaypointsToBriefing(DCSMission mission, Coordinates initialCoordinates, List<Waypoint> waypoints, bool useImperialSystem, UnitMakerGroupInfo? groupInfo)
         {
             double totalDistance = 0;
             Coordinates lastWP = initialCoordinates;
@@ -195,11 +187,6 @@ namespace BriefingRoom4DCS.Generator
 
                 mission.Briefing.AddItem(DCSMissionBriefingItemType.Waypoint, waypointText);
             }
-        }
-
-        public void Dispose()
-        {
-
         }
     }
 }

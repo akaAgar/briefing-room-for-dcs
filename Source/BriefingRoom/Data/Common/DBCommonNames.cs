@@ -50,25 +50,23 @@ namespace BriefingRoom4DCS.Data
             int i;
 
             BriefingRoom.PrintToLog("Loading common global settings...");
-            using (INIFile ini = new INIFile($"{BRPaths.DATABASE}Names.ini"))
+            INIFile ini = new($"{BRPaths.DATABASE}Names.ini");
+            MissionNameTemplate = ini.GetValue<string>("Mission", "Template");
+            for (i = 0; i < MISSION_NAMES_PART_COUNT; i++)
+                MissionNameParts[i] = ini.GetValueArray<string>("Mission", $"Part{i + 1}");
+
+            for (i = 0; i < Toolbox.EnumCount<UnitFamily>(); i++)
             {
-                MissionNameTemplate = ini.GetValue<string>("Mission", "Template");
-                for (i = 0; i < MISSION_NAMES_PART_COUNT; i++)
-                    MissionNameParts[i] = ini.GetValueArray<string>("Mission", $"Part{i + 1}");
-
-                for (i = 0; i < Toolbox.EnumCount<UnitFamily>(); i++)
-                {
-                    UnitFamilies[i] = ini.GetValueArray<string>("UnitFamilies", ((UnitFamily)i).ToString());
-                    Array.Resize(ref UnitFamilies[i], 2);
-                    UnitGroups[i] = ini.GetValue<string>("UnitGroups", ((UnitFamily)i).ToString());
-                }
-
-                WPEgressName = ini.GetValue<string>("Waypoints", "Egress").ToUpperInvariant();
-                WPFinalName = ini.GetValue<string>("Waypoints", "Final").ToUpperInvariant();
-                WPIngressName = ini.GetValue<string>("Waypoints", "Ingress").ToUpperInvariant();
-                WPInitialName = ini.GetValue<string>("Waypoints", "Initial").ToUpperInvariant();
-                WPObjectivesNames = (from string wpName in ini.GetValueArray<string>("Waypoints", "Objectives") select wpName.ToUpperInvariant()).ToArray();
+                UnitFamilies[i] = ini.GetValueArray<string>("UnitFamilies", ((UnitFamily)i).ToString());
+                Array.Resize(ref UnitFamilies[i], 2);
+                UnitGroups[i] = ini.GetValue<string>("UnitGroups", ((UnitFamily)i).ToString());
             }
+
+            WPEgressName = ini.GetValue<string>("Waypoints", "Egress").ToUpperInvariant();
+            WPFinalName = ini.GetValue<string>("Waypoints", "Final").ToUpperInvariant();
+            WPIngressName = ini.GetValue<string>("Waypoints", "Ingress").ToUpperInvariant();
+            WPInitialName = ini.GetValue<string>("Waypoints", "Initial").ToUpperInvariant();
+            WPObjectivesNames = (from string wpName in ini.GetValueArray<string>("Waypoints", "Objectives") select wpName.ToUpperInvariant()).ToArray();
         }
     }
 }

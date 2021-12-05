@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal class DrawingMaker : IDisposable
+    internal class DrawingMaker
     {
 
         private readonly DCSMission Mission;
@@ -164,10 +164,6 @@ namespace BriefingRoom4DCS.Generator
                 index++;
             }
             return luaDrawings;
-        }
-
-        public void Dispose()
-        {
         }
     }
 }

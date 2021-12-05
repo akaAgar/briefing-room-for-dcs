@@ -27,7 +27,7 @@ using BriefingRoom4DCS.Template;
 
 namespace BriefingRoom4DCS.Mission
 {
-    public sealed class DCSMission : IDisposable
+    public sealed class DCSMission
     {
         private const int MAX_VALUE_LENGTH_DISPLAY = 16;
 
@@ -165,8 +165,7 @@ namespace BriefingRoom4DCS.Mission
 
         public byte[] SaveToMizBytes()
         {
-            using (MizMaker mizMaker = new MizMaker())
-                return mizMaker.ExportToMizBytes(this);
+            return MizMaker.ExportToMizBytes(this);
         }
 
         internal string[] GetMediaFileNames()
@@ -197,11 +196,6 @@ namespace BriefingRoom4DCS.Mission
             distance = objCenter.GetDistanceFrom(playerAirbase) * Toolbox.METERS_TO_NM;
             var extremeLimit = template.FlightPlanObjectiveDistance * 1.7;
             return distance > extremeLimit;
-        }
-
-        public void Dispose()
-        {
-
         }
     }
 }

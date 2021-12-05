@@ -22,7 +22,7 @@ using System;
 
 namespace BriefingRoom4DCS.Data
 {
-    internal class DBCommonCarrierGroup : IDisposable
+    internal class DBCommonCarrierGroup
     {
         internal const int ESCORT_FAMILIES_SHIP_COUNT = 3;
 
@@ -38,21 +38,19 @@ namespace BriefingRoom4DCS.Data
 
         internal DBCommonCarrierGroup()
         {
-            using (INIFile ini = new INIFile($"{BRPaths.DATABASE}CarrierGroup.ini"))
-            {
-                CourseLength = Math.Max(5.0, ini.GetValue<double>("CarrierGroup", "CourseLength")) * Toolbox.NM_TO_METERS;
-                IdealWindOfDeck = Math.Max(0.0, ini.GetValue<double>("CarrierGroup", "IdealWindOfDeck")) * Toolbox.KNOTS_TO_METERS_PER_SECOND;
-                MinimumCarrierSpeed = Math.Max(0.0, ini.GetValue<double>("CarrierGroup", "MinimumCarrierSpeed")) * Toolbox.KNOTS_TO_METERS_PER_SECOND;
-                ShipSpacing = Math.Max(0.1, ini.GetValue<double>("CarrierGroup", "ShipSpacing")) * Toolbox.NM_TO_METERS;
+            INIFile ini = new($"{BRPaths.DATABASE}CarrierGroup.ini");
+            CourseLength = Math.Max(5.0, ini.GetValue<double>("CarrierGroup", "CourseLength")) * Toolbox.NM_TO_METERS;
+            IdealWindOfDeck = Math.Max(0.0, ini.GetValue<double>("CarrierGroup", "IdealWindOfDeck")) * Toolbox.KNOTS_TO_METERS_PER_SECOND;
+            MinimumCarrierSpeed = Math.Max(0.0, ini.GetValue<double>("CarrierGroup", "MinimumCarrierSpeed")) * Toolbox.KNOTS_TO_METERS_PER_SECOND;
+            ShipSpacing = Math.Max(0.1, ini.GetValue<double>("CarrierGroup", "ShipSpacing")) * Toolbox.NM_TO_METERS;
 
-                EscortUnitFamilies = new UnitFamily[ESCORT_FAMILIES_SHIP_COUNT][];
-                for (int i = 0; i < ESCORT_FAMILIES_SHIP_COUNT; i++)
-                    EscortUnitFamilies[i] = ini.GetValueArray<UnitFamily>(
-                        "CarrierGroup",
-                        "EscortUnitFamilies.CarrierCount" + ((i == ESCORT_FAMILIES_SHIP_COUNT - 1) ? "Max" : $"{i + 1}"));
-            }
+            EscortUnitFamilies = new UnitFamily[ESCORT_FAMILIES_SHIP_COUNT][];
+            for (int i = 0; i < ESCORT_FAMILIES_SHIP_COUNT; i++)
+                EscortUnitFamilies[i] = ini.GetValueArray<UnitFamily>(
+                    "CarrierGroup",
+                    "EscortUnitFamilies.CarrierCount" + ((i == ESCORT_FAMILIES_SHIP_COUNT - 1) ? "Max" : $"{i + 1}"));
         }
 
-        public void Dispose() { }
+
     }
 }

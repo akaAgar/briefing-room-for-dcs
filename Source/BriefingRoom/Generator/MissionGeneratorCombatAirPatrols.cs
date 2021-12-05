@@ -26,21 +26,13 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal class MissionGeneratorCombatAirPatrols : IDisposable
+    internal class MissionGeneratorCombatAirPatrols
     {
-        private DBCommonCAP CommonCAPDB { get { return Database.Instance.Common.CAP; } }
 
-        private readonly UnitMaker UnitMaker;
-
-        internal MissionGeneratorCombatAirPatrols(UnitMaker unitMaker)
-        {
-            UnitMaker = unitMaker;
-        }
-
-        internal int[] GenerateCAP(MissionTemplate template, Coordinates averageInitialPosition, Coordinates objectivesCenter)
+        internal static int[] GenerateCAP(UnitMaker unitMaker, MissionTemplate template, Coordinates averageInitialPosition, Coordinates objectivesCenter)
         {
             List<int> capAircraftGroupIDs = new List<int>();
-
+            var commonCAPDB = Database.Instance.Common.CAP;
             foreach (Coalition coalition in Toolbox.GetEnumValues<Coalition>())
             {
                 if (coalition == Coalition.Neutural) // Skip Neutural
@@ -50,7 +42,7 @@ namespace BriefingRoom4DCS.Generator
 
                 Side side = ally ? Side.Ally : Side.Enemy;
                 AmountNR capAmount = ally ? template.SituationFriendlyAirForce.Get() : template.SituationEnemyAirForce.Get();
-                Coordinates flyPathtoObjectives = (objectivesCenter - averageInitialPosition).Normalize() * Toolbox.NM_TO_METERS * CommonCAPDB.MinDistanceFromOpposingPoint; // TODO: distance according to decade
+                Coordinates flyPathtoObjectives = (objectivesCenter - averageInitialPosition).Normalize() * Toolbox.NM_TO_METERS * commonCAPDB.MinDistanceFromOpposingPoint; // TODO: distance according to decade
                 Coordinates centerPoint = objectivesCenter;
                 if (ally) centerPoint -= flyPathtoObjectives;
                 else centerPoint += flyPathtoObjectives;
@@ -58,6 +50,7 @@ namespace BriefingRoom4DCS.Generator
                 Coordinates opposingPoint = objectivesCenter;
 
                 CreateCAPGroups(
+                    unitMaker,
                     template, side, coalition, capAmount,
                     centerPoint, opposingPoint,
                     objectivesCenter,
@@ -67,27 +60,31 @@ namespace BriefingRoom4DCS.Generator
             return capAircraftGroupIDs.ToArray();
         }
 
-        private void CreateCAPGroups(MissionTemplate template, Side side, Coalition coalition, AmountNR capAmount, Coordinates centerPoint, Coordinates opposingPoint, Coordinates destination, ref List<int> capAircraftGroupIDs)
+        private static void CreateCAPGroups(
+            UnitMaker unitMaker, MissionTemplate template, Side side,
+            Coalition coalition, AmountNR capAmount, Coordinates centerPoint,
+            Coordinates opposingPoint, Coordinates destination, ref List<int> capAircraftGroupIDs)
         {
-            DBCommonCAPLevel capLevelDB = CommonCAPDB.CAPLevels[(int)capAmount];
+            var commonCAPDB = Database.Instance.Common.CAP;
+            DBCommonCAPLevel capLevelDB = commonCAPDB.CAPLevels[(int)capAmount];
 
             int unitsLeftToSpawn = capLevelDB.UnitCount.GetValue();
             if (unitsLeftToSpawn < 1) return;  // No groups to add, no need to go any further
 
             do
             {
-                int groupSize = Toolbox.RandomFrom(CommonCAPDB.GroupSize);
+                int groupSize = Toolbox.RandomFrom(commonCAPDB.GroupSize);
                 groupSize = Math.Min(unitsLeftToSpawn, groupSize);
                 unitsLeftToSpawn -= groupSize;
 
                 // Find spawn point at the proper distance from the objective(s), but not to close from starting airbase
                 Coordinates? spawnPoint =
-                    UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                    unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         new SpawnPointType[] { SpawnPointType.Air },
                         centerPoint,
-                        CommonCAPDB.DistanceFromCenter,
+                        commonCAPDB.DistanceFromCenter,
                         opposingPoint,
-                        new MinMaxD(CommonCAPDB.MinDistanceFromOpposingPoint, 99999),
+                        new MinMaxD(commonCAPDB.MinDistanceFromOpposingPoint, 99999),
                         GeneratorTools.GetSpawnPointCoalition(template, side));
 
                 // No spawn point found, stop here.
@@ -105,12 +102,12 @@ namespace BriefingRoom4DCS.Generator
                     {"GroupY2", groupDestination.Y}
                 };
 
-                var luaGroup = CommonCAPDB.LuaGroup;
+                var luaGroup = commonCAPDB.LuaGroup;
                 var spawnpointCoordinates = spawnPoint.Value;
                 if (template.MissionFeatures.Contains("ContextGroundStartAircraft"))
                 {
                     luaGroup += "Parked";
-                    var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = UnitMaker.SpawnPointSelector.GetAirbaseAndParking(template, spawnPoint.Value, groupSize, coalition, false);
+                    var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = unitMaker.SpawnPointSelector.GetAirbaseAndParking(template, spawnPoint.Value, groupSize, coalition, false);
                     spawnpointCoordinates = airbase.Coordinates;
                     extraSettings.AddIfKeyUnused("ParkingID", parkingSpotIDsList.ToArray());
                     extraSettings.AddIfKeyUnused("GroupAirbaseID", airbase.DCSID);
@@ -119,9 +116,9 @@ namespace BriefingRoom4DCS.Generator
                 }
 
 
-                UnitMakerGroupInfo? groupInfo = UnitMaker.AddUnitGroup(
-                    Toolbox.RandomFrom(CommonCAPDB.UnitFamilies), groupSize, side,
-                    luaGroup, CommonCAPDB.LuaUnit,
+                UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(
+                    Toolbox.RandomFrom(commonCAPDB.UnitFamilies), groupSize, side,
+                    luaGroup, commonCAPDB.LuaUnit,
                     spawnpointCoordinates,
                     0,
                     extraSettings.ToArray());
@@ -132,7 +129,5 @@ namespace BriefingRoom4DCS.Generator
                 capAircraftGroupIDs.Add(groupInfo.Value.GroupID);
             } while (unitsLeftToSpawn > 0);
         }
-
-        public void Dispose() { }
     }
 }

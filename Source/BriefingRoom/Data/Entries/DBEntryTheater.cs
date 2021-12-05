@@ -51,71 +51,69 @@ namespace BriefingRoom4DCS.Data
         {
             int i;
 
-            using (INIFile ini = new INIFile(iniFilePath))
+            var ini = new INIFile(iniFilePath);
+            // [Briefing] section
+            BriefingNames = ini.GetValueArray<string>("Briefing", "Names");
+
+            // [Theater] section
+            DCSID = ini.GetValue<string>("Theater", "DCSID");
+            DefaultMapCenter = ini.GetValue<Coordinates>("Theater", "DefaultMapCenter");
+            MagneticDeclination = ini.GetValue<double>("Theater", "MagneticDeclination");
+
+            // [Daytime] section
+            DayTime = new MinMaxI[12];
+            for (i = 0; i < 12; i++)
             {
-                // [Briefing] section
-                BriefingNames = ini.GetValueArray<string>("Briefing", "Names");
+                MinMaxI? dayTimeValue = ParseMinMaxTime(ini.GetValueArray<string>("Daytime", ((Month)i).ToString()));
 
-                // [Theater] section
-                DCSID = ini.GetValue<string>("Theater", "DCSID");
-                DefaultMapCenter = ini.GetValue<Coordinates>("Theater", "DefaultMapCenter");
-                MagneticDeclination = ini.GetValue<double>("Theater", "MagneticDeclination");
+                if (!dayTimeValue.HasValue) // Cast failed
+                    BriefingRoom.PrintToLog(
+                        $"Wrong format for daytime value for month {(Month)i} in theater {ID}, using default value",
+                        LogMessageErrorLevel.Warning);
 
-                // [Daytime] section
-                DayTime = new MinMaxI[12];
-                for (i = 0; i < 12; i++)
-                {
-                    MinMaxI? dayTimeValue = ParseMinMaxTime(ini.GetValueArray<string>("Daytime", ((Month)i).ToString()));
-
-                    if (!dayTimeValue.HasValue) // Cast failed
-                        BriefingRoom.PrintToLog(
-                            $"Wrong format for daytime value for month {(Month)i} in theater {ID}, using default value",
-                            LogMessageErrorLevel.Warning);
-
-                    DayTime[i] = dayTimeValue ?? DEFAULT_DAYTIME;
-                }
-
-
-                // Water Coordinates
-                WaterCoordinates = new List<Coordinates>();
-                foreach (string key in ini.GetKeysInSection("WaterCoordinates"))
-                    WaterCoordinates.Add(ini.GetValue<Coordinates>("WaterCoordinates", key));
-
-
-                List<DBEntryTheaterSpawnPoint> spawnPointsList = new List<DBEntryTheaterSpawnPoint>();
-                foreach (string key in ini.GetKeysInSection("SpawnPoints"))
-                {
-                    DBEntryTheaterSpawnPoint sp = new DBEntryTheaterSpawnPoint();
-                    if (sp.Load(ini, key))
-                        spawnPointsList.Add(sp);
-                }
-                SpawnPoints = spawnPointsList.ToArray();
-
-                WaterExclusionCoordinates = new List<List<Coordinates>>();
-                if (ini.GetSections().Contains("waterexclusioncoordinates"))
-                {
-                    // Water Exclusion Coordinates
-                    var tempList = new List<Coordinates>();
-                    var groupID = ini.GetKeysInSection("WaterExclusionCoordinates").First().Split(".")[0];
-                    foreach (string key in ini.GetKeysInSection("WaterExclusionCoordinates"))
-                    {
-                        var newGroupId = key.Split(".")[0];
-                        if (groupID != newGroupId)
-                        {
-                            groupID = newGroupId;
-                            WaterExclusionCoordinates.Add(tempList);
-                            tempList = new List<Coordinates>();
-                        }
-                        tempList.Add(ini.GetValue<Coordinates>("WaterExclusionCoordinates", key));
-                    }
-                    WaterExclusionCoordinates.Add(tempList);
-                }
-
-                // [Temperature] section
-                Temperature = new MinMaxI[12];
-                for (i = 0; i < 12; i++)
-                    Temperature[i] = ini.GetValue<MinMaxI>("Temperature", ((Month)i).ToString());
+                DayTime[i] = dayTimeValue ?? DEFAULT_DAYTIME;
             }
+
+
+            // Water Coordinates
+            WaterCoordinates = new List<Coordinates>();
+            foreach (string key in ini.GetKeysInSection("WaterCoordinates"))
+                WaterCoordinates.Add(ini.GetValue<Coordinates>("WaterCoordinates", key));
+
+
+            List<DBEntryTheaterSpawnPoint> spawnPointsList = new List<DBEntryTheaterSpawnPoint>();
+            foreach (string key in ini.GetKeysInSection("SpawnPoints"))
+            {
+                DBEntryTheaterSpawnPoint sp = new DBEntryTheaterSpawnPoint();
+                if (sp.Load(ini, key))
+                    spawnPointsList.Add(sp);
+            }
+            SpawnPoints = spawnPointsList.ToArray();
+
+            WaterExclusionCoordinates = new List<List<Coordinates>>();
+            if (ini.GetSections().Contains("waterexclusioncoordinates"))
+            {
+                // Water Exclusion Coordinates
+                var tempList = new List<Coordinates>();
+                var groupID = ini.GetKeysInSection("WaterExclusionCoordinates").First().Split(".")[0];
+                foreach (string key in ini.GetKeysInSection("WaterExclusionCoordinates"))
+                {
+                    var newGroupId = key.Split(".")[0];
+                    if (groupID != newGroupId)
+                    {
+                        groupID = newGroupId;
+                        WaterExclusionCoordinates.Add(tempList);
+                        tempList = new List<Coordinates>();
+                    }
+                    tempList.Add(ini.GetValue<Coordinates>("WaterExclusionCoordinates", key));
+                }
+                WaterExclusionCoordinates.Add(tempList);
+            }
+
+            // [Temperature] section
+            Temperature = new MinMaxI[12];
+            for (i = 0; i < 12; i++)
+                Temperature[i] = ini.GetValue<MinMaxI>("Temperature", ((Month)i).ToString());
 
             return true;
         }

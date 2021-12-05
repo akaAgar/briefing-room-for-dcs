@@ -27,7 +27,7 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal class MissionGeneratorObjectives : IDisposable
+    internal class MissionGeneratorObjectives
     {
         private readonly List<string> ObjectiveNames = new List<string>();
 
@@ -53,15 +53,13 @@ namespace BriefingRoom4DCS.Generator
             DCSMission mission,
             MissionTemplate template,
             DBEntrySituation situationDB,
-            int objectiveIndex,
+            MissionTemplateObjective objectiveTemplate,
             Coordinates lastCoordinates,
             DBEntryAirbase playerAirbase,
             bool useObjectivePreset,
             out string objectiveName,
             out UnitFamily objectiveTargetUnitFamily)
         {
-            MissionTemplateObjective objectiveTemplate = template.Objectives[objectiveIndex];
-
             string[] featuresID = objectiveTemplate.Features.ToArray();
             DBEntryObjectiveTarget targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
             DBEntryObjectiveTargetBehavior targetBehaviorDB = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior);
@@ -81,12 +79,12 @@ namespace BriefingRoom4DCS.Generator
                 }
             }
 
-            if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective #{objectiveIndex + 1}.");
-            if (targetBehaviorDB == null) throw new BriefingRoomException($"Target behavior \"{targetBehaviorDB.UIDisplayName}\" not found for objective #{objectiveIndex + 1}.");
-            if (taskDB == null) throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not found for objective #{objectiveIndex + 1}.");
+            if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective #{objectiveTemplate.Alias}.");
+            if (targetBehaviorDB == null) throw new BriefingRoomException($"Target behavior \"{targetBehaviorDB.UIDisplayName}\" not found for objective #{objectiveTemplate.Alias}.");
+            if (taskDB == null) throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not found for objective #{objectiveTemplate.Alias}.");
 
             if (!taskDB.ValidUnitCategories.Contains(targetDB.UnitCategory))
-                throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not valid for objective #{objectiveIndex + 1} targets, which belong to category \"{targetDB.UnitCategory}\".");
+                throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not valid for objective #{objectiveTemplate.Alias} targets, which belong to category \"{targetDB.UnitCategory}\".");
 
             // Add feature ogg files
             foreach (string oggFile in taskDB.IncludeOgg)
@@ -197,7 +195,7 @@ namespace BriefingRoom4DCS.Generator
                 extraSettings.ToArray());
 
             if (!targetGroupInfo.HasValue) // Failed to generate target group
-                throw new BriefingRoomException($"Failed to generate group for objective {objectiveIndex + 1}");
+                throw new BriefingRoomException($"Failed to generate group for objective {objectiveTemplate.Alias}");
 
             // Static targets (aka buildings) need to have their "embedded" air defenses spawned in another group
             if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense) && (targetDB.UnitCategory == UnitCategory.Static))
@@ -223,6 +221,7 @@ namespace BriefingRoom4DCS.Generator
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Task, taskString);
 
             // Add Lua table for this objective
+            var objectiveIndex = template.Objectives.IndexOf(objectiveTemplate);
             string objectiveLua = $"briefingRoom.mission.objectives[{objectiveIndex + 1}] = {{ ";
             objectiveLua += $"complete = false, ";
             objectiveLua += $"groupID = {targetGroupInfo.Value.GroupID}, ";
@@ -281,11 +280,6 @@ namespace BriefingRoom4DCS.Generator
             }
 
             return new Waypoint(objectiveName, waypointCoordinates, onGround);
-        }
-
-        public void Dispose()
-        {
-            FeaturesGenerator.Dispose();
         }
     }
 }

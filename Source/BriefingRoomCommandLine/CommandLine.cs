@@ -27,7 +27,7 @@ using System.Windows.Forms;
 
 namespace BriefingRoom4DCS.CommandLineTool
 {
-    public class CommandLine : IDisposable
+    public class CommandLine
     {
         private static readonly string LOG_FILE = $"{Application.StartupPath}\\BriefingRoomCommandLineDebugLog.txt";
 
@@ -44,8 +44,7 @@ namespace BriefingRoom4DCS.CommandLineTool
 
             try
             {
-                using (CommandLine cl = new CommandLine())
-                    cl.DoCommandLine(args);
+                new CommandLine().DoCommandLine(args);
             }
             catch (Exception e)
             {
@@ -164,12 +163,6 @@ namespace BriefingRoom4DCS.CommandLineTool
             } while (File.Exists(newName));
 
             return newName;
-        }
-
-        public void Dispose()
-        {
-            BriefingRoomGenerator.Dispose();
-            LogWriter.Dispose();
         }
     }
 }

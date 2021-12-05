@@ -25,13 +25,10 @@ using System;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal class MissionGeneratorWeather : IDisposable
+    internal class MissionGeneratorWeather
     {
-        internal MissionGeneratorWeather() { }
 
-        public void Dispose() { }
-
-        internal void GenerateWeather(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, Month month, DBEntryAirbase playerAirbase, out int turbulenceFromWeather)
+        internal static int GenerateWeather(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, Month month, DBEntryAirbase playerAirbase)
         {
             var baseAlt = template.OptionsMission.Contains("SeaLevelRefCloud") ? 0.0 : playerAirbase.Elevation;
 
@@ -54,13 +51,13 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("WeatherTemperature", theaterDB.Temperature[(int)month].GetValue());
             mission.SetValue("WeatherVisibility", weatherDB.Visibility.GetValue());
 
-            turbulenceFromWeather = weatherDB.Turbulence.GetValue();
+            return weatherDB.Turbulence.GetValue();
         }
 
-        internal void GenerateWind(DCSMission mission, MissionTemplate template, int turbulenceFromWeather, out double windSpeedAtSeaLevel, out double windDirectionAtSeaLevel)
+        internal static Tuple<double, double> GenerateWind(DCSMission mission, MissionTemplate template, int turbulenceFromWeather)
         {
-            windSpeedAtSeaLevel = 0;
-            windDirectionAtSeaLevel = 0;
+            var windSpeedAtSeaLevel = 0.0;
+            var windDirectionAtSeaLevel = 0.0;
 
             Wind windLevel = template.EnvironmentWind == Wind.Random ? PickRandomWindLevel() : template.EnvironmentWind;
             BriefingRoom.PrintToLog($"Wind speed level set to \"{windLevel}\".");
@@ -86,9 +83,10 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue($"WeatherWindSpeedAverage", windAverage);
 
             mission.SetValue("WeatherGroundTurbulence", Database.Instance.Common.Wind[(int)windLevel].Turbulence.GetValue() + turbulenceFromWeather);
+            return new(windSpeedAtSeaLevel, windDirectionAtSeaLevel);
         }
 
-        private Wind PickRandomWindLevel()
+        private static Wind PickRandomWindLevel()
         {
             return Toolbox.RandomFrom(
                 Wind.Calm, Wind.Calm, Wind.Calm, Wind.Calm, Wind.Calm,

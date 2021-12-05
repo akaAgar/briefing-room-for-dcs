@@ -27,7 +27,7 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal class MissionGeneratorFlightPlan : IDisposable
+    internal class MissionGeneratorFlightPlan
     {
         private static readonly int[] EXTRA_WAYPOINT_COUNT = new int[] { 1, 1, 2, 2, 2, 2, 3 };
 
@@ -35,14 +35,8 @@ namespace BriefingRoom4DCS.Generator
 
         private const double BULLSEYE_DISTANCE_MAX = 40.0;
 
-        internal MissionGeneratorFlightPlan() { }
 
-        private double GetBullseyeRandomDistance()
-        {
-            return Toolbox.RandomDouble(BULLSEYE_DISTANCE_MIN, BULLSEYE_DISTANCE_MAX) * Toolbox.NM_TO_METERS;
-        }
-
-        internal void GenerateBullseyes(DCSMission mission, Coordinates objectivesCenter)
+        internal static void GenerateBullseyes(DCSMission mission, Coordinates objectivesCenter)
         {
             mission.SetValue("BullseyeBlueX", objectivesCenter.X + GetBullseyeRandomDistance());
             mission.SetValue("BullseyeBlueY", objectivesCenter.Y + GetBullseyeRandomDistance());
@@ -50,7 +44,7 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("BullseyeRedY", objectivesCenter.Y + GetBullseyeRandomDistance());
         }
 
-        internal void GenerateAircraftPackageWaypoints(MissionTemplate template, List<Waypoint> waypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter)
+        internal static void GenerateAircraftPackageWaypoints(MissionTemplate template, List<Waypoint> waypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter)
         {
             foreach (var package in template.AircraftPackages)
             {
@@ -60,7 +54,7 @@ namespace BriefingRoom4DCS.Generator
         }
 
 
-        internal void GenerateIngressAndEgressWaypoints(MissionTemplate template, List<Waypoint> waypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter)
+        internal static void GenerateIngressAndEgressWaypoints(MissionTemplate template, List<Waypoint> waypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter)
         {
             if (!template.MissionFeatures.Contains("IngressEgressWaypoints"))
                 return;
@@ -82,9 +76,7 @@ namespace BriefingRoom4DCS.Generator
                     baseIngressPosition + Coordinates.CreateRandom(ingressDeviation * 0.9, ingressDeviation * 1.1)));
         }
 
-        public void Dispose() { }
-
-        internal void GenerateObjectiveWPCoordinatesLua(MissionTemplate template, DCSMission mission, List<Waypoint> waypoints)
+        internal static void GenerateObjectiveWPCoordinatesLua(MissionTemplate template, DCSMission mission, List<Waypoint> waypoints)
         {
             for (int i = 0; i < waypoints.Count; i++)
             {
@@ -94,6 +86,11 @@ namespace BriefingRoom4DCS.Generator
                     mission.AppendValue("ScriptObjectives",
                         $"trigger.action.markToCoalition({i + 1}, \"{waypoints[i].Name}\", {{ x={waypoints[i].Coordinates.X.ToInvariantString()}, y=0, z={waypoints[i].Coordinates.Y.ToInvariantString()} }}, coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}, true, nil)\n");
             }
+        }
+
+        private static double GetBullseyeRandomDistance()
+        {
+            return Toolbox.RandomDouble(BULLSEYE_DISTANCE_MIN, BULLSEYE_DISTANCE_MAX) * Toolbox.NM_TO_METERS;
         }
     }
 }

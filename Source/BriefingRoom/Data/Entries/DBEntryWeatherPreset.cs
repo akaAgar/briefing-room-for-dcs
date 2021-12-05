@@ -51,26 +51,24 @@ namespace BriefingRoom4DCS.Data
 
         protected override bool OnLoad(string iniFilePath)
         {
-            using (INIFile ini = new INIFile(iniFilePath))
-            {
-                BriefingDescription = ini.GetValue<string>("Briefing", "Description");
+            var ini = new INIFile(iniFilePath);
+            BriefingDescription = ini.GetValue<string>("Briefing", "Description");
 
-                CloudsBase = ini.GetValue<MinMaxI>("Weather", "Clouds.Base");
-                CloudsPresets = ini.GetValueArray<string>("Weather", "Clouds.Presets");
-                CloudsThickness = ini.GetValue<MinMaxI>("Weather", "Clouds.Thickness");
+            CloudsBase = ini.GetValue<MinMaxI>("Weather", "Clouds.Base");
+            CloudsPresets = ini.GetValueArray<string>("Weather", "Clouds.Presets");
+            CloudsThickness = ini.GetValue<MinMaxI>("Weather", "Clouds.Thickness");
 
-                Dust = ini.GetValue<bool>("Weather", "Dust");
-                DustDensity = ini.GetValue<MinMaxI>("Weather", "Dust.Density");
+            Dust = ini.GetValue<bool>("Weather", "Dust");
+            DustDensity = ini.GetValue<MinMaxI>("Weather", "Dust.Density");
 
-                Fog = ini.GetValue<bool>("Weather", "Fog");
-                FogThickness = ini.GetValue<MinMaxI>("Weather", "Fog.Thickness");
-                FogVisibility = ini.GetValue<MinMaxI>("Weather", "Fog.Visibility");
+            Fog = ini.GetValue<bool>("Weather", "Fog");
+            FogThickness = ini.GetValue<MinMaxI>("Weather", "Fog.Thickness");
+            FogVisibility = ini.GetValue<MinMaxI>("Weather", "Fog.Visibility");
 
-                BadWeather = ini.GetValue<bool>("Weather", "IsBadWeather");
-                QNH = ini.GetValue<MinMaxI>("Weather", "QNH");
-                Turbulence = ini.GetValue<MinMaxI>("Weather", "Turbulence");
-                Visibility = ini.GetValue<MinMaxI>("Weather", "Visibility");
-            }
+            BadWeather = ini.GetValue<bool>("Weather", "IsBadWeather");
+            QNH = ini.GetValue<MinMaxI>("Weather", "QNH");
+            Turbulence = ini.GetValue<MinMaxI>("Weather", "Turbulence");
+            Visibility = ini.GetValue<MinMaxI>("Weather", "Visibility");
 
             return true;
         }

@@ -77,6 +77,6 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue(section, $"{key}.StartingAirbase", StartingAirbase);
         }
 
-        public void Dispose() { }
+
     }
 }

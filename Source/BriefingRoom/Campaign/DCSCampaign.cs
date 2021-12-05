@@ -29,7 +29,7 @@ using System.Text;
 
 namespace BriefingRoom4DCS.Campaign
 {
-    public sealed class DCSCampaign : IDisposable
+    public sealed class DCSCampaign
     {
         internal string CMPFile { get; set; }
 
@@ -114,10 +114,6 @@ namespace BriefingRoom4DCS.Campaign
                 MediaFiles.Add(fileName, mediaFileBytes);
         }
 
-        public void Dispose()
-        {
-
-        }
     }
 }
 

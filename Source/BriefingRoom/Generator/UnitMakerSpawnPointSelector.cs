@@ -26,7 +26,7 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal class UnitMakerSpawnPointSelector : IDisposable
+    internal class UnitMakerSpawnPointSelector
     {
         private const int MAX_RADIUS_SEARCH_ITERATIONS = 32;
 
@@ -229,7 +229,5 @@ namespace BriefingRoom4DCS.Generator
                 return true;
             return !ShapeManager.IsPosValid(coordinates, SituationDB.NoSpawnCoordinates);
         }
-
-        public void Dispose() { }
     }
 }

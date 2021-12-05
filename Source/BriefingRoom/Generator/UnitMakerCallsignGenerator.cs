@@ -26,7 +26,7 @@ using System.Collections.Generic;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal class UnitMakerCallsignGenerator : IDisposable
+    internal class UnitMakerCallsignGenerator
     {
         private static readonly int NATO_CALLSIGN_COUNT = Toolbox.EnumCount<UnitCallsignFamily>();
 
@@ -146,7 +146,5 @@ namespace BriefingRoom4DCS.Generator
                     return UnitCallsignFamily.Aircraft;
             }
         }
-
-        public void Dispose() { }
     }
 }

@@ -27,7 +27,7 @@ using System.Text;
 
 namespace BriefingRoom4DCS
 {
-    internal class INIFile : IDisposable
+    internal class INIFile
     {
         private readonly Dictionary<string, INIFileSection> Sections = new Dictionary<string, INIFileSection>(StringComparer.InvariantCultureIgnoreCase);
 
@@ -49,11 +49,6 @@ namespace BriefingRoom4DCS
             ini.Clear();
             ini.ParseINIString(iniString);
             return ini;
-        }
-
-        public void Dispose()
-        {
-            Clear();
         }
 
         internal void Clear()

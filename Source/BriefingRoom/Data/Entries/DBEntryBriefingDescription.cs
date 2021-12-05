@@ -27,17 +27,15 @@ namespace BriefingRoom4DCS.Data
 
         protected override bool OnLoad(string iniFilePath)
         {
-            using (INIFile ini = new INIFile(iniFilePath))
-            {
-                string defaultText = ini.GetValue<string>("BriefingDescription", "Description");
+            var ini = new INIFile(iniFilePath);
+            string defaultText = ini.GetValue<string>("BriefingDescription", "Description");
 
-                DescriptionText = new string[Toolbox.EnumCount<UnitFamily>()];
-                for (int i = 0; i < Toolbox.EnumCount<UnitFamily>(); i++)
-                {
-                    DescriptionText[i] = ini.GetValue<string>("BriefingDescription", $"Description.{(UnitFamily)i}");
-                    if (string.IsNullOrEmpty(DescriptionText[i]))
-                        DescriptionText[i] = defaultText;
-                }
+            DescriptionText = new string[Toolbox.EnumCount<UnitFamily>()];
+            for (int i = 0; i < Toolbox.EnumCount<UnitFamily>(); i++)
+            {
+                DescriptionText[i] = ini.GetValue<string>("BriefingDescription", $"Description.{(UnitFamily)i}");
+                if (string.IsNullOrEmpty(DescriptionText[i]))
+                    DescriptionText[i] = defaultText;
             }
 
             return true;

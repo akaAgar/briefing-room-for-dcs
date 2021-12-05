@@ -29,7 +29,7 @@ using System.Text;
 
 namespace BriefingRoom4DCS.Template
 {
-    public sealed class MissionTemplate : IDisposable
+    public sealed class MissionTemplate
     {
         private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BRPaths.ROOT}Default.brt";
         public const int MAX_OBJECTIVES = 5;
@@ -291,6 +291,6 @@ namespace BriefingRoom4DCS.Template
                 item.AssignAlias(AircraftPackages.IndexOf(item));
         }
 
-        public void Dispose() { }
+
     }
 }

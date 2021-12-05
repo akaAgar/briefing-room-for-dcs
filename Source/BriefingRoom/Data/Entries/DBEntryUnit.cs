@@ -61,52 +61,50 @@ namespace BriefingRoom4DCS.Data
 
         protected override bool OnLoad(string iniFilePath)
         {
-            using (INIFile ini = new INIFile(iniFilePath))
+            var ini = new INIFile(iniFilePath);
+            // Unit info
+            DCSIDs = (from string u in ini.GetValueArray<string>("Unit", "DCSID") select u.Trim()).ToArray();
+            if (DCSIDs.Length < 1)
             {
-                // Unit info
-                DCSIDs = (from string u in ini.GetValueArray<string>("Unit", "DCSID") select u.Trim()).ToArray();
-                if (DCSIDs.Length < 1)
-                {
-                    BriefingRoom.PrintToLog($"Unit {ID} contains no DCS unit ID, unit was ignored.", LogMessageErrorLevel.Warning);
-                    return false;
-                }
-                Families = ini.GetValueArray<UnitFamily>("Unit", "Families");
-                if (Families.Length == 0)
-                {
-                    BriefingRoom.PrintToLog($"Unit {ID} has no family, unit was ignored.", LogMessageErrorLevel.Warning);
-                    return false;
-                }
-                // Make sure all unit families belong to same category (unit cannot be a helicopter and a ground vehicle at the same time, for instance)
-                Families = (from UnitFamily f in Families where f.GetUnitCategory() == Category select f).Distinct().ToArray();
-                ExtraLua = ini.GetValue<string>("Unit", "ExtraLua").Trim();
-                if (!string.IsNullOrEmpty(ExtraLua) && !ExtraLua.EndsWith(",")) ExtraLua += ",";
-                Flags = ini.GetValueArrayAsEnumFlags<DBEntryUnitFlags>("Unit", "Flags");
-                OffsetCoordinates = (from string s in ini.GetValueArray<string>("Unit", "Offset.Coordinates", ';') select new Coordinates(s)).ToArray();
-                OffsetHeading = ini.GetValueArray<double>("Unit", "Offset.Heading");
-                Shape = ini.GetValueArray<string>("Unit", "Shape");
-                RequiredMod = ini.GetValue<string>("Unit", "RequiredMod");
+                BriefingRoom.PrintToLog($"Unit {ID} contains no DCS unit ID, unit was ignored.", LogMessageErrorLevel.Warning);
+                return false;
+            }
+            Families = ini.GetValueArray<UnitFamily>("Unit", "Families");
+            if (Families.Length == 0)
+            {
+                BriefingRoom.PrintToLog($"Unit {ID} has no family, unit was ignored.", LogMessageErrorLevel.Warning);
+                return false;
+            }
+            // Make sure all unit families belong to same category (unit cannot be a helicopter and a ground vehicle at the same time, for instance)
+            Families = (from UnitFamily f in Families where f.GetUnitCategory() == Category select f).Distinct().ToArray();
+            ExtraLua = ini.GetValue<string>("Unit", "ExtraLua").Trim();
+            if (!string.IsNullOrEmpty(ExtraLua) && !ExtraLua.EndsWith(",")) ExtraLua += ",";
+            Flags = ini.GetValueArrayAsEnumFlags<DBEntryUnitFlags>("Unit", "Flags");
+            OffsetCoordinates = (from string s in ini.GetValueArray<string>("Unit", "Offset.Coordinates", ';') select new Coordinates(s)).ToArray();
+            OffsetHeading = ini.GetValueArray<double>("Unit", "Offset.Heading");
+            Shape = ini.GetValueArray<string>("Unit", "Shape");
+            RequiredMod = ini.GetValue<string>("Unit", "RequiredMod");
 
-                AircraftData = new DBEntryUnitAircraftData();
+            AircraftData = new DBEntryUnitAircraftData();
 
-                // Load the list of operators
-                Operators = new Dictionary<Country, Decade[]>();
-                foreach (string k in ini.GetKeysInSection("Operators"))
+            // Load the list of operators
+            Operators = new Dictionary<Country, Decade[]>();
+            foreach (string k in ini.GetKeysInSection("Operators"))
+            {
+                if (!Enum.TryParse(k, true, out Country country))
                 {
-                    if (!Enum.TryParse(k, true, out Country country))
-                    {
-                        BriefingRoom.PrintToLog($"Country {k} in unit {ID} doesn't exist.", LogMessageErrorLevel.Warning);
-                        continue;
-                    }
-
-                    if (Operators.ContainsKey(country)) continue;
-                    Operators.Add(country, ini.GetValueArrayAsMinMaxEnum<Decade>("Operators", k));
+                    BriefingRoom.PrintToLog($"Country {k} in unit {ID} doesn't exist.", LogMessageErrorLevel.Warning);
+                    continue;
                 }
 
-                if (IsAircraft) // Load aircraft-specific data, if required
-                {
-                    DCSIDs = new string[] { DCSIDs[0] }; // Aircraft can not have multiple unit types in their group
-                    AircraftData = new DBEntryUnitAircraftData(ini, iniFilePath.Contains(BRPaths.CUSTOMDATABASE));
-                }
+                if (Operators.ContainsKey(country)) continue;
+                Operators.Add(country, ini.GetValueArrayAsMinMaxEnum<Decade>("Operators", k));
+            }
+
+            if (IsAircraft) // Load aircraft-specific data, if required
+            {
+                DCSIDs = new string[] { DCSIDs[0] }; // Aircraft can not have multiple unit types in their group
+                AircraftData = new DBEntryUnitAircraftData(ini, iniFilePath.Contains(BRPaths.CUSTOMDATABASE));
             }
 
             return true;

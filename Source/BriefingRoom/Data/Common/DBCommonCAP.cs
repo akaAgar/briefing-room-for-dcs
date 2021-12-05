@@ -24,7 +24,7 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
-    internal class DBCommonCAP : IDisposable
+    internal class DBCommonCAP
     {
         internal MinMaxD DistanceFromCenter { get; }
 
@@ -44,24 +44,22 @@ namespace BriefingRoom4DCS.Data
 
         internal DBCommonCAP()
         {
-            using (INIFile ini = new INIFile($"{BRPaths.DATABASE}CAP.ini"))
-            {
-                DistanceFromCenter = ini.GetValue<MinMaxD>("CAP", "DistanceFromCenter");
-                GroupSize = (from int groupSize in ini.GetValueArray<int>("CAP", "GroupSize") where groupSize > 0 select groupSize).ToArray();
-                if (GroupSize.Length == 0) GroupSize = new int[] { 1 };
-                FlightPathLength = ini.GetValue<MinMaxD>("CAP", "FlightPathLength") * Toolbox.NM_TO_METERS;
-                LuaGroup = ini.GetValue<string>("CAP", "Lua.Group");
-                LuaUnit = ini.GetValue<string>("CAP", "Lua.Unit");
-                MinDistanceFromOpposingPoint = ini.GetValue<double>("CAP", "MinDistanceFromOpposingPoint");
-                UnitFamilies = (from UnitFamily unitFamily in ini.GetValueArray<UnitFamily>("CAP", "UnitFamilies") where unitFamily.GetUnitCategory() == UnitCategory.Plane select unitFamily).ToArray();
-                if (UnitFamilies.Length == 0) UnitFamilies = new UnitFamily[] { UnitFamily.PlaneFighter };
+            INIFile ini = new($"{BRPaths.DATABASE}CAP.ini");
+            DistanceFromCenter = ini.GetValue<MinMaxD>("CAP", "DistanceFromCenter");
+            GroupSize = (from int groupSize in ini.GetValueArray<int>("CAP", "GroupSize") where groupSize > 0 select groupSize).ToArray();
+            if (GroupSize.Length == 0) GroupSize = new int[] { 1 };
+            FlightPathLength = ini.GetValue<MinMaxD>("CAP", "FlightPathLength") * Toolbox.NM_TO_METERS;
+            LuaGroup = ini.GetValue<string>("CAP", "Lua.Group");
+            LuaUnit = ini.GetValue<string>("CAP", "Lua.Unit");
+            MinDistanceFromOpposingPoint = ini.GetValue<double>("CAP", "MinDistanceFromOpposingPoint");
+            UnitFamilies = (from UnitFamily unitFamily in ini.GetValueArray<UnitFamily>("CAP", "UnitFamilies") where unitFamily.GetUnitCategory() == UnitCategory.Plane select unitFamily).ToArray();
+            if (UnitFamilies.Length == 0) UnitFamilies = new UnitFamily[] { UnitFamily.PlaneFighter };
 
-                CAPLevels = new DBCommonCAPLevel[Toolbox.EnumCount<AmountNR>()];
-                for (int i = 0; i < Toolbox.EnumCount<AmountNR>(); i++)
-                    CAPLevels[i] = new DBCommonCAPLevel(ini, (AmountNR)i);
-            }
+            CAPLevels = new DBCommonCAPLevel[Toolbox.EnumCount<AmountNR>()];
+            for (int i = 0; i < Toolbox.EnumCount<AmountNR>(); i++)
+                CAPLevels[i] = new DBCommonCAPLevel(ini, (AmountNR)i);
         }
 
-        public void Dispose() { }
+
     }
 }

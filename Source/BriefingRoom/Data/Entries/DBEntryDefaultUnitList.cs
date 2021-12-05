@@ -36,22 +36,20 @@ namespace BriefingRoom4DCS.Data
                 for (j = 0; j < Toolbox.EnumCount<Decade>(); j++)
                     DefaultUnits[i, j] = new string[0];
 
-            using (INIFile ini = new INIFile(iniFilePath))
-            {
-                foreach (UnitFamily family in Toolbox.GetEnumValues<UnitFamily>())
-                    foreach (Decade decade in Toolbox.GetEnumValues<Decade>())
-                    {
-                        string[] units = GetValidDBEntryIDs<DBEntryUnit>(ini.GetValueArray<string>($"{decade}", $"{family}"), out string[] invalidUnits);
+            var ini = new INIFile(iniFilePath);
+            foreach (UnitFamily family in Toolbox.GetEnumValues<UnitFamily>())
+                foreach (Decade decade in Toolbox.GetEnumValues<Decade>())
+                {
+                    string[] units = GetValidDBEntryIDs<DBEntryUnit>(ini.GetValueArray<string>($"{decade}", $"{family}"), out string[] invalidUnits);
 
-                        foreach (string u in invalidUnits)
-                            BriefingRoom.PrintToLog($"Unit \"{u}\" not found in default unit list \"{ID}\".", LogMessageErrorLevel.Warning);
+                    foreach (string u in invalidUnits)
+                        BriefingRoom.PrintToLog($"Unit \"{u}\" not found in default unit list \"{ID}\".", LogMessageErrorLevel.Warning);
 
-                        if (units.Length == 0) continue;
+                    if (units.Length == 0) continue;
 
-                        for (i = (int)decade; i <= (int)Decade.Decade2020; i++)
-                            DefaultUnits[(int)family, i] = units.ToArray();
-                    }
-            }
+                    for (i = (int)decade; i <= (int)Decade.Decade2020; i++)
+                        DefaultUnits[(int)family, i] = units.ToArray();
+                }
 
             for (i = 0; i < Toolbox.EnumCount<UnitFamily>(); i++)
                 for (j = 0; j < Toolbox.EnumCount<Decade>(); j++)

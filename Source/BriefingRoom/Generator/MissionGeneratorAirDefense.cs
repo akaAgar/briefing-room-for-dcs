@@ -24,18 +24,10 @@ using System;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal class MissionGeneratorAirDefense : IDisposable
+    internal class MissionGeneratorAirDefense
     {
-        private DBCommonAirDefense CommonAirDefenseDB { get { return Database.Instance.Common.AirDefense; } }
 
-        private readonly UnitMaker UnitMaker;
-
-        internal MissionGeneratorAirDefense(UnitMaker unitMaker)
-        {
-            UnitMaker = unitMaker;
-        }
-
-        internal void GenerateAirDefense(MissionTemplate template, Coordinates averageInitialPosition, Coordinates objectivesCenter)
+        internal static void GenerateAirDefense(MissionTemplate template, UnitMaker unitMaker, Coordinates averageInitialPosition, Coordinates objectivesCenter)
         {
             foreach (Coalition coalition in Toolbox.GetEnumValues<Coalition>())
             {
@@ -47,16 +39,17 @@ namespace BriefingRoom4DCS.Generator
                 Coordinates opposingPoint = ally ? objectivesCenter : averageInitialPosition;
 
                 foreach (AirDefenseRange airDefenseRange in Toolbox.GetEnumValues<AirDefenseRange>())
-                    CreateAirDefenseGroups(template, side, coalition, airDefenseAmount, airDefenseRange, centerPoint, opposingPoint);
+                    CreateAirDefenseGroups(template, unitMaker, side, coalition, airDefenseAmount, airDefenseRange, centerPoint, opposingPoint);
             }
         }
 
-        private void CreateAirDefenseGroups(
-            MissionTemplate template, Side side, Coalition coalition,
+        private static void CreateAirDefenseGroups(
+            MissionTemplate template, UnitMaker unitMaker, Side side, Coalition coalition,
             AmountNR airDefenseAmount, AirDefenseRange airDefenseRange,
             Coordinates centerPoint, Coordinates opposingPoint)
         {
-            DBCommonAirDefenseLevel airDefenseLevelDB = CommonAirDefenseDB.AirDefenseLevels[(int)airDefenseAmount];
+            var commonAirDefenseDB = Database.Instance.Common.AirDefense;
+            DBCommonAirDefenseLevel airDefenseLevelDB = commonAirDefenseDB.AirDefenseLevels[(int)airDefenseAmount];
 
             int groupCount = airDefenseLevelDB.GroupsInArea[(int)airDefenseRange].GetValue();
             if (groupCount < 1) return;  // No groups to add, no need to go any further
@@ -83,12 +76,12 @@ namespace BriefingRoom4DCS.Generator
             {
                 // Find spawn point at the proper distance
                 Coordinates? spawnPoint =
-                    UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                    unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         validSpawnPoints,
                         centerPoint,
-                        CommonAirDefenseDB.DistanceFromCenter[(int)side, (int)airDefenseRange],
+                        commonAirDefenseDB.DistanceFromCenter[(int)side, (int)airDefenseRange],
                         opposingPoint,
-                        new MinMaxD(CommonAirDefenseDB.MinDistanceFromOpposingPoint[(int)side, (int)airDefenseRange], 99999),
+                        new MinMaxD(commonAirDefenseDB.MinDistanceFromOpposingPoint[(int)side, (int)airDefenseRange], 99999),
                         GeneratorTools.GetSpawnPointCoalition(template, side));
 
                 // No spawn point found, stop here.
@@ -102,7 +95,7 @@ namespace BriefingRoom4DCS.Generator
                 unitFamilies = Toolbox.ShuffleArray(unitFamilies);
                 for (int j = 0; j < unitFamilies.Length; j++) // Try picking for various families until a valid one is found
                 {
-                    groupInfo = UnitMaker.AddUnitGroup(
+                    groupInfo = unitMaker.AddUnitGroup(
                         unitFamilies[j], 1, side,
                         "GroupVehicle", "UnitVehicle",
                         spawnPoint.Value);
@@ -115,11 +108,6 @@ namespace BriefingRoom4DCS.Generator
                         $"Failed to add {airDefenseRange} air defense unit group for {coalition} coalition.",
                         LogMessageErrorLevel.Warning);
             }
-        }
-
-        public void Dispose()
-        {
-
         }
     }
 }

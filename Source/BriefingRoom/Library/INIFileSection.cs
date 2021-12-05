@@ -24,7 +24,7 @@ using System.Linq;
 
 namespace BriefingRoom4DCS
 {
-    internal class INIFileSection : IDisposable
+    internal class INIFileSection
     {
         internal bool Abstract { get; }
 
@@ -73,11 +73,6 @@ namespace BriefingRoom4DCS
         internal bool ContainsKey(string key)
         {
             return Values.ContainsKey(key);
-        }
-
-        public void Dispose()
-        {
-            Clear();
         }
     }
 }

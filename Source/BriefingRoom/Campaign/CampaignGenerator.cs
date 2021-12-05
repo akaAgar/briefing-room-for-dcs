@@ -31,19 +31,12 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Campaign
 {
-    internal class CampaignGenerator : IDisposable
+    internal class CampaignGenerator
     {
         private static readonly string CAMPAIGN_LUA_TEMPLATE = $"{BRPaths.INCLUDE_LUA}Campaign\\Campaign.lua";
         private static readonly string CAMPAIGN_STAGE_LUA_TEMPLATE = $"{BRPaths.INCLUDE_LUA}Campaign\\CampaignStage.lua";
 
-        private readonly MissionGenerator MissionGenerator;
-
-        internal CampaignGenerator(MissionGenerator missionGenerator)
-        {
-            MissionGenerator = missionGenerator;
-        }
-
-        internal DCSCampaign Generate(CampaignTemplate campaignTemplate)
+        internal static DCSCampaign Generate(CampaignTemplate campaignTemplate)
         {
             DCSCampaign campaign = new();
 
@@ -85,7 +78,7 @@ namespace BriefingRoom4DCS.Campaign
             return campaign;
         }
 
-        private DateTime GenerateCampaignDate(CampaignTemplate campaignTemplate)
+        private static DateTime GenerateCampaignDate(CampaignTemplate campaignTemplate)
         {
             int year = Toolbox.GetRandomYearFromDecade(campaignTemplate.ContextDecade);
             Month month = Toolbox.RandomFrom(Toolbox.GetEnumValues<Month>());
@@ -95,39 +88,37 @@ namespace BriefingRoom4DCS.Campaign
             return date;
         }
 
-        private void CreateImageFiles(CampaignTemplate campaignTemplate, DCSCampaign campaign, string baseFileName)
+        private static void CreateImageFiles(CampaignTemplate campaignTemplate, DCSCampaign campaign, string baseFileName)
         {
             string allyFlagName = campaignTemplate.GetCoalition(campaignTemplate.ContextPlayerCoalition);
             string enemyFlagName = campaignTemplate.GetCoalition((Coalition)(1 - (int)campaignTemplate.ContextPlayerCoalition));
 
-            using (ImageMaker imgMaker = new())
-            {
-                string theaterImage;
-                string[] theaterImages = Directory.GetFiles($"{BRPaths.INCLUDE_JPG}Theaters\\", $"{campaignTemplate.ContextTheater}*.jpg");
-                if (theaterImages.Length == 0)
-                    theaterImage = "_default.jpg";
-                else
-                    theaterImage = "Theaters\\" + Path.GetFileName(Toolbox.RandomFrom(theaterImages));
+            ImageMaker imgMaker = new();
+            string theaterImage;
+            string[] theaterImages = Directory.GetFiles($"{BRPaths.INCLUDE_JPG}Theaters\\", $"{campaignTemplate.ContextTheater}*.jpg");
+            if (theaterImages.Length == 0)
+                theaterImage = "_default.jpg";
+            else
+                theaterImage = "Theaters\\" + Path.GetFileName(Toolbox.RandomFrom(theaterImages));
 
-                // Print the name of the campaign over the campaign "title picture"
-                imgMaker.TextOverlay.Text = campaign.Name;
-                imgMaker.TextOverlay.Alignment = ContentAlignment.TopCenter;
-                campaign.AddMediaFile($"{baseFileName}_Title.jpg",
-                    imgMaker.GetImageBytes(
-                        new ImageMakerLayer(theaterImage),
-                        new ImageMakerLayer($"Flags\\{enemyFlagName}.png", ContentAlignment.MiddleCenter, -32, -32),
-                        new ImageMakerLayer($"Flags\\{allyFlagName}.png", ContentAlignment.MiddleCenter, 32, 32)));
+            // Print the name of the campaign over the campaign "title picture"
+            imgMaker.TextOverlay.Text = campaign.Name;
+            imgMaker.TextOverlay.Alignment = ContentAlignment.TopCenter;
+            campaign.AddMediaFile($"{baseFileName}_Title.jpg",
+                imgMaker.GetImageBytes(
+                    new ImageMakerLayer(theaterImage),
+                    new ImageMakerLayer($"Flags\\{enemyFlagName}.png", ContentAlignment.MiddleCenter, -32, -32),
+                    new ImageMakerLayer($"Flags\\{allyFlagName}.png", ContentAlignment.MiddleCenter, 32, 32)));
 
-                // Reset background and text overlay
-                imgMaker.BackgroundColor = Color.Black;
-                imgMaker.TextOverlay.Text = "";
+            // Reset background and text overlay
+            imgMaker.BackgroundColor = Color.Black;
+            imgMaker.TextOverlay.Text = "";
 
-                campaign.AddMediaFile($"{baseFileName}_Success.jpg", imgMaker.GetImageBytes("Sky.jpg", $"Flags\\{allyFlagName}.png"));
-                campaign.AddMediaFile($"{baseFileName}_Failure.jpg", imgMaker.GetImageBytes("Fire.jpg", $"Flags\\{allyFlagName}.png", "Burning.png"));
-            }
+            campaign.AddMediaFile($"{baseFileName}_Success.jpg", imgMaker.GetImageBytes("Sky.jpg", $"Flags\\{allyFlagName}.png"));
+            campaign.AddMediaFile($"{baseFileName}_Failure.jpg", imgMaker.GetImageBytes("Fire.jpg", $"Flags\\{allyFlagName}.png", "Burning.png"));
         }
 
-        private string GetCMPFile(CampaignTemplate campaignTemplate, string campaignName)
+        private static string GetCMPFile(CampaignTemplate campaignTemplate, string campaignName)
         {
             string lua = File.ReadAllText(CAMPAIGN_LUA_TEMPLATE);
             GeneratorTools.ReplaceKey(ref lua, "Name", campaignName);
@@ -151,7 +142,7 @@ namespace BriefingRoom4DCS.Campaign
             return lua.Replace("\r\n", "\n");
         }
 
-        private MissionTemplate CreateMissionTemplate(CampaignTemplate campaignTemplate, string campaignName, int missionIndex, int missionCount)
+        private static MissionTemplate CreateMissionTemplate(CampaignTemplate campaignTemplate, string campaignName, int missionIndex, int missionCount)
         {
             string weatherPreset = GetWeatherForMission(campaignTemplate.EnvironmentBadWeatherChance);
 
@@ -203,7 +194,7 @@ namespace BriefingRoom4DCS.Campaign
             return template;
         }
 
-        private int GetObjectiveDistance(Amount objectiveDistance)
+        private static int GetObjectiveDistance(Amount objectiveDistance)
         {
             switch (objectiveDistance)
             {
@@ -215,7 +206,7 @@ namespace BriefingRoom4DCS.Campaign
             }
         }
 
-        private Wind GetWindForMission(Amount badWeatherChance, string weatherPreset)
+        private static Wind GetWindForMission(Amount badWeatherChance, string weatherPreset)
         {
             // Pick a max wind force
             Wind maxWind;
@@ -238,7 +229,7 @@ namespace BriefingRoom4DCS.Campaign
             return (Wind)Toolbox.Clamp((int)wind, (int)Wind.Calm, (int)Wind.Storm);
         }
 
-        private AmountNR GetPowerLevel(AmountNR amount, CampaignDifficultyVariation variation, int missionIndex, int missionsCount, bool reverseVariation = false)
+        private static AmountNR GetPowerLevel(AmountNR amount, CampaignDifficultyVariation variation, int missionIndex, int missionsCount, bool reverseVariation = false)
         {
             if (amount == AmountNR.Random) return AmountNR.Random;
             if (variation == CampaignDifficultyVariation.Steady) return amount;
@@ -261,7 +252,7 @@ namespace BriefingRoom4DCS.Campaign
             return (AmountNR)Toolbox.Clamp((int)amountDouble, (int)AmountNR.VeryLow, (int)AmountNR.VeryHigh);
         }
 
-        private string GetWeatherForMission(Amount badWeatherChance)
+        private static string GetWeatherForMission(Amount badWeatherChance)
         {
             // Chance to have bad weather
             int chance;
@@ -288,7 +279,7 @@ namespace BriefingRoom4DCS.Campaign
             return weather;
         }
 
-        private TimeOfDay GetTimeOfDayForMission(Amount nightMissionChance)
+        private static TimeOfDay GetTimeOfDayForMission(Amount nightMissionChance)
         {
             int chance;
             switch (nightMissionChance)
@@ -306,7 +297,7 @@ namespace BriefingRoom4DCS.Campaign
                 return TimeOfDay.RandomDaytime;
         }
 
-        private int GetObjectiveCountForMission(Amount amount)
+        private static int GetObjectiveCountForMission(Amount amount)
         {
             switch (amount)
             {
@@ -323,8 +314,6 @@ namespace BriefingRoom4DCS.Campaign
             }
         }
 
-        private DateTime IncrementDate(DateTime dateTime) => dateTime.AddDays(Toolbox.RandomMinMax(1, 3));
-
-        public void Dispose() { }
+        private static DateTime IncrementDate(DateTime dateTime) => dateTime.AddDays(Toolbox.RandomMinMax(1, 3));
     }
 }

@@ -30,7 +30,7 @@ using System.Linq;
 
 namespace BriefingRoom4DCS
 {
-    public sealed class BriefingRoom : IDisposable
+    public sealed class BriefingRoom
     {
         public static string TARGETED_DCS_WORLD_VERSION { get; private set; }
 
@@ -42,22 +42,15 @@ namespace BriefingRoom4DCS
 
         public delegate void LogHandler(string message, LogMessageErrorLevel errorLevel);
 
-        private readonly CampaignGenerator CampaignGen;
-
-        private readonly MissionGenerator Generator;
-
         private static event LogHandler OnMessageLogged;
 
         public BriefingRoom(LogHandler logHandler = null)
         {
-            using (INIFile ini = new INIFile($"{BRPaths.DATABASE}Common.ini"))
-                TARGETED_DCS_WORLD_VERSION = ini.GetValue("Versions", "DCSVersion", "2.7");
+            INIFile ini = new ($"{BRPaths.DATABASE}Common.ini");
+            TARGETED_DCS_WORLD_VERSION = ini.GetValue("Versions", "DCSVersion", "2.7");
 
             OnMessageLogged += logHandler;
             Database.Instance.Initialize();
-
-            Generator = new MissionGenerator();
-            CampaignGen = new CampaignGenerator(Generator);
         }
 
         public static DatabaseEntryInfo[] GetDatabaseEntriesInfo(DatabaseEntryType entryType, string parameter = "")
@@ -152,22 +145,22 @@ namespace BriefingRoom4DCS
 
         public DCSMission GenerateMission(string templateFilePath, bool useObjectivePresets = false)
         {
-            return Generator.GenerateRetryable(new MissionTemplate(templateFilePath), useObjectivePresets);
+            return MissionGenerator.GenerateRetryable(new MissionTemplate(templateFilePath), useObjectivePresets);
         }
 
         public DCSMission GenerateMission(MissionTemplate template, bool useObjectivePresets = false)
         {
-            return Generator.GenerateRetryable(template, useObjectivePresets);
+            return MissionGenerator.GenerateRetryable(template, useObjectivePresets);
         }
 
         public DCSCampaign GenerateCampaign(string templateFilePath, bool useObjectivePresets = false)
         {
-            return CampaignGen.Generate(new CampaignTemplate(templateFilePath));
+            return CampaignGenerator.Generate(new CampaignTemplate(templateFilePath));
         }
 
         public DCSCampaign GenerateCampaign(CampaignTemplate template)
         {
-            return CampaignGen.Generate(template);
+            return CampaignGenerator.Generate(template);
         }
 
         public static string GetBriefingRoomRootPath() { return BRPaths.ROOT; }
@@ -203,11 +196,6 @@ namespace BriefingRoom4DCS
             // Throw an exception if there was an error.
             if (errorLevel == LogMessageErrorLevel.Error)
                 throw new BriefingRoomException(message);
-        }
-
-        public void Dispose()
-        {
-            Generator.Dispose();
         }
     }
 }

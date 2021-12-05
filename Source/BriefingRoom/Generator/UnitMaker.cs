@@ -30,7 +30,7 @@ namespace BriefingRoom4DCS.Generator
         }
     }
 
-    internal class UnitMaker : IDisposable
+    internal class UnitMaker
     {
         private const double AIRCRAFT_UNIT_SPACING = 50.0;
         private const double SHIP_UNIT_SPACING = 100.0;
@@ -558,12 +558,6 @@ namespace BriefingRoom4DCS.Generator
             return groupCoordinates + new Coordinates(
                 (offsetCoordinates.X * cosTheta) + (offsetCoordinates.Y * sinTheta),
                 (-offsetCoordinates.X * sinTheta) + (offsetCoordinates.Y * cosTheta));
-        }
-
-        public void Dispose()
-        {
-            CallsignGenerator.Dispose();
-            SpawnPointSelector.Dispose();
         }
     }
 }

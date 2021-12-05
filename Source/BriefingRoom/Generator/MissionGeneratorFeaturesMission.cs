@@ -30,7 +30,7 @@ namespace BriefingRoom4DCS.Generator
     {
         internal MissionGeneratorFeaturesMission(UnitMaker unitMaker, MissionTemplate template) : base(unitMaker, template) { }
 
-        internal void GenerateMissionFeature(DCSMission mission, string featureID, int missionFeatureIndex, Coordinates initialCoordinates, Coordinates objectivesCenter)
+        internal void GenerateMissionFeature(DCSMission mission, string featureID, Coordinates initialCoordinates, Coordinates objectivesCenter)
         {
             DBEntryFeatureMission featureDB = Database.Instance.GetEntry<DBEntryFeatureMission>(featureID);
             if (featureDB == null) // Feature doesn't exist
@@ -38,11 +38,11 @@ namespace BriefingRoom4DCS.Generator
                 BriefingRoom.PrintToLog($"Mission feature {featureID} not found.", LogMessageErrorLevel.Warning);
                 return;
             }
-            Coalition coalition = featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly) ? Template.ContextPlayerCoalition : Template.ContextPlayerCoalition.GetEnemy();
+            Coalition coalition = featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly) ? _template.ContextPlayerCoalition : _template.ContextPlayerCoalition.GetEnemy();
 
             Coordinates pointSearchCenter = Coordinates.Lerp(initialCoordinates, objectivesCenter, featureDB.UnitGroupSpawnDistance);
             Coordinates? spawnPoint =
-                UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                     featureDB.UnitGroupValidSpawnPoints, pointSearchCenter,
                     featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.AwayFromMissionArea) ? new MinMaxD(50, 100) : new MinMaxD(0, 5),
                     coalition: featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.IgnoreBorders) ? null : coalition
@@ -55,9 +55,9 @@ namespace BriefingRoom4DCS.Generator
 
             Coordinates coordinates2 = spawnPoint.Value + Coordinates.CreateRandom(5, 20) * Toolbox.NM_TO_METERS;
             Dictionary<string, object> extraSettings = new Dictionary<string, object>();
-            UnitMakerGroupInfo? groupInfo = AddMissionFeature(mission, featureDB, spawnPoint.Value, coordinates2, ref extraSettings);
+            UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, spawnPoint.Value, coordinates2, ref extraSettings);
 
-            AddBriefingRemarkFromFeature(mission, featureDB, false, groupInfo, extraSettings);
+            AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
         }
     }
 }

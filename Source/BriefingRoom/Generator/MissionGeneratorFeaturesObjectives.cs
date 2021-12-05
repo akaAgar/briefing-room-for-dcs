@@ -50,7 +50,7 @@ namespace BriefingRoom4DCS.Generator
             else
             {
                 Coordinates? spawnPoint =
-                    UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                    _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         featureDB.UnitGroupValidSpawnPoints, objectiveCoordinates,
                         new MinMaxD(spawnDistance * .75, spawnDistance * 1.5));
 
@@ -71,11 +71,11 @@ namespace BriefingRoom4DCS.Generator
             extraSettings.AddIfKeyUnused("ObjectiveGroupID", objectiveGroupID);
 
             UnitMakerGroupInfo? groupInfo = AddMissionFeature(
-                mission, featureDB,
+                featureDB, mission,
                 coordinates, coordinates2,
                 ref extraSettings, objectiveTargetSide);
 
-            AddBriefingRemarkFromFeature(mission, featureDB, false, groupInfo, extraSettings);
+            AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
         }
     }
 }

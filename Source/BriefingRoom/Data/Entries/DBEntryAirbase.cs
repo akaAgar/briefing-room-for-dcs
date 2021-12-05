@@ -51,26 +51,24 @@ namespace BriefingRoom4DCS.Data
 
         protected override bool OnLoad(string iniFilePath)
         {
-            using (INIFile ini = new INIFile(iniFilePath))
-            {
-                ATC = ini.GetValue<string>("Airbase", "ATC");
-                Coordinates = ini.GetValue<Coordinates>("Airbase", "Coordinates");
-                DCSID = ini.GetValue<int>("Airbase", "DCSID");
-                Elevation = ini.GetValue<double>("Airbase", "Elevation");
-                Flags = ini.GetValueArrayAsEnumFlags<AirbaseFlag>("Airbase", "Flags");
-                ILS = ini.GetValue<string>("Airbase", "ILS");
-                Name = ini.GetValue<string>("Airbase", "Name");
-                UIDisplayName = ini.GetValue<string>("Airbase", "Name");
-                Runways = ini.GetValue<string>("Airbase", "Runways");
-                TACAN = ini.GetValue<string>("Airbase", "TACAN");
-                Theater = ini.GetValue<string>("Airbase", "Theater").ToLowerInvariant();
+            var ini = new INIFile(iniFilePath);
+            ATC = ini.GetValue<string>("Airbase", "ATC");
+            Coordinates = ini.GetValue<Coordinates>("Airbase", "Coordinates");
+            DCSID = ini.GetValue<int>("Airbase", "DCSID");
+            Elevation = ini.GetValue<double>("Airbase", "Elevation");
+            Flags = ini.GetValueArrayAsEnumFlags<AirbaseFlag>("Airbase", "Flags");
+            ILS = ini.GetValue<string>("Airbase", "ILS");
+            Name = ini.GetValue<string>("Airbase", "Name");
+            UIDisplayName = ini.GetValue<string>("Airbase", "Name");
+            Runways = ini.GetValue<string>("Airbase", "Runways");
+            TACAN = ini.GetValue<string>("Airbase", "TACAN");
+            Theater = ini.GetValue<string>("Airbase", "Theater").ToLowerInvariant();
 
-                if (!Database.Instance.EntryExists<DBEntryTheater>(Theater))
-                    throw new Exception($"Airbase \"{ID}\" located on non-existing theater \"{Theater}\".");
+            if (!Database.Instance.EntryExists<DBEntryTheater>(Theater))
+                throw new Exception($"Airbase \"{ID}\" located on non-existing theater \"{Theater}\".");
 
-                ParkingSpots = LoadParkingSpots(ini, "Parking");
-                if (ParkingSpots.Length == 0) throw new Exception($"No parking spots for airbase \"{ID}\".");
-            }
+            ParkingSpots = LoadParkingSpots(ini, "Parking");
+            if (ParkingSpots.Length == 0) throw new Exception($"No parking spots for airbase \"{ID}\".");
 
             return true;
         }

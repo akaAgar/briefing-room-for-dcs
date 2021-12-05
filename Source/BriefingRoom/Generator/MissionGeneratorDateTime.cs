@@ -25,16 +25,16 @@ using System;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal class MissionGeneratorDateTime : IDisposable
+    internal class MissionGeneratorDateTime
     {
-        internal MissionGeneratorDateTime() { }
 
-        internal void GenerateMissionDate(DCSMission mission, MissionTemplate template, out Month month)
+        internal static Month GenerateMissionDate(DCSMission mission, MissionTemplate template)
         {
-            int day, year;
+            int day;
+            Month month;
 
             // Select a random year from the most recent coalition's decade.
-            year = Toolbox.GetRandomYearFromDecade(template.ContextDecade);
+            var year = Toolbox.GetRandomYearFromDecade(template.ContextDecade);
 
             BriefingRoom.PrintToLog($"No fixed date provided in the mission template, generating date in decade {template.ContextDecade}");
 
@@ -66,9 +66,10 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("BriefingDate", $"{(int)month + 1:00}/{day:00}/{year:0000}");
 
             BriefingRoom.PrintToLog($"Misson date set to {day} {month} {year}.");
+            return month;
         }
 
-        internal void GenerateMissionTime(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, Month month)
+        internal static void GenerateMissionTime(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, Month month)
         {
             double totalMinutes;
             int hour, minute;
@@ -119,7 +120,5 @@ namespace BriefingRoom4DCS.Generator
                 case Season.Winter: return new Month[] { Month.December, Month.January, Month.February, Month.March };
             }
         }
-
-        public void Dispose() { }
     }
 }

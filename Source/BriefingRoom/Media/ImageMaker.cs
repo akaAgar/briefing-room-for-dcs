@@ -26,7 +26,7 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Media
 {
-    internal class ImageMaker : IDisposable
+    internal class ImageMaker
     {
         internal int ImageSizeX { get; set; } = 512;
         internal int ImageSizeY { get; set; } = 512;
@@ -110,6 +110,6 @@ namespace BriefingRoom4DCS.Media
             return new Point(x, y).Add(layer.Offset);
         }
 
-        public void Dispose() { }
+
     }
 }

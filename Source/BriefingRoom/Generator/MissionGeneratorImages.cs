@@ -31,9 +31,8 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal class MissionGeneratorImages : IDisposable
+    internal class MissionGeneratorImages
     {
-        private readonly ImageMaker ImageMaker;
 
         // Just a bit of fun
         private static List<ImageMakerLayer> easterEggLogos = new List<ImageMakerLayer> {
@@ -41,15 +40,11 @@ namespace BriefingRoom4DCS.Generator
             new ImageMakerLayer("razbari.png", ContentAlignment.BottomRight, offsetX:-20, offsetY: -20, scale: 0.1),
         };
 
-        internal MissionGeneratorImages()
+        internal static void GenerateTitle(DCSMission mission, MissionTemplate template)
         {
-            ImageMaker = new ImageMaker();
-        }
-
-        internal void GenerateTitle(DCSMission mission, MissionTemplate template)
-        {
-            ImageMaker.TextOverlay.Alignment = ContentAlignment.MiddleCenter;
-            ImageMaker.TextOverlay.Text = mission.Briefing.Name;
+            ImageMaker imageMaker = new();
+            imageMaker.TextOverlay.Alignment = ContentAlignment.MiddleCenter;
+            imageMaker.TextOverlay.Text = mission.Briefing.Name;
 
             List<ImageMakerLayer> imageLayers = new List<ImageMakerLayer>();
             string[] theaterImages = Directory.GetFiles($"{BRPaths.INCLUDE_JPG}Theaters\\", $"{Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater).DCSID}*.jpg");
@@ -60,12 +55,12 @@ namespace BriefingRoom4DCS.Generator
 
             imageLayers.Add(new ImageMakerLayer($"Flags\\{template.GetCoalitionID(template.ContextPlayerCoalition)}.png", ContentAlignment.TopLeft, 8, 8, 0, .5));
 
-            byte[] imageBytes = ImageMaker.GetImageBytes(imageLayers.ToArray());
+            byte[] imageBytes = imageMaker.GetImageBytes(imageLayers.ToArray());
 
             mission.AddMediaFile($"l10n/DEFAULT/title_{mission.UniqueID}.jpg", imageBytes);
         }
 
-        internal void GenerateKneeboardImage(DCSMission mission)
+        internal static void GenerateKneeboardImage(DCSMission mission)
         {
             var text = mission.Briefing.GetBriefingKneeBoardText();
             var blocks = text.Split(new string[] { "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries);
@@ -88,37 +83,31 @@ namespace BriefingRoom4DCS.Generator
             foreach (var page in pages)
             {
                 byte[] imageBytes;
-                using (ImageMaker imgMaker = new ImageMaker())
-                {
-                    imgMaker.ImageSizeX = 800;
-                    imgMaker.ImageSizeY = 1200;
-                    imgMaker.TextOverlay.Shadow = false;
-                    imgMaker.TextOverlay.Color = Color.Black;
-                    imgMaker.TextOverlay.Text = $"{page}\n {inc}/{pages.Count()}";
-                    imgMaker.TextOverlay.FontSize = 14.0f;
-                    imgMaker.TextOverlay.FontFamily = "Arial";
-                    imgMaker.TextOverlay.Alignment = ContentAlignment.TopLeft;
+                ImageMaker imgMaker = new();
 
-                    List<ImageMakerLayer> layers = new List<ImageMakerLayer>{
+                imgMaker.ImageSizeX = 800;
+                imgMaker.ImageSizeY = 1200;
+                imgMaker.TextOverlay.Shadow = false;
+                imgMaker.TextOverlay.Color = Color.Black;
+                imgMaker.TextOverlay.Text = $"{page}\n {inc}/{pages.Count()}";
+                imgMaker.TextOverlay.FontSize = 14.0f;
+                imgMaker.TextOverlay.FontFamily = "Arial";
+                imgMaker.TextOverlay.Alignment = ContentAlignment.TopLeft;
+
+                List<ImageMakerLayer> layers = new List<ImageMakerLayer>{
                         new ImageMakerLayer("notebook.png")
                     };
 
-                    var random = new Random();
+                var random = new Random();
 
-                    if (random.Next(100) < 3)
-                        layers.Add(easterEggLogos[random.Next(easterEggLogos.Count)]);
+                if (random.Next(100) < 3)
+                    layers.Add(easterEggLogos[random.Next(easterEggLogos.Count)]);
 
 
-                    imageBytes = imgMaker.GetImageBytes(layers.ToArray());
-                }
+                imageBytes = imgMaker.GetImageBytes(layers.ToArray());
                 mission.AddMediaFile($"KNEEBOARD/IMAGES/comms_{mission.UniqueID}_{inc}.jpg", imageBytes);
                 inc++;
             }
-        }
-
-        public void Dispose()
-        {
-            ImageMaker.Dispose();
         }
     }
 }

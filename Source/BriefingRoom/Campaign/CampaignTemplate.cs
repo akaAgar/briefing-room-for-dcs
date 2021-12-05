@@ -30,7 +30,7 @@ using System.Text;
 
 namespace BriefingRoom4DCS.Campaign
 {
-    public sealed class CampaignTemplate : IDisposable
+    public sealed class CampaignTemplate
     {
         private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BRPaths.ROOT}Default.cbrt";
         private const int MIN_CAMPAIGN_MISSIONS = 2;
@@ -128,44 +128,44 @@ namespace BriefingRoom4DCS.Campaign
         {
             if (!File.Exists(filePath)) return false;
 
-            using (INIFile ini = new INIFile(filePath))
-            {
-                BriefingCampaignName = ini.GetValue("Briefing", "CampaignName", BriefingCampaignName);
+            var ini = new INIFile(filePath);
 
-                ContextCoalitionBlue = ini.GetValue("Context", "Coalitions.Blue", ContextCoalitionBlue);
-                ContextPlayerCoalition = ini.GetValue("Context", "Coalitions.Player", ContextPlayerCoalition);
-                ContextCoalitionRed = ini.GetValue("Context", "Coalitions.Red", ContextCoalitionRed);
-                ContextDecade = ini.GetValue("Context", "Decade", ContextDecade);
-                ContextTheater = ini.GetValue("Context", "Theater", ContextTheater);
-                ContextSituation = ini.GetValue("Context", "Situation", ContextSituation);
+            BriefingCampaignName = ini.GetValue("Briefing", "CampaignName", BriefingCampaignName);
 
-                EnvironmentBadWeatherChance = ini.GetValue("Environment", "BadWeatherChance", EnvironmentBadWeatherChance);
-                EnvironmentNightMissionChance = ini.GetValue("Environment", "NightMissionChance", EnvironmentBadWeatherChance);
+            ContextCoalitionBlue = ini.GetValue("Context", "Coalitions.Blue", ContextCoalitionBlue);
+            ContextPlayerCoalition = ini.GetValue("Context", "Coalitions.Player", ContextPlayerCoalition);
+            ContextCoalitionRed = ini.GetValue("Context", "Coalitions.Red", ContextCoalitionRed);
+            ContextDecade = ini.GetValue("Context", "Decade", ContextDecade);
+            ContextTheater = ini.GetValue("Context", "Theater", ContextTheater);
+            ContextSituation = ini.GetValue("Context", "Situation", ContextSituation);
 
-                MissionsCount = ini.GetValue("Missions", "Count", MissionsCount);
-                MissionsDifficultyVariation = ini.GetValue("Missions", "DifficultyVariation", MissionsDifficultyVariation);
-                MissionsFeatures = ini.GetValueDistinctList<string>("Missions", "Features");
-                MissionsObjectives = ini.GetValueList<string>("Missions", "Objectives");
-                MissionsObjectiveCount = ini.GetValue("Missions", "ObjectiveCount", MissionsObjectiveCount);
-                MissionsObjectiveDistance = ini.GetValue("Missions", "ObjectiveDistance", MissionsObjectiveDistance);
+            EnvironmentBadWeatherChance = ini.GetValue("Environment", "BadWeatherChance", EnvironmentBadWeatherChance);
+            EnvironmentNightMissionChance = ini.GetValue("Environment", "NightMissionChance", EnvironmentBadWeatherChance);
 
-                OptionsFogOfWar = ini.GetValue("Options", "FogOfWar", OptionsFogOfWar);
-                OptionsMods = ini.GetValueDistinctList<string>("Options", "Mods");
-                OptionsMission = ini.GetValueDistinctList<string>("Options", "Mission");
-                OptionsRealism = ini.GetValueDistinctList<RealismOption>("Options", "Realism");
+            MissionsCount = ini.GetValue("Missions", "Count", MissionsCount);
+            MissionsDifficultyVariation = ini.GetValue("Missions", "DifficultyVariation", MissionsDifficultyVariation);
+            MissionsFeatures = ini.GetValueDistinctList<string>("Missions", "Features");
+            MissionsObjectives = ini.GetValueList<string>("Missions", "Objectives");
+            MissionsObjectiveCount = ini.GetValue("Missions", "ObjectiveCount", MissionsObjectiveCount);
+            MissionsObjectiveDistance = ini.GetValue("Missions", "ObjectiveDistance", MissionsObjectiveDistance);
+
+            OptionsFogOfWar = ini.GetValue("Options", "FogOfWar", OptionsFogOfWar);
+            OptionsMods = ini.GetValueDistinctList<string>("Options", "Mods");
+            OptionsMission = ini.GetValueDistinctList<string>("Options", "Mission");
+            OptionsRealism = ini.GetValueDistinctList<RealismOption>("Options", "Realism");
 
 
-                Player = new MissionTemplateFlightGroup(ini, "PlayerFlightGroups", "Player");
-                PlayerStartingAirbase = ini.GetValue("Player", "StartingAirbase", PlayerStartingAirbase);
+            Player = new MissionTemplateFlightGroup(ini, "PlayerFlightGroups", "Player");
+            PlayerStartingAirbase = ini.GetValue("Player", "StartingAirbase", PlayerStartingAirbase);
 
-                SituationEnemySkill = ini.GetValue("Situation", "EnemySkill", SituationEnemySkill);
-                SituationEnemyAirDefense = ini.GetValue("Situation", "EnemyAirDefense", SituationEnemyAirDefense);
-                SituationEnemyAirForce = ini.GetValue("Situation", "EnemyAirForce", SituationEnemyAirForce);
+            SituationEnemySkill = ini.GetValue("Situation", "EnemySkill", SituationEnemySkill);
+            SituationEnemyAirDefense = ini.GetValue("Situation", "EnemyAirDefense", SituationEnemyAirDefense);
+            SituationEnemyAirForce = ini.GetValue("Situation", "EnemyAirForce", SituationEnemyAirForce);
 
-                SituationFriendlySkill = ini.GetValue("Situation", "FriendlySkill", SituationFriendlySkill);
-                SituationFriendlyAirDefense = ini.GetValue("Situation", "FriendlyAirDefense", SituationFriendlyAirDefense);
-                SituationFriendlyAirForce = ini.GetValue("Situation", "FriendlyAirForce", SituationFriendlyAirForce);
-            }
+            SituationFriendlySkill = ini.GetValue("Situation", "FriendlySkill", SituationFriendlySkill);
+            SituationFriendlyAirDefense = ini.GetValue("Situation", "FriendlyAirDefense", SituationFriendlyAirDefense);
+            SituationFriendlyAirForce = ini.GetValue("Situation", "FriendlyAirForce", SituationFriendlyAirForce);
+
 
             return true;
         }
@@ -229,6 +229,5 @@ namespace BriefingRoom4DCS.Campaign
             return ContextCoalitionBlue;
         }
 
-        public void Dispose() { }
     }
 }

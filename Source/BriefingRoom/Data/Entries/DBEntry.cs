@@ -23,7 +23,7 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
-    internal abstract class DBEntry : IDisposable
+    internal abstract class DBEntry
     {
         protected Database Database { get; set; }
 
@@ -47,19 +47,16 @@ namespace BriefingRoom4DCS.Data
             Database = database;
 
             ID = id;
-            using (INIFile ini = new INIFile(iniFilePath))
-            {
-                UIDisplayName = ini.GetValue<string>("GUI", "DisplayName");
-                if (string.IsNullOrEmpty(UIDisplayName)) UIDisplayName = ID;
-                UICategory = ini.GetValue<string>("GUI", "Category");
-                UIDescription = ini.GetValue<string>("GUI", "Description");
-            }
+            var ini = new INIFile(iniFilePath);
+            UIDisplayName = ini.GetValue<string>("GUI", "DisplayName");
+            if (string.IsNullOrEmpty(UIDisplayName)) UIDisplayName = ID;
+            UICategory = ini.GetValue<string>("GUI", "Category");
+            UIDescription = ini.GetValue<string>("GUI", "Description");
+
             return OnLoad(iniFilePath);
         }
 
         protected abstract bool OnLoad(string iniFilePath);
-
-        public virtual void Dispose() { }
 
         protected string[] GetValidDBEntryIDs<T>(string[] values, out string[] rejected) where T : DBEntry
         {

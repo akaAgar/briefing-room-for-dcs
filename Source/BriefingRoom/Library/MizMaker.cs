@@ -30,11 +30,10 @@ using System.Text.RegularExpressions;
 
 namespace BriefingRoom4DCS
 {
-    internal class MizMaker : IDisposable
+    internal class MizMaker
     {
-        internal MizMaker() { }
 
-        internal byte[] ExportToMizBytes(DCSMission mission)
+        internal static byte[] ExportToMizBytes(DCSMission mission)
         {
             Dictionary<string, byte[]> MizFileEntries = new Dictionary<string, byte[]>();
 
@@ -59,7 +58,7 @@ namespace BriefingRoom4DCS
             return Toolbox.ZipData(MizFileEntries);
         }
 
-        private bool AddLuaFileToEntries(Dictionary<string, byte[]> mizFileEntries, string mizEntryKey, string sourceFile, DCSMission mission = null)
+        private static bool AddLuaFileToEntries(Dictionary<string, byte[]> mizFileEntries, string mizEntryKey, string sourceFile, DCSMission mission = null)
         {
             if (string.IsNullOrEmpty(mizEntryKey) || mizFileEntries.ContainsKey(mizEntryKey) || string.IsNullOrEmpty(sourceFile)) return false;
             sourceFile = $"{BRPaths.INCLUDE_LUA}{sourceFile}";
@@ -77,13 +76,13 @@ namespace BriefingRoom4DCS
             return true;
         }
 
-        private bool AddStringValueToEntries(Dictionary<string, byte[]> mizFileEntries, string mizEntryKey, string stringValue)
+        private static bool AddStringValueToEntries(Dictionary<string, byte[]> mizFileEntries, string mizEntryKey, string stringValue)
         {
             if (string.IsNullOrEmpty(mizEntryKey) || mizFileEntries.ContainsKey(mizEntryKey)) return false;
             mizFileEntries.Add(mizEntryKey, Encoding.UTF8.GetBytes(stringValue));
             return true;
         }
 
-        public void Dispose() { }
+
     }
 }

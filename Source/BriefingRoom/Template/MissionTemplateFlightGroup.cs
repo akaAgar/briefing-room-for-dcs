@@ -98,6 +98,6 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue(section, $"{key}.Livery", Livery);
         }
 
-        public void Dispose() { }
+
     }
 }

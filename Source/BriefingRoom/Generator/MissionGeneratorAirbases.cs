@@ -26,51 +26,59 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal class MissionGeneratorAirbases : IDisposable
+    internal class MissionGeneratorAirbases
     {
-        internal MissionGeneratorAirbases() { }
+        private readonly MissionTemplate _template;
 
-        internal void SelectStartingAirbaseForPackages(DCSMission mission, MissionTemplate template, DBEntrySituation situationDB, DBEntryAirbase homeBase)
+        private readonly DBEntrySituation _situationDB;
+
+        internal MissionGeneratorAirbases(MissionTemplate template, DBEntrySituation situationDB)
         {
-            foreach (var package in template.AircraftPackages)
+            _template = template;
+            _situationDB = situationDB;
+        }
+
+        internal void SelectStartingAirbaseForPackages(DCSMission mission, DBEntryAirbase homeBase)
+        {
+            foreach (var package in _template.AircraftPackages)
             {
                 if (package.StartingAirbase == "home")
                 {
                     package.Airbase = homeBase;
                     continue;
                 }
-                var requiredSpots = template.PlayerFlightGroups.Where((v, i) => package.FlightGroupIndexes.Contains(i)).Sum(x => x.Count);
-                package.Airbase = SelectStartingAirbase(mission, template, situationDB, package.StartingAirbase, requiredSpots);
+                var requiredSpots = _template.PlayerFlightGroups.Where((v, i) => package.FlightGroupIndexes.Contains(i)).Sum(x => x.Count);
+                package.Airbase = SelectStartingAirbase(mission, package.StartingAirbase, requiredSpots);
             }
         }
 
-        internal DBEntryAirbase SelectStartingAirbase(DCSMission mission, MissionTemplate template, DBEntrySituation situationDB, string selectedAirbaseID, int requiredParkingSpots = 0)
+        internal DBEntryAirbase SelectStartingAirbase(DCSMission mission, string selectedAirbaseID, int requiredParkingSpots = 0)
         {
             // Get total number of required parking spots for flight groups
             if (requiredParkingSpots == 0)
-                requiredParkingSpots = (from MissionTemplateFlightGroup flightGroup in template.PlayerFlightGroups select flightGroup.Count).Sum();
+                requiredParkingSpots = _template.PlayerFlightGroups.Sum(x => x.Count);
             // Select all airbases for this theater
-            DBEntryAirbase[] airbases = situationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"));
+            DBEntryAirbase[] airbases = _situationDB.GetAirbases(_template.OptionsMission.Contains("InvertCountriesCoalitions"));
             // If a particular airbase name has been specified and an airbase with this name exists, pick it
             if (!string.IsNullOrEmpty(selectedAirbaseID))
             {
-                airbases = (from DBEntryAirbase airbase in airbases where airbase.ID == selectedAirbaseID select airbase).ToArray();
-                if (airbases.Length == 0)
+                var airbase = airbases.FirstOrDefault(x => x.ID == selectedAirbaseID);
+                if (airbase is null)
                 {
                     BriefingRoom.PrintToLog($"No airbase found with ID \"{selectedAirbaseID}\", cannot spawn player aircraft.", LogMessageErrorLevel.Error);
                     return null;
                 }
-                if (airbases[0].ParkingSpots.Length < requiredParkingSpots)
+                if (airbase.ParkingSpots.Length < requiredParkingSpots)
                 {
                     BriefingRoom.PrintToLog($"Airbase \"{selectedAirbaseID}\" has less than {requiredParkingSpots} parking spots, cannot spawn player aircraft.", LogMessageErrorLevel.Error);
                     return null;
                 }
 
-                return airbases[0];
+                return airbase;
             }
 
             // Select all airbases with enough parking spots
-            airbases = (from DBEntryAirbase airbase in airbases where airbase.ParkingSpots.Length >= requiredParkingSpots select airbase).ToArray();
+            airbases = airbases.Where(x => x.ParkingSpots.Length >= requiredParkingSpots).ToArray();
             if (airbases.Length == 0)
             {
                 BriefingRoom.PrintToLog($"No airbase found with {requiredParkingSpots} parking spots, cannot spawn all player aircraft.", LogMessageErrorLevel.Error);
@@ -78,7 +86,7 @@ namespace BriefingRoom4DCS.Generator
             }
 
             // Select all airbases belonging to the player coalition
-            airbases = (from DBEntryAirbase airbase in airbases where airbase.Coalition == template.ContextPlayerCoalition select airbase).ToArray();
+            airbases = airbases.Where(x => x.Coalition == _template.ContextPlayerCoalition).ToArray();
             if (airbases.Length == 0)
             {
                 BriefingRoom.PrintToLog($"No airbase belonging to player coalition found, cannot spawn player aircraft.", LogMessageErrorLevel.Error);
@@ -86,9 +94,9 @@ namespace BriefingRoom4DCS.Generator
             }
 
             // If some targets are ships, or some player start on a carrier, try to pick an airbase near water
-            if (MissionPrefersShoreAirbase(template))
+            if (MissionPrefersShoreAirbase())
             {
-                DBEntryAirbase[] shoreAirbases = (from DBEntryAirbase airbase in airbases where airbase.Flags.HasFlag(AirbaseFlag.NearWater) select airbase).ToArray();
+                DBEntryAirbase[] shoreAirbases = airbases.Where(x => x.Flags.HasFlag(AirbaseFlag.NearWater)).ToArray();
 
                 if (shoreAirbases.Length > 0)
                     return Toolbox.RandomFrom(shoreAirbases);
@@ -97,33 +105,33 @@ namespace BriefingRoom4DCS.Generator
             return Toolbox.RandomFrom(airbases);
         }
 
-        private bool MissionPrefersShoreAirbase(MissionTemplate template)
+        private bool MissionPrefersShoreAirbase()
         {
             // If any objective target is a ship, return true
-            foreach (MissionTemplateObjective objective in template.Objectives)
+            foreach (MissionTemplateObjective objective in _template.Objectives)
                 if (Database.Instance.EntryExists<DBEntryObjectiveTarget>(objective.Target) &&
                     (Database.Instance.GetEntry<DBEntryObjectiveTarget>(objective.Target).UnitCategory == UnitCategory.Ship))
                     return true;
 
             // If any flight group takes off from a carrier, return true
-            foreach (MissionTemplateFlightGroup flightGroup in template.PlayerFlightGroups)
+            foreach (MissionTemplateFlightGroup flightGroup in _template.PlayerFlightGroups)
                 if (!string.IsNullOrEmpty(flightGroup.Carrier))
                     return true;
 
             return false;
         }
 
-        internal void SetupAirbasesCoalitions(DCSMission mission, MissionTemplate template, DBEntrySituation situationDB, DBEntryAirbase playerAirbase)
+        internal void SetupAirbasesCoalitions(DCSMission mission, DBEntryAirbase playerAirbase)
         {
             // Select all airbases for this theater
-            DBEntryAirbase[] situationAirbases = situationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"));
+            DBEntryAirbase[] situationAirbases = _situationDB.GetAirbases(_template.OptionsMission.Contains("InvertCountriesCoalitions"));
 
             foreach (DBEntryAirbase airbase in situationAirbases)
             {
                 // Airbase is the player starting airbase, always set it to the player coalition
                 if (airbase.DCSID == playerAirbase.DCSID)
                 {
-                    mission.SetAirbase(airbase.DCSID, template.ContextPlayerCoalition);
+                    mission.SetAirbase(airbase.DCSID, _template.ContextPlayerCoalition);
                     continue;
                 }
 
@@ -132,7 +140,5 @@ namespace BriefingRoom4DCS.Generator
                 mission.SetAirbase(airbase.DCSID, airbase.Coalition);
             }
         }
-
-        public void Dispose() { }
     }
 }

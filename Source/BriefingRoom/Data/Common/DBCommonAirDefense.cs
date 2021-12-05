@@ -23,7 +23,7 @@ using System;
 
 namespace BriefingRoom4DCS.Data
 {
-    internal class DBCommonAirDefense : IDisposable
+    internal class DBCommonAirDefense
     {
         internal DBCommonAirDefenseLevel[] AirDefenseLevels { get; }
 
@@ -33,27 +33,23 @@ namespace BriefingRoom4DCS.Data
 
         internal DBCommonAirDefense()
         {
-            int i;
+            INIFile ini = new($"{BRPaths.DATABASE}AirDefense.ini");
+            AirDefenseLevels = new DBCommonAirDefenseLevel[Toolbox.EnumCount<AmountNR>()];
+            for (var i = 0; i < Toolbox.EnumCount<AmountNR>(); i++)
+                AirDefenseLevels[i] = new DBCommonAirDefenseLevel(ini, (AmountNR)i);
 
-            using (INIFile ini = new INIFile($"{BRPaths.DATABASE}AirDefense.ini"))
+            DistanceFromCenter = new MinMaxD[2, Toolbox.EnumCount<AirDefenseRange>()];
+            MinDistanceFromOpposingPoint = new double[2, Toolbox.EnumCount<AirDefenseRange>()];
+            foreach (Side side in Toolbox.GetEnumValues<Side>())
             {
-                AirDefenseLevels = new DBCommonAirDefenseLevel[Toolbox.EnumCount<AmountNR>()];
-                for (i = 0; i < Toolbox.EnumCount<AmountNR>(); i++)
-                    AirDefenseLevels[i] = new DBCommonAirDefenseLevel(ini, (AmountNR)i);
-
-                DistanceFromCenter = new MinMaxD[2, Toolbox.EnumCount<AirDefenseRange>()];
-                MinDistanceFromOpposingPoint = new double[2, Toolbox.EnumCount<AirDefenseRange>()];
-                foreach (Side side in Toolbox.GetEnumValues<Side>())
+                foreach (AirDefenseRange airDefenseRange in Toolbox.GetEnumValues<AirDefenseRange>())
                 {
-                    foreach (AirDefenseRange airDefenseRange in Toolbox.GetEnumValues<AirDefenseRange>())
-                    {
-                        DistanceFromCenter[(int)side, (int)airDefenseRange] = ini.GetValue<MinMaxD>($"AirDefenseRange.{side}", $"{airDefenseRange}.DistanceFromCenter");
-                        MinDistanceFromOpposingPoint[(int)side, (int)airDefenseRange] = ini.GetValue<double>($"AirDefenseRange.{side}", $"{airDefenseRange}.MinDistanceFromOpposingPoint");
-                    }
+                    DistanceFromCenter[(int)side, (int)airDefenseRange] = ini.GetValue<MinMaxD>($"AirDefenseRange.{side}", $"{airDefenseRange}.DistanceFromCenter");
+                    MinDistanceFromOpposingPoint[(int)side, (int)airDefenseRange] = ini.GetValue<double>($"AirDefenseRange.{side}", $"{airDefenseRange}.MinDistanceFromOpposingPoint");
                 }
             }
         }
 
-        public void Dispose() { }
+
     }
 }

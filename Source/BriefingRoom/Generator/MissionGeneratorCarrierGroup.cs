@@ -27,16 +27,14 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal class MissionGeneratorCarrierGroup : IDisposable
+    internal class MissionGeneratorCarrierGroup
     {
-        private readonly UnitMaker UnitMaker;
 
-        internal MissionGeneratorCarrierGroup(UnitMaker unitMaker)
-        {
-            UnitMaker = unitMaker;
-        }
 
-        internal Dictionary<string, UnitMakerGroupInfo> GenerateCarrierGroup(DCSMission mission, MissionTemplate template, Coordinates landbaseCoordinates, Coordinates objectivesCenter, double windSpeedAtSeaLevel, double windDirectionAtSeaLevel)
+        internal static Dictionary<string, UnitMakerGroupInfo> GenerateCarrierGroup(
+            UnitMaker unitMaker, DCSMission mission, MissionTemplate template,
+            Coordinates landbaseCoordinates, Coordinates objectivesCenter, double windSpeedAtSeaLevel,
+            double windDirectionAtSeaLevel)
         {
             Dictionary<string, UnitMakerGroupInfo> carrierDictionary = new Dictionary<string, UnitMakerGroupInfo>(StringComparer.InvariantCultureIgnoreCase);
 
@@ -49,7 +47,7 @@ namespace BriefingRoom4DCS.Generator
             var iteration = 0;
             while (iteration < 5)
             {
-                carrierGroupCoordinates = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                carrierGroupCoordinates = unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                     new SpawnPointType[] { SpawnPointType.Sea },
                     landbaseCoordinates,
                     new MinMaxD(15, 300),
@@ -79,7 +77,7 @@ namespace BriefingRoom4DCS.Generator
                 if (flightGroup.Carrier.StartsWith("FOB"))
                 {
                     //It Carries therefore carrier not because I can't think of a name to rename this lot
-                    GenerateFOB(flightGroup, carrierDictionary, mission, template, landbaseCoordinates, objectivesCenter);
+                    GenerateFOB(unitMaker, flightGroup, carrierDictionary, mission, template, landbaseCoordinates, objectivesCenter);
                     continue;
                 }
                 DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(flightGroup.Carrier);
@@ -94,7 +92,7 @@ namespace BriefingRoom4DCS.Generator
                 int tacanChannel = 74 + carrierDictionary.Count;
 
                 UnitMakerGroupInfo? groupInfo =
-                    UnitMaker.AddUnitGroup(
+                    unitMaker.AddUnitGroup(
                         new string[] { unitDB.ID }, Side.Ally, unitDB.Families[0],
                         "GroupShipCarrier", "UnitShip",
                         shipCoordinates, 0,
@@ -121,14 +119,16 @@ namespace BriefingRoom4DCS.Generator
             return carrierDictionary;
         }
 
-        internal void GenerateFOB(MissionTemplateFlightGroup flightGroup, Dictionary<string, UnitMakerGroupInfo> carrierDictionary, DCSMission mission, MissionTemplate template, Coordinates landbaseCoordinates, Coordinates objectivesCenter)
+        private static void GenerateFOB(
+            UnitMaker unitMaker, MissionTemplateFlightGroup flightGroup, Dictionary<string, UnitMakerGroupInfo> carrierDictionary,
+            DCSMission mission, MissionTemplate template, Coordinates landbaseCoordinates, Coordinates objectivesCenter)
         {
             DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
             if (theaterDB == null) return; // Theater doesn't exist. Should never happen.
 
 
             Coordinates? spawnPoint =
-                    UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                    unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         new SpawnPointType[] { SpawnPointType.LandLarge },
                         landbaseCoordinates,
                         new MinMaxD(10, 50),
@@ -154,7 +154,7 @@ namespace BriefingRoom4DCS.Generator
             };
 
             UnitMakerGroupInfo? groupInfo =
-                UnitMaker.AddUnitGroup(
+                unitMaker.AddUnitGroup(
                     unitDB.Families[0], 1, Side.Ally,
                     "GroupStatic", "UnitStaticFOB",
                     spawnPoint.Value, 0,
@@ -169,6 +169,5 @@ namespace BriefingRoom4DCS.Generator
             carrierDictionary.Add(flightGroup.Carrier, groupInfo.Value); // This bit limits FOBS to one per game think about how we can fix this
         }
 
-        public void Dispose() { }
     }
 }

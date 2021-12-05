@@ -41,36 +41,34 @@ namespace BriefingRoom4DCS.Data
 
         protected override bool OnLoad(string iniFilePath)
         {
-            using (INIFile ini = new INIFile(iniFilePath))
+            var ini = new INIFile(iniFilePath);
+            BriefingDescription = ini.GetValue<string>("Briefing", "Description");
+            if (!Database.Instance.EntryExists<DBEntryBriefingDescription>(BriefingDescription))
             {
-                BriefingDescription = ini.GetValue<string>("Briefing", "Description");
-                if (!Database.Instance.EntryExists<DBEntryBriefingDescription>(BriefingDescription))
-                {
-                    BriefingRoom.PrintToLog($"Objective task \"{ID}\" references non-existing briefing description \"{BriefingDescription}\".", LogMessageErrorLevel.Warning);
-                    return false;
-                }
-
-                BriefingTask = new string[2];
-                BriefingTask[0] = ini.GetValue<string>("Briefing", "Task.Singular");
-                BriefingTask[1] = ini.GetValue<string>("Briefing", "Task.Plural");
-
-                BriefingRemarks = ini.GetValueArray<string>("Briefing", "Remarks", ';');
-
-                CompletionTriggerLua = Toolbox.AddMissingFileExtension(ini.GetValue<string>("ObjectiveTask", "CompletionTriggerLua"), ".lua");
-                if (!File.Exists($"{BRPaths.INCLUDE_LUA_OBJECTIVETRIGGERS}{CompletionTriggerLua}"))
-                {
-                    BriefingRoom.PrintToLog($"Completion trigger Lua file {CompletionTriggerLua} for objective task \"{ID}\" not found.", LogMessageErrorLevel.Warning);
-                    return false;
-                }
-
-                TargetSide = ini.GetValue<Side>("ObjectiveTask", "TargetSide");
-
-                ValidUnitCategories = ini.GetValueArray<UnitCategory>("ObjectiveTask", "ValidUnitCategories").Distinct().ToArray();
-                if (ValidUnitCategories.Length == 0) ValidUnitCategories = Toolbox.GetEnumValues<UnitCategory>(); // No category means all categories
-
-                // Included files
-                IncludeOgg = Toolbox.AddMissingFileExtensions(ini.GetValueArray<string>("Include", "Ogg"), ".ogg");
+                BriefingRoom.PrintToLog($"Objective task \"{ID}\" references non-existing briefing description \"{BriefingDescription}\".", LogMessageErrorLevel.Warning);
+                return false;
             }
+
+            BriefingTask = new string[2];
+            BriefingTask[0] = ini.GetValue<string>("Briefing", "Task.Singular");
+            BriefingTask[1] = ini.GetValue<string>("Briefing", "Task.Plural");
+
+            BriefingRemarks = ini.GetValueArray<string>("Briefing", "Remarks", ';');
+
+            CompletionTriggerLua = Toolbox.AddMissingFileExtension(ini.GetValue<string>("ObjectiveTask", "CompletionTriggerLua"), ".lua");
+            if (!File.Exists($"{BRPaths.INCLUDE_LUA_OBJECTIVETRIGGERS}{CompletionTriggerLua}"))
+            {
+                BriefingRoom.PrintToLog($"Completion trigger Lua file {CompletionTriggerLua} for objective task \"{ID}\" not found.", LogMessageErrorLevel.Warning);
+                return false;
+            }
+
+            TargetSide = ini.GetValue<Side>("ObjectiveTask", "TargetSide");
+
+            ValidUnitCategories = ini.GetValueArray<UnitCategory>("ObjectiveTask", "ValidUnitCategories").Distinct().ToArray();
+            if (ValidUnitCategories.Length == 0) ValidUnitCategories = Toolbox.GetEnumValues<UnitCategory>(); // No category means all categories
+
+            // Included files
+            IncludeOgg = Toolbox.AddMissingFileExtensions(ini.GetValueArray<string>("Include", "Ogg"), ".ogg");
 
             return true;
         }

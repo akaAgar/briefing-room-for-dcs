@@ -29,13 +29,11 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal class MissionGenerator : IDisposable
+    internal class MissionGenerator
     {
-        internal MissionGenerator() { }
 
-        internal DCSMission Generate(MissionTemplate template, bool useObjectivePresets)
+        internal static DCSMission Generate(MissionTemplate template, bool useObjectivePresets)
         {
-            int i;
 
             // Check for missing entries in the database
             if (!GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionBlue) ||
@@ -44,16 +42,14 @@ namespace BriefingRoom4DCS.Generator
                 !GeneratorTools.CheckDBForMissingEntry<DBEntryTheater>(template.ContextTheater))
                 return null;
 
-            // Create mission class and other fields
-            DCSMission mission = new DCSMission();
+            var mission = new DCSMission();
 
-            List<Waypoint> waypoints = new List<Waypoint>();
-            List<int> immediateActivationAircraftGroupsIDs = new List<int>();
-            List<int> lateActivationAircraftGroupsIDs = new List<int>();
+            var waypoints = new List<Waypoint>();
+            var immediateActivationAircraftGroupsIDs = new List<int>();
+            var lateActivationAircraftGroupsIDs = new List<int>();
 
-            // Get required database entries here, so we don't have to look for them each time they're needed.
-            DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
-            DBEntrySituation situationDB = Toolbox.RandomFrom(
+            var theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
+            var situationDB = Toolbox.RandomFrom(
                 Database.Instance.GetAllEntries<DBEntrySituation>()
                     .Where(x => x.Theater == template.ContextTheater.ToLower())
                     .ToArray()
@@ -62,7 +58,7 @@ namespace BriefingRoom4DCS.Generator
                 situationDB = Database.Instance.GetEntry<DBEntrySituation>(template.ContextSituation);
 
             
-            DBEntryCoalition[] coalitionsDB = new DBEntryCoalition[]
+            var coalitionsDB = new DBEntryCoalition[]
             {
                 Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionBlue),
                 Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionRed)
@@ -81,115 +77,95 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("AircraftActivatorReserveQueue", "");
             mission.SetValue("MissionPlayerSlots", template.GetPlayerSlotsCount() == 1 ? "Single-player mission" : $"{template.GetPlayerSlotsCount()}-players mission");
 
-            // Add common media files
+
             foreach (string oggFile in Database.Instance.Common.CommonOGG)
                 mission.AddMediaFile($"l10n/DEFAULT/{Toolbox.AddMissingFileExtension(oggFile, ".ogg")}", $"{BRPaths.INCLUDE_OGG}{Toolbox.AddMissingFileExtension(oggFile, ".ogg")}");
 
-            Country[][] coalitionsCountries;
-            // Generate list of countries for each coalition
-            using (MissionGeneratorCountries countriesGenerator = new MissionGeneratorCountries())
-                coalitionsCountries = countriesGenerator.GenerateCountries(mission, template);
+ 
+            var coalitionsCountries = MissionGeneratorCountries.GenerateCountries(mission, template);
 
-            // Create unit maker
-            UnitMaker unitMaker = new UnitMaker(mission, template, coalitionsDB, theaterDB, situationDB, template.ContextPlayerCoalition, coalitionsCountries, template.GetPlayerSlotsCount() == 1);
+ 
+            var unitMaker = new UnitMaker(mission, template, coalitionsDB, theaterDB, situationDB, template.ContextPlayerCoalition, coalitionsCountries, template.GetPlayerSlotsCount() == 1);
 
-            DrawingMaker drawingMaker = new DrawingMaker(mission, template, theaterDB, situationDB);
+            var drawingMaker = new DrawingMaker(mission, template, theaterDB, situationDB);
 
-            // Generate mission date and time
-            Month month;
+ 
             BriefingRoom.PrintToLog("Generating mission date and time...");
-            using (MissionGeneratorDateTime dateTimeGenerator = new MissionGeneratorDateTime())
-            {
-                dateTimeGenerator.GenerateMissionDate(mission, template, out month);
-                dateTimeGenerator.GenerateMissionTime(mission, template, theaterDB, month);
-            }
+            var month= MissionGeneratorDateTime.GenerateMissionDate(mission, template);
+            MissionGeneratorDateTime.GenerateMissionTime(mission, template, theaterDB, month);
 
 
-            // Setup airbases
-            DBEntryAirbase playerAirbase;
             BriefingRoom.PrintToLog("Setting up airbases...");
-            using (MissionGeneratorAirbases airbasesGenerator = new MissionGeneratorAirbases())
-            {
-                playerAirbase = airbasesGenerator.SelectStartingAirbase(mission, template, situationDB, template.FlightPlanTheaterStartingAirbase);
-                if (playerAirbase == null) throw new BriefingRoomException("No valid airbase was found for the player(s).");
-                airbasesGenerator.SetupAirbasesCoalitions(mission, template, situationDB, playerAirbase);
-                airbasesGenerator.SelectStartingAirbaseForPackages(mission, template, situationDB, playerAirbase);
-                mission.SetValue("PlayerAirbaseName", playerAirbase.Name);
-                mission.SetValue("MissionAirbaseX", playerAirbase.Coordinates.X);
-                mission.SetValue("MissionAirbaseY", playerAirbase.Coordinates.Y);
-                mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{playerAirbase.Name}\t{playerAirbase.Runways}\t{playerAirbase.ATC}\t{playerAirbase.ILS}\t{playerAirbase.TACAN}");
-            }
+            var airbasesGenerator = new MissionGeneratorAirbases(template, situationDB);
+            var playerAirbase = airbasesGenerator.SelectStartingAirbase(mission, template.FlightPlanTheaterStartingAirbase);
+            if (playerAirbase == null) throw new BriefingRoomException("No valid airbase was found for the player(s).");
+            airbasesGenerator.SetupAirbasesCoalitions(mission, playerAirbase);
+            airbasesGenerator.SelectStartingAirbaseForPackages(mission, playerAirbase);
+            mission.SetValue("PlayerAirbaseName", playerAirbase.Name);
+            mission.SetValue("MissionAirbaseX", playerAirbase.Coordinates.X);
+            mission.SetValue("MissionAirbaseY", playerAirbase.Coordinates.Y);
+            mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{playerAirbase.Name}\t{playerAirbase.Runways}\t{playerAirbase.ATC}\t{playerAirbase.ILS}\t{playerAirbase.TACAN}");
 
-            // Generate weather and wind
+
             BriefingRoom.PrintToLog("Generating mission weather...");
-            double windSpeedAtSeaLevel, windDirectionAtSeaLevel;
-            using (MissionGeneratorWeather weatherGenerator = new MissionGeneratorWeather())
-            {
-                weatherGenerator.GenerateWeather(mission, template, theaterDB, month, playerAirbase, out int turbulenceFromWeather);
-                weatherGenerator.GenerateWind(mission, template, turbulenceFromWeather, out windSpeedAtSeaLevel, out windDirectionAtSeaLevel);
-            }
+            var turbulenceFromWeather = MissionGeneratorWeather.GenerateWeather(mission, template, theaterDB, month, playerAirbase);
+            var (windSpeedAtSeaLevel, windDirectionAtSeaLevel) = MissionGeneratorWeather.GenerateWind(mission, template, turbulenceFromWeather);
 
             // Generate objectives
             BriefingRoom.PrintToLog("Generating objectives...");
-            List<Coordinates> objectiveCoordinates = new List<Coordinates>();
-            List<UnitFamily> objectiveTargetUnitFamilies = new List<UnitFamily>();
-            Coordinates lastObjectiveCoordinates = playerAirbase.Coordinates;
-            using (MissionGeneratorObjectives objectivesGenerator = new MissionGeneratorObjectives(unitMaker, drawingMaker, template))
-                for (i = 0; i < template.Objectives.Count; i++)
-                {
-                    lastObjectiveCoordinates = objectivesGenerator.GenerateObjective(mission, template, situationDB, i, lastObjectiveCoordinates, playerAirbase, useObjectivePresets, out string objectiveName, out UnitFamily objectiveTargetUnitFamily);
-                    objectiveCoordinates.Add(lastObjectiveCoordinates);
-                    waypoints.Add(objectivesGenerator.GenerateObjectiveWaypoint(template.Objectives[i], lastObjectiveCoordinates, objectiveName, template));
-                    objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);
-                }
-            Coordinates objectivesCenter = (objectiveCoordinates.Count == 0) ? playerAirbase.Coordinates : Coordinates.Sum(objectiveCoordinates) / objectiveCoordinates.Count;
+            var objectiveCoordinates = new List<Coordinates>();
+            var objectiveTargetUnitFamilies = new List<UnitFamily>();
+            var lastObjectiveCoordinates = playerAirbase.Coordinates;
+            var objectivesGenerator = new MissionGeneratorObjectives(unitMaker, drawingMaker, template);
+            foreach (var objectiveTemplate in template.Objectives)
+            {
+                lastObjectiveCoordinates = objectivesGenerator.GenerateObjective(mission, template, situationDB, objectiveTemplate, lastObjectiveCoordinates, playerAirbase, useObjectivePresets, out string objectiveName, out UnitFamily objectiveTargetUnitFamily);
+                objectiveCoordinates.Add(lastObjectiveCoordinates);
+                waypoints.Add(objectivesGenerator.GenerateObjectiveWaypoint(objectiveTemplate, lastObjectiveCoordinates, objectiveName, template));
+                objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);
+            }
+            var objectivesCenter = (objectiveCoordinates.Count == 0) ? playerAirbase.Coordinates : Coordinates.Sum(objectiveCoordinates) / objectiveCoordinates.Count;
             mission.SetValue("MissionCenterX", objectivesCenter.X);
             mission.SetValue("MissionCenterY", objectivesCenter.Y);
 
             // Generate carrier groups
             BriefingRoom.PrintToLog("Generating carrier groups...");
-            Dictionary<string, UnitMakerGroupInfo> carrierDictionary;
-            using (MissionGeneratorCarrierGroup carrierGroupGenerator = new MissionGeneratorCarrierGroup(unitMaker))
-                carrierDictionary = carrierGroupGenerator.GenerateCarrierGroup(mission, template, playerAirbase.Coordinates, objectivesCenter, windSpeedAtSeaLevel, windDirectionAtSeaLevel);
-            Coordinates averageInitialPosition = playerAirbase.Coordinates;
+            var carrierDictionary = MissionGeneratorCarrierGroup.GenerateCarrierGroup(
+                unitMaker, mission, template,
+                playerAirbase.Coordinates, objectivesCenter,
+                windSpeedAtSeaLevel, windDirectionAtSeaLevel);
+            var averageInitialPosition = playerAirbase.Coordinates;
             if (carrierDictionary.Count > 0) averageInitialPosition = (averageInitialPosition + carrierDictionary.First().Value.Coordinates) / 2.0;
 
             // Generate extra flight plan info
-            using (MissionGeneratorFlightPlan flightPlanGenerator = new MissionGeneratorFlightPlan())
-            {
-                flightPlanGenerator.GenerateBullseyes(mission, objectivesCenter);
-                flightPlanGenerator.GenerateObjectiveWPCoordinatesLua(template, mission, waypoints);
-                flightPlanGenerator.GenerateAircraftPackageWaypoints(template, waypoints, averageInitialPosition, objectivesCenter);
-                flightPlanGenerator.GenerateIngressAndEgressWaypoints(template, waypoints, averageInitialPosition, objectivesCenter);
-            }
+            MissionGeneratorFlightPlan.GenerateBullseyes(mission, objectivesCenter);
+            MissionGeneratorFlightPlan.GenerateObjectiveWPCoordinatesLua(template, mission, waypoints);
+            MissionGeneratorFlightPlan.GenerateAircraftPackageWaypoints(template, waypoints, averageInitialPosition, objectivesCenter);
+            MissionGeneratorFlightPlan.GenerateIngressAndEgressWaypoints(template, waypoints, averageInitialPosition, objectivesCenter);
 
             // Generate surface-to-air defenses
-            using (MissionGeneratorAirDefense airDefenseGenerator = new MissionGeneratorAirDefense(unitMaker))
-                airDefenseGenerator.GenerateAirDefense(template, averageInitialPosition, objectivesCenter);
+             MissionGeneratorAirDefense.GenerateAirDefense(template, unitMaker, averageInitialPosition, objectivesCenter);
 
             // Generate combat air patrols
-            using (MissionGeneratorCombatAirPatrols capGenerator = new MissionGeneratorCombatAirPatrols(unitMaker))
-            {
-                int[] capGroupsID = capGenerator.GenerateCAP(template, averageInitialPosition, objectivesCenter);
-                foreach (int capGroupID in capGroupsID) // Add 50% of CAP groups to the list of A/C activated on takeoff, the other 50% to the list of A/C activated later.
-                    if (Toolbox.RandomChance(2))
-                        immediateActivationAircraftGroupsIDs.Add(capGroupID);
-                    else
-                        lateActivationAircraftGroupsIDs.Add(capGroupID);
-            }
+            var capGroupsID = MissionGeneratorCombatAirPatrols.GenerateCAP(unitMaker,template, averageInitialPosition, objectivesCenter);
+            foreach (int capGroupID in capGroupsID) // Add 50% of CAP groups to the list of A/C activated on takeoff, the other 50% to the list of A/C activated later.
+                if (Toolbox.RandomChance(2))
+                    immediateActivationAircraftGroupsIDs.Add(capGroupID);
+                else
+                    lateActivationAircraftGroupsIDs.Add(capGroupID);
 
             // Generate player flight groups
             BriefingRoom.PrintToLog("Generating player flight groups...");
-            using (MissionGeneratorPlayerFlightGroups playerFlightGroupsGenerator = new MissionGeneratorPlayerFlightGroups(unitMaker))
-                for (i = 0; i < template.PlayerFlightGroups.Count; i++)
-                    playerFlightGroupsGenerator.GeneratePlayerFlightGroup(mission, template, i, playerAirbase, waypoints, carrierDictionary, averageInitialPosition, objectivesCenter);
+            foreach(var templateFlightGroup in template.PlayerFlightGroups)
+                MissionGeneratorPlayerFlightGroups.GeneratePlayerFlightGroup(unitMaker, mission, template, templateFlightGroup, playerAirbase, waypoints, carrierDictionary, averageInitialPosition, objectivesCenter);
 
             // Generate mission features
             BriefingRoom.PrintToLog("Generating mission features...");
             mission.AppendValue("ScriptMissionFeatures", ""); // Just in case there's no features
-            using (MissionGeneratorFeaturesMission missionFeaturesGenerator = new MissionGeneratorFeaturesMission(unitMaker, template))
-                for (i = 0; i < template.MissionFeatures.Count; i++)
-                    missionFeaturesGenerator.GenerateMissionFeature(mission, template.MissionFeatures[i], i, playerAirbase.Coordinates, objectivesCenter);
+            var missionFeaturesGenerator = new MissionGeneratorFeaturesMission(unitMaker, template);
+            foreach (var templateFeature in template.MissionFeatures)
+                missionFeaturesGenerator.GenerateMissionFeature(mission, templateFeature, playerAirbase.Coordinates, objectivesCenter);
+
 
             // Add ogg files to the media files dictionary
             foreach (string mediaFile in mission.GetMediaFileNames())
@@ -205,40 +181,32 @@ namespace BriefingRoom4DCS.Generator
 
             // Generate briefing and additional mission info
             BriefingRoom.PrintToLog("Generating briefing...");
-            using (MissionGeneratorBriefing briefingGenerator = new MissionGeneratorBriefing())
-            {
-                string missionName = GeneratorTools.GenerateMissionName(template.BriefingMissionName);
-                mission.Briefing.Name = missionName;
-                mission.SetValue("MISSIONNAME", missionName);
+            var missionName = GeneratorTools.GenerateMissionName(template.BriefingMissionName);
+            mission.Briefing.Name = missionName;
+            mission.SetValue("MISSIONNAME", missionName);
 
-                briefingGenerator.GenerateMissionBriefingDescription(mission, template, objectiveTargetUnitFamilies);
-                mission.SetValue("DescriptionText", mission.Briefing.GetBriefingAsRawText("\\\n"));
-            }
+            MissionGeneratorBriefing.GenerateMissionBriefingDescription(mission, template, objectiveTargetUnitFamilies);
+            mission.SetValue("DescriptionText", mission.Briefing.GetBriefingAsRawText("\\\n"));
 
             // Generate mission options
             BriefingRoom.PrintToLog("Generating options...");
-            using (MissionGeneratorOptions optionsGenerator = new MissionGeneratorOptions())
-                optionsGenerator.GenerateForcedOptions(mission, template);
+            MissionGeneratorOptions.GenerateForcedOptions(mission, template);
 
             // Generate warehouses
             BriefingRoom.PrintToLog("Generating warehouses...");
-            using (MissionGeneratorWarehouses warehousesGenerator = new MissionGeneratorWarehouses())
-                warehousesGenerator.GenerateWarehouses(mission);
+            MissionGeneratorWarehouses.GenerateWarehouses(mission);
 
             // Generate image files
             BriefingRoom.PrintToLog("Generating images...");
-            using (MissionGeneratorImages imagesGenerator = new MissionGeneratorImages())
-            {
-                imagesGenerator.GenerateTitle(mission, template);
-                imagesGenerator.GenerateKneeboardImage(mission);
-            }
+            MissionGeneratorImages.GenerateTitle(mission, template);
+            MissionGeneratorImages.GenerateKneeboardImage(mission);
 
             return mission;
         }
 
-        internal DCSMission GenerateRetryable(MissionTemplate template, bool useObjectivePresets)
+        internal static DCSMission GenerateRetryable(MissionTemplate template, bool useObjectivePresets)
         {
-            DCSMission mission = Policy
+            var mission = Policy
                 .HandleResult<DCSMission>(x => x.IsExtremeDistance(template, out double distance))
                 .Or<BriefingRoomException>()
                 .Retry(3)
@@ -249,7 +217,5 @@ namespace BriefingRoom4DCS.Generator
 
             return mission;
         }
-
-        public void Dispose() { }
     }
 }

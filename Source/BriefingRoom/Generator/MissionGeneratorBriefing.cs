@@ -27,15 +27,10 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal class MissionGeneratorBriefing : IDisposable
+    internal class MissionGeneratorBriefing
     {
 
-        internal MissionGeneratorBriefing()
-        {
-
-        }
-
-        internal void GenerateMissionBriefingDescription(DCSMission mission, MissionTemplate template, List<UnitFamily> objectiveTargetUnitFamilies)
+        internal static void GenerateMissionBriefingDescription(DCSMission mission, MissionTemplate template, List<UnitFamily> objectiveTargetUnitFamilies)
         {
             // Try to get the provided custom mission description.
             string briefingDescription = (template.BriefingMissionDescription ?? "").Replace("\r\n", "\n").Replace("\n", " ").Trim();
@@ -65,6 +60,5 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("BRIEFINGDESCRIPTION", briefingDescription);
         }
 
-        public void Dispose() { }
     }
 }

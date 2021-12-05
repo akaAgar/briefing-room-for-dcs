@@ -36,27 +36,25 @@ namespace BriefingRoom4DCS.Data
 
         protected override bool OnLoad(string iniFilePath)
         {
-            using (INIFile ini = new INIFile(iniFilePath))
+            var ini = new INIFile(iniFilePath);
+            BriefingName = new string[2]
             {
-                BriefingName = new string[2]
-                {
                         ini.GetValue<string>("ObjectiveTarget", "Briefing.UnitName.Singular"),
                         ini.GetValue<string>("ObjectiveTarget", "Briefing.UnitName.Plural")
-                };
+            };
 
-                UnitFamilies = Toolbox.SetSingleCategoryFamilies(ini.GetValueArray<UnitFamily>("ObjectiveTarget", "Units.Families"));
-                if (UnitFamilies.Length == 0)
-                {
-                    BriefingRoom.PrintToLog($"No unit categories for objective target \"{ID}\"", LogMessageErrorLevel.Warning);
-                    return false;
-                }
-
-                UnitCount = new MinMaxI[Toolbox.EnumCount<Amount>()];
-                foreach (Amount amount in Toolbox.GetEnumValues<Amount>())
-                    UnitCount[(int)amount] = ini.GetValue<MinMaxI>("ObjectiveTarget", $"Units.Count.{amount}");
-
-                ValidSpawnPoints = DatabaseTools.CheckSpawnPoints(ini.GetValueArray<SpawnPointType>("ObjectiveTarget", "ValidSpawnPoints"));
+            UnitFamilies = Toolbox.SetSingleCategoryFamilies(ini.GetValueArray<UnitFamily>("ObjectiveTarget", "Units.Families"));
+            if (UnitFamilies.Length == 0)
+            {
+                BriefingRoom.PrintToLog($"No unit categories for objective target \"{ID}\"", LogMessageErrorLevel.Warning);
+                return false;
             }
+
+            UnitCount = new MinMaxI[Toolbox.EnumCount<Amount>()];
+            foreach (Amount amount in Toolbox.GetEnumValues<Amount>())
+                UnitCount[(int)amount] = ini.GetValue<MinMaxI>("ObjectiveTarget", $"Units.Count.{amount}");
+
+            ValidSpawnPoints = DatabaseTools.CheckSpawnPoints(ini.GetValueArray<SpawnPointType>("ObjectiveTarget", "ValidSpawnPoints"));
 
             return true;
         }

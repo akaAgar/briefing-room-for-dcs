@@ -38,32 +38,27 @@ namespace BriefingRoom4DCS.Data
         {
             //int i;
 
-            using (INIFile ini = new INIFile(iniFilePath))
+            var ini = new INIFile(iniFilePath);
+
+            string[] badCountries = (from country in ini.GetValueArray<string>("Coalition", "Countries").Distinct() where !Enum.TryParse<Country>(country, true, out _) select country).ToArray();
+            if (badCountries.Length > 0)
+                BriefingRoom.PrintToLog($"Bad countr{(badCountries.Length == 1 ? "y" : "ies")} in coalition \"{ID}\": {string.Join(", ", badCountries)}", LogMessageErrorLevel.Warning);
+
+            Countries = ini.GetValueArray<Country>("Coalition", "Countries").Distinct().OrderBy(x => x).ToArray();
+            if (Countries.Length == 0)
             {
-                //BriefingElements = new string[Toolbox.EnumCount<CoalitionBriefingElement>()][];
-                //for (i = 0; i < BriefingElements.Length; i++)
-                //    BriefingElements[i] = ini.GetValueArray<string>("Briefing", $"Elements.{(CoalitionBriefingElement)i}");
-
-                string[] badCountries = (from country in ini.GetValueArray<string>("Coalition", "Countries").Distinct() where !Enum.TryParse<Country>(country, true, out _) select country).ToArray();
-                if (badCountries.Length > 0)
-                    BriefingRoom.PrintToLog($"Bad countr{(badCountries.Length == 1 ? "y" : "ies")} in coalition \"{ID}\": {string.Join(", ", badCountries)}", LogMessageErrorLevel.Warning);
-
-                Countries = ini.GetValueArray<Country>("Coalition", "Countries").Distinct().OrderBy(x => x).ToArray();
-                if (Countries.Length == 0)
-                {
-                    BriefingRoom.PrintToLog($"No country in coalition \"{ID}\", coalition was ignored.", LogMessageErrorLevel.Warning);
-                    return false;
-                }
-
-                DefaultUnitList = ini.GetValue<string>("Coalition", "DefaultUnitList");
-                if (!Database.EntryExists<DBEntryDefaultUnitList>(DefaultUnitList))
-                {
-                    BriefingRoom.PrintToLog($"Default unit list \"{DefaultUnitList}\" required by coalition \"{ID}\" doesn't exist. Coalition was ignored.", LogMessageErrorLevel.Warning);
-                    return false;
-                }
-
-                NATOCallsigns = ini.GetValue("Coalition", "NATOCallsigns", false);
+                BriefingRoom.PrintToLog($"No country in coalition \"{ID}\", coalition was ignored.", LogMessageErrorLevel.Warning);
+                return false;
             }
+
+            DefaultUnitList = ini.GetValue<string>("Coalition", "DefaultUnitList");
+            if (!Database.EntryExists<DBEntryDefaultUnitList>(DefaultUnitList))
+            {
+                BriefingRoom.PrintToLog($"Default unit list \"{DefaultUnitList}\" required by coalition \"{ID}\" doesn't exist. Coalition was ignored.", LogMessageErrorLevel.Warning);
+                return false;
+            }
+
+            NATOCallsigns = ini.GetValue("Coalition", "NATOCallsigns", false);
 
             return true;
         }

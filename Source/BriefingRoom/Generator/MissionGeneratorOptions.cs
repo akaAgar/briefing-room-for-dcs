@@ -20,18 +20,13 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
-using System;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal class MissionGeneratorOptions : IDisposable
+    internal class MissionGeneratorOptions
     {
-        internal MissionGeneratorOptions()
-        {
 
-        }
-
-        internal void GenerateForcedOptions(DCSMission mission, MissionTemplate template)
+        internal static void GenerateForcedOptions(DCSMission mission, MissionTemplate template)
         {
             string forcedOptionsLua = "";
 
@@ -77,8 +72,5 @@ namespace BriefingRoom4DCS.Generator
 
             mission.SetValue("ForcedOptions", forcedOptionsLua);
         }
-
-        public void Dispose() { }
-
     }
 }

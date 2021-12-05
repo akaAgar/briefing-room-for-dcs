@@ -24,7 +24,7 @@ using System.IO;
 
 namespace BriefingRoom4DCS.Data
 {
-    internal class DatabaseCommon : IDisposable
+    internal class DatabaseCommon
     {
         internal string[] CommonOGG { get; private set; }
 
@@ -45,13 +45,12 @@ namespace BriefingRoom4DCS.Data
             int i;
 
             BriefingRoom.PrintToLog("Loading common global settings...");
-            using (INIFile ini = new INIFile($"{BRPaths.DATABASE}Common.ini"))
-            {
-                CommonOGG = ini.GetValueArray<string>("Include", "CommonOgg");
-                foreach (string f in CommonOGG)
-                    if (!File.Exists($"{BRPaths.INCLUDE_OGG}{f}.ogg"))
-                        BriefingRoom.PrintToLog($"File \"Include\\Ogg\\{f}.ogg\" doesn't exist.", LogMessageErrorLevel.Warning);
-            }
+            INIFile commonIni = new($"{BRPaths.DATABASE}Common.ini");
+            CommonOGG = commonIni.GetValueArray<string>("Include", "CommonOgg");
+            foreach (string f in CommonOGG)
+                if (!File.Exists($"{BRPaths.INCLUDE_OGG}{f}.ogg"))
+                    BriefingRoom.PrintToLog($"File \"Include\\Ogg\\{f}.ogg\" doesn't exist.", LogMessageErrorLevel.Warning);
+
 
             BriefingRoom.PrintToLog("Loading common air defense settings...");
             AirDefense = new DBCommonAirDefense();
@@ -66,14 +65,12 @@ namespace BriefingRoom4DCS.Data
             Names = new DBCommonNames();
 
             BriefingRoom.PrintToLog("Loading common wind settings...");
-            using (INIFile ini = new INIFile($"{BRPaths.DATABASE}Wind.ini"))
-            {
-                Wind = new DBCommonWind[Toolbox.EnumCount<Wind>() - 1]; // -1 because we don't want "Random"
-                for (i = 0; i < Wind.Length; i++)
-                    Wind[i] = new DBCommonWind(ini, ((Wind)i).ToString());
-            }
+            INIFile windIni = new($"{BRPaths.DATABASE}Wind.ini");
+            Wind = new DBCommonWind[Toolbox.EnumCount<Wind>() - 1]; // -1 because we don't want "Random"
+            for (i = 0; i < Wind.Length; i++)
+                Wind[i] = new DBCommonWind(windIni, ((Wind)i).ToString());
         }
 
-        public void Dispose() { }
+
     }
 }

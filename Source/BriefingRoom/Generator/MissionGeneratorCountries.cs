@@ -27,15 +27,11 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal class MissionGeneratorCountries : IDisposable
+    internal class MissionGeneratorCountries
     {
         private static readonly Country[] DEFAULT_COUNTRIES = new Country[] { Country.CJTFBlue, Country.CJTFRed };
 
-        internal MissionGeneratorCountries() { }
-
-        public void Dispose() { }
-
-        internal Country[][] GenerateCountries(DCSMission mission, MissionTemplate template)
+        internal static Country[][] GenerateCountries(DCSMission mission, MissionTemplate template)
         {
             int i;
 
@@ -68,7 +64,7 @@ namespace BriefingRoom4DCS.Generator
             return new Country[][] { countries[0].ToArray(), countries[1].ToArray(), };
         }
 
-        private string GetCountriesLuaTable(List<Country> countries)
+        private static string GetCountriesLuaTable(List<Country> countries)
         {
             string luaTable = "{ ";
             for (int i = 0; i < countries.Count; i++)

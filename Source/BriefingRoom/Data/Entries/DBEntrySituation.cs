@@ -37,29 +37,26 @@ namespace BriefingRoom4DCS.Data
 
         protected override bool OnLoad(string iniFilePath)
         {
-            using (INIFile ini = new INIFile(iniFilePath))
+            var ini = new INIFile(iniFilePath);
+            Theater = ini.GetValue<string>("Situation", "Theater").ToLowerInvariant();
+
+            RedCoordinates = new List<Coordinates>();
+            foreach (string key in ini.GetKeysInSection("RedCoordinates"))
+                RedCoordinates.Add(ini.GetValue<Coordinates>("RedCoordinates", key));
+
+            BlueCoordinates = new List<Coordinates>();
+            foreach (string key in ini.GetKeysInSection("BlueCoordinates"))
+                BlueCoordinates.Add(ini.GetValue<Coordinates>("BlueCoordinates", key));
+
+            if (ini.GetSections().Contains("nospawncoordinates"))
             {
-                Theater = ini.GetValue<string>("Situation", "Theater").ToLowerInvariant();
-
-                RedCoordinates = new List<Coordinates>();
-                foreach (string key in ini.GetKeysInSection("RedCoordinates"))
-                    RedCoordinates.Add(ini.GetValue<Coordinates>("RedCoordinates", key));
-
-                BlueCoordinates = new List<Coordinates>();
-                foreach (string key in ini.GetKeysInSection("BlueCoordinates"))
-                    BlueCoordinates.Add(ini.GetValue<Coordinates>("BlueCoordinates", key));
-                
-                if(ini.GetSections().Contains("nospawncoordinates"))
-                {
-                    NoSpawnCoordinates = new List<Coordinates>();
-                    foreach (string key in ini.GetKeysInSection("NoSpawnCoordinates"))
-                        NoSpawnCoordinates.Add(ini.GetValue<Coordinates>("NoSpawnCoordinates", key));
-                }
-
-                if (!Database.Instance.EntryExists<DBEntryTheater>(Theater))
-                    throw new Exception($"Situation \"{ID}\" located on non-existing theater \"{Theater}\".");
-
+                NoSpawnCoordinates = new List<Coordinates>();
+                foreach (string key in ini.GetKeysInSection("NoSpawnCoordinates"))
+                    NoSpawnCoordinates.Add(ini.GetValue<Coordinates>("NoSpawnCoordinates", key));
             }
+
+            if (!Database.Instance.EntryExists<DBEntryTheater>(Theater))
+                throw new Exception($"Situation \"{ID}\" located on non-existing theater \"{Theater}\".");
 
             return true;
         }

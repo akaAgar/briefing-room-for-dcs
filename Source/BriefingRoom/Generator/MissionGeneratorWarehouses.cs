@@ -18,26 +18,17 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using BriefingRoom4DCS.Data;
-using BriefingRoom4DCS.Template;
 using BriefingRoom4DCS.Mission;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal class MissionGeneratorWarehouses : IDisposable
+    internal class MissionGeneratorWarehouses
     {
         private static readonly string AIRPORT_TEMPLATE_FILEPATH = $"{BRPaths.INCLUDE_LUA}Warehouses\\Airport.lua";
 
-        internal MissionGeneratorWarehouses()
-        {
-
-        }
-
-        internal void GenerateWarehouses(DCSMission mission)
+        internal static void GenerateWarehouses(DCSMission mission)
         {
             string warehousesAirportLua = "";
 
@@ -57,8 +48,5 @@ namespace BriefingRoom4DCS.Generator
 
             mission.SetValue("WarehousesAirports", warehousesAirportLua);
         }
-
-        public void Dispose() { }
-
     }
 }
