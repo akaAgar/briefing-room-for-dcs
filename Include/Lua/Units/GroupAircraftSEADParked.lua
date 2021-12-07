@@ -1,4 +1,4 @@
-  ["lateActivation"] = true,
+  ["lateActivation"] = false,
   ["modulation"] = $RADIOBAND$,
   ["tasks"] =
   {

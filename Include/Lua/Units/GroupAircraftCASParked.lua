@@ -1,11 +1,11 @@
-  ["lateActivation"] = true,
+  ["lateActivation"] = false,
   ["modulation"] = $RADIOBAND$,
   ["tasks"] =
   {
   }, -- end of ["tasks"]
   ["radioSet"] = false,
   ["task"] = "CAS",
-  ["uncontrolled"] = false,
+  ["uncontrolled"] = true,
   ["route"] =
   {
     ["routeRelativeTOT"] = true,
