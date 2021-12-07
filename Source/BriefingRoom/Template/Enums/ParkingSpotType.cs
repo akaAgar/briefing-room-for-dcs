@@ -22,7 +22,6 @@ namespace BriefingRoom4DCS.Template
 {
     public enum ParkingSpotType
     {
-        Runway,
         HelicopterOnly,
         HardenedAirShelter,
         AirplaneOnly,

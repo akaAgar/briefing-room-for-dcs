@@ -83,7 +83,7 @@ namespace BriefingRoom4DCS.Generator
             }
             else // Land airbase take off
             {
-                var parkingSpots = unitMaker.SpawnPointSelector.GetFreeParkingSpots(airbase.DCSID, flightGroup.Count, Toolbox.IsBunkerUnsuitable(unitDB.Families[0]));
+                var parkingSpots = unitMaker.SpawnPointSelector.GetFreeParkingSpots(airbase.DCSID, flightGroup.Count, unitDB.Families[0]);
                 parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
                 parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
                 groupStartingCoords = parkingSpotCoordinatesList.First();

@@ -51,10 +51,8 @@ namespace BriefingRoom4DCS.Data
 
         GroundStart = 2048,
 
-        RequiresOpenAirParking = 4096,
+        MoveTowardObjectives = 4096,
 
-        MoveTowardObjectives = 8192,
-
-        MoveTowardPlayerBase = 16384,
+        MoveTowardPlayerBase = 8192,
     }
 }

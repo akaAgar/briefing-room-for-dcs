@@ -59,19 +59,20 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        internal List<DBEntryAirbaseParkingSpot> GetFreeParkingSpots(int airbaseID, int unitCount, bool requiresOpenAirParking)
+        internal List<DBEntryAirbaseParkingSpot> GetFreeParkingSpots(int airbaseID, int unitCount, UnitFamily unitFamily, bool requiresOpenAirParking = false)
         {
-            if (!AirbaseParkingSpots.ContainsKey(airbaseID) ||
-                (AirbaseParkingSpots[airbaseID].Count(x => !requiresOpenAirParking || x.ParkingType != ParkingSpotType.HardenedAirShelter) < unitCount))
-                throw new BriefingRoomException("Airbase didn't have enough parking spots. ");
+
+            if (!AirbaseParkingSpots.ContainsKey(airbaseID))
+                throw new BriefingRoomException($"Airbase {airbaseID} not found in parking map");
+        
 
             var airbaseDB = SituationDB.GetAirbases(InvertCoalition).First(x => x.DCSID == airbaseID);
             var parkingSpots = new List<DBEntryAirbaseParkingSpot>();
             DBEntryAirbaseParkingSpot? lastSpot = null;
             for (int i = 0; i < unitCount; i++)
             {
-                var viableSpots = AirbaseParkingSpots[airbaseID].FindAll(x => (!requiresOpenAirParking || x.ParkingType != ParkingSpotType.HardenedAirShelter)).ToList();
-                if (viableSpots.Count == 0) throw new BriefingRoomException("Airbase didn't have enough parking spots. POST CHECK!");
+                var viableSpots = Toolbox.FilterSuitableSpots(AirbaseParkingSpots[airbaseID].ToArray(), unitFamily, requiresOpenAirParking);
+                if (viableSpots.Count == 0) throw new BriefingRoomException("Airbase didn't have enough parking spots.");
                 var parkingSpot = Toolbox.RandomFrom(viableSpots);
                 if (lastSpot.HasValue) //find nearest spot distance wise in attempt to cluster
                     parkingSpot = viableSpots
@@ -179,7 +180,9 @@ namespace BriefingRoom4DCS.Generator
             return null;
         }
 
-        internal Tuple<DBEntryAirbase, List<int>, List<Coordinates>> GetAirbaseAndParking(MissionTemplate template, Coordinates coordinates, int unitCount, Coalition coalition, bool requiresOpenAirParking)
+        internal Tuple<DBEntryAirbase, List<int>, List<Coordinates>> GetAirbaseAndParking(
+            MissionTemplate template, Coordinates coordinates,
+            int unitCount, Coalition coalition, UnitFamily unitFamily)
         {
             var targetAirbaseOptions =
                         (from DBEntryAirbase airbaseDB in SituationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"))
@@ -195,7 +198,7 @@ namespace BriefingRoom4DCS.Generator
             List<int> parkingSpotIDsList = new List<int>();
             List<Coordinates> parkingSpotCoordinatesList = new List<Coordinates>();
 
-            var parkingSpots = GetFreeParkingSpots(airbaseID, unitCount, requiresOpenAirParking);
+            var parkingSpots = GetFreeParkingSpots(airbaseID, unitCount, unitFamily);
             parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
             parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
 

@@ -207,7 +207,7 @@ namespace BriefingRoom4DCS.Generator
                 var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = _unitMaker.SpawnPointSelector.GetAirbaseAndParking(
                     _template, coordinates, unitCount,
                     GeneratorTools.GetSpawnPointCoalition(_template, groupSide).Value,
-                    featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.RequiresOpenAirParking) || Toolbox.IsBunkerUnsuitable(unitFamily));
+                    unitFamily);
                 coordinates = airbase.Coordinates;
                 extraSettings["ParkingID"] = parkingSpotIDsList.ToArray();
                 extraSettings["GroupAirbaseID"] = airbase.DCSID;

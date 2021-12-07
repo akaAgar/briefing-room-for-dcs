@@ -30,14 +30,12 @@ namespace BriefingRoom4DCS.Data
 
         internal ParkingSpotType ParkingType { get; }
 
-        internal DBEntryAirbaseParkingSpot(INIFile ini, string section, string parkingKey, bool isRunway)
+        internal DBEntryAirbaseParkingSpot(INIFile ini, string section, string parkingKey)
         {
             DCSID = ini.GetValue<int>(section, $"{parkingKey}.DCSID");
             Coordinates = ini.GetValue<Coordinates>(section, $"{parkingKey}.Coordinates");
 
             ParkingType = ini.GetValue<ParkingSpotType>(section, $"{parkingKey}.Type");
-            if (isRunway) ParkingType = ParkingSpotType.Runway;
-            else if (ParkingType == ParkingSpotType.Runway) ParkingType = ParkingSpotType.OpenAirSpawn; // Non-runways spots can't be of Runway type
         }
     }
 }

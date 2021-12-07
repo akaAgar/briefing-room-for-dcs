@@ -73,13 +73,13 @@ namespace BriefingRoom4DCS.Data
             return true;
         }
 
-        private DBEntryAirbaseParkingSpot[] LoadParkingSpots(INIFile ini, string section, bool isRunway = false)
+        private DBEntryAirbaseParkingSpot[] LoadParkingSpots(INIFile ini, string section)
         {
             string[] ids = ini.GetTopLevelKeysInSection(section);
             DBEntryAirbaseParkingSpot[] parkingSpots = new DBEntryAirbaseParkingSpot[ids.Length];
 
             for (int i = 0; i < ids.Length; i++)
-                parkingSpots[i] = new DBEntryAirbaseParkingSpot(ini, section, ids[i], isRunway);
+                parkingSpots[i] = new DBEntryAirbaseParkingSpot(ini, section, ids[i]);
 
             return parkingSpots;
         }

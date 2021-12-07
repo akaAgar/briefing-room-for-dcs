@@ -115,7 +115,7 @@ namespace BriefingRoom4DCS.Generator
 
             // If any flight group takes off from a carrier, return true
             foreach (MissionTemplateFlightGroup flightGroup in _template.PlayerFlightGroups)
-                if (!string.IsNullOrEmpty(flightGroup.Carrier))
+                if (!string.IsNullOrEmpty(flightGroup.Carrier) && !flightGroup.Carrier.StartsWith("FOB"))
                     return true;
 
             return false;

@@ -136,8 +136,8 @@ namespace BriefingRoom4DCS.Generator
                     {
                         var parkingSpots = UnitMaker.SpawnPointSelector.GetFreeParkingSpots(
                             targetAirbase.DCSID,
-                            unitCount,
-                            targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter || Toolbox.IsBunkerUnsuitable(objectiveTargetUnitFamily));
+                            unitCount, objectiveTargetUnitFamily,
+                            targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter);
 
                         parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
                         parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
