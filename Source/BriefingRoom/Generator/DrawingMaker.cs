@@ -12,13 +12,13 @@ namespace BriefingRoom4DCS.Generator
     {
 
         private readonly DCSMission Mission;
-        private readonly MissionTemplate Template;
+        private readonly MissionTemplateRecord Template;
         private readonly DBEntryTheater TheaterDB;
         private readonly DBEntrySituation SituationDB;
         private readonly List<string> LuaDrawings = new List<string>();
 
         internal DrawingMaker(
-            DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, DBEntrySituation situationDB)
+            DCSMission mission, MissionTemplateRecord template, DBEntryTheater theaterDB, DBEntrySituation situationDB)
         {
             Mission = mission;
             Template = template;

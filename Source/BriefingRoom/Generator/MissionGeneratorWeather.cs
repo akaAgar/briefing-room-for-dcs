@@ -28,7 +28,7 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGeneratorWeather
     {
 
-        internal static int GenerateWeather(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, Month month, DBEntryAirbase playerAirbase)
+        internal static int GenerateWeather(DCSMission mission, MissionTemplateRecord template, DBEntryTheater theaterDB, Month month, DBEntryAirbase playerAirbase)
         {
             var baseAlt = template.OptionsMission.Contains("SeaLevelRefCloud") ? 0.0 : playerAirbase.Elevation;
 
@@ -54,7 +54,7 @@ namespace BriefingRoom4DCS.Generator
             return weatherDB.Turbulence.GetValue();
         }
 
-        internal static Tuple<double, double> GenerateWind(DCSMission mission, MissionTemplate template, int turbulenceFromWeather)
+        internal static Tuple<double, double> GenerateWind(DCSMission mission, MissionTemplateRecord template, int turbulenceFromWeather)
         {
             var windSpeedAtSeaLevel = 0.0;
             var windDirectionAtSeaLevel = 0.0;

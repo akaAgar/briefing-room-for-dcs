@@ -40,7 +40,7 @@ namespace BriefingRoom4DCS.Generator
             new ImageMakerLayer("razbari.png", ContentAlignment.BottomRight, offsetX:-20, offsetY: -20, scale: 0.1),
         };
 
-        internal static void GenerateTitle(DCSMission mission, MissionTemplate template)
+        internal static void GenerateTitle(DCSMission mission, MissionTemplateRecord template)
         {
             ImageMaker imageMaker = new();
             imageMaker.TextOverlay.Alignment = ContentAlignment.MiddleCenter;

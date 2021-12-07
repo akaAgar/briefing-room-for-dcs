@@ -28,7 +28,7 @@ namespace BriefingRoom4DCS.Generator
 {
     internal class MissionGeneratorFeaturesMission : MissionGeneratorFeatures<DBEntryFeatureMission>
     {
-        internal MissionGeneratorFeaturesMission(UnitMaker unitMaker, MissionTemplate template) : base(unitMaker, template) { }
+        internal MissionGeneratorFeaturesMission(UnitMaker unitMaker, MissionTemplateRecord template) : base(unitMaker, template) { }
 
         internal void GenerateMissionFeature(DCSMission mission, string featureID, Coordinates initialCoordinates, Coordinates objectivesCenter)
         {

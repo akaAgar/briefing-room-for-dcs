@@ -34,8 +34,8 @@ namespace BriefingRoom4DCS.Generator
         internal static void GeneratePlayerFlightGroup(
             UnitMaker unitMaker,
             DCSMission mission,
-            MissionTemplate template,
-            MissionTemplateFlightGroup flightGroup,
+            MissionTemplateRecord template,
+            MissionTemplateFlightGroupRecord flightGroup,
             DBEntryAirbase playerAirbase,
             List<Waypoint> waypoints,
             Dictionary<string, UnitMakerGroupInfo> carrierDictionary,
@@ -152,7 +152,7 @@ namespace BriefingRoom4DCS.Generator
             return flightPlanLua;
         }
 
-        private static void SaveFlightGroup(DCSMission mission, UnitMakerGroupInfo? groupInfo, MissionTemplateFlightGroup flightGroup, DBEntryUnit unitDB, string homeBase)
+        private static void SaveFlightGroup(DCSMission mission, UnitMakerGroupInfo? groupInfo, MissionTemplateFlightGroupRecord flightGroup, DBEntryUnit unitDB, string homeBase)
         {
             mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
                 $"{groupInfo.Value.Name}\t" +

@@ -26,7 +26,7 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGeneratorOptions
     {
 
-        internal static void GenerateForcedOptions(DCSMission mission, MissionTemplate template)
+        internal static void GenerateForcedOptions(DCSMission mission, MissionTemplateRecord template)
         {
             string forcedOptionsLua = "";
 

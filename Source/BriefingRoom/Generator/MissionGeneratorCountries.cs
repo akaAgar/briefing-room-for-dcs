@@ -31,7 +31,7 @@ namespace BriefingRoom4DCS.Generator
     {
         private static readonly Country[] DEFAULT_COUNTRIES = new Country[] { Country.CJTFBlue, Country.CJTFRed };
 
-        internal static Country[][] GenerateCountries(DCSMission mission, MissionTemplate template)
+        internal static Country[][] GenerateCountries(DCSMission mission, MissionTemplateRecord template)
         {
             int i;
 
@@ -42,7 +42,7 @@ namespace BriefingRoom4DCS.Generator
                 countries[i].Add(DEFAULT_COUNTRIES[i]);
 
             // Add countries for player FGs to player coalition
-            foreach (MissionTemplateFlightGroup flightGroup in template.PlayerFlightGroups)
+            foreach (MissionTemplateFlightGroupRecord flightGroup in template.PlayerFlightGroups)
                 countries[(int)template.ContextPlayerCoalition].Add(flightGroup.Country);
 
             // Removes countries added multiple times

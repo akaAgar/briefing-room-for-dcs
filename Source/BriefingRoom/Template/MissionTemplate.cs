@@ -265,22 +265,6 @@ namespace BriefingRoom4DCS.Template
             return ini;
         }
 
-        internal string GetCoalitionID(Coalition coalition)
-        {
-            if (coalition == Coalition.Red) return ContextCoalitionRed;
-            return ContextCoalitionBlue;
-        }
-
-        internal string GetCoalitionID(Side side)
-        {
-            return GetCoalitionID((side == Side.Ally) ? ContextPlayerCoalition : ContextPlayerCoalition.GetEnemy());
-        }
-
-        internal int GetPlayerSlotsCount()
-        {
-            return (from MissionTemplateFlightGroup flightGroup in PlayerFlightGroups_ select flightGroup.PlayerSlots).Sum();
-        }
-
         internal void AssignAliases()
         {
             foreach (var item in PlayerFlightGroups)

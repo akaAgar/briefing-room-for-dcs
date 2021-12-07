@@ -25,22 +25,14 @@ namespace BriefingRoom4DCS.Template
     public sealed class MissionTemplateFlightGroup : MissionTemplateGroup
     {
         public string Aircraft { get; set; }
-
         public bool AIWingmen { get; set; }
-
         public string Carrier { get; set; }
-
         public int Count { get { return _Count; } set { _Count = Toolbox.Clamp(value, 1, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE); } }
         private int _Count = 1;
-
         public Country Country { get; set; }
-
         public string Payload { get; set; } = "default";
-
         public PlayerStartLocation StartLocation { get; set; }
-
         public int PlayerSlots { get { return AIWingmen ? 1 : _Count; } }
-
         public string Livery { get; set; } = "default";
 
         public MissionTemplateFlightGroup()

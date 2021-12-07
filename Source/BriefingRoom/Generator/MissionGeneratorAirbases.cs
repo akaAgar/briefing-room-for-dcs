@@ -28,11 +28,11 @@ namespace BriefingRoom4DCS.Generator
 {
     internal class MissionGeneratorAirbases
     {
-        private readonly MissionTemplate _template;
+        private readonly MissionTemplateRecord _template;
 
         private readonly DBEntrySituation _situationDB;
 
-        internal MissionGeneratorAirbases(MissionTemplate template, DBEntrySituation situationDB)
+        internal MissionGeneratorAirbases(MissionTemplateRecord template, DBEntrySituation situationDB)
         {
             _template = template;
             _situationDB = situationDB;
@@ -108,13 +108,13 @@ namespace BriefingRoom4DCS.Generator
         private bool MissionPrefersShoreAirbase()
         {
             // If any objective target is a ship, return true
-            foreach (MissionTemplateObjective objective in _template.Objectives)
+            foreach (MissionTemplateObjectiveRecord objective in _template.Objectives)
                 if (Database.Instance.EntryExists<DBEntryObjectiveTarget>(objective.Target) &&
                     (Database.Instance.GetEntry<DBEntryObjectiveTarget>(objective.Target).UnitCategory == UnitCategory.Ship))
                     return true;
 
             // If any flight group takes off from a carrier, return true
-            foreach (MissionTemplateFlightGroup flightGroup in _template.PlayerFlightGroups)
+            foreach (MissionTemplateFlightGroupRecord flightGroup in _template.PlayerFlightGroups)
                 if (!string.IsNullOrEmpty(flightGroup.Carrier) && !flightGroup.Carrier.StartsWith("FOB"))
                     return true;
 

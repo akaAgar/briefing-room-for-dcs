@@ -32,7 +32,7 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGenerator
     {
 
-        internal static DCSMission Generate(MissionTemplate template, bool useObjectivePresets)
+        internal static DCSMission Generate(MissionTemplateRecord template, bool useObjectivePresets)
         {
 
             // Check for missing entries in the database
@@ -206,11 +206,12 @@ namespace BriefingRoom4DCS.Generator
 
         internal static DCSMission GenerateRetryable(MissionTemplate template, bool useObjectivePresets)
         {
+            var templateRecord = new MissionTemplateRecord(template);
             var mission = Policy
                 .HandleResult<DCSMission>(x => x.IsExtremeDistance(template, out double distance))
                 .Or<BriefingRoomException>()
                 .Retry(3)
-                .Execute(() => Generate(template, useObjectivePresets));
+                .Execute(() => Generate(templateRecord, useObjectivePresets));
 
             if (mission.IsExtremeDistance(template, out double distance))
                 BriefingRoom.PrintToLog($"Distance to objectives exceeds 1.7x of requested distance. ({Math.Round(distance, 2)}NM)", LogMessageErrorLevel.Warning);

@@ -29,7 +29,7 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGeneratorCombatAirPatrols
     {
 
-        internal static int[] GenerateCAP(UnitMaker unitMaker, MissionTemplate template, Coordinates averageInitialPosition, Coordinates objectivesCenter)
+        internal static int[] GenerateCAP(UnitMaker unitMaker, MissionTemplateRecord template, Coordinates averageInitialPosition, Coordinates objectivesCenter)
         {
             List<int> capAircraftGroupIDs = new List<int>();
             var commonCAPDB = Database.Instance.Common.CAP;
@@ -61,7 +61,7 @@ namespace BriefingRoom4DCS.Generator
         }
 
         private static void CreateCAPGroups(
-            UnitMaker unitMaker, MissionTemplate template, Side side,
+            UnitMaker unitMaker, MissionTemplateRecord template, Side side,
             Coalition coalition, AmountNR capAmount, Coordinates centerPoint,
             Coordinates opposingPoint, Coordinates destination, ref List<int> capAircraftGroupIDs)
         {

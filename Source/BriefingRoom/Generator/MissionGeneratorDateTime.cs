@@ -28,7 +28,7 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGeneratorDateTime
     {
 
-        internal static Month GenerateMissionDate(DCSMission mission, MissionTemplate template)
+        internal static Month GenerateMissionDate(DCSMission mission, MissionTemplateRecord template)
         {
             int day;
             Month month;
@@ -69,7 +69,7 @@ namespace BriefingRoom4DCS.Generator
             return month;
         }
 
-        internal static void GenerateMissionTime(DCSMission mission, MissionTemplate template, DBEntryTheater theaterDB, Month month)
+        internal static void GenerateMissionTime(DCSMission mission, MissionTemplateRecord template, DBEntryTheater theaterDB, Month month)
         {
             double totalMinutes;
             int hour, minute;

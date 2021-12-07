@@ -44,7 +44,7 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("BullseyeRedY", objectivesCenter.Y + GetBullseyeRandomDistance());
         }
 
-        internal static void GenerateAircraftPackageWaypoints(MissionTemplate template, List<Waypoint> waypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter)
+        internal static void GenerateAircraftPackageWaypoints(MissionTemplateRecord template, List<Waypoint> waypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter)
         {
             foreach (var package in template.AircraftPackages)
             {
@@ -54,7 +54,7 @@ namespace BriefingRoom4DCS.Generator
         }
 
 
-        internal static void GenerateIngressAndEgressWaypoints(MissionTemplate template, List<Waypoint> waypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter)
+        internal static void GenerateIngressAndEgressWaypoints(MissionTemplateRecord template, List<Waypoint> waypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter)
         {
             if (!template.MissionFeatures.Contains("IngressEgressWaypoints"))
                 return;
@@ -76,7 +76,7 @@ namespace BriefingRoom4DCS.Generator
                     baseIngressPosition + Coordinates.CreateRandom(ingressDeviation * 0.9, ingressDeviation * 1.1)));
         }
 
-        internal static void GenerateObjectiveWPCoordinatesLua(MissionTemplate template, DCSMission mission, List<Waypoint> waypoints)
+        internal static void GenerateObjectiveWPCoordinatesLua(MissionTemplateRecord template, DCSMission mission, List<Waypoint> waypoints)
         {
             for (int i = 0; i < waypoints.Count; i++)
             {

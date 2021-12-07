@@ -181,7 +181,7 @@ namespace BriefingRoom4DCS.Generator
         }
 
         internal Tuple<DBEntryAirbase, List<int>, List<Coordinates>> GetAirbaseAndParking(
-            MissionTemplate template, Coordinates coordinates,
+            MissionTemplateRecord template, Coordinates coordinates,
             int unitCount, Coalition coalition, UnitFamily unitFamily)
         {
             var targetAirbaseOptions =

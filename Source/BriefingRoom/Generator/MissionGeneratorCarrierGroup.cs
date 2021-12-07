@@ -32,7 +32,7 @@ namespace BriefingRoom4DCS.Generator
 
 
         internal static Dictionary<string, UnitMakerGroupInfo> GenerateCarrierGroup(
-            UnitMaker unitMaker, DCSMission mission, MissionTemplate template,
+            UnitMaker unitMaker, DCSMission mission, MissionTemplateRecord template,
             Coordinates landbaseCoordinates, Coordinates objectivesCenter, double windSpeedAtSeaLevel,
             double windDirectionAtSeaLevel)
         {
@@ -70,7 +70,7 @@ namespace BriefingRoom4DCS.Generator
                 Database.Instance.Common.CarrierGroup.MinimumCarrierSpeed,
                 Database.Instance.Common.CarrierGroup.IdealWindOfDeck - windSpeedAtSeaLevel);
 
-            foreach (MissionTemplateFlightGroup flightGroup in template.PlayerFlightGroups)
+            foreach (MissionTemplateFlightGroupRecord flightGroup in template.PlayerFlightGroups)
             {
                 if (string.IsNullOrEmpty(flightGroup.Carrier)) continue; // No carrier for
                 if (carrierDictionary.ContainsKey(flightGroup.Carrier)) continue; // Carrier type already added
@@ -120,8 +120,8 @@ namespace BriefingRoom4DCS.Generator
         }
 
         private static void GenerateFOB(
-            UnitMaker unitMaker, MissionTemplateFlightGroup flightGroup, Dictionary<string, UnitMakerGroupInfo> carrierDictionary,
-            DCSMission mission, MissionTemplate template, Coordinates landbaseCoordinates, Coordinates objectivesCenter)
+            UnitMaker unitMaker, MissionTemplateFlightGroupRecord flightGroup, Dictionary<string, UnitMakerGroupInfo> carrierDictionary,
+            DCSMission mission, MissionTemplateRecord template, Coordinates landbaseCoordinates, Coordinates objectivesCenter)
         {
             DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
             if (theaterDB == null) return; // Theater doesn't exist. Should never happen.

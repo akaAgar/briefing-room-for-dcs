@@ -41,7 +41,7 @@ namespace BriefingRoom4DCS.Generator
 
         private readonly MissionGeneratorFeaturesObjectives FeaturesGenerator;
 
-        internal MissionGeneratorObjectives(UnitMaker unitMaker, DrawingMaker drawingMaker, MissionTemplate template)
+        internal MissionGeneratorObjectives(UnitMaker unitMaker, DrawingMaker drawingMaker, MissionTemplateRecord template)
         {
             UnitMaker = unitMaker;
             DrawingMaker = drawingMaker;
@@ -51,9 +51,9 @@ namespace BriefingRoom4DCS.Generator
 
         internal Coordinates GenerateObjective(
             DCSMission mission,
-            MissionTemplate template,
+            MissionTemplateRecord template,
             DBEntrySituation situationDB,
-            MissionTemplateObjective objectiveTemplate,
+            MissionTemplateObjectiveRecord objectiveTemplate,
             Coordinates lastCoordinates,
             DBEntryAirbase playerAirbase,
             bool useObjectivePreset,
@@ -79,12 +79,13 @@ namespace BriefingRoom4DCS.Generator
                 }
             }
 
-            if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective #{objectiveTemplate.Alias}.");
-            if (targetBehaviorDB == null) throw new BriefingRoomException($"Target behavior \"{targetBehaviorDB.UIDisplayName}\" not found for objective #{objectiveTemplate.Alias}.");
-            if (taskDB == null) throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not found for objective #{objectiveTemplate.Alias}.");
+            var objectiveIndex = template.Objectives.IndexOf(objectiveTemplate);
+            if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective #{objectiveIndex}.");
+            if (targetBehaviorDB == null) throw new BriefingRoomException($"Target behavior \"{targetBehaviorDB.UIDisplayName}\" not found for objective #{objectiveIndex}.");
+            if (taskDB == null) throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not found for objective #{objectiveIndex}.");
 
             if (!taskDB.ValidUnitCategories.Contains(targetDB.UnitCategory))
-                throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not valid for objective #{objectiveTemplate.Alias} targets, which belong to category \"{targetDB.UnitCategory}\".");
+                throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not valid for objective #{objectiveIndex} targets, which belong to category \"{targetDB.UnitCategory}\".");
 
             // Add feature ogg files
             foreach (string oggFile in taskDB.IncludeOgg)
@@ -196,7 +197,7 @@ namespace BriefingRoom4DCS.Generator
                 extraSettings.ToArray());
 
             if (!targetGroupInfo.HasValue) // Failed to generate target group
-                throw new BriefingRoomException($"Failed to generate group for objective {objectiveTemplate.Alias}");
+                throw new BriefingRoomException($"Failed to generate group for objective {objectiveIndex}");
 
             // Static targets (aka buildings) need to have their "embedded" air defenses spawned in another group
             if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense) && (targetDB.UnitCategory == UnitCategory.Static))
@@ -222,7 +223,6 @@ namespace BriefingRoom4DCS.Generator
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Task, taskString);
 
             // Add Lua table for this objective
-            var objectiveIndex = template.Objectives.IndexOf(objectiveTemplate);
             string objectiveLua = $"briefingRoom.mission.objectives[{objectiveIndex + 1}] = {{ ";
             objectiveLua += $"complete = false, ";
             objectiveLua += $"groupID = {targetGroupInfo.Value.GroupID}, ";
@@ -260,7 +260,7 @@ namespace BriefingRoom4DCS.Generator
             return objectiveCoordinates;
         }
 
-        internal Waypoint GenerateObjectiveWaypoint(MissionTemplateObjective objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName, MissionTemplate template)
+        internal Waypoint GenerateObjectiveWaypoint(MissionTemplateObjectiveRecord objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName, MissionTemplateRecord template)
         {
             var AirOnGroundBehaviorLocations = new List<DBEntryObjectiveTargetBehaviorLocation>{
                 DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking,

@@ -31,12 +31,12 @@ namespace BriefingRoom4DCS.Generator
     {
         protected readonly UnitMaker _unitMaker;
 
-        protected readonly MissionTemplate _template;
+        protected readonly MissionTemplateRecord _template;
 
 
         private int TACANIndex = 1;
 
-        internal MissionGeneratorFeatures(UnitMaker unitMaker, MissionTemplate template)
+        internal MissionGeneratorFeatures(UnitMaker unitMaker, MissionTemplateRecord template)
         {
             _unitMaker = unitMaker;
             _template = template;

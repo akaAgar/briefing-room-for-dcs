@@ -25,7 +25,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text.RegularExpressions;
+
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -68,7 +68,7 @@ namespace BriefingRoom4DCS.Generator
             return unitsList.ToArray();
         }
 
-        internal static string[] GetEmbeddedAirDefenseUnits(MissionTemplate template, Side side)
+        internal static string[] GetEmbeddedAirDefenseUnits(MissionTemplateRecord template, Side side)
         {
             DBCommonAirDefenseLevel airDefenseInfo = (side == Side.Ally) ?
                  Database.Instance.Common.AirDefense.AirDefenseLevels[(int)template.SituationFriendlyAirDefense.Get()] :
@@ -147,13 +147,13 @@ namespace BriefingRoom4DCS.Generator
             return table;
         }
 
-        internal static string GetTemplateCoalition(MissionTemplate template, Coalition coalition)
+        internal static string GetTemplateCoalition(MissionTemplateRecord template, Coalition coalition)
         {
             if (coalition == Coalition.Red) return template.ContextCoalitionRed;
             return template.ContextCoalitionBlue;
         }
 
-        internal static Coalition? GetSpawnPointCoalition(MissionTemplate template, Side side)
+        internal static Coalition? GetSpawnPointCoalition(MissionTemplateRecord template, Side side)
         {
             // No countries spawning restriction
             if (template.OptionsMission.Contains("SpawnAnywhere")) return null;
@@ -193,7 +193,7 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        internal static DCSSkillLevel GetDefaultSkillLevel(MissionTemplate template, Side side) => (Side.Ally == side ? template.SituationFriendlySkill : template.SituationEnemySkill) switch
+        internal static DCSSkillLevel GetDefaultSkillLevel(MissionTemplateRecord template, Side side) => (Side.Ally == side ? template.SituationFriendlySkill : template.SituationEnemySkill) switch
         {
             AmountNR.None => DCSSkillLevel.Average,
             AmountNR.VeryLow => DCSSkillLevel.Average,

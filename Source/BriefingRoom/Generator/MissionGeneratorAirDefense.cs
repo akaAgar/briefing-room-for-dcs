@@ -27,7 +27,7 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGeneratorAirDefense
     {
 
-        internal static void GenerateAirDefense(MissionTemplate template, UnitMaker unitMaker, Coordinates averageInitialPosition, Coordinates objectivesCenter)
+        internal static void GenerateAirDefense(MissionTemplateRecord template, UnitMaker unitMaker, Coordinates averageInitialPosition, Coordinates objectivesCenter)
         {
             foreach (Coalition coalition in Toolbox.GetEnumValues<Coalition>())
             {
@@ -44,7 +44,7 @@ namespace BriefingRoom4DCS.Generator
         }
 
         private static void CreateAirDefenseGroups(
-            MissionTemplate template, UnitMaker unitMaker, Side side, Coalition coalition,
+            MissionTemplateRecord template, UnitMaker unitMaker, Side side, Coalition coalition,
             AmountNR airDefenseAmount, AirDefenseRange airDefenseRange,
             Coordinates centerPoint, Coordinates opposingPoint)
         {

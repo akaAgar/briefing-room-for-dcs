@@ -20,10 +20,6 @@ If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
 
-using System.Collections.Generic;
-using System.Linq;
-using BriefingRoom4DCS.Data;
-using BriefingRoom4DCS.Generator;
 
 namespace BriefingRoom4DCS.Template
 {

@@ -37,7 +37,7 @@ namespace BriefingRoom4DCS.Generator
         private const double VEHICLE_UNIT_SPACING = 20.0;
 
         private readonly DCSMission Mission;
-        private readonly MissionTemplate Template;
+        private readonly MissionTemplateRecord Template;
         private readonly DBEntryCoalition[] CoalitionsDB;
         private readonly Coalition PlayerCoalition;
         private readonly Country[][] CoalitionsCountries;
@@ -53,7 +53,7 @@ namespace BriefingRoom4DCS.Generator
         internal UnitMakerCallsignGenerator CallsignGenerator { get; }
 
         internal UnitMaker(
-            DCSMission mission, MissionTemplate template,
+            DCSMission mission, MissionTemplateRecord template,
             DBEntryCoalition[] coalitionsDB, DBEntryTheater theaterDB, DBEntrySituation situationDB,
             Coalition playerCoalition, Country[][] coalitionsCountries,
             bool singlePlayerMission)
