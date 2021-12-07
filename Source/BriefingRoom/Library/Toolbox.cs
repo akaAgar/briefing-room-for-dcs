@@ -382,6 +382,15 @@ namespace BriefingRoom4DCS
             return false;
         }
 
+        internal static bool IsBunkerUnsuitable(UnitFamily unitFamily) => 
+            new List<UnitFamily>{
+                UnitFamily.PlaneAWACS,
+                UnitFamily.PlaneTankerBasket,
+                UnitFamily.PlaneTankerBoom,
+                UnitFamily.PlaneTransport,
+                UnitFamily.PlaneBomber,
+            }.Contains(unitFamily) || unitFamily.GetUnitCategory() == UnitCategory.Helicopter;
+
         internal static string ValToString(object value, string stringFormat = "")
         {
             if (value == null) return "";

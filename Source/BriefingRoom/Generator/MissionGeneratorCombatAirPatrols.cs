@@ -102,11 +102,13 @@ namespace BriefingRoom4DCS.Generator
                     {"GroupY2", groupDestination.Y}
                 };
 
+                var luaUnit = commonCAPDB.LuaUnit;
                 var luaGroup = commonCAPDB.LuaGroup;
                 var spawnpointCoordinates = spawnPoint.Value;
                 if (template.MissionFeatures.Contains("ContextGroundStartAircraft"))
                 {
                     luaGroup += "Parked";
+                    luaUnit += "Parked";
                     var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = unitMaker.SpawnPointSelector.GetAirbaseAndParking(template, spawnPoint.Value, groupSize, coalition, false);
                     spawnpointCoordinates = airbase.Coordinates;
                     extraSettings.AddIfKeyUnused("ParkingID", parkingSpotIDsList.ToArray());
@@ -118,7 +120,7 @@ namespace BriefingRoom4DCS.Generator
 
                 UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(
                     Toolbox.RandomFrom(commonCAPDB.UnitFamilies), groupSize, side,
-                    luaGroup, commonCAPDB.LuaUnit,
+                    luaGroup, luaUnit,
                     spawnpointCoordinates,
                     0,
                     extraSettings.ToArray());

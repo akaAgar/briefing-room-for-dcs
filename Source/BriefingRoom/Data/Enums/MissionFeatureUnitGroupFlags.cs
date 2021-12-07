@@ -45,7 +45,6 @@ namespace BriefingRoom4DCS.Data
 
         SameSideAsTarget = 256,
 
-
         RadioAircraftActivation = 512,
 
         IgnoreBorders = 1024,
@@ -53,5 +52,9 @@ namespace BriefingRoom4DCS.Data
         GroundStart = 2048,
 
         RequiresOpenAirParking = 4096,
+
+        MoveTowardObjectives = 8192,
+
+        MoveTowardPlayerBase = 16384,
     }
 }

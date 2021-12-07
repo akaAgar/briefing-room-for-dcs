@@ -48,41 +48,8 @@ namespace BriefingRoom4DCS.Generator
             SpawnPoints = new List<DBEntryTheaterSpawnPoint>();
             InvertCoalition = invertCoalition;
 
-            Clear();
-        }
-
-        internal List<DBEntryAirbaseParkingSpot> GetFreeParkingSpots(int airbaseID, int unitCount, bool requiresOpenAirParking = false)
-        {
-            if (!AirbaseParkingSpots.ContainsKey(airbaseID) ||
-                (AirbaseParkingSpots[airbaseID].Count(x => !requiresOpenAirParking || x.ParkingType != ParkingSpotType.HardenedAirShelter) < unitCount))
-                throw new BriefingRoomException("Airbase didn't have enough parking spots. ");
-
-            var airbaseDB = SituationDB.GetAirbases(InvertCoalition).First(x => x.DCSID == airbaseID);
-            var parkingSpots = new List<DBEntryAirbaseParkingSpot>();
-            Coordinates? lastSpotCoordinates = null;
-            for (int i = 0; i < unitCount; i++)
-            {
-                var viableSpots = AirbaseParkingSpots[airbaseID].FindAll(x => (!requiresOpenAirParking || x.ParkingType != ParkingSpotType.HardenedAirShelter)).ToList();
-                if (viableSpots.Count == 0) throw new BriefingRoomException("Airbase didn't have enough parking spots. POST CHECK!");
-                var parkingSpot = Toolbox.RandomFrom(viableSpots);
-                if (lastSpotCoordinates.HasValue) //find nearest spot distance wise in attempt to cluster
-                    parkingSpot = viableSpots
-                        .Aggregate((acc, x) => acc.Coordinates.GetDistanceFrom(lastSpotCoordinates.Value) > x.Coordinates.GetDistanceFrom(lastSpotCoordinates.Value) && x.Coordinates.GetDistanceFrom(lastSpotCoordinates.Value) > 3 ? x : acc);
-
-                lastSpotCoordinates = parkingSpot.Coordinates;
-                AirbaseParkingSpots[airbaseID].Remove(parkingSpot);
-                parkingSpots.Add(parkingSpot);
-            }
-
-            return parkingSpots;
-        }
-
-        internal void Clear()
-        {
-            AirbaseParkingSpots.Clear();
-            SpawnPoints.Clear();
             if (TheaterDB.SpawnPoints is not null)
-                SpawnPoints.AddRange(TheaterDB.SpawnPoints);
+                SpawnPoints.AddRange(TheaterDB.SpawnPoints.Where(x => CheckNotInNoSpawnCoords(x.Coordinates)).ToList());
 
             foreach (DBEntryAirbase airbase in SituationDB.GetAirbases(InvertCoalition))
             {
@@ -90,6 +57,32 @@ namespace BriefingRoom4DCS.Generator
                 if (AirbaseParkingSpots.ContainsKey(airbase.DCSID)) continue;
                 AirbaseParkingSpots.Add(airbase.DCSID, airbase.ParkingSpots.ToList());
             }
+        }
+
+        internal List<DBEntryAirbaseParkingSpot> GetFreeParkingSpots(int airbaseID, int unitCount, bool requiresOpenAirParking)
+        {
+            if (!AirbaseParkingSpots.ContainsKey(airbaseID) ||
+                (AirbaseParkingSpots[airbaseID].Count(x => !requiresOpenAirParking || x.ParkingType != ParkingSpotType.HardenedAirShelter) < unitCount))
+                throw new BriefingRoomException("Airbase didn't have enough parking spots. ");
+
+            var airbaseDB = SituationDB.GetAirbases(InvertCoalition).First(x => x.DCSID == airbaseID);
+            var parkingSpots = new List<DBEntryAirbaseParkingSpot>();
+            DBEntryAirbaseParkingSpot? lastSpot = null;
+            for (int i = 0; i < unitCount; i++)
+            {
+                var viableSpots = AirbaseParkingSpots[airbaseID].FindAll(x => (!requiresOpenAirParking || x.ParkingType != ParkingSpotType.HardenedAirShelter)).ToList();
+                if (viableSpots.Count == 0) throw new BriefingRoomException("Airbase didn't have enough parking spots. POST CHECK!");
+                var parkingSpot = Toolbox.RandomFrom(viableSpots);
+                if (lastSpot.HasValue) //find nearest spot distance wise in attempt to cluster
+                    parkingSpot = viableSpots
+                        .Aggregate((acc, x) => acc.Coordinates.GetDistanceFrom(lastSpot.Value.Coordinates) > x.Coordinates.GetDistanceFrom(lastSpot.Value.Coordinates) ? x : acc);
+
+                lastSpot = parkingSpot;
+                AirbaseParkingSpots[airbaseID].Remove(parkingSpot);
+                parkingSpots.Add(parkingSpot);
+            }
+
+            return parkingSpots;
         }
 
         internal Coordinates? GetRandomSpawnPoint(
@@ -132,8 +125,7 @@ namespace BriefingRoom4DCS.Generator
                     validSPInRange = (from DBEntryTheaterSpawnPoint s in validSP
                                         where 
                                             searchRange.Contains(origin.GetDistanceFrom(s.Coordinates)) &&
-                                            CheckNotInHostileCoords(s.Coordinates, coalition) && 
-                                            CheckNotInNoSpawnCoords(s.Coordinates)
+                                            CheckNotInHostileCoords(s.Coordinates, coalition)
                                       select s);
                     searchRange = new MinMaxD(searchRange.Min * 0.9, Math.Max(100, searchRange.Max * 1.1));
                     validSP = (from DBEntryTheaterSpawnPoint s in validSPInRange select s);
@@ -187,7 +179,7 @@ namespace BriefingRoom4DCS.Generator
             return null;
         }
 
-        public Tuple<DBEntryAirbase, List<int>, List<Coordinates>> GetAirbaseAndParking(MissionTemplate template, Coordinates coordinates, int unitCount, Coalition coalition, bool requiresOpenAirParking)
+        internal Tuple<DBEntryAirbase, List<int>, List<Coordinates>> GetAirbaseAndParking(MissionTemplate template, Coordinates coordinates, int unitCount, Coalition coalition, bool requiresOpenAirParking)
         {
             var targetAirbaseOptions =
                         (from DBEntryAirbase airbaseDB in SituationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"))

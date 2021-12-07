@@ -4,10 +4,10 @@
   }, -- end of ["tasks"]
   ["task"] = "Nothing",
   ["uncontrolled"] = true,
-  ["taskSelected"] = true,
+  ["taskSelected"] = false,
   ["route"] =
   {
-    ["routeRelativeTOT"] = true,
+    ["routeRelativeTOT"] = flase,
     ["points"] =
     {
       [1] = 
@@ -28,12 +28,12 @@
           }, -- end of ["task"]
           ["type"] = "TakeOffParking",
           ["ETA"] = 0,
-          ["ETA_locked"] = true,
+          ["ETA_locked"] = false,
           ["y"] = $GROUPY$,
           ["x"] = $GROUPX$,
           ["formation_template"] = "",
           ["airdromeId"] = $GROUPAIRBASEID$,
-          ["speed_locked"] = true,
+          ["speed_locked"] = false,
       }, -- end of [1]
     }, -- end of ["points"]
   }, -- end of ["route"]

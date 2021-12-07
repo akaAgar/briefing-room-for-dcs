@@ -48,12 +48,7 @@ namespace BriefingRoom4DCS.Generator
         {
             CoalitionsDB = coalitionsDB;
 
-            Clear();
-        }
-
-        internal void Clear()
-        {
-            int i, j;
+             int i, j;
 
             for (i = 0; i < NATO_CALLSIGN_COUNT; i++)
             {

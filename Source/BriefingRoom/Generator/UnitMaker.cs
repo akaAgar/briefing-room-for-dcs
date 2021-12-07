@@ -69,17 +69,8 @@ namespace BriefingRoom4DCS.Generator
             CoalitionsCountries = coalitionsCountries;
             SinglePlayerMission = singlePlayerMission;
 
-            Clear();
-        }
-
-        internal void Clear()
-        {
-            CallsignGenerator.Clear();
-            SpawnPointSelector.Clear();
-
             GroupID = 1;
             UnitID = 1;
-            UnitLuaTables.Clear();
         }
 
         internal UnitMakerGroupInfo? AddUnitGroup(
@@ -186,7 +177,7 @@ namespace BriefingRoom4DCS.Generator
                     Mission.AppendValue("AircraftActivatorCurrentQueue", $"{GroupID},");
                 else if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.RadioAircraftSpawn))
                     Mission.AppendValue("AircraftRadioActivator", $"{{{GroupID}, \"{groupName}\"}},");
-                else
+                else if (groupTypeLua != "GroupAircraftParkedUncontrolled")
                     Mission.AppendValue("AircraftActivatorReserveQueue", $"{GroupID},");
             }
 
@@ -233,7 +224,6 @@ namespace BriefingRoom4DCS.Generator
             GeneratorTools.ReplaceKey(ref groupLua, "Altitude", firstUnitDB.AircraftData.CruiseAltitude);
             GeneratorTools.ReplaceKey(ref groupLua, "AltitudeHalf", firstUnitDB.AircraftData.CruiseAltitude / 2);
             GeneratorTools.ReplaceKey(ref groupLua, "EPLRS", firstUnitDB.Flags.HasFlag(DBEntryUnitFlags.EPLRS));
-            GeneratorTools.ReplaceKey(ref groupLua, "ParkingID", extraSettings.Any(x => x.Key == "GroupAirbaseID") ? extraSettings.First(x => x.Key == "GroupAirbaseID").Value : 0);
             GeneratorTools.ReplaceKey(ref groupLua, "RadioBand", (int)firstUnitDB.AircraftData.RadioModulation);
             GeneratorTools.ReplaceKey(ref groupLua, "RadioFrequency", firstUnitDB.AircraftData.RadioFrequency);
             GeneratorTools.ReplaceKey(ref groupLua, "Speed", firstUnitDB.AircraftData.CruiseSpeed);
@@ -413,7 +403,7 @@ namespace BriefingRoom4DCS.Generator
 
             foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
                 if (extraSetting.Value is Array)
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value, unitSetIndex);
+                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value, unitLuaIndex-1);
                 else
                     GeneratorTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value);
 

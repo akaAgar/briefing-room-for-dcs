@@ -118,6 +118,7 @@ namespace BriefingRoom4DCS.Generator
             var parkingSpotIDsList = new List<int>();
             var parkingSpotCoordinatesList = new List<Coordinates>();
             var unitCount = targetDB.UnitCount[(int)objectiveTemplate.TargetCount].GetValue();
+            objectiveTargetUnitFamily = Toolbox.RandomFrom(targetDB.UnitFamilies);
             switch (targetBehaviorDB.Location)
             {
                 case DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbase:
@@ -136,7 +137,7 @@ namespace BriefingRoom4DCS.Generator
                         var parkingSpots = UnitMaker.SpawnPointSelector.GetFreeParkingSpots(
                             targetAirbase.DCSID,
                             unitCount,
-                            targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter);
+                            targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter || Toolbox.IsBunkerUnsuitable(objectiveTargetUnitFamily));
 
                         parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
                         parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
@@ -153,8 +154,6 @@ namespace BriefingRoom4DCS.Generator
             if (objectiveOptions.Contains(ObjectiveOption.ShowTarget)) groupFlags = UnitMakerGroupFlags.NeverHidden;
             else if (objectiveOptions.Contains(ObjectiveOption.HideTarget)) groupFlags = UnitMakerGroupFlags.AlwaysHidden;
             if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense)) groupFlags |= UnitMakerGroupFlags.EmbeddedAirDefense;
-
-            objectiveTargetUnitFamily = Toolbox.RandomFrom(targetDB.UnitFamilies);
 
             // Set destination point for moving unit groups
             Coordinates destinationPoint = objectiveCoordinates;
@@ -178,18 +177,20 @@ namespace BriefingRoom4DCS.Generator
             var extraSettings = new List<KeyValuePair<string, object>>{
                 "GroupX2".ToKeyValuePair(destinationPoint.X),
                 "GroupY2".ToKeyValuePair(destinationPoint.Y),
-                "GroupAirbaseID".ToKeyValuePair(airbaseID),
-                "ParkingID".ToKeyValuePair(parkingSpotIDsList.ToArray())
             };
+            var luaUnit = targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory];
             if (parkingSpotCoordinatesList.Count > 1)
             {
+                luaUnit += "Parked";
+                extraSettings.Add("GroupAirbaseID".ToKeyValuePair(airbaseID));
+                extraSettings.Add("ParkingID".ToKeyValuePair(parkingSpotIDsList.ToArray()));
                 extraSettings.Add("UnitX".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.X).ToArray()));
                 extraSettings.Add("UnitY".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.Y).ToArray()));
             }
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
                 objectiveTargetUnitFamily, unitCount,
                 taskDB.TargetSide,
-                targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
+                targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], luaUnit,
                 objectiveCoordinates,
                 groupFlags,
                 extraSettings.ToArray());
