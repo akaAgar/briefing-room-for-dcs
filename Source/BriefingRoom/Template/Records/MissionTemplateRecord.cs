@@ -49,7 +49,7 @@ namespace BriefingRoom4DCS.Template
         internal List<string> OptionsMission { get; init; }
         internal List<RealismOption> OptionsRealism { get; init; }
         internal List<MissionTemplateFlightGroupRecord> PlayerFlightGroups { get; init; }
-        internal List<MissionTemplatePackage> AircraftPackages { get; init; }
+        internal List<MissionTemplatePackageRecord> AircraftPackages { get; init; }
         internal AmountNR SituationEnemySkill { get; init; }
         internal AmountNR SituationEnemyAirDefense { get; init; }
         internal AmountNR SituationEnemyAirForce { get; init; }
@@ -81,7 +81,7 @@ namespace BriefingRoom4DCS.Template
             OptionsMission = template.OptionsMission;
             OptionsRealism = template.OptionsRealism;
             PlayerFlightGroups = template.PlayerFlightGroups.Select(x => new MissionTemplateFlightGroupRecord(x)).ToList();
-            AircraftPackages = template.AircraftPackages;
+            AircraftPackages = template.AircraftPackages.Select(x => new MissionTemplatePackageRecord(x)).ToList();
             SituationEnemySkill = template.SituationEnemySkill;
             SituationEnemyAirDefense = template.SituationEnemyAirDefense;
             SituationEnemyAirForce = template.SituationEnemyAirForce;

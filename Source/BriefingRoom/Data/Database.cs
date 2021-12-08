@@ -82,7 +82,7 @@ namespace BriefingRoom4DCS.Data
             if ((from DBEntryUnit unit in GetAllEntries<DBEntryUnit>()
                  where unit.AircraftData.PlayerControllable
                  select unit.ID).Count() == 0)
-                BriefingRoom.PrintToLog("No player-controllable aircraft found.", LogMessageErrorLevel.Error);
+                throw new BriefingRoomException("No player-controllable aircraft found.");
 
             Initialized = true;
         }
@@ -123,7 +123,7 @@ namespace BriefingRoom4DCS.Data
 
             // If a required database type has no entries, raise an error.
             if ((DBEntries[dbType].Count == 0) && mustHaveAtLeastOneEntry)
-                BriefingRoom.PrintToLog($"No valid database entries found in the \"{subDirectory}\" directory", LogMessageErrorLevel.Error);
+                throw new BriefingRoomException($"No valid database entries found in the \"{subDirectory}\" directory");
         }
 
         private void LoadCustomUnitEntries(string subDirectory)
@@ -165,7 +165,7 @@ namespace BriefingRoom4DCS.Data
 
             // If a required database type has no entries, raise an error.
             if ((DBEntries[dbType].Count == 0) && mustHaveAtLeastOneEntry)
-                BriefingRoom.PrintToLog($"No valid database entries found in the \"{subDirectory}\" directory", LogMessageErrorLevel.Error);
+                throw new BriefingRoomException($"No valid database entries found in the \"{subDirectory}\" directory");
         }
 
 

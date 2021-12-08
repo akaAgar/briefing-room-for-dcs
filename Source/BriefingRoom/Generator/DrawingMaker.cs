@@ -119,8 +119,8 @@ namespace BriefingRoom4DCS.Generator
                 "Points".ToKeyValuePair(blue.Select(coord => coord - blue.First()).ToList()),
                 "Colour".ToKeyValuePair(DrawingColour.BlueFill),
                 "FillColour".ToKeyValuePair(DrawingColour.BlueFill));
-            
-            if(SituationDB.NoSpawnCoordinates != null)
+
+            if (SituationDB.NoSpawnCoordinates != null)
             {
                 var noSpawn = SituationDB.NoSpawnCoordinates;
                 AddFree(

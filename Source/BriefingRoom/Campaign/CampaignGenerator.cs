@@ -66,10 +66,8 @@ namespace BriefingRoom4DCS.Campaign
             }
 
             if (campaign.MissionCount < 1) // No missions generated, something went very wrong.
-            {
-                BriefingRoom.PrintToLog($"Campaign has no valid mission.", LogMessageErrorLevel.Error);
-                return null;
-            }
+                throw new BriefingRoomException($"Campaign has no valid mission.");
+
 
             CreateImageFiles(campaignTemplate, campaign, baseFileName);
 

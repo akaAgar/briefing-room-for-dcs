@@ -49,14 +49,12 @@ namespace BriefingRoom4DCS.Campaign
             Name = "";
         }
 
-        public bool ExportToDirectory(string exportPath)
+        public void ExportToDirectory(string exportPath)
         {
             // Try to create the directory if it doesn't exist.
             if (!Toolbox.CreateMissingDirectory(exportPath))
-            {
-                BriefingRoom.PrintToLog("Failed to create campaign directory.", LogMessageErrorLevel.Error);
-                return false;
-            }
+                throw new BriefingRoomException("Failed to create campaign directory.");
+
 
 
             // Write CMP file
@@ -69,8 +67,6 @@ namespace BriefingRoom4DCS.Campaign
             // Write missions
             for (int i = 0; i < Missions.Count; i++)
                 Missions[i].SaveToMizFile($"{exportPath}{Name}{i + 1:00}.miz");
-
-            return false;
         }
 
         public byte[] ExportToCompressedByteArray()

@@ -105,7 +105,7 @@ namespace BriefingRoom4DCS.Generator
                 var luaUnit = commonCAPDB.LuaUnit;
                 var luaGroup = commonCAPDB.LuaGroup;
                 var spawnpointCoordinates = spawnPoint.Value;
-                var unitFamily  = Toolbox.RandomFrom(commonCAPDB.UnitFamilies);
+                var unitFamily = Toolbox.RandomFrom(commonCAPDB.UnitFamilies);
                 if (template.MissionFeatures.Contains("ContextGroundStartAircraft"))
                 {
                     luaGroup += "Parked";

@@ -403,7 +403,7 @@ namespace BriefingRoom4DCS.Generator
 
             foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
                 if (extraSetting.Value is Array)
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value, unitLuaIndex-1);
+                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value, unitLuaIndex - 1);
                 else
                     GeneratorTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value);
 

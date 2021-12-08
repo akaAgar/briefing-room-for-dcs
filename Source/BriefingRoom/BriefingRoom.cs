@@ -46,7 +46,7 @@ namespace BriefingRoom4DCS
 
         public BriefingRoom(LogHandler logHandler = null)
         {
-            INIFile ini = new ($"{BRPaths.DATABASE}Common.ini");
+            INIFile ini = new($"{BRPaths.DATABASE}Common.ini");
             TARGETED_DCS_WORLD_VERSION = ini.GetValue("Versions", "DCSVersion", "2.7");
 
             OnMessageLogged += logHandler;
@@ -192,10 +192,6 @@ namespace BriefingRoom4DCS
         internal static void PrintToLog(string message, LogMessageErrorLevel errorLevel = LogMessageErrorLevel.Info)
         {
             OnMessageLogged?.Invoke(message, errorLevel);
-
-            // Throw an exception if there was an error.
-            if (errorLevel == LogMessageErrorLevel.Error)
-                throw new BriefingRoomException(message);
         }
     }
 }

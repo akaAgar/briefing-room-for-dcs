@@ -284,17 +284,10 @@ namespace BriefingRoom4DCS.Generator
             return (int)(radioFrequency * 1000000.0);
         }
 
-        internal static bool CheckDBForMissingEntry<T>(string id, bool allowEmpty = false) where T : DBEntry
+        internal static void CheckDBForMissingEntry<T>(string id, bool allowEmpty = false) where T : DBEntry
         {
-            if (string.IsNullOrEmpty(id) && allowEmpty) return true;
-
-            if (!Database.Instance.EntryExists<T>(id))
-            {
-                BriefingRoom.PrintToLog($"Database entry {typeof(T).Name} with ID \"{id}\" not found.", LogMessageErrorLevel.Error);
-                return false;
-            }
-
-            return true;
+            if (string.IsNullOrEmpty(id) && allowEmpty) return;
+            if (!Database.Instance.EntryExists<T>(id)) throw new BriefingRoomException($"Database entry {typeof(T).Name} with ID \"{id}\" not found.");
         }
 
         internal static string ParseRandomString(string randomString)

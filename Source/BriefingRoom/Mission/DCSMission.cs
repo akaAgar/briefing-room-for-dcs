@@ -43,6 +43,8 @@ namespace BriefingRoom4DCS.Mission
 
         internal Dictionary<int, Coalition> Airbases { get; }
 
+        internal List<DCSMissionPackage> MissionPackages { get; }
+
         internal string ReplaceValues(string rawText)
         {
             if (rawText == null) return null;
@@ -71,6 +73,7 @@ namespace BriefingRoom4DCS.Mission
         {
             Airbases = new Dictionary<int, Coalition>();
             Briefing = new DCSMissionBriefing(this);
+            MissionPackages = new List<DCSMissionPackage>();
             MediaFiles = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
             Values = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
 
@@ -158,8 +161,7 @@ namespace BriefingRoom4DCS.Mission
             }
             catch (Exception ex)
             {
-                BriefingRoom.PrintToLog(ex.Message, LogMessageErrorLevel.Error);
-                return false;
+                throw new(ex.Message);
             }
         }
 

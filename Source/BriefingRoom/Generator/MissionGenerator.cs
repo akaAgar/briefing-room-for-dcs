@@ -36,11 +36,10 @@ namespace BriefingRoom4DCS.Generator
         {
 
             // Check for missing entries in the database
-            if (!GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionBlue) ||
-                !GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionRed) ||
-                !GeneratorTools.CheckDBForMissingEntry<DBEntryWeatherPreset>(template.EnvironmentWeatherPreset, true) ||
-                !GeneratorTools.CheckDBForMissingEntry<DBEntryTheater>(template.ContextTheater))
-                return null;
+            GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionBlue);
+            GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionRed);
+            GeneratorTools.CheckDBForMissingEntry<DBEntryWeatherPreset>(template.EnvironmentWeatherPreset, true);
+            GeneratorTools.CheckDBForMissingEntry<DBEntryTheater>(template.ContextTheater);
 
             var mission = new DCSMission();
 
@@ -57,7 +56,7 @@ namespace BriefingRoom4DCS.Generator
             if (template.ContextSituation.StartsWith(template.ContextTheater))
                 situationDB = Database.Instance.GetEntry<DBEntrySituation>(template.ContextSituation);
 
-            
+
             var coalitionsDB = new DBEntryCoalition[]
             {
                 Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionBlue),
@@ -81,30 +80,29 @@ namespace BriefingRoom4DCS.Generator
             foreach (string oggFile in Database.Instance.Common.CommonOGG)
                 mission.AddMediaFile($"l10n/DEFAULT/{Toolbox.AddMissingFileExtension(oggFile, ".ogg")}", $"{BRPaths.INCLUDE_OGG}{Toolbox.AddMissingFileExtension(oggFile, ".ogg")}");
 
- 
+
             var coalitionsCountries = MissionGeneratorCountries.GenerateCountries(mission, template);
 
- 
+
             var unitMaker = new UnitMaker(mission, template, coalitionsDB, theaterDB, situationDB, template.ContextPlayerCoalition, coalitionsCountries, template.GetPlayerSlotsCount() == 1);
 
             var drawingMaker = new DrawingMaker(mission, template, theaterDB, situationDB);
 
- 
+
             BriefingRoom.PrintToLog("Generating mission date and time...");
-            var month= MissionGeneratorDateTime.GenerateMissionDate(mission, template);
+            var month = MissionGeneratorDateTime.GenerateMissionDate(mission, template);
             MissionGeneratorDateTime.GenerateMissionTime(mission, template, theaterDB, month);
 
 
             BriefingRoom.PrintToLog("Setting up airbases...");
             var airbasesGenerator = new MissionGeneratorAirbases(template, situationDB);
             var playerAirbase = airbasesGenerator.SelectStartingAirbase(mission, template.FlightPlanTheaterStartingAirbase);
-            if (playerAirbase == null) throw new BriefingRoomException("No valid airbase was found for the player(s).");
-            airbasesGenerator.SetupAirbasesCoalitions(mission, playerAirbase);
+            mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{playerAirbase.Name}\t{playerAirbase.Runways}\t{playerAirbase.ATC}\t{playerAirbase.ILS}\t{playerAirbase.TACAN}");
             airbasesGenerator.SelectStartingAirbaseForPackages(mission, playerAirbase);
+            airbasesGenerator.SetupAirbasesCoalitions(mission, playerAirbase);
             mission.SetValue("PlayerAirbaseName", playerAirbase.Name);
             mission.SetValue("MissionAirbaseX", playerAirbase.Coordinates.X);
             mission.SetValue("MissionAirbaseY", playerAirbase.Coordinates.Y);
-            mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{playerAirbase.Name}\t{playerAirbase.Runways}\t{playerAirbase.ATC}\t{playerAirbase.ILS}\t{playerAirbase.TACAN}");
 
 
             BriefingRoom.PrintToLog("Generating mission weather...");
@@ -140,14 +138,14 @@ namespace BriefingRoom4DCS.Generator
             // Generate extra flight plan info
             MissionGeneratorFlightPlan.GenerateBullseyes(mission, objectivesCenter);
             MissionGeneratorFlightPlan.GenerateObjectiveWPCoordinatesLua(template, mission, waypoints);
-            MissionGeneratorFlightPlan.GenerateAircraftPackageWaypoints(template, waypoints, averageInitialPosition, objectivesCenter);
+            MissionGeneratorFlightPlan.GenerateAircraftPackageWaypoints(template, mission, waypoints, averageInitialPosition, objectivesCenter);
             MissionGeneratorFlightPlan.GenerateIngressAndEgressWaypoints(template, waypoints, averageInitialPosition, objectivesCenter);
 
             // Generate surface-to-air defenses
-             MissionGeneratorAirDefense.GenerateAirDefense(template, unitMaker, averageInitialPosition, objectivesCenter);
+            MissionGeneratorAirDefense.GenerateAirDefense(template, unitMaker, averageInitialPosition, objectivesCenter);
 
             // Generate combat air patrols
-            var capGroupsID = MissionGeneratorCombatAirPatrols.GenerateCAP(unitMaker,template, averageInitialPosition, objectivesCenter);
+            var capGroupsID = MissionGeneratorCombatAirPatrols.GenerateCAP(unitMaker, template, averageInitialPosition, objectivesCenter);
             foreach (int capGroupID in capGroupsID) // Add 50% of CAP groups to the list of A/C activated on takeoff, the other 50% to the list of A/C activated later.
                 if (Toolbox.RandomChance(2))
                     immediateActivationAircraftGroupsIDs.Add(capGroupID);
@@ -156,7 +154,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Generate player flight groups
             BriefingRoom.PrintToLog("Generating player flight groups...");
-            foreach(var templateFlightGroup in template.PlayerFlightGroups)
+            foreach (var templateFlightGroup in template.PlayerFlightGroups)
                 MissionGeneratorPlayerFlightGroups.GeneratePlayerFlightGroup(unitMaker, mission, template, templateFlightGroup, playerAirbase, waypoints, carrierDictionary, averageInitialPosition, objectivesCenter);
 
             // Generate mission features

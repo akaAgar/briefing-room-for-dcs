@@ -1,4 +1,4 @@
-﻿/*
+/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar
@@ -21,32 +21,23 @@ If not, see https://www.gnu.org/licenses/
 */
 
 using System.Collections.Generic;
+using System.Linq;
+using BriefingRoom4DCS.Data;
+using BriefingRoom4DCS.Generator;
 
 namespace BriefingRoom4DCS.Template
 {
-    internal sealed record MissionTemplateFlightGroupRecord
-    {
-        internal string Aircraft { get; init; }
-        internal bool AIWingmen { get; init; }
-        internal string Carrier { get; init; }
-        internal int Count { get; init; }
-        internal Country Country { get; init; }
-        internal string Payload { get; init; }
-        internal PlayerStartLocation StartLocation { get; init; }
-        internal string StartingAirbase { get; init; } = "home";
-        internal List<int> ObjectiveIndexes { get; init; }
-        internal string Livery { get; init; }
 
-        internal MissionTemplateFlightGroupRecord(MissionTemplateFlightGroup flightGroup)
+    internal sealed class DCSMissionPackage
+    {
+        internal List<Waypoint> Waypoints { get; set; }
+        internal DBEntryAirbase Airbase { get; }
+        internal int RecordIndex { get; }
+
+        internal DCSMissionPackage(int recordIndex, DBEntryAirbase airbase)
         {
-            Aircraft = flightGroup.Aircraft;
-            AIWingmen = flightGroup.AIWingmen;
-            Carrier = flightGroup.Carrier;
-            Count = flightGroup.Count;
-            Country = flightGroup.Country;
-            Payload = flightGroup.Payload;
-            StartLocation = flightGroup.StartLocation;
-            Livery = flightGroup.Livery;
+            RecordIndex = recordIndex;
+            Airbase = airbase;
         }
     }
 }

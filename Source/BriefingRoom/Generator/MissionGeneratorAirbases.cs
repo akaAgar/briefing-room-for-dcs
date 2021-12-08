@@ -22,6 +22,7 @@ using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
@@ -40,16 +41,23 @@ namespace BriefingRoom4DCS.Generator
 
         internal void SelectStartingAirbaseForPackages(DCSMission mission, DBEntryAirbase homeBase)
         {
+            var missionPackages = new List<DCSMissionPackage>();
             foreach (var package in _template.AircraftPackages)
             {
                 if (package.StartingAirbase == "home")
                 {
-                    package.Airbase = homeBase;
+                    missionPackages.Add(new DCSMissionPackage(_template.AircraftPackages.IndexOf(package), homeBase));
                     continue;
                 }
                 var requiredSpots = _template.PlayerFlightGroups.Where((v, i) => package.FlightGroupIndexes.Contains(i)).Sum(x => x.Count);
-                package.Airbase = SelectStartingAirbase(mission, package.StartingAirbase, requiredSpots);
+                var airbase = SelectStartingAirbase(mission, package.StartingAirbase, requiredSpots);
+
+                if (missionPackages.Any(x => x.Airbase == airbase))
+                    mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{airbase.Name}\t{airbase.Runways}\t{airbase.ATC}\t{airbase.ILS}\t{airbase.TACAN}");
+
+                missionPackages.Add(new DCSMissionPackage(_template.AircraftPackages.IndexOf(package), airbase));
             }
+            mission.MissionPackages.AddRange(missionPackages);
         }
 
         internal DBEntryAirbase SelectStartingAirbase(DCSMission mission, string selectedAirbaseID, int requiredParkingSpots = 0)
@@ -64,45 +72,18 @@ namespace BriefingRoom4DCS.Generator
             {
                 var airbase = airbases.FirstOrDefault(x => x.ID == selectedAirbaseID);
                 if (airbase is null)
-                {
-                    BriefingRoom.PrintToLog($"No airbase found with ID \"{selectedAirbaseID}\", cannot spawn player aircraft.", LogMessageErrorLevel.Error);
-                    return null;
-                }
-                if (airbase.ParkingSpots.Length < requiredParkingSpots)
-                {
-                    BriefingRoom.PrintToLog($"Airbase \"{selectedAirbaseID}\" has less than {requiredParkingSpots} parking spots, cannot spawn player aircraft.", LogMessageErrorLevel.Error);
-                    return null;
-                }
+                    throw new BriefingRoomException($"No airbase found with ID \"{selectedAirbaseID}\", cannot spawn player aircraft.");
 
                 return airbase;
             }
 
-            // Select all airbases with enough parking spots
-            airbases = airbases.Where(x => x.ParkingSpots.Length >= requiredParkingSpots).ToArray();
-            if (airbases.Length == 0)
-            {
-                BriefingRoom.PrintToLog($"No airbase found with {requiredParkingSpots} parking spots, cannot spawn all player aircraft.", LogMessageErrorLevel.Error);
-                return null;
-            }
-
-            // Select all airbases belonging to the player coalition
-            airbases = airbases.Where(x => x.Coalition == _template.ContextPlayerCoalition).ToArray();
-            if (airbases.Length == 0)
-            {
-                BriefingRoom.PrintToLog($"No airbase belonging to player coalition found, cannot spawn player aircraft.", LogMessageErrorLevel.Error);
-                return null;
-            }
-
-            // If some targets are ships, or some player start on a carrier, try to pick an airbase near water
-            if (MissionPrefersShoreAirbase())
-            {
-                DBEntryAirbase[] shoreAirbases = airbases.Where(x => x.Flags.HasFlag(AirbaseFlag.NearWater)).ToArray();
-
-                if (shoreAirbases.Length > 0)
-                    return Toolbox.RandomFrom(shoreAirbases);
-            }
-
-            return Toolbox.RandomFrom(airbases);
+            return Toolbox.RandomFrom(
+                airbases.Where(x =>
+                    x.ParkingSpots.Length >= requiredParkingSpots &&
+                    x.Coalition == _template.ContextPlayerCoalition &&
+                    (MissionPrefersShoreAirbase() ? x.Flags.HasFlag(AirbaseFlag.NearWater) : true)
+                    ).ToArray()
+                );
         }
 
         private bool MissionPrefersShoreAirbase()
@@ -128,16 +109,8 @@ namespace BriefingRoom4DCS.Generator
 
             foreach (DBEntryAirbase airbase in situationAirbases)
             {
-                // Airbase is the player starting airbase, always set it to the player coalition
-                if (airbase.DCSID == playerAirbase.DCSID)
-                {
-                    mission.SetAirbase(airbase.DCSID, _template.ContextPlayerCoalition);
-                    continue;
-                }
-
-                // Other airbases are assigned to a coalition according to the theater and the template settings
-
-                mission.SetAirbase(airbase.DCSID, airbase.Coalition);
+                var coalition = airbase.DCSID == playerAirbase.DCSID || mission.MissionPackages.Any(x => x.Airbase.DCSID == airbase.DCSID) ? _template.ContextPlayerCoalition : airbase.Coalition;
+                mission.SetAirbase(airbase.DCSID, coalition);
             }
         }
     }

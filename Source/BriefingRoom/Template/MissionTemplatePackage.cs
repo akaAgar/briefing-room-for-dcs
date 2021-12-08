@@ -33,9 +33,6 @@ namespace BriefingRoom4DCS.Template
         public List<int> FlightGroupIndexes { get; set; }
         public List<int> ObjectiveIndexes { get; set; }
         public string StartingAirbase { get; set; }
-        internal List<Waypoint> Waypoints { get; set; }
-        internal DBEntryAirbase Airbase { get; set; }
-
 
         public MissionTemplatePackage()
         {

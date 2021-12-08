@@ -383,37 +383,6 @@ namespace BriefingRoom4DCS
             return false;
         }
 
-        internal static List<DBEntryAirbaseParkingSpot> FilterSuitableSpots(DBEntryAirbaseParkingSpot[] parkingspots, UnitFamily unitFamily, bool requiresOpenAirParking)
-        {
-            var validTypes = new List<ParkingSpotType>{
-                ParkingSpotType.OpenAirSpawn,
-                ParkingSpotType.HardenedAirShelter,
-                ParkingSpotType.AirplaneOnly
-            };
-            
-            if(unitFamily.GetUnitCategory() == UnitCategory.Helicopter)
-                validTypes = new List<ParkingSpotType>{
-                    ParkingSpotType.OpenAirSpawn,
-                    ParkingSpotType.HelicopterOnly,
-                };
-            else if(IsBunkerUnsuitable(unitFamily) || requiresOpenAirParking)
-                validTypes = new List<ParkingSpotType>{
-                    ParkingSpotType.OpenAirSpawn,
-                    ParkingSpotType.AirplaneOnly,
-                };
-
-            return parkingspots.Where(x => validTypes.Contains(x.ParkingType)).ToList();
-        }
-
-        private static bool IsBunkerUnsuitable(UnitFamily unitFamily) => 
-            new List<UnitFamily>{
-                UnitFamily.PlaneAWACS,
-                UnitFamily.PlaneTankerBasket,
-                UnitFamily.PlaneTankerBoom,
-                UnitFamily.PlaneTransport,
-                UnitFamily.PlaneBomber,
-            }.Contains(unitFamily) || unitFamily.GetUnitCategory() == UnitCategory.Helicopter;
-
         internal static string ValToString(object value, string stringFormat = "")
         {
             if (value == null) return "";
@@ -524,8 +493,7 @@ namespace BriefingRoom4DCS
             }
             catch (Exception ex)
             {
-                BriefingRoom.PrintToLog(ex.Message, LogMessageErrorLevel.Error);
-                return null;
+                throw new BriefingRoomException(ex.Message);
             }
 
             return mizBytes;

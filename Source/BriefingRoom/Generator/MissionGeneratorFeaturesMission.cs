@@ -54,12 +54,12 @@ namespace BriefingRoom4DCS.Generator
             }
 
             var goPoint = spawnPoint.Value;
-            
-            if(featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.MoveTowardObjectives))
+
+            if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.MoveTowardObjectives))
                 goPoint = objectivesCenter;
-            else if(featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.MoveTowardPlayerBase))
+            else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.MoveTowardPlayerBase))
                 goPoint = initialCoordinates;
-   
+
             Coordinates coordinates2 = goPoint + Coordinates.CreateRandom(5, 20) * Toolbox.NM_TO_METERS;
             Dictionary<string, object> extraSettings = new Dictionary<string, object>();
             UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, spawnPoint.Value, coordinates2, ref extraSettings);

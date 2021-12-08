@@ -150,7 +150,7 @@ namespace BriefingRoom4DCS.Generator
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Remark, remark, featureDB is DBEntryFeatureMission);
         }
 
-        
+
         private void GetExtraSettingsFromFeature(T featureDB, ref Dictionary<string, object> extraSettings)
         {
             // TODO: Improve
@@ -197,7 +197,7 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        private void SetAirbase(T featureDB,UnitFamily unitFamily, ref string groupLua, ref string luaUnit, Side groupSide, ref Coordinates coordinates, int unitCount, ref Dictionary<string, object> extraSettings)
+        private void SetAirbase(T featureDB, UnitFamily unitFamily, ref string groupLua, ref string luaUnit, Side groupSide, ref Coordinates coordinates, int unitCount, ref Dictionary<string, object> extraSettings)
         {
             if ((_template.MissionFeatures.Contains("ContextGroundStartAircraft") || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.GroundStart)) && Toolbox.IsAircraft(unitFamily.GetUnitCategory()))
             {

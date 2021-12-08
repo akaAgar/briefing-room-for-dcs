@@ -64,16 +64,16 @@ namespace BriefingRoom4DCS.Generator
 
             if (!AirbaseParkingSpots.ContainsKey(airbaseID))
                 throw new BriefingRoomException($"Airbase {airbaseID} not found in parking map");
-        
+
 
             var airbaseDB = SituationDB.GetAirbases(InvertCoalition).First(x => x.DCSID == airbaseID);
             var parkingSpots = new List<DBEntryAirbaseParkingSpot>();
             DBEntryAirbaseParkingSpot? lastSpot = null;
             for (int i = 0; i < unitCount; i++)
             {
-                var viableSpots = Toolbox.FilterSuitableSpots(AirbaseParkingSpots[airbaseID].ToArray(), unitFamily, requiresOpenAirParking);
-                if (viableSpots.Count == 0) throw new BriefingRoomException("Airbase didn't have enough parking spots.");
-                var parkingSpot = Toolbox.RandomFrom(viableSpots);
+                var viableSpots = FilterAndSortSuitableSpots(AirbaseParkingSpots[airbaseID].ToArray(), unitFamily, requiresOpenAirParking);
+                if (viableSpots.Count == 0) throw new BriefingRoomException("Airbase didn't have enough suitable parking spots.");
+                var parkingSpot = viableSpots.First();
                 if (lastSpot.HasValue) //find nearest spot distance wise in attempt to cluster
                     parkingSpot = viableSpots
                         .Aggregate((acc, x) => acc.Coordinates.GetDistanceFrom(lastSpot.Value.Coordinates) > x.Coordinates.GetDistanceFrom(lastSpot.Value.Coordinates) ? x : acc);
@@ -124,9 +124,9 @@ namespace BriefingRoom4DCS.Generator
                     Coordinates origin = distanceOrigin[i].Value;
 
                     validSPInRange = (from DBEntryTheaterSpawnPoint s in validSP
-                                        where 
-                                            searchRange.Contains(origin.GetDistanceFrom(s.Coordinates)) &&
-                                            CheckNotInHostileCoords(s.Coordinates, coalition)
+                                      where
+                                          searchRange.Contains(origin.GetDistanceFrom(s.Coordinates)) &&
+                                          CheckNotInHostileCoords(s.Coordinates, coalition)
                                       select s);
                     searchRange = new MinMaxD(searchRange.Min * 0.9, Math.Max(100, searchRange.Max * 1.1));
                     validSP = (from DBEntryTheaterSpawnPoint s in validSPInRange select s);
@@ -186,23 +186,70 @@ namespace BriefingRoom4DCS.Generator
         {
             var targetAirbaseOptions =
                         (from DBEntryAirbase airbaseDB in SituationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"))
-                         where airbaseDB.Coalition == coalition
+                         where airbaseDB.Coalition == coalition && ValidateAirfield(AirbaseParkingSpots[airbaseDB.DCSID], unitFamily, unitCount)
                          select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(coordinates));
 
             if (targetAirbaseOptions.Count() == 0) throw new BriefingRoomException("No airbase found for aircraft.");
 
-            DBEntryAirbase targetAirbase = targetAirbaseOptions.First(x => AirbaseParkingSpots[x.DCSID].Count() >= unitCount);
-
+            var targetAirbase = targetAirbaseOptions.First();
             var objectiveCoordinates = targetAirbase.Coordinates;
             var airbaseID = targetAirbase.DCSID;
-            List<int> parkingSpotIDsList = new List<int>();
-            List<Coordinates> parkingSpotCoordinatesList = new List<Coordinates>();
-
+            var parkingSpotIDsList = new List<int>();
+            var parkingSpotCoordinatesList = new List<Coordinates>();
             var parkingSpots = GetFreeParkingSpots(airbaseID, unitCount, unitFamily);
+
             parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
             parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
 
             return Tuple.Create(targetAirbase, parkingSpotIDsList, parkingSpotCoordinatesList);
+        }
+
+        private List<DBEntryAirbaseParkingSpot> FilterAndSortSuitableSpots(DBEntryAirbaseParkingSpot[] parkingspots, UnitFamily unitFamily, bool requiresOpenAirParking)
+        {
+            var validTypes = new List<ParkingSpotType>{
+                ParkingSpotType.OpenAirSpawn,
+                ParkingSpotType.HardenedAirShelter,
+                ParkingSpotType.AirplaneOnly
+            };
+
+            if (unitFamily.GetUnitCategory() == UnitCategory.Helicopter)
+                validTypes = new List<ParkingSpotType>{
+                    ParkingSpotType.OpenAirSpawn,
+                    ParkingSpotType.HelicopterOnly,
+                };
+            else if (IsBunkerUnsuitable(unitFamily) || requiresOpenAirParking)
+                validTypes = new List<ParkingSpotType>{
+                    ParkingSpotType.OpenAirSpawn
+                };
+
+            return parkingspots.Where(x => validTypes.Contains(x.ParkingType)).OrderBy(x => x.ParkingType).ToList();
+        }
+
+        private bool IsBunkerUnsuitable(UnitFamily unitFamily) =>
+            new List<UnitFamily>{
+                UnitFamily.PlaneAWACS,
+                UnitFamily.PlaneTankerBasket,
+                UnitFamily.PlaneTankerBoom,
+                UnitFamily.PlaneTransport,
+                UnitFamily.PlaneBomber,
+            }.Contains(unitFamily) || unitFamily.GetUnitCategory() == UnitCategory.Helicopter;
+
+        private bool ValidateAirfield(List<DBEntryAirbaseParkingSpot> parkingSpots, UnitFamily unitFamily, int unitCount)
+        {
+            var openSpots = parkingSpots.Count(X => X.ParkingType == ParkingSpotType.OpenAirSpawn);
+            if (openSpots >= unitCount) //Is there just enough open spaces
+                return true;
+
+            // Helicopters
+            if (unitFamily.GetUnitCategory() == UnitCategory.Helicopter)
+                return parkingSpots.Count(X => X.ParkingType == ParkingSpotType.HelicopterOnly) + openSpots > unitCount;
+
+            // Aircraft that can't use bunkers
+            if (IsBunkerUnsuitable(unitFamily))
+                return parkingSpots.Count(X => X.ParkingType == ParkingSpotType.AirplaneOnly) + openSpots > unitCount;
+
+            // Bunkerable aircraft
+            return parkingSpots.Count(X => X.ParkingType == ParkingSpotType.HardenedAirShelter) + openSpots > unitCount;
         }
 
         private bool CheckNotInHostileCoords(Coordinates coordinates, Coalition? coalition = null)
@@ -220,7 +267,7 @@ namespace BriefingRoom4DCS.Generator
 
         private bool CheckNotInNoSpawnCoords(Coordinates coordinates)
         {
-            if(SituationDB.NoSpawnCoordinates is null)
+            if (SituationDB.NoSpawnCoordinates is null)
                 return true;
             return !ShapeManager.IsPosValid(coordinates, SituationDB.NoSpawnCoordinates);
         }

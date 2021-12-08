@@ -49,9 +49,10 @@ namespace BriefingRoom4DCS.Generator
             var package = template.AircraftPackages.FirstOrDefault(x => x.FlightGroupIndexes.Contains(template.PlayerFlightGroups.IndexOf(flightGroup)));
             if (package is not null)
             {
-                flightWaypoints = package.Waypoints;
-                airbase = package.Airbase;
-                groupStartingCoords = package.Airbase.Coordinates;
+                var missionPackage = mission.MissionPackages.First(x => x.RecordIndex == template.AircraftPackages.IndexOf(package));
+                flightWaypoints = missionPackage.Waypoints;
+                airbase = missionPackage.Airbase;
+                groupStartingCoords = missionPackage.Airbase.Coordinates;
             }
             DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(flightGroup.Aircraft);
 
