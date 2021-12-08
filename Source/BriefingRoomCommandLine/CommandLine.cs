@@ -106,13 +106,8 @@ namespace BriefingRoom4DCS.CommandLineTool
                         campaignDirectory = Path.Combine(Application.StartupPath, Path.GetFileNameWithoutExtension(t));
                     campaignDirectory = GetUnusedFileName(campaignDirectory);
 
-                    if (!campaign.ExportToDirectory(Application.StartupPath))
-                    {
-                        WriteToDebugLog($"Failed to export campaign directory from template {Path.GetFileName(t)}", LogMessageErrorLevel.Warning);
-                        continue;
-                    }
-                    else
-                        WriteToDebugLog($"Campaign {Path.GetFileName(campaignDirectory)} exported to directory from template {Path.GetFileName(t)}");
+                    campaign.ExportToDirectory(Application.StartupPath);
+                    WriteToDebugLog($"Campaign {Path.GetFileName(campaignDirectory)} exported to directory from template {Path.GetFileName(t)}");
                 }
                 else // Template file is a mission template
                 {
