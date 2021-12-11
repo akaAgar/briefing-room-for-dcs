@@ -190,11 +190,11 @@ namespace BriefingRoom4DCS.Mission
         internal bool IsExtremeDistance(MissionTemplate template, out double distance)
         {
             var objCenter = new Coordinates(
-                double.Parse(GetValue("MissionCenterX")),
-                double.Parse(GetValue("MissionCenterY")));
+                double.Parse(GetValue("MissionCenterX"), CultureInfo.InvariantCulture),
+                double.Parse(GetValue("MissionCenterY"), CultureInfo.InvariantCulture));
             var playerAirbase = new Coordinates(
-                double.Parse(GetValue("MissionAirbaseX")),
-                double.Parse(GetValue("MissionAirbaseY")));
+                double.Parse(GetValue("MissionAirbaseX"), CultureInfo.InvariantCulture),
+                double.Parse(GetValue("MissionAirbaseY"), CultureInfo.InvariantCulture));
             distance = objCenter.GetDistanceFrom(playerAirbase) * Toolbox.METERS_TO_NM;
             var extremeLimit = template.FlightPlanObjectiveDistance * 1.7;
             return distance > extremeLimit;
