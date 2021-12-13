@@ -464,6 +464,8 @@ namespace BriefingRoom4DCS.Generator
                 unitsLuaTable += $"[{countryIndex + 1}] =\n";
                 unitsLuaTable += "{\n";
                 unitsLuaTable += $"[\"id\"] = {(int)country},\n";
+                unitsLuaTable += $"[\"name\"] = \"{country}\",\n";
+
 
                 foreach (UnitCategory unitCategory in Toolbox.GetEnumValues<UnitCategory>()) // Check all coalitions
                 {
