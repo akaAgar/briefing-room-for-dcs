@@ -14,7 +14,7 @@
       [1] =
       {
         ["alt"] = $ALTITUDE$,
-        ["action"] = "From Parking Area Hot",
+        ["action"] = "From Parking Area",
         ["alt_type"] = "BARO",
         ["speed"] = $SPEED$,
         ["task"] =
@@ -62,7 +62,7 @@
             }, -- end of ["tasks"]
           }, -- end of ["params"]
         }, -- end of ["task"]
-        ["type"] = "TakeOffParkingHot",
+        ["type"] = "TakeOffParking",
         ["ETA"] = 0,
         ["ETA_locked"] = true,
         ["y"] = $GROUPY$,
