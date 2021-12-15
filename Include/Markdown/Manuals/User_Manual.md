@@ -1,5 +1,5 @@
 # BriefingRoom for DCS World - User's manual
-__Last Edited: 03/12/2021__
+__Last Edited: 15/12/2021__
 
 This manual contains everything you need to know if you just plan to use BriefingRoom to generate missions. If you plan on modding BriefingRoom, please read the Modder's manual.
 
@@ -133,7 +133,7 @@ Two tabs containing the same options for Enemies and Friendlies
 
 **Air Defense**: How many is AA systems are in the area?
 
-**Air Force**: How many aircraft are they likely to send?
+**Combat Air Patrols**: How many dedicated air superiority aircraft will be sent
 
 #### Options
 `TLDR: What else?`
