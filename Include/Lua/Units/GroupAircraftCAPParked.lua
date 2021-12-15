@@ -39,12 +39,50 @@
                   ["priority"] = 0,
                 }, -- end of ["params"]
               }, -- end of [1]
-              [2] =
+              [2] = 
+              {
+                  ["enabled"] = true,
+                  ["auto"] = true,
+                  ["id"] = "WrappedAction",
+                  ["number"] = 2,
+                  ["params"] = 
+                  {
+                      ["action"] = 
+                      {
+                          ["id"] = "Option",
+                          ["params"] = 
+                          {
+                              ["value"] = true,
+                              ["name"] = 17,
+                          }, -- end of ["params"]
+                      }, -- end of ["action"]
+                  }, -- end of ["params"]
+              }, -- end of [2]
+              [3] = 
+              {
+                  ["enabled"] = true,
+                  ["auto"] = true,
+                  ["id"] = "WrappedAction",
+                  ["number"] = 3,
+                  ["params"] = 
+                  {
+                      ["action"] = 
+                      {
+                          ["id"] = "Option",
+                          ["params"] = 
+                          {
+                              ["value"] = 4,
+                              ["name"] = 18,
+                          }, -- end of ["params"]
+                      }, -- end of ["action"]
+                  }, -- end of ["params"]
+              }, -- end of [3]
+              [4] =
               {
                 ["enabled"] = true,
                 ["auto"] = true,
                 ["id"] = "WrappedAction",
-                ["number"] = 2,
+                ["number"] = 4,
                 ["params"] =
                 {
                   ["action"] =
@@ -57,7 +95,7 @@
                     }, -- end of ["params"]
                   }, -- end of ["action"]
                 }, -- end of ["params"]
-              }, -- end of [2]
+              }, -- end of [4]
             }, -- end of ["tasks"]
           }, -- end of ["params"]
         }, -- end of ["task"]

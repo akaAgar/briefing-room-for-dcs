@@ -52,18 +52,37 @@
                     ["id"] = "Option",
                     ["params"] =
                     {
-                      ["value"] = 4,
+                      ["value"] = 2,
                       ["name"] = 1,
                     }, -- end of ["params"]
                   }, -- end of ["action"]
                 }, -- end of ["params"]
               }, -- end of [2]
-              [3] =
+              [3] = 
+              {
+                  ["enabled"] = true,
+                  ["auto"] = true,
+                  ["id"] = "WrappedAction",
+                  ["number"] = 3,
+                  ["params"] = 
+                  {
+                      ["action"] = 
+                      {
+                          ["id"] = "Option",
+                          ["params"] = 
+                          {
+                              ["value"] = 2,
+                              ["name"] = 13,
+                          }, -- end of ["params"]
+                      }, -- end of ["action"]
+                  }, -- end of ["params"]
+              }, -- end of [3]
+              [4] =
               {
                 ["enabled"] = true,
                 ["auto"] = true,
                 ["id"] = "WrappedAction",
-                ["number"] = 3,
+                ["number"] = 4,
                 ["params"] =
                 {
                   ["action"] =
@@ -76,7 +95,7 @@
                     }, -- end of ["params"]
                   }, -- end of ["action"]
                 }, -- end of ["params"]
-              }, -- end of [3]
+              }, -- end of [4]
             }, -- end of ["tasks"]
           }, -- end of ["params"]
         }, -- end of ["task"]

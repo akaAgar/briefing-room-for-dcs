@@ -35,17 +35,38 @@
                 {
                   ["targetTypes"] =
                   {
-                    [1] = "ALL",
+                    [1] = "Helicopters",
+                    [2] = "Ground Units",
+                    [3] = "Light armed ships",
                   }, -- end of ["targetTypes"]
                   ["priority"] = 0,
                 }, -- end of ["params"]
               }, -- end of [1]
-              [2] =
+              [2] = 
+              {
+                  ["enabled"] = true,
+                  ["auto"] = true,
+                  ["id"] = "WrappedAction",
+                  ["number"] = 2,
+                  ["params"] = 
+                  {
+                      ["action"] = 
+                      {
+                          ["id"] = "Option",
+                          ["params"] = 
+                          {
+                              ["value"] = 2,
+                              ["name"] = 1,
+                          }, -- end of ["params"]
+                      }, -- end of ["action"]
+                  }, -- end of ["params"]
+              }, -- end of [2]
+              [3] =
               {
                 ["enabled"] = true,
                 ["auto"] = true,
                 ["id"] = "WrappedAction",
-                ["number"] = 2,
+                ["number"] = 3,
                 ["params"] =
                 {
                   ["action"] =
@@ -58,7 +79,7 @@
                     }, -- end of ["params"]
                   }, -- end of ["action"]
                 }, -- end of ["params"]
-              }, -- end of [2]
+              }, -- end of [3]
             }, -- end of ["tasks"]
           }, -- end of ["params"]
         }, -- end of ["task"]
