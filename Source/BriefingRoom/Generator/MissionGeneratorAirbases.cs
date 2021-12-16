@@ -77,13 +77,15 @@ namespace BriefingRoom4DCS.Generator
                 return airbase;
             }
 
-            return Toolbox.RandomFrom(
-                airbases.Where(x =>
+            var opts = airbases.Where(x =>
                     x.ParkingSpots.Length >= requiredParkingSpots &&
                     x.Coalition == _template.ContextPlayerCoalition &&
                     (MissionPrefersShoreAirbase() ? x.Flags.HasFlag(AirbaseFlag.NearWater) : true)
-                    ).ToArray()
-                );
+                    ).ToList();
+
+            if (opts.Count == 0)
+                    throw new BriefingRoomException($"No airbase found, cannot spawn player aircraft.");
+            return Toolbox.RandomFrom(opts);
         }
 
         private bool MissionPrefersShoreAirbase()
