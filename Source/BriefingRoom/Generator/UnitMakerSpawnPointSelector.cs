@@ -157,7 +157,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 var coordOptionsLinq = Enumerable.Range(0, 50)
                     .Select(x => Coordinates.CreateRandom(distanceOrigin1, searchRange))
-                    .Where(x => CheckNotInHostileCoords(x) && CheckNotInNoSpawnCoords(x));
+                    .Where(x => CheckNotInHostileCoords(x, coalition) && CheckNotInNoSpawnCoords(x));
 
                 if (secondSearchRange.HasValue)
                     coordOptionsLinq = coordOptionsLinq.Where(x => secondSearchRange.Value.Contains(distanceOrigin2.Value.GetDistanceFrom(x)));
@@ -165,8 +165,8 @@ namespace BriefingRoom4DCS.Generator
                 if (validTypes.First() == SpawnPointType.Sea) //sea position
                     coordOptionsLinq = coordOptionsLinq.Where(x => ShapeManager.IsPosValid(x, TheaterDB.WaterCoordinates, TheaterDB.WaterExclusionCoordinates));
 
-                var coordOptions = coordOptionsLinq.ToArray();
-                if (coordOptions.Count() > 0)
+                var coordOptions = coordOptionsLinq.ToList();
+                if (coordOptions.Count > 0)
                     return Toolbox.RandomFrom(coordOptions);
 
                 searchRange = new MinMaxD(searchRange.Min * 0.9, searchRange.Max * 1.1);
