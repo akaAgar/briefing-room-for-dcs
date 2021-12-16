@@ -156,7 +156,7 @@ namespace BriefingRoom4DCS.Generator
         private static void SaveFlightGroup(DCSMission mission, UnitMakerGroupInfo? groupInfo, MissionTemplateFlightGroupRecord flightGroup, DBEntryUnit unitDB, string homeBase)
         {
             mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
-                $"{groupInfo.Value.Name}\t" +
+                $"{groupInfo.Value.Name}(P)\t" +
                 $"{flightGroup.Count}× {unitDB.UIDisplayName}\t" +
                 $"{GeneratorTools.FormatRadioFrequency(unitDB.AircraftData.RadioFrequency)}\t" +
                 $"{Toolbox.FormatPayload(flightGroup.Payload)}\t" +
