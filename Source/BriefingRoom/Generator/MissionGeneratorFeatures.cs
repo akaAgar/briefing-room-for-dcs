@@ -95,7 +95,7 @@ namespace BriefingRoom4DCS.Generator
                             $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}"); // TODO: human-readable payload name
 
                 if (featureDB.ExtraGroups.Max > 1)
-                    SpawnExtraGroups(featureDB, groupSide, groupFlags, coordinates, extraSettings);
+                    SpawnExtraGroups(featureDB, mission, groupSide, groupFlags, coordinates, extraSettings);
             }
 
             // Feature Lua script
@@ -170,7 +170,7 @@ namespace BriefingRoom4DCS.Generator
                  !string.IsNullOrEmpty(featureDB.UnitGroupLuaUnit);
         }
 
-        private void SpawnExtraGroups(T featureDB, Side groupSide, UnitMakerGroupFlags groupFlags, Coordinates coordinates, Dictionary<string, object> extraSettings)
+        private void SpawnExtraGroups(T featureDB, DCSMission mission, Side groupSide, UnitMakerGroupFlags groupFlags, Coordinates coordinates, Dictionary<string, object> extraSettings)
         {
             foreach (var i in Enumerable.Range(1, featureDB.ExtraGroups.GetValue()))
             {
@@ -188,12 +188,23 @@ namespace BriefingRoom4DCS.Generator
 
                 SetAirbase(featureDB, unitFamily, ref groupLua, ref luaUnit, groupSide, ref coordinates, unitCount, ref extraSettings);
 
-                _unitMaker.AddUnitGroup(
+                var groupInfo = _unitMaker.AddUnitGroup(
                    unitFamily, unitCount,
                    groupSide,
                    groupLua, luaUnit,
                    spawnCoords.Value, groupFlags,
                    extraSettings.ToArray());
+                
+                 if (
+                    groupSide == Side.Ally &&
+                    groupInfo.HasValue &&
+                    groupInfo.Value.UnitDB != null &&
+                    groupInfo.Value.UnitDB.IsAircraft)
+                    mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
+                            $"{groupInfo.Value.Name}\t" +
+                            $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName}\t" +
+                            $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
+                            $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}"); // TODO: human-readable payload name
             }
         }
 
