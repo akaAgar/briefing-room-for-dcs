@@ -45,15 +45,21 @@ namespace BriefingRoom4DCS.Generator
             Coordinates? destinationPath = null;
 
             var iteration = 0;
-            while (iteration < 5)
+            var maxDistance = 25;
+            while (iteration < 10)
             {
                 carrierGroupCoordinates = unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                     new SpawnPointType[] { SpawnPointType.Sea },
                     landbaseCoordinates,
-                    new MinMaxD(15, 300),
+                    new MinMaxD(10, 25),
                     objectivesCenter,
-                    new MinMaxD(15, 99999),
+                    new MinMaxD(10, 99999),
                     GeneratorTools.GetSpawnPointCoalition(template, Side.Ally));
+                if(!carrierGroupCoordinates.HasValue)
+                {
+                    maxDistance += 25;
+                    continue;
+                }
 
                 if (windSpeedAtSeaLevel == 0) // No wind? Pick a random direction so carriers don't always go to a 0 course when wind is calm.
                     windDirectionAtSeaLevel = Toolbox.RandomDouble(Toolbox.TWO_PI);
