@@ -156,11 +156,11 @@ namespace BriefingRoom4DCS.Generator
             objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);
 
             var preValidSpawns = targetDB.ValidSpawnPoints.ToList();
-            foreach (var subObjective in objectiveTemplate.SubObjectives)
+            foreach (var subTasks in objectiveTemplate.SubTasks)
             {
                 objectiveIndex++;
-                GenerateSubObjectives(mission, template, situationDB,
-                subObjective, objectiveCoordinates,
+                GenerateSubTask(mission, template, situationDB,
+                subTasks, objectiveCoordinates,
                 playerAirbase,
                 preValidSpawns,
                 featuresID,
@@ -171,11 +171,11 @@ namespace BriefingRoom4DCS.Generator
             return objectiveCoordinates;
         }
 
-        private void GenerateSubObjectives(
+        private void GenerateSubTask(
             DCSMission mission,
             MissionTemplateRecord template,
             DBEntrySituation situationDB,
-            MissionTemplateSubObjective subObjective,
+            MissionTemplateSubTask subTask,
             Coordinates coreCoordinates,
             DBEntryAirbase playerAirbase,
             List<SpawnPointType> preValidSpawns,
@@ -192,7 +192,7 @@ namespace BriefingRoom4DCS.Generator
             DBEntryObjectiveTask taskDB;
             ObjectiveOption[] objectiveOptions;
 
-            GetSubObjectiveData(subObjective, out targetDB, out targetBehaviorDB, out taskDB, out objectiveOptions);
+            GetSubTaskData(subTask, out targetDB, out targetBehaviorDB, out taskDB, out objectiveOptions);
             
             preValidSpawns.AddRange(targetDB.ValidSpawnPoints);
             if(preValidSpawns.Contains(SpawnPointType.Sea) && preValidSpawns.Any(x => LAND_SPAWNS.Contains(x)))
@@ -201,7 +201,7 @@ namespace BriefingRoom4DCS.Generator
             Coordinates objectiveCoordinates = GetNearestSpawnCoordinates(template, coreCoordinates, targetDB);
 
             // Spawn target on airbase
-            var unitCount = targetDB.UnitCount[(int)subObjective.TargetCount].GetValue();
+            var unitCount = targetDB.UnitCount[(int)subTask.TargetCount].GetValue();
             var objectiveTargetUnitFamily = Toolbox.RandomFrom(targetDB.UnitFamilies);
             if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location))
                 throw new BriefingRoomException("Spawning on airbase is not a valid Sub Objective please use it as the main objective.");
@@ -266,7 +266,7 @@ namespace BriefingRoom4DCS.Generator
             foreach (string featureID in featuresID)
                 FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value.GroupID, objectiveCoordinates, taskDB.TargetSide);
             objectiveCoordinatesList.Add(objectiveCoordinates);
-            waypoints.Add(GenerateSubObjectiveWaypoint(subObjective, objectiveCoordinates, objectiveName, template));
+            waypoints.Add(GenerateSubTaskWaypoint(subTask, objectiveCoordinates, objectiveName, template));
             objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);
 
         }
@@ -429,9 +429,9 @@ namespace BriefingRoom4DCS.Generator
             return new Waypoint(objectiveName, waypointCoordinates, onGround);
         }
 
-        //----------------SUB OBJECTIVE SUPPORT FUNCTIONS-------------------------------
+        //----------------SUB TASK SUPPORT FUNCTIONS-------------------------------
 
-        private static void GetSubObjectiveData(MissionTemplateSubObjective objectiveTemplate, out DBEntryObjectiveTarget targetDB, out DBEntryObjectiveTargetBehavior targetBehaviorDB, out DBEntryObjectiveTask taskDB, out ObjectiveOption[] objectiveOptions)
+        private static void GetSubTaskData(MissionTemplateSubTask objectiveTemplate, out DBEntryObjectiveTarget targetDB, out DBEntryObjectiveTargetBehavior targetBehaviorDB, out DBEntryObjectiveTask taskDB, out ObjectiveOption[] objectiveOptions)
         {
             targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
             targetBehaviorDB = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior);
@@ -458,7 +458,7 @@ namespace BriefingRoom4DCS.Generator
             return objectiveCoordinates;
         }
 
-        private Waypoint GenerateSubObjectiveWaypoint(MissionTemplateSubObjective objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName, MissionTemplateRecord template)
+        private Waypoint GenerateSubTaskWaypoint(MissionTemplateSubTask objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName, MissionTemplateRecord template)
         {
             var AirOnGroundBehaviorLocations = new List<DBEntryObjectiveTargetBehaviorLocation>{
                 DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking,

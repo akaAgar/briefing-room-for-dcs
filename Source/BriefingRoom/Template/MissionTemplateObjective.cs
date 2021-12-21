@@ -42,7 +42,7 @@ namespace BriefingRoom4DCS.Template
         public string Task { get { return Task_; } set { Task_ = Database.Instance.CheckID<DBEntryObjectiveTask>(value); } }
         private string Task_;
 
-        public List<MissionTemplateSubObjective> SubObjectives { get; set; } = new List<MissionTemplateSubObjective>();
+        public List<MissionTemplateSubTask> SubTasks { get; set; } = new List<MissionTemplateSubTask>();
 
         public MissionTemplateObjective()
         {
@@ -106,6 +106,13 @@ namespace BriefingRoom4DCS.Template
             TargetBehavior = ini.GetValue<string>(section, $"{key}.TargetBehavior");
             TargetCount = ini.GetValue<Amount>(section, $"{key}.TargetCount");
             Task = ini.GetValue<string>(section, $"{key}.Task");
+            foreach (var subKey in ini.GetKeysInSection(section)
+                .Select(x => x.Split(".")[1])
+                .Where(x => x.Contains("subtask"))
+                .Distinct().ToList())
+            {
+                SubTasks.Add(new MissionTemplateSubTask(ini, section, $"{key}.{subKey}"));
+            }
         }
 
         internal void SaveToFile(INIFile ini, string section, string key)
@@ -117,6 +124,12 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue(section, $"{key}.Target", Target);
             ini.SetValue(section, $"{key}.TargetBehavior", TargetBehavior);
             ini.SetValue(section, $"{key}.TargetCount", TargetCount);
+            var i = 0;
+            foreach (var subTask in SubTasks)
+            {
+                subTask.SaveToFile(ini, section, $"{key}.SubTask{i}");
+                i++;
+            }
         }
     }
 }

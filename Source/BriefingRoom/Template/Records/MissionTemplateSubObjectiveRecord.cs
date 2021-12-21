@@ -23,7 +23,7 @@ using System.Collections.Generic;
 
 namespace BriefingRoom4DCS.Template
 {
-    internal record MissionTemplateSubObjectiveRecord
+    internal record MissionTemplateSubTaskRecord
     {
         internal List<ObjectiveOption> Options { get; init; }
         internal string Target { get; init; }
@@ -31,7 +31,7 @@ namespace BriefingRoom4DCS.Template
         internal Amount TargetCount { get; init; }
         internal string Task { get; init; }
 
-        public MissionTemplateSubObjectiveRecord(MissionTemplateSubObjective objective)
+        public MissionTemplateSubTaskRecord(MissionTemplateSubTask objective)
         {
             Options = objective.Options;
             Target = objective.Target;
