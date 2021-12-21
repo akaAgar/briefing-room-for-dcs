@@ -23,27 +23,21 @@ using System.Collections.Generic;
 
 namespace BriefingRoom4DCS.Template
 {
-    internal record MissionTemplateObjectiveRecord
+    internal record MissionTemplateSubObjectiveRecord
     {
-        internal List<string> Features { get; init; }
         internal List<ObjectiveOption> Options { get; init; }
-        internal string Preset { get; init; }
         internal string Target { get; init; }
         internal string TargetBehavior { get; init; }
         internal Amount TargetCount { get; init; }
         internal string Task { get; init; }
-        internal List<MissionTemplateSubObjective> SubObjectives { get; init; }
 
-        public MissionTemplateObjectiveRecord(MissionTemplateObjective objective)
+        public MissionTemplateSubObjectiveRecord(MissionTemplateSubObjective objective)
         {
-            Features = objective.Features;
             Options = objective.Options;
-            Preset = objective.Preset;
             Target = objective.Target;
             TargetBehavior = objective.TargetBehavior;
             TargetCount = objective.TargetCount;
             Task = objective.Task;
-            SubObjectives = objective.SubObjectives;
         }
     }
 }

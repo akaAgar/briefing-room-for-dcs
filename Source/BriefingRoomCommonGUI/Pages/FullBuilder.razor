@@ -168,6 +168,29 @@
                                             TItemOutput="ObjectiveOption">
                                         </CheckBoxList>
                                     </div>
+                                    <div>
+                                        <h4>Nearby</h4>
+                                        @foreach (var subObjective in objective.SubObjectives)
+                                        {
+                                            <div class="generator-group flex-justify-spaced flex-margin-fix">
+                                                <InputDataBase ClassString="flex-block" Label="Task" @bind-Value="subObjective.Task" DataBaseType="DatabaseEntryType.ObjectiveTask"/>
+                                                <InputDataBase ClassString="flex-block" Label="Target" @bind-Value="subObjective.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget"/>
+                                                <InputDataBase ClassString="flex-block" Label="Target behavior" @bind-Value="subObjective.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior"/>
+                                                <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="subObjective.TargetCount" EnumType="Amount"/>
+                                                <button type="button" class="btn btn-secondary row-button" @onclick="() => RemoveSubObjective(objective, subObjective)">x</button>
+                                            </div>
+                                            <CheckBoxList
+                                                Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
+                                                TextField="@(item =>BriefingRoomGUITools.GetEnumName(item))"
+                                                DescriptionField="@(item => BriefingRoomGUITools.GetEnumDescription(item))"
+                                                ValueField="@(item =>item)"
+                                                SelectedValues="subObjective.Options"
+                                                TItem="ObjectiveOption"
+                                                TItemOutput="ObjectiveOption">
+                                            </CheckBoxList>
+                                        }
+                                        <button type="button" class="btn btn-secondary form-control" @onclick="() => AddSubObjective(objective)">+</button>
+                                    </div>
                                 </div>
                             }
                         }
@@ -660,6 +683,16 @@
         Template.Objectives.Remove(obj);
         if(ObjectiveTab == obj)
             ObjectiveTab = Template.Objectives.First();
+    }
+
+    private void AddSubObjective(MissionTemplateObjective obj)
+    {
+        obj.SubObjectives.Add(new MissionTemplateSubObjective());
+    }
+
+    private void RemoveSubObjective(MissionTemplateObjective obj, MissionTemplateSubObjective subObj)
+    {
+        obj.SubObjectives.Remove(subObj);
     }
 
     private List<string> GetLiveries(string aircraftId) =>
