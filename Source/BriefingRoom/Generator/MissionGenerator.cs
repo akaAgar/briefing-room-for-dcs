@@ -115,12 +115,14 @@ namespace BriefingRoom4DCS.Generator
             var objectiveTargetUnitFamilies = new List<UnitFamily>();
             var lastObjectiveCoordinates = playerAirbase.Coordinates;
             var objectivesGenerator = new MissionGeneratorObjectives(unitMaker, drawingMaker, template);
+            var i = 0;
             foreach (var objectiveTemplate in template.Objectives)
             {
-                lastObjectiveCoordinates = objectivesGenerator.GenerateObjective(mission, template, situationDB, objectiveTemplate, lastObjectiveCoordinates, playerAirbase, useObjectivePresets, out string objectiveName, out UnitFamily objectiveTargetUnitFamily);
-                objectiveCoordinates.Add(lastObjectiveCoordinates);
-                waypoints.Add(objectivesGenerator.GenerateObjectiveWaypoint(objectiveTemplate, lastObjectiveCoordinates, objectiveName, template));
-                objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);
+                lastObjectiveCoordinates = objectivesGenerator.GenerateObjective(
+                    mission, template, situationDB,
+                    objectiveTemplate, lastObjectiveCoordinates, playerAirbase, useObjectivePresets,
+                    ref i, ref objectiveCoordinates, ref waypoints, ref objectiveTargetUnitFamilies);
+                i++;
             }
             var objectivesCenter = (objectiveCoordinates.Count == 0) ? playerAirbase.Coordinates : Coordinates.Sum(objectiveCoordinates) / objectiveCoordinates.Count;
             mission.SetValue("MissionCenterX", objectivesCenter.X);

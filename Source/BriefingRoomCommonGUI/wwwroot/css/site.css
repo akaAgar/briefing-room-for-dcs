@@ -136,7 +136,7 @@ h4 {
         text-align: center;
         width: 100%;
     }
-    .landing-screen .misc-info .ver {
+    .landing-screen .misc-info .ver, .float-right {
         float: right;
     }
 

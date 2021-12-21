@@ -86,6 +86,17 @@ namespace BriefingRoom4DCS.Generator
             return parkingSpots;
         }
 
+        internal Coordinates? GetNearestSpawnPoint(
+            SpawnPointType[] validTypes,
+            Coordinates origin)
+        {
+            if (validTypes.Contains(SpawnPointType.Air) || validTypes.Contains(SpawnPointType.Sea))
+                return Coordinates.CreateRandom(origin, new MinMaxD(1, 3));
+            var sp = SpawnPoints.Where(x => validTypes.Contains(x.PointType)).Aggregate((acc, x) => origin.GetDistanceFrom(x.Coordinates) < origin.GetDistanceFrom(acc.Coordinates)? x : acc);
+            SpawnPoints.Remove(sp);
+            return sp.Coordinates;
+        }
+
         internal Coordinates? GetRandomSpawnPoint(
             SpawnPointType[] validTypes,
             Coordinates distanceOrigin1, MinMaxD distanceFrom1,

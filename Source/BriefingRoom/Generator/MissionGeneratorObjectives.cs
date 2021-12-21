@@ -35,6 +35,18 @@ namespace BriefingRoom4DCS.Generator
 
         private const double OBJECTIVE_DISTANCE_VARIATION_MAX = 1.25;
 
+        private static readonly List<DBEntryObjectiveTargetBehaviorLocation> AIRBASE_LOCATIONS = new List<DBEntryObjectiveTargetBehaviorLocation>{
+            DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbase,
+            DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking,
+            DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter,
+        };
+
+        private static readonly List<SpawnPointType> LAND_SPAWNS = new List<SpawnPointType>{
+            SpawnPointType.LandSmall,
+            SpawnPointType.LandMedium,
+            SpawnPointType.LandLarge,
+        };
+
         private readonly UnitMaker UnitMaker;
 
         private readonly DrawingMaker DrawingMaker;
@@ -57,40 +69,241 @@ namespace BriefingRoom4DCS.Generator
             Coordinates lastCoordinates,
             DBEntryAirbase playerAirbase,
             bool useObjectivePreset,
-            out string objectiveName,
-            out UnitFamily objectiveTargetUnitFamily)
+            ref int objectiveIndex,
+            ref List<Coordinates> objectiveCoordinatesList,
+            ref List<Waypoint> waypoints,
+            ref List<UnitFamily> objectiveTargetUnitFamilies)
         {
-            string[] featuresID = objectiveTemplate.Features.ToArray();
-            DBEntryObjectiveTarget targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
-            DBEntryObjectiveTargetBehavior targetBehaviorDB = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior);
-            DBEntryObjectiveTask taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task);
-            ObjectiveOption[] objectiveOptions = objectiveTemplate.Options.ToArray();
+            var extraSettings = new List<KeyValuePair<string, object>>();
+            string[] featuresID;
+            DBEntryObjectiveTarget targetDB;
+            DBEntryObjectiveTargetBehavior targetBehaviorDB;
+            DBEntryObjectiveTask taskDB;
+            ObjectiveOption[] objectiveOptions;
 
-            if (useObjectivePreset)
+            GetObjectiveData(objectiveTemplate, useObjectivePreset, out featuresID, out targetDB, out targetBehaviorDB, out taskDB, out objectiveOptions);
+            var luaUnit = targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory];
+            Coordinates objectiveCoordinates = GetSpawnCoordinates(template, lastCoordinates, playerAirbase, targetDB);
+
+            // Spawn target on airbase
+            var unitCount = targetDB.UnitCount[(int)objectiveTemplate.TargetCount].GetValue();
+            var objectiveTargetUnitFamily = Toolbox.RandomFrom(targetDB.UnitFamilies);
+            if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location))
+                objectiveCoordinates = PlaceInAirbase(template, situationDB, playerAirbase, extraSettings, targetDB, targetBehaviorDB, ref luaUnit, objectiveCoordinates, unitCount, objectiveTargetUnitFamily);
+
+            UnitMakerGroupFlags groupFlags = 0;
+            if (objectiveOptions.Contains(ObjectiveOption.ShowTarget)) groupFlags = UnitMakerGroupFlags.NeverHidden;
+            else if (objectiveOptions.Contains(ObjectiveOption.HideTarget)) groupFlags = UnitMakerGroupFlags.AlwaysHidden;
+            if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense)) groupFlags |= UnitMakerGroupFlags.EmbeddedAirDefense;
+
+            // Set destination point for moving unit groups
+            Coordinates destinationPoint = objectiveCoordinates +
+                (
+                    (targetDB.UnitCategory == UnitCategory.Plane ? Coordinates.CreateRandom(30, 60) : Coordinates.CreateRandom(10, 20)) *
+                    Toolbox.NM_TO_METERS
+                );
+
+            if (targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.GoToPlayerAirbase)
+                destinationPoint = playerAirbase.Coordinates;
+
+
+            extraSettings.Add("GroupX2".ToKeyValuePair(destinationPoint.X));
+            extraSettings.Add("GroupY2".ToKeyValuePair(destinationPoint.Y));
+
+            UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
+                objectiveTargetUnitFamily, unitCount,
+                taskDB.TargetSide,
+                targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], luaUnit,
+                objectiveCoordinates,
+                groupFlags,
+                extraSettings.ToArray());
+
+            if (!targetGroupInfo.HasValue) // Failed to generate target group
+                throw new BriefingRoomException($"Failed to generate group for objective.");
+
+            if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense) && (targetDB.UnitCategory == UnitCategory.Static))
+                AddEmbeddedAirDefenseUnits(template, targetDB, targetBehaviorDB, taskDB, objectiveOptions, objectiveCoordinates, groupFlags, extraSettings);
+
+            var pluralIndex = targetGroupInfo.Value.UnitsID.Length == 1 ? 0 : 1;
+            var taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex]).Replace("\"", "''");
+            // Pick a name, then remove it from the list
+            var objectiveName = Toolbox.RandomFrom(ObjectiveNames);
+            ObjectiveNames.Remove(objectiveName);
+            CreateTaskString(mission, pluralIndex, ref taskString, objectiveName, objectiveTargetUnitFamily);
+
+            CreateLua(mission, template, targetDB, taskDB, objectiveIndex, objectiveName, targetGroupInfo, taskString);
+
+            // Add briefing remarks for this objective task
+            if (taskDB.BriefingRemarks.Length > 0)
             {
-                DBEntryObjectivePreset presetDB = Database.Instance.GetEntry<DBEntryObjectivePreset>(objectiveTemplate.Preset);
-                if (presetDB != null)
-                {
-                    featuresID = presetDB.Features.ToArray();
-                    targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(Toolbox.RandomFrom(presetDB.Targets));
-                    targetBehaviorDB = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(Toolbox.RandomFrom(presetDB.TargetsBehaviors));
-                    taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(Toolbox.RandomFrom(presetDB.Tasks));
-                    objectiveOptions = presetDB.Options.ToArray();
-                }
+                string remark = Toolbox.RandomFrom(taskDB.BriefingRemarks);
+                GeneratorTools.ReplaceKey(ref remark, "ObjectiveName", objectiveName);
+                GeneratorTools.ReplaceKey(ref remark, "UnitFamily", Database.Instance.Common.Names.UnitFamilies[(int)objectiveTargetUnitFamily][pluralIndex]);
+                mission.Briefing.AddItem(DCSMissionBriefingItemType.Remark, remark);
             }
-
-            var objectiveIndex = template.Objectives.IndexOf(objectiveTemplate);
-            if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective #{objectiveIndex}.");
-            if (targetBehaviorDB == null) throw new BriefingRoomException($"Target behavior \"{targetBehaviorDB.UIDisplayName}\" not found for objective #{objectiveIndex}.");
-            if (taskDB == null) throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not found for objective #{objectiveIndex}.");
-
-            if (!taskDB.ValidUnitCategories.Contains(targetDB.UnitCategory))
-                throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not valid for objective #{objectiveIndex} targets, which belong to category \"{targetDB.UnitCategory}\".");
 
             // Add feature ogg files
             foreach (string oggFile in taskDB.IncludeOgg)
                 mission.AddMediaFile($"l10n/DEFAULT/{oggFile}", $"{BRPaths.INCLUDE_OGG}{oggFile}");
 
+            // Add objective features Lua for this objective
+            mission.AppendValue("ScriptObjectivesFeatures", ""); // Just in case there's no features
+            foreach (string featureID in featuresID)
+                FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value.GroupID, objectiveCoordinates, taskDB.TargetSide);
+
+            objectiveCoordinatesList.Add(objectiveCoordinates);
+            waypoints.Add(GenerateObjectiveWaypoint(objectiveTemplate, objectiveCoordinates, objectiveName, template));
+            objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);
+
+            var preValidSpawns = targetDB.ValidSpawnPoints.ToList();
+            foreach (var subObjective in objectiveTemplate.SubObjectives)
+            {
+                objectiveIndex++;
+                GenerateSubObjectives(mission, template, situationDB,
+                subObjective, objectiveCoordinates,
+                playerAirbase,
+                preValidSpawns,
+                featuresID,
+                ref objectiveIndex,
+                ref objectiveCoordinatesList, ref waypoints, ref objectiveTargetUnitFamilies);
+
+            }
+            return objectiveCoordinates;
+        }
+
+        private void GenerateSubObjectives(
+            DCSMission mission,
+            MissionTemplateRecord template,
+            DBEntrySituation situationDB,
+            MissionTemplateSubObjective subObjective,
+            Coordinates coreCoordinates,
+            DBEntryAirbase playerAirbase,
+            List<SpawnPointType> preValidSpawns,
+            string[] featuresID,
+            ref int objectiveIndex,
+            ref List<Coordinates> objectiveCoordinatesList,
+            ref List<Waypoint> waypoints,
+            ref List<UnitFamily> objectiveTargetUnitFamilies
+            )
+        {
+             var extraSettings = new List<KeyValuePair<string, object>>();
+            DBEntryObjectiveTarget targetDB;
+            DBEntryObjectiveTargetBehavior targetBehaviorDB;
+            DBEntryObjectiveTask taskDB;
+            ObjectiveOption[] objectiveOptions;
+
+            GetSubObjectiveData(subObjective, out targetDB, out targetBehaviorDB, out taskDB, out objectiveOptions);
+            
+            preValidSpawns.AddRange(targetDB.ValidSpawnPoints);
+            if(preValidSpawns.Contains(SpawnPointType.Sea) && preValidSpawns.Any(x => LAND_SPAWNS.Contains(x)))
+                throw new BriefingRoomException("Cannot Mix Land and Sea Objectives. Check Sub Objective targets");
+            var luaUnit = targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory];
+            Coordinates objectiveCoordinates = GetNearestSpawnCoordinates(template, coreCoordinates, targetDB);
+
+            // Spawn target on airbase
+            var unitCount = targetDB.UnitCount[(int)subObjective.TargetCount].GetValue();
+            var objectiveTargetUnitFamily = Toolbox.RandomFrom(targetDB.UnitFamilies);
+            if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location))
+                throw new BriefingRoomException("Spawning on airbase is not a valid Sub Objective please use it as the main objective.");
+
+            UnitMakerGroupFlags groupFlags = 0;
+            if (objectiveOptions.Contains(ObjectiveOption.ShowTarget)) groupFlags = UnitMakerGroupFlags.NeverHidden;
+            else if (objectiveOptions.Contains(ObjectiveOption.HideTarget)) groupFlags = UnitMakerGroupFlags.AlwaysHidden;
+            if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense)) groupFlags |= UnitMakerGroupFlags.EmbeddedAirDefense;
+
+            // Set destination point for moving unit groups
+            Coordinates destinationPoint = objectiveCoordinates +
+                (
+                    (targetDB.UnitCategory == UnitCategory.Plane ? Coordinates.CreateRandom(30, 60) : Coordinates.CreateRandom(10, 20)) *
+                    Toolbox.NM_TO_METERS
+                );
+
+            if (targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.GoToPlayerAirbase)
+                destinationPoint = playerAirbase.Coordinates;
+
+
+            extraSettings.Add("GroupX2".ToKeyValuePair(destinationPoint.X));
+            extraSettings.Add("GroupY2".ToKeyValuePair(destinationPoint.Y));
+
+            UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
+                objectiveTargetUnitFamily, unitCount,
+                taskDB.TargetSide,
+                targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], luaUnit,
+                objectiveCoordinates,
+                groupFlags,
+                extraSettings.ToArray());
+
+            if (!targetGroupInfo.HasValue) // Failed to generate target group
+                throw new BriefingRoomException($"Failed to generate group for objective.");
+
+            if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense) && (targetDB.UnitCategory == UnitCategory.Static))
+                AddEmbeddedAirDefenseUnits(template, targetDB, targetBehaviorDB, taskDB, objectiveOptions, objectiveCoordinates, groupFlags, extraSettings);
+
+            var pluralIndex = targetGroupInfo.Value.UnitsID.Length == 1 ? 0 : 1;
+            var taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex]).Replace("\"", "''");
+            // Pick a name, then remove it from the list
+            var objectiveName = Toolbox.RandomFrom(ObjectiveNames);
+            ObjectiveNames.Remove(objectiveName);
+            CreateTaskString(mission, pluralIndex, ref taskString, objectiveName, objectiveTargetUnitFamily);
+            CreateLua(mission, template, targetDB, taskDB, objectiveIndex, objectiveName, targetGroupInfo, taskString);
+
+            // Add briefing remarks for this objective task
+            if (taskDB.BriefingRemarks.Length > 0)
+            {
+                string remark = Toolbox.RandomFrom(taskDB.BriefingRemarks);
+                GeneratorTools.ReplaceKey(ref remark, "ObjectiveName", objectiveName);
+                GeneratorTools.ReplaceKey(ref remark, "UnitFamily", Database.Instance.Common.Names.UnitFamilies[(int)objectiveTargetUnitFamily][pluralIndex]);
+                mission.Briefing.AddItem(DCSMissionBriefingItemType.Remark, remark);
+            }
+
+            // Add feature ogg files
+            foreach (string oggFile in taskDB.IncludeOgg)
+                mission.AddMediaFile($"l10n/DEFAULT/{oggFile}", $"{BRPaths.INCLUDE_OGG}{oggFile}");
+            
+
+            // Add objective features Lua for this objective
+            mission.AppendValue("ScriptObjectivesFeatures", ""); // Just in case there's no features
+            foreach (string featureID in featuresID)
+                FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value.GroupID, objectiveCoordinates, taskDB.TargetSide);
+            objectiveCoordinatesList.Add(objectiveCoordinates);
+            waypoints.Add(GenerateSubObjectiveWaypoint(subObjective, objectiveCoordinates, objectiveName, template));
+            objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);
+
+        }
+
+        private Coordinates PlaceInAirbase(MissionTemplateRecord template, DBEntrySituation situationDB, DBEntryAirbase playerAirbase, List<KeyValuePair<string, object>> extraSettings, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, ref string luaUnit, Coordinates objectiveCoordinates, int unitCount, UnitFamily objectiveTargetUnitFamily)
+        {
+            int airbaseID = 0;
+            var parkingSpotIDsList = new List<int>();
+            var parkingSpotCoordinatesList = new List<Coordinates>();
+            var targetAirbaseOptions =
+                (from DBEntryAirbase airbaseDB in situationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"))
+                 where airbaseDB.DCSID != playerAirbase.DCSID
+                 select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(objectiveCoordinates));
+            DBEntryAirbase targetAirbase = targetAirbaseOptions.FirstOrDefault(x => template.OptionsMission.Contains("SpawnAnywhere") ? true : x.Coalition == template.ContextPlayerCoalition.GetEnemy());
+            
+            airbaseID = targetAirbase.DCSID;
+
+            if ((targetBehaviorDB.Location != DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbase) && targetDB.UnitCategory.IsAircraft())
+            {
+                var parkingSpots = UnitMaker.SpawnPointSelector.GetFreeParkingSpots(
+                    targetAirbase.DCSID,
+                    unitCount, objectiveTargetUnitFamily,
+                    targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter);
+
+                parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
+                parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
+            }
+            luaUnit += "Parked";
+            extraSettings.Add("GroupAirbaseID".ToKeyValuePair(airbaseID));
+            extraSettings.Add("ParkingID".ToKeyValuePair(parkingSpotIDsList.ToArray()));
+            extraSettings.Add("UnitX".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.X).ToArray()));
+            extraSettings.Add("UnitY".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.Y).ToArray()));
+            return targetAirbase.Coordinates;
+        }
+
+        private Coordinates GetSpawnCoordinates(MissionTemplateRecord template, Coordinates lastCoordinates, DBEntryAirbase playerAirbase, DBEntryObjectiveTarget targetDB)
+        {
             int objectiveDistance = template.FlightPlanObjectiveDistance;
             if (objectiveDistance < 1) objectiveDistance = Toolbox.RandomInt(40, 160);
 
@@ -113,115 +326,55 @@ namespace BriefingRoom4DCS.Generator
                 throw new BriefingRoomException($"Failed to spawn objective unit group. {String.Join(",", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList())} Please try again (Consider Adusting Flight Plan)");
 
             Coordinates objectiveCoordinates = spawnPoint.Value;
+            return objectiveCoordinates;
+        }
 
-            // Spawn target on airbase
-            int airbaseID = 0;
-            var parkingSpotIDsList = new List<int>();
-            var parkingSpotCoordinatesList = new List<Coordinates>();
-            var unitCount = targetDB.UnitCount[(int)objectiveTemplate.TargetCount].GetValue();
-            objectiveTargetUnitFamily = Toolbox.RandomFrom(targetDB.UnitFamilies);
-            switch (targetBehaviorDB.Location)
+        private static void GetObjectiveData(MissionTemplateObjectiveRecord objectiveTemplate, bool useObjectivePreset, out string[] featuresID, out DBEntryObjectiveTarget targetDB, out DBEntryObjectiveTargetBehavior targetBehaviorDB, out DBEntryObjectiveTask taskDB, out ObjectiveOption[] objectiveOptions)
+        {
+            featuresID = objectiveTemplate.Features.ToArray();
+            targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
+            targetBehaviorDB = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior);
+            taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task);
+            objectiveOptions = objectiveTemplate.Options.ToArray();
+            if (useObjectivePreset)
             {
-                case DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbase:
-                case DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking:
-                case DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter:
-                    var targetAirbaseOptions =
-                        (from DBEntryAirbase airbaseDB in situationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"))
-                         where airbaseDB.DCSID != playerAirbase.DCSID
-                         select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(objectiveCoordinates));
-                    DBEntryAirbase targetAirbase = targetAirbaseOptions.FirstOrDefault(x => template.OptionsMission.Contains("SpawnAnywhere") ? true : x.Coalition == template.ContextPlayerCoalition.GetEnemy());
-                    objectiveCoordinates = targetAirbase.Coordinates;
-                    airbaseID = targetAirbase.DCSID;
-
-                    if ((targetBehaviorDB.Location != DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbase) && targetDB.UnitCategory.IsAircraft())
-                    {
-                        var parkingSpots = UnitMaker.SpawnPointSelector.GetFreeParkingSpots(
-                            targetAirbase.DCSID,
-                            unitCount, objectiveTargetUnitFamily,
-                            targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter);
-
-                        parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
-                        parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
-                    }
-
-                    break;
+                DBEntryObjectivePreset presetDB = Database.Instance.GetEntry<DBEntryObjectivePreset>(objectiveTemplate.Preset);
+                if (presetDB != null)
+                {
+                    featuresID = presetDB.Features.ToArray();
+                    targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(Toolbox.RandomFrom(presetDB.Targets));
+                    targetBehaviorDB = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(Toolbox.RandomFrom(presetDB.TargetsBehaviors));
+                    taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(Toolbox.RandomFrom(presetDB.Tasks));
+                    objectiveOptions = presetDB.Options.ToArray();
+                }
             }
 
-            // Pick a name, then remove it from the list
-            objectiveName = Toolbox.RandomFrom(ObjectiveNames);
-            ObjectiveNames.Remove(objectiveName);
+            if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective.");
+            if (targetBehaviorDB == null) throw new BriefingRoomException($"Target behavior \"{targetBehaviorDB.UIDisplayName}\" not found for objective.");
+            if (taskDB == null) throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not found for objective.");
+            if (!taskDB.ValidUnitCategories.Contains(targetDB.UnitCategory))
+                throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not valid for objective targets, which belong to category \"{targetDB.UnitCategory}\".");
+        }
 
-            UnitMakerGroupFlags groupFlags = 0;
-            if (objectiveOptions.Contains(ObjectiveOption.ShowTarget)) groupFlags = UnitMakerGroupFlags.NeverHidden;
-            else if (objectiveOptions.Contains(ObjectiveOption.HideTarget)) groupFlags = UnitMakerGroupFlags.AlwaysHidden;
-            if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense)) groupFlags |= UnitMakerGroupFlags.EmbeddedAirDefense;
+        
 
-            // Set destination point for moving unit groups
-            Coordinates destinationPoint = objectiveCoordinates;
-            switch (targetDB.UnitCategory)
-            {
-                default:
-                    destinationPoint += Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
-                    break;
-                case UnitCategory.Plane:
-                    destinationPoint += Coordinates.CreateRandom(30, 60) * Toolbox.NM_TO_METERS;
-                    break;
-            }
-
-            switch (targetBehaviorDB.Location)
-            {
-                case DBEntryObjectiveTargetBehaviorLocation.GoToPlayerAirbase:
-                    destinationPoint = playerAirbase.Coordinates;
-                    break;
-            }
-
-            var extraSettings = new List<KeyValuePair<string, object>>{
-                "GroupX2".ToKeyValuePair(destinationPoint.X),
-                "GroupY2".ToKeyValuePair(destinationPoint.Y),
-            };
-            var luaUnit = targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory];
-            if (parkingSpotCoordinatesList.Count > 1)
-            {
-                luaUnit += "Parked";
-                extraSettings.Add("GroupAirbaseID".ToKeyValuePair(airbaseID));
-                extraSettings.Add("ParkingID".ToKeyValuePair(parkingSpotIDsList.ToArray()));
-                extraSettings.Add("UnitX".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.X).ToArray()));
-                extraSettings.Add("UnitY".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.Y).ToArray()));
-            }
-            UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
-                objectiveTargetUnitFamily, unitCount,
-                taskDB.TargetSide,
-                targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], luaUnit,
-                objectiveCoordinates,
-                groupFlags,
-                extraSettings.ToArray());
-
-            if (!targetGroupInfo.HasValue) // Failed to generate target group
-                throw new BriefingRoomException($"Failed to generate group for objective {objectiveIndex}");
-
+        private void AddEmbeddedAirDefenseUnits(MissionTemplateRecord template, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB, ObjectiveOption[] objectiveOptions, Coordinates objectiveCoordinates, UnitMakerGroupFlags groupFlags, List<KeyValuePair<string, object>> extraSettings)
+        {
             // Static targets (aka buildings) need to have their "embedded" air defenses spawned in another group
-            if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense) && (targetDB.UnitCategory == UnitCategory.Static))
-            {
-                string[] airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(template, taskDB.TargetSide);
+            string[] airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(template, taskDB.TargetSide);
 
-                if (airDefenseUnits.Length > 0)
-                    UnitMaker.AddUnitGroup(
-                        airDefenseUnits,
-                        taskDB.TargetSide, UnitFamily.VehicleAAA,
-                        targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
-                        objectiveCoordinates + Coordinates.CreateRandom(100, 500),
-                        groupFlags,
-                        extraSettings.ToArray());
-            }
+            if (airDefenseUnits.Length > 0)
+                UnitMaker.AddUnitGroup(
+                    airDefenseUnits,
+                    taskDB.TargetSide, UnitFamily.VehicleAAA,
+                    targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
+                    objectiveCoordinates + Coordinates.CreateRandom(100, 500),
+                    groupFlags,
+                    extraSettings.ToArray());
+        }
 
-            // Get tasking string for the briefing
-            int pluralIndex = targetGroupInfo.Value.UnitsID.Length == 1 ? 0 : 1; // 0 for singular, 1 for plural. Used for task/names arrays.
-            string taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex]).Replace("\"", "''");
-            if (string.IsNullOrEmpty(taskString)) taskString = "Complete objective $OBJECTIVENAME$";
-            GeneratorTools.ReplaceKey(ref taskString, "ObjectiveName", objectiveName);
-            GeneratorTools.ReplaceKey(ref taskString, "UnitFamily", Database.Instance.Common.Names.UnitFamilies[(int)objectiveTargetUnitFamily][pluralIndex]);
-            mission.Briefing.AddItem(DCSMissionBriefingItemType.Task, taskString);
-
+        private static void CreateLua(DCSMission mission, MissionTemplateRecord template, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTask taskDB, int objectiveIndex, string objectiveName, UnitMakerGroupInfo? targetGroupInfo, string taskString)
+        {
             // Add Lua table for this objective
             string objectiveLua = $"briefingRoom.mission.objectives[{objectiveIndex + 1}] = {{ ";
             objectiveLua += $"complete = false, ";
@@ -242,25 +395,70 @@ namespace BriefingRoom4DCS.Generator
             string triggerLua = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA_OBJECTIVETRIGGERS}{taskDB.CompletionTriggerLua}");
             GeneratorTools.ReplaceKey(ref triggerLua, "ObjectiveIndex", objectiveIndex + 1);
             mission.AppendValue("ScriptObjectivesTriggers", triggerLua);
+        }
 
-            // Add briefing remarks for this objective task
-            if (taskDB.BriefingRemarks.Length > 0)
+        private static void CreateTaskString(DCSMission mission, int pluralIndex, ref string taskString, string objectiveName, UnitFamily objectiveTargetUnitFamily)
+        {
+            // Get tasking string for the briefing
+            if (string.IsNullOrEmpty(taskString)) taskString = "Complete objective $OBJECTIVENAME$";
+            GeneratorTools.ReplaceKey(ref taskString, "ObjectiveName", objectiveName);
+            GeneratorTools.ReplaceKey(ref taskString, "UnitFamily", Database.Instance.Common.Names.UnitFamilies[(int)objectiveTargetUnitFamily][pluralIndex]);
+            mission.Briefing.AddItem(DCSMissionBriefingItemType.Task, taskString);
+        }
+
+        private Waypoint GenerateObjectiveWaypoint(MissionTemplateObjectiveRecord objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName, MissionTemplateRecord template)
+        {
+            var AirOnGroundBehaviorLocations = new List<DBEntryObjectiveTargetBehaviorLocation>{
+                DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking,
+                DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter};
+
+            DBEntryObjectiveTarget targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
+            DBEntryObjectiveTargetBehaviorLocation targetBehaviorLocation = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior).Location;
+            if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective.");
+
+            Coordinates waypointCoordinates = objectiveCoordinates;
+            bool onGround = !targetDB.UnitCategory.IsAircraft() || AirOnGroundBehaviorLocations.Contains(targetBehaviorLocation); // Ground targets = waypoint on the ground
+
+            if (objectiveTemplate.Options.Contains(ObjectiveOption.InaccurateWaypoint))
             {
-                string remark = Toolbox.RandomFrom(taskDB.BriefingRemarks);
-                GeneratorTools.ReplaceKey(ref remark, "ObjectiveName", objectiveName);
-                GeneratorTools.ReplaceKey(ref remark, "UnitFamily", Database.Instance.Common.Names.UnitFamilies[(int)objectiveTargetUnitFamily][pluralIndex]);
-                mission.Briefing.AddItem(DCSMissionBriefingItemType.Remark, remark);
+                waypointCoordinates += Coordinates.CreateRandom(3.0, 6.0) * Toolbox.NM_TO_METERS;
+                if (template.OptionsMission.Contains("MarkWaypoints"))
+                    DrawingMaker.AddDrawing("Target Zone", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(6.0 * Toolbox.NM_TO_METERS));
             }
 
-            // Add objective features Lua for this objective
-            mission.AppendValue("ScriptObjectivesFeatures", ""); // Just in case there's no features
-            foreach (string featureID in featuresID)
-                FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value.GroupID, objectiveCoordinates, taskDB.TargetSide);
+            return new Waypoint(objectiveName, waypointCoordinates, onGround);
+        }
 
+        //----------------SUB OBJECTIVE SUPPORT FUNCTIONS-------------------------------
+
+        private static void GetSubObjectiveData(MissionTemplateSubObjective objectiveTemplate, out DBEntryObjectiveTarget targetDB, out DBEntryObjectiveTargetBehavior targetBehaviorDB, out DBEntryObjectiveTask taskDB, out ObjectiveOption[] objectiveOptions)
+        {
+            targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
+            targetBehaviorDB = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior);
+            taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task);
+            objectiveOptions = objectiveTemplate.Options.ToArray();
+
+            if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective.");
+            if (targetBehaviorDB == null) throw new BriefingRoomException($"Target behavior \"{targetBehaviorDB.UIDisplayName}\" not found for objective.");
+            if (taskDB == null) throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not found for objective.");
+            if (!taskDB.ValidUnitCategories.Contains(targetDB.UnitCategory))
+                throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not valid for objective targets, which belong to category \"{targetDB.UnitCategory}\".");
+        }
+
+        private Coordinates GetNearestSpawnCoordinates(MissionTemplateRecord template, Coordinates coreCoordinates, DBEntryObjectiveTarget targetDB)
+        {
+            Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetNearestSpawnPoint(
+                targetDB.ValidSpawnPoints,
+                coreCoordinates);
+
+            if (!spawnPoint.HasValue)
+                throw new BriefingRoomException($"Failed to spawn objective unit group. {String.Join(",", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList())} Please try again (Consider Adusting Flight Plan)");
+
+            Coordinates objectiveCoordinates = spawnPoint.Value;
             return objectiveCoordinates;
         }
 
-        internal Waypoint GenerateObjectiveWaypoint(MissionTemplateObjectiveRecord objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName, MissionTemplateRecord template)
+        private Waypoint GenerateSubObjectiveWaypoint(MissionTemplateSubObjective objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName, MissionTemplateRecord template)
         {
             var AirOnGroundBehaviorLocations = new List<DBEntryObjectiveTargetBehaviorLocation>{
                 DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking,

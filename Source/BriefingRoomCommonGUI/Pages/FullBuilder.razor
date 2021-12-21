@@ -135,17 +135,9 @@
                             if (ObjectiveTab == objective)
                             {
                                 <div class="flight-group">
-                                    <div class="generator-group flex-margin-fix">
-                                        <InputDataBase ClassString="flex-block" Label="Task" @bind-Value="objective.Task" DataBaseType="DatabaseEntryType.ObjectiveTask"/>
-                                        <button type="button" class="btn btn-secondary row-button" @onclick="() => CloneObjective(objective)"><span class="oi oi-layers"></span></button>
-                                    </div>
-                                    <div class="generator-group flex-justify-spaced flex-margin-fix">
-                                        <InputDataBase ClassString="flex-block" Label="Target" @bind-Value="objective.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget"/>
-                                        <InputDataBase ClassString="flex-block" Label="Target behavior" @bind-Value="objective.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior"/>
-                                        <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="objective.TargetCount" EnumType="Amount"/>
-                                    </div>
                                     <div class="form-group">
-                                        <h4>Objective features</h4>
+                                        <button type="button" class="btn btn-secondary float-right" @onclick="() => CloneObjective(objective)"  title="Clone Objective"><span class="oi oi-layers"></span></button>
+                                        <h4>Features</h4>
                                         <CheckBoxList
                                             Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveFeature).ToList()"
                                             TextField="@(item =>item.Name)"
@@ -156,8 +148,15 @@
                                             TItemOutput="string">
                                         </CheckBoxList>
                                     </div>
+                                    
+                                    <h4>Tasks</h4>
+                                    <div class="generator-group flex-justify-spaced flex-margin-fix">
+                                        <InputDataBase ClassString="flex-block" Label="Task" @bind-Value="objective.Task" DataBaseType="DatabaseEntryType.ObjectiveTask"/>
+                                        <InputDataBase ClassString="flex-block" Label="Target" @bind-Value="objective.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget"/>
+                                        <InputDataBase ClassString="flex-block" Label="Target behavior" @bind-Value="objective.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior"/>
+                                        <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="objective.TargetCount" EnumType="Amount"/>
+                                    </div>
                                     <div class="form-group">
-                                        <h4>Objective options</h4>
                                         <CheckBoxList
                                             Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
                                             TextField="@(item =>BriefingRoomGUITools.GetEnumName(item))"
@@ -168,29 +167,27 @@
                                             TItemOutput="ObjectiveOption">
                                         </CheckBoxList>
                                     </div>
-                                    <div>
-                                        <h4>Nearby</h4>
-                                        @foreach (var subObjective in objective.SubObjectives)
-                                        {
-                                            <div class="generator-group flex-justify-spaced flex-margin-fix">
-                                                <InputDataBase ClassString="flex-block" Label="Task" @bind-Value="subObjective.Task" DataBaseType="DatabaseEntryType.ObjectiveTask"/>
-                                                <InputDataBase ClassString="flex-block" Label="Target" @bind-Value="subObjective.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget"/>
-                                                <InputDataBase ClassString="flex-block" Label="Target behavior" @bind-Value="subObjective.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior"/>
-                                                <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="subObjective.TargetCount" EnumType="Amount"/>
-                                                <button type="button" class="btn btn-secondary row-button" @onclick="() => RemoveSubObjective(objective, subObjective)">x</button>
-                                            </div>
-                                            <CheckBoxList
-                                                Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
-                                                TextField="@(item =>BriefingRoomGUITools.GetEnumName(item))"
-                                                DescriptionField="@(item => BriefingRoomGUITools.GetEnumDescription(item))"
-                                                ValueField="@(item =>item)"
-                                                SelectedValues="subObjective.Options"
-                                                TItem="ObjectiveOption"
-                                                TItemOutput="ObjectiveOption">
-                                            </CheckBoxList>
-                                        }
-                                        <button type="button" class="btn btn-secondary form-control" @onclick="() => AddSubObjective(objective)">+</button>
-                                    </div>
+                                    @foreach (var subObjective in objective.SubObjectives)
+                                    {
+                                    <hr/>
+                                        <div class="generator-group flex-justify-spaced flex-margin-fix">
+                                            <InputDataBase ClassString="flex-block" Label="Task" @bind-Value="subObjective.Task" DataBaseType="DatabaseEntryType.ObjectiveTask"/>
+                                            <InputDataBase ClassString="flex-block" Label="Target" @bind-Value="subObjective.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget"/>
+                                            <InputDataBase ClassString="flex-block" Label="Target behavior" @bind-Value="subObjective.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior"/>
+                                            <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="subObjective.TargetCount" EnumType="Amount"/>
+                                            <button type="button" class="btn btn-secondary row-button" @onclick="() => RemoveSubObjective(objective, subObjective)">x</button>
+                                        </div>
+                                        <CheckBoxList
+                                            Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
+                                            TextField="@(item =>BriefingRoomGUITools.GetEnumName(item))"
+                                            DescriptionField="@(item => BriefingRoomGUITools.GetEnumDescription(item))"
+                                            ValueField="@(item =>item)"
+                                            SelectedValues="subObjective.Options"
+                                            TItem="ObjectiveOption"
+                                            TItemOutput="ObjectiveOption">
+                                        </CheckBoxList>
+                                    }
+                                    <button type="button" class="btn btn-secondary form-control" @onclick="() => AddSubObjective(objective)">+</button>
                                 </div>
                             }
                         }
@@ -323,7 +320,7 @@
                                                 }
                                             </select>
                                         </div>
-                                        <button type="button" class="btn btn-secondary row-button" @onclick="() => CloneFlightGroup(flight)"><span class="oi oi-layers"></span></button>
+                                        <button type="button" class="btn btn-secondary row-button" @onclick="() => CloneFlightGroup(flight)" title="Clone Flight Group"><span class="oi oi-layers"></span></button>
                                     </div>
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
                                         <InputEnum ClassString="flex-block" Label="Starting Setup" @bind-Value="flight.StartLocation" EnumType="PlayerStartLocation"/>
@@ -671,7 +668,8 @@
             TargetCount = obj.TargetCount,
             Task = obj.Task,
             Options = obj.Options,
-            Features = obj.Features
+            Features = obj.Features,
+            SubObjectives = obj.SubObjectives
         };
         newObj.Alias = BriefingRoom.GetAlias(Template.Objectives.Count);
         Template.Objectives.Add(newObj);
