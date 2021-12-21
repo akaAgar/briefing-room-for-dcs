@@ -26,14 +26,10 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Template
 {
-    public class MissionTemplateObjective : MissionTemplateGroup
+    public class MissionTemplateSubObjective : MissionTemplateGroup
     {
-        public List<string> Features { get { return Features_; } set { Features_ = Database.Instance.CheckIDs<DBEntryFeatureObjective>(value.ToArray()).ToList(); } }
-        private List<string> Features_ = new List<string>();
         public List<ObjectiveOption> Options { get { return Options_; } set { Options_ = value.Distinct().ToList(); } }
         private List<ObjectiveOption> Options_;
-        public string Preset { get { return Preset_; } set { Preset_ = Database.Instance.CheckID<DBEntryObjectivePreset>(value); } }
-        private string Preset_;
         public string Target { get { return Target_; } set { Target_ = Database.Instance.CheckID<DBEntryObjectiveTarget>(value); } }
         private string Target_;
         public string TargetBehavior { get { return TargetBehavior_; } set { TargetBehavior_ = Database.Instance.CheckID<DBEntryObjectiveTargetBehavior>(value); } }
@@ -42,66 +38,32 @@ namespace BriefingRoom4DCS.Template
         public string Task { get { return Task_; } set { Task_ = Database.Instance.CheckID<DBEntryObjectiveTask>(value); } }
         private string Task_;
 
-        public List<MissionTemplateSubObjective> SubObjectives { get; set; } = new List<MissionTemplateSubObjective>();
-
-        public MissionTemplateObjective()
+        public MissionTemplateSubObjective()
         {
-            Features = new List<string>();
             Options = new List<ObjectiveOption>();
-            Preset = "Interdiction";
             Target = "VehicleAny";
             TargetBehavior = "Idle";
             TargetCount = Amount.Average;
             Task = "DestroyAll";
         }
 
-        public MissionTemplateObjective(string target, string targetBehavior, string task, string[] features, Amount targetCount = Amount.Average, params ObjectiveOption[] options)
+        public MissionTemplateSubObjective(string target, string targetBehavior, string task, string[] features, Amount targetCount = Amount.Average, params ObjectiveOption[] options)
         {
-            Features = new List<string>(features);
             Options = new List<ObjectiveOption>(options);
-            Preset = "";
             Target = target;
             TargetBehavior = targetBehavior;
             TargetCount = targetCount;
             Task = task;
         }
 
-        public MissionTemplateObjective(string presetID, Amount targetCount = Amount.Average)
-        {
-            DBEntryObjectivePreset preset = Database.Instance.GetEntry<DBEntryObjectivePreset>(presetID);
-
-            if (preset == null) // Preset doesn't exist.
-            {
-                Features = new List<string>();
-                Options = new List<ObjectiveOption>();
-                Preset = "";
-                Target = "VehicleAny";
-                TargetBehavior = "Idle";
-                TargetCount = Amount.Average;
-                Task = "DestroyAll";
-            }
-            else
-            {
-                Features = preset.Features.ToList();
-                Options = preset.Options.ToList();
-                Preset = presetID;
-                Target = Toolbox.RandomFrom(preset.Targets);
-                TargetBehavior = Toolbox.RandomFrom(preset.TargetsBehaviors);
-                TargetCount = targetCount;
-                Task = Toolbox.RandomFrom(preset.Tasks);
-            }
-        }
-
-        internal MissionTemplateObjective(INIFile ini, string section, string key)
+        internal MissionTemplateSubObjective(INIFile ini, string section, string key)
         {
             LoadFromFile(ini, section, key);
         }
 
         internal void LoadFromFile(INIFile ini, string section, string key)
         {
-            Features = Database.Instance.CheckIDs<DBEntryFeatureObjective>(ini.GetValueArray<string>(section, $"{key}.Features")).ToList();
             Options = ini.GetValueArray<ObjectiveOption>(section, $"{key}.Options").ToList();
-            Preset = ini.GetValue<string>(section, $"{key}.Preset");
             Target = ini.GetValue<string>(section, $"{key}.Target");
             TargetBehavior = ini.GetValue<string>(section, $"{key}.TargetBehavior");
             TargetCount = ini.GetValue<Amount>(section, $"{key}.TargetCount");
@@ -110,9 +72,7 @@ namespace BriefingRoom4DCS.Template
 
         internal void SaveToFile(INIFile ini, string section, string key)
         {
-            ini.SetValueArray(section, $"{key}.Features", Features.ToArray());
             ini.SetValueArray(section, $"{key}.Options", Options.ToArray());
-            ini.SetValue(section, $"{key}.Preset", Preset);
             ini.SetValue(section, $"{key}.Task", Task);
             ini.SetValue(section, $"{key}.Target", Target);
             ini.SetValue(section, $"{key}.TargetBehavior", TargetBehavior);
