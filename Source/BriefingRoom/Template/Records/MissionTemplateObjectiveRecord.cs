@@ -32,7 +32,7 @@ namespace BriefingRoom4DCS.Template
         internal string TargetBehavior { get; init; }
         internal Amount TargetCount { get; init; }
         internal string Task { get; init; }
-        internal List<MissionTemplateSubObjective> SubObjectives { get; init; }
+        internal List<MissionTemplateSubTask> SubTasks { get; init; }
 
         public MissionTemplateObjectiveRecord(MissionTemplateObjective objective)
         {
@@ -43,7 +43,7 @@ namespace BriefingRoom4DCS.Template
             TargetBehavior = objective.TargetBehavior;
             TargetCount = objective.TargetCount;
             Task = objective.Task;
-            SubObjectives = objective.SubObjectives;
+            SubTasks = objective.SubTasks;
         }
     }
 }

@@ -26,7 +26,7 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Template
 {
-    public class MissionTemplateSubObjective : MissionTemplateGroup
+    public class MissionTemplateSubTask : MissionTemplateGroup
     {
         public List<ObjectiveOption> Options { get { return Options_; } set { Options_ = value.Distinct().ToList(); } }
         private List<ObjectiveOption> Options_;
@@ -38,7 +38,7 @@ namespace BriefingRoom4DCS.Template
         public string Task { get { return Task_; } set { Task_ = Database.Instance.CheckID<DBEntryObjectiveTask>(value); } }
         private string Task_;
 
-        public MissionTemplateSubObjective()
+        public MissionTemplateSubTask()
         {
             Options = new List<ObjectiveOption>();
             Target = "VehicleAny";
@@ -47,7 +47,7 @@ namespace BriefingRoom4DCS.Template
             Task = "DestroyAll";
         }
 
-        public MissionTemplateSubObjective(string target, string targetBehavior, string task, string[] features, Amount targetCount = Amount.Average, params ObjectiveOption[] options)
+        public MissionTemplateSubTask(string target, string targetBehavior, string task, string[] features, Amount targetCount = Amount.Average, params ObjectiveOption[] options)
         {
             Options = new List<ObjectiveOption>(options);
             Target = target;
@@ -56,7 +56,7 @@ namespace BriefingRoom4DCS.Template
             Task = task;
         }
 
-        internal MissionTemplateSubObjective(INIFile ini, string section, string key)
+        internal MissionTemplateSubTask(INIFile ini, string section, string key)
         {
             LoadFromFile(ini, section, key);
         }
