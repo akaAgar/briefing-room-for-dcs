@@ -39,43 +39,13 @@ namespace BriefingRoom4DCS.Generator
             Dictionary<string, UnitMakerGroupInfo> carrierDictionary = new Dictionary<string, UnitMakerGroupInfo>(StringComparer.InvariantCultureIgnoreCase);
 
             DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
-            if (theaterDB == null) return carrierDictionary; // Theater doesn't exist. Should never happen.
-
-            Coordinates? carrierGroupCoordinates = null;
-            Coordinates? destinationPath = null;
-
-            var iteration = 0;
-            var maxDistance = 25;
-            while (iteration < 10)
-            {
-                carrierGroupCoordinates = unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                    new SpawnPointType[] { SpawnPointType.Sea },
-                    landbaseCoordinates,
-                    new MinMaxD(10, 25),
-                    objectivesCenter,
-                    new MinMaxD(10, 99999),
-                    GeneratorTools.GetSpawnPointCoalition(template, Side.Ally));
-                if(!carrierGroupCoordinates.HasValue)
-                {
-                    maxDistance += 25;
-                    continue;
-                }
-
-                if (windSpeedAtSeaLevel == 0) // No wind? Pick a random direction so carriers don't always go to a 0 course when wind is calm.
-                    windDirectionAtSeaLevel = Toolbox.RandomDouble(Toolbox.TWO_PI);
-                destinationPath = Coordinates.FromAngleInRadians(windDirectionAtSeaLevel + Math.PI) * Database.Instance.Common.CarrierGroup.CourseLength;
-
-                if (ShapeManager.IsPosValid(destinationPath.Value, theaterDB.WaterCoordinates, theaterDB.WaterExclusionCoordinates))
-                    break;
-                iteration++;
-            }
-            if (!carrierGroupCoordinates.HasValue)
-                return carrierDictionary;
-
             double carrierSpeed = Math.Max(
-                Database.Instance.Common.CarrierGroup.MinimumCarrierSpeed,
-                Database.Instance.Common.CarrierGroup.IdealWindOfDeck - windSpeedAtSeaLevel);
-
+                    Database.Instance.Common.CarrierGroup.MinimumCarrierSpeed,
+                    Database.Instance.Common.CarrierGroup.IdealWindOfDeck - windSpeedAtSeaLevel);
+            if (windSpeedAtSeaLevel == 0) // No wind? Pick a random direction so carriers don't always go to a 0 course when wind is calm.
+                        windDirectionAtSeaLevel = Toolbox.RandomDouble(Toolbox.TWO_PI);
+            var carrierPathDeg = ((windDirectionAtSeaLevel + Math.PI) % Toolbox.TWO_PI) * Toolbox.RADIANS_TO_DEGREES;
+            var usedCoordinates = new List<Coordinates>();
             foreach (MissionTemplateFlightGroupRecord flightGroup in template.PlayerFlightGroups)
             {
                 if (string.IsNullOrEmpty(flightGroup.Carrier)) continue; // No carrier for
@@ -88,9 +58,9 @@ namespace BriefingRoom4DCS.Generator
                 }
                 DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(flightGroup.Carrier);
                 if ((unitDB == null) || !unitDB.Families.Any(x => x.IsCarrier())) continue; // Unit doesn't exist or is not a carrier
-                Coordinates shipCoordinates = carrierGroupCoordinates.Value + Coordinates.FromAngleInRadians(Toolbox.RandomAngle()) * carrierDictionary.Count * Database.Instance.Common.CarrierGroup.ShipSpacing;
-                Coordinates shipDestination = shipCoordinates + destinationPath.Value;
 
+                var (shipCoordinates, shipDestination) = GetSpawnAndDestination(unitMaker, template, theaterDB, usedCoordinates, landbaseCoordinates, objectivesCenter, carrierPathDeg);
+                usedCoordinates.Add(shipCoordinates);
                 string cvnID = carrierDictionary.Count > 0 ? (carrierDictionary.Count + 1).ToString() : "";
                 int ilsChannel = 11 + carrierDictionary.Count;
                 double radioFrequency = 127.5 + carrierDictionary.Count;
@@ -123,6 +93,52 @@ namespace BriefingRoom4DCS.Generator
             }
 
             return carrierDictionary;
+        }
+
+        private static Tuple<Coordinates, Coordinates> GetSpawnAndDestination(
+            UnitMaker unitMaker, MissionTemplateRecord template,  DBEntryTheater theaterDB, 
+            List<Coordinates> usedCoordinates, Coordinates landbaseCoordinates, Coordinates objectivesCenter,
+            double carrierPathDeg)
+        {
+            var travelMinMax = new MinMaxD(Database.Instance.Common.CarrierGroup.CourseLength, Database.Instance.Common.CarrierGroup.CourseLength * 2);
+            Coordinates? carrierGroupCoordinates = null;
+                Coordinates? destinationPath = null;
+            var iteration = 0;
+                var maxDistance = 25;
+                while (iteration < 100)
+                {
+                    carrierGroupCoordinates = unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                        new SpawnPointType[] { SpawnPointType.Sea },
+                        landbaseCoordinates,
+                        new MinMaxD(10, maxDistance),
+                        objectivesCenter,
+                        new MinMaxD(10, 99999),
+                        GeneratorTools.GetSpawnPointCoalition(template, Side.Ally));
+                    if(!carrierGroupCoordinates.HasValue)
+                    {
+                        maxDistance += 25;
+                        continue;
+                    }
+                    var minDist = usedCoordinates.Aggregate(99999999.0, (acc,x) => x.GetDistanceFrom(carrierGroupCoordinates.Value) < acc ? x.GetDistanceFrom(carrierGroupCoordinates.Value) : acc);
+                    if(minDist < Database.Instance.Common.CarrierGroup.ShipSpacing)
+                        continue;
+
+                    destinationPath = Coordinates.FromAngleAndDistance(carrierGroupCoordinates.Value, travelMinMax, carrierPathDeg);
+                    if (ShapeManager.IsPosValid(destinationPath.Value, theaterDB.WaterCoordinates, theaterDB.WaterExclusionCoordinates))
+                        break;
+                    iteration++;
+                    if(iteration > 10)
+                        maxDistance += 1;
+                }
+
+                if (!carrierGroupCoordinates.HasValue)
+                    throw new BriefingRoomException($"Carrier spawnpoint could not be found.");
+                if (!destinationPath.HasValue)
+                    throw new BriefingRoomException($"Carrier destination could not be found.");
+                if (!ShapeManager.IsPosValid(destinationPath.Value, theaterDB.WaterCoordinates, theaterDB.WaterExclusionCoordinates))
+                    throw new BriefingRoomException($"Carrier waypoint is on shore");
+
+                return new(carrierGroupCoordinates.Value, destinationPath.Value);
         }
 
         private static void GenerateFOB(
