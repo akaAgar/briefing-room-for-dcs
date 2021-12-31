@@ -11,7 +11,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
     return time + 1 -- next update in one second
   end
 
-  if not table.contains(objective.unitsID, tonumber(objFeature.targetDesignationLaser.laserTarget:getID())) then -- target is considered complete
+  if not objFeature.targetDesignationLaser.laserTarget:isExist() or not table.contains(objective.unitsID, tonumber(objFeature.targetDesignationLaser.laserTarget:getID())) then -- target is considered complete
     briefingRoom.debugPrint("JTAC $OBJECTIVEINDEX$: Target Complete finding new target", 1)
     local unit = objFeature.targetDesignationLaser.setRandomTarget()
     if unit == nil then
