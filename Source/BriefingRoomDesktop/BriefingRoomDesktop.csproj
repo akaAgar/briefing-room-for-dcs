@@ -23,6 +23,7 @@
     <Content Include="..\..\CustomConfigs\**" LinkBase="CustomConfigs" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="..\..\Include\**" LinkBase="Include" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="..\..\Media\**" LinkBase="Media" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\README.md" LinkBase="" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="Resources\**" LinkBase="Resources" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 

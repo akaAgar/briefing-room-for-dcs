@@ -1,6 +1,11 @@
 ![BriefingRoom logo](Media/SplashScreen.png)
 
 ----
+## Installation
+ App is generally standalone .exe with caveats on desktop:
+ 1. Desktop version requires [WebView2 Runtime](https://go.microsoft.com/fwlink/p/?LinkId=2124703) this may not be installed on windows by default. If Web Exe works and Desktop doesn't this is likely the issue.
+ 1. Desktop won't run if placed within `Program Files` or `Program Files (x86)` (Its a Microsoft issue not us :D)
+
 
 ## What is BriefingRoom for DCS World?
 
@@ -38,8 +43,6 @@ BriefingRoom is free and open source and will always remain so, but if you want 
 * Released under the [GNU General Public License 3.0](https://www.gnu.org/licenses/gpl-3.0.en.html)
 * Project website: [akaagar.itch.io/briefing-room-for-dcs](https://akaagar.itch.io/briefing-room-for-dcs/)
 * Source code repository: [github.com/akaAgar/briefing-room-for-dcs](https://github.com/akaAgar/briefing-room-for-dcs)
-* Requires the .NET Framework 4.8 (already installed on modern Windows systems) [dotnet.microsoft.com/download/dotnet-framework/thank-you/net48-web-installer](https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net48-web-installer)
-* Desktop version requires [WebView2 Runtime](https://go.microsoft.com/fwlink/p/?LinkId=2124703) and .NET Framework 6.0 (packaged with the release)
 
 ### Planned for future versions
 
