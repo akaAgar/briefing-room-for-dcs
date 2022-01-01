@@ -45,6 +45,8 @@ namespace BriefingRoom4DCS.Data
 
         internal string Runways { get; private set; }
 
+        internal int RunwayLengthFt { get; private set; }
+
         internal string TACAN { get; private set; }
 
         internal string Theater { get; private set; }
@@ -61,6 +63,7 @@ namespace BriefingRoom4DCS.Data
             Name = ini.GetValue<string>("Airbase", "Name");
             UIDisplayName = ini.GetValue<string>("Airbase", "Name");
             Runways = ini.GetValue<string>("Airbase", "Runways");
+            RunwayLengthFt = ini.GetValue<int>("Airbase", "RunwayLengthFt", -1);
             TACAN = ini.GetValue<string>("Airbase", "TACAN");
             Theater = ini.GetValue<string>("Airbase", "Theater").ToLowerInvariant();
 

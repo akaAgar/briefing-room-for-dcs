@@ -40,6 +40,15 @@ namespace BriefingRoom4DCS.Generator
 
         private readonly bool InvertCoalition;
 
+        private readonly List<UnitFamily> LARGE_AIRCRAFT = new List<UnitFamily>{
+                UnitFamily.PlaneAWACS,
+                UnitFamily.PlaneTankerBasket,
+                UnitFamily.PlaneTankerBoom,
+                UnitFamily.PlaneTransport,
+                UnitFamily.PlaneBomber,
+                UnitFamily.PlaneTransport,
+            };
+
         internal UnitMakerSpawnPointSelector(DBEntryTheater theaterDB, DBEntrySituation situationDB, bool invertCoalition)
         {
             TheaterDB = theaterDB;
@@ -92,7 +101,7 @@ namespace BriefingRoom4DCS.Generator
         {
             if (validTypes.Contains(SpawnPointType.Air) || validTypes.Contains(SpawnPointType.Sea))
                 return Coordinates.CreateRandom(origin, new MinMaxD(1, 3));
-            var sp = SpawnPoints.Where(x => validTypes.Contains(x.PointType)).Aggregate((acc, x) => origin.GetDistanceFrom(x.Coordinates) < origin.GetDistanceFrom(acc.Coordinates)? x : acc);
+            var sp = SpawnPoints.Where(x => validTypes.Contains(x.PointType)).Aggregate((acc, x) => origin.GetDistanceFrom(x.Coordinates) < origin.GetDistanceFrom(acc.Coordinates) ? x : acc);
             SpawnPoints.Remove(sp);
             return sp.Coordinates;
         }
@@ -197,7 +206,7 @@ namespace BriefingRoom4DCS.Generator
         {
             var targetAirbaseOptions =
                         (from DBEntryAirbase airbaseDB in SituationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"))
-                         where airbaseDB.Coalition == coalition && ValidateAirfield(AirbaseParkingSpots[airbaseDB.DCSID], unitFamily, unitCount)
+                         where airbaseDB.Coalition == coalition && ValidateAirfieldParking(AirbaseParkingSpots[airbaseDB.DCSID], unitFamily, unitCount) && ValidateAirfieldRunway(airbaseDB, unitFamily)
                          select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(coordinates));
 
             if (targetAirbaseOptions.Count() == 0) throw new BriefingRoomException("No airbase found for aircraft.");
@@ -237,15 +246,9 @@ namespace BriefingRoom4DCS.Generator
         }
 
         private bool IsBunkerUnsuitable(UnitFamily unitFamily) =>
-            new List<UnitFamily>{
-                UnitFamily.PlaneAWACS,
-                UnitFamily.PlaneTankerBasket,
-                UnitFamily.PlaneTankerBoom,
-                UnitFamily.PlaneTransport,
-                UnitFamily.PlaneBomber,
-            }.Contains(unitFamily) || unitFamily.GetUnitCategory() == UnitCategory.Helicopter;
+           LARGE_AIRCRAFT.Contains(unitFamily) || unitFamily.GetUnitCategory() == UnitCategory.Helicopter;
 
-        private bool ValidateAirfield(List<DBEntryAirbaseParkingSpot> parkingSpots, UnitFamily unitFamily, int unitCount)
+        private bool ValidateAirfieldParking(List<DBEntryAirbaseParkingSpot> parkingSpots, UnitFamily unitFamily, int unitCount)
         {
             var openSpots = parkingSpots.Count(X => X.ParkingType == ParkingSpotType.OpenAirSpawn);
             if (openSpots >= unitCount) //Is there just enough open spaces
@@ -261,6 +264,13 @@ namespace BriefingRoom4DCS.Generator
 
             // Bunkerable aircraft
             return parkingSpots.Count(X => X.ParkingType == ParkingSpotType.HardenedAirShelter) + openSpots > unitCount;
+        }
+
+        private bool ValidateAirfieldRunway(DBEntryAirbase airbaseDB, UnitFamily unitFamily)
+        {
+            if (airbaseDB.RunwayLengthFt == -1 || !LARGE_AIRCRAFT.Contains(unitFamily)) //TODO implement runway distances on all relavant airbases
+                return true;
+            return airbaseDB.RunwayLengthFt > 10000; //Ref: https://hansard.parliament.uk/lords/1978-06-14/debates/842a76e7-6ed3-460a-814d-06f95de60d8d/Kc-135TankerAircraftAirfieldRequirements
         }
 
         private bool CheckNotInHostileCoords(Coordinates coordinates, Coalition? coalition = null)
