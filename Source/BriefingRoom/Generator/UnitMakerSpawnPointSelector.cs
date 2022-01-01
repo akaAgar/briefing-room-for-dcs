@@ -46,7 +46,6 @@ namespace BriefingRoom4DCS.Generator
                 UnitFamily.PlaneTankerBoom,
                 UnitFamily.PlaneTransport,
                 UnitFamily.PlaneBomber,
-                UnitFamily.PlaneTransport,
             };
 
         internal UnitMakerSpawnPointSelector(DBEntryTheater theaterDB, DBEntrySituation situationDB, bool invertCoalition)
