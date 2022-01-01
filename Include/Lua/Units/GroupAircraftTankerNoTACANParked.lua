@@ -72,19 +72,6 @@
                                     }, -- end of ["action"]
                                 }, -- end of ["params"]
                             }, -- end of [3]
-                            [4] = 
-                            {
-                                ["enabled"] = true,
-                                ["auto"] = false,
-                                ["id"] = "Orbit",
-                                ["number"] = 4,
-                                ["params"] = 
-                                {
-                                    ["altitude"] = $ALTITUDE$,
-                                    ["pattern"] = "Race-Track",
-                                    ["speed"] = $SPEED$,
-                                }, -- end of ["params"]
-                            }, -- end of [4]
                         }, -- end of ["tasks"]
                     }, -- end of ["params"]
                 }, -- end of ["task"]
@@ -111,6 +98,44 @@
                     {
                         ["tasks"] = 
                         {
+                            [1] = 
+                            {
+                                ["enabled"] = true,
+                                ["auto"] = false,
+                                ["id"] = "Orbit",
+                                ["number"] = 1,
+                                ["params"] = 
+                                {
+                                    ["altitude"] = $ALTITUDE$,
+                                    ["pattern"] = "Race-Track",
+                                    ["speed"] = $SPEED$,
+                                }, -- end of ["params"]
+                            }, -- end of [7]
+                        }, -- end of ["tasks"]
+                    }, -- end of ["params"]
+                }, -- end of ["task"]
+                ["type"] = "Turning Point",
+                ["ETA"] = 0.0,
+                ["ETA_locked"] = false,
+                ["y"] = $GROUPMIDY$,
+                ["x"] = $GROUPMIDX$,
+                ["name"] = "",
+                ["formation_template"] = "",
+                ["speed_locked"] = true,
+            }, -- end of [2]
+            [3] = 
+            {
+                ["alt"] = $ALTITUDE$,
+                ["action"] = "Turning Point",
+                ["alt_type"] = "BARO",
+                ["speed"] = $SPEED$,
+                ["task"] = 
+                {
+                    ["id"] = "ComboTask",
+                    ["params"] = 
+                    {
+                        ["tasks"] = 
+                        {
                         }, -- end of ["tasks"]
                     }, -- end of ["params"]
                 }, -- end of ["task"]
@@ -122,7 +147,7 @@
                 ["name"] = "",
                 ["formation_template"] = "",
                 ["speed_locked"] = true,
-            }, -- end of [2]
+            }, -- end of [3]
         }, -- end of ["points"]
     }, -- end of ["route"]
     ["groupId"] = $GROUPID$,

@@ -74,7 +74,7 @@ namespace BriefingRoom4DCS.Generator
                 var unitCount = featureDB.UnitGroupSize.GetValue();
                 var unitFamily = Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
                 var luaUnit = featureDB.UnitGroupLuaUnit;
-                SetAirbase(featureDB, unitFamily, ref groupLua, ref luaUnit, groupSide, ref coordinates, unitCount, ref extraSettings);
+                SetAirbase(featureDB, unitFamily, ref groupLua, ref luaUnit, groupSide, ref coordinates, coordinates2.Value, unitCount, ref extraSettings);
 
                 groupInfo = _unitMaker.AddUnitGroup(
                     unitFamily, unitCount,
@@ -94,7 +94,7 @@ namespace BriefingRoom4DCS.Generator
                             $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}"); // TODO: human-readable payload name
 
                 if (featureDB.ExtraGroups.Max > 1)
-                    SpawnExtraGroups(featureDB, mission, groupSide, groupFlags, coordinates, extraSettings);
+                    SpawnExtraGroups(featureDB, mission, groupSide, groupFlags, coordinates, coordinates2.Value, extraSettings);
             }
 
             // Feature Lua script
@@ -169,7 +169,7 @@ namespace BriefingRoom4DCS.Generator
                  !string.IsNullOrEmpty(featureDB.UnitGroupLuaUnit);
         }
 
-        private void SpawnExtraGroups(T featureDB, DCSMission mission, Side groupSide, UnitMakerGroupFlags groupFlags, Coordinates coordinates, Dictionary<string, object> extraSettings)
+        private void SpawnExtraGroups(T featureDB, DCSMission mission, Side groupSide, UnitMakerGroupFlags groupFlags, Coordinates coordinates, Coordinates coordinates2, Dictionary<string, object> extraSettings)
         {
             foreach (var i in Enumerable.Range(1, featureDB.ExtraGroups.GetValue()))
             {
@@ -185,7 +185,7 @@ namespace BriefingRoom4DCS.Generator
                 if (!spawnCoords.HasValue)
                     continue;
 
-                SetAirbase(featureDB, unitFamily, ref groupLua, ref luaUnit, groupSide, ref coordinates, unitCount, ref extraSettings);
+                SetAirbase(featureDB, unitFamily, ref groupLua, ref luaUnit, groupSide, ref coordinates, coordinates2, unitCount, ref extraSettings);
 
                 var groupInfo = _unitMaker.AddUnitGroup(
                    unitFamily, unitCount,
@@ -207,7 +207,7 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        private void SetAirbase(T featureDB, UnitFamily unitFamily, ref string groupLua, ref string luaUnit, Side groupSide, ref Coordinates coordinates, int unitCount, ref Dictionary<string, object> extraSettings)
+        private void SetAirbase(T featureDB, UnitFamily unitFamily, ref string groupLua, ref string luaUnit, Side groupSide, ref Coordinates coordinates, Coordinates coordinates2, int unitCount, ref Dictionary<string, object> extraSettings)
         {
             if ((_template.MissionFeatures.Contains("ContextGroundStartAircraft") || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.GroundStart)) && Toolbox.IsAircraft(unitFamily.GetUnitCategory()))
             {
@@ -223,6 +223,10 @@ namespace BriefingRoom4DCS.Generator
                 extraSettings["GroupAirbaseID"] = airbase.DCSID;
                 extraSettings["UnitX"] = (from Coordinates unitCoordinates in parkingSpotCoordinatesList select unitCoordinates.X).ToArray();
                 extraSettings["UnitY"] = (from Coordinates unitCoordinates in parkingSpotCoordinatesList select unitCoordinates.Y).ToArray();
+
+                var midPoint = Coordinates.Lerp(coordinates, coordinates2, 0.4);
+                extraSettings.AddIfKeyUnused("GroupMidX", midPoint.X);
+                extraSettings.AddIfKeyUnused("GroupMidY", midPoint.Y);
             }
         }
 
