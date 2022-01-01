@@ -17,6 +17,7 @@ objectivedistance=80
 objectiveseperation=30
 
 [missionfeatures]
+missionfeatures=FriendlyAWACS,FriendlyTankerBasket,FriendlyTankerBoom
 
 [mods]
 

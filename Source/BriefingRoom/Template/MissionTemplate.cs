@@ -113,7 +113,11 @@ namespace BriefingRoom4DCS.Template
             FlightPlanObjectiveSeperation = 30;
             FlightPlanTheaterStartingAirbase = "";
 
-            MissionFeatures = new List<string>();
+            MissionFeatures = new List<string>{
+                "FriendlyAWACS",
+                "FriendlyTankerBasket",
+                "FriendlyTankerBoom"
+            };
 
             Mods = new List<string>();
 
