@@ -149,7 +149,7 @@ namespace BriefingRoom4DCS.Generator
             // Add objective features Lua for this objective
             mission.AppendValue("ScriptObjectivesFeatures", ""); // Just in case there's no features
             foreach (string featureID in featuresID)
-                FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value.GroupID, objectiveCoordinates, taskDB.TargetSide);
+                FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value.GroupID, objectiveCoordinates, taskDB.TargetSide, objectiveOptions.Contains(ObjectiveOption.HideTarget));
 
             objectiveCoordinatesList.Add(objectiveCoordinates);
             waypoints.Add(GenerateObjectiveWaypoint(objectiveTemplate, objectiveCoordinates, objectiveName, template));
@@ -264,7 +264,7 @@ namespace BriefingRoom4DCS.Generator
             // Add objective features Lua for this objective
             mission.AppendValue("ScriptObjectivesFeatures", ""); // Just in case there's no features
             foreach (string featureID in featuresID)
-                FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value.GroupID, objectiveCoordinates, taskDB.TargetSide);
+                FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value.GroupID, objectiveCoordinates, taskDB.TargetSide, objectiveOptions.Contains(ObjectiveOption.HideTarget));
             objectiveCoordinatesList.Add(objectiveCoordinates);
             waypoints.Add(GenerateSubTaskWaypoint(subTask, objectiveCoordinates, objectiveName, template));
             objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);

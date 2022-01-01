@@ -30,7 +30,7 @@ namespace BriefingRoom4DCS.Generator
     {
         internal MissionGeneratorFeaturesObjectives(UnitMaker unitMaker, MissionTemplateRecord template) : base(unitMaker, template) { }
 
-        internal void GenerateMissionFeature(DCSMission mission, string featureID, string objectiveName, int objectiveIndex, int objectiveGroupID, Coordinates objectiveCoordinates, Side objectiveTargetSide)
+        internal void GenerateMissionFeature(DCSMission mission, string featureID, string objectiveName, int objectiveIndex, int objectiveGroupID, Coordinates objectiveCoordinates, Side objectiveTargetSide, bool hideEnemy = false)
         {
             DBEntryFeatureObjective featureDB = Database.Instance.GetEntry<DBEntryFeatureObjective>(featureID);
             if (featureDB == null) // Feature doesn't exist
@@ -73,7 +73,7 @@ namespace BriefingRoom4DCS.Generator
             UnitMakerGroupInfo? groupInfo = AddMissionFeature(
                 featureDB, mission,
                 coordinates, coordinates2,
-                ref extraSettings, objectiveTargetSide);
+                ref extraSettings, objectiveTargetSide, hideEnemy);
 
             AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
         }

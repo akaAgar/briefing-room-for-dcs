@@ -27,13 +27,9 @@ namespace BriefingRoom4DCS.Data
     [Flags]
     internal enum FeatureUnitGroupFlags
     {
-        AlwaysOnMap = 1,
-
         EmbeddedAirDefense = 2,
 
         Friendly = 4,
-
-        NeverOnMap = 8,
 
         TACAN = 16,
 

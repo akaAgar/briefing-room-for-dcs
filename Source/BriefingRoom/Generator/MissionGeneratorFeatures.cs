@@ -42,7 +42,7 @@ namespace BriefingRoom4DCS.Generator
             _template = template;
         }
 
-        protected UnitMakerGroupInfo? AddMissionFeature(T featureDB, DCSMission mission, Coordinates coordinates, Coordinates? coordinates2, ref Dictionary<string, object> extraSettings, Side? objectiveTargetSide = null)
+        protected UnitMakerGroupInfo? AddMissionFeature(T featureDB, DCSMission mission, Coordinates coordinates, Coordinates? coordinates2, ref Dictionary<string, object> extraSettings, Side? objectiveTargetSide = null, bool hideEnemy = false)
         {
             // Add secondary coordinates (destination point) to the extra settings
             if (!coordinates2.HasValue) coordinates2 = coordinates; // No destination point? Use initial point
@@ -55,10 +55,6 @@ namespace BriefingRoom4DCS.Generator
             if (FeatureHasUnitGroup(featureDB))
             {
                 UnitMakerGroupFlags groupFlags = 0;
-                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.AlwaysOnMap))
-                    groupFlags |= UnitMakerGroupFlags.AlwaysHidden;
-                else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.NeverOnMap))
-                    groupFlags |= UnitMakerGroupFlags.NeverHidden;
 
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ImmediateAircraftActivation))
                     groupFlags |= UnitMakerGroupFlags.ImmediateAircraftSpawn;
@@ -69,6 +65,9 @@ namespace BriefingRoom4DCS.Generator
                 Side groupSide = Side.Enemy;
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly)) groupSide = Side.Ally;
                 else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.SameSideAsTarget) && objectiveTargetSide.HasValue) groupSide = objectiveTargetSide.Value;
+
+                if (hideEnemy && groupSide == Side.Enemy)
+                    groupFlags |= UnitMakerGroupFlags.AlwaysHidden;
 
                 extraSettings.AddIfKeyUnused("Payload", featureDB.UnitGroupPayload);
                 var groupLua = featureDB.UnitGroupLuaGroup;
