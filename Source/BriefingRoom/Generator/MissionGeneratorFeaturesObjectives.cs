@@ -23,11 +23,13 @@ using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
     internal class MissionGeneratorFeaturesObjectives : MissionGeneratorFeatures<DBEntryFeatureObjective>
     {
+        private int prevLaserCode {get; set;} = 1687;
         internal MissionGeneratorFeaturesObjectives(UnitMaker unitMaker, MissionTemplateRecord template) : base(unitMaker, template) { }
 
         internal void GenerateMissionFeature(DCSMission mission, string featureID, string objectiveName, int objectiveIndex, int objectiveGroupID, Coordinates objectiveCoordinates, Side objectiveTargetSide, bool hideEnemy = false)
@@ -70,12 +72,45 @@ namespace BriefingRoom4DCS.Generator
             extraSettings.AddIfKeyUnused("ObjectiveIndex", objectiveIndex + 1);
             extraSettings.AddIfKeyUnused("ObjectiveGroupID", objectiveGroupID);
 
+            if(featureID == "TargetDesignationLaser")
+                 extraSettings.AddIfKeyUnused("LASERCODE", getNextLaserCode());
+
             UnitMakerGroupInfo? groupInfo = AddMissionFeature(
                 featureDB, mission,
                 coordinates, coordinates2,
                 ref extraSettings, objectiveTargetSide, hideEnemy);
 
             AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
+        }
+
+        private int getNextLaserCode()
+        {
+            var code = prevLaserCode;
+            code++;
+            var digits = GetDigits(code).ToList();
+            if(digits.Last() == 9)
+                code += 2;
+            digits = GetDigits(code).ToList();
+            if(digits[2] == 9)
+                code += 20;
+            digits = GetDigits(code).ToList();
+            if(code >= 1788)
+                code = 1511;
+            prevLaserCode = code;
+            return code;
+        }
+
+        private static IEnumerable<int> GetDigits(int source)
+        {
+            Stack<int> digits = new Stack<int>();
+            while (source > 0)
+            {
+                var digit = source % 10;
+                source /= 10;
+                digits.Push(digit);
+            }
+
+            return digits;
         }
     }
 }

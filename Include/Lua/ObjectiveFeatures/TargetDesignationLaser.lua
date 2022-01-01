@@ -1,6 +1,7 @@
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser = { }
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.laserSpot = nil -- current laser spot
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.laserTarget = nil -- current lased target
+briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.laserCode = $LASERCODE$ -- current lased target
 
 -- Update active lasers every second
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.laserWatch = function(args, time)
@@ -38,12 +39,13 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
   targetPos.y = targetPos.y + 2.0
   targetPos.z = targetPos.z + targetSpeed.z
   if objFeature.targetDesignationLaser.laserSpot == nil then
-    objFeature.targetDesignationLaser.laserSpot = Spot.createLaser(objFeature.targetDesignationLaser.laserTarget, { x = 0, y = 2.0, z = 0 }, targetPos, LASER_CODE)
-    briefingRoom.debugPrint("JTAC $OBJECTIVEINDEX$: Created Laser"..tostring(targetPos.x)..","..tostring(targetPos.y)..","..tostring(targetPos.z), 1)
+    objFeature.targetDesignationLaser.laserSpot = Spot.createLaser(objFeature.targetDesignationLaser.laserTarget, { x = 0, y = 2.0, z = 0 }, targetPos, objFeature.targetDesignationLaser.laserCode)
+    briefingRoom.debugPrint("JTAC $OBJECTIVEINDEX$: Created Laser "..objFeature.targetDesignationLaser.laserSpot:getCode()..":"..tostring(targetPos.x)..","..tostring(targetPos.y)..","..tostring(targetPos.z), 1)
   else -- spot already exists, update its position
     objFeature.targetDesignationLaser.laserSpot:setPoint(targetPos)
-    briefingRoom.debugPrint("JTAC $OBJECTIVEINDEX$: Update Laser Pos"..tostring(targetPos.x)..","..tostring(targetPos.y)..","..tostring(targetPos.z), 1)
+    briefingRoom.debugPrint("JTAC $OBJECTIVEINDEX$: Update Laser Pos "..objFeature.targetDesignationLaser.laserSpot:getCode()..":"..tostring(targetPos.x)..","..tostring(targetPos.y)..","..tostring(targetPos.z), 1)
   end
+  
 end
 
 -- Delete Laser
@@ -84,7 +86,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
 
   -- already lasing something
   if objFeature.targetDesignationLaser.laserTarget ~= nil then
-    briefingRoom.radioManager.play("Already painting the target. Check laser code. Laser code is "..tostring(LASER_CODE)..".", "RadioSupportTargetLasingAlready", briefingRoom.radioManager.getAnswerDelay())
+    briefingRoom.radioManager.play("Already painting the target. Check laser code. Laser code is "..tostring(objFeature.targetDesignationLaser.laserCode)..".", "RadioSupportTargetLasingAlready", briefingRoom.radioManager.getAnswerDelay())
     return
   end
 
@@ -94,7 +96,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
     briefingRoom.radioManager.play("Negative, no visual on any target.", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
     return
   end
-  briefingRoom.radioManager.play("Affirm. Laser on, painting the target now. Laser code is "..tostring(LASER_CODE)..".", "RadioSupportLasingOk", briefingRoom.radioManager.getAnswerDelay())
+  briefingRoom.radioManager.play("Affirm. Laser on, painting the target now. Laser code is "..tostring(objFeature.targetDesignationLaser.laserCode)..".", "RadioSupportLasingOk", briefingRoom.radioManager.getAnswerDelay())
   missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Get a diffrent lasing target", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.newTarget)
   missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Stop lasing target", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.turnOff)
 end
