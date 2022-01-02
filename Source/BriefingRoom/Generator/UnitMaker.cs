@@ -123,6 +123,8 @@ namespace BriefingRoom4DCS.Generator
             {
                 callsign = CallsignGenerator.GetCallsign(unitFamily, coalition, side, isUsingSkynet);
                 groupName = callsign.Value.GroupName;
+                if(extraSettings.Any(x => x.Key == "PlayerStartingType") && extraSettings.First(x => x.Key == "PlayerStartingType").Value.ToString() == "TakeOffParking")
+                    groupName += "(C)";
             }
             else
                 groupName = GeneratorTools.GetGroupName(GroupID, unitFamily, side, isUsingSkynet);
