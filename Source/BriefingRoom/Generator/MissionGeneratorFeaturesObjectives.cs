@@ -29,7 +29,7 @@ namespace BriefingRoom4DCS.Generator
 {
     internal class MissionGeneratorFeaturesObjectives : MissionGeneratorFeatures<DBEntryFeatureObjective>
     {
-        private int prevLaserCode {get; set;} = 1687;
+        private int prevLaserCode { get; set; } = 1687;
         internal MissionGeneratorFeaturesObjectives(UnitMaker unitMaker, MissionTemplateRecord template) : base(unitMaker, template) { }
 
         internal void GenerateMissionFeature(DCSMission mission, string featureID, string objectiveName, int objectiveIndex, int objectiveGroupID, Coordinates objectiveCoordinates, Side objectiveTargetSide, bool hideEnemy = false)
@@ -72,8 +72,10 @@ namespace BriefingRoom4DCS.Generator
             extraSettings.AddIfKeyUnused("ObjectiveIndex", objectiveIndex + 1);
             extraSettings.AddIfKeyUnused("ObjectiveGroupID", objectiveGroupID);
 
-            if(featureID == "TargetDesignationLaser")
-                 extraSettings.AddIfKeyUnused("LASERCODE", getNextLaserCode());
+            if (featureID == "TargetDesignationLaser")
+                extraSettings.AddIfKeyUnused("LASERCODE",
+                    _template.OptionsMission.Contains("SingleLaserCode") ? 1688 : getNextLaserCode()
+                );
 
             UnitMakerGroupInfo? groupInfo = AddMissionFeature(
                 featureDB, mission,
@@ -88,13 +90,13 @@ namespace BriefingRoom4DCS.Generator
             var code = prevLaserCode;
             code++;
             var digits = GetDigits(code).ToList();
-            if(digits.Last() == 9)
+            if (digits.Last() == 9)
                 code += 2;
             digits = GetDigits(code).ToList();
-            if(digits[2] == 9)
+            if (digits[2] == 9)
                 code += 20;
             digits = GetDigits(code).ToList();
-            if(code >= 1788)
+            if (code >= 1788)
                 code = 1511;
             prevLaserCode = code;
             return code;
