@@ -216,7 +216,7 @@ namespace BriefingRoom4DCS.Generator
                 luaUnit += "Parked";
                 var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = _unitMaker.SpawnPointSelector.GetAirbaseAndParking(
                     _template, coordinates, unitCount,
-                    GeneratorTools.GetSpawnPointCoalition(_template, groupSide).Value,
+                    GeneratorTools.GetSpawnPointCoalition(_template, groupSide, true).Value,
                     unitFamily);
                 coordinates = airbase.Coordinates;
                 extraSettings["ParkingID"] = parkingSpotIDsList.ToArray();
