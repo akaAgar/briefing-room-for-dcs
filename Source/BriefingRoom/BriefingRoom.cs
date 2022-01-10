@@ -40,6 +40,8 @@ namespace BriefingRoom4DCS
 
         public const string VERSION = "0.5.111.18";
 
+        public const string BUILD_VERSION = "~BUILD_VERSION~";
+
         public delegate void LogHandler(string message, LogMessageErrorLevel errorLevel);
 
         private static event LogHandler OnMessageLogged;
