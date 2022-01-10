@@ -31,12 +31,10 @@ jobs:
         format: YYMMDD-HHMM
         utcOffset: "+00:00"
 
-    - name: Find and Replace
-      uses: jacobtomlinson/gha-find-replace@v2
-      with:
-        find: "~BUILD_VERSION~"
-        replace: steps.current-time.outputs.formattedTime
-        regex: false
+    - name: Set Build Version
+      id: build_version
+      run: |
+        echo "sed -i 's/~BUILD_VERSION~/${{ steps.current-time.outputs.formattedTime }}/' Database\Common.ini"
  
     - name: Build and Publish App
       run: dotnet publish Source/BriefingRoom.sln -o Release -c Release
