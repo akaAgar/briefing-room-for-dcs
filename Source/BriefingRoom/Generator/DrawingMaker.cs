@@ -111,24 +111,33 @@ namespace BriefingRoom4DCS.Generator
         {
             var invertCoalition = Template.OptionsMission.Contains("InvertCountriesCoalitions");
             var red = SituationDB.GetRedZone(invertCoalition);
+            var redColour = Template.OptionsMission.Contains("HideBorders") ? DrawingColour.Clear :  DrawingColour.RedFill;
+
             var blue = SituationDB.GetBlueZone(invertCoalition);
-            AddFree("Red Control", red.First(), "Points".ToKeyValuePair(red.Select(coord => coord - red.First()).ToList()), "Colour".ToKeyValuePair(DrawingColour.RedFill));
+            var blueColour = Template.OptionsMission.Contains("HideBorders") ? DrawingColour.Clear :  DrawingColour.BlueFill;
+            AddFree(
+                "Red Control",
+                red.First(),
+                "Points".ToKeyValuePair(red.Select(coord => coord - red.First()).ToList()),
+                "Colour".ToKeyValuePair(redColour),
+                "FillColour".ToKeyValuePair(redColour));
             AddFree(
                 "Blue Control",
                 blue.First(),
                 "Points".ToKeyValuePair(blue.Select(coord => coord - blue.First()).ToList()),
-                "Colour".ToKeyValuePair(DrawingColour.BlueFill),
-                "FillColour".ToKeyValuePair(DrawingColour.BlueFill));
+                "Colour".ToKeyValuePair(blueColour),
+                "FillColour".ToKeyValuePair(blueColour));
 
             if (SituationDB.NoSpawnCoordinates != null)
             {
                 var noSpawn = SituationDB.NoSpawnCoordinates;
+                var noSpawnColour = Template.OptionsMission.Contains("HideBorders") ? DrawingColour.Clear :  DrawingColour.GreenFill;
                 AddFree(
                     "Neutural (NoSpawning)",
                     noSpawn.First(),
                     "Points".ToKeyValuePair(noSpawn.Select(coord => coord - noSpawn.First()).ToList()),
-                    "Colour".ToKeyValuePair(DrawingColour.GreenFill),
-                    "FillColour".ToKeyValuePair(DrawingColour.GreenFill));
+                    "Colour".ToKeyValuePair(noSpawnColour),
+                    "FillColour".ToKeyValuePair(noSpawnColour));
             }
 
             // DEBUG water
