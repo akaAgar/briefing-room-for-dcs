@@ -26,6 +26,7 @@ namespace BriefingRoom4DCS.Template
     {
         public string Aircraft { get; set; }
         public bool AIWingmen { get; set; }
+        public bool Hostile { get; set; }
         public string Carrier { get; set; }
         public int Count { get { return _Count; } set { _Count = Toolbox.Clamp(value, 1, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE); } }
         private int _Count = 1;
@@ -40,10 +41,11 @@ namespace BriefingRoom4DCS.Template
             Clear();
         }
 
-        public MissionTemplateFlightGroup(string aircraft, int count, string payload, string carrier, Country country, PlayerStartLocation startLocation, bool aiWingmen, string livery)
+        public MissionTemplateFlightGroup(string aircraft, int count, string payload, string carrier, Country country, PlayerStartLocation startLocation, bool aiWingmen, bool hostile, string livery)
         {
             Aircraft = aircraft;
             AIWingmen = aiWingmen;
+            Hostile = hostile;
             Count = count;
             Payload = payload;
             Carrier = carrier;
@@ -58,6 +60,7 @@ namespace BriefingRoom4DCS.Template
 
             Aircraft = ini.GetValue(section, $"{key}.AircraftType", Aircraft); // TODO: Database.CheckValue<DBPseudoEntryPlayerAircraft>(ini.GetValue(section, $"{key}.AircraftType", Aircraft));
             AIWingmen = ini.GetValue(section, $"{key}.AIWingmen", AIWingmen);
+            Hostile = ini.GetValue(section, $"{key}.Hostile", Hostile);
             Carrier = ini.GetValue(section, $"{key}.Carrier", Carrier);
             Count = ini.GetValue(section, $"{key}.Count", Count);
             Payload = ini.GetValue(section, $"{key}.Payload", Payload);
@@ -70,6 +73,7 @@ namespace BriefingRoom4DCS.Template
         {
             Aircraft = "Su-25T"; // Database.CheckValue<DBPseudoEntryPlayerAircraft>("Su-25T", "Su-25T");
             AIWingmen = false;
+            Hostile = false;
             Carrier = "";
             Count = 2;
             Payload = "default";
@@ -82,6 +86,7 @@ namespace BriefingRoom4DCS.Template
         {
             ini.SetValue(section, $"{key}.AircraftType", Aircraft);
             ini.SetValue(section, $"{key}.AIWingmen", AIWingmen);
+            ini.SetValue(section, $"{key}.Hostile", Hostile);
             ini.SetValue(section, $"{key}.Carrier", Carrier);
             ini.SetValue(section, $"{key}.Count", Count);
             ini.SetValue(section, $"{key}.Payload", Payload);

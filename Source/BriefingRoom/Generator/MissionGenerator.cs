@@ -40,6 +40,8 @@ namespace BriefingRoom4DCS.Generator
             GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionRed);
             GeneratorTools.CheckDBForMissingEntry<DBEntryWeatherPreset>(template.EnvironmentWeatherPreset, true);
             GeneratorTools.CheckDBForMissingEntry<DBEntryTheater>(template.ContextTheater);
+            if(!template.PlayerFlightGroups.Any(x => !x.Hostile))
+                throw new BriefingRoomException("Cannot have all players on hostile side.");
 
             var mission = new DCSMission();
 

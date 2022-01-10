@@ -273,7 +273,7 @@
                             @foreach (var value in Template.PlayerFlightGroups)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link @(flightGroupTab == value ? "active" : "")" aria-current="page"
+                                    <a class="nav-link @(flightGroupTab == value ? "active" : "") @(value.Hostile ? "hostile" : "")" aria-current="page"
                             @onclick='() => SetFlightGroupTab(value)'>
                                        @value.Alias: @GetAircraftDisplayName(@value.Aircraft) x @value.Count
                                         @if (Template.PlayerFlightGroups.Count > 1)
@@ -292,7 +292,7 @@
                         {
                             if (flightGroupTab == flight)
                             {
-                                <div class="flight-group">
+                                <div class="flight-group  @(flight.Hostile ? "hostile" : "")">
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
                                         <div class="form-group flex-block">
                                             <label>Aircraft</label>
@@ -350,11 +350,19 @@
                                         </div>
                                     </div>
                                     <div class="flex-block form-group">
-                                        <label class="checkboxList-item">
+                                        <label class="checkbox-wrapper">
                                             <input type="checkbox" checked=@flight.AIWingmen
                                                 @onchange="eventArgs => { flight.AIWingmen = (bool)eventArgs.Value; StateHasChanged();}" />
                                                 <span>AI Wingmen</span>
                                         </label>
+                                        @if(Template.PlayerFlightGroups.First() != flight)
+                                        {
+                                            <label class="checkbox-wrapper">
+                                                <input type="checkbox" checked=@flight.Hostile
+                                                    @onchange="eventArgs => { flight.Hostile = (bool)eventArgs.Value; StateHasChanged();}" />
+                                                    <span>Hostile</span>
+                                            </label>
+                                        }
                                     </div>
                                 </div>
                             }
@@ -373,7 +381,7 @@
                                     </a>
                                 </li>
                             }
-                            @if(Template.PlayerFlightGroups.Count > 1)
+                            @if(Template.PlayerFlightGroups.Count(x => !x.Hostile) > 1)
                             {
                                 <li class="nav-item">
                                     <a class="nav-link" @onclick="AddPackage">+</a>
@@ -644,7 +652,7 @@
     private List<MissionTemplateFlightGroup> GetAvailableFlightGroups(MissionTemplatePackage package)
     {
         var restOfPackages = Template.AircraftPackages.Where(x => x != package);
-        return Template.PlayerFlightGroups.Where((v,i) => package.FlightGroupIndexes.Contains(i) || !restOfPackages.Any(y => y.FlightGroupIndexes.Contains(i))).ToList();
+        return Template.PlayerFlightGroups.Where((v,i) => !v.Hostile && (package.FlightGroupIndexes.Contains(i) || !restOfPackages.Any(y => y.FlightGroupIndexes.Contains(i)))).ToList();
     }
 
     private MissionTemplateObjective ObjectiveTab;

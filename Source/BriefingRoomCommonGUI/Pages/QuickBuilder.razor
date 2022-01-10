@@ -87,7 +87,7 @@
 
                 @foreach (var flight in Template.PlayerFlightGroups)
                 {
-                    <div class="generator-group flex-justify-spaced flex-margin-fix">
+                    <div class="generator-group flex-justify-spaced flex-margin-fix @(flight.Hostile ? "hostile" : "")">
                         <div class="form-group flex-block">
                             <label>Aircraft</label>
                             <BlazoredTypeahead SearchMethod="SearchAircraft" @bind-Value="flight.Aircraft"
@@ -118,11 +118,19 @@
                             </select>
                         </div>
                         <div class="form-group flex-block">
-                            <label class="checkboxList-item row-checkbox">
+                            <label class="checkbox-wrapper row-checkbox">
                                 <input type="checkbox" checked=@flight.AIWingmen
                                 @onchange="eventArgs => { flight.AIWingmen = (bool)eventArgs.Value; StateHasChanged();}" />
                                 <span>AI Wingmen</span>
                             </label>
+                             @if(Template.PlayerFlightGroups.First() != flight)
+                            {
+                                <label class="checkbox-wrapper row-checkbox">
+                                    <input type="checkbox" checked=@flight.Hostile
+                                        @onchange="eventArgs => { flight.Hostile = (bool)eventArgs.Value; StateHasChanged();}" />
+                                        <span>Hostile</span>
+                                </label>
+                            }
                         </div>
                         <div class="form-group flex-box">
                             <button type="button" class="btn btn-secondary row-button"

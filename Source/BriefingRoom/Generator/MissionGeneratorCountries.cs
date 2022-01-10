@@ -43,7 +43,10 @@ namespace BriefingRoom4DCS.Generator
 
             // Add countries for player FGs to player coalition
             foreach (MissionTemplateFlightGroupRecord flightGroup in template.PlayerFlightGroups)
-                countries[(int)template.ContextPlayerCoalition].Add(flightGroup.Country);
+            {
+                var group = flightGroup.Hostile ? template.ContextPlayerCoalition.GetEnemy() : template.ContextPlayerCoalition;
+                countries[(int)group].Add(flightGroup.Country);
+            }
 
             // Removes countries added multiple times
             countries[(int)template.ContextPlayerCoalition] = countries[(int)template.ContextPlayerCoalition].Distinct().ToList();
@@ -52,8 +55,8 @@ namespace BriefingRoom4DCS.Generator
             for (i = 0; i < 2; i++)
                 if (countries[i].Contains(DEFAULT_COUNTRIES[1 - i]))
                     countries[i].Remove(DEFAULT_COUNTRIES[1 - i]);
-            
-            if(countries[(int)Coalition.Blue].Intersect(countries[(int)Coalition.Red]).ToList().Count > 0)
+
+            if (countries[(int)Coalition.Blue].Intersect(countries[(int)Coalition.Red]).ToList().Count > 0)
                 throw new BriefingRoomException("Countries can't be on both sides");
 
             // Add all non-aligned countries to the list of neutral countries

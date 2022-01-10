@@ -28,6 +28,7 @@ namespace BriefingRoom4DCS.Template
     {
         internal string Aircraft { get; init; }
         internal bool AIWingmen { get; init; }
+        internal bool Hostile { get; init; }
         internal string Carrier { get; init; }
         internal int Count { get; init; }
         internal Country Country { get; init; }
@@ -41,6 +42,7 @@ namespace BriefingRoom4DCS.Template
         {
             Aircraft = flightGroup.Aircraft;
             AIWingmen = flightGroup.AIWingmen;
+            Hostile = flightGroup.Hostile;
             Carrier = flightGroup.Carrier;
             Count = flightGroup.Count;
             Country = flightGroup.Country;

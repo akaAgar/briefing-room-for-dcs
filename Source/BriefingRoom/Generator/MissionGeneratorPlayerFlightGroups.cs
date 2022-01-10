@@ -21,6 +21,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -62,12 +63,13 @@ namespace BriefingRoom4DCS.Generator
 
             List<int> parkingSpotIDsList = new List<int>();
             List<Coordinates> parkingSpotCoordinatesList = new List<Coordinates>();
-            string groupLuaFile = "GroupAircraftPlayer";
-            int carrierUnitID = 0;
+            var groupLuaFile = "GroupAircraftPlayer";
+            var carrierUnitID = 0;
             string carrierName = null;
+            var side = flightGroup.Hostile ? Side.Enemy : Side.Ally;
+            var country = flightGroup.Country;
 
-
-            if (!string.IsNullOrEmpty(flightGroup.Carrier) && carrierDictionary.ContainsKey(flightGroup.Carrier)) // Carrier take off
+            if (!string.IsNullOrEmpty(flightGroup.Carrier) && carrierDictionary.ContainsKey(flightGroup.Carrier) && !flightGroup.Hostile) // Carrier take off
             {
                 var carrier = carrierDictionary[flightGroup.Carrier];
                 groupLuaFile = "GroupAircraftPlayerCarrier";
@@ -80,6 +82,19 @@ namespace BriefingRoom4DCS.Generator
                     parkingSpotCoordinatesList.Add(carrier.Coordinates);
                 }
                 groupStartingCoords = carrier.Coordinates;
+
+            }
+            else if (flightGroup.Hostile)
+            {
+                var coalition = GeneratorTools.GetSpawnPointCoalition(template, side, true);
+                var (hostileAirbase, hostileParkingSpotIDsList, hostileParkingSpotCoordinatesList) = unitMaker.SpawnPointSelector.GetAirbaseAndParking(template, objectivesCenter, flightGroup.Count, coalition.Value, unitDB.Families.First());
+                parkingSpotIDsList = hostileParkingSpotIDsList;
+                parkingSpotCoordinatesList = hostileParkingSpotCoordinatesList;
+                groupStartingCoords = hostileParkingSpotCoordinatesList.First();
+                airbase = hostileAirbase;
+
+                if (country == Country.CJTFBlue || country == Country.CJTFRed)
+                    country = coalition == Coalition.Blue ? Country.CJTFBlue : Country.CJTFRed;
 
             }
             else // Land airbase take off
@@ -96,14 +111,14 @@ namespace BriefingRoom4DCS.Generator
             DCSSkillLevel skillLevel = flightGroup.AIWingmen ? Toolbox.RandomFrom(DCSSkillLevel.High, DCSSkillLevel.Excellent) : DCSSkillLevel.Client;
 
             UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(
-                Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), Side.Ally, unitDB.Families[0],
+                Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), side, unitDB.Families[0],
                 groupLuaFile, "UnitAircraftParked", groupStartingCoords,
                 unitMakerGroupFlags,
                 "Payload".ToKeyValuePair(flightGroup.Payload),
                 "Skill".ToKeyValuePair(skillLevel),
                 "PlayerStartingAction".ToKeyValuePair(GeneratorTools.GetPlayerStartingAction(flightGroup.StartLocation)),
                 "PlayerStartingType".ToKeyValuePair(GeneratorTools.GetPlayerStartingType(flightGroup.StartLocation)),
-                "Country".ToKeyValuePair(flightGroup.Country),
+                "Country".ToKeyValuePair(country),
                 "InitialWPName".ToKeyValuePair(Database.Instance.Common.Names.WPInitialName),
                 "FinalWPName".ToKeyValuePair(Database.Instance.Common.Names.WPFinalName),
                 "ParkingID".ToKeyValuePair(parkingSpotIDsList.ToArray()),

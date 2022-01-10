@@ -201,3 +201,44 @@ h4 {
         background-color: red;
         padding: 0.5em;
     }
+
+    .hostile {
+        color: crimson;
+    }
+
+
+
+    .checkbox-wrapper > input {
+        display: none;
+    }
+    
+    .checkbox-wrapper > span {
+        padding: 5px;
+        border: solid 1px #0366d6;
+        border-radius: .25rem;
+        margin: 4px;
+        display: block;
+    }
+    
+    .checkbox-wrapper > input:checked + span {
+        background-color: #0366d6;
+        border-color: #0C3050;
+        color: white;
+    }
+    
+    .checkbox-wrapper .description {
+        font-size: 70%;
+        display: none;
+    }
+    
+    .checkbox-wrapper:hover .description {
+        font-size: 70%;
+        display: block;
+        position: absolute;
+        background-color: #F6F7FF;
+        padding: 5px;
+        border: solid 1px #0366d6;
+        border-radius: .25rem;
+        margin: 2px;
+        color: black;
+    }
