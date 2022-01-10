@@ -52,6 +52,9 @@ namespace BriefingRoom4DCS.Generator
             for (i = 0; i < 2; i++)
                 if (countries[i].Contains(DEFAULT_COUNTRIES[1 - i]))
                     countries[i].Remove(DEFAULT_COUNTRIES[1 - i]);
+            
+            if(countries[(int)Coalition.Blue].Intersect(countries[(int)Coalition.Red]).ToList().Count > 0)
+                throw new BriefingRoomException("Countries can't be on both sides");
 
             // Add all non-aligned countries to the list of neutral countries
             List<Country> neutralCountries = new List<Country>(Toolbox.GetEnumValues<Country>());

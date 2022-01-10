@@ -31,7 +31,7 @@ namespace BriefingRoom4DCS
         UK = 4,
         France = 5,
         Germany = 6,
-        Aggressors = 7,
+        USAFAggressors = 7,
         Canada = 8,
         Spain = 9,
         TheNetherlands = 10,
