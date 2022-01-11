@@ -78,21 +78,35 @@ namespace BriefingRoom4DCS.Generator
             string groupLua, string unitLua,
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags = 0,
+            params KeyValuePair<string, object>[] extraSettings) => AddUnitGroup(
+                new List<UnitFamily> { family }, unitCount, side,
+                groupLua, unitLua, coordinates,
+                unitMakerGroupFlags, extraSettings);
+
+        internal UnitMakerGroupInfo? AddUnitGroup(
+            List<UnitFamily> families, int unitCount, Side side,
+            string groupLua, string unitLua,
+            Coordinates coordinates,
+            UnitMakerGroupFlags unitMakerGroupFlags = 0,
             params KeyValuePair<string, object>[] extraSettings)
         {
-            if (unitCount <= 0) return null;
+            if (unitCount <= 0) throw new BriefingRoomException("Asking for a zero units");
+            if (families.Count <= 0) throw new BriefingRoomException("No Unit Families Provided");
             DBEntryCoalition unitsCoalitionDB = CoalitionsDB[(int)((side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy())];
 
-            List<string> units = unitsCoalitionDB.GetRandomUnits(family, Template.ContextDecade, unitCount, Template.Mods, true).ToList();
-            if (units.Count == 0) return null;
+            var (country, units) = unitsCoalitionDB.GetRandomUnits(families, Template.ContextDecade, unitCount, Template.Mods);
+            if (units.Count == 0) throw new BriefingRoomException($"Found no units for {string.Join(", ", families)} {country}");
+            if (country != Country.ALL)
+                extraSettings = extraSettings.Append("Country".ToKeyValuePair(country)).ToArray();
 
-            if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.EmbeddedAirDefense) && (family.GetUnitCategory() == UnitCategory.Vehicle))
+
+            if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.EmbeddedAirDefense) && (families.First().GetUnitCategory() == UnitCategory.Vehicle))
             {
-                string[] airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(Template, side);
+                string[] airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(Template, side, country != Country.ALL ? country : null);
                 units.AddRange(airDefenseUnits);
             }
 
-            return AddUnitGroup(Toolbox.ShuffleArray(units.ToArray()), side, family, groupLua, unitLua, coordinates, unitMakerGroupFlags, extraSettings);
+            return AddUnitGroup(Toolbox.ShuffleArray(units.ToArray()), side, families.First(), groupLua, unitLua, coordinates, unitMakerGroupFlags, extraSettings);
         }
 
         internal UnitMakerGroupInfo? AddUnitGroup(
@@ -123,7 +137,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 callsign = CallsignGenerator.GetCallsign(unitFamily, coalition, side, isUsingSkynet);
                 groupName = callsign.Value.GroupName;
-                if(extraSettings.Any(x => x.Key == "PlayerStartingType") && extraSettings.First(x => x.Key == "PlayerStartingType").Value.ToString() == "TakeOffParking")
+                if (extraSettings.Any(x => x.Key == "PlayerStartingType") && extraSettings.First(x => x.Key == "PlayerStartingType").Value.ToString() == "TakeOffParking")
                     groupName += "(C)";
             }
             else

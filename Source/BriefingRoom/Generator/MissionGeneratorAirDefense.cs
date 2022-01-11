@@ -21,6 +21,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Template;
 using System;
+using System.Collections.Generic;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -54,21 +55,21 @@ namespace BriefingRoom4DCS.Generator
             int groupCount = airDefenseLevelDB.GroupsInArea[(int)airDefenseRange].GetValue();
             if (groupCount < 1) return;  // No groups to add, no need to go any further
 
-            UnitFamily[] unitFamilies;
+            List<UnitFamily> unitFamilies;
             SpawnPointType[] validSpawnPoints;
             switch (airDefenseRange)
             {
-                default: // case AirDefenseRange.ShortRange:
-                    unitFamilies = new UnitFamily[] { UnitFamily.VehicleAAA, UnitFamily.VehicleAAAStatic, UnitFamily.VehicleInfantryMANPADS, UnitFamily.VehicleSAMShort, UnitFamily.VehicleSAMShort, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShortIR };
-                    validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandSmall, SpawnPointType.LandMedium, SpawnPointType.LandLarge };
-                    break;
                 case AirDefenseRange.MediumRange:
-                    unitFamilies = new UnitFamily[] { UnitFamily.VehicleSAMMedium };
+                    unitFamilies = new List<UnitFamily> { UnitFamily.VehicleSAMMedium };
                     validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandLarge };
                     break;
                 case AirDefenseRange.LongRange:
-                    unitFamilies = new UnitFamily[] { UnitFamily.VehicleSAMLong };
+                    unitFamilies = new List<UnitFamily> { UnitFamily.VehicleSAMLong };
                     validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandLarge };
+                    break;
+                default: // case AirDefenseRange.ShortRange:
+                    unitFamilies = new List<UnitFamily> { UnitFamily.VehicleAAA, UnitFamily.VehicleAAAStatic, UnitFamily.VehicleInfantryMANPADS, UnitFamily.VehicleSAMShort, UnitFamily.VehicleSAMShort, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShortIR };
+                    validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandSmall, SpawnPointType.LandMedium, SpawnPointType.LandLarge };
                     break;
             }
 
@@ -91,17 +92,10 @@ namespace BriefingRoom4DCS.Generator
                     return;
                 }
 
-                UnitMakerGroupInfo? groupInfo = null;
-                unitFamilies = Toolbox.ShuffleArray(unitFamilies);
-                for (int j = 0; j < unitFamilies.Length; j++) // Try picking for various families until a valid one is found
-                {
-                    groupInfo = unitMaker.AddUnitGroup(
-                        unitFamilies[j], 1, side,
-                        "GroupVehicle", "UnitVehicle",
-                        spawnPoint.Value);
-
-                    if (groupInfo.HasValue) break;
-                }
+                var groupInfo = unitMaker.AddUnitGroup(
+                    unitFamilies, 1, side,
+                    "GroupVehicle", "UnitVehicle",
+                    spawnPoint.Value);
 
                 if (!groupInfo.HasValue) // Failed to generate a group
                     BriefingRoom.PrintToLog(

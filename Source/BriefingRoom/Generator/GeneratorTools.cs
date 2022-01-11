@@ -33,42 +33,7 @@ namespace BriefingRoom4DCS.Generator
     {
         private static readonly int[] DAYS_PER_MONTH = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-        private static readonly UnitFamily[] EMBEDDED_AIR_DEFENSE_FAMILIES = new UnitFamily[]
-        {
-            UnitFamily.VehicleAAA, UnitFamily.VehicleAAA, UnitFamily.VehicleAAA,
-            UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShortIR,
-            UnitFamily.VehicleSAMShort
-        };
-
-        internal static string[] AddEmbeddedAirDefense(string[] units, AmountNR airDefenseLevel, DBEntryCoalition coalitionDB, Decade decade, List<string> unitMods)
-        {
-            int airDefenseLevelInt = (int)airDefenseLevel.Get();
-            // No luck this time, don't add anything
-            if (Toolbox.RandomDouble() >= Database.Instance.Common.AirDefense.AirDefenseLevels[airDefenseLevelInt].EmbeddedChance)
-                return units;
-
-            // Convert the unit array to an open-ended list so that units can be added
-            List<string> unitsList = new List<string>(units);
-
-            // Add some air defense units
-            int embeddedCount = Database.Instance.Common.AirDefense.AirDefenseLevels[airDefenseLevelInt].EmbeddedUnitCount.GetValue();
-            for (int i = 0; i < embeddedCount; i++)
-                unitsList.AddRange(
-                    coalitionDB.GetRandomUnits(Toolbox.RandomFrom(EMBEDDED_AIR_DEFENSE_FAMILIES), decade, 1, unitMods));
-
-            if (unitsList.Count == 0) return new string[0];
-            // Randomize unit order so embbedded air defense units are not always at the end of the group
-            // but keep unit #0 at its place, because the first unit of the group is used to determine the group type, and we don't want
-            // a artillery platoon to be named "air defense bataillon" because the first unit is a AAA.
-            string unit0 = unitsList[0];
-            unitsList.RemoveAt(0);
-            unitsList = unitsList.OrderBy(x => Toolbox.RandomInt()).ToList();
-            unitsList.Insert(0, unit0);
-
-            return unitsList.ToArray();
-        }
-
-        internal static string[] GetEmbeddedAirDefenseUnits(MissionTemplateRecord template, Side side)
+        internal static string[] GetEmbeddedAirDefenseUnits(MissionTemplateRecord template, Side side, Country? country = null)
         {
             DBCommonAirDefenseLevel airDefenseInfo = (side == Side.Ally) ?
                  Database.Instance.Common.AirDefense.AirDefenseLevels[(int)template.SituationFriendlyAirDefense.Get()] :
@@ -85,8 +50,8 @@ namespace BriefingRoom4DCS.Generator
 
             for (int i = 0; i < airDefenseUnitsCount; i++)
             {
-                UnitFamily airDefenseFamily = Toolbox.RandomFrom(UnitFamily.VehicleAAA, UnitFamily.VehicleAAA, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShort);
-                units.AddRange(unitsCoalitionDB.GetRandomUnits(airDefenseFamily, template.ContextDecade, 1, template.Mods, true));
+                var families = new List<UnitFamily>{UnitFamily.VehicleAAA, UnitFamily.VehicleAAA, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShort};
+                units.AddRange(unitsCoalitionDB.GetRandomUnits(families, template.ContextDecade, 1, template.Mods, country).Item2);
             }
 
             return units.ToArray();

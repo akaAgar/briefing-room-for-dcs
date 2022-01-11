@@ -48,16 +48,25 @@ namespace BriefingRoom4DCS.Generator
                 countries[(int)group].Add(flightGroup.Country);
             }
 
+
+            countries[(int)Coalition.Blue].AddRange(Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionBlue).Countries);
+            countries[(int)Coalition.Red].AddRange(Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionRed).Countries);
+
             // Removes countries added multiple times
             countries[(int)template.ContextPlayerCoalition] = countries[(int)template.ContextPlayerCoalition].Distinct().ToList();
 
             // Make sure each country doesn't contain the other's coalition default country
             for (i = 0; i < 2; i++)
+            {
                 if (countries[i].Contains(DEFAULT_COUNTRIES[1 - i]))
                     countries[i].Remove(DEFAULT_COUNTRIES[1 - i]);
+                if (countries[i].Contains(Country.ALL))
+                    countries[i].Remove(Country.ALL);
+            }
 
-            if (countries[(int)Coalition.Blue].Intersect(countries[(int)Coalition.Red]).ToList().Count > 0)
-                throw new BriefingRoomException("Countries can't be on both sides");
+            var intersect = countries[(int)Coalition.Blue].Intersect(countries[(int)Coalition.Red]).ToList();
+            if (intersect.Count > 0)
+                throw new BriefingRoomException($"Countries can't be on both sides {string.Join(",", intersect)}");
 
             // Add all non-aligned countries to the list of neutral countries
             List<Country> neutralCountries = new List<Country>(Toolbox.GetEnumValues<Country>());

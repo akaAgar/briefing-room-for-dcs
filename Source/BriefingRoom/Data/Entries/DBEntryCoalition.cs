@@ -63,12 +63,13 @@ namespace BriefingRoom4DCS.Data
             return true;
         }
 
-        internal string[] GetRandomUnits(UnitFamily family, Decade decade, int count, List<string> unitMods, bool useDefaultList = true)
+        internal Tuple<Country, List<string>> GetRandomUnits(List<UnitFamily> families, Decade decade, int count, List<string> unitMods, Country? requiredCountry = null)
         {
             // Count is zero, return an empty array.
-            if (count < 1) return new string[0];
+            if (count < 1) throw new BriefingRoomException("Asking for a zero unit list");
+            if(families.Select(x => x.GetUnitCategory()).Any(x => x != families.First().GetUnitCategory())) throw new BriefingRoomException($"Cannot mix Categories in types {string.Join(", ", families)}");
 
-            UnitCategory category = family.GetUnitCategory();
+            UnitCategory category = families.First().GetUnitCategory();
             bool allowDifferentUnitTypes = false;
 
             switch (category)
@@ -89,46 +90,56 @@ namespace BriefingRoom4DCS.Data
                     break;
             }
 
-            string[] validUnits = SelectValidUnits(family, decade, unitMods, useDefaultList);
+            var validUnits = SelectValidUnits(families, decade, unitMods);
+
+            var selectableUnits = new List<string>();
+            var country = Toolbox.RandomFrom(validUnits.Keys.ToList());
+            if(requiredCountry.HasValue)
+                if(validUnits.ContainsKey(requiredCountry.Value))
+                    country = requiredCountry.Value;
+                else
+                    throw new BriefingRoomException($"Cannot find units for required country {requiredCountry}");
+            
+            selectableUnits = validUnits[country];
+
+
+
 
             // Different unit types allowed in the group, pick a random type for each unit.
             if (allowDifferentUnitTypes)
             {
                 List<string> selectedUnits = new List<string>();
                 for (int i = 0; i < count; i++)
-                    selectedUnits.Add(Toolbox.RandomFrom(validUnits));
+                    selectedUnits.Add(Toolbox.RandomFrom(selectableUnits));
 
-                return selectedUnits.ToArray();
+                return new (country, selectedUnits.ToList());
             }
+
             // Different unit types NOT allowed in the group, pick a random type and fill the whole array with it.
-            else
-            {
-                string unit = Toolbox.RandomFrom(validUnits);
-                return Enumerable.Repeat(unit, count).ToArray();
-            }
+            string unit = Toolbox.RandomFrom(selectableUnits);
+            return new (country, Enumerable.Repeat(unit, count).ToList());
         }
 
-        private string[] SelectValidUnits(UnitFamily family, Decade decade, List<string> unitMods, bool useDefaultList)
+        private Dictionary<Country, List<string>> SelectValidUnits(List<UnitFamily> families, Decade decade, List<string> unitMods)
         {
-            List<string> validUnits = new List<string>();
+            var validUnits = new Dictionary<Country, List<string>>();
 
             foreach (Country country in Countries)
-                validUnits.AddRange(
+                validUnits[country] = (
                     from DBEntryUnit unit in Database.GetAllEntries<DBEntryUnit>()
-                    where unit.Families.Contains(family) && unit.Operators.ContainsKey(country) &&
+                    where unit.Families.Intersect(families).ToList().Count > 0 && unit.Operators.ContainsKey(country) &&
                     (string.IsNullOrEmpty(unit.RequiredMod) || unitMods.Contains(unit.RequiredMod, StringComparer.InvariantCultureIgnoreCase)) &&
                     (unit.Operators[country][0] <= decade) && (unit.Operators[country][1] >= decade)
-                    select unit.ID);
+                    select unit.ID).Distinct().ToList();
 
-            validUnits = validUnits.Distinct().ToList();
+            validUnits = validUnits.Where(x => x.Value.Count > 0).ToDictionary(x => x.Key, x => x.Value);
 
             // At least one unit found, return it
             if (validUnits.Count > 0)
-                return validUnits.ToArray();
+            return validUnits;
 
-            // No unit found
-            if (!useDefaultList) return new string[0];
-            return Database.GetEntry<DBEntryDefaultUnitList>(DefaultUnitList).DefaultUnits[(int)family, (int)decade];
+            BriefingRoom.PrintToLog($"No Units of types {string.Join(", ", families)} found in coalition of {string.Join(", ", Countries.Where(x => x != Country.ALL))} forced to use defaults", LogMessageErrorLevel.Warning);
+            return new Dictionary<Country, List<string>>{{Country.ALL,Database.GetEntry<DBEntryDefaultUnitList>(DefaultUnitList).DefaultUnits[(int)families.First(), (int)decade].ToList()}};
         }
     }
 }
