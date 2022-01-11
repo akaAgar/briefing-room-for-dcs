@@ -22,7 +22,7 @@ namespace BriefingRoom4DCS
 {
     public enum Country
     {
-        ALL = -1,
+        ALL = -1, // For Units that could be on any side Structures ect. This does not need to be in coalitions configs.
 
         Russia = 0,
         Ukraine = 1,

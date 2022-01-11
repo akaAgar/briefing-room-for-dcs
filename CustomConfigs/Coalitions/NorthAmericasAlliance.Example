@@ -1,15 +1,15 @@
 [GUI]
-DisplayName=USA
-Category=U-Z
+DisplayName=North American Union 
+Category=Q-T
 
 [Briefing]
-Elements.Adjective=American
+Elements.Adjective=North American Union 
 Elements.Recon=friendly agents,local resistance troops,reconnaissance units,special forces
-Elements.StrategicCommand=Washington
+Elements.StrategicCommand=Ottawa
 Elements.TacticalCommand=Central command
-Elements.TheCoalition=the Americans
+Elements.TheCoalition=the NAU
 
 [Coalition]
-Countries=USA
+Countries=USA,Canada
 DefaultUnitList=FirstWorld
 NATOCallsigns=true

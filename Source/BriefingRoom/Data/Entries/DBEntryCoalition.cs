@@ -44,7 +44,7 @@ namespace BriefingRoom4DCS.Data
             if (badCountries.Length > 0)
                 BriefingRoom.PrintToLog($"Bad countr{(badCountries.Length == 1 ? "y" : "ies")} in coalition \"{ID}\": {string.Join(", ", badCountries)}", LogMessageErrorLevel.Warning);
 
-            Countries = ini.GetValueArray<Country>("Coalition", "Countries").Distinct().OrderBy(x => x).ToArray();
+            Countries = ini.GetValueArray<Country>("Coalition", "Countries").Append(Country.ALL).Distinct().OrderBy(x => x).ToArray();
             if (Countries.Length == 0)
             {
                 BriefingRoom.PrintToLog($"No country in coalition \"{ID}\", coalition was ignored.", LogMessageErrorLevel.Warning);
@@ -140,6 +140,11 @@ namespace BriefingRoom4DCS.Data
 
             BriefingRoom.PrintToLog($"No Units of types {string.Join(", ", families)} found in coalition of {string.Join(", ", Countries.Where(x => x != Country.ALL))} forced to use defaults", LogMessageErrorLevel.Warning);
             return new Dictionary<Country, List<string>>{{Country.ALL,Database.GetEntry<DBEntryDefaultUnitList>(DefaultUnitList).DefaultUnits[(int)families.First(), (int)decade].ToList()}};
+        }
+
+        internal void Merge(DBEntryCoalition entry)
+        {
+           Countries = entry.Countries.Append(Country.ALL).ToArray();
         }
     }
 }

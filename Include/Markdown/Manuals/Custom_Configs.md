@@ -1,13 +1,14 @@
 # Custom Configs
-__Last Edited: 27/10/2021__
+__Last Edited: 11/01/2022__
 
-Briefing Room (BR) allows you to create custom configs. For now (Oct 2021) this is limited to Aircraft Payloads and Liveries.
+Briefing Room (BR) allows you to create custom configs. For now (Jan 2022) this is limited to Aircraft Payloads, Liveries & Coalitions.
 
 The folder structure follows the same as in `Database` in the way that you should put your configs in the same relative place.
 
 **Example Files have been provided, just change `.Example` to `.ini` to get working.**
 
-All Custom configs require a basic setup.
+## Aircraft Payloads & Liveries
+All Custom Unit configs require a basic setup.
 1. Matching Location and Filename as in Database.
 1. File Has required info at the top of the file _Copy this from the Database file_.
 
@@ -18,7 +19,7 @@ All Custom configs require a basic setup.
         [Aircraft]
 
 
-## Importing Payloads from DCS ME to BR 
+### Importing Payloads from DCS ME to BR 
 
 1. Setup your payloads and save your payloads in the Mission Editor
 1. In windows navigate to `C:\Users\<USER>\Saved Games\DCS.openbeta\MissionEditor\UnitPayloads` (this example uses openBeta)
@@ -91,7 +92,7 @@ All Custom configs require a basic setup.
 1. Load BR app and see it in the UI.
 
 
-## Importing Liviers
+### Importing Liviers
 
 1. Find Livery file you want to import eg `C:\Users\<user>\Saved Games\DCS.openbeta\Liveries\A-10CII\Ironfists - A-10C`
 1. Add the folder name to the custom config like so. Make sure its under `[Aircraft]` line
@@ -101,3 +102,10 @@ All Custom configs require a basic setup.
 
         Liveries=Ironfists - A-10C,Another Livery,NextOne
 
+## Coalitions
+
+Adding custom coalitions has exactly the same format as the Coalitions found in `Database\Coalitions`.
+
+Countries is a limited field and you should [these listed ones](https://github.com/akaAgar/briefing-room-for-dcs/blob/main/Source/BriefingRoom/Library/Enums/Country.cs)
+
+Note you can overwrite a coalition but for now (Jan 2022) this will only overwrite the `Countries` field

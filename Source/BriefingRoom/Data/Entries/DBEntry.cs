@@ -76,5 +76,10 @@ namespace BriefingRoom4DCS.Data
 
             return accepted;
         }
+
+        internal void Merge<T>(T entry) where T : DBEntry, new()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

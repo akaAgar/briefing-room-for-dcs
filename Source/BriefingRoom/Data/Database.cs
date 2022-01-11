@@ -73,9 +73,10 @@ namespace BriefingRoom4DCS.Data
             LoadEntries<DBEntrySituation>("TheaterSituations"); // Must be loaded after DBEntryTheater, as it depends on it
             LoadEntries<DBEntryDCSMod>("DCSMods");
             LoadEntries<DBEntryUnit>("Units"); // Must be loaded after DBEntryDCSMod, as it depends on it
-            LoadCustomUnitEntries("Units");
+            LoadCustomUnitEntries<DBEntryUnit>("Units");
             LoadEntries<DBEntryDefaultUnitList>("DefaultUnitLists"); // Must be loaded after DBEntryUnit, as it depends on it
             LoadEntries<DBEntryCoalition>("Coalitions"); // Must be loaded after DBEntryUnit and DBEntryDefaultUnitList, as it depends on them
+            LoadCustomUnitEntries<DBEntryCoalition>("Coalitions");
             LoadEntries<DBEntryWeatherPreset>("WeatherPresets");
 
             // Can't start without at least one player-controllable aircraft
@@ -126,7 +127,7 @@ namespace BriefingRoom4DCS.Data
                 throw new BriefingRoomException($"No valid database entries found in the \"{subDirectory}\" directory");
         }
 
-        private void LoadCustomUnitEntries(string subDirectory)
+        private void LoadCustomUnitEntries<T>(string subDirectory) where T : DBEntry, new()
         {
             BriefingRoom.PrintToLog($"Custom Loading {subDirectory.ToLowerInvariant()}...");
 
@@ -134,18 +135,18 @@ namespace BriefingRoom4DCS.Data
             if (!Directory.Exists(directory))
                 return;
 
-            Type dbType = typeof(DBEntryUnit);
+            Type dbType = typeof(T);
             string shortTypeName = dbType.Name.Substring(7).ToLowerInvariant();
 
             foreach (string filePath in Directory.EnumerateFiles(directory, "*.ini", SearchOption.AllDirectories))
             {
                 string id = Path.GetFileNameWithoutExtension(filePath).Replace(",", "").Trim(); // No commas in file names, so we don't break comma-separated arrays
 
-                var entry = new DBEntryUnit();
+                var entry = new T();
                 if (!entry.Load(this, id, filePath)) continue;
                 if (DBEntries[dbType].ContainsKey(id))
                 {
-                    ((DBEntryUnit)DBEntries[dbType][id]).Merge(entry);
+                    ((T)DBEntries[dbType][id]).Merge(entry);
                     BriefingRoom.PrintToLog($"Updated {shortTypeName} \"{id}\"");
 
                 }
@@ -155,7 +156,7 @@ namespace BriefingRoom4DCS.Data
                     BriefingRoom.PrintToLog($"Loaded {shortTypeName} \"{id}\"");
                 }
             }
-            BriefingRoom.PrintToLog($"Found {DBEntries[dbType].Count} custom database entries of type \"{typeof(DBEntryUnit).Name}\"");
+            BriefingRoom.PrintToLog($"Found {DBEntries[dbType].Count} custom database entries of type \"{typeof(T).Name}\"");
 
             bool mustHaveAtLeastOneEntry = true;
             if ((dbType == typeof(DBEntryDefaultUnitList)) ||
