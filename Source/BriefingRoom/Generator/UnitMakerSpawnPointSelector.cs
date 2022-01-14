@@ -269,7 +269,7 @@ namespace BriefingRoom4DCS.Generator
         {
             if (airbaseDB.RunwayLengthFt == -1 || !LARGE_AIRCRAFT.Contains(unitFamily)) //TODO implement runway distances on all relavant airbases
                 return true;
-            return airbaseDB.RunwayLengthFt > 10000; //Ref: https://hansard.parliament.uk/lords/1978-06-14/debates/842a76e7-6ed3-460a-814d-06f95de60d8d/Kc-135TankerAircraftAirfieldRequirements
+            return airbaseDB.RunwayLengthFt > 7000; //TODO This is a guess based on most runways I know work so far. Place holder for per aircraft data
         }
 
         private bool CheckNotInHostileCoords(Coordinates coordinates, Coalition? coalition = null)
