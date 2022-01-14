@@ -156,6 +156,7 @@ namespace BriefingRoom4DCS.Generator
             objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);
 
             var preValidSpawns = targetDB.ValidSpawnPoints.ToList();
+            
             foreach (var subTasks in objectiveTemplate.SubTasks)
             {
                 objectiveIndex++;
@@ -163,6 +164,7 @@ namespace BriefingRoom4DCS.Generator
                 subTasks, objectiveCoordinates,
                 playerAirbase,
                 preValidSpawns,
+                targetBehaviorDB.Location,
                 featuresID,
                 ref objectiveIndex,
                 ref objectiveCoordinatesList, ref waypoints, ref objectiveTargetUnitFamilies);
@@ -179,6 +181,7 @@ namespace BriefingRoom4DCS.Generator
             Coordinates coreCoordinates,
             DBEntryAirbase playerAirbase,
             List<SpawnPointType> preValidSpawns,
+            DBEntryObjectiveTargetBehaviorLocation mainObjLocation,
             string[] featuresID,
             ref int objectiveIndex,
             ref List<Coordinates> objectiveCoordinatesList,
@@ -203,8 +206,8 @@ namespace BriefingRoom4DCS.Generator
             // Spawn target on airbase
             var unitCount = targetDB.UnitCount[(int)subTask.TargetCount].GetValue();
             var objectiveTargetUnitFamily = Toolbox.RandomFrom(targetDB.UnitFamilies);
-            if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location))
-                throw new BriefingRoomException("Spawning on airbase is not a valid Sub Objective please use it as the main objective.");
+            if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location) && !AIRBASE_LOCATIONS.Contains(mainObjLocation))
+                throw new BriefingRoomException("Spawning on airbase is not a valid Sub Objective unless main objective is also spawning on airbase.");
 
             UnitMakerGroupFlags groupFlags = 0;
             if (objectiveOptions.Contains(ObjectiveOption.ShowTarget)) groupFlags = UnitMakerGroupFlags.NeverHidden;
