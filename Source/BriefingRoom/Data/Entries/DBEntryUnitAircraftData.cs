@@ -48,6 +48,8 @@ namespace BriefingRoom4DCS.Data
 
         internal double RadioFrequency { get; private set; } = 127.0;
 
+        internal int MinimumRunwayLengthFt { get; private set; }
+
         internal void Merge(DBEntryUnitAircraftData aircraftData)
         {
             Liveries = Liveries.Union(aircraftData.Liveries).ToList();
@@ -83,6 +85,8 @@ namespace BriefingRoom4DCS.Data
             RadioModulation = ini.GetValue<RadioModulation>("Aircraft", "Radio.Modulation");
 
             PayloadCommon = ini.GetValue<string>("Aircraft", "Payload.Common");
+
+            MinimumRunwayLengthFt = ini.GetValue<int>("Aircraft", "MinimumRunwayLengthFt");
 
             var payloads = ini.GetKeysInSection("Aircraft").Where(x => x.StartsWith("payload.task")).Select(x => x.Split('.')[2]).Distinct().ToList();
 

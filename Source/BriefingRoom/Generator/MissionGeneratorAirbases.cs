@@ -49,8 +49,10 @@ namespace BriefingRoom4DCS.Generator
                     missionPackages.Add(new DCSMissionPackage(_template.AircraftPackages.IndexOf(package), homeBase));
                     continue;
                 }
-                var requiredSpots = _template.PlayerFlightGroups.Where((v, i) => package.FlightGroupIndexes.Contains(i)).Sum(x => x.Count);
-                var airbase = SelectStartingAirbase(mission, package.StartingAirbase, requiredSpots);
+                var flights = _template.PlayerFlightGroups.Where((v, i) => package.FlightGroupIndexes.Contains(i));
+                var requiredSpots = flights.Sum(x => x.Count);
+                var requiredRunway = flights.Select(x => Database.Instance.GetEntry<DBEntryUnit>(x.Aircraft).AircraftData.MinimumRunwayLengthFt).Max();
+                var airbase = SelectStartingAirbase(mission, package.StartingAirbase, requiredSpots, requiredRunway);
 
                 if (missionPackages.Any(x => x.Airbase == airbase))
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{airbase.Name}\t{airbase.Runways}\t{airbase.ATC}\t{airbase.ILS}\t{airbase.TACAN}");
@@ -60,7 +62,7 @@ namespace BriefingRoom4DCS.Generator
             mission.MissionPackages.AddRange(missionPackages);
         }
 
-        internal DBEntryAirbase SelectStartingAirbase(DCSMission mission, string selectedAirbaseID, int requiredParkingSpots = 0)
+        internal DBEntryAirbase SelectStartingAirbase(DCSMission mission, string selectedAirbaseID, int requiredParkingSpots = 0, int requiredRunway = 0)
         {
             // Get total number of required parking spots for flight groups
             if (requiredParkingSpots == 0)
@@ -80,6 +82,7 @@ namespace BriefingRoom4DCS.Generator
             var opts = airbases.Where(x =>
                     x.ParkingSpots.Length >= requiredParkingSpots &&
                     x.Coalition == _template.ContextPlayerCoalition &&
+                    x.RunwayLengthFt > requiredRunway &&
                     (MissionPrefersShoreAirbase() ? x.Flags.HasFlag(AirbaseFlag.NearWater) : true)
                     ).ToList();
 
