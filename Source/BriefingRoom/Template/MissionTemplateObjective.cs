@@ -107,6 +107,7 @@ namespace BriefingRoom4DCS.Template
             TargetCount = ini.GetValue<Amount>(section, $"{key}.TargetCount");
             Task = ini.GetValue<string>(section, $"{key}.Task");
             foreach (var subKey in ini.GetKeysInSection(section)
+                .Where(x => x.Contains(key))
                 .Select(x => x.Split(".")[1])
                 .Where(x => x.Contains("subtask"))
                 .Distinct().ToList())
