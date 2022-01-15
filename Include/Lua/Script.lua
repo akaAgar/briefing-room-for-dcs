@@ -264,6 +264,16 @@ function table.shuffle(t)
   return t
 end
 
+function table.filter(t, filterIter)
+  local out = {}
+
+  for k, v in pairs(t) do
+    if filterIter(v, k, t) then out[k] = v end
+  end
+
+  return out
+end
+
 -- ===================================================================================
 -- 1.3 - DCS WORLD EXTENSIONS: Provides additional functions to DCS World scripting
 -- ===================================================================================
@@ -680,7 +690,8 @@ function briefingRoom.mission.coreFunctions.completeObjective(index)
   if briefingRoom.mission.complete then return end -- mission already complete
   if briefingRoom.mission.objectives[index].complete then return end -- objective already complete
 
-  briefingRoom.debugPrint("Objective "..tostring(index).." marked as complete")
+  local objName = briefingRoom.mission.objectives[index].name
+  briefingRoom.debugPrint("Objective "..objName.." marked as complete")
   briefingRoom.mission.objectives[index].complete = true
   briefingRoom.mission.objectivesLeft = briefingRoom.mission.objectivesLeft - 1
   briefingRoom.aircraftActivator.pushFromReserveQueue() -- activate next batch of aircraft (so more CAP will pop up)
@@ -697,8 +708,10 @@ function briefingRoom.mission.coreFunctions.completeObjective(index)
     briefingRoom.mission.complete = true
     briefingRoom.radioManager.play("Excellent work! Mission complete, you may return to base.", "RadioHQMissionComplete", math.random(6, 8))
     trigger.action.setUserFlag(1, true) -- Mark the mission complete internally, so campaigns can move to the next mission
+  elseif not briefingRoom.mission.hasStarted then
+    briefingRoom.radioManager.play("Auto Completed Objective "..objName.." (if your not using DSMC then this is a bug and should be reported)", "Radio0", math.random(6, 8))
   else
-    briefingRoom.radioManager.play("Good job! Objective complete, proceed to next objective.", "RadioHQObjectiveComplete", math.random(6, 8))
+    briefingRoom.radioManager.play("Good job! Objective "..objName.." complete, proceed to next objective.", "RadioHQObjectiveComplete", math.random(6, 8))
   end
 end
 
@@ -796,6 +809,24 @@ function briefingRoom.mission.objectiveTimerSchedule(args, time)
   end
 
   return time + 1
+end
+
+for objIndex,obj in ipairs(briefingRoom.mission.objectives) do
+  if obj.unitsCount > 0 then
+    obj.unitsID = table.filter(obj.unitsID, function(o, k, i)
+      local u = dcsExtensions.getUnitByID(o)
+      if u == nil then
+        u = dcsExtensions.getStaticByID(o)
+      end
+      if u == nil then
+        return false
+      end
+      return u:isExist()
+    end)
+    if(next(obj.unitsID) == nil) then
+      briefingRoom.mission.coreFunctions.completeObjective(objIndex)
+    end
+  end
 end
 
 timer.scheduleFunction(briefingRoom.mission.objectiveTimerSchedule, nil, timer.getTime() + 1)
