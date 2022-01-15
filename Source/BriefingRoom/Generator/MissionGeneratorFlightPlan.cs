@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -44,12 +44,12 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("BullseyeRedY", objectivesCenter.Y + GetBullseyeRandomDistance());
         }
 
-        internal static void GenerateAircraftPackageWaypoints(MissionTemplateRecord template, DCSMission mission, List<Waypoint> waypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter)
+        internal static void GenerateAircraftPackageWaypoints(MissionTemplateRecord template, DCSMission mission, List<List<Waypoint>> objectiveGroupedWaypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter)
         {
             foreach (var package in template.AircraftPackages)
             {
                 var missionPackage = mission.MissionPackages.First(x => x.RecordIndex == template.AircraftPackages.IndexOf(package));
-                missionPackage.Waypoints = waypoints.Where((v, i) => package.ObjectiveIndexes.Contains(i)).ToList();
+                missionPackage.Waypoints = objectiveGroupedWaypoints.Where((v, i) => package.ObjectiveIndexes.Contains(i)).SelectMany(x => x).ToList(); // THIS IS WHERE THE OBJECTIVES ARE BROKEN
                 GenerateIngressAndEgressWaypoints(template, missionPackage.Waypoints, averageInitialLocation, objectivesCenter);
             }
         }

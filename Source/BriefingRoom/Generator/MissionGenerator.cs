@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -118,13 +118,16 @@ namespace BriefingRoom4DCS.Generator
             var objectiveTargetUnitFamilies = new List<UnitFamily>();
             var lastObjectiveCoordinates = playerAirbase.Coordinates;
             var objectivesGenerator = new MissionGeneratorObjectives(unitMaker, drawingMaker, template);
+            var objectiveGroupedWaypoints = new List<List<Waypoint>>();
             var i = 0;
             foreach (var objectiveTemplate in template.Objectives)
             {
-                lastObjectiveCoordinates = objectivesGenerator.GenerateObjective(
+                var (objectiveCoords, waypointGroup) = objectivesGenerator.GenerateObjective(
                     mission, template, situationDB,
                     objectiveTemplate, lastObjectiveCoordinates, playerAirbase, useObjectivePresets,
                     ref i, ref objectiveCoordinates, ref waypoints, ref objectiveTargetUnitFamilies);
+                lastObjectiveCoordinates = objectiveCoords;
+                objectiveGroupedWaypoints.Add(waypointGroup);
                 i++;
             }
             var objectivesCenter = (objectiveCoordinates.Count == 0) ? playerAirbase.Coordinates : Coordinates.Sum(objectiveCoordinates) / objectiveCoordinates.Count;

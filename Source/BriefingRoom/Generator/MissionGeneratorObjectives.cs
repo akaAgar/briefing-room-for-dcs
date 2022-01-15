@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -61,7 +61,7 @@ namespace BriefingRoom4DCS.Generator
             ObjectiveNames = new List<string>(Database.Instance.Common.Names.WPObjectivesNames);
         }
 
-        internal Coordinates GenerateObjective(
+        internal Tuple<Coordinates, List<Waypoint>> GenerateObjective(
             DCSMission mission,
             MissionTemplateRecord template,
             DBEntrySituation situationDB,
@@ -75,6 +75,7 @@ namespace BriefingRoom4DCS.Generator
             ref List<UnitFamily> objectiveTargetUnitFamilies)
         {
             var extraSettings = new List<KeyValuePair<string, object>>();
+            var waypointList = new List<Waypoint>();
             string[] featuresID;
             DBEntryObjectiveTarget targetDB;
             DBEntryObjectiveTargetBehavior targetBehaviorDB;
@@ -152,7 +153,9 @@ namespace BriefingRoom4DCS.Generator
                 FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value.GroupID, objectiveCoordinates, taskDB.TargetSide, objectiveOptions.Contains(ObjectiveOption.HideTarget));
 
             objectiveCoordinatesList.Add(objectiveCoordinates);
-            waypoints.Add(GenerateObjectiveWaypoint(objectiveTemplate, objectiveCoordinates, objectiveName, template));
+            var waypoint = GenerateObjectiveWaypoint(objectiveTemplate, objectiveCoordinates, objectiveName, template);
+            waypoints.Add(waypoint);
+            waypointList.Add(waypoint);
             objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);
 
             var preValidSpawns = targetDB.ValidSpawnPoints.ToList();
@@ -167,10 +170,10 @@ namespace BriefingRoom4DCS.Generator
                 targetBehaviorDB.Location,
                 featuresID,
                 ref objectiveIndex,
-                ref objectiveCoordinatesList, ref waypoints, ref objectiveTargetUnitFamilies);
+                ref objectiveCoordinatesList, ref waypoints, ref waypointList, ref objectiveTargetUnitFamilies);
 
             }
-            return objectiveCoordinates;
+            return new (objectiveCoordinates, waypointList);
         }
 
         private void GenerateSubTask(
@@ -186,6 +189,7 @@ namespace BriefingRoom4DCS.Generator
             ref int objectiveIndex,
             ref List<Coordinates> objectiveCoordinatesList,
             ref List<Waypoint> waypoints,
+            ref List<Waypoint> waypointList,
             ref List<UnitFamily> objectiveTargetUnitFamilies
             )
         {
@@ -269,7 +273,9 @@ namespace BriefingRoom4DCS.Generator
             foreach (string featureID in featuresID)
                 FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value.GroupID, objectiveCoordinates, taskDB.TargetSide, objectiveOptions.Contains(ObjectiveOption.HideTarget));
             objectiveCoordinatesList.Add(objectiveCoordinates);
-            waypoints.Add(GenerateSubTaskWaypoint(subTask, objectiveCoordinates, objectiveName, template));
+            var waypoint = GenerateSubTaskWaypoint(subTask, objectiveCoordinates, objectiveName, template);
+            waypoints.Add(waypoint);
+            waypointList.Add(waypoint);
             objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);
 
         }
