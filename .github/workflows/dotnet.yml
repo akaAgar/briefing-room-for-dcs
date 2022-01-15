@@ -34,7 +34,7 @@ jobs:
     - name: Set Build Version
       id: build_version
       run: |
-        Get-Content -path  Source\BriefingRoom\BriefingRoom.cs -Raw) -replace '~BUILD_VERSION~','${{ steps.current-time.outputs.formattedTime }}' | Set-Content Source\BriefingRoom\BriefingRoom.cs
+        (Get-Content -path  Source\BriefingRoom\BriefingRoom.cs -Raw) -replace '~BUILD_VERSION~','${{ steps.current-time.outputs.formattedTime }}' | Set-Content Source\BriefingRoom\BriefingRoom.cs
  
     - name: Build and Publish App
       run: dotnet publish Source/BriefingRoom.sln -o Release -c Release
