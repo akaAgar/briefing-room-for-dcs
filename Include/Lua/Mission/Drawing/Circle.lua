@@ -8,7 +8,7 @@
     ["layerName"] = "Common",
     ["fillColorString"] = "$FILLCOLOUR$",
     ["style"] = "dash",
-    ["thickness"] = 4,
+    ["thickness"] = 15,
     ["mapX"] = $X$,
     ["colorString"] = "$COLOUR$",
     ["name"] = "$UINAME$",

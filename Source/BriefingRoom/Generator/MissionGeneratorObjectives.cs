@@ -1,4 +1,4 @@
-﻿/*
+/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -426,7 +426,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 waypointCoordinates += Coordinates.CreateRandom(3.0, 6.0) * Toolbox.NM_TO_METERS;
                 if (template.OptionsMission.Contains("MarkWaypoints"))
-                    DrawingMaker.AddDrawing("Target Zone", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(6.0 * Toolbox.NM_TO_METERS));
+                    DrawingMaker.AddDrawing($"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(6.0 * Toolbox.NM_TO_METERS));
             }
 
             return new Waypoint(objectiveName, waypointCoordinates, onGround);
@@ -478,7 +478,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 waypointCoordinates += Coordinates.CreateRandom(3.0, 6.0) * Toolbox.NM_TO_METERS;
                 if (template.OptionsMission.Contains("MarkWaypoints"))
-                    DrawingMaker.AddDrawing("Target Zone", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(6.0 * Toolbox.NM_TO_METERS));
+                    DrawingMaker.AddDrawing($"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(6.0 * Toolbox.NM_TO_METERS));
             }
 
             return new Waypoint(objectiveName, waypointCoordinates, onGround);

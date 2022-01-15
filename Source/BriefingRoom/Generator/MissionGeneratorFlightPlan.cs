@@ -1,4 +1,4 @@
-﻿/*
+/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -77,15 +77,14 @@ namespace BriefingRoom4DCS.Generator
                     baseIngressPosition + Coordinates.CreateRandom(ingressDeviation * 0.9, ingressDeviation * 1.1)));
         }
 
-        internal static void GenerateObjectiveWPCoordinatesLua(MissionTemplateRecord template, DCSMission mission, List<Waypoint> waypoints)
+        internal static void GenerateObjectiveWPCoordinatesLua(MissionTemplateRecord template, DCSMission mission, List<Waypoint> waypoints, DrawingMaker DrawingMaker)
         {
             for (int i = 0; i < waypoints.Count; i++)
             {
                 mission.AppendValue("ScriptObjectives",
                     $"briefingRoom.mission.objectives[{i + 1}].waypoint = {waypoints[i].Coordinates.ToLuaTable()}\n");
-                if (template.OptionsMission.Contains("MarkWaypoints"))
-                    mission.AppendValue("ScriptObjectives",
-                        $"trigger.action.markToCoalition({i + 1}, \"{waypoints[i].Name}\", {{ x={waypoints[i].Coordinates.X.ToInvariantString()}, y=0, z={waypoints[i].Coordinates.Y.ToInvariantString()} }}, coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}, true, nil)\n");
+               if (template.OptionsMission.Contains("MarkWaypoints"))
+                    DrawingMaker.AddDrawing(waypoints[i].Name, DrawingType.TextBox, waypoints[i].Coordinates, "Text".ToKeyValuePair(waypoints[i].Name));
             }
         }
 

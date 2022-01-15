@@ -1,4 +1,4 @@
-﻿/*
+/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -142,8 +142,8 @@ namespace BriefingRoom4DCS.Generator
 
             // Generate extra flight plan info
             MissionGeneratorFlightPlan.GenerateBullseyes(mission, objectivesCenter);
-            MissionGeneratorFlightPlan.GenerateObjectiveWPCoordinatesLua(template, mission, waypoints);
-            MissionGeneratorFlightPlan.GenerateAircraftPackageWaypoints(template, mission, waypoints, averageInitialPosition, objectivesCenter);
+            MissionGeneratorFlightPlan.GenerateObjectiveWPCoordinatesLua(template, mission, waypoints, drawingMaker);
+            MissionGeneratorFlightPlan.GenerateAircraftPackageWaypoints(template, mission, objectiveGroupedWaypoints, averageInitialPosition, objectivesCenter);
             MissionGeneratorFlightPlan.GenerateIngressAndEgressWaypoints(template, waypoints, averageInitialPosition, objectivesCenter);
 
             // Generate surface-to-air defenses

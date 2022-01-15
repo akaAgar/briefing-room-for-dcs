@@ -1,14 +1,14 @@
 [$INDEX$] = 
 {
     ["visible"] = true,
-    ["borderThickness"] = 4,
+    ["borderThickness"] = 2,
     ["fillColorString"] = "$FILLCOLOUR$",
-    ["fontSize"] = 24,
+    ["fontSize"] = 15,
     ["mapY"] = $Y$,
     ["layerName"] = "Common",
     ["primitiveType"] = "TextBox",
     ["font"] = "DejaVuLGCSansCondensed.ttf",
-    ["text"] = "$TEXT%",
+    ["text"] = "$TEXT$",
     ["mapX"] = $X$,
     ["name"] = "$UINAME$",
     ["colorString"] = "$COLOUR$",
