@@ -44,6 +44,8 @@ BriefingRoom is free and open source and will always remain so, but if you want 
 * Project website: [akaagar.itch.io/briefing-room-for-dcs](https://akaagar.itch.io/briefing-room-for-dcs/)
 * Source code repository: [github.com/akaAgar/briefing-room-for-dcs](https://github.com/akaAgar/briefing-room-for-dcs)
 
+[Credits](Include/Markdown/Manuals/Credits.md)
+
 ### Planned for future versions
 
 The development roadmap and a list of features planned for future versions can be found on Trello: [trello.com/b/iGsqgbTu/briefingroom-project-tracker](https://trello.com/b/iGsqgbTu/briefingroom-project-tracker)
