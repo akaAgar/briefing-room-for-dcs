@@ -24,7 +24,7 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
   
     -- Play "target destroyed" radio message
     local soundName = "TargetDestroyed"
-    local messages = { "Target destroyed.", "Good hit on target.", "Target splashed.", "Target shot down!" }
+    local messages = { "Command: Target destroyed.", "Command: Good hit on target.", "Command: Target splashed.", "Command: Target shot down!" }
     local targetType = "Ground"
     local messageIndex = math.random(1, 2)
     local messageIndexOffset = 0

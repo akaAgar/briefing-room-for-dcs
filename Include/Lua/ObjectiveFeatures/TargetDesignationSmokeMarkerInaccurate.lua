@@ -16,10 +16,11 @@ end
 
 -- "Mark target with smoke" F10 radio command
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurate = function()
-  briefingRoom.radioManager.play("Can you toss a smoke grenade near the target's position?", "RadioPilotMarkTargetWithSmoke")
+  local objective = briefingRoom.mission.objectives[$OBJECTIVEINDEX$]
+  briefingRoom.radioManager.play("Pilot: Can you toss a smoke grenade near the target's position?", "RadioPilotMarkTargetWithSmoke")
 
   if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID == 0 then -- no target units left
-    briefingRoom.radioManager.play("Negative, no visual on any target.", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
+    briefingRoom.radioManager.play(objective.name.." JTAC: Negative, no visual on any target.", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
     return
   end
   
@@ -27,7 +28,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeM
   if unit == nil then -- no unit found with the ID, try searching for a static
     unit = dcsExtensions.getStaticByID(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID[1])
     if unit == nil then -- no unit nor static found with the ID
-      briefingRoom.radioManager.play("Negative, no visual on any target.", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
+      briefingRoom.radioManager.play(objective.name.." JTAC: Negative, no visual on any target.", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
       return
     end
   end
@@ -35,7 +36,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeM
   local timeNow = timer.getAbsTime()
   
   if timeNow < briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateNextSmoke then -- Smoke not ready
-    briefingRoom.radioManager.play("Already tossed a smoke. Target is "..tostring(briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateDistance).." meters "..dcsExtensions.degreesToCardinalDirection(briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateHeading).." of the smoke.", "RadioSupportTargetAlreadyMarkedWithSmoke", briefingRoom.radioManager.getAnswerDelay())
+    briefingRoom.radioManager.play(objective.name.." JTAC: Already tossed a smoke. Target is "..tostring(briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateDistance).." meters "..dcsExtensions.degreesToCardinalDirection(briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateHeading).." of the smoke.", "RadioSupportTargetAlreadyMarkedWithSmoke", briefingRoom.radioManager.getAnswerDelay())
     return
   end
   
@@ -48,7 +49,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeM
 
   local args = { position = unit:getPoint(), color = trigger.smokeColor.Red }
   if unit:getCoalition() == $LUAPLAYERCOALITION$ then args.color = trigger.smokeColor.Green end
-  briefingRoom.radioManager.play("Tossed a smoke grenade. Target is "..tostring(briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateDistance).." meters "..dcsExtensions.degreesToCardinalDirection(briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateHeading).." of the smoke.", "RadioSupportTargetMarkedWithSmoke", briefingRoom.radioManager.getAnswerDelay(), briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateDoSmoke, args)
+  briefingRoom.radioManager.play(objective.name.." JTAC: Tossed a smoke grenade. Target is "..tostring(briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateDistance).." meters "..dcsExtensions.degreesToCardinalDirection(briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateHeading).." of the smoke.", "RadioSupportTargetMarkedWithSmoke", briefingRoom.radioManager.getAnswerDelay(), briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateDoSmoke, args)
 end
       
 -- Add the command to the F10 menu

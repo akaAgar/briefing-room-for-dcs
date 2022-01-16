@@ -9,7 +9,7 @@ function briefingRoom.mission.missionFeatures.supportFriendlySEAD.eventHandler:o
   if event.id == world.event.S_EVENT_MARK_REMOVED then
     if briefingRoom.mission.missionFeatures.supportFriendlySEAD.markID ~= nil and event.idx == briefingRoom.mission.missionFeatures.supportFriendlySEAD.markID then
       if not briefingRoom.mission.missionFeatures.supportFriendlySEAD.disableCooRemovedRadioMessage then
-        briefingRoom.radioManager.play("SEAD, Affirm, coordinates discarded. Awaiting new coordinates.", "RadioCoordinatesDiscardedM")
+        briefingRoom.radioManager.play("SEAD: Affirm, coordinates discarded. Awaiting new coordinates.", "RadioCoordinatesDiscardedM")
       end
       briefingRoom.mission.missionFeatures.supportFriendlySEAD.markID = nil
     end
@@ -22,14 +22,14 @@ function briefingRoom.mission.missionFeatures.supportFriendlySEAD.eventHandler:o
         briefingRoom.mission.missionFeatures.supportFriendlySEAD.disableCooRemovedRadioMessage = false
       end
       briefingRoom.mission.missionFeatures.supportFriendlySEAD.markID = event.idx
-      briefingRoom.radioManager.play("SEAD, Copy, coordinates updated.", "RadioCoordinatesUpdatedM")
+      briefingRoom.radioManager.play("SEAD: Copy, coordinates updated.", "RadioCoordinatesUpdatedM")
       return
     end
   elseif event.id == world.event.S_EVENT_MARK_CHANGE then
     local markText = string.lower(tostring(event.text or ""))
 
     if markText == briefingRoom.mission.missionFeatures.supportFriendlySEAD.MARKER_NAME then
-      briefingRoom.radioManager.play("SEAD, Copy, coordinates updated.", "RadioCoordinatesUpdatedM")
+      briefingRoom.radioManager.play("SEAD: Copy, coordinates updated.", "RadioCoordinatesUpdatedM")
       if briefingRoom.mission.missionFeatures.supportFriendlySEAD.markID ~= nil then
         briefingRoom.mission.missionFeatures.supportFriendlySEAD.disableCooRemovedRadioMessage = true
         trigger.action.removeMark(briefingRoom.mission.missionFeatures.supportFriendlySEAD.markID)
@@ -37,7 +37,7 @@ function briefingRoom.mission.missionFeatures.supportFriendlySEAD.eventHandler:o
       end
       briefingRoom.mission.missionFeatures.supportFriendlySEAD.markID = event.idx
     elseif briefingRoom.mission.missionFeatures.supportFriendlySEAD.markID ~= nil and event.idx == briefingRoom.mission.missionFeatures.supportFriendlySEAD.markID then
-      briefingRoom.radioManager.play("SEAD, Affirm, coordinates discarded. Awaiting new coordinates.", "RadioCoordinatesDiscardedM")
+      briefingRoom.radioManager.play("SEAD: Affirm, coordinates discarded. Awaiting new coordinates.", "RadioCoordinatesDiscardedM")
       briefingRoom.mission.missionFeatures.supportFriendlySEAD.markID = nil
     end
   end
@@ -45,7 +45,7 @@ end
 
 -- Radio command to launch bombing run (called from F10 menu)
 function briefingRoom.mission.missionFeatures.supportFriendlySEAD.launchBombingRun()
-  briefingRoom.radioManager.play("SEAD, begin your patrol.", "RadioPilotSEADSupport")
+  briefingRoom.radioManager.play("Pilot: Command, reqesting SEAD support.", "RadioPilotSEADSupport")
 
   local marks = world.getMarkPanels()
   for _,m in ipairs(marks) do
@@ -54,13 +54,13 @@ function briefingRoom.mission.missionFeatures.supportFriendlySEAD.launchBombingR
       if group ~= nil then
         group:activate()
         timer.scheduleFunction(briefingRoom.mission.missionFeatures.supportFriendlySEAD.setTask, {}, timer.getTime() + 10) --just re-run after 10 s
-        briefingRoom.radioManager.play("Copy, beginning patrol run on coordinates.", "RadioHQSEADSupport", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
+        briefingRoom.radioManager.play("Command: Affirm, SEAD support is on its way.", "RadioHQSEADSupport", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
       end
       return
     end
   end
 
-  briefingRoom.radioManager.play("Cannot comply. No coordinates provided for patrol run (add a marker named \""..string.upper(briefingRoom.mission.missionFeatures.supportFriendlySEAD.MARKER_NAME).."\" on the F10 map to designate a target).", "RadioArtilleryNoCoordinates", briefingRoom.radioManager.getAnswerDelay())
+  briefingRoom.radioManager.play("SEAD: Cannot comply. No coordinates provided for patrol run (add a marker named \""..string.upper(briefingRoom.mission.missionFeatures.supportFriendlySEAD.MARKER_NAME).."\" on the F10 map to designate a target).", "RadioArtilleryNoCoordinates", briefingRoom.radioManager.getAnswerDelay())
 end
 
 function briefingRoom.mission.missionFeatures.supportFriendlySEAD.setTask()

@@ -9,7 +9,7 @@ function briefingRoom.mission.missionFeatures.supportFriendlyBomber.eventHandler
   if event.id == world.event.S_EVENT_MARK_REMOVED then
     if briefingRoom.mission.missionFeatures.supportFriendlyBomber.markID ~= nil and event.idx == briefingRoom.mission.missionFeatures.supportFriendlyBomber.markID then
       if not briefingRoom.mission.missionFeatures.supportFriendlyBomber.disableCooRemovedRadioMessage then
-        briefingRoom.radioManager.play("Bomber, Affirm, coordinates discarded. Awaiting new coordinates.", "RadioCoordinatesDiscardedM")
+        briefingRoom.radioManager.play("Bomber: Affirm, coordinates discarded. Awaiting new coordinates.", "RadioCoordinatesDiscardedM")
       end
       briefingRoom.mission.missionFeatures.supportFriendlyBomber.markID = nil
     end
@@ -22,14 +22,14 @@ function briefingRoom.mission.missionFeatures.supportFriendlyBomber.eventHandler
         briefingRoom.mission.missionFeatures.supportFriendlyBomber.disableCooRemovedRadioMessage = false
       end
       briefingRoom.mission.missionFeatures.supportFriendlyBomber.markID = event.idx
-      briefingRoom.radioManager.play("Bomber, Copy, coordinates updated.", "RadioCoordinatesUpdatedM")
+      briefingRoom.radioManager.play("Bomber: Copy, coordinates updated.", "RadioCoordinatesUpdatedM")
       return
     end
   elseif event.id == world.event.S_EVENT_MARK_CHANGE then
     local markText = string.lower(tostring(event.text or ""))
 
     if markText == briefingRoom.mission.missionFeatures.supportFriendlyBomber.MARKER_NAME then
-      briefingRoom.radioManager.play("Bomber, Copy, coordinates updated.", "RadioCoordinatesUpdatedM")
+      briefingRoom.radioManager.play("Bomber: Copy, coordinates updated.", "RadioCoordinatesUpdatedM")
       if briefingRoom.mission.missionFeatures.supportFriendlyBomber.markID ~= nil then
         briefingRoom.mission.missionFeatures.supportFriendlyBomber.disableCooRemovedRadioMessage = true
         trigger.action.removeMark(briefingRoom.mission.missionFeatures.supportFriendlyBomber.markID)
@@ -37,7 +37,7 @@ function briefingRoom.mission.missionFeatures.supportFriendlyBomber.eventHandler
       end
       briefingRoom.mission.missionFeatures.supportFriendlyBomber.markID = event.idx
     elseif briefingRoom.mission.missionFeatures.supportFriendlyBomber.markID ~= nil and event.idx == briefingRoom.mission.missionFeatures.supportFriendlyBomber.markID then
-      briefingRoom.radioManager.play("Bomber, Affirm, coordinates discarded. Awaiting new coordinates.", "RadioCoordinatesDiscardedM")
+      briefingRoom.radioManager.play("Bomber: Affirm, coordinates discarded. Awaiting new coordinates.", "RadioCoordinatesDiscardedM")
       briefingRoom.mission.missionFeatures.supportFriendlyBomber.markID = nil
     end
   end
@@ -45,7 +45,7 @@ end
 
 -- Radio command to launch bombing run (called from F10 menu)
 function briefingRoom.mission.missionFeatures.supportFriendlyBomber.launchBombingRun()
-  briefingRoom.radioManager.play("Bomber, begin your run.", "RadioPilotBeginYourBombingRun")
+  briefingRoom.radioManager.play("Pilot: Bomber, begin your run.", "RadioPilotBeginYourBombingRun")
  
   local marks = world.getMarkPanels()
   for _,m in ipairs(marks) do
@@ -54,13 +54,13 @@ function briefingRoom.mission.missionFeatures.supportFriendlyBomber.launchBombin
       if group ~= nil then
         group:activate()
         timer.scheduleFunction(briefingRoom.mission.missionFeatures.supportFriendlyBomber.setTask, {}, timer.getTime() + 10)
-        briefingRoom.radioManager.play("Copy, beginning bombing run on coordinates.", "RadioOtherPilotBeginBombing", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
+        briefingRoom.radioManager.play("Bomber: Copy, beginning bombing run on coordinates.", "RadioOtherPilotBeginBombing", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
       end
       return
     end
   end
 
-  briefingRoom.radioManager.play("Cannot comply. No coordinates provided for bombing run (add a marker named \""..string.upper(briefingRoom.mission.missionFeatures.supportFriendlyBomber.MARKER_NAME).."\" on the F10 map to designate a target).", "RadioArtilleryNoCoordinates", briefingRoom.radioManager.getAnswerDelay())
+  briefingRoom.radioManager.play("Bomber: Cannot comply. No coordinates provided for bombing run (add a marker named \""..string.upper(briefingRoom.mission.missionFeatures.supportFriendlyBomber.MARKER_NAME).."\" on the F10 map to designate a target).", "RadioArtilleryNoCoordinates", briefingRoom.radioManager.getAnswerDelay())
 end
 
 function briefingRoom.mission.missionFeatures.supportFriendlyBomber.setTask()

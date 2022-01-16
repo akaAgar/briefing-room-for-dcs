@@ -39,7 +39,7 @@ function briefingRoom.mission.missionFeatures.contextColdWar.eventHandler:onEven
     end
   end
 
-  briefingRoom.radioManager.play("Be advised, enemy is aware of hostile activity in its airspace and may engage you at any moment.", "RadioHQColdWarGoneHot")
+  briefingRoom.radioManager.play("Command: Be advised, enemy is aware of hostile activity in its airspace and may engage you at any moment.", "RadioHQColdWarGoneHot")
   briefingRoom.mission.missionFeatures.contextColdWar.wasHasStarted = true -- War has begun
 end
 

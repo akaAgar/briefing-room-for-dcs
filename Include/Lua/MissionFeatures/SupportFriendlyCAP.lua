@@ -9,7 +9,7 @@ function briefingRoom.mission.missionFeatures.supportFriendlyCAP.eventHandler:on
   if event.id == world.event.S_EVENT_MARK_REMOVED then
     if briefingRoom.mission.missionFeatures.supportFriendlyCAP.markID ~= nil and event.idx == briefingRoom.mission.missionFeatures.supportFriendlyCAP.markID then
       if not briefingRoom.mission.missionFeatures.supportFriendlyCAP.disableCooRemovedRadioMessage then
-        briefingRoom.radioManager.play("CAP, Affirm, coordinates discarded. Awaiting new coordinates.", "RadioCoordinatesDiscardedM")
+        briefingRoom.radioManager.play("CAP: Affirm, coordinates discarded. Awaiting new coordinates.", "RadioCoordinatesDiscardedM")
       end
       briefingRoom.mission.missionFeatures.supportFriendlyCAP.markID = nil
     end
@@ -22,14 +22,14 @@ function briefingRoom.mission.missionFeatures.supportFriendlyCAP.eventHandler:on
         briefingRoom.mission.missionFeatures.supportFriendlyCAP.disableCooRemovedRadioMessage = false
       end
       briefingRoom.mission.missionFeatures.supportFriendlyCAP.markID = event.idx
-      briefingRoom.radioManager.play("CAP, Copy, coordinates updated.", "RadioCoordinatesUpdatedM")
+      briefingRoom.radioManager.play("CAP: Copy, coordinates updated.", "RadioCoordinatesUpdatedM")
       return
     end
   elseif event.id == world.event.S_EVENT_MARK_CHANGE then
     local markText = string.lower(tostring(event.text or ""))
 
     if markText == briefingRoom.mission.missionFeatures.supportFriendlyCAP.MARKER_NAME then
-      briefingRoom.radioManager.play("CAP, Copy, coordinates updated.", "RadioCoordinatesUpdatedM")
+      briefingRoom.radioManager.play("CAP: Copy, coordinates updated.", "RadioCoordinatesUpdatedM")
       if briefingRoom.mission.missionFeatures.supportFriendlyCAP.markID ~= nil then
         briefingRoom.mission.missionFeatures.supportFriendlyCAP.disableCooRemovedRadioMessage = true
         trigger.action.removeMark(briefingRoom.mission.missionFeatures.supportFriendlyCAP.markID)
@@ -37,7 +37,7 @@ function briefingRoom.mission.missionFeatures.supportFriendlyCAP.eventHandler:on
       end
       briefingRoom.mission.missionFeatures.supportFriendlyCAP.markID = event.idx
     elseif briefingRoom.mission.missionFeatures.supportFriendlyCAP.markID ~= nil and event.idx == briefingRoom.mission.missionFeatures.supportFriendlyCAP.markID then
-      briefingRoom.radioManager.play("CAP, Affirm, coordinates discarded. Awaiting new coordinates.", "RadioCoordinatesDiscardedM")
+      briefingRoom.radioManager.play("CAP: Affirm, coordinates discarded. Awaiting new coordinates.", "RadioCoordinatesDiscardedM")
       briefingRoom.mission.missionFeatures.supportFriendlyCAP.markID = nil
     end
   end
@@ -45,7 +45,7 @@ end
 
 -- Radio command to launch bombing run (called from F10 menu)
 function briefingRoom.mission.missionFeatures.supportFriendlyCAP.launchBombingRun()
-  briefingRoom.radioManager.play("CAP, begin your patrol.", "RadioPilotCAPSupport")
+  briefingRoom.radioManager.play("Pilot: Command, requesting CAP support.", "RadioPilotCAPSupport")
   local marks = world.getMarkPanels()
   for _,m in ipairs(marks) do
     if briefingRoom.mission.missionFeatures.supportFriendlyCAP.markID ~= nil and m.idx == briefingRoom.mission.missionFeatures.supportFriendlyCAP.markID then
@@ -53,13 +53,13 @@ function briefingRoom.mission.missionFeatures.supportFriendlyCAP.launchBombingRu
       if group ~= nil then
         group:activate()
         timer.scheduleFunction(briefingRoom.mission.missionFeatures.supportFriendlyCAP.setTask, {}, timer.getTime() + 10) --just re-run after 10 s
-        briefingRoom.radioManager.play("Copy, beginning patrol run on coordinates.", "RadioHQCAPSupport", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
+        briefingRoom.radioManager.play("Command: Affirm, CAP support is on its way.", "RadioHQCAPSupport", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
       end
       return
     end
   end
 
-  briefingRoom.radioManager.play("Cannot comply. No coordinates provided for patrol run (add a marker named \""..string.upper(briefingRoom.mission.missionFeatures.supportFriendlyCAP.MARKER_NAME).."\" on the F10 map to designate a target).", "RadioArtilleryNoCoordinates", briefingRoom.radioManager.getAnswerDelay())
+  briefingRoom.radioManager.play("CAP: Cannot comply. No coordinates provided for patrol run (add a marker named \""..string.upper(briefingRoom.mission.missionFeatures.supportFriendlyCAP.MARKER_NAME).."\" on the F10 map to designate a target).", "RadioArtilleryNoCoordinates", briefingRoom.radioManager.getAnswerDelay())
 end
 
 function briefingRoom.mission.missionFeatures.supportFriendlyCAP.setTask()
