@@ -17,10 +17,10 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
     local unit = objFeature.targetDesignationLaser.setRandomTarget()
     if unit == nil then
       objFeature.targetDesignationLaser.deleteLaser()
-      briefingRoom.radioManager.play("No visual on any target, laser is off.", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay()) -- TODO new sound
+      briefingRoom.radioManager.play("No visual on any target, laser is off.", "RadioSupportLasingNoMoreTargets", briefingRoom.radioManager.getAnswerDelay())
       return
     end
-    briefingRoom.radioManager.play("Painting next target", "RadioSupportLasingOk", briefingRoom.radioManager.getAnswerDelay()) -- TODO new Sound
+    briefingRoom.radioManager.play("Painting next target", "RadioSupportLasingNextTarget", briefingRoom.radioManager.getAnswerDelay())
   end
 
   objFeature.targetDesignationLaser.updateLaserPos()
@@ -93,7 +93,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
   -- no target units left
   local unit = objFeature.targetDesignationLaser.setRandomTarget()
   if unit == nil then
-    briefingRoom.radioManager.play("Negative, no visual on any target.", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
+    briefingRoom.radioManager.play("No more targets in sight. Laser Off.", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
     return
   end
   briefingRoom.radioManager.play("Affirm. Laser on, painting the target now. Laser code is "..tostring(objFeature.targetDesignationLaser.laserCode)..".", "RadioSupportLasingOk", briefingRoom.radioManager.getAnswerDelay())
@@ -117,7 +117,7 @@ end
 
 -- Get new target
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.newTarget = function()
-  briefingRoom.radioManager.play("Can you paint a diffrent target for me?", "RadioPilotLaseTarget")
+  briefingRoom.radioManager.play("Can you paint a diffrent target for me?", "RadioPilotLaseDiffrentTarget")
 
   -- no target units left
   local unit = briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.setRandomTarget()
@@ -125,7 +125,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
     briefingRoom.radioManager.play("Negative, no visual on any target.", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
     return
   end
-  briefingRoom.radioManager.play("Painting next target", "RadioSupportLasingOk", briefingRoom.radioManager.getAnswerDelay()) -- TODO new Sound
+  briefingRoom.radioManager.play("Painting next target", "RadioSupportLasingNextTarget", briefingRoom.radioManager.getAnswerDelay())
 end
 
 
