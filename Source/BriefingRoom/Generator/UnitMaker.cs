@@ -438,9 +438,10 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "RadioPresetsLua", string.Join("", unitDB.AircraftData.RadioPresets.Select((x, index) => $"[{index + 1}] = {x.ToLuaString()}")));
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Speed", unitDB.AircraftData.CruiseSpeed);
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadCommon", unitDB.AircraftData.PayloadCommon);
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadPylons", unitDB.AircraftData.GetPayloadLua(
-                    extraSettings.Any(x => x.Key == "Payload") ? extraSettings.First(x => x.Key == "Payload").Value.ToString() : "default"
-                    ));
+                var payload = unitDB.AircraftData.GetPayloadLua(extraSettings.Any(x => x.Key == "Payload") ? extraSettings.First(x => x.Key == "Payload").Value.ToString() : "default");
+                if(payload != "EMPTY")
+                    payload = "";
+                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadPylons", payload);
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Livery", extraSettings.Any(x => x.Key == "Livery") ? extraSettings.First(x => x.Key == "Livery").Value : "default");
             }
             else if (unitDB.Category == UnitCategory.Static)
@@ -538,7 +539,8 @@ namespace BriefingRoom4DCS.Generator
                     switch (unitDB.Category)
                     {
                         case UnitCategory.Ship:
-                            unitCoordinates = groupCoordinates.CreateNearRandom(SHIP_UNIT_SPACING, SHIP_UNIT_SPACING * 10);
+                            if(unitIndex > 0)
+                                unitCoordinates = groupCoordinates.CreateNearRandom(SHIP_UNIT_SPACING, SHIP_UNIT_SPACING * 10);
                             break;
                         case UnitCategory.Static:
                             // Static units are spawned exactly on the group location (and there's only a single unit per group)

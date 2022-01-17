@@ -87,7 +87,7 @@ namespace BriefingRoom4DCS
 
         internal const double TWO_PI = Math.PI * 2;
 
-        internal static readonly UnitFamily[] CARRIER_FAMILIES = new UnitFamily[] { UnitFamily.ShipCarrierCATOBAR, UnitFamily.ShipCarrierSTOBAR, UnitFamily.FOB };
+        internal static readonly UnitFamily[] CARRIER_FAMILIES = new UnitFamily[] { UnitFamily.ShipCarrierCATOBAR, UnitFamily.ShipCarrierSTOBAR, UnitFamily.ShipCarrierSTOVL, UnitFamily.FOB };
 
         private static readonly Random Rnd = new Random();
 

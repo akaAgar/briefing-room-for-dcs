@@ -60,7 +60,7 @@ namespace BriefingRoom4DCS.Generator
             // Not an unit, or not a player-controllable unit, abort.
             if ((unitDB == null) || !unitDB.AircraftData.PlayerControllable)
                 throw new BriefingRoomException($"Player flight group unit {flightGroup.Aircraft} does not exist or is not player-controllable.");
-            if(unitDB.AircraftData.MinimumRunwayLengthFt > 0 && airbase.RunwayLengthFt < unitDB.AircraftData.MinimumRunwayLengthFt)
+            if (unitDB.AircraftData.MinimumRunwayLengthFt > 0 && airbase.RunwayLengthFt < unitDB.AircraftData.MinimumRunwayLengthFt)
                 BriefingRoom.PrintToLog($"Runway at {airbase.Name}({airbase.RunwayLengthFt}ft) is shorter than {unitDB.UIDisplayName}({unitDB.AircraftData.MinimumRunwayLengthFt}ft) required runway length.", LogMessageErrorLevel.Warning);
 
             List<int> parkingSpotIDsList = new List<int>();
@@ -70,10 +70,22 @@ namespace BriefingRoom4DCS.Generator
             string carrierName = null;
             var side = flightGroup.Hostile ? Side.Enemy : Side.Ally;
             var country = flightGroup.Country;
+            var payload = flightGroup.Payload;
+            var extraSettings = new Dictionary<string, object>();
+            UnitMakerGroupFlags unitMakerGroupFlags = flightGroup.AIWingmen ? UnitMakerGroupFlags.FirstUnitIsClient : 0;
+            DCSSkillLevel skillLevel = flightGroup.AIWingmen ? Toolbox.RandomFrom(DCSSkillLevel.High, DCSSkillLevel.Excellent) : DCSSkillLevel.Client;
 
             if (!string.IsNullOrEmpty(flightGroup.Carrier) && carrierDictionary.ContainsKey(flightGroup.Carrier) && !flightGroup.Hostile) // Carrier take off
             {
                 var carrier = carrierDictionary[flightGroup.Carrier];
+                if(carrier.UnitDB.Families.Contains(UnitFamily.ShipCarrierSTOVL) && flightGroup.Carrier != "LHA_Tarawa")
+                {   
+                    BriefingRoom.PrintToLog($"Spawning aircraft on a non-dedicated carrier ship is risky and may not work. You will spawn with no weapons and any AI wingmen are now players (Devs are confused why this has to happen but it does.)", LogMessageErrorLevel.Warning);
+                    payload = "EMPTY";
+                    extraSettings.AddIfKeyUnused("Speed", 0);
+                    unitMakerGroupFlags =  0;
+                    skillLevel =  DCSSkillLevel.Client;
+                }
                 groupLuaFile = "GroupAircraftPlayerCarrier";
                 carrierUnitID = carrier.UnitsID[0];
                 carrierName = carrier.UnitDB.UIDisplayName;
@@ -109,30 +121,32 @@ namespace BriefingRoom4DCS.Generator
 
 
 
-            UnitMakerGroupFlags unitMakerGroupFlags = flightGroup.AIWingmen ? UnitMakerGroupFlags.FirstUnitIsClient : 0;
-            DCSSkillLevel skillLevel = flightGroup.AIWingmen ? Toolbox.RandomFrom(DCSSkillLevel.High, DCSSkillLevel.Excellent) : DCSSkillLevel.Client;
+           
+
+            extraSettings.AddIfKeyUnused("Payload",payload);
+            extraSettings.AddIfKeyUnused("Skill",skillLevel);
+            extraSettings.AddIfKeyUnused("PlayerStartingAction",GeneratorTools.GetPlayerStartingAction(flightGroup.StartLocation));
+            extraSettings.AddIfKeyUnused("PlayerStartingType",GeneratorTools.GetPlayerStartingType(flightGroup.StartLocation));
+            extraSettings.AddIfKeyUnused("Country",country);
+            extraSettings.AddIfKeyUnused("InitialWPName",Database.Instance.Common.Names.WPInitialName);
+            extraSettings.AddIfKeyUnused("FinalWPName",Database.Instance.Common.Names.WPFinalName);
+            extraSettings.AddIfKeyUnused("ParkingID",parkingSpotIDsList.ToArray());
+            extraSettings.AddIfKeyUnused("PlayerWaypoints",GenerateFlightPlanLua(flightWaypoints));
+            extraSettings.AddIfKeyUnused("LastPlayerWaypointIndex",flightWaypoints.Count + 2);
+            extraSettings.AddIfKeyUnused("LinkUnit",carrierUnitID);
+            extraSettings.AddIfKeyUnused("UnitX",(from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.X).ToArray());
+            extraSettings.AddIfKeyUnused("UnitY",(from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.Y).ToArray());
+            extraSettings.AddIfKeyUnused("MissionAirbaseX",groupStartingCoords.X);
+            extraSettings.AddIfKeyUnused("MissionAirbaseY",groupStartingCoords.Y);
+            extraSettings.AddIfKeyUnused("MissionAirbaseID",airbase.DCSID);
+            extraSettings.AddIfKeyUnused("Livery",flightGroup.Livery);
 
             UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(
                 Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), side, unitDB.Families[0],
                 groupLuaFile, "UnitAircraftParked", groupStartingCoords,
                 unitMakerGroupFlags,
-                "Payload".ToKeyValuePair(flightGroup.Payload),
-                "Skill".ToKeyValuePair(skillLevel),
-                "PlayerStartingAction".ToKeyValuePair(GeneratorTools.GetPlayerStartingAction(flightGroup.StartLocation)),
-                "PlayerStartingType".ToKeyValuePair(GeneratorTools.GetPlayerStartingType(flightGroup.StartLocation)),
-                "Country".ToKeyValuePair(country),
-                "InitialWPName".ToKeyValuePair(Database.Instance.Common.Names.WPInitialName),
-                "FinalWPName".ToKeyValuePair(Database.Instance.Common.Names.WPFinalName),
-                "ParkingID".ToKeyValuePair(parkingSpotIDsList.ToArray()),
-                "PlayerWaypoints".ToKeyValuePair(GenerateFlightPlanLua(flightWaypoints)),
-                "LastPlayerWaypointIndex".ToKeyValuePair(flightWaypoints.Count + 2),
-                "LinkUnit".ToKeyValuePair(carrierUnitID),
-                "UnitX".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.X).ToArray()),
-                "UnitY".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.Y).ToArray()),
-                "MissionAirbaseX".ToKeyValuePair(groupStartingCoords.X),
-                "MissionAirbaseY".ToKeyValuePair(groupStartingCoords.Y),
-                "MissionAirbaseID".ToKeyValuePair(airbase.DCSID),
-                "Livery".ToKeyValuePair(flightGroup.Livery));
+                extraSettings.ToArray()
+                );
 
             if (!groupInfo.HasValue)
             {
