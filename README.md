@@ -36,6 +36,7 @@ BriefingRoom is free and open source and will always remain so, but if you want 
 ### Included Scripted systems (Thanks to them)
 
 * Skynet IADS by walder
+* Splash Damage 2.9 by spencershepard (GRIMM)
 
 ### Additional information
 
