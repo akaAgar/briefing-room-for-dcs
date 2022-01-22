@@ -28,7 +28,6 @@ namespace BriefingRoom4DCS.Data
 
         internal ObjectiveOption[] Options { get; private set; }
 
-        internal string PreferredPayload { get; private set; }
 
         internal string[] Targets { get; private set; }
 
@@ -41,7 +40,6 @@ namespace BriefingRoom4DCS.Data
             var ini = new INIFile(iniFilePath);
             Features = Database.CheckIDs<DBEntryFeatureObjective>(ini.GetValueArray<string>("ObjectivePreset", "Features"));
             Options = ini.GetValueArray<ObjectiveOption>("ObjectivePreset", "Options");
-            PreferredPayload = ini.GetValue<string>("ObjectivePreset", "PreferredPayload");
             Targets = Database.CheckIDs<DBEntryObjectiveTarget>(ini.GetValueArray<string>("ObjectivePreset", "Targets"));
             if (Targets.Length == 0) { BriefingRoom.PrintToLog($"No valid targets for objective preset \"{ID}\"", LogMessageErrorLevel.Warning); return false; }
             TargetsBehaviors = Database.CheckIDs<DBEntryObjectiveTargetBehavior>(ini.GetValueArray<string>("ObjectivePreset", "TargetsBehaviors"));
