@@ -98,7 +98,7 @@ namespace BriefingRoom4DCS.Data
                 if(validUnits.ContainsKey(requiredCountry.Value))
                     country = requiredCountry.Value;
                 else
-                    throw new BriefingRoomException($"Cannot find units for required country {requiredCountry}");
+                    BriefingRoom.PrintToLog($"Could not find suitable units for {requiredCountry.Value} using units from other coalition members.", LogMessageErrorLevel.Info);
             
             selectableUnits = validUnits[country];
 
@@ -138,7 +138,7 @@ namespace BriefingRoom4DCS.Data
             if (validUnits.Count > 0)
             return validUnits;
 
-            BriefingRoom.PrintToLog($"No Units of types {string.Join(", ", families)} found in coalition of {string.Join(", ", Countries.Where(x => x != Country.ALL))} forced to use defaults", LogMessageErrorLevel.Warning);
+            BriefingRoom.PrintToLog($"No Units of types {string.Join(", ", families)} found in coalition of {string.Join(", ", Countries.Where(x => x != Country.ALL))} forced to use defaults", LogMessageErrorLevel.Info);
             return new Dictionary<Country, List<string>>{{Country.ALL,Database.GetEntry<DBEntryDefaultUnitList>(DefaultUnitList).DefaultUnits[(int)families.First(), (int)decade].ToList()}};
         }
 
