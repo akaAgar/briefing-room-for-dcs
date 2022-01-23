@@ -97,7 +97,7 @@ namespace BriefingRoom4DCS.Generator
                 Coordinates groupDestination = destination + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
 
                 var extraSettings = new Dictionary<string, object>{
-                    {"Payload", "AirToAir"},
+                    {"Payload", "Air-To-Air"},
                     {"GroupX2", groupDestination.X},
                     {"GroupY2", groupDestination.Y}
                 };
