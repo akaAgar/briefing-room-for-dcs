@@ -26,6 +26,7 @@ namespace BriefingRoom4DCS
         Plane,
         Ship,
         Static,
-        Vehicle
+        Vehicle,
+        Cargo
     }
 }

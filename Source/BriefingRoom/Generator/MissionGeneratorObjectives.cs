@@ -110,12 +110,28 @@ namespace BriefingRoom4DCS.Generator
 
             extraSettings.Add("GroupX2".ToKeyValuePair(destinationPoint.X));
             extraSettings.Add("GroupY2".ToKeyValuePair(destinationPoint.Y));
+            var unitCoordinates = objectiveCoordinates;
+            var objectiveName = Toolbox.RandomFrom(ObjectiveNames);
+            if(taskDB.ID == "TransportCargo")
+            {
+                Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                targetDB.ValidSpawnPoints,
+                playerAirbase.Coordinates,
+                new MinMaxD(1,5),
+                coalition: GeneratorTools.GetSpawnPointCoalition(template, Side.Ally));
+                if (!spawnPoint.HasValue) // Failed to generate target group
+                    throw new BriefingRoomException($"Failed to find Cargo SpawnPoint");
+                unitCoordinates = spawnPoint.Value;
+                var cargoWaypoint = GenerateObjectiveWaypoint(objectiveTemplate, unitCoordinates, $"{objectiveName} Cargo Collect", template, true);
+                waypoints.Add(cargoWaypoint);
+                waypointList.Add(cargoWaypoint);
+            }
 
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
                 objectiveTargetUnitFamily, unitCount,
                 taskDB.TargetSide,
                 targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], luaUnit,
-                objectiveCoordinates,
+                unitCoordinates,
                 groupFlags,
                 extraSettings.ToArray());
 
@@ -128,7 +144,6 @@ namespace BriefingRoom4DCS.Generator
             var pluralIndex = targetGroupInfo.Value.UnitsID.Length == 1 ? 0 : 1;
             var taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex]).Replace("\"", "''");
             // Pick a name, then remove it from the list
-            var objectiveName = Toolbox.RandomFrom(ObjectiveNames);
             ObjectiveNames.Remove(objectiveName);
             CreateTaskString(mission, pluralIndex, ref taskString, objectiveName, objectiveTargetUnitFamily);
 
@@ -232,11 +247,28 @@ namespace BriefingRoom4DCS.Generator
             extraSettings.Add("GroupX2".ToKeyValuePair(destinationPoint.X));
             extraSettings.Add("GroupY2".ToKeyValuePair(destinationPoint.Y));
 
+            var unitCoordinates = objectiveCoordinates;
+            var objectiveName = Toolbox.RandomFrom(ObjectiveNames);
+            if(taskDB.ID == "TransportCargo")
+            {
+                Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                targetDB.ValidSpawnPoints,
+                playerAirbase.Coordinates,
+                new MinMaxD(1,5),
+                coalition: GeneratorTools.GetSpawnPointCoalition(template, Side.Ally));
+                if (!spawnPoint.HasValue) // Failed to generate target group
+                    throw new BriefingRoomException($"Failed to find Cargo SpawnPoint");
+                unitCoordinates = spawnPoint.Value;
+                var cargoWaypoint = GenerateSubTaskWaypoint(subTask, unitCoordinates, $"{objectiveName} Cargo Collect", template, true);
+                waypoints.Add(cargoWaypoint);
+                waypointList.Add(cargoWaypoint);
+            }
+
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
                 objectiveTargetUnitFamily, unitCount,
                 taskDB.TargetSide,
                 targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], luaUnit,
-                objectiveCoordinates,
+                unitCoordinates,
                 groupFlags,
                 extraSettings.ToArray());
 
@@ -249,7 +281,6 @@ namespace BriefingRoom4DCS.Generator
             var pluralIndex = targetGroupInfo.Value.UnitsID.Length == 1 ? 0 : 1;
             var taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex]).Replace("\"", "''");
             // Pick a name, then remove it from the list
-            var objectiveName = Toolbox.RandomFrom(ObjectiveNames);
             ObjectiveNames.Remove(objectiveName);
             CreateTaskString(mission, pluralIndex, ref taskString, objectiveName, objectiveTargetUnitFamily);
             CreateLua(mission, template, targetDB, taskDB, objectiveIndex, objectiveName, targetGroupInfo, taskString);
@@ -415,27 +446,28 @@ namespace BriefingRoom4DCS.Generator
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Task, taskString);
         }
 
-        private Waypoint GenerateObjectiveWaypoint(MissionTemplateObjectiveRecord objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName, MissionTemplateRecord template)
+        private Waypoint GenerateObjectiveWaypoint(MissionTemplateObjectiveRecord objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName, MissionTemplateRecord template, bool scriptIgnore = false)
         {
             var AirOnGroundBehaviorLocations = new List<DBEntryObjectiveTargetBehaviorLocation>{
                 DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking,
                 DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter};
 
-            DBEntryObjectiveTarget targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
-            DBEntryObjectiveTargetBehaviorLocation targetBehaviorLocation = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior).Location;
+            var targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
+            var targetBehaviorLocation = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior).Location;
             if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective.");
 
             Coordinates waypointCoordinates = objectiveCoordinates;
             bool onGround = !targetDB.UnitCategory.IsAircraft() || AirOnGroundBehaviorLocations.Contains(targetBehaviorLocation); // Ground targets = waypoint on the ground
 
-            if (objectiveTemplate.Options.Contains(ObjectiveOption.InaccurateWaypoint))
+            var taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task); //TransportCargo
+            if (objectiveTemplate.Options.Contains(ObjectiveOption.InaccurateWaypoint) && taskDB.ID != "TransportCargo")
             {
                 waypointCoordinates += Coordinates.CreateRandom(3.0, 6.0) * Toolbox.NM_TO_METERS;
                 if (template.OptionsMission.Contains("MarkWaypoints"))
                     DrawingMaker.AddDrawing($"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(6.0 * Toolbox.NM_TO_METERS));
             }
 
-            return new Waypoint(objectiveName, waypointCoordinates, onGround);
+            return new Waypoint(objectiveName, waypointCoordinates, onGround, scriptIgnore);
         }
 
         //----------------SUB TASK SUPPORT FUNCTIONS-------------------------------
@@ -467,7 +499,7 @@ namespace BriefingRoom4DCS.Generator
             return objectiveCoordinates;
         }
 
-        private Waypoint GenerateSubTaskWaypoint(MissionTemplateSubTask objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName, MissionTemplateRecord template)
+        private Waypoint GenerateSubTaskWaypoint(MissionTemplateSubTask objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName, MissionTemplateRecord template, bool scriptIgnore = false)
         {
             var AirOnGroundBehaviorLocations = new List<DBEntryObjectiveTargetBehaviorLocation>{
                 DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking,
@@ -487,7 +519,7 @@ namespace BriefingRoom4DCS.Generator
                     DrawingMaker.AddDrawing($"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(6.0 * Toolbox.NM_TO_METERS));
             }
 
-            return new Waypoint(objectiveName, waypointCoordinates, onGround);
+            return new Waypoint(objectiveName, waypointCoordinates, onGround, scriptIgnore);
         }
     }
 }

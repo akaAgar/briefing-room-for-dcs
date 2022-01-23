@@ -79,13 +79,17 @@ namespace BriefingRoom4DCS.Generator
 
         internal static void GenerateObjectiveWPCoordinatesLua(MissionTemplateRecord template, DCSMission mission, List<Waypoint> waypoints, DrawingMaker DrawingMaker)
         {
-            for (int i = 0; i < waypoints.Count; i++)
+            var scriptWaypoints = waypoints.Where(x =>  !x.ScriptIgnore).ToList();
+            for (int i = 0; i < scriptWaypoints.Count; i++)
             {
                 mission.AppendValue("ScriptObjectives",
-                    $"briefingRoom.mission.objectives[{i + 1}].waypoint = {waypoints[i].Coordinates.ToLuaTable()}\n");
-               if (template.OptionsMission.Contains("MarkWaypoints"))
-                    DrawingMaker.AddDrawing(waypoints[i].Name, DrawingType.TextBox, waypoints[i].Coordinates, "Text".ToKeyValuePair(waypoints[i].Name));
+                    $"briefingRoom.mission.objectives[{i + 1}].waypoint = {scriptWaypoints[i].Coordinates.ToLuaTable()}\n");
             }
+            if (template.OptionsMission.Contains("MarkWaypoints"))
+                foreach (var waypoint in waypoints)
+                {
+                    DrawingMaker.AddDrawing(waypoint.Name, DrawingType.TextBox, waypoint.Coordinates, "Text".ToKeyValuePair(waypoint.Name));
+                }
         }
 
         private static double GetBullseyeRandomDistance()

@@ -70,6 +70,11 @@ namespace BriefingRoom4DCS
                         return new DatabaseEntryInfo[] { };
                     else // A parameter was provided, return all airbases from specified theater
                         return (from DBEntrySituation situation in Database.Instance.GetAllEntries<DBEntrySituation>() where situation.Theater == parameter.ToLowerInvariant() select situation.GetDBEntryInfo()).OrderBy(x => x.Name).ToArray();
+                case DatabaseEntryType.ObjectiveTarget:
+                    if (string.IsNullOrEmpty(parameter)) // No parameter, return none
+                        return (from DBEntryObjectiveTarget objectiveTarget in Database.Instance.GetAllEntries<DBEntryObjectiveTarget>() select objectiveTarget.GetDBEntryInfo()).OrderBy(x => x.Name).ToArray();
+                    else
+                        return (from DBEntryObjectiveTarget objectiveTarget in Database.Instance.GetAllEntries<DBEntryObjectiveTarget>() where Database.Instance.GetEntry<DBEntryObjectiveTask>(parameter).ValidUnitCategories.Contains(objectiveTarget.UnitCategory) select objectiveTarget.GetDBEntryInfo()).OrderBy(x => x.Name).ToArray();
 
                 case DatabaseEntryType.Coalition:
                     return (from DBEntryCoalition coalition in Database.Instance.GetAllEntries<DBEntryCoalition>() select coalition.GetDBEntryInfo()).OrderBy(x => x.Name).ToArray();
@@ -89,8 +94,6 @@ namespace BriefingRoom4DCS
                 case DatabaseEntryType.ObjectivePreset:
                     return (from DBEntryObjectivePreset objectivePreset in Database.Instance.GetAllEntries<DBEntryObjectivePreset>() select objectivePreset.GetDBEntryInfo()).OrderBy(x => x.Name).ToArray();
 
-                case DatabaseEntryType.ObjectiveTarget:
-                    return (from DBEntryObjectiveTarget objectiveTarget in Database.Instance.GetAllEntries<DBEntryObjectiveTarget>() select objectiveTarget.GetDBEntryInfo()).OrderBy(x => x.Name).ToArray();
 
                 case DatabaseEntryType.ObjectiveTargetBehavior:
                     return (from DBEntryObjectiveTargetBehavior objectiveTargetBehavior in Database.Instance.GetAllEntries<DBEntryObjectiveTargetBehavior>() select objectiveTargetBehavior.GetDBEntryInfo()).OrderBy(x => x.Name).ToArray();

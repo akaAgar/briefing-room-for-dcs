@@ -28,11 +28,14 @@ namespace BriefingRoom4DCS.Generator
 
         internal bool OnGround { get; }
 
-        internal Waypoint(string name, Coordinates coordinates, bool onGround = false)
+        internal bool ScriptIgnore { get; }
+
+        internal Waypoint(string name, Coordinates coordinates, bool onGround = false, bool scriptIgnore = false)
         {
             Name = name;
             Coordinates = coordinates;
             OnGround = onGround;
+            ScriptIgnore = scriptIgnore;
         }
     }
 }

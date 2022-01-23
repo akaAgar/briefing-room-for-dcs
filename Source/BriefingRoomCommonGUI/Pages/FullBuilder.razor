@@ -152,7 +152,7 @@
                                     <h4>Tasks</h4>
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
                                         <InputDataBase ClassString="flex-block" Label="Task" @bind-Value="objective.Task" DataBaseType="DatabaseEntryType.ObjectiveTask"/>
-                                        <InputDataBase ClassString="flex-block" Label="Target" @bind-Value="objective.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget"/>
+                                        <InputDataBase ClassString="flex-block" Label="Target" @bind-Value="objective.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget" Grouping="@objective.Task"/>
                                         <InputDataBase ClassString="flex-block" Label="Target behavior" @bind-Value="objective.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior"/>
                                         <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="objective.TargetCount" EnumType="Amount"/>
                                     </div>
@@ -172,7 +172,7 @@
                                     <hr/>
                                         <div class="generator-group flex-justify-spaced flex-margin-fix">
                                             <InputDataBase ClassString="flex-block" Label="Task" @bind-Value="subTask.Task" DataBaseType="DatabaseEntryType.ObjectiveTask"/>
-                                            <InputDataBase ClassString="flex-block" Label="Target" @bind-Value="subTask.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget"/>
+                                            <InputDataBase ClassString="flex-block" Label="Target" @bind-Value="subTask.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget" Grouping="@subTask.Task"/>
                                             <InputDataBase ClassString="flex-block" Label="Target behavior" @bind-Value="subTask.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior"/>
                                             <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="subTask.TargetCount" EnumType="Amount"/>
                                             <button type="button" class="btn btn-secondary row-button" @onclick="() => RemoveSubTask(objective, subTask)">x</button>

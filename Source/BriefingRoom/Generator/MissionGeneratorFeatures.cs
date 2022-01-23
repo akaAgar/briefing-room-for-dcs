@@ -203,7 +203,7 @@ namespace BriefingRoom4DCS.Generator
                             $"{groupInfo.Value.Name}\t" +
                             $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName}\t" +
                             $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
-                            $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}"); // TODO: human-readable payload name
+                            $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}");
             }
         }
 

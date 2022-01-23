@@ -1,4 +1,4 @@
-using BriefingRoom4DCS.Data;
+﻿using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
@@ -143,7 +143,7 @@ namespace BriefingRoom4DCS.Generator
             else
                 groupName = GeneratorTools.GetGroupName(GroupID, unitFamily, side, isUsingSkynet);
 
-            if (unitFamily.GetUnitCategory() == UnitCategory.Static && unitFamily != UnitFamily.FOB)
+            if (unitFamily.GetUnitCategory() == UnitCategory.Static || unitFamily.GetUnitCategory() == UnitCategory.Cargo && unitFamily != UnitFamily.FOB)
                 return AddStaticGroup(
                     country,
                     coalition,
@@ -336,7 +336,7 @@ namespace BriefingRoom4DCS.Generator
                         1,
                         unitSetIndex,
                         unitDB,
-                        "UnitStatic",
+                        unitDB.Category == UnitCategory.Cargo ? "UnitCargo" : "UnitStatic",
                         coordinates,
                         unitMakerGroupFlags,
                         extraSettings
@@ -444,7 +444,7 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadPylons", payload);
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Livery", extraSettings.Any(x => x.Key == "Livery") ? extraSettings.First(x => x.Key == "Livery").Value : "default");
             }
-            else if (unitDB.Category == UnitCategory.Static)
+            else if (unitDB.Category == UnitCategory.Static || unitDB.Category == UnitCategory.Cargo)
             {
                 if (unitDB.Shape.Length - 1 > unitSetIndex)
                     GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Shape", unitDB.Shape[unitSetIndex]);
@@ -539,9 +539,10 @@ namespace BriefingRoom4DCS.Generator
                     switch (unitDB.Category)
                     {
                         case UnitCategory.Ship:
-                            if(unitIndex > 0)
+                            if (unitIndex > 0)
                                 unitCoordinates = groupCoordinates.CreateNearRandom(SHIP_UNIT_SPACING, SHIP_UNIT_SPACING * 10);
                             break;
+                        case UnitCategory.Cargo:
                         case UnitCategory.Static:
                             // Static units are spawned exactly on the group location (and there's only a single unit per group)
                             break;

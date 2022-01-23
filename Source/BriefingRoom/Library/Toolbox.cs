@@ -110,6 +110,7 @@ namespace BriefingRoom4DCS
                 case UnitCategory.Helicopter: return "HELICOPTER";
                 case UnitCategory.Plane: return "AIRPLANE";
                 case UnitCategory.Ship: return "SHIP";
+                case UnitCategory.Cargo:
                 case UnitCategory.Static: return "STRUCTURE";
                 default: return "GROUND_UNIT"; // case UnitCategory.Vehicle
             }
@@ -343,6 +344,8 @@ namespace BriefingRoom4DCS
                 case UnitFamily.FOB:
                 case UnitFamily.StaticStructureOffshore:
                     return UnitCategory.Static;
+                case UnitFamily.Cargo:
+                    return UnitCategory.Cargo;
                 default:
                     return UnitCategory.Vehicle;
             }
