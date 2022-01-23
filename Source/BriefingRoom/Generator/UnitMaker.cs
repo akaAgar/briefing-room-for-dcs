@@ -1,4 +1,4 @@
-﻿using BriefingRoom4DCS.Data;
+using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
@@ -439,7 +439,7 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Speed", unitDB.AircraftData.CruiseSpeed);
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadCommon", unitDB.AircraftData.PayloadCommon);
                 var payload = unitDB.AircraftData.GetPayloadLua(extraSettings.Any(x => x.Key == "Payload") ? extraSettings.First(x => x.Key == "Payload").Value.ToString() : "default");
-                if(payload != "EMPTY")
+                if (extraSettings.Any(x => x.Key == "Payload" && x.Value.ToString() == "EMPTY"))
                     payload = "";
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadPylons", payload);
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Livery", extraSettings.Any(x => x.Key == "Livery") ? extraSettings.First(x => x.Key == "Livery").Value : "default");
