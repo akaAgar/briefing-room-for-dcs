@@ -52,16 +52,12 @@ namespace BriefingRoom4DCS.Generator
             countries[(int)Coalition.Blue].AddRange(Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionBlue).Countries);
             countries[(int)Coalition.Red].AddRange(Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionRed).Countries);
 
-            // Removes countries added multiple times
-            countries[(int)template.ContextPlayerCoalition] = countries[(int)template.ContextPlayerCoalition].Distinct().ToList();
 
             // Make sure each country doesn't contain the other's coalition default country
             for (i = 0; i < 2; i++)
             {
-                if (countries[i].Contains(DEFAULT_COUNTRIES[1 - i]))
-                    countries[i].Remove(DEFAULT_COUNTRIES[1 - i]);
-                if (countries[i].Contains(Country.ALL))
-                    countries[i].Remove(Country.ALL);
+                countries[i].Remove(Country.ALL);
+                countries[i] = countries[i].Distinct().ToList();
             }
 
             var intersect = countries[(int)Coalition.Blue].Intersect(countries[(int)Coalition.Red]).ToList();

@@ -80,7 +80,15 @@ namespace BriefingRoom4DCS.Template
             OptionsFogOfWar = template.OptionsFogOfWar;
             OptionsMission = template.OptionsMission;
             OptionsRealism = template.OptionsRealism;
-            PlayerFlightGroups = template.PlayerFlightGroups.Select(x => new MissionTemplateFlightGroupRecord(x)).ToList();
+            PlayerFlightGroups = template.PlayerFlightGroups.Select(x => 
+            {
+                if(((ContextPlayerCoalition == Coalition.Red && !x.Hostile) || (ContextPlayerCoalition == Coalition.Blue && x.Hostile)) && x.Country == Country.CJTFBlue)
+                    x.Country = Country.CJTFRed;
+                if(((ContextPlayerCoalition == Coalition.Red && x.Hostile) || (ContextPlayerCoalition == Coalition.Blue && !x.Hostile)) && x.Country == Country.CJTFRed)
+                    x.Country = Country.CJTFBlue;
+
+                return new MissionTemplateFlightGroupRecord(x);
+            }).ToList();
             AircraftPackages = template.AircraftPackages.Select(x => new MissionTemplatePackageRecord(x)).ToList();
             SituationEnemySkill = template.SituationEnemySkill;
             SituationEnemyAirDefense = template.SituationEnemyAirDefense;
