@@ -62,7 +62,7 @@ namespace BriefingRoom4DCS.Generator
 
             var intersect = countries[(int)Coalition.Blue].Intersect(countries[(int)Coalition.Red]).ToList();
             if (intersect.Count > 0)
-                throw new BriefingRoomException($"Countries can't be on both sides {string.Join(",", intersect)}");
+                throw new BriefingRoomException($"Countries can't be on both sides {string.Join(",", intersect)}. Check Red and Blue Coalitions as well as flight groups countries.");
 
             // Add all non-aligned countries to the list of neutral countries
             List<Country> neutralCountries = new List<Country>(Toolbox.GetEnumValues<Country>());
