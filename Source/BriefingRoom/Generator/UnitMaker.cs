@@ -318,7 +318,7 @@ namespace BriefingRoom4DCS.Generator
                     continue;
                 }
                 int unitSetIndex = 0;
-                foreach (string DCSID in unitDB.DCSIDs)
+                foreach (var DCSID in unitDB.DCSIDs)
                 {
                     var groupHeading = GetGroupHeading(coordinates, extraSettings);
                     SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading, out Coordinates unitCoordinates, out double unitHeading);
@@ -329,6 +329,7 @@ namespace BriefingRoom4DCS.Generator
                         groupName,
                         extraSettings
                     );
+                    var unitLua = DCSID == "FARP" ? "UnitStaticFOB" : (unitDB.Category == UnitCategory.Cargo ? "UnitCargo" : "UnitStatic");
                     var unitsLuaTable = AddUnit(
                         DCSID,
                         groupName,
@@ -336,7 +337,7 @@ namespace BriefingRoom4DCS.Generator
                         1,
                         unitSetIndex,
                         unitDB,
-                        unitDB.Category == UnitCategory.Cargo ? "UnitCargo" : "UnitStatic",
+                        unitLua,
                         coordinates,
                         unitMakerGroupFlags,
                         extraSettings
