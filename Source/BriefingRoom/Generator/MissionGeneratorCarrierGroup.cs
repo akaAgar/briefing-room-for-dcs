@@ -153,9 +153,9 @@ namespace BriefingRoom4DCS.Generator
                     unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         new SpawnPointType[] { SpawnPointType.LandLarge },
                         landbaseCoordinates,
-                        new MinMaxD(10, 50),
+                        new MinMaxD(5, template.FlightPlanObjectiveDistance),
                         objectivesCenter,
-                        new MinMaxD(10, template.FlightPlanObjectiveDistance));
+                        new MinMaxD(10, template.FlightPlanObjectiveDistance/2), template.ContextPlayerCoalition);
 
             if (!spawnPoint.HasValue)
             {
