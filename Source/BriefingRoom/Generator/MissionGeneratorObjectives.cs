@@ -47,6 +47,11 @@ namespace BriefingRoom4DCS.Generator
             SpawnPointType.LandLarge,
         };
 
+        private static readonly List<string> TRANSPORT_TASKS = new List<string>{
+            "TransportCargo",
+            "TransportTroops"
+        };
+
         private readonly UnitMaker UnitMaker;
 
         private readonly DrawingMaker DrawingMaker;
@@ -112,7 +117,7 @@ namespace BriefingRoom4DCS.Generator
             extraSettings.Add("GroupY2".ToKeyValuePair(destinationPoint.Y));
             var unitCoordinates = objectiveCoordinates;
             var objectiveName = Toolbox.RandomFrom(ObjectiveNames);
-            if(taskDB.ID == "TransportCargo")
+            if(TRANSPORT_TASKS.Contains(taskDB.ID))
             {
                 Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                 targetDB.ValidSpawnPoints,
@@ -249,7 +254,7 @@ namespace BriefingRoom4DCS.Generator
 
             var unitCoordinates = objectiveCoordinates;
             var objectiveName = Toolbox.RandomFrom(ObjectiveNames);
-            if(taskDB.ID == "TransportCargo")
+            if(TRANSPORT_TASKS.Contains(taskDB.ID))
             {
                 Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                 targetDB.ValidSpawnPoints,
@@ -422,6 +427,7 @@ namespace BriefingRoom4DCS.Generator
             objectiveLua += $"hideTargetCount = false, ";
             objectiveLua += $"name = \"{objectiveName}\", ";
             objectiveLua += $"targetCategory = Unit.Category.{targetDB.UnitCategory.ToLuaName()}, ";
+            objectiveLua += $"taskType = {taskDB.ID}, ";
             objectiveLua += $"task = \"{taskString}\", ";
             objectiveLua += $"unitsCount = {targetGroupInfo.Value.UnitsID.Length}, ";
             objectiveLua += $"unitsID = {{ {string.Join(", ", targetGroupInfo.Value.UnitsID)} }} ";
@@ -459,8 +465,8 @@ namespace BriefingRoom4DCS.Generator
             Coordinates waypointCoordinates = objectiveCoordinates;
             bool onGround = !targetDB.UnitCategory.IsAircraft() || AirOnGroundBehaviorLocations.Contains(targetBehaviorLocation); // Ground targets = waypoint on the ground
 
-            var taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task); //TransportCargo
-            if (objectiveTemplate.Options.Contains(ObjectiveOption.InaccurateWaypoint) && taskDB.ID != "TransportCargo")
+            var taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task);
+            if (objectiveTemplate.Options.Contains(ObjectiveOption.InaccurateWaypoint) && !TRANSPORT_TASKS.Contains(taskDB.ID))
             {
                 waypointCoordinates += Coordinates.CreateRandom(3.0, 6.0) * Toolbox.NM_TO_METERS;
                 if (template.OptionsMission.Contains("MarkWaypoints"))

@@ -192,6 +192,8 @@ namespace BriefingRoom4DCS.Generator
                 $"{GeneratorTools.FormatRadioFrequency(unitDB.AircraftData.RadioFrequency)}\t" +
                 $"{Toolbox.FormatPayload(flightGroup.Payload)}\t" +
                 $"{homeBase}");
+            
+            mission.AppendValue("SCRIPTCLIENTS", $"{groupInfo.Value.GroupID},");
         }
 
         private static void SaveWaypointsToBriefing(DCSMission mission, Coordinates initialCoordinates, List<Waypoint> waypoints, bool useImperialSystem, UnitMakerGroupInfo? groupInfo)
