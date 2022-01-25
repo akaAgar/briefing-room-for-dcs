@@ -37,6 +37,8 @@ BriefingRoom is free and open source and will always remain so, but if you want 
 
 * Skynet IADS by walder
 * Splash Damage 2.9 by spencershepard (GRIMM)
+* CSAR (ciribob)
+* CTLD (ciribob)
 
 ### Additional information
 
