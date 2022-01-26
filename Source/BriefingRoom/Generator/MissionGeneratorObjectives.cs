@@ -427,7 +427,7 @@ namespace BriefingRoom4DCS.Generator
             objectiveLua += $"hideTargetCount = false, ";
             objectiveLua += $"name = \"{objectiveName}\", ";
             objectiveLua += $"targetCategory = Unit.Category.{targetDB.UnitCategory.ToLuaName()}, ";
-            objectiveLua += $"taskType = {taskDB.ID}, ";
+            objectiveLua += $"taskType = \"{taskDB.ID}\", ";
             objectiveLua += $"task = \"{taskString}\", ";
             objectiveLua += $"unitsCount = {targetGroupInfo.Value.UnitsID.Length}, ";
             objectiveLua += $"unitsID = {{ {string.Join(", ", targetGroupInfo.Value.UnitsID)} }} ";
@@ -471,7 +471,8 @@ namespace BriefingRoom4DCS.Generator
                 waypointCoordinates += Coordinates.CreateRandom(3.0, 6.0) * Toolbox.NM_TO_METERS;
                 if (template.OptionsMission.Contains("MarkWaypoints"))
                     DrawingMaker.AddDrawing($"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(6.0 * Toolbox.NM_TO_METERS));
-            }
+            } else if(TRANSPORT_TASKS.Contains(taskDB.ID) && template.OptionsMission.Contains("MarkWaypoints"))
+                DrawingMaker.AddDrawing($"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(500));
 
             return new Waypoint(objectiveName, waypointCoordinates, onGround, scriptIgnore);
         }

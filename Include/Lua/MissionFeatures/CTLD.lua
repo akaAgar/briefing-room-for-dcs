@@ -44,7 +44,7 @@ ctld.disableAllSmoke = false -- if true, all smoke is diabled at pickup and drop
 
 ctld.hoverPickup = true --  if set to false you can load crates with the F10 menu instead of hovering... Only if not using real crates!
 
-ctld.enableCrates = true -- if false, Helis will not be able to spawn or unpack crates so will be normal CTTS
+ctld.enableCrates = false -- if false, Helis will not be able to spawn or unpack crates so will be normal CTTS
 ctld.slingLoad = false -- if false, crates can be used WITHOUT slingloading, by hovering above the crate, simulating slingloading but not the weight...
 -- There are some bug with Sling-loading that can cause crashes, if these occur set slingLoad to false
 -- to use the other method.
@@ -52,7 +52,7 @@ ctld.slingLoad = false -- if false, crates can be used WITHOUT slingloading, by 
 
 ctld.enableSmokeDrop = true -- if false, helis and c-130 will not be able to drop smoke
 
-ctld.maxExtractDistance = 125 -- max distance from vehicle to troops to allow a group extraction
+ctld.maxExtractDistance = 500 -- max distance from vehicle to troops to allow a group extraction
 ctld.maximumDistanceLogistic = 200 -- max distance from vehicle to logistics to allow a loading or spawning operation
 ctld.maximumSearchDistance = 4000 -- max distance for troops to search for enemy
 ctld.maximumMoveDistance = 2000 -- max distance for troops to move from drop point if no enemy is nearby
@@ -351,18 +351,10 @@ ctld.transportPilotNames = {
     "transport25",
 }
 
-env.info("CTLD adding Clients", false)
 -- BR Generator add player units
-for i,o in ipairs(briefingRoom.playerGroups) do
-    env.info("CTLD adding Client Group "..o, false)
-    local g = dcsExtensions.getGroupByID(tonumber(o))
-    if g ~= nil and g:getCategory() == Group.Category.HELICOPTER then
-        env.info("CTLD adding Client Group is helo", false)
-        for i,u in ipairs(g:getUnits()) do
-            table.insert(ctld.transportPilotNames, u:getName())
-            env.info("CTLD added client "..u:getName(), false)
-        end
-    end
+for i,o in ipairs(briefingRoom.playerPilotNames) do
+    table.insert(ctld.transportPilotNames, o)
+    env.info("CTLD added player pilot"..o, false)
 end
 
 -- *************** Optional Extractable GROUPS *****************
@@ -399,11 +391,9 @@ ctld.extractableGroups = {
     "extract25",
 }
 
-env.info("CTLD added transport Groups", false)
 -- BR Generator add units
 for i,o in ipairs(briefingRoom.mission.objectives) do
     if o.taskType == "TransportTroops" then
-        env.info("CTLD adding transport Group", false)
         local u = dcsExtensions.getUnitByID(o.unitsID[1])
         if u ~= nil then
             table.insert(ctld.extractableGroups, (u:getGroup()):getName())

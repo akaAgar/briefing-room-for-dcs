@@ -684,7 +684,7 @@ briefingRoom.mission = {} -- Main BriefingRoom mission table
 briefingRoom.mission.complete = false -- Is the mission complete?
 briefingRoom.mission.coreFunctions = { }
 briefingRoom.mission.hasStarted = false -- has at least one player taken off?
-briefingRoom.playerGroups = { $SCRIPTCLIENTS$ }
+briefingRoom.playerPilotNames = { $SCRIPTCLIENTPILOTNAMES$ }
 
 -- Marks objective with index index as complete, and completes the mission itself if all objectives are complete
 function briefingRoom.mission.coreFunctions.completeObjective(index)
