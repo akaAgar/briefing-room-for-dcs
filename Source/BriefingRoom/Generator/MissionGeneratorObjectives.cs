@@ -49,7 +49,8 @@ namespace BriefingRoom4DCS.Generator
 
         private static readonly List<string> TRANSPORT_TASKS = new List<string>{
             "TransportCargo",
-            "TransportTroops"
+            "TransportTroops",
+            "Escort"
         };
 
         private readonly UnitMaker UnitMaker;
@@ -113,8 +114,6 @@ namespace BriefingRoom4DCS.Generator
                 destinationPoint = playerAirbase.Coordinates;
 
 
-            extraSettings.Add("GroupX2".ToKeyValuePair(destinationPoint.X));
-            extraSettings.Add("GroupY2".ToKeyValuePair(destinationPoint.Y));
             var unitCoordinates = objectiveCoordinates;
             var objectiveName = Toolbox.RandomFrom(ObjectiveNames);
             if(TRANSPORT_TASKS.Contains(taskDB.ID))
@@ -130,7 +129,14 @@ namespace BriefingRoom4DCS.Generator
                 var cargoWaypoint = GenerateObjectiveWaypoint(objectiveTemplate, unitCoordinates, $"{objectiveName} Cargo Collect", template, true);
                 waypoints.Add(cargoWaypoint);
                 waypointList.Add(cargoWaypoint);
+                if(taskDB.ID == "Escort"){
+                    extraSettings.Add("GroupX2".ToKeyValuePair(objectiveCoordinates.X));
+                    extraSettings.Add("GroupY2".ToKeyValuePair(objectiveCoordinates.Y));
+                }
             }
+
+            extraSettings.Add("GroupX2".ToKeyValuePair(destinationPoint.X));
+            extraSettings.Add("GroupY2".ToKeyValuePair(destinationPoint.Y));
 
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
                 objectiveTargetUnitFamily, unitCount,
@@ -267,6 +273,12 @@ namespace BriefingRoom4DCS.Generator
                 var cargoWaypoint = GenerateSubTaskWaypoint(subTask, unitCoordinates, $"{objectiveName} Cargo Collect", template, true);
                 waypoints.Add(cargoWaypoint);
                 waypointList.Add(cargoWaypoint);
+                if(taskDB.ID == "Escort"){
+                    extraSettings.Remove("GroupX2".ToKeyValuePair(destinationPoint.X));
+                    extraSettings.Remove("GroupY2".ToKeyValuePair(destinationPoint.Y));
+                    extraSettings.Remove("GroupX2".ToKeyValuePair(objectiveCoordinates.X));
+                    extraSettings.Add("GroupY2".ToKeyValuePair(objectiveCoordinates.Y));
+                }
             }
 
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
