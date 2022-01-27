@@ -80,11 +80,11 @@ namespace BriefingRoom4DCS.Generator
                 var carrier = carrierDictionary[flightGroup.Carrier];
                 if(carrier.UnitDB.Families.Contains(UnitFamily.ShipCarrierSTOVL) && flightGroup.Carrier != "LHA_Tarawa")
                 {   
-                    BriefingRoom.PrintToLog($"Spawning aircraft on a non-dedicated carrier ship is risky and may not work. You will spawn with no weapons and any AI wingmen are now players (Devs are confused why this has to happen but it does.)", LogMessageErrorLevel.Warning);
-                    payload = "EMPTY";
                     extraSettings.AddIfKeyUnused("Speed", 0);
                     unitMakerGroupFlags =  0;
                     skillLevel =  DCSSkillLevel.Client;
+                    if(flightGroup.Aircraft == "AV8BNA")
+                        payload = "EMPTY";
                 }
                 groupLuaFile = "GroupAircraftPlayerCarrier";
                 carrierUnitID = carrier.UnitsID[0];
