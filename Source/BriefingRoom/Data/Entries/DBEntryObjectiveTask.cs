@@ -72,5 +72,7 @@ namespace BriefingRoom4DCS.Data
 
             return true;
         }
+
+        internal bool isEscort() => ID == "Escort";
     }
 }

@@ -126,12 +126,13 @@ namespace BriefingRoom4DCS.Generator
                 if (!spawnPoint.HasValue) // Failed to generate target group
                     throw new BriefingRoomException($"Failed to find Cargo SpawnPoint");
                 unitCoordinates = spawnPoint.Value;
-                var cargoWaypoint = GenerateObjectiveWaypoint(objectiveTemplate, unitCoordinates, $"{objectiveName} Cargo Collect", template, true);
+                var cargoWaypoint = GenerateObjectiveWaypoint(objectiveTemplate, unitCoordinates, $"{objectiveName} Pickup", template, true);
                 waypoints.Add(cargoWaypoint);
                 waypointList.Add(cargoWaypoint);
-                if(taskDB.ID == "Escort"){
+                if(taskDB.isEscort()){
                     extraSettings.Add("GroupX2".ToKeyValuePair(objectiveCoordinates.X));
                     extraSettings.Add("GroupY2".ToKeyValuePair(objectiveCoordinates.Y));
+                    groupFlags |= UnitMakerGroupFlags.RadioAircraftSpawn;
                 }
             }
 
@@ -270,14 +271,15 @@ namespace BriefingRoom4DCS.Generator
                 if (!spawnPoint.HasValue) // Failed to generate target group
                     throw new BriefingRoomException($"Failed to find Cargo SpawnPoint");
                 unitCoordinates = spawnPoint.Value;
-                var cargoWaypoint = GenerateSubTaskWaypoint(subTask, unitCoordinates, $"{objectiveName} Cargo Collect", template, true);
+                var cargoWaypoint = GenerateSubTaskWaypoint(subTask, unitCoordinates, $"{objectiveName} Pickup", template, true);
                 waypoints.Add(cargoWaypoint);
                 waypointList.Add(cargoWaypoint);
-                if(taskDB.ID == "Escort"){
+                if(taskDB.isEscort()){
                     extraSettings.Remove("GroupX2".ToKeyValuePair(destinationPoint.X));
                     extraSettings.Remove("GroupY2".ToKeyValuePair(destinationPoint.Y));
                     extraSettings.Remove("GroupX2".ToKeyValuePair(objectiveCoordinates.X));
                     extraSettings.Add("GroupY2".ToKeyValuePair(objectiveCoordinates.Y));
+                    groupFlags |= UnitMakerGroupFlags.RadioAircraftSpawn;
                 }
             }
 
