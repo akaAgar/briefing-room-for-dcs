@@ -477,7 +477,6 @@ namespace BriefingRoom4DCS.Generator
             {
                 Country country = CoalitionsCountries[(int)coalition][countryIndex];
 
-                if (!UnitLuaTables.ContainsKey(country)) continue; // No units for this country
 
                 unitsLuaTable += $"[{countryIndex + 1}] =\n";
                 unitsLuaTable += "{\n";
@@ -485,26 +484,28 @@ namespace BriefingRoom4DCS.Generator
                 unitsLuaTable += $"[\"name\"] = \"{country}\",\n";
 
 
-                foreach (UnitCategory unitCategory in Toolbox.GetEnumValues<UnitCategory>()) // Check all coalitions
+                if (UnitLuaTables.ContainsKey(country))
                 {
-                    if (!UnitLuaTables[country].ContainsKey(unitCategory)) continue; // No unit for this unit category
-
-                    unitsLuaTable += $"[\"{unitCategory.ToString().ToLowerInvariant()}\"] =\n";
-                    unitsLuaTable += "{\n";
-                    unitsLuaTable += "[\"group\"] =\n";
-                    unitsLuaTable += "{\n";
-                    for (int groupIndex = 0; groupIndex < UnitLuaTables[country][unitCategory].Count; groupIndex++)
+                    foreach (UnitCategory unitCategory in Toolbox.GetEnumValues<UnitCategory>()) // Check all coalitions
                     {
-                        unitsLuaTable += $"[{groupIndex + 1}] =\n";
+                        if (!UnitLuaTables[country].ContainsKey(unitCategory)) continue; // No unit for this unit category
+
+                        unitsLuaTable += $"[\"{unitCategory.ToString().ToLowerInvariant()}\"] =\n";
                         unitsLuaTable += "{\n";
-                        unitsLuaTable += $"{UnitLuaTables[country][unitCategory][groupIndex]}\n";
-                        unitsLuaTable += $"}}, -- end of [{groupIndex + 1}]\n";
+                        unitsLuaTable += "[\"group\"] =\n";
+                        unitsLuaTable += "{\n";
+                        for (int groupIndex = 0; groupIndex < UnitLuaTables[country][unitCategory].Count; groupIndex++)
+                        {
+                            unitsLuaTable += $"[{groupIndex + 1}] =\n";
+                            unitsLuaTable += "{\n";
+                            unitsLuaTable += $"{UnitLuaTables[country][unitCategory][groupIndex]}\n";
+                            unitsLuaTable += $"}}, -- end of [{groupIndex + 1}]\n";
+                        }
+
+                        unitsLuaTable += $"}}, -- end of [\"group\"]\n";
+                        unitsLuaTable += $"}}, -- end of [\"{unitCategory.ToString().ToLowerInvariant()}\"]\n";
                     }
-
-                    unitsLuaTable += $"}}, -- end of [\"group\"]\n";
-                    unitsLuaTable += $"}}, -- end of [\"{unitCategory.ToString().ToLowerInvariant()}\"]\n";
                 }
-
                 unitsLuaTable += $"}}, -- end of [{countryIndex + 1}]\n";
             }
 
