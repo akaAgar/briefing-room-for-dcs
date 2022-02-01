@@ -74,8 +74,6 @@ namespace BriefingRoom4DCS.Template
             FlightPlanObjectiveDistance = template.FlightPlanObjectiveDistance;
             FlightPlanObjectiveSeperation = template.FlightPlanObjectiveSeperation;
             FlightPlanTheaterStartingAirbase = template.FlightPlanTheaterStartingAirbase;
-            if(!template.MissionFeatures.Contains("CTLD") && template.Objectives.Any(x => x.Task == "TransportTroops" || x.SubTasks.Any(y => x.Task == "TransportTroops")))
-                template.MissionFeatures.Add("CTLD");
             MissionFeatures = template.MissionFeatures;
             Mods = template.Mods;
             Objectives = template.Objectives.Select(x => new MissionTemplateObjectiveRecord(x)).ToList();

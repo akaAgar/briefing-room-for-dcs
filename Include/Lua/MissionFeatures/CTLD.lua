@@ -44,7 +44,7 @@ ctld.disableAllSmoke = false -- if true, all smoke is diabled at pickup and drop
 
 ctld.hoverPickup = true --  if set to false you can load crates with the F10 menu instead of hovering... Only if not using real crates!
 
-ctld.enableCrates = false -- if false, Helis will not be able to spawn or unpack crates so will be normal CTTS
+ctld.enableCrates = true -- if false, Helis will not be able to spawn or unpack crates so will be normal CTTS
 ctld.slingLoad = false -- if false, crates can be used WITHOUT slingloading, by hovering above the crate, simulating slingloading but not the weight...
 -- There are some bug with Sling-loading that can cause crashes, if these occur set slingLoad to false
 -- to use the other method.
@@ -77,7 +77,7 @@ ctld.aaLaunchers = 3 -- controls how many launchers to add to the kub/buk when i
 ctld.hawkLaunchers = 8 -- controls how many launchers to add to the hawk when its spawned.
 
 ctld.spawnRPGWithCoalition = true --spawns a friendly RPG unit with Coalition forces
-ctld.spawnStinger = false -- spawns a stinger / igla soldier with a group of 6 or more soldiers!
+ctld.spawnStinger = true -- spawns a stinger / igla soldier with a group of 6 or more soldiers!
 
 ctld.enabledFOBBuilding = true -- if true, you can load a crate INTO a C-130 than when unpacked creates a Forward Operating Base (FOB) which is a new place to spawn (crates) and carry crates from
 -- In future i'd like it to be a FARP but so far that seems impossible...
@@ -390,17 +390,6 @@ ctld.extractableGroups = {
     "extract24",
     "extract25",
 }
-
--- BR Generator add units
-for i,o in ipairs(briefingRoom.mission.objectives) do
-    if o.taskType == "TransportTroops" then
-        local u = dcsExtensions.getUnitByID(o.unitsID[1])
-        if u ~= nil then
-            table.insert(ctld.extractableGroups, (u:getGroup()):getName())
-            env.info("CTLD added transport Group "..(u:getGroup()):getName(), false)
-        end
-    end
-end
 
 -- ************** Logistics UNITS FOR CRATE SPAWNING ******************
 
