@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using System.IO;
+using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
@@ -28,6 +29,8 @@ namespace BriefingRoom4DCS.Data
 
         internal string[] GroupLua { get; private set; }
         internal string[] UnitLua { get; private set; }
+
+        internal UnitCategory[] ValidUnitCategories { get; private set; }
 
 
         protected override bool OnLoad(string iniFilePath)
@@ -43,6 +46,8 @@ namespace BriefingRoom4DCS.Data
             foreach (UnitCategory unitLua in Toolbox.GetEnumValues<UnitCategory>())
                 UnitLua[(int)unitLua] = ini.GetValue<string>("Lua", $"Unit.{unitLua}");
 
+            ValidUnitCategories = ini.GetValueArray<UnitCategory>("Behavior", "ValidUnitCategories").Distinct().ToArray();
+            if (ValidUnitCategories.Length == 0) ValidUnitCategories = Toolbox.GetEnumValues<UnitCategory>(); // No category means all categories
             return true;
         }
     }
