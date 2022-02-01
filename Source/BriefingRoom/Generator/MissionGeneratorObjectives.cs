@@ -95,7 +95,7 @@ namespace BriefingRoom4DCS.Generator
             // Spawn target on airbase
             var unitCount = targetDB.UnitCount[(int)objectiveTemplate.TargetCount].GetValue();
             var objectiveTargetUnitFamily = Toolbox.RandomFrom(targetDB.UnitFamilies);
-            if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location))
+            if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location) && targetDB.UnitCategory.IsAircraft())
                 objectiveCoordinates = PlaceInAirbase(template, situationDB, playerAirbase, extraSettings, targetDB, targetBehaviorDB, ref luaUnit, objectiveCoordinates, unitCount, objectiveTargetUnitFamily);
 
             UnitMakerGroupFlags groupFlags = 0;
@@ -343,17 +343,15 @@ namespace BriefingRoom4DCS.Generator
             
             airbaseID = targetAirbase.DCSID;
 
-            if ((targetBehaviorDB.Location != DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbase) && targetDB.UnitCategory.IsAircraft())
-            {
-                var parkingSpots = UnitMaker.SpawnPointSelector.GetFreeParkingSpots(
-                    targetAirbase.DCSID,
-                    unitCount, objectiveTargetUnitFamily,
-                    targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter);
+            var parkingSpots = UnitMaker.SpawnPointSelector.GetFreeParkingSpots(
+                targetAirbase.DCSID,
+                unitCount, objectiveTargetUnitFamily,
+                targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter);
 
-                parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
-                parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
-                luaUnit += "Parked";
-            }
+            parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
+            parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
+            luaUnit += "Parked";
+
             extraSettings.Add("GroupAirbaseID".ToKeyValuePair(airbaseID));
             extraSettings.Add("ParkingID".ToKeyValuePair(parkingSpotIDsList.ToArray()));
             extraSettings.Add("UnitX".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.X).ToArray()));
