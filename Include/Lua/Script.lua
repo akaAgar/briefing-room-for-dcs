@@ -28,6 +28,7 @@
 --     1.2.3 - String extensions
 --     1.2.4 - Table extensions
 --   1.3 - DCS World extensions
+--   1.4 - MIST
 -- 2 - Tools
 --   2.1 - Radio manager
 --   2.2 - Aircraft activator
@@ -57,6 +58,7 @@ SMOKE_DURATION = 300 -- smoke markers last for 5 minutes (300 seconds) in DCS Wo
 TWO_PI = math.pi * 2 -- two times Pi
 
 briefingRoom = {} -- Main BriefingRoom table
+briefingRoom.playerPilotNames = { $SCRIPTCLIENTPILOTNAMES$ }
 
 -- Debug logging function
 briefingRoom.printDebugMessages = false -- Disable debug messages logging, can be enabled later through mission features
@@ -493,6 +495,10 @@ function dcsExtensions.vec2ToStringCoordinates(vec2)
 
   return cooString
 end
+-- ===================================================================================
+-- 1.4 - MIST: https://github.com/mrSkortch/MissionScriptingTools
+-- ===================================================================================
+$SCRIPTMIST$
 
 -- ***********************************************************************************
 -- * 2 - TOOLS                                                                       *

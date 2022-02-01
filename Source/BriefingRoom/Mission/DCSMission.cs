@@ -79,6 +79,7 @@ namespace BriefingRoom4DCS.Mission
 
             UniqueID = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()).ToLowerInvariant();
             SetValue("MissionID", UniqueID);
+            SetValue("ScriptMIST",Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA}MIST.lua"));
         }
 
         internal void SetValue(string key, int value)
