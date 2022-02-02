@@ -19,7 +19,6 @@
 -- ===================================================================================
 -- SUMMARY
 -- ===================================================================================
-
 -- 1 - Core functions
 --   1.1 - Constants and initialization
 --   1.2 - Lua extensions
@@ -33,6 +32,7 @@
 --   2.1 - Radio manager
 --   2.2 - Aircraft activator
 --   2.3 - Event handler
+--   2.4 - Transport Handler
 -- 3 - Mission
 --   3.1 - Main BriefingRoom table and core functions
 --   3.2 - Common F10 menu
@@ -678,6 +678,76 @@ function briefingRoom.eventHandler:onEvent(event)
   end
 end
 
+-- ===================================================================================
+-- 2.4 - TRANSPORT MANAGER: common event handler used during the mission
+-- ===================================================================================
+briefingRoom.transportManager = {}
+briefingRoom.transportManager.transportRoster = {}
+briefingRoom.transportManager.maxTroops = 10
+
+function briefingRoom.transportManager.initTransport(transportUnitID)
+  briefingRoom.debugPrint("Setting Up Transport Unit "..transportUnitID)
+  briefingRoom.transportManager.transportRoster[transportUnitID] = {
+    troops = {}
+  }
+end
+
+function briefingRoom.transportManager.addTroopCargo(transportUnitID, unitId)
+  if not table.containsKey(briefingRoom.transportManager.transportRoster, transportUnitID) then
+    briefingRoom.transportManager.initTransport(transportUnitID)
+  end
+  if #briefingRoom.transportManager.transportRoster[transportUnitID].troops == briefingRoom.transportManager.maxTroops then
+    briefingRoom.debugPrint(transportUnitID.." Hit max Cargo ".. #briefingRoom.transportManager.transportRoster[transportUnitID].troops)
+    return true
+  end
+  local unit = dcsExtensions.getUnitByID(unitId)
+  if unit ~= nil then
+    briefingRoom.transportManager.transportRoster[transportUnitID].troops[unitId] = {
+      ["type"] = unit:getTypeName(),
+      ["name"] = unit:getName(),
+      ["country"] = unit: getCountry()
+    }
+    briefingRoom.debugPrint(transportUnitID.." Added unit to transport "..unitId.." cargo now "..mist.utils.tableShow(briefingRoom.transportManager.transportRoster[transportUnitID].troops))
+    unit:destroy()
+  end
+end
+
+function briefingRoom.transportManager.removeTroopCargo(transportUnitID, unitIDs)
+  local transportUnit = dcsExtensions.getUnitByID(transportUnitID)
+  if not table.containsKey(briefingRoom.transportManager.transportRoster, transportUnitID) or transportUnit == nil then
+    briefingRoom.debugPrint(transportUnitID.." no one to drop off not initalised")
+    return {}
+  end
+  local transportUnitPoint = transportUnit:getPoint()
+  local removed = {}
+  briefingRoom.debugPrint(transportUnitID.." transport has "..mist.utils.tableShow(unitIDs))
+  for index, unitId in ipairs(unitIDs) do
+    if table.containsKey(briefingRoom.transportManager.transportRoster[transportUnitID].troops, unitId) then
+      briefingRoom.debugPrint(transportUnitID.." removed unit from transport "..unitId.." cargo now "..mist.utils.tableShow(briefingRoom.transportManager.transportRoster[transportUnitID].troops))
+      local unitDeets = briefingRoom.transportManager.transportRoster[transportUnitID].troops[unitId]
+      briefingRoom.transportManager.transportRoster[transportUnitID].troops[unitId] = nil
+      table.insert(removed, unitId)
+      briefingRoom.debugPrint(transportUnitID.." removed unit from transport "..(transportUnitPoint.y + math.random(-10, 10)))
+      mist.dynAdd({
+        units = { [1] ={
+          ["y"] = transportUnitPoint.z + math.random(-30, 30),
+          ["type"] = unitDeets.type,
+          ["name"] = unitDeets.name,
+          ["heading"] = 0,
+          ["playerCanDrive"] = true,
+          ["skill"] = "Excellent",
+          ["x"] = transportUnitPoint.x + math.random(-30, 30),
+        }},
+        country = unitDeets.country,
+        category = Group.Category.GROUND
+      })
+    end
+  end
+  return removed
+end
+
+
+
 -- ***********************************************************************************
 -- * 3 - MISSION                                                                     *
 -- ***********************************************************************************
@@ -690,7 +760,6 @@ briefingRoom.mission = {} -- Main BriefingRoom mission table
 briefingRoom.mission.complete = false -- Is the mission complete?
 briefingRoom.mission.coreFunctions = { }
 briefingRoom.mission.hasStarted = false -- has at least one player taken off?
-briefingRoom.playerPilotNames = { $SCRIPTCLIENTPILOTNAMES$ }
 
 -- Marks objective with index index as complete, and completes the mission itself if all objectives are complete
 function briefingRoom.mission.coreFunctions.completeObjective(index)

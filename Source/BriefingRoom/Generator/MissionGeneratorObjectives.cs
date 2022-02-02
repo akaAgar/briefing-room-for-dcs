@@ -483,7 +483,7 @@ namespace BriefingRoom4DCS.Generator
                 waypointCoordinates += Coordinates.CreateRandom(3.0, 6.0) * Toolbox.NM_TO_METERS;
                 if (template.OptionsMission.Contains("MarkWaypoints"))
                     DrawingMaker.AddDrawing($"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(6.0 * Toolbox.NM_TO_METERS));
-            } else if(TRANSPORT_TASKS.Contains(taskDB.ID) && template.OptionsMission.Contains("MarkWaypoints"))
+            } else if(TRANSPORT_TASKS.Contains(taskDB.ID))
                 DrawingMaker.AddDrawing($"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(500));
 
             return new Waypoint(objectiveName, waypointCoordinates, onGround, scriptIgnore);
@@ -531,12 +531,14 @@ namespace BriefingRoom4DCS.Generator
             Coordinates waypointCoordinates = objectiveCoordinates;
             bool onGround = !targetDB.UnitCategory.IsAircraft() || AirOnGroundBehaviorLocations.Contains(targetBehaviorLocation); // Ground targets = waypoint on the ground
 
-            if (objectiveTemplate.Options.Contains(ObjectiveOption.InaccurateWaypoint))
+            var taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task);
+            if (objectiveTemplate.Options.Contains(ObjectiveOption.InaccurateWaypoint) && !TRANSPORT_TASKS.Contains(taskDB.ID))
             {
                 waypointCoordinates += Coordinates.CreateRandom(3.0, 6.0) * Toolbox.NM_TO_METERS;
                 if (template.OptionsMission.Contains("MarkWaypoints"))
                     DrawingMaker.AddDrawing($"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(6.0 * Toolbox.NM_TO_METERS));
-            }
+            } else if(TRANSPORT_TASKS.Contains(taskDB.ID))
+                DrawingMaker.AddDrawing($"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(500));
 
             return new Waypoint(objectiveName, waypointCoordinates, onGround, scriptIgnore);
         }
