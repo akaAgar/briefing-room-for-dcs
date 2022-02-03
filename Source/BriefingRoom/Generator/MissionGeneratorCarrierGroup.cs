@@ -32,7 +32,7 @@ namespace BriefingRoom4DCS.Generator
 
 
         internal static Dictionary<string, UnitMakerGroupInfo> GenerateCarrierGroup(
-            UnitMaker unitMaker, DCSMission mission, MissionTemplateRecord template,
+            UnitMaker unitMaker, ZoneMaker zoneMaker, DCSMission mission, MissionTemplateRecord template,
             Coordinates landbaseCoordinates, Coordinates objectivesCenter, double windSpeedAtSeaLevel,
             double windDirectionAtSeaLevel)
         {
@@ -53,7 +53,7 @@ namespace BriefingRoom4DCS.Generator
                 if (flightGroup.Carrier.StartsWith("FOB"))
                 {
                     //It Carries therefore carrier not because I can't think of a name to rename this lot
-                    GenerateFOB(unitMaker, flightGroup, carrierDictionary, mission, template, landbaseCoordinates, objectivesCenter);
+                    GenerateFOB(unitMaker, zoneMaker, flightGroup, carrierDictionary, mission, template, landbaseCoordinates, objectivesCenter);
                     continue;
                 }
                 DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(flightGroup.Carrier);
@@ -142,7 +142,7 @@ namespace BriefingRoom4DCS.Generator
         }
 
         private static void GenerateFOB(
-            UnitMaker unitMaker, MissionTemplateFlightGroupRecord flightGroup, Dictionary<string, UnitMakerGroupInfo> carrierDictionary,
+            UnitMaker unitMaker, ZoneMaker zoneMaker, MissionTemplateFlightGroupRecord flightGroup, Dictionary<string, UnitMakerGroupInfo> carrierDictionary,
             DCSMission mission, MissionTemplateRecord template, Coordinates landbaseCoordinates, Coordinates objectivesCenter)
         {
             DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
@@ -184,7 +184,7 @@ namespace BriefingRoom4DCS.Generator
                     "RadioBand".ToKeyValuePair((int)RadioModulation.AM),
                     "RadioFrequency".ToKeyValuePair(GeneratorTools.GetRadioFrenquency(radioFrequency)));
             if (!groupInfo.HasValue || (groupInfo.Value.UnitsID.Length == 0)) return; // Couldn't generate group
-
+            zoneMaker.AddCTLDPickupZone(spawnPoint.Value, true);
             mission.Briefing.AddItem(
                      DCSMissionBriefingItemType.Airbase,
                      $"{unitDB.UIDisplayName}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t\t");

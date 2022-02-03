@@ -89,6 +89,7 @@ namespace BriefingRoom4DCS.Generator
             var unitMaker = new UnitMaker(mission, template, coalitionsDB, theaterDB, situationDB, template.ContextPlayerCoalition, coalitionsCountries, template.GetPlayerSlotsCount() == 1);
 
             var drawingMaker = new DrawingMaker(mission, template, theaterDB, situationDB);
+            var zoneMaker = new ZoneMaker(unitMaker);
 
 
             BriefingRoom.PrintToLog("Generating mission date and time...");
@@ -103,6 +104,7 @@ namespace BriefingRoom4DCS.Generator
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{playerAirbase.Name}\t{playerAirbase.Runways}\t{playerAirbase.ATC}\t{playerAirbase.ILS}\t{playerAirbase.TACAN}");
             airbasesGenerator.SelectStartingAirbaseForPackages(mission, playerAirbase);
             airbasesGenerator.SetupAirbasesCoalitions(mission, playerAirbase);
+            zoneMaker.AddAirbaseZones(playerAirbase, mission.MissionPackages);
             mission.SetValue("PlayerAirbaseName", playerAirbase.Name);
             mission.SetValue("MissionAirbaseX", playerAirbase.Coordinates.X);
             mission.SetValue("MissionAirbaseY", playerAirbase.Coordinates.Y);
@@ -137,7 +139,7 @@ namespace BriefingRoom4DCS.Generator
             // Generate carrier groups
             BriefingRoom.PrintToLog("Generating carrier groups...");
             var carrierDictionary = MissionGeneratorCarrierGroup.GenerateCarrierGroup(
-                unitMaker, mission, template,
+                unitMaker, zoneMaker, mission, template,
                 playerAirbase.Coordinates, objectivesCenter,
                 windSpeedAtSeaLevel, windDirectionAtSeaLevel);
             var averageInitialPosition = playerAirbase.Coordinates;
@@ -184,6 +186,7 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("CountriesBlue", unitMaker.GetUnitsLuaTable(Coalition.Blue));
             mission.SetValue("CountriesRed", unitMaker.GetUnitsLuaTable(Coalition.Red));
             mission.SetValue("Drawings", drawingMaker.GetLuaDrawings());
+            mission.SetValue("Zones", zoneMaker.GetLuaZones());
 
             // Generate briefing and additional mission info
             BriefingRoom.PrintToLog("Generating briefing...");

@@ -169,30 +169,41 @@ ctld.JTAC_lock = "all" -- "vehicle" OR "troop" OR "all" forces JTAC to only lock
 
 --pickupZones = { "Zone name or Ship Unit Name", "smoke color", "limit (-1 unlimited)", "ACTIVE (yes/no)", "side (0 = Both sides / 1 = Red / 2 = Blue )", flag number (optional) }
 ctld.pickupZones = {
-    { "pickzone1", "blue", -1, "yes", 0 },
-    { "pickzone2", "red", -1, "yes", 0 },
-    { "pickzone3", "none", -1, "yes", 0 },
-    { "pickzone4", "none", -1, "yes", 0 },
-    { "pickzone5", "none", -1, "yes", 0 },
-    { "pickzone6", "none", -1, "yes", 0 },
-    { "pickzone7", "none", -1, "yes", 0 },
-    { "pickzone8", "none", -1, "yes", 0 },
-    { "pickzone9", "none", 5, "yes", 1 }, -- limits pickup zone 9 to 5 groups of soldiers or vehicles, only red can pick up
-    { "pickzone10", "none", 10, "yes", 2 },  -- limits pickup zone 10 to 10 groups of soldiers or vehicles, only blue can pick up
+    { "pickzone1", "orange", -1, "yes", 0 },
+    { "pickzone2", "orange", -1, "yes", 0 },
+    { "pickzone3", "orange", -1, "yes", 0 },
+    { "pickzone4", "orange", -1, "yes", 0 },
+    { "pickzone5", "orange", -1, "yes", 0 },
+    { "pickzone6", "orange", -1, "yes", 0 },
+    { "pickzone7", "orange", -1, "yes", 0 },
+    { "pickzone8", "orange", -1, "yes", 0 },
+    { "pickzone9", "orange", -1, "yes", 0 }, -- limits pickup zone 9 to 5 groups of soldiers or vehicles, only red can pick up
+    { "pickzone10", "orange", -1, "yes", 0 },  -- limits pickup zone 10 to 10 groups of soldiers or vehicles, only blue can pick up
 
-    { "pickzone11", "blue", 20, "no", 2 },  -- limits pickup zone 11 to 20 groups of soldiers or vehicles, only blue can pick up. Zone starts inactive!
-    { "pickzone12", "red", 20, "no", 1 },  -- limits pickup zone 11 to 20 groups of soldiers or vehicles, only blue can pick up. Zone starts inactive!
-    { "pickzone13", "none", -1, "yes", 0 },
-    { "pickzone14", "none", -1, "yes", 0 },
-    { "pickzone15", "none", -1, "yes", 0 },
-    { "pickzone16", "none", -1, "yes", 0 },
-    { "pickzone17", "none", -1, "yes", 0 },
-    { "pickzone18", "none", -1, "yes", 0 },
-    { "pickzone19", "none", 5, "yes", 0 },
-    { "pickzone20", "none", 10, "yes", 0, 1000 }, -- optional extra flag number to store the current number of groups available in
+    { "pickzone11", "orange", -1, "yes", 0 },  -- limits pickup zone 11 to 20 groups of soldiers or vehicles, only blue can pick up. Zone starts inactive!
+    { "pickzone12", "orange", -1, "yes", 0 },  -- limits pickup zone 11 to 20 groups of soldiers or vehicles, only blue can pick up. Zone starts inactive!
+    { "pickzone13", "orange", -1, "yes", 0 },
+    { "pickzone14", "orange", -1, "yes", 0 },
+    { "pickzone15", "orange", -1, "yes", 0 },
+    { "pickzone16", "orange", -1, "yes", 0 },
+    { "pickzone17", "orange", -1, "yes", 0 },
+    { "pickzone18", "orange", -1, "yes", 0 },
+    { "pickzone19", "orange", -1, "yes", 0 },
+    { "pickzone20", "orange", -1, "yes", 0 }, -- optional extra flag number to store the current number of groups available in
 
     { "USA Carrier", "blue", 10, "yes", 0, 1001 }, -- instead of a Zone Name you can also use the UNIT NAME of a ship
 }
+
+for i=1,2 do
+    for _,g in pairs(coalition.getGroups(i)) do
+        if g:getCategory() == Group.Category.SHIP then
+            for _,u in pairs(g:getUnits()) do
+                table.insert(ctld.pickupZones, { u:getName(), "none", -1, "yes", 0})
+                env.info("CTLD added ship pickup"..u:getID(), false)
+            end
+        end
+    end
+end
 
 
 -- dropOffZones = {"name","smoke colour",0,side 1 = Red or 2 = Blue or 0 = Both sides}
@@ -408,6 +419,22 @@ ctld.logisticUnits = {
     "logistic9",
     "logistic10",
 }
+-- BR Generator add Static unit & FARPs
+for i,id in ipairs(briefingRoom.mission.missionFeatures.unitsID.cTLD) do
+    local unit = dcsExtensions.getStaticByID(id)
+    if unit ~= nil then
+        table.insert(ctld.logisticUnits, unit:getName())
+        env.info("CTLD added logi static"..id, false)
+    end
+end
+for i=1,2 do
+    for _,g in pairs(coalition.getStaticObjects(i)) do
+        if g:getTypeName() == "FARP" then
+            table.insert(ctld.logisticUnits, g:getName())
+        env.info("CTLD added logi FARP"..g:getID(), false)
+        end
+    end
+end
 
 -- ************** UNITS ABLE TO TRANSPORT VEHICLES ******************
 -- Add the model name of the unit that you want to be able to transport and deploy vehicles
