@@ -23,14 +23,18 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
     return true
   end
 
+  local collect = {}
   -- Pickup
   for _,id in ipairs(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID) do
     local targetUnit = dcsExtensions.getUnitByID(id)
     if targetUnit ~= nil then
       local targetPosition = dcsExtensions.toVec2(targetUnit:getPoint())
       if dcsExtensions.getDistance(position, targetPosition) < 500 then
-        briefingRoom.transportManager.addTroopCargo(event.initiator:getID(), id)
+        table.insert(collect, id)
       end
     end
+  end
+  if #collect > 0 then
+    briefingRoom.transportManager.addTroopCargo(event.initiator:getID(), collect)
   end
 end

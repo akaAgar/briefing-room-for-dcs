@@ -686,48 +686,45 @@ briefingRoom.transportManager.transportRoster = {}
 briefingRoom.transportManager.maxTroops = 10
 
 function briefingRoom.transportManager.initTransport(transportUnitID)
-  briefingRoom.debugPrint("Setting Up Transport Unit "..transportUnitID)
   briefingRoom.transportManager.transportRoster[transportUnitID] = {
     troops = {}
   }
 end
 
-function briefingRoom.transportManager.addTroopCargo(transportUnitID, unitId)
+function briefingRoom.transportManager.addTroopCargo(transportUnitID, unitIds)
   if not table.containsKey(briefingRoom.transportManager.transportRoster, transportUnitID) then
     briefingRoom.transportManager.initTransport(transportUnitID)
   end
-  if #briefingRoom.transportManager.transportRoster[transportUnitID].troops == briefingRoom.transportManager.maxTroops then
-    briefingRoom.debugPrint(transportUnitID.." Hit max Cargo ".. #briefingRoom.transportManager.transportRoster[transportUnitID].troops)
-    return true
+  for index, unitId in ipairs(unitIds) do
+    if #briefingRoom.transportManager.transportRoster[transportUnitID].troops == briefingRoom.transportManager.maxTroops then
+      briefingRoom.radioManager.play("Troop: Pilot, We are full, let's get going. (Total troops: "..#briefingRoom.transportManager.transportRoster[transportUnitID].troops..")", "RadioTroopFull")
+      return true
+    end
+    local unit = dcsExtensions.getUnitByID(unitId)
+    if unit ~= nil then
+      briefingRoom.transportManager.transportRoster[transportUnitID].troops[unitId] = {
+        ["type"] = unit:getTypeName(),
+        ["name"] = unit:getName(),
+        ["country"] = unit: getCountry()
+      }
+      unit:destroy()
+    end
   end
-  local unit = dcsExtensions.getUnitByID(unitId)
-  if unit ~= nil then
-    briefingRoom.transportManager.transportRoster[transportUnitID].troops[unitId] = {
-      ["type"] = unit:getTypeName(),
-      ["name"] = unit:getName(),
-      ["country"] = unit: getCountry()
-    }
-    briefingRoom.debugPrint(transportUnitID.." Added unit to transport "..unitId.." cargo now "..mist.utils.tableShow(briefingRoom.transportManager.transportRoster[transportUnitID].troops))
-    unit:destroy()
-  end
+  briefingRoom.radioManager.play("Troop: Pilot, Everyone is in, let's go. (Total troops: "..#briefingRoom.transportManager.transportRoster[transportUnitID].troops..")", "RadioTroopAllIn")
 end
 
 function briefingRoom.transportManager.removeTroopCargo(transportUnitID, unitIDs)
   local transportUnit = dcsExtensions.getUnitByID(transportUnitID)
   if not table.containsKey(briefingRoom.transportManager.transportRoster, transportUnitID) or transportUnit == nil then
-    briefingRoom.debugPrint(transportUnitID.." no one to drop off not initalised")
     return {}
   end
   local transportUnitPoint = transportUnit:getPoint()
   local removed = {}
-  briefingRoom.debugPrint(transportUnitID.." transport has "..mist.utils.tableShow(unitIDs))
   for index, unitId in ipairs(unitIDs) do
     if table.containsKey(briefingRoom.transportManager.transportRoster[transportUnitID].troops, unitId) then
-      briefingRoom.debugPrint(transportUnitID.." removed unit from transport "..unitId.." cargo now "..mist.utils.tableShow(briefingRoom.transportManager.transportRoster[transportUnitID].troops))
       local unitDeets = briefingRoom.transportManager.transportRoster[transportUnitID].troops[unitId]
       briefingRoom.transportManager.transportRoster[transportUnitID].troops[unitId] = nil
       table.insert(removed, unitId)
-      briefingRoom.debugPrint(transportUnitID.." removed unit from transport "..(transportUnitPoint.y + math.random(-10, 10)))
       mist.dynAdd({
         units = { [1] ={
           ["y"] = transportUnitPoint.z + math.random(-30, 30),
@@ -743,6 +740,7 @@ function briefingRoom.transportManager.removeTroopCargo(transportUnitID, unitIDs
       })
     end
   end
+  briefingRoom.radioManager.play("Troop: Pilot, Everyone is clear, good to take off. (Remaining troops: "..#briefingRoom.transportManager.transportRoster[transportUnitID].troops..")", "RadioTroopTakeoff")
   return removed
 end
 
