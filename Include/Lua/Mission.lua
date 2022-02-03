@@ -290,6 +290,7 @@ mission =
     {
         ["zones"] = 
         {
+            $ZONES$
         }, -- end of ["zones"]
     }, -- end of ["triggers"]
     ["map"] = 
