@@ -13,7 +13,7 @@
 @using BriefingRoom4DCS.GUI.Utils
 @using System.IO
 <div class="title-bar">
-    <h1>Quick Mission Generator</h1>
+    <h1>Quick Mission Generator </h1>
     <TemplateButtons LoadTemplate="LoadTemplate" SaveTemplate="SaveTemplate" ClearTemplate="ClearTemplate" AcceptString=".brt" />
 </div>
 <div class="generator-group">
@@ -36,8 +36,8 @@
         <EditForm Model="Template" OnSubmit="GenerateMission">
             <DataAnnotationsValidator />
             <ValidationSummary />
-
             <button class="btn btn-primary form-control" type="submit">Generate</button>
+            <p class="custom-warning">The quick builder can load templates created in the Full Builder to make use of the full range of options. info icons (<span class="oi oi-info"></span>) will show info on where these apply. The quick builder is purposely minimialist on options.</p>
             <hr />
             <div id="context" class="generator-block">
                 <h3>Context</h3>
@@ -80,6 +80,7 @@
                         Grouping="@Template.ContextTheater" DataBaseType="DatabaseEntryType.Situation"
                         EmptOpt="Random" />
                 </div>
+                <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;Season:@Template.EnvironmentSeason&nbsp;,Time of day:@Template.EnvironmentTimeOfDay&nbsp;,Weather:@Template.EnvironmentWeatherPreset&nbsp;,Wind:@Template.EnvironmentWind&nbsp;</p>  
                 <hr />
             </div>
             <div id="flight-groups" class="generator-block">
@@ -141,6 +142,11 @@
                     </div>
                 }
                 <button type="button" class="btn btn-secondary" @onclick="AddFlightGroup">+</button>
+                @if(Template.AircraftPackages.Count > 0)
+                {
+                   <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;Strike Package configuration found that can only be edited in Full builder.
+                   <a @onclick="() => ClearStrikePackages()" style="color: #0366d6;">Remove strike packages</a></p>  
+                }
                 <hr />
             </div>
             <div id="objectives" class="generator-block">
@@ -171,6 +177,16 @@
                             @onclick="() => RemoveObjective(objective)"><span class="oi oi-x"></span></button>
                         </div>
                     </div>
+                        @if(objective.SubTasks.Count > 0)
+                        {
+                            <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;Custom Subtaks Present from Full Builder:
+                                @foreach (var subTask in objective.SubTasks)
+                                {
+                                    <span>@subTask.Task&nbsp;@subTask.Target&nbsp;@subTask.TargetBehavior&nbsp;@subTask.TargetCount;</span>
+                                }
+                            &nbsp;<a @onclick="() => ClearSubTasks(objective)" style="color: #0366d6;">Remove Sub Tasks</a>
+                            </p>
+                        }
                 }
                 <button type="button" class="btn btn-secondary" @onclick="AddObjective">+</button>
                 <hr />
@@ -183,6 +199,20 @@
                     GroupingField="@(item => item.Category)" ValueField="@(item =>item.ID)"
                     SelectedValues="Template.MissionFeatures" TItem="DatabaseEntryInfo" TItemOutput="string">
                 </CheckBoxList>
+                <p class="custom-warning"><span class="oi oi-info"></span>
+                    @if(Template.OptionsMission.Count > 0)
+                    {
+                        <span>&nbsp;Options:@string.Join(", ",Template.OptionsMission)</span><br/>
+                    }
+                    @if(Template.OptionsRealism.Count > 0)
+                    {
+                        <span>&nbsp;Realisam:@string.Join(", ",Template.OptionsRealism)</span><br/>
+                    }
+                    @if(Template.Mods.Count > 0)
+                    {
+                    <span>&nbsp;Mods:@string.Join(", ",Template.Mods)</span>
+                    }
+                </p>  
             </div>
         </EditForm>
         <div class=bottom-bar>
@@ -364,6 +394,11 @@
         }
     }
 
+    private void ClearStrikePackages()
+    {
+        Template.AircraftPackages = new List<MissionTemplatePackage>();
+    }
+
     private MissionTemplateObjective ObjectiveTab;
     private void SetObjectiveTab(MissionTemplateObjective var)
     {
@@ -395,6 +430,11 @@
     private void RemoveObjective(MissionTemplateObjective obj)
     {
         Template.Objectives.Remove(obj);
+    }
+
+    private void ClearSubTasks(MissionTemplateObjective obj)
+    {
+        obj.SubTasks = new List<MissionTemplateSubTask>();
     }
 
     private List<string> GetLiveries(string aircraftId) =>

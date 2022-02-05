@@ -393,7 +393,7 @@ namespace BriefingRoom4DCS.Generator
             targetBehaviorDB = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior);
             taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task);
             objectiveOptions = objectiveTemplate.Options.ToArray();
-            if (useObjectivePreset)
+            if (useObjectivePreset && objectiveTemplate.Preset != "Custom")
             {
                 DBEntryObjectivePreset presetDB = Database.Instance.GetEntry<DBEntryObjectivePreset>(objectiveTemplate.Preset);
                 if (presetDB != null)

@@ -666,6 +666,7 @@
         MissionTemplateObjective obj = new();
         ObjectiveTab = obj;
         obj.Alias = BriefingRoom.GetAlias(Template.Objectives.Count);
+        obj.Preset = "Custom";
         Template.Objectives.Add(obj);
     }
 
@@ -680,6 +681,7 @@
             SubTasks = obj.SubTasks
         };
         newObj.Alias = BriefingRoom.GetAlias(Template.Objectives.Count);
+        obj.Preset = "Custom";
         Template.Objectives.Add(newObj);
         ObjectiveTab = newObj;
     }
