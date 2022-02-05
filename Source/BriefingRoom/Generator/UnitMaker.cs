@@ -432,8 +432,8 @@ namespace BriefingRoom4DCS.Generator
             GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitY", unitCoordinates.Y);
             if (Toolbox.IsAircraft(unitDB.Category))
             {
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Callsign", callsign.Value.GetLua(unitLuaIndex + 1));
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", callsign.Value.GetUnitName(unitLuaIndex + 1));
+                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Callsign", callsign.Value.GetLua(unitLuaIndex));
+                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", callsign.Value.GetUnitName(unitLuaIndex));
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "OnBoardNumber", Toolbox.RandomInt(1, 1000).ToString("000"));
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PropsLua", unitDB.AircraftData.PropsLua);
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "RadioPresetsLua", string.Join("", unitDB.AircraftData.RadioPresets.Select((x, index) => $"[{index + 1}] = {x.ToLuaString()}")));
@@ -449,10 +449,10 @@ namespace BriefingRoom4DCS.Generator
             {
                 if (unitDB.Shape.Length - 1 > unitSetIndex)
                     GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Shape", unitDB.Shape[unitSetIndex]);
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", $"{groupName} {unitLuaIndex + 1}");
+                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", $"{groupName} {unitLuaIndex}");
             }
             else
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", $"{groupName} {unitLuaIndex + 1}");
+                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", $"{groupName} {unitLuaIndex}");
 
             var unitString = $"[{unitLuaIndex}] =\n";
             unitString += "{\n";
