@@ -637,7 +637,7 @@ function briefingRoom.handleGeneralKill(event)
     if event.initiator == nil then return end -- no initiator
     if event.initiator:getCategory() ~= Object.Category.UNIT and event.initiator:getCategory() ~= Object.Category.STATIC then return end -- initiator was not an unit or static
 
-    if event.initiator:getCoalition() ~= $LUAPLAYERCOALITION$ and event.initiator:getPlayerName() ~= nil then -- unit is an enemy, radio some variation of a "enemy destroyed" message
+    if event.initiator:getCoalition() ~= $LUAPLAYERCOALITION$ then -- unit is an enemy, radio some variation of a "enemy destroyed" message
       local soundName = "UnitDestroyed"
       local messages = { "Command: Weapon was effective.", "Command: Good hit! Good hit!", "Command: They're going down.", "Command: Splashed one!" }
       local messageIndex = math.random(1, 2)
