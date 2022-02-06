@@ -52,6 +52,12 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableCAP.launchBombingR
       local group = dcsExtensions.getGroupByID(briefingRoom.mission.missionFeatures.groupsID.friendlyTaskableCAP)
       if group ~= nil then
         group:activate()
+        local Start = {
+          id = 'Start',
+          params = {
+          }
+        }
+        group:getController():setCommand(Start)
         timer.scheduleFunction(briefingRoom.mission.missionFeatures.friendlyTaskableCAP.setTask, {}, timer.getTime() + 10) --just re-run after 10 s
         briefingRoom.radioManager.play("Command: Affirm, CAP support is on its way.", "RadioHQCAPSupport", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
       end
@@ -68,36 +74,63 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableCAP.setTask()
     if briefingRoom.mission.missionFeatures.friendlyTaskableCAP.markID ~= nil and m.idx == briefingRoom.mission.missionFeatures.friendlyTaskableCAP.markID then
       local group = dcsExtensions.getGroupByID(briefingRoom.mission.missionFeatures.groupsID.friendlyTaskableCAP)
       if group ~= nil then
-        local wp = {}
-        wp.speed = 200
-        wp.x = m.pos.x
-        wp.y = m.pos.z                
-        wp.type = 'Turning Point'
-        wp.ETA_locked = true
-        wp.ETA = 100
-        wp.alt = 7620
-        wp.alt_type = "BARO"
-        wp.speed_locked = true
-        wp.action = "Fly Over Point"
-        wp.airdromeId = nil
-        wp.helipadId = nil
-        wp.name = "CAP"
-        wp.task = { id = 'EngageTargets', params = { targetTypes = { [1] = "Air"} }} 
-        
-        local newRoute = {}
-        newRoute[1]=wp
-        
         local newTask = {
-            id = 'Mission',
-            airborne = true,
-            params = {
-                route = {
-                    points = newRoute,
+          id = 'Mission',
+          airborne = true,
+          params = {
+            route = {
+              points = {
+                [1] = {
+                  speed = 200,
+                  x = m.pos.x,
+                  y = m.pos.z,
+                  type = 'Turning Point',
+                  ETA_locked = false,
+                  ETA = 100,
+                  alt = 7620,
+                  alt_type = "BARO",
+                  speed_locked = false,
+                  action = "Fly Over Point",
+                  name = "CAP",
+                  task = {
+                    id = "ComboTask",
+                    params = {
+                      tasks = {
+                        [1] = {
+                          enabled = true,
+                          auto = false,
+                          id = "EngageTargets",
+                          number = 1,
+                          params = {
+                            targetTypes = {
+                              [1] = "Air",
+                            },
+                            value = "Air;",
+                            noTargetTypes = {
+                            },
+                            priority = 0,
+                          },
+                        },
+                        [2] = {
+                          enabled = true,
+                          auto = false,
+                          id = "Orbit",
+                          number = 2,
+                          params = {
+                            altitude = 7620,
+                            pattern = "Circle",
+                            speed = 100,
+                          }
+                        }
+                      }
+                    }
+                  }
                 },
+              }
             },
+          },
         }
         group:getController():setTask(newTask)
-        group:getController():pushTask({ id = 'Orbit', params = { point = dcsExtensions.toVec2(m.pos), pattern  = "Circle", speed = 200, altitude = 7620}})
       end
       return
     end

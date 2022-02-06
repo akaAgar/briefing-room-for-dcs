@@ -53,6 +53,12 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.launchBombing
       local group = dcsExtensions.getGroupByID(briefingRoom.mission.missionFeatures.groupsID.friendlyTaskableSEAD)
       if group ~= nil then
         group:activate()
+        local Start = {
+          id = 'Start',
+          params = {
+          }
+        }
+        group:getController():setCommand(Start)
         timer.scheduleFunction(briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.setTask, {}, timer.getTime() + 10) --just re-run after 10 s
         briefingRoom.radioManager.play("Command: Affirm, SEAD support is on its way.", "RadioHQSEADSupport", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
       end
@@ -69,36 +75,67 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.setTask()
     if briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.markID ~= nil and m.idx == briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.markID then
       local group = dcsExtensions.getGroupByID(briefingRoom.mission.missionFeatures.groupsID.friendlyTaskableSEAD)
       if group ~= nil then
-        local wp = {}
-        wp.speed = 200
-        wp.x = m.pos.x
-        wp.y = m.pos.z                
-        wp.type = 'Turning Point'
-        wp.ETA_locked = true
-        wp.ETA = 100
-        wp.alt = 7620
-        wp.alt_type = "BARO"
-        wp.speed_locked = true
-        wp.action = "Fly Over Point"
-        wp.airdromeId = nil
-        wp.helipadId = nil
-        wp.name = "SEAD"
-        wp.task = { id = 'EngageTargets', params = { targetTypes = { [1] = "Air Defence"} }} 
-        
-        local newRoute = {}
-        newRoute[1]=wp
-        
+        local currPos = mist.getLeadPos(group)
         local newTask = {
-            id = 'Mission',
-            airborne = true,
-            params = {
-                route = {
-                    points = newRoute,
-                },
+          id = 'Mission',
+          airborne = true,
+          params = {
+            route = {
+              points = {
+                [1] = {
+                  speed = 200,
+                  x = dcsExtensions.lerp(currPos.x, m.pos.x,0.9),
+                  y = dcsExtensions.lerp(currPos.z, m.pos.z,0.9),
+                  type = 'Turning Point',
+                  ETA_locked = false,
+                  ETA = 100,
+                  alt = 7620,
+                  alt_type = "BARO",
+                  speed_locked = false,
+                  action = "Fly Over Point",
+                  name = "SEAD",
+                  task = {
+                    id = "ComboTask",
+                    params = {
+                      tasks = {
+                        [1] = {
+                          enabled = true,
+                          auto = false,
+                          id = "EngageTargetsInZone",
+                          number = 1,
+                          params = {
+                            y = m.pos.z,
+                            x = m.pos.x,
+                            targetTypes = {
+                              [1] = "Air Defence",
+                            },
+                            value = "Air Defence;",
+                            noTargetTypes = {
+                            },
+                            priority = 0,
+                            zoneRadius = 5000,
+                          },
+                        },
+                        [2] = {
+                          enabled = true,
+                          auto = false,
+                          id = "Orbit",
+                          number = 2,
+                          params = {
+                            altitude = 7620,
+                            pattern = "Circle",
+                            speed = 100,
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
             },
-        }
-        group:getController():setTask(newTask)
-        group:getController():pushTask({ id = 'EngageTargetsInZone', params = { targetTypes = { [1] = "Air Defence"}, point = dcsExtensions.toVec2(m.pos), zoneRadius = 15000 }})
+          }
+          group:getController():setTask(newTask)
       end
       return
     end

@@ -3,7 +3,7 @@
   {
   }, -- end of ["tasks"]
   ["task"] = "CAP",
-  ["uncontrolled"] = false,
+  ["uncontrolled"] = true,
   ["route"] =
   {
     ["routeRelativeTOT"] = true,

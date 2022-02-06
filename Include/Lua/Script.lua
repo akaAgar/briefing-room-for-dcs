@@ -495,6 +495,10 @@ function dcsExtensions.vec2ToStringCoordinates(vec2)
 
   return cooString
 end
+
+function dcsExtensions.lerp(value1, value2, linearInterpolation)
+  return value1 * (1 - linearInterpolation) + value2 * linearInterpolation;
+end
 -- ===================================================================================
 -- 1.4 - MIST: https://github.com/mrSkortch/MissionScriptingTools
 -- ===================================================================================
