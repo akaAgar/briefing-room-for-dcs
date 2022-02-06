@@ -191,28 +191,61 @@
                 <button type="button" class="btn btn-secondary" @onclick="AddObjective">+</button>
                 <hr />
             </div>
-            <div id="mission-features" class="generator-block">
-                <h3>Mission features</h3>
-                <CheckBoxList
-                    Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"
-                    TextField="@(item =>item.Name)" DescriptionField="@(item => item.Description)"
-                    GroupingField="@(item => item.Category)" ValueField="@(item =>item.ID)"
-                    SelectedValues="Template.MissionFeatures" TItem="DatabaseEntryInfo" TItemOutput="string">
-                </CheckBoxList>
-                <p class="custom-warning"><span class="oi oi-info"></span>
-                    @if(Template.OptionsMission.Count > 0)
-                    {
-                        <span>&nbsp;Options:@string.Join(", ",Template.OptionsMission)</span><br/>
-                    }
-                    @if(Template.OptionsRealism.Count > 0)
-                    {
-                        <span>&nbsp;Realisam:@string.Join(", ",Template.OptionsRealism)</span><br/>
-                    }
-                    @if(Template.Mods.Count > 0)
-                    {
-                    <span>&nbsp;Mods:@string.Join(", ",Template.Mods)</span>
-                    }
-                </p>  
+            <div id="mission-features" class="generator-block row">
+                <div class="col-6">
+                    <h3>Mission features</h3>
+                    <CheckBoxList
+                        Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"
+                        TextField="@(item =>item.Name)" DescriptionField="@(item => item.Description)"
+                        GroupingField="@(item => item.Category)" ValueField="@(item =>item.ID)"
+                        SelectedValues="Template.MissionFeatures" TItem="DatabaseEntryInfo" TItemOutput="string">
+                    </CheckBoxList>
+                </div>
+                <div class="col-6">
+                    <h5><span class="oi oi-info"></span>&nbsp;Inheritied Settings</h5>
+                    <p class="custom-warning">
+                        You can change these by using the full mission builder saving a template then loading it here.<br/>
+                        <b>Weather</b>
+                        <div class="generator-group flex-justify-spaced flex-margin-fix">
+                           <div>
+                               Season: @Template.EnvironmentSeason<br/>
+                               Weather: @Template.EnvironmentWeatherPreset
+                           </div>
+                           <div>
+                                Time of day: @Template.EnvironmentTimeOfDay<br/>
+                                Wind: @Template.EnvironmentWind
+                           </div>
+                        </div> 
+                        <b>Situation</b>
+                        <div class="generator-group flex-justify-spaced flex-margin-fix">
+                           <div>
+                               <b>Enemy</b><br/>
+                               AA: @Template.SituationEnemyAirDefense<br/>
+                               CAP: @Template.SituationEnemyAirForce<br/>
+                               Skill: @Template.SituationEnemySkill
+                           </div>
+                           <div>
+                               <b>Friendly</b><br/>
+                                AA: @Template.SituationFriendlyAirDefense<br/>
+                                CAP: @Template.SituationFriendlyAirForce<br/>
+                                Skill: @Template.SituationFriendlySkill
+                           </div>
+                        </div>
+                        <br/>
+                        @if(Template.OptionsMission.Count > 0)
+                        {
+                            <span><b>Options:</b>&nbsp;@string.Join(", ",Template.OptionsMission)</span><br/>
+                        }
+                        @if(Template.OptionsRealism.Count > 0)
+                        {
+                            <span><b>Realisam</b>:&nbsp;@string.Join(", ",Template.OptionsRealism)</span><br/>
+                        }
+                        @if(Template.Mods.Count > 0)
+                        {
+                        <span><b>Mods:</b>&nbsp;@string.Join(", ",Template.Mods)</span>
+                        }
+                    </p> 
+                </div>
             </div>
         </EditForm>
         <div class=bottom-bar>
