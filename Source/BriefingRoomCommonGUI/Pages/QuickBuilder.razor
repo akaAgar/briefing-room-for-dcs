@@ -80,7 +80,7 @@
                         Grouping="@Template.ContextTheater" DataBaseType="DatabaseEntryType.Situation"
                         EmptOpt="Random" />
                 </div>
-                <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;Season:@Template.EnvironmentSeason&nbsp;,Time of day:@Template.EnvironmentTimeOfDay&nbsp;,Weather:@Template.EnvironmentWeatherPreset&nbsp;,Wind:@Template.EnvironmentWind&nbsp;</p>  
+                <InputDataBase Label="Home airbase" @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
                 <hr />
             </div>
             <div id="flight-groups" class="generator-block">
