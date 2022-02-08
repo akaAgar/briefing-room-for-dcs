@@ -31,7 +31,8 @@ namespace BriefingRoom4DCS.Generator
         internal static int GenerateWeather(DCSMission mission, MissionTemplateRecord template, DBEntryTheater theaterDB, Month month, DBEntryAirbase playerAirbase)
         {
             var baseAlt = template.OptionsMission.Contains("SeaLevelRefCloud") ? 0.0 : playerAirbase.Elevation;
-
+            if (template.OptionsMission.Contains("HighCloud"))
+                baseAlt += 2000;
             DBEntryWeatherPreset weatherDB;
             if (string.IsNullOrEmpty(template.EnvironmentWeatherPreset)) // Random weather
                 weatherDB = Toolbox.RandomFrom(Database.Instance.GetAllEntries<DBEntryWeatherPreset>());
