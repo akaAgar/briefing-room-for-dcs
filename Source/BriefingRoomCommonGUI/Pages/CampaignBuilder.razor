@@ -354,13 +354,13 @@
         return Task.CompletedTask;
     }
 
-    private void GenerateCampaign()
+    private async void GenerateCampaign()
     {
         try {
             logs.Clear();
             campaign = null;
             errorMessage = "";
-            campaign = briefingRoom.GenerateCampaign(Template);
+            campaign = await briefingRoom.GenerateCampaignAsync(Template);
             missionTab = campaign.Missions.First();
         } catch (Exception ex){
             Console.WriteLine(ex);

@@ -27,6 +27,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BriefingRoom4DCS
 {
@@ -148,24 +149,24 @@ namespace BriefingRoom4DCS
             return (from DatabaseEntryInfo entryInfo in GetDatabaseEntriesInfo(entryType, parameter) select entryInfo.ID).ToArray();
         }
 
-        public DCSMission GenerateMission(string templateFilePath, bool useObjectivePresets = false)
+        public async Task<DCSMission> GenerateMissionAsync(string templateFilePath, bool useObjectivePresets = false)
         {
-            return MissionGenerator.GenerateRetryable(new MissionTemplate(templateFilePath), useObjectivePresets);
+            return await MissionGenerator.GenerateRetryableAsync(new MissionTemplate(templateFilePath), useObjectivePresets);
         }
 
-        public DCSMission GenerateMission(MissionTemplate template, bool useObjectivePresets = false)
+        public async Task<DCSMission> GenerateMissionAsync(MissionTemplate template, bool useObjectivePresets = false)
         {
-            return MissionGenerator.GenerateRetryable(template, useObjectivePresets);
+            return await MissionGenerator.GenerateRetryableAsync(template, useObjectivePresets);
         }
 
-        public DCSCampaign GenerateCampaign(string templateFilePath, bool useObjectivePresets = false)
+        public async Task<DCSCampaign> GenerateCampaignAsync(string templateFilePath, bool useObjectivePresets = false)
         {
-            return CampaignGenerator.Generate(new CampaignTemplate(templateFilePath));
+            return await CampaignGenerator.GenerateAsync(new CampaignTemplate(templateFilePath));
         }
 
-        public DCSCampaign GenerateCampaign(CampaignTemplate template)
+        public async Task<DCSCampaign> GenerateCampaignAsync(CampaignTemplate template)
         {
-            return CampaignGenerator.Generate(template);
+            return await CampaignGenerator.GenerateAsync(template);
         }
 
         public static string GetBriefingRoomRootPath() { return BRPaths.ROOT; }

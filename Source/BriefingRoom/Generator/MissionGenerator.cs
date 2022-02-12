@@ -26,13 +26,14 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BriefingRoom4DCS.Generator
 {
     internal class MissionGenerator
     {
 
-        internal static DCSMission Generate(MissionTemplateRecord template, bool useObjectivePresets)
+        internal static async Task<DCSMission> GenerateAsync(MissionTemplateRecord template, bool useObjectivePresets)
         {
 
             // Check for missing entries in the database
@@ -208,19 +209,19 @@ namespace BriefingRoom4DCS.Generator
             // Generate image files
             BriefingRoom.PrintToLog("Generating images...");
             MissionGeneratorImages.GenerateTitle(mission, template);
-            MissionGeneratorImages.GenerateKneeboardImage(mission);
+            await MissionGeneratorImages.GenerateKneeboardImageAsync(mission);
 
             return mission;
         }
 
-        internal static DCSMission GenerateRetryable(MissionTemplate template, bool useObjectivePresets)
+        internal static async Task<DCSMission> GenerateRetryableAsync(MissionTemplate template, bool useObjectivePresets)
         {
             var templateRecord = new MissionTemplateRecord(template);
-            var mission = Policy
+            var mission = await Policy
                 .HandleResult<DCSMission>(x => x.IsExtremeDistance(template, out double distance))
                 .Or<BriefingRoomException>()
-                .Retry(3)
-                .Execute(() => Generate(templateRecord, useObjectivePresets));
+                .RetryAsync(3)
+                .ExecuteAsync(() => GenerateAsync(templateRecord, useObjectivePresets));
 
             if (mission.IsExtremeDistance(template, out double distance))
                 BriefingRoom.PrintToLog($"Distance to objectives exceeds 1.7x of requested distance. ({Math.Round(distance, 2)}NM)", LogMessageErrorLevel.Warning);

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using BriefingRoom4DCS;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
+using System.Threading.Tasks;
 
 namespace BriefingRoom4DCS.GUI.Web.API.Controllers
 {
@@ -18,10 +19,10 @@ namespace BriefingRoom4DCS.GUI.Web.API.Controllers
         }
 
         [HttpPost]
-        public FileContentResult Post(MissionTemplate template)
+        public async Task<FileContentResult> Post(MissionTemplate template)
         {
             var briefingRoom = new BriefingRoom();
-            var mission = briefingRoom.GenerateMission(template);
+            var mission = await briefingRoom.GenerateMissionAsync(template);
             var mizBytes = mission.SaveToMizBytes();
 
             if (mizBytes == null) return null; // Something went wrong during the .miz export

@@ -27,7 +27,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-
+using System.Threading.Tasks;
+using WkHtmlWrapper.Image.Converters;
+using WkHtmlWrapper.Image.Options;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -60,54 +62,63 @@ namespace BriefingRoom4DCS.Generator
             mission.AddMediaFile($"l10n/DEFAULT/title_{mission.UniqueID}.jpg", imageBytes);
         }
 
-        internal static void GenerateKneeboardImage(DCSMission mission)
+        internal static async Task GenerateKneeboardImageAsync(DCSMission mission)
         {
-            var text = mission.Briefing.GetBriefingKneeBoardText();
-            var blocks = text.Split(new string[] { "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            //var text = mission.Briefing.GetBriefingKneeBoardText();
+            // var blocks = text.Split(new string[] { "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             var pages = new List<string>();
-            var buildingPage = "";
-            foreach (var block in blocks)
-            {
-                if (buildingPage.Count(f => f == '\n') + block.Count(f => f == '\n') > 64)
-                {
-                    pages.Add(buildingPage);
-                    buildingPage = "";
-                }
-                buildingPage = $"{buildingPage}{block}\n\n";
-            }
-            if (!String.IsNullOrWhiteSpace(buildingPage))
-                pages.Add(buildingPage);
-
-
+            // var buildingPage = "";
+            // foreach (var block in blocks)
+            // {
+            //     if (buildingPage.Count(f => f == '\n') + block.Count(f => f == '\n') > 64)
+            //     {
+            //         pages.Add(buildingPage);
+            //         buildingPage = "";
+            //     }
+            //     buildingPage = $"{buildingPage}{block}\n\n";
+            // }
+            // if (!String.IsNullOrWhiteSpace(buildingPage))
+            //     pages.Add(buildingPage);
+            var tempRenderPath = $"{BRPaths.INCLUDE_JPG}temp.png";
+            var html = mission.Briefing.GetBriefingAsHTML();
+            await new HtmlToImageConverter().ConvertAsync(html, tempRenderPath, new GeneralImageOptions{
+                Width = 1200,
+                Transparent = true
+            });
+            var img = Image.FromFile(tempRenderPath);
+            var pageCount = Math.Ceiling((decimal)(img.Size.Height / 1725.0));
             var inc = 1;
-            foreach (var page in pages)
+            for (int i = 0; i < pageCount; i++)
             {
+                var page = new Bitmap(1200,1800);
+                var graphics = Graphics.FromImage(page);
+                graphics.DrawImage( img, new Rectangle(0,25,1200,1750), new Rectangle(0, i*1725,1200,1750), GraphicsUnit.Pixel);
+                graphics.Dispose();
+                var tempPagePath = $"{BRPaths.INCLUDE_JPG}temp{i}.png";
+                page.Save(tempPagePath);
+                page.Dispose();
                 byte[] imageBytes;
-                ImageMaker imgMaker = new();
 
+                ImageMaker imgMaker = new();
                 imgMaker.ImageSizeX = 1200;
                 imgMaker.ImageSizeY = 1800;
-                imgMaker.TextOverlay.Shadow = false;
-                imgMaker.TextOverlay.Color = Color.Black;
-                imgMaker.TextOverlay.Text = $"{page}\n {inc}/{pages.Count()}";
-                imgMaker.TextOverlay.FontSize = 14.0f;
-                imgMaker.TextOverlay.FontFamily = "Arial";
-                imgMaker.TextOverlay.Alignment = ContentAlignment.TopLeft;
-
+                
                 List<ImageMakerLayer> layers = new List<ImageMakerLayer>{
-                        new ImageMakerLayer("notebook.png")
+                        new ImageMakerLayer("notebook.png"),
+                        new ImageMakerLayer($"temp{i}.png")
                     };
 
                 var random = new Random();
-
                 if (random.Next(100) < 3)
                     layers.Add(easterEggLogos[random.Next(easterEggLogos.Count)]);
 
-
                 imageBytes = imgMaker.GetImageBytes(layers.ToArray());
                 mission.AddMediaFile($"KNEEBOARD/IMAGES/comms_{mission.UniqueID}_{inc}.jpg", imageBytes);
-                inc++;
+                inc++; 
+                File.Delete(tempPagePath);
             }
+            img.Dispose();
+            File.Delete(tempRenderPath);
         }
     }
 }

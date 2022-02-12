@@ -33,7 +33,7 @@
             }
             <hr>
         </div>
-        <EditForm Model="Template" OnSubmit="GenerateMission">
+        <EditForm Model="Template" OnSubmit="GenerateMissionAsync">
             <DataAnnotationsValidator />
             <ValidationSummary />
             <button class="btn btn-primary form-control" type="submit">Generate</button>
@@ -338,14 +338,14 @@
         return Task.CompletedTask;
     }
 
-    private void GenerateMission()
+    private async void GenerateMissionAsync()
     {
         try
         {
             logs.Clear();
             mission = null;
             errorMessage = "";
-            mission = briefingRoom.GenerateMission(Template, true);
+            mission = await briefingRoom.GenerateMissionAsync(Template, true);
         }
         catch (Exception ex)
         {

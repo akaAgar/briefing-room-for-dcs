@@ -23,6 +23,7 @@ using BriefingRoom4DCS.Mission;
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BriefingRoom4DCS.CommandLineTool
@@ -44,7 +45,7 @@ namespace BriefingRoom4DCS.CommandLineTool
 
             try
             {
-                new CommandLine().DoCommandLine(args);
+                new CommandLine().DoCommandLineAsync(args);
             }
             catch (Exception e)
             {
@@ -72,7 +73,7 @@ namespace BriefingRoom4DCS.CommandLineTool
             Console.WriteLine(message);
         }
 
-        public bool DoCommandLine(string[] args)
+        public async Task<bool> DoCommandLineAsync(string[] args)
         {
             string[] templateFiles = (from string arg in args where File.Exists(arg) select arg).ToArray();
             string[] invalidTemplateFiles = (from string arg in args where !File.Exists(arg) select arg).ToArray();
@@ -92,7 +93,7 @@ namespace BriefingRoom4DCS.CommandLineTool
             {
                 if (Path.GetExtension(t).ToLowerInvariant() == ".cbrt") // Template file is a campaign template
                 {
-                    DCSCampaign campaign = BriefingRoomGenerator.GenerateCampaign(t);
+                    DCSCampaign campaign = await BriefingRoomGenerator.GenerateCampaignAsync(t);
                     if (campaign == null)
                     {
                         Console.WriteLine($"Failed to generate a campaign from template {Path.GetFileName(t)}");
@@ -111,7 +112,7 @@ namespace BriefingRoom4DCS.CommandLineTool
                 }
                 else // Template file is a mission template
                 {
-                    DCSMission mission = BriefingRoomGenerator.GenerateMission(t);
+                    DCSMission mission = await BriefingRoomGenerator.GenerateMissionAsync(t);
                     if (mission == null)
                     {
                         Console.WriteLine($"Failed to generate a mission from template {Path.GetFileName(t)}");

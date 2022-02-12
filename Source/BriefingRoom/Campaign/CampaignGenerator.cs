@@ -28,6 +28,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BriefingRoom4DCS.Campaign
 {
@@ -36,7 +37,7 @@ namespace BriefingRoom4DCS.Campaign
         private static readonly string CAMPAIGN_LUA_TEMPLATE = $"{BRPaths.INCLUDE_LUA}Campaign\\Campaign.lua";
         private static readonly string CAMPAIGN_STAGE_LUA_TEMPLATE = $"{BRPaths.INCLUDE_LUA}Campaign\\CampaignStage.lua";
 
-        internal static DCSCampaign Generate(CampaignTemplate campaignTemplate)
+        internal static async Task<DCSCampaign> GenerateAsync(CampaignTemplate campaignTemplate)
         {
             DCSCampaign campaign = new();
 
@@ -54,7 +55,7 @@ namespace BriefingRoom4DCS.Campaign
 
                 MissionTemplateRecord template = CreateMissionTemplate(campaignTemplate, campaign.Name, i, (int)campaignTemplate.MissionsObjectiveCount);
 
-                DCSMission mission = MissionGenerator.Generate(template, true);
+                DCSMission mission = await MissionGenerator.GenerateAsync(template, true);
                 // TODO: mission.DateTime.Day = date.Day; mission.DateTime.Month = date.Month; mission.DateTime.Year = date.Year;
                 if (mission == null)
                 {
