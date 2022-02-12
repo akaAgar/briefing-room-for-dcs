@@ -10,6 +10,7 @@ If you only want to generate missions, please read the User's manual.
 1. [Briefing Text](#briefing-text)
 1. [Database directory](#database-directory)
     1. [Database/Common.ini](#databasecommonini)
+    1. [Database/Briefing.ini](#databasebriefingini)
     1. [Database/EnemyAirDefense.ini](#databaseenemyairdefenseini)
     1. [Database/Names.ini](#databasenamesini)
     1. [Database/Objectives.ini](#databaseobjectivesini)
@@ -59,6 +60,13 @@ The database directory contains a series of .ini files used to describe almost e
 
 * ***[Versions]* section**
   * **DCSVersion**: Targeted DCS World version. Just for informational purpose, BriefingRoom should work with another version provided Eagle Dynamics made no major changes to the mission format.
+
+### Database/Briefing.ini
+
+* ***[Briefing]* section**
+  * **MaxObjectiveDescriptionCount**: Max number of objectives it will describe.
+  * **OverflowObjectiveDescriptionText**: Tail off text when above MaxObjectiveDescriptionCount.
+  * **ObjectiveDescriptionConnectors**: Comma separated list of words or short phrases that attempt to link the objectives together (nothing is valid so you may see `,,`).
 
 
 ### Database/EnemyAirDefense.ini

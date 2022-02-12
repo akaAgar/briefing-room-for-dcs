@@ -38,6 +38,8 @@ namespace BriefingRoom4DCS.Data
 
         internal DBCommonWind[] Wind { get; private set; }
 
+        internal DBCommonBriefing Briefing { get; private set; }
+
         internal DatabaseCommon() { }
 
         internal void Load()
@@ -63,6 +65,9 @@ namespace BriefingRoom4DCS.Data
 
             BriefingRoom.PrintToLog("Loading common names settings...");
             Names = new DBCommonNames();
+
+            BriefingRoom.PrintToLog("Loading common briefing settings...");
+            Briefing = new DBCommonBriefing();
 
             BriefingRoom.PrintToLog("Loading common wind settings...");
             INIFile windIni = new($"{BRPaths.DATABASE}Wind.ini");

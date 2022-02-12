@@ -21,9 +21,9 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using FluentRandomPicker;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -42,25 +42,83 @@ namespace BriefingRoom4DCS.Generator
                     briefingDescription = "";
                 else
                 {
-                    List<string> descriptionsList = new List<string>();
-                    for (int i = 0; i < template.Objectives.Count; i++)
+                    var familyCount = 0;
+                    Dictionary<string, List<string>> descriptionsMap = new Dictionary<string, List<string>>();
+                    foreach (var obj in template.Objectives)
                     {
                         DBEntryBriefingDescription descriptionDB =
                             Database.Instance.GetEntry<DBEntryBriefingDescription>(
-                                Database.Instance.GetEntry<DBEntryObjectiveTask>(template.Objectives[i].Task).BriefingDescription);
-                        descriptionsList.Add(descriptionDB.DescriptionText[(int)objectiveTargetUnitFamilies[i]]);
+                                Database.Instance.GetEntry<DBEntryObjectiveTask>(obj.Task).BriefingDescription);
+                        AppendDescription(obj.Task, descriptionDB.DescriptionText[(int)objectiveTargetUnitFamilies[familyCount]], ref descriptionsMap);
+                        familyCount++;
+                        AddSubTasks(obj, objectiveTargetUnitFamilies, ref descriptionsMap, ref familyCount);
                     }
 
-                    briefingDescription = descriptionsList.GroupBy(i => i).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).First();
-                    briefingDescription = GeneratorTools.ParseRandomString(briefingDescription, mission);
-                    if (situationDB.BriefingDescriptions != null && situationDB.BriefingDescriptions.Count > 0)
-                        briefingDescription = GeneratorTools.ParseRandomString(string.Join(" ", Toolbox.RandomFrom(situationDB.BriefingDescriptions), briefingDescription), mission);
+                    briefingDescription = ConstructTaskDescriptions(descriptionsMap, mission);
                 }
             }
+
+            if (situationDB.BriefingDescriptions != null && situationDB.BriefingDescriptions.Count > 0)
+                briefingDescription = GeneratorTools.ParseRandomString(string.Join(" ", Toolbox.RandomFrom(situationDB.BriefingDescriptions), briefingDescription), mission);
 
             mission.Briefing.Description = briefingDescription;
             mission.SetValue("BRIEFINGDESCRIPTION", briefingDescription);
         }
+
+        private static string ConstructTaskDescriptions(Dictionary<string, List<string>> descriptionsMap, DCSMission mission)
+        {
+            var briefingDescriptionList = new List<string>();
+            var maxDescriptionCount = Database.Instance.Common.Briefing.MaxObjectiveDescriptionCount;
+            while (descriptionsMap.Keys.Count > 0 && briefingDescriptionList.Count < maxDescriptionCount)
+            {
+                var task = descriptionsMap.Keys.First();
+                if (descriptionsMap.Keys.Count > 1)
+                    task = Out.Of()
+                    .Values(descriptionsMap.Keys.ToList())
+                    .WithWeights(descriptionsMap.Values.Select(x => x.Count).ToList())
+                    .PickOne();
+
+                var item = descriptionsMap[task].GroupBy(i => i).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).First();
+                descriptionsMap[task].Remove(item);
+                if (descriptionsMap[task].Count == 0)
+                    descriptionsMap.Remove(task);
+                briefingDescriptionList.Add(item);
+            }
+
+            var description = GeneratorTools.ParseRandomString(JoinObjectiveDescriptions(briefingDescriptionList), mission);
+            if (descriptionsMap.Keys.Count > 0 && briefingDescriptionList.Count == maxDescriptionCount)
+                description = $"{description} {Database.Instance.Common.Briefing.OverflowObjectiveDescriptionText}";
+            return description;
+        }
+
+        private static string JoinObjectiveDescriptions(IEnumerable<string> descriptions) => descriptions.Aggregate((acc, x) =>
+                {
+                    if (string.IsNullOrEmpty(acc))
+                        return x;
+                    return $"{acc} {Toolbox.RandomFrom(Database.Instance.Common.Briefing.ObjectiveDescriptionConnectors)} {LowerFirstChar(GeneratorTools.ParseRandomString(x))}";
+                });
+
+        private static void AddSubTasks(MissionTemplateObjectiveRecord obj, List<UnitFamily> objectiveTargetUnitFamilies, ref Dictionary<string, List<string>> descriptionsMap, ref int familyCount)
+        {
+            foreach (var subTask in obj.SubTasks)
+            {
+                var descriptionDB =
+                    Database.Instance.GetEntry<DBEntryBriefingDescription>(
+                        Database.Instance.GetEntry<DBEntryObjectiveTask>(subTask.Task).BriefingDescription);
+                AppendDescription(obj.Task, descriptionDB.DescriptionText[(int)objectiveTargetUnitFamilies[familyCount]], ref descriptionsMap);
+                familyCount++;
+            }
+        }
+
+        private static void AppendDescription(string task, string description, ref Dictionary<string, List<string>> descriptionsMap)
+        {
+            if (descriptionsMap.ContainsKey(task))
+                descriptionsMap[task].Add(description);
+            else
+                descriptionsMap.Add(task, new List<string> { description });
+        }
+
+        private static string LowerFirstChar(string str) => char.ToLower(str[0]) + str.Substring(1);
 
     }
 }
