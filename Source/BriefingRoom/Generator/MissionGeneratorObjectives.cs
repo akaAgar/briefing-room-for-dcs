@@ -154,7 +154,7 @@ namespace BriefingRoom4DCS.Generator
                 AddEmbeddedAirDefenseUnits(template, targetDB, targetBehaviorDB, taskDB, objectiveOptions, objectiveCoordinates, groupFlags, extraSettings);
 
             var pluralIndex = targetGroupInfo.Value.UnitsID.Length == 1 ? 0 : 1;
-            var taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex]).Replace("\"", "''");
+            var taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex], mission).Replace("\"", "''");
             // Pick a name, then remove it from the list
             ObjectiveNames.Remove(objectiveName);
             CreateTaskString(mission, pluralIndex, ref taskString, objectiveName, objectiveTargetUnitFamily);
@@ -298,7 +298,7 @@ namespace BriefingRoom4DCS.Generator
                 AddEmbeddedAirDefenseUnits(template, targetDB, targetBehaviorDB, taskDB, objectiveOptions, objectiveCoordinates, groupFlags, extraSettings);
 
             var pluralIndex = targetGroupInfo.Value.UnitsID.Length == 1 ? 0 : 1;
-            var taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex]).Replace("\"", "''");
+            var taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex], mission).Replace("\"", "''");
             // Pick a name, then remove it from the list
             ObjectiveNames.Remove(objectiveName);
             CreateTaskString(mission, pluralIndex, ref taskString, objectiveName, objectiveTargetUnitFamily);

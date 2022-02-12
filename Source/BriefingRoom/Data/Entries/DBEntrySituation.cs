@@ -35,6 +35,8 @@ namespace BriefingRoom4DCS.Data
 
         internal string Theater { get; private set; }
 
+        internal List<string> BriefingDescriptions { get; private set; }
+
         protected override bool OnLoad(string iniFilePath)
         {
             var ini = new INIFile(iniFilePath);
@@ -53,6 +55,13 @@ namespace BriefingRoom4DCS.Data
                 NoSpawnCoordinates = new List<Coordinates>();
                 foreach (string key in ini.GetKeysInSection("NoSpawnCoordinates"))
                     NoSpawnCoordinates.Add(ini.GetValue<Coordinates>("NoSpawnCoordinates", key));
+            }
+
+            if (ini.GetSections().Contains("briefingdescription"))
+            {
+                BriefingDescriptions = new List<string>();
+                foreach (string key in ini.GetKeysInSection("BriefingDescription"))
+                    BriefingDescriptions.Add(ini.GetValue<string>("BriefingDescription", key));
             }
 
             if (!Database.Instance.EntryExists<DBEntryTheater>(Theater))
