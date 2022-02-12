@@ -18,15 +18,26 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+
+using System.Collections.Generic;
+using BriefingRoom4DCS.Generator;
+
 namespace BriefingRoom4DCS.Mission
 {
-    public enum DCSMissionBriefingItemType
+    public class DCSMissionFlightBriefing
     {
-        Airbase,
-        FlightGroup,
-        Remark,
-        Task,
-        Waypoint,
-        JTAC,
-    }
+        internal string Type { get; set; }
+        internal string Name {get; set;}
+        internal List<string> Waypoints {get; set;}
+
+        public string GetFlightBriefingKneeBoardHTML()
+        {   
+            string html = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardHeader.html") +
+                Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardFlight.html") +
+                Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}BriefingFooter.html");
+            GeneratorTools.ReplaceKey(ref html, "BriefingFlightName", Name);
+            GeneratorTools.ReplaceKey(ref html, "BriefingWaypoints", GeneratorTools.MakeHTMLTable(Waypoints.ToArray()));
+            return html;
+        }
+    } 
 }

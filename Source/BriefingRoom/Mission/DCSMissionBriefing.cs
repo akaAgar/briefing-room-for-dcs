@@ -32,6 +32,8 @@ namespace BriefingRoom4DCS.Mission
 
         private readonly List<string>[] Items;
 
+        internal List<DCSMissionFlightBriefing> FlightBriefings {get; set;} = new List<DCSMissionFlightBriefing>();
+
         internal DCSMissionBriefing(DCSMission mission)
         {
             Mission = mission;
@@ -66,24 +68,51 @@ namespace BriefingRoom4DCS.Mission
             GeneratorTools.ReplaceKey(ref html, "BriefingFlightGroups", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.FlightGroup)));
             GeneratorTools.ReplaceKey(ref html, "BriefingRemarks", GeneratorTools.MakeHTMLList(GetItems(DCSMissionBriefingItemType.Remark)));
             GeneratorTools.ReplaceKey(ref html, "BriefingTasks", GeneratorTools.MakeHTMLList(GetItems(DCSMissionBriefingItemType.Task)));
+            GeneratorTools.ReplaceKey(ref html, "BriefingJTAC", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.JTAC)));
             GeneratorTools.ReplaceKey(ref html, "BriefingWaypoints", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.Waypoint)));
 
             return html;
         }
 
-        public string GetBriefingKneeBoardText()
+        public string GetBriefingKneeBoardTasksAndRemarksHTML()
         {
-            string kneeboardText = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KNEEBOARD.html");
+            string html = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardHeader.html") +
+                Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardTasksRemarks.html") +
+                Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}BriefingFooter.html");
 
-            kneeboardText = Mission.ReplaceValues(kneeboardText);
+            html = Mission.ReplaceValues(html);
 
-            GeneratorTools.ReplaceKey(ref kneeboardText, "BriefingAirbases", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Airbase)).Replace("\t", "    "));
-            GeneratorTools.ReplaceKey(ref kneeboardText, "BriefingFlightGroups", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.FlightGroup)).Replace("\t", "    "));
-            GeneratorTools.ReplaceKey(ref kneeboardText, "BriefingRemarks", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Remark)).Replace("\t", "    "));
-            GeneratorTools.ReplaceKey(ref kneeboardText, "BriefingTasks", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Task)).Replace("\t", "    "));
-            GeneratorTools.ReplaceKey(ref kneeboardText, "BriefingWaypoints", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Waypoint)).Replace("\t", "    "));
+            GeneratorTools.ReplaceKey(ref html, "BriefingRemarks", GeneratorTools.MakeHTMLList(GetItems(DCSMissionBriefingItemType.Remark)));
+            GeneratorTools.ReplaceKey(ref html, "BriefingTasks", GeneratorTools.MakeHTMLList(GetItems(DCSMissionBriefingItemType.Task)));
 
-            return kneeboardText;
+            return html;
+        }
+
+        public string GetBriefingKneeBoardJTACAndAirbasesHTML()
+        {
+            string html = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardHeader.html") +
+                Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardJTACAirbases.html") +
+                Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}BriefingFooter.html");
+
+            html = Mission.ReplaceValues(html);
+
+            GeneratorTools.ReplaceKey(ref html, "BriefingAirbases", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.Airbase)));
+            GeneratorTools.ReplaceKey(ref html, "BriefingJTAC", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.JTAC)));
+
+            return html;
+        }
+
+        public string GetBriefingKneeBoardFlightsHTML()
+        {
+            string html = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardHeader.html") +
+                Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardFlights.html") +
+                Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}BriefingFooter.html");
+
+            html = Mission.ReplaceValues(html);
+
+            GeneratorTools.ReplaceKey(ref html, "BriefingFlightGroups", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.FlightGroup)));
+
+            return html;
         }
 
         public string GetBriefingAsRawText(string newLine = "\n")
@@ -96,6 +125,7 @@ namespace BriefingRoom4DCS.Mission
             GeneratorTools.ReplaceKey(ref text, "BriefingRemarks", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Remark)).Replace("\t", "    "));
             GeneratorTools.ReplaceKey(ref text, "BriefingTasks", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Task)).Replace("\t", "    "));
             GeneratorTools.ReplaceKey(ref text, "BriefingWaypoints", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Waypoint)).Replace("\t", "    "));
+            GeneratorTools.ReplaceKey(ref text, "BriefingJTAC", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.JTAC)).Replace("\t", "    "));
 
             return text.Replace("\r\n", "\n").Replace("\n", newLine).Replace("\"", "''");
         }

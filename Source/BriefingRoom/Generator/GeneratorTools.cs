@@ -106,7 +106,7 @@ namespace BriefingRoom4DCS.Generator
                 string[] rowCells = tableRow.Split('\t');
                 table += "<tr>";
                 foreach (string rowCell in rowCells)
-                    table += $"<td>{rowCell}</td>";
+                    table += $"<td>{rowCell.ReplaceAll("\n","<br/>")}</td>";
                 table += "</tr>\n";
 
             }

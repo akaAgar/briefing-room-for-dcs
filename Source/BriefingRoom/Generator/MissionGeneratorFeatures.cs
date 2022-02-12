@@ -48,7 +48,7 @@ namespace BriefingRoom4DCS.Generator
             if (!coordinates2.HasValue) coordinates2 = coordinates; // No destination point? Use initial point
             extraSettings.AddIfKeyUnused("GroupX2", coordinates2.Value.X);
             extraSettings.AddIfKeyUnused("GroupY2", coordinates2.Value.Y);
-            GetExtraSettingsFromFeature(featureDB, ref extraSettings); // Add specific settings for this feature (TACAN frequencies, etc)
+            var TACANStr = GetExtraSettingsFromFeature(featureDB, ref extraSettings); // Add specific settings for this feature (TACAN frequencies, etc)
 
             // Feature unit group
             UnitMakerGroupInfo? groupInfo = null;
@@ -90,7 +90,7 @@ namespace BriefingRoom4DCS.Generator
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
                             $"{groupInfo.Value.Name}\t" +
                             $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName}\t" +
-                            $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
+                            $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}{TACANStr}\t" +
                             $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}"); // TODO: human-readable payload name
 
                 if (featureDB.ExtraGroups.Max > 1)
@@ -150,16 +150,20 @@ namespace BriefingRoom4DCS.Generator
         }
 
 
-        private void GetExtraSettingsFromFeature(T featureDB, ref Dictionary<string, object> extraSettings)
-        {
+        private string GetExtraSettingsFromFeature(T featureDB, ref Dictionary<string, object> extraSettings)
+        {   
             // TODO: Improve
             if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.TACAN) && (featureDB.UnitGroupFamilies.Length > 0))
             {
+                var callsign = $"{GeneratorTools.GetTACANCallsign(featureDB.UnitGroupFamilies[0])}{TACANIndex}";
+                var channel = ((GetType() == typeof(MissionGeneratorFeaturesObjectives)) ? 30 : 20) + TACANIndex;
                 extraSettings.AddIfKeyUnused("TACANFrequency", 1108000000);
-                extraSettings.AddIfKeyUnused("TACANCallsign", $"{GeneratorTools.GetTACANCallsign(featureDB.UnitGroupFamilies[0])}{TACANIndex}");
-                extraSettings.AddIfKeyUnused("TACANChannel", ((GetType() == typeof(MissionGeneratorFeaturesObjectives)) ? 30 : 20) + TACANIndex);
+                extraSettings.AddIfKeyUnused("TACANCallsign", callsign);
+                extraSettings.AddIfKeyUnused("TACANChannel", channel);
                 if (TACANIndex < 9) TACANIndex++;
+                return $",\n{channel}X (callsign {callsign})";
             }
+            return "";
         }
 
         private bool FeatureHasUnitGroup(T featureDB)

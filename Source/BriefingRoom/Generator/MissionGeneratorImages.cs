@@ -62,32 +62,32 @@ namespace BriefingRoom4DCS.Generator
             mission.AddMediaFile($"l10n/DEFAULT/title_{mission.UniqueID}.jpg", imageBytes);
         }
 
-        internal static async Task GenerateKneeboardImageAsync(DCSMission mission)
+        internal static async Task GenerateKneeboardImagesAsync(DCSMission mission)
         {
-            //var text = mission.Briefing.GetBriefingKneeBoardText();
-            // var blocks = text.Split(new string[] { "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-            var pages = new List<string>();
-            // var buildingPage = "";
-            // foreach (var block in blocks)
-            // {
-            //     if (buildingPage.Count(f => f == '\n') + block.Count(f => f == '\n') > 64)
-            //     {
-            //         pages.Add(buildingPage);
-            //         buildingPage = "";
-            //     }
-            //     buildingPage = $"{buildingPage}{block}\n\n";
-            // }
-            // if (!String.IsNullOrWhiteSpace(buildingPage))
-            //     pages.Add(buildingPage);
+            var html = mission.Briefing.GetBriefingKneeBoardTasksAndRemarksHTML();
+            var inc = await GenerateKneeboardImageAsync(html, mission);
+            html = mission.Briefing.GetBriefingKneeBoardJTACAndAirbasesHTML();
+            inc = await GenerateKneeboardImageAsync(html, mission, inc);
+            html = mission.Briefing.GetBriefingKneeBoardFlightsHTML();
+            inc = await GenerateKneeboardImageAsync(html, mission, inc);
+
+            foreach (var flight in mission.Briefing.FlightBriefings)
+            {
+                html = flight.GetFlightBriefingKneeBoardHTML();
+                inc = await GenerateKneeboardImageAsync(html, mission, inc, flight.Type);
+            }
+        }
+
+        private static async Task<int> GenerateKneeboardImageAsync(string html, DCSMission mission, int inc = 1, string aircraftID = "")
+        {
+           
             var tempRenderPath = $"{BRPaths.INCLUDE_JPG}temp.png";
-            var html = mission.Briefing.GetBriefingAsHTML();
             await new HtmlToImageConverter().ConvertAsync(html, tempRenderPath, new GeneralImageOptions{
                 Width = 1200,
                 Transparent = true
             });
             var img = Image.FromFile(tempRenderPath);
             var pageCount = Math.Ceiling((decimal)(img.Size.Height / 1725.0));
-            var inc = 1;
             for (int i = 0; i < pageCount; i++)
             {
                 var page = new Bitmap(1200,1800);
@@ -113,12 +113,14 @@ namespace BriefingRoom4DCS.Generator
                     layers.Add(easterEggLogos[random.Next(easterEggLogos.Count)]);
 
                 imageBytes = imgMaker.GetImageBytes(layers.ToArray());
-                mission.AddMediaFile($"KNEEBOARD/IMAGES/comms_{mission.UniqueID}_{inc}.jpg", imageBytes);
+                var midPath = !string.IsNullOrEmpty(aircraftID)? $"{aircraftID}/" : "";
+                mission.AddMediaFile($"KNEEBOARD/{midPath}IMAGES/comms_{mission.UniqueID}_{inc}.jpg", imageBytes);
                 inc++; 
                 File.Delete(tempPagePath);
             }
             img.Dispose();
             File.Delete(tempRenderPath);
+            return inc;
         }
     }
 }

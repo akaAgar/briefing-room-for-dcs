@@ -73,9 +73,12 @@ namespace BriefingRoom4DCS.Generator
             extraSettings.AddIfKeyUnused("ObjectiveGroupID", objectiveGroupID);
 
             if (featureID == "TargetDesignationLaser")
-                extraSettings.AddIfKeyUnused("LASERCODE",
-                    _template.OptionsMission.Contains("SingleLaserCode") ? 1688 : getNextLaserCode()
-                );
+            {
+                var laserCode =  _template.OptionsMission.Contains("SingleLaserCode") ? 1688 : getNextLaserCode();
+                extraSettings.AddIfKeyUnused("LASERCODE", laserCode);
+                mission.Briefing.AddItem(DCSMissionBriefingItemType.JTAC, $"{objectiveName}\t{laserCode}");
+                
+            }
 
             UnitMakerGroupInfo? groupInfo = AddMissionFeature(
                 featureDB, mission,

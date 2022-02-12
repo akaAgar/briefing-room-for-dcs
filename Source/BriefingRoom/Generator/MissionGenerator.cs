@@ -209,7 +209,7 @@ namespace BriefingRoom4DCS.Generator
             // Generate image files
             BriefingRoom.PrintToLog("Generating images...");
             MissionGeneratorImages.GenerateTitle(mission, template);
-            await MissionGeneratorImages.GenerateKneeboardImageAsync(mission);
+            await MissionGeneratorImages.GenerateKneeboardImagesAsync(mission);
 
             return mission;
         }

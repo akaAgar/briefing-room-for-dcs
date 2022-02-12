@@ -31,7 +31,6 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGeneratorPlayerFlightGroups
     {
 
-
         internal static void GeneratePlayerFlightGroup(
             UnitMaker unitMaker,
             DCSMission mission,
@@ -206,6 +205,8 @@ namespace BriefingRoom4DCS.Generator
             allWaypoints.Insert(0, new Waypoint(Database.Instance.Common.Names.WPInitialName, initialCoordinates));
             allWaypoints.Add(new Waypoint(Database.Instance.Common.Names.WPFinalName, initialCoordinates));
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Waypoint, $"\t{groupInfo.Value.Name}\t");
+            
+            List<string> waypointTextRows = new List<string>();
             foreach (Waypoint waypoint in allWaypoints)
             {
                 double distanceFromLast = waypoint.Coordinates.GetDistanceFrom(lastWP);
@@ -218,7 +219,13 @@ namespace BriefingRoom4DCS.Generator
                     (useImperialSystem ? $"{totalDistance * Toolbox.METERS_TO_NM:F0} nm" : $"{totalDistance / 1000.0:F0} Km");
 
                 mission.Briefing.AddItem(DCSMissionBriefingItemType.Waypoint, waypointText);
+                waypointTextRows.Add(waypointText);
             }
+            mission.Briefing.FlightBriefings.Add(new DCSMissionFlightBriefing {
+                Name = groupInfo.Value.Name,
+                Type = groupInfo.Value.UnitDB.DCSIDs.First(),
+                Waypoints = waypointTextRows
+             });
         }
     }
 }
