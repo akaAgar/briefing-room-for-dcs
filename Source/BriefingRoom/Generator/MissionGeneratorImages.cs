@@ -68,7 +68,7 @@ namespace BriefingRoom4DCS.Generator
             var buildingPage = "";
             foreach (var block in blocks)
             {
-                if (buildingPage.Count(f => f == '\n') + block.Count(f => f == '\n') > 32)
+                if (buildingPage.Count(f => f == '\n') + block.Count(f => f == '\n') > 64)
                 {
                     pages.Add(buildingPage);
                     buildingPage = "";
@@ -85,8 +85,8 @@ namespace BriefingRoom4DCS.Generator
                 byte[] imageBytes;
                 ImageMaker imgMaker = new();
 
-                imgMaker.ImageSizeX = 800;
-                imgMaker.ImageSizeY = 1200;
+                imgMaker.ImageSizeX = 1200;
+                imgMaker.ImageSizeY = 1800;
                 imgMaker.TextOverlay.Shadow = false;
                 imgMaker.TextOverlay.Color = Color.Black;
                 imgMaker.TextOverlay.Text = $"{page}\n {inc}/{pages.Count()}";
