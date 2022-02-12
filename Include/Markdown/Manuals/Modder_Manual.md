@@ -1,5 +1,5 @@
 # BriefingRoom for DCS World - User's manual
-__Last Edited: 27/10/2021__
+__Last Edited: 12/02/2022__
 
 This manual contains everything you need to know in order to modify BriefingRoom to your needs [for Aircraft Payloads and Liveries use Custom Configs](Custom_Configs.md).
 If you only want to generate missions, please read the User's manual.
@@ -7,6 +7,7 @@ If you only want to generate missions, please read the User's manual.
 **This manual is not complete detail as code is often changing. This should give you an idea about what is where. Some folders will have more detail than others**
 
 ## Table of contents
+1. [Briefing Text](#briefing-text)
 1. [Database directory](#database-directory)
     1. [Database/Common.ini](#databasecommonini)
     1. [Database/EnemyAirDefense.ini](#databaseenemyairdefenseini)
@@ -31,6 +32,21 @@ If you only want to generate missions, please read the User's manual.
     1. [Include/Lua directory](#includelua-directory)
     1. [Include/Ogg directory](#includeogg-directory)
     1. [Include/Markdown/Manuals directory](#includemarkdownmanuals-directory)
+
+## Briefing Text
+
+Throughout the Database you will come across parts of briefings that are used to generate the briefing text within BR. If your interested in writing your own or improving what is there and contributing there is a few things you should know.
+
+1. Due to INI limitations you have to have everything on one line.
+1. Some Briefings allow multipule descriptions
+    1. `BriefingDescriptions` are orientated by task and unit family of the objective.
+    1. `TheatreSituation` allow multiple descriptions to be randomly selected (easier to edit)
+1. Variety is created by setting randomly selected options with formatting like so `There is a {large|guerrilla|significant gathering of much|} force.` you can use as many options as you like but be careful about spaces. This can render to:
+    1. There is a large force.
+    1. There is a guerrilla force.
+    1. There is a significant gathering of much force.
+    1. There is a force.
+1. Values from within the generator can also be replaced in eg. `$BRIEFINGENEMYCOALITION$` will replace for the name of the enemy coalition. There are many of these values and I suggest digging around the `include/html` files to see what is possible.
 
 ## Database directory
 

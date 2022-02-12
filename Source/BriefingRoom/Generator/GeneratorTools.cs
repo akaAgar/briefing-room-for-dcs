@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCS.Data;
+using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections;
@@ -255,7 +256,7 @@ namespace BriefingRoom4DCS.Generator
             if (!Database.Instance.EntryExists<T>(id)) throw new BriefingRoomException($"Database entry {typeof(T).Name} with ID \"{id}\" not found.");
         }
 
-        internal static string ParseRandomString(string randomString)
+        internal static string ParseRandomString(string randomString, DCSMission mission = null)
         {
             while (randomString.Contains("{") && randomString.Contains("{"))
             {
@@ -272,7 +273,10 @@ namespace BriefingRoom4DCS.Generator
                 randomString = randomString.Replace(segment, selItem);
             }
 
-            return randomString.Replace("{", "").Replace("}", "").Trim();
+            var responseString =  randomString.Replace("{", "").Replace("}", "").Trim();
+            if(mission != null)
+                return mission.ReplaceValues(responseString);
+            return responseString;
         }
 
         private static string SetSkyNetPrefix(string groupName, UnitFamily unitFamily, Side side)
