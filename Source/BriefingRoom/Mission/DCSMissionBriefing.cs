@@ -88,20 +88,6 @@ namespace BriefingRoom4DCS.Mission
             return html;
         }
 
-        public string GetBriefingKneeBoardJTACAndAirbasesHTML()
-        {
-            string html = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardHeader.html") +
-                Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardJTACAirbases.html") +
-                Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}BriefingFooter.html");
-
-            html = Mission.ReplaceValues(html);
-
-            GeneratorTools.ReplaceKey(ref html, "BriefingAirbases", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.Airbase)));
-            GeneratorTools.ReplaceKey(ref html, "BriefingJTAC", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.JTAC)));
-
-            return html;
-        }
-
         public string GetBriefingKneeBoardFlightsHTML()
         {
             string html = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardHeader.html") +

@@ -30,11 +30,13 @@ namespace BriefingRoom4DCS.Mission
         internal string Name {get; set;}
         internal List<string> Waypoints {get; set;}
 
-        public string GetFlightBriefingKneeBoardHTML()
+        public string GetFlightBriefingKneeBoardHTML(DCSMission mission)
         {   
             string html = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardHeader.html") +
                 Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardFlight.html") +
                 Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}BriefingFooter.html");
+            GeneratorTools.ReplaceKey(ref html, "BriefingAirbases", GeneratorTools.MakeHTMLTable(mission.Briefing.GetItems(DCSMissionBriefingItemType.Airbase)));
+            GeneratorTools.ReplaceKey(ref html, "BriefingJTAC", GeneratorTools.MakeHTMLTable(mission.Briefing.GetItems(DCSMissionBriefingItemType.JTAC)));
             GeneratorTools.ReplaceKey(ref html, "BriefingFlightName", Name);
             GeneratorTools.ReplaceKey(ref html, "BriefingWaypoints", GeneratorTools.MakeHTMLTable(Waypoints.ToArray()));
             return html;

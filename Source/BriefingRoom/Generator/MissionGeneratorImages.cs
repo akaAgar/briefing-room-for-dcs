@@ -66,14 +66,12 @@ namespace BriefingRoom4DCS.Generator
         {
             var html = mission.Briefing.GetBriefingKneeBoardTasksAndRemarksHTML();
             var inc = await GenerateKneeboardImageAsync(html, mission);
-            html = mission.Briefing.GetBriefingKneeBoardJTACAndAirbasesHTML();
-            inc = await GenerateKneeboardImageAsync(html, mission, inc);
             html = mission.Briefing.GetBriefingKneeBoardFlightsHTML();
             inc = await GenerateKneeboardImageAsync(html, mission, inc);
 
             foreach (var flight in mission.Briefing.FlightBriefings)
             {
-                html = flight.GetFlightBriefingKneeBoardHTML();
+                html = flight.GetFlightBriefingKneeBoardHTML(mission);
                 inc = await GenerateKneeboardImageAsync(html, mission, inc, flight.Type);
             }
         }
