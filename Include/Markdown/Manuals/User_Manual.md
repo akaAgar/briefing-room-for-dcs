@@ -1,5 +1,5 @@
 # BriefingRoom for DCS World - User's manual
-__Last Edited: 15/12/2021__
+__Last Edited: 22/02/2022__
 
 This manual contains everything you need to know if you just plan to use BriefingRoom to generate missions. If you plan on modding BriefingRoom, please read the Modder's manual.
 
@@ -129,11 +129,11 @@ Only usable if you have more than one Flight group. Set of tabs to group flights
 
 Two tabs containing the same options for Enemies and Friendlies
 
-**Training**: How well trained are the troops? (None & Very low are the same)
+**Combat proficiency**: How well trained are the troops? (None & Very low are the same)
 
-**Air Defense**: How many is AA systems are in the area?
+**Anti-aircraft strength**: How strong is the anti-aircraft defenses? (Higher values have more and longer range anti air systems,  config: Database\AirDefense.ini)
 
-**Combat Air Patrols**: How many dedicated air superiority aircraft will be sent
+**Combat Air Patrols**: How many dedicated air superiority aircraft will be sent? (config: Database\CAP.ini)
 
 #### Options
 `TLDR: What else?`
