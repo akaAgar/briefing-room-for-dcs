@@ -84,7 +84,27 @@ namespace BriefingRoom4DCS.Generator
                 unitMakerGroupFlags, extraSettings);
 
         internal UnitMakerGroupInfo? AddUnitGroup(
+            UnitFamily family, int unitCount, int minUnitCount, int maxUnitCount, Side side,
+            string groupLua, string unitLua,
+            Coordinates coordinates,
+            UnitMakerGroupFlags unitMakerGroupFlags = 0,
+            params KeyValuePair<string, object>[] extraSettings) => AddUnitGroup(
+                new List<UnitFamily> { family }, unitCount, minUnitCount, maxUnitCount, side,
+                groupLua, unitLua, coordinates,
+                unitMakerGroupFlags, extraSettings);
+
+        internal UnitMakerGroupInfo? AddUnitGroup(
             List<UnitFamily> families, int unitCount, Side side,
+            string groupLua, string unitLua,
+            Coordinates coordinates,
+            UnitMakerGroupFlags unitMakerGroupFlags = 0,
+            params KeyValuePair<string, object>[] extraSettings) => AddUnitGroup(
+                families, unitCount, -1, -1, side,
+                groupLua, unitLua, coordinates,
+                unitMakerGroupFlags, extraSettings);
+
+        internal UnitMakerGroupInfo? AddUnitGroup(
+            List<UnitFamily> families, int unitCount, int minUnitCount, int maxUnitCount, Side side,
             string groupLua, string unitLua,
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags = 0,
@@ -94,7 +114,7 @@ namespace BriefingRoom4DCS.Generator
             if (families.Count <= 0) throw new BriefingRoomException("No Unit Families Provided");
             DBEntryCoalition unitsCoalitionDB = CoalitionsDB[(int)((side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy())];
 
-            var (country, units) = unitsCoalitionDB.GetRandomUnits(families, Template.ContextDecade, unitCount, Template.Mods);
+            var (country, units) = unitsCoalitionDB.GetRandomUnits(families, Template.ContextDecade, unitCount, minUnitCount, maxUnitCount, Template.Mods);
             if (units.Count == 0) throw new BriefingRoomException($"Found no units for {string.Join(", ", families)} {country}");
             if (country != Country.ALL)
                 extraSettings = extraSettings.Append("Country".ToKeyValuePair(country)).ToArray();
