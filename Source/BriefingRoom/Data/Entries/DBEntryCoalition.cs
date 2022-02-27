@@ -63,7 +63,10 @@ namespace BriefingRoom4DCS.Data
             return true;
         }
 
-        internal Tuple<Country, List<string>> GetRandomUnits(List<UnitFamily> families, Decade decade, int count, List<string> unitMods, Country? requiredCountry = null)
+        internal Tuple<Country, List<string>> GetRandomUnits(List<UnitFamily> families, Decade decade, int count, List<string> unitMods, Country? requiredCountry = null) => 
+            GetRandomUnits(families, decade, count, -1, -1, unitMods, requiredCountry);
+
+        internal Tuple<Country, List<string>> GetRandomUnits(List<UnitFamily> families, Decade decade, int count, int minUnitCount, int maxUnitCount, List<string> unitMods, Country? requiredCountry = null)
         {
             // Count is zero, return an empty array.
             if (count < 1) throw new BriefingRoomException("Asking for a zero unit list");
@@ -71,6 +74,9 @@ namespace BriefingRoom4DCS.Data
 
             UnitCategory category = families.First().GetUnitCategory();
             bool allowDifferentUnitTypes = false;
+
+            // Select a list of units by country that fits the given parameters
+            var validUnits = SelectValidUnits(families, decade, unitMods); //NOTE: I moved this up here so I can do more work with the switch statement
 
             switch (category)
             {
@@ -81,7 +87,10 @@ namespace BriefingRoom4DCS.Data
                     break;
                 // Units are ships or static buildings, only one unit per group (that's the law in DCS World, buddy)
                 case UnitCategory.Ship:
+                    count = 1;
+                    break;
                 case UnitCategory.Static:
+                    validUnits = minUnitCount != -1 && maxUnitCount != -1 ? LimitValidUnitsByRequestedUnitCount(minUnitCount, maxUnitCount, validUnits): validUnits;
                     count = 1;
                     break;
                 // Units are ground vehicles, allow multiple unit types in the group
@@ -90,7 +99,6 @@ namespace BriefingRoom4DCS.Data
                     break;
             }
 
-            var validUnits = SelectValidUnits(families, decade, unitMods);
 
             var selectableUnits = new List<string>();
             var country = Toolbox.RandomFrom(validUnits.Keys.ToList());
@@ -101,8 +109,6 @@ namespace BriefingRoom4DCS.Data
                     BriefingRoom.PrintToLog($"Could not find suitable units for {requiredCountry.Value} using units from other coalition members.", LogMessageErrorLevel.Info);
             
             selectableUnits = validUnits[country];
-
-
 
 
             // Different unit types allowed in the group, pick a random type for each unit.
@@ -120,20 +126,60 @@ namespace BriefingRoom4DCS.Data
             return new (country, Enumerable.Repeat(unit, count).ToList());
         }
 
+        private Dictionary<Country, List<string>> LimitValidUnitsByRequestedUnitCount(
+            int minUnitCount, int maxUnitCount,
+            Dictionary<Country, List<string>> validUnits)
+        {
+            var validUnits_GroupSizeBetweenMin_and_Max = new Dictionary<Country, List<string>>();
+            var validUnits_DCSIDsLengths = new Dictionary<Country, List<(string ,int)>>();
+
+            foreach (Country country in validUnits.Keys)
+            {
+                validUnits_DCSIDsLengths[country] = (
+                    from DBEntryUnit unit in Database.GetEntries<DBEntryUnit>(validUnits[country].ToArray())
+                    select (unit.ID, unit.DCSIDs.Length)
+                    ).ToList();
+                validUnits_DCSIDsLengths[country].Sort();
+
+                // check if the list of units can satisfy the min/max requirement
+                do
+                    validUnits_GroupSizeBetweenMin_and_Max[country] = LimitValidUnitsByMinMax(validUnits_DCSIDsLengths[country], minUnitCount -= 1, maxUnitCount);
+                while (!(validUnits_GroupSizeBetweenMin_and_Max[country].Count > 0));
+                    
+            }
+
+
+            if (validUnits_GroupSizeBetweenMin_and_Max.Count > 0)
+                return validUnits_GroupSizeBetweenMin_and_Max;
+
+            BriefingRoom.PrintToLog($"No Units found that exceed requested TargetCount", LogMessageErrorLevel.Error);
+            throw new Exception("Requested Target Count greater than Maximum Configured Target Count"); //TODO: Unhandled
+        }
+
+        private List<string> LimitValidUnitsByMinMax(List<(string, int)> validUnitsIDs_and_Lengths, int minUnitCount, int maxUnitCount)
+        {
+            return (
+                from (string, int) unit in validUnitsIDs_and_Lengths
+                where unit.Item2 >= minUnitCount && unit.Item2 <= maxUnitCount
+                select unit.Item1
+                ).ToList();
+        }
+
         private Dictionary<Country, List<string>> SelectValidUnits(List<UnitFamily> families, Decade decade, List<string> unitMods)
         {
             var validUnits = new Dictionary<Country, List<string>>();
 
             foreach (Country country in Countries)
                 validUnits[country] = (
-                    from DBEntryUnit unit in Database.GetAllEntries<DBEntryUnit>()
-                    where unit.Families.Intersect(families).ToList().Count > 0 && unit.Operators.ContainsKey(country) &&
-                    (string.IsNullOrEmpty(unit.RequiredMod) || unitMods.Contains(unit.RequiredMod, StringComparer.InvariantCultureIgnoreCase)) &&
-                    (unit.Operators[country][0] <= decade) && (unit.Operators[country][1] >= decade)
-                    select unit.ID).Distinct().ToList();
+                        from DBEntryUnit unit in Database.GetAllEntries<DBEntryUnit>()
+                        where unit.Families.Intersect(families).ToList().Count > 0 && unit.Operators.ContainsKey(country) &&
+                            (string.IsNullOrEmpty(unit.RequiredMod) || unitMods.Contains(unit.RequiredMod, StringComparer.InvariantCultureIgnoreCase)) &&
+                            (unit.Operators[country][0] <= decade) && (unit.Operators[country][1] >= decade)
+                        select unit.ID
+                    ).Distinct().ToList();
 
+            // Ensures that only countries with units listed get returned
             validUnits = validUnits.Where(x => x.Value.Count > 0).ToDictionary(x => x.Key, x => x.Value);
-
             // At least one unit found, return it
             if (validUnits.Count > 0)
             return validUnits;
