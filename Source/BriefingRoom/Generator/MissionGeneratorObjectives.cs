@@ -93,11 +93,10 @@ namespace BriefingRoom4DCS.Generator
             Coordinates objectiveCoordinates = GetSpawnCoordinates(template, lastCoordinates, playerAirbase, targetDB);
 
             var unitCount = targetDB.UnitCount[(int)objectiveTemplate.TargetCount].GetValue();
-            var maxUnitCount = targetDB.UnitCount[(int)objectiveTemplate.TargetCount].Max;
-            var minUnitCount = targetDB.UnitCount[(int)objectiveTemplate.TargetCount].Min;
+            var unitCountMinMax = targetDB.UnitCount[(int)objectiveTemplate.TargetCount];
             var objectiveTargetUnitFamily = Toolbox.RandomFrom(targetDB.UnitFamilies);
             
-            // Spawn target on airbase
+            
             if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location) && targetDB.UnitCategory.IsAircraft())
                 objectiveCoordinates = PlaceInAirbase(template, situationDB, playerAirbase, extraSettings, targetDB, targetBehaviorDB, ref luaUnit, objectiveCoordinates, unitCount, objectiveTargetUnitFamily);
 
@@ -106,8 +105,6 @@ namespace BriefingRoom4DCS.Generator
             // Set whether or not the Objective is Hidden.. options: Never OR Always
             if (objectiveOptions.Contains(ObjectiveOption.ShowTarget)) groupFlags = UnitMakerGroupFlags.NeverHidden;
             else if (objectiveOptions.Contains(ObjectiveOption.HideTarget)) groupFlags = UnitMakerGroupFlags.AlwaysHidden;
-
-            // Set if Objective has Embedded Air Defense
             if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense)) groupFlags |= UnitMakerGroupFlags.EmbeddedAirDefense;
 
             // Set destination point for moving unit groups
@@ -124,7 +121,6 @@ namespace BriefingRoom4DCS.Generator
             var unitCoordinates = objectiveCoordinates;
             var objectiveName = Toolbox.RandomFrom(ObjectiveNames);
 
-            // Determine if Transport Task, if so do things
             if(TRANSPORT_TASKS.Contains(taskDB.ID))
             {
                 Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
@@ -149,10 +145,11 @@ namespace BriefingRoom4DCS.Generator
             extraSettings.Add("GroupY2".ToKeyValuePair(destinationPoint.Y));
 
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
-                objectiveTargetUnitFamily, unitCount, minUnitCount, maxUnitCount,
+                objectiveTargetUnitFamily, unitCount,
                 taskDB.TargetSide,
                 targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], luaUnit,
                 unitCoordinates,
+                unitCountMinMax,
                 groupFlags,
                 extraSettings.ToArray());
 
@@ -201,13 +198,13 @@ namespace BriefingRoom4DCS.Generator
                 objectiveIndex++;
                 GenerateSubTask(
                     mission, template,
-                    minUnitCount, maxUnitCount,
                     situationDB, subTasks,
                     objectiveCoordinates, playerAirbase,
                     preValidSpawns, targetBehaviorDB.Location,
                     featuresID, ref objectiveIndex,
                     ref objectiveCoordinatesList, ref waypoints,
-                    ref waypointList, ref objectiveTargetUnitFamilies);
+                    ref waypointList, ref objectiveTargetUnitFamilies,
+                    unitCountMinMax);
 
             }
             return new (objectiveCoordinates, waypointList);
@@ -216,7 +213,6 @@ namespace BriefingRoom4DCS.Generator
         private void GenerateSubTask(
             DCSMission mission,
             MissionTemplateRecord template,
-            int minUnitCount, int maxUnitCount,
             DBEntrySituation situationDB,
             MissionTemplateSubTask subTask,
             Coordinates coreCoordinates,
@@ -228,7 +224,8 @@ namespace BriefingRoom4DCS.Generator
             ref List<Coordinates> objectiveCoordinatesList,
             ref List<Waypoint> waypoints,
             ref List<Waypoint> waypointList,
-            ref List<UnitFamily> objectiveTargetUnitFamilies
+            ref List<UnitFamily> objectiveTargetUnitFamilies,
+            MinMaxI? countMinMax = null
             )
         {
              var extraSettings = new List<KeyValuePair<string, object>>();
@@ -295,10 +292,11 @@ namespace BriefingRoom4DCS.Generator
             }
 
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
-                objectiveTargetUnitFamily, unitCount, minUnitCount, maxUnitCount,
+                objectiveTargetUnitFamily, unitCount,
                 taskDB.TargetSide,
                 targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], luaUnit,
                 unitCoordinates,
+                countMinMax,
                 groupFlags,
                 extraSettings.ToArray());
 
