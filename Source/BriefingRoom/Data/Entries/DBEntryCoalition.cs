@@ -63,10 +63,7 @@ namespace BriefingRoom4DCS.Data
             return true;
         }
 
-        internal Tuple<Country, List<string>> GetRandomUnits(List<UnitFamily> families, Decade decade, int count, List<string> unitMods, Country? requiredCountry = null) => 
-            GetRandomUnits(families, decade, count, -1, -1, unitMods, requiredCountry);
-
-        internal Tuple<Country, List<string>> GetRandomUnits(List<UnitFamily> families, Decade decade, int count, int minUnitCount, int maxUnitCount, List<string> unitMods, Country? requiredCountry = null)
+        internal Tuple<Country, List<string>> GetRandomUnits(List<UnitFamily> families, Decade decade, int count, List<string> unitMods, Country? requiredCountry = null, MinMaxI? countMinMax = null)
         {
             // Count is zero, return an empty array.
             if (count < 1) throw new BriefingRoomException("Asking for a zero unit list");
@@ -90,7 +87,7 @@ namespace BriefingRoom4DCS.Data
                     count = 1;
                     break;
                 case UnitCategory.Static:
-                    validUnits = minUnitCount != -1 && maxUnitCount != -1 ? LimitValidUnitsByRequestedUnitCount(minUnitCount, maxUnitCount, validUnits): validUnits;
+                    validUnits = countMinMax.HasValue ? LimitValidUnitsByRequestedUnitCount(countMinMax.Value, validUnits): validUnits;
                     count = 1;
                     break;
                 // Units are ground vehicles, allow multiple unit types in the group
@@ -127,42 +124,43 @@ namespace BriefingRoom4DCS.Data
         }
 
         private Dictionary<Country, List<string>> LimitValidUnitsByRequestedUnitCount(
-            int minUnitCount, int maxUnitCount,
+            MinMaxI countMinMax,
             Dictionary<Country, List<string>> validUnits)
         {
-            var validUnits_GroupSizeBetweenMin_and_Max = new Dictionary<Country, List<string>>();
-            var validUnits_DCSIDsLengths = new Dictionary<Country, List<(string ,int)>>();
+            var validUnitsGroupSizeBetweenMinAndMax = new Dictionary<Country, List<string>>();
+            var validUnitsDCSIDsLengths = new Dictionary<Country, List<DBEntryUnit>>();
 
             foreach (Country country in validUnits.Keys)
             {
-                validUnits_DCSIDsLengths[country] = (
-                    from DBEntryUnit unit in Database.GetEntries<DBEntryUnit>(validUnits[country].ToArray())
-                    select (unit.ID, unit.DCSIDs.Length)
-                    ).ToList();
-                validUnits_DCSIDsLengths[country].Sort();
+                validUnitsDCSIDsLengths[country] = Database.GetEntries<DBEntryUnit>(validUnits[country].ToArray()).ToList();
 
                 // check if the list of units can satisfy the min/max requirement
+                int countMinTemp = countMinMax.Min + 1; // increase by one because it is decremented immediatly in do while
                 do
-                    validUnits_GroupSizeBetweenMin_and_Max[country] = LimitValidUnitsByMinMax(validUnits_DCSIDsLengths[country], minUnitCount -= 1, maxUnitCount);
-                while (!(validUnits_GroupSizeBetweenMin_and_Max[country].Count > 0));
-                    
+                {
+                    validUnitsGroupSizeBetweenMinAndMax[country] = validUnits[country]
+                        .Where(
+                            unitID => LimitValidUnitsByMinMax(
+                                validUnitsDCSIDsLengths[country].Where(unit => unit.ID == unitID).First(),
+                                countMinTemp -= 1,
+                                countMinMax.Max))
+                        .ToList();
+                    if (countMinTemp < 1) break; // if min units is now 0 and we still have no units, then an error is needed
+                }
+                while (!(validUnitsGroupSizeBetweenMinAndMax[country].Count > 0));
+
             }
 
-
-            if (validUnits_GroupSizeBetweenMin_and_Max.Count > 0)
-                return validUnits_GroupSizeBetweenMin_and_Max;
+            if (validUnitsGroupSizeBetweenMinAndMax.Count > 0)
+                return validUnitsGroupSizeBetweenMinAndMax;
 
             BriefingRoom.PrintToLog($"No Units found that exceed requested TargetCount", LogMessageErrorLevel.Error);
-            throw new Exception("Requested Target Count greater than Maximum Configured Target Count"); //TODO: Unhandled
+            throw new BriefingRoomException("Requested Target Count greater than Maximum Configured Target Count");
         }
 
-        private List<string> LimitValidUnitsByMinMax(List<(string, int)> validUnitsIDs_and_Lengths, int minUnitCount, int maxUnitCount)
+        private bool LimitValidUnitsByMinMax(DBEntryUnit potentiallyValidUnit, int minUnitCount, int maxUnitCount)
         {
-            return (
-                from (string, int) unit in validUnitsIDs_and_Lengths
-                where unit.Item2 >= minUnitCount && unit.Item2 <= maxUnitCount
-                select unit.Item1
-                ).ToList();
+            return potentiallyValidUnit.DCSIDs.Length >= minUnitCount && potentiallyValidUnit.DCSIDs.Length <= maxUnitCount;
         }
 
         private Dictionary<Country, List<string>> SelectValidUnits(List<UnitFamily> families, Decade decade, List<string> unitMods)
