@@ -73,7 +73,6 @@ namespace BriefingRoom4DCS.Generator
             UnitID = 1;
         }
 
-        // Removing this overload breaks backwards compatability with MissionGeneratorCarrierGroup and MissionGeneratorCombatAirPatrol
         internal UnitMakerGroupInfo? AddUnitGroup(
             UnitFamily family, int unitCount, Side side,
             string groupLua, string unitLua,
