@@ -145,8 +145,8 @@ namespace BriefingRoom4DCS.Data
                                 countMinTemp,
                                 countMinMax.Max))
                         .ToList();
-                    countMinTemp -= 1;
                     if (countMinTemp < 1) break; // if min units is now 0 and we still have no units, then an error is needed
+                    countMinTemp -= 1;
                 }
                 while (!(validUnitsGroupSizeBetweenMinAndMax[country].Count > 0));
 
