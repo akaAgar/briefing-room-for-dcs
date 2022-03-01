@@ -135,16 +135,17 @@ namespace BriefingRoom4DCS.Data
                 validUnitsDCSIDsLengths[country] = Database.GetEntries<DBEntryUnit>(validUnits[country].ToArray()).ToList();
 
                 // check if the list of units can satisfy the min/max requirement
-                int countMinTemp = countMinMax.Min + 1; // increase by one because it is decremented immediatly in do while
+                int countMinTemp = countMinMax.Min;
                 do
                 {
                     validUnitsGroupSizeBetweenMinAndMax[country] = validUnits[country]
                         .Where(
                             unitID => LimitValidUnitsByMinMax(
                                 validUnitsDCSIDsLengths[country].Where(unit => unit.ID == unitID).First(),
-                                countMinTemp -= 1,
+                                countMinTemp,
                                 countMinMax.Max))
                         .ToList();
+                    countMinTemp -= 1;
                     if (countMinTemp < 1) break; // if min units is now 0 and we still have no units, then an error is needed
                 }
                 while (!(validUnitsGroupSizeBetweenMinAndMax[country].Count > 0));
