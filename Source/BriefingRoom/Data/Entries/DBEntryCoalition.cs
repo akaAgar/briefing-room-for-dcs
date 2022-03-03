@@ -135,6 +135,7 @@ namespace BriefingRoom4DCS.Data
 
                 // check if the list of units can satisfy the min/max requirement
                 int countMinTemp = countMinMax.Min;
+                bool logged = false;
                 do
                 {
                     validUnitsGroupSizeBetweenMinAndMax[country] = validUnits[country]
@@ -146,11 +147,15 @@ namespace BriefingRoom4DCS.Data
                                 countMinMax.Max))
                         .ToList();
                     if (countMinTemp < 1) break; // if min units is now 0 and we still have no units, then an error is needed
+                    if (countMinTemp < countMinMax.Max && !logged)
+                    {
+                        logged = true;
+                        BriefingRoom.PrintToLog("Minimum Target Count is lower than requested!", LogMessageErrorLevel.Warning);
+                    }
                     countMinTemp -= 1;
                 }
                 while (!(validUnitsGroupSizeBetweenMinAndMax[country].Count > 0));
 
-                if (countMinTemp < countMinMax.Max) BriefingRoom.PrintToLog("Minimum Target Count is lower than requested!", LogMessageErrorLevel.Warning);
             }
 
             if (validUnitsGroupSizeBetweenMinAndMax.Count < 1)
