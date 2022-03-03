@@ -72,8 +72,7 @@ namespace BriefingRoom4DCS.Data
             UnitCategory category = families.First().GetUnitCategory();
             bool allowDifferentUnitTypes = false;
 
-            // Select a list of units by country that fits the given parameters
-            var validUnits = SelectValidUnits(families, decade, unitMods); //NOTE: I moved this up here so I can do more work with the switch statement
+            var validUnits = SelectValidUnits(families, decade, unitMods);
 
             switch (category)
             {
@@ -141,7 +140,8 @@ namespace BriefingRoom4DCS.Data
                     validUnitsGroupSizeBetweenMinAndMax[country] = validUnits[country]
                         .Where(
                             unitID => LimitValidUnitsByMinMax(
-                                validUnitsDCSIDsLengths[country].Where(unit => unit.ID == unitID).First(),
+                                unitID,
+                                validUnitsDCSIDsLengths[country],
                                 countMinTemp,
                                 countMinMax.Max))
                         .ToList();
@@ -150,17 +150,18 @@ namespace BriefingRoom4DCS.Data
                 }
                 while (!(validUnitsGroupSizeBetweenMinAndMax[country].Count > 0));
 
+                if (countMinTemp < countMinMax.Max) BriefingRoom.PrintToLog("Minimum Target Count is lower than requested!", LogMessageErrorLevel.Warning);
             }
 
-            if (validUnitsGroupSizeBetweenMinAndMax.Count > 0)
-                return validUnitsGroupSizeBetweenMinAndMax;
-
-            BriefingRoom.PrintToLog($"No Units found that exceed requested TargetCount", LogMessageErrorLevel.Error);
-            throw new BriefingRoomException("Requested Target Count greater than Maximum Configured Target Count");
+            if (validUnitsGroupSizeBetweenMinAndMax.Count < 1)
+                throw new BriefingRoomException("Requested Minimum Target Count greater than Maximum Configured Target Count");
+            
+            return validUnitsGroupSizeBetweenMinAndMax;
         }
 
-        private bool LimitValidUnitsByMinMax(DBEntryUnit potentiallyValidUnit, int minUnitCount, int maxUnitCount)
+        private bool LimitValidUnitsByMinMax(string unitID, List<DBEntryUnit> potentiallyValidUnits, int minUnitCount, int maxUnitCount)
         {
+            var potentiallyValidUnit = potentiallyValidUnits.Where(unit => unit.ID == unitID).First();
             return potentiallyValidUnit.DCSIDs.Length >= minUnitCount && potentiallyValidUnit.DCSIDs.Length <= maxUnitCount;
         }
 

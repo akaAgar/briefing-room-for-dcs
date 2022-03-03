@@ -102,7 +102,6 @@ namespace BriefingRoom4DCS.Generator
 
             UnitMakerGroupFlags groupFlags = 0;
 
-            // Set whether or not the Objective is Hidden.. options: Never OR Always
             if (objectiveOptions.Contains(ObjectiveOption.ShowTarget)) groupFlags = UnitMakerGroupFlags.NeverHidden;
             else if (objectiveOptions.Contains(ObjectiveOption.HideTarget)) groupFlags = UnitMakerGroupFlags.AlwaysHidden;
             if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense)) groupFlags |= UnitMakerGroupFlags.EmbeddedAirDefense;
