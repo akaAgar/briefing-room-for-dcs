@@ -18,6 +18,7 @@ The creators of Briefing Room would like to thank for following for their direct
 * walder (Skynet IADS)
 * spencershepard (GRIMM) (Splash Damage 2.9)
 * ciribob (CSAR & CTLD)
+* NovaLogicDev
 
 We would also like to thank anyone who has taken the time to report bugs, test betas & help others on Discord or Github.
 
