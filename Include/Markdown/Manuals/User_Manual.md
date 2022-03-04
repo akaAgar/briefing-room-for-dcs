@@ -1,5 +1,5 @@
 # BriefingRoom for DCS World - User's manual
-__Last Edited: 22/02/2022__
+__Last Edited: 04/03/2022__
 
 This manual contains everything you need to know if you just plan to use BriefingRoom to generate missions. If you plan on modding BriefingRoom, please read the Modder's manual.
 
@@ -10,6 +10,7 @@ This manual contains everything you need to know if you just plan to use Briefin
     1. [Quick Builder](#quick-builder)
     1. [Full Builder](#full-builder)
     1. [Campaign Builder](#campaign-builder)
+    1. [Briefing Editor](#briefing-editor)
 1. [Command-line tool](#command-line-tool)
     1. [Command-line syntax](#command-line-syntax)
     1. [Using the command-line tool from the Windows file explorer](#using-the-command-line-tool-from-the-windows-file-explorer)
@@ -165,6 +166,17 @@ Standout options are:
 ## Command-line tool
 
 BriefingRoom can also be used in command-line mode, to allow for the quick and easy generation of multiple missions.
+
+### Briefing Editor
+`TLDR: A way of editing briefings as the ME doesn't seem to like working (particularly with BR)`
+
+Allows you to load any `.miz` file in doesn't matter if its a BR mission or one from ME or somewhere else as long as its compatible with DCS is should work.
+
+UI is broken up into Situation and Tasks for Blue, Red & Neutrals just like the ME. Currently there is no fancy formatting logic so it goes in right as it looks. Upper right that in the generators is used for templates is used for missions.
+
+**You must load a mission in first before editing** but you can save over the original mission or as a new mission.
+
+*Tech note: it does load the entire .miz file into memory so overwriting an existing file will do the entire .miz file loosing the orignal.*
 
 ### Command-line syntax
 

@@ -1,0 +1,153 @@
+@page "/BriefingEditor"
+@inject IJSRuntime JSRuntime
+@using System.Reflection
+@using BriefingRoom4DCS
+@using System.IO.Compression
+@using System.IO
+@using System.Text.RegularExpressions
+@using System.Text
+
+<div class="title-bar">
+  <h1>Briefing Editor</h1>
+  <TemplateButtons Title="Mission" LoadTemplate="LoadTemplate" SaveTemplate="SaveTemplate" ClearTemplate="ClearTemplate"
+    AcceptString=".miz" />
+</div>
+<div class="generator-group">
+   <div class="generator-form">
+  <div>
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+      <div class="alert alert-danger" role="alert">
+        Error: @errorMessage
+      </div>
+    }
+  </div>
+  <div class="full-width">
+    <h2>Situation</h2>
+    <textarea @bind="situation" class="form-control long" spellcheck="true" placeholder="Load your mission file. Situation goes here (BR uses this as briefing)."></textarea>
+  </div>
+  <div class="full-width">
+    <h2>Blue Task</h2>
+    <textarea @bind="blueTask" class="form-control short" spellcheck="true" placeholder="Blue side specific information."></textarea>
+  </div>
+  <div class="full-width">
+    <h2>Red Task</h2>
+    <textarea @bind="redTask" class="form-control short" spellcheck="true" placeholder="Red side specific information."></textarea>
+  </div>
+  <div class="full-width">
+    <h2>Neutral Task</h2>
+    <textarea @bind="neutralTask" class="form-control short" spellcheck="true" placeholder="Neutral side specific information."></textarea>
+  </div>
+  </div>
+</div>
+
+@code {
+  private string errorMessage;
+  private string situation;
+  private readonly Regex situationRegex = new Regex(@"\[""descriptionText""\] = ""(.|\n)*?\""", RegexOptions.IgnoreCase);
+  private string blueTask;
+  private readonly Regex blueRegex = new Regex(@"\[""descriptionBlueTask""\] = ""(.|\n)*?\""", RegexOptions.IgnoreCase);
+  private string redTask;
+  private readonly Regex redRegex = new Regex(@"\[""descriptionRedTask""\] = ""(.|\n)*?\""", RegexOptions.IgnoreCase);
+  private string neutralTask;
+  private readonly Regex neutralRegex = new Regex(@"\[""descriptionNeutralsTask""\] = ""(.|\n)*?\""", RegexOptions.IgnoreCase);
+
+  private IBrowserFile file;
+  private async Task LoadTemplate(InputFileChangeEventArgs e)
+  {
+    errorMessage = "";
+    try
+    {
+      using var ms = new MemoryStream();
+      await e.File.OpenReadStream(2000000).CopyToAsync(ms);
+      using var zip = new ZipArchive(ms);
+      if (!zip.Entries.Any(entry => entry.Name == "mission"))
+        throw new Exception("Mission File not found");
+
+      using var reader = new StreamReader(zip.Entries.First(entry => entry.Name == "mission").Open());
+      var mission = await reader.ReadToEndAsync();
+
+      situation = situationRegex.Match(mission).Value
+        .Replace("[\"descriptionText\"] = \"", "")
+        .Replace("\"", "")
+        .Replace("\\", "");
+
+      blueTask = blueRegex.Match(mission).Value
+        .Replace("[\"descriptionBlueTask\"] = \"", "")
+        .Replace("\"", "")
+        .Replace("\\", "");
+
+      redTask = redRegex.Match(mission).Value
+        .Replace("[\"descriptionRedTask\"] = \"", "")
+        .Replace("\"", "")
+        .Replace("\\", "");
+
+      neutralTask = neutralRegex.Match(mission).Value
+        .Replace("[\"descriptionNeutralsTask\"] = \"", "")
+        .Replace("\"", "")
+        .Replace("\\", "");
+
+      file = e.File;
+    }
+    catch (Exception ex)
+    {
+      Console.WriteLine(ex);
+      errorMessage = ex.Message;
+    }
+  }
+
+  private async Task SaveTemplate()
+  {
+    errorMessage = "";
+    try
+    {
+      if(file == null)
+      {
+        throw new Exception("File not loaded load a mission file first.");
+      }
+      using (var ms = new MemoryStream())
+      {
+        await file.OpenReadStream(2000000).CopyToAsync(ms);
+        using (var zip = new ZipArchive(ms, ZipArchiveMode.Update))
+        {
+          if (!zip.Entries.Any(entry => entry.Name == "mission"))
+            throw new Exception("Mission File not found");
+          var entry = zip.Entries.First(entry => entry.Name == "mission");
+          var mission = "";
+          using (var stream = entry.Open())
+          {
+            var reader = new StreamReader(stream);
+            mission = await reader.ReadToEndAsync();
+          }
+          entry.Delete();
+          var replacedMission = situationRegex.Replace(mission, $"[\"descriptionText\"] = \"{situation.Replace("\n", "\\\n")}\"");
+          replacedMission = blueRegex.Replace(replacedMission, $"[\"descriptionBlueTask\"] = \"{blueTask.Replace("\n", "\\\n")}\"");
+          replacedMission = redRegex.Replace(replacedMission, $"[\"descriptionRedTask\"] = \"{redTask.Replace("\n", "\\\n")}\"");
+          replacedMission = neutralRegex.Replace(replacedMission, $"[\"descriptionNeutralsTask\"] = \"{neutralTask.Replace("\n", "\\\n")}\"");
+          var newEntry = zip.CreateEntry("mission");
+          using (var newStream = newEntry.Open())
+          {
+            using var writer = new StreamWriter(newStream);
+            writer.Write(replacedMission);
+          }
+        }
+        await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", file.Name, "application/octet-stream", ms.ToArray());
+      }
+    }
+    catch (Exception ex)
+    {
+      Console.WriteLine(ex);
+      errorMessage = ex.Message;
+    }
+    StateHasChanged();
+  }
+
+  private Task ClearTemplate()
+  {
+    situation = "";
+    file = null;
+    errorMessage = "";
+    StateHasChanged();
+    return Task.CompletedTask;
+  }
+}

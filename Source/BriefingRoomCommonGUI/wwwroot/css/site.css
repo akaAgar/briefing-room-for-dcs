@@ -249,3 +249,11 @@ h4 {
         margin: 0;
         padding: 0;
     }
+
+    textarea.long {
+        height: 50vh;
+    }
+
+    textarea.short {
+        height: 10vh;
+    }
