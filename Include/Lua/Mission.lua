@@ -37,6 +37,7 @@ mission =
     }, -- end of ["trig"]
     ["requiredModules"] = 
     {
+        $REQUIREDMODULES$
     }, -- end of ["requiredModules"]
     ["date"] = 
     {

@@ -42,6 +42,7 @@ namespace BriefingRoom4DCS.Generator
         private readonly Coalition PlayerCoalition;
         private readonly Country[][] CoalitionsCountries;
 
+        private readonly List<string> ModUnits = new List<string>();
         private readonly Dictionary<Country, Dictionary<UnitCategory, List<string>>> UnitLuaTables = new Dictionary<Country, Dictionary<UnitCategory, List<string>>>();
 
         private int GroupID;
@@ -433,6 +434,11 @@ namespace BriefingRoom4DCS.Generator
             UnitMakerGroupFlags unitMakerGroupFlags,
             params KeyValuePair<string, object>[] extraSettings)
         {
+            if(!string.IsNullOrEmpty(unitDB.RequiredMod))
+            {
+                ModUnits.AddRange(unitDB.DCSIDs);
+            }
+
             string unitLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_UNITS}{Toolbox.AddMissingFileExtension(unitTypeLua, ".lua")}");
             var groupHeading = GetGroupHeading(coordinates, extraSettings);
             SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading, out Coordinates unitCoordinates, out double unitHeading);
@@ -533,6 +539,16 @@ namespace BriefingRoom4DCS.Generator
             }
 
             return unitsLuaTable;
+        }
+
+        internal string GetRequiredModules()
+        {
+            var str = "";
+            foreach (var unitId in ModUnits.Distinct().ToList())
+            {
+                str += $"[\"{unitId}\"] = \"{unitId}\",";
+            }
+            return str;
         }
 
         private double GetGroupHeading(Coordinates groupCoordinates, params KeyValuePair<string, object>[] extraSettings)

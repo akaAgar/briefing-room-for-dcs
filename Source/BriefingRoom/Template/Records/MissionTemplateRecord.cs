@@ -22,6 +22,7 @@ If not, see https://www.gnu.org/licenses/
 
 using System.Collections.Generic;
 using System.Linq;
+using BriefingRoom4DCS.Data;
 
 namespace BriefingRoom4DCS.Template
 {
@@ -74,8 +75,9 @@ namespace BriefingRoom4DCS.Template
             FlightPlanObjectiveDistance = template.FlightPlanObjectiveDistance;
             FlightPlanObjectiveSeperation = template.FlightPlanObjectiveSeperation;
             FlightPlanTheaterStartingAirbase = template.FlightPlanTheaterStartingAirbase;
-            MissionFeatures = template.MissionFeatures;
+            AppendPlayerAircraftMods(ref template);
             Mods = template.Mods;
+            MissionFeatures = template.MissionFeatures;
             Objectives = template.Objectives.Select(x => new MissionTemplateObjectiveRecord(x)).ToList();
             OptionsFogOfWar = template.OptionsFogOfWar;
             OptionsMission = template.OptionsMission;
@@ -112,6 +114,14 @@ namespace BriefingRoom4DCS.Template
         internal int GetPlayerSlotsCount()
         {
             return PlayerFlightGroups.Aggregate(0, (acc, x) => acc + (x.AIWingmen ? 1 : x.Count));
+        }
+
+        private void AppendPlayerAircraftMods(ref MissionTemplate template)
+        {
+           var playerMods = template.PlayerFlightGroups
+            .Select(x => Database.Instance.GetEntry<DBEntryUnit>(x.Aircraft).RequiredMod)
+            .Where(x => !string.IsNullOrEmpty(x)).ToList();
+            template.Mods.AddRange(playerMods);
         }
     }
 }
