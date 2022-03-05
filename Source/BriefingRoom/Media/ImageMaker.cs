@@ -55,20 +55,14 @@ namespace BriefingRoom4DCS.Media
                 // Draw all layers of the image
                 foreach (ImageMakerLayer layer in imageLayers)
                 {
-                    string filePath = $"{BRPaths.INCLUDE_JPG}{layer.FileName}";
-                    if (!File.Exists(filePath)) continue; // File doesn't exist, ignore it.
+                    Point position = GetImagePosition(layer, layer.ImageData.Size);
 
-                    using (Image layerImage = Image.FromFile(filePath))
-                    {
-                        Point position = GetImagePosition(layer, layerImage.Size);
-
-                        RotateGraphics(graphics, layer.Rotation);
-                        graphics.DrawImage(layerImage,
-                                new Rectangle(position, new Size((int)(layerImage.Size.Width * layer.Scale), (int)(layerImage.Size.Height * layer.Scale))),
-                                new Rectangle(Point.Empty, layerImage.Size),
-                                GraphicsUnit.Pixel);
-                        RotateGraphics(graphics, -layer.Rotation);
-                    }
+                    RotateGraphics(graphics, layer.Rotation);
+                    graphics.DrawImage(layer.ImageData,
+                            new Rectangle(position, new Size((int)(layer.ImageData.Size.Width * layer.Scale), (int)(layer.ImageData.Size.Height * layer.Scale))),
+                            new Rectangle(Point.Empty, layer.ImageData.Size),
+                            GraphicsUnit.Pixel);
+                    RotateGraphics(graphics, -layer.Rotation);
                 }
 
                 // Draw the text overlay
