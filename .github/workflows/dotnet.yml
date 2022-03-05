@@ -37,7 +37,7 @@ jobs:
         (Get-Content -path  Source\BriefingRoom\BriefingRoom.cs -Raw) -replace '~BUILD_VERSION~','${{ steps.current-time.outputs.formattedTime }}' | Set-Content Source\BriefingRoom\BriefingRoom.cs
  
     - name: Build and Publish App
-      run: dotnet publish Source/BriefingRoom.sln -o Release -c Release
+      run: dotnet publish Source/BriefingRoom.sln -o BriefingRoom-build${{ steps.current-time.outputs.formattedTime }} -c Release
 
     - name: Get previous version
       id: previous_version
@@ -57,7 +57,7 @@ jobs:
     
       
     - name: Zip Release
-      run: 7z a -tzip beta-release-${{ steps.current-time.outputs.formattedTime }}.zip Release "-xr!.git\" "-xr!.github\" "-xr!.git*" "-xr!.vscode\" "-xr!dataExtractors\"  "-xr!Source\" "-xr!docs\" "-x!*.bat" "-x!*.filelist" 
+      run: 7z a -tzip beta-release-${{ steps.current-time.outputs.formattedTime }}.zip BriefingRoom-build${{ steps.current-time.outputs.formattedTime }} "-xr!.git\" "-xr!.github\" "-xr!.git*" "-xr!.vscode\" "-xr!dataExtractors\"  "-xr!Source\" "-xr!docs\" "-x!*.bat" "-x!*.filelist" 
 
 
     - name: Upload Release
