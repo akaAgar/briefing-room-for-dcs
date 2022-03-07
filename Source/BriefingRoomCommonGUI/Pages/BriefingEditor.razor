@@ -52,6 +52,7 @@
   private string neutralTask;
   private readonly Regex neutralRegex = new Regex(@"\[""descriptionNeutralsTask""\] = ""(.|\n)*?\""", RegexOptions.IgnoreCase);
 
+  private const int MAXFILESIZE = 50000000;
   private IBrowserFile file;
   private async Task LoadTemplate(InputFileChangeEventArgs e)
   {
@@ -59,7 +60,7 @@
     try
     {
       using var ms = new MemoryStream();
-      await e.File.OpenReadStream(50000000).CopyToAsync(ms);
+      await e.File.OpenReadStream(MAXFILESIZE).CopyToAsync(ms);
       using var zip = new ZipArchive(ms);
       if (!zip.Entries.Any(entry => entry.Name == "mission"))
         throw new Exception("Mission File not found");
@@ -107,7 +108,7 @@
       }
       using (var ms = new MemoryStream())
       {
-        await file.OpenReadStream(2000000).CopyToAsync(ms);
+        await file.OpenReadStream(MAXFILESIZE).CopyToAsync(ms);
         using (var zip = new ZipArchive(ms, ZipArchiveMode.Update))
         {
           if (!zip.Entries.Any(entry => entry.Name == "mission"))
