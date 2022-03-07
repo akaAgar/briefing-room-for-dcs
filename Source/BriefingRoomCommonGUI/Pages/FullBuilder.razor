@@ -12,6 +12,7 @@
 @using BriefingRoom4DCS.GUI.Utils
 @using System.Text
 @using System.IO
+<LoadingSpinner ON="spinner"/>
 <div class="title-bar">
     <h1>Full Mission Generator</h1>
     <TemplateButtons LoadTemplate="LoadTemplate" SaveTemplate="SaveTemplate" ClearTemplate="ClearTemplate" AcceptString=".brt" />
@@ -466,6 +467,9 @@
     private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BriefingRoom.GetBriefingRoomRootPath()}Default.brt";
 
     private TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+
+    private bool spinner = false;
+
     protected override void OnInitialized()
     {
         Template = new MissionTemplate();
@@ -532,14 +536,18 @@
     private async void GenerateMissionAsync()
     {
         try {
+            spinner = true;
+            StateHasChanged();
             logs.Clear();
             mission = null;
             errorMessage = "";
             mission = await briefingRoom.GenerateMissionAsync(Template);
-            StateHasChanged();
         } catch (Exception ex){
             Console.WriteLine(ex);
             errorMessage = ex.Message;
+        } finally{
+            spinner = false;
+            StateHasChanged();
         }
     }
 

@@ -1,0 +1,23 @@
+.spinner_overlay{
+  position: relative;
+}
+
+.spinner {
+  top: 200px;
+  position: absolute;
+  text-align: center;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  animation: rotation-b-y22hwrqe7i 3s infinite linear;
+  z-index: 999999;
+}
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
