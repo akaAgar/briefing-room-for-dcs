@@ -79,7 +79,7 @@ namespace BriefingRoom4DCS.Generator
         private static async Task<int> GenerateKneeboardImageAsync(string html, DCSMission mission, int inc = 1, string aircraftID = "")
         {
            
-            var tempRenderPath = $"{BRPaths.INCLUDE_JPG}temp.png";
+            string tempRenderPath = Path.ChangeExtension(Path.GetTempFileName(), ".png");
             await new HtmlToImageConverter().ConvertAsync(html, tempRenderPath, new GeneralImageOptions{
                 Width = 1200,
                 Transparent = true
@@ -92,9 +92,6 @@ namespace BriefingRoom4DCS.Generator
                 var graphics = Graphics.FromImage(page);
                 graphics.DrawImage( img, new Rectangle(0,25,1200,1750), new Rectangle(0, i*1725,1200,1750), GraphicsUnit.Pixel);
                 graphics.Dispose();
-                var tempPagePath = $"{BRPaths.INCLUDE_JPG}temp{i}.png";
-                page.Save(tempPagePath);
-                page.Dispose();
                 byte[] imageBytes;
 
                 ImageMaker imgMaker = new();
@@ -103,7 +100,7 @@ namespace BriefingRoom4DCS.Generator
                 
                 List<ImageMakerLayer> layers = new List<ImageMakerLayer>{
                         new ImageMakerLayer("notebook.png"),
-                        new ImageMakerLayer($"temp{i}.png")
+                        new ImageMakerLayer(page)
                     };
 
                 var random = new Random();
@@ -114,7 +111,6 @@ namespace BriefingRoom4DCS.Generator
                 var midPath = !string.IsNullOrEmpty(aircraftID)? $"{aircraftID}/" : "";
                 mission.AddMediaFile($"KNEEBOARD/{midPath}IMAGES/comms_{mission.UniqueID}_{inc}.jpg", imageBytes);
                 inc++; 
-                File.Delete(tempPagePath);
             }
             img.Dispose();
             File.Delete(tempRenderPath);

@@ -24,7 +24,7 @@ namespace BriefingRoom4DCS.Media
 {
     internal struct ImageMakerLayer
     {
-        internal string FileName { get; }
+        internal Image ImageData { get; }
 
         internal ContentAlignment Alignment { get; }
 
@@ -35,11 +35,23 @@ namespace BriefingRoom4DCS.Media
         internal double Scale { get; }
 
         internal ImageMakerLayer(
-            string fileName,
+            Image imageData,
             ContentAlignment alignment = ContentAlignment.MiddleCenter,
             int offsetX = 0, int offsetY = 0, int rotation = 0, double scale = 1.0)
         {
-            FileName = fileName;
+            ImageData = imageData;
+            Alignment = alignment;
+            Offset = new Point(offsetX, offsetY);
+            Rotation = rotation;
+            Scale = scale;
+        }
+
+        internal ImageMakerLayer(
+            string filePath,
+            ContentAlignment alignment = ContentAlignment.MiddleCenter,
+            int offsetX = 0, int offsetY = 0, int rotation = 0, double scale = 1.0)
+        {
+            ImageData = Image.FromFile($"{BRPaths.INCLUDE_JPG}{filePath}");
             Alignment = alignment;
             Offset = new Point(offsetX, offsetY);
             Rotation = rotation;
