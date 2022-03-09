@@ -78,43 +78,53 @@ namespace BriefingRoom4DCS.Generator
 
         private static async Task<int> GenerateKneeboardImageAsync(string html, DCSMission mission, int inc = 1, string aircraftID = "")
         {
-           
-            string tempRenderPath = Path.ChangeExtension(Path.GetTempFileName(), ".png");
-            await new HtmlToImageConverter().ConvertAsync(html, tempRenderPath, new GeneralImageOptions{
-                Width = 1200,
-                Transparent = true
-            });
-            var img = Image.FromFile(tempRenderPath);
-            var pageCount = Math.Ceiling((decimal)(img.Size.Height / 1725.0));
-            for (int i = 0; i < pageCount; i++)
+            var converterlogs = "";
+            try
             {
-                var page = new Bitmap(1200,1800);
-                var graphics = Graphics.FromImage(page);
-                graphics.DrawImage( img, new Rectangle(0,25,1200,1750), new Rectangle(0, i*1725,1200,1750), GraphicsUnit.Pixel);
-                graphics.Dispose();
-                byte[] imageBytes;
+                string tempRenderPath = Path.ChangeExtension(Path.GetTempFileName(), ".png");
+                converterlogs = await new HtmlToImageConverter().ConvertAsync(html, tempRenderPath, new GeneralImageOptions
+                {
+                    Width = 1200,
+                    Transparent = true
+                });
+                var img = Image.FromFile(tempRenderPath+"ddd");
+                var pageCount = Math.Ceiling((decimal)(img.Size.Height / 1725.0));
+                for (int i = 0; i < pageCount; i++)
+                {
+                    var page = new Bitmap(1200, 1800);
+                    var graphics = Graphics.FromImage(page);
+                    graphics.DrawImage(img, new Rectangle(0, 25, 1200, 1750), new Rectangle(0, i * 1725, 1200, 1750), GraphicsUnit.Pixel);
+                    graphics.Dispose();
+                    byte[] imageBytes;
 
-                ImageMaker imgMaker = new();
-                imgMaker.ImageSizeX = 1200;
-                imgMaker.ImageSizeY = 1800;
-                
-                List<ImageMakerLayer> layers = new List<ImageMakerLayer>{
+                    ImageMaker imgMaker = new();
+                    imgMaker.ImageSizeX = 1200;
+                    imgMaker.ImageSizeY = 1800;
+
+                    List<ImageMakerLayer> layers = new List<ImageMakerLayer>{
                         new ImageMakerLayer("notebook.png"),
                         new ImageMakerLayer(page)
                     };
 
-                var random = new Random();
-                if (random.Next(100) < 3)
-                    layers.Add(easterEggLogos[random.Next(easterEggLogos.Count)]);
+                    var random = new Random();
+                    if (random.Next(100) < 3)
+                        layers.Add(easterEggLogos[random.Next(easterEggLogos.Count)]);
 
-                imageBytes = imgMaker.GetImageBytes(layers.ToArray());
-                var midPath = !string.IsNullOrEmpty(aircraftID)? $"{aircraftID}/" : "";
-                mission.AddMediaFile($"KNEEBOARD/{midPath}IMAGES/comms_{mission.UniqueID}_{inc}.jpg", imageBytes);
-                inc++; 
+                    imageBytes = imgMaker.GetImageBytes(layers.ToArray());
+                    var midPath = !string.IsNullOrEmpty(aircraftID) ? $"{aircraftID}/" : "";
+                    mission.AddMediaFile($"KNEEBOARD/{midPath}IMAGES/comms_{mission.UniqueID}_{inc}.jpg", imageBytes);
+                    inc++;
+                }
+                img.Dispose();
+                File.Delete(tempRenderPath);
+                return inc;
+
             }
-            img.Dispose();
-            File.Delete(tempRenderPath);
-            return inc;
+            catch (System.Exception e)
+            {
+                throw new BriefingRoomException($"Failed to create KneeBoard Image converter logs {converterlogs}", e);    
+            }
+
         }
     }
 }
