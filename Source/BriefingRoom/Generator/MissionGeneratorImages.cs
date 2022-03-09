@@ -87,7 +87,7 @@ namespace BriefingRoom4DCS.Generator
                     Width = 1200,
                     Transparent = true
                 });
-                var img = Image.FromFile(tempRenderPath+"ddd");
+                var img = Image.FromFile(tempRenderPath);
                 var pageCount = Math.Ceiling((decimal)(img.Size.Height / 1725.0));
                 for (int i = 0; i < pageCount; i++)
                 {
