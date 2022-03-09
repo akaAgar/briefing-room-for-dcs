@@ -25,5 +25,6 @@ namespace BriefingRoom4DCS
     public class BriefingRoomException : Exception
     {
         public BriefingRoomException(string message) : base(message) { }
+        public BriefingRoomException(string message, Exception innerException) : base(message, innerException: innerException) { }
     }
 }
