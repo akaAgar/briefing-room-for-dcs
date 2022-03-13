@@ -10,6 +10,7 @@
 *.cache
 *.dll
 *.exe
+!Source/WkHtmlWrapper/WkHtmlWrapper.Image/Executables/*.exe
 *.log
 *.miz
 !dataExtractors/PositioningMissions/*.miz
