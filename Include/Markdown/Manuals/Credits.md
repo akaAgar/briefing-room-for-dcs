@@ -22,4 +22,4 @@ The creators of Briefing Room would like to thank for following for their direct
 
 We would also like to thank anyone who has taken the time to report bugs, test betas & help others on Discord or Github.
 
-We hope the Briefing Room has and will continue to being you enjoyable missions for DCS.
+We hope the Briefing Room has and will continue to bring you enjoyable missions for DCS.

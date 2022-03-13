@@ -11,6 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoomWeb", "Briefing
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoomDesktop", "BriefingRoomDesktop\BriefingRoomDesktop.csproj", "{A3E437D2-8115-497B-9C98-AE8C90B15828}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WkHtmlWrapper", "WkHtmlWrapper", "{3315B5DD-1E45-4893-ACEE-2D244C73B965}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WkHtmlWrapper.Core", "WkHtmlWrapper\WkHtmlWrapper.Core\WkHtmlWrapper.Core.csproj", "{03C7CF2D-244C-4526-A0CF-98E09C09E459}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WkHtmlWrapper.Image", "WkHtmlWrapper\WkHtmlWrapper.Image\WkHtmlWrapper.Image.csproj", "{9F8EB2E8-9F2E-4F5D-A1A2-1F45D42269DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,11 +39,23 @@ Global
 		{A3E437D2-8115-497B-9C98-AE8C90B15828}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3E437D2-8115-497B-9C98-AE8C90B15828}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3E437D2-8115-497B-9C98-AE8C90B15828}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03C7CF2D-244C-4526-A0CF-98E09C09E459}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03C7CF2D-244C-4526-A0CF-98E09C09E459}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03C7CF2D-244C-4526-A0CF-98E09C09E459}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03C7CF2D-244C-4526-A0CF-98E09C09E459}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F8EB2E8-9F2E-4F5D-A1A2-1F45D42269DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F8EB2E8-9F2E-4F5D-A1A2-1F45D42269DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F8EB2E8-9F2E-4F5D-A1A2-1F45D42269DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F8EB2E8-9F2E-4F5D-A1A2-1F45D42269DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {764B1D44-5565-4D8F-B21D-0EDE35C5400B}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{03C7CF2D-244C-4526-A0CF-98E09C09E459} = {3315B5DD-1E45-4893-ACEE-2D244C73B965}
+		{9F8EB2E8-9F2E-4F5D-A1A2-1F45D42269DF} = {3315B5DD-1E45-4893-ACEE-2D244C73B965}
 	EndGlobalSection
 EndGlobal

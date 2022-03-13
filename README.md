@@ -46,6 +46,7 @@ BriefingRoom is free and open source and will always remain so, but if you want 
 * Released under the [GNU General Public License 3.0](https://www.gnu.org/licenses/gpl-3.0.en.html)
 * Project website: [akaagar.itch.io/briefing-room-for-dcs](https://akaagar.itch.io/briefing-room-for-dcs/)
 * Source code repository: [github.com/akaAgar/briefing-room-for-dcs](https://github.com/akaAgar/briefing-room-for-dcs)
+* App makes use of [wkhtmltoimage](https://wkhtmltopdf.org/) and uses a wrapper heavily based on [flopik3-5 WkHtmlWrapper](https://github.com/flopik3-5/WkHtmlWrapper)
 
 [Credits](Include/Markdown/Manuals/Credits.md)
 
