@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-#### BR Version: x.x.x  DCS Version: x.x.x
+#### BR Version: x.x.x (<build version>)  DCS Version: x.x.x
 
 ### Brief Description: 
  <!--What happened? -->
