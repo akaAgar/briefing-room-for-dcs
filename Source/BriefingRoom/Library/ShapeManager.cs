@@ -7,6 +7,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+
 namespace BriefingRoom4DCS
 {
 
@@ -156,6 +158,63 @@ namespace BriefingRoom4DCS
                 }
             }
             return outcome;
+        }
+
+        internal static double GetDistanceFromShape(Coordinates coords, List<Coordinates> InclusionShape)
+        {
+            if (isInside(InclusionShape, coords))
+                return -1;
+            var lastCoords = InclusionShape[0];
+            return InclusionShape.Min(x => {
+                var dist = FindDistanceToSegment(coords, lastCoords, x);
+                lastCoords = x;
+                return dist;
+            });
+        }
+
+
+        // Calculate the distance between
+        // point pt and the segment p1 --> p2.
+        private static double FindDistanceToSegment(
+            Coordinates pt, Coordinates segStart, Coordinates segEnd)
+        {
+            var dx = segEnd.X - segStart.X;
+            var dy = segEnd.Y - segStart.Y;
+            if ((dx == 0) && (dy == 0))
+            {
+                // It's a point not a line segment.
+               var closest = segStart;
+                dx = pt.X - segStart.X;
+                dy = pt.Y - segStart.Y;
+                return Math.Sqrt(dx * dx + dy * dy);
+            }
+
+            // Calculate the t that minimizes the distance.
+            var t = ((pt.X - segStart.X) * dx + (pt.Y - segStart.Y) * dy) /
+                (dx * dx + dy * dy);
+
+            // See if this represents one of the segment's
+            // end points or a point in the middle.
+            if (t < 0)
+            {
+                var closest = new Coordinates(segStart.X, segStart.Y);
+                dx = pt.X - segStart.X;
+                dy = pt.Y - segStart.Y;
+            }
+            else if (t > 1)
+            {
+                var closest = new Coordinates(segEnd.X, segEnd.Y);
+                dx = pt.X - segEnd.X;
+                dy = pt.Y - segEnd.Y;
+            }
+            else
+            {
+                var closest = new Coordinates(segStart.X + t * dx, segStart.Y + t * dy);
+                dx = pt.X - closest.X;
+                dy = pt.Y - closest.Y;
+            }
+
+            return Math.Sqrt(dx * dx + dy * dy);
         }
     }
 }

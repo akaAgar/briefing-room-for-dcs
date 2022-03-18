@@ -145,7 +145,8 @@ namespace BriefingRoom4DCS.Generator
                     validSPInRange = (from DBEntryTheaterSpawnPoint s in validSP
                                       where
                                           searchRange.Contains(origin.GetDistanceFrom(s.Coordinates)) &&
-                                          CheckNotInHostileCoords(s.Coordinates, coalition)
+                                          CheckNotInHostileCoords(s.Coordinates, coalition) &&
+                                          CheckNotFarFromBorders(s.Coordinates, coalition)
                                       select s);
                     searchRange = new MinMaxD(searchRange.Min * 0.9, Math.Max(100, searchRange.Max * 1.1));
                     validSP = (from DBEntryTheaterSpawnPoint s in validSPInRange select s);
@@ -176,7 +177,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 var coordOptionsLinq = Enumerable.Range(0, 50)
                     .Select(x => Coordinates.CreateRandom(distanceOrigin1, searchRange))
-                    .Where(x => CheckNotInHostileCoords(x, coalition) && CheckNotInNoSpawnCoords(x));
+                    .Where(x => CheckNotInHostileCoords(x, coalition) && CheckNotInNoSpawnCoords(x) && CheckNotFarFromBorders(x, coalition));
 
                 if (secondSearchRange.HasValue)
                     coordOptionsLinq = coordOptionsLinq.Where(x => secondSearchRange.Value.Contains(distanceOrigin2.Value.GetDistanceFrom(x)));
@@ -280,9 +281,7 @@ namespace BriefingRoom4DCS.Generator
             var red = SituationDB.GetRedZone(InvertCoalition);
             var blue = SituationDB.GetBlueZone(InvertCoalition);
 
-            if (coalition.Value == Coalition.Blue)
-                return !ShapeManager.IsPosValid(coordinates, red);
-            return !ShapeManager.IsPosValid(coordinates, blue);
+            return !ShapeManager.IsPosValid(coordinates, (coalition.Value == Coalition.Blue ? red : blue));
         }
 
         private bool CheckNotInNoSpawnCoords(Coordinates coordinates)
@@ -290,6 +289,20 @@ namespace BriefingRoom4DCS.Generator
             if (SituationDB.NoSpawnCoordinates is null)
                 return true;
             return !ShapeManager.IsPosValid(coordinates, SituationDB.NoSpawnCoordinates);
+        }
+
+        private bool CheckNotFarFromBorders(Coordinates coordinates, Coalition? coalition = null)
+        {
+            if (!coalition.HasValue)
+                return true;
+
+            var red = SituationDB.GetRedZone(InvertCoalition);
+            var blue = SituationDB.GetBlueZone(InvertCoalition);
+
+            var distanceLimit = Toolbox.NM_TO_METERS * 70;
+            var distance = ShapeManager.GetDistanceFromShape(coordinates, (coalition.Value == Coalition.Blue? blue : red));
+            return distance < distanceLimit;
+            
         }
     }
 }
