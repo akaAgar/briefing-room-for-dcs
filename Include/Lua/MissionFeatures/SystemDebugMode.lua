@@ -41,8 +41,8 @@ function  briefingRoom.f10MenuCommands.debug.dumpAirbaseDataType(o)
  return "UNKNOWN"
 end
 
-function briefingRoom.f10MenuCommands.debug.dumpAirbaseData()
-  briefingRoom.debugPrint("STARTING AIRBASE DUMP");
+function briefingRoom.f10MenuCommands.debug.dumpAirbaseParkingData()
+  briefingRoom.debugPrint("STARTING AIRBASE PARKING DUMP");
   local base = world.getAirbases()
    for i = 1, #base do
       briefingRoom.debugPrint(base[i]:getID()..":\n")
@@ -61,7 +61,16 @@ function briefingRoom.f10MenuCommands.debug.dumpAirbaseData()
       end
       briefingRoom.debugPrint(parkingString..";")
    end
-   briefingRoom.debugPrint("DONE AIRBASE DUMP");
+   briefingRoom.debugPrint("DONE AIRBASE PARKING DUMP");
+end
+
+function briefingRoom.f10MenuCommands.debug.dumpAirbaseIDData()
+  briefingRoom.debugPrint("STARTING AIRBASE ID DUMP");
+  local base = world.getAirbases()
+   for i = 1, #base do
+      briefingRoom.debugPrint(base[i]:getID()..": "..base[i]:getCallsign()..", "..base[i]:getDesc()['displayName'])
+   end
+   briefingRoom.debugPrint("DONE AIRBASE ID DUMP");
 end
 
 
@@ -71,6 +80,7 @@ do
   missionCommands.addCommand("Destroy target unit", briefingRoom.f10Menu.debug, briefingRoom.f10MenuCommands.debug.destroyTargetUnit)
   missionCommands.addCommand("Simulate player takeoff (start mission)", briefingRoom.f10Menu.debug, briefingRoom.mission.coreFunctions.beginMission)
   missionCommands.addCommand("Activate all aircraft groups", briefingRoom.f10Menu.debug, briefingRoom.f10MenuCommands.debug.activateAllAircraft)
-  missionCommands.addCommand("Dump All Airbase Data", briefingRoom.f10Menu.debug, briefingRoom.f10MenuCommands.debug.dumpAirbaseData)
+  missionCommands.addCommand("Dump All Airbase parking Data", briefingRoom.f10Menu.debug, briefingRoom.f10MenuCommands.debug.dumpAirbaseParkingData)
+  missionCommands.addCommand("Dump All Airbase ID Data", briefingRoom.f10Menu.debug, briefingRoom.f10MenuCommands.debug.dumpAirbaseIDData)
 
 end
