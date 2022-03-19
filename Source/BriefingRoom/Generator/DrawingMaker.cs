@@ -109,12 +109,14 @@ namespace BriefingRoom4DCS.Generator
 
         private void AddTheaterZones()
         {
+            DrawWaterAndIslands();
             var invertCoalition = Template.OptionsMission.Contains("InvertCountriesCoalitions");
             var red = SituationDB.GetRedZone(invertCoalition);
-            var redColour = Template.OptionsMission.Contains("HideBorders") ? DrawingColour.Clear :  DrawingColour.RedFill;
+            var redColour = Template.OptionsMission.Contains("HideBorders") ? DrawingColour.Clear : DrawingColour.RedFill;
 
             var blue = SituationDB.GetBlueZone(invertCoalition);
-            var blueColour = Template.OptionsMission.Contains("HideBorders") ? DrawingColour.Clear :  DrawingColour.BlueFill;
+            var blueColour = Template.OptionsMission.Contains("HideBorders") ? DrawingColour.Clear : DrawingColour.BlueFill;
+
             AddFree(
                 "Red Control",
                 red.First(),
@@ -128,18 +130,25 @@ namespace BriefingRoom4DCS.Generator
                 "Colour".ToKeyValuePair(blueColour),
                 "FillColour".ToKeyValuePair(blueColour));
 
+            Mission.MapData.Add("RED", red);
+            Mission.MapData.Add("BLUE", blue);
             if (SituationDB.NoSpawnCoordinates != null)
             {
                 var noSpawn = SituationDB.NoSpawnCoordinates;
-                var noSpawnColour = Template.OptionsMission.Contains("HideBorders") ? DrawingColour.Clear :  DrawingColour.GreenFill;
+                var noSpawnColour = Template.OptionsMission.Contains("HideBorders") ? DrawingColour.Clear : DrawingColour.GreenFill;
                 AddFree(
                     "Neutural (NoSpawning)",
                     noSpawn.First(),
                     "Points".ToKeyValuePair(noSpawn.Select(coord => coord - noSpawn.First()).ToList()),
                     "Colour".ToKeyValuePair(noSpawnColour),
                     "FillColour".ToKeyValuePair(noSpawnColour));
+                Mission.MapData.Add("NOSPAWN", noSpawn);
             }
 
+        }
+
+        private void DrawWaterAndIslands()
+        {
             // DEBUG water
             AddFree(
                 "Water",
@@ -147,7 +156,8 @@ namespace BriefingRoom4DCS.Generator
                 "Points".ToKeyValuePair(TheaterDB.WaterCoordinates.Select(coord => coord - TheaterDB.WaterCoordinates.First()).ToList()),
                 "Colour".ToKeyValuePair(DrawingColour.Clear),
                 "FillColour".ToKeyValuePair(DrawingColour.Clear));
-
+            //Mission.MapData.Add("WATER", TheaterDB.WaterCoordinates);
+            var i = 0;
             foreach (var item in TheaterDB.WaterExclusionCoordinates)
             {
                 AddFree(
@@ -156,8 +166,9 @@ namespace BriefingRoom4DCS.Generator
                     "Points".ToKeyValuePair(item.Select(coord => coord - item.First()).ToList()),
                     "Colour".ToKeyValuePair(DrawingColour.Clear),
                     "FillColour".ToKeyValuePair(DrawingColour.Clear));
+                Mission.MapData.Add($"ISLAND_{i}", item);
+                i++;
             }
-
         }
 
         internal string GetLuaDrawings()

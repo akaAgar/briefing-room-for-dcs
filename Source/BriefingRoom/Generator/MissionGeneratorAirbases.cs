@@ -56,7 +56,7 @@ namespace BriefingRoom4DCS.Generator
 
                 if (missionPackages.Any(x => x.Airbase == airbase))
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{airbase.Name}\t{airbase.Runways}\t{airbase.ATC}\t{airbase.ILS}\t{airbase.TACAN}");
-
+                mission.MapData.Add($"AIRBASE_${airbase.Name}", new List<Coordinates>{airbase.Coordinates});
                 missionPackages.Add(new DCSMissionPackage(_template.AircraftPackages.IndexOf(package), airbase));
             }
             mission.MissionPackages.AddRange(missionPackages);

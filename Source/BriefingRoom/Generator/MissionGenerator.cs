@@ -102,6 +102,7 @@ namespace BriefingRoom4DCS.Generator
             var airbasesGenerator = new MissionGeneratorAirbases(template, situationDB);
             var requiredRunway = template.PlayerFlightGroups.Select(x => Database.Instance.GetEntry<DBEntryUnit>(x.Aircraft).AircraftData.MinimumRunwayLengthFt).Max();
             var playerAirbase = airbasesGenerator.SelectStartingAirbase(mission, template.FlightPlanTheaterStartingAirbase, requiredRunway: requiredRunway);
+            mission.MapData.Add($"AIRBASE_HOME", new List<Coordinates>{playerAirbase.Coordinates});
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{playerAirbase.Name}\t{playerAirbase.Runways}\t{playerAirbase.ATC}\t{playerAirbase.ILS}\t{playerAirbase.TACAN}");
             airbasesGenerator.SelectStartingAirbaseForPackages(mission, playerAirbase);
             airbasesGenerator.SetupAirbasesCoalitions(mission, playerAirbase);
@@ -130,6 +131,7 @@ namespace BriefingRoom4DCS.Generator
                     objectiveTemplate, lastObjectiveCoordinates, playerAirbase, useObjectivePresets,
                     ref i, ref objectiveCoordinates, ref waypoints, ref objectiveTargetUnitFamilies);
                 lastObjectiveCoordinates = objectiveCoords;
+                mission.MapData.Add($"OBJECTIVE_AREA{i}", new List<Coordinates>{objectiveCoords});
                 objectiveGroupedWaypoints.Add(waypointGroup);
                 i++;
             }

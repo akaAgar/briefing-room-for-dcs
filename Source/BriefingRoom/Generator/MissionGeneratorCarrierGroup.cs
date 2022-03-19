@@ -90,6 +90,7 @@ namespace BriefingRoom4DCS.Generator
                     $"{unitDB.UIDisplayName}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t{ilsChannel}\t{tacanCallsign}, {tacanChannel}X");
 
                 carrierDictionary.Add(flightGroup.Carrier, groupInfo.Value);
+                mission.MapData.Add($"CARRIER_{flightGroup.Carrier}", new List<Coordinates>{groupInfo.Value.Coordinates});
             }
 
             return carrierDictionary;
@@ -189,6 +190,7 @@ namespace BriefingRoom4DCS.Generator
                      DCSMissionBriefingItemType.Airbase,
                      $"{unitDB.UIDisplayName}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t\t");
             carrierDictionary.Add(flightGroup.Carrier, groupInfo.Value); // This bit limits FOBS to one per game think about how we can fix this
+            mission.MapData.Add($"FOB_{flightGroup.Carrier}", new List<Coordinates>{groupInfo.Value.Coordinates});
         }
 
     }

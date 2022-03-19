@@ -449,6 +449,9 @@
               SecondaryFunc="DownloadBriefing"  SecondaryLabel="Briefing" SecondaryIcon="browser"
               TertiaryFunc="ClearMission"  TertiaryLabel="" TertiaryIcon="x"
             />
+            <div>
+                <canvas height="360" width="640" id="canvas"></canvas>  
+            </div>
             <div>@((MarkupString)mission.Briefing.GetBriefingAsHTML(false))</div>
         </div>
     }
@@ -542,6 +545,8 @@
             mission = null;
             errorMessage = "";
             mission = await briefingRoom.GenerateMissionAsync(Template);
+            StateHasChanged();
+            await JSRuntime.InvokeVoidAsync("RenderMap", mission.GetMapData());
         } catch (Exception ex){
             Console.WriteLine(ex);
             errorMessage = ex.Message;
@@ -583,12 +588,12 @@
 
     private string tab = "context-&-enviroment";
     private List<string> tabs = new List<string>{
-"context-&-enviroment",
-"flight-groups",
-"objectives",
-"situation",
-"options",
-};
+        "context-&-enviroment",
+        "flight-groups",
+        "objectives",
+        "situation",
+        "options",
+    };
     private void SetTab(string var)
     {
         tab = var;

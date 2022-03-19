@@ -260,6 +260,9 @@
             <ButtonTrio PrimaryFunc="DownloadMission" PrimaryLabel="Mission" PrimaryIcon="data-transfer-download"
             SecondaryFunc="DownloadBriefing" SecondaryLabel="Briefing" SecondaryIcon="browser"
             TertiaryFunc="ClearMission" TertiaryLabel="" TertiaryIcon="x" />
+            <div>
+                <canvas height="360" width="640" id="canvas"></canvas>  
+            </div>
             <div>@((MarkupString)mission.Briefing.GetBriefingAsHTML(false))</div>
         </div>
     }
@@ -350,7 +353,9 @@
             logs.Clear();
             mission = null;
             errorMessage = "";
-            mission = await briefingRoom.GenerateMissionAsync(Template, true); 
+            mission = await briefingRoom.GenerateMissionAsync(Template, true);
+            StateHasChanged();
+            await JSRuntime.InvokeVoidAsync("RenderMap", mission.GetMapData());
         } catch (Exception ex){
             Console.WriteLine(ex);
             errorMessage = ex.Message;
