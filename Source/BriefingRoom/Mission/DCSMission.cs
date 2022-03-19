@@ -37,6 +37,8 @@ namespace BriefingRoom4DCS.Mission
 
         public DCSMissionBriefing Briefing { get; }
 
+        internal Dictionary<string, List<Coordinates>> MapData { get; }
+
         private readonly Dictionary<string, string> Values;
 
         private readonly Dictionary<string, object> MediaFiles;
@@ -44,6 +46,7 @@ namespace BriefingRoom4DCS.Mission
         internal Dictionary<int, Coalition> Airbases { get; }
 
         internal List<DCSMissionPackage> MissionPackages { get; }
+
 
         internal string ReplaceValues(string rawText)
         {
@@ -76,10 +79,11 @@ namespace BriefingRoom4DCS.Mission
             MissionPackages = new List<DCSMissionPackage>();
             MediaFiles = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
             Values = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
+            MapData = new Dictionary<string, List<Coordinates>>();
 
             UniqueID = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()).ToLowerInvariant();
             SetValue("MissionID", UniqueID);
-            SetValue("ScriptMIST",Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA}MIST.lua"));
+            SetValue("ScriptMIST", Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA}MIST.lua"));
         }
 
         internal void SetValue(string key, int value)
@@ -200,6 +204,9 @@ namespace BriefingRoom4DCS.Mission
             var extremeLimit = template.FlightPlanObjectiveDistance * 1.7;
             return distance > extremeLimit;
         }
+
+        public Dictionary<string, List<List<double>>> GetMapData() =>
+            MapData.ToDictionary(t => t.Key, t => t.Value.Select(x => x.ToList()).ToList());
     }
 }
 
