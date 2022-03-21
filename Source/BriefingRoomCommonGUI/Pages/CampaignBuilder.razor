@@ -13,6 +13,7 @@
 @using BriefingRoom4DCS.GUI.Utils
 @using System.Text
 @using System.IO
+<LoadingSpinner ON="spinner"/>
 <div class="title-bar">
     <h1>Campaign builder</h1>
     <TemplateButtons LoadTemplate="LoadTemplate" SaveTemplate="SaveTemplate" ClearTemplate="ClearTemplate" AcceptString=".cbrt" />
@@ -296,6 +297,9 @@
     private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BriefingRoom.GetBriefingRoomRootPath()}Default.cbrt";
 
     private TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+
+    private bool spinner = false;
+
     protected override void OnInitialized()
     {
         Template = new CampaignTemplate();
@@ -357,6 +361,8 @@
     private async void GenerateCampaign()
     {
         try {
+            spinner = true;
+            StateHasChanged();
             logs.Clear();
             campaign = null;
             errorMessage = "";
@@ -365,6 +371,9 @@
         } catch (Exception ex){
             Console.WriteLine(ex);
             errorMessage = ex.Message;
+        } finally {
+            spinner = false;
+            StateHasChanged();
         }
     }
 
