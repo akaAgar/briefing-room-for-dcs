@@ -156,7 +156,7 @@ namespace BriefingRoom4DCS.Generator
                 "Points".ToKeyValuePair(TheaterDB.WaterCoordinates.Select(coord => coord - TheaterDB.WaterCoordinates.First()).ToList()),
                 "Colour".ToKeyValuePair(DrawingColour.Clear),
                 "FillColour".ToKeyValuePair(DrawingColour.Clear));
-            //Mission.MapData.Add("WATER", TheaterDB.WaterCoordinates);
+            Mission.MapData.Add("WATER", TheaterDB.WaterCoordinates);
             var i = 0;
             foreach (var item in TheaterDB.WaterExclusionCoordinates)
             {

@@ -35,6 +35,9 @@ async function BlazorDownloadFile(filename, contentType, data) {
 
 }
 
+const getMinCoors = (arr) => [Math.min.apply(Math, arr.map(x => x[0])), Math.min.apply(Math, arr.map(x => x[1]))]
+const getMaxCoors = (arr) => [Math.max.apply(Math, arr.map(x => x[0])), Math.max.apply(Math, arr.map(x => x[1]))]
+
 async function RenderMap(mapData) {
   let canvas = document.getElementById("canvas");
   let ctx = canvas.getContext("2d");
@@ -47,7 +50,7 @@ async function RenderMap(mapData) {
       RenderDot(coords[0], coords[1], colour, GetText(key), ctx)
       return
     }
-    RenderPolygon(scaledMapData[key], colour, ctx)
+    RenderPolygon(scaledMapData[key], colour, ctx, key === "WATER")
   })
 }
 
@@ -73,7 +76,7 @@ function GetColour(id) {
     case id === "BLUE":
       return '#0000ff55'
     case id === 'WATER':
-        return '#50ceeb55'
+        return '#00000000'
     case id === 'NOSPAWN':
         return '#50eb5d55'
     case id.includes('ISLAND'):
@@ -106,8 +109,8 @@ function RenderDot(x, y, color, text, ctx) {
   }
 }
 
-function RenderPolygon(coords, color, ctx) {
-  ctx.strokeStyle = "#000000";
+function RenderPolygon(coords, color, ctx,  isWater) {
+  ctx.strokeStyle = isWater ? '#00000000' : "#000000";
   ctx.fillStyle = color;
   ctx.beginPath();
   let first = true
@@ -133,12 +136,11 @@ function clearCanvas(ctx, canvas)
 
 function centerData(mapData) {
   const clonedMap = structuredClone(mapData);
-  let centerX = clonedMap["AIRBASE_HOME"][0][0] * -1
-  let centerY = clonedMap["AIRBASE_HOME"][0][1] * -1
+  const minCoords = getMinCoors(Object.keys(clonedMap).map(key => getMinCoors(clonedMap[key])));
   Object.keys(clonedMap).forEach(key => {
     clonedMap[key].forEach(coord => {
-      coord[0] = coord[0] + centerX
-      coord[1] = coord[1] + centerY
+      coord[0] = coord[0] + (minCoords[0] * -1)
+      coord[1] = coord[1] + (minCoords[1] * -1)
     })
   })
   return clonedMap
@@ -147,26 +149,14 @@ function centerData(mapData) {
 function scaleCoordinates(mapData, canvas) {
   const canvasW = canvas.getBoundingClientRect().width;
   const canvasH = canvas.getBoundingClientRect().height;
-  const centerPoint = [canvasW / 2, canvasH / 2]
-
-  let largestOffCenterX = 0;
-  let largestOffCenterY = 0;
   const clonedMap = structuredClone(mapData);
-  Object.keys(clonedMap).forEach(key => {
-    clonedMap[key].forEach(coord => {
-      const x = coord[0] < 0 ? coord[0] * -1 : coord[0];
-      if(x > largestOffCenterX) largestOffCenterX = x;
-      const y = coord[1] < 0 ? coord[1] * -1 : coord[1];
-      if(y > largestOffCenterY) largestOffCenterY = y;
-    })
-  })
-
-  let scaleMultiplier = centerPoint[0]/(largestOffCenterX > largestOffCenterY ? largestOffCenterX : largestOffCenterY);
+  const maxCoords = getMaxCoors(Object.keys(clonedMap).map(key => getMaxCoors(clonedMap[key])));
+  const scaleMultiplier = canvasW/(maxCoords[0] > maxCoords[1] ? maxCoords[0] : maxCoords[1]);
 
   Object.keys(clonedMap).forEach(key => {
     clonedMap[key].forEach(coord => {
-      coord[0] = centerPoint[0] + (coord[0] * scaleMultiplier)
-      coord[1] = centerPoint[1] - (coord[1] * scaleMultiplier)
+      coord[0] = (coord[0] * scaleMultiplier)
+      coord[1] = canvasH - (coord[1] * scaleMultiplier)
     })
   })
   return clonedMap;
