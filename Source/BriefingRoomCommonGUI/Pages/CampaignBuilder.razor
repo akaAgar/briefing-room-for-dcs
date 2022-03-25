@@ -278,6 +278,9 @@
                     </li>
                 }
             </ul>
+            <div>
+                <canvas height="360" width="640" id="canvas"></canvas>  
+            </div>
             <div>@((MarkupString)missionTab.Briefing.GetBriefingAsHTML(false))</div>
         </div>
     }
@@ -368,6 +371,8 @@
             errorMessage = "";
             campaign = await briefingRoom.GenerateCampaignAsync(Template);
             missionTab = campaign.Missions.First();
+            StateHasChanged();
+            await JSRuntime.InvokeVoidAsync("RenderMap", missionTab.GetMapData());
         } catch (Exception ex){
             Console.WriteLine(ex);
             errorMessage = ex.Message;
@@ -421,6 +426,7 @@
     private void SetMissionTab(DCSMission var)
     {
         missionTab = var;
+        JSRuntime.InvokeVoidAsync("RenderMap", missionTab.GetMapData());
     }
 
     private List<string> GetLiveries(string aircraftId) =>
