@@ -1,4 +1,4 @@
-@if (logs.Count(LogsIfAboveWarn) > 0)
+@if (GetLastRunLogs().Count(LogsIfAboveWarn) > 0)
 {
     @if (showLogs)
     {
@@ -6,11 +6,11 @@
             <div>
                 <div class="btn-group" role="group">
                     <button class="btn btn-warning" @onclick="() => ToggleShowLogs()"><span
-                    class="oi oi-warning"></span>@logs.Count(LogsIfAboveWarn)</button>
+                    class="oi oi-warning"></span>@GetLastRunLogs().Count(LogsIfAboveWarn)</button>
                     <button class="btn btn-warning" @onclick="() => ClearLogs()"><span
                     class="oi oi-reload"></span>Clear</button>
                 </div>
-                @foreach (var log in logs.Where(LogsIfAboveWarn).ToList())
+                @foreach (var log in GetLastRunLogs().Where(LogsIfAboveWarn).ToList())
                 {
                     <p>@log.Item1: @log.Item2</p>
                 }
@@ -20,7 +20,7 @@
     else
     {
         <button class="btn btn-warning" @onclick="() => ToggleShowLogs()"><span
-        class="oi oi-warning"></span>@logs.Count(LogsIfAboveWarn)</button>
+        class="oi oi-warning"></span>@GetLastRunLogs().Count(LogsIfAboveWarn) </button>
     }
 }
 
@@ -42,4 +42,7 @@
 
     private bool LogsIfAboveWarn(Tuple<LogMessageErrorLevel, string> x) =>
     x.Item1 == LogMessageErrorLevel.Warning || x.Item1 == LogMessageErrorLevel.Error;
+
+    private List<Tuple<LogMessageErrorLevel, string>> GetLastRunLogs() => 
+        logs.Skip(logs.LastIndexOf (logs.Last(x => x.Item2 == "Generating mission date and time..."))).ToList();
 }
