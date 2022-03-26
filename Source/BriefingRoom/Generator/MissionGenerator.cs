@@ -222,7 +222,10 @@ namespace BriefingRoom4DCS.Generator
             var templateRecord = new MissionTemplateRecord(template);
             var mission = await Policy
                 .HandleResult<DCSMission>(x => x.IsExtremeDistance(template, out double distance))
-                .Or<BriefingRoomException>()
+                .Or<BriefingRoomException>(x => {
+                    BriefingRoom.PrintToLog($"Recoverable Error thrown, {x.Message}", LogMessageErrorLevel.Warning);
+                    return false;
+                })
                 .RetryAsync(3)
                 .ExecuteAsync(() => GenerateAsync(templateRecord, useObjectivePresets));
 
