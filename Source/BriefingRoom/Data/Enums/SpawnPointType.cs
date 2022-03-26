@@ -25,7 +25,6 @@ namespace BriefingRoom4DCS.Data
         LandSmall,
         LandMedium,
         LandLarge,
-
         Sea,
         Airbase,
         Air
