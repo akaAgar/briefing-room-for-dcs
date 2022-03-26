@@ -1,3 +1,4 @@
+@inject IJSRuntime JSRuntime
 @if (showLogs)
 {
     <div class="alert alert-secondary" role="info">
@@ -7,6 +8,8 @@
                     class="oi oi-bug"></span>@logs.Count()</button>
                 <button class="btn btn-secondary" @onclick="() => ClearLogs()"><span
                     class="oi oi-reload"></span>Clear</button>
+                <button class="btn btn-secondary" @onclick="() => CopyLogs()">
+                    <span class="oi oi-clipboard"></span>Copy</button>
             </div>
             @foreach (var log in logs)
             {
@@ -34,5 +37,10 @@ else
     private void ToggleShowLogs()
     {
         showLogs = !showLogs;
+    }
+
+    private void CopyLogs()
+    {
+        JSRuntime.InvokeVoidAsync("CopyLogs", logs.Select(x => $"{x.Item1}: {x.Item2}").ToList());
     }
 }

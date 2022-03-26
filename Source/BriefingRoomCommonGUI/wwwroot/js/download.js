@@ -35,10 +35,15 @@ async function BlazorDownloadFile(filename, contentType, data) {
 
 }
 
+function CopyLogs(logs) {
+  navigator.clipboard.writeText(logs.join('\n'));
+}
+
+
 const getMinCoors = (arr) => [Math.min.apply(Math, arr.map(x => x[0])), Math.min.apply(Math, arr.map(x => x[1]))]
 const getMaxCoors = (arr) => [Math.max.apply(Math, arr.map(x => x[0])), Math.max.apply(Math, arr.map(x => x[1]))]
 
-async function RenderMap(mapData) {
+function RenderMap(mapData) {
   let canvas = document.getElementById("canvas");
   let ctx = canvas.getContext("2d");
   clearCanvas(ctx, canvas)
