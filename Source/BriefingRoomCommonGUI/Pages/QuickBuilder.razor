@@ -350,7 +350,6 @@
         try {
             spinner = true;
             StateHasChanged();
-            logs.Clear();
             mission = null;
             errorMessage = "";
             mission = await briefingRoom.GenerateMissionAsync(Template, true);
