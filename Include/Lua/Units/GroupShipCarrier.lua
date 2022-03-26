@@ -96,6 +96,18 @@
               {
                   ["tasks"] = 
                   {
+                    [1] =
+                    {
+                      ["enabled"] = true,
+                      ["auto"] = false,
+                      ["id"] = "GoToWaypoint",
+                      ["number"] = 1,
+                      ["params"] =
+                      {
+                        ["fromWaypointIndex"] = 2,
+                        ["nWaypointIndx"] = 1,
+                      }, -- end of ["params"]
+                    }, -- end of [1]
                   }, -- end of ["tasks"]
               }, -- end of ["params"]
           }, -- end of ["task"]
