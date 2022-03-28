@@ -194,63 +194,107 @@
                         </div>
                     </div>
                     break;
-                case "player":
-                    <div class="flight-group">
-                        <div class="generator-group flex-justify-spaced flex-margin-fix">
-                            <div class="form-group flex-block">
-                                <label>Aircraft</label>
-                                <BlazoredTypeahead SearchMethod="SearchAircraft" @bind-Value="Template.Player.Aircraft"
-                                    EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
-                                    MaximumSuggestions="1000">
-                                    <SelectedTemplate Context="aircraftId">
-                                        @GetAircraftDisplayName(@aircraftId)
-                                    </SelectedTemplate>
-                                    <ResultTemplate Context="aircraft">
-                                        @aircraft.Name
-                                    </ResultTemplate>
-                                </BlazoredTypeahead>
-                            </div>
-                            <div class="form-group flex-block">
-                                <label>Count</label>
-                                <InputNumber class="form-control" @bind-Value="Template.Player.Count"></InputNumber>
-                            </div>
-                            <div class="form-group flex-block">
-                                <label>Payload</label>
-                                <select class="form-control selectpicker" @bind=Template.Player.Payload>
-                                    @foreach (var item in GetAircraftPayloads(Template.Player.Aircraft))
-                                    {
-                                        <option value="@item">@BriefingRoom.FormatPayload(item)</option> // Blazor needs to know what values it binds to!
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                        <div class="generator-group flex-justify-spaced flex-margin-fix">
-                            <InputEnum ClassString="flex-block" Label="Starting Setup" @bind-Value="Template.Player.StartLocation" EnumType="PlayerStartLocation"/>
-                            <InputDataBase ClassString="flex-block" Label="Carrier" @bind-Value="Template.Player.Carrier" DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="N/A"/>
-                        </div>
-                        <div class="generator-group flex-justify-spaced flex-margin-fix">
-                            <div class="flex-block form-group">
-                                <label>Livery</label>
-                                <select class="form-control selectpicker" @bind=Template.Player.Livery>
-                                @foreach (var item in GetLiveries(Template.Player.Aircraft))
-                                {
-                                    <option value="@item">@item</option> // Blazor needs to know what values it binds to!
-                                }
-                                </select>
-                            </div>
-                            <div class="flex-block form-group">
-                                <label>Country</label>
-                                <BlazoredTypeahead SearchMethod="SearchCountry" @bind-Value="Template.Player.Country"
-                                    EnableDropDown="true" DisableClear="true" MaximumSuggestions="1000">
-                                    <SelectedTemplate Context="country">
-                                        @country
-                                    </SelectedTemplate>
-                                    <ResultTemplate Context="country">
-                                        @country
-                                    </ResultTemplate>
-                                </BlazoredTypeahead>
-                            </div>
-                        </div>
+                case "flight-groups":
+                    <div id="flight-groups" class="generator-block">
+                        <h3>Player flight groups</h3>
+                        <ul class="nav nav-tabs">
+                            @foreach (var value in Template.PlayerFlightGroups)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link @(flightGroupTab == value ? "active" : "") @(value.Hostile ? "hostile" : "")" aria-current="page"
+                            @onclick='() => SetFlightGroupTab(value)'>
+                                       @value.Alias: @GetAircraftDisplayName(@value.Aircraft) x @value.Count
+                                        @if (Template.PlayerFlightGroups.Count > 1)
+                                        {
+                                            <a class="delete-flight" @onclick="() =>  RemoveFlightGroup(value)">x</a>
+                                        }
+                                    </a>
+                                </li>
+                            }
+                            <li class="nav-item">
+                                <a class="nav-link" @onclick="AddFlightGroup">+</a>
+                            </li>
+                        </ul>
+
+                        @foreach (var flight in Template.PlayerFlightGroups)
+                        {
+                            if (flightGroupTab == flight)
+                            {
+                                <div class="flight-group  @(flight.Hostile ? "hostile" : "")">
+                                    <div class="generator-group flex-justify-spaced flex-margin-fix">
+                                        <div class="form-group flex-block">
+                                            <label>Aircraft</label>
+                                            <BlazoredTypeahead SearchMethod="SearchAircraft" @bind-Value="flight.Aircraft"
+                                                EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
+                                                MaximumSuggestions="1000">
+                                                <SelectedTemplate Context="aircraftId">
+                                                    @GetAircraftDisplayName(@aircraftId)
+                                                </SelectedTemplate>
+                                                <ResultTemplate Context="aircraft">
+                                                    @aircraft.Name
+                                                </ResultTemplate>
+                                            </BlazoredTypeahead>
+                                        </div>
+                                        <div class="form-group flex-block">
+                                            <label>Count</label>
+                                            <InputNumber class="form-control" @bind-Value="flight.Count"></InputNumber>
+                                        </div>
+                                        <div class="form-group flex-block">
+                                            <label>Payload</label>
+                                            <select class="form-control selectpicker" @bind=flight.Payload>
+                                                @foreach (var item in GetAircraftPayloads(flight.Aircraft))
+                                                {
+                                                    <option value="@item">@BriefingRoom.FormatPayload(item)</option> // Blazor needs to know what values it binds to!
+                                                }
+                                            </select>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary row-button" @onclick="() => CloneFlightGroup(flight)" title="Clone Flight Group"><span class="oi oi-layers"></span></button>
+                                    </div>
+                                    <div class="generator-group flex-justify-spaced flex-margin-fix">
+                                        <InputEnum ClassString="flex-block" Label="Starting Setup" @bind-Value="flight.StartLocation" EnumType="PlayerStartLocation"/>
+                                        <InputDataBase ClassString="flex-block" Label="Carrier" @bind-Value="flight.Carrier" DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="N/A"/>
+                                    </div>
+                                    <div class="generator-group flex-justify-spaced flex-margin-fix">
+                                        <div class="flex-block form-group">
+                                            <label>Livery</label>
+                                            <select class="form-control selectpicker" @bind=flight.Livery>
+                                            @foreach (var item in GetLiveries(flight.Aircraft))
+                                            {
+                                                <option value="@item">@item</option> // Blazor needs to know what values it binds to!
+                                            }
+                                            </select>
+                                        </div>
+                                        <div class="flex-block form-group">
+                                            <label>Country</label>
+                                            <BlazoredTypeahead SearchMethod="SearchCountry" @bind-Value="flight.Country"
+                                                EnableDropDown="true" DisableClear="true" MaximumSuggestions="1000">
+                                                <SelectedTemplate Context="country">
+                                                    @country
+                                                </SelectedTemplate>
+                                                <ResultTemplate Context="country">
+                                                    @country
+                                                </ResultTemplate>
+                                            </BlazoredTypeahead>
+                                        </div>
+                                    </div>
+                                    <div class="flex-block form-group">
+                                        <label class="checkbox-wrapper">
+                                            <input type="checkbox" checked=@flight.AIWingmen
+                                                @onchange="eventArgs => { flight.AIWingmen = (bool)eventArgs.Value; StateHasChanged();}" />
+                                                <span>AI Wingmen</span>
+                                        </label>
+                                        @if(Template.PlayerFlightGroups.First() != flight)
+                                        {
+                                            <label class="checkbox-wrapper">
+                                                <input type="checkbox" checked=@flight.Hostile
+                                                    @onchange="eventArgs => { flight.Hostile = (bool)eventArgs.Value; StateHasChanged();}" />
+                                                    <span>Hostile</span>
+                                            </label>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        }
                     </div>
                     break;
             }
@@ -306,6 +350,7 @@
     protected override void OnInitialized()
     {
         Template = new CampaignTemplate();
+        flightGroupTab = Template.PlayerFlightGroups[0];
     }
 
     public static void WriteToDebugLog(string message, LogMessageErrorLevel errorLevel = LogMessageErrorLevel.Info)
@@ -410,7 +455,7 @@
     private string tab = "context-&-enviroment";
     private List<string> tabs = new List<string>{
     "context-&-enviroment",
-    "player",
+    "flight-groups",
     "missions",
     "situation",
     "options",
@@ -420,6 +465,45 @@
         tab = var;
     }
 
+    private MissionTemplateFlightGroup flightGroupTab;
+
+    private void SetFlightGroupTab(MissionTemplateFlightGroup var)
+    {
+        flightGroupTab = var;
+    }
+
+    private void AddFlightGroup()
+    {
+        MissionTemplateFlightGroup newflight = new();
+        newflight.Alias = BriefingRoom.GetAlias(Template.PlayerFlightGroups.Count);
+        Template.PlayerFlightGroups.Add(newflight);
+        flightGroupTab = newflight;
+    }
+
+    private void CloneFlightGroup(MissionTemplateFlightGroup flight) {
+        MissionTemplateFlightGroup newflight = new(){
+            Aircraft = flight.Aircraft,
+            AIWingmen = flight.AIWingmen,
+            Carrier = flight.Carrier,
+            Count = flight.Count,
+            Country = flight.Country,
+            Payload = flight.Payload,
+            StartLocation = flight.StartLocation,
+            Livery = flight.Livery
+        };
+        newflight.Alias = BriefingRoom.GetAlias(Template.PlayerFlightGroups.Count);
+        Template.PlayerFlightGroups.Add(newflight);
+        flightGroupTab = newflight;
+    }
+
+    private void RemoveFlightGroup(MissionTemplateFlightGroup flight)
+    {
+        Template.PlayerFlightGroups.Remove(flight);
+        if (Template.PlayerFlightGroups.Count == 1)
+        {
+            flightGroupTab = Template.PlayerFlightGroups[0];
+        }
+    }
 
     private DCSMission missionTab;
     private void SetMissionTab(DCSMission var)

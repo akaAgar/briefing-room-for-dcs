@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -45,8 +45,6 @@ namespace BriefingRoom4DCS.Campaign
             string baseFileName = Toolbox.RemoveInvalidPathCharacters(campaign.Name);
 
             DateTime date = GenerateCampaignDate(campaignTemplate);
-
-            campaignTemplate.Player.AIWingmen = true; //Make sure wingmen is always true for campaign
 
             for (int i = 0; i < campaignTemplate.MissionsCount; i++)
             {
@@ -175,7 +173,7 @@ namespace BriefingRoom4DCS.Campaign
                 OptionsMission = campaignTemplate.OptionsMission.ToList(),
                 OptionsRealism = campaignTemplate.OptionsRealism.ToList(),
 
-                PlayerFlightGroups = new List<MissionTemplateFlightGroup> { campaignTemplate.Player },
+                PlayerFlightGroups = campaignTemplate.PlayerFlightGroups,
 
                 SituationEnemySkill = GetPowerLevel(campaignTemplate.SituationEnemySkill, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount),
                 SituationEnemyAirDefense = GetPowerLevel(campaignTemplate.SituationEnemyAirDefense, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount),

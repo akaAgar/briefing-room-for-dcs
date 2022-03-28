@@ -60,7 +60,8 @@ namespace BriefingRoom4DCS.Campaign
         private List<string> OptionsMods_ = new List<string>();
         public List<RealismOption> OptionsRealism { get { return OptionsRealism_; } set { OptionsRealism_ = value.Distinct().ToList(); } }
         private List<RealismOption> OptionsRealism_ = new List<RealismOption>();
-        public MissionTemplateFlightGroup Player { get; set; }
+        public List<MissionTemplateFlightGroup> PlayerFlightGroups { get { return PlayerFlightGroups_; } set { PlayerFlightGroups_ = value.Take(MissionTemplate.MAX_PLAYER_FLIGHT_GROUPS).ToList(); } }
+        private List<MissionTemplateFlightGroup> PlayerFlightGroups_ = new List<MissionTemplateFlightGroup>();
         public string PlayerStartingAirbase { get; set; }
         public AmountNR SituationEnemySkill { get; set; }
         public AmountNR SituationEnemyAirDefense { get; set; }
@@ -111,8 +112,9 @@ namespace BriefingRoom4DCS.Campaign
             OptionsMods = new List<string>();
             OptionsMission = new List<string> { "ImperialUnitsForBriefing" };
             OptionsRealism = new RealismOption[] { RealismOption.DisableDCSRadioAssists, RealismOption.NoBDA }.ToList();
-
-            Player = new MissionTemplateFlightGroup();
+            var fg = new MissionTemplateFlightGroup();
+            fg.AIWingmen = true;
+            PlayerFlightGroups = new List<MissionTemplateFlightGroup>{fg};
             PlayerStartingAirbase = "";
 
             SituationEnemySkill = AmountNR.Random;
@@ -122,6 +124,7 @@ namespace BriefingRoom4DCS.Campaign
             SituationFriendlySkill = AmountNR.Random;
             SituationFriendlyAirDefense = AmountNR.Random;
             SituationFriendlyAirForce = AmountNR.Random;
+            AssignAliases();
         }
 
         public bool LoadFromFile(string filePath)
@@ -154,8 +157,13 @@ namespace BriefingRoom4DCS.Campaign
             OptionsMission = ini.GetValueDistinctList<string>("Options", "Mission");
             OptionsRealism = ini.GetValueDistinctList<RealismOption>("Options", "Realism");
 
+            PlayerFlightGroups.Clear();
+            foreach (string key in ini.GetTopLevelKeysInSection("PlayerFlightGroups"))
+                PlayerFlightGroups.Add(new MissionTemplateFlightGroup(ini, "PlayerFlightGroups", key));
 
-            Player = new MissionTemplateFlightGroup(ini, "PlayerFlightGroups", "Player");
+            if(PlayerFlightGroups.Count == 0) // Redundancy vs old single player version
+                PlayerFlightGroups.Add(new MissionTemplateFlightGroup(ini, "PlayerFlightGroups", "Player"));
+
             PlayerStartingAirbase = ini.GetValue("Player", "StartingAirbase", PlayerStartingAirbase);
 
             SituationEnemySkill = ini.GetValue("Situation", "EnemySkill", SituationEnemySkill);
@@ -166,7 +174,7 @@ namespace BriefingRoom4DCS.Campaign
             SituationFriendlyAirDefense = ini.GetValue("Situation", "FriendlyAirDefense", SituationFriendlyAirDefense);
             SituationFriendlyAirForce = ini.GetValue("Situation", "FriendlyAirForce", SituationFriendlyAirForce);
 
-
+            AssignAliases();
             return true;
         }
 
@@ -184,6 +192,7 @@ namespace BriefingRoom4DCS.Campaign
 
         private INIFile GetAsIni()
         {
+            int i;
             var ini = new INIFile();
             ini.SetValue("Briefing", "CampaignName", BriefingCampaignName);
 
@@ -209,7 +218,8 @@ namespace BriefingRoom4DCS.Campaign
             ini.SetValueArray("Options", "Mission", OptionsMission.ToArray());
             ini.SetValueArray("Options", "Realism", OptionsRealism.ToArray());
 
-            Player.SaveToFile(ini, "PlayerFlightGroups", $"Player");
+            for (i = 0; i < PlayerFlightGroups.Count; i++)
+                PlayerFlightGroups[i].SaveToFile(ini, "PlayerFlightGroups", $"PlayerFlightGroup{i:000}");
             ini.SetValue("Player", "StartingAirbase", PlayerStartingAirbase);
 
             ini.SetValue("Situation", "EnemySkill", SituationEnemySkill);
@@ -219,7 +229,7 @@ namespace BriefingRoom4DCS.Campaign
             ini.SetValue("Situation", "FriendlySkill", SituationFriendlySkill);
             ini.SetValue("Situation", "FriendlyAirDefense", SituationFriendlyAirDefense);
             ini.SetValue("Situation", "FriendlyAirForce", SituationFriendlyAirForce);
-
+            AssignAliases();
             return ini;
         }
 
@@ -227,6 +237,12 @@ namespace BriefingRoom4DCS.Campaign
         {
             if (coalition == Coalition.Red) return ContextCoalitionRed;
             return ContextCoalitionBlue;
+        }
+
+        internal void AssignAliases()
+        {
+            foreach (var item in PlayerFlightGroups)
+                item.AssignAlias(PlayerFlightGroups.IndexOf(item));
         }
 
     }
