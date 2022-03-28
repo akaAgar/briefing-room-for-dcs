@@ -1,4 +1,4 @@
-﻿/*
+/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -53,9 +53,9 @@ namespace BriefingRoom4DCS.Campaign
                 // Increment the date by a few days for each mission after the first
                 if (i > 0) date = IncrementDate(date);
 
-                MissionTemplateRecord template = CreateMissionTemplate(campaignTemplate, campaign.Name, i, (int)campaignTemplate.MissionsObjectiveCount);
+                var template = CreateMissionTemplate(campaignTemplate, campaign.Name, i, (int)campaignTemplate.MissionsObjectiveCount);
 
-                DCSMission mission = await MissionGenerator.GenerateAsync(template, true);
+                DCSMission mission = await MissionGenerator.GenerateRetryableAsync(template, true);
                 // TODO: mission.DateTime.Day = date.Day; mission.DateTime.Month = date.Month; mission.DateTime.Year = date.Year;
                 if (mission == null)
                 {
@@ -141,7 +141,7 @@ namespace BriefingRoom4DCS.Campaign
             return lua.Replace("\r\n", "\n");
         }
 
-        private static MissionTemplateRecord CreateMissionTemplate(CampaignTemplate campaignTemplate, string campaignName, int missionIndex, int missionCount)
+        private static MissionTemplate CreateMissionTemplate(CampaignTemplate campaignTemplate, string campaignName, int missionIndex, int missionCount)
         {
             string weatherPreset = GetWeatherForMission(campaignTemplate.EnvironmentBadWeatherChance);
 
@@ -190,7 +190,7 @@ namespace BriefingRoom4DCS.Campaign
             for (int i = 0; i < objectiveCount; i++)
                 template.Objectives.Add(new MissionTemplateObjective(Toolbox.RandomFrom(campaignTemplate.MissionsObjectives)));
 
-            return new(template);
+            return template;
         }
 
         private static int GetObjectiveDistance(Amount objectiveDistance)
