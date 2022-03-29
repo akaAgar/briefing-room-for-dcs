@@ -69,7 +69,7 @@ namespace BriefingRoom4DCS
                 luaContent = mission.ReplaceValues(luaContent);
 
             foreach (Match match in Regex.Matches(luaContent, "\\$.*?\\$"))
-                BriefingRoom.PrintToLog($"Found a non-assigned value ({match.Value}) in Lua file \"{mizEntryKey}\".", LogMessageErrorLevel.Warning);
+                BriefingRoom.PrintToLog($"Found a non-assigned value ({match.Value}) in Lua file \"{mizEntryKey}\".", LogMessageErrorLevel.Info);
             luaContent = Regex.Replace(luaContent, "\\$.*?\\$", "0");
 
             mizFileEntries.Add(mizEntryKey, Encoding.UTF8.GetBytes(luaContent));
