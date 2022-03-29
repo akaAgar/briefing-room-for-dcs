@@ -90,7 +90,7 @@ mission =
     }, -- end of ["result"]
     ["groundControl"] = 
     {
-        ["isPilotControlVehicles"] = false,
+        ["isPilotControlVehicles"] = $CAPILOTCONTROL$,
         ["roles"] = 
         {
             ["artillery_commander"] = 
