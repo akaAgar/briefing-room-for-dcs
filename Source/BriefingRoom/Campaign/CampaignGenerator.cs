@@ -182,6 +182,11 @@ namespace BriefingRoom4DCS.Campaign
                 SituationFriendlySkill = GetPowerLevel(campaignTemplate.SituationFriendlySkill, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount, true),
                 SituationFriendlyAirDefense = GetPowerLevel(campaignTemplate.SituationFriendlyAirDefense, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount, true),
                 SituationFriendlyAirForce = GetPowerLevel(campaignTemplate.SituationFriendlyAirForce, campaignTemplate.MissionsDifficultyVariation, missionIndex, missionCount, true),
+
+                CombinedArmsCommanderBlue = campaignTemplate.CombinedArmsCommanderBlue,
+                CombinedArmsCommanderRed = campaignTemplate.CombinedArmsCommanderRed,
+                CombinedArmsJTACBlue = campaignTemplate.CombinedArmsJTACBlue,
+                CombinedArmsJTACRed = campaignTemplate.CombinedArmsJTACRed,
             };
 
             int objectiveCount = GetObjectiveCountForMission(campaignTemplate.MissionsObjectiveCount);

@@ -57,6 +57,11 @@ namespace BriefingRoom4DCS.Template
         internal AmountNR SituationFriendlySkill { get; init; }
         internal AmountNR SituationFriendlyAirDefense { get; init; }
         internal AmountNR SituationFriendlyAirForce { get; init; }
+        internal int CombinedArmsCommanderBlue { get; init; }
+        internal int CombinedArmsCommanderRed { get; init; }
+        internal int CombinedArmsJTACBlue { get; init; }
+        internal int CombinedArmsJTACRed { get; init; }
+
 
         internal MissionTemplateRecord(MissionTemplate template)
         {
@@ -82,11 +87,11 @@ namespace BriefingRoom4DCS.Template
             OptionsFogOfWar = template.OptionsFogOfWar;
             OptionsMission = template.OptionsMission;
             OptionsRealism = template.OptionsRealism;
-            PlayerFlightGroups = template.PlayerFlightGroups.Select(x => 
+            PlayerFlightGroups = template.PlayerFlightGroups.Select(x =>
             {
-                if(((ContextPlayerCoalition == Coalition.Red && !x.Hostile) || (ContextPlayerCoalition == Coalition.Blue && x.Hostile)) && x.Country == Country.CJTFBlue)
+                if (((ContextPlayerCoalition == Coalition.Red && !x.Hostile) || (ContextPlayerCoalition == Coalition.Blue && x.Hostile)) && x.Country == Country.CJTFBlue)
                     x.Country = Country.CJTFRed;
-                if(((ContextPlayerCoalition == Coalition.Red && x.Hostile) || (ContextPlayerCoalition == Coalition.Blue && !x.Hostile)) && x.Country == Country.CJTFRed)
+                if (((ContextPlayerCoalition == Coalition.Red && x.Hostile) || (ContextPlayerCoalition == Coalition.Blue && !x.Hostile)) && x.Country == Country.CJTFRed)
                     x.Country = Country.CJTFBlue;
 
                 return new MissionTemplateFlightGroupRecord(x);
@@ -98,6 +103,11 @@ namespace BriefingRoom4DCS.Template
             SituationFriendlySkill = template.SituationFriendlySkill;
             SituationFriendlyAirDefense = template.SituationFriendlyAirDefense;
             SituationFriendlyAirForce = template.SituationFriendlyAirForce;
+
+            CombinedArmsCommanderBlue = template.CombinedArmsCommanderBlue;
+            CombinedArmsCommanderRed = template.CombinedArmsCommanderRed;
+            CombinedArmsJTACBlue = template.CombinedArmsJTACBlue;
+            CombinedArmsJTACRed = template.CombinedArmsJTACRed;
         }
 
         internal string GetCoalitionID(Coalition coalition)
@@ -118,9 +128,9 @@ namespace BriefingRoom4DCS.Template
 
         private void AppendPlayerAircraftMods(ref MissionTemplate template)
         {
-           var playerMods = template.PlayerFlightGroups
-            .Select(x => Database.Instance.GetEntry<DBEntryUnit>(x.Aircraft).RequiredMod)
-            .Where(x => !string.IsNullOrEmpty(x)).ToList();
+            var playerMods = template.PlayerFlightGroups
+             .Select(x => Database.Instance.GetEntry<DBEntryUnit>(x.Aircraft).RequiredMod)
+             .Where(x => !string.IsNullOrEmpty(x)).ToList();
             template.Mods.AddRange(playerMods);
         }
     }

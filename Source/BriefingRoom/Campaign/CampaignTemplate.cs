@@ -69,6 +69,14 @@ namespace BriefingRoom4DCS.Campaign
         public AmountNR SituationFriendlySkill { get; set; }
         public AmountNR SituationFriendlyAirDefense { get; set; }
         public AmountNR SituationFriendlyAirForce { get; set; }
+        public int CombinedArmsCommanderBlue  { get { return CombinedArmsCommanderBlue_; } set { CombinedArmsCommanderBlue_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
+        private int CombinedArmsCommanderBlue_;
+        public int CombinedArmsCommanderRed  { get { return CombinedArmsCommanderRed_; } set { CombinedArmsCommanderRed_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
+        private int CombinedArmsCommanderRed_;
+        public int CombinedArmsJTACBlue  { get { return CombinedArmsJTACBlue_; } set { CombinedArmsJTACBlue_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
+        private int CombinedArmsJTACBlue_;
+        public int CombinedArmsJTACRed  { get { return CombinedArmsJTACRed_; } set { CombinedArmsJTACRed_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
+        private int CombinedArmsJTACRed_;
 
         public CampaignTemplate()
         {
@@ -124,6 +132,12 @@ namespace BriefingRoom4DCS.Campaign
             SituationFriendlySkill = AmountNR.Random;
             SituationFriendlyAirDefense = AmountNR.Random;
             SituationFriendlyAirForce = AmountNR.Random;
+
+            CombinedArmsCommanderBlue = 0;
+            CombinedArmsCommanderRed = 0;
+            CombinedArmsJTACBlue = 0;
+            CombinedArmsJTACRed = 0;
+
             AssignAliases();
         }
 
@@ -173,6 +187,11 @@ namespace BriefingRoom4DCS.Campaign
             SituationFriendlySkill = ini.GetValue("Situation", "FriendlySkill", SituationFriendlySkill);
             SituationFriendlyAirDefense = ini.GetValue("Situation", "FriendlyAirDefense", SituationFriendlyAirDefense);
             SituationFriendlyAirForce = ini.GetValue("Situation", "FriendlyAirForce", SituationFriendlyAirForce);
+
+            CombinedArmsCommanderBlue = ini.GetValue("CombinedArms", "CommanderBlue", CombinedArmsCommanderBlue);
+            CombinedArmsCommanderRed = ini.GetValue("CombinedArms", "CommanderRed", CombinedArmsCommanderRed);
+            CombinedArmsJTACBlue = ini.GetValue("CombinedArms", "JTACBlue", CombinedArmsJTACBlue);
+            CombinedArmsJTACRed = ini.GetValue("CombinedArms", "JTACRed", CombinedArmsJTACRed);
 
             AssignAliases();
             return true;
@@ -229,6 +248,12 @@ namespace BriefingRoom4DCS.Campaign
             ini.SetValue("Situation", "FriendlySkill", SituationFriendlySkill);
             ini.SetValue("Situation", "FriendlyAirDefense", SituationFriendlyAirDefense);
             ini.SetValue("Situation", "FriendlyAirForce", SituationFriendlyAirForce);
+
+            ini.SetValue("CombinedArms", "CommanderBlue", CombinedArmsCommanderBlue);
+            ini.SetValue("CombinedArms", "CommanderRed", CombinedArmsCommanderRed);
+            ini.SetValue("CombinedArms", "JTACBlue", CombinedArmsJTACBlue);
+            ini.SetValue("CombinedArms", "JTACRed", CombinedArmsJTACRed);
+
             AssignAliases();
             return ini;
         }
