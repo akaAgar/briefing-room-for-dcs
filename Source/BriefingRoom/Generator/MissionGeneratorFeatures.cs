@@ -70,6 +70,9 @@ namespace BriefingRoom4DCS.Generator
                     groupFlags |= UnitMakerGroupFlags.AlwaysHidden;
 
                 extraSettings.AddIfKeyUnused("Payload", featureDB.UnitGroupPayload);
+                extraSettings.AddIfKeyUnused("playerCanDrive", true);
+                extraSettings.AddIfKeyUnused("NoCM", false);
+                
                 var groupLua = featureDB.UnitGroupLuaGroup;
                 var unitCount = featureDB.UnitGroupSize.GetValue();
                 var unitFamily = Toolbox.RandomFrom(featureDB.UnitGroupFamilies);

@@ -96,8 +96,8 @@ mission =
             ["artillery_commander"] = 
             {
                 ["neutrals"] = 0,
-                ["blue"] = 0,
-                ["red"] = 0,
+                ["blue"] = $CACMDBLU$,
+                ["red"] = $CACMDRED$,
             }, -- end of ["artillery_commander"]
             ["instructor"] = 
             {
@@ -114,8 +114,8 @@ mission =
             ["forward_observer"] = 
             {
                 ["neutrals"] = 0,
-                ["blue"] = 0,
-                ["red"] = 0,
+                ["blue"] = $CAJTACBLU$,
+                ["red"] = $CAJTACRED$,
             }, -- end of ["forward_observer"]
         }, -- end of ["roles"]
     }, -- end of ["groundControl"]

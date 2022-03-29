@@ -3,7 +3,7 @@
   ["tasks"] =
   {
   }, -- end of ["tasks"]
-  ["uncontrollable"] = false,
+  ["uncontrollable"] = $NOCM$,
   ["task"] = "Ground Nothing",
   ["hiddenOnMFD"] = $HIDDEN$,
   ["route"] =

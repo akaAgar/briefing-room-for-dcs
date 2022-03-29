@@ -2,7 +2,7 @@
   ["tasks"] =
   {
   }, -- end of ["tasks"]
-  ["uncontrollable"] = false,
+  ["uncontrollable"] = $NOCM$,
   ["task"] = "Ground Nothing",
   ["taskSelected"] = true,
   ["route"] =

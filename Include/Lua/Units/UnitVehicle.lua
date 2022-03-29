@@ -10,4 +10,4 @@ $EXTRALUA$
   ["x"] = $UNITX$,
   ["name"] = "$NAME$",
   ["heading"] = $HEADING$,
-  ["playerCanDrive"] = false,
+  ["playerCanDrive"] = $PLAYERCANDRIVE$,

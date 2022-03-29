@@ -255,6 +255,7 @@ namespace BriefingRoom4DCS.Generator
             GeneratorTools.ReplaceKey(ref lua, "GroupX2", coordinates.X); // GroupX2 and GroupY2 are replaced by the default coordinates only if they were not replaced earlier in extraSetting replacements. 
             GeneratorTools.ReplaceKey(ref lua, "GroupY2", coordinates.Y);
             GeneratorTools.ReplaceKey(ref lua, "Name", groupName);
+            GeneratorTools.ReplaceKey(ref lua, "NoCM", true);
 
             return lua;
         }
@@ -459,6 +460,9 @@ namespace BriefingRoom4DCS.Generator
             GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitID", UnitID);
             GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitX", unitCoordinates.X);
             GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitY", unitCoordinates.Y);
+            GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "playerCanDrive", false);
+            
+            
             if (Toolbox.IsAircraft(unitDB.Category))
             {
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Callsign", callsign.Value.GetLua(unitLuaIndex));
