@@ -194,6 +194,27 @@
                         </div>
                     </div>
                     break;
+                case "combined-arms":
+                    <div id="combined-arms" class="generator-block">
+                        <h3>Combined Arms</h3>
+                        <div class="generator-group flex-justify-spaced flex-margin-fix">
+                            <div class="flex-block">
+                                <h4>Blue</h4>
+                                <label>Commanders</label>
+                                <InputNumber class="form-control" @bind-Value="Template.CombinedArmsCommanderBlue"></InputNumber>
+                                <label>JTACS</label>
+                                <InputNumber class="form-control" @bind-Value="Template.CombinedArmsJTACBlue"></InputNumber>
+                            </div>
+                            <div class="flex-block">
+                                <h4>Red</h4>
+                                <label>Commanders</label>
+                                <InputNumber class="form-control" @bind-Value="Template.CombinedArmsCommanderRed"></InputNumber>
+                                <label>JTACS</label>
+                                <InputNumber class="form-control" @bind-Value="Template.CombinedArmsJTACRed"></InputNumber>
+                            </div>  
+                        </div>
+                    </div>
+                    break;
                 case "flight-groups":
                     <div id="flight-groups" class="generator-block">
                         <h3>Player flight groups</h3>
@@ -458,6 +479,7 @@
     "flight-groups",
     "missions",
     "situation",
+    "combined-arms",
     "options",
     };
     private void SetTab(string var)
