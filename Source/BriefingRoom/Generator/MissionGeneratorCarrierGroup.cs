@@ -81,7 +81,9 @@ namespace BriefingRoom4DCS.Generator
                         "TACANCallsign".ToKeyValuePair(tacanCallsign),
                         "TACANChannel".ToKeyValuePair(tacanChannel),
                         "TACANFrequency".ToKeyValuePair(GeneratorTools.GetTACANFrequency(tacanChannel, 'X', false)),
-                        "TACANMode".ToKeyValuePair("X"));
+                        "TACANMode".ToKeyValuePair("X"),
+                        "playerCanDrive".ToKeyValuePair(false),
+                        "NoCM".ToKeyValuePair(true));
 
                 if (!groupInfo.HasValue || (groupInfo.Value.UnitsID.Length == 0)) continue; // Couldn't generate group
 
@@ -183,7 +185,9 @@ namespace BriefingRoom4DCS.Generator
                     spawnPoint.Value, 0,
                     "FOBCallSignIndex".ToKeyValuePair(FOBNames.IndexOf(flightGroup.Carrier) + 1),
                     "RadioBand".ToKeyValuePair((int)RadioModulation.AM),
-                    "RadioFrequency".ToKeyValuePair(GeneratorTools.GetRadioFrenquency(radioFrequency)));
+                    "RadioFrequency".ToKeyValuePair(GeneratorTools.GetRadioFrenquency(radioFrequency)),
+                    "playerCanDrive".ToKeyValuePair(false),
+                    "NoCM".ToKeyValuePair(true));
             if (!groupInfo.HasValue || (groupInfo.Value.UnitsID.Length == 0)) return; // Couldn't generate group
             zoneMaker.AddCTLDPickupZone(spawnPoint.Value, true);
             mission.Briefing.AddItem(

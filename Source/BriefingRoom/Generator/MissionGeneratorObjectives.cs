@@ -142,6 +142,8 @@ namespace BriefingRoom4DCS.Generator
 
             extraSettings.Add("GroupX2".ToKeyValuePair(destinationPoint.X));
             extraSettings.Add("GroupY2".ToKeyValuePair(destinationPoint.Y));
+            extraSettings.Add("playerCanDrive".ToKeyValuePair(false));
+            extraSettings.Add("NoCM".ToKeyValuePair(true));
 
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
                 objectiveTargetUnitFamily, unitCount,
@@ -265,6 +267,8 @@ namespace BriefingRoom4DCS.Generator
 
             extraSettings.Add("GroupX2".ToKeyValuePair(destinationPoint.X));
             extraSettings.Add("GroupY2".ToKeyValuePair(destinationPoint.Y));
+            extraSettings.Add("playerCanDrive".ToKeyValuePair(false));
+            extraSettings.Add("NoCM".ToKeyValuePair(true));
 
             var unitCoordinates = objectiveCoordinates;
             var objectiveName = Toolbox.RandomFrom(ObjectiveNames);
