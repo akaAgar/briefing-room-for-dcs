@@ -22,7 +22,9 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationCoordi
   local unitVec2 = { x = unitVec3.x, y = unitVec3.z }
   local cooMessage = dcsExtensions.vec2ToStringCoordinates(unitVec2)
   briefingRoom.radioManager.play(objective.name.." JTAC: Affirm, transmitting updated target coordinates\n"..cooMessage, "RadioSupportTargetCoordinates", briefingRoom.radioManager.getAnswerDelay())
+  missionCommands.removeItemForCoalition($LUAPLAYERCOALITION$, briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].objRadioCommand)
+  briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].objRadioCommand = missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Require target coordinates.\nLast Coordinates:\n"..cooMessage, briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationCoordinates)
 end
     
 -- Add the command to the F10 menu
-missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Require target coordinates", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationCoordinates)
+briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].objRadioCommand = missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Require target coordinates", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationCoordinates)
