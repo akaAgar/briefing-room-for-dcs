@@ -460,10 +460,10 @@ end
 -- Turns a vec2 to a string with LL/MGRS coordinates
 -- Based on code by Bushmanni - https://forums.eagle.ru/showthread.php?t=99480
 function dcsExtensions.vec2ToStringCoordinates(vec2)
-  local pos = { x = vec2.x, y = 0, z = vec2.y }
+  local pos = { x = vec2.x, y = land.getHeight({x = vec2.x, y = vec2.y}), z = vec2.y }
   local cooString = ""
 
-  local LLposN, LLposE = coord.LOtoLL(pos)
+  local LLposN, LLposE, alt = coord.LOtoLL(pos)
   local LLposfixN, LLposdegN = math.modf(LLposN)
   LLposdegN = LLposdegN * 60
   local LLposdegN2, LLposdegN3 = math.modf(LLposdegN)
@@ -492,6 +492,7 @@ function dcsExtensions.vec2ToStringCoordinates(vec2)
   local mgrs = coord.LLtoMGRS(LLposN, LLposE)
   local mgrsString = mgrs.MGRSDigraph.." "..mgrs.UTMZone.." "..tostring(mgrs.Easting).." "..tostring(mgrs.Northing)
   cooString = cooString.."\nMGRS: "..mgrsString
+  cooString = cooString.."\nAltitude: "..math.floor(alt * 3.281).."ft"
 
   return cooString
 end
