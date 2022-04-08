@@ -854,6 +854,8 @@ function briefingRoom.f10MenuCommands.getWaypointCoordinates(index)
   local cooMessage = dcsExtensions.vec2ToStringCoordinates(briefingRoom.mission.objectives[index].waypoint)
   briefingRoom.radioManager.play("Pilot: Command, request confirmation of waypoint "..briefingRoom.mission.objectives[index].name.." coordinates.", "RadioPilotWaypointCoordinates")
   briefingRoom.radioManager.play("Command: Acknowledged, transmitting waypoint "..briefingRoom.mission.objectives[index].name.." coordinates.\n\n"..cooMessage, "RadioHQWaypointCoordinates", briefingRoom.radioManager.getAnswerDelay())
+  missionCommands.removeItemForCoalition($LUAPLAYERCOALITION$, briefingRoom.mission.objectives[index].waypointRadioCommand)
+  briefingRoom.mission.objectives[index].waypointRadioCommand = missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Waypoint coordinates:\n"..cooMessage, briefingRoom.f10Menu.objectives[index], briefingRoom.f10MenuCommands.getWaypointCoordinates, index)
 end
 
 -- Common mission menu (mission status and mission features)
@@ -869,7 +871,7 @@ $SCRIPTOBJECTIVES$
 briefingRoom.mission.objectivesLeft = #briefingRoom.mission.objectives -- Store the total of objective left to complete
 
 for i=1,#briefingRoom.mission.objectives do
-  missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Request waypoint coordinates", briefingRoom.f10Menu.objectives[i], briefingRoom.f10MenuCommands.getWaypointCoordinates, i)
+  briefingRoom.mission.objectives[i].waypointRadioCommand = missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Request waypoint coordinates", briefingRoom.f10Menu.objectives[i], briefingRoom.f10MenuCommands.getWaypointCoordinates, i)
 end
 
 -- ===================================================================================
