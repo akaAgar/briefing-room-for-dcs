@@ -84,7 +84,7 @@
                             <InputDataBase ClassString="flex-block" Label="Theater" @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater"/>
                             <InputDataBase ClassString="flex-block" Label="Situation" @bind-Value="Template.ContextSituation" DataBaseType="DatabaseEntryType.Situation" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
                         </div>
-                        <InputDataBase Label="Home airbase" @bind-Value="Template.PlayerStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="Template.ContextTheater" EmptOpt="Random"/>
+                        <InputDataBase Label="Home airbase" @bind-Value="Template.PlayerStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
                         <InputEnum Label="Time period" @bind-Value="Template.ContextDecade" EnumType="Decade"/>
                         <InputEnum Label="Player Side" @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition"/>
                     </div>
