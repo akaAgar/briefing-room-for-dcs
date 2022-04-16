@@ -22,6 +22,12 @@ namespace BriefingRoom4DCS.Data
 {
     internal class DBEntryDCSMod : DBEntry
     {
-        protected override bool OnLoad(string iniFilePath) { return true; }
+        internal string RequiredID { get; private set; }
+        protected override bool OnLoad(string iniFilePath)
+        {
+            var ini = new INIFile(iniFilePath);
+            RequiredID = ini.GetValue<string>("Module", "RequiredID");
+            return true;
+        }
     }
 }

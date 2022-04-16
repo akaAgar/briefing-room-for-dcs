@@ -437,7 +437,11 @@ namespace BriefingRoom4DCS.Generator
         {
             if(!string.IsNullOrEmpty(unitDB.RequiredMod))
             {
-                ModUnits.AddRange(unitDB.DCSIDs);
+                DBEntryDCSMod mod = Database.Instance.GetEntry<DBEntryDCSMod>(unitDB.RequiredMod);
+                if(string.IsNullOrEmpty(mod.RequiredID))
+                    ModUnits.AddRange(unitDB.DCSIDs);
+                else
+                    ModUnits.Add(mod.RequiredID);
             }
 
             string unitLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_UNITS}{Toolbox.AddMissingFileExtension(unitTypeLua, ".lua")}");

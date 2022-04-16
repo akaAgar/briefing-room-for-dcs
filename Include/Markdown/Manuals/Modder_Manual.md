@@ -1,5 +1,5 @@
 # BriefingRoom for DCS World - User's manual
-__Last Edited: 12/02/2022__
+__Last Edited: 16/04/2022__
 
 This manual contains everything you need to know in order to modify BriefingRoom to your needs [for Aircraft Payloads and Liveries use Custom Configs](Custom_Configs.md).
 If you only want to generate missions, please read the User's manual.
@@ -27,6 +27,7 @@ If you only want to generate missions, please read the User's manual.
     1. [Database/TheatersAirbases directory](#databasetheatersairbases-directory)
     1. [Database/WeatherPresets directory](#databaseweatherpresets-directory)
     1. [Database/Units directory](#databaseunits-directory)
+    1. [Database/DCSMods directory](#databasedcsmods-directory)
 1. [Include directory](#include-directory)
     1. [Include/Html](#includehtml)
     1. [Include/Jpg directory](#includejpg-directory)
@@ -211,6 +212,12 @@ Configuration of Cloud Weather Presets (As per Inital Cloud Presets)
 * GUI
 * Briefing Display
 * ED Cloud config (hopefully once they add more options we can do more here)
+
+### Database/DCSMods directory
+Configuration of unit mods
+* GUI
+* RequiredID (DCS id of the mod - create mission in ME using units from the mod and check the requiredModules section in the saved mission file. If missing unit DCSID will be used)
+
 
 ### Database/Units directory
 Configuration of units playable or spawnable in missions.
