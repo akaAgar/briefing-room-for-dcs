@@ -58,172 +58,140 @@ The development roadmap and a list of features planned for future versions can b
 
 (Changelog for older versions can be found in Changelog.md)
 
-* Version 0.5.201.21(Jan, 22, 2022)
-  * BREAKING: feature Ids (You will need to reapply these on templates)
+* Version 0.5.204.17(Apr, 17, 2022)
   * Added
-    * Added: Lower Cloud Migrated to Mission options (Mission options now more extendable)
-    * Added: Low Cloud option (references cloud to sea level rather than airbase)
-    * Added: Skynet Command Center Support
-    * Added: simple docs on creating Situations
-    * Added: Situations for map varied map zoning
-    * Added: auto retry if BriefingRoomException received on generation
-    * Added: auto retry and warning when objective distance is over 1.7x requested
-    * Added: scenery artillery for takable artillery
-    * Added: Ground Start Aircraft
-    * Added: General Training level under situation
-    * Added: Infantry and Cars to front line pool.
-    * Added: High Digit SAMS mod support - thanks gregfp66
-    * Added: Updated Campaign enough to call out of BETA
-    * Added: Friendly CAS and SEAD (not tasked)
-    * Added: Feature Enemy SEAD and CAS
-    * Added: Scenery, Friendly Static Aircraft
-    * Added: Situation Syria Israel War with Lebanon (No Allies)
-    * Added: Situations Marianas (multipule)
-    * Added: Situation Gulf Oman Invades UAE
-    * Added: Random option to Situation
-    * Added: Situation: Syrian Civil War (Pre Lebanon spill over)
-    * Added: Support for No Spawning area in Situations
-    * Added: Situation: Caucasus Russo Georgian War 2008
-    * Added: Situation: Caucasus Russian Costal Invasion (Early and late)
-    * Added: Situation: Caucasus Beslan Rebellion
-    * Added: Situation Persian Gulf - Civil War in Iran -Thanks anthon
-    * Added: PersianGulf Situations - Thanks Diesel
-    * Added: Nevada Situations - Thanks Diesel
-    * Added: Friendly and Enemy Helicopters (split out from CAS)
-    * Added: SubTask Template loading and saving
-    * Added: KJ-2000, Tornado (IDS & GR4), KC-130, SU-24MR, Yak-40
-    * Added: Players can be on hostile side (Simple)
-    * Added: Hide Borders Mission option
-    * Added: USAF Aggressors
-    * Added: JTAC Single Laser Code mission option
-    * Added: Mark cold start player aircraft with "(C)"
-    * Added: 10,000ft minimum runway requirement for large aircraft (Data still needed)
-    * Added: Dynamic Laser codes for each objective
-    * Added: Allow Custom Coalition Configs
-    * Added: Units Assigned to respective coalition countries if possible
-    * Added: Credits under Manual.
-    * Added: Runway Lengths for The Channel
-    * Added: Runway Lengths to Normandy
-    * Added: Nevada runway lengths
-    * Added: Warn player if specifically chosen airbase has a too short runway for chosen aircraft
-    * Added: Support Aircraft Minimum Runway lengths (Data still required)
-    * Added: Syria Nicosa airbase spawn points (tiny chance of FOB spawning there)
-    * Added: Syria Runway Lengths
-    * Added: PersianGuld Runway Lengths
-    * Added: Runway Lengths Mariana Islands
-    * Added: Runway Lengths Caucuses
-    * Added: Spawning on non dedicated carrier ships
-    * Added: Speaker Identifiers on radio message text
-    * Added: SkynetIADS EWR Radars
-    * Added: Initial SKYNET IADS system
-    * Added: In mission user manual
-    * Added: Extra Group feature support
-    * Added: Sub Objectives as extra Tasks.
-    * Added: SubObjective Template Props
-    * Added: Initial UH-60L Mod support
-    * Added: Splash Damage script as optional feature
-    * Added: More Task Description options to Briefings
-    * Added: UH-60L Radio config
-    * Added: Gave JTAC Bigger brain swishes target if its considered complete in objectives. Can also switch target on command
-    * Added: Disable Task (better suited for attacking parked aircraft)
-    * Added: Plane Attack minimum Runway Length
-    * Added: Basic DSMC compatibility by auto completing objectives on start
-    * Added: Minimum Runway Length to Tankers
-    * Added: complete User Mission Manual
-    * Added: Scenery Drone and JTAC as objective features
-    * Added: Spawn Friendly CAS and SEAD by player
-    * Added: Missing Sounds for Laser Designation
+    * Added: Coordinate readouts now contains altitude in ft
+    * Added: Persistent Waypoint Coordinates in Objective Radio Menu
+    * Added: Persistent Target Coordinates in Objective Radio Menu
+    * Added: Combined Arms Pilot Control mission option
+    * Added: Combined Arms Template support
+    * Added: Backend support for Combined Arms
+    * Added: Campaign support multiple player flights
+    * Added: Mission Feature Ships for Enemy and Friendly
+    * Added: Static and Offshore static buildings
+    * Added: Missing Spinner to Campaign Generator
+    * Added: Syria Iraq 2003 situation (no short flights)
+    * Added: Syria new airbases
+    * Added: Playable Apache
+    * Added: Blackhawk Clean and External Tanks Loadouts
+    * Added: First implementation of Briefing Editor
+    * Added: ME compatible mod requirements.
+    * Added: HTML Rendered KneeBoards
+    * Added: Initial attempt at multi objective descriptions
+    * Added: Initial situation briefing sections
+    * Added: Support for more rich Briefings
+    * Added: Missing Clear Weather Preset
+    * Added: CTLD native support
+    * Added: Zone support
+    * Added: Escort Presets
+    * Added: Transport Troop Preset
+    * Added: Troop Transport Radio Calls
+    * Added: BR script for transport over CTLD
+    * Added: Taskable attack helicopters
+    * Added: Fleshed out escort task
+    * Added: basic initial escort task
+    * Added: Script Assisted Troop Transport
+    * Added: Initial Troop Transport Task (WIP)
+    * Added: CTLD Script
+    * Added: CSAR script
+    * Added: FOB Static items
+    * Added: Takeoff distance to Bomber
+    * Added: Takeoff distance to PlaneFighter
+    * Added: changes to some Fighter AC on Rwy length
+    * Added: More units variety in static targets
+    * Added: some more static groups mostly large things
+    * Added: Static Enemy Aircraft
+    * Added: High Cloud
   * Updated
-    * Updated: default template
-    * Updated: Gulf Parking Positions
-    * Updated: Marianas Parking Positions
-    * Updated: Caucasus parking positions
-    * Updated: Syria Parking Positions
-    * Updated: SEAD loadouts: F-16 & F-14B- Thanks Rhys
-    * Updated: Front line troops now return fire
-    * Updated: Gulf Civil War in Iran - thanks anthon
-    * Updated: Cyprus Conflict to not spawn in Syria, Israel ect
-    * Updated: Waypoint Marker is now Drawn
-    * Updated: NevadaEchobay.ini
-    * Updated: Reduced large aircraft runway requirement to 7000ft
-    * Updated: A-10 Minimum Runway Length.
+    * Updated: Channel new airfields - thanks Sandman
+    * Updated: Skynet IADS to 3.0.0-dev
+    * Updated: Enable CM control for Anti-Air disable for Carrier and FOB
+    * Updated: Carriers loop back to start point
+    * Updated: Limit Units from spawning more than 70nm from own controlled area.
+    * Updated: Syria Situations
+    * Updated: Syria default zone
+    * Updated: Merge Flight Plan, Airbase and JTAC Kneepages
+    * Updated: Removed or shortened remarks
+    * Updated: Kneeboard notes and added JTAC section to briefings
+    * Updated: Increase KneeBoard Resolution
+    * Updated: Tune Taskable AI
+    * Updated: Limit kill radio call outs to just players
+    * Updated: AI Radio Freqencies
+    * Updated: CSAR script
+    * Updated: Commando Drop in Preset to be Transport Troop mission
+    * Updated: No longer allow CTLD to manage Transport AI groups
+    * Updated: EnemyStaticAircraft.ini
+    * Updated: FriendlyHelicopters.ini
+    * Updated: FriendlyCAS.ini
+    * Updated: EnemyStaticAircraft.ini
+    * Updated: FriendlyStaticAircraft.ini
+    * Updated: FriendlySEAD.ini
+    * Updated: FriendlyHelicopters.ini
+    * Updated: FriendlyCAS.ini
+    * Updated: EnemyTanker.ini
+    * Updated: EnemySEAD.ini
+    * Updated: EnemyHelicopters.ini
+    * Updated: EnemyCAS.ini
+    * Updated: EnemyAWACS.ini
+    * Updated: FriendlySEAD.ini
+    * Updated: F-117A moved to bomber
   * Fixed
-    * Fix: JTAC looping issue
-    * Fix: Airbase Parking spawn tasks waypoints are now on ground
-    * Fix: Airbase spawn listens to side limitations
-    * Fix: increased base cloud level range was just 650ft
-    * Fix: Player not being set when wingman used (you didn't see this)
-    * Fix: UI wasn't setting Situation right when map change
-    * Fix: use parking over parking_id
-    * Fix: Correct Kingsfield location
-    * Fix: Correct first in player group position
-    * Fix: Improvements to ground spawning logic
-    * Fix: Group features a bit
-    * Fix: Ground Late activating aircraft not working
-    * Fix: Taskable aircraft take off right away on ground spawn
-    * Fix: Aircraft refusing to take off
-    * Fix: hopefully stop silly aircraft parking spawning (assuming data is ok)
-    * Fix: aircraft spawning improvements
-    * Fix: Helos loadouts where not editable
-    * Fix: CAP and SEAD parked where late activation
-    * Fix: A bunch of issues with aircraft parking and unit directions
-    * Fix: Rename original situations
-    * Fix: Reset default file again
-    * Fix: Culture issue stopping certain Os setups from generating missions
-    * Fix: Tell Scenic Ground Vehicles they can defend themselves
-    * Fix: Extra aircraft show on flight list.
-    * Fix: Convinced Admirals to position their carriers much closer to home base
-    * Fix: Failing to find airbase had unusable error message.
-    * Fix: Air and Sea units was able to ignore control zones
-    * FIx: Scenery, JTAC was too danger close
-    * FIx: SEAD and CAP not doing their roles
-    * Fix: Parked Late Activation Aircraft not editable in ME
-    * Fix: Missing Country Name Crashing Skynet Script
-    * Fix: Laser Target Not existing
-    * Fix: MarianaIslands badly named
-    * Fix: Carrier Destinations on land.
-    * Fix: Ground Start Aircraft and Spawn anywhere not mixing
-    * Fix: Missing default mission features
-    * Fix: GroundStart Tankers race-tracking right back to airbase
-    * Fix: Build version path
-    * Fix: Sub Objectives not loading right
-    * Fix: Strike Packages not waypoints to with Sub Objectives
-    * Fix: Close Air Support description
-    * Fix: Player Aircraft with required runway length couldn't be generated.
-    * Fix: Artillery asking for Zero units
-    * Fix: UnitVehicleParked somehow was possible
-    * Fix: Distance warning was wrong way round
-    * Fix: Invert Coalitions wasn't reliable
-    * Fix: Enemy Feature Units follow objective hidden
-    * Fix: SubObjective can be on airbase if main objective is on airbase.
-    * Fix: correct Al Maktoum Intl radios
-    * Fix: UH-1H & OH-58D having no loadouts
+    * Fix: Correct bad HDS mod required ID
+    * Fix: Campaign unable to select starting airbase
+    * Fix: Campaign Generator  not using mission retry logic
+    * Fix: Logs where needlessly cleared on mission generation
+    * Fix: Correctly scale map
+    * Fix: Correct weapon configs Mi-24V & JF-17
+    * Fix: Show FCR on Apache
+    * Fix: Turkey was assigned to UK underneath
+    * Fix: Dog Ear radar ref
+    * Fix: add missing exe
+    * Fix: Can't find image issue due to pathing issues
+    * Fix: Increase Briefing Editor save mission size
+    * Fix: Use temp file in proper temp folder for windows
+    * Fix: Increase Zip memory size
+    * Fix: Bad Incirlik VHF frequency
+    * Fix: Black Hawk mod references
+    * Fix: Preset typo
+    * Fix: Broke kill messages (ignore player only calls)
+    * Fix: Callsigns started with 2 not 1
+    * Fix: ignore parking on airbase if not aircraft
+    * Fix: Taskable support not spawning
+    * Fix: Always populate country units block even if no units.
+    * Fix: only remove payload for harrier on STOVL ships
+    * Fix: FOB's where not regularly closer than main airbase
+    * Fix: Not spawning FOBs at all
+    * Fix: Flight groups not auto changing CJTF sides
   * UI
-    * UI: General Sort out
-    * UI: More improvement to Mission Features
-    * UI: Mark player groups with (P) on flight list
-    * UI: Re-label Air force to Combat air patrols.
-    * UI: Add build version on index page
-    * UI: Load Template is limited to expected file formats
-    * UI: Missing Web Favicon
+    * UI: added Channel ground mapping - thanks sandman
+    * UI: Update with Combined Arms options
+    * UI: Added Combined Arms Options to Full and Campaign Builder
+    * UI: Warnings only shown for mission shown in UI not failed generation attempts
+    * UI: Added copy logs button
+    * UI: Map added to Campaign Builder UI
+    * UI: Added abstract map of mission
+    * UI: Add simple loading spinner
+    * UI: More accurate names for some situation options
+    * UI: More indications in quick builder of inherited options
+    * UI: Added home base option to quick builder
+    * UI: Stronger indications of Quick Builder limitations and features loaded from templates
+    * UI: Add more task validation
   * Misc
-    * Misc: Properly set save and load file types
-    * Misc: Add dependabot to automation
-    * Misc: Newer Airbase Position extract method
-    * Misc: Update Template extractor to do vehicles
-    * Misc: Run code format pass and remove Summaries
-    * Misc: Fix build issue
-    * Misc: Switch to TemplateRecord in generator to avoid mutating template
-    * Misc: Big code cleanup
-    * Misc: remove pre-release from builds
-    * Misc: Remove excess valid spawn types
-    * Misc: Remove Disabled Units
-    * Misc: Include Readme in download & Desktop warnings thanks - BlackRook
-    * Misc: Try manual build version
-    * Misc: Remove useless code.
-    * Misc: Missing Bracket
-    * Misc: auto lower case payload
+    * Misc: Lower Found a non-assigned value warning to info
+    * Misc: Log Excessive Distances
+    * Misc: Log Recoverable Error
+    * Misc: add airbase ID grabber
+    * Misc: added build version to github issue
+    * Misc: report error logs when kneeboard convert fails
+    * Misc: Remove usage of temp file for KneeBoard generation
+    * Misc: improve auto release name
+    * Misc: Use MIST by default
+    * Misc: Update Country conflict warning
+    * Misc: Bump Markdig from 0.28.0 to 0.28.1 in /Source
+    * Misc: Bump Markdig from 0.27.0 to 0.28.0 in /Source
     * Misc: Bump Microsoft.AspNetCore.Components.Web in /Source
-    * Misc: another attempt at build version
-    * Misc: Credit Walder for Skynet
-    * Misc: Github Update Issue for new upload limits
+    * Misc: Bump Swashbuckle.AspNetCore from 6.2.3 to 6.3.0 in /Source
+    * Misc: Bump Microsoft.AspNetCore.Components.Web in /Source
+    * Misc: Bump Blazored.LocalStorage from 4.1.5 to 4.2.0 in /Source
+    * Misc: Bump Polly from 7.2.2 to 7.2.3 in /Source
+    * Misc: Bump Markdig from 0.26.0 to 0.27.0 in /Source
