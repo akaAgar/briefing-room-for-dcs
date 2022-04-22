@@ -5,7 +5,7 @@ namespace LuaTableSerialiser
 {
     internal class Serialiser
     {
-        internal static object ConvertType(object item, int nesting = 1)
+        internal static object ConvertType(object item, int nesting = 1, int index = 0)
         {
             return item switch
             {
@@ -17,15 +17,15 @@ namespace LuaTableSerialiser
                 double value => value,
                 IList value => ListToLua(value, nesting),
                 IDictionary value => DictToLua(value, nesting),
-                _ => TryToLuaString(item)
+                _ => TryToLuaString(item, index)
             };
         }
 
-        private static object TryToLuaString(object item)
+        private static object TryToLuaString(object item, int index)
         {
             try
             {
-                return item.GetType().GetMethod("ToLuaString").Invoke(item, null);
+                return item.GetType().GetMethod("ToLuaString").Invoke(item, new object []{index});
             }
             catch (System.Exception)
             {
@@ -59,7 +59,7 @@ namespace LuaTableSerialiser
             var index = 1;
             foreach (var item in data)
             {
-                str += $"\n{Utils.GetNesting(nesting)}{ConvertKey(index)} = {ConvertType(item, nesting + 1)},";
+                str += $"\n{Utils.GetNesting(nesting)}{ConvertKey(index)} = {ConvertType(item, nesting + 1, index)},";
                 index++;
             }
             return $"{str}\n{Utils.GetNesting(nesting)}}}";

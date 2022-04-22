@@ -8,7 +8,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         {
         }
 
-        internal new string ToLuaString(int number){
+        public new string ToLuaString(int number){
             return LuaSerialiser.Serialize(new Dictionary<string, object> {
                 {"id", "WrappedAction"},
                 {"number", number},
