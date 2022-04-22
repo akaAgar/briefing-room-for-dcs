@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
+using BriefingRoom4DCS.Mission.DCSLuaObjects;
 using BriefingRoom4DCS.Template;
 using Polly;
 using System;
@@ -35,6 +36,12 @@ namespace BriefingRoom4DCS.Generator
 
         internal static async Task<DCSMission> GenerateAsync(MissionTemplateRecord template, bool useObjectivePresets)
         {
+            Console.WriteLine(
+                new List<object>{
+                    new WaypointTask("AWACS", new Dictionary<string, object>{{"value", 1}, {"groupId", 2}}),
+                    new WrappedWaypointTask("EPLRS", new Dictionary<string, object>{{"value", 1}, {"groupId", 2}}),
+                }
+            );
 
             // Check for missing entries in the database
             GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionBlue);
