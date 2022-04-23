@@ -4,14 +4,14 @@ using LuaTableSerialiser;
 
 namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 {
-    public class Waypoint
+    public class DCSWaypoint
     {
 
         public int Alt { get; set; }
         public string Action { get; set; }
         public int Speed { get; set; }
-        private List<WaypointTask> _tasks = new List<WaypointTask>();
-        public List<WaypointTask> Tasks
+        private List<DCSWaypointTask> _tasks = new List<DCSWaypointTask>();
+        public List<DCSWaypointTask> Tasks
         {
             get { return _tasks; }
             set { _tasks = SortTasks(value); }
@@ -22,11 +22,13 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         public float X { get; set; }
         public string Name { get; set; }
 
-        private List<WaypointTask> SortTasks(List<WaypointTask> tasks) => tasks.Select(x => x.parameters.ContainsKey("wrapped") ? new WrappedWaypointTask(x) : x).ToList();
+        public int AirdromeId { get; set; }
+
+        private List<DCSWaypointTask> SortTasks(List<DCSWaypointTask> tasks) => tasks.Select(x => x.parameters.ContainsKey("wrapped") ? new WrappedWaypointTask(x) : x).ToList();
 
         public string ToLuaString(int number)
         {
-            return LuaSerialiser.Serialize(new Dictionary<string, object> {
+            var obj = new Dictionary<string, object> {
                 {"alt", Alt},
                 {"action", Action},
                 {"alt_type", "BARO"},
@@ -46,7 +48,10 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"name", Name},
                 {"formation_template", ""},
                 {"speed_locked", true}
-            });
+            };
+            if(AirdromeId > 0)
+                obj.Add("airdromeId", AirdromeId);
+            return LuaSerialiser.Serialize(obj);
         }
     }
 }

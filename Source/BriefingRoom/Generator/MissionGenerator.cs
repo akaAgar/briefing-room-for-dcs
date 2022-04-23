@@ -20,16 +20,14 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
+using BriefingRoom4DCS.Mission.DCSLuaObjects;
 using BriefingRoom4DCS.Template;
-using LuaTableSerialiser;
 using Polly;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using YamlDotNet.Serialization;
-using YamlDotNet.Serialization.NamingConventions;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -39,7 +37,7 @@ namespace BriefingRoom4DCS.Generator
         internal static async Task<DCSMission> GenerateAsync(MissionTemplateRecord template, bool useObjectivePresets)
         {
 
-            var yaml = File.ReadAllText($"{BRPaths.INCLUDE_YAML_GROUP}{Toolbox.AddMissingFileExtension("AWACS", ".yml")}");
+            var yaml = File.ReadAllText($"{BRPaths.INCLUDE_YAML_GROUP}{Toolbox.AddMissingFileExtension("AircraftAWACS", ".yml")}");
             var extraSettings = new Dictionary<string, object>{
                 {"EPLRS", true},
                 {"GROUPID", 1 },
@@ -58,16 +56,9 @@ namespace BriefingRoom4DCS.Generator
                 if (!(extraSetting.Value is Array)) // Array extra settings are treated on a per-unit basis
                     GeneratorTools.ReplaceKey(ref yaml, extraSetting.Key, extraSetting.Value);
             Console.WriteLine(yaml);
-            var deserializer = new DeserializerBuilder()
-            .WithNamingConvention(CamelCaseNamingConvention.Instance)  // see height_in_inches in sample yml 
-            .Build();
-            var p = deserializer.Deserialize<Mission.DCSLuaObjects.Group>(yaml);
+            var p = DCSGroup.YamlToGroup(yaml);
             
-            foreach (var item in p.Waypoints[0].Tasks[1].parameters)
-            {
-                Console.WriteLine($"{item.Key}: {item.Value} ({item.Value.GetType()})");
-            } 
-            Console.WriteLine(LuaSerialiser.Serialize(p));
+            Console.WriteLine(LuaTableSerialiser.LuaSerialiser.Serialize(p));
 
             // Check for missing entries in the database
             GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionBlue);
