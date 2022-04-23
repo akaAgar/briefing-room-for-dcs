@@ -4,8 +4,10 @@ using LuaTableSerialiser;
 
 namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 {
-    public class Unit {
-        public string ToLuaString(int number){
+    public class Unit
+    {
+        public string ToLuaString(int number)
+        {
             return LuaSerialiser.Serialize(new Dictionary<string, object>());
         }
     }

@@ -20,7 +20,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
-using BriefingRoom4DCS.Mission.DCSLuaObjects;
 using BriefingRoom4DCS.Template;
 using LuaTableSerialiser;
 using Polly;
@@ -50,6 +49,8 @@ namespace BriefingRoom4DCS.Generator
                 {"HIDDEN", false},
                 {"GROUPY", 15.000},
                 {"GROUPX", 12.000},
+                {"GROUPY2", 115.000},
+                {"GROUPX2", 112.000},
                 {"RADIOFREQUENCY", 17.000},
                 {"NAME", "bob"}
             };
@@ -61,6 +62,11 @@ namespace BriefingRoom4DCS.Generator
             .WithNamingConvention(CamelCaseNamingConvention.Instance)  // see height_in_inches in sample yml 
             .Build();
             var p = deserializer.Deserialize<Mission.DCSLuaObjects.Group>(yaml);
+            
+            foreach (var item in p.Waypoints[0].Tasks[1].parameters)
+            {
+                Console.WriteLine($"{item.Key}: {item.Value} ({item.Value.GetType()})");
+            } 
             Console.WriteLine(LuaSerialiser.Serialize(p));
 
             // Check for missing entries in the database
