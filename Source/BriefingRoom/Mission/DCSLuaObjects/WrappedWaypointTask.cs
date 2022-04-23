@@ -8,6 +8,11 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         {
         }
 
+        internal WrappedWaypointTask(WaypointTask task) : base(task.id, task.parameters, task.enabled, task.auto)
+        {
+            parameters.Remove("wrapped");
+        }
+
         public new string ToLuaString(int number){
             return LuaSerialiser.Serialize(new Dictionary<string, object> {
                 {"id", "WrappedAction"},

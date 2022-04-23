@@ -9,12 +9,11 @@ namespace LuaTableSerialiser
         {
             return item switch
             {
-
-                string value => EscapeString(value),
-                int value => value,
                 bool value => value.ToString().ToLower(),
+                int value => value,
                 float value => value,
                 double value => value,
+                string value => EscapeString(value),
                 IList value => ListToLua(value, nesting),
                 IDictionary value => DictToLua(value, nesting),
                 _ => TryToLuaString(item, index)

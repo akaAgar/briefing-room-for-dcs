@@ -1,0 +1,29 @@
+lateActivation: true
+modulation: $RADIOBAND$
+task: AWACS
+uncontrolled: false
+taskSelected: true
+waypoints:
+  - tasks: 
+    - id: AWACS
+    - id: EPLRS
+      parameters:
+        wrapped: true
+        value: $EPLRS$
+        groupId: $GROUPID$
+    - id: Option
+      parameters:
+        wrapped: true
+        value: 0
+        name: 1
+    - id: Orbit
+      parameters:
+        altitude: $ALTITUDE$
+        pattern: Race-Track
+        speed: $SPEED$
+groupId: $GROUPID$
+hidden: $HIDDEN$
+y: $GROUPY$
+x: $GROUPX$
+name: $NAME$
+frequency: $RADIOFREQUENCY$

@@ -47,6 +47,8 @@ namespace BriefingRoom4DCS
 
         internal static string INCLUDE_MARKDOWN { get; } = $"{INCLUDE}Markdown\\";
 
+        internal static string INCLUDE_YAML { get; } = $"{INCLUDE}Yaml\\";
+
 
         internal static string INCLUDE_LUA_MISSIONFEATURES { get; } = $"{INCLUDE_LUA}MissionFeatures\\";
 
@@ -59,6 +61,10 @@ namespace BriefingRoom4DCS
         internal static string INCLUDE_LUA_MISSION { get; } = $"{INCLUDE_LUA}Mission\\";
 
         internal static string INCLUDE_LUA_UNITS { get; } = $"{INCLUDE_LUA}Units\\";
+
+        internal static string INCLUDE_YAML_UNIT { get; } = $"{INCLUDE_YAML}Unit\\";
+
+        internal static string INCLUDE_YAML_GROUP { get; } = $"{INCLUDE_YAML}Group\\";
 
         internal static string INCLUDE_OGG { get; } = $"{INCLUDE}Ogg\\";
 
