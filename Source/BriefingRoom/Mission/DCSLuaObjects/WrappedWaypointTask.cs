@@ -3,7 +3,8 @@ using LuaTableSerialiser;
 
 namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 {
-    internal class WrappedWaypointTask: WaypointTask {
+    internal class WrappedWaypointTask : WaypointTask
+    {
         internal WrappedWaypointTask(string _id, Dictionary<string, object> _parameters, bool _enabled = true, bool _auto = true) : base(_id, _parameters, _enabled, _auto)
         {
         }
@@ -13,7 +14,8 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             parameters.Remove("wrapped");
         }
 
-        public new string ToLuaString(int number){
+        public new string ToLuaString(int number)
+        {
             return LuaSerialiser.Serialize(new Dictionary<string, object> {
                 {"id", "WrappedAction"},
                 {"number", number},
@@ -27,6 +29,6 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 }},
             });
         }
-        
+
     }
 }

@@ -15,7 +15,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         public List<Waypoint> Waypoints { get; set; }
         public int GroupId { get; set; }
         public bool Hidden { get; set; }
-        public List<Unit> Units {get; set;}
+        public List<Unit> Units { get; set; }
         public float X { get; set; }
         public float Y { get; set; }
         public string name { get; set; }
