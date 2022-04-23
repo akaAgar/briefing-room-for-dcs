@@ -1,10 +1,13 @@
 ﻿using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
+using LuaTableSerialiser;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -435,10 +438,10 @@ namespace BriefingRoom4DCS.Generator
             UnitMakerGroupFlags unitMakerGroupFlags,
             params KeyValuePair<string, object>[] extraSettings)
         {
-            if(!string.IsNullOrEmpty(unitDB.RequiredMod))
+            if (!string.IsNullOrEmpty(unitDB.RequiredMod))
             {
                 DBEntryDCSMod mod = Database.Instance.GetEntry<DBEntryDCSMod>(unitDB.RequiredMod);
-                if(string.IsNullOrEmpty(mod.RequiredID))
+                if (string.IsNullOrEmpty(mod.RequiredID))
                     ModUnits.AddRange(unitDB.DCSIDs);
                 else
                     ModUnits.Add(mod.RequiredID);
@@ -465,8 +468,8 @@ namespace BriefingRoom4DCS.Generator
             GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitX", unitCoordinates.X);
             GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitY", unitCoordinates.Y);
             GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "playerCanDrive", true);
-            
-            
+
+
             if (Toolbox.IsAircraft(unitDB.Category))
             {
                 GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Callsign", callsign.Value.GetLua(unitLuaIndex));

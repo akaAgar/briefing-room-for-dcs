@@ -17,7 +17,7 @@ waypoints:
       - id: Option
         parameters:
           wrapped: true
-          value: 0.1
+          value: 1
           name: 1
       - id: Orbit
         parameters:

@@ -4,7 +4,7 @@ using LuaTableSerialiser;
 
 namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 {
-    public class Unit
+    public class DCSUnit
     {
         public string ToLuaString(int number)
         {

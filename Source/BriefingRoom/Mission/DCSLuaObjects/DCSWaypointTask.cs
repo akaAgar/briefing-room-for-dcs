@@ -3,7 +3,7 @@ using LuaTableSerialiser;
 
 namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 {
-    public class WaypointTask
+    public class DCSWaypointTask
     {
 
         public bool enabled { get; init; }
@@ -15,9 +15,9 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             set { _parameters = DeterminTypes(value);} 
             } 
 
-        public WaypointTask() { }
+        public DCSWaypointTask() { }
 
-        public WaypointTask(string _id, Dictionary<string, object> _parameters, bool _enabled = true, bool _auto = true)
+        public DCSWaypointTask(string _id, Dictionary<string, object> _parameters, bool _enabled = true, bool _auto = true)
         {
             id = _id;
             parameters = _parameters;
