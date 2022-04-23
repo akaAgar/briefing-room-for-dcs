@@ -29,6 +29,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -37,19 +39,36 @@ namespace BriefingRoom4DCS.Generator
 
         internal static async Task<DCSMission> GenerateAsync(MissionTemplateRecord template, bool useObjectivePresets)
         {
-            Console.WriteLine(LuaSerialiser.Serialize(
-                new List<object>{
-                    new WaypointTask("AWACS", new Dictionary<string, object>{{"value", 1}, {"groupId", 2}}),
-                    new WrappedWaypointTask("EPLRS", new Dictionary<string, object>{{"value", 1}, {"groupId", 2}}),
-                }
-            ));
+
+            var yaml = File.ReadAllText($"{BRPaths.INCLUDE_YAML_GROUP}{Toolbox.AddMissingFileExtension("AWACS", ".yml")}");
+            var extraSettings = new Dictionary<string, object>{
+                {"EPLRS", true},
+                {"GROUPID", 1 },
+                {"ALTITUDE", 12000},
+                {"SPEED", 250 },
+                {"RADIOBAND", 0},
+                {"HIDDEN", false},
+                {"GROUPY", 15.000},
+                {"GROUPX", 12.000},
+                {"RADIOFREQUENCY", 17.000},
+                {"NAME", "bob"}
+            };
+            foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
+                if (!(extraSetting.Value is Array)) // Array extra settings are treated on a per-unit basis
+                    GeneratorTools.ReplaceKey(ref yaml, extraSetting.Key, extraSetting.Value);
+            Console.WriteLine(yaml);
+            var deserializer = new DeserializerBuilder()
+            .WithNamingConvention(CamelCaseNamingConvention.Instance)  // see height_in_inches in sample yml 
+            .Build();
+            var p = deserializer.Deserialize<Mission.DCSLuaObjects.Group>(yaml);
+            Console.WriteLine(LuaSerialiser.Serialize(p));
 
             // Check for missing entries in the database
             GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionBlue);
             GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionRed);
             GeneratorTools.CheckDBForMissingEntry<DBEntryWeatherPreset>(template.EnvironmentWeatherPreset, true);
             GeneratorTools.CheckDBForMissingEntry<DBEntryTheater>(template.ContextTheater);
-            if(!template.PlayerFlightGroups.Any(x => !x.Hostile))
+            if (!template.PlayerFlightGroups.Any(x => !x.Hostile))
                 throw new BriefingRoomException("Cannot have all players on hostile side.");
 
             var mission = new DCSMission();
@@ -117,7 +136,7 @@ namespace BriefingRoom4DCS.Generator
             var airbasesGenerator = new MissionGeneratorAirbases(template, situationDB);
             var requiredRunway = template.PlayerFlightGroups.Select(x => Database.Instance.GetEntry<DBEntryUnit>(x.Aircraft).AircraftData.MinimumRunwayLengthFt).Max();
             var playerAirbase = airbasesGenerator.SelectStartingAirbase(mission, template.FlightPlanTheaterStartingAirbase, requiredRunway: requiredRunway);
-            mission.MapData.Add($"AIRBASE_HOME", new List<Coordinates>{playerAirbase.Coordinates});
+            mission.MapData.Add($"AIRBASE_HOME", new List<Coordinates> { playerAirbase.Coordinates });
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{playerAirbase.Name}\t{playerAirbase.Runways}\t{playerAirbase.ATC}\t{playerAirbase.ILS}\t{playerAirbase.TACAN}");
             airbasesGenerator.SelectStartingAirbaseForPackages(mission, playerAirbase);
             airbasesGenerator.SetupAirbasesCoalitions(mission, playerAirbase);
@@ -146,7 +165,7 @@ namespace BriefingRoom4DCS.Generator
                     objectiveTemplate, lastObjectiveCoordinates, playerAirbase, useObjectivePresets,
                     ref i, ref objectiveCoordinates, ref waypoints, ref objectiveTargetUnitFamilies);
                 lastObjectiveCoordinates = objectiveCoords;
-                mission.MapData.Add($"OBJECTIVE_AREA{i}", new List<Coordinates>{objectiveCoords});
+                mission.MapData.Add($"OBJECTIVE_AREA{i}", new List<Coordinates> { objectiveCoords });
                 objectiveGroupedWaypoints.Add(waypointGroup);
                 i++;
             }
@@ -237,7 +256,8 @@ namespace BriefingRoom4DCS.Generator
             var templateRecord = new MissionTemplateRecord(template);
             var mission = await Policy
                 .HandleResult<DCSMission>(x => x.IsExtremeDistance(template, out double distance))
-                .Or<BriefingRoomException>(x => {
+                .Or<BriefingRoomException>(x =>
+                {
                     BriefingRoom.PrintToLog($"Recoverable Error thrown, {x.Message}", LogMessageErrorLevel.Warning);
                     return false;
                 })

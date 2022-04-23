@@ -3,14 +3,16 @@ using LuaTableSerialiser;
 
 namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 {
-    internal class WaypointTask {
+    public class WaypointTask {
 
-        internal bool enabled {get; init;}
-        internal bool auto {get; init;}
-        internal string id {get; init;}
-        internal Dictionary<string, object> parameters {get; init;}
+        public bool enabled {get; init;}
+        public bool auto {get; init;}
+        public string id {get; init;}
+        public Dictionary<string, object> parameters {get; init;} = new Dictionary<string, object>();
 
-        internal WaypointTask(string _id,  Dictionary<string, object> _parameters, bool _enabled=true, bool _auto=true)
+        public WaypointTask(){}
+
+        public WaypointTask(string _id,  Dictionary<string, object> _parameters, bool _enabled=true, bool _auto=true)
         {
             id = _id;
             parameters = _parameters;
