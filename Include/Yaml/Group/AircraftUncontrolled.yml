@@ -1,0 +1,19 @@
+lateActivation: false
+modulation: $RADIOBAND$
+task: Nothing
+uncontrolled: true
+waypoints:
+  - alt: 13
+    action: From Parking Area
+    speed: $SPEED$
+    type: TakeOffParking
+    etaLocked: false
+    y: $GROUPY$
+    x: $GROUPX$
+    name: ""
+groupId: $GROUPID$
+hidden: $HIDDEN$
+y: $GROUPY$
+x: $GROUPX$
+name: $NAME$
+frequency: $RADIOFREQUENCY$
