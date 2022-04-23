@@ -9,7 +9,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         {
         }
 
-        internal WrappedWaypointTask(DCSWaypointTask task) : base(task.id, task.parameters, task.enabled, task.auto)
+        internal WrappedWaypointTask(DCSWaypointTask task) : base(task.Id, task.parameters, task.Enabled, task.Auto)
         {
             parameters.Remove("wrapped");
         }
@@ -19,11 +19,11 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             return LuaSerialiser.Serialize(new Dictionary<string, object> {
                 {"id", "WrappedAction"},
                 {"number", number},
-                {"enabled", enabled},
-                {"auto", enabled},
+                {"enabled", Enabled},
+                {"auto", Enabled},
                 {"params", new Dictionary<string, object>{
                     {"action", new Dictionary<string, object>{
-                        {"id", id},
+                        {"id", Id},
                         {"params", parameters}
                     }}
                 }},

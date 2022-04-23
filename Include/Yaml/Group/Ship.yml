@@ -1,0 +1,19 @@
+visible: false
+modulation: $RADIOBAND$
+task: Refueling
+uncontrolled: $NOCM$
+waypoints:
+  - alt: 0
+    action: Turning Point
+    speed: $SPEED$
+    type: Turning Point
+    etaLocked: true
+    y: $GROUPY$
+    x: $GROUPX$
+    name: ""
+groupId: $GROUPID$
+hidden: $HIDDEN$
+y: $GROUPY$
+x: $GROUPX$
+name: $NAME$
+frequency: $RADIOFREQUENCY$

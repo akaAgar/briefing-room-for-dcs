@@ -1,0 +1,53 @@
+visible: false
+modulation: $RADIOBAND$
+task: Refueling
+uncontrolled: $NOCM$
+waypoints:
+  - alt: 0
+    action: Turning Point
+    speed: $SPEED$
+    tasks:
+      - id: ActivateBeacon
+        parameters:
+          wrapped: true
+          type: 4
+          AA: false
+          unitId: $UNITID$
+          modeChannel: $TACANMODE$
+          channel: $TACANCHANNEL$
+          system: 3
+          callsign: $TACANCALLSIGN$
+          bearing: true
+          frequency: $TACANFREQUENCY$
+      - id: ActivateICLS
+        parameters:
+          wrapped: true
+          type: 131584
+          channel: $ILS$
+          unitId: $UNITID$
+    type: Turning Point
+    etaLocked: true
+    y: $GROUPY$
+    x: $GROUPX$
+    name: ""
+  - alt: 0
+    action: Turning Point
+    speed: $SPEED$
+    tasks:
+      - id: GoToWaypoint
+        auto: false
+        parameters:
+          fromWaypointIndex: 2
+          nWaypointIndx: 1
+    type: Turning Point
+    etaLocked: true
+    y: $GROUPY$
+    x: $GROUPX$
+    name: ""
+
+groupId: $GROUPID$
+hidden: $HIDDEN$
+y: $GROUPY$
+x: $GROUPX$
+name: $NAME$
+frequency: $RADIOFREQUENCY$
