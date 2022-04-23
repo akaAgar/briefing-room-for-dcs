@@ -4,16 +4,10 @@ using LuaTableSerialiser;
 
 namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 {
-    public class DCSUnit
+    public class DCSUnitCargo: DCSUnitStatic
     {
-        public string DCSID { get; set; }
-        public int UnitId { get; set; }
-        public float X { get; set; }
-        public float Y { get; set; }
-        public string Name { get; set; }
-        public float Heading { get; set; }
-        public Dictionary<string, object> ExtraLua { get; set; } = new Dictionary<string, object>();
-        public string ToLuaString(int number)
+
+        public new string ToLuaString(int number)
         {
             var obj = new Dictionary<string, object>[] {ExtraLua, new Dictionary<string, object>{
                 {"type", DCSID},
@@ -23,6 +17,11 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"name", Name},
                 {"heading", Heading},
                 {"type", DCSID},
+                {"mass", 100},
+                {"category", "Cargos"},
+                {"canCargo", true},
+                {"rate", 100},
+                {"shape_name", ShapeName}
             }}.SelectMany(x => x)
                     .ToDictionary(x => x.Key, y => y.Value);
             return LuaSerialiser.Serialize(obj);

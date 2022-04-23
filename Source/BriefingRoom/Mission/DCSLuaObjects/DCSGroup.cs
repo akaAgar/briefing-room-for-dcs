@@ -22,6 +22,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         public float Y { get; set; }
         public string name { get; set; }
         public float frequency { get; set; }
+        public bool RouteRelativeTOT { get; set; } = false;
 
         public string ToLuaString(int number)
         {
@@ -33,6 +34,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"taskSelected", TaskSelected},
                 {"task", Task},
                 {"route", new Dictionary<string, object> {
+                    {"routeRelativeTOT", RouteRelativeTOT},
                     {"points", Waypoints}
                 }},
                 {"groupId", GroupId},
