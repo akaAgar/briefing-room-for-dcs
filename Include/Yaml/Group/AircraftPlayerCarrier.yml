@@ -6,12 +6,6 @@ waypoints:
     action: $PLAYERSTARTINGACTION$
     linkUnit: $LINKUNIT$
     helipadId: $LINKUNIT$
-    properties:
-      vnav: 1
-      scale: 0
-      vangle: 0
-      angle: 0
-      steer: 2
     speed: $SPEED$
     tasks: 
       - id: EPLRS
@@ -19,7 +13,7 @@ waypoints:
           wrapped: true
           value: $EPLRS$
           groupId: $GROUPID$
-    type: PLAYERSTARTINGTYPE
+    type: $PLAYERSTARTINGTYPE$
     etaLocked: true
     speedLocked: true
     y: $GROUPY$

@@ -6,8 +6,8 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
     public class DCSWaypointTask
     {
 
-        public bool Enabled { get; init; }
-        public bool Auto { get; init; }
+        public bool Enabled { get; init; } = true;
+        public bool Auto { get; init; } = true;
         public string Id { get; init; }
         public string Key {get; set;}
         private Dictionary<string, object> _parameters = new Dictionary<string, object>();
@@ -27,7 +27,8 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         }
 
         public string ToLuaString(int number)
-        {   var obj = new Dictionary<string, object> {
+        {   
+            var obj = new Dictionary<string, object> {
                 {"id", Id},
                 {"number", number},
                 {"enabled", Enabled},

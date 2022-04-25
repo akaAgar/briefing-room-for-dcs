@@ -234,7 +234,7 @@ namespace BriefingRoom4DCS.Generator
                     BriefingRoom.PrintToLog($"Recoverable Error thrown, {x.Message}", LogMessageErrorLevel.Warning);
                     return false;
                 })
-                .RetryAsync(3)
+                .RetryAsync(10)
                 .ExecuteAsync(() => GenerateAsync(templateRecord, useObjectivePresets));
 
             if (mission.IsExtremeDistance(template, out double distance))

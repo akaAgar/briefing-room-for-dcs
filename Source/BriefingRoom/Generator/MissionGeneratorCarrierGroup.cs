@@ -70,7 +70,7 @@ namespace BriefingRoom4DCS.Generator
                 UnitMakerGroupInfo? groupInfo =
                     unitMaker.AddUnitGroup(
                         new string[] { unitDB.ID }, Side.Ally, unitDB.Families[0],
-                        "GroupShipCarrier", "UnitShip",
+                        "ShipCarrier", "Ship",
                         shipCoordinates, 0,
                         "GroupX2".ToKeyValuePair(shipDestination.X),
                         "GroupY2".ToKeyValuePair(shipDestination.Y),
