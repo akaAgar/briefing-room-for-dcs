@@ -50,5 +50,8 @@ namespace BriefingRoom4DCS.Data
         MoveTowardObjectives = 4096,
 
         MoveTowardPlayerBase = 8192,
+        Immortal = 16384,
+        Inert = 32768,
+        Invisible = 65536,
     }
 }

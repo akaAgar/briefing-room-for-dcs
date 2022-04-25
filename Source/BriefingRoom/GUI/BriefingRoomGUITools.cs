@@ -76,6 +76,7 @@ namespace BriefingRoom4DCS.GUI
                     case ObjectiveOption.HideTarget: return "Always hide";
                     case ObjectiveOption.InaccurateWaypoint: return "Inaccurate waypoint";
                     case ObjectiveOption.ShowTarget: return "Always show";
+                    case ObjectiveOption.Invisible: return "Hidden To AI";
                 }
             }
             else if (enumValue is PlayerStartLocation)
@@ -150,6 +151,7 @@ namespace BriefingRoom4DCS.GUI
                     case ObjectiveOption.HideTarget: return "Targets are always hidden on the map";
                     case ObjectiveOption.InaccurateWaypoint: return "Waypoint will be spawned a few miles away from the targets.";
                     case ObjectiveOption.ShowTarget: return "Targets are always visible on the map";
+                    case ObjectiveOption.Invisible: return "AI (Including Wingmen) will not attack target units";
                 }
             }
             else if (enumValue is RealismOption)

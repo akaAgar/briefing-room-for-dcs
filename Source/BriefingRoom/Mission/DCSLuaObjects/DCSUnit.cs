@@ -64,6 +64,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         {
             var obj = new Dictionary<string, object>{
                 {"type", DCSID},
+                {"unitId", UnitId},
                 {"x", X},
                 {"y", Y},
                 {"name", Name},

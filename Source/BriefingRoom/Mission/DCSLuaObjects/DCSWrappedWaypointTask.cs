@@ -3,13 +3,13 @@ using LuaTableSerialiser;
 
 namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 {
-    internal class WrappedWaypointTask : DCSWaypointTask
+    internal class DCSWrappedWaypointTask : DCSWaypointTask
     {
-        internal WrappedWaypointTask(string _id, Dictionary<string, object> _parameters, bool _enabled = true, bool _auto = true) : base(_id, _parameters, _enabled, _auto)
+        internal DCSWrappedWaypointTask(string _id, Dictionary<string, object> _parameters, bool _enabled = true, bool _auto = true) : base(_id, _parameters, _enabled, _auto)
         {
         }
 
-        internal WrappedWaypointTask(DCSWaypointTask task) : base(task.Id, task.parameters, task.Enabled, task.Auto)
+        internal DCSWrappedWaypointTask(DCSWaypointTask task) : base(task.Id, task.parameters, task.Enabled, task.Auto)
         {
             parameters.Remove("wrapped");
         }

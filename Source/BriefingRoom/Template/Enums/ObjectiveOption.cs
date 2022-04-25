@@ -35,5 +35,6 @@ namespace BriefingRoom4DCS.Template
 
         [Display(Name = "Show target", Description = "Target is always visible on the map, no matter the \"fog of war\" preferences. Overrides \"Hide target\".")]
         ShowTarget,
+        Invisible,
     }
 }

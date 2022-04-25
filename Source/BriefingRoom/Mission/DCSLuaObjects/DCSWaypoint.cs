@@ -26,7 +26,11 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 
         public int AirdromeId { get; set; }
 
-        private List<DCSWaypointTask> SortTasks(List<DCSWaypointTask> tasks) => tasks.Select(x => x.parameters.ContainsKey("wrapped") ? new WrappedWaypointTask(x) : x).ToList();
+        public int LinkUnit { get; set; }
+
+        public int HelipadId { get; set; }
+
+        private List<DCSWaypointTask> SortTasks(List<DCSWaypointTask> tasks) => tasks.Select(x => x.parameters.ContainsKey("wrapped") ? new DCSWrappedWaypointTask(x) : x).ToList();
 
         public string ToLuaString(int number)
         {
@@ -51,8 +55,12 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"formation_template", ""},
                 {"speed_locked", SpeedLocked}
             };
-            if(AirdromeId > 0)
+            if(AirdromeId != default && LinkUnit == default)
                 obj.Add("airdromeId", AirdromeId);
+            if(LinkUnit != default)
+                obj.Add("linkUnit", LinkUnit);
+            if(HelipadId != default)
+                obj.Add("helipadId", HelipadId);
             return LuaSerialiser.Serialize(obj);
         }
     }

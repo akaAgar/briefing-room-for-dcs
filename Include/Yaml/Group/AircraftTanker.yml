@@ -27,6 +27,7 @@ waypoints:
           value: $EPLRS$
           groupId: $GROUPID$
       - id: Option
+        auto: false
         parameters:
           wrapped: true
           value: 0

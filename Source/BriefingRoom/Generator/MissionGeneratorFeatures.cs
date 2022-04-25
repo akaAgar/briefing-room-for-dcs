@@ -56,6 +56,16 @@ namespace BriefingRoom4DCS.Generator
             {
                 UnitMakerGroupFlags groupFlags = 0;
 
+                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Immortal))
+                    groupFlags |= UnitMakerGroupFlags.Immortal;
+
+                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Inert))
+                    groupFlags |= UnitMakerGroupFlags.Inert;
+
+                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Invisible))
+                    groupFlags |= UnitMakerGroupFlags.Invisible;
+
+
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ImmediateAircraftActivation))
                     groupFlags |= UnitMakerGroupFlags.ImmediateAircraftSpawn;
 

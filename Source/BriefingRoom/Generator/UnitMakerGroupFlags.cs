@@ -38,5 +38,6 @@ namespace BriefingRoom4DCS.Generator
         RadioAircraftSpawn = 32,
         Immortal = 64,
         Inert = 128,
+        Invisible = 256,
     }
 }
