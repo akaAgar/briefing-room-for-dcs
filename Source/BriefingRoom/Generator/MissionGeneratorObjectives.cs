@@ -362,7 +362,6 @@ namespace BriefingRoom4DCS.Generator
 
             parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
             parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
-            luaUnit += "Parked";
 
             extraSettings.Add("GroupAirbaseID".ToKeyValuePair(airbaseID));
             extraSettings.Add("ParkingID".ToKeyValuePair(parkingSpotIDsList.ToArray()));

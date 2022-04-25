@@ -196,7 +196,7 @@ namespace BriefingRoom4DCS.Generator
                 coordinates,
                 groupName,
                 GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags),
-                unitFamily.GetUnitCategory().IsAircraft(),
+                unitFamily,
                 firstUnitDB,
                 extraSettings
             );
@@ -224,7 +224,7 @@ namespace BriefingRoom4DCS.Generator
                     Mission.AppendValue("AircraftActivatorCurrentQueue", $"{GroupID},");
                 else if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.RadioAircraftSpawn))
                     Mission.AppendValue("AircraftRadioActivator", $"{{{GroupID}, \"{groupName}\"}},");
-                else if (groupTypeLua != "GroupAircraftParkedUncontrolled")
+                else if (groupTypeLua != "AircraftUncontrolled")
                     Mission.AppendValue("AircraftActivatorReserveQueue", $"{GroupID},");
             }
 
@@ -233,6 +233,9 @@ namespace BriefingRoom4DCS.Generator
             
             if(unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.Inert))
                 dCSGroup.Waypoints[0].Tasks.Add(new DCSWaypointTask("Option", new Dictionary<string, object>{{"value", 4}, {"name", 0}}));
+            
+            dCSGroup.Waypoints[0].X = dCSGroup.Units[0].X;
+            dCSGroup.Waypoints[0].Y = dCSGroup.Units[0].Y;
 
             AddUnitGroupToTable(country, unitFamily.GetUnitCategory(), dCSGroup);
 
@@ -248,7 +251,7 @@ namespace BriefingRoom4DCS.Generator
             Coordinates coordinates,
             string groupName,
             bool hidden,
-            bool isAircraft,
+            UnitFamily unitFamily,
             DBEntryUnit firstUnitDB,
             params KeyValuePair<string, object>[] extraSettings
             )
@@ -268,7 +271,7 @@ namespace BriefingRoom4DCS.Generator
             GeneratorTools.ReplaceKey(ref groupYml, "Hidden", hidden);
             GeneratorTools.ReplaceKey(ref groupYml, "UnitID", UnitID); // Must be after units are added
 
-            if (isAircraft)
+            if (unitFamily.GetUnitCategory().IsAircraft())
             {
                 GeneratorTools.ReplaceKey(ref groupYml, "Altitude", firstUnitDB.AircraftData.CruiseAltitude);
                 GeneratorTools.ReplaceKey(ref groupYml, "AltitudeHalf", firstUnitDB.AircraftData.CruiseAltitude / 2);
@@ -278,7 +281,19 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.ReplaceKey(ref groupYml, "Speed", firstUnitDB.AircraftData.CruiseSpeed);
             }
 
-            return DCSGroup.YamlToGroup(groupYml);
+            var dCSGroup =  DCSGroup.YamlToGroup(groupYml);
+
+            if(unitFamily.GetUnitCategory().IsAircraft() && extraSettings.Any(x => x.Key == "GroupAirbaseID") && dCSGroup.Waypoints[0].AirdromeId == default){
+                dCSGroup.Waypoints[0].AirdromeId = (int)extraSettings.First(x => x.Key == "GroupAirbaseID").Value;
+                var isHotStart = new List<UnitFamily>{UnitFamily.PlaneAWACS, UnitFamily.PlaneTankerBasket, UnitFamily.PlaneTankerBoom, UnitFamily.PlaneSEAD, UnitFamily.PlaneDrone}.Contains(unitFamily);
+                dCSGroup.Waypoints[0].Type = isHotStart ? "TakeOffParkingHot": "TakeOffParking";
+                dCSGroup.Waypoints[0].Action = isHotStart ? "From Parking Area Hot" : "From Parking Area";
+                dCSGroup.LateActivation = false;
+                if(!isHotStart)
+                    dCSGroup.Uncontrolled = true;
+            }
+
+            return dCSGroup;
 
         }
 
@@ -369,7 +384,7 @@ namespace BriefingRoom4DCS.Generator
                         unitCoordinates,
                         groupName,
                         GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags),
-                        false,
+                        UnitFamily.StaticStructureMilitary,
                         unitDB,
                         extraSettings
                     );
@@ -417,7 +432,7 @@ namespace BriefingRoom4DCS.Generator
                         coordinates,
                         groupName,
                         GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags),
-                        false,
+                        UnitFamily.VehicleAAA,
                         null,
                         extraSettings
                     );
@@ -478,8 +493,8 @@ namespace BriefingRoom4DCS.Generator
             unit.Heading = unitHeading;
             unit.DCSID = DCSID;
             unit.UnitId = UnitID;
-            unit.X = unitCoordinates.X;
-            unit.Y = unitCoordinates.Y;
+            unit.X = extraSettings.Any(x => x.Key == "UnitX") ? ((double [])extraSettings.First(x => x.Key == "UnitX").Value)[unitSetIndex] : unitCoordinates.X;
+            unit.Y = extraSettings.Any(x => x.Key == "UnitY") ? ((double []) extraSettings.First(x => x.Key == "UnitY").Value)[unitSetIndex] : unitCoordinates.Y;
             unit.PlayerCanDrive = true;
 
             if (Toolbox.IsAircraft(unitDB.Category) && (unitLuaIndex == 1) && unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.FirstUnitIsClient))
@@ -498,6 +513,7 @@ namespace BriefingRoom4DCS.Generator
                 unit.PayloadCommon = Toolbox.ToDictionaryObject(unitDB.AircraftData.PayloadCommon);
                 unit.Pylons = unitDB.AircraftData.GetPylonsObject(extraSettings.Any(x => x.Key == "Payload") ? extraSettings.First(x => x.Key == "Payload").Value.ToString() : "default");
                 unit.LiveryId =  extraSettings.Any(x => x.Key == "Livery") ? extraSettings.First(x => x.Key == "Livery").Value.ToString() : "default";
+                unit.Parking = extraSettings.Any(x => x.Key == "ParkingID") ? ((int [])extraSettings.First(x => x.Key == "ParkingID").Value)[unitSetIndex] : 0;
             }
             else if (unitDB.Category == UnitCategory.Static || unitDB.Category == UnitCategory.Cargo)
             {

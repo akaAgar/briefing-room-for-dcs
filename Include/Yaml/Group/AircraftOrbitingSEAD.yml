@@ -1,0 +1,27 @@
+lateActivation: true
+modulation: $RADIOBAND$
+task: SEAD
+uncontrolled: false
+taskSelected: true
+routeRelativeTOT: true
+waypoints:
+  - alt: $ALTITUDE$
+    action: Turning Point
+    speed: $SPEED$
+    tasks: 
+      - id: Orbit
+        parameters:
+          altitude: $ALTITUDE$
+          pattern: Circle
+          speed: $SPEED$
+    type: Turning Point
+    etaLocked: true
+    speedLocked: true
+    y: $GROUPY$
+    x: $GROUPX$
+groupId: $GROUPID$
+hidden: $HIDDEN$
+y: $GROUPY$
+x: $GROUPX$
+name: $NAME$
+frequency: $RADIOFREQUENCY$
