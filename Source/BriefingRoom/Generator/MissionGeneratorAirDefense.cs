@@ -94,7 +94,7 @@ namespace BriefingRoom4DCS.Generator
 
                 var groupInfo = unitMaker.AddUnitGroup(
                     unitFamilies, 1, side,
-                    "GroupVehicle", "UnitVehicle",
+                    "Vehicle", "Vehicle",
                     spawnPoint.Value);
 
                 if (!groupInfo.HasValue) // Failed to generate a group

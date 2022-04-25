@@ -36,30 +36,6 @@ namespace BriefingRoom4DCS.Generator
 
         internal static async Task<DCSMission> GenerateAsync(MissionTemplateRecord template, bool useObjectivePresets)
         {
-
-            var yaml = File.ReadAllText($"{BRPaths.INCLUDE_YAML_GROUP}{Toolbox.AddMissingFileExtension("AircraftAWACS", ".yml")}");
-            var extraSettings = new Dictionary<string, object>{
-                {"EPLRS", true},
-                {"GROUPID", 1 },
-                {"ALTITUDE", 12000},
-                {"SPEED", 250 },
-                {"RADIOBAND", 0},
-                {"HIDDEN", false},
-                {"GROUPY", 15.000},
-                {"GROUPX", 12.000},
-                {"GROUPY2", 115.000},
-                {"GROUPX2", 112.000},
-                {"RADIOFREQUENCY", 17.000},
-                {"NAME", "bob"}
-            };
-            foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
-                if (!(extraSetting.Value is Array)) // Array extra settings are treated on a per-unit basis
-                    GeneratorTools.ReplaceKey(ref yaml, extraSetting.Key, extraSetting.Value);
-            Console.WriteLine(yaml);
-            var p = DCSGroup.YamlToGroup(yaml);
-            
-            Console.WriteLine(LuaTableSerialiser.LuaSerialiser.Serialize(p));
-
             // Check for missing entries in the database
             GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionBlue);
             GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionRed);

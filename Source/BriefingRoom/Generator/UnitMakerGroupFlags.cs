@@ -36,5 +36,7 @@ namespace BriefingRoom4DCS.Generator
         EmbeddedAirDefense = 16,
 
         RadioAircraftSpawn = 32,
+        Immortal = 64,
+        Inert = 128,
     }
 }

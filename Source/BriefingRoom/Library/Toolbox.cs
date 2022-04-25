@@ -29,6 +29,7 @@ using System.Windows.Forms;
 using System.Text;
 using System.IO.Compression;
 using BriefingRoom4DCS.Data;
+using System.Text.RegularExpressions;
 
 namespace BriefingRoom4DCS
 {
@@ -101,6 +102,30 @@ namespace BriefingRoom4DCS
         internal static string ToInvariantString(this double value)
         {
             return value.ToString(NumberFormatInfo.InvariantInfo);
+        }
+
+        internal static Dictionary<string, object> ToDictionaryObject(string dataStr)
+        {
+            var dict = new Dictionary<string, object>();
+            var matches = new Regex("\\[\\\"(.*?)\\\"\\] ?= ?(.*?),").Matches(dataStr);
+            foreach (Match match in matches)
+            {
+                dict.Add(match.Groups[1].Value, DeterminType(match.Groups[2].Value));
+            }
+            return dict;
+        }
+
+        internal static object DeterminType(object value){
+            if (!(value is string))
+                return value;
+            var strVal = value as string;
+            if(bool.TryParse(strVal, out bool boolVal))
+                return boolVal;
+            if(int.TryParse(strVal, out int intVal))
+                return intVal;
+            if(float.TryParse(strVal, out float floatVal))
+                return floatVal;
+            return strVal;
         }
 
         internal static string ToLuaName(this UnitCategory unitCategory)

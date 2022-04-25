@@ -18,6 +18,9 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using System;
+using BriefingRoom4DCS.Mission.DCSLuaObjects;
+
 namespace BriefingRoom4DCS.Generator
 {
     internal struct Waypoint
@@ -36,6 +39,22 @@ namespace BriefingRoom4DCS.Generator
             Coordinates = coordinates;
             OnGround = onGround;
             ScriptIgnore = scriptIgnore;
+        }
+
+        internal DCSWaypoint ToDCSWaypoint(Data.DBEntryUnitAircraftData aircraftData)
+        {
+            return new DCSWaypoint
+            {
+                Alt = OnGround ? 0 : aircraftData.CruiseAltitude,
+                Action = "Turning Point",
+                Speed = aircraftData.CruiseSpeed,
+                Type = "Turning Point",
+                EtaLocked = false,
+                SpeedLocked = true,
+                X = Coordinates.X,
+                Y = Coordinates.Y,
+                Name = Name,
+            };
         }
     }
 }

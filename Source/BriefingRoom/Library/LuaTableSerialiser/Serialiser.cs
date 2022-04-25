@@ -26,8 +26,9 @@ namespace LuaTableSerialiser
             {
                 return item.GetType().GetMethod("ToLuaString").Invoke(item, new object []{index});
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
+                Console.WriteLine(e);
                 throw new ArgumentOutOfRangeException(nameof(item), $"Not expected value Type value: {item}");
             }
             

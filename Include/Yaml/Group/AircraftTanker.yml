@@ -7,14 +7,6 @@ waypoints:
   - alt: $ALTITUDE$
     action: Turning Point
     speed: $SPEED$
-    type: Turning Point
-    etaLocked: true
-    y: $GROUPY$
-    x: $GROUPX$
-    name: ""
-  - alt: $ALTITUDE$
-    action: Turning Point
-    speed: $SPEED$
     tasks:
       - id: Tanker
       - id: ActivateBeacon
@@ -47,17 +39,17 @@ waypoints:
           speed: $SPEED$
     type: Turning Point
     etaLocked: true
-    y: $GROUPY2$
-    x: $GROUPX2$
-    name: ""
+    speedLocked: true
+    y: $GROUPY$
+    x: $GROUPX$
   - alt: $ALTITUDE$
     action: Turning Point
     speed: $SPEED$
     type: Turning Point
-    etaLocked: true
-    y: $GROUPY$
-    x: $GROUPX$
-    name: ""
+    etaLocked: false
+    speedLocked: true
+    y: $GROUPY2$
+    x: $GROUPX2$
 groupId: $GROUPID$
 hidden: $HIDDEN$
 y: $GROUPY$

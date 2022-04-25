@@ -1,0 +1,11 @@
+heading: 0
+waypoints:
+  - alt: 0
+    speed: 0
+    y: $GROUPY$
+    x: $GROUPX$
+groupId: $GROUPID$
+y: $GROUPY$
+x: $GROUPX$
+name: $NAME$
+dead: false
