@@ -11,6 +11,7 @@ waypoints:
     speedLocked: false
     y: $GROUPY$
     x: $GROUPX$
+    airdromeId: $GROUPAIRBASEID$
 groupId: $GROUPID$
 hidden: $HIDDEN$
 y: $GROUPY$

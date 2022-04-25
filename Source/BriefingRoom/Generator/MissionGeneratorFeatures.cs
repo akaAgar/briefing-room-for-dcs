@@ -83,6 +83,7 @@ namespace BriefingRoom4DCS.Generator
                     groupLua, luaUnit,
                     coordinates, groupFlags,
                     extraSettings.ToArray());
+
                 if (
                     groupSide == Side.Ally &&
                     groupInfo.HasValue &&
@@ -216,9 +217,6 @@ namespace BriefingRoom4DCS.Generator
         {
             if ((_template.MissionFeatures.Contains("ContextGroundStartAircraft") || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.GroundStart)) && Toolbox.IsAircraft(unitFamily.GetUnitCategory()))
             {
-                if (groupLua != "GroupAircraftParkedUncontrolled")
-                    groupLua += "Parked";
-                luaUnit += "Parked";
                 var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = _unitMaker.SpawnPointSelector.GetAirbaseAndParking(
                     _template, coordinates, unitCount,
                     GeneratorTools.GetSpawnPointCoalition(_template, groupSide, true).Value,
