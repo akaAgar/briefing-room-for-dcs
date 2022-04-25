@@ -87,14 +87,9 @@ namespace BriefingRoom4DCS.Generator
 
             string unitName = groupName + " $INDEX$";
 
-            string lua =
-                $"{{ [1]= {Toolbox.ValToString(callsignIndex + 1)}, " +
-                $"[2]={Toolbox.ValToString(NATOCallsigns[(int)callsignFamily][callsignIndex])}, " +
-                "[3]=$INDEX$, " +
-                $"[\"name\"] = \"{unitName.Replace(" ", "")}\", }}";
             if (isUsingSkynet && unitFamily == UnitFamily.PlaneAWACS)
                 unitName = SetSkyNetPrefix(unitName, side);
-            return new UnitCallsign(groupName, unitName/*, onboardNum*/, lua);
+            return new UnitCallsign(groupName, unitName/*, onboardNum*/, new Dictionary<object, object>{{1, callsignIndex + 1}, {2, NATOCallsigns[(int)callsignFamily][callsignIndex]}, {"name", unitName.Replace(" ", "")}});
         }
 
 

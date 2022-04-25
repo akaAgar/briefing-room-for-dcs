@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
+using BriefingRoom4DCS.Mission.DCSLuaObjects;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
@@ -64,7 +65,7 @@ namespace BriefingRoom4DCS.Generator
 
             List<int> parkingSpotIDsList = new List<int>();
             List<Coordinates> parkingSpotCoordinatesList = new List<Coordinates>();
-            var groupLuaFile = "GroupAircraftPlayer";
+            var groupLuaFile = "AircraftPlayer";
             var carrierUnitID = 0;
             string carrierName = null;
             var side = flightGroup.Hostile ? Side.Enemy : Side.Ally;
@@ -85,7 +86,7 @@ namespace BriefingRoom4DCS.Generator
                     if(flightGroup.Aircraft == "AV8BNA")
                         payload = "EMPTY";
                 }
-                groupLuaFile = "GroupAircraftPlayerCarrier";
+                groupLuaFile = "AircraftPlayerCarrier";
                 carrierUnitID = carrier.UnitsID[0];
                 carrierName = carrier.UnitDB.UIDisplayName;
 
@@ -123,15 +124,13 @@ namespace BriefingRoom4DCS.Generator
            
 
             extraSettings.AddIfKeyUnused("Payload",payload);
-            extraSettings.AddIfKeyUnused("Skill",skillLevel);
+            extraSettings.AddIfKeyUnused("Skill",skillLevel.ToString());
             extraSettings.AddIfKeyUnused("PlayerStartingAction",GeneratorTools.GetPlayerStartingAction(flightGroup.StartLocation));
             extraSettings.AddIfKeyUnused("PlayerStartingType",GeneratorTools.GetPlayerStartingType(flightGroup.StartLocation));
             extraSettings.AddIfKeyUnused("Country",country);
             extraSettings.AddIfKeyUnused("InitialWPName",Database.Instance.Common.Names.WPInitialName);
             extraSettings.AddIfKeyUnused("FinalWPName",Database.Instance.Common.Names.WPFinalName);
             extraSettings.AddIfKeyUnused("ParkingID",parkingSpotIDsList.ToArray());
-            extraSettings.AddIfKeyUnused("PlayerWaypoints",GenerateFlightPlanLua(flightWaypoints));
-            extraSettings.AddIfKeyUnused("LastPlayerWaypointIndex",flightWaypoints.Count + 2);
             extraSettings.AddIfKeyUnused("LinkUnit",carrierUnitID);
             extraSettings.AddIfKeyUnused("UnitX",(from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.X).ToArray());
             extraSettings.AddIfKeyUnused("UnitY",(from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.Y).ToArray());
@@ -142,7 +141,7 @@ namespace BriefingRoom4DCS.Generator
 
             UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(
                 Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), side, unitDB.Families[0],
-                groupLuaFile, "UnitAircraftParked", groupStartingCoords,
+                groupLuaFile, "Aircraft", groupStartingCoords,
                 unitMakerGroupFlags,
                 extraSettings.ToArray()
                 );
@@ -153,6 +152,10 @@ namespace BriefingRoom4DCS.Generator
                 return;
             }
 
+            groupInfo.Value.DCSGroup.Waypoints.InsertRange(1, waypoints.Select(x => x.ToDCSWaypoint(unitDB.AircraftData)).ToList());
+
+            Console.WriteLine(string.Join("", groupInfo.Value.DCSGroup.Waypoints.Select(x => x.Action)));
+
             SaveFlightGroup(mission, groupInfo, flightGroup, unitDB, carrierName ?? airbase.Name);
             SaveWaypointsToBriefing(
                 mission,
@@ -160,27 +163,6 @@ namespace BriefingRoom4DCS.Generator
                 flightWaypoints,
                 template.OptionsMission.Contains("ImperialUnitsForBriefing"),
                 groupInfo);
-        }
-
-        private static string GenerateFlightPlanLua(List<Waypoint> waypoints)
-        {
-            string flightPlanLua = "";
-            string waypointLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_MISSION}WaypointPlayer.lua");
-
-            for (int i = 0; i < waypoints.Count; i++)
-            {
-                string waypointLua = waypointLuaTemplate;
-
-                GeneratorTools.ReplaceKey(ref waypointLua, "Index", i + 2);
-                GeneratorTools.ReplaceKey(ref waypointLua, "Name", waypoints[i].Name);
-                GeneratorTools.ReplaceKey(ref waypointLua, "X", waypoints[i].Coordinates.X);
-                GeneratorTools.ReplaceKey(ref waypointLua, "Y", waypoints[i].Coordinates.Y);
-                if (waypoints[i].OnGround) GeneratorTools.ReplaceKey(ref waypointLua, "Altitude", "0");
-
-                flightPlanLua += waypointLua + "\n";
-            }
-
-            return flightPlanLua;
         }
 
         private static void SaveFlightGroup(DCSMission mission, UnitMakerGroupInfo? groupInfo, MissionTemplateFlightGroupRecord flightGroup, DBEntryUnit unitDB, string homeBase)

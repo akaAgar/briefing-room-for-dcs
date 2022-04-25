@@ -1,0 +1,22 @@
+visible: false
+lateActivation: false
+modulation: $RADIOBAND$
+task: Ground Nothing
+uncontrolled: $NOCM$
+hiddenOnMFD: $HIDDEN$
+routeRelativeTOT: false
+waypoints:
+  - alt: 8
+    action: Off Road
+    speed: 5.5555555555556
+    type: Turning Point
+    etaLocked: true
+    speedLocked: true
+    y: $GROUPY$
+    x: $GROUPX$
+groupId: $GROUPID$
+hidden: $HIDDEN$
+y: $GROUPY$
+x: $GROUPX$
+name: $NAME$
+frequency: $RADIOFREQUENCY$

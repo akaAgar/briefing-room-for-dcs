@@ -9,7 +9,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 
         public int Alt { get; set; }
         public string Action { get; set; }
-        public int Speed { get; set; }
+        public double Speed { get; set; }
         private List<DCSWaypointTask> _tasks = new List<DCSWaypointTask>();
         public List<DCSWaypointTask> Tasks
         {
@@ -17,9 +17,11 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             set { _tasks = SortTasks(value); }
         }
         public string Type { get; set; }
-        public bool etaLocked { get; set; }
-        public float Y { get; set; }
-        public float X { get; set; }
+        public bool EtaLocked { get; set; }
+
+        public bool SpeedLocked { get; set; }
+        public double Y { get; set; }
+        public double X { get; set; }
         public string Name { get; set; }
 
         public int AirdromeId { get; set; }
@@ -42,12 +44,12 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 },
                 {"type", Type},
                 {"ETA", 0},
-                {"ETA_locked", etaLocked},
+                {"ETA_locked", EtaLocked},
                 {"x", X},
                 {"y", Y},
                 {"name", Name},
                 {"formation_template", ""},
-                {"speed_locked", true}
+                {"speed_locked", SpeedLocked}
             };
             if(AirdromeId > 0)
                 obj.Add("airdromeId", AirdromeId);

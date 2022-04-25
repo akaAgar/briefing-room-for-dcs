@@ -1,13 +1,12 @@
 ﻿using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
+using BriefingRoom4DCS.Mission.DCSLuaObjects;
 using BriefingRoom4DCS.Template;
-using LuaTableSerialiser;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using YamlDotNet.Serialization;
-using YamlDotNet.Serialization.NamingConventions;
+
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -22,7 +21,9 @@ namespace BriefingRoom4DCS.Generator
 
         internal DBEntryUnit UnitDB { get; }
 
-        internal UnitMakerGroupInfo(int groupID, Coordinates coordinates, List<int> unitsID, string name, double frequency = 0.0, DBEntryUnit unitDB = null)
+        internal  DCSGroup DCSGroup { get; }
+
+        internal UnitMakerGroupInfo(int groupID, Coordinates coordinates, List<int> unitsID, string name, ref DCSGroup dCSGroup, double frequency = 0.0, DBEntryUnit unitDB = null)
         {
             GroupID = groupID;
             Coordinates = coordinates;
@@ -30,6 +31,7 @@ namespace BriefingRoom4DCS.Generator
             UnitsID = unitsID.ToArray();
             Frequency = frequency;
             UnitDB = unitDB;
+            DCSGroup = dCSGroup;
         }
     }
 
@@ -46,7 +48,7 @@ namespace BriefingRoom4DCS.Generator
         private readonly Country[][] CoalitionsCountries;
 
         private readonly List<string> ModUnits = new List<string>();
-        private readonly Dictionary<Country, Dictionary<UnitCategory, List<string>>> UnitLuaTables = new Dictionary<Country, Dictionary<UnitCategory, List<string>>>();
+        private readonly Dictionary<Country, Dictionary<UnitCategory, List<DCSGroup>>> UnitLuaTables = new Dictionary<Country, Dictionary<UnitCategory, List<DCSGroup>>>();
 
         private int GroupID;
         private int UnitID;
@@ -55,6 +57,7 @@ namespace BriefingRoom4DCS.Generator
         internal UnitMakerSpawnPointSelector SpawnPointSelector { get; }
 
         internal UnitMakerCallsignGenerator CallsignGenerator { get; }
+        private readonly List<string> IGNORE_PROPS = new List<string>{"Skill"};
 
         internal UnitMaker(
             DCSMission mission, MissionTemplateRecord template,
@@ -151,10 +154,10 @@ namespace BriefingRoom4DCS.Generator
             if (extraSettings.Any(x => x.Key == "Country"))
                 country = (Country)extraSettings.First(x => x.Key == "Country").Value;
 
-            var skill = GeneratorTools.GetDefaultSkillLevel(Template, side);
+            var skill = GeneratorTools.GetDefaultSkillLevel(Template, side).ToString();
 
             if (extraSettings.Any(x => x.Key == "Skill"))
-                skill = (DCSSkillLevel)extraSettings.First(x => x.Key == "Skill").Value;
+                skill = extraSettings.First(x => x.Key == "Skill").Value.ToString();
 
 
             var isUsingSkynet = Template.MissionFeatures.Contains("SkynetIADS");
@@ -186,36 +189,37 @@ namespace BriefingRoom4DCS.Generator
                     extraSettings
                 );
 
-            var groupLua = CreateGroup(
+            var firstUnitID = UnitID;
+            var firstUnitDB = units.Select(x => Database.Instance.GetEntry<DBEntryUnit>(x)).First(x => x != null);
+            var dCSGroup = CreateGroup(
                 groupTypeLua,
                 coordinates,
                 groupName,
+                GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags),
+                unitFamily.GetUnitCategory().IsAircraft(),
+                firstUnitDB,
                 extraSettings
             );
 
 
-            int firstUnitID = UnitID;
-            var (unitsLuaTable, unitsIDList) = AddUnits(
+            var (dcsUnits, unitsIDList) = AddUnits(
                 units,
                 groupName,
                 callsign,
                 unitTypeLua,
                 coordinates,
                 unitMakerGroupFlags,
+                skill,
                 extraSettings
             );
 
 
             if (unitsIDList.Count == 0) return null; // No valid units added to this group
-            GeneratorTools.ReplaceKey(ref groupLua, "Units", unitsLuaTable);
+            dCSGroup.Units = dcsUnits;
 
-            DBEntryUnit firstUnitDB = units.Select(x => Database.Instance.GetEntry<DBEntryUnit>(x)).First(x => x != null);
-            var aircraftCategories = new UnitCategory[] { UnitCategory.Helicopter, UnitCategory.Plane };
-            var isAircraft = firstUnitDB != null && aircraftCategories.Contains(firstUnitDB.Category);
 
-            if (isAircraft)
+            if (unitFamily.GetUnitCategory().IsAircraft())
             {
-                groupLua = ApplyAircraftFields(groupLua, firstUnitDB, extraSettings);
                 if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ImmediateAircraftSpawn))
                     Mission.AppendValue("AircraftActivatorCurrentQueue", $"{GroupID},");
                 else if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.RadioAircraftSpawn))
@@ -224,69 +228,75 @@ namespace BriefingRoom4DCS.Generator
                     Mission.AppendValue("AircraftActivatorReserveQueue", $"{GroupID},");
             }
 
-            GeneratorTools.ReplaceKey(ref groupLua, "UnitID", firstUnitID); // Must be after units are added
-            GeneratorTools.ReplaceKey(ref groupLua, "Skill", skill); // Must be after units are added, because skill is set as a unit level
-            GeneratorTools.ReplaceKey(ref groupLua, "Hidden", GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags)); // If "hidden" was not set through custom values
+            if(unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.Immortal))
+                dCSGroup.Waypoints[0].Tasks.Add(new DCSWaypointTask("SetImmortal", new Dictionary<string, object>{{"value", true}}));
+            
+            if(unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.Inert))
+                dCSGroup.Waypoints[0].Tasks.Add(new DCSWaypointTask("Option", new Dictionary<string, object>{{"value", 4}, {"name", 0}}));
 
-            AddUnitGroupToTable(country, unitFamily.GetUnitCategory(), groupLua);
+            AddUnitGroupToTable(country, unitFamily.GetUnitCategory(), dCSGroup);
 
             BriefingRoom.PrintToLog($"Added group of {units.Length} {coalition} {unitFamily} at {coordinates}");
-
             GroupID++;
 
-            if (firstUnitDB == null)
-                return new UnitMakerGroupInfo(GroupID - 1, coordinates, unitsIDList, groupName);
-            return new UnitMakerGroupInfo(GroupID - 1, coordinates, unitsIDList, groupName, firstUnitDB.AircraftData.RadioFrequency, firstUnitDB);
+            return new UnitMakerGroupInfo(GroupID - 1, coordinates, unitsIDList, groupName, ref dCSGroup, firstUnitDB.AircraftData.RadioFrequency, firstUnitDB);
         }
 
 
-        private string CreateGroup(
+        private DCSGroup CreateGroup(
             string groupTypeLua,
             Coordinates coordinates,
             string groupName,
+            bool hidden,
+            bool isAircraft,
+            DBEntryUnit firstUnitDB,
             params KeyValuePair<string, object>[] extraSettings
-        )
+            )
         {
-            string lua = File.ReadAllText($"{BRPaths.INCLUDE_LUA_UNITS}{Toolbox.AddMissingFileExtension(groupTypeLua, ".lua")}");
+            string groupYml = File.ReadAllText($"{BRPaths.INCLUDE_YAML_GROUP}{Toolbox.AddMissingFileExtension(groupTypeLua, ".yml")}");
             foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
                 if (!(extraSetting.Value is Array)) // Array extra settings are treated on a per-unit basis
-                    GeneratorTools.ReplaceKey(ref lua, extraSetting.Key, extraSetting.Value);
+                    GeneratorTools.ReplaceKey(ref groupYml, extraSetting.Key, extraSetting.Value);
 
-            GeneratorTools.ReplaceKey(ref lua, "GroupID", GroupID);
-            GeneratorTools.ReplaceKey(ref lua, "GroupX", coordinates.X);
-            GeneratorTools.ReplaceKey(ref lua, "GroupY", coordinates.Y);
-            GeneratorTools.ReplaceKey(ref lua, "GroupX2", coordinates.X); // GroupX2 and GroupY2 are replaced by the default coordinates only if they were not replaced earlier in extraSetting replacements. 
-            GeneratorTools.ReplaceKey(ref lua, "GroupY2", coordinates.Y);
-            GeneratorTools.ReplaceKey(ref lua, "Name", groupName);
-            GeneratorTools.ReplaceKey(ref lua, "NoCM", false);
+            GeneratorTools.ReplaceKey(ref groupYml, "GroupID", GroupID);
+            GeneratorTools.ReplaceKey(ref groupYml, "GroupX", coordinates.X);
+            GeneratorTools.ReplaceKey(ref groupYml, "GroupY", coordinates.Y);
+            GeneratorTools.ReplaceKey(ref groupYml, "GroupX2", coordinates.X); // GroupX2 and GroupY2 are replaced by the default coordinates only if they were not replaced earlier in extraSetting replacements. 
+            GeneratorTools.ReplaceKey(ref groupYml, "GroupY2", coordinates.Y);
+            GeneratorTools.ReplaceKey(ref groupYml, "Name", groupName);
+            GeneratorTools.ReplaceKey(ref groupYml, "NoCM", false);
+            GeneratorTools.ReplaceKey(ref groupYml, "Hidden", hidden);
+            GeneratorTools.ReplaceKey(ref groupYml, "UnitID", UnitID); // Must be after units are added
 
-            return lua;
+            if (isAircraft)
+            {
+                GeneratorTools.ReplaceKey(ref groupYml, "Altitude", firstUnitDB.AircraftData.CruiseAltitude);
+                GeneratorTools.ReplaceKey(ref groupYml, "AltitudeHalf", firstUnitDB.AircraftData.CruiseAltitude / 2);
+                GeneratorTools.ReplaceKey(ref groupYml, "EPLRS", firstUnitDB.Flags.HasFlag(DBEntryUnitFlags.EPLRS));
+                GeneratorTools.ReplaceKey(ref groupYml, "RadioBand", (int)firstUnitDB.AircraftData.RadioModulation);
+                GeneratorTools.ReplaceKey(ref groupYml, "RadioFrequency", firstUnitDB.AircraftData.RadioFrequency);
+                GeneratorTools.ReplaceKey(ref groupYml, "Speed", firstUnitDB.AircraftData.CruiseSpeed);
+            }
+
+            return DCSGroup.YamlToGroup(groupYml);
+
         }
 
-        private string ApplyAircraftFields(string groupLua, DBEntryUnit firstUnitDB, params KeyValuePair<string, object>[] extraSettings)
-        {
-            GeneratorTools.ReplaceKey(ref groupLua, "Altitude", firstUnitDB.AircraftData.CruiseAltitude);
-            GeneratorTools.ReplaceKey(ref groupLua, "AltitudeHalf", firstUnitDB.AircraftData.CruiseAltitude / 2);
-            GeneratorTools.ReplaceKey(ref groupLua, "EPLRS", firstUnitDB.Flags.HasFlag(DBEntryUnitFlags.EPLRS));
-            GeneratorTools.ReplaceKey(ref groupLua, "RadioBand", (int)firstUnitDB.AircraftData.RadioModulation);
-            GeneratorTools.ReplaceKey(ref groupLua, "RadioFrequency", firstUnitDB.AircraftData.RadioFrequency);
-            GeneratorTools.ReplaceKey(ref groupLua, "Speed", firstUnitDB.AircraftData.CruiseSpeed);
-            return groupLua;
-        }
 
-        private (string unitsLua, List<int> unitsIDList) AddUnits(
+        private (List<DCSUnit> dCSUnits, List<int> unitsIDList) AddUnits(
             string[] unitSets,
             string groupName,
             UnitCallsign? callsign,
             string unitTypeLua,
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags,
+            string skill,
             params KeyValuePair<string, object>[] extraSettings
             )
         {
-            string unitsLuaTable = "";
             int unitLuaIndex = 1;
-            List<int> unitsIDList = new List<int>();
+            var unitsIDList = new List<int>();
+            var dCSUnits = new List<DCSUnit>();
             foreach (var unitSet in unitSets)
             {
                 DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(unitSet);
@@ -298,7 +308,7 @@ namespace BriefingRoom4DCS.Generator
                 int unitSetIndex = 0;
                 foreach (string DCSID in unitDB.DCSIDs)
                 {
-                    unitsLuaTable += AddUnit(
+                     dCSUnits.Add(AddUnit(
                         DCSID,
                         groupName,
                         callsign,
@@ -308,8 +318,9 @@ namespace BriefingRoom4DCS.Generator
                         unitTypeLua,
                         coordinates,
                         unitMakerGroupFlags,
+                        skill,
                         extraSettings
-                        );
+                        ));
 
                     unitsIDList.Add(UnitID);
                     unitSetIndex++;
@@ -317,13 +328,13 @@ namespace BriefingRoom4DCS.Generator
                     UnitID++;
                 }
             }
-            return (unitsLuaTable, unitsIDList);
+            return (dCSUnits, unitsIDList);
         }
 
         private UnitMakerGroupInfo? AddStaticGroup(
             Country country,
             Coalition coalition,
-            DCSSkillLevel? skill,
+            string skill,
             UnitFamily unitFamily,
             Side side,
             string[] unitSets,
@@ -337,6 +348,8 @@ namespace BriefingRoom4DCS.Generator
         {
             List<int> unitsIDList = new List<int>();
             var initalGroupId = GroupID;
+            var firstDCSGroup = new DCSGroup();
+            var first = true;
             foreach (var unitSet in unitSets)
             {
                 DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(unitSet);
@@ -351,14 +364,18 @@ namespace BriefingRoom4DCS.Generator
                     var groupHeading = GetGroupHeading(coordinates, extraSettings);
                     SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading, out Coordinates unitCoordinates, out double unitHeading);
                     var firstUnitID = UnitID;
-                    var groupLua = CreateGroup(
+                    var dCSGroup = CreateGroup(
                         groupTypeLua,
                         unitCoordinates,
                         groupName,
+                        GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags),
+                        false,
+                        unitDB,
                         extraSettings
                     );
+
                     var unitLua = DCSID == "FARP" ? "UnitStaticFOB" : (unitDB.Category == UnitCategory.Cargo ? "UnitCargo" : "UnitStatic");
-                    var unitsLuaTable = AddUnit(
+                    var dCSUnit = AddUnit(
                         DCSID,
                         groupName,
                         callsign,
@@ -368,6 +385,7 @@ namespace BriefingRoom4DCS.Generator
                         unitLua,
                         coordinates,
                         unitMakerGroupFlags,
+                        skill,
                         extraSettings
                         );
 
@@ -375,14 +393,14 @@ namespace BriefingRoom4DCS.Generator
                     unitSetIndex++;
                     UnitID++;
 
-                    GeneratorTools.ReplaceKey(ref groupLua, "Units", unitsLuaTable);
+                    dCSGroup.Units = new List<DCSUnit>{dCSUnit};
 
-
-                    GeneratorTools.ReplaceKey(ref groupLua, "UnitID", firstUnitID); // Must be after units are added
-                    GeneratorTools.ReplaceKey(ref groupLua, "Skill", skill); // Must be after units are added, because skill is set as a unit level
-                    GeneratorTools.ReplaceKey(ref groupLua, "Hidden", GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags)); // If "hidden" was not set through custom values
-
-                    AddUnitGroupToTable(country, UnitCategory.Static, groupLua);
+                    if(first)
+                    {
+                        firstDCSGroup = dCSGroup;
+                        first = false;
+                    }
+                    AddUnitGroupToTable(country, UnitCategory.Static, dCSGroup);
 
                     BriefingRoom.PrintToLog($"Added group of {DCSID} {coalition} {unitFamily} at {coordinates}");
 
@@ -394,48 +412,48 @@ namespace BriefingRoom4DCS.Generator
             {
                 var firstUnitID = UnitID;
                 string[] airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(Template, side);
-                var groupLua = CreateGroup(
-                        "GroupVehicle",
+                var dCSGroup = CreateGroup(
+                        "Vehicle",
                         coordinates,
                         groupName,
+                        GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags),
+                        false,
+                        null,
                         extraSettings
                     );
                 var (unitsLuaTable, embeddedunitsIDList) = AddUnits(
                     airDefenseUnits,
                     groupName,
                     callsign,
-                    "UnitVehicle",
+                    "Vehicle",
                     coordinates,
                     unitMakerGroupFlags,
+                    skill,
                     extraSettings
                 );
-                GeneratorTools.ReplaceKey(ref groupLua, "Units", unitsLuaTable);
-                GeneratorTools.ReplaceKey(ref groupLua, "UnitID", firstUnitID); // Must be after units are added
-                GeneratorTools.ReplaceKey(ref groupLua, "Skill", skill); // Must be after units are added, because skill is set as a unit level
-                GeneratorTools.ReplaceKey(ref groupLua, "Hidden", GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags)); // If "hidden" was not set through custom values
+                dCSGroup.Units = unitsLuaTable;
                 GroupID++;
                 unitsIDList.AddRange(embeddedunitsIDList);
-                AddUnitGroupToTable(country, UnitCategory.Vehicle, groupLua);
+                AddUnitGroupToTable(country, UnitCategory.Vehicle, dCSGroup);
                 BriefingRoom.PrintToLog($"Added group of Embedded Air Defense for Static {coalition} {unitFamily} at {coordinates}");
             }
 
-            DBEntryUnit firstUnitDB = Database.Instance.GetEntry<DBEntryUnit>(unitSets.First());
-            if (firstUnitDB == null)
-                return new UnitMakerGroupInfo(initalGroupId, coordinates, unitsIDList, groupName);
-            return new UnitMakerGroupInfo(initalGroupId, coordinates, unitsIDList, groupName, firstUnitDB.AircraftData.RadioFrequency, firstUnitDB);
+            var firstUnitDB = Database.Instance.GetEntry<DBEntryUnit>(unitSets.First());
+            return new UnitMakerGroupInfo(initalGroupId, coordinates, unitsIDList, groupName, ref firstDCSGroup, firstUnitDB.AircraftData.RadioFrequency, firstUnitDB);
         }
 
 
-        private string AddUnit(
+        private DCSUnit AddUnit(
             string DCSID,
             string groupName,
             UnitCallsign? callsign,
             int unitLuaIndex,
             int unitSetIndex,
             DBEntryUnit unitDB,
-            string unitTypeLua,
+            string unitType,
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags,
+            string skill,
             params KeyValuePair<string, object>[] extraSettings)
         {
             if (!string.IsNullOrEmpty(unitDB.RequiredMod))
@@ -446,67 +464,59 @@ namespace BriefingRoom4DCS.Generator
                 else
                     ModUnits.Add(mod.RequiredID);
             }
+            var unit = new DCSUnit(unitType);
 
-            string unitLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_UNITS}{Toolbox.AddMissingFileExtension(unitTypeLua, ".lua")}");
             var groupHeading = GetGroupHeading(coordinates, extraSettings);
             SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading, out Coordinates unitCoordinates, out double unitHeading);
+    
+            foreach (KeyValuePair<string, object> extraSetting in extraSettings.Where(x => !IGNORE_PROPS.Contains(x.Key)).ToDictionary(x => x.Key, x => x.Value))
+            {
+                var prop = unit.GetType().GetProperty(extraSetting.Key);
+                if(prop != null)
+                    prop.SetValue(prop, extraSetting.Value);
+            }
+            unit.Heading = unitHeading;
+            unit.DCSID = DCSID;
+            unit.UnitId = UnitID;
+            unit.X = unitCoordinates.X;
+            unit.Y = unitCoordinates.Y;
+            unit.PlayerCanDrive = true;
 
-            string singleUnitLuaTable = new string(unitLuaTemplate);
             if (Toolbox.IsAircraft(unitDB.Category) && (unitLuaIndex == 1) && unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.FirstUnitIsClient))
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Skill", SinglePlayerMission ? "Player" : "Client");
-
-            foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
-                if (extraSetting.Value is Array)
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value, unitLuaIndex - 1);
-                else
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, extraSetting.Key, extraSetting.Value);
-
-            GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "ExtraLua", unitDB.ExtraLua);
-            GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Heading", unitHeading);
-            GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "DCSID", DCSID);
-            GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitID", UnitID);
-            GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitX", unitCoordinates.X);
-            GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "UnitY", unitCoordinates.Y);
-            GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "playerCanDrive", true);
+                unit.Skill = SinglePlayerMission ? "Player" : "Client";
+            else 
+                unit.Skill = skill;
 
 
             if (Toolbox.IsAircraft(unitDB.Category))
             {
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Callsign", callsign.Value.GetLua(unitLuaIndex));
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", callsign.Value.GetUnitName(unitLuaIndex));
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "OnBoardNumber", Toolbox.RandomInt(1, 1000).ToString("000"));
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PropsLua", unitDB.AircraftData.PropsLua);
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "RadioPresetsLua", string.Join("", unitDB.AircraftData.RadioPresets.Select((x, index) => $"[{index + 1}] = {x.ToLuaString()}")));
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Speed", unitDB.AircraftData.CruiseSpeed);
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadCommon", unitDB.AircraftData.PayloadCommon);
-                var payload = unitDB.AircraftData.GetPayloadLua(extraSettings.Any(x => x.Key == "Payload") ? extraSettings.First(x => x.Key == "Payload").Value.ToString() : "default");
-                if (extraSettings.Any(x => x.Key == "Payload" && x.Value.ToString() == "EMPTY"))
-                    payload = "";
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "PayloadPylons", payload);
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Livery", extraSettings.Any(x => x.Key == "Livery") ? extraSettings.First(x => x.Key == "Livery").Value : "default");
+                unit.Callsign = callsign.Value.GetLua(unitLuaIndex);
+                unit.Name = callsign.Value.GetUnitName(unitLuaIndex);
+                unit.OnboardNum = Toolbox.RandomInt(1, 1000).ToString("000");
+                unit.PropsLua = Toolbox.ToDictionaryObject(unitDB.AircraftData.PropsLua);
+                unit.RadioPresets = unitDB.AircraftData.RadioPresets;
+                unit.PayloadCommon = Toolbox.ToDictionaryObject(unitDB.AircraftData.PayloadCommon);
+                unit.Pylons = unitDB.AircraftData.GetPylonsObject(extraSettings.Any(x => x.Key == "Payload") ? extraSettings.First(x => x.Key == "Payload").Value.ToString() : "default");
+                unit.LiveryId =  extraSettings.Any(x => x.Key == "Livery") ? extraSettings.First(x => x.Key == "Livery").Value.ToString() : "default";
             }
             else if (unitDB.Category == UnitCategory.Static || unitDB.Category == UnitCategory.Cargo)
             {
                 if (unitDB.Shape.Length - 1 > unitSetIndex)
-                    GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Shape", unitDB.Shape[unitSetIndex]);
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", $"{groupName} {unitLuaIndex}");
+                    unit.ShapeName = unitDB.Shape[unitSetIndex];
+                unit.Name = $"{groupName} {unitLuaIndex}";
             }
             else
-                GeneratorTools.ReplaceKey(ref singleUnitLuaTable, "Name", $"{groupName} {unitLuaIndex}");
+                unit.Name = $"{groupName} {unitLuaIndex}";
 
-            var unitString = $"[{unitLuaIndex}] =\n";
-            unitString += "{\n";
-            unitString += $"{singleUnitLuaTable}\n";
-            unitString += $"}}, -- end of [{unitLuaIndex}]\n";
 
-            return unitString;
+            return unit;
         }
 
-        private void AddUnitGroupToTable(Country country, UnitCategory category, string unitGroupLua)
+        private void AddUnitGroupToTable(Country country, UnitCategory category, DCSGroup dCSGroup)
         {
-            if (!UnitLuaTables.ContainsKey(country)) UnitLuaTables.Add(country, new Dictionary<UnitCategory, List<string>>());
-            if (!UnitLuaTables[country].ContainsKey(category)) UnitLuaTables[country].Add(category, new List<string>());
-            UnitLuaTables[country][category].Add(unitGroupLua);
+            if (!UnitLuaTables.ContainsKey(country)) UnitLuaTables.Add(country, new Dictionary<UnitCategory, List<DCSGroup>>());
+            if (!UnitLuaTables[country].ContainsKey(category)) UnitLuaTables[country].Add(category, new List<DCSGroup>());
+            UnitLuaTables[country][category].Add(dCSGroup);
         }
 
         internal string GetUnitsLuaTable(Coalition coalition)
@@ -536,10 +546,7 @@ namespace BriefingRoom4DCS.Generator
                         unitsLuaTable += "{\n";
                         for (int groupIndex = 0; groupIndex < UnitLuaTables[country][unitCategory].Count; groupIndex++)
                         {
-                            unitsLuaTable += $"[{groupIndex + 1}] =\n";
-                            unitsLuaTable += "{\n";
-                            unitsLuaTable += $"{UnitLuaTables[country][unitCategory][groupIndex]}\n";
-                            unitsLuaTable += $"}}, -- end of [{groupIndex + 1}]\n";
+                            unitsLuaTable += $"[{groupIndex + 1}] = {UnitLuaTables[country][unitCategory][groupIndex].ToLuaString(0)},";
                         }
 
                         unitsLuaTable += $"}}, -- end of [\"group\"]\n";

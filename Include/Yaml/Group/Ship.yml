@@ -1,16 +1,15 @@
 visible: false
 modulation: $RADIOBAND$
-task: Refueling
 uncontrolled: $NOCM$
 waypoints:
   - alt: 0
     action: Turning Point
-    speed: $SPEED$
+    speed: 0
     type: Turning Point
     etaLocked: true
+    speedLocked: true
     y: $GROUPY$
-    x: $GROUPX$
-    name: ""
+    x: $GROUPX$    
 groupId: $GROUPID$
 hidden: $HIDDEN$
 y: $GROUPY$

@@ -8,9 +8,9 @@ waypoints:
     speed: $SPEED$
     type: TakeOffParking
     etaLocked: false
+    speedLocked: false
     y: $GROUPY$
     x: $GROUPX$
-    name: ""
 groupId: $GROUPID$
 hidden: $HIDDEN$
 y: $GROUPY$

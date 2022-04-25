@@ -121,7 +121,7 @@ namespace BriefingRoom4DCS.Data
             return $"{RadioFrequency.ToString("F1", NumberFormatInfo.InvariantInfo)} {RadioModulation}";
         }
 
-        internal string GetPayloadLua(string aircraftPayload)
+        internal Dictionary<int, Dictionary<string,string>> GetPylonsObject(string aircraftPayload)
         {
             string[] payload;
             aircraftPayload = aircraftPayload.ToLower();
@@ -130,15 +130,15 @@ namespace BriefingRoom4DCS.Data
             else
                 payload = PayloadTasks["default"];
 
-            string pylonsLua = "";
+            var pylonsObject = new Dictionary<int, Dictionary<string,string>>();
             for (int i = 0; i < MAX_PYLONS; i++)
             {
                 string pylonCode = payload[i];
                 if (!string.IsNullOrEmpty(pylonCode))
-                    pylonsLua += $"[{i + 1}] = {{[\"CLSID\"] = \"{pylonCode}\" }},\r\n";
+                    pylonsObject.Add(i + 1,  new Dictionary<string, string>{{"CLSID", pylonCode}});
             }
 
-            return pylonsLua;
+            return pylonsObject;
         }
 
         private bool TaskPayloadExists(string task) => PayloadTasks.ContainsKey(task);

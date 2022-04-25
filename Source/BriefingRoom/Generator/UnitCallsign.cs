@@ -18,6 +18,8 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using System.Collections.Generic;
+
 namespace BriefingRoom4DCS.Generator
 {
     internal struct UnitCallsign
@@ -28,16 +30,32 @@ namespace BriefingRoom4DCS.Generator
 
         private readonly string Lua;
 
+        private readonly Dictionary<object, object> LuaObj;
+
         internal UnitCallsign(string groupName, string unitName, string lua)
         {
             GroupName = groupName;
             UnitName = unitName;
             Lua = lua;
+            LuaObj = new Dictionary<object, object>();
         }
 
-        internal string GetLua(int unitIndex)
+        internal UnitCallsign(string groupName, string unitName, Dictionary<object, object> luaObj)
         {
-            return Lua.Replace("$INDEX$", unitIndex.ToString());
+            GroupName = groupName;
+            UnitName = unitName;
+            LuaObj = luaObj;
+            Lua = "";
+        }
+
+        internal dynamic GetLua(int unitIndex)
+        {   if (!string.IsNullOrEmpty(Lua))
+                return Lua.Replace("$INDEX$", unitIndex.ToString());
+            if (!LuaObj.ContainsKey(3))
+                LuaObj.Add(3, unitIndex);
+            else
+                LuaObj[3] = unitIndex;
+            return LuaObj;
         }
 
         internal string GetUnitName(int unitIndex)

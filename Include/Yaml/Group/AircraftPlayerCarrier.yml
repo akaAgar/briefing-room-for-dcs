@@ -1,0 +1,43 @@
+modulation: $RADIOBAND$
+task: CAS
+uncontrolled: false
+waypoints:
+  - alt: 13
+    action: $PLAYERSTARTINGACTION$
+    linkUnit: $LINKUNIT$
+    helipadId: $LINKUNIT$
+    properties:
+      vnav: 1
+      scale: 0
+      vangle: 0
+      angle: 0
+      steer: 2
+    speed: $SPEED$
+    tasks: 
+      - id: EPLRS
+        parameters:
+          wrapped: true
+          value: $EPLRS$
+          groupId: $GROUPID$
+    type: PLAYERSTARTINGTYPE
+    etaLocked: true
+    speedLocked: true
+    y: $GROUPY$
+    x: $GROUPX$
+    name: $INITIALWPNAME$
+    airdromeId: $MISSIONAIRBASEID$
+  - alt: 13
+    action: Landing
+    speed: $SPEED$
+    type: Land
+    etaLocked: false
+    speedLocked: true
+    y: $MISSIONAIRBASEY$
+    x: $MISSIONAIRBASEX$
+    name: $FINALWPNAME$
+groupId: $GROUPID$
+hidden: $HIDDEN$
+y: $GROUPY$
+x: $GROUPX$
+name: $NAME$
+frequency: $RADIOFREQUENCY$

@@ -267,7 +267,7 @@ For Payload configs see [Porting Payloads](docs/PortingPayloads.md)
     Radio.Modulation=FM <- default radio (simple)
     Radio.Frequency=251.0
 
-    Payload.Common=["chaff"] = 240,["flare"] = 120,["fuel"] = 5029,["ammo_type"] = 1,["gun"] = 100 <- Common payload params for aircraft 
+    Payload.Common=["chaff"] = 240,["flare"] = 120,["fuel"] = 5029,["ammo_type"] = 1,["gun"] = 100 <- Common payload params for aircraft ,
 
     <- Payload Config Payload.Task.(PayloadId(- is space)).Pylon(pos)=Item ID
     ; Default: AGM-65D*4,GBU-12*2,GBU-38,Mk-82,AIM-9,TGP,ECM

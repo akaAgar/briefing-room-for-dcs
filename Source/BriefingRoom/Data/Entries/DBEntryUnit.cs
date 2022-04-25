@@ -35,7 +35,6 @@ namespace BriefingRoom4DCS.Data
 
         internal UnitFamily[] Families { get; private set; }
 
-        internal string ExtraLua { get; private set; }
 
         internal DBEntryUnitFlags Flags { get; private set; }
 
@@ -77,8 +76,6 @@ namespace BriefingRoom4DCS.Data
             }
             // Make sure all unit families belong to same category (unit cannot be a helicopter and a ground vehicle at the same time, for instance)
             Families = (from UnitFamily f in Families where f.GetUnitCategory() == Category select f).Distinct().ToArray();
-            ExtraLua = ini.GetValue<string>("Unit", "ExtraLua").Trim();
-            if (!string.IsNullOrEmpty(ExtraLua) && !ExtraLua.EndsWith(",")) ExtraLua += ",";
             Flags = ini.GetValueArrayAsEnumFlags<DBEntryUnitFlags>("Unit", "Flags");
             OffsetCoordinates = (from string s in ini.GetValueArray<string>("Unit", "Offset.Coordinates", ';') select new Coordinates(s)).ToArray();
             OffsetHeading = ini.GetValueArray<double>("Unit", "Offset.Heading");

@@ -20,13 +20,15 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         public List<DCSUnit> Units { get; set; }
         public float X { get; set; }
         public float Y { get; set; }
-        public string name { get; set; }
-        public float frequency { get; set; }
+        public string Name { get; set; }
+        public float Frequency { get; set; }
         public bool RouteRelativeTOT { get; set; } = false;
+        public bool? Visible { get; set; }
+
+        public bool? HiddenOnMFD { get; set; }
 
         public string ToLuaString(int number)
-        {
-            return LuaSerialiser.Serialize(new Dictionary<string, object> {
+        {   var obj = new Dictionary<string, object> {
                 {"lateActivation", LateActivation},
                 {"modulation", Modulation},
                 {"tasks", new string []{}},
@@ -42,11 +44,14 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"units", Units},
                 {"x", X},
                 {"y", Y},
-                {"name", name},
+                {"name", Name},
                 {"communication", true},
                 {"start_time", 0},
-                {"frequency", frequency},
-            });
+                {"frequency", Frequency},
+                {"visible", Visible},
+                {"hiddenOnMFD", Visible}
+            };
+            return LuaSerialiser.Serialize(obj.Where(x => x.Value != null).ToDictionary(x => x.Key, x => x.Value));
         }
 
         public static DCSGroup YamlToGroup(string yaml){
@@ -56,7 +61,14 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             var deserializer = new DeserializerBuilder()
             .WithNamingConvention(CamelCaseNamingConvention.Instance)
             .Build();
-            return deserializer.Deserialize<Mission.DCSLuaObjects.DCSGroup>(yaml); 
+            try
+            {
+                return deserializer.Deserialize<Mission.DCSLuaObjects.DCSGroup>(yaml); 
+            }
+            catch (System.Exception e)
+            {
+                throw new BriefingRoomException($"Failed Deserializing yaml: {yaml}", e);
+            }
         }
     }
 }

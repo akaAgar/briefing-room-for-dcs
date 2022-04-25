@@ -43,22 +43,10 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         {   
             foreach (var param in values)
             {
-               values[param.Key] = DeterminType(param.Value);
+               values[param.Key] = Toolbox.DeterminType(param.Value);
             }
             return values;
         }
 
-        private object DeterminType(object value){
-            if (!(value is string))
-                return value;
-            var strVal = value as string;
-            if(bool.TryParse(strVal, out bool boolVal))
-                return boolVal;
-            if(int.TryParse(strVal, out int intVal))
-                return intVal;
-            if(float.TryParse(strVal, out float floatVal))
-                return floatVal;
-            return strVal;
-        }
     }
 }

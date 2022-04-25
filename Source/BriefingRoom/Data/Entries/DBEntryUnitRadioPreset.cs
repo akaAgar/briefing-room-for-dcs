@@ -18,6 +18,9 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using System.Collections.Generic;
+using LuaTableSerialiser;
+
 namespace BriefingRoom4DCS.Data
 {
     internal struct DBEntryUnitRadioPreset
@@ -32,20 +35,12 @@ namespace BriefingRoom4DCS.Data
             Modulations = modulations;
         }
 
-        internal string ToLuaString()
+        public string ToLuaString(int number)
         {
-            string lua = @"{[""modulations""] = {";
-
-            for (int index = 1; index < Modulations.Length; index++)
-                lua += $"[{index}] = {Modulations[index]},";
-
-            lua += @"},[""channels""] = {";
-
-            for (int index = 1; index < Channels.Length; index++)
-                lua += $"[{index}] = {Channels[index]},";
-
-            lua += "},},";
-            return lua;
+            return LuaSerialiser.Serialize(new Dictionary<string, object>{
+                {"modulations", Modulations},
+                {"channels", Channels}
+            });
         }
     }
 }
