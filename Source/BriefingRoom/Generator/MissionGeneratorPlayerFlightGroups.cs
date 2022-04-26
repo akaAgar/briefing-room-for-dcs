@@ -130,10 +130,9 @@ namespace BriefingRoom4DCS.Generator
             extraSettings.AddIfKeyUnused("Country",country);
             extraSettings.AddIfKeyUnused("InitialWPName",Database.Instance.Common.Names.WPInitialName);
             extraSettings.AddIfKeyUnused("FinalWPName",Database.Instance.Common.Names.WPFinalName);
-            extraSettings.AddIfKeyUnused("ParkingID",parkingSpotIDsList.ToArray());
+            extraSettings.AddIfKeyUnused("ParkingID",parkingSpotIDsList);
             extraSettings.AddIfKeyUnused("LinkUnit",carrierUnitID);
-            extraSettings.AddIfKeyUnused("UnitX",(from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.X).ToArray());
-            extraSettings.AddIfKeyUnused("UnitY",(from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.Y).ToArray());
+            extraSettings.AddIfKeyUnused("UnitCoords", parkingSpotCoordinatesList);
             extraSettings.AddIfKeyUnused("MissionAirbaseX",groupStartingCoords.X);
             extraSettings.AddIfKeyUnused("MissionAirbaseY",groupStartingCoords.Y);
             extraSettings.AddIfKeyUnused("MissionAirbaseID",airbase.DCSID);
@@ -143,7 +142,7 @@ namespace BriefingRoom4DCS.Generator
                 Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), side, unitDB.Families[0],
                 groupLuaFile, "Aircraft", groupStartingCoords,
                 unitMakerGroupFlags,
-                extraSettings.ToArray()
+                extraSettings
                 );
 
             if (!groupInfo.HasValue)
