@@ -7,46 +7,45 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 {
     public class DCSUnit
     {
-        public DCSUnit(){}
-        public DCSUnit(string unitType)
+        internal DCSUnit(){}
+        internal DCSUnit(string unitType)
         {
             this.unitType = unitType;
         }
 
-        public string unitType { get; set; }
-        public string DCSID { get; set; }
-        public int UnitId { get; set; }
-        public double X { get; set; }
-        public double Y { get; set; }
-        public string Name { get; set; }
-        public double Heading { get; set; }
+        internal string unitType { get; set; }
+        internal string DCSID { get; set; }
+        internal int UnitId { get; set; }
+        internal Coordinates Coordinates { get; set; }
+        internal string Name { get; set; }
+        internal double Heading { get; set; }
 
         // Aircraft
-        public int Alt { get; set; }
-        public string LiveryId { get; set; }
-        public string Skill { get; set; }
-        public Dictionary<string, object> PropsLua { get; set; } = new Dictionary<string, object>();
-        public Dictionary<int, Dictionary<string, string>> Pylons { get; set; } = new Dictionary<int, Dictionary<string, string>>();
-        public Dictionary<string, object> PayloadCommon { get; set; } = new Dictionary<string, object>();
-        public dynamic Callsign { get; set; }
-        public string OnboardNum { get; set; }
+        internal int Alt { get; set; }
+        internal string LiveryId { get; set; }
+        internal string Skill { get; set; }
+        internal Dictionary<string, object> PropsLua { get; set; } = new Dictionary<string, object>();
+        internal Dictionary<int, Dictionary<string, string>> Pylons { get; set; } = new Dictionary<int, Dictionary<string, string>>();
+        internal Dictionary<string, object> PayloadCommon { get; set; } = new Dictionary<string, object>();
+        internal dynamic Callsign { get; set; }
+        internal string OnboardNum { get; set; }
         internal List<DBEntryUnitRadioPreset> RadioPresets { get; set; } = new List<DBEntryUnitRadioPreset>();
-        public int Parking { get; set; }
+        internal int Parking { get; set; }
 
         // Ship
-        public float Modulation { get; set; }
-        public float Frequency { get; set; }
+        internal float Modulation { get; set; }
+        internal float Frequency { get; set; }
 
         // Static
-        public string ShapeName { get; set; }
+        internal string ShapeName { get; set; }
 
         // Static Fob
-        public int HeliportModulation { get; set; }
-        public int heliportCallsignId { get; set; }
-        public string heliportFrequency { get; set; }
+        internal int HeliportModulation { get; set; }
+        internal int heliportCallsignId { get; set; }
+        internal string heliportFrequency { get; set; }
 
         // Vehicle
-        public bool PlayerCanDrive { get; set; }
+        internal bool PlayerCanDrive { get; set; }
 
         public string ToLuaString(int number) => unitType switch
         {
@@ -65,8 +64,8 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             var obj = new Dictionary<string, object>{
                 {"type", DCSID},
                 {"unitId", UnitId},
-                {"x", X},
-                {"y", Y},
+                {"x", Coordinates.X},
+                {"y", Coordinates.Y},
                 {"name", Name},
                 {"heading", Heading},
                 {"alt_type", "BARO"},
@@ -92,8 +91,8 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             var obj = new Dictionary<string, object>{
                 {"type", DCSID},
                 {"unitId", UnitId},
-                {"x", X},
-                {"y", Y},
+                {"x", Coordinates.X},
+                {"y", Coordinates.Y},
                 {"name", Name},
                 {"heading", Heading},
                 {"transportable", new Dictionary<string, object>{{"randomTransportable", false}}},
@@ -109,8 +108,8 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             var obj = new Dictionary<string, object>{
                 {"type", DCSID},
                 {"unitId", UnitId},
-                {"x", X},
-                {"y", Y},
+                {"x", Coordinates.X},
+                {"y", Coordinates.Y},
                 {"name", Name},
                 {"heading", Heading},
                 {"mass", 100},
@@ -127,8 +126,8 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             var obj = new Dictionary<string, object>{
                 {"type", DCSID},
                 {"unitId", UnitId},
-                {"x", X},
-                {"y", Y},
+                {"x", Coordinates.X},
+                {"y", Coordinates.Y},
                 {"name", Name},
                 {"heading", Heading},
                 {"shape_name", ShapeName}
@@ -141,8 +140,8 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             var obj = new Dictionary<string, object>{
                 {"type", DCSID},
                 {"unitId", UnitId},
-                {"x", X},
-                {"y", Y},
+                {"x", Coordinates.X},
+                {"y", Coordinates.Y},
                 {"name", Name},
                 {"heading", Heading},
                 {"mass", 100},
@@ -160,8 +159,8 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             var obj = new Dictionary<string, object>{
                 {"type", DCSID},
                 {"unitId", UnitId},
-                {"x", X},
-                {"y", Y},
+                {"x", Coordinates.X},
+                {"y", Coordinates.Y},
                 {"name", Name},
                 {"heading", Heading},
                 {"transportable", new Dictionary<string, object>{{"randomTransportable", false}}},

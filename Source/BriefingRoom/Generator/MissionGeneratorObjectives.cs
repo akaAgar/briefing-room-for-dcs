@@ -80,7 +80,7 @@ namespace BriefingRoom4DCS.Generator
             ref List<Waypoint> waypoints,
             ref List<UnitFamily> objectiveTargetUnitFamilies)
         {
-            var extraSettings = new List<KeyValuePair<string, object>>();
+            var extraSettings = new Dictionary<string, object>();
             var waypointList = new List<Waypoint>();
             string[] featuresID;
             DBEntryObjectiveTarget targetDB;
@@ -137,16 +137,16 @@ namespace BriefingRoom4DCS.Generator
                 waypoints.Add(cargoWaypoint);
                 waypointList.Add(cargoWaypoint);
                 if(taskDB.isEscort()){
-                    extraSettings.Add("GroupX2".ToKeyValuePair(objectiveCoordinates.X));
-                    extraSettings.Add("GroupY2".ToKeyValuePair(objectiveCoordinates.Y));
+                    extraSettings.Add("GroupX2", objectiveCoordinates.X);
+                    extraSettings.Add("GroupY2", objectiveCoordinates.Y);
                     groupFlags |= UnitMakerGroupFlags.RadioAircraftSpawn;
                 }
             }
 
-            extraSettings.Add("GroupX2".ToKeyValuePair(destinationPoint.X));
-            extraSettings.Add("GroupY2".ToKeyValuePair(destinationPoint.Y));
-            extraSettings.Add("playerCanDrive".ToKeyValuePair(false));
-            extraSettings.Add("NoCM".ToKeyValuePair(true));
+            extraSettings.Add("GroupX2", destinationPoint.X);
+            extraSettings.Add("GroupY2", destinationPoint.Y);
+            extraSettings.Add("playerCanDrive", false);
+            extraSettings.Add("NoCM", true);
 
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
                 objectiveTargetUnitFamily, unitCount,
@@ -155,7 +155,7 @@ namespace BriefingRoom4DCS.Generator
                 unitCoordinates,
                 unitCountMinMax,
                 groupFlags,
-                extraSettings.ToArray());
+                extraSettings);
 
             if (!targetGroupInfo.HasValue) // Failed to generate target group
                 throw new BriefingRoomException($"Failed to generate group for objective.");
@@ -232,7 +232,7 @@ namespace BriefingRoom4DCS.Generator
             MinMaxI? countMinMax = null
             )
         {
-             var extraSettings = new List<KeyValuePair<string, object>>();
+            var extraSettings = new Dictionary<string, object>();
             DBEntryObjectiveTarget targetDB;
             DBEntryObjectiveTargetBehavior targetBehaviorDB;
             DBEntryObjectiveTask taskDB;
@@ -268,10 +268,10 @@ namespace BriefingRoom4DCS.Generator
                 destinationPoint = playerAirbase.Coordinates;
 
 
-            extraSettings.Add("GroupX2".ToKeyValuePair(destinationPoint.X));
-            extraSettings.Add("GroupY2".ToKeyValuePair(destinationPoint.Y));
-            extraSettings.Add("playerCanDrive".ToKeyValuePair(false));
-            extraSettings.Add("NoCM".ToKeyValuePair(true));
+            extraSettings.Add("GroupX2", destinationPoint.X);
+            extraSettings.Add("GroupY2", destinationPoint.Y);
+            extraSettings.Add("playerCanDrive", false);
+            extraSettings.Add("NoCM", true);
 
             var unitCoordinates = objectiveCoordinates;
             var objectiveName = Toolbox.RandomFrom(ObjectiveNames);
@@ -289,10 +289,10 @@ namespace BriefingRoom4DCS.Generator
                 waypoints.Add(cargoWaypoint);
                 waypointList.Add(cargoWaypoint);
                 if(taskDB.isEscort()){
-                    extraSettings.Remove("GroupX2".ToKeyValuePair(destinationPoint.X));
-                    extraSettings.Remove("GroupY2".ToKeyValuePair(destinationPoint.Y));
-                    extraSettings.Remove("GroupX2".ToKeyValuePair(objectiveCoordinates.X));
-                    extraSettings.Add("GroupY2".ToKeyValuePair(objectiveCoordinates.Y));
+                    extraSettings.Remove("GroupX2");
+                    extraSettings.Remove("GroupY2");
+                    extraSettings.Remove("GroupX2");
+                    extraSettings.Add("GroupY2", objectiveCoordinates.Y);
                     groupFlags |= UnitMakerGroupFlags.RadioAircraftSpawn;
                 }
             }
@@ -304,7 +304,7 @@ namespace BriefingRoom4DCS.Generator
                 unitCoordinates,
                 countMinMax,
                 groupFlags,
-                extraSettings.ToArray());
+                extraSettings);
 
             if (!targetGroupInfo.HasValue) // Failed to generate target group
                 throw new BriefingRoomException($"Failed to generate group for objective.");
@@ -345,7 +345,7 @@ namespace BriefingRoom4DCS.Generator
 
         }
 
-        private Coordinates PlaceInAirbase(MissionTemplateRecord template, DBEntrySituation situationDB, DBEntryAirbase playerAirbase, List<KeyValuePair<string, object>> extraSettings, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, ref string luaUnit, Coordinates objectiveCoordinates, int unitCount, UnitFamily objectiveTargetUnitFamily)
+        private Coordinates PlaceInAirbase(MissionTemplateRecord template, DBEntrySituation situationDB, DBEntryAirbase playerAirbase, Dictionary<string, object> extraSettings, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, ref string luaUnit, Coordinates objectiveCoordinates, int unitCount, UnitFamily objectiveTargetUnitFamily)
         {
             int airbaseID = 0;
             var parkingSpotIDsList = new List<int>();
@@ -366,10 +366,9 @@ namespace BriefingRoom4DCS.Generator
             parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
             parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
 
-            extraSettings.Add("GroupAirbaseID".ToKeyValuePair(airbaseID));
-            extraSettings.Add("ParkingID".ToKeyValuePair(parkingSpotIDsList.ToArray()));
-            extraSettings.Add("UnitX".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.X).ToArray()));
-            extraSettings.Add("UnitY".ToKeyValuePair((from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.Y).ToArray()));
+            extraSettings.Add("GroupAirbaseID",airbaseID);
+            extraSettings.Add("ParkingID",parkingSpotIDsList);
+            extraSettings.Add("UnitCoords",parkingSpotCoordinatesList);
             return targetAirbase.Coordinates;
         }
 
@@ -429,7 +428,7 @@ namespace BriefingRoom4DCS.Generator
 
         
 
-        private void AddEmbeddedAirDefenseUnits(MissionTemplateRecord template, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB, ObjectiveOption[] objectiveOptions, Coordinates objectiveCoordinates, UnitMakerGroupFlags groupFlags, List<KeyValuePair<string, object>> extraSettings)
+        private void AddEmbeddedAirDefenseUnits(MissionTemplateRecord template, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB, ObjectiveOption[] objectiveOptions, Coordinates objectiveCoordinates, UnitMakerGroupFlags groupFlags, Dictionary<string, object> extraSettings)
         {
             // Static targets (aka buildings) need to have their "embedded" air defenses spawned in another group
             string[] airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(template, taskDB.TargetSide);
@@ -441,7 +440,7 @@ namespace BriefingRoom4DCS.Generator
                     targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
                     objectiveCoordinates + Coordinates.CreateRandom(100, 500),
                     groupFlags,
-                    extraSettings.ToArray());
+                    extraSettings);
         }
 
         private static void CreateLua(DCSMission mission, MissionTemplateRecord template, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTask taskDB, int objectiveIndex, string objectiveName, UnitMakerGroupInfo? targetGroupInfo, string taskString)

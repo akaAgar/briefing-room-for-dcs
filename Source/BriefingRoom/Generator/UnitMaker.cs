@@ -21,7 +21,7 @@ namespace BriefingRoom4DCS.Generator
 
         internal DBEntryUnit UnitDB { get; }
 
-        internal  DCSGroup DCSGroup { get; }
+        internal DCSGroup DCSGroup { get; }
 
         internal UnitMakerGroupInfo(int groupID, Coordinates coordinates, List<int> unitsID, string name, ref DCSGroup dCSGroup, double frequency = 0.0, DBEntryUnit unitDB = null)
         {
@@ -57,7 +57,7 @@ namespace BriefingRoom4DCS.Generator
         internal UnitMakerSpawnPointSelector SpawnPointSelector { get; }
 
         internal UnitMakerCallsignGenerator CallsignGenerator { get; }
-        private readonly List<string> IGNORE_PROPS = new List<string>{"Skill"};
+        private readonly List<string> IGNORE_PROPS = new List<string> { "Skill" };
 
         internal UnitMaker(
             DCSMission mission, MissionTemplateRecord template,
@@ -84,8 +84,8 @@ namespace BriefingRoom4DCS.Generator
             UnitFamily family, int unitCount, Side side,
             string groupLua, string unitLua,
             Coordinates coordinates,
-            UnitMakerGroupFlags unitMakerGroupFlags = 0,
-            params KeyValuePair<string, object>[] extraSettings) => AddUnitGroup(
+            UnitMakerGroupFlags unitMakerGroupFlags,
+            Dictionary<string, object> extraSettings) => AddUnitGroup(
                 new List<UnitFamily> { family }, unitCount, side,
                 groupLua, unitLua, coordinates,
                 null, unitMakerGroupFlags, extraSettings);
@@ -94,8 +94,8 @@ namespace BriefingRoom4DCS.Generator
             List<UnitFamily> families, int unitCount, Side side,
             string groupLua, string unitLua,
             Coordinates coordinates,
-            UnitMakerGroupFlags unitMakerGroupFlags = 0,
-            params KeyValuePair<string, object>[] extraSettings) => AddUnitGroup(
+            UnitMakerGroupFlags unitMakerGroupFlags,
+            Dictionary<string, object> extraSettings) => AddUnitGroup(
                 families, unitCount, side,
                 groupLua, unitLua, coordinates,
                 null, unitMakerGroupFlags, extraSettings);
@@ -105,8 +105,8 @@ namespace BriefingRoom4DCS.Generator
             string groupLua, string unitLua,
             Coordinates coordinates,
             MinMaxI? unitCountMinMax,
-            UnitMakerGroupFlags unitMakerGroupFlags = 0,
-            params KeyValuePair<string, object>[] extraSettings) => AddUnitGroup(
+            UnitMakerGroupFlags unitMakerGroupFlags,
+            Dictionary<string, object> extraSettings) => AddUnitGroup(
                 new List<UnitFamily> { family }, unitCount, side,
                 groupLua, unitLua, coordinates,
                 unitCountMinMax,
@@ -117,8 +117,8 @@ namespace BriefingRoom4DCS.Generator
             string groupLua, string unitLua,
             Coordinates coordinates,
             MinMaxI? unitCountMinMax,
-            UnitMakerGroupFlags unitMakerGroupFlags = 0,
-            params KeyValuePair<string, object>[] extraSettings)
+            UnitMakerGroupFlags unitMakerGroupFlags,
+            Dictionary<string, object> extraSettings)
         {
             if (unitCount <= 0) throw new BriefingRoomException("Asking for a zero units");
             if (families.Count <= 0) throw new BriefingRoomException("No Unit Families Provided");
@@ -127,7 +127,7 @@ namespace BriefingRoom4DCS.Generator
             var (country, units) = unitsCoalitionDB.GetRandomUnits(families, Template.ContextDecade, unitCount, Template.Mods, countMinMax: unitCountMinMax);
             if (units.Count == 0) throw new BriefingRoomException($"Found no units for {string.Join(", ", families)} {country}");
             if (country != Country.ALL)
-                extraSettings = extraSettings.Append("Country".ToKeyValuePair(country)).ToArray();
+                extraSettings.Add("Country", country);
 
 
             if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.EmbeddedAirDefense) && (families.First().GetUnitCategory() == UnitCategory.Vehicle))
@@ -143,23 +143,14 @@ namespace BriefingRoom4DCS.Generator
             string[] units, Side side, UnitFamily unitFamily,
             string groupTypeLua, string unitTypeLua,
             Coordinates coordinates,
-            UnitMakerGroupFlags unitMakerGroupFlags = 0,
-            params KeyValuePair<string, object>[] extraSettings)
+            UnitMakerGroupFlags unitMakerGroupFlags,
+            Dictionary<string, object> extraSettings)
         {
             if (units.Length == 0) return null;
 
-            Coalition coalition = (side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy();
-            Country country = (coalition == Coalition.Blue) ? Country.CJTFBlue : Country.CJTFRed;
-
-            if (extraSettings.Any(x => x.Key == "Country"))
-                country = (Country)extraSettings.First(x => x.Key == "Country").Value;
-
-            var skill = GeneratorTools.GetDefaultSkillLevel(Template, side).ToString();
-
-            if (extraSettings.Any(x => x.Key == "Skill"))
-                skill = extraSettings.First(x => x.Key == "Skill").Value.ToString();
-
-
+            var coalition = (side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy();
+            var country = (Country)extraSettings.GetValueOrDefault("Country", (coalition == Coalition.Blue) ? Country.CJTFBlue : Country.CJTFRed);
+            var skill = extraSettings.GetValueOrDefault("Skill",GeneratorTools.GetDefaultSkillLevel(Template, side)).ToString();
             var isUsingSkynet = Template.MissionFeatures.Contains("SkynetIADS");
             string groupName;
             UnitCallsign? callsign = null;
@@ -167,7 +158,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 callsign = CallsignGenerator.GetCallsign(unitFamily, coalition, side, isUsingSkynet);
                 groupName = callsign.Value.GroupName;
-                if (extraSettings.Any(x => x.Key == "PlayerStartingType") && extraSettings.First(x => x.Key == "PlayerStartingType").Value.ToString() == "TakeOffParking")
+                if (extraSettings.ContainsKey("PlayerStartingType") && extraSettings.GetValueOrDefault("PlayerStartingType").ToString() == "TakeOffParking")
                     groupName += "(C)";
             }
             else
@@ -228,17 +219,17 @@ namespace BriefingRoom4DCS.Generator
                     Mission.AppendValue("AircraftActivatorReserveQueue", $"{GroupID},");
             }
 
-            if(unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.Immortal))
-                dCSGroup.Waypoints[0].Tasks.Add(new DCSWrappedWaypointTask("SetImmortal", new Dictionary<string, object>{{"value", true}}));
-            
-            if(unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.Inert))
-                dCSGroup.Waypoints[0].Tasks.Add(new DCSWrappedWaypointTask("Option", new Dictionary<string, object>{{"value", 4}, {"name", 0}}));
-            
-            if(unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.Invisible))
-                dCSGroup.Waypoints[0].Tasks.Add(new DCSWrappedWaypointTask("SetInvisible", new Dictionary<string, object>{{"value", true}}));
-            
-            dCSGroup.Waypoints[0].X = dCSGroup.Units[0].X;
-            dCSGroup.Waypoints[0].Y = dCSGroup.Units[0].Y;
+            if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.Immortal))
+                dCSGroup.Waypoints[0].Tasks.Add(new DCSWrappedWaypointTask("SetImmortal", new Dictionary<string, object> { { "value", true } }));
+
+            if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.Inert))
+                dCSGroup.Waypoints[0].Tasks.Add(new DCSWrappedWaypointTask("Option", new Dictionary<string, object> { { "value", 4 }, { "name", 0 } }));
+
+            if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.Invisible))
+                dCSGroup.Waypoints[0].Tasks.Add(new DCSWrappedWaypointTask("SetInvisible", new Dictionary<string, object> { { "value", true } }));
+
+            dCSGroup.Waypoints[0].X = dCSGroup.Units[0].Coordinates.X;
+            dCSGroup.Waypoints[0].Y = dCSGroup.Units[0].Coordinates.Y;
 
             AddUnitGroupToTable(country, unitFamily.GetUnitCategory(), dCSGroup);
 
@@ -256,7 +247,7 @@ namespace BriefingRoom4DCS.Generator
             bool hidden,
             UnitFamily unitFamily,
             DBEntryUnit firstUnitDB,
-            params KeyValuePair<string, object>[] extraSettings
+            Dictionary<string, object> extraSettings
             )
         {
             string groupYml = File.ReadAllText($"{BRPaths.INCLUDE_YAML_GROUP}{Toolbox.AddMissingFileExtension(groupTypeLua, ".yml")}");
@@ -284,15 +275,16 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.ReplaceKey(ref groupYml, "Speed", firstUnitDB.AircraftData.CruiseSpeed);
             }
 
-            var dCSGroup =  DCSGroup.YamlToGroup(groupYml);
+            var dCSGroup = DCSGroup.YamlToGroup(groupYml);
 
-            if(unitFamily.GetUnitCategory().IsAircraft() && extraSettings.Any(x => x.Key == "GroupAirbaseID") && dCSGroup.Waypoints[0].AirdromeId == default){
-                dCSGroup.Waypoints[0].AirdromeId = (int)extraSettings.First(x => x.Key == "GroupAirbaseID").Value;
-                var isHotStart = new List<UnitFamily>{UnitFamily.PlaneAWACS, UnitFamily.PlaneTankerBasket, UnitFamily.PlaneTankerBoom, UnitFamily.PlaneSEAD, UnitFamily.PlaneDrone}.Contains(unitFamily);
-                dCSGroup.Waypoints[0].Type = isHotStart ? "TakeOffParkingHot": "TakeOffParking";
+            if (unitFamily.GetUnitCategory().IsAircraft() && extraSettings.ContainsKey("GroupAirbaseID") && dCSGroup.Waypoints[0].AirdromeId == default)
+            {
+                dCSGroup.Waypoints[0].AirdromeId = (int)extraSettings.GetValueOrDefault("GroupAirbaseID",0);
+                var isHotStart = new List<UnitFamily> { UnitFamily.PlaneAWACS, UnitFamily.PlaneTankerBasket, UnitFamily.PlaneTankerBoom, UnitFamily.PlaneSEAD, UnitFamily.PlaneDrone }.Contains(unitFamily);
+                dCSGroup.Waypoints[0].Type = isHotStart ? "TakeOffParkingHot" : "TakeOffParking";
                 dCSGroup.Waypoints[0].Action = isHotStart ? "From Parking Area Hot" : "From Parking Area";
                 dCSGroup.LateActivation = false;
-                if(!isHotStart)
+                if (!isHotStart)
                     dCSGroup.Uncontrolled = true;
             }
 
@@ -309,7 +301,7 @@ namespace BriefingRoom4DCS.Generator
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags,
             string skill,
-            params KeyValuePair<string, object>[] extraSettings
+            Dictionary<string, object> extraSettings
             )
         {
             int unitLuaIndex = 1;
@@ -326,19 +318,19 @@ namespace BriefingRoom4DCS.Generator
                 int unitSetIndex = 0;
                 foreach (string DCSID in unitDB.DCSIDs)
                 {
-                     dCSUnits.Add(AddUnit(
-                        DCSID,
-                        groupName,
-                        callsign,
-                        unitLuaIndex,
-                        unitSetIndex,
-                        unitDB,
-                        unitTypeLua,
-                        coordinates,
-                        unitMakerGroupFlags,
-                        skill,
-                        extraSettings
-                        ));
+                    dCSUnits.Add(AddUnit(
+                       DCSID,
+                       groupName,
+                       callsign,
+                       unitLuaIndex,
+                       unitSetIndex,
+                       unitDB,
+                       unitTypeLua,
+                       coordinates,
+                       unitMakerGroupFlags,
+                       skill,
+                       extraSettings
+                       ));
 
                     unitsIDList.Add(UnitID);
                     unitSetIndex++;
@@ -361,7 +353,7 @@ namespace BriefingRoom4DCS.Generator
             string groupTypeLua,
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags,
-            params KeyValuePair<string, object>[] extraSettings
+            Dictionary<string, object> extraSettings
         )
         {
             List<int> unitsIDList = new List<int>();
@@ -411,9 +403,9 @@ namespace BriefingRoom4DCS.Generator
                     unitSetIndex++;
                     UnitID++;
 
-                    dCSGroup.Units = new List<DCSUnit>{dCSUnit};
+                    dCSGroup.Units = new List<DCSUnit> { dCSUnit };
 
-                    if(first)
+                    if (first)
                     {
                         firstDCSGroup = dCSGroup;
                         first = false;
@@ -472,7 +464,7 @@ namespace BriefingRoom4DCS.Generator
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags,
             string skill,
-            params KeyValuePair<string, object>[] extraSettings)
+            Dictionary<string, object> extraSettings)
         {
             if (!string.IsNullOrEmpty(unitDB.RequiredMod))
             {
@@ -486,23 +478,22 @@ namespace BriefingRoom4DCS.Generator
 
             var groupHeading = GetGroupHeading(coordinates, extraSettings);
             SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading, out Coordinates unitCoordinates, out double unitHeading);
-    
+
             foreach (KeyValuePair<string, object> extraSetting in extraSettings.Where(x => !IGNORE_PROPS.Contains(x.Key)).ToDictionary(x => x.Key, x => x.Value))
             {
                 var prop = unit.GetType().GetProperty(extraSetting.Key);
-                if(prop != null)
+                if (prop != null)
                     prop.SetValue(prop, extraSetting.Value);
             }
             unit.Heading = unitHeading;
             unit.DCSID = DCSID;
             unit.UnitId = UnitID;
-            unit.X = extraSettings.Any(x => x.Key == "UnitX") ? ((double [])extraSettings.First(x => x.Key == "UnitX").Value)[unitSetIndex] : unitCoordinates.X;
-            unit.Y = extraSettings.Any(x => x.Key == "UnitY") ? ((double []) extraSettings.First(x => x.Key == "UnitY").Value)[unitSetIndex] : unitCoordinates.Y;
+            unit.Coordinates = ((List<Coordinates>)extraSettings.GetValueOrDefault("UnitCoords", new List<Coordinates>())).ElementAtOrDefault(unitSetIndex,  unitCoordinates);
             unit.PlayerCanDrive = true;
 
             if (Toolbox.IsAircraft(unitDB.Category) && (unitLuaIndex == 1) && unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.FirstUnitIsClient))
                 unit.Skill = SinglePlayerMission ? "Player" : "Client";
-            else 
+            else
                 unit.Skill = skill;
 
 
@@ -514,9 +505,9 @@ namespace BriefingRoom4DCS.Generator
                 unit.PropsLua = Toolbox.ToDictionaryObject(unitDB.AircraftData.PropsLua);
                 unit.RadioPresets = unitDB.AircraftData.RadioPresets;
                 unit.PayloadCommon = Toolbox.ToDictionaryObject(unitDB.AircraftData.PayloadCommon);
-                unit.Pylons = unitDB.AircraftData.GetPylonsObject(extraSettings.Any(x => x.Key == "Payload") ? extraSettings.First(x => x.Key == "Payload").Value.ToString() : "default");
-                unit.LiveryId =  extraSettings.Any(x => x.Key == "Livery") ? extraSettings.First(x => x.Key == "Livery").Value.ToString() : "default";
-                unit.Parking = extraSettings.Any(x => x.Key == "ParkingID") ? ((int [])extraSettings.First(x => x.Key == "ParkingID").Value)[unitSetIndex] : 0;
+                unit.Pylons = unitDB.AircraftData.GetPylonsObject(extraSettings.GetValueOrDefault("Payload", "default").ToString());
+                unit.LiveryId = extraSettings.GetValueOrDefault("Livery", "default").ToString();
+                unit.Parking = ((List<int>)extraSettings.GetValueOrDefault("ParkingID", new List<int>())).ElementAtOrDefault(unitSetIndex);
             }
             else if (unitDB.Category == UnitCategory.Static || unitDB.Category == UnitCategory.Cargo)
             {
@@ -588,11 +579,11 @@ namespace BriefingRoom4DCS.Generator
             return str;
         }
 
-        private double GetGroupHeading(Coordinates groupCoordinates, params KeyValuePair<string, object>[] extraSettings)
+        private double GetGroupHeading(Coordinates groupCoordinates, Dictionary<string, object> extraSettings)
         {
-            if (!extraSettings.Any(x => x.Key == "GroupX2"))
+            if (!extraSettings.ContainsKey("GroupX2"))
                 return 0.0;
-            var waypointCoor = new Coordinates((double)extraSettings.First(x => x.Key == "GroupX2").Value, (double)extraSettings.First(x => x.Key == "GroupY2").Value);
+            var waypointCoor = new Coordinates((double)extraSettings["GroupX2"], (double)extraSettings["GroupY2"]);
             return Coordinates.ToAngleInRadians(groupCoordinates, waypointCoor);
         }
 

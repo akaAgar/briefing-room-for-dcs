@@ -72,18 +72,19 @@ namespace BriefingRoom4DCS.Generator
                         new string[] { unitDB.ID }, Side.Ally, unitDB.Families[0],
                         "ShipCarrier", "Ship",
                         shipCoordinates, 0,
-                        "GroupX2".ToKeyValuePair(shipDestination.X),
-                        "GroupY2".ToKeyValuePair(shipDestination.Y),
-                        "ILS".ToKeyValuePair(ilsChannel),
-                        "RadioBand".ToKeyValuePair((int)RadioModulation.AM),
-                        "RadioFrequency".ToKeyValuePair(GeneratorTools.GetRadioFrenquency(radioFrequency)),
-                        "Speed".ToKeyValuePair(carrierSpeed),
-                        "TACANCallsign".ToKeyValuePair(tacanCallsign),
-                        "TACANChannel".ToKeyValuePair(tacanChannel),
-                        "TACANFrequency".ToKeyValuePair(GeneratorTools.GetTACANFrequency(tacanChannel, 'X', false)),
-                        "TACANMode".ToKeyValuePair("X"),
-                        "playerCanDrive".ToKeyValuePair(false),
-                        "NoCM".ToKeyValuePair(true));
+                        new Dictionary<string, object>{
+                        {"GroupX2", shipDestination.X},
+                        {"GroupY2", shipDestination.Y},
+                        {"ILS", ilsChannel},
+                        {"RadioBand",( int)RadioModulation.AM},
+                        {"RadioFrequency", GeneratorTools.GetRadioFrenquency(radioFrequency)},
+                        {"Speed", carrierSpeed},
+                        {"TACANCallsign", tacanCallsign},
+                        {"TACANChannel", tacanChannel},
+                        {"TACANFrequency", GeneratorTools.GetTACANFrequency(tacanChannel, 'X', false)},
+                        {"TACANMode"," X"},
+                        {"playerCanDrive", false},
+                        {"NoCM", true}});
 
                 if (!groupInfo.HasValue || (groupInfo.Value.UnitsID.Length == 0)) continue; // Couldn't generate group
 
@@ -183,11 +184,12 @@ namespace BriefingRoom4DCS.Generator
                     unitDB.Families[0], 1, Side.Ally,
                     "GroupStatic", "UnitStaticFOB",
                     spawnPoint.Value, 0,
-                    "FOBCallSignIndex".ToKeyValuePair(FOBNames.IndexOf(flightGroup.Carrier) + 1),
-                    "RadioBand".ToKeyValuePair((int)RadioModulation.AM),
-                    "RadioFrequency".ToKeyValuePair(GeneratorTools.GetRadioFrenquency(radioFrequency)),
-                    "playerCanDrive".ToKeyValuePair(false),
-                    "NoCM".ToKeyValuePair(true));
+                    new Dictionary<string, object>{
+                    {"FOBCallSignIndex", FOBNames.IndexOf(flightGroup.Carrier) + 1},
+                    {"RadioBand", (int)RadioModulation.AM},
+                    {"RadioFrequency", GeneratorTools.GetRadioFrenquency(radioFrequency)},
+                    {"playerCanDrive", false},
+                    {"NoCM", true}});
             if (!groupInfo.HasValue || (groupInfo.Value.UnitsID.Length == 0)) return; // Couldn't generate group
             zoneMaker.AddCTLDPickupZone(spawnPoint.Value, true);
             mission.Briefing.AddItem(

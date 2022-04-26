@@ -92,7 +92,7 @@ namespace BriefingRoom4DCS.Generator
                     groupSide,
                     groupLua, luaUnit,
                     coordinates, groupFlags,
-                    extraSettings.ToArray());
+                    extraSettings);
 
                 if (
                     groupSide == Side.Ally &&
@@ -208,7 +208,7 @@ namespace BriefingRoom4DCS.Generator
                    groupSide,
                    groupLua, luaUnit,
                    spawnCoords.Value, groupFlags,
-                   extraSettings.ToArray());
+                   extraSettings);
                 
                  if (
                     groupSide == Side.Ally &&
@@ -232,10 +232,9 @@ namespace BriefingRoom4DCS.Generator
                     GeneratorTools.GetSpawnPointCoalition(_template, groupSide, true).Value,
                     unitFamily);
                 coordinates = airbase.Coordinates;
-                extraSettings["ParkingID"] = parkingSpotIDsList.ToArray();
+                extraSettings["ParkingID"] = parkingSpotIDsList;
                 extraSettings["GroupAirbaseID"] = airbase.DCSID;
-                extraSettings["UnitX"] = (from Coordinates unitCoordinates in parkingSpotCoordinatesList select unitCoordinates.X).ToArray();
-                extraSettings["UnitY"] = (from Coordinates unitCoordinates in parkingSpotCoordinatesList select unitCoordinates.Y).ToArray();
+                extraSettings["UnitCoords"] = parkingSpotCoordinatesList;
 
                 var midPoint = Coordinates.Lerp(coordinates, coordinates2, 0.4);
                 extraSettings.AddIfKeyUnused("GroupMidX", midPoint.X);

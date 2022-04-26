@@ -110,10 +110,9 @@ namespace BriefingRoom4DCS.Generator
                 {
                     var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = unitMaker.SpawnPointSelector.GetAirbaseAndParking(template, spawnPoint.Value, groupSize, coalition, unitFamilies.First());
                     spawnpointCoordinates = airbase.Coordinates;
-                    extraSettings.AddIfKeyUnused("ParkingID", parkingSpotIDsList.ToArray());
+                    extraSettings.AddIfKeyUnused("ParkingID", parkingSpotIDsList);
                     extraSettings.AddIfKeyUnused("GroupAirbaseID", airbase.DCSID);
-                    extraSettings.AddIfKeyUnused("UnitX", (from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.X).ToArray());
-                    extraSettings.AddIfKeyUnused("UnitY", (from Coordinates coordinates in parkingSpotCoordinatesList select coordinates.Y).ToArray());
+                    extraSettings.AddIfKeyUnused("UnitCoords", parkingSpotCoordinatesList);
                 }
 
 
@@ -122,7 +121,7 @@ namespace BriefingRoom4DCS.Generator
                     luaGroup, luaUnit,
                     spawnpointCoordinates,
                     0,
-                    extraSettings.ToArray());
+                    extraSettings);
 
                 if (!groupInfo.HasValue) // Failed to generate a group
                     BriefingRoom.PrintToLog($"Failed to find units for {coalition} air defense unit group.", LogMessageErrorLevel.Warning);

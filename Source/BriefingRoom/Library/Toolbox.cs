@@ -178,6 +178,10 @@ namespace BriefingRoom4DCS
 
             return isValid;
         }
+        internal static T ElementAtOrDefault<T>(this IList<T> list, int index, T @default)
+        {
+            return index >= 0 && index < list.Count ? list[index] : @default;
+        }
 
         internal static T[] ShuffleArray<T>(T[] array)
         {
