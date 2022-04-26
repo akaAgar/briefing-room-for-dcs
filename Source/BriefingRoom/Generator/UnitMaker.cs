@@ -12,24 +12,19 @@ namespace BriefingRoom4DCS.Generator
 {
     internal struct UnitMakerGroupInfo
     {
-        internal Coordinates Coordinates { get; }
-        internal int GroupID { get; }
-        internal string Name { get; }
-        internal int[] UnitsID { get; }
+        internal Coordinates Coordinates { get { return new Coordinates(DCSGroup.X, DCSGroup.Y);} }
+        internal int GroupID { get { return DCSGroup.GroupId; } }
+        internal string Name { get { return DCSGroup.Name; } }
+        internal int[] UnitsID { get {return DCSGroup.Units.Select(x => x.UnitId).ToArray();} }
 
-        internal double Frequency { get; }
+        internal double Frequency { get { return DCSGroup.Frequency;} }
 
         internal DBEntryUnit UnitDB { get; }
 
         internal DCSGroup DCSGroup { get; }
 
-        internal UnitMakerGroupInfo(int groupID, Coordinates coordinates, List<int> unitsID, string name, ref DCSGroup dCSGroup, double frequency = 0.0, DBEntryUnit unitDB = null)
+        internal UnitMakerGroupInfo(ref DCSGroup dCSGroup, DBEntryUnit unitDB = null)
         {
-            GroupID = groupID;
-            Coordinates = coordinates;
-            Name = name;
-            UnitsID = unitsID.ToArray();
-            Frequency = frequency;
             UnitDB = unitDB;
             DCSGroup = dCSGroup;
         }
@@ -150,7 +145,7 @@ namespace BriefingRoom4DCS.Generator
 
             var coalition = (side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy();
             var country = (Country)extraSettings.GetValueOrDefault("Country", (coalition == Coalition.Blue) ? Country.CJTFBlue : Country.CJTFRed);
-            var skill = extraSettings.GetValueOrDefault("Skill",GeneratorTools.GetDefaultSkillLevel(Template, side)).ToString();
+            var skill = extraSettings.GetValueOrDefault("Skill", GeneratorTools.GetDefaultSkillLevel(Template, side)).ToString();
             var isUsingSkynet = Template.MissionFeatures.Contains("SkynetIADS");
             string groupName;
             UnitCallsign? callsign = null;
@@ -236,7 +231,7 @@ namespace BriefingRoom4DCS.Generator
             BriefingRoom.PrintToLog($"Added group of {units.Length} {coalition} {unitFamily} at {dCSGroup.Units[0].Coordinates}");
             GroupID++;
 
-            return new UnitMakerGroupInfo(GroupID - 1, dCSGroup.Units[0].Coordinates, unitsIDList, groupName, ref dCSGroup, firstUnitDB.AircraftData.RadioFrequency, firstUnitDB);
+            return new UnitMakerGroupInfo(ref dCSGroup, firstUnitDB);
         }
 
 
@@ -279,7 +274,7 @@ namespace BriefingRoom4DCS.Generator
 
             if (unitFamily.GetUnitCategory().IsAircraft() && extraSettings.ContainsKey("GroupAirbaseID") && dCSGroup.Waypoints[0].AirdromeId == default)
             {
-                dCSGroup.Waypoints[0].AirdromeId = (int)extraSettings.GetValueOrDefault("GroupAirbaseID",0);
+                dCSGroup.Waypoints[0].AirdromeId = (int)extraSettings.GetValueOrDefault("GroupAirbaseID", 0);
                 var isHotStart = new List<UnitFamily> { UnitFamily.PlaneAWACS, UnitFamily.PlaneTankerBasket, UnitFamily.PlaneTankerBoom, UnitFamily.PlaneSEAD, UnitFamily.PlaneDrone }.Contains(unitFamily);
                 dCSGroup.Waypoints[0].Type = isHotStart ? "TakeOffParkingHot" : "TakeOffParking";
                 dCSGroup.Waypoints[0].Action = isHotStart ? "From Parking Area Hot" : "From Parking Area";
@@ -449,7 +444,7 @@ namespace BriefingRoom4DCS.Generator
             }
 
             var firstUnitDB = Database.Instance.GetEntry<DBEntryUnit>(unitSets.First());
-            return new UnitMakerGroupInfo(initalGroupId, coordinates, unitsIDList, groupName, ref firstDCSGroup, firstUnitDB.AircraftData.RadioFrequency, firstUnitDB);
+            return new UnitMakerGroupInfo(ref firstDCSGroup, firstUnitDB);
         }
 
 
@@ -488,7 +483,7 @@ namespace BriefingRoom4DCS.Generator
             unit.Heading = unitHeading;
             unit.DCSID = DCSID;
             unit.UnitId = UnitID;
-            unit.Coordinates = ((List<Coordinates>)extraSettings.GetValueOrDefault("UnitCoords", new List<Coordinates>())).ElementAtOrDefault(unitSetIndex,  unitCoordinates);
+            unit.Coordinates = ((List<Coordinates>)extraSettings.GetValueOrDefault("UnitCoords", new List<Coordinates>())).ElementAtOrDefault(unitSetIndex, unitCoordinates);
             unit.PlayerCanDrive = true;
 
             if (Toolbox.IsAircraft(unitDB.Category) && (unitLuaIndex == 1) && unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.FirstUnitIsClient))
