@@ -379,7 +379,7 @@ namespace BriefingRoom4DCS.Generator
                         extraSettings
                     );
 
-                    var unitLua = DCSID == "FARP" ? "UnitStaticFOB" : (unitDB.Category == UnitCategory.Cargo ? "UnitCargo" : "UnitStatic");
+                    var unitLua = DCSID == "FARP" ? "StaticFOB" : (unitDB.Category == UnitCategory.Cargo ? "Cargo" : "Static");
                     var dCSUnit = AddUnit(
                         DCSID,
                         groupName,
