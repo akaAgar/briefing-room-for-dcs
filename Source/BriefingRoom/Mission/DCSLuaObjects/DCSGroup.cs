@@ -27,6 +27,8 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 
         public bool? HiddenOnMFD { get; set; }
 
+        public bool Dead {get; set;}
+
         public string ToLuaString(int number)
         {   var obj = new Dictionary<string, object> {
                 {"lateActivation", LateActivation},
@@ -49,7 +51,8 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"start_time", 0},
                 {"frequency", Frequency},
                 {"visible", Visible},
-                {"hiddenOnMFD", Visible}
+                {"hiddenOnMFD", Visible},
+                {"dead", Dead}
             };
             return LuaSerialiser.Serialize(obj.Where(x => x.Value != null).ToDictionary(x => x.Key, x => x.Value));
         }

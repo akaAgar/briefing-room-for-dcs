@@ -182,7 +182,7 @@ namespace BriefingRoom4DCS.Generator
             UnitMakerGroupInfo? groupInfo =
                 unitMaker.AddUnitGroup(
                     unitDB.Families[0], 1, Side.Ally,
-                    "GroupStatic", "UnitStaticFOB",
+                    "GroupStatic", "StaticFOB",
                     spawnPoint.Value, 0,
                     new Dictionary<string, object>{
                     {"FOBCallSignIndex", FOBNames.IndexOf(flightGroup.Carrier) + 1},
