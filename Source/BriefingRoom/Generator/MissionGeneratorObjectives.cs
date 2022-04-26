@@ -71,7 +71,7 @@ namespace BriefingRoom4DCS.Generator
             DCSMission mission,
             MissionTemplateRecord template,
             DBEntrySituation situationDB,
-            MissionTemplateObjectiveRecord objectiveTemplate,
+            MissionTemplateObjectiveRecord task,
             Coordinates lastCoordinates,
             DBEntryAirbase playerAirbase,
             bool useObjectivePreset,
@@ -80,35 +80,115 @@ namespace BriefingRoom4DCS.Generator
             ref List<Waypoint> waypoints,
             ref List<UnitFamily> objectiveTargetUnitFamilies)
         {
-            var extraSettings = new Dictionary<string, object>();
             var waypointList = new List<Waypoint>();
-            string[] featuresID;
-            DBEntryObjectiveTarget targetDB;
-            DBEntryObjectiveTargetBehavior targetBehaviorDB;
-            DBEntryObjectiveTask taskDB;
-            ObjectiveOption[] objectiveOptions;
+            var (featuresID, targetDB, targetBehaviorDB, taskDB, objectiveOptions) = GetObjectiveData(task, useObjectivePreset);
+            var objectiveCoordinates = GetSpawnCoordinates(template, lastCoordinates, playerAirbase, targetDB);
 
-            GetObjectiveData(objectiveTemplate, useObjectivePreset, out featuresID, out targetDB, out targetBehaviorDB, out taskDB, out objectiveOptions);
-            var luaUnit = targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory];
-            Coordinates objectiveCoordinates = GetSpawnCoordinates(template, lastCoordinates, playerAirbase, targetDB);
+            
+            CreateObjective(
+                task,
+                taskDB,
+                targetDB,
+                targetBehaviorDB,
+                situationDB,
+                ref objectiveIndex,
+                objectiveCoordinates,
+                objectiveOptions,
+                playerAirbase,
+                template,
+                mission,
+                ref waypoints,
+                ref waypointList,
+                featuresID,
+                ref objectiveCoordinatesList,
+                ref objectiveTargetUnitFamilies);
 
-            var unitCount = targetDB.UnitCount[(int)objectiveTemplate.TargetCount].GetValue();
-            var unitCountMinMax = targetDB.UnitCount[(int)objectiveTemplate.TargetCount];
-            var objectiveTargetUnitFamily = Toolbox.RandomFrom(targetDB.UnitFamilies);
+            var preValidSpawns = targetDB.ValidSpawnPoints.ToList();
             
+            foreach (var subTasks in task.SubTasks)
+            {
+                objectiveIndex++;
+                GenerateSubTask(
+                    mission, template,
+                    situationDB, subTasks,
+                    objectiveCoordinates, playerAirbase,
+                    preValidSpawns, targetBehaviorDB.Location,
+                    featuresID, ref objectiveIndex,
+                    ref objectiveCoordinatesList, ref waypoints,
+                    ref waypointList, ref objectiveTargetUnitFamilies);
+
+            }
+            return new (objectiveCoordinates, waypointList);
+        }
+
+        private void GenerateSubTask(
+            DCSMission mission,
+            MissionTemplateRecord template,
+            DBEntrySituation situationDB,
+            MissionTemplateSubTaskRecord task,
+            Coordinates coreCoordinates,
+            DBEntryAirbase playerAirbase,
+            List<SpawnPointType> preValidSpawns,
+            DBEntryObjectiveTargetBehaviorLocation mainObjLocation,
+            string[] featuresID,
+            ref int objectiveIndex,
+            ref List<Coordinates> objectiveCoordinatesList,
+            ref List<Waypoint> waypoints,
+            ref List<Waypoint> waypointList,
+            ref List<UnitFamily> objectiveTargetUnitFamilies
+            )
+        {
+            var (targetDB, targetBehaviorDB, taskDB, objectiveOptions) = GetObjectiveData(task);
             
+            preValidSpawns.AddRange(targetDB.ValidSpawnPoints);
+            if(preValidSpawns.Contains(SpawnPointType.Sea) && preValidSpawns.Any(x => LAND_SPAWNS.Contains(x)))
+                throw new BriefingRoomException("Cannot Mix Land and Sea Objectives. Check Sub Objective targets");
+            if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location) && !AIRBASE_LOCATIONS.Contains(mainObjLocation))
+                throw new BriefingRoomException("Spawning on airbase is not a valid Sub Objective unless main objective is also spawning on airbase.");
+
+            CreateObjective(
+                task,
+                taskDB,
+                targetDB,
+                targetBehaviorDB,
+                situationDB,
+                ref objectiveIndex,
+                GetNearestSpawnCoordinates(template, coreCoordinates, targetDB),
+                objectiveOptions,
+                playerAirbase,
+                template,
+                mission,
+                ref waypoints,
+                ref waypointList,
+                featuresID,
+                ref objectiveCoordinatesList,
+                ref objectiveTargetUnitFamilies);
+        }
+
+        private void CreateObjective(
+            MissionTemplateSubTaskRecord task,
+            DBEntryObjectiveTask taskDB,
+            DBEntryObjectiveTarget targetDB,
+            DBEntryObjectiveTargetBehavior targetBehaviorDB,
+            DBEntrySituation situationDB,
+            ref int objectiveIndex,
+            Coordinates objectiveCoordinates,
+            ObjectiveOption[] objectiveOptions, 
+            DBEntryAirbase playerAirbase,
+            MissionTemplateRecord template,
+            DCSMission mission,
+            ref List<Waypoint> waypoints,
+            ref List<Waypoint> waypointList,
+            string[] featuresID,
+            ref List<Coordinates> objectiveCoordinatesList,
+            ref List<UnitFamily> objectiveTargetUnitFamilies)
+        {
+            var extraSettings = new Dictionary<string, object>();
+            var (luaUnit, unitCount, unitCountMinMax, objectiveTargetUnitFamily, groupFlags) = GetUnitData(task, targetDB, targetBehaviorDB, objectiveOptions);
+
             if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location) && targetDB.UnitCategory.IsAircraft())
                 objectiveCoordinates = PlaceInAirbase(template, situationDB, playerAirbase, extraSettings, targetDB, targetBehaviorDB, ref luaUnit, objectiveCoordinates, unitCount, objectiveTargetUnitFamily);
-
-            UnitMakerGroupFlags groupFlags = 0;
-
-
-            if (objectiveOptions.Contains(ObjectiveOption.Invisible))
-                groupFlags |= UnitMakerGroupFlags.Invisible;
-            if (objectiveOptions.Contains(ObjectiveOption.ShowTarget)) groupFlags = UnitMakerGroupFlags.NeverHidden;
-            else if (objectiveOptions.Contains(ObjectiveOption.HideTarget)) groupFlags = UnitMakerGroupFlags.AlwaysHidden;
-            if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense)) groupFlags |= UnitMakerGroupFlags.EmbeddedAirDefense;
-
+        
             // Set destination point for moving unit groups
             Coordinates destinationPoint = objectiveCoordinates +
                 (
@@ -119,10 +199,13 @@ namespace BriefingRoom4DCS.Generator
             if (targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.GoToPlayerAirbase)
                 destinationPoint = playerAirbase.Coordinates;
 
+            extraSettings.Add("GroupX2", destinationPoint.X);
+            extraSettings.Add("GroupY2", destinationPoint.Y);
+            extraSettings.Add("playerCanDrive", false);
+            extraSettings.Add("NoCM", true);
 
             var unitCoordinates = objectiveCoordinates;
             var objectiveName = Toolbox.RandomFrom(ObjectiveNames);
-
             if(TRANSPORT_TASKS.Contains(taskDB.ID))
             {
                 Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
@@ -133,7 +216,7 @@ namespace BriefingRoom4DCS.Generator
                 if (!spawnPoint.HasValue) // Failed to generate target group
                     throw new BriefingRoomException($"Failed to find Cargo SpawnPoint");
                 unitCoordinates = spawnPoint.Value;
-                var cargoWaypoint = GenerateObjectiveWaypoint(objectiveTemplate, unitCoordinates, $"{objectiveName} Pickup", template, true);
+                var cargoWaypoint = GenerateObjectiveWaypoint(task, unitCoordinates, $"{objectiveName} Pickup", template, true);
                 waypoints.Add(cargoWaypoint);
                 waypointList.Add(cargoWaypoint);
                 if(taskDB.isEscort()){
@@ -142,11 +225,6 @@ namespace BriefingRoom4DCS.Generator
                     groupFlags |= UnitMakerGroupFlags.RadioAircraftSpawn;
                 }
             }
-
-            extraSettings.Add("GroupX2", destinationPoint.X);
-            extraSettings.Add("GroupY2", destinationPoint.Y);
-            extraSettings.Add("playerCanDrive", false);
-            extraSettings.Add("NoCM", true);
 
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
                 objectiveTargetUnitFamily, unitCount,
@@ -168,7 +246,6 @@ namespace BriefingRoom4DCS.Generator
             // Pick a name, then remove it from the list
             ObjectiveNames.Remove(objectiveName);
             CreateTaskString(mission, pluralIndex, ref taskString, objectiveName, objectiveTargetUnitFamily);
-
             CreateLua(mission, template, targetDB, taskDB, objectiveIndex, objectiveName, targetGroupInfo, taskString);
 
             // Add briefing remarks for this objective task
@@ -183,166 +260,33 @@ namespace BriefingRoom4DCS.Generator
             // Add feature ogg files
             foreach (string oggFile in taskDB.IncludeOgg)
                 mission.AddMediaFile($"l10n/DEFAULT/{oggFile}", $"{BRPaths.INCLUDE_OGG}{oggFile}");
+            
 
             // Add objective features Lua for this objective
             mission.AppendValue("ScriptObjectivesFeatures", ""); // Just in case there's no features
             foreach (string featureID in featuresID)
-                FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value.GroupID, objectiveCoordinates, taskDB.TargetSide, objectiveOptions.Contains(ObjectiveOption.HideTarget));
-
+                FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value.GroupID, targetGroupInfo.Value.Coordinates, taskDB.TargetSide, objectiveOptions.Contains(ObjectiveOption.HideTarget));
+            
             objectiveCoordinatesList.Add(objectiveCoordinates);
-            var waypoint = GenerateObjectiveWaypoint(objectiveTemplate, objectiveCoordinates, objectiveName, template);
+            var waypoint = GenerateObjectiveWaypoint(task, objectiveCoordinates, objectiveName, template);
             waypoints.Add(waypoint);
             waypointList.Add(waypoint);
             objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);
-
-            var preValidSpawns = targetDB.ValidSpawnPoints.ToList();
-            
-            foreach (var subTasks in objectiveTemplate.SubTasks)
-            {
-                objectiveIndex++;
-                GenerateSubTask(
-                    mission, template,
-                    situationDB, subTasks,
-                    objectiveCoordinates, playerAirbase,
-                    preValidSpawns, targetBehaviorDB.Location,
-                    featuresID, ref objectiveIndex,
-                    ref objectiveCoordinatesList, ref waypoints,
-                    ref waypointList, ref objectiveTargetUnitFamilies,
-                    unitCountMinMax);
-
-            }
-            return new (objectiveCoordinates, waypointList);
         }
 
-        private void GenerateSubTask(
-            DCSMission mission,
-            MissionTemplateRecord template,
-            DBEntrySituation situationDB,
-            MissionTemplateSubTask subTask,
-            Coordinates coreCoordinates,
-            DBEntryAirbase playerAirbase,
-            List<SpawnPointType> preValidSpawns,
-            DBEntryObjectiveTargetBehaviorLocation mainObjLocation,
-            string[] featuresID,
-            ref int objectiveIndex,
-            ref List<Coordinates> objectiveCoordinatesList,
-            ref List<Waypoint> waypoints,
-            ref List<Waypoint> waypointList,
-            ref List<UnitFamily> objectiveTargetUnitFamilies,
-            MinMaxI? countMinMax = null
-            )
-        {
-            var extraSettings = new Dictionary<string, object>();
-            DBEntryObjectiveTarget targetDB;
-            DBEntryObjectiveTargetBehavior targetBehaviorDB;
-            DBEntryObjectiveTask taskDB;
-            ObjectiveOption[] objectiveOptions;
-
-            GetSubTaskData(subTask, out targetDB, out targetBehaviorDB, out taskDB, out objectiveOptions);
-            
-            preValidSpawns.AddRange(targetDB.ValidSpawnPoints);
-            if(preValidSpawns.Contains(SpawnPointType.Sea) && preValidSpawns.Any(x => LAND_SPAWNS.Contains(x)))
-                throw new BriefingRoomException("Cannot Mix Land and Sea Objectives. Check Sub Objective targets");
-            var luaUnit = targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory];
-            Coordinates objectiveCoordinates = GetNearestSpawnCoordinates(template, coreCoordinates, targetDB);
-
-            // Spawn target on airbase
-            var unitCount = targetDB.UnitCount[(int)subTask.TargetCount].GetValue();
-            var objectiveTargetUnitFamily = Toolbox.RandomFrom(targetDB.UnitFamilies);
-            if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location) && !AIRBASE_LOCATIONS.Contains(mainObjLocation))
-                throw new BriefingRoomException("Spawning on airbase is not a valid Sub Objective unless main objective is also spawning on airbase.");
-
+        private (string luaUnit, int unitCount, MinMaxI unitCountMinMax, UnitFamily objectiveTargetUnitFamily, UnitMakerGroupFlags groupFlags) GetUnitData(MissionTemplateSubTaskRecord task, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, ObjectiveOption[] objectiveOptions)
+        {   
             UnitMakerGroupFlags groupFlags = 0;
+            if (objectiveOptions.Contains(ObjectiveOption.Invisible))groupFlags |= UnitMakerGroupFlags.Invisible;
             if (objectiveOptions.Contains(ObjectiveOption.ShowTarget)) groupFlags = UnitMakerGroupFlags.NeverHidden;
             else if (objectiveOptions.Contains(ObjectiveOption.HideTarget)) groupFlags = UnitMakerGroupFlags.AlwaysHidden;
             if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense)) groupFlags |= UnitMakerGroupFlags.EmbeddedAirDefense;
-
-            // Set destination point for moving unit groups
-            Coordinates destinationPoint = objectiveCoordinates +
-                (
-                    (targetDB.UnitCategory == UnitCategory.Plane ? Coordinates.CreateRandom(30, 60) : Coordinates.CreateRandom(10, 20)) *
-                    Toolbox.NM_TO_METERS
-                );
-
-            if (targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.GoToPlayerAirbase)
-                destinationPoint = playerAirbase.Coordinates;
-
-
-            extraSettings.Add("GroupX2", destinationPoint.X);
-            extraSettings.Add("GroupY2", destinationPoint.Y);
-            extraSettings.Add("playerCanDrive", false);
-            extraSettings.Add("NoCM", true);
-
-            var unitCoordinates = objectiveCoordinates;
-            var objectiveName = Toolbox.RandomFrom(ObjectiveNames);
-            if(TRANSPORT_TASKS.Contains(taskDB.ID))
-            {
-                Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                targetDB.ValidSpawnPoints,
-                playerAirbase.Coordinates,
-                new MinMaxD(1,5),
-                coalition: GeneratorTools.GetSpawnPointCoalition(template, Side.Ally));
-                if (!spawnPoint.HasValue) // Failed to generate target group
-                    throw new BriefingRoomException($"Failed to find Cargo SpawnPoint");
-                unitCoordinates = spawnPoint.Value;
-                var cargoWaypoint = GenerateSubTaskWaypoint(subTask, unitCoordinates, $"{objectiveName} Pickup", template, true);
-                waypoints.Add(cargoWaypoint);
-                waypointList.Add(cargoWaypoint);
-                if(taskDB.isEscort()){
-                    extraSettings.Remove("GroupX2");
-                    extraSettings.Remove("GroupY2");
-                    extraSettings.Remove("GroupX2");
-                    extraSettings.Add("GroupY2", objectiveCoordinates.Y);
-                    groupFlags |= UnitMakerGroupFlags.RadioAircraftSpawn;
-                }
-            }
-
-            UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
-                objectiveTargetUnitFamily, unitCount,
-                taskDB.TargetSide,
-                targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], luaUnit,
-                unitCoordinates,
-                countMinMax,
-                groupFlags,
-                extraSettings);
-
-            if (!targetGroupInfo.HasValue) // Failed to generate target group
-                throw new BriefingRoomException($"Failed to generate group for objective.");
-
-            if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense) && (targetDB.UnitCategory == UnitCategory.Static))
-                AddEmbeddedAirDefenseUnits(template, targetDB, targetBehaviorDB, taskDB, objectiveOptions, objectiveCoordinates, groupFlags, extraSettings);
-
-            var pluralIndex = targetGroupInfo.Value.UnitsID.Length == 1 ? 0 : 1;
-            var taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex], mission).Replace("\"", "''");
-            // Pick a name, then remove it from the list
-            ObjectiveNames.Remove(objectiveName);
-            CreateTaskString(mission, pluralIndex, ref taskString, objectiveName, objectiveTargetUnitFamily);
-            CreateLua(mission, template, targetDB, taskDB, objectiveIndex, objectiveName, targetGroupInfo, taskString);
-
-            // Add briefing remarks for this objective task
-            if (taskDB.BriefingRemarks.Length > 0)
-            {
-                string remark = Toolbox.RandomFrom(taskDB.BriefingRemarks);
-                GeneratorTools.ReplaceKey(ref remark, "ObjectiveName", objectiveName);
-                GeneratorTools.ReplaceKey(ref remark, "UnitFamily", Database.Instance.Common.Names.UnitFamilies[(int)objectiveTargetUnitFamily][pluralIndex]);
-                mission.Briefing.AddItem(DCSMissionBriefingItemType.Remark, remark);
-            }
-
-            // Add feature ogg files
-            foreach (string oggFile in taskDB.IncludeOgg)
-                mission.AddMediaFile($"l10n/DEFAULT/{oggFile}", $"{BRPaths.INCLUDE_OGG}{oggFile}");
-            
-
-            // Add objective features Lua for this objective
-            mission.AppendValue("ScriptObjectivesFeatures", ""); // Just in case there's no features
-            foreach (string featureID in featuresID)
-                FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value.GroupID, objectiveCoordinates, taskDB.TargetSide, objectiveOptions.Contains(ObjectiveOption.HideTarget));
-            objectiveCoordinatesList.Add(objectiveCoordinates);
-            var waypoint = GenerateSubTaskWaypoint(subTask, objectiveCoordinates, objectiveName, template);
-            waypoints.Add(waypoint);
-            waypointList.Add(waypoint);
-            objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);
-
+            return (targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
+                targetDB.UnitCount[(int)task.TargetCount].GetValue(),
+                targetDB.UnitCount[(int)task.TargetCount],
+                Toolbox.RandomFrom(targetDB.UnitFamilies),
+                groupFlags
+            );
         }
 
         private Coordinates PlaceInAirbase(MissionTemplateRecord template, DBEntrySituation situationDB, DBEntryAirbase playerAirbase, Dictionary<string, object> extraSettings, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, ref string luaUnit, Coordinates objectiveCoordinates, int unitCount, UnitFamily objectiveTargetUnitFamily)
@@ -398,14 +342,10 @@ namespace BriefingRoom4DCS.Generator
             Coordinates objectiveCoordinates = spawnPoint.Value;
             return objectiveCoordinates;
         }
-
-        private static void GetObjectiveData(MissionTemplateObjectiveRecord objectiveTemplate, bool useObjectivePreset, out string[] featuresID, out DBEntryObjectiveTarget targetDB, out DBEntryObjectiveTargetBehavior targetBehaviorDB, out DBEntryObjectiveTask taskDB, out ObjectiveOption[] objectiveOptions)
-        {
-            featuresID = objectiveTemplate.Features.ToArray();
-            targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
-            targetBehaviorDB = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior);
-            taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task);
-            objectiveOptions = objectiveTemplate.Options.ToArray();
+        
+        private static (string[] featuresID, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB, ObjectiveOption[] objectiveOptions) GetObjectiveData(MissionTemplateObjectiveRecord objectiveTemplate, bool useObjectivePreset)
+        {   var (targetDB, targetBehaviorDB, taskDB, objectiveOptions) = GetObjectiveData(objectiveTemplate);
+            var featuresID = objectiveTemplate.Features.ToArray();
             if (useObjectivePreset && objectiveTemplate.Preset != "Custom")
             {
                 DBEntryObjectivePreset presetDB = Database.Instance.GetEntry<DBEntryObjectivePreset>(objectiveTemplate.Preset);
@@ -418,14 +358,29 @@ namespace BriefingRoom4DCS.Generator
                     objectiveOptions = presetDB.Options.ToArray();
                 }
             }
+            ObjectiveNullCheck(targetDB, targetBehaviorDB, taskDB);
+            return (featuresID, targetDB, targetBehaviorDB, taskDB, objectiveOptions);
+        }
 
+        private static (DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB, ObjectiveOption[] objectiveOptions) GetObjectiveData(MissionTemplateSubTaskRecord objectiveTemplate)
+        {
+            var targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
+            var targetBehaviorDB = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior);
+            var taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task);
+            var objectiveOptions = objectiveTemplate.Options.ToArray();
+            
+            ObjectiveNullCheck(targetDB, targetBehaviorDB, taskDB);
+            return (targetDB, targetBehaviorDB, taskDB, objectiveOptions);
+        }
+
+        private static void ObjectiveNullCheck(DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB)
+        {
             if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective.");
             if (targetBehaviorDB == null) throw new BriefingRoomException($"Target behavior \"{targetBehaviorDB.UIDisplayName}\" not found for objective.");
             if (taskDB == null) throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not found for objective.");
             if (!taskDB.ValidUnitCategories.Contains(targetDB.UnitCategory))
                 throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not valid for objective targets, which belong to category \"{targetDB.UnitCategory}\".");
         }
-
         
 
         private void AddEmbeddedAirDefenseUnits(MissionTemplateRecord template, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB, ObjectiveOption[] objectiveOptions, Coordinates objectiveCoordinates, UnitMakerGroupFlags groupFlags, Dictionary<string, object> extraSettings)
@@ -477,7 +432,7 @@ namespace BriefingRoom4DCS.Generator
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Task, taskString);
         }
 
-        private Waypoint GenerateObjectiveWaypoint(MissionTemplateObjectiveRecord objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName, MissionTemplateRecord template, bool scriptIgnore = false)
+        private Waypoint GenerateObjectiveWaypoint(MissionTemplateSubTaskRecord objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName, MissionTemplateRecord template, bool scriptIgnore = false)
         {
             var AirOnGroundBehaviorLocations = new List<DBEntryObjectiveTargetBehaviorLocation>{
                 DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking,
@@ -504,20 +459,6 @@ namespace BriefingRoom4DCS.Generator
 
         //----------------SUB TASK SUPPORT FUNCTIONS-------------------------------
 
-        private static void GetSubTaskData(MissionTemplateSubTask objectiveTemplate, out DBEntryObjectiveTarget targetDB, out DBEntryObjectiveTargetBehavior targetBehaviorDB, out DBEntryObjectiveTask taskDB, out ObjectiveOption[] objectiveOptions)
-        {
-            targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
-            targetBehaviorDB = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior);
-            taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task);
-            objectiveOptions = objectiveTemplate.Options.ToArray();
-
-            if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective.");
-            if (targetBehaviorDB == null) throw new BriefingRoomException($"Target behavior \"{targetBehaviorDB.UIDisplayName}\" not found for objective.");
-            if (taskDB == null) throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not found for objective.");
-            if (!taskDB.ValidUnitCategories.Contains(targetDB.UnitCategory))
-                throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not valid for objective targets, which belong to category \"{targetDB.UnitCategory}\".");
-        }
-
         private Coordinates GetNearestSpawnCoordinates(MissionTemplateRecord template, Coordinates coreCoordinates, DBEntryObjectiveTarget targetDB)
         {
             Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetNearestSpawnPoint(
@@ -529,31 +470,6 @@ namespace BriefingRoom4DCS.Generator
 
             Coordinates objectiveCoordinates = spawnPoint.Value;
             return objectiveCoordinates;
-        }
-
-        private Waypoint GenerateSubTaskWaypoint(MissionTemplateSubTask objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName, MissionTemplateRecord template, bool scriptIgnore = false)
-        {
-            var AirOnGroundBehaviorLocations = new List<DBEntryObjectiveTargetBehaviorLocation>{
-                DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking,
-                DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter};
-
-            DBEntryObjectiveTarget targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
-            DBEntryObjectiveTargetBehaviorLocation targetBehaviorLocation = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior).Location;
-            if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective.");
-
-            Coordinates waypointCoordinates = objectiveCoordinates;
-            bool onGround = !targetDB.UnitCategory.IsAircraft() || AirOnGroundBehaviorLocations.Contains(targetBehaviorLocation); // Ground targets = waypoint on the ground
-
-            var taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task);
-            if (objectiveTemplate.Options.Contains(ObjectiveOption.InaccurateWaypoint) && !TRANSPORT_TASKS.Contains(taskDB.ID))
-            {
-                waypointCoordinates += Coordinates.CreateRandom(3.0, 6.0) * Toolbox.NM_TO_METERS;
-                if (template.OptionsMission.Contains("MarkWaypoints"))
-                    DrawingMaker.AddDrawing($"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(6.0 * Toolbox.NM_TO_METERS));
-            } else if(TRANSPORT_TASKS.Contains(taskDB.ID))
-                DrawingMaker.AddDrawing($"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(500));
-
-            return new Waypoint(objectiveName, waypointCoordinates, onGround, scriptIgnore);
         }
     }
 }

@@ -31,6 +31,7 @@ namespace BriefingRoom4DCS.Template
         internal Amount TargetCount { get; init; }
         internal string Task { get; init; }
 
+        public MissionTemplateSubTaskRecord(){}
         public MissionTemplateSubTaskRecord(MissionTemplateSubTask objective)
         {
             Options = objective.Options;

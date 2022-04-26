@@ -127,7 +127,7 @@ namespace BriefingRoom4DCS.Generator
             var (country, units) = unitsCoalitionDB.GetRandomUnits(families, Template.ContextDecade, unitCount, Template.Mods, countMinMax: unitCountMinMax);
             if (units.Count == 0) throw new BriefingRoomException($"Found no units for {string.Join(", ", families)} {country}");
             if (country != Country.ALL)
-                extraSettings.Add("Country", country);
+                extraSettings["Country"] = country;
 
 
             if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.EmbeddedAirDefense) && (families.First().GetUnitCategory() == UnitCategory.Vehicle))
@@ -233,10 +233,10 @@ namespace BriefingRoom4DCS.Generator
 
             AddUnitGroupToTable(country, unitFamily.GetUnitCategory(), dCSGroup);
 
-            BriefingRoom.PrintToLog($"Added group of {units.Length} {coalition} {unitFamily} at {coordinates}");
+            BriefingRoom.PrintToLog($"Added group of {units.Length} {coalition} {unitFamily} at {dCSGroup.Units[0].Coordinates}");
             GroupID++;
 
-            return new UnitMakerGroupInfo(GroupID - 1, coordinates, unitsIDList, groupName, ref dCSGroup, firstUnitDB.AircraftData.RadioFrequency, firstUnitDB);
+            return new UnitMakerGroupInfo(GroupID - 1, dCSGroup.Units[0].Coordinates, unitsIDList, groupName, ref dCSGroup, firstUnitDB.AircraftData.RadioFrequency, firstUnitDB);
         }
 
 

@@ -20,19 +20,15 @@ If not, see https://www.gnu.org/licenses/
 */
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BriefingRoom4DCS.Template
 {
-    internal record MissionTemplateObjectiveRecord
+    internal record MissionTemplateObjectiveRecord : MissionTemplateSubTaskRecord
     {
         internal List<string> Features { get; init; }
-        internal List<ObjectiveOption> Options { get; init; }
         internal string Preset { get; init; }
-        internal string Target { get; init; }
-        internal string TargetBehavior { get; init; }
-        internal Amount TargetCount { get; init; }
-        internal string Task { get; init; }
-        internal List<MissionTemplateSubTask> SubTasks { get; init; }
+        internal List<MissionTemplateSubTaskRecord> SubTasks { get; init; }
 
         public MissionTemplateObjectiveRecord(MissionTemplateObjective objective)
         {
@@ -43,7 +39,7 @@ namespace BriefingRoom4DCS.Template
             TargetBehavior = objective.TargetBehavior;
             TargetCount = objective.TargetCount;
             Task = objective.Task;
-            SubTasks = objective.SubTasks;
+            SubTasks = objective.SubTasks.Select(x => new MissionTemplateSubTaskRecord(x)).ToList();
         }
     }
 }
