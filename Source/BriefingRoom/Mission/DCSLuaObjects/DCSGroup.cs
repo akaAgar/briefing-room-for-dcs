@@ -9,6 +9,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 {
     public class DCSGroup
     {
+        public bool Static { get; set; }
         public bool LateActivation { get; set; }
         public float Modulation { get; set; }
         public bool Uncontrolled { get; set; }
@@ -30,7 +31,9 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         public bool Dead {get; set;}
 
         public string ToLuaString(int number)
-        {   var obj = new Dictionary<string, object> {
+        {   
+            if(Static) return ToLuaStringStatic(number);
+            var obj = new Dictionary<string, object> {
                 {"lateActivation", LateActivation},
                 {"modulation", Modulation},
                 {"tasks", new string []{}},
@@ -52,9 +55,25 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"frequency", Frequency},
                 {"visible", Visible},
                 {"hiddenOnMFD", Visible},
-                {"dead", Dead}
             };
             return LuaSerialiser.Serialize(obj.Where(x => x.Value != null).ToDictionary(x => x.Key, x => x.Value));
+        }
+
+        private string ToLuaStringStatic(int number)
+        {
+            var obj = new Dictionary<string, object> {
+                {"heading", 0},
+                {"route", new Dictionary<string, object> {
+                    {"points", Waypoints}
+                }},
+                {"groupId", GroupId},
+                {"units", Units},
+                {"x", X},
+                {"y", Y},
+                {"name", Name},
+                {"dead", Dead},
+            };
+            return LuaSerialiser.Serialize(obj);
         }
 
         public static DCSGroup YamlToGroup(string yaml){
