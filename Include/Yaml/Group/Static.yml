@@ -1,8 +1,12 @@
+static: true
 waypoints:
   - alt: 0
     speed: 0
     y: $GROUPY$
     x: $GROUPX$
+    action: ""
+    name: ""
+    type: ""
 groupId: $GROUPID$
 y: $GROUPY$
 x: $GROUPX$
