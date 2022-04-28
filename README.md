@@ -40,6 +40,19 @@ BriefingRoom is free and open source and will always remain so, but if you want 
 * CSAR (ciribob)
 * CTLD (ciribob)
 
+### Call for Contributions
+
+We are always looking for contributors to keep us up to date with the latest DCS content. You don't need any technical skill and we are always happy to help. Areas we are looking for help to improve:
+
+* Aircraft Loadouts
+* Implementing Mod Units
+* Write better descriptions and briefing parts
+* Updating vehicle/unit operators
+* Keeping map data upto date
+* Creation of coalitions
+* Creation of map situations
+
+
 ### Additional information
 
 * Created by Ambroise Garel (@akaAgar), maintained by John Harvey (@john681611)
