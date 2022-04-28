@@ -483,7 +483,7 @@ namespace BriefingRoom4DCS.Generator
             unit.Heading = unitHeading;
             unit.DCSID = DCSID;
             unit.UnitId = UnitID;
-            unit.Coordinates = ((List<Coordinates>)extraSettings.GetValueOrDefault("UnitCoords", new List<Coordinates>())).ElementAtOrDefault(unitSetIndex, unitCoordinates);
+            unit.Coordinates = ((List<Coordinates>)extraSettings.GetValueOrDefault("UnitCoords", new List<Coordinates>())).ElementAtOrDefault(unitLuaIndex - 1, unitCoordinates);
             unit.PlayerCanDrive = true;
 
             if (Toolbox.IsAircraft(unitDB.Category) && (unitLuaIndex == 1) && unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.FirstUnitIsClient))
@@ -502,7 +502,7 @@ namespace BriefingRoom4DCS.Generator
                 unit.PayloadCommon = Toolbox.ToDictionaryObject(unitDB.AircraftData.PayloadCommon);
                 unit.Pylons = unitDB.AircraftData.GetPylonsObject(extraSettings.GetValueOrDefault("Payload", "default").ToString());
                 unit.LiveryId = extraSettings.GetValueOrDefault("Livery", "default").ToString();
-                unit.Parking = ((List<int>)extraSettings.GetValueOrDefault("ParkingID", new List<int>())).ElementAtOrDefault(unitSetIndex);
+                unit.Parking = ((List<int>)extraSettings.GetValueOrDefault("ParkingID", new List<int>())).ElementAtOrDefault(unitLuaIndex - 1);
             }
             else if (unitDB.Category == UnitCategory.Static || unitDB.Category == UnitCategory.Cargo)
             {
