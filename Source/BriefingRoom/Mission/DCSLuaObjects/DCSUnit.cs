@@ -146,7 +146,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"heading", Heading},
                 {"mass", 100},
                 {"category", "Heliports"},
-                {"shape_name", "FARPS"},
+                {"shape_name", ShapeName},
                 {"heliport_modulation", HeliportModulation},
                 {"heliport_callsign_id", heliportCallsignId},
                 {"heliport_frequency", heliportFrequency},

@@ -170,6 +170,7 @@ namespace BriefingRoom4DCS.Generator
                     groupName,
                     callsign,
                     groupTypeLua,
+                    unitTypeLua,
                     coordinates,
                     unitMakerGroupFlags,
                     extraSettings
@@ -346,6 +347,7 @@ namespace BriefingRoom4DCS.Generator
             string groupName,
             UnitCallsign? callsign,
             string groupTypeLua,
+            string unitTypeLua,
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags,
             Dictionary<string, object> extraSettings
@@ -378,8 +380,6 @@ namespace BriefingRoom4DCS.Generator
                         unitDB,
                         extraSettings
                     );
-
-                    var unitLua = DCSID == "FARP" ? "StaticFOB" : (unitDB.Category == UnitCategory.Cargo ? "Cargo" : "Static");
                     var dCSUnit = AddUnit(
                         DCSID,
                         groupName,
@@ -387,7 +387,7 @@ namespace BriefingRoom4DCS.Generator
                         1,
                         unitSetIndex,
                         unitDB,
-                        unitLua,
+                        unitTypeLua,
                         coordinates,
                         unitMakerGroupFlags,
                         skill,
