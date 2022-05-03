@@ -47,7 +47,7 @@ We are always looking for contributors to keep us up to date with the latest DCS
 * Aircraft Loadouts
 * Implementing Mod Units
 * Write better descriptions and briefing parts
-* Updating vehicle/unit operators
+* Updating vehicle/unit operators & liveries
 * Keeping map data upto date
 * Creation of coalitions
 * Creation of map situations
