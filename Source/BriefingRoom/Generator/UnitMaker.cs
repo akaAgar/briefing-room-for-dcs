@@ -197,6 +197,7 @@ namespace BriefingRoom4DCS.Generator
                 coordinates,
                 unitMakerGroupFlags,
                 skill,
+                country,
                 extraSettings
             );
 
@@ -297,6 +298,7 @@ namespace BriefingRoom4DCS.Generator
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags,
             string skill,
+            Country country,
             Dictionary<string, object> extraSettings
             )
         {
@@ -325,6 +327,7 @@ namespace BriefingRoom4DCS.Generator
                        coordinates,
                        unitMakerGroupFlags,
                        skill,
+                       country,
                        extraSettings
                        ));
 
@@ -391,6 +394,7 @@ namespace BriefingRoom4DCS.Generator
                         coordinates,
                         unitMakerGroupFlags,
                         skill,
+                        country,
                         extraSettings
                         );
 
@@ -434,6 +438,7 @@ namespace BriefingRoom4DCS.Generator
                     coordinates,
                     unitMakerGroupFlags,
                     skill,
+                    country,
                     extraSettings
                 );
                 dCSGroup.Units = unitsLuaTable;
@@ -459,6 +464,7 @@ namespace BriefingRoom4DCS.Generator
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags,
             string skill,
+            Country country,
             Dictionary<string, object> extraSettings)
         {
             if (!string.IsNullOrEmpty(unitDB.RequiredMod))
@@ -491,6 +497,7 @@ namespace BriefingRoom4DCS.Generator
             else
                 unit.Skill = skill;
 
+            GetLivery(ref unit, unitDB, country, extraSettings);
 
             if (Toolbox.IsAircraft(unitDB.Category))
             {
@@ -501,7 +508,6 @@ namespace BriefingRoom4DCS.Generator
                 unit.RadioPresets = unitDB.AircraftData.RadioPresets;
                 unit.PayloadCommon = Toolbox.ToDictionaryObject(unitDB.AircraftData.PayloadCommon);
                 unit.Pylons = unitDB.AircraftData.GetPylonsObject(extraSettings.GetValueOrDefault("Payload", "default").ToString());
-                unit.LiveryId = extraSettings.GetValueOrDefault("Livery", "default").ToString();
                 unit.Parking = ((List<int>)extraSettings.GetValueOrDefault("ParkingID", new List<int>())).ElementAtOrDefault(unitLuaIndex - 1);
             }
             else if (unitDB.Category == UnitCategory.Static || unitDB.Category == UnitCategory.Cargo)
@@ -515,6 +521,14 @@ namespace BriefingRoom4DCS.Generator
 
 
             return unit;
+        }
+
+        private void GetLivery(ref DCSUnit unit, DBEntryUnit unitDB, Country country, Dictionary<string, object> extraSettings)
+        {   
+            var LiveryId = extraSettings.GetValueOrDefault("Livery", "default").ToString();
+            if (LiveryId == "default")
+                LiveryId = unitDB.OperatorLiveries.GetValueOrDefault(country,"default");
+            unit.LiveryId =  LiveryId;
         }
 
         private void AddUnitGroupToTable(Country country, UnitCategory category, DCSGroup dCSGroup)

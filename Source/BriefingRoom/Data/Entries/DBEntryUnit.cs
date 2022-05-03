@@ -49,6 +49,8 @@ namespace BriefingRoom4DCS.Data
 
         internal Dictionary<Country, Decade[]> Operators { get; private set; }
 
+        internal Dictionary<Country, string> OperatorLiveries { get; private set; }
+
         internal string RequiredMod { get; private set; }
 
 
@@ -96,6 +98,20 @@ namespace BriefingRoom4DCS.Data
 
                 if (Operators.ContainsKey(country)) continue;
                 Operators.Add(country, ini.GetValueArrayAsMinMaxEnum<Decade>("Operators", k));
+            }
+
+            // Load the list of operators
+            OperatorLiveries = new Dictionary<Country, string>();
+            foreach (string k in ini.GetKeysInSection("OperatorLiveries"))
+            {
+                if (!Enum.TryParse(k, true, out Country country))
+                {
+                    BriefingRoom.PrintToLog($"Country {k} in unit {ID} doesn't exist.", LogMessageErrorLevel.Warning);
+                    continue;
+                }
+
+                if (OperatorLiveries.ContainsKey(country)) continue;
+                OperatorLiveries.Add(country, ini.GetValue<string>("OperatorLiveries", k));
             }
 
             if (IsAircraft) // Load aircraft-specific data, if required
