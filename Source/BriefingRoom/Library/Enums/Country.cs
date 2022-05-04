@@ -49,7 +49,7 @@ namespace BriefingRoom4DCS
         Austria = 23,
         Belarus = 24,
         Bulgaria = 25,
-        ChezhRepublic = 26,
+        CzechRepublic = 26,
         China = 27,
         Croatia = 28,
         Egypt = 29,
