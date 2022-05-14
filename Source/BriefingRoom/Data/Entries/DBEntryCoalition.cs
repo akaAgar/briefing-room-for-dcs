@@ -187,7 +187,7 @@ namespace BriefingRoom4DCS.Data
             validUnits = validUnits.Where(x => x.Value.Count > 0).ToDictionary(x => x.Key, x => x.Value);
             // At least one unit found, return it
             if (validUnits.Count > 0)
-            return validUnits;
+                return validUnits;
 
             BriefingRoom.PrintToLog($"No Units of types {string.Join(", ", families)} found in coalition of {string.Join(", ", Countries.Where(x => x != Country.ALL))} forced to use defaults", LogMessageErrorLevel.Info);
             return new Dictionary<Country, List<string>>{{Country.ALL,Database.GetEntry<DBEntryDefaultUnitList>(DefaultUnitList).DefaultUnits[(int)families.First(), (int)decade].ToList()}};
