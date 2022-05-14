@@ -30,6 +30,18 @@ namespace BriefingRoom4DCS.Generator
         }
     }
 
+    internal class CarrierUnitMakerGroupInfo
+    {
+        internal UnitMakerGroupInfo UnitMakerGroupInfo { get; }
+        internal int RemainingSpotCount { get; set; }
+
+        internal CarrierUnitMakerGroupInfo(UnitMakerGroupInfo unitMakerGroupInfo, int remainingSpotCount)
+        {
+            UnitMakerGroupInfo = unitMakerGroupInfo;
+            RemainingSpotCount = remainingSpotCount;
+        }
+    }
+
     internal class UnitMaker
     {
         private const double AIRCRAFT_UNIT_SPACING = 50.0;
@@ -53,7 +65,7 @@ namespace BriefingRoom4DCS.Generator
 
         internal UnitMakerCallsignGenerator CallsignGenerator { get; }
 
-        internal Dictionary<string, UnitMakerGroupInfo> carrierDictionary { get; } = new Dictionary<string, UnitMakerGroupInfo>{};
+        internal Dictionary<string, CarrierUnitMakerGroupInfo> carrierDictionary { get; } = new Dictionary<string, CarrierUnitMakerGroupInfo>{};
         private readonly List<string> IGNORE_PROPS = new List<string> { "Skill" };
 
         internal UnitMaker(

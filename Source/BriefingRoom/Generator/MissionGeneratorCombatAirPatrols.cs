@@ -126,8 +126,43 @@ namespace BriefingRoom4DCS.Generator
                 if (!groupInfo.HasValue) // Failed to generate a group
                     BriefingRoom.PrintToLog($"Failed to find units for {coalition} air defense unit group.", LogMessageErrorLevel.Warning);
 
+                SetCarrier(template, unitMaker, side, ref groupInfo);
+
                 capAircraftGroupIDs.Add(groupInfo.Value.GroupID);
             } while (unitsLeftToSpawn > 0);
+        }
+
+        private static void SetCarrier(MissionTemplateRecord template, UnitMaker unitMaker, Side side, ref UnitMakerGroupInfo? groupInfo)
+        {
+            if (
+                side == Side.Enemy ||
+                !template.MissionFeatures.Contains("ContextGroundStartAircraft") ||
+                groupInfo.Value.UnitDB.AircraftData.CarrierTypes.Count() == 0
+            )
+                return;
+
+            UnitFamily targetFamily = UnitFamily.ShipCarrierSTOVL;
+            if (groupInfo.Value.UnitDB.Families.Contains(UnitFamily.PlaneCATOBAR))
+                targetFamily = UnitFamily.ShipCarrierCATOBAR;
+            if (groupInfo.Value.UnitDB.Families.Contains(UnitFamily.PlaneSTOBAR))
+                targetFamily = UnitFamily.ShipCarrierSTOBAR;
+            var unitCount = groupInfo.Value.DCSGroup.Units.Count;
+            var carrierPool = unitMaker.carrierDictionary.Where(x =>
+                    x.Value.UnitMakerGroupInfo.UnitDB.Families.Contains(targetFamily) &&
+                    x.Value.RemainingSpotCount >= unitCount
+                ).ToDictionary(x => x.Key, x => x.Value);
+
+            if (carrierPool.Count == 0)
+                return;
+
+            var carrier = Toolbox.RandomFrom(carrierPool.Values.ToArray());
+            groupInfo.Value.DCSGroup.Waypoints[0].LinkUnit = carrier.UnitMakerGroupInfo.UnitsID[0];
+            groupInfo.Value.DCSGroup.Waypoints[0].HelipadId = carrier.UnitMakerGroupInfo.UnitsID[0];
+            groupInfo.Value.DCSGroup.Waypoints[0].X = (float)carrier.UnitMakerGroupInfo.Coordinates.X;
+            groupInfo.Value.DCSGroup.Waypoints[0].Y = (float)carrier.UnitMakerGroupInfo.Coordinates.Y;
+            groupInfo.Value.DCSGroup.X = (float)carrier.UnitMakerGroupInfo.Coordinates.X;
+            groupInfo.Value.DCSGroup.Y = (float)carrier.UnitMakerGroupInfo.Coordinates.Y;
+            carrier.RemainingSpotCount = carrier.RemainingSpotCount - unitCount;
         }
     }
 }

@@ -152,7 +152,7 @@ namespace BriefingRoom4DCS.Generator
                 playerAirbase.Coordinates, objectivesCenter,
                 windSpeedAtSeaLevel, windDirectionAtSeaLevel);
             var averageInitialPosition = playerAirbase.Coordinates;
-            if (unitMaker.carrierDictionary.Count > 0) averageInitialPosition = (averageInitialPosition + unitMaker.carrierDictionary.First().Value.Coordinates) / 2.0;
+            if (unitMaker.carrierDictionary.Count > 0) averageInitialPosition = (averageInitialPosition + unitMaker.carrierDictionary.First().Value.UnitMakerGroupInfo.Coordinates) / 2.0;
 
             // Generate extra flight plan info
             MissionGeneratorFlightPlan.GenerateBullseyes(mission, objectivesCenter);

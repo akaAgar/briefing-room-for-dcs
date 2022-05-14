@@ -53,6 +53,7 @@ namespace BriefingRoom4DCS.Data
 
         internal string RequiredMod { get; private set; }
 
+        internal int ParkingSpots { get; private set; }
 
         internal void Merge(DBEntryUnit entry)
         {
@@ -83,6 +84,7 @@ namespace BriefingRoom4DCS.Data
             OffsetHeading = ini.GetValueArray<double>("Unit", "Offset.Heading");
             Shape = ini.GetValueArray<string>("Unit", "Shape");
             RequiredMod = ini.GetValue<string>("Unit", "RequiredMod");
+            ParkingSpots = ini.GetValue<int>("Unit", "ParkingSpots");
 
             AircraftData = new DBEntryUnitAircraftData();
 

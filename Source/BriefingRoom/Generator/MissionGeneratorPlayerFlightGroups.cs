@@ -75,7 +75,7 @@ namespace BriefingRoom4DCS.Generator
             if (!string.IsNullOrEmpty(flightGroup.Carrier) && unitMaker.carrierDictionary.ContainsKey(flightGroup.Carrier) && !flightGroup.Hostile) // Carrier take off
             {
                 var carrier = unitMaker.carrierDictionary[flightGroup.Carrier];
-                if(carrier.UnitDB.Families.Contains(UnitFamily.ShipCarrierSTOVL) && flightGroup.Carrier != "LHA_Tarawa")
+                if(carrier.UnitMakerGroupInfo.UnitDB.Families.Contains(UnitFamily.ShipCarrierSTOVL) && flightGroup.Carrier != "LHA_Tarawa")
                 {   
                     extraSettings.AddIfKeyUnused("Speed", 0);
                     unitMakerGroupFlags =  0;
@@ -84,16 +84,16 @@ namespace BriefingRoom4DCS.Generator
                         payload = "EMPTY";
                 }
                 groupLuaFile = "AircraftPlayerCarrier";
-                carrierUnitID = carrier.UnitsID[0];
-                carrierName = carrier.UnitDB.UIDisplayName;
+                carrierUnitID = carrier.UnitMakerGroupInfo.UnitsID[0];
+                carrierName = carrier.UnitMakerGroupInfo.UnitDB.UIDisplayName;
 
                 for (int i = 0; i < flightGroup.Count; i++)
                 {
                     parkingSpotIDsList.Add(i + 1);
-                    parkingSpotCoordinatesList.Add(carrier.Coordinates);
+                    parkingSpotCoordinatesList.Add(carrier.UnitMakerGroupInfo.Coordinates);
                 }
-                groupStartingCoords = carrier.Coordinates;
-
+                groupStartingCoords = carrier.UnitMakerGroupInfo.Coordinates;
+                carrier.RemainingSpotCount = carrier.RemainingSpotCount - flightGroup.Count;
             }
             else if (flightGroup.Hostile)
             {

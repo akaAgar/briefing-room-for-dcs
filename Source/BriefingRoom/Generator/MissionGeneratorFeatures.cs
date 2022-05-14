@@ -80,7 +80,7 @@ namespace BriefingRoom4DCS.Generator
                     groupFlags |= UnitMakerGroupFlags.AlwaysHidden;
 
                 extraSettings.AddIfKeyUnused("Payload", featureDB.UnitGroupPayload);
-                
+
                 var groupLua = featureDB.UnitGroupLuaGroup;
                 var unitCount = featureDB.UnitGroupSize.GetValue();
                 var unitFamily = Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
@@ -94,7 +94,7 @@ namespace BriefingRoom4DCS.Generator
                     coordinates, groupFlags,
                     extraSettings);
 
-                SetCarrier(featureDB, ref groupInfo);
+                SetCarrier(featureDB, groupSide, ref groupInfo);
 
                 if (
                     groupSide == Side.Ally &&
@@ -165,7 +165,7 @@ namespace BriefingRoom4DCS.Generator
 
 
         private string GetExtraSettingsFromFeature(T featureDB, ref Dictionary<string, object> extraSettings)
-        {   
+        {
             // TODO: Improve
             if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.TACAN) && (featureDB.UnitGroupFamilies.Length > 0))
             {
@@ -212,14 +212,14 @@ namespace BriefingRoom4DCS.Generator
                    spawnCoords.Value, groupFlags,
                    extraSettings);
 
-                SetCarrier(featureDB, ref groupInfo);
+                SetCarrier(featureDB, groupSide, ref groupInfo);
 
-                
-                 if (
-                    groupSide == Side.Ally &&
-                    groupInfo.HasValue &&
-                    groupInfo.Value.UnitDB != null &&
-                    groupInfo.Value.UnitDB.IsAircraft)
+
+                if (
+                   groupSide == Side.Ally &&
+                   groupInfo.HasValue &&
+                   groupInfo.Value.UnitDB != null &&
+                   groupInfo.Value.UnitDB.IsAircraft)
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
                             $"{groupInfo.Value.Name}\t" +
                             $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName}\t" +
@@ -247,27 +247,38 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        private void SetCarrier(T featureDB, ref UnitMakerGroupInfo? groupInfo)
+        private void SetCarrier(T featureDB, Side side, ref UnitMakerGroupInfo? groupInfo)
         {
-            if(featureDB.ID != "FriendlyStaticAircraftCarrier")
-                return;
-            UnitFamily targetFamily = UnitFamily.ShipCarrierSTOVL;
-            if(groupInfo.Value.UnitDB.Families.Contains(UnitFamily.PlaneCATOBAR))
-                targetFamily = UnitFamily.ShipCarrierCATOBAR;
-            if(groupInfo.Value.UnitDB.Families.Contains(UnitFamily.PlaneSTOBAR))
-                targetFamily = UnitFamily.ShipCarrierSTOBAR;
 
-            var carrierPool = _unitMaker.carrierDictionary.Where(x => x.Value.UnitDB.Families.Contains(targetFamily)).ToDictionary(x => x.Key, x => x.Value);
-            if(carrierPool.Count > 0)
-                {
-                    var carrier = Toolbox.RandomFrom(carrierPool.Values.ToArray());
-                    groupInfo.Value.DCSGroup.Waypoints[0].LinkUnit = carrier.UnitsID[0];
-                    groupInfo.Value.DCSGroup.Waypoints[0].HelipadId = carrier.UnitsID[0];
-                    groupInfo.Value.DCSGroup.Waypoints[0].X = (float) carrier.Coordinates.X;
-                    groupInfo.Value.DCSGroup.Waypoints[0].Y = (float) carrier.Coordinates.Y;
-                    groupInfo.Value.DCSGroup.X = (float) carrier.Coordinates.X;
-                    groupInfo.Value.DCSGroup.Y = (float) carrier.Coordinates.Y;
-                }
+            if (
+                side == Side.Enemy ||
+                (!_template.MissionFeatures.Contains("ContextGroundStartAircraft") && featureDB.ID != "FriendlyStaticAircraftCarrier") ||
+                groupInfo.Value.UnitDB.AircraftData.CarrierTypes.Count() == 0
+            )
+                return;
+
+            UnitFamily targetFamily = UnitFamily.ShipCarrierSTOVL;
+            if (groupInfo.Value.UnitDB.Families.Contains(UnitFamily.PlaneCATOBAR))
+                targetFamily = UnitFamily.ShipCarrierCATOBAR;
+            if (groupInfo.Value.UnitDB.Families.Contains(UnitFamily.PlaneSTOBAR))
+                targetFamily = UnitFamily.ShipCarrierSTOBAR;
+            var unitCount = groupInfo.Value.DCSGroup.Units.Count;
+            var carrierPool = _unitMaker.carrierDictionary.Where(x =>
+                    x.Value.UnitMakerGroupInfo.UnitDB.Families.Contains(targetFamily) &&
+                    x.Value.RemainingSpotCount >= unitCount
+                ).ToDictionary(x => x.Key, x => x.Value);
+
+            if (carrierPool.Count == 0)
+                return;
+
+            var carrier = Toolbox.RandomFrom(carrierPool.Values.ToArray());
+            groupInfo.Value.DCSGroup.Waypoints[0].LinkUnit = carrier.UnitMakerGroupInfo.UnitsID[0];
+            groupInfo.Value.DCSGroup.Waypoints[0].HelipadId = carrier.UnitMakerGroupInfo.UnitsID[0];
+            groupInfo.Value.DCSGroup.Waypoints[0].X = (float)carrier.UnitMakerGroupInfo.Coordinates.X;
+            groupInfo.Value.DCSGroup.Waypoints[0].Y = (float)carrier.UnitMakerGroupInfo.Coordinates.Y;
+            groupInfo.Value.DCSGroup.X = (float)carrier.UnitMakerGroupInfo.Coordinates.X;
+            groupInfo.Value.DCSGroup.Y = (float)carrier.UnitMakerGroupInfo.Coordinates.Y;
+            carrier.RemainingSpotCount = carrier.RemainingSpotCount - unitCount;
         }
 
     }
