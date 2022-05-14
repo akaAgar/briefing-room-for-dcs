@@ -94,6 +94,8 @@ namespace BriefingRoom4DCS.Generator
                     coordinates, groupFlags,
                     extraSettings);
 
+                SetCarrier(featureDB, ref groupInfo);
+
                 if (
                     groupSide == Side.Ally &&
                     groupInfo.HasValue &&
@@ -209,6 +211,9 @@ namespace BriefingRoom4DCS.Generator
                    groupLua, luaUnit,
                    spawnCoords.Value, groupFlags,
                    extraSettings);
+
+                SetCarrier(featureDB, ref groupInfo);
+
                 
                  if (
                     groupSide == Side.Ally &&
@@ -240,6 +245,29 @@ namespace BriefingRoom4DCS.Generator
                 extraSettings.AddIfKeyUnused("GroupMidX", midPoint.X);
                 extraSettings.AddIfKeyUnused("GroupMidY", midPoint.Y);
             }
+        }
+
+        private void SetCarrier(T featureDB, ref UnitMakerGroupInfo? groupInfo)
+        {
+            if(featureDB.ID != "FriendlyStaticAircraftCarrier")
+                return;
+            UnitFamily targetFamily = UnitFamily.ShipCarrierSTOVL;
+            if(groupInfo.Value.UnitDB.Families.Contains(UnitFamily.PlaneCATOBAR))
+                targetFamily = UnitFamily.ShipCarrierCATOBAR;
+            if(groupInfo.Value.UnitDB.Families.Contains(UnitFamily.PlaneSTOBAR))
+                targetFamily = UnitFamily.ShipCarrierSTOBAR;
+
+            var carrierPool = _unitMaker.carrierDictionary.Where(x => x.Value.UnitDB.Families.Contains(targetFamily)).ToDictionary(x => x.Key, x => x.Value);
+            if(carrierPool.Count > 0)
+                {
+                    var carrier = Toolbox.RandomFrom(carrierPool.Values.ToArray());
+                    groupInfo.Value.DCSGroup.Waypoints[0].LinkUnit = carrier.UnitsID[0];
+                    groupInfo.Value.DCSGroup.Waypoints[0].HelipadId = carrier.UnitsID[0];
+                    groupInfo.Value.DCSGroup.Waypoints[0].X = (float) carrier.Coordinates.X;
+                    groupInfo.Value.DCSGroup.Waypoints[0].Y = (float) carrier.Coordinates.Y;
+                    groupInfo.Value.DCSGroup.X = (float) carrier.Coordinates.X;
+                    groupInfo.Value.DCSGroup.Y = (float) carrier.Coordinates.Y;
+                }
         }
 
     }

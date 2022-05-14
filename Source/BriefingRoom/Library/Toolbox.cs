@@ -358,6 +358,9 @@ namespace BriefingRoom4DCS
                 case UnitFamily.PlaneTankerBasket:
                 case UnitFamily.PlaneTankerBoom:
                 case UnitFamily.PlaneTransport:
+                case UnitFamily.PlaneCATOBAR:
+                case UnitFamily.PlaneSTOBAR:
+                case UnitFamily.PlaneSTOVL:
                     return UnitCategory.Plane;
                 case UnitFamily.ShipCarrierCATOBAR:
                 case UnitFamily.ShipCarrierSTOBAR:

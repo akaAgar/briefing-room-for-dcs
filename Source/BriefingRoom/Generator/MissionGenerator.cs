@@ -20,7 +20,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
-using BriefingRoom4DCS.Mission.DCSLuaObjects;
 using BriefingRoom4DCS.Template;
 using Polly;
 using System;
@@ -148,12 +147,12 @@ namespace BriefingRoom4DCS.Generator
 
             // Generate carrier groups
             BriefingRoom.PrintToLog("Generating carrier groups...");
-            var carrierDictionary = MissionGeneratorCarrierGroup.GenerateCarrierGroup(
+            MissionGeneratorCarrierGroup.GenerateCarrierGroup(
                 unitMaker, zoneMaker, mission, template,
                 playerAirbase.Coordinates, objectivesCenter,
                 windSpeedAtSeaLevel, windDirectionAtSeaLevel);
             var averageInitialPosition = playerAirbase.Coordinates;
-            if (carrierDictionary.Count > 0) averageInitialPosition = (averageInitialPosition + carrierDictionary.First().Value.Coordinates) / 2.0;
+            if (unitMaker.carrierDictionary.Count > 0) averageInitialPosition = (averageInitialPosition + unitMaker.carrierDictionary.First().Value.Coordinates) / 2.0;
 
             // Generate extra flight plan info
             MissionGeneratorFlightPlan.GenerateBullseyes(mission, objectivesCenter);
@@ -175,7 +174,7 @@ namespace BriefingRoom4DCS.Generator
             // Generate player flight groups
             BriefingRoom.PrintToLog("Generating player flight groups...");
             foreach (var templateFlightGroup in template.PlayerFlightGroups)
-                MissionGeneratorPlayerFlightGroups.GeneratePlayerFlightGroup(unitMaker, mission, template, templateFlightGroup, playerAirbase, waypoints, carrierDictionary, averageInitialPosition, objectivesCenter);
+                MissionGeneratorPlayerFlightGroups.GeneratePlayerFlightGroup(unitMaker, mission, template, templateFlightGroup, playerAirbase, waypoints, averageInitialPosition, objectivesCenter);
 
             // Generate mission features
             BriefingRoom.PrintToLog("Generating mission features...");

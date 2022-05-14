@@ -20,11 +20,9 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
-using BriefingRoom4DCS.Mission.DCSLuaObjects;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
@@ -39,7 +37,6 @@ namespace BriefingRoom4DCS.Generator
             MissionTemplateFlightGroupRecord flightGroup,
             DBEntryAirbase playerAirbase,
             List<Waypoint> waypoints,
-            Dictionary<string, UnitMakerGroupInfo> carrierDictionary,
             Coordinates averageInitialLocation,
             Coordinates objectivesCenter)
         {
@@ -75,9 +72,9 @@ namespace BriefingRoom4DCS.Generator
             UnitMakerGroupFlags unitMakerGroupFlags = flightGroup.AIWingmen ? UnitMakerGroupFlags.FirstUnitIsClient : 0;
             DCSSkillLevel skillLevel = flightGroup.AIWingmen ? Toolbox.RandomFrom(DCSSkillLevel.High, DCSSkillLevel.Excellent) : DCSSkillLevel.Client;
 
-            if (!string.IsNullOrEmpty(flightGroup.Carrier) && carrierDictionary.ContainsKey(flightGroup.Carrier) && !flightGroup.Hostile) // Carrier take off
+            if (!string.IsNullOrEmpty(flightGroup.Carrier) && unitMaker.carrierDictionary.ContainsKey(flightGroup.Carrier) && !flightGroup.Hostile) // Carrier take off
             {
-                var carrier = carrierDictionary[flightGroup.Carrier];
+                var carrier = unitMaker.carrierDictionary[flightGroup.Carrier];
                 if(carrier.UnitDB.Families.Contains(UnitFamily.ShipCarrierSTOVL) && flightGroup.Carrier != "LHA_Tarawa")
                 {   
                     extraSettings.AddIfKeyUnused("Speed", 0);

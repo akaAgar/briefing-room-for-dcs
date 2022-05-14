@@ -37,6 +37,9 @@ namespace BriefingRoom4DCS
         PlaneTankerBasket,
         PlaneTankerBoom,
         PlaneTransport,
+        PlaneCATOBAR,
+        PlaneSTOBAR,
+        PlaneSTOVL,
 
         ShipCarrierCATOBAR,
         ShipCarrierSTOBAR,

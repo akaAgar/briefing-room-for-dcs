@@ -52,6 +52,8 @@ namespace BriefingRoom4DCS.Generator
         internal UnitMakerSpawnPointSelector SpawnPointSelector { get; }
 
         internal UnitMakerCallsignGenerator CallsignGenerator { get; }
+
+        internal Dictionary<string, UnitMakerGroupInfo> carrierDictionary { get; } = new Dictionary<string, UnitMakerGroupInfo>{};
         private readonly List<string> IGNORE_PROPS = new List<string> { "Skill" };
 
         internal UnitMaker(
