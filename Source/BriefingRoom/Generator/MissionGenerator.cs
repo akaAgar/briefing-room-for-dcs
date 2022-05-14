@@ -231,7 +231,7 @@ namespace BriefingRoom4DCS.Generator
                 .Or<BriefingRoomException>(x =>
                 {
                     BriefingRoom.PrintToLog($"Recoverable Error thrown, {x.Message}", LogMessageErrorLevel.Warning);
-                    return false;
+                    return true;
                 })
                 .RetryAsync(10)
                 .ExecuteAsync(() => GenerateAsync(templateRecord, useObjectivePresets));
