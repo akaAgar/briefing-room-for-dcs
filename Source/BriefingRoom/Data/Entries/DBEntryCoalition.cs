@@ -63,7 +63,7 @@ namespace BriefingRoom4DCS.Data
             return true;
         }
 
-        internal Tuple<Country, List<string>> GetRandomUnits(List<UnitFamily> families, Decade decade, int count, List<string> unitMods, Country? requiredCountry = null, MinMaxI? countMinMax = null)
+        internal Tuple<Country, List<string>> GetRandomUnits(List<UnitFamily> families, Decade decade, int count, List<string> unitMods, bool allowLowPolly, Country? requiredCountry = null, MinMaxI? countMinMax = null)
         {
             // Count is zero, return an empty array.
             if (count < 1) throw new BriefingRoomException("Asking for a zero unit list");
@@ -72,7 +72,7 @@ namespace BriefingRoom4DCS.Data
             UnitCategory category = families.First().GetUnitCategory();
             bool allowDifferentUnitTypes = false;
 
-            var validUnits = SelectValidUnits(families, decade, unitMods);
+            var validUnits = SelectValidUnits(families, decade, unitMods, allowLowPolly);
 
             switch (category)
             {
@@ -170,7 +170,7 @@ namespace BriefingRoom4DCS.Data
             return potentiallyValidUnit.DCSIDs.Length >= minUnitCount && potentiallyValidUnit.DCSIDs.Length <= maxUnitCount;
         }
 
-        private Dictionary<Country, List<string>> SelectValidUnits(List<UnitFamily> families, Decade decade, List<string> unitMods)
+        private Dictionary<Country, List<string>> SelectValidUnits(List<UnitFamily> families, Decade decade, List<string> unitMods, bool allowLowPolly)
         {
             var validUnits = new Dictionary<Country, List<string>>();
 
@@ -179,7 +179,8 @@ namespace BriefingRoom4DCS.Data
                         from DBEntryUnit unit in Database.GetAllEntries<DBEntryUnit>()
                         where unit.Families.Intersect(families).ToList().Count > 0 && unit.Operators.ContainsKey(country) &&
                             (string.IsNullOrEmpty(unit.RequiredMod) || unitMods.Contains(unit.RequiredMod, StringComparer.InvariantCultureIgnoreCase)) &&
-                            (unit.Operators[country][0] <= decade) && (unit.Operators[country][1] >= decade)
+                            (unit.Operators[country][0] <= decade) && (unit.Operators[country][1] >= decade) &&
+                            (!unit.Flags.HasFlag(DBEntryUnitFlags.LowPolly) || allowLowPolly)
                         select unit.ID
                     ).Distinct().ToList();
 

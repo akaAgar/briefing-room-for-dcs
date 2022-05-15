@@ -52,7 +52,7 @@ namespace BriefingRoom4DCS.Generator
             for (int i = 0; i < airDefenseUnitsCount; i++)
             {
                 var families = new List<UnitFamily>{UnitFamily.VehicleAAA, UnitFamily.VehicleAAA, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShort};
-                units.AddRange(unitsCoalitionDB.GetRandomUnits(families, template.ContextDecade, 1, template.Mods, country).Item2);
+                units.AddRange(unitsCoalitionDB.GetRandomUnits(families, template.ContextDecade, 1, template.Mods, template.OptionsMission.Contains("AllowLowPoly"), country).Item2);
             }
 
             return units.ToArray();

@@ -25,6 +25,7 @@ namespace BriefingRoom4DCS.Data
     [Flags]
     internal enum DBEntryUnitFlags
     {
-        EPLRS
+        EPLRS,
+        LowPolly
     }
 }
