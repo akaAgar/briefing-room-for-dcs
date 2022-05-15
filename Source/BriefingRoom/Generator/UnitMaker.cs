@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using System.Reflection;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -496,9 +496,9 @@ namespace BriefingRoom4DCS.Generator
 
             foreach (KeyValuePair<string, object> extraSetting in extraSettings.Where(x => !IGNORE_PROPS.Contains(x.Key)).ToDictionary(x => x.Key, x => x.Value))
             {
-                var prop = unit.GetType().GetProperty(extraSetting.Key);
+                var prop = unit.GetType().GetProperty(extraSetting.Key, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
                 if (prop != null)
-                    prop.SetValue(prop, extraSetting.Value);
+                    prop.SetValue(unit, extraSetting.Value);
             }
             unit.Heading = unitHeading;
             unit.DCSID = DCSID;

@@ -242,10 +242,10 @@ namespace BriefingRoom4DCS.Generator
                 }
             }
 
-            return GetRadioFrenquency(res);
+            return GetRadioFrequency(res);
         }
 
-        internal static int GetRadioFrenquency(double radioFrequency)
+        internal static int GetRadioFrequency(double radioFrequency)
         {
             return (int)(radioFrequency * 1000000.0);
         }

@@ -33,8 +33,8 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         internal int Parking { get; set; }
 
         // Ship
-        internal float Modulation { get; set; }
-        internal float Frequency { get; set; }
+        internal int Modulation { get; set; }
+        internal int RadioFrequency { get; set; }
 
         // Static
         internal string ShapeName { get; set; }
@@ -99,7 +99,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"transportable", new Dictionary<string, object>{{"randomTransportable", false}}},
                 {"skill", Skill},
                 {"modulation", Modulation},
-                {"frequency", Frequency},
+                {"frequency", RadioFrequency},
             };
             return LuaSerialiser.Serialize(obj);
         }

@@ -74,8 +74,8 @@ namespace BriefingRoom4DCS.Generator
                         {"GroupX2", shipDestination.X},
                         {"GroupY2", shipDestination.Y},
                         {"ILS", ilsChannel},
-                        {"RadioBand",( int)RadioModulation.AM},
-                        {"RadioFrequency", GeneratorTools.GetRadioFrenquency(radioFrequency)},
+                        {"RadioBand", (int)RadioModulation.AM},
+                        {"RadioFrequency", GeneratorTools.GetRadioFrequency(radioFrequency)},
                         {"Speed", carrierSpeed},
                         {"TACANCallsign", tacanCallsign},
                         {"TACANChannel", tacanChannel},
@@ -183,7 +183,7 @@ namespace BriefingRoom4DCS.Generator
                     new Dictionary<string, object>{
                     {"FOBCallSignIndex", FOBNames.IndexOf(flightGroup.Carrier) + 1},
                     {"RadioBand", (int)RadioModulation.AM},
-                    {"RadioFrequency", GeneratorTools.GetRadioFrenquency(radioFrequency)},
+                    {"RadioFrequency", GeneratorTools.GetRadioFrequency(radioFrequency)},
                     {"playerCanDrive", false},
                     {"NoCM", true}});
             if (!groupInfo.HasValue || (groupInfo.Value.UnitsID.Length == 0)) return; // Couldn't generate group
