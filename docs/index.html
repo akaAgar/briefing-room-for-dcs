@@ -1,1 +1,266 @@
-GH PAGE AT docs
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>BriefingRoom for DCS World</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Quantico&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+	<link rel="icon" href="favicon.ico" />
+</head>
+
+<body>
+	<div class='container'>
+		<div class='title'>&nbsp;</div>
+		<div class='text'>
+			<h1>BriefingRoom for DCS World</h1>
+			<p>
+				BriefingRoom for DCS World is the much more advanced successor to my own Headquarters for DCS World
+				(HQ4DCS) application, and a massively improved version of DCS World&#x27;s own fast mission generator.
+				BriefingRoom allows you to create complete scenarios in just a few clicks. Missions generated with
+				BriefingRoom tend to be rather &quot;player-centric&quot;. Their purpose is not to simulate a real war
+				theater, like Falcon 4&#x27;s dynamic campaign, but to provide the player(s) with interesting objectives
+				and challenges. This approach is a perfect fit for DCS World&#x27;s limited number of units and very
+				capable scripting engine.
+			</p>
+			<p>
+				While BriefingRoom is designed to be easy to use and to allow the creation of missions in mere seconds,
+				it is also heavily moddable and will give many options to power users ready to tackle with its most
+				advanced features.
+			</p>
+			<p>
+				BriefingRoom is free and open source and will always remain so, but if you want to support its
+				development, you can make a one-time donation when downloading from <a href='https://akaagar.itch.io/briefing-room-for-dcs'>Itch.io</a>, or a monthly donation using
+				the PayPal link you&#x27;ll find
+				<a href="https://github.com/akaAgar/briefing-room-for-dcs">here</a>.
+			</p>
+			<ul>
+				<li><strong><a href='https://github.com/akaAgar/briefing-room-for-dcs/releases'>Latest release</a> is version 0.5.204.17 (April 17, 2022)</strong></li>
+				<li><strong>Initial version by Ambroise Garel, now developed and maintained by John
+						Harvey</strong></li>
+				<li>
+					<strong>Source code, changelogs and additional information are available on <a
+							href="https://github.com/akaAgar/briefing-room-for-dcs">the repository.</a></strong>
+				</li>
+				<li>
+					<strong>Found a bug? Have a suggestion? Post it <a
+							href="https://github.com/akaAgar/briefing-room-for-dcs/issues"></a>in the issue
+						tracker</a>.</strong>
+				</li>
+				<li>Join the <a href="https://discord.gg/MvdFTYxkpx"><strong>Discord</strong></a>!</li>
+			</ul>
+			<table>
+				<tr>
+					<td><a href='ss01.jpg'><img src='ss01.jpg'></a></td>
+					<td><a href='ss02.jpg'><img src='ss02.jpg'></a></td>
+					<td><a href='ss03.jpg'><img src='ss03.jpg'></a></td>
+				</tr>
+			</table>
+			<h2>Features summary</h2>
+			<ul>
+				<li>Can generate any kind of single-player or multiplayer mission, from deep strikes behind a hostile
+					superpower&#x27;s cutting-edge integrated air defense network to photo reconnaissance flights over a
+					terrorist training camp.</li>
+				<li>Choose from a large variety of mission types, from combat air patrols to bomber interception, target
+					designation for artillery strikes, photo reconnaissance, bomb damage assessment and many others, or
+					create your own by picking target types, players tasking, and various objective and mission
+					features.</li>
+				<li>Extremely easy to use: generate missions in seconds without any technical knowledge, then export
+					them to a DCS World .MIZ file in just a few clicks.</li>
+				<li>Automatically generates proper friendly/enemy units according to countries and time period, but also
+					able to create &quot;what if&quot; scenarios (2010s USAF vs 1940s Luftwaffe) and freely choose
+					player aircraft in any country/time period.</li>
+				<li>Generated mission can include custom scripts for various effects (advanced SAM AI, JTAC smoke and
+					laser designation, artillery strikes...)</li>
+				<li>Save mission templates to small .ini files and share them with your friends.</li>
+				<li>Easily moddable to add more countries, units and scenarios</li>
+				<li>Available as both a graphical user interface for ease of use and as a command-line tool for batch
+					mission generation</li>
+				<li>Customize enemy SAM and air-to-air opposition for any mission difficulty.</li>
+				<li>No units spawned through runtime scripting. All units are added to the mission itself, so they can
+					be edited with DCS World&#x27;s mission editor for further customization.</li>
+				<li><strong>Please read the user&#x27;s manual and the modder&#x27;s manual for more
+						information</strong></li>
+				<li>
+					<strong>The development roadmap and a list of features planned for future versions can be found
+						here</strong>:
+					<a href="https://trello.com/b/iGsqgbTu/briefingroom-project-tracker" referrerpolicy="origin"
+						rel="nofollow noopener">trello.com/b/iGsqgbTu/briefingroom-project-tracker</a>
+				</li>
+			</ul>
+			<h3>New features added in latest version</h3>
+			<ul>
+				<li>
+					<p>Added</p>
+					<ul>
+						<li>Added: Coordinate readouts now contains altitude in ft</li>
+						<li>Added: Persistent Waypoint Coordinates in Objective Radio Menu</li>
+						<li>Added: Persistent Target Coordinates in Objective Radio Menu</li>
+						<li>Added: Combined Arms Pilot Control mission option</li>
+						<li>Added: Combined Arms Template support</li>
+						<li>Added: Backend support for Combined Arms</li>
+						<li>Added: Campaign support multiple player flights</li>
+						<li>Added: Mission Feature Ships for Enemy and Friendly</li>
+						<li>Added: Static and Offshore static buildings</li>
+						<li>Added: Missing Spinner to Campaign Generator</li>
+						<li>Added: Syria Iraq 2003 situation (no short flights)</li>
+						<li>Added: Syria new airbases</li>
+						<li>Added: Playable Apache</li>
+						<li>Added: Blackhawk Clean and External Tanks Loadouts</li>
+						<li>Added: First implementation of Briefing Editor</li>
+						<li>Added: ME compatible mod requirements.</li>
+						<li>Added: HTML Rendered KneeBoards</li>
+						<li>Added: Initial attempt at multi objective descriptions</li>
+						<li>Added: Initial situation briefing sections</li>
+						<li>Added: Support for more rich Briefings</li>
+						<li>Added: Missing Clear Weather Preset</li>
+						<li>Added: CTLD native support</li>
+						<li>Added: Zone support</li>
+						<li>Added: Escort Presets</li>
+						<li>Added: Transport Troop Preset</li>
+						<li>Added: Troop Transport Radio Calls</li>
+						<li>Added: BR script for transport over CTLD</li>
+						<li>Added: Taskable attack helicopters</li>
+						<li>Added: Fleshed out escort task</li>
+						<li>Added: basic initial escort task</li>
+						<li>Added: Script Assisted Troop Transport</li>
+						<li>Added: Initial Troop Transport Task (WIP)</li>
+						<li>Added: CTLD Script</li>
+						<li>Added: CSAR script</li>
+						<li>Added: FOB Static items</li>
+						<li>Added: Takeoff distance to Bomber</li>
+						<li>Added: Takeoff distance to PlaneFighter</li>
+						<li>Added: changes to some Fighter AC on Rwy length</li>
+						<li>Added: More units variety in static targets</li>
+						<li>Added: some more static groups mostly large things</li>
+						<li>Added: Static Enemy Aircraft</li>
+						<li>Added: High Cloud</li>
+
+					</ul>
+				</li>
+				<li>
+					<p>Updated</p>
+					<ul>
+						<li>Updated: Channel new airfields - thanks Sandman</li>
+						<li>Updated: Skynet IADS to 3.0.0-dev</li>
+						<li>Updated: Enable CM control for Anti-Air disable for Carrier and FOB</li>
+						<li>Updated: Carriers loop back to start point</li>
+						<li>Updated: Limit Units from spawning more than 70nm from own controlled area.</li>
+						<li>Updated: Syria Situations</li>
+						<li>Updated: Syria default zone</li>
+						<li>Updated: Merge Flight Plan, Airbase and JTAC Kneepages</li>
+						<li>Updated: Removed or shortened remarks</li>
+						<li>Updated: Kneeboard notes and added JTAC section to briefings</li>
+						<li>Updated: Increase KneeBoard Resolution</li>
+						<li>Updated: Tune Taskable AI</li>
+						<li>Updated: Limit kill radio call outs to just players</li>
+						<li>Updated: AI Radio Freqencies</li>
+						<li>Updated: CSAR script</li>
+						<li>Updated: Commando Drop in Preset to be Transport Troop mission</li>
+						<li>Updated: No longer allow CTLD to manage Transport AI groups</li>
+						<li>Updated: EnemyStaticAircraft.ini</li>
+						<li>Updated: FriendlyHelicopters.ini</li>
+						<li>Updated: FriendlyCAS.ini</li>
+						<li>Updated: EnemyStaticAircraft.ini</li>
+						<li>Updated: FriendlyStaticAircraft.ini</li>
+						<li>Updated: FriendlySEAD.ini</li>
+						<li>Updated: FriendlyHelicopters.ini</li>
+						<li>Updated: FriendlyCAS.ini</li>
+						<li>Updated: EnemyTanker.ini</li>
+						<li>Updated: EnemySEAD.ini</li>
+						<li>Updated: EnemyHelicopters.ini</li>
+						<li>Updated: EnemyCAS.ini</li>
+						<li>Updated: EnemyAWACS.ini</li>
+						<li>Updated: FriendlySEAD.ini</li>
+						<li>Updated: F-117A moved to bomber</li>
+
+					</ul>
+				</li>
+				<li>
+					<p>Fixed</p>
+					<ul>
+						<li>Fix: Correct bad HDS mod required ID</li>
+						<li>Fix: Campaign unable to select starting airbase</li>
+						<li>Fix: Campaign Generator not using mission retry logic</li>
+						<li>Fix: Logs where needlessly cleared on mission generation</li>
+						<li>Fix: Correctly scale map</li>
+						<li>Fix: Correct weapon configs Mi-24V &amp; JF-17</li>
+						<li>Fix: Show FCR on Apache</li>
+						<li>Fix: Turkey was assigned to UK underneath</li>
+						<li>Fix: Dog Ear radar ref</li>
+						<li>Fix: add missing exe</li>
+						<li>Fix: Can&#39;t find image issue due to pathing issues</li>
+						<li>Fix: Increase Briefing Editor save mission size</li>
+						<li>Fix: Use temp file in proper temp folder for windows</li>
+						<li>Fix: Increase Zip memory size</li>
+						<li>Fix: Bad Incirlik VHF frequency</li>
+						<li>Fix: Black Hawk mod references</li>
+						<li>Fix: Preset typo</li>
+						<li>Fix: Broke kill messages (ignore player only calls)</li>
+						<li>Fix: Callsigns started with 2 not 1</li>
+						<li>Fix: ignore parking on airbase if not aircraft</li>
+						<li>Fix: Taskable support not spawning</li>
+						<li>Fix: Always populate country units block even if no units.</li>
+						<li>Fix: only remove payload for harrier on STOVL ships</li>
+						<li>Fix: FOB&#39;s where not regularly closer than main airbase</li>
+						<li>Fix: Not spawning FOBs at all</li>
+						<li>Fix: Flight groups not auto changing CJTF sides</li>
+
+					</ul>
+				</li>
+				<li>
+					<p>UI</p>
+					<ul>
+						<li>UI: added Channel ground mapping - thanks sandman</li>
+						<li>UI: Update with Combined Arms options</li>
+						<li>UI: Added Combined Arms Options to Full and Campaign Builder</li>
+						<li>UI: Warnings only shown for mission shown in UI not failed generation attempts</li>
+						<li>UI: Added copy logs button</li>
+						<li>UI: Map added to Campaign Builder UI</li>
+						<li>UI: Added abstract map of mission</li>
+						<li>UI: Add simple loading spinner</li>
+						<li>UI: More accurate names for some situation options</li>
+						<li>UI: More indications in quick builder of inherited options</li>
+						<li>UI: Added home base option to quick builder</li>
+						<li>UI: Stronger indications of Quick Builder limitations and features loaded from templates
+						</li>
+						<li>UI: Add more task validation</li>
+
+					</ul>
+				</li>
+				<li>
+					<p>Misc</p>
+					<ul>
+						<li>Misc: Lower Found a non-assigned value warning to info</li>
+						<li>Misc: Log Excessive Distances</li>
+						<li>Misc: Log Recoverable Error</li>
+						<li>Misc: add airbase ID grabber</li>
+						<li>Misc: added build version to github issue</li>
+						<li>Misc: report error logs when kneeboard convert fails</li>
+						<li>Misc: Remove usage of temp file for KneeBoard generation</li>
+						<li>Misc: improve auto release name</li>
+						<li>Misc: Use MIST by default</li>
+						<li>Misc: Update Country conflict warning</li>
+						<li>Misc: Bump Markdig from 0.28.0 to 0.28.1 in /Source</li>
+						<li>Misc: Bump Markdig from 0.27.0 to 0.28.0 in /Source</li>
+						<li>Misc: Bump Microsoft.AspNetCore.Components.Web in /Source</li>
+						<li>Misc: Bump Swashbuckle.AspNetCore from 6.2.3 to 6.3.0 in /Source</li>
+						<li>Misc: Bump Microsoft.AspNetCore.Components.Web in /Source</li>
+						<li>Misc: Bump Blazored.LocalStorage from 4.1.5 to 4.2.0 in /Source</li>
+						<li>Misc: Bump Polly from 7.2.2 to 7.2.3 in /Source</li>
+						<li>Misc: Bump Markdig from 0.26.0 to 0.27.0 in /Source</li>
+					</ul>
+				</li>
+			</ul>
+			<p><br></p>
+			<p>
+				<em>Changelogs for previous versions can be found <a
+						href='https://github.com/akaAgar/briefing-room-for-dcs'>on the GitHub repository</a>.</em>
+			</p>
+		</div>
+	</div>
+</body>
+
+</html>

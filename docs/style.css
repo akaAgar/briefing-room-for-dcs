@@ -1,0 +1,41 @@
+body,
+html {
+	background-color: #00bfff;
+	font-family: 'Quantico', sans-serif;
+	font-size: 18px;
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	width: 924px;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0;
+	padding-top: 0;
+	background-color: #eee;
+}
+
+.text {
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+}
+
+table {
+	width: 100%;
+	border: 0;
+}
+
+img {
+	width: 100%;
+	border: 1px solid #666;
+}
+
+.title {
+	background-image: url("./title.png");
+	height: 288px;
+}
