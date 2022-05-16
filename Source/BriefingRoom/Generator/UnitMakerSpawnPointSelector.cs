@@ -126,7 +126,9 @@ namespace BriefingRoom4DCS.Generator
             var validSP = (from DBEntryTheaterSpawnPoint pt in SpawnPoints where validTypes.Contains(pt.PointType) select pt);
             Coordinates?[] distanceOrigin = new Coordinates?[] { distanceOrigin1, distanceOrigin2 };
             MinMaxD?[] distanceFrom = new MinMaxD?[] { distanceFrom1, distanceFrom2 };
-
+            var brokenSP = validSP.Where(x => CheckInSea(x.Coordinates)).Select(x => $"{x.UniqueID}={x.Coordinates.X},{x.Coordinates.Y},{x.PointType}").ToList();
+            if(brokenSP.Count > 0)
+                throw new BriefingRoomException($"Spawn Points in the sea!: {string.Join("\n",brokenSP)}");
             for (int i = 0; i < 2; i++) // Remove spawn points too far or too close from distanceOrigin1 and distanceOrigin2
             {
                 if (validSP.Count() == 0) return null;
@@ -146,7 +148,8 @@ namespace BriefingRoom4DCS.Generator
                                       where
                                           searchRange.Contains(origin.GetDistanceFrom(s.Coordinates)) &&
                                           CheckNotInHostileCoords(s.Coordinates, coalition) &&
-                                          CheckNotFarFromBorders(s.Coordinates, coalition)
+                                          CheckNotFarFromBorders(s.Coordinates, coalition) &&
+                                          !CheckInSea(s.Coordinates)
                                       select s);
                     searchRange = new MinMaxD(searchRange.Min * 0.9, Math.Max(100, searchRange.Max * 1.1));
                     validSP = (from DBEntryTheaterSpawnPoint s in validSPInRange select s);
@@ -183,7 +186,7 @@ namespace BriefingRoom4DCS.Generator
                     coordOptionsLinq = coordOptionsLinq.Where(x => secondSearchRange.Value.Contains(distanceOrigin2.Value.GetDistanceFrom(x)));
 
                 if (validTypes.First() == SpawnPointType.Sea) //sea position
-                    coordOptionsLinq = coordOptionsLinq.Where(x => ShapeManager.IsPosValid(x, TheaterDB.WaterCoordinates, TheaterDB.WaterExclusionCoordinates));
+                    coordOptionsLinq = coordOptionsLinq.Where(x => CheckInSea(x));
 
                 var coordOptions = coordOptionsLinq.ToList();
                 if (coordOptions.Count > 0)
@@ -303,6 +306,11 @@ namespace BriefingRoom4DCS.Generator
             var distance = ShapeManager.GetDistanceFromShape(coordinates, (coalition.Value == Coalition.Blue? blue : red));
             return distance < distanceLimit;
             
+        }
+
+        private bool CheckInSea(Coordinates coordinates)
+        {
+            return ShapeManager.IsPosValid(coordinates, TheaterDB.WaterCoordinates, TheaterDB.WaterExclusionCoordinates);
         }
     }
 }
