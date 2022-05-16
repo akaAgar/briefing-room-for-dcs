@@ -1,6 +1,6 @@
 body,
 html {
-	background-color: #00bfff;
+	background-image: linear-gradient(180deg, #0C3050 0%, #020A10 100%);
 	font-family: 'Quantico', sans-serif;
 	font-size: 18px;
 	margin: 0;
