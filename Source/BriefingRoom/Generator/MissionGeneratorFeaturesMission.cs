@@ -23,6 +23,7 @@ using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -39,6 +40,18 @@ namespace BriefingRoom4DCS.Generator
                 return;
             }
             Coalition coalition = featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly) ? _template.ContextPlayerCoalition : _template.ContextPlayerCoalition.GetEnemy();
+
+            if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ForEachAirbase))
+            {
+                ForEachAirbase(mission, featureID, featureDB, coalition);
+                return;
+            }
+
+            if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ForEachFOB))
+            {
+                ForEachFob(mission, featureID, featureDB);
+                return;
+            }
 
             Coordinates pointSearchCenter = Coordinates.Lerp(initialCoordinates, objectivesCenter, featureDB.UnitGroupSpawnDistance);
             Coordinates? spawnPoint =
@@ -66,5 +79,51 @@ namespace BriefingRoom4DCS.Generator
 
             AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
         }
+
+        private void ForEachAirbase(DCSMission mission, string featureID, DBEntryFeatureMission featureDB, Coalition coalition)
+        {
+            var activeAirbases = mission.PopulatedAirbaseIds[coalition];
+            var airbases = Database.Instance.GetAllEntries<DBEntryAirbase>().Where(x => x.Theater == mission.TheaterID.ToLower() && string.IsNullOrEmpty(x.TACAN) && activeAirbases.Contains(x.DCSID)).ToList();
+            foreach (DBEntryAirbase airbase in airbases)
+            {
+
+                Coordinates? spawnPoint =
+                    _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                        featureDB.UnitGroupValidSpawnPoints, airbase.Coordinates,
+                        new MinMaxD(0, 5),
+                        coalition: featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.IgnoreBorders) ? null : coalition
+                        );
+                if (!spawnPoint.HasValue) // No spawn point found
+                {
+                    BriefingRoom.PrintToLog($"No spawn point found for mission feature {featureID}.", LogMessageErrorLevel.Warning);
+                    return;
+                }
+
+                Dictionary<string, object> extraSettings = new Dictionary<string, object>{{"TACAN_NAME", airbase.Name}};
+                UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, spawnPoint.Value, spawnPoint.Value, ref extraSettings);
+
+                AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
+
+            }
+        }
+
+        private void ForEachFob(DCSMission mission, string featureID, DBEntryFeatureMission featureDB)
+        {
+            var fobs = _unitMaker.carrierDictionary
+                .Where(x => x.Value.UnitMakerGroupInfo.UnitDB.Families.Contains(UnitFamily.FOB))
+                .Select(x => x.Value)
+                .ToList();
+            foreach (var fob in fobs)
+            {
+
+                var coordinates = fob.UnitMakerGroupInfo.Coordinates + Coordinates.CreateRandom(30, 100);
+                Dictionary<string, object> extraSettings = new Dictionary<string, object>{{"TACAN_NAME", fob.UnitMakerGroupInfo.Name}};
+                UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, coordinates, coordinates, ref extraSettings);
+
+                AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
+
+            }
+        }
     }
+
 }

@@ -223,7 +223,6 @@ namespace BriefingRoom4DCS.Generator
 
             parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
             parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
-
             return Tuple.Create(targetAirbase, parkingSpotIDsList, parkingSpotCoordinatesList);
         }
 

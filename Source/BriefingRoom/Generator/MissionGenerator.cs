@@ -108,6 +108,7 @@ namespace BriefingRoom4DCS.Generator
             var airbasesGenerator = new MissionGeneratorAirbases(template, situationDB);
             var requiredRunway = template.PlayerFlightGroups.Select(x => Database.Instance.GetEntry<DBEntryUnit>(x.Aircraft).AircraftData.MinimumRunwayLengthFt).Max();
             var playerAirbase = airbasesGenerator.SelectStartingAirbase(mission, template.FlightPlanTheaterStartingAirbase, requiredRunway: requiredRunway);
+            mission.PopulatedAirbaseIds[template.ContextPlayerCoalition].Add(playerAirbase.DCSID);
             mission.MapData.Add($"AIRBASE_HOME", new List<Coordinates> { playerAirbase.Coordinates });
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{playerAirbase.Name}\t{playerAirbase.Runways}\t{playerAirbase.ATC}\t{playerAirbase.ILS}\t{playerAirbase.TACAN}");
             airbasesGenerator.SelectStartingAirbaseForPackages(mission, playerAirbase);
@@ -164,7 +165,7 @@ namespace BriefingRoom4DCS.Generator
             MissionGeneratorAirDefense.GenerateAirDefense(template, unitMaker, averageInitialPosition, objectivesCenter);
 
             // Generate combat air patrols
-            var capGroupsID = MissionGeneratorCombatAirPatrols.GenerateCAP(unitMaker, template, averageInitialPosition, objectivesCenter);
+            var capGroupsID = MissionGeneratorCombatAirPatrols.GenerateCAP(unitMaker, template, mission, averageInitialPosition, objectivesCenter);
             foreach (int capGroupID in capGroupsID) // Add 50% of CAP groups to the list of A/C activated on takeoff, the other 50% to the list of A/C activated later.
                 if (Toolbox.RandomChance(2))
                     immediateActivationAircraftGroupsIDs.Add(capGroupID);

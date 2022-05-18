@@ -53,5 +53,7 @@ namespace BriefingRoom4DCS.Data
         Immortal = 16384,
         Inert = 32768,
         Invisible = 65536,
+        ForEachAirbase = 131072,
+        ForEachFOB = 262144,
     }
 }

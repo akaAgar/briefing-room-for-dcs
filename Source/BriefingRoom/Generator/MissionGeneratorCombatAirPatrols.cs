@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCS.Data;
+using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGeneratorCombatAirPatrols
     {
 
-        internal static int[] GenerateCAP(UnitMaker unitMaker, MissionTemplateRecord template, Coordinates averageInitialPosition, Coordinates objectivesCenter)
+        internal static int[] GenerateCAP(UnitMaker unitMaker, MissionTemplateRecord template, DCSMission mission, Coordinates averageInitialPosition, Coordinates objectivesCenter)
         {
             List<int> capAircraftGroupIDs = new List<int>();
             var commonCAPDB = Database.Instance.Common.CAP;
@@ -51,7 +52,9 @@ namespace BriefingRoom4DCS.Generator
 
                 CreateCAPGroups(
                     unitMaker,
-                    template, side, coalition, capAmount,
+                    template,
+                    mission,
+                    side, coalition, capAmount,
                     centerPoint, opposingPoint,
                     objectivesCenter,
                     ref capAircraftGroupIDs);
@@ -61,7 +64,7 @@ namespace BriefingRoom4DCS.Generator
         }
 
         private static void CreateCAPGroups(
-            UnitMaker unitMaker, MissionTemplateRecord template, Side side,
+            UnitMaker unitMaker, MissionTemplateRecord template, DCSMission mission, Side side,
             Coalition coalition, AmountNR capAmount, Coordinates centerPoint,
             Coordinates opposingPoint, Coordinates destination, ref List<int> capAircraftGroupIDs)
         {
@@ -112,6 +115,7 @@ namespace BriefingRoom4DCS.Generator
                     spawnpointCoordinates = airbase.Coordinates;
                     extraSettings.AddIfKeyUnused("ParkingID", parkingSpotIDsList);
                     extraSettings.AddIfKeyUnused("GroupAirbaseID", airbase.DCSID);
+                    mission.PopulatedAirbaseIds[coalition].Add(airbase.DCSID);
                     extraSettings.AddIfKeyUnused("UnitCoords", parkingSpotCoordinatesList);
                 }
 

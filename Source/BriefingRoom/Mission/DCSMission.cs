@@ -45,6 +45,8 @@ namespace BriefingRoom4DCS.Mission
 
         internal Dictionary<int, Coalition> Airbases { get; }
 
+        internal Dictionary<Coalition, List<int>> PopulatedAirbaseIds { get; }
+
         internal List<DCSMissionPackage> MissionPackages { get; }
 
 
@@ -80,6 +82,10 @@ namespace BriefingRoom4DCS.Mission
             MediaFiles = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
             Values = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
             MapData = new Dictionary<string, List<Coordinates>>();
+            PopulatedAirbaseIds = new Dictionary<Coalition, List<int>>{
+                    {Coalition.Blue, new List<int>()},
+                    {Coalition.Red, new List<int>()}
+                };
 
             UniqueID = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()).ToLowerInvariant();
             SetValue("MissionID", UniqueID);
@@ -203,7 +209,7 @@ namespace BriefingRoom4DCS.Mission
             distance = objCenter.GetDistanceFrom(playerAirbase) * Toolbox.METERS_TO_NM;
             var extremeLimit = template.FlightPlanObjectiveDistance * 1.7;
             var isTooFar = distance > extremeLimit;
-            if(isTooFar)
+            if (isTooFar)
                 BriefingRoom.PrintToLog($"Distance too far {distance}NM > {extremeLimit}NM", LogMessageErrorLevel.Warning);
             return isTooFar;
         }

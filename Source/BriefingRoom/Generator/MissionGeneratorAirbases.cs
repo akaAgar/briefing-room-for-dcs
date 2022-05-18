@@ -58,6 +58,7 @@ namespace BriefingRoom4DCS.Generator
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{airbase.Name}\t{airbase.Runways}\t{airbase.ATC}\t{airbase.ILS}\t{airbase.TACAN}");
                 mission.MapData.Add($"AIRBASE_${airbase.Name}", new List<Coordinates>{airbase.Coordinates});
                 missionPackages.Add(new DCSMissionPackage(_template.AircraftPackages.IndexOf(package), airbase));
+                mission.PopulatedAirbaseIds[_template.ContextPlayerCoalition].Add(airbase.DCSID);
             }
             mission.MissionPackages.AddRange(missionPackages);
         }
