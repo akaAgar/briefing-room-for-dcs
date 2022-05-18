@@ -166,11 +166,10 @@ namespace BriefingRoom4DCS.Generator
 
         private string GetExtraSettingsFromFeature(T featureDB, ref Dictionary<string, object> extraSettings)
         {
-            // TODO: Improve
             if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.TACAN) && (featureDB.UnitGroupFamilies.Length > 0))
             {
-                var callsign = $"{GeneratorTools.GetTACANCallsign(featureDB.UnitGroupFamilies[0])}{TACANIndex}";
-                var channel = ((GetType() == typeof(MissionGeneratorFeaturesObjectives)) ? 30 : 20) + TACANIndex;
+                var callsign = (GetType() == typeof(MissionGeneratorFeaturesObjectives) && extraSettings.ContainsKey("ObjectiveName")) ? extraSettings["ObjectiveName"].ToString().Substring(0,3) : $"{GeneratorTools.GetTACANCallsign(featureDB.UnitGroupFamilies[0])}{TACANIndex}";
+                var channel = ((GetType() == typeof(MissionGeneratorFeaturesObjectives)) ? 31 : 20) + TACANIndex;
                 extraSettings.AddIfKeyUnused("TACANFrequency", 1108000000);
                 extraSettings.AddIfKeyUnused("TACANCallsign", callsign);
                 extraSettings.AddIfKeyUnused("TACANChannel", channel);

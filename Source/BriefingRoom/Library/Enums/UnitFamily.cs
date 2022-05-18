@@ -69,6 +69,7 @@ namespace BriefingRoom4DCS
         VehicleSAMShort,
         VehicleSAMShortIR,
         VehicleTransport,
+        VehicleTACAN,
         FOB,
         Cargo
     }
