@@ -113,7 +113,7 @@ namespace BriefingRoom4DCS.Generator
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{playerAirbase.Name}\t{playerAirbase.Runways}\t{playerAirbase.ATC}\t{playerAirbase.ILS}\t{playerAirbase.TACAN}");
             airbasesGenerator.SelectStartingAirbaseForPackages(mission, playerAirbase);
             airbasesGenerator.SetupAirbasesCoalitions(mission, playerAirbase);
-            zoneMaker.AddAirbaseZones(playerAirbase, mission.MissionPackages);
+            zoneMaker.AddAirbaseZones(template.MissionFeatures, playerAirbase, mission.MissionPackages);
             mission.SetValue("PlayerAirbaseName", playerAirbase.Name);
             mission.SetValue("MissionAirbaseX", playerAirbase.Coordinates.X);
             mission.SetValue("MissionAirbaseY", playerAirbase.Coordinates.Y);

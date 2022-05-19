@@ -45,8 +45,10 @@ namespace BriefingRoom4DCS.Generator
             CTLDZoneCount++;
         }
 
-        internal void AddAirbaseZones(DBEntryAirbase homeBase, List<DCSMissionPackage> missionPackages)
+        internal void AddAirbaseZones(List<string> missionFeatures, DBEntryAirbase homeBase, List<DCSMissionPackage> missionPackages)
         {
+            if(!missionFeatures.Contains("CTLD"))
+                return;
             AddCTLDPickupZone(homeBase.Coordinates);
             missionPackages.ForEach(x => AddCTLDPickupZone(x.Airbase.Coordinates));
         }
