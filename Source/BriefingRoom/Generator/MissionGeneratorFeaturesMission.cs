@@ -83,16 +83,11 @@ namespace BriefingRoom4DCS.Generator
         private void ForEachAirbase(DCSMission mission, string featureID, DBEntryFeatureMission featureDB, Coalition coalition)
         {
             var activeAirbases = mission.PopulatedAirbaseIds[coalition];
-            var airbases = Database.Instance.GetAllEntries<DBEntryAirbase>().Where(x => x.Theater == mission.TheaterID.ToLower() && string.IsNullOrEmpty(x.TACAN) && activeAirbases.Contains(x.DCSID)).ToList();
+            var airbases = Database.Instance.GetAllEntries<DBEntryAirbase>().Where(x => x.Theater == mission.TheaterID.ToLower() && activeAirbases.Contains(x.DCSID)).ToList();
             foreach (DBEntryAirbase airbase in airbases)
             {
 
-                Coordinates? spawnPoint =
-                    _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                        featureDB.UnitGroupValidSpawnPoints, airbase.Coordinates,
-                        new MinMaxD(0, 5),
-                        coalition: featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.IgnoreBorders) ? null : coalition
-                        );
+                Coordinates? spawnPoint = _unitMaker.SpawnPointSelector.GetNearestSpawnPoint(featureDB.UnitGroupValidSpawnPoints, airbase.Coordinates);
                 if (!spawnPoint.HasValue) // No spawn point found
                 {
                     BriefingRoom.PrintToLog($"No spawn point found for mission feature {featureID}.", LogMessageErrorLevel.Warning);

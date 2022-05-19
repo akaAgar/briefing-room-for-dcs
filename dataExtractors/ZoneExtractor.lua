@@ -98,25 +98,6 @@ for key,value in orderedPairs(mission.drawings.layers[4].objects[1].points) do -
     io.write("Waypoint"..string.format("%04d", key).."="..(originX +value.x)..","..(originY + value.y).."\n")
 end
 
--- Waypoints
-io.write("\n[SpawnPoints]\n")
-local index = 0
-for _,value in orderedPairs(mission.coalition.red.country[1].vehicle.group[1].route.points) do --actualcode
-    io.write("Point"..string.format("%04d", index).."="..value.x..","..value.y..",LandSmall\n")
-    index = index + 1
-end
-
-for _,value in orderedPairs(mission.coalition.neutrals.country[1].vehicle.group[1].route.points) do --actualcode
-    io.write("Point"..string.format("%04d", index).."="..value.x..","..value.y..",LandMedium\n")
-    index = index + 1
-end
-
-for _,value in orderedPairs(mission.coalition.blue.country[1].vehicle.group[1].route.points) do --actualcode
-    io.write("Point"..string.format("%04d", index).."="..value.x..","..value.y..",LandLarge\n")
-    index = index + 1
-end
-
-
 
 io.close(file)
 

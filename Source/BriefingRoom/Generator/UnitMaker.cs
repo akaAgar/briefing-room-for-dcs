@@ -46,7 +46,7 @@ namespace BriefingRoom4DCS.Generator
     {
         private const double AIRCRAFT_UNIT_SPACING = 50.0;
         private const double SHIP_UNIT_SPACING = 100.0;
-        private const double VEHICLE_UNIT_SPACING = 20.0;
+        private const double VEHICLE_UNIT_SPACING = 10.0;
 
         private readonly DCSMission Mission;
         private readonly MissionTemplateRecord Template;
@@ -342,7 +342,8 @@ namespace BriefingRoom4DCS.Generator
                        unitMakerGroupFlags,
                        skill,
                        country,
-                       extraSettings
+                       extraSettings,
+                       unitSets.Count() == 1
                        ));
 
                     unitsIDList.Add(UnitID);
@@ -386,7 +387,7 @@ namespace BriefingRoom4DCS.Generator
                 foreach (var DCSID in unitDB.DCSIDs)
                 {
                     var groupHeading = GetGroupHeading(coordinates, extraSettings);
-                    SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading, out Coordinates unitCoordinates, out double unitHeading);
+                    var (unitCoordinates, unitHeading) = SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading);
                     var firstUnitID = UnitID;
                     var dCSGroup = CreateGroup(
                         groupTypeLua,
@@ -479,7 +480,8 @@ namespace BriefingRoom4DCS.Generator
             UnitMakerGroupFlags unitMakerGroupFlags,
             string skill,
             Country country,
-            Dictionary<string, object> extraSettings)
+            Dictionary<string, object> extraSettings,
+            bool singleUnit=false)
         {
             if (!string.IsNullOrEmpty(unitDB.RequiredMod))
             {
@@ -492,7 +494,7 @@ namespace BriefingRoom4DCS.Generator
             var unit = new DCSUnit(unitType);
 
             var groupHeading = GetGroupHeading(coordinates, extraSettings);
-            SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading, out Coordinates unitCoordinates, out double unitHeading);
+            var (unitCoordinates, unitHeading) = SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading, singleUnit);
 
             foreach (KeyValuePair<string, object> extraSetting in extraSettings.Where(x => !IGNORE_PROPS.Contains(x.Key)).ToDictionary(x => x.Key, x => x.Value))
             {
@@ -610,12 +612,11 @@ namespace BriefingRoom4DCS.Generator
             return Coordinates.ToAngleInRadians(groupCoordinates, waypointCoor);
         }
 
-        private void SetUnitCoordinatesAndHeading(
-            DBEntryUnit unitDB, int unitIndex, Coordinates groupCoordinates, double groupHeading,
-            out Coordinates unitCoordinates, out double unitHeading)
+        private (Coordinates unitCoordinates, double unitHeading) SetUnitCoordinatesAndHeading(
+            DBEntryUnit unitDB, int unitIndex, Coordinates groupCoordinates, double groupHeading, bool singleUnit=false)
         {
-            unitCoordinates = groupCoordinates;
-            unitHeading = groupHeading;
+            var unitCoordinates = groupCoordinates;
+            var unitHeading = groupHeading;
 
             if (unitDB.IsAircraft)
                 unitCoordinates = groupCoordinates + new Coordinates(AIRCRAFT_UNIT_SPACING, AIRCRAFT_UNIT_SPACING) * unitIndex;
@@ -626,7 +627,7 @@ namespace BriefingRoom4DCS.Generator
                     Coordinates offsetCoordinates = unitDB.OffsetCoordinates[unitIndex];
                     unitCoordinates = TransformFromOffset(unitHeading, groupCoordinates, offsetCoordinates);
                 }
-                else // No fixed coordinates, generate random coordinates
+                else if(!singleUnit || unitDB.DCSIDs.Count() != 1) // No fixed coordinates, generate random coordinates
                 {
                     switch (unitDB.Category)
                     {
@@ -649,6 +650,7 @@ namespace BriefingRoom4DCS.Generator
                 else if (unitDB.Category != UnitCategory.Ship)
                     unitHeading = Toolbox.RandomDouble(Toolbox.TWO_PI);
             }
+            return (unitCoordinates, unitHeading);
         }
 
         private Coordinates TransformFromOffset(double groupHeading, Coordinates groupCoordinates, Coordinates offsetCoordinates)

@@ -196,13 +196,19 @@ namespace BriefingRoom4DCS.Generator
                 var unitCount = featureDB.UnitGroupSize.GetValue();
                 var unitFamily = Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
                 var luaUnit = featureDB.UnitGroupLuaUnit;
-                var spawnCoords = _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                    featureDB.UnitGroupValidSpawnPoints, coordinates,
-                    new MinMaxD(0, 5),
-                    coalition: GeneratorTools.GetSpawnPointCoalition(_template, groupSide)
-                    );
+                Coordinates? spawnCoords;
+                if(featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ExtraGroupsNearby))
+                    spawnCoords = _unitMaker.SpawnPointSelector.GetNearestSpawnPoint(featureDB.UnitGroupValidSpawnPoints, coordinates);
+                else
+                    spawnCoords = _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                        featureDB.UnitGroupValidSpawnPoints, coordinates,
+                        new MinMaxD(0, 5),
+                        coalition: GeneratorTools.GetSpawnPointCoalition(_template, groupSide)
+                        );
+                
                 if (!spawnCoords.HasValue)
                     continue;
+                
 
                 SetAirbase(featureDB, ref mission, unitFamily, ref groupLua, ref luaUnit, groupSide, ref coordinates, coordinates2, unitCount, ref extraSettings);
 

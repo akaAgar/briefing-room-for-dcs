@@ -55,5 +55,6 @@ namespace BriefingRoom4DCS.Data
         Invisible = 65536,
         ForEachAirbase = 131072,
         ForEachFOB = 262144,
+        ExtraGroupsNearby = 524288,
     }
 }
