@@ -52,6 +52,14 @@ We are always looking for contributors to keep us up to date with the latest DCS
 * Creation of coalitions
 * Creation of map situations
 
+### Kneeboard Image errors
+
+The generation of Kneeboard images has been prone to issues. While we aim to fix as many as possible odd issues get through. Check or try some of these previous solutions:
+
+* Check your running the latest version from github. Try the latest beta.
+* Use Web version to see more detailed error message in the console terminal.
+* Check the image.win.exe file is in the right location.
+* Turkish OS users (and others who use `ı`) rename file from `image.win.exe` to `ımage.win.exe`
 
 ### Additional information
 
