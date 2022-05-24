@@ -127,7 +127,6 @@ Algeria.ini Example(03/21)
     [Coalition]
     Countries=All,Algeria
     DefaultUnitList=ThirdWorld
-    NATOCallsigns=false
 
 [Briefing] sections helps generate realistic sounding documents and is relatively self explanatory `Recon` is a comma separated list of options so if you know of specific groups for recon you can add them.
 

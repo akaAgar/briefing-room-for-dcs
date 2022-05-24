@@ -30,6 +30,8 @@ namespace BriefingRoom4DCS.Generator
     {
         private static readonly int NATO_CALLSIGN_COUNT = Toolbox.EnumCount<UnitCallsignFamily>();
 
+        private static readonly List<Country> NON_NATO_CALLSIGN_NATIONS = new List<Country>{Country.Russia, Country.Abkhazia, Country.Belarus, Country.China, Country.Insurgents, Country.SouthOsetia, Country.Ukraine, Country.USSR, Country.Yugoslavia};
+
         private static readonly string[][] NATO_CALLSIGN_NAMES = new string[][]
         {
             new string[] { "Enfield", "Springfield", "Uzi", "Colt", "Dodge", "Ford", "Chevy", "Pontiac" },
@@ -60,14 +62,14 @@ namespace BriefingRoom4DCS.Generator
             RussianCallsigns.Clear();
         }
 
-        internal UnitCallsign GetCallsign(UnitFamily unitFamily, Coalition coalition, Side side, bool isUsingSkynet)
+        internal UnitCallsign GetCallsign(UnitFamily unitFamily, Country country, Side side, bool isUsingSkynet)
         {
             UnitCallsignFamily callsignFamily = GetCallsignFamilyFromUnitFamily(unitFamily);
 
-            if (CoalitionsDB[(int)coalition].NATOCallsigns)
-                return GetNATOCallsign(callsignFamily, unitFamily, side, isUsingSkynet);
+            if (NON_NATO_CALLSIGN_NATIONS.Contains(country))
+                return GetRussianCallsign(unitFamily, side, isUsingSkynet);
 
-            return GetRussianCallsign(unitFamily, side, isUsingSkynet);
+            return GetNATOCallsign(callsignFamily, unitFamily, side, isUsingSkynet);
         }
 
         private UnitCallsign GetNATOCallsign(UnitCallsignFamily callsignFamily, UnitFamily unitFamily, Side side, bool isUsingSkynet)

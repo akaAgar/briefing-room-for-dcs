@@ -32,7 +32,6 @@ namespace BriefingRoom4DCS.Data
 
         internal string DefaultUnitList { get; private set; }
 
-        internal bool NATOCallsigns { get; private set; }
 
         protected override bool OnLoad(string iniFilePath)
         {
@@ -57,8 +56,6 @@ namespace BriefingRoom4DCS.Data
                 BriefingRoom.PrintToLog($"Default unit list \"{DefaultUnitList}\" required by coalition \"{ID}\" doesn't exist. Coalition was ignored.", LogMessageErrorLevel.Warning);
                 return false;
             }
-
-            NATOCallsigns = ini.GetValue("Coalition", "NATOCallsigns", false);
 
             return true;
         }

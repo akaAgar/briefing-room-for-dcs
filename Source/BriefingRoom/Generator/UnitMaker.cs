@@ -165,7 +165,7 @@ namespace BriefingRoom4DCS.Generator
             UnitCallsign? callsign = null;
             if (unitFamily.GetUnitCategory().IsAircraft())
             {
-                callsign = CallsignGenerator.GetCallsign(unitFamily, coalition, side, isUsingSkynet);
+                callsign = CallsignGenerator.GetCallsign(unitFamily, country, side, isUsingSkynet);
                 groupName = callsign.Value.GroupName;
                 if (extraSettings.ContainsKey("PlayerStartingType") && extraSettings.GetValueOrDefault("PlayerStartingType").ToString() == "TakeOffParking")
                     groupName += "(C)";
