@@ -63,7 +63,7 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("DateDay", day);
             mission.SetValue("DateMonth", (int)month + 1);
             mission.SetValue("DateYear", year);
-            mission.SetValue("BriefingDate", $"{(int)month + 1:00}/{day:00}/{year:0000}");
+            mission.SetValue("BriefingDate", $"{day:00}/{(int)month + 1:00}/{year:0000}");
 
             BriefingRoom.PrintToLog($"Misson date set to {day} {month} {year}.");
             return month;
