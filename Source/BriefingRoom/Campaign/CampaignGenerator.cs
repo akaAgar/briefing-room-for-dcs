@@ -48,18 +48,22 @@ namespace BriefingRoom4DCS.Campaign
 
             for (int i = 0; i < campaignTemplate.MissionsCount; i++)
             {
-                // Increment the date by a few days for each mission after the first
                 if (i > 0) date = IncrementDate(date);
 
                 var template = CreateMissionTemplate(campaignTemplate, campaign.Name, i, (int)campaignTemplate.MissionsObjectiveCount);
 
-                DCSMission mission = await MissionGenerator.GenerateRetryableAsync(template, true);
-                // TODO: mission.DateTime.Day = date.Day; mission.DateTime.Month = date.Month; mission.DateTime.Year = date.Year;
+                var mission = await MissionGenerator.GenerateRetryableAsync(template, true);
+            
                 if (mission == null)
                 {
                     BriefingRoom.PrintToLog($"Failed to generate mission {i + 1} in the campaign.", LogMessageErrorLevel.Warning);
                     continue;
                 }
+
+                mission.SetValue("DateDay", date.Day);
+                mission.SetValue("DateMonth", date.Month);
+                mission.SetValue("DateYear", date.Year);
+                mission.SetValue("BriefingDate", $"{date.Day:00}/{date.Month:00}/{date.Year:0000}");
 
                 campaign.AddMission(mission);
             }
