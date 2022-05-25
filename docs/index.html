@@ -37,7 +37,6 @@
 				<a href="https://github.com/akaAgar/briefing-room-for-dcs">here</a>.
 			</p>
 			<ul>
-				<li><strong><a href='https://github.com/akaAgar/briefing-room-for-dcs/releases'>Latest release</a> is version 0.5.204.17 (April 17, 2022)</strong></li>
 				<li><strong>Initial version by Ambroise Garel, now developed and maintained by John
 						Harvey</strong></li>
 				<li>
@@ -90,170 +89,9 @@
 						rel="nofollow noopener">trello.com/b/iGsqgbTu/briefingroom-project-tracker</a>
 				</li>
 			</ul>
-			<h3>New features added in latest version</h3>
-			<ul>
-				<li>
-					<p>Added</p>
-					<ul>
-						<li>Added: Coordinate readouts now contains altitude in ft</li>
-						<li>Added: Persistent Waypoint Coordinates in Objective Radio Menu</li>
-						<li>Added: Persistent Target Coordinates in Objective Radio Menu</li>
-						<li>Added: Combined Arms Pilot Control mission option</li>
-						<li>Added: Combined Arms Template support</li>
-						<li>Added: Backend support for Combined Arms</li>
-						<li>Added: Campaign support multiple player flights</li>
-						<li>Added: Mission Feature Ships for Enemy and Friendly</li>
-						<li>Added: Static and Offshore static buildings</li>
-						<li>Added: Missing Spinner to Campaign Generator</li>
-						<li>Added: Syria Iraq 2003 situation (no short flights)</li>
-						<li>Added: Syria new airbases</li>
-						<li>Added: Playable Apache</li>
-						<li>Added: Blackhawk Clean and External Tanks Loadouts</li>
-						<li>Added: First implementation of Briefing Editor</li>
-						<li>Added: ME compatible mod requirements.</li>
-						<li>Added: HTML Rendered KneeBoards</li>
-						<li>Added: Initial attempt at multi objective descriptions</li>
-						<li>Added: Initial situation briefing sections</li>
-						<li>Added: Support for more rich Briefings</li>
-						<li>Added: Missing Clear Weather Preset</li>
-						<li>Added: CTLD native support</li>
-						<li>Added: Zone support</li>
-						<li>Added: Escort Presets</li>
-						<li>Added: Transport Troop Preset</li>
-						<li>Added: Troop Transport Radio Calls</li>
-						<li>Added: BR script for transport over CTLD</li>
-						<li>Added: Taskable attack helicopters</li>
-						<li>Added: Fleshed out escort task</li>
-						<li>Added: basic initial escort task</li>
-						<li>Added: Script Assisted Troop Transport</li>
-						<li>Added: Initial Troop Transport Task (WIP)</li>
-						<li>Added: CTLD Script</li>
-						<li>Added: CSAR script</li>
-						<li>Added: FOB Static items</li>
-						<li>Added: Takeoff distance to Bomber</li>
-						<li>Added: Takeoff distance to PlaneFighter</li>
-						<li>Added: changes to some Fighter AC on Rwy length</li>
-						<li>Added: More units variety in static targets</li>
-						<li>Added: some more static groups mostly large things</li>
-						<li>Added: Static Enemy Aircraft</li>
-						<li>Added: High Cloud</li>
-
-					</ul>
-				</li>
-				<li>
-					<p>Updated</p>
-					<ul>
-						<li>Updated: Channel new airfields - thanks Sandman</li>
-						<li>Updated: Skynet IADS to 3.0.0-dev</li>
-						<li>Updated: Enable CM control for Anti-Air disable for Carrier and FOB</li>
-						<li>Updated: Carriers loop back to start point</li>
-						<li>Updated: Limit Units from spawning more than 70nm from own controlled area.</li>
-						<li>Updated: Syria Situations</li>
-						<li>Updated: Syria default zone</li>
-						<li>Updated: Merge Flight Plan, Airbase and JTAC Kneepages</li>
-						<li>Updated: Removed or shortened remarks</li>
-						<li>Updated: Kneeboard notes and added JTAC section to briefings</li>
-						<li>Updated: Increase KneeBoard Resolution</li>
-						<li>Updated: Tune Taskable AI</li>
-						<li>Updated: Limit kill radio call outs to just players</li>
-						<li>Updated: AI Radio Freqencies</li>
-						<li>Updated: CSAR script</li>
-						<li>Updated: Commando Drop in Preset to be Transport Troop mission</li>
-						<li>Updated: No longer allow CTLD to manage Transport AI groups</li>
-						<li>Updated: EnemyStaticAircraft.ini</li>
-						<li>Updated: FriendlyHelicopters.ini</li>
-						<li>Updated: FriendlyCAS.ini</li>
-						<li>Updated: EnemyStaticAircraft.ini</li>
-						<li>Updated: FriendlyStaticAircraft.ini</li>
-						<li>Updated: FriendlySEAD.ini</li>
-						<li>Updated: FriendlyHelicopters.ini</li>
-						<li>Updated: FriendlyCAS.ini</li>
-						<li>Updated: EnemyTanker.ini</li>
-						<li>Updated: EnemySEAD.ini</li>
-						<li>Updated: EnemyHelicopters.ini</li>
-						<li>Updated: EnemyCAS.ini</li>
-						<li>Updated: EnemyAWACS.ini</li>
-						<li>Updated: FriendlySEAD.ini</li>
-						<li>Updated: F-117A moved to bomber</li>
-
-					</ul>
-				</li>
-				<li>
-					<p>Fixed</p>
-					<ul>
-						<li>Fix: Correct bad HDS mod required ID</li>
-						<li>Fix: Campaign unable to select starting airbase</li>
-						<li>Fix: Campaign Generator not using mission retry logic</li>
-						<li>Fix: Logs where needlessly cleared on mission generation</li>
-						<li>Fix: Correctly scale map</li>
-						<li>Fix: Correct weapon configs Mi-24V &amp; JF-17</li>
-						<li>Fix: Show FCR on Apache</li>
-						<li>Fix: Turkey was assigned to UK underneath</li>
-						<li>Fix: Dog Ear radar ref</li>
-						<li>Fix: add missing exe</li>
-						<li>Fix: Can&#39;t find image issue due to pathing issues</li>
-						<li>Fix: Increase Briefing Editor save mission size</li>
-						<li>Fix: Use temp file in proper temp folder for windows</li>
-						<li>Fix: Increase Zip memory size</li>
-						<li>Fix: Bad Incirlik VHF frequency</li>
-						<li>Fix: Black Hawk mod references</li>
-						<li>Fix: Preset typo</li>
-						<li>Fix: Broke kill messages (ignore player only calls)</li>
-						<li>Fix: Callsigns started with 2 not 1</li>
-						<li>Fix: ignore parking on airbase if not aircraft</li>
-						<li>Fix: Taskable support not spawning</li>
-						<li>Fix: Always populate country units block even if no units.</li>
-						<li>Fix: only remove payload for harrier on STOVL ships</li>
-						<li>Fix: FOB&#39;s where not regularly closer than main airbase</li>
-						<li>Fix: Not spawning FOBs at all</li>
-						<li>Fix: Flight groups not auto changing CJTF sides</li>
-
-					</ul>
-				</li>
-				<li>
-					<p>UI</p>
-					<ul>
-						<li>UI: added Channel ground mapping - thanks sandman</li>
-						<li>UI: Update with Combined Arms options</li>
-						<li>UI: Added Combined Arms Options to Full and Campaign Builder</li>
-						<li>UI: Warnings only shown for mission shown in UI not failed generation attempts</li>
-						<li>UI: Added copy logs button</li>
-						<li>UI: Map added to Campaign Builder UI</li>
-						<li>UI: Added abstract map of mission</li>
-						<li>UI: Add simple loading spinner</li>
-						<li>UI: More accurate names for some situation options</li>
-						<li>UI: More indications in quick builder of inherited options</li>
-						<li>UI: Added home base option to quick builder</li>
-						<li>UI: Stronger indications of Quick Builder limitations and features loaded from templates
-						</li>
-						<li>UI: Add more task validation</li>
-
-					</ul>
-				</li>
-				<li>
-					<p>Misc</p>
-					<ul>
-						<li>Misc: Lower Found a non-assigned value warning to info</li>
-						<li>Misc: Log Excessive Distances</li>
-						<li>Misc: Log Recoverable Error</li>
-						<li>Misc: add airbase ID grabber</li>
-						<li>Misc: added build version to github issue</li>
-						<li>Misc: report error logs when kneeboard convert fails</li>
-						<li>Misc: Remove usage of temp file for KneeBoard generation</li>
-						<li>Misc: improve auto release name</li>
-						<li>Misc: Use MIST by default</li>
-						<li>Misc: Update Country conflict warning</li>
-						<li>Misc: Bump Markdig from 0.28.0 to 0.28.1 in /Source</li>
-						<li>Misc: Bump Markdig from 0.27.0 to 0.28.0 in /Source</li>
-						<li>Misc: Bump Microsoft.AspNetCore.Components.Web in /Source</li>
-						<li>Misc: Bump Swashbuckle.AspNetCore from 6.2.3 to 6.3.0 in /Source</li>
-						<li>Misc: Bump Microsoft.AspNetCore.Components.Web in /Source</li>
-						<li>Misc: Bump Blazored.LocalStorage from 4.1.5 to 4.2.0 in /Source</li>
-						<li>Misc: Bump Polly from 7.2.2 to 7.2.3 in /Source</li>
-						<li>Misc: Bump Markdig from 0.26.0 to 0.27.0 in /Source</li>
-					</ul>
-				</li>
-			</ul>
+			<div id="releases">
+			<h2>Downloads</h2>
+			</div>	
 			<p><br></p>
 			<p>
 				<em>Changelogs for previous versions can be found <a
@@ -262,5 +100,6 @@
 		</div>
 	</div>
 </body>
-
+<script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+<script src="script.js"></script>
 </html>
