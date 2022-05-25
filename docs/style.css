@@ -39,3 +39,9 @@ img {
 	background-image: url("./title.png");
 	height: 288px;
 }
+
+.carousel-caption {
+	background-color: rgba(0,0,0,0.8);
+	left: 30%;
+	right: 30%;
+}

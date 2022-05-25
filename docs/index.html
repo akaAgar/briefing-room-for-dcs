@@ -7,6 +7,17 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Quantico&display=swap" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" href="style.css">
 	<link rel="icon" href="favicon.ico" />
 </head>
@@ -32,7 +43,8 @@
 			</p>
 			<p>
 				BriefingRoom is free and open source and will always remain so, but if you want to support its
-				development, you can make a one-time donation when downloading from <a href='https://akaagar.itch.io/briefing-room-for-dcs'>Itch.io</a>, or a monthly donation using
+				development, you can make a one-time donation when downloading from <a
+					href='https://akaagar.itch.io/briefing-room-for-dcs'>Itch.io</a>, or a monthly donation using
 				the PayPal link you&#x27;ll find
 				<a href="https://github.com/akaAgar/briefing-room-for-dcs">here</a>.
 			</p>
@@ -50,13 +62,147 @@
 				</li>
 				<li>Join the <a href="https://discord.gg/MvdFTYxkpx"><strong>Discord</strong></a>!</li>
 			</ul>
-			<table>
-				<tr>
-					<td><a href='ss01.jpg'><img src='ss01.jpg'></a></td>
-					<td><a href='ss02.jpg'><img src='ss02.jpg'></a></td>
-					<td><a href='ss03.jpg'><img src='ss03.jpg'></a></td>
-				</tr>
-			</table>
+			<h2>In App</h2>
+			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img class="d-block w-100" src="img/app_home.jpg" alt="Home Page">
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="img/app_fb.jpg" alt="Full generator">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>Full Generator</h5>
+							<p>All the options</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="img/app_qb.jpg" alt="Quick generator">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>Quick Generator</h5>
+							<p>Get going fast</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="img/app_cb.jpg"
+							alt="Campaign Generator and example Briefing Preview">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>Campaign Generator</h5>
+							<p>Entire Campaigns in minutes</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="img/app_briefing.jpg" alt="Briefing Editor">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>Briefing Editor</h5>
+							<p>Update and format briefings outside DCS</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="img/app_manual.jpg" alt="In Built Manual">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>In App Manual</h5>
+						</div>
+					</div>
+				</div>
+				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+			<h2>In Game</h2>
+			<div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#carouselExampleIndicators2" data-slide-to="0" class="active"></li>
+					<li data-target="#carouselExampleIndicators2" data-slide-to="1"></li>
+					<li data-target="#carouselExampleIndicators2" data-slide-to="2"></li>
+					<li data-target="#carouselExampleIndicators2" data-slide-to="3"></li>
+					<li data-target="#carouselExampleIndicators2" data-slide-to="4"></li>
+					<li data-target="#carouselExampleIndicators2" data-slide-to="5"></li>
+					<li data-target="#carouselExampleIndicators2" data-slide-to="6"></li>
+					<li data-target="#carouselExampleIndicators2" data-slide-to="7"></li>
+					<li data-target="#carouselExampleIndicators2" data-slide-to="8"></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img class="d-block w-100" src="img/in_game_map.png" alt="Map">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>Complex Missions</h5>
+							<p>Zoned out Regions (all hidable)</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="img/in_game_brief.png" alt="Briefing">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>Briefing</h5>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="img/in_game_base_start_NATO.png" alt="Nato Base start">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>Ground Start Option</h5>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="img/in_game_base_start_OPFOR.png"
+							alt="OPFOR base start">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>OPFOR too</h5>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="img/in_game_carrier.png" alt="Carrier Start">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>Carrier Start</h5>
+							<p>With AI or Static Aircraft</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="img/in_game_fob.png" alt="FOBs too">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>Fobs too</h5>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="img/in_game_defense.png" alt="airbase defense">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>Airbase defense</h5>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="img/in_game_kneeboard.png" alt="Custom Kneeboards">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>Custom Kneeboards</h5>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="img/in_game_radio.png" alt="Radio Calls">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>Status and Interaction Radio</h5>
+							<p>with sound</p>
+						</div>
+					</div>
+				</div>
+				<a class="carousel-control-prev" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#carouselExampleIndicators2" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
 			<h2>Features summary</h2>
 			<ul>
 				<li>Can generate any kind of single-player or multiplayer mission, from deep strikes behind a hostile
@@ -90,8 +236,8 @@
 				</li>
 			</ul>
 			<div id="releases">
-			<h2>Downloads</h2>
-			</div>	
+				<h2>Downloads</h2>
+			</div>
 			<p><br></p>
 			<p>
 				<em>Changelogs for previous versions can be found <a
@@ -102,4 +248,5 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
 <script src="script.js"></script>
+
 </html>
