@@ -191,7 +191,7 @@ namespace BriefingRoom4DCS.Generator
                 lastWP = waypoint.Coordinates;
 
                 string waypointText =
-                    waypoint.Name + "\t" +
+                    allWaypoints.IndexOf(waypoint) + ": " + waypoint.Name + "\t" +
                     (useImperialSystem ? $"{distanceFromLast * Toolbox.METERS_TO_NM:F0} nm" : $"{distanceFromLast / 1000.0:F0} Km") + "\t" +
                     (useImperialSystem ? $"{totalDistance * Toolbox.METERS_TO_NM:F0} nm" : $"{totalDistance / 1000.0:F0} Km");
 
