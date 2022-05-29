@@ -196,8 +196,24 @@ namespace BriefingRoom4DCS.Generator
                     Toolbox.NM_TO_METERS
                 );
 
+            var groupLua = targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory];
             if (targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.GoToPlayerAirbase)
-                destinationPoint = playerAirbase.Coordinates;
+            {
+                destinationPoint = Toolbox.RandomFrom(playerAirbase.ParkingSpots).Coordinates;
+                if(objectiveTargetUnitFamily.GetUnitCategory().IsAircraft())
+                {
+                    groupLua = objectiveTargetUnitFamily switch
+                    {
+                        UnitFamily.PlaneAttack => "AircraftBomb",
+                        UnitFamily.PlaneBomber => "AircraftBomb",
+                        UnitFamily.PlaneStrike => "AircraftBomb",
+                        UnitFamily.PlaneFighter => "AircraftCAP",
+                        UnitFamily.PlaneInterceptor => "AircraftCAP",
+                        UnitFamily.HelicopterAttack => "AircraftBomb",
+                        _ => groupLua
+                    };
+                }
+            }
 
             extraSettings.Add("GroupX2", destinationPoint.X);
             extraSettings.Add("GroupY2", destinationPoint.Y);
@@ -229,7 +245,7 @@ namespace BriefingRoom4DCS.Generator
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
                 objectiveTargetUnitFamily, unitCount,
                 taskDB.TargetSide,
-                targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], luaUnit,
+                groupLua, luaUnit,
                 unitCoordinates,
                 unitCountMinMax,
                 groupFlags,
@@ -237,6 +253,9 @@ namespace BriefingRoom4DCS.Generator
 
             if (!targetGroupInfo.HasValue) // Failed to generate target group
                 throw new BriefingRoomException($"Failed to generate group for objective.");
+            
+            if(template.MissionFeatures.Contains("ContextScrambleStart") && !TRANSPORT_TASKS.Contains(taskDB.ID))
+                targetGroupInfo.Value.DCSGroup.LateActivation = false;
 
             if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense) && (targetDB.UnitCategory == UnitCategory.Static))
                 AddEmbeddedAirDefenseUnits(template, targetDB, targetBehaviorDB, taskDB, objectiveOptions, objectiveCoordinates, groupFlags, extraSettings);

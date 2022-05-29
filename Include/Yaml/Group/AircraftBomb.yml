@@ -17,18 +17,18 @@ waypoints:
     action: Turning Point
     speed: $SPEED$
     tasks: 
-      - id: Bombing
+      - id: CarpetBombing
         parameters:
-          direction: 0
+          attackType: "Carpet"
           attackQtyLimit: false
-          attackQty: 4
-          expend: Quarter
-          y: $GROUPY2$,
-          directionEnabled: false
+          attackQty: 1
+          carpetLength: 1000
+          expend: All
+          y: $GROUPY2$
           groupAttack: true
           altitude:  $ALTITUDE$
           altitudeEnabled: false
-          weaponType: 2147485694
+          weaponType: 3221225470
           x: $GROUPX2$
     type: Turning Point
     etaLocked: false
