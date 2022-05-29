@@ -30,9 +30,8 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGeneratorCombatAirPatrols
     {
 
-        internal static int[] GenerateCAP(UnitMaker unitMaker, MissionTemplateRecord template, DCSMission mission, Coordinates averageInitialPosition, Coordinates objectivesCenter)
+        internal static void GenerateCAP(UnitMaker unitMaker, MissionTemplateRecord template, DCSMission mission, Coordinates averageInitialPosition, Coordinates objectivesCenter)
         {
-            List<int> capAircraftGroupIDs = new List<int>();
             var commonCAPDB = Database.Instance.Common.CAP;
             foreach (Coalition coalition in Toolbox.GetEnumValues<Coalition>())
             {
@@ -56,17 +55,16 @@ namespace BriefingRoom4DCS.Generator
                     mission,
                     side, coalition, capAmount,
                     centerPoint, opposingPoint,
-                    objectivesCenter,
-                    ref capAircraftGroupIDs);
+                    objectivesCenter);
+
             }
 
-            return capAircraftGroupIDs.ToArray();
         }
 
         private static void CreateCAPGroups(
             UnitMaker unitMaker, MissionTemplateRecord template, DCSMission mission, Side side,
             Coalition coalition, AmountNR capAmount, Coordinates centerPoint,
-            Coordinates opposingPoint, Coordinates destination, ref List<int> capAircraftGroupIDs)
+            Coordinates opposingPoint, Coordinates destination)
         {
             var commonCAPDB = Database.Instance.Common.CAP;
             DBCommonCAPLevel capLevelDB = commonCAPDB.CAPLevels[(int)capAmount];
@@ -119,12 +117,16 @@ namespace BriefingRoom4DCS.Generator
                     extraSettings.AddIfKeyUnused("UnitCoords", parkingSpotCoordinatesList);
                 }
 
+                UnitMakerGroupFlags groupFlags = 0;
+                
+                if(template.MissionFeatures.Contains("ContextScrambleStart"))
+                    groupFlags |= UnitMakerGroupFlags.ScrambleStart;
 
                 UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(
                     unitFamilies, groupSize, side,
                     luaGroup, luaUnit,
                     spawnpointCoordinates,
-                    0,
+                    groupFlags,
                     extraSettings);
 
                 if (!groupInfo.HasValue) // Failed to generate a group
@@ -132,7 +134,6 @@ namespace BriefingRoom4DCS.Generator
 
                 SetCarrier(template, unitMaker, side, ref groupInfo);
 
-                capAircraftGroupIDs.Add(groupInfo.Value.GroupID);
             } while (unitsLeftToSpawn > 0);
         }
 

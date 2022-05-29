@@ -68,6 +68,9 @@ namespace BriefingRoom4DCS.Generator
 
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ImmediateAircraftActivation))
                     groupFlags |= UnitMakerGroupFlags.ImmediateAircraftSpawn;
+                
+                if(_template.MissionFeatures.Contains("ContextScrambleStart"))
+                    groupFlags |= UnitMakerGroupFlags.ScrambleStart;
 
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.RadioAircraftActivation))
                     groupFlags |= UnitMakerGroupFlags.RadioAircraftSpawn;

@@ -39,5 +39,6 @@ namespace BriefingRoom4DCS.Generator
         Immortal = 64,
         Inert = 128,
         Invisible = 256,
+        ScrambleStart = 512,
     }
 }

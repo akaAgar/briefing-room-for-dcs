@@ -46,8 +46,6 @@ namespace BriefingRoom4DCS.Generator
             var mission = new DCSMission();
 
             var waypoints = new List<Waypoint>();
-            var immediateActivationAircraftGroupsIDs = new List<int>();
-            var lateActivationAircraftGroupsIDs = new List<int>();
 
             var theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
             var situationDB = Toolbox.RandomFrom(
@@ -165,12 +163,7 @@ namespace BriefingRoom4DCS.Generator
             MissionGeneratorAirDefense.GenerateAirDefense(template, unitMaker, averageInitialPosition, objectivesCenter);
 
             // Generate combat air patrols
-            var capGroupsID = MissionGeneratorCombatAirPatrols.GenerateCAP(unitMaker, template, mission, averageInitialPosition, objectivesCenter);
-            foreach (int capGroupID in capGroupsID) // Add 50% of CAP groups to the list of A/C activated on takeoff, the other 50% to the list of A/C activated later.
-                if (Toolbox.RandomChance(2))
-                    immediateActivationAircraftGroupsIDs.Add(capGroupID);
-                else
-                    lateActivationAircraftGroupsIDs.Add(capGroupID);
+            MissionGeneratorCombatAirPatrols.GenerateCAP(unitMaker, template, mission, averageInitialPosition, objectivesCenter);
 
             // Generate player flight groups
             BriefingRoom.PrintToLog("Generating player flight groups...");

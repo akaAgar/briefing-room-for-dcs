@@ -222,8 +222,11 @@ namespace BriefingRoom4DCS.Generator
 
             if (unitFamily.GetUnitCategory().IsAircraft())
             {
-                if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ImmediateAircraftSpawn))
+                if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ImmediateAircraftSpawn)) {
                     Mission.AppendValue("AircraftActivatorCurrentQueue", $"{GroupID},");
+                    if(unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ScrambleStart))
+                        dCSGroup.LateActivation = false;
+                }
                 else if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.RadioAircraftSpawn))
                     Mission.AppendValue("AircraftRadioActivator", $"{{{GroupID}, \"{groupName}\"}},");
                 else if (groupTypeLua != "AircraftUncontrolled")
