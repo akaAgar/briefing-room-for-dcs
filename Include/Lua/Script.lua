@@ -590,17 +590,6 @@ function briefingRoom.aircraftActivator.pushFromReserveQueue()
   end
 end
 
-function briefingRoom.aircraftActivator.spawnGroup(groupID)
-  local acGroup = dcsExtensions.getGroupByID(groupID) -- get the group
-  if acGroup ~= nil then -- activate the group, if it exists
-    acGroup:activate()
-    briefingRoom.debugPrint("Activating aircraft group "..acGroup:getName())
-  else
-    briefingRoom.debugPrint("Failed to activate aircraft group "..tostring(briefingRoom.aircraftActivator.currentQueue[1]))
-  end
-  return nil
-end
-
 -- Every INTERVAL seconds, check for aircraft groups to activate in the queue
 function briefingRoom.aircraftActivator.update(args, time)
   briefingRoom.debugPrint("Looking for aircraft groups to activate, found "..tostring(#briefingRoom.aircraftActivator.currentQueue), 1)
