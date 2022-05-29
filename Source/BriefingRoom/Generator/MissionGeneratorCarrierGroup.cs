@@ -61,6 +61,7 @@ namespace BriefingRoom4DCS.Generator
                 usedCoordinates.Add(shipCoordinates);
                 string cvnID = unitMaker.carrierDictionary.Count > 0 ? (unitMaker.carrierDictionary.Count + 1).ToString() : "";
                 int ilsChannel = 11 + unitMaker.carrierDictionary.Count;
+                int link4Frequency = 336 + unitMaker.carrierDictionary.Count;
                 double radioFrequency = 127.5 + unitMaker.carrierDictionary.Count;
                 string tacanCallsign = $"CVN{cvnID}";
                 int tacanChannel = 74 + unitMaker.carrierDictionary.Count;
@@ -80,6 +81,7 @@ namespace BriefingRoom4DCS.Generator
                         {"TACANCallsign", tacanCallsign},
                         {"TACANChannel", tacanChannel},
                         {"TACANFrequency", GeneratorTools.GetTACANFrequency(tacanChannel, 'X', false)},
+                        {"Link4Frequency", GeneratorTools.GetRadioFrequency(link4Frequency)},
                         {"TACANMode"," X"},
                         {"playerCanDrive", false},
                         {"NoCM", true}});
@@ -88,7 +90,7 @@ namespace BriefingRoom4DCS.Generator
 
                 mission.Briefing.AddItem(
                     DCSMissionBriefingItemType.Airbase,
-                    $"{unitDB.UIDisplayName}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t{ilsChannel}\t{tacanCallsign}, {tacanChannel}X");
+                    $"{unitDB.UIDisplayName}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t{ilsChannel}\t{tacanCallsign}, {tacanChannel}X\t{link4Frequency}");
 
                 unitMaker.carrierDictionary.Add(flightGroup.Carrier, new CarrierUnitMakerGroupInfo(groupInfo.Value, unitDB.ParkingSpots));
                 mission.MapData.Add($"CARRIER_{flightGroup.Carrier}", new List<Coordinates> { groupInfo.Value.Coordinates });

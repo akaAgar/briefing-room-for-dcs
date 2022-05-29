@@ -24,6 +24,11 @@ waypoints:
           type: 131584
           channel: $ILS$
           unitId: $UNITID$
+      - id: ActivateLink4
+        parameters:
+          wrapped: true
+          frequency: $LINK4FREQUENCY$
+          unitId: $UNITID$
     type: Turning Point
     etaLocked: true
     speedLocked: true
