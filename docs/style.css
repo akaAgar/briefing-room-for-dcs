@@ -8,7 +8,7 @@ html {
 }
 
 .container {
-	width: 924px;
+	width: 100vw;
 	margin-top: 0;
 	margin-bottom: 0;
 	margin-left: auto;

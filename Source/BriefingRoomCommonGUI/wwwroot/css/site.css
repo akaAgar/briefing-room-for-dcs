@@ -261,3 +261,12 @@ h4 {
     textarea.short {
         height: 10vh;
     }
+
+    td, th {
+        border-left: 1px solid;
+        padding: 2px;
+        margin: 2px;
+      }
+    th {
+        border-bottom: 1px solid;
+    }
