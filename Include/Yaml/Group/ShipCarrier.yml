@@ -29,6 +29,10 @@ waypoints:
           wrapped: true
           frequency: $LINK4FREQUENCY$
           unitId: $UNITID$
+      - id: ActivateACLS
+        parameters:
+          wrapped: true
+          unitId: $UNITID$
     type: Turning Point
     etaLocked: true
     speedLocked: true
