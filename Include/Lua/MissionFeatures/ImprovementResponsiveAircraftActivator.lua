@@ -1,5 +1,5 @@
 briefingRoom.mission.missionFeatures.ImprovementResponsiveAircraftActivator = { }
-briefingRoom.mission.missionFeatures.ImprovementResponsiveAircraftActivator.interval = 10
+briefingRoom.mission.missionFeatures.ImprovementResponsiveAircraftActivator.interval = 60
 
 function briefingRoom.mission.missionFeatures.ImprovementResponsiveAircraftActivator.detectedSpawner(args, time)
     -- Don't spawn extra aircraft via this method if CAP is already in the air.
