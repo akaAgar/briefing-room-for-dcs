@@ -74,6 +74,7 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("TheaterID", theaterDB.DCSID);
             mission.SetValue("AircraftActivatorCurrentQueue", ""); // Just to make sure aircraft groups spawning queues are empty
             mission.SetValue("AircraftActivatorReserveQueue", "");
+            mission.SetValue("AircraftActivatorIsResponsive", template.MissionFeatures.Contains("ImprovementsResponsiveAircraftActivator"));
             mission.SetValue("MissionPlayerSlots", template.GetPlayerSlotsCount() == 1 ? "Single-player mission" : $"{template.GetPlayerSlotsCount()}-players mission");
             mission.SetValue("CaCmdBlu", template.CombinedArmsCommanderBlue);
             mission.SetValue("CaCmdRed", template.CombinedArmsCommanderRed);

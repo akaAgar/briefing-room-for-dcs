@@ -568,6 +568,7 @@ briefingRoom.aircraftActivator = { }
 briefingRoom.aircraftActivator.INTERVAL = { 10, 20 } -- min/max interval (in seconds) between two updates
 briefingRoom.aircraftActivator.currentQueue = { $AIRCRAFTACTIVATORCURRENTQUEUE$ } -- current queue of aircraft group IDs to spawn every INTERVAL seconds
 briefingRoom.aircraftActivator.reserveQueue = { $AIRCRAFTACTIVATORRESERVEQUEUE$ } -- additional aircraft group IDs to be added to the queue later
+briefingRoom.aircraftActivator.responsiveMode = $AIRCRAFTACTIVATORISRESPONSEIVE$
 
 function briefingRoom.aircraftActivator.getRandomInterval()
   return math.random(briefingRoom.aircraftActivator.INTERVAL[1], briefingRoom.aircraftActivator.INTERVAL[2])
@@ -625,6 +626,16 @@ function briefingRoom.aircraftActivator.update(args, time)
   return time + briefingRoom.aircraftActivator.getRandomInterval() -- schedule next update
 end
 
+function briefingRoom.aircraftActivator.possibleResponsiveSpawn()
+  if briefingRoom.aircraftActivator.responsiveMode and briefingRoom.mission.hasStarted then
+    local roll = math.random(1, 100)
+    briefingRoom.debugPrint("Possible Responsive Spawn rolled: "..tostring(roll))
+    if roll < 25 then -- aprox 25% chance of spawn
+      briefingRoom.aircraftActivator.pushFromReserveQueue()
+    end
+  end
+end
+
 briefingRoom.aircraftActivator.reserveQueueInitialCount = #briefingRoom.aircraftActivator.reserveQueue
 
 -- ===================================================================================
@@ -658,6 +669,7 @@ function briefingRoom.handleGeneralKill(event)
       end
 
       briefingRoom.radioManager.play(messages[messageIndex + messageIndexOffset], "RadioHQ"..soundName..targetType..tostring(messageIndex), math.random(1, 3))
+      briefingRoom.aircraftActivator.possibleResponsiveSpawn()
     end
   end
 end
@@ -802,7 +814,6 @@ function briefingRoom.mission.coreFunctions.beginMission()
 
   -- enable the aircraft activator and start spawning aircraft
   briefingRoom.mission.hasStarted = true
-  briefingRoom.aircraftActivator.pushFromReserveQueue()
   timer.scheduleFunction(briefingRoom.aircraftActivator.update, nil, timer.getTime() + briefingRoom.aircraftActivator.getRandomInterval())
 end
 

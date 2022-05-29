@@ -39,6 +39,8 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
     -- Mark the objective as complete if all targets have been destroyed
     if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID < 1 then -- all target units destroyed, objective complete
       briefingRoom.mission.coreFunctions.completeObjective($OBJECTIVEINDEX$)
+    else
+      briefingRoom.aircraftActivator.possibleResponsiveSpawn()
     end
   
     return true
