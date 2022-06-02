@@ -118,6 +118,7 @@ namespace BriefingRoom4DCS.Data
                 "default"
             };
             Liveries.AddRange(ini.GetValueArray<string>("Aircraft", "Liveries"));
+            GetDCSLiveries(ini.GetValue<string>("Aircraft", "DCSLiveriesName", ini.GetValue<string>("Unit", "DCSID")));
         }
 
         internal string GetRadioAsString()
@@ -161,7 +162,7 @@ namespace BriefingRoom4DCS.Data
             }
             if (!File.Exists(Path.Join(folderPath, $"{DCSID}.lua")))
             {
-                BriefingRoom.PrintToLog($"No file exists for {DCSID}");
+                BriefingRoom.PrintToLog($"No payload file exists for {DCSID}");
                 return;
             }
             var file_text = File.ReadAllText(Path.Join(folderPath, $"{DCSID}.lua"))
@@ -178,10 +179,37 @@ namespace BriefingRoom4DCS.Data
                 foreach (var payload in (IDictionary)itemEntry["pylons"])
                 {
                     var payloadEntry = (IDictionary)((DictionaryEntry)payload).Value;
-                    PayloadTasks[task][Convert.ToInt32((Int64)payloadEntry["num"])] = payloadEntry["CLSID"].ToString();
+                    PayloadTasks[task][Convert.ToInt32((Int64)payloadEntry["num"]) - 1] = payloadEntry["CLSID"].ToString();
                 }
                 BriefingRoom.PrintToLog($"Imported payload {task} for {DCSID}");
             }
+        }
+
+        private void GetDCSLiveries(string DCSID)
+        {
+            var userPath = Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile);
+            string folderPath = "";
+            if (Directory.Exists(Path.Join(userPath, "Saved Games", "DCS.openbeta")))
+            {
+                folderPath = Path.Join(userPath, "Saved Games", "DCS.openbeta", "Liveries");
+            }
+            else
+            {
+                folderPath = Path.Join(userPath, "Saved Games", "DCS", "Liveries");
+            }
+            if (!Directory.Exists(Path.Join(folderPath, $"{DCSID}")))
+            {
+                BriefingRoom.PrintToLog($"No liveries folder exists for {DCSID}");
+                return;
+            }
+
+            foreach (var item in Directory.GetFiles(Path.Join(folderPath, $"{DCSID}"), "*.*", SearchOption.TopDirectoryOnly))
+            {
+                var rawFileName = item.Replace(".zip", "").Split("\\").Last();
+                if(!Liveries.Contains(rawFileName))
+                    Liveries.Add(rawFileName);
+            }
+           
         }
     }
 }
