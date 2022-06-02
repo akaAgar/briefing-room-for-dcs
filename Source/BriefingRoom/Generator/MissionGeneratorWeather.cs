@@ -82,6 +82,7 @@ namespace BriefingRoom4DCS.Generator
 
             mission.SetValue($"WeatherWindName", windLevel.ToString()); // TODO: get name from attribute
             mission.SetValue($"WeatherWindSpeedAverage", windAverage);
+            mission.SetValue($"WeatherWindDirectionCardinal", GetCardinalWindDirection(int.Parse(mission.GetValue("WeatherWindDirection1"))));
 
             mission.SetValue("WeatherGroundTurbulence", Database.Instance.Common.Wind[(int)windLevel].Turbulence.GetValue() + turbulenceFromWeather);
             return new(windSpeedAtSeaLevel, windDirectionAtSeaLevel);
@@ -94,6 +95,49 @@ namespace BriefingRoom4DCS.Generator
                 Wind.LightBreeze, Wind.LightBreeze, Wind.LightBreeze, Wind.LightBreeze,
                 Wind.ModerateBreeze, Wind.ModerateBreeze,
                 Wind.StrongBreeze);
+        }
+
+        private static string GetCardinalWindDirection(int angle)
+        {
+            switch (angle)
+            {
+                case > 348 or < 11:
+                    return "N";
+                case < 35:
+                    return "NNE";
+                case < 57:
+                    return "NE";
+                case < 79:
+                    return "ENE";
+                case < 102:
+                    return "E";
+                case < 124:
+                    return "ESE";
+                case < 147:
+                    return "SE";
+                case < 169:
+                    return "SSE";
+                case < 192:
+                    return "S";
+                case < 214:
+                    return "SSW";
+                case < 237:
+                    return "SW";
+                case < 259:
+                    return "WSW";
+                case < 282:
+                    return "W";
+                case < 303:
+                    return "WNW";
+                case < 326:
+                    return "NW";
+                case < 349:
+                    return "NNW";
+                default:
+                    throw new BriefingRoomException($"Angle {angle} out of cardinal range.");
+            }
+
+
         }
     }
 }
