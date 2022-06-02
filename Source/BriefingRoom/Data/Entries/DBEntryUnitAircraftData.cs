@@ -19,9 +19,12 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCS.Template;
+using LuaTableSerialiser;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 
 namespace BriefingRoom4DCS.Data
@@ -100,6 +103,7 @@ namespace BriefingRoom4DCS.Data
                 for (var pylonIndex = 0; pylonIndex < MAX_PYLONS; pylonIndex++)
                     PayloadTasks[task][pylonIndex] = ini.GetValue<string>("Aircraft", $"Payload.Task.{task}.Pylon{pylonIndex + 1:00}");
             }
+            GetDCSPayloads(ini.GetValue<string>("Aircraft", "DCSPayloadName", ini.GetValue<string>("Unit", "DCSID")));
 
             RadioPresets = new List<DBEntryUnitRadioPreset>();
             for (int i = 0; i < 4; i++)
@@ -121,7 +125,7 @@ namespace BriefingRoom4DCS.Data
             return $"{RadioFrequency.ToString("F1", NumberFormatInfo.InvariantInfo)} {RadioModulation}";
         }
 
-        internal Dictionary<int, Dictionary<string,string>> GetPylonsObject(string aircraftPayload)
+        internal Dictionary<int, Dictionary<string, string>> GetPylonsObject(string aircraftPayload)
         {
             string[] payload;
             aircraftPayload = aircraftPayload.ToLower();
@@ -130,18 +134,55 @@ namespace BriefingRoom4DCS.Data
             else
                 payload = PayloadTasks["default"];
 
-            var pylonsObject = new Dictionary<int, Dictionary<string,string>>();
+            var pylonsObject = new Dictionary<int, Dictionary<string, string>>();
             for (int i = 0; i < MAX_PYLONS; i++)
             {
                 string pylonCode = payload[i];
                 if (!string.IsNullOrEmpty(pylonCode))
-                    pylonsObject.Add(i + 1,  new Dictionary<string, string>{{"CLSID", pylonCode}});
+                    pylonsObject.Add(i + 1, new Dictionary<string, string> { { "CLSID", pylonCode } });
             }
 
             return pylonsObject;
         }
 
         private bool TaskPayloadExists(string task) => PayloadTasks.ContainsKey(task);
+
+        private void GetDCSPayloads(string DCSID)
+        {
+            var userPath = Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile);
+            string folderPath = "";
+            if (Directory.Exists(Path.Join(userPath, "Saved Games", "DCS.openbeta")))
+            {
+                folderPath = Path.Join(userPath, "Saved Games", "DCS.openbeta", "MissionEditor", "UnitPayloads");
+            }
+            else
+            {
+                folderPath = Path.Join(userPath, "Saved Games", "DCS", "MissionEditor", "UnitPayloads");
+            }
+            if (!File.Exists(Path.Join(folderPath, $"{DCSID}.lua")))
+            {
+                BriefingRoom.PrintToLog($"No file exists for {DCSID}");
+                return;
+            }
+            var file_text = File.ReadAllText(Path.Join(folderPath, $"{DCSID}.lua"))
+                .Replace("local unitPayloads = ", "")
+                .Replace("return unitPayloads", "");
+            var obj = LuaSerialiser.Deserialize(file_text);
+            foreach (var item in (IDictionary)obj["payloads"])
+            {
+                var itemEntry = (IDictionary)((DictionaryEntry)item).Value;
+                var task = itemEntry["name"].ToString().ToLower();
+                if (PayloadTasks.ContainsKey(task))
+                    continue;
+                PayloadTasks.Add(task, new string[MAX_PYLONS]);
+                foreach (var payload in (IDictionary)itemEntry["pylons"])
+                {
+                    var payloadEntry = (IDictionary)((DictionaryEntry)payload).Value;
+                    PayloadTasks[task][Convert.ToInt32((Int64)payloadEntry["num"])] = payloadEntry["CLSID"].ToString();
+                }
+                BriefingRoom.PrintToLog($"Imported payload {task} for {DCSID}");
+            }
+        }
     }
 }
 
