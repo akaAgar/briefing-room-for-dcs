@@ -135,6 +135,9 @@ namespace BriefingRoom4DCS
 
         public static List<string> GetAircraftLiveries(string aircraftID) =>
             Database.Instance.GetEntry<DBEntryUnit>(aircraftID).AircraftData.Liveries;
+        
+        public static List<string> GetAircraftCallsigns(string aircraftID) =>
+            Database.Instance.GetEntry<DBEntryUnit>(aircraftID).AircraftData.Callsigns;
 
         public static List<string> GetAircraftPayloads(string aircraftID) =>
             Database.Instance.GetEntry<DBEntryUnit>(aircraftID).AircraftData.PayloadTasks.Keys.ToList();

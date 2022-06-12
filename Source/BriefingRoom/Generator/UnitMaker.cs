@@ -161,17 +161,8 @@ namespace BriefingRoom4DCS.Generator
             var country = (Country)extraSettings.GetValueOrDefault("Country", (coalition == Coalition.Blue) ? Country.CJTFBlue : Country.CJTFRed);
             var skill = extraSettings.GetValueOrDefault("Skill", GeneratorTools.GetDefaultSkillLevel(Template, side)).ToString();
             var isUsingSkynet = Template.MissionFeatures.Contains("SkynetIADS");
-            string groupName;
+            var groupName = GeneratorTools.GetGroupName(GroupID, unitFamily, side, isUsingSkynet);
             UnitCallsign? callsign = null;
-            if (unitFamily.GetUnitCategory().IsAircraft())
-            {
-                callsign = CallsignGenerator.GetCallsign(unitFamily, country, side, isUsingSkynet);
-                groupName = callsign.Value.GroupName;
-                if (extraSettings.ContainsKey("PlayerStartingType") && extraSettings.GetValueOrDefault("PlayerStartingType").ToString() == "TakeOffParking")
-                    groupName += "(C)";
-            }
-            else
-                groupName = GeneratorTools.GetGroupName(GroupID, unitFamily, side, isUsingSkynet);
 
             if (unitFamily.GetUnitCategory() == UnitCategory.Static || unitFamily.GetUnitCategory() == UnitCategory.Cargo && unitFamily != UnitFamily.FOB)
                 return AddStaticGroup(
@@ -192,6 +183,13 @@ namespace BriefingRoom4DCS.Generator
 
             var firstUnitID = UnitID;
             var firstUnitDB = units.Select(x => Database.Instance.GetEntry<DBEntryUnit>(x)).First(x => x != null);
+            if (unitFamily.GetUnitCategory().IsAircraft())
+            {
+                callsign = CallsignGenerator.GetCallsign(firstUnitDB, country, side, isUsingSkynet, extraSettings.GetValueOrDefault("OverrideCallsignName", "").ToString(), (int)extraSettings.GetValueOrDefault("OverrideCallsignNumber", 1));
+                groupName = callsign.Value.GroupName;
+                if (extraSettings.ContainsKey("PlayerStartingType") && extraSettings.GetValueOrDefault("PlayerStartingType").ToString() == "TakeOffParking")
+                    groupName += "(C)";
+            }
             var dCSGroup = CreateGroup(
                 groupTypeLua,
                 coordinates,

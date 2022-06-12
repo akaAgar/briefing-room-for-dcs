@@ -28,21 +28,12 @@ namespace BriefingRoom4DCS.Generator
 {
     internal class UnitMakerCallsignGenerator
     {
-        private static readonly int NATO_CALLSIGN_COUNT = Toolbox.EnumCount<UnitCallsignFamily>();
 
-        private static readonly List<Country> NON_NATO_CALLSIGN_NATIONS = new List<Country>{Country.Russia, Country.Abkhazia, Country.Belarus, Country.China, Country.Insurgents, Country.SouthOsetia, Country.Ukraine, Country.USSR, Country.Yugoslavia};
-
-        private static readonly string[][] NATO_CALLSIGN_NAMES = new string[][]
-        {
-            new string[] { "Enfield", "Springfield", "Uzi", "Colt", "Dodge", "Ford", "Chevy", "Pontiac" },
-            new string[] { "Overlord", "Magic", "Wizard", "Focus", "Darkstar" },
-            new string[] { "Axeman", "Darknight", "Warrior", "Pointer", "Eyeball", "Moonbeam", "Whiplash", "Finger", "Pinpoint", "Ferret", "Shaba", "Playboy", "Hammer", "Jaguar", "Deathstar", "Anvil", "Firefly", "Mantis", "Badger" },
-            new string[] { "Texaco", "Arco", "Shell" },
-        };
+        private static readonly List<Country> NON_NATO_CALLSIGN_NATIONS = new List<Country> { Country.Russia, Country.Abkhazia, Country.Belarus, Country.China, Country.Insurgents, Country.SouthOsetia, Country.Ukraine, Country.USSR, Country.Yugoslavia };
 
         private readonly DBEntryCoalition[] CoalitionsDB;
 
-        private readonly int[][] NATOCallsigns = new int[NATO_CALLSIGN_COUNT][];
+        private readonly List<string> NATOCallsigns = new List<string>();
 
         private readonly List<string> RussianCallsigns = new List<string>();
 
@@ -50,48 +41,40 @@ namespace BriefingRoom4DCS.Generator
         {
             CoalitionsDB = coalitionsDB;
 
-            int i, j;
-
-            for (i = 0; i < NATO_CALLSIGN_COUNT; i++)
-            {
-                NATOCallsigns[i] = new int[NATO_CALLSIGN_NAMES[i].Length];
-                for (j = 0; j < NATO_CALLSIGN_NAMES[i].Length; j++)
-                    NATOCallsigns[i][j] = 0;
-            }
-
+            NATOCallsigns.Clear();
             RussianCallsigns.Clear();
         }
 
-        internal UnitCallsign GetCallsign(UnitFamily unitFamily, Country country, Side side, bool isUsingSkynet)
+        internal UnitCallsign GetCallsign(DBEntryUnit unitDB, Country country, Side side, bool isUsingSkynet, string overrideName, int overrideNumber)
         {
-            UnitCallsignFamily callsignFamily = GetCallsignFamilyFromUnitFamily(unitFamily);
 
             if (NON_NATO_CALLSIGN_NATIONS.Contains(country))
-                return GetRussianCallsign(unitFamily, side, isUsingSkynet);
+                return GetRussianCallsign(unitDB.Families[0], side, isUsingSkynet);
 
-            return GetNATOCallsign(callsignFamily, unitFamily, side, isUsingSkynet);
+            if (!string.IsNullOrEmpty(overrideName))
+                return GetOverriddenCallsign(overrideName, overrideNumber);
+
+            return GetNATOCallsign(unitDB, side, isUsingSkynet);
         }
 
-        private UnitCallsign GetNATOCallsign(UnitCallsignFamily callsignFamily, UnitFamily unitFamily, Side side, bool isUsingSkynet)
+        private UnitCallsign GetNATOCallsign(DBEntryUnit unitDB, Side side, bool isUsingSkynet)
         {
-            int callsignIndex;
-
+            string groupName;
+            int randomNumber;
+            string[] callSignEnum;
             do
             {
-                callsignIndex = Toolbox.RandomInt(NATO_CALLSIGN_NAMES[(int)callsignFamily].Length);
-            } while (NATOCallsigns[(int)callsignFamily][callsignIndex] >= 9);
+                callSignEnum = Toolbox.RandomFrom<string>(unitDB.AircraftData.Callsigns).Split(":");
+                randomNumber = Toolbox.RandomMinMax(1, 9);
+                groupName = $"{callSignEnum[1]} {randomNumber}";
+            } while (NATOCallsigns.Contains(groupName));
+            NATOCallsigns.Add(groupName);
 
-            NATOCallsigns[(int)callsignFamily][callsignIndex]++;
+            var unitName = groupName + " $INDEX$";
 
-            string groupName =
-                NATO_CALLSIGN_NAMES[(int)callsignFamily][callsignIndex] + " " +
-                Toolbox.ValToString(NATOCallsigns[(int)callsignFamily][callsignIndex]);
-
-            string unitName = groupName + " $INDEX$";
-
-            if (isUsingSkynet && unitFamily == UnitFamily.PlaneAWACS)
+            if (isUsingSkynet && unitDB.Families[0] == UnitFamily.PlaneAWACS)
                 unitName = SetSkyNetPrefix(unitName, side);
-            return new UnitCallsign(groupName, unitName/*, onboardNum*/, new Dictionary<object, object>{{1, callsignIndex + 1}, {2, NATOCallsigns[(int)callsignFamily][callsignIndex]}, {"name", unitName.Replace(" ", "")}});
+            return new UnitCallsign(groupName, unitName/*, onboardNum*/, new Dictionary<object, object> { { 1, callSignEnum[0] }, { 2, randomNumber }, { "name", unitName.Replace(" ", "") } });
         }
 
 
@@ -119,24 +102,19 @@ namespace BriefingRoom4DCS.Generator
             return new UnitCallsign(fgName + "0", unitName, oldUnitName);
         }
 
+        private UnitCallsign GetOverriddenCallsign(string overrideName, int overrideNumber)
+        {
+            var splitOverrideName = overrideName.Split(":");
+            var groupName = $"{splitOverrideName[1]} {overrideNumber}";
+            var unitName = groupName + " $INDEX$";
+            NATOCallsigns.Add(groupName);
+            return new UnitCallsign(groupName, unitName/*, onboardNum*/, new Dictionary<object, object> { { 1, int.Parse(splitOverrideName[0]) }, { 2, overrideNumber }, { "name", unitName.Replace(" ", "") } });
+        }
+
         private string SetSkyNetPrefix(string unitName, Side side)
         {
             var prefix = side == Side.Ally ? "BLUE-" : "";
             return $"{prefix}EW-{unitName}";
-        }
-
-        private static UnitCallsignFamily GetCallsignFamilyFromUnitFamily(UnitFamily unitFamily)
-        {
-            switch (unitFamily)
-            {
-                case UnitFamily.PlaneAWACS:
-                    return UnitCallsignFamily.AWACS;
-                case UnitFamily.PlaneTankerBasket:
-                case UnitFamily.PlaneTankerBoom:
-                    return UnitCallsignFamily.Tanker;
-                default:
-                    return UnitCallsignFamily.Aircraft;
-            }
         }
     }
 }

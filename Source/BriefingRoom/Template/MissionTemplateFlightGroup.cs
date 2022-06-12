@@ -36,12 +36,22 @@ namespace BriefingRoom4DCS.Template
         public int PlayerSlots { get { return AIWingmen ? 1 : _Count; } }
         public string Livery { get; set; } = "default";
 
+        public string OverrideRadioFrequency { get; set; } = "";
+        public RadioModulation OverrideRadioBand { get; set; } =  RadioModulation.AM;
+
+        public string OverrideCallsignName { get; set; } =  "";
+        public int OverrideCallsignNumber { get; set; } =  1;
+
         public MissionTemplateFlightGroup()
         {
             Clear();
         }
 
-        public MissionTemplateFlightGroup(string aircraft, int count, string payload, string carrier, Country country, PlayerStartLocation startLocation, bool aiWingmen, bool hostile, string livery)
+        public MissionTemplateFlightGroup(string aircraft, int count, string payload, string carrier, Country country, PlayerStartLocation startLocation, bool aiWingmen, bool hostile, string livery,
+            string overrideRadioFrequency,
+            RadioModulation overrideRadioBand,
+            string overrideCallsignName,
+            int overrideCallsignNumber)
         {
             Aircraft = aircraft;
             AIWingmen = aiWingmen;
@@ -52,6 +62,10 @@ namespace BriefingRoom4DCS.Template
             Country = country;
             StartLocation = startLocation;
             Livery = livery;
+            OverrideRadioFrequency = overrideRadioFrequency;
+            OverrideRadioBand = overrideRadioBand;
+            OverrideCallsignName = overrideCallsignName;
+            OverrideCallsignNumber = overrideCallsignNumber;
         }
 
         internal MissionTemplateFlightGroup(INIFile ini, string section, string key)
@@ -67,6 +81,10 @@ namespace BriefingRoom4DCS.Template
             Country = ini.GetValue(section, $"{key}.Country", Country);
             StartLocation = ini.GetValue(section, $"{key}.StartLocation", StartLocation);
             Livery = ini.GetValue(section, $"{key}.Livery", Livery);
+            OverrideRadioFrequency = ini.GetValue(section, $"{key}.OverrideRadioFrequency", OverrideRadioFrequency);
+            OverrideRadioBand = ini.GetValue(section, $"{key}.OverrideRadioBand", OverrideRadioBand);
+            OverrideCallsignName = ini.GetValue(section, $"{key}.OverrideCallsignName", OverrideCallsignName);
+            OverrideCallsignNumber = ini.GetValue(section, $"{key}.OverrideCallsignNumber", OverrideCallsignNumber);
         }
 
         private void Clear()
@@ -80,6 +98,10 @@ namespace BriefingRoom4DCS.Template
             Country = Country.CJTFBlue;
             StartLocation = PlayerStartLocation.Runway;
             Livery = "default";
+            OverrideRadioFrequency = "";
+            OverrideRadioBand = RadioModulation.AM;
+            OverrideCallsignName = "";
+            OverrideCallsignNumber = 1;
         }
 
         internal void SaveToFile(INIFile ini, string section, string key)
@@ -93,8 +115,11 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue(section, $"{key}.Country", Country);
             ini.SetValue(section, $"{key}.StartLocation", StartLocation);
             ini.SetValue(section, $"{key}.Livery", Livery);
+            ini.SetValue(section, $"{key}.OverrideRadioFrequency", OverrideRadioFrequency);
+            ini.SetValue(section, $"{key}.OverrideRadioBand", OverrideRadioBand);
+            ini.SetValue(section, $"{key}.OverrideCallsignName", OverrideCallsignName);
+            ini.SetValue(section, $"{key}.OverrideCallsignNumber", OverrideCallsignNumber);
         }
-
 
     }
 }

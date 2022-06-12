@@ -69,6 +69,9 @@ namespace BriefingRoom4DCS.Data
         internal string PropsLua { get; private set; } = "";
 
         internal List<string> Liveries { get; private set; }
+
+        internal List<string> Callsigns { get; private set; } = new List<string>{"1:Enfield","2:Springfield","3:Uzi","4:Colt","5:Dodge","6:Ford","7:Chevy" ,"8:Pontiac"};
+
         internal DBEntryUnitAircraftData() { }
 
         internal DBEntryUnitAircraftData(INIFile ini, bool custom = false)
@@ -119,11 +122,15 @@ namespace BriefingRoom4DCS.Data
             };
             Liveries.AddRange(ini.GetValueArray<string>("Aircraft", "Liveries"));
             GetDCSLiveries(ini.GetValue<string>("Aircraft", "DCSLiveriesName", ini.GetValue<string>("Unit", "DCSID")));
-        }
-
-        internal string GetRadioAsString()
-        {
-            return $"{RadioFrequency.ToString("F1", NumberFormatInfo.InvariantInfo)} {RadioModulation}";
+            
+            var callsigns = ini.GetValueList<string>("Aircraft", "Callsigns");
+            if(callsigns.Count > 0)
+            {
+                if(callsigns[0].StartsWith("1"))
+                    Callsigns = callsigns;
+                else
+                    Callsigns = callsigns.Concat(Callsigns).ToList();
+            }
         }
 
         internal Dictionary<int, Dictionary<string, string>> GetPylonsObject(string aircraftPayload)

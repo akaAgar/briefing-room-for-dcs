@@ -37,6 +37,11 @@ namespace BriefingRoom4DCS.Template
         internal string StartingAirbase { get; init; } = "home";
         internal List<int> ObjectiveIndexes { get; init; }
         internal string Livery { get; init; }
+        internal string OverrideRadioFrequency { get; init; } = "";
+        internal RadioModulation OverrideRadioBand { get; init; } =  RadioModulation.AM;
+        internal string OverrideCallsignName { get; set; } =  "";
+        internal int OverrideCallsignNumber { get; set; } =  1;
+
 
         internal MissionTemplateFlightGroupRecord(MissionTemplateFlightGroup flightGroup)
         {
@@ -49,6 +54,10 @@ namespace BriefingRoom4DCS.Template
             Payload = flightGroup.Payload;
             StartLocation = flightGroup.StartLocation;
             Livery = flightGroup.Livery;
+            OverrideRadioFrequency = flightGroup.OverrideRadioFrequency;
+            OverrideRadioBand = flightGroup.OverrideRadioBand;
+            OverrideCallsignName = flightGroup.OverrideCallsignName;
+            OverrideCallsignNumber = flightGroup.OverrideCallsignNumber;
         }
     }
 }

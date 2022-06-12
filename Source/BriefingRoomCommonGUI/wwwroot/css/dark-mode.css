@@ -45,3 +45,16 @@
 .darkMode select option {
     background-color: #0a263f;
 }
+
+.darkMode .accordion-body {
+    background-color: #020A10;
+}
+
+.darkMode .accordion-button{
+    background-color: #0a263f;
+    color: white;
+}
+
+.darkMode .accordion-button::after{
+    color: white;
+}

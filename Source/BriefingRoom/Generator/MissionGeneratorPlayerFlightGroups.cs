@@ -75,12 +75,12 @@ namespace BriefingRoom4DCS.Generator
             if (!string.IsNullOrEmpty(flightGroup.Carrier) && unitMaker.carrierDictionary.ContainsKey(flightGroup.Carrier) && !flightGroup.Hostile) // Carrier take off
             {
                 var carrier = unitMaker.carrierDictionary[flightGroup.Carrier];
-                if(carrier.UnitMakerGroupInfo.UnitDB.Families.Contains(UnitFamily.ShipCarrierSTOVL) && flightGroup.Carrier != "LHA_Tarawa")
-                {   
+                if (carrier.UnitMakerGroupInfo.UnitDB.Families.Contains(UnitFamily.ShipCarrierSTOVL) && flightGroup.Carrier != "LHA_Tarawa")
+                {
                     extraSettings.AddIfKeyUnused("Speed", 0);
-                    unitMakerGroupFlags =  0;
-                    skillLevel =  DCSSkillLevel.Client;
-                    if(flightGroup.Aircraft == "AV8BNA")
+                    unitMakerGroupFlags = 0;
+                    skillLevel = DCSSkillLevel.Client;
+                    if (flightGroup.Aircraft == "AV8BNA")
                         payload = "EMPTY";
                 }
                 groupLuaFile = "AircraftPlayerCarrier";
@@ -118,22 +118,32 @@ namespace BriefingRoom4DCS.Generator
 
 
 
-           
+            if (!string.IsNullOrEmpty(flightGroup.OverrideRadioFrequency))
+            {
+                extraSettings.AddIfKeyUnused("RadioBand", (int)flightGroup.OverrideRadioBand);
+                extraSettings.AddIfKeyUnused("RadioFrequency", int.Parse(flightGroup.OverrideRadioFrequency));
+            }
 
-            extraSettings.AddIfKeyUnused("Payload",payload);
-            extraSettings.AddIfKeyUnused("Skill",skillLevel.ToString());
-            extraSettings.AddIfKeyUnused("PlayerStartingAction",GeneratorTools.GetPlayerStartingAction(flightGroup.StartLocation));
-            extraSettings.AddIfKeyUnused("PlayerStartingType",GeneratorTools.GetPlayerStartingType(flightGroup.StartLocation));
-            extraSettings.AddIfKeyUnused("Country",country);
-            extraSettings.AddIfKeyUnused("InitialWPName",Database.Instance.Common.Names.WPInitialName);
-            extraSettings.AddIfKeyUnused("FinalWPName",Database.Instance.Common.Names.WPFinalName);
-            extraSettings.AddIfKeyUnused("ParkingID",parkingSpotIDsList);
-            extraSettings.AddIfKeyUnused("LinkUnit",carrierUnitID);
+            if (!string.IsNullOrEmpty(flightGroup.OverrideCallsignName))
+            {
+                extraSettings.AddIfKeyUnused("OverrideCallsignName", flightGroup.OverrideCallsignName);
+                extraSettings.AddIfKeyUnused("OverrideCallsignNumber", flightGroup.OverrideCallsignNumber);
+            }
+
+            extraSettings.AddIfKeyUnused("Payload", payload);
+            extraSettings.AddIfKeyUnused("Skill", skillLevel.ToString());
+            extraSettings.AddIfKeyUnused("PlayerStartingAction", GeneratorTools.GetPlayerStartingAction(flightGroup.StartLocation));
+            extraSettings.AddIfKeyUnused("PlayerStartingType", GeneratorTools.GetPlayerStartingType(flightGroup.StartLocation));
+            extraSettings.AddIfKeyUnused("Country", country);
+            extraSettings.AddIfKeyUnused("InitialWPName", Database.Instance.Common.Names.WPInitialName);
+            extraSettings.AddIfKeyUnused("FinalWPName", Database.Instance.Common.Names.WPFinalName);
+            extraSettings.AddIfKeyUnused("ParkingID", parkingSpotIDsList);
+            extraSettings.AddIfKeyUnused("LinkUnit", carrierUnitID);
             extraSettings.AddIfKeyUnused("UnitCoords", parkingSpotCoordinatesList);
-            extraSettings.AddIfKeyUnused("MissionAirbaseX",groupStartingCoords.X);
-            extraSettings.AddIfKeyUnused("MissionAirbaseY",groupStartingCoords.Y);
-            extraSettings.AddIfKeyUnused("MissionAirbaseID",airbase.DCSID);
-            extraSettings.AddIfKeyUnused("Livery",flightGroup.Livery);
+            extraSettings.AddIfKeyUnused("MissionAirbaseX", groupStartingCoords.X);
+            extraSettings.AddIfKeyUnused("MissionAirbaseY", groupStartingCoords.Y);
+            extraSettings.AddIfKeyUnused("MissionAirbaseID", airbase.DCSID);
+            extraSettings.AddIfKeyUnused("Livery", flightGroup.Livery);
 
             UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(
                 Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), side, unitDB.Families[0],
@@ -165,7 +175,7 @@ namespace BriefingRoom4DCS.Generator
             mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
                 $"{groupInfo.Value.Name}(P)\t" +
                 $"{flightGroup.Count}× {unitDB.UIDisplayName}\t" +
-                $"{GeneratorTools.FormatRadioFrequency(unitDB.AircraftData.RadioFrequency)}\t" +
+                $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
                 $"{Toolbox.FormatPayload(flightGroup.Payload)}\t" +
                 $"{homeBase}");
             for (int i = 0; i < flightGroup.Count; i++)
@@ -182,7 +192,7 @@ namespace BriefingRoom4DCS.Generator
             allWaypoints.Insert(0, new Waypoint(Database.Instance.Common.Names.WPInitialName, initialCoordinates));
             allWaypoints.Add(new Waypoint(Database.Instance.Common.Names.WPFinalName, initialCoordinates));
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Waypoint, $"\t{groupInfo.Value.Name}\t");
-            
+
             List<string> waypointTextRows = new List<string>();
             foreach (Waypoint waypoint in allWaypoints)
             {
@@ -198,11 +208,12 @@ namespace BriefingRoom4DCS.Generator
                 mission.Briefing.AddItem(DCSMissionBriefingItemType.Waypoint, waypointText);
                 waypointTextRows.Add(waypointText);
             }
-            mission.Briefing.FlightBriefings.Add(new DCSMissionFlightBriefing {
+            mission.Briefing.FlightBriefings.Add(new DCSMissionFlightBriefing
+            {
                 Name = groupInfo.Value.Name,
                 Type = groupInfo.Value.UnitDB.DCSIDs.First(),
                 Waypoints = waypointTextRows
-             });
+            });
         }
     }
 }
