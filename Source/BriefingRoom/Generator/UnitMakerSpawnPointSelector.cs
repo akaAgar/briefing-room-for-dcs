@@ -99,7 +99,7 @@ namespace BriefingRoom4DCS.Generator
             Coordinates origin)
         {
             if (validTypes.Contains(SpawnPointType.Air) || validTypes.Contains(SpawnPointType.Sea))
-                return Coordinates.CreateRandom(origin, new MinMaxD(1, 3));
+                return Coordinates.CreateRandom(origin, new MinMaxD(1 * Toolbox.NM_TO_METERS, 3 * Toolbox.NM_TO_METERS));
             var sp = SpawnPoints.Where(x => validTypes.Contains(x.PointType)).Aggregate((acc, x) => origin.GetDistanceFrom(x.Coordinates) < origin.GetDistanceFrom(acc.Coordinates) ? x : acc);
             SpawnPoints.Remove(sp);
             return sp.Coordinates;
