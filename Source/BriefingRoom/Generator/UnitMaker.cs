@@ -605,6 +605,13 @@ namespace BriefingRoom4DCS.Generator
             return str;
         }
 
+        internal string GetRequiredModulesBriefing()
+        {
+            if(ModUnits.Count == 0)
+                return "";
+            return "<p><strong>Required Mods:</strong><br/>" + string.Join("<br/>", ModUnits.Distinct().ToList()) + "</p>";
+        }
+
         private double GetGroupHeading(Coordinates groupCoordinates, Dictionary<string, object> extraSettings)
         {
             if (!extraSettings.ContainsKey("GroupX2"))

@@ -190,6 +190,7 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("CountriesBlue", unitMaker.GetUnitsLuaTable(Coalition.Blue));
             mission.SetValue("CountriesRed", unitMaker.GetUnitsLuaTable(Coalition.Red));
             mission.SetValue("RequiredModules", unitMaker.GetRequiredModules());
+             mission.SetValue("RequiredModulesBriefing", unitMaker.GetRequiredModulesBriefing());
             mission.SetValue("Drawings", drawingMaker.GetLuaDrawings());
             mission.SetValue("Zones", zoneMaker.GetLuaZones());
 
