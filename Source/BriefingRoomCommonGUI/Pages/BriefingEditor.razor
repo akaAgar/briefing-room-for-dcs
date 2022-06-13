@@ -44,7 +44,7 @@
 @code {
   private string errorMessage;
   private string situation;
-  private readonly Regex situationRegex = new Regex(@"\[""descriptionText""\] = ""(.|\n)*?\""", RegexOptions.IgnoreCase);
+  private readonly Regex situationRegex = new Regex(@"\[""descriptionText""\] = ""(.|\n)*?[^\\""]\""", RegexOptions.IgnoreCase);
   private string blueTask;
   private readonly Regex blueRegex = new Regex(@"\[""descriptionBlueTask""\] = ""(.|\n)*?\""", RegexOptions.IgnoreCase);
   private string redTask;
@@ -70,23 +70,23 @@
 
       situation = situationRegex.Match(mission).Value
         .Replace("[\"descriptionText\"] = \"", "")
-        .Replace("\"", "")
-        .Replace("\\", "");
+        .Replace("\\", "")
+        .TrimEnd('"');
 
       blueTask = blueRegex.Match(mission).Value
         .Replace("[\"descriptionBlueTask\"] = \"", "")
-        .Replace("\"", "")
-        .Replace("\\", "");
+        .Replace("\\", "")
+        .TrimEnd('"');
 
       redTask = redRegex.Match(mission).Value
         .Replace("[\"descriptionRedTask\"] = \"", "")
-        .Replace("\"", "")
-        .Replace("\\", "");
+        .Replace("\\", "")
+        .TrimEnd('"');
 
       neutralTask = neutralRegex.Match(mission).Value
         .Replace("[\"descriptionNeutralsTask\"] = \"", "")
-        .Replace("\"", "")
-        .Replace("\\", "");
+        .Replace("\\", "")
+        .TrimEnd('"');
 
       file = e.File;
     }
@@ -121,10 +121,14 @@
             mission = await reader.ReadToEndAsync();
           }
           entry.Delete();
-          var replacedMission = situationRegex.Replace(mission, $"[\"descriptionText\"] = \"{situation.Replace("\n", "\\\n")}\"");
-          replacedMission = blueRegex.Replace(replacedMission, $"[\"descriptionBlueTask\"] = \"{blueTask.Replace("\n", "\\\n")}\"");
-          replacedMission = redRegex.Replace(replacedMission, $"[\"descriptionRedTask\"] = \"{redTask.Replace("\n", "\\\n")}\"");
-          replacedMission = neutralRegex.Replace(replacedMission, $"[\"descriptionNeutralsTask\"] = \"{neutralTask.Replace("\n", "\\\n")}\"");
+          var situationString = situation.Replace("\"", "\\\"").Replace("\n", "\\\n");
+          var blueTaskString = blueTask.Replace("\"", "\\\"").Replace("\n", "\\\n");
+          var redTaskString = redTask.Replace("\"", "\\\"").Replace("\n", "\\\n");
+          var neutralTaskString = neutralTask.Replace("\"", "\\\"").Replace("\n", "\\\n");
+          var replacedMission = situationRegex.Replace(mission, $"[\"descriptionText\"] = \"{situationString}\"");
+          replacedMission = blueRegex.Replace(replacedMission, $"[\"descriptionBlueTask\"] = \"{blueTaskString}\"");
+          replacedMission = redRegex.Replace(replacedMission, $"[\"descriptionRedTask\"] = \"{redTaskString}\"");
+          replacedMission = neutralRegex.Replace(replacedMission, $"[\"descriptionNeutralsTask\"] = \"{neutralTaskString}\"");
           var newEntry = zip.CreateEntry("mission");
           using (var newStream = newEntry.Open())
           {
