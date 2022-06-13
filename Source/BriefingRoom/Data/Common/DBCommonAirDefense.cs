@@ -42,6 +42,7 @@ namespace BriefingRoom4DCS.Data
             MinDistanceFromOpposingPoint = new double[2, Toolbox.EnumCount<AirDefenseRange>()];
             foreach (Side side in Toolbox.GetEnumValues<Side>())
             {
+                if(side == Side.Neutral) continue;
                 foreach (AirDefenseRange airDefenseRange in Toolbox.GetEnumValues<AirDefenseRange>())
                 {
                     DistanceFromCenter[(int)side, (int)airDefenseRange] = ini.GetValue<MinMaxD>($"AirDefenseRange.{side}", $"{airDefenseRange}.DistanceFromCenter");

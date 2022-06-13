@@ -58,7 +58,7 @@ namespace BriefingRoom4DCS.Generator
                 _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                     featureDB.UnitGroupValidSpawnPoints, pointSearchCenter,
                     featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.AwayFromMissionArea) ? new MinMaxD(50, 100) : new MinMaxD(0, 5),
-                    coalition: featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.IgnoreBorders) ? null : coalition
+                    coalition: (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.IgnoreBorders) || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Neutral))  ? null : coalition
                     );
             if (!spawnPoint.HasValue) // No spawn point found
             {
@@ -70,6 +70,8 @@ namespace BriefingRoom4DCS.Generator
 
             if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.MoveTowardObjectives))
                 goPoint = objectivesCenter;
+            else if(featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.MoveAnyWhere))
+                goPoint = goPoint.CreateNearRandom(50 * Toolbox.NM_TO_METERS, 100 * Toolbox.NM_TO_METERS);
             else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.MoveTowardPlayerBase))
                 goPoint = initialCoordinates;
 

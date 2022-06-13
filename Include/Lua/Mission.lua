@@ -332,6 +332,7 @@ mission =
             ["name"] = "neutrals",
             ["country"] = 
             {
+                $COUNTRIESNEUTRAL$
             }, -- end of ["country"]
         }, -- end of ["neutrals"]
         ["blue"] = 

@@ -77,6 +77,7 @@ namespace BriefingRoom4DCS.Generator
 
                 Side groupSide = Side.Enemy;
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly)) groupSide = Side.Ally;
+                else if(featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Neutral)) groupSide = Side.Neutral;
                 else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.SameSideAsTarget) && objectiveTargetSide.HasValue) groupSide = objectiveTargetSide.Value;
 
                 if (hideEnemy && groupSide == Side.Enemy)
@@ -195,6 +196,13 @@ namespace BriefingRoom4DCS.Generator
         {
             foreach (var i in Enumerable.Range(1, featureDB.ExtraGroups.GetValue()))
             {
+                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.MoveAnyWhere))
+                {
+                    coordinates = coordinates.CreateNearRandom(50 * Toolbox.NM_TO_METERS, 100 * Toolbox.NM_TO_METERS);
+                    coordinates2 = coordinates.CreateNearRandom(50 * Toolbox.NM_TO_METERS, 100 * Toolbox.NM_TO_METERS);
+                    extraSettings["GroupX2"] = coordinates2.X;
+                    extraSettings["GroupY2"] = coordinates2.Y;
+                }
                 var groupLua = featureDB.UnitGroupLuaGroup;
                 var unitCount = featureDB.UnitGroupSize.GetValue();
                 var unitFamily = Toolbox.RandomFrom(featureDB.UnitGroupFamilies);

@@ -35,7 +35,7 @@ namespace BriefingRoom4DCS.Generator
             var commonCAPDB = Database.Instance.Common.CAP;
             foreach (Coalition coalition in Toolbox.GetEnumValues<Coalition>())
             {
-                if (coalition == Coalition.Neutural) // Skip Neutural
+                if (coalition == Coalition.Neutral) // Skip Neutural
                     continue;
 
                 bool ally = coalition == template.ContextPlayerCoalition;

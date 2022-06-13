@@ -27,7 +27,7 @@ namespace BriefingRoom4DCS.Data
     {
         internal string ATC { get; private set; }
 
-        internal Coalition Coalition { get; set; } = Coalition.Neutural;
+        internal Coalition Coalition { get; set; } = Coalition.Neutral;
 
         internal Coordinates Coordinates { get; private set; }
 

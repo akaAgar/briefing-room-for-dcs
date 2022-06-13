@@ -132,8 +132,11 @@ namespace BriefingRoom4DCS.Generator
             if (unitCount <= 0) throw new BriefingRoomException("Asking for a zero units");
             if (families.Count <= 0) throw new BriefingRoomException("No Unit Families Provided");
             DBEntryCoalition unitsCoalitionDB = CoalitionsDB[(int)((side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy())];
-
             var (country, units) = unitsCoalitionDB.GetRandomUnits(families, Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowLowPoly"), countMinMax: unitCountMinMax);
+            if(side == Side.Neutral)
+            {
+                (country, units) = GeneratorTools.GetNeutralRandomUnits(families, CoalitionsDB.SelectMany(x => x.Countries).ToList(), Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowLowPoly"), countMinMax: unitCountMinMax);
+            }
             if (units.Count == 0) throw new BriefingRoomException($"Found no units for {string.Join(", ", families)} {country}");
             if (country != Country.ALL)
                 extraSettings["Country"] = country;
@@ -157,7 +160,7 @@ namespace BriefingRoom4DCS.Generator
         {
             if (units.Length == 0) return null;
 
-            var coalition = (side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy();
+            var coalition = (side == Side.Ally) ? PlayerCoalition : (side == Side.Neutral ? Coalition.Neutral : PlayerCoalition.GetEnemy());
             var country = (Country)extraSettings.GetValueOrDefault("Country", (coalition == Coalition.Blue) ? Country.CJTFBlue : Country.CJTFRed);
             var skill = extraSettings.GetValueOrDefault("Skill", GeneratorTools.GetDefaultSkillLevel(Template, side)).ToString();
             var isUsingSkynet = Template.MissionFeatures.Contains("SkynetIADS");

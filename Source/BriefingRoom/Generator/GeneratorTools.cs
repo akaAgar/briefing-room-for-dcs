@@ -51,11 +51,83 @@ namespace BriefingRoom4DCS.Generator
 
             for (int i = 0; i < airDefenseUnitsCount; i++)
             {
-                var families = new List<UnitFamily>{UnitFamily.VehicleAAA, UnitFamily.VehicleAAA, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShort};
+                var families = new List<UnitFamily> { UnitFamily.VehicleAAA, UnitFamily.VehicleAAA, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShort };
                 units.AddRange(unitsCoalitionDB.GetRandomUnits(families, template.ContextDecade, 1, template.Mods, template.OptionsMission.Contains("AllowLowPoly"), country).Item2);
             }
 
             return units.ToArray();
+        }
+
+        internal static Tuple<Country, List<string>> GetNeutralRandomUnits(List<UnitFamily> families, List<Country> IgnoreCountries, Decade decade, int count, List<string> unitMods, bool allowLowPolly, Country? requiredCountry = null, MinMaxI? countMinMax = null)
+        {
+            // Count is zero, return an empty array.
+            if (count < 1) throw new BriefingRoomException("Asking for a zero unit list");
+            if (families.Select(x => x.GetUnitCategory()).Any(x => x != families.First().GetUnitCategory())) throw new BriefingRoomException($"Cannot mix Categories in types {string.Join(", ", families)}");
+
+            UnitCategory category = families.First().GetUnitCategory();
+            bool allowDifferentUnitTypes = false;
+
+            var validUnits = new Dictionary<Country, List<string>>();
+
+            foreach (Country country in Enum.GetValues(typeof(Country)).Cast<Country>().Where(x => !IgnoreCountries.Contains(x)).ToList())
+                validUnits[country] = (
+                        from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>()
+                        where unit.Families.Intersect(families).ToList().Count > 0 && unit.Operators.ContainsKey(country) &&
+                            (string.IsNullOrEmpty(unit.RequiredMod) || unitMods.Contains(unit.RequiredMod, StringComparer.InvariantCultureIgnoreCase)) &&
+                            (unit.Operators[country][0] <= decade) && (unit.Operators[country][1] >= decade) &&
+                            (!unit.Flags.HasFlag(DBEntryUnitFlags.LowPolly) || allowLowPolly)
+                        select unit.ID
+                    ).Distinct().ToList();
+
+            // Ensures that only countries with units listed get returned
+            validUnits = validUnits.Where(x => x.Value.Count > 0).ToDictionary(x => x.Key, x => x.Value);
+            // At least one unit found, return it
+            if (validUnits.Count == 0)
+            {
+                validUnits = new Dictionary<Country, List<string>> { { Country.ALL, Database.Instance.GetEntry<DBEntryDefaultUnitList>("FirstWorld").DefaultUnits[(int)families.First(), (int)decade].ToList() } };
+
+            }
+
+            switch (category)
+            {
+                // Units are planes or helicopters, make sure unit count does not exceed the maximum flight group size
+                case UnitCategory.Helicopter:
+                case UnitCategory.Plane:
+                    count = Toolbox.Clamp(count, 1, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE);
+                    break;
+                // Units are ships or static buildings, only one unit per group (that's the law in DCS World, buddy)
+                case UnitCategory.Ship:
+                    count = 1;
+                    break;
+                // Units are ground vehicles, allow multiple unit types in the group
+                case UnitCategory.Vehicle:
+                    allowDifferentUnitTypes = true;
+                    break;
+            }
+            var selectableUnits = new List<string>();
+            var selectedCountry = Toolbox.RandomFrom(validUnits.Keys.ToList());
+            if (requiredCountry.HasValue)
+                if (validUnits.ContainsKey(requiredCountry.Value))
+                    selectedCountry = requiredCountry.Value;
+                else
+                    BriefingRoom.PrintToLog($"Could not find suitable units for {requiredCountry.Value} using units from other coalition members.", LogMessageErrorLevel.Info);
+
+            selectableUnits = validUnits[selectedCountry];
+
+
+            // Different unit types allowed in the group, pick a random type for each unit.
+            if (allowDifferentUnitTypes)
+            {
+                List<string> selectedUnits = new List<string>();
+                for (int i = 0; i < count; i++)
+                    selectedUnits.Add(Toolbox.RandomFrom(selectableUnits));
+
+                return new(selectedCountry, selectedUnits.ToList());
+            }
+
+            // Different unit types NOT allowed in the group, pick a random type and fill the whole array with it.
+            string unitString = Toolbox.RandomFrom(selectableUnits);
+            return new(selectedCountry, Enumerable.Repeat(unitString, count).ToList());
         }
 
         internal static object LowercaseFirstCharacter(string str)
@@ -106,7 +178,7 @@ namespace BriefingRoom4DCS.Generator
                 string[] rowCells = tableRow.Split('\t');
                 table += "<tr>";
                 foreach (string rowCell in rowCells)
-                    table += $"<td>{rowCell.ReplaceAll("\n","<br/>")}</td>";
+                    table += $"<td>{rowCell.ReplaceAll("\n", "<br/>")}</td>";
                 table += "</tr>\n";
 
             }
@@ -123,6 +195,7 @@ namespace BriefingRoom4DCS.Generator
         {
             // No countries spawning restriction
             if (template.OptionsMission.Contains("SpawnAnywhere") && !forceSide) return null;
+            if (side == Side.Neutral) return Coalition.Neutral;
 
             Coalition coalition = side == Side.Ally ? template.ContextPlayerCoalition : template.ContextPlayerCoalition.GetEnemy();
 
@@ -273,8 +346,8 @@ namespace BriefingRoom4DCS.Generator
                 randomString = randomString.Replace(segment, selItem);
             }
 
-            var responseString =  randomString.Replace("{", "").Replace("}", "").Trim();
-            if(mission != null)
+            var responseString = randomString.Replace("{", "").Replace("}", "").Trim();
+            if (mission != null)
                 return mission.ReplaceValues(responseString);
             return responseString;
         }

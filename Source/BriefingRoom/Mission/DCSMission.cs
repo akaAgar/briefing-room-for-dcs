@@ -84,7 +84,8 @@ namespace BriefingRoom4DCS.Mission
             MapData = new Dictionary<string, List<Coordinates>>();
             PopulatedAirbaseIds = new Dictionary<Coalition, List<int>>{
                     {Coalition.Blue, new List<int>()},
-                    {Coalition.Red, new List<int>()}
+                    {Coalition.Red, new List<int>()},
+                    {Coalition.Neutral, new List<int>()}
                 };
 
             UniqueID = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()).ToLowerInvariant();

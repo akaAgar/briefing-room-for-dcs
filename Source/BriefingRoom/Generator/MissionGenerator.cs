@@ -189,6 +189,7 @@ namespace BriefingRoom4DCS.Generator
             // Get unit tables from the unit maker (MUST BE DONE AFTER ALL UNITS ARE GENERATED)
             mission.SetValue("CountriesBlue", unitMaker.GetUnitsLuaTable(Coalition.Blue));
             mission.SetValue("CountriesRed", unitMaker.GetUnitsLuaTable(Coalition.Red));
+            mission.SetValue("CountriesNeutral", unitMaker.GetUnitsLuaTable(Coalition.Neutral));
             mission.SetValue("RequiredModules", unitMaker.GetRequiredModules());
              mission.SetValue("RequiredModulesBriefing", unitMaker.GetRequiredModulesBriefing());
             mission.SetValue("Drawings", drawingMaker.GetLuaDrawings());

@@ -56,5 +56,7 @@ namespace BriefingRoom4DCS.Data
         ForEachAirbase = 131072,
         ForEachFOB = 262144,
         ExtraGroupsNearby = 524288,
+        Neutral = 1048576,
+        MoveAnyWhere = 2097152,
     }
 }

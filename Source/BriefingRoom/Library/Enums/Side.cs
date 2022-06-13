@@ -24,5 +24,6 @@ namespace BriefingRoom4DCS
     {
         Ally = 0,
         Enemy = 1,
+        Neutral = 2,
     }
 }

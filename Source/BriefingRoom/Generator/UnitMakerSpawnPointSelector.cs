@@ -209,7 +209,7 @@ namespace BriefingRoom4DCS.Generator
         {
             var targetAirbaseOptions =
                         (from DBEntryAirbase airbaseDB in SituationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"))
-                         where airbaseDB.Coalition == coalition && ValidateAirfieldParking(AirbaseParkingSpots[airbaseDB.DCSID], unitFamily, unitCount) && ValidateAirfieldRunway(airbaseDB, unitFamily)
+                         where (coalition == Coalition.Neutral || airbaseDB.Coalition == coalition) && ValidateAirfieldParking(AirbaseParkingSpots[airbaseDB.DCSID], unitFamily, unitCount) && ValidateAirfieldRunway(airbaseDB, unitFamily)
                          select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(coordinates));
 
             if (targetAirbaseOptions.Count() == 0) throw new BriefingRoomException("No airbase found for aircraft.");

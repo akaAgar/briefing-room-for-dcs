@@ -25,6 +25,6 @@ namespace BriefingRoom4DCS
         Blue = 0,
         Red = 1,
 
-        Neutural = 2,
+        Neutral = 2,
     }
 }

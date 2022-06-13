@@ -35,7 +35,7 @@ namespace BriefingRoom4DCS.Generator
         {
             int i;
 
-            List<Country>[] countries = new List<Country>[] { new List<Country>(), new List<Country>() };
+            List<Country>[] countries = new List<Country>[] { new List<Country>(), new List<Country>(), new List<Country>() };
 
             // Add default country for each coalition
             for (i = 0; i < 2; i++)
@@ -52,9 +52,13 @@ namespace BriefingRoom4DCS.Generator
             countries[(int)Coalition.Blue].AddRange(Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionBlue).Countries);
             countries[(int)Coalition.Red].AddRange(Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionRed).Countries);
 
+            // Add all non-aligned countries to the list of neutral countries
+            List<Country> neutralCountries = new List<Country>(Toolbox.GetEnumValues<Country>());
+            for (i = 0; i < 2; i++) neutralCountries = neutralCountries.Except(countries[i]).ToList();
+            countries[(int)Coalition.Neutral].AddRange(neutralCountries);
 
             // Make sure each country doesn't contain the other's coalition default country
-            for (i = 0; i < 2; i++)
+            for (i = 0; i < 3; i++)
             {
                 countries[i].Remove(Country.ALL);
                 countries[i] = countries[i].Distinct().ToList();
@@ -64,15 +68,12 @@ namespace BriefingRoom4DCS.Generator
             if (intersect.Count > 0)
                 throw new BriefingRoomException($"Countries can't be on both sides {string.Join(",", intersect)}. Check Red and Blue Coalitions as well as flight groups countries.");
 
-            // Add all non-aligned countries to the list of neutral countries
-            List<Country> neutralCountries = new List<Country>(Toolbox.GetEnumValues<Country>());
-            for (i = 0; i < 2; i++) neutralCountries = neutralCountries.Except(countries[i]).ToList();
 
             mission.SetValue("CoalitionNeutral", GetCountriesLuaTable(neutralCountries));
             mission.SetValue("CoalitionBlue", GetCountriesLuaTable(countries[(int)Coalition.Blue]));
             mission.SetValue("CoalitionRed", GetCountriesLuaTable(countries[(int)Coalition.Red]));
 
-            return new Country[][] { countries[0].ToArray(), countries[1].ToArray(), };
+            return new Country[][] { countries[0].ToArray(), countries[1].ToArray(), countries[2].ToArray() };
         }
 
         private static string GetCountriesLuaTable(List<Country> countries)
