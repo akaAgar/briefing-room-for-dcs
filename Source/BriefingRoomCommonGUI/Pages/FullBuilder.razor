@@ -156,6 +156,7 @@
                                         <InputDataBase ClassString="flex-block" Label="Target" @bind-Value="objective.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget" Grouping="@objective.Task"/>
                                         <InputDataBase ClassString="flex-block" Label="Target behavior" @bind-Value="objective.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior" Grouping="@objective.Target"/>
                                         <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="objective.TargetCount" EnumType="Amount"/>
+                                        <button type="button" class="btn btn-secondary row-button" @onclick="() => CloneObjectiveTask(objective)"  title="Clone Task"><span class="oi oi-layers"></span></button>
                                     </div>
                                     <div class="form-group">
                                         <CheckBoxList
@@ -176,6 +177,7 @@
                                             <InputDataBase ClassString="flex-block" Label="Target" @bind-Value="subTask.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget" Grouping="@subTask.Task"/>
                                             <InputDataBase ClassString="flex-block" Label="Target behavior" @bind-Value="subTask.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior"/>
                                             <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="subTask.TargetCount" EnumType="Amount"/>
+                                            <button type="button" class="btn btn-secondary row-button" @onclick="() => CloneObjectiveSubTask(subTask, objective)"  title="Clone Task"><span class="oi oi-layers"></span></button>
                                             <button type="button" class="btn btn-secondary row-button" @onclick="() => RemoveSubTask(objective, subTask)">x</button>
                                         </div>
                                         <CheckBoxList
@@ -755,6 +757,27 @@
         obj.Preset = "Custom";
         Template.Objectives.Add(newObj);
         ObjectiveTab = newObj;
+    }
+
+    private void CloneObjectiveTask(MissionTemplateObjective obj) {
+        MissionTemplateSubTask newSubT = new(){
+            Target = obj.Target,
+            TargetBehavior = obj.TargetBehavior,
+            TargetCount = obj.TargetCount,
+            Task = obj.Task,
+            Options = obj.Options
+        };
+        obj.SubTasks.Add(newSubT);
+    }
+    private void CloneObjectiveSubTask(MissionTemplateSubTask subTask, MissionTemplateObjective obj) {
+        MissionTemplateSubTask newSubT = new(){
+            Target = subTask.Target,
+            TargetBehavior = subTask.TargetBehavior,
+            TargetCount = subTask.TargetCount,
+            Task = subTask.Task,
+            Options = subTask.Options
+        };
+        obj.SubTasks.Add(newSubT);
     }
 
     private void RemoveObjective(MissionTemplateObjective obj)
