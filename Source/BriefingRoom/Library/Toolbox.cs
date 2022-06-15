@@ -107,9 +107,14 @@ namespace BriefingRoom4DCS
         internal static Dictionary<string, object> ToDictionaryObject(string dataStr)
         {
             var dict = new Dictionary<string, object>();
-            var matches = new Regex("\\[\\\"(.*?)\\\"\\] ?= ?(.*?),").Matches(dataStr);
-            foreach (Match match in matches)
+            var regex = new Regex("\\[\\\"(.*?)\\\"\\] ?= ?(.*)");
+            if(string.IsNullOrEmpty(dataStr))
+                return dict;
+            foreach (string str in dataStr.Split(","))
             {
+                if(!regex.IsMatch(str))
+                    throw new Exception($"Invalid Lua {dataStr}");
+                var match = regex.Match(str);
                 dict.Add(match.Groups[1].Value, DeterminType(match.Groups[2].Value));
             }
             return dict;

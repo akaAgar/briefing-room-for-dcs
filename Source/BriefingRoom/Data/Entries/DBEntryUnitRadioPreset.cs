@@ -25,11 +25,11 @@ namespace BriefingRoom4DCS.Data
 {
     internal struct DBEntryUnitRadioPreset
     {
-        internal int[] Modulations { get; }
+        internal double[] Modulations { get; }
 
-        internal int[] Channels { get; }
+        internal double[] Channels { get; }
 
-        internal DBEntryUnitRadioPreset(int[] channels, int[] modulations)
+        internal DBEntryUnitRadioPreset(double[] channels, double[] modulations)
         {
             Channels = channels;
             Modulations = modulations;

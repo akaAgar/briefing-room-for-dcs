@@ -33,11 +33,11 @@ namespace BriefingRoom4DCS
 
         internal INIFile() { Clear(); }
 
+        private string FilePath { get; init; }
         internal INIFile(string filePath, Encoding encoding = null)
         {
             Clear();
-
-            if (!File.Exists(filePath)) return;
+            FilePath = filePath;
             string iniString = File.ReadAllText(filePath, encoding ?? Encoding.UTF8);
             ParseINIString(iniString);
         }
@@ -121,8 +121,10 @@ namespace BriefingRoom4DCS
                 else
                     return default;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine($"{FilePath}: {typeof(T).FullName} => {string.Join(",", val)}");
+                Console.WriteLine(e);
                 return default;
             }
         }
@@ -382,49 +384,36 @@ namespace BriefingRoom4DCS
             Type type = typeof(T);
 
             object outObject = defaultValue;
-
+            if(string.IsNullOrEmpty(value))
+                return (T)outObject;
             if (type == typeof(bool))
-                try { outObject = Convert.ToBoolean(value, NumberFormatInfo.InvariantInfo); } catch (Exception) { }
+                outObject = Convert.ToBoolean(value, NumberFormatInfo.InvariantInfo);
             else if (type == typeof(double))
-                try { outObject = Convert.ToDouble(value, NumberFormatInfo.InvariantInfo); } catch (Exception) { }
+                outObject = Convert.ToDouble(value, NumberFormatInfo.InvariantInfo);
             else if (type == typeof(float))
-                try { outObject = Convert.ToSingle(value, NumberFormatInfo.InvariantInfo); } catch (Exception) { }
+                outObject = Convert.ToSingle(value, NumberFormatInfo.InvariantInfo);
             else if (type == typeof(int))
-                try { outObject = Convert.ToInt32(value, NumberFormatInfo.InvariantInfo); } catch (Exception) { }
+                outObject = Convert.ToInt32(value, NumberFormatInfo.InvariantInfo);
             else if (type == typeof(string))
                 outObject = value;
             else if (type.IsEnum)
-                try { outObject = Enum.Parse(typeof(T), value, true); } catch (Exception) { }
+                outObject = Enum.Parse(typeof(T), value, true);
             else if (type == typeof(Coordinates))
             {
-                try
-                {
-                    //string[] minMaxStr = value.Split(',');
-                    //object obj = new Coordinates(Convert.ToDouble(minMaxStr[0].Trim(), NumberFormatInfo.InvariantInfo), Convert.ToDouble(minMaxStr[1].Trim(), NumberFormatInfo.InvariantInfo));
                     object obj = new Coordinates(value);
                     return (T)obj;
-                }
-                catch (Exception) { return default; }
             }
             else if (type == typeof(MinMaxD))
             {
-                try
-                {
                     string[] minMaxStr = value.Split(',');
                     object obj = new MinMaxD(Convert.ToDouble(minMaxStr[0].Trim(), NumberFormatInfo.InvariantInfo), Convert.ToDouble(minMaxStr[1].Trim(), NumberFormatInfo.InvariantInfo));
                     return (T)obj;
-                }
-                catch (Exception) { return default; }
             }
             else if (type == typeof(MinMaxI))
             {
-                try
-                {
                     string[] minMaxStr = value.Split(',');
                     object obj = new MinMaxI(Convert.ToInt32(minMaxStr[0].Trim(), NumberFormatInfo.InvariantInfo), Convert.ToInt32(minMaxStr[1].Trim(), NumberFormatInfo.InvariantInfo));
                     return (T)obj;
-                }
-                catch (Exception) { return default; }
             }
 
             return (T)outObject;
@@ -465,8 +454,10 @@ namespace BriefingRoom4DCS
 
                 return arr;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine($"{FilePath}: {typeof(T).FullName} => {string.Join(",", sourceArray)}");
+                Console.WriteLine(e);
                 return new T[0];
             }
         }
