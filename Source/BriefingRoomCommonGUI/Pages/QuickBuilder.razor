@@ -107,8 +107,8 @@
                             <label>Count</label>
                             <InputNumber class="form-control" @bind-Value="flight.Count"></InputNumber>
                         </div>
-                        <InputDataBase ClassString="flex-block" Label="Carrier" @bind-Value="flight.Carrier"
-                        DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="N/A" />
+                        <InputDataBase ClassString="flex-block" Label="Start on (Carrier/Ship/FOB)" @bind-Value="flight.Carrier"
+                        DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="Airbase" />
                         <div class="flex-block form-group">
                             <label>Livery</label>
                             <select class="form-control selectpicker" @bind=flight.Livery>
