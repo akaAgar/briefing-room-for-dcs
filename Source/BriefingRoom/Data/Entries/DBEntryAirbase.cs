@@ -86,5 +86,14 @@ namespace BriefingRoom4DCS.Data
 
             return parkingSpots;
         }
+
+        public DBEntryAirbase(){}
+
+        internal DBEntryAirbase(Coordinates coords)
+        {
+            Coordinates = coords;
+            ParkingSpots = new DBEntryAirbaseParkingSpot[1];
+            RunwayLengthFt = 99999999;
+        }
     }
 }
