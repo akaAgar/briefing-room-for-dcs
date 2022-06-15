@@ -88,6 +88,9 @@ namespace BriefingRoom4DCS.Generator
                     ).ToList();
 
             if (opts.Count == 0)
+                if(!_template.PlayerFlightGroups.Any(x => string.IsNullOrEmpty(x.Carrier)))
+                    return new DBEntryAirbase(Coordinates.GetCenter(_situationDB.GetBlueZone(_template.OptionsMission.Contains("InvertCountriesCoalitions")).ToArray()));
+                else
                     throw new BriefingRoomException($"No airbase found, cannot spawn player aircraft.");
             return Toolbox.RandomFrom(opts);
         }

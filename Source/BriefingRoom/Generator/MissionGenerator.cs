@@ -108,8 +108,11 @@ namespace BriefingRoom4DCS.Generator
             var requiredRunway = template.PlayerFlightGroups.Select(x => Database.Instance.GetEntry<DBEntryUnit>(x.Aircraft).AircraftData.MinimumRunwayLengthFt).Max();
             var playerAirbase = airbasesGenerator.SelectStartingAirbase(mission, template.FlightPlanTheaterStartingAirbase, requiredRunway: requiredRunway);
             mission.PopulatedAirbaseIds[template.ContextPlayerCoalition].Add(playerAirbase.DCSID);
-            mission.MapData.Add($"AIRBASE_HOME", new List<Coordinates> { playerAirbase.Coordinates });
-            mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{playerAirbase.Name}\t{playerAirbase.Runways}\t{playerAirbase.ATC}\t{playerAirbase.ILS}\t{playerAirbase.TACAN}");
+            if(playerAirbase.DCSID > 0)
+            {
+                mission.MapData.Add($"AIRBASE_HOME", new List<Coordinates> { playerAirbase.Coordinates });
+                mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{playerAirbase.Name}\t{playerAirbase.Runways}\t{playerAirbase.ATC}\t{playerAirbase.ILS}\t{playerAirbase.TACAN}");
+            }
             airbasesGenerator.SelectStartingAirbaseForPackages(mission, playerAirbase);
             airbasesGenerator.SetupAirbasesCoalitions(mission, playerAirbase);
             zoneMaker.AddAirbaseZones(template.MissionFeatures, playerAirbase, mission.MissionPackages);
