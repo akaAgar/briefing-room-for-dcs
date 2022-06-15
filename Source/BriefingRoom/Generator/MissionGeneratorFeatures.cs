@@ -175,7 +175,7 @@ namespace BriefingRoom4DCS.Generator
                 var callsign = (GetType() == typeof(MissionGeneratorFeaturesObjectives) && extraSettings.ContainsKey("ObjectiveName")) ? extraSettings["ObjectiveName"].ToString().Substring(0,3) : $"{GeneratorTools.GetTACANCallsign(featureDB.UnitGroupFamilies[0])}{TACANIndex}";
                 if(extraSettings.ContainsKey("TACAN_NAME"))
                     callsign = extraSettings["TACAN_NAME"].ToString().Substring(0,3);
-                var channel = ((GetType() == typeof(MissionGeneratorFeaturesObjectives)) ? 31 : 20) + TACANIndex;
+                var channel = ((GetType() == typeof(MissionGeneratorFeaturesObjectives)) ? 31 : 25) + TACANIndex;
                 extraSettings.AddIfKeyUnused("TACANFrequency", 1108000000);
                 extraSettings.AddIfKeyUnused("TACANCallsign", callsign);
                 extraSettings.AddIfKeyUnused("TACANChannel", channel);
