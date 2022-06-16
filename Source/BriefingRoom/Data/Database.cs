@@ -146,7 +146,7 @@ namespace BriefingRoom4DCS.Data
                 if (!entry.Load(this, id, filePath)) continue;
                 if (DBEntries[dbType].ContainsKey(id))
                 {
-                    ((T)DBEntries[dbType][id]).Merge(entry);
+                    GetEntry<T>(id).Merge(entry);
                     BriefingRoom.PrintToLog($"Updated {shortTypeName} \"{id}\"");
 
                 }

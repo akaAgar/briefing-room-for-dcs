@@ -1,7 +1,7 @@
 # Custom Configs
 __Last Edited: 11/01/2022__
 
-Briefing Room (BR) allows you to create custom configs. For now (Jan 2022) this is limited to Aircraft Payloads, Liveries & Coalitions.
+Briefing Room (BR) allows you to create custom configs. For now (June 2022) this is limited to Aircraft Payloads, Liveries, Operators,  OperatorLiveries & Coalitions.
 
 The folder structure follows the same as in `Database` in the way that you should put your configs in the same relative place.
 
@@ -92,7 +92,7 @@ All Custom Unit configs require a basic setup.
 1. Load BR app and see it in the UI.
 
 
-### Importing Liviers
+### Importing Liveries
 
 1. Find Livery file you want to import eg `C:\Users\<user>\Saved Games\DCS.openbeta\Liveries\A-10CII\Ironfists - A-10C`
 1. Add the folder name to the custom config like so. Make sure its under `[Aircraft]` line

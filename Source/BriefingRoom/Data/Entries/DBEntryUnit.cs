@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BriefingRoom4DCS.Template;
+using Newtonsoft.Json;
 
 namespace BriefingRoom4DCS.Data
 {
@@ -55,16 +56,17 @@ namespace BriefingRoom4DCS.Data
 
     internal int ParkingSpots { get; private set; }
 
-    internal void Merge(DBEntryUnit entry)
+    internal override void Merge(DBEntry entry)
     {
-      AircraftData.Merge(entry.AircraftData);
+      var castEntry = (DBEntryUnit)entry;
+      AircraftData.Merge(castEntry.AircraftData);
 
-      Operators = entry.Operators
-        .Concat(Operators.Where(x => !entry.Operators.Keys.Contains(x.Key)))
+      Operators = castEntry.Operators
+        .Concat(Operators.Where(x => !castEntry.Operators.Keys.Contains(x.Key)))
         .ToDictionary(x => x.Key, x => x.Value);
 
-      OperatorLiveries = entry.OperatorLiveries
-        .Concat(OperatorLiveries.Where(x => !entry.OperatorLiveries.Keys.Contains(x.Key)))
+      OperatorLiveries = castEntry.OperatorLiveries
+        .Concat(OperatorLiveries.Where(x => !castEntry.OperatorLiveries.Keys.Contains(x.Key)))
         .ToDictionary(x => x.Key, x => x.Value);
     }
 

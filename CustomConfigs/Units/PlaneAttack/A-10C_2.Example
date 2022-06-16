@@ -24,3 +24,10 @@ Payload.Task.Default.pylon10={A111396E-D3E8-4b9c-8AC9-2432489304D5}
 Payload.Task.Default.pylon11={DB434044-F5D0-4F1F-9BA9-B73027E18DD3}
 
 Payload.Task.Example.pylon01=ALQ_184
+
+[Operators]
+USA=Decade2010,Decade2020
+UK=Decade2010,Decade2020
+
+[OperatorLiveries]
+CzechRepublic=Czech Air Force
