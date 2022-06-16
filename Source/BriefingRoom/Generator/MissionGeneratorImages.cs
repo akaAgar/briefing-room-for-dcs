@@ -55,7 +55,9 @@ namespace BriefingRoom4DCS.Generator
             else
                 imageLayers.Add(new ImageMakerLayer("Theaters\\" + Path.GetFileName(Toolbox.RandomFrom(theaterImages))));
 
-            imageLayers.Add(new ImageMakerLayer($"Flags\\{template.GetCoalitionID(template.ContextPlayerCoalition)}.png", ContentAlignment.TopLeft, 8, 8, 0, .5));
+            var path = $"Flags\\{template.GetCoalitionID(template.ContextPlayerCoalition)}.png";
+            if(File.Exists($"{BRPaths.INCLUDE_JPG}{path}"))
+                imageLayers.Add(new ImageMakerLayer(path, ContentAlignment.TopLeft, 8, 8, 0, .5));
 
             byte[] imageBytes = imageMaker.GetImageBytes(imageLayers.ToArray());
 
