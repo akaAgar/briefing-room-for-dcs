@@ -62,8 +62,14 @@
 
     private DatabaseEntryInfo[] GetData()
     {
+        DatabaseEntryInfo[] litems;
         if (!String.IsNullOrEmpty(Grouping))
-            return BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DataBaseType, Grouping);
-        return BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DataBaseType);
+            litems = BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DataBaseType, Grouping);
+        else
+            litems = BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DataBaseType);
+        
+        if(!litems.Select(x => x.ID).Contains(Value) && string.IsNullOrEmpty(EmptOpt) && string.IsNullOrEmpty(CustomOpt))
+            ValueChangedChild(litems[0].ID);
+        return litems;
     }
 }
