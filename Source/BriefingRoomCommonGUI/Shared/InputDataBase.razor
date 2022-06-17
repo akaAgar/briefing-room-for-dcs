@@ -68,8 +68,13 @@
         else
             litems = BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DataBaseType);
         
-        if(!litems.Select(x => x.ID).Contains(Value) && string.IsNullOrEmpty(EmptOpt) && string.IsNullOrEmpty(CustomOpt))
-            ValueChangedChild(litems[0].ID);
+        if(!litems.Select(x => x.ID).Contains(Value) && Value != "" && (string.IsNullOrEmpty(CustomOpt) || Value != CustomOpt.Split(",")[1]))
+            if(!string.IsNullOrEmpty(CustomOpt))
+                ValueChangedChild(CustomOpt.Split(",")[1]);
+            else if(!string.IsNullOrEmpty(EmptOpt))
+                ValueChangedChild("");
+            else
+                ValueChangedChild(litems[0].ID);
         return litems;
     }
 }
