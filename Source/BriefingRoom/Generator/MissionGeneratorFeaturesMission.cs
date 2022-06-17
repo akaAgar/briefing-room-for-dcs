@@ -52,32 +52,37 @@ namespace BriefingRoom4DCS.Generator
                 ForEachFob(mission, featureID, featureDB);
                 return;
             }
-
-            Coordinates pointSearchCenter = Coordinates.Lerp(initialCoordinates, objectivesCenter, featureDB.UnitGroupSpawnDistance);
-            Coordinates? spawnPoint =
-                _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                    featureDB.UnitGroupValidSpawnPoints, pointSearchCenter,
-                    featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.AwayFromMissionArea) ? new MinMaxD(50, 100) : new MinMaxD(0, 5),
-                    coalition: (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.IgnoreBorders) || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Neutral))  ? null : coalition
-                    );
-            if (!spawnPoint.HasValue) // No spawn point found
+            Coordinates? spawnPoint = null;
+            Coordinates? coordinates2 = null;
+            if(FeatureHasUnitGroup(featureDB))
             {
-                BriefingRoom.PrintToLog($"No spawn point found for mission feature {featureID}.", LogMessageErrorLevel.Warning);
-                return;
+                Coordinates pointSearchCenter = Coordinates.Lerp(initialCoordinates, objectivesCenter, featureDB.UnitGroupSpawnDistance);
+                spawnPoint =
+                    _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                        featureDB.UnitGroupValidSpawnPoints, pointSearchCenter,
+                        featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.AwayFromMissionArea) ? new MinMaxD(50, 100) : new MinMaxD(0, 5),
+                        coalition: (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.IgnoreBorders) || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Neutral))  ? null : coalition
+                        );
+                if (!spawnPoint.HasValue) // No spawn point found
+                {
+                    BriefingRoom.PrintToLog($"No spawn point found for mission feature {featureID}.", LogMessageErrorLevel.Warning);
+                    return;
+                }
+            
+
+                var goPoint = spawnPoint.Value;
+
+                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.MoveTowardObjectives))
+                    goPoint = objectivesCenter;
+                else if(featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.MoveAnyWhere))
+                    goPoint = goPoint.CreateNearRandom(50 * Toolbox.NM_TO_METERS, 100 * Toolbox.NM_TO_METERS);
+                else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.MoveTowardPlayerBase))
+                    goPoint = initialCoordinates;
+
+                coordinates2 = goPoint + Coordinates.CreateRandom(5, 20) * Toolbox.NM_TO_METERS;
             }
-
-            var goPoint = spawnPoint.Value;
-
-            if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.MoveTowardObjectives))
-                goPoint = objectivesCenter;
-            else if(featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.MoveAnyWhere))
-                goPoint = goPoint.CreateNearRandom(50 * Toolbox.NM_TO_METERS, 100 * Toolbox.NM_TO_METERS);
-            else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.MoveTowardPlayerBase))
-                goPoint = initialCoordinates;
-
-            Coordinates coordinates2 = goPoint + Coordinates.CreateRandom(5, 20) * Toolbox.NM_TO_METERS;
             Dictionary<string, object> extraSettings = new Dictionary<string, object>();
-            UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, spawnPoint.Value, coordinates2, ref extraSettings);
+            UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, spawnPoint, coordinates2, ref extraSettings);
 
             AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
         }

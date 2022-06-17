@@ -42,18 +42,19 @@ namespace BriefingRoom4DCS.Generator
             _template = template;
         }
 
-        protected UnitMakerGroupInfo? AddMissionFeature(T featureDB, DCSMission mission, Coordinates coordinates, Coordinates? coordinates2, ref Dictionary<string, object> extraSettings, Side? objectiveTargetSide = null, bool hideEnemy = false)
+        protected UnitMakerGroupInfo? AddMissionFeature(T featureDB, DCSMission mission, Coordinates? coordinates, Coordinates? coordinates2, ref Dictionary<string, object> extraSettings, Side? objectiveTargetSide = null, bool hideEnemy = false)
         {
             // Add secondary coordinates (destination point) to the extra settings
-            if (!coordinates2.HasValue) coordinates2 = coordinates; // No destination point? Use initial point
-            extraSettings.AddIfKeyUnused("GroupX2", coordinates2.Value.X);
-            extraSettings.AddIfKeyUnused("GroupY2", coordinates2.Value.Y);
-            var TACANStr = GetExtraSettingsFromFeature(featureDB, ref extraSettings); // Add specific settings for this feature (TACAN frequencies, etc)
 
             // Feature unit group
             UnitMakerGroupInfo? groupInfo = null;
             if (FeatureHasUnitGroup(featureDB))
             {
+                if (!coordinates2.HasValue) coordinates2 = coordinates; // No destination point? Use initial point
+                extraSettings.AddIfKeyUnused("GroupX2", coordinates2.Value.X);
+                extraSettings.AddIfKeyUnused("GroupY2", coordinates2.Value.Y);
+                var TACANStr = GetExtraSettingsFromFeature(featureDB, ref extraSettings); // Add specific settings for this feature (TACAN frequencies, etc)
+                var coordinatesValue = coordinates.Value;
                 UnitMakerGroupFlags groupFlags = 0;
 
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Immortal))
@@ -89,13 +90,13 @@ namespace BriefingRoom4DCS.Generator
                 var unitCount = featureDB.UnitGroupSize.GetValue();
                 var unitFamily = Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
                 var luaUnit = featureDB.UnitGroupLuaUnit;
-                SetAirbase(featureDB, ref mission, unitFamily, ref groupLua, ref luaUnit, groupSide, ref coordinates, coordinates2.Value, unitCount, ref extraSettings);
+                SetAirbase(featureDB, ref mission, unitFamily, ref groupLua, ref luaUnit, groupSide, ref coordinatesValue, coordinates2.Value, unitCount, ref extraSettings);
 
                 groupInfo = _unitMaker.AddUnitGroup(
                     unitFamily, unitCount,
                     groupSide,
                     groupLua, luaUnit,
-                    coordinates, groupFlags,
+                    coordinatesValue, groupFlags,
                     extraSettings);
 
                 SetCarrier(featureDB, groupSide, ref groupInfo);
@@ -112,7 +113,7 @@ namespace BriefingRoom4DCS.Generator
                             $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}"); // TODO: human-readable payload name
 
                 if (featureDB.ExtraGroups.Max > 1)
-                    SpawnExtraGroups(featureDB, mission, groupSide, groupFlags, coordinates, coordinates2.Value, extraSettings);
+                    SpawnExtraGroups(featureDB, mission, groupSide, groupFlags, coordinatesValue, coordinates2.Value, extraSettings);
             }
 
             // Feature Lua script
@@ -185,7 +186,7 @@ namespace BriefingRoom4DCS.Generator
             return "";
         }
 
-        private bool FeatureHasUnitGroup(T featureDB)
+        internal bool FeatureHasUnitGroup(T featureDB)
         {
             return (featureDB.UnitGroupFamilies.Length > 0) &&
                  !string.IsNullOrEmpty(featureDB.UnitGroupLuaGroup) &&

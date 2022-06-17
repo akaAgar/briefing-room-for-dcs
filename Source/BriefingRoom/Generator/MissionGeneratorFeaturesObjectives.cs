@@ -43,13 +43,14 @@ namespace BriefingRoom4DCS.Generator
 
             double spawnDistance = Math.Max(1.0, featureDB.UnitGroupSpawnDistance) * Toolbox.NM_TO_METERS;
 
-            Coordinates coordinates;
+            Coordinates? coordinates = null;
+            Coordinates? coordinates2 = null;
 
             if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.SpawnOnObjective))
             {
                 coordinates = objectiveCoordinates + Coordinates.CreateRandom(10, 50);
             }
-            else
+            else if(FeatureHasUnitGroup(featureDB))
             {
                 Coordinates? spawnPoint =
                     _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
@@ -62,10 +63,11 @@ namespace BriefingRoom4DCS.Generator
                     return;
                 }
 
-                coordinates = spawnPoint.Value;
+                coordinates = spawnPoint;
             }
 
-            Coordinates coordinates2 = coordinates + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
+            if(coordinates.HasValue)
+                coordinates2 = coordinates.Value + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
 
             Dictionary<string, object> extraSettings = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
             extraSettings.AddIfKeyUnused("ObjectiveName", objectiveName);
