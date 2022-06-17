@@ -13,6 +13,7 @@
 @using BriefingRoom4DCS.GUI.Utils
 @using System.Text
 @using System.IO
+@using Polly
 <LoadingSpinner ON="spinner"/>
 <div class="title-bar">
     <h1>Campaign Generator</h1>
@@ -437,7 +438,7 @@
             campaign = await briefingRoom.GenerateCampaignAsync(Template);
             missionTab = campaign.Missions.First();
             StateHasChanged();
-            await JSRuntime.InvokeVoidAsync("RenderMap", missionTab.GetMapData());
+            await Policy.Handle<Exception>().RetryAsync(3).ExecuteAsync(async () => await JSRuntime.InvokeVoidAsync("RenderMap", missionTab.GetMapData()));
         } catch (Exception ex){
             Console.WriteLine(ex);
             errorMessage = ex.Message;
@@ -531,7 +532,7 @@
     private void SetMissionTab(DCSMission var)
     {
         missionTab = var;
-        JSRuntime.InvokeVoidAsync("RenderMap", missionTab.GetMapData());
+        Policy.Handle<Exception>().RetryAsync(3).ExecuteAsync(async () => await JSRuntime.InvokeVoidAsync("RenderMap", missionTab.GetMapData()));
     }
 
     private List<string> GetLiveries(string aircraftId) =>

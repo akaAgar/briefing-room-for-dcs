@@ -12,6 +12,7 @@
 @using BriefingRoom4DCS.GUI.Utils
 @using System.Text
 @using System.IO
+@using Polly
 <LoadingSpinner ON="spinner"/>
 <div class="title-bar">
     <h1>Full Mission Generator</h1>
@@ -605,7 +606,7 @@
             errorMessage = "";
             mission = await briefingRoom.GenerateMissionAsync(Template);
             StateHasChanged();
-            await JSRuntime.InvokeVoidAsync("RenderMap", mission.GetMapData());
+            await Policy.Handle<Exception>().RetryAsync(3).ExecuteAsync(async () => await JSRuntime.InvokeVoidAsync("RenderMap", mission.GetMapData()));
         } catch (Exception ex){
             Console.WriteLine(ex);
             errorMessage = ex.Message;
