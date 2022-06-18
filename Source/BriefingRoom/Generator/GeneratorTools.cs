@@ -386,6 +386,8 @@ namespace BriefingRoom4DCS.Generator
             name = name.Replace("$NTH$", Toolbox.GetOrdinalAdjective(fakeGroupNumber));
             if (isUsingSkynet)
                 return SetSkyNetPrefix(name, family, side);
+            if(string.IsNullOrEmpty(name))
+                throw new BriefingRoomException($"{family} cannot have empty group name");
             return name;
         }
 
