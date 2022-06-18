@@ -242,6 +242,9 @@ namespace BriefingRoom4DCS.Generator
                 }
             }
 
+            if(objectiveTargetUnitFamily.GetUnitCategory().IsAircraft() && !groupFlags.HasFlag(UnitMakerGroupFlags.RadioAircraftSpawn))
+                groupFlags |= UnitMakerGroupFlags.ImmediateAircraftSpawn;
+
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
                 objectiveTargetUnitFamily, unitCount,
                 taskDB.TargetSide,
