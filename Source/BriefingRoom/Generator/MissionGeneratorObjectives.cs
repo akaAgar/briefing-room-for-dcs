@@ -199,7 +199,7 @@ namespace BriefingRoom4DCS.Generator
             var groupLua = targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory];
             if (targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.GoToPlayerAirbase)
             {
-                destinationPoint = Toolbox.RandomFrom(playerAirbase.ParkingSpots).Coordinates;
+                destinationPoint = playerAirbase.ParkingSpots.Count() > 1 ? Toolbox.RandomFrom(playerAirbase.ParkingSpots).Coordinates : playerAirbase.Coordinates;
                 if(objectiveTargetUnitFamily.GetUnitCategory().IsAircraft())
                 {
                     groupLua = objectiveTargetUnitFamily switch
