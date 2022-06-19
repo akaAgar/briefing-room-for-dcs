@@ -43,6 +43,8 @@ namespace BriefingRoom4DCS
 
         public const string BUILD_VERSION = "~BUILD_VERSION~";
 
+        public const int MAXFILESIZE = 50000000;
+
         public delegate void LogHandler(string message, LogMessageErrorLevel errorLevel);
 
         private static event LogHandler OnMessageLogged;

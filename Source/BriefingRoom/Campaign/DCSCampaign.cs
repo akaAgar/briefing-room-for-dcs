@@ -69,11 +69,12 @@ namespace BriefingRoom4DCS.Campaign
                 Missions[i].SaveToMizFile($"{exportPath}{Name}{i + 1:00}.miz");
         }
 
-        public byte[] ExportToCompressedByteArray()
+        public byte[] ExportToCompressedByteArray(CampaignTemplate template)
         {
             Dictionary<string, byte[]> FileEntries = new Dictionary<string, byte[]>();
 
             FileEntries.Add("Campaign.cmp", Encoding.UTF8.GetBytes(CMPFile));
+            FileEntries.Add("template.cbrt", template.GetIniBytes());
 
             foreach (string key in MediaFiles.Keys)
             {

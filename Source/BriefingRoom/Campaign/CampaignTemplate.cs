@@ -146,8 +146,16 @@ namespace BriefingRoom4DCS.Campaign
         {
             if (!File.Exists(filePath)) return false;
 
-            var ini = new INIFile(filePath);
+            return Load(new INIFile(filePath));
+        }
 
+        public bool LoadFromString(string data)
+        {
+            return Load(INIFile.CreateFromRawINIString(data));
+        }
+
+        private bool Load(INIFile ini)
+        {
             BriefingCampaignName = ini.GetValue("Briefing", "CampaignName", BriefingCampaignName);
 
             ContextCoalitionBlue = ini.GetValue("Context", "Coalitions.Blue", ContextCoalitionBlue);

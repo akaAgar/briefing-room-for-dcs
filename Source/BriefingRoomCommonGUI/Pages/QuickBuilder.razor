@@ -13,10 +13,11 @@
 @using BriefingRoom4DCS.GUI.Utils
 @using System.IO
 @using Polly
+@using System.IO.Compression
 <LoadingSpinner ON="spinner"/>
 <div class="title-bar">
     <h1>Quick Mission Generator </h1>
-    <TemplateButtons LoadTemplate="LoadTemplate" SaveTemplate="SaveTemplate" ClearTemplate="ClearTemplate" AcceptString=".brt" />
+    <TemplateButtons LoadTemplate="LoadTemplate" SaveTemplate="SaveTemplate" ClearTemplate="ClearTemplate" AcceptString=".brt,.miz" />
 </div>
 <div class="generator-group">
     <div class="generator-form">
@@ -314,8 +315,22 @@
     {
         try
         {
-            using var reader = new StreamReader(e.File.OpenReadStream());
-            var data = await reader.ReadToEndAsync();
+            var targetFile = e.File.OpenReadStream(BriefingRoom.MAXFILESIZE);
+            var data = "";
+            if(e.File.Name.EndsWith(".miz"))
+            {
+                using var ms = new MemoryStream();
+                await targetFile.CopyToAsync(ms);
+                using var zip = new ZipArchive(ms);
+                if (!zip.Entries.Any(entry => entry.Name == "template.brt"))
+                    throw new Exception("Template File not found within mission");
+                targetFile.Close();
+                using var reader = new StreamReader(zip.Entries.First(entry => entry.Name == "template.brt").Open());
+                data = await reader.ReadToEndAsync();
+            } else {
+                using var reader = new StreamReader(targetFile);
+                data = await reader.ReadToEndAsync();
+            }
             Template.LoadFromString(data);
             tempateMessage = "Template Loaded";
             clearTemplateMessageDelay();

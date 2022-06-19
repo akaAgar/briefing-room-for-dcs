@@ -14,10 +14,11 @@
 @using System.Text
 @using System.IO
 @using Polly
+@using System.IO.Compression
 <LoadingSpinner ON="spinner"/>
 <div class="title-bar">
     <h1>Campaign Generator</h1>
-    <TemplateButtons LoadTemplate="LoadTemplate" SaveTemplate="SaveTemplate" ClearTemplate="ClearTemplate" AcceptString=".cbrt" />
+    <TemplateButtons LoadTemplate="LoadTemplate" SaveTemplate="SaveTemplate" ClearTemplate="ClearTemplate" AcceptString=".cbrt,.zip" />
 </div>
 <div class="generator-group">
     <div class="generator-form">
@@ -396,9 +397,23 @@
     {
         try
         {
-            using var reader = new StreamReader(e.File.OpenReadStream());
-            var data = await reader.ReadToEndAsync();
-            //Template.LoadFromString(data); 
+            var targetFile = e.File.OpenReadStream(BriefingRoom.MAXFILESIZE);
+            var data = "";
+            if(e.File.Name.EndsWith(".zip"))
+            {
+                using var ms = new MemoryStream();
+                await targetFile.CopyToAsync(ms);
+                using var zip = new ZipArchive(ms);
+                if (!zip.Entries.Any(entry => entry.Name == "template.cbrt"))
+                    throw new Exception("Template File not found within campaign");
+                targetFile.Close();
+                using var reader = new StreamReader(zip.Entries.First(entry => entry.Name == "template.cbrt").Open());
+                data = await reader.ReadToEndAsync();
+            } else {
+                using var reader = new StreamReader(targetFile);
+                data = await reader.ReadToEndAsync();
+            }
+            Template.LoadFromString(data); 
             tempateMessage = "Template Loaded";
             clearTemplateMessageDelay();
             
@@ -458,7 +473,7 @@
     async Task DownloadCampaign()
     {
 
-        byte[] zipBytes = campaign.ExportToCompressedByteArray();
+        byte[] zipBytes = campaign.ExportToCompressedByteArray(Template);
         if (zipBytes == null) return; // Something went wrong during the .miz export
 
         try { await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{Template.ContextTheater} - {campaign.Name}.zip", "application/octet-stream", zipBytes); }
