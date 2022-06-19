@@ -374,7 +374,7 @@
 
     async Task DownloadMission()
     {
-        byte[] zipBytes = mission.SaveToMizBytes();
+        byte[] zipBytes = mission.SaveToMizBytes(Template);
         if (zipBytes == null) return; // Something went wrong during the .miz export
 
         try

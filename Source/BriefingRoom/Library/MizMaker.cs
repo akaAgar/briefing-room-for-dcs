@@ -21,10 +21,9 @@ If not, see https://www.gnu.org/licenses/
 */
 
 using BriefingRoom4DCS.Mission;
-using System;
+using BriefingRoom4DCS.Template;
 using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -33,12 +32,14 @@ namespace BriefingRoom4DCS
     internal class MizMaker
     {
 
-        internal static byte[] ExportToMizBytes(DCSMission mission)
+        internal static byte[] ExportToMizBytes(DCSMission mission, MissionTemplate template = null)
         {
             Dictionary<string, byte[]> MizFileEntries = new Dictionary<string, byte[]>();
 
             AddStringValueToEntries(MizFileEntries, "briefing.html", mission.Briefing.GetBriefingAsHTML(true));
-            AddStringValueToEntries(MizFileEntries, "credits.txt", "Generated with BriefingRoom for DCS World (https://akaagar.itch.io/briefing-room-for-dcs)");
+            AddStringValueToEntries(MizFileEntries, "credits.txt", $"Generated with BriefingRoom for DCS World (https://akaagar.itch.io/briefing-room-for-dcs) {BriefingRoom.VERSION} ({BriefingRoom.BUILD_VERSION})");
+            if(template != null)
+                AddStringValueToEntries(MizFileEntries, "template.brt", Encoding.ASCII.GetString(template.GetIniBytes()));
             AddLuaFileToEntries(MizFileEntries, "mission", "Mission.lua", mission);
             AddLuaFileToEntries(MizFileEntries, "options", "Options.lua", null);
             AddStringValueToEntries(MizFileEntries, "theatre", mission.GetValue("TheaterID"));

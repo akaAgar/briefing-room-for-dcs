@@ -23,7 +23,7 @@ namespace BriefingRoom4DCS.GUI.Web.API.Controllers
         {
             var briefingRoom = new BriefingRoom();
             var mission = await briefingRoom.GenerateMissionAsync(template);
-            var mizBytes = mission.SaveToMizBytes();
+            var mizBytes = mission.SaveToMizBytes(template);
 
             if (mizBytes == null) return null; // Something went wrong during the .miz export
             return File(mizBytes, "application/octet-stream", $"{mission.Briefing.Name}.miz");

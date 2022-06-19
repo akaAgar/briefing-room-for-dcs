@@ -177,9 +177,9 @@ namespace BriefingRoom4DCS.Mission
             }
         }
 
-        public byte[] SaveToMizBytes()
+        public byte[] SaveToMizBytes(MissionTemplate template = null)
         {
-            return MizMaker.ExportToMizBytes(this);
+            return MizMaker.ExportToMizBytes(this, template);
         }
 
         internal string[] GetMediaFileNames()
