@@ -203,6 +203,8 @@ namespace BriefingRoom4DCS
         internal static void PrintToLog(string message, LogMessageErrorLevel errorLevel = LogMessageErrorLevel.Info)
         {
             OnMessageLogged?.Invoke(message, errorLevel);
+            if(errorLevel == LogMessageErrorLevel.Warning || errorLevel == LogMessageErrorLevel.Error)
+                Console.WriteLine($"{errorLevel}: {message}");
         }
     }
 }
