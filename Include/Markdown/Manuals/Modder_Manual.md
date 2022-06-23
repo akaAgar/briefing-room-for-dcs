@@ -306,7 +306,7 @@ SA-10 Grumble.ini Example(03/21)
     Belarus=Decade1970,Decade2020
     Bulgaria=Decade1980,Decade2020
     China=Decade1990,Decade2020
-    Czechoslovakia=Decade1990,Decade2020
+    CzechRepublic=Decade1990,Decade2020
     Egypt=Decade2010,Decade2020
     EastGermany=Decade1980,Decade2020
     Greece=Decade2000,Decade2020
