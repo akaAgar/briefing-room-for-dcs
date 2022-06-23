@@ -175,21 +175,30 @@ namespace BriefingRoom4DCS.Data
             var file_text = File.ReadAllText(Path.Join(folderPath, $"{DCSID}.lua"))
                 .Replace("local unitPayloads = ", "")
                 .Replace("return unitPayloads", "");
-            var obj = LuaSerialiser.Deserialize(file_text);
-            foreach (var item in (IDictionary)obj["payloads"])
+            try
             {
-                var itemEntry = (IDictionary)((DictionaryEntry)item).Value;
-                var task = itemEntry["name"].ToString().ToLower();
-                if (PayloadTasks.ContainsKey(task))
-                    continue;
-                PayloadTasks.Add(task, new string[MAX_PYLONS]);
-                foreach (var payload in (IDictionary)itemEntry["pylons"])
+                var obj = LuaSerialiser.Deserialize(file_text);
+                foreach (var item in (IDictionary)obj["payloads"])
                 {
-                    var payloadEntry = (IDictionary)((DictionaryEntry)payload).Value;
-                    PayloadTasks[task][Convert.ToInt32((Int64)payloadEntry["num"]) - 1] = payloadEntry["CLSID"].ToString();
+                    var itemEntry = (IDictionary)((DictionaryEntry)item).Value;
+                    var task = itemEntry["name"].ToString().ToLower();
+                    if (PayloadTasks.ContainsKey(task))
+                        continue;
+                    PayloadTasks.Add(task, new string[MAX_PYLONS]);
+                    foreach (var payload in (IDictionary)itemEntry["pylons"])
+                    {
+                        var payloadEntry = (IDictionary)((DictionaryEntry)payload).Value;
+                        PayloadTasks[task][Convert.ToInt32((Int64)payloadEntry["num"]) - 1] = payloadEntry["CLSID"].ToString();
+                    }
+                    BriefingRoom.PrintToLog($"Imported payload {task} for {DCSID}");
                 }
-                BriefingRoom.PrintToLog($"Imported payload {task} for {DCSID}");
+                
             }
+            catch (System.Exception)
+            {
+                BriefingRoom.PrintToLog($"Cannot parse player payloads for {DCSID}. Likely as a payload name isn't happy with our parser, Reccomend you remove any of these characters {{}}/\\: from your custom payload names.", LogMessageErrorLevel.Warning);
+            }
+            
         }
 
         private void GetDCSLiveries(string DCSID)
