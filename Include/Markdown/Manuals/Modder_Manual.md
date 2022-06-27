@@ -263,7 +263,7 @@ For Payload configs see [Porting Payloads](docs/PortingPayloads.md)
 
     PlayerControllable=True
 
-    Radio.Modulation=FM <- default radio (simple)
+    Radio.Modulation=AM <- default radio (simple)
     Radio.Frequency=251.0
 
     Payload.Common=["chaff"] = 240,["flare"] = 120,["fuel"] = 5029,["ammo_type"] = 1,["gun"] = 100 <- Common payload params for aircraft ,
