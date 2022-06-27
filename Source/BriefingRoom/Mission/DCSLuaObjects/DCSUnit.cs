@@ -79,8 +79,9 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 }}.SelectMany(x => x).ToDictionary(x => x.Key, y => y.Value)},
                 {"callsign", Callsign},
                 {"onboard_num", OnboardNum},
-                {"Radio", RadioPresets}
             };
+            if(Skill == "Player" || Skill == "Client")
+                obj.Add("Radio", RadioPresets);
             if(Parking > 0)
                 obj.Add("parking", Parking);
             return LuaSerialiser.Serialize(obj);
