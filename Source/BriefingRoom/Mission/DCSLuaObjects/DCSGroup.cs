@@ -30,6 +30,8 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 
         public bool Dead {get; set;}
 
+        public bool RadioSet {get; set;} = false;
+
         public string ToLuaString(int number)
         {   
             if(Static) return ToLuaStringStatic(number);
@@ -56,6 +58,8 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"visible", Visible},
                 {"hiddenOnMFD", Visible},
             };
+            if(RadioSet)
+                obj.Add("radioSet", true);
             return LuaSerialiser.Serialize(obj.Where(x => x.Value != null).ToDictionary(x => x.Key, x => x.Value));
         }
 

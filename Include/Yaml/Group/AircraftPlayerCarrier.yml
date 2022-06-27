@@ -1,5 +1,6 @@
 modulation: $RADIOBAND$
 task: CAS
+radioSet: true
 uncontrolled: false
 waypoints:
   - alt: 13
