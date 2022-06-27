@@ -789,7 +789,7 @@ function briefingRoom.mission.coreFunctions.completeObjective(index)
     briefingRoom.radioManager.play("Command: Excellent work! Mission complete, you may return to base.", "RadioHQMissionComplete", math.random(6, 8))
     trigger.action.setUserFlag(1, true) -- Mark the mission complete internally, so campaigns can move to the next mission
   elseif not briefingRoom.mission.hasStarted then
-    briefingRoom.radioManager.play("Auto Completed Objective "..objName.." (if your not using DSMC then this is a bug and should be reported)", "Radio0", math.random(6, 8))
+    briefingRoom.radioManager.play("Auto Completed Objective "..objName.." (if your not using DSMC and have not edited the mission in the ME please report the bug (editing target units can break scripts))", "Radio0", math.random(6, 8))
   else
     briefingRoom.radioManager.play("Command: Good job! Objective "..objName.." complete, proceed to next objective.", "RadioHQObjectiveComplete", math.random(6, 8))
   end
