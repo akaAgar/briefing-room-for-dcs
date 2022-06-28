@@ -12,12 +12,12 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
 
     -- check if any target unit is close enough from the landing unit
     -- if so, clean the target unit ID table and mark the objective as completed
-    for _,id in ipairs(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID) do
-      local targetUnit = dcsExtensions.getUnitByID(id)
+    for _,id in ipairs(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames) do
+      local targetUnit = Unit.getByName(id)
       if targetUnit ~= nil then
         local targetPosition = dcsExtensions.toVec2(targetUnit:getPoint())
         if dcsExtensions.getDistance(position, targetPosition) < 650 then
-          briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID = { }
+          briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames = { }
           briefingRoom.mission.coreFunctions.completeObjective($OBJECTIVEINDEX$)
           return true
         end

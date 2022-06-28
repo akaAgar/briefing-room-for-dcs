@@ -15,7 +15,7 @@ namespace BriefingRoom4DCS.Generator
         internal Coordinates Coordinates { get { return new Coordinates(DCSGroup.X, DCSGroup.Y); } }
         internal int GroupID { get { return DCSGroup.GroupId; } }
         internal string Name { get { return DCSGroup.Name; } }
-        internal int[] UnitsID { get { return DCSGroup.Units.Select(x => x.UnitId).ToArray(); } }
+        internal string[] UnitNames { get { return DCSGroup.Units.Select(x => x.Name).ToArray(); } }
 
         internal double Frequency { get { return DCSGroup.Frequency; } }
 
@@ -224,14 +224,14 @@ namespace BriefingRoom4DCS.Generator
             if (unitFamily.GetUnitCategory().IsAircraft())
             {
                 if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ImmediateAircraftSpawn)) {
-                    Mission.AppendValue("AircraftActivatorCurrentQueue", $"{GroupID},");
+                    Mission.AppendValue("AircraftActivatorCurrentQueue", $"\"{groupName}\",");
                     if(unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ScrambleStart))
                         dCSGroup.LateActivation = false;
                 }
                 else if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.RadioAircraftSpawn))
                     Mission.AppendValue("AircraftRadioActivator", $"{{{GroupID}, \"{groupName}\"}},");
                 else if (groupTypeLua != "AircraftUncontrolled")
-                    Mission.AppendValue("AircraftActivatorReserveQueue", $"{GroupID},");
+                    Mission.AppendValue("AircraftActivatorReserveQueue", $"\"{groupName}\",");
             }
 
             if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.Immortal))

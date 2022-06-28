@@ -122,8 +122,8 @@ namespace BriefingRoom4DCS.Generator
             // Adds the features' group ID to the briefingRoom.mission.missionFeatures.groupsID table
             if (this is MissionGeneratorFeaturesMission)
             {
-                featureLua += $"briefingRoom.mission.missionFeatures.groupsID.{GeneratorTools.LowercaseFirstCharacter(featureDB.ID)} = {(groupInfo.HasValue ? groupInfo.Value.GroupID : 0)}\n";
-                featureLua += $"briefingRoom.mission.missionFeatures.unitsID.{GeneratorTools.LowercaseFirstCharacter(featureDB.ID)} = {{{(groupInfo.HasValue ? string.Join(",", groupInfo.Value.UnitsID) : "")}}}\n";
+                featureLua += $"briefingRoom.mission.missionFeatures.groupNames.{GeneratorTools.LowercaseFirstCharacter(featureDB.ID)} = \"{(groupInfo.HasValue ? groupInfo.Value.Name : 0)}\"\n";
+                featureLua += $"briefingRoom.mission.missionFeatures.unitNames.{GeneratorTools.LowercaseFirstCharacter(featureDB.ID)} = {{{(groupInfo.HasValue ? string.Join(",", groupInfo.Value.UnitNames.Select(x => $"\"{x}\"")) : "")}}}\n";
             }
 
             if (!string.IsNullOrEmpty(featureDB.IncludeLuaSettings)) featureLua = featureDB.IncludeLuaSettings + "\n";
@@ -293,8 +293,8 @@ namespace BriefingRoom4DCS.Generator
                 return;
 
             var carrier = Toolbox.RandomFrom(carrierPool.Values.ToArray());
-            groupInfo.Value.DCSGroup.Waypoints[0].LinkUnit = carrier.UnitMakerGroupInfo.UnitsID[0];
-            groupInfo.Value.DCSGroup.Waypoints[0].HelipadId = carrier.UnitMakerGroupInfo.UnitsID[0];
+            groupInfo.Value.DCSGroup.Waypoints[0].LinkUnit = carrier.UnitMakerGroupInfo.DCSGroup.Units[0].UnitId;
+            groupInfo.Value.DCSGroup.Waypoints[0].HelipadId = carrier.UnitMakerGroupInfo.DCSGroup.Units[0].UnitId;
             groupInfo.Value.DCSGroup.Waypoints[0].X = (float)carrier.UnitMakerGroupInfo.Coordinates.X;
             groupInfo.Value.DCSGroup.Waypoints[0].Y = (float)carrier.UnitMakerGroupInfo.Coordinates.Y;
             groupInfo.Value.DCSGroup.X = (float)carrier.UnitMakerGroupInfo.Coordinates.X;

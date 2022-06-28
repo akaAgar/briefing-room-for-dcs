@@ -12,14 +12,14 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeM
   local objective = briefingRoom.mission.objectives[$OBJECTIVEINDEX$]
   briefingRoom.radioManager.play("Pilot: I have no visual. Pop a smoke grenade on target.", "RadioPilotMarkTargetWithSmoke")
 
-  if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID == 0 then -- no target units left
+  if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames == 0 then -- no target units left
     briefingRoom.radioManager.play(objective.name.." JTAC: Negative, no visual on any target.", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
     return
   end
   
-  local unit = dcsExtensions.getUnitByID(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID[1])
+  local unit = Unit.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
   if unit == nil then -- no unit found with the ID, try searching for a static
-    unit = dcsExtensions.getStaticByID(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID[1])
+    unit = Static.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
     if unit == nil then -- no unit nor static found with the ID
       briefingRoom.radioManager.play(objective.name.." JTAC: Negative, no visual on any target.", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
       return

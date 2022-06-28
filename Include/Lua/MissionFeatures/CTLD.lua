@@ -420,11 +420,11 @@ ctld.logisticUnits = {
     "logistic10",
 }
 -- BR Generator add Static unit & FARPs
-for i,id in ipairs(briefingRoom.mission.missionFeatures.unitsID.cTLD) do
-    local unit = dcsExtensions.getStaticByID(id)
+for i,name in ipairs(briefingRoom.mission.missionFeatures.unitNames.cTLD) do
+    local unit = Static.getByName(name)
     if unit ~= nil then
         table.insert(ctld.logisticUnits, unit:getName())
-        env.info("CTLD added logi static"..id, false)
+        env.info("CTLD added logi static"..name, false)
     end
 end
 for i=1,2 do

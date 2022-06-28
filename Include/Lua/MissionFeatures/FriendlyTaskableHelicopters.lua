@@ -49,7 +49,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.launch
   local marks = world.getMarkPanels()
   for _,m in ipairs(marks) do
     if briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID ~= nil and m.idx == briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID then
-      local group = dcsExtensions.getGroupByID(briefingRoom.mission.missionFeatures.groupsID.friendlyTaskableHelicopters)
+      local group = Group.getByName(briefingRoom.mission.missionFeatures.groupNames.friendlyTaskableHelicopters)
       if group ~= nil then
         group:activate()
         local Start = {
@@ -72,7 +72,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.setTas
   local marks = world.getMarkPanels()
   for _,m in ipairs(marks) do
     if briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID ~= nil and m.idx == briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID then
-      local group = dcsExtensions.getGroupByID(briefingRoom.mission.missionFeatures.groupsID.friendlyTaskableHelicopters)
+      local group = Group.getByName(briefingRoom.mission.missionFeatures.groupNames.friendlyTaskableHelicopters)
       if group ~= nil then
         local currPos = mist.getLeadPos(group)
         local newTask = {

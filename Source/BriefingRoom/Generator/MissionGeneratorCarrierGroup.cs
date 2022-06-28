@@ -86,7 +86,7 @@ namespace BriefingRoom4DCS.Generator
                         {"playerCanDrive", false},
                         {"NoCM", true}});
 
-                if (!groupInfo.HasValue || (groupInfo.Value.UnitsID.Length == 0)) continue; // Couldn't generate group
+                if (!groupInfo.HasValue || (groupInfo.Value.UnitNames.Length == 0)) continue; // Couldn't generate group
 
                 mission.Briefing.AddItem(
                     DCSMissionBriefingItemType.Airbase,
@@ -188,7 +188,7 @@ namespace BriefingRoom4DCS.Generator
                     {"RadioFrequency", GeneratorTools.GetRadioFrequency(radioFrequency)},
                     {"playerCanDrive", false},
                     {"NoCM", true}});
-            if (!groupInfo.HasValue || (groupInfo.Value.UnitsID.Length == 0)) return; // Couldn't generate group
+            if (!groupInfo.HasValue || (groupInfo.Value.UnitNames.Length == 0)) return; // Couldn't generate group
             zoneMaker.AddCTLDPickupZone(spawnPoint.Value, true);
             mission.Briefing.AddItem(
                      DCSMissionBriefingItemType.Airbase,

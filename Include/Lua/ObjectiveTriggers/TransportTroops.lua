@@ -12,11 +12,11 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
   -- Drop off
   local distanceToObjective = dcsExtensions.getDistance(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].waypoint, position);
   if distanceToObjective < 500 then
-    local removed = briefingRoom.transportManager.removeTroopCargo(event.initiator:getID(), briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID)
+    local removed = briefingRoom.transportManager.removeTroopCargo(event.initiator:getID(), briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames)
     for index, value in ipairs(removed) do
-      table.removeValue(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID, value)
+      table.removeValue(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, value)
     end
-    if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID < 1 then -- all target units destroyed, objective complete
+    if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames < 1 then -- all target units destroyed, objective complete
       briefingRoom.radioManager.play("Pilot: Command, Troops Delivered.", "RadioPilotTroopsDelivered")
       briefingRoom.mission.coreFunctions.completeObjective($OBJECTIVEINDEX$)
     end
@@ -25,8 +25,8 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
 
   local collect = {}
   -- Pickup
-  for _,id in ipairs(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID) do
-    local targetUnit = dcsExtensions.getUnitByID(id)
+  for _,id in ipairs(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames) do
+    local targetUnit = Unit.getByName(id)
     if targetUnit ~= nil then
       local targetPosition = dcsExtensions.toVec2(targetUnit:getPoint())
       if dcsExtensions.getDistance(position, targetPosition) < 500 then

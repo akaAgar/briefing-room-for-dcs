@@ -263,9 +263,13 @@ namespace BriefingRoom4DCS.Generator
             if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense) && (targetDB.UnitCategory == UnitCategory.Static))
                 AddEmbeddedAirDefenseUnits(template, targetDB, targetBehaviorDB, taskDB, objectiveOptions, objectiveCoordinates, groupFlags, extraSettings);
 
-            var pluralIndex = targetGroupInfo.Value.UnitsID.Length == 1 ? 0 : 1;
+
+            // Assign target suffix
+            targetGroupInfo.Value.DCSGroup.Name += $"-TGT-{objectiveName}";
+            targetGroupInfo.Value.DCSGroup.Units.ForEach(x => x.Name += $"-TGT-{objectiveName}");
+
+            var pluralIndex = targetGroupInfo.Value.UnitNames.Length == 1 ? 0 : 1;
             var taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex], mission).Replace("\"", "''");
-            // Pick a name, then remove it from the list
             ObjectiveNames.Remove(objectiveName);
             CreateTaskString(mission, pluralIndex, ref taskString, objectiveName, objectiveTargetUnitFamily);
             CreateLua(mission, template, targetDB, taskDB, objectiveIndex, objectiveName, targetGroupInfo, taskString);
@@ -425,14 +429,14 @@ namespace BriefingRoom4DCS.Generator
             // Add Lua table for this objective
             string objectiveLua = $"briefingRoom.mission.objectives[{objectiveIndex + 1}] = {{ ";
             objectiveLua += $"complete = false, ";
-            objectiveLua += $"groupID = {targetGroupInfo.Value.GroupID}, ";
+            objectiveLua += $"groupName = \"{targetGroupInfo.Value.Name}\", ";
             objectiveLua += $"hideTargetCount = false, ";
             objectiveLua += $"name = \"{objectiveName}\", ";
             objectiveLua += $"targetCategory = Unit.Category.{targetDB.UnitCategory.ToLuaName()}, ";
             objectiveLua += $"taskType = \"{taskDB.ID}\", ";
             objectiveLua += $"task = \"{taskString}\", ";
-            objectiveLua += $"unitsCount = {targetGroupInfo.Value.UnitsID.Length}, ";
-            objectiveLua += $"unitsID = {{ {string.Join(", ", targetGroupInfo.Value.UnitsID)} }} ";
+            objectiveLua += $"unitsCount = {targetGroupInfo.Value.UnitNames.Length}, ";
+            objectiveLua += $"unitNames = {{ {string.Join(", ", targetGroupInfo.Value.UnitNames.Select(x => $"\"{x}\""))} }} ";
             objectiveLua += "}\n";
 
             // Add F10 sub-menu for this objective

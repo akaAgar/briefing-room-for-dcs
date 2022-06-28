@@ -17,10 +17,10 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
         unitID = tonumber(event.initiator:getID())
     else return end
 
-    if not table.contains(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID, unitID) then return false end
+    if not table.contains(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, unitID) then return false end
 
     -- Remove the unit from the list of targets
-    table.removeValue(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID, unitID)
+    table.removeValue(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, unitID)
   
     -- Play "target destroyed" radio message
     local soundName = "TargetDestroyed"
@@ -31,7 +31,7 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
     briefingRoom.radioManager.play(messages[messageIndex + messageIndexOffset], "RadioHQ"..soundName..targetType..tostring(messageIndex), math.random(1, 3))
 
     -- Mark the objective as complete if all targets have been destroyed
-    if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID < 1 then -- all target units destroyed, objective complete
+    if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames < 1 then -- all target units destroyed, objective complete
         briefingRoom.mission.coreFunctions.completeObjective($OBJECTIVEINDEX$)
     else
         briefingRoom.aircraftActivator.possibleResponsiveSpawn()

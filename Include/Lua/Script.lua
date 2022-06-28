@@ -312,17 +312,6 @@ function dcsExtensions.getDistance(vec2a, vec2b)
   return math.sqrt(math.pow(vec2a.x - vec2b.x, 2) + math.pow(vec2a.y - vec2b.y, 2))
 end
 
--- Returns the group with ID id, or nil if no group with this ID is found
-function dcsExtensions.getGroupByID(id)
-  for i=1,2 do
-    for _,g in pairs(coalition.getGroups(i)) do
-      if g:getID() == id then return g end
-    end
-  end
-
-  return nil
-end
-
 -- Is an unit alive?
 function dcsExtensions.isUnitAlive(name)
   if name == nil then return false end
@@ -334,20 +323,10 @@ function dcsExtensions.isUnitAlive(name)
   return true
 end
 
--- Returns the group with ID id, or nil if no group with this ID is found
-function dcsExtensions.getStaticByID(id)
-  for i=1,2 do
-    for _,g in pairs(coalition.getStaticObjects(i)) do
-      if tonumber(g:getID()) == tonumber(id) then return g end
-    end
-  end
-
-  return nil
-end
 
 -- Returns the first unit alive in group with ID groupID, or nil if group doesn't exist or is completely destroyed
-function dcsExtensions.getAliveUnitInGroup(groupID)
-  local g = dcsExtensions.getGroupByID(groupID)
+function dcsExtensions.getAliveUnitInGroup(groupName)
+  local g = Group.getByName(groupName)
   if g == nil then return nil end
 
   for __,u in ipairs(g:getUnits()) do
@@ -375,40 +354,11 @@ function dcsExtensions.getCoalitionUnits(coalID)
   return units
 end
 
--- Returns the vec3 position of the first unit alive in group with ID id
-function dcsExtensions.getGroupLocationByID(id)
-  local g = dcsExtensions.getGroupByID(id)
-  if g == nil then
-    return nil
-  end
-
-  for _,unit in pairs(g:getUnits()) do
-    if unit:getLife() >= 1 then return unit:getPoint() end
-  end
-
-  return nil
-end
-
 -- Returns the unit with ID id, or nil if no unit with this ID is found
-function dcsExtensions.getUnitByID(id)
+function dcsExtensions.getGroupBySuffix(suffix)
   for i=1,2 do
     for _,g in pairs(coalition.getGroups(i)) do
-      for __,u in pairs(g:getUnits()) do
-        if tonumber(u:getID()) == tonumber(id) then
-          return u
-        end
-      end
-    end
-  end
-
-  return nil
-end
-
--- Returns the unit with ID id, or nil if no unit with this ID is found
-function dcsExtensions.getGroupByPrefix(prefix)
-  for i=1,2 do
-    for _,g in pairs(coalition.getGroups(i)) do
-        if string.startsWith(g:getName(), prefix) then
+        if string.endsWith(g:getName(), suffix) then
           return g
       end
     end
@@ -597,7 +547,7 @@ function briefingRoom.aircraftActivator.update(args, time)
     return time + briefingRoom.aircraftActivator.getRandomInterval() -- schedule next update and return
   end
 
-  local acGroup = dcsExtensions.getGroupByID(briefingRoom.aircraftActivator.currentQueue[1]) -- get the group
+  local acGroup = Group.getByName(briefingRoom.aircraftActivator.currentQueue[1]) -- get the group
   if acGroup ~= nil then -- activate the group, if it exists
     acGroup:activate()
     local Start = {
@@ -691,24 +641,24 @@ briefingRoom.transportManager = {}
 briefingRoom.transportManager.transportRoster = {}
 briefingRoom.transportManager.maxTroops = 10
 
-function briefingRoom.transportManager.initTransport(transportUnitID)
-  briefingRoom.transportManager.transportRoster[transportUnitID] = {
+function briefingRoom.transportManager.initTransport(transportUnitName)
+  briefingRoom.transportManager.transportRoster[transportUnitName] = {
     troops = {}
   }
 end
 
-function briefingRoom.transportManager.addTroopCargo(transportUnitID, unitIds)
-  if not table.containsKey(briefingRoom.transportManager.transportRoster, transportUnitID) then
-    briefingRoom.transportManager.initTransport(transportUnitID)
+function briefingRoom.transportManager.addTroopCargo(transportUnitName, unitNames)
+  if not table.containsKey(briefingRoom.transportManager.transportRoster, transportUnitName) then
+    briefingRoom.transportManager.initTransport(transportUnitName)
   end
-  for index, unitId in ipairs(unitIds) do
-    if #briefingRoom.transportManager.transportRoster[transportUnitID].troops == briefingRoom.transportManager.maxTroops then
-      briefingRoom.radioManager.play("Troop: Pilot, We are full, let's get going. (Total troops: "..#briefingRoom.transportManager.transportRoster[transportUnitID].troops..")", "RadioTroopFull")
+  for index, unitName in ipairs(unitNames) do
+    if #briefingRoom.transportManager.transportRoster[transportUnitName].troops == briefingRoom.transportManager.maxTroops then
+      briefingRoom.radioManager.play("Troop: Pilot, We are full, let's get going. (Total troops: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops..")", "RadioTroopFull")
       return true
     end
-    local unit = dcsExtensions.getUnitByID(unitId)
+    local unit = Unit.getByName(unitName)
     if unit ~= nil then
-      briefingRoom.transportManager.transportRoster[transportUnitID].troops[unitId] = {
+      briefingRoom.transportManager.transportRoster[transportUnitName].troops[unitName] = {
         ["type"] = unit:getTypeName(),
         ["name"] = unit:getName(),
         ["country"] = unit: getCountry()
@@ -716,21 +666,21 @@ function briefingRoom.transportManager.addTroopCargo(transportUnitID, unitIds)
       unit:destroy()
     end
   end
-  briefingRoom.radioManager.play("Troop: Pilot, Everyone is in, let's go. (Total troops: "..#briefingRoom.transportManager.transportRoster[transportUnitID].troops..")", "RadioTroopAllIn")
+  briefingRoom.radioManager.play("Troop: Pilot, Everyone is in, let's go. (Total troops: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops..")", "RadioTroopAllIn")
 end
 
-function briefingRoom.transportManager.removeTroopCargo(transportUnitID, unitIDs)
-  local transportUnit = dcsExtensions.getUnitByID(transportUnitID)
-  if not table.containsKey(briefingRoom.transportManager.transportRoster, transportUnitID) or transportUnit == nil then
+function briefingRoom.transportManager.removeTroopCargo(transportUnitName, unitNames)
+  local transportUnit = Unit.getByName(transportUnitName)
+  if not table.containsKey(briefingRoom.transportManager.transportRoster, transportUnitName) or transportUnit == nil then
     return {}
   end
   local transportUnitPoint = transportUnit:getPoint()
   local removed = {}
-  for index, unitId in ipairs(unitIDs) do
-    if table.containsKey(briefingRoom.transportManager.transportRoster[transportUnitID].troops, unitId) then
-      local unitDeets = briefingRoom.transportManager.transportRoster[transportUnitID].troops[unitId]
-      briefingRoom.transportManager.transportRoster[transportUnitID].troops[unitId] = nil
-      table.insert(removed, unitId)
+  for index, unitName in ipairs(unitNames) do
+    if table.containsKey(briefingRoom.transportManager.transportRoster[transportUnitName].troops, unitName) then
+      local unitDeets = briefingRoom.transportManager.transportRoster[transportUnitName].troops[unitName]
+      briefingRoom.transportManager.transportRoster[transportUnitName].troops[unitName] = nil
+      table.insert(removed, unitName)
       mist.dynAdd({
         units = { [1] ={
           ["y"] = transportUnitPoint.z + math.random(-30, 30),
@@ -746,7 +696,7 @@ function briefingRoom.transportManager.removeTroopCargo(transportUnitID, unitIDs
       })
     end
   end
-  briefingRoom.radioManager.play("Troop: Pilot, Everyone is clear, good to take off. (Remaining troops: "..#briefingRoom.transportManager.transportRoster[transportUnitID].troops..")", "RadioTroopTakeoff")
+  briefingRoom.radioManager.play("Troop: Pilot, Everyone is clear, good to take off. (Remaining troops: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops..")", "RadioTroopTakeoff")
   return removed
 end
 
@@ -840,7 +790,7 @@ function briefingRoom.f10MenuCommands.missionStatus()
 
     local objectiveProgress = ""
     if o.unitsCount > 0 and o.hideTargetCount ~= true then
-      local targetsDone = math.max(0, o.unitsCount - #o.unitsID)
+      local targetsDone = math.max(0, o.unitsCount - #o.unitNames)
       objectiveProgress = " ("..tostring(targetsDone).."/"..tostring(o.unitsCount)..")"
     end
 
@@ -894,17 +844,17 @@ end
 
 for objIndex,obj in ipairs(briefingRoom.mission.objectives) do
   if obj.unitsCount > 0 then
-    obj.unitsID = table.filter(obj.unitsID, function(o, k, i)
-      local u = dcsExtensions.getUnitByID(o)
+    obj.unitNames = table.filter(obj.unitNames, function(o, k, i)
+      local u = Unit.getByName(o)
       if u == nil then
-        u = dcsExtensions.getStaticByID(o)
+        u = Static.getByName(o)
       end
       if u == nil then
         return false
       end
       return u:isExist()
     end)
-    if(next(obj.unitsID) == nil) then
+    if(next(obj.unitNames) == nil) then
       briefingRoom.mission.coreFunctions.completeObjective(objIndex)
     end
   end
@@ -927,8 +877,8 @@ $SCRIPTOBJECTIVESFEATURES$
 -- ===================================================================================
 
 briefingRoom.mission.missionFeatures = { } -- Mission features
-briefingRoom.mission.missionFeatures.groupsID = { } -- Mission features group ID
-briefingRoom.mission.missionFeatures.unitsID = { } -- Mission features units ID
+briefingRoom.mission.missionFeatures.groupNames = { } -- Mission features group ID
+briefingRoom.mission.missionFeatures.unitNames = { } -- Mission features units ID
 $SCRIPTMISSIONFEATURES$
 
 -- ===================================================================================

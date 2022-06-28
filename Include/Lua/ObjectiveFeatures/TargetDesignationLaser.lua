@@ -12,7 +12,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
     return time + 1 -- next update in one second
   end
 
-  if not objFeature.targetDesignationLaser.laserTarget:isExist() or not table.contains(objective.unitsID, tonumber(objFeature.targetDesignationLaser.laserTarget:getID())) then -- target is considered complete
+  if not objFeature.targetDesignationLaser.laserTarget:isExist() or not table.contains(objective.unitNames, tonumber(objFeature.targetDesignationLaser.laserTarget:getID())) then -- target is considered complete
     briefingRoom.debugPrint("JTAC $OBJECTIVEINDEX$: Target Complete finding new target", 1)
     local unit = objFeature.targetDesignationLaser.setRandomTarget()
     if unit == nil then
@@ -64,16 +64,16 @@ end
 -- Get Random Target
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.setRandomTarget = function()
   local objective = briefingRoom.mission.objectives[$OBJECTIVEINDEX$]
-  local randomUnitID = math.randomFromHashTable(objective.unitsID)
-  local unit = dcsExtensions.getUnitByID(randomUnitID)
+  local randomUnitName = math.randomFromHashTable(objective.unitNames)
+  local unit = Unit.getByName(randomUnitName)
   if unit == nil then -- no unit found with the ID, try searching for a static
-    unit = dcsExtensions.getStaticByID(randomUnitID)
+    unit = Static.getByName(randomUnitName)
     if unit == nil then -- no unit nor static found with the ID
       return nil
     end
   end
   briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.laserTarget = unit
-  briefingRoom.debugPrint("JTAC $OBJECTIVEINDEX$: Assigned Laser Target:"..randomUnitID, 1)
+  briefingRoom.debugPrint("JTAC $OBJECTIVEINDEX$: Assigned Laser Target:"..randomUnitName, 1)
   return unit
 end
 

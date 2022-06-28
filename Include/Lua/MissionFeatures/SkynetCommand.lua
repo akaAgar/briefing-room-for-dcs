@@ -1,4 +1,4 @@
 
-local skynetCommandCenter = dcsExtensions.getStaticByID(briefingRoom.mission.missionFeatures.unitsID.skynetIADSCommand[1])
+local skynetCommandCenter = Static.getByName(briefingRoom.mission.missionFeatures.unitNames.skynetIADSCommand[1])
 redIADS:addCommandCenter(skynetCommandCenter)
 redIADS:activate()

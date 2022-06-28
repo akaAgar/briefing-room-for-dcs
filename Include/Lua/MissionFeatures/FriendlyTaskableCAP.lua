@@ -49,7 +49,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableCAP.launchBombingR
   local marks = world.getMarkPanels()
   for _,m in ipairs(marks) do
     if briefingRoom.mission.missionFeatures.friendlyTaskableCAP.markID ~= nil and m.idx == briefingRoom.mission.missionFeatures.friendlyTaskableCAP.markID then
-      local group = dcsExtensions.getGroupByID(briefingRoom.mission.missionFeatures.groupsID.friendlyTaskableCAP)
+      local group = Group.getByName(briefingRoom.mission.missionFeatures.groupNames.friendlyTaskableCAP)
       if group ~= nil then
         group:activate()
         local Start = {
@@ -72,7 +72,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableCAP.setTask()
   local marks = world.getMarkPanels()
   for _,m in ipairs(marks) do
     if briefingRoom.mission.missionFeatures.friendlyTaskableCAP.markID ~= nil and m.idx == briefingRoom.mission.missionFeatures.friendlyTaskableCAP.markID then
-      local group = dcsExtensions.getGroupByID(briefingRoom.mission.missionFeatures.groupsID.friendlyTaskableCAP)
+      local group = Group.getByName(briefingRoom.mission.missionFeatures.groupNames.friendlyTaskableCAP)
       if group ~= nil then
         local newTask = {
           id = 'Mission',

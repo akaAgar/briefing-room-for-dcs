@@ -84,7 +84,7 @@ namespace BriefingRoom4DCS.Generator
                         payload = "EMPTY";
                 }
                 groupLuaFile = "AircraftPlayerCarrier";
-                carrierUnitID = carrier.UnitMakerGroupInfo.UnitsID[0];
+                carrierUnitID = carrier.UnitMakerGroupInfo.DCSGroup.Units[0].UnitId;
                 carrierName = carrier.UnitMakerGroupInfo.UnitDB.UIDisplayName;
 
                 for (int i = 0; i < flightGroup.Count; i++)

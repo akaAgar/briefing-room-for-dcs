@@ -19,10 +19,10 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
 
   local unitID = tonumber(event.initiator:getID())
   -- Destroyed unit wasn't a target
-  if not table.contains(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID, unitID) then return false end
+  if not table.contains(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, unitID) then return false end
 
   -- Remove the unit from the list of targets
-  table.removeValue(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID, unitID)
+  table.removeValue(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, unitID)
 
   -- Play "target destroyed" radio message
   local soundName = "TargetDestroyed"
@@ -37,7 +37,7 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
   briefingRoom.radioManager.play(messages[messageIndex + messageIndexOffset], "RadioHQ"..soundName..targetType..tostring(messageIndex), math.random(1, 3))
 
   -- Mark the objective as complete if all targets have been destroyed
-  if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID < 1 then -- all target units destroyed, objective complete
+  if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames < 1 then -- all target units destroyed, objective complete
     briefingRoom.mission.coreFunctions.completeObjective($OBJECTIVEINDEX$)
   else
     briefingRoom.aircraftActivator.possibleResponsiveSpawn()
@@ -50,15 +50,15 @@ end
 do
   local newTargetTable = { }
   
-  for _,i in ipairs(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID) do
-    local unit = dcsExtensions.getUnitByID(i)
+  for _,i in ipairs(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames) do
+    local unit = Unit.getByName(i)
     if unit ~= nil and unit:hasAttribute("SAM TR") then
       table.insert(newTargetTable, i)
     end
   end
 
   if #newTargetTable > 0 then
-    briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsID = newTargetTable
+    briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames = newTargetTable
     briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsCount = #newTargetTable
   end
 end

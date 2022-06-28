@@ -15,10 +15,10 @@ end
 -- Destroys the next active target unit
 function briefingRoom.f10MenuCommands.debug.destroyTargetUnit()
   for index,objective in ipairs(briefingRoom.mission.objectives) do
-    if (#objective.unitsID > 0) then
-      local u = dcsExtensions.getUnitByID(objective.unitsID[1])
+    if (#objective.unitNames > 0) then
+      local u = Unit.getByName(objective.unitNames[1])
       if u == nil then
-        u = dcsExtensions.getStaticByID(objective.unitsID[1])
+        u = Static.getByName(objective.unitNames[1])
       end
       if u ~= nil then
         trigger.action.outText("Destroyed "..u:getName(), 2)

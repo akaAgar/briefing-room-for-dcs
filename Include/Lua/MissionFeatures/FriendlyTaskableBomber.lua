@@ -50,7 +50,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableBomber.launchBombi
   local marks = world.getMarkPanels()
   for _,m in ipairs(marks) do
     if briefingRoom.mission.missionFeatures.friendlyTaskableBomber.markID ~= nil and m.idx == briefingRoom.mission.missionFeatures.friendlyTaskableBomber.markID then
-      local group = dcsExtensions.getGroupByID(briefingRoom.mission.missionFeatures.groupsID.friendlyTaskableBomber)
+      local group = Group.getByName(briefingRoom.mission.missionFeatures.groupNames.friendlyTaskableBomber)
       if group ~= nil then
         group:activate()
         local Start = {
@@ -73,7 +73,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableBomber.setTask()
   local marks = world.getMarkPanels()
   for _,m in ipairs(marks) do
     if briefingRoom.mission.missionFeatures.friendlyTaskableBomber.markID ~= nil and m.idx == briefingRoom.mission.missionFeatures.friendlyTaskableBomber.markID then
-      local group = dcsExtensions.getGroupByID(briefingRoom.mission.missionFeatures.groupsID.friendlyTaskableBomber)
+      local group = Group.getByName(briefingRoom.mission.missionFeatures.groupNames.friendlyTaskableBomber)
       if group ~= nil then
         local currPos = mist.getLeadPos(group)
         local newTask = {
