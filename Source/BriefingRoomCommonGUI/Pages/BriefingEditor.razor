@@ -24,18 +24,22 @@
   </div>
   <div class="full-width">
     <h2>Situation</h2>
+    <p>@situationDictKey</p>
     <textarea @bind="situation" class="form-control long" spellcheck="true" placeholder="Load your mission file. Situation goes here (BR uses this as briefing)."></textarea>
   </div>
   <div class="full-width">
     <h2>Blue Task</h2>
+    <p>@blueTaskDictKey</p>
     <textarea @bind="blueTask" class="form-control short" spellcheck="true" placeholder="Blue side specific information."></textarea>
   </div>
   <div class="full-width">
     <h2>Red Task</h2>
+    <p>@redTaskDictKey</p>
     <textarea @bind="redTask" class="form-control short" spellcheck="true" placeholder="Red side specific information."></textarea>
   </div>
   <div class="full-width">
     <h2>Neutral Task</h2>
+    <p>@neutralTaskDictKey</p>
     <textarea @bind="neutralTask" class="form-control short" spellcheck="true" placeholder="Neutral side specific information."></textarea>
   </div>
   </div>
@@ -44,15 +48,17 @@
 @code {
   private string errorMessage;
   private string situation;
-  private readonly Regex situationRegex = new Regex(@"\[""descriptionText""\] = ""(.|\n)*?[^\\""]\""", RegexOptions.IgnoreCase);
+  private string situationDictKey = "";
   private string blueTask;
-  private readonly Regex blueRegex = new Regex(@"\[""descriptionBlueTask""\] = ""(.|\n)*?\""", RegexOptions.IgnoreCase);
+  private string blueTaskDictKey = "";
   private string redTask;
-  private readonly Regex redRegex = new Regex(@"\[""descriptionRedTask""\] = ""(.|\n)*?\""", RegexOptions.IgnoreCase);
+  private string redTaskDictKey = "";
   private string neutralTask;
-  private readonly Regex neutralRegex = new Regex(@"\[""descriptionNeutralsTask""\] = ""(.|\n)*?\""", RegexOptions.IgnoreCase);
+  private string neutralTaskDictKey = "";
 
   private IBrowserFile file;
+
+  private Regex GetRegex(string target) => new Regex($@"\[""{target}""\] = ""(.|\n)*?"",\n", RegexOptions.IgnoreCase);
   private async Task LoadTemplate(InputFileChangeEventArgs e)
   {
     errorMessage = "";
@@ -63,29 +69,46 @@
       using var zip = new ZipArchive(ms);
       if (!zip.Entries.Any(entry => entry.Name == "mission"))
         throw new Exception("Mission File not found");
+      if (!zip.Entries.Any(entry => entry.Name == "dictionary"))
+        throw new Exception("Dictionary File not found");
 
       using var reader = new StreamReader(zip.Entries.First(entry => entry.Name == "mission").Open());
       var mission = await reader.ReadToEndAsync();
 
-      situation = situationRegex.Match(mission).Value
-        .Replace("[\"descriptionText\"] = \"", "")
-        .Replace("\\", "")
-        .TrimEnd('"');
+      using var reader2 = new StreamReader(zip.Entries.First(entry => entry.Name == "dictionary").Open());
+      var dictonary = await reader2.ReadToEndAsync();
 
-      blueTask = blueRegex.Match(mission).Value
-        .Replace("[\"descriptionBlueTask\"] = \"", "")
-        .Replace("\\", "")
-        .TrimEnd('"');
+      situationDictKey = "";
+      situation = getFromField(mission, "descriptionText");
+      if(situation.StartsWith("DictKey_"))
+      {
+        situationDictKey = situation;
+        situation = getFromField(dictonary, situation);
+      }
 
-      redTask = redRegex.Match(mission).Value
-        .Replace("[\"descriptionRedTask\"] = \"", "")
-        .Replace("\\", "")
-        .TrimEnd('"');
+      blueTaskDictKey = "";
+      blueTask = getFromField(mission, "descriptionBlueTask");
+      if(blueTask.StartsWith("DictKey_"))
+      {
+        blueTaskDictKey = blueTask;
+        blueTask = getFromField(dictonary, blueTask);
+      }
 
-      neutralTask = neutralRegex.Match(mission).Value
-        .Replace("[\"descriptionNeutralsTask\"] = \"", "")
-        .Replace("\\", "")
-        .TrimEnd('"');
+      redTaskDictKey = "";
+      redTask = getFromField(mission, "descriptionRedTask");
+      if(redTask.StartsWith("DictKey_"))
+      {
+        redTaskDictKey = redTask;
+        redTask = getFromField(dictonary, redTask);
+      }
+
+      neutralTaskDictKey = "";
+      neutralTask = getFromField(mission, "descriptionNeutralsTask");
+      if(neutralTask.StartsWith("DictKey_"))
+      {
+        neutralTaskDictKey = neutralTask;
+        neutralTask = getFromField(dictonary, neutralTask);
+      }
 
       file = e.File;
     }
@@ -94,6 +117,17 @@
       Console.WriteLine(ex);
       errorMessage = ex.Message;
     }
+  }
+
+  private string getFromField(string data, string target)
+  {
+    var regex = GetRegex(target);
+    return regex.Match(data).Value
+        .Replace($"[\"{target}\"] = \"", "")
+        .Replace("\\", "")
+        .TrimEnd('\n')
+        .TrimEnd(',')
+        .TrimEnd('"');
   }
 
   private async Task SaveTemplate()
@@ -112,27 +146,57 @@
         {
           if (!zip.Entries.Any(entry => entry.Name == "mission"))
             throw new Exception("Mission File not found");
-          var entry = zip.Entries.First(entry => entry.Name == "mission");
+          var entryMission = zip.Entries.First(entry => entry.Name == "mission");
           var mission = "";
-          using (var stream = entry.Open())
+          using (var stream = entryMission.Open())
           {
             var reader = new StreamReader(stream);
             mission = await reader.ReadToEndAsync();
           }
-          entry.Delete();
-          var situationString = situation.Replace("\"", "\\\"").Replace("\n", "\\\n");
-          var blueTaskString = blueTask.Replace("\"", "\\\"").Replace("\n", "\\\n");
-          var redTaskString = redTask.Replace("\"", "\\\"").Replace("\n", "\\\n");
-          var neutralTaskString = neutralTask.Replace("\"", "\\\"").Replace("\n", "\\\n");
-          var replacedMission = situationRegex.Replace(mission, $"[\"descriptionText\"] = \"{situationString}\"");
-          replacedMission = blueRegex.Replace(replacedMission, $"[\"descriptionBlueTask\"] = \"{blueTaskString}\"");
-          replacedMission = redRegex.Replace(replacedMission, $"[\"descriptionRedTask\"] = \"{redTaskString}\"");
-          replacedMission = neutralRegex.Replace(replacedMission, $"[\"descriptionNeutralsTask\"] = \"{neutralTaskString}\"");
-          var newEntry = zip.CreateEntry("mission");
-          using (var newStream = newEntry.Open())
+          entryMission.Delete();
+
+          var entryDict = zip.Entries.First(entry => entry.Name == "dictionary");
+          var dictionary = "";
+          using (var stream = entryDict.Open())
+          {
+            var reader = new StreamReader(stream);
+            dictionary = await reader.ReadToEndAsync();
+          }
+          entryDict.Delete();
+
+          var replacedMission = mission;
+          var replacedDict = dictionary;
+          if(string.IsNullOrEmpty(situationDictKey))
+            replacedMission = replaceValue(dictionary, "descriptionText", situation); 
+          else
+            replacedDict = replaceValue(dictionary, situationDictKey, situation);
+
+          if(string.IsNullOrEmpty(blueTaskDictKey))
+            replacedMission = replaceValue(dictionary, "descriptionBlueTask", situation);
+          else
+            replacedDict = replaceValue(dictionary, blueTaskDictKey, blueTask);
+
+          if(string.IsNullOrEmpty(redTaskDictKey))
+            replacedMission = replaceValue(dictionary, "descriptionRedTask", situation);
+          else
+            replacedDict = replaceValue(dictionary, redTaskDictKey, redTask);
+
+          if(string.IsNullOrEmpty(neutralTaskDictKey))
+            replacedMission = replaceValue(dictionary, "descriptionNeutralsTask", situation);
+          else
+            replacedDict = replaceValue(dictionary, neutralTaskDictKey, neutralTask);
+
+          var newMissionEntry = zip.CreateEntry("mission");
+          using (var newStream = newMissionEntry.Open())
           {
             using var writer = new StreamWriter(newStream);
             writer.Write(replacedMission);
+          }
+          var newDictEntry = zip.CreateEntry("l10n\\DEFAULT\\dictionary");
+          using (var newStream = newDictEntry.Open())
+          {
+            using var writer = new StreamWriter(newStream);
+            writer.Write(replacedDict);
           }
         }
         await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", file.Name, "application/octet-stream", ms.ToArray());
@@ -144,6 +208,13 @@
       errorMessage = ex.Message;
     }
     StateHasChanged();
+  }
+
+  private string replaceValue(string data, string target, string value)
+  {
+    var regex = GetRegex(target);
+    value = value.Replace("\"", "\\\"").Replace("\n", "\\\n");
+    return regex.Replace(data, $"[\"{target}\"] = \"{value}\",\n");
   }
 
   private Task ClearTemplate()
