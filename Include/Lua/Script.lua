@@ -354,7 +354,20 @@ function dcsExtensions.getCoalitionUnits(coalID)
   return units
 end
 
--- Returns the unit with ID id, or nil if no unit with this ID is found
+
+function dcsExtensions.getGroupNamesContaining(search)
+  local groups = { }
+  for i=1,2 do
+    for _,g in pairs(coalition.getGroups(i)) do
+        if string.match(g:getName(), search) then
+          table.insert(groups, g:getName())
+      end
+    end
+  end
+
+  return groups
+end
+
 function dcsExtensions.getGroupBySuffix(suffix)
   for i=1,2 do
     for _,g in pairs(coalition.getGroups(i)) do
@@ -516,8 +529,8 @@ end
 
 briefingRoom.aircraftActivator = { }
 briefingRoom.aircraftActivator.INTERVAL = { 10, 20 } -- min/max interval (in seconds) between two updates
-briefingRoom.aircraftActivator.currentQueue = { $AIRCRAFTACTIVATORCURRENTQUEUE$ } -- current queue of aircraft group IDs to spawn every INTERVAL seconds
-briefingRoom.aircraftActivator.reserveQueue = { $AIRCRAFTACTIVATORRESERVEQUEUE$ } -- additional aircraft group IDs to be added to the queue later
+briefingRoom.aircraftActivator.currentQueue = dcsExtensions.getGroupNamesContaining("-IQ-") -- current queue of aircraft group IDs to spawn every INTERVAL seconds
+briefingRoom.aircraftActivator.reserveQueue = dcsExtensions.getGroupNamesContaining("-RQ-") -- additional aircraft group IDs to be added to the queue later
 briefingRoom.aircraftActivator.responsiveMode = $AIRCRAFTACTIVATORISRESPONSEIVE$
 
 function briefingRoom.aircraftActivator.getRandomInterval()
