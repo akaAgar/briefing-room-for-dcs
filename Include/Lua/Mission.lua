@@ -231,7 +231,7 @@ mission =
             ["comment"] = "",
         }, -- end of [1]
     }, -- end of ["goals"]
-    ["descriptionNeutralsTask"] = "$EDITORNOTES$",
+    ["descriptionNeutralsTask"] = "DictKey_editorNotes",
     ["weather"] = 
     {
         ["atmosphere_type"] = 0,
@@ -306,13 +306,13 @@ mission =
         ["blue"] = $COALITIONBLUE$,
         ["red"] = $COALITIONRED$
     }, -- end of ["coalitions"]
-    ["descriptionText"] = "$DESCRIPTIONTEXT$",
+    ["descriptionText"] = "DictKey_briefing",
     ["pictureFileNameR"] = 
     {
       [1] = "ResKey_TitleImage_$MISSIONID$",
     }, -- end of ["pictureFileNameR"]
-    ["descriptionBlueTask"] = "",
-    ["descriptionRedTask"] = "",
+    ["descriptionBlueTask"] = "DictKey_descriptionBlueTask_3",
+    ["descriptionRedTask"] = "DictKey_descriptionRedTask_2",
     ["pictureFileNameB"] = 
     {
       [1] = "ResKey_TitleImage_$MISSIONID$",
@@ -368,7 +368,7 @@ mission =
             }, -- end of ["country"]
         }, -- end of ["red"]
     }, -- end of ["coalition"]
-    ["sortie"] = "$MISSIONNAME$",
+    ["sortie"] = "DictKey_missionName",
     ["version"] = 19,
     ["trigrules"] = 
     {

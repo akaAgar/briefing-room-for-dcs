@@ -45,7 +45,7 @@ namespace BriefingRoom4DCS
             AddStringValueToEntries(MizFileEntries, "theatre", mission.GetValue("TheaterID"));
             AddLuaFileToEntries(MizFileEntries, "warehouses", "Warehouses.lua", mission);
 
-            AddLuaFileToEntries(MizFileEntries, "l10n/DEFAULT/dictionary", "Dictionary.lua", null);
+            AddLuaFileToEntries(MizFileEntries, "l10n/DEFAULT/dictionary", "Dictionary.lua", mission);
             AddLuaFileToEntries(MizFileEntries, "l10n/DEFAULT/mapResource", "MapResource.lua", mission);
             AddLuaFileToEntries(MizFileEntries, "l10n/DEFAULT/script.lua", "Script.lua", mission);
 
