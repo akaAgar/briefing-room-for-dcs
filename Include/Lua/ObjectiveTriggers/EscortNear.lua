@@ -3,7 +3,7 @@ briefingRoom.mission.objectiveTimers[$OBJECTIVEINDEX$] = function()
   for __,u in ipairs(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames) do
     local unit = Unit.getByName(u)
     if unit == nil then
-      unit = Static.getByName(u)
+      unit = StaticObject.getByName(u)
     end
     if unit ~= nil then
       local vec2p = briefingRoom.mission.objectives[$OBJECTIVEINDEX$].waypoint
@@ -25,7 +25,7 @@ briefingRoom.mission.objectives[$OBJECTIVEINDEX$].launchMission = function ()
   briefingRoom.radioManager.play("Pilot: Escort "..objective.name..", you are clear to begin.", "RadioPilotBeginEscort")
   local unit = Unit.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
   if unit == nil then
-    unit = Static.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
+    unit = StaticObject.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
   end
   if unit ~= nil then
     local group = unit:getGroup()
@@ -38,7 +38,7 @@ end
 
 local unit = Unit.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
 if unit == nil then
-  unit = Static.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
+  unit = StaticObject.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
 end
 if unit ~= nil and not unit:isActive() then
   missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Launch Mission", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectives[$OBJECTIVEINDEX$].launchMission)

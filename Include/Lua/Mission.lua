@@ -231,7 +231,7 @@ mission =
             ["comment"] = "",
         }, -- end of [1]
     }, -- end of ["goals"]
-    ["descriptionNeutralsTask"] = "",
+    ["descriptionNeutralsTask"] = "$EDITORNOTES$",
     ["weather"] = 
     {
         ["atmosphere_type"] = 0,

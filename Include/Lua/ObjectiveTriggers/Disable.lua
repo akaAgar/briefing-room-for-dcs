@@ -4,23 +4,23 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
 
     -- Objective complete, nothing to do
     if briefingRoom.mission.objectives[$OBJECTIVEINDEX$].complete then return false end
-    local unitID = nil
+    local unitName = nil
     if event.id == world.event.S_EVENT_HIT then -- unit was hit but not destroyed, check anyway because destroying a parked aircraft in DCS is HARD, and any aircraft with less than 90% hp left is not airworthy
         if event.target == nil then return end -- no target (should never happen)
         if event.target:getCategory() ~= Object.Category.UNIT then return end -- target was not a unit
         local life = event.target:getLife() / event.target:getLife0()
         if life > .9 then return end -- not damaged enough
-        unitID = tonumber(event.target:getID())
+        unitName = event.target:getName()
     elseif event.id == world.event.S_EVENT_DEAD or event.id == world.event.S_EVENT_CRASH then -- unit destroyed
         if event.initiator == nil then return end -- no target (should never happen)
         if event.initiator:getCategory() ~= Object.Category.UNIT then return end -- target was not a unit
-        unitID = tonumber(event.initiator:getID())
+        unitName = event.initiator:getName()
     else return end
 
-    if not table.contains(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, unitID) then return false end
+    if not table.contains(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, unitName) then return false end
 
     -- Remove the unit from the list of targets
-    table.removeValue(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, unitID)
+    table.removeValue(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, unitName)
   
     -- Play "target destroyed" radio message
     local soundName = "TargetDestroyed"

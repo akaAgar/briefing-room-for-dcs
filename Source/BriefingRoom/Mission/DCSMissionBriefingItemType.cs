@@ -28,5 +28,6 @@ namespace BriefingRoom4DCS.Mission
         Task,
         Waypoint,
         JTAC,
+        TargetGroupName,
     }
 }

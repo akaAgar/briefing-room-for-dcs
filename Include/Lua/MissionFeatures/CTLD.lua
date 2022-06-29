@@ -421,7 +421,7 @@ ctld.logisticUnits = {
 }
 -- BR Generator add Static unit & FARPs
 for i,name in ipairs(briefingRoom.mission.missionFeatures.unitNames.cTLD) do
-    local unit = Static.getByName(name)
+    local unit = StaticObject.getByName(name)
     if unit ~= nil then
         table.insert(ctld.logisticUnits, unit:getName())
         env.info("CTLD added logi static"..name, false)

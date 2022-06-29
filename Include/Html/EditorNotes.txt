@@ -1,0 +1,6 @@
+Aircraft can be added to the spawning Queue by placing markers in the group name.
+"-IQ-": Spawn instantly (Like AWACS and Tankers)
+"-RQ-": Spawn later in the mission
+
+Target groups use a suffix in their groupName eg name-TGT-JUNO. Where JUNO is the waypoint.
+$TARGETGROUPNAMES$

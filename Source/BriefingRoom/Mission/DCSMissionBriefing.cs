@@ -115,5 +115,13 @@ namespace BriefingRoom4DCS.Mission
 
             return text.Replace("\r\n", "\n").Replace("\n", newLine).Replace("\"", "''");
         }
+
+        public string GetEditorNotes(string newLine = "\n")
+        {
+            string text = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}EditorNotes.txt");
+            GeneratorTools.ReplaceKey(ref text, "TARGETGROUPNAMES", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.TargetGroupName)).Replace("\t", "    "));
+            return text.Replace("\r\n", "\n").Replace("\n", newLine).Replace("\"", "''");
+        }
+
     }
 }

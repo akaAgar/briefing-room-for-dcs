@@ -206,6 +206,7 @@ namespace BriefingRoom4DCS.Generator
 
             MissionGeneratorBriefing.GenerateMissionBriefingDescription(mission, template, objectiveTargetUnitFamilies, situationDB);
             mission.SetValue("DescriptionText", mission.Briefing.GetBriefingAsRawText("\\\n"));
+            mission.SetValue("EditorNotes", mission.Briefing.GetEditorNotes("\\\n"));
 
             // Generate mission options
             BriefingRoom.PrintToLog("Generating options...");

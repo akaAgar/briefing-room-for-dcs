@@ -12,7 +12,7 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
   -- Drop off
   local distanceToObjective = dcsExtensions.getDistance(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].waypoint, position);
   if distanceToObjective < 500 then
-    local removed = briefingRoom.transportManager.removeTroopCargo(event.initiator:getID(), briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames)
+    local removed = briefingRoom.transportManager.removeTroopCargo(event.initiator:getName(), briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames)
     for index, value in ipairs(removed) do
       table.removeValue(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, value)
     end
@@ -35,6 +35,6 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
     end
   end
   if #collect > 0 then
-    briefingRoom.transportManager.addTroopCargo(event.initiator:getID(), collect)
+    briefingRoom.transportManager.addTroopCargo(event.initiator:getName(), collect)
   end
 end

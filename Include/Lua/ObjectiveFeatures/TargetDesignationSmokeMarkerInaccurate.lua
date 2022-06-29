@@ -26,7 +26,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeM
   
   local unit = Unit.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
   if unit == nil then -- no unit found with the ID, try searching for a static
-    unit = Static.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
+    unit = StaticObject.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
     if unit == nil then -- no unit nor static found with the ID
       briefingRoom.radioManager.play(objective.name.." JTAC: Negative, no visual on any target.", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
       return

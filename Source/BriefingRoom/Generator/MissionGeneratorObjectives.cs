@@ -266,7 +266,8 @@ namespace BriefingRoom4DCS.Generator
 
             // Assign target suffix
             targetGroupInfo.Value.DCSGroup.Name += $"-TGT-{objectiveName}";
-            targetGroupInfo.Value.DCSGroup.Units.ForEach(x => x.Name += $"-TGT-{objectiveName}");
+            //targetGroupInfo.Value.DCSGroup.Units.ForEach(x => x.Name += $"-TGT-{objectiveName}");
+            mission.Briefing.AddItem(DCSMissionBriefingItemType.TargetGroupName, $"-TGT-{objectiveName}");
 
             var pluralIndex = targetGroupInfo.Value.UnitNames.Length == 1 ? 0 : 1;
             var taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex], mission).Replace("\"", "''");
@@ -435,8 +436,8 @@ namespace BriefingRoom4DCS.Generator
             objectiveLua += $"targetCategory = Unit.Category.{targetDB.UnitCategory.ToLuaName()}, ";
             objectiveLua += $"taskType = \"{taskDB.ID}\", ";
             objectiveLua += $"task = \"{taskString}\", ";
-            objectiveLua += $"unitsCount = {targetGroupInfo.Value.UnitNames.Length}, ";
-            objectiveLua += $"unitNames = {{ {string.Join(", ", targetGroupInfo.Value.UnitNames.Select(x => $"\"{x}\""))} }} ";
+            objectiveLua += $"unitsCount = #dcsExtensions.getUnitNamesByGroupNameSuffix(\"-TGT-{objectiveName}\"), ";
+            objectiveLua += $"unitNames = dcsExtensions.getUnitNamesByGroupNameSuffix(\"-TGT-{objectiveName}\") ";
             objectiveLua += "}\n";
 
             // Add F10 sub-menu for this objective

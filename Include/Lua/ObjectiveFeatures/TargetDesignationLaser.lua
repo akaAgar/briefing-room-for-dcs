@@ -12,7 +12,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
     return time + 1 -- next update in one second
   end
 
-  if not objFeature.targetDesignationLaser.laserTarget:isExist() or not table.contains(objective.unitNames, tonumber(objFeature.targetDesignationLaser.laserTarget:getID())) then -- target is considered complete
+  if not objFeature.targetDesignationLaser.laserTarget:isExist() or not table.contains(objective.unitNames, objFeature.targetDesignationLaser.laserTarget:getName()) then -- target is considered complete
     briefingRoom.debugPrint("JTAC $OBJECTIVEINDEX$: Target Complete finding new target", 1)
     local unit = objFeature.targetDesignationLaser.setRandomTarget()
     if unit == nil then
@@ -67,7 +67,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
   local randomUnitName = math.randomFromHashTable(objective.unitNames)
   local unit = Unit.getByName(randomUnitName)
   if unit == nil then -- no unit found with the ID, try searching for a static
-    unit = Static.getByName(randomUnitName)
+    unit = StaticObject.getByName(randomUnitName)
     if unit == nil then -- no unit nor static found with the ID
       return nil
     end

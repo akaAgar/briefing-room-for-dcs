@@ -18,7 +18,7 @@ function briefingRoom.f10MenuCommands.debug.destroyTargetUnit()
     if (#objective.unitNames > 0) then
       local u = Unit.getByName(objective.unitNames[1])
       if u == nil then
-        u = Static.getByName(objective.unitNames[1])
+        u = StaticObject.getByName(objective.unitNames[1])
       end
       if u ~= nil then
         trigger.action.outText("Destroyed "..u:getName(), 2)

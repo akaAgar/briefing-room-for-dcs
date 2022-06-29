@@ -27,3 +27,5 @@ $BRIEFINGAIRBASES$
 
 Flight plans
 $BRIEFINGWAYPOINTS$
+
+Editor notes can be found in Neutral task

@@ -3,7 +3,7 @@ briefingRoom.mission.objectiveTimers[$OBJECTIVEINDEX$] = function()
   for __,u in ipairs(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames) do
     local unit = Unit.getByName(u)
     if unit == nil then
-      unit = Static.getByName(u)
+      unit = StaticObject.getByName(u)
     end
     if unit ~= nil then
       local vec2p = briefingRoom.mission.objectives[$OBJECTIVEINDEX$].waypoint

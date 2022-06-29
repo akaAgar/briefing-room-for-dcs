@@ -368,16 +368,23 @@ function dcsExtensions.getGroupNamesContaining(search)
   return groups
 end
 
-function dcsExtensions.getGroupBySuffix(suffix)
+function dcsExtensions.getUnitNamesByGroupNameSuffix(suffix)
+  local unitNames = {}
   for i=1,2 do
     for _,g in pairs(coalition.getGroups(i)) do
         if string.endsWith(g:getName(), suffix) then
-          return g
+          for _,u in pairs(g:getUnits()) do
+            table.insert(unitNames, u:getName())
+          end
+      end
+    end
+    for _,u in pairs(coalition.getStaticObjects(i)) do
+      if string.endsWith(u:getName(), suffix) then
+          table.insert(unitNames, u:getName())
       end
     end
   end
-
-  return nil
+  return unitNames
 end
 
 -- Converts a timecode (in seconds since midnight) in a hh:mm:ss string
@@ -860,7 +867,7 @@ for objIndex,obj in ipairs(briefingRoom.mission.objectives) do
     obj.unitNames = table.filter(obj.unitNames, function(o, k, i)
       local u = Unit.getByName(o)
       if u == nil then
-        u = Static.getByName(o)
+        u = StaticObject.getByName(o)
       end
       if u == nil then
         return false

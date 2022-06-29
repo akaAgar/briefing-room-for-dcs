@@ -17,12 +17,12 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
   if event.initiator == nil then return false end
   if Object.getCategory(event.initiator) ~= Object.Category.UNIT and Object.getCategory(event.initiator) ~= Object.Category.STATIC then return false end
 
-  local unitID = tonumber(event.initiator:getID())
+  local unitName = event.initiator:getName()
   -- Destroyed unit wasn't a target
-  if not table.contains(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, unitID) then return false end
+  if not table.contains(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, unitName) then return false end
 
   -- Remove the unit from the list of targets
-  table.removeValue(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, unitID)
+  table.removeValue(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, unitName)
 
   -- Play "target destroyed" radio message
   local soundName = "TargetDestroyed"
