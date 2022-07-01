@@ -200,7 +200,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Generate briefing and additional mission info
             BriefingRoom.PrintToLog("Generating briefing...");
-            var missionName = GeneratorTools.GenerateMissionName(template.BriefingMissionName);
+            var missionName = GeneratorTools.GenerateMissionName(template.BriefingMissionName, template.Language);
             mission.Briefing.Name = missionName;
             mission.SetValue("MISSIONNAME", missionName);
 

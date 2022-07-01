@@ -49,7 +49,7 @@ namespace BriefingRoom4DCS.Generator
                         DBEntryBriefingDescription descriptionDB =
                             Database.Instance.GetEntry<DBEntryBriefingDescription>(
                                 Database.Instance.GetEntry<DBEntryObjectiveTask>(obj.Task).BriefingDescription);
-                        AppendDescription(obj.Task, descriptionDB.DescriptionText[(int)objectiveTargetUnitFamilies[familyCount]][template.Language], ref descriptionsMap);
+                        AppendDescription(obj.Task, descriptionDB.DescriptionText[(int)objectiveTargetUnitFamilies[familyCount]].Get(template.Language), ref descriptionsMap);
                         familyCount++;
                         AddSubTasks(obj, objectiveTargetUnitFamilies, ref descriptionsMap, ref familyCount, template.Language);
                     }
@@ -59,7 +59,7 @@ namespace BriefingRoom4DCS.Generator
             }
 
             if (situationDB.BriefingDescriptions != null && situationDB.BriefingDescriptions.Count > 0)
-                briefingDescription = GeneratorTools.ParseRandomString(string.Join(" ", Toolbox.RandomFrom(situationDB.BriefingDescriptions), briefingDescription), mission);
+                briefingDescription = GeneratorTools.ParseRandomString(string.Join(" ", Toolbox.RandomFrom(situationDB.BriefingDescriptions).Get(template.Language), briefingDescription), mission);
 
             mission.Briefing.Description = briefingDescription;
             mission.SetValue("BRIEFINGDESCRIPTION", briefingDescription);

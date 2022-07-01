@@ -41,7 +41,7 @@ namespace BriefingRoom4DCS.Campaign
         {
             DCSCampaign campaign = new();
 
-            campaign.Name = GeneratorTools.GenerateMissionName(campaignTemplate.BriefingCampaignName); ;
+            campaign.Name = GeneratorTools.GenerateMissionName(campaignTemplate.BriefingCampaignName, campaignTemplate.Language); ;
             string baseFileName = Toolbox.RemoveInvalidPathCharacters(campaign.Name);
 
             DateTime date = GenerateCampaignDate(campaignTemplate);

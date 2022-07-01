@@ -27,23 +27,23 @@ namespace BriefingRoom4DCS.Data
     {
         internal const int MISSION_NAMES_PART_COUNT = 4;
 
-        internal string[][] MissionNameParts { get; } = new string[MISSION_NAMES_PART_COUNT][];
+        internal LanguageString[] MissionNameParts { get; } = new LanguageString[MISSION_NAMES_PART_COUNT];
 
-        internal string MissionNameTemplate { get; }
+        internal LanguageString MissionNameTemplate { get; }
 
-        internal string[][] UnitFamilies { get; } = new string[Toolbox.EnumCount<UnitFamily>()][];
+        internal LanguageString[] UnitFamilies { get; } = new LanguageString[Toolbox.EnumCount<UnitFamily>()];
 
-        internal string[] UnitGroups { get; } = new string[Toolbox.EnumCount<UnitFamily>()];
+        internal LanguageString[] UnitGroups { get; } = new LanguageString[Toolbox.EnumCount<UnitFamily>()];
 
-        internal string WPEgressName { get; }
+        internal LanguageString WPEgressName { get; }
 
-        internal string WPFinalName { get; }
+        internal LanguageString WPFinalName { get; }
 
-        internal string WPIngressName { get; }
+        internal LanguageString WPIngressName { get; }
 
-        internal string WPInitialName { get; }
+        internal LanguageString WPInitialName { get; }
 
-        internal string[] WPObjectivesNames { get; }
+        internal LanguageString WPObjectivesNames { get; }
 
         public DBCommonNames()
         {
@@ -51,22 +51,21 @@ namespace BriefingRoom4DCS.Data
 
             BriefingRoom.PrintToLog("Loading common global settings...");
             INIFile ini = new($"{BRPaths.DATABASE}Names.ini");
-            MissionNameTemplate = ini.GetValue<string>("Mission", "Template");
+            MissionNameTemplate = ini.GetLangStrings("Mission", "Template");
             for (i = 0; i < MISSION_NAMES_PART_COUNT; i++)
-                MissionNameParts[i] = ini.GetValueArray<string>("Mission", $"Part{i + 1}");
+                MissionNameParts[i] = ini.GetLangStrings("Mission", $"Part{i + 1}");
 
             for (i = 0; i < Toolbox.EnumCount<UnitFamily>(); i++)
             {
-                UnitFamilies[i] = ini.GetValueArray<string>("UnitFamilies", ((UnitFamily)i).ToString());
-                Array.Resize(ref UnitFamilies[i], 2);
-                UnitGroups[i] = ini.GetValue<string>("UnitGroups", ((UnitFamily)i).ToString());
+                UnitFamilies[i] = ini.GetLangStrings("UnitFamilies", ((UnitFamily)i).ToString());
+                UnitGroups[i] = ini.GetLangStrings("UnitGroups", ((UnitFamily)i).ToString());
             }
 
-            WPEgressName = ini.GetValue<string>("Waypoints", "Egress").ToUpperInvariant();
-            WPFinalName = ini.GetValue<string>("Waypoints", "Final").ToUpperInvariant();
-            WPIngressName = ini.GetValue<string>("Waypoints", "Ingress").ToUpperInvariant();
-            WPInitialName = ini.GetValue<string>("Waypoints", "Initial").ToUpperInvariant();
-            WPObjectivesNames = (from string wpName in ini.GetValueArray<string>("Waypoints", "Objectives") select wpName.ToUpperInvariant()).ToArray();
+            WPEgressName = ini.GetLangStrings("Waypoints", "Egress");
+            WPFinalName = ini.GetLangStrings("Waypoints", "Final");
+            WPIngressName = ini.GetLangStrings("Waypoints", "Ingress");
+            WPInitialName = ini.GetLangStrings("Waypoints", "Initial");
+            WPObjectivesNames = ini.GetLangStrings("Waypoints", "Objectives");
         }
     }
 }
