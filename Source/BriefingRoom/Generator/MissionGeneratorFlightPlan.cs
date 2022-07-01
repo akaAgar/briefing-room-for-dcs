@@ -68,12 +68,12 @@ namespace BriefingRoom4DCS.Generator
 
             waypoints.Insert(0,
                 new Waypoint(
-                    Database.Instance.Common.Names.WPIngressName,
+                    Database.Instance.Common.Names.WPIngressName.Get(template.Language).ToUpperInvariant(),
                     baseIngressPosition + Coordinates.CreateRandom(ingressDeviation * 0.9, ingressDeviation * 1.1)));
 
             waypoints.Add(
                 new Waypoint(
-                    Database.Instance.Common.Names.WPEgressName,
+                    Database.Instance.Common.Names.WPEgressName.Get(template.Language).ToUpperInvariant(),
                     baseIngressPosition + Coordinates.CreateRandom(ingressDeviation * 0.9, ingressDeviation * 1.1)));
         }
 

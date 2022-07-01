@@ -338,7 +338,7 @@
                                                     @GetAircraftDisplayName(@aircraftId)
                                                 </SelectedTemplate>
                                                 <ResultTemplate Context="aircraft">
-                                                    @aircraft.Name
+                                                    @aircraft.Name.Get(Template.Language)
                                                 </ResultTemplate>
                                             </BlazoredTypeahead>
                                         </div>

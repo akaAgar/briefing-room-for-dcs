@@ -60,7 +60,7 @@ namespace BriefingRoom4DCS.Data
             if (ini.GetSections().Contains("briefingdescription"))
             {
                 BriefingDescriptions = new List<LanguageString>();
-                foreach (string key in ini.GetKeysInSection("BriefingDescription"))
+                foreach (string key in ini.GetKeysInSection("BriefingDescription", true))
                     BriefingDescriptions.Add(ini.GetLangStrings("BriefingDescription", key));
             }
 

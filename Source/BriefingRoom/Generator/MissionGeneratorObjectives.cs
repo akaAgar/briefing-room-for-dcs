@@ -64,7 +64,7 @@ namespace BriefingRoom4DCS.Generator
             UnitMaker = unitMaker;
             DrawingMaker = drawingMaker;
             FeaturesGenerator = new MissionGeneratorFeaturesObjectives(unitMaker, template);
-            ObjectiveNames = new List<string>(Database.Instance.Common.Names.WPObjectivesNames);
+            ObjectiveNames = new List<string>(Database.Instance.Common.Names.WPObjectivesNames.Get(template.Language).Split(","));
         }
 
         internal Tuple<Coordinates, List<Waypoint>> GenerateObjective(
@@ -222,6 +222,8 @@ namespace BriefingRoom4DCS.Generator
 
             var unitCoordinates = objectiveCoordinates;
             var objectiveName = Toolbox.RandomFrom(ObjectiveNames);
+            ObjectiveNames.Remove(objectiveName);
+            objectiveName = objectiveName.ToUpperInvariant();
             if(TRANSPORT_TASKS.Contains(taskDB.ID))
             {
                 Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
@@ -271,8 +273,7 @@ namespace BriefingRoom4DCS.Generator
 
             var pluralIndex = targetGroupInfo.Value.UnitNames.Length == 1 ? 0 : 1;
             var taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex].Get(template.Language), mission).Replace("\"", "''");
-            ObjectiveNames.Remove(objectiveName);
-            CreateTaskString(mission, pluralIndex, ref taskString, objectiveName, objectiveTargetUnitFamily);
+            CreateTaskString(mission, pluralIndex, ref taskString, objectiveName, objectiveTargetUnitFamily, template.Language);
             CreateLua(mission, template, targetDB, taskDB, objectiveIndex, objectiveName, targetGroupInfo, taskString);
 
             // Add briefing remarks for this objective task
@@ -281,7 +282,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 string remark = Toolbox.RandomFrom(remarksString.Split(";"));
                 GeneratorTools.ReplaceKey(ref remark, "ObjectiveName", objectiveName);
-                GeneratorTools.ReplaceKey(ref remark, "UnitFamily", Database.Instance.Common.Names.UnitFamilies[(int)objectiveTargetUnitFamily][pluralIndex]);
+                GeneratorTools.ReplaceKey(ref remark, "UnitFamily", Database.Instance.Common.Names.UnitFamilies[(int)objectiveTargetUnitFamily].Get(template.Language).Split(",")[pluralIndex]);
                 mission.Briefing.AddItem(DCSMissionBriefingItemType.Remark, remark);
             }
 
@@ -451,12 +452,12 @@ namespace BriefingRoom4DCS.Generator
             mission.AppendValue("ScriptObjectivesTriggers", triggerLua);
         }
 
-        private static void CreateTaskString(DCSMission mission, int pluralIndex, ref string taskString, string objectiveName, UnitFamily objectiveTargetUnitFamily)
+        private static void CreateTaskString(DCSMission mission, int pluralIndex, ref string taskString, string objectiveName, UnitFamily objectiveTargetUnitFamily, string lang)
         {
             // Get tasking string for the briefing
             if (string.IsNullOrEmpty(taskString)) taskString = "Complete objective $OBJECTIVENAME$";
             GeneratorTools.ReplaceKey(ref taskString, "ObjectiveName", objectiveName);
-            GeneratorTools.ReplaceKey(ref taskString, "UnitFamily", Database.Instance.Common.Names.UnitFamilies[(int)objectiveTargetUnitFamily][pluralIndex]);
+            GeneratorTools.ReplaceKey(ref taskString, "UnitFamily", Database.Instance.Common.Names.UnitFamilies[(int)objectiveTargetUnitFamily].Get(lang).Split(",")[pluralIndex]);
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Task, taskString);
         }
 

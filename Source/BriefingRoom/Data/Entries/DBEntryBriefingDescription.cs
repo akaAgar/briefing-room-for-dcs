@@ -24,15 +24,15 @@ namespace BriefingRoom4DCS.Data
 {
     internal class DBEntryBriefingDescription : DBEntry
     {
-        internal List<Dictionary<string,string>> DescriptionText { get; private set; }
+        internal List<LanguageString> DescriptionText { get; private set; }
 
 
         protected override bool OnLoad(string iniFilePath)
         {
             var ini = new INIFile(iniFilePath);
-            Dictionary<string,string> defaultTexts = ini.GetLangStrings("BriefingDescription", "Description");
+            LanguageString defaultTexts = ini.GetLangStrings("BriefingDescription", "Description");
 
-            DescriptionText = new List<Dictionary<string, string>>();
+            DescriptionText = new List<LanguageString>();
             for (int i = 0; i < Toolbox.EnumCount<UnitFamily>(); i++)
             {
                 DescriptionText.Add(defaultTexts);

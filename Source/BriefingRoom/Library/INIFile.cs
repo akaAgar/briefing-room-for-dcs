@@ -218,7 +218,7 @@ namespace BriefingRoom4DCS
             }
         }
 
-        internal string[] GetKeysInSection(string section)
+        internal string[] GetKeysInSection(string section, bool ignoreLangs = false)
         {
             if (!Sections.ContainsKey(section)) return new string[0];
 
@@ -236,7 +236,8 @@ namespace BriefingRoom4DCS
                 section = Sections[section].ParentSection;
                 keys.AddRange(Sections[section].Keys);
             }
-
+            if(ignoreLangs)
+               keys = keys.Where(x => !BriefingRoom.LanguageMap.Keys.Any(y => x.EndsWith($".{y}"))).ToList(); 
             return keys.Distinct().OrderBy(x => x).ToArray();
         }
 
