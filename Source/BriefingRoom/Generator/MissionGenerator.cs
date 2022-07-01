@@ -205,8 +205,8 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("MISSIONNAME", missionName);
 
             MissionGeneratorBriefing.GenerateMissionBriefingDescription(mission, template, objectiveTargetUnitFamilies, situationDB);
-            mission.SetValue("DescriptionText", mission.Briefing.GetBriefingAsRawText("\\\n"));
-            mission.SetValue("EditorNotes", mission.Briefing.GetEditorNotes("\\\n"));
+            mission.SetValue("DescriptionText", mission.Briefing.GetBriefingAsRawText(template.Language, "\\\n"));
+            mission.SetValue("EditorNotes", mission.Briefing.GetEditorNotes(template.Language, "\\\n"));
 
             // Generate mission options
             BriefingRoom.PrintToLog("Generating options...");
@@ -220,7 +220,7 @@ namespace BriefingRoom4DCS.Generator
             BriefingRoom.PrintToLog("Generating images...");
             MissionGeneratorImages.GenerateTitle(mission, template);
             if(!template.OptionsMission.Contains("DisableKneeboardImages"))
-                await MissionGeneratorImages.GenerateKneeboardImagesAsync(mission);
+                await MissionGeneratorImages.GenerateKneeboardImagesAsync(mission, template.Language);
 
             return mission;
         }

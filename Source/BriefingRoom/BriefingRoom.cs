@@ -34,7 +34,9 @@ namespace BriefingRoom4DCS
     public sealed class BriefingRoom
     {
         public static string TARGETED_DCS_WORLD_VERSION { get; private set; }
-        public static Dictionary<string,string>  LanguageMap { get; private set; }
+        public static Dictionary<string,string>  AvailableLanguagesMap { get; private set; }
+
+        public static DatabaseLanguage LanguageDB { get; private set; }
 
         public const string REPO_URL = "https://github.com/akaAgar/briefing-room-for-dcs";
 
@@ -55,13 +57,14 @@ namespace BriefingRoom4DCS
             INIFile ini = new($"{BRPaths.DATABASE}Common.ini");
             TARGETED_DCS_WORLD_VERSION = ini.GetValue("Versions", "DCSVersion", "2.7");
             
-            LanguageMap = new Dictionary<string, string>{{"EN", "English"}};
+            AvailableLanguagesMap = new Dictionary<string, string>{{"EN", "English"}};
             foreach (var key in ini.GetKeysInSection("Languages"))
-               LanguageMap.AddIfKeyUnused(key, ini.GetValue<string>("Languages", key)); 
+               AvailableLanguagesMap.AddIfKeyUnused(key, ini.GetValue<string>("Languages", key)); 
 
 
             OnMessageLogged += logHandler;
             Database.Instance.Initialize();
+            LanguageDB = Database.Instance.Language;
         }
 
         public static DatabaseEntryInfo[] GetDatabaseEntriesInfo(DatabaseEntryType entryType, string parameter = "")

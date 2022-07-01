@@ -32,11 +32,11 @@ namespace BriefingRoom4DCS
     internal class MizMaker
     {
 
-        internal static byte[] ExportToMizBytes(DCSMission mission, MissionTemplate template = null)
+        internal static byte[] ExportToMizBytes(DCSMission mission, MissionTemplate template)
         {
             Dictionary<string, byte[]> MizFileEntries = new Dictionary<string, byte[]>();
 
-            AddStringValueToEntries(MizFileEntries, "briefing.html", mission.Briefing.GetBriefingAsHTML(true));
+            AddStringValueToEntries(MizFileEntries, "briefing.html", mission.Briefing.GetBriefingAsHTML(template.Language, true));
             AddStringValueToEntries(MizFileEntries, "credits.txt", $"Generated with BriefingRoom for DCS World (https://akaagar.itch.io/briefing-room-for-dcs) {BriefingRoom.VERSION} ({BriefingRoom.BUILD_VERSION})");
             if(template != null)
                 AddStringValueToEntries(MizFileEntries, "template.brt", Encoding.ASCII.GetString(template.GetIniBytes()));
