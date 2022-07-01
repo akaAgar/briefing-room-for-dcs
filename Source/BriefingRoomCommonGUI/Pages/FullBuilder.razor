@@ -20,9 +20,9 @@
     <div class="form-group">
         <label>Language</label>
         <select class="form-control" @bind=Template.Language>
-        @foreach (var key in BriefingRoom.LanguageMap.Keys)
+        @foreach (var key in BriefingRoom.AvailableLanguagesMap.Keys)
         {
-            <option value="@key">@BriefingRoom.LanguageMap[key]</option> // Blazor needs to know what values it binds to!
+            <option value="@key">@BriefingRoom.AvailableLanguagesMap[key]</option> // Blazor needs to know what values it binds to!
         }
         </select>
     </div>
@@ -523,7 +523,7 @@
             <div>
                 <canvas height="360" width="640" id="canvas"></canvas>  
             </div>
-            <div>@((MarkupString)mission.Briefing.GetBriefingAsHTML(false))</div>
+            <div>@((MarkupString)mission.Briefing.GetBriefingAsHTML(Template.Language, false))</div>
         </div>
     }
 </div>
@@ -662,7 +662,7 @@
     async Task DownloadBriefing()
     {
         try { 
-            byte[] zipBytes = Encoding.UTF8.GetBytes(mission.Briefing.GetBriefingAsHTML());
+            byte[] zipBytes = Encoding.UTF8.GetBytes(mission.Briefing.GetBriefingAsHTML(Template.Language));
             if (zipBytes == null) return; // Something went wrong during the .miz export
             await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{Template.ContextTheater} - {mission.Briefing.Name}.html", "text/html", zipBytes); }
         catch (Exception ex) {

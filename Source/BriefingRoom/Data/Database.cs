@@ -41,6 +41,7 @@ namespace BriefingRoom4DCS.Data
         private static Database _Instance = null;
 
         internal DatabaseCommon Common { get; set; }
+        internal DatabaseLanguage Language { get; set; }
 
         private readonly Dictionary<Type, Dictionary<string, DBEntry>> DBEntries;
 
@@ -49,6 +50,7 @@ namespace BriefingRoom4DCS.Data
         internal Database()
         {
             Common = new DatabaseCommon();
+            Language = new DatabaseLanguage();
             DBEntries = new Dictionary<Type, Dictionary<string, DBEntry>>();
         }
 
@@ -57,6 +59,7 @@ namespace BriefingRoom4DCS.Data
             if (Initialized) return;
 
             Common.Load();
+            Language.Load();
 
             // Load entries into the database
             DBEntries.Clear();

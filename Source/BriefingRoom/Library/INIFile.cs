@@ -132,7 +132,7 @@ namespace BriefingRoom4DCS
         internal LanguageString GetLangStrings(string section, string key)
         {
             var resultMap = new LanguageString();
-            foreach (var langKey in BriefingRoom.LanguageMap.Keys)
+            foreach (var langKey in BriefingRoom.AvailableLanguagesMap.Keys)
             {
                 var value = GetValue<string>(section, $"{key}{(langKey != "EN"? $".{langKey}" : "")}","");
                 if(!string.IsNullOrEmpty(value) || langKey == "EN")
@@ -237,7 +237,7 @@ namespace BriefingRoom4DCS
                 keys.AddRange(Sections[section].Keys);
             }
             if(ignoreLangs)
-               keys = keys.Where(x => !BriefingRoom.LanguageMap.Keys.Any(y => x.EndsWith($".{y}"))).ToList(); 
+               keys = keys.Where(x => !BriefingRoom.AvailableLanguagesMap.Keys.Any(y => x.EndsWith($".{y}"))).ToList(); 
             return keys.Distinct().OrderBy(x => x).ToArray();
         }
 

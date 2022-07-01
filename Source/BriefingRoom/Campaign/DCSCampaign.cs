@@ -87,12 +87,12 @@ namespace BriefingRoom4DCS.Campaign
             return Toolbox.ZipData(FileEntries);
         }
 
-        public byte[] ExportBriefingsToCompressedByteArray()
+        public byte[] ExportBriefingsToCompressedByteArray(CampaignTemplate template)
         {
             Dictionary<string, byte[]> FileEntries = new Dictionary<string, byte[]>();
 
             for (int i = 0; i < Missions.Count; i++)
-                FileEntries.Add($"{Name}{i + 1:00}.html", Encoding.UTF8.GetBytes(Missions[i].Briefing.GetBriefingAsHTML()));
+                FileEntries.Add($"{Name}{i + 1:00}.html", Encoding.UTF8.GetBytes(Missions[i].Briefing.GetBriefingAsHTML(template.Language)));
 
             return Toolbox.ZipData(FileEntries);
         }

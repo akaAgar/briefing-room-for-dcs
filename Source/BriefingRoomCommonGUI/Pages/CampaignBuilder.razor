@@ -348,7 +348,7 @@
             <div>
                 <canvas height="360" width="640" id="canvas"></canvas>  
             </div>
-            <div>@((MarkupString)missionTab.Briefing.GetBriefingAsHTML(false))</div>
+            <div>@((MarkupString)missionTab.Briefing.GetBriefingAsHTML(Template.Language, false))</div>
         </div>
     }
 </div>
@@ -482,7 +482,7 @@
 
     async Task DownloadBriefing()
     {
-            byte[] zipBytes = campaign.ExportBriefingsToCompressedByteArray();
+            byte[] zipBytes = campaign.ExportBriefingsToCompressedByteArray(Template);
             if (zipBytes == null) return; // Something went wrong during the .miz export
 
             try { await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{Template.ContextTheater} - {campaign.Name} - Briefings.zip", "text/html", zipBytes); }
