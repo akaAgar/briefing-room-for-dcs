@@ -64,10 +64,10 @@ namespace BriefingRoom4DCS.Generator
             };
 
             // Copy values from the template
-            mission.SetValue("BriefingTheater", theaterDB.UIDisplayName);
-            mission.SetValue("BriefingSituation", situationDB.UIDisplayName);
-            mission.SetValue("BriefingAllyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition].UIDisplayName);
-            mission.SetValue("BriefingEnemyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition.GetEnemy()].UIDisplayName);
+            mission.SetValue("BriefingTheater", theaterDB.UIDisplayName.Get(template.Language));
+            mission.SetValue("BriefingSituation", situationDB.UIDisplayName.Get(template.Language));
+            mission.SetValue("BriefingAllyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition].UIDisplayName.Get(template.Language));
+            mission.SetValue("BriefingEnemyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition.GetEnemy()].UIDisplayName.Get(template.Language));
             mission.SetValue("EnableAudioRadioMessages", !template.OptionsMission.Contains("RadioMessagesTextOnly"));
             mission.SetValue("LuaPlayerCoalition", $"coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}");
             mission.SetValue("LuaEnemyCoalition", $"coalition.side.{template.ContextPlayerCoalition.GetEnemy().ToString().ToUpperInvariant()}");

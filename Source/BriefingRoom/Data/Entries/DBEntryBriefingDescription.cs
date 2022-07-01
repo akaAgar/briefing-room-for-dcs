@@ -18,24 +18,27 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using System.Collections.Generic;
+
 namespace BriefingRoom4DCS.Data
 {
     internal class DBEntryBriefingDescription : DBEntry
     {
-        internal string[] DescriptionText { get; private set; }
+        internal List<Dictionary<string,string>> DescriptionText { get; private set; }
 
 
         protected override bool OnLoad(string iniFilePath)
         {
             var ini = new INIFile(iniFilePath);
-            string defaultText = ini.GetValue<string>("BriefingDescription", "Description");
+            Dictionary<string,string> defaultTexts = ini.GetLangStrings("BriefingDescription", "Description");
 
-            DescriptionText = new string[Toolbox.EnumCount<UnitFamily>()];
+            DescriptionText = new List<Dictionary<string, string>>();
             for (int i = 0; i < Toolbox.EnumCount<UnitFamily>(); i++)
             {
-                DescriptionText[i] = ini.GetValue<string>("BriefingDescription", $"Description.{(UnitFamily)i}");
-                if (string.IsNullOrEmpty(DescriptionText[i]))
-                    DescriptionText[i] = defaultText;
+                DescriptionText.Add(defaultTexts);
+                var data = ini.GetLangStrings("BriefingDescription", $"Description.{(UnitFamily)i}");
+                if (data.Count > 0)
+                    DescriptionText[i] = data;
             }
 
             return true;

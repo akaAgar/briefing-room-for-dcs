@@ -17,6 +17,15 @@
 <LoadingSpinner ON="spinner"/>
 <div class="title-bar">
     <h1>Full Mission Generator</h1>
+    <div class="form-group">
+        <label>Language</label>
+        <select class="form-control" @bind=Template.Language>
+        @foreach (var key in BriefingRoom.LanguageMap.Keys)
+        {
+            <option value="@key">@BriefingRoom.LanguageMap[key]</option> // Blazor needs to know what values it binds to!
+        }
+        </select>
+    </div>
     <TemplateButtons LoadTemplate="LoadTemplate" SaveTemplate="SaveTemplate" ClearTemplate="ClearTemplate" AcceptString=".brt,.miz" />
 </div>
 <div class="generator-group">
@@ -80,10 +89,10 @@
                             </div>
                         </div>
                         <div class="generator-group flex-justify-spaced flex-margin-fix">
-                            <InputDataBase ClassString="flex-block" Label="Theater" @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater"/>
-                            <InputDataBase ClassString="flex-block" Label="Situation" @bind-Value="Template.ContextSituation" DataBaseType="DatabaseEntryType.Situation" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
+                            <InputDataBase ClassString="flex-block" Label="Theater" @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater" Language="@Template.Language"/>
+                            <InputDataBase ClassString="flex-block" Label="Situation" @bind-Value="Template.ContextSituation" DataBaseType="DatabaseEntryType.Situation" Language="@Template.Language" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
                         </div>
-                        <InputDataBase Label="Home airbase" @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
+                        <InputDataBase Label="Home airbase" @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Language="@Template.Language" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
                         <InputEnum Label="Time period" @bind-Value="Template.ContextDecade" EnumType="Decade"/>
                         <InputEnum Label="Player Side" @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition"/>
                     </div>
@@ -96,7 +105,7 @@
                         </div>
                        
                         <div class="generator-group flex-justify-spaced flex-margin-fix">
-                            <InputDataBase ClassString="flex-block" Label="Weather preset" @bind-Value="Template.EnvironmentWeatherPreset" DataBaseType="DatabaseEntryType.WeatherPreset" EmptOpt="Random"/>
+                            <InputDataBase ClassString="flex-block" Label="Weather preset" Language="@Template.Language" @bind-Value="Template.EnvironmentWeatherPreset" DataBaseType="DatabaseEntryType.WeatherPreset" EmptOpt="Random"/>
                             <InputEnum ClassString="flex-block" Label="Wind" @bind-Value="Template.EnvironmentWind" EnumType="Wind"/>
                         </div>
                     </div>
@@ -143,8 +152,8 @@
                                         <h4>Features</h4>
                                         <CheckBoxList
                                             Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveFeature).ToList()"
-                                            TextField="@(item =>item.Name)"
-                                            DescriptionField="@(item =>item.Description)"
+                                            TextField="@(item =>item.Name.Get(Template.Language))"
+                                            DescriptionField="@(item =>item.Description.Get(Template.Language))"
                                             ValueField="@(item =>item.ID)"
                                             SelectedValues="objective.Features"
                                             TItem="DatabaseEntryInfo"
@@ -154,9 +163,9 @@
                                     
                                     <h4>Tasks</h4>
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
-                                        <InputDataBase ClassString="flex-block" Label="Task" @bind-Value="objective.Task" DataBaseType="DatabaseEntryType.ObjectiveTask"/>
-                                        <InputDataBase ClassString="flex-block" Label="Target" @bind-Value="objective.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget" Grouping="@objective.Task"/>
-                                        <InputDataBase ClassString="flex-block" Label="Target behavior" @bind-Value="objective.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior" Grouping="@objective.Target"/>
+                                        <InputDataBase ClassString="flex-block" Label="Task" Language="@Template.Language" @bind-Value="objective.Task" DataBaseType="DatabaseEntryType.ObjectiveTask"/>
+                                        <InputDataBase ClassString="flex-block" Label="Target" Language="@Template.Language" @bind-Value="objective.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget" Grouping="@objective.Task"/>
+                                        <InputDataBase ClassString="flex-block" Label="Target behavior" Language="@Template.Language" @bind-Value="objective.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior" Grouping="@objective.Target"/>
                                         <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="objective.TargetCount" EnumType="Amount"/>
                                         <button type="button" class="btn btn-secondary row-button" @onclick="() => CloneObjectiveTask(objective)"  title="Clone Task"><span class="oi oi-layers"></span></button>
                                     </div>
@@ -175,9 +184,9 @@
                                     {
                                     <hr/>
                                         <div class="generator-group flex-justify-spaced flex-margin-fix">
-                                            <InputDataBase ClassString="flex-block" Label="Task" @bind-Value="subTask.Task" DataBaseType="DatabaseEntryType.ObjectiveTask"/>
-                                            <InputDataBase ClassString="flex-block" Label="Target" @bind-Value="subTask.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget" Grouping="@subTask.Task"/>
-                                            <InputDataBase ClassString="flex-block" Label="Target behavior" @bind-Value="subTask.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior"/>
+                                            <InputDataBase ClassString="flex-block" Label="Task" Language="@Template.Language" @bind-Value="subTask.Task" DataBaseType="DatabaseEntryType.ObjectiveTask"/>
+                                            <InputDataBase ClassString="flex-block" Label="Target" Language="@Template.Language" @bind-Value="subTask.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget" Grouping="@subTask.Task"/>
+                                            <InputDataBase ClassString="flex-block" Label="Target behavior" Language="@Template.Language" @bind-Value="subTask.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior"/>
                                             <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="subTask.TargetCount" EnumType="Amount"/>
                                             <button type="button" class="btn btn-secondary row-button" @onclick="() => CloneObjectiveSubTask(subTask, objective)"  title="Clone Task"><span class="oi oi-layers"></span></button>
                                             <button type="button" class="btn btn-secondary row-button" @onclick="() => RemoveSubTask(objective, subTask)">x</button>
@@ -206,8 +215,8 @@
                             <h4>Mission features</h4>
                             <CheckBoxList
                                 Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"
-                                TextField="@(item =>item.Name)"
-                                DescriptionField="@(item => item.Description)"
+                                TextField="@(item =>item.Name.Get(Template.Language))"
+                                DescriptionField="@(item => item.Description.Get(Template.Language))"
                                 GroupingField="@(item => item.Category)"
                                 ValueField="@(item =>item.ID)"
                                 SelectedValues="Template.MissionFeatures"
@@ -219,8 +228,8 @@
                             <h4>Mission options</h4>
                             <CheckBoxList
                                 Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.OptionsMission).ToList()"
-                                TextField="@(item =>item.Name)"
-                                DescriptionField="@(item => item.Description)"
+                                TextField="@(item =>item.Name.Get(Template.Language))"
+                                DescriptionField="@(item => item.Description.Get(Template.Language))"
                                 ValueField="@(item =>item.ID)"
                                 SelectedValues="Template.OptionsMission"
                                 TItem="DatabaseEntryInfo"
@@ -242,8 +251,8 @@
                             <h4>Unit mods</h4>
                             <CheckBoxList
                                 Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.DCSMod).ToList()"
-                                TextField="@(item =>item.Name)"
-                                DescriptionField="@(item => item.Description)"
+                                TextField="@(item =>item.Name.Get(Template.Language))"
+                                DescriptionField="@(item => item.Description.Get(Template.Language))"
                                 ValueField="@(item =>item.ID)"
                                 SelectedValues="Template.Mods"
                                 TItem="DatabaseEntryInfo"
@@ -350,7 +359,7 @@
                                     </div>
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
                                         <InputEnum ClassString="flex-block" Label="Starting Setup" @bind-Value="flight.StartLocation" EnumType="PlayerStartLocation"/>
-                                        <InputDataBase ClassString="flex-block" Label="Start on (Carrier/Ship/FOB)" @bind-Value="flight.Carrier" DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="Airbase"/>
+                                        <InputDataBase ClassString="flex-block" Label="Start on (Carrier/Ship/FOB)" Language="@Template.Language" @bind-Value="flight.Carrier" DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="Airbase"/>
                                     </div>
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
                                         <div class="flex-block form-group">
@@ -826,21 +835,21 @@
     await Typeahead.SearchEnum<Country>(searchText);
 
     private async Task<IEnumerable<DatabaseEntryInfo>> SearchAircraft(string searchText) =>
-    await Typeahead.SearchDB(DatabaseEntryType.UnitFlyableAircraft, searchText);
+    await Typeahead.SearchDB(DatabaseEntryType.UnitFlyableAircraft, searchText, Template.Language);
     private string GetAircraftDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.UnitFlyableAircraft, id);
+    Typeahead.GetDBDisplayName(DatabaseEntryType.UnitFlyableAircraft, id, Template.Language);
 
     private async Task<IEnumerable<DatabaseEntryInfo>> SearchObjectiveType(string searchText) =>
-    await Typeahead.SearchDB(DatabaseEntryType.ObjectiveTask, searchText);
+    await Typeahead.SearchDB(DatabaseEntryType.ObjectiveTask, searchText, Template.Language);
     private string GetObjectiveTypeDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTask, id);
+    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTask, id, Template.Language);
 
     private string GetObjectiveTargetDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTarget, id);
+    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTarget, id, Template.Language);
 
     private async Task<IEnumerable<DatabaseEntryInfo>> SearchCoalition(string searchText) =>
-    await Typeahead.SearchDB(DatabaseEntryType.Coalition, searchText);
+    await Typeahead.SearchDB(DatabaseEntryType.Coalition, searchText, Template.Language);
 
     private string GetCoalitionDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.Coalition, id);
+    Typeahead.GetDBDisplayName(DatabaseEntryType.Coalition, id, Template.Language);
 }

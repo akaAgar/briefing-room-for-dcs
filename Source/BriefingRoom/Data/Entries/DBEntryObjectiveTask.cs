@@ -27,9 +27,9 @@ namespace BriefingRoom4DCS.Data
     {
         internal string BriefingDescription { get; private set; }
 
-        internal string[] BriefingTask { get; private set; }
+        internal LanguageString[] BriefingTask { get; private set; }
 
-        internal string[] BriefingRemarks { get; private set; }
+        internal LanguageString BriefingRemarks { get; private set; }
 
         internal string CompletionTriggerLua { get; private set; }
 
@@ -49,11 +49,11 @@ namespace BriefingRoom4DCS.Data
                 return false;
             }
 
-            BriefingTask = new string[2];
-            BriefingTask[0] = ini.GetValue<string>("Briefing", "Task.Singular");
-            BriefingTask[1] = ini.GetValue<string>("Briefing", "Task.Plural");
+            BriefingTask = new LanguageString[2];
+            BriefingTask[0] = ini.GetLangStrings("Briefing", "Task.Singular");
+            BriefingTask[1] = ini.GetLangStrings("Briefing", "Task.Plural");
 
-            BriefingRemarks = ini.GetValueArray<string>("Briefing", "Remarks", ';');
+            BriefingRemarks = ini.GetLangStrings("Briefing", "Remarks");
 
             CompletionTriggerLua = Toolbox.AddMissingFileExtension(ini.GetValue<string>("ObjectiveTask", "CompletionTriggerLua"), ".lua");
             if (!File.Exists($"{BRPaths.INCLUDE_LUA_OBJECTIVETRIGGERS}{CompletionTriggerLua}"))

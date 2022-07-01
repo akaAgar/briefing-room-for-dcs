@@ -146,14 +146,14 @@ namespace BriefingRoom4DCS.Generator
 
         protected void AddBriefingRemarkFromFeature(T featureDB, DCSMission mission, bool useEnemyRemarkIfAvailable, UnitMakerGroupInfo? groupInfo, Dictionary<string, object> stringReplacements)
         {
-            string[] remarks;
-            if (useEnemyRemarkIfAvailable && featureDB.BriefingRemarks[(int)Side.Enemy].Length > 0)
-                remarks = featureDB.BriefingRemarks[(int)Side.Enemy].ToArray();
+            string remarkString;
+            if (useEnemyRemarkIfAvailable && !string.IsNullOrEmpty(featureDB.BriefingRemarks[(int)Side.Enemy].Get(_template.Language)))
+                remarkString = featureDB.BriefingRemarks[(int)Side.Enemy].Get(_template.Language);
             else
-                remarks = featureDB.BriefingRemarks[(int)Side.Ally].ToArray();
-            if (remarks.Length == 0) return; // No briefing remarks for this feature
+                remarkString = featureDB.BriefingRemarks[(int)Side.Ally].Get(_template.Language);
+            if (string.IsNullOrEmpty(remarkString)) return; // No briefing remarks for this feature
 
-            string remark = Toolbox.RandomFrom(remarks);
+            string remark = Toolbox.RandomFrom(remarkString.Split(";"));
             foreach (KeyValuePair<string, object> stringReplacement in stringReplacements)
                 GeneratorTools.ReplaceKey(ref remark, stringReplacement.Key, stringReplacement.Value.ToString());
 

@@ -83,10 +83,10 @@
                             </div>
                         </div>
                         <div class="generator-group flex-justify-spaced flex-margin-fix">
-                            <InputDataBase ClassString="flex-block" Label="Theater" @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater"/>
-                            <InputDataBase ClassString="flex-block" Label="Situation" @bind-Value="Template.ContextSituation" DataBaseType="DatabaseEntryType.Situation" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
+                            <InputDataBase ClassString="flex-block" Label="Theater" @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater" Language="@Template.Language"/>
+                            <InputDataBase ClassString="flex-block" Label="Situation" @bind-Value="Template.ContextSituation" DataBaseType="DatabaseEntryType.Situation" Grouping="@Template.ContextTheater" Language="@Template.Language" EmptOpt="Random"/>
                         </div>
-                        <InputDataBase Label="Home airbase" @bind-Value="Template.PlayerStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
+                        <InputDataBase Label="Home airbase" @bind-Value="Template.PlayerStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Language="@Template.Language" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
                         <InputEnum Label="Time period" @bind-Value="Template.ContextDecade" EnumType="Decade"/>
                         <InputEnum Label="Player Side" @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition"/>
                     </div>
@@ -113,8 +113,8 @@
                             <label>Mission Features</label>
                             <CheckBoxList
                                 Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"
-                                TextField="@(item =>item.Name)"
-                                DescriptionField="@(item => item.Description)"
+                                TextField="@(item =>item.Name.Get(Template.Language))"
+                                DescriptionField="@(item => item.Description.Get(Template.Language))"
                                 GroupingField="@(item => item.Category)"
                                 ValueField="@(item =>item.ID)"
                                 SelectedValues="Template.MissionsFeatures"
@@ -126,8 +126,8 @@
                             <h4>Objectives</h4>
                             <CheckBoxList
                                 Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectivePreset).ToList()"
-                                TextField="@(item =>item.Name)"
-                                DescriptionField="@(item => item.Description)"
+                                TextField="@(item =>item.Name.Get(Template.Language))"
+                                DescriptionField="@(item => item.Description.Get(Template.Language))"
                                 ValueField="@(item =>item.ID)"
                                 SelectedValues="Template.MissionsObjectives"
                                 TItem="DatabaseEntryInfo"
@@ -148,8 +148,8 @@
                             <h4>Mission options</h4>
                             <CheckBoxList 
                                 Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.OptionsMission).ToList()"
-                                TextField="@(item =>item.Name)"
-                                DescriptionField="@(item => item.Description)"
+                                TextField="@(item =>item.Name.Get(Template.Language))"
+                                DescriptionField="@(item => item.Description.Get(Template.Language))"
                                 ValueField="@(item =>item.ID)"
                                 SelectedValues="Template.OptionsMission"
                                 TItem="DatabaseEntryInfo"
@@ -167,8 +167,8 @@
                             <h4>Unit mods</h4>
                             <CheckBoxList
                                 Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.DCSMod).ToList()"
-                                TextField="@(item =>item.Name)"
-                                DescriptionField="@(item => item.Description)"
+                                TextField="@(item =>item.Name.Get(Template.Language))"
+                                DescriptionField="@(item => item.Description.Get(Template.Language))"
                                 ValueField="@(item =>item.ID)"
                                 SelectedValues="Template.OptionsMods"
                                 TItem="DatabaseEntryInfo"
@@ -275,7 +275,7 @@
                                     </div>
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
                                         <InputEnum ClassString="flex-block" Label="Starting Setup" @bind-Value="flight.StartLocation" EnumType="PlayerStartLocation"/>
-                                        <InputDataBase ClassString="flex-block" Label="Carrier" @bind-Value="flight.Carrier" DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="N/A"/>
+                                        <InputDataBase ClassString="flex-block" Label="Carrier" Language="@Template.Language" @bind-Value="flight.Carrier" DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="N/A"/>
                                     </div>
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
                                         <div class="flex-block form-group">
@@ -560,21 +560,21 @@
     await Typeahead.SearchEnum<Country>(searchText);
 
     private async Task<IEnumerable<DatabaseEntryInfo>> SearchAircraft(string searchText) =>
-    await Typeahead.SearchDB(DatabaseEntryType.UnitFlyableAircraft, searchText);
+    await Typeahead.SearchDB(DatabaseEntryType.UnitFlyableAircraft, searchText, Template.Language);
     private string GetAircraftDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.UnitFlyableAircraft, id);
+    Typeahead.GetDBDisplayName(DatabaseEntryType.UnitFlyableAircraft, id, Template.Language);
 
     private async Task<IEnumerable<DatabaseEntryInfo>> SearchObjectiveType(string searchText) =>
-    await Typeahead.SearchDB(DatabaseEntryType.ObjectiveTask, searchText);
+    await Typeahead.SearchDB(DatabaseEntryType.ObjectiveTask, searchText, Template.Language);
     private string GetObjectiveTypeDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTask, id);
+    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTask, id, Template.Language);
 
     private string GetObjectiveTargetDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTarget, id);
+    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTarget, id, Template.Language);
 
     private async Task<IEnumerable<DatabaseEntryInfo>> SearchCoalition(string searchText) =>
-    await Typeahead.SearchDB(DatabaseEntryType.Coalition, searchText);
+    await Typeahead.SearchDB(DatabaseEntryType.Coalition, searchText, Template.Language);
 
     private string GetCoalitionDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.Coalition, id);
+    Typeahead.GetDBDisplayName(DatabaseEntryType.Coalition, id, Template.Language);
 }

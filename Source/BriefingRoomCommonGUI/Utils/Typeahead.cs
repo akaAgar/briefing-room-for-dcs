@@ -8,17 +8,17 @@ namespace BriefingRoom4DCS.GUI.Utils
     public class Typeahead
     {
 
-        public static Task<List<DatabaseEntryInfo>> SearchDB(DatabaseEntryType entryType, string searchText)
+        public static Task<List<DatabaseEntryInfo>> SearchDB(DatabaseEntryType entryType, string searchText, string lang)
         {
             var list = BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(entryType);
-            return Task.FromResult(list.Where(x => x.Name.ToLower().Contains(searchText.ToLower())).ToList());
+            return Task.FromResult(list.Where(x => x.Name.Get(lang).ToLower().Contains(searchText.ToLower())).ToList());
         }
 
-        public static string GetDBDisplayName(DatabaseEntryType entryType, string id)
+        public static string GetDBDisplayName(DatabaseEntryType entryType, string id, string lang)
         {
             if (String.IsNullOrEmpty(id))
                 return "Random";
-            return BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(entryType).First(x => x.ID == id).Name;
+            return BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(entryType).First(x => x.ID == id).Name.Get(lang);
         }
 
         public static string ConvertDB(DatabaseEntryInfo entry) => entry.ID;

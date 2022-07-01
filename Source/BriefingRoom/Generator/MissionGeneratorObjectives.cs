@@ -270,15 +270,16 @@ namespace BriefingRoom4DCS.Generator
             mission.Briefing.AddItem(DCSMissionBriefingItemType.TargetGroupName, $"-TGT-{objectiveName}");
 
             var pluralIndex = targetGroupInfo.Value.UnitNames.Length == 1 ? 0 : 1;
-            var taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex], mission).Replace("\"", "''");
+            var taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex].Get(template.Language), mission).Replace("\"", "''");
             ObjectiveNames.Remove(objectiveName);
             CreateTaskString(mission, pluralIndex, ref taskString, objectiveName, objectiveTargetUnitFamily);
             CreateLua(mission, template, targetDB, taskDB, objectiveIndex, objectiveName, targetGroupInfo, taskString);
 
             // Add briefing remarks for this objective task
-            if (taskDB.BriefingRemarks.Length > 0)
+            var remarksString = taskDB.BriefingRemarks.Get(template.Language);
+            if (!string.IsNullOrEmpty(remarksString))
             {
-                string remark = Toolbox.RandomFrom(taskDB.BriefingRemarks);
+                string remark = Toolbox.RandomFrom(remarksString.Split(";"));
                 GeneratorTools.ReplaceKey(ref remark, "ObjectiveName", objectiveName);
                 GeneratorTools.ReplaceKey(ref remark, "UnitFamily", Database.Instance.Common.Names.UnitFamilies[(int)objectiveTargetUnitFamily][pluralIndex]);
                 mission.Briefing.AddItem(DCSMissionBriefingItemType.Remark, remark);

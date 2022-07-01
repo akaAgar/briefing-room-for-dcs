@@ -36,6 +36,8 @@ namespace BriefingRoom4DCS.Campaign
         private const int MIN_CAMPAIGN_MISSIONS = 2;
         private const int MAX_CAMPAIGN_MISSIONS = 20;
         public const int MAX_COMBINED_ARMS_SLOTS = 100;
+
+        public string Language {get; set;} = "EN";
         public string BriefingCampaignName { get; set; }
         public string ContextCoalitionBlue { get; set; }
         public Coalition ContextPlayerCoalition { get; set; }
@@ -98,6 +100,7 @@ namespace BriefingRoom4DCS.Campaign
                 return;
             }
 
+            Language = "EN";
             BriefingCampaignName = "";
 
             ContextCoalitionBlue = "USA";

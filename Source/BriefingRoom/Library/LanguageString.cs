@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -18,34 +18,23 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BriefingRoom4DCS
 {
-    public struct DatabaseEntryInfo
+    public class LanguageString : Dictionary<string, string>
     {
-        public string Category { get; }
-
-        public LanguageString Description { get; }
-
-        public string ID { get; }
-
-        public LanguageString Name { get; }
-
-        public DatabaseEntryInfo(string id, LanguageString name, string category, LanguageString description)
+        public LanguageString(){}
+        public LanguageString(string value)
         {
-            ID = id;
-            Name = name;
-            Category = category;
-            Description = description;
+            this.Add("EN", value);
         }
-
-        public string GetNameAndDescription(string lang, string separator = " - ", bool upperCaseName = false)
+        public string Get(string key = "EN")
         {
-            string casedName = upperCaseName ? Name.Get(lang).ToUpperInvariant() : Name.Get(lang);
-            var description = Description.Get(lang);
-            if (string.IsNullOrEmpty(description)) return casedName;
-            return $"{casedName}{separator}{description}";
+            if(this.ContainsKey(key)) return this[key];
+            return this["EN"];
         }
     }
 }

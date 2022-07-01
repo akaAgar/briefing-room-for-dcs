@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BriefingRoom4DCS.Data
@@ -29,11 +30,11 @@ namespace BriefingRoom4DCS.Data
 
         internal string ID { get; set; }
 
-        internal string UIDisplayName { get; set; }
+        internal LanguageString UIDisplayName { get; set; }
 
         internal string UICategory { get; set; }
 
-        internal string UIDescription { get; set; }
+        internal LanguageString UIDescription { get; set; }
 
         internal DBEntry() { }
 
@@ -48,10 +49,10 @@ namespace BriefingRoom4DCS.Data
 
             ID = id;
             var ini = new INIFile(iniFilePath);
-            UIDisplayName = ini.GetValue<string>("GUI", "DisplayName");
-            if (string.IsNullOrEmpty(UIDisplayName)) UIDisplayName = ID;
+            UIDisplayName = ini.GetLangStrings("GUI", "DisplayName");
+            if (UIDisplayName.Count == 0) UIDisplayName = new LanguageString(ID);
             UICategory = ini.GetValue<string>("GUI", "Category");
-            UIDescription = ini.GetValue<string>("GUI", "Description");
+            UIDescription = ini.GetLangStrings("GUI", "Description");
 
             return OnLoad(iniFilePath);
         }

@@ -77,13 +77,10 @@
                 <div class="generator-group flex-justify-spaced flex-margin-fix">
                     <InputEnum ClassString="flex-block" Label="Player Side"
                         @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition" />
-                    <InputDataBase ClassString="flex-block" Label="Theater" @bind-Value="Template.ContextTheater"
-                        DataBaseType="DatabaseEntryType.Theater" />
-                    <InputDataBase ClassString="flex-block" Label="Situation" @bind-Value="Template.ContextSituation"
-                        Grouping="@Template.ContextTheater" DataBaseType="DatabaseEntryType.Situation"
-                        EmptOpt="Random" />
+                    <InputDataBase ClassString="flex-block" Label="Theater" Language="@Template.Language" @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater" />
+                    <InputDataBase ClassString="flex-block" Label="Situation" Language="@Template.Language" @bind-Value="Template.ContextSituation" Grouping="@Template.ContextTheater" DataBaseType="DatabaseEntryType.Situation" EmptOpt="Random" />
                 </div>
-                <InputDataBase Label="Home airbase" @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
+                <InputDataBase Label="Home airbase" Language="@Template.Language" @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
                 <hr />
             </div>
             <div id="flight-groups" class="generator-block">
@@ -109,7 +106,7 @@
                             <label>Count</label>
                             <InputNumber class="form-control" @bind-Value="flight.Count"></InputNumber>
                         </div>
-                        <InputDataBase ClassString="flex-block" Label="Start on (Carrier/Ship/FOB)" @bind-Value="flight.Carrier"
+                        <InputDataBase ClassString="flex-block"  Label="Start on (Carrier/Ship/FOB)" Language="@Template.Language" @bind-Value="flight.Carrier"
                         DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="Airbase" />
                         <div class="flex-block form-group">
                             <label>Livery</label>
@@ -169,10 +166,8 @@
                 @foreach (var objective in Template.Objectives)
                 {
                     <div class="generator-group flex-justify-spaced flex-margin-fix">
-                        <InputDataBase ClassString="flex-block" Label="Objective" @bind-Value="objective.Preset"
-                        DataBaseType="DatabaseEntryType.ObjectivePreset" HasDescription />
-                        <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="objective.TargetCount"
-                        EnumType="Amount" />
+                        <InputDataBase ClassString="flex-block" Label="Objective" Language="@Template.Language" @bind-Value="objective.Preset" DataBaseType="DatabaseEntryType.ObjectivePreset" HasDescription />
+                        <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="objective.TargetCount" EnumType="Amount" />
                         <div class="form-group flex-box">
                             <button type="button" class="btn btn-secondary row-button"
                             @onclick="() => CloneObjective(objective)"  title="Clone Objective"><span class="oi oi-layers"></span></button>
@@ -199,7 +194,7 @@
                     <h3>Mission features</h3>
                     <CheckBoxList
                         Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"
-                        TextField="@(item =>item.Name)" DescriptionField="@(item => item.Description)"
+                        TextField="@(item =>item.Name.Get(Template.Language))" DescriptionField="@(item => item.Description.Get(Template.Language))"
                         GroupingField="@(item => item.Category)" ValueField="@(item =>item.ID)"
                         SelectedValues="Template.MissionFeatures" TItem="DatabaseEntryInfo" TItemOutput="string">
                     </CheckBoxList>
@@ -503,21 +498,21 @@
     await Typeahead.SearchEnum<Country>(searchText);
 
     private async Task<IEnumerable<DatabaseEntryInfo>> SearchAircraft(string searchText) =>
-    await Typeahead.SearchDB(DatabaseEntryType.UnitFlyableAircraft, searchText);
+    await Typeahead.SearchDB(DatabaseEntryType.UnitFlyableAircraft, searchText, Template.Language);
     private string GetAircraftDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.UnitFlyableAircraft, id);
+    Typeahead.GetDBDisplayName(DatabaseEntryType.UnitFlyableAircraft, id, Template.Language);
 
     private async Task<IEnumerable<DatabaseEntryInfo>> SearchObjectiveType(string searchText) =>
-    await Typeahead.SearchDB(DatabaseEntryType.ObjectiveTask, searchText);
+    await Typeahead.SearchDB(DatabaseEntryType.ObjectiveTask, searchText, Template.Language);
     private string GetObjectiveTypeDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTask, id);
+    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTask, id, Template.Language);
 
     private string GetObjectiveTargetDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTarget, id);
+    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTarget, id, Template.Language);
 
     private async Task<IEnumerable<DatabaseEntryInfo>> SearchCoalition(string searchText) =>
-    await Typeahead.SearchDB(DatabaseEntryType.Coalition, searchText);
+    await Typeahead.SearchDB(DatabaseEntryType.Coalition, searchText, Template.Language);
 
     private string GetCoalitionDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.Coalition, id);
+    Typeahead.GetDBDisplayName(DatabaseEntryType.Coalition, id, Template.Language);
 }

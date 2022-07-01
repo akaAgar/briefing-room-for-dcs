@@ -35,7 +35,7 @@ namespace BriefingRoom4DCS.Data
 
         internal string Theater { get; private set; }
 
-        internal List<string> BriefingDescriptions { get; private set; }
+        internal List<LanguageString> BriefingDescriptions { get; private set; }
 
         protected override bool OnLoad(string iniFilePath)
         {
@@ -59,9 +59,9 @@ namespace BriefingRoom4DCS.Data
 
             if (ini.GetSections().Contains("briefingdescription"))
             {
-                BriefingDescriptions = new List<string>();
+                BriefingDescriptions = new List<LanguageString>();
                 foreach (string key in ini.GetKeysInSection("BriefingDescription"))
-                    BriefingDescriptions.Add(ini.GetValue<string>("BriefingDescription", key));
+                    BriefingDescriptions.Add(ini.GetLangStrings("BriefingDescription", key));
             }
 
             if (!Database.Instance.EntryExists<DBEntryTheater>(Theater))
