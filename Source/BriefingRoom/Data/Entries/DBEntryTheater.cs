@@ -29,8 +29,6 @@ namespace BriefingRoom4DCS.Data
     {
         private static readonly MinMaxI DEFAULT_DAYTIME = new MinMaxI(8 * 60, 19 * 60);
 
-        internal string[] BriefingNames { get; private set; }
-
         internal Coordinates DefaultMapCenter { get; private set; }
 
         internal string DCSID { get; private set; }
@@ -52,8 +50,6 @@ namespace BriefingRoom4DCS.Data
             int i;
 
             var ini = new INIFile(iniFilePath);
-            // [Briefing] section
-            BriefingNames = ini.GetValueArray<string>("Briefing", "Names");
 
             // [Theater] section
             DCSID = ini.GetValue<string>("Theater", "DCSID");

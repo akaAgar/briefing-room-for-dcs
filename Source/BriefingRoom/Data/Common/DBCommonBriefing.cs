@@ -28,16 +28,16 @@ namespace BriefingRoom4DCS.Data
     {
         internal int MaxObjectiveDescriptionCount { get; }
 
-        internal string OverflowObjectiveDescriptionText { get; }
+        internal LanguageString OverflowObjectiveDescriptionText { get; }
 
-        internal string[] ObjectiveDescriptionConnectors { get; }
+        internal LanguageString ObjectiveDescriptionConnectors { get; }
 
         internal DBCommonBriefing()
         {
             INIFile ini = new($"{BRPaths.DATABASE}Briefing.ini");
             MaxObjectiveDescriptionCount = ini.GetValue<int>("Briefing", "MaxObjectiveDescriptionCount");
-            OverflowObjectiveDescriptionText = ini.GetValue<string>("Briefing", "OverflowObjectiveDescriptionText");
-            ObjectiveDescriptionConnectors = ini.GetValueArray<string>("Briefing", "ObjectiveDescriptionConnectors");
+            OverflowObjectiveDescriptionText = ini.GetLangStrings("Briefing", "OverflowObjectiveDescriptionText");
+            ObjectiveDescriptionConnectors = ini.GetLangStrings("Briefing", "ObjectiveDescriptionConnectors");
         }
 
 

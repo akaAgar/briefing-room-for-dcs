@@ -49,9 +49,9 @@ namespace BriefingRoom4DCS.Generator
                         DBEntryBriefingDescription descriptionDB =
                             Database.Instance.GetEntry<DBEntryBriefingDescription>(
                                 Database.Instance.GetEntry<DBEntryObjectiveTask>(obj.Task).BriefingDescription);
-                        AppendDescription(obj.Task, descriptionDB.DescriptionText[(int)objectiveTargetUnitFamilies[familyCount]], ref descriptionsMap);
+                        AppendDescription(obj.Task, descriptionDB.DescriptionText[(int)objectiveTargetUnitFamilies[familyCount]][template.Language], ref descriptionsMap);
                         familyCount++;
-                        AddSubTasks(obj, objectiveTargetUnitFamilies, ref descriptionsMap, ref familyCount);
+                        AddSubTasks(obj, objectiveTargetUnitFamilies, ref descriptionsMap, ref familyCount, template.Language);
                     }
 
                     briefingDescription = ConstructTaskDescriptions(descriptionsMap, mission);
@@ -98,14 +98,14 @@ namespace BriefingRoom4DCS.Generator
                     return $"{acc} {Toolbox.RandomFrom(Database.Instance.Common.Briefing.ObjectiveDescriptionConnectors)} {LowerFirstChar(GeneratorTools.ParseRandomString(x))}";
                 });
 
-        private static void AddSubTasks(MissionTemplateObjectiveRecord obj, List<UnitFamily> objectiveTargetUnitFamilies, ref Dictionary<string, List<string>> descriptionsMap, ref int familyCount)
+        private static void AddSubTasks(MissionTemplateObjectiveRecord obj, List<UnitFamily> objectiveTargetUnitFamilies, ref Dictionary<string, List<string>> descriptionsMap, ref int familyCount, string language)
         {
             foreach (var subTask in obj.SubTasks)
             {
                 var descriptionDB =
                     Database.Instance.GetEntry<DBEntryBriefingDescription>(
                         Database.Instance.GetEntry<DBEntryObjectiveTask>(subTask.Task).BriefingDescription);
-                AppendDescription(obj.Task, descriptionDB.DescriptionText[(int)objectiveTargetUnitFamilies[familyCount]], ref descriptionsMap);
+                AppendDescription(obj.Task, descriptionDB.DescriptionText[(int)objectiveTargetUnitFamilies[familyCount]][language], ref descriptionsMap);
                 familyCount++;
             }
         }

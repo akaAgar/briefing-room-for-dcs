@@ -24,7 +24,7 @@ namespace BriefingRoom4DCS.Data
 {
     internal class DBEntryObjectiveTarget : DBEntry
     {
-        internal string[] BriefingName { get; private set; }
+        internal LanguageString[] BriefingName { get; private set; }
 
         internal UnitCategory UnitCategory { get { return UnitFamilies[0].GetUnitCategory(); } }
 
@@ -37,10 +37,10 @@ namespace BriefingRoom4DCS.Data
         protected override bool OnLoad(string iniFilePath)
         {
             var ini = new INIFile(iniFilePath);
-            BriefingName = new string[2]
+            BriefingName = new LanguageString[2]
             {
-                        ini.GetValue<string>("ObjectiveTarget", "Briefing.UnitName.Singular"),
-                        ini.GetValue<string>("ObjectiveTarget", "Briefing.UnitName.Plural")
+                        ini.GetLangStrings("ObjectiveTarget", "Briefing.UnitName.Singular"),
+                        ini.GetLangStrings("ObjectiveTarget", "Briefing.UnitName.Plural")
             };
 
             UnitFamilies = Toolbox.SetSingleCategoryFamilies(ini.GetValueArray<UnitFamily>("ObjectiveTarget", "Units.Families"));

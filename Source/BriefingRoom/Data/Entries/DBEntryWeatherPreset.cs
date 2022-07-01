@@ -24,7 +24,7 @@ namespace BriefingRoom4DCS.Data
     {
         internal bool BadWeather { get; private set; }
 
-        internal string BriefingDescription { get; private set; }
+        internal LanguageString BriefingDescription { get; private set; }
 
         internal MinMaxI CloudsBase { get; private set; }
 
@@ -52,7 +52,7 @@ namespace BriefingRoom4DCS.Data
         protected override bool OnLoad(string iniFilePath)
         {
             var ini = new INIFile(iniFilePath);
-            BriefingDescription = ini.GetValue<string>("Briefing", "Description");
+            BriefingDescription = ini.GetLangStrings("Briefing", "Description");
 
             CloudsBase = ini.GetValue<MinMaxI>("Weather", "Clouds.Base");
             CloudsPresets = ini.GetValueArray<string>("Weather", "Clouds.Presets");

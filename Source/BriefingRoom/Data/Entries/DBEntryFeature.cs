@@ -18,6 +18,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using System.Collections.Generic;
 using System.IO;
 using BriefingRoom4DCS.Template;
 
@@ -27,7 +28,7 @@ namespace BriefingRoom4DCS.Data
     {
         internal abstract string SourceLuaDirectory { get; }
 
-        internal string[][] BriefingRemarks { get; private set; }
+        internal List<LanguageString> BriefingRemarks { get; private set; }
 
         internal string[] IncludeLua { get; private set; }
 
@@ -57,9 +58,9 @@ namespace BriefingRoom4DCS.Data
         protected override bool OnLoad(string iniFilePath)
         {
             var ini = new INIFile(iniFilePath);
-            BriefingRemarks = new string[2][];
-            BriefingRemarks[(int)Side.Ally] = ini.GetValueArray<string>("Briefing", "Remarks", ';');
-            BriefingRemarks[(int)Side.Enemy] = ini.GetValueArray<string>("Briefing", "Remarks.Enemy", ';');
+            BriefingRemarks = new List<LanguageString>();
+            BriefingRemarks.Add(ini.GetLangStrings("Briefing", "Remarks"));
+            BriefingRemarks.Add(ini.GetLangStrings("Briefing", "Remarks.Enemy"));
 
             // Included files
             IncludeLua = Toolbox.AddMissingFileExtensions(ini.GetValueArray<string>("Include", "Lua"), ".lua");

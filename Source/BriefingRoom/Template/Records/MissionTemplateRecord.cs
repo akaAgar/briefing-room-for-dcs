@@ -28,6 +28,7 @@ namespace BriefingRoom4DCS.Template
 {
     internal sealed record MissionTemplateRecord
     {
+        public string Language { get; init; }
         internal string BriefingMissionName { get; init; }
         internal string BriefingMissionDescription { get; init; }
         internal string ContextCoalitionBlue { get; init; }
@@ -65,6 +66,7 @@ namespace BriefingRoom4DCS.Template
 
         internal MissionTemplateRecord(MissionTemplate template)
         {
+            Language = template.Language;
             BriefingMissionName = template.BriefingMissionName;
             BriefingMissionDescription = template.BriefingMissionDescription;
             ContextCoalitionBlue = template.ContextCoalitionBlue;
