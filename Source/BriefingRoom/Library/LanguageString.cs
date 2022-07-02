@@ -34,7 +34,8 @@ namespace BriefingRoom4DCS
         public string Get(string key = "EN")
         {
             if(this.ContainsKey(key)) return this[key];
-            return this["EN"];
+            if(this.ContainsKey("EN")) return this["EN"];
+            return "";
         }
     }
 }
