@@ -236,8 +236,8 @@ namespace BriefingRoom4DCS.Generator
                 waypoints.Add(cargoWaypoint);
                 waypointList.Add(cargoWaypoint);
                 if(taskDB.isEscort()){
-                    extraSettings.Add("GroupX2", objectiveCoordinates.X);
-                    extraSettings.Add("GroupY2", objectiveCoordinates.Y);
+                    extraSettings["GroupX2"] = objectiveCoordinates.X;
+                    extraSettings["GroupY2"] = objectiveCoordinates.Y;
                     groupFlags |= UnitMakerGroupFlags.RadioAircraftSpawn;
                 }
             }
