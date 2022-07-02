@@ -54,7 +54,7 @@ namespace BriefingRoom4DCS.Data
             var ini = new INIFile(filePath);
             foreach (var section in ini.GetSections())
             {
-                foreach (var key in ini.GetKeysInSection(section))
+                foreach (var key in ini.GetKeysInSection(section, true))
                 {
                     var upperKey = key.ToUpper();
                     if(LangMap.ContainsKey(upperKey))

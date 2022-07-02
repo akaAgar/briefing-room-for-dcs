@@ -135,7 +135,7 @@ namespace BriefingRoom4DCS
             foreach (var langKey in BriefingRoom.AvailableLanguagesMap.Keys)
             {
                 var value = GetValue<string>(section, $"{key}{(langKey != "EN"? $".{langKey}" : "")}","");
-                if(!string.IsNullOrEmpty(value) || langKey == "EN")
+                if(!string.IsNullOrEmpty(value))
                     resultMap.AddIfKeyUnused(langKey, value);
             }
             return resultMap;
