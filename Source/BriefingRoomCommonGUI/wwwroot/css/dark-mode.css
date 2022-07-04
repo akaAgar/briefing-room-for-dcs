@@ -58,3 +58,7 @@
 .darkMode .accordion-button::after{
     color: white;
 }
+
+.darkMode .language-selector label {
+    background-color: #0a263f;
+}
