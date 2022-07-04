@@ -9,9 +9,9 @@
 
     <div class="main">
         <div class="top-row px-4">
-            <div class="form-group">
+            <div class="form-group language-selector">
                 <label>Language</label>
-                <select class="form-control" @bind=@BriefingRoom.LanguageDB.Language>
+                <select  class="form-control" @bind=@BriefingRoom.LanguageDB.Language>
                     @foreach (var key in BriefingRoom.AvailableLanguagesMap.Keys)
                     {
                         <option value="@key">@BriefingRoom.AvailableLanguagesMap[key]</option>

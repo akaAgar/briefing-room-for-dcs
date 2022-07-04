@@ -9,7 +9,7 @@
 </div>
 <div>
   <ul class="nav nav-tabs">
-    @foreach (var value in Documents.Keys.ToList())
+    @foreach (var value in Documents.Keys.OrderBy(x => x).Reverse().ToList())
     {
       <li class="nav-item">
         <a class="nav-link @(DocTab == value ? "active" : "")" aria-current="page" @onclick="() => SetDocTab(value)">
