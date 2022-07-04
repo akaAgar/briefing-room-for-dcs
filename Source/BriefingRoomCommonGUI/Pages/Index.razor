@@ -11,6 +11,15 @@
     <a href="/CampaignBuilder" class="btn btn-primary">Campaign Generator</a>
     <a href="/BriefingEditor" class="btn btn-primary">Briefing Editor</a>
     <a href="/Manual" class="btn btn-primary">Manual</a>
+    <div class="form-group">
+        <label>Language</label>
+        <select class="form-control" @bind=@BriefingRoom.LanguageDB.Language>
+            @foreach (var key in BriefingRoom.AvailableLanguagesMap.Keys)
+            {
+                <option value="@key">@BriefingRoom.AvailableLanguagesMap[key]</option>
+            }
+        </select>
+    </div>
   </div>
   <div class="misc-info">
     Generator by <strong>Ambroise Garel (@@akaAgar)</strong>, user interace by <strong>John Harvey
@@ -20,4 +29,6 @@
 </div>
 
 @code {
+  [CascadingParameter]
+    public MainLayout Layout { get; set; }
 }

@@ -1,7 +1,7 @@
 @inherits LayoutComponentBase
 @using BriefingRoom4DCS
 @inject Blazored.LocalStorage.ILocalStorageService localStorage
-
+<CascadingValue Value="this">
 <div class="page @((darkmode? "darkMode" : ""))">
     <div class="sidebar">
         <NavMenu />
@@ -9,6 +9,15 @@
 
     <div class="main">
         <div class="top-row px-4">
+            <div class="form-group">
+                <label>Language</label>
+                <select class="form-control" @bind=@BriefingRoom.LanguageDB.Language>
+                    @foreach (var key in BriefingRoom.AvailableLanguagesMap.Keys)
+                    {
+                        <option value="@key">@BriefingRoom.AvailableLanguagesMap[key]</option>
+                    }
+                </select>
+            </div>
             <a href="@BriefingRoom.WEBSITE_URL" target="_blank">About</a>
             <a href="@BriefingRoom.REPO_URL" target="_blank">GitHub</a>
             <label class="bulb">
@@ -22,9 +31,19 @@
         </div>
     </div>
 </div>
+</CascadingValue>
+
 
 @code {
-    private bool darkmode = false;
+    public BriefingRoom4DCS.BriefingRoom briefingRoom = new BriefingRoom4DCS.BriefingRoom(WriteToDebugLog);
+    public bool darkmode = false;
+
+    public static List<Tuple<LogMessageErrorLevel, string>> logs = new List<Tuple<LogMessageErrorLevel, string>>();
+
+    public static void WriteToDebugLog(string message, LogMessageErrorLevel errorLevel = LogMessageErrorLevel.Info)
+    {
+        logs.Add(new(errorLevel, message));
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

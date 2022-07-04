@@ -36,7 +36,7 @@ namespace BriefingRoom4DCS
         {
             Dictionary<string, byte[]> MizFileEntries = new Dictionary<string, byte[]>();
 
-            AddStringValueToEntries(MizFileEntries, "briefing.html", mission.Briefing.GetBriefingAsHTML(template.Language, true));
+            AddStringValueToEntries(MizFileEntries, "briefing.html", mission.Briefing.GetBriefingAsHTML(true));
             AddStringValueToEntries(MizFileEntries, "credits.txt", $"Generated with BriefingRoom for DCS World (https://akaagar.itch.io/briefing-room-for-dcs) {BriefingRoom.VERSION} ({BriefingRoom.BUILD_VERSION})");
             if(template != null)
                 AddStringValueToEntries(MizFileEntries, "template.brt", Encoding.ASCII.GetString(template.GetIniBytes()));

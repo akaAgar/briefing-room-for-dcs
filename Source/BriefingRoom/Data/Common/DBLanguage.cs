@@ -28,6 +28,8 @@ namespace BriefingRoom4DCS.Data
     public class DatabaseLanguage
     {
         public Dictionary<string,LanguageString> LangMap { get; private set; }
+
+        public string Language {get; set;} = "EN";
     
         public DatabaseLanguage() { }
 
@@ -67,12 +69,12 @@ namespace BriefingRoom4DCS.Data
             }
         }
 
-        public string ReplaceValues(string rawText, string lang)
+        public string ReplaceValues(string rawText)
         {
             if (rawText == null) return null;
 
             foreach (KeyValuePair<string, LanguageString> keyPair in LangMap)
-                rawText = rawText.Replace($"$LANG{keyPair.Key.ToUpperInvariant()}$", keyPair.Value.Get(lang));
+                rawText = rawText.Replace($"$LANG{keyPair.Key.ToUpperInvariant()}$", keyPair.Value.Get());
 
             return rawText;
         }

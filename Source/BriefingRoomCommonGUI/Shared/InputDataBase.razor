@@ -15,11 +15,11 @@
             <option value="@value.ID">
                 @if (HasDescription)
                 {
-                    @value.GetNameAndDescription(Language, ": ", true)
+                    @value.GetNameAndDescription(": ", true)
                 }
                 else
                 {
-                    @value.Name.Get(Language)
+                    @value.Name.Get()
                 }
             </option>
         }
@@ -27,10 +27,6 @@
 </div>
 
 @code {
-
-    [Parameter]
-    public string Language { get; set; }
-
     [Parameter]
     public string EmptOpt { get; set; } = "";
 

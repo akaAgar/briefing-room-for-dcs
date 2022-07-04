@@ -48,6 +48,7 @@ namespace BriefingRoom4DCS
 
         public const int MAXFILESIZE = 50000000;
 
+
         public delegate void LogHandler(string message, LogMessageErrorLevel errorLevel);
 
         private static event LogHandler OnMessageLogged;

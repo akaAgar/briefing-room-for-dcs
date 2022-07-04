@@ -37,7 +37,6 @@ namespace BriefingRoom4DCS.Template
         public const int MAX_OBJECTIVE_DISTANCE = 300;
         public const int MAX_OBJECTIVE_SEPERATION = 100;
         public const int MAX_COMBINED_ARMS_SLOTS = 100;
-        public string Language { get; set; } = "EN";
         public string BriefingMissionName { get; set; }
         public string BriefingMissionDescription { get; set; }
         public string ContextCoalitionBlue { get; set; }
@@ -103,7 +102,6 @@ namespace BriefingRoom4DCS.Template
                 LoadFromFile(DEFAULT_TEMPLATE_FILEPATH);
                 return;
             }
-            Language = "EN";
             BriefingMissionName = "";
             BriefingMissionDescription = "";
 

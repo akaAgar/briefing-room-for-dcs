@@ -77,10 +77,10 @@
                 <div class="generator-group flex-justify-spaced flex-margin-fix">
                     <InputEnum ClassString="flex-block" Label="Player Side"
                         @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition" />
-                    <InputDataBase ClassString="flex-block" Label="Theater" Language="@Template.Language" @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater" />
-                    <InputDataBase ClassString="flex-block" Label="Situation" Language="@Template.Language" @bind-Value="Template.ContextSituation" Grouping="@Template.ContextTheater" DataBaseType="DatabaseEntryType.Situation" EmptOpt="Random" />
+                    <InputDataBase ClassString="flex-block" Label="Theater" @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater" />
+                    <InputDataBase ClassString="flex-block" Label="Situation" @bind-Value="Template.ContextSituation" Grouping="@Template.ContextTheater" DataBaseType="DatabaseEntryType.Situation" EmptOpt="Random" />
                 </div>
-                <InputDataBase Label="Home airbase" Language="@Template.Language" @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
+                <InputDataBase Label="Home airbase" @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
                 <hr />
             </div>
             <div id="flight-groups" class="generator-block">
@@ -106,7 +106,7 @@
                             <label>Count</label>
                             <InputNumber class="form-control" @bind-Value="flight.Count"></InputNumber>
                         </div>
-                        <InputDataBase ClassString="flex-block"  Label="Start on (Carrier/Ship/FOB)" Language="@Template.Language" @bind-Value="flight.Carrier"
+                        <InputDataBase ClassString="flex-block"  Label="Start on (Carrier/Ship/FOB)" @bind-Value="flight.Carrier"
                         DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="Airbase" />
                         <div class="flex-block form-group">
                             <label>Livery</label>
@@ -166,7 +166,7 @@
                 @foreach (var objective in Template.Objectives)
                 {
                     <div class="generator-group flex-justify-spaced flex-margin-fix">
-                        <InputDataBase ClassString="flex-block" Label="Objective" Language="@Template.Language" @bind-Value="objective.Preset" DataBaseType="DatabaseEntryType.ObjectivePreset" HasDescription />
+                        <InputDataBase ClassString="flex-block" Label="Objective" @bind-Value="objective.Preset" DataBaseType="DatabaseEntryType.ObjectivePreset" HasDescription />
                         <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="objective.TargetCount" EnumType="Amount" />
                         <div class="form-group flex-box">
                             <button type="button" class="btn btn-secondary row-button"
@@ -194,7 +194,7 @@
                     <h3>Mission features</h3>
                     <CheckBoxList
                         Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"
-                        TextField="@(item =>item.Name.Get(Template.Language))" DescriptionField="@(item => item.Description.Get(Template.Language))"
+                        TextField="@(item =>item.Name.Get())" DescriptionField="@(item => item.Description.Get())"
                         GroupingField="@(item => item.Category)" ValueField="@(item =>item.ID)"
                         SelectedValues="Template.MissionFeatures" TItem="DatabaseEntryInfo" TItemOutput="string">
                     </CheckBoxList>
@@ -247,35 +247,33 @@
             </div>
         </EditForm>
         <div class=bottom-bar>
-            <LoggerAll logs="logs" />
+            <LoggerAll logs="MainLayout.logs" />
         </div>
     </div>
     @if (mission != null)
     {
         <div class="generator-preview">
-            <LoggerWarn logs="logs" />
+            <LoggerWarn logs="MainLayout.logs" />
             <ButtonTrio PrimaryFunc="DownloadMission" PrimaryLabel="Mission" PrimaryIcon="data-transfer-download"
             SecondaryFunc="DownloadBriefing" SecondaryLabel="Briefing" SecondaryIcon="browser"
             TertiaryFunc="ClearMission" TertiaryLabel="" TertiaryIcon="x" />
             <div>
                 <canvas height="360" width="640" id="canvas"></canvas>  
             </div>
-            <div>@((MarkupString)mission.Briefing.GetBriefingAsHTML(Template.Language, false))</div>
+            <div>@((MarkupString)mission.Briefing.GetBriefingAsHTML(false))</div>
         </div>
     }
 </div>
 
 
 @code {
-
-    private BriefingRoom4DCS.BriefingRoom briefingRoom = new BriefingRoom4DCS.BriefingRoom(WriteToDebugLog);
+    [CascadingParameter]
+    public MainLayout Layout { get; set; }
     private MissionTemplate Template;
     private DCSMission mission;
     private string errorMessage;
 
     private string tempateMessage;
-
-    public static List<Tuple<LogMessageErrorLevel, string>> logs = new List<Tuple<LogMessageErrorLevel, string>>();
 
     private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BriefingRoom.GetBriefingRoomRootPath()}Default.brt";
 
@@ -288,11 +286,6 @@
         Template = new MissionTemplate();
         flightGroupTab = Template.PlayerFlightGroups[0];
         ObjectiveTab = Template.Objectives[0];
-    }
-
-    public static void WriteToDebugLog(string message, LogMessageErrorLevel errorLevel = LogMessageErrorLevel.Info)
-    {
-        logs.Add(new(errorLevel, message));
     }
 
     private void clearTemplateMessageDelay()
@@ -363,7 +356,7 @@
             StateHasChanged();
             mission = null;
             errorMessage = "";
-            mission = await briefingRoom.GenerateMissionAsync(Template, true);
+            mission = await Layout.briefingRoom.GenerateMissionAsync(Template, true);
             StateHasChanged();
             await Policy.Handle<Exception>().RetryAsync(3).ExecuteAsync(async () => await JSRuntime.InvokeVoidAsync("RenderMap", mission.GetMapData()));
         } catch (Exception ex){
@@ -397,7 +390,7 @@
 
     async Task DownloadBriefing()
     {
-        byte[] zipBytes = Encoding.ASCII.GetBytes(mission.Briefing.GetBriefingAsHTML(Template.Language));
+        byte[] zipBytes = Encoding.ASCII.GetBytes(mission.Briefing.GetBriefingAsHTML());
         if (zipBytes == null) return; // Something went wrong during the .miz export
 
         try
@@ -498,21 +491,21 @@
     await Typeahead.SearchEnum<Country>(searchText);
 
     private async Task<IEnumerable<DatabaseEntryInfo>> SearchAircraft(string searchText) =>
-    await Typeahead.SearchDB(DatabaseEntryType.UnitFlyableAircraft, searchText, Template.Language);
+    await Typeahead.SearchDB(DatabaseEntryType.UnitFlyableAircraft, searchText);
     private string GetAircraftDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.UnitFlyableAircraft, id, Template.Language);
+    Typeahead.GetDBDisplayName(DatabaseEntryType.UnitFlyableAircraft, id);
 
     private async Task<IEnumerable<DatabaseEntryInfo>> SearchObjectiveType(string searchText) =>
-    await Typeahead.SearchDB(DatabaseEntryType.ObjectiveTask, searchText, Template.Language);
+    await Typeahead.SearchDB(DatabaseEntryType.ObjectiveTask, searchText);
     private string GetObjectiveTypeDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTask, id, Template.Language);
+    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTask, id);
 
     private string GetObjectiveTargetDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTarget, id, Template.Language);
+    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTarget, id);
 
     private async Task<IEnumerable<DatabaseEntryInfo>> SearchCoalition(string searchText) =>
-    await Typeahead.SearchDB(DatabaseEntryType.Coalition, searchText, Template.Language);
+    await Typeahead.SearchDB(DatabaseEntryType.Coalition, searchText);
 
     private string GetCoalitionDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.Coalition, id, Template.Language);
+    Typeahead.GetDBDisplayName(DatabaseEntryType.Coalition, id);
 }

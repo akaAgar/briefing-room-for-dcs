@@ -108,7 +108,7 @@ namespace BriefingRoom4DCS.Generator
                     groupInfo.Value.UnitDB.IsAircraft)
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
                             $"{groupInfo.Value.Name}\t" +
-                            $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get(_template.Language)}\t" +
+                            $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get()}\t" +
                             $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}{TACANStr}\t" +
                             $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}"); // TODO: human-readable payload name
 
@@ -147,10 +147,10 @@ namespace BriefingRoom4DCS.Generator
         protected void AddBriefingRemarkFromFeature(T featureDB, DCSMission mission, bool useEnemyRemarkIfAvailable, UnitMakerGroupInfo? groupInfo, Dictionary<string, object> stringReplacements)
         {
             string remarkString;
-            if (useEnemyRemarkIfAvailable && !string.IsNullOrEmpty(featureDB.BriefingRemarks[(int)Side.Enemy].Get(_template.Language)))
-                remarkString = featureDB.BriefingRemarks[(int)Side.Enemy].Get(_template.Language);
+            if (useEnemyRemarkIfAvailable && !string.IsNullOrEmpty(featureDB.BriefingRemarks[(int)Side.Enemy].Get()))
+                remarkString = featureDB.BriefingRemarks[(int)Side.Enemy].Get();
             else
-                remarkString = featureDB.BriefingRemarks[(int)Side.Ally].Get(_template.Language);
+                remarkString = featureDB.BriefingRemarks[(int)Side.Ally].Get();
             if (string.IsNullOrEmpty(remarkString)) return; // No briefing remarks for this feature
 
             string remark = Toolbox.RandomFrom(remarkString.Split(";"));
@@ -241,7 +241,7 @@ namespace BriefingRoom4DCS.Generator
                    groupInfo.Value.UnitDB.IsAircraft)
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
                             $"{groupInfo.Value.Name}\t" +
-                            $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get(_template.Language)}\t" +
+                            $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get()}\t" +
                             $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
                             $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}");
             }

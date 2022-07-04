@@ -39,7 +39,7 @@ namespace BriefingRoom4DCS.Generator
             else
                 weatherDB = Database.Instance.GetEntry<DBEntryWeatherPreset>(template.EnvironmentWeatherPreset);
 
-            mission.SetValue("WeatherName", weatherDB.BriefingDescription.Get(template.Language));
+            mission.SetValue("WeatherName", weatherDB.BriefingDescription.Get());
             mission.SetValue("WeatherCloudsBase", weatherDB.CloudsBase.GetValue() + baseAlt);
             mission.SetValue("WeatherCloudsPreset", Toolbox.RandomFrom(weatherDB.CloudsPresets));
             mission.SetValue("WeatherCloudsThickness", weatherDB.CloudsThickness.GetValue());
