@@ -64,11 +64,11 @@ namespace BriefingRoom4DCS.Generator
             mission.AddMediaFile($"l10n/DEFAULT/title_{mission.UniqueID}.jpg", imageBytes);
         }
 
-        internal static async Task GenerateKneeboardImagesAsync(DCSMission mission, string lang)
+        internal static async Task GenerateKneeboardImagesAsync(DCSMission mission)
         {
-            var html = mission.Briefing.GetBriefingKneeBoardTasksAndRemarksHTML(lang);
+            var html = mission.Briefing.GetBriefingKneeBoardTasksAndRemarksHTML();
             var inc = await GenerateKneeboardImageAsync(html, mission);
-            html = mission.Briefing.GetBriefingKneeBoardFlightsHTML(lang);
+            html = mission.Briefing.GetBriefingKneeBoardFlightsHTML();
             inc = await GenerateKneeboardImageAsync(html, mission, inc);
 
             foreach (var flight in mission.Briefing.FlightBriefings)

@@ -92,7 +92,7 @@ namespace BriefingRoom4DCS.Campaign
             Dictionary<string, byte[]> FileEntries = new Dictionary<string, byte[]>();
 
             for (int i = 0; i < Missions.Count; i++)
-                FileEntries.Add($"{Name}{i + 1:00}.html", Encoding.UTF8.GetBytes(Missions[i].Briefing.GetBriefingAsHTML(template.Language)));
+                FileEntries.Add($"{Name}{i + 1:00}.html", Encoding.UTF8.GetBytes(Missions[i].Briefing.GetBriefingAsHTML()));
 
             return Toolbox.ZipData(FileEntries);
         }

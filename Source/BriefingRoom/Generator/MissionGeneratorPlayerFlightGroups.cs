@@ -85,7 +85,7 @@ namespace BriefingRoom4DCS.Generator
                 }
                 groupLuaFile = "AircraftPlayerCarrier";
                 carrierUnitID = carrier.UnitMakerGroupInfo.DCSGroup.Units[0].UnitId;
-                carrierName = carrier.UnitMakerGroupInfo.UnitDB.UIDisplayName.Get(template.Language);
+                carrierName = carrier.UnitMakerGroupInfo.UnitDB.UIDisplayName.Get();
 
                 for (int i = 0; i < flightGroup.Count; i++)
                 {
@@ -135,8 +135,8 @@ namespace BriefingRoom4DCS.Generator
             extraSettings.AddIfKeyUnused("PlayerStartingAction", GeneratorTools.GetPlayerStartingAction(flightGroup.StartLocation));
             extraSettings.AddIfKeyUnused("PlayerStartingType", GeneratorTools.GetPlayerStartingType(flightGroup.StartLocation));
             extraSettings.AddIfKeyUnused("Country", country);
-            extraSettings.AddIfKeyUnused("InitialWPName", Database.Instance.Common.Names.WPInitialName.Get(template.Language));
-            extraSettings.AddIfKeyUnused("FinalWPName", Database.Instance.Common.Names.WPFinalName.Get(template.Language));
+            extraSettings.AddIfKeyUnused("InitialWPName", Database.Instance.Common.Names.WPInitialName.Get());
+            extraSettings.AddIfKeyUnused("FinalWPName", Database.Instance.Common.Names.WPFinalName.Get());
             extraSettings.AddIfKeyUnused("ParkingID", parkingSpotIDsList);
             extraSettings.AddIfKeyUnused("LinkUnit", carrierUnitID);
             extraSettings.AddIfKeyUnused("UnitCoords", parkingSpotCoordinatesList);
@@ -161,21 +161,20 @@ namespace BriefingRoom4DCS.Generator
             groupInfo.Value.DCSGroup.Waypoints.InsertRange(1, waypoints.Select(x => x.ToDCSWaypoint(unitDB.AircraftData)).ToList());
 
 
-            SaveFlightGroup(mission, groupInfo, flightGroup, unitDB, carrierName ?? airbase.Name, template.Language);
+            SaveFlightGroup(mission, groupInfo, flightGroup, unitDB, carrierName ?? airbase.Name);
             SaveWaypointsToBriefing(
                 mission,
                 groupStartingCoords,
                 flightWaypoints,
                 template.OptionsMission.Contains("ImperialUnitsForBriefing"),
-                groupInfo,
-                template.Language);
+                groupInfo);
         }
 
-        private static void SaveFlightGroup(DCSMission mission, UnitMakerGroupInfo? groupInfo, MissionTemplateFlightGroupRecord flightGroup, DBEntryUnit unitDB, string homeBase, string lang)
+        private static void SaveFlightGroup(DCSMission mission, UnitMakerGroupInfo? groupInfo, MissionTemplateFlightGroupRecord flightGroup, DBEntryUnit unitDB, string homeBase)
         {
             mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
                 $"{groupInfo.Value.Name}(P)\t" +
-                $"{flightGroup.Count}× {unitDB.UIDisplayName.Get(lang)}\t" +
+                $"{flightGroup.Count}× {unitDB.UIDisplayName.Get()}\t" +
                 $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
                 $"{Toolbox.FormatPayload(flightGroup.Payload)}\t" +
                 $"{homeBase}");
@@ -183,15 +182,15 @@ namespace BriefingRoom4DCS.Generator
                 mission.AppendValue("SCRIPTCLIENTPILOTNAMES", $"\"{groupInfo.Value.Name} {i + 2}\",");
         }
 
-        private static void SaveWaypointsToBriefing(DCSMission mission, Coordinates initialCoordinates, List<Waypoint> waypoints, bool useImperialSystem, UnitMakerGroupInfo? groupInfo, string lang)
+        private static void SaveWaypointsToBriefing(DCSMission mission, Coordinates initialCoordinates, List<Waypoint> waypoints, bool useImperialSystem, UnitMakerGroupInfo? groupInfo)
         {
             double totalDistance = 0;
             Coordinates lastWP = initialCoordinates;
 
             // Add first (takeoff) and last (landing) waypoints to get a complete list of all waypoints
             List<Waypoint> allWaypoints = new List<Waypoint>(waypoints);
-            allWaypoints.Insert(0, new Waypoint(Database.Instance.Common.Names.WPInitialName.Get(lang).ToUpperInvariant(), initialCoordinates));
-            allWaypoints.Add(new Waypoint(Database.Instance.Common.Names.WPFinalName.Get(lang).ToUpperInvariant(), initialCoordinates));
+            allWaypoints.Insert(0, new Waypoint(Database.Instance.Common.Names.WPInitialName.Get().ToUpperInvariant(), initialCoordinates));
+            allWaypoints.Add(new Waypoint(Database.Instance.Common.Names.WPFinalName.Get().ToUpperInvariant(), initialCoordinates));
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Waypoint, $"\t{groupInfo.Value.Name}\t");
 
             List<string> waypointTextRows = new List<string>();

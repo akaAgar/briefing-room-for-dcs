@@ -164,7 +164,7 @@ namespace BriefingRoom4DCS.Generator
             var country = (Country)extraSettings.GetValueOrDefault("Country", (coalition == Coalition.Blue) ? Country.CJTFBlue : Country.CJTFRed);
             var skill = extraSettings.GetValueOrDefault("Skill", GeneratorTools.GetDefaultSkillLevel(Template, side)).ToString();
             var isUsingSkynet = Template.MissionFeatures.Contains("SkynetIADS");
-            var groupName = GeneratorTools.GetGroupName(GroupID, unitFamily, side, isUsingSkynet, Template.Language);
+            var groupName = GeneratorTools.GetGroupName(GroupID, unitFamily, side, isUsingSkynet);
             UnitCallsign? callsign = null;
 
             if (unitFamily.GetUnitCategory() == UnitCategory.Static || unitFamily.GetUnitCategory() == UnitCategory.Cargo && unitFamily != UnitFamily.FOB)

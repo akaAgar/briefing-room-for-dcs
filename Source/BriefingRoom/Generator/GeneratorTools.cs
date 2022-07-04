@@ -145,7 +145,7 @@ namespace BriefingRoom4DCS.Generator
             return list;
         }
 
-        internal static string GenerateMissionName(string desiredName, string lang)
+        internal static string GenerateMissionName(string desiredName)
         {
             // Try to get the provided custom mission name.
             string missionName = (desiredName ?? "").ReplaceAll("", "\r", "\n", "\t").Trim();
@@ -153,9 +153,9 @@ namespace BriefingRoom4DCS.Generator
             // No custom name found, generate one.
             if (string.IsNullOrEmpty(missionName))
             {
-                missionName = Database.Instance.Common.Names.MissionNameTemplate.Get(lang);
+                missionName = Database.Instance.Common.Names.MissionNameTemplate.Get();
                 for (int i = 0; i < DBCommonNames.MISSION_NAMES_PART_COUNT; i++)
-                    missionName = missionName.Replace($"$P{i + 1}$", Toolbox.RandomFrom(Database.Instance.Common.Names.MissionNameParts[i].Get(lang).Split(",")));
+                    missionName = missionName.Replace($"$P{i + 1}$", Toolbox.RandomFrom(Database.Instance.Common.Names.MissionNameParts[i].Get().Split(",")));
             }
 
             return missionName;
@@ -377,9 +377,9 @@ namespace BriefingRoom4DCS.Generator
             return groupName;
         }
 
-        internal static string GetGroupName(int groupID, UnitFamily family, Side side, bool isUsingSkynet, string lang)
+        internal static string GetGroupName(int groupID, UnitFamily family, Side side, bool isUsingSkynet)
         {
-            string name = ParseRandomString(Database.Instance.Common.Names.UnitGroups[(int)family].Get(lang));
+            string name = ParseRandomString(Database.Instance.Common.Names.UnitGroups[(int)family].Get());
 
             int fakeGroupNumber = groupID * 10 + Toolbox.RandomInt(1, 10);
             name = name.Replace("$N$", fakeGroupNumber.ToString(NumberFormatInfo.InvariantInfo));

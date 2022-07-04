@@ -64,10 +64,10 @@ namespace BriefingRoom4DCS.Generator
             };
 
             // Copy values from the template
-            mission.SetValue("BriefingTheater", theaterDB.UIDisplayName.Get(template.Language));
-            mission.SetValue("BriefingSituation", situationDB.UIDisplayName.Get(template.Language));
-            mission.SetValue("BriefingAllyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition].UIDisplayName.Get(template.Language));
-            mission.SetValue("BriefingEnemyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition.GetEnemy()].UIDisplayName.Get(template.Language));
+            mission.SetValue("BriefingTheater", theaterDB.UIDisplayName.Get());
+            mission.SetValue("BriefingSituation", situationDB.UIDisplayName.Get());
+            mission.SetValue("BriefingAllyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition].UIDisplayName.Get());
+            mission.SetValue("BriefingEnemyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition.GetEnemy()].UIDisplayName.Get());
             mission.SetValue("EnableAudioRadioMessages", !template.OptionsMission.Contains("RadioMessagesTextOnly"));
             mission.SetValue("LuaPlayerCoalition", $"coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}");
             mission.SetValue("LuaEnemyCoalition", $"coalition.side.{template.ContextPlayerCoalition.GetEnemy().ToString().ToUpperInvariant()}");
@@ -200,13 +200,13 @@ namespace BriefingRoom4DCS.Generator
 
             // Generate briefing and additional mission info
             BriefingRoom.PrintToLog("Generating briefing...");
-            var missionName = GeneratorTools.GenerateMissionName(template.BriefingMissionName, template.Language);
+            var missionName = GeneratorTools.GenerateMissionName(template.BriefingMissionName);
             mission.Briefing.Name = missionName;
             mission.SetValue("MISSIONNAME", missionName);
 
             MissionGeneratorBriefing.GenerateMissionBriefingDescription(mission, template, objectiveTargetUnitFamilies, situationDB);
-            mission.SetValue("DescriptionText", mission.Briefing.GetBriefingAsRawText(template.Language, "\\\n"));
-            mission.SetValue("EditorNotes", mission.Briefing.GetEditorNotes(template.Language, "\\\n"));
+            mission.SetValue("DescriptionText", mission.Briefing.GetBriefingAsRawText( "\\\n"));
+            mission.SetValue("EditorNotes", mission.Briefing.GetEditorNotes("\\\n"));
 
             // Generate mission options
             BriefingRoom.PrintToLog("Generating options...");
@@ -220,7 +220,7 @@ namespace BriefingRoom4DCS.Generator
             BriefingRoom.PrintToLog("Generating images...");
             MissionGeneratorImages.GenerateTitle(mission, template);
             if(!template.OptionsMission.Contains("DisableKneeboardImages"))
-                await MissionGeneratorImages.GenerateKneeboardImagesAsync(mission, template.Language);
+                await MissionGeneratorImages.GenerateKneeboardImagesAsync(mission);
 
             return mission;
         }
