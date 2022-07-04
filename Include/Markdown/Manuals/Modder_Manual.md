@@ -1,4 +1,4 @@
-# BriefingRoom for DCS World - User's manual
+# Modders manual
 __Last Edited: 16/04/2022__
 
 This manual contains everything you need to know in order to modify BriefingRoom to your needs [for Aircraft Payloads and Liveries use Custom Configs](Custom_Configs.md).

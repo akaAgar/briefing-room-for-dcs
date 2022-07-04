@@ -1,4 +1,4 @@
-# BriefingRoom for DCS World - User in mission manual
+# User in mission manual
 __Last Edited: 23/12/2021__
 
 This manual contains everything you need to know to play a mission generated in BriefingRoom
