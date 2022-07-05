@@ -254,8 +254,8 @@
     {
         <div class="generator-preview">
             <LoggerWarn logs="MainLayout.logs" />
-            <ButtonTrio PrimaryFunc="DownloadMission" PrimaryLabel="Mission" PrimaryIcon="data-transfer-download"
-            SecondaryFunc="DownloadBriefing" SecondaryLabel="Briefing" SecondaryIcon="browser"
+            <ButtonTrio PrimaryFunc="DownloadMission" PrimaryLabel=@BriefingRoom.Translate("Mission") PrimaryIcon="data-transfer-download"
+            SecondaryFunc="DownloadBriefing" SecondaryLabel=@BriefingRoom.Translate("Briefing") SecondaryIcon="browser"
             TertiaryFunc="ClearMission" TertiaryLabel="" TertiaryIcon="x" />
             <div>
                 <canvas height="360" width="640" id="canvas"></canvas>  
