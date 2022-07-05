@@ -54,7 +54,7 @@
                                 @GetCoalitionDisplayName(@coalitionId)
                             </SelectedTemplate>
                             <ResultTemplate Context="coalition">
-                                @coalition.Name
+                                @coalition.Name.Get()
                             </ResultTemplate>
                         </BlazoredTypeahead>
                     </div>
@@ -67,7 +67,7 @@
                                 @GetCoalitionDisplayName(@coalitionId)
                             </SelectedTemplate>
                             <ResultTemplate Context="coalition">
-                                @coalition.Name
+                                @coalition.Name.Get()
                             </ResultTemplate>
                         </BlazoredTypeahead>
                     </div>
@@ -98,7 +98,7 @@
                                     @GetAircraftDisplayName(@aircraftId)
                                 </SelectedTemplate>
                                 <ResultTemplate Context="aircraft">
-                                    @aircraft.Name
+                                    @aircraft.Name.Get()
                                 </ResultTemplate>
                             </BlazoredTypeahead>
                         </div>

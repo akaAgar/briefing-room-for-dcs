@@ -62,7 +62,7 @@
                                         @GetCoalitionDisplayName(@coalitionId)
                                     </SelectedTemplate>
                                     <ResultTemplate Context="coalition">
-                                        @coalition.Name
+                                        @coalition.Name.Get()
                                     </ResultTemplate>
                                 </BlazoredTypeahead>
                             </div>
@@ -74,7 +74,7 @@
                                         @GetCoalitionDisplayName(@coalitionId)
                                     </SelectedTemplate>
                                     <ResultTemplate Context="coalition">
-                                        @coalition.Name
+                                        @coalition.Name.Get()
                                     </ResultTemplate>
                                 </BlazoredTypeahead>
                             </div>
@@ -350,7 +350,7 @@
                                     </div>
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
                                         <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("StartingSetup") @bind-Value="flight.StartLocation" EnumType="PlayerStartLocation"/>
-                                        <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("StartOn") @bind-Value="flight.Carrier" DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="Airbase"/>
+                                        <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("StartOn") @bind-Value="flight.Carrier" DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt=@BriefingRoom.Translate("Airbase")/>
                                     </div>
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
                                         <div class="flex-block form-group">
