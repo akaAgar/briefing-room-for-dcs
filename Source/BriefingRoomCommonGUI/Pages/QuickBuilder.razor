@@ -78,9 +78,9 @@
                     <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("PlayerSide")
                         @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition" />
                     <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Theater") @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater" />
-                    <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Situation") @bind-Value="Template.ContextSituation" Grouping="@Template.ContextTheater" DataBaseType="DatabaseEntryType.Situation" EmptOpt="Random" />
+                    <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Situation") @bind-Value="Template.ContextSituation" Grouping="@Template.ContextTheater" DataBaseType="DatabaseEntryType.Situation" EmptOpt=@BriefingRoom.Translate("Random") />
                 </div>
-                <InputDataBase Label=@BriefingRoom.Translate("HomeAirbase") @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
+                <InputDataBase Label=@BriefingRoom.Translate("HomeAirbase") @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt=@BriefingRoom.Translate("Random")/>
                 <hr />
             </div>
             <div id="flight-groups" class="generator-block">

@@ -84,9 +84,9 @@
                         </div>
                         <div class="generator-group flex-justify-spaced flex-margin-fix">
                             <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Theater") @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater"/>
-                            <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Situation") @bind-Value="Template.ContextSituation" DataBaseType="DatabaseEntryType.Situation" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
+                            <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Situation") @bind-Value="Template.ContextSituation" DataBaseType="DatabaseEntryType.Situation" Grouping="@Template.ContextTheater" EmptOpt=@BriefingRoom.Translate("Random")/>
                         </div>
-                        <InputDataBase Label=@BriefingRoom.Translate("HomeAirbase") @bind-Value="Template.PlayerStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
+                        <InputDataBase Label=@BriefingRoom.Translate("HomeAirbase") @bind-Value="Template.PlayerStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt=@BriefingRoom.Translate("Random")/>
                         <InputEnum Label=@BriefingRoom.Translate("TimePeriod") @bind-Value="Template.ContextDecade" EnumType="Decade"/>
                         <InputEnum Label=@BriefingRoom.Translate("PlayerSide") @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition"/>
                     </div>
