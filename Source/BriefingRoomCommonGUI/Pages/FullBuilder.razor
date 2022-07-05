@@ -43,8 +43,8 @@
                 @foreach (var value in tabs)
                 {
                     <li class="nav-item">
-                        <a class="nav-link @(tab == value ? "active" : "")" aria-current="page"
-                        @onclick='() => SetTab(value)'>@textInfo.ToTitleCase(value).Replace("-", " ")</a>
+                        <a class="nav-link @(tab == value.Key ? "active" : "")" aria-current="page"
+                        @onclick='() => SetTab(value.Key)'>@BriefingRoom.Translate(value.Value)</a>
                     </li>
                 }
             </ul>
@@ -232,7 +232,7 @@
                             <CheckBoxList
                                 Data="Enum.GetValues(typeof(RealismOption)).Cast<RealismOption>()"
                                 TextField="@(item => BriefingRoomGUITools.GetEnumName(item))"
-                                DescriptionField="@(item => BriefingRoomGUITools.GetEnumDescription(item))"
+                                
                                 ValueField="@(item =>item)"
                                 SelectedValues="Template.OptionsRealism"
                                 TItem="RealismOption"
@@ -659,13 +659,13 @@
     }
 
     private string tab = "context-&-enviroment";
-    private List<string> tabs = new List<string>{
-        "context-&-enviroment",
-        "flight-groups",
-        "objectives",
-        "situation",
-        "combined-arms",
-        "options",
+    private Dictionary<string, string> tabs = new Dictionary<string, string>{
+        { "context-&-enviroment", "ContextAndEnviroment" },
+        { "flight-groups", "FlightGroups" },
+        { "objectives", "Missions" },
+        { "situation", "Situation" },
+        { "combined-arms", "CombinedArms" },
+        { "options", "Options" },
     };
     private void SetTab(string var)
     {
