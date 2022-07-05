@@ -210,6 +210,8 @@ namespace BriefingRoom4DCS
             return Toolbox.PATH_USER_DOCS;
         }
 
+        public static string Translate(string key) => LanguageDB.Translate(key);
+
         internal static void PrintToLog(string message, LogMessageErrorLevel errorLevel = LogMessageErrorLevel.Info)
         {
             OnMessageLogged?.Invoke(message, errorLevel);

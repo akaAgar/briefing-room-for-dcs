@@ -79,6 +79,7 @@ namespace BriefingRoom4DCS.Data
             return rawText;
         }
 
+        public string Translate(string key) => '#' + LangMap[key.ToUpperInvariant()].Get();
 
     }
 }
