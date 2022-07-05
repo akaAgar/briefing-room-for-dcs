@@ -24,7 +24,7 @@ namespace BriefingRoom4DCS
 {
     public struct DatabaseEntryInfo
     {
-        public string Category { get; }
+        public LanguageString Category { get; }
 
         public LanguageString Description { get; }
 
@@ -32,7 +32,7 @@ namespace BriefingRoom4DCS
 
         public LanguageString Name { get; }
 
-        public DatabaseEntryInfo(string id, LanguageString name, string category, LanguageString description)
+        public DatabaseEntryInfo(string id, LanguageString name, LanguageString category, LanguageString description)
         {
             ID = id;
             Name = name;

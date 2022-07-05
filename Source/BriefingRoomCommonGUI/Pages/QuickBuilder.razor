@@ -16,7 +16,7 @@
 @using System.IO.Compression
 <LoadingSpinner ON="spinner"/>
 <div class="title-bar">
-    <h1>Quick Mission Generator </h1>
+    <h1>@BriefingRoom.Translate("QuickGenerator")</h1>
     <TemplateButtons LoadTemplate="LoadTemplate" SaveTemplate="SaveTemplate" ClearTemplate="ClearTemplate" AcceptString=".brt,.miz" />
 </div>
 <div class="generator-group">
@@ -31,7 +31,7 @@
             @if (!string.IsNullOrEmpty(errorMessage))
             {
                 <div class="alert alert-danger" role="alert">
-                    Error: @errorMessage
+                    @BriefingRoom.Translate("Error"): @errorMessage
                 </div>
             }
             <hr>
@@ -39,14 +39,14 @@
         <EditForm Model="Template" OnSubmit="GenerateMissionAsync">
             <DataAnnotationsValidator />
             <ValidationSummary />
-            <button class="btn btn-primary form-control" type="submit">Generate</button>
-            <p class="custom-warning">The quick builder can load templates created in the Full Builder to make use of the full range of options. info icons (<span class="oi oi-info"></span>) will show info on where these apply. The quick builder is purposely minimialist on options.</p>
+            <button class="btn btn-primary form-control" type="submit">@BriefingRoom.Translate("Generate")</button>
+            <p class="custom-warning">@((MarkupString)BriefingRoom.Translate("QuickBuilderWarning"))</p>
             <hr />
             <div id="context" class="generator-block">
-                <h3>Context</h3>
+                <h3>@BriefingRoom.Translate("Context")</h3>
                 <div class="generator-group flex-justify-spaced flex-margin-fix">
                     <div class="form-group flex-block">
-                        <label>Blue coalition</label>
+                        <label>@BriefingRoom.Translate("BlueCoalition")</label>
                         <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionBlue"
                             EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
                             MaximumSuggestions="1000">
@@ -59,7 +59,7 @@
                         </BlazoredTypeahead>
                     </div>
                     <div class="form-group flex-block">
-                        <label>Red coalition</label>
+                        <label>@BriefingRoom.Translate("RedCoalition")</label>
                         <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionRed"
                             EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
                             MaximumSuggestions="1000">
@@ -71,26 +71,26 @@
                             </ResultTemplate>
                         </BlazoredTypeahead>
                     </div>
-                    <InputEnum ClassString="flex-block" Label="Time period" @bind-Value="Template.ContextDecade"
+                    <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("TimePeriod") @bind-Value="Template.ContextDecade"
                         EnumType="Decade" />
                 </div>
                 <div class="generator-group flex-justify-spaced flex-margin-fix">
-                    <InputEnum ClassString="flex-block" Label="Player Side"
+                    <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("PlayerSide")
                         @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition" />
-                    <InputDataBase ClassString="flex-block" Label="Theater" @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater" />
-                    <InputDataBase ClassString="flex-block" Label="Situation" @bind-Value="Template.ContextSituation" Grouping="@Template.ContextTheater" DataBaseType="DatabaseEntryType.Situation" EmptOpt="Random" />
+                    <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Theater") @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater" />
+                    <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Situation") @bind-Value="Template.ContextSituation" Grouping="@Template.ContextTheater" DataBaseType="DatabaseEntryType.Situation" EmptOpt="Random" />
                 </div>
-                <InputDataBase Label="Home airbase" @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
+                <InputDataBase Label=@BriefingRoom.Translate("HomeAirbase") @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt="Random"/>
                 <hr />
             </div>
             <div id="flight-groups" class="generator-block">
-                <h3>Player flight groups</h3>
+                <h3>@BriefingRoom.Translate("PlayerFlightGroups")</h3>
 
                 @foreach (var flight in Template.PlayerFlightGroups)
                 {
                     <div class="generator-group flex-justify-spaced flex-margin-fix @(flight.Hostile ? "hostile" : "")">
                         <div class="form-group flex-block">
-                            <label>Aircraft</label>
+                            <label>@BriefingRoom.Translate("Aircraft")</label>
                             <BlazoredTypeahead SearchMethod="SearchAircraft" @bind-Value="flight.Aircraft"
                             EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
                             MaximumSuggestions="1000">
@@ -103,13 +103,13 @@
                             </BlazoredTypeahead>
                         </div>
                         <div class="form-group flex-block">
-                            <label>Count</label>
+                            <label>@BriefingRoom.Translate("Count")</label>
                             <InputNumber class="form-control" @bind-Value="flight.Count"></InputNumber>
                         </div>
-                        <InputDataBase ClassString="flex-block"  Label="Start on (Carrier/Ship/FOB)" @bind-Value="flight.Carrier"
-                        DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt="Airbase" />
+                        <InputDataBase ClassString="flex-block"  Label=@BriefingRoom.Translate("StartOn") @bind-Value="flight.Carrier"
+                        DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt=@BriefingRoom.Translate("Airbase") />
                         <div class="flex-block form-group">
-                            <label>Livery</label>
+                            <label>@BriefingRoom.Translate("Livery")</label>
                             <select class="form-control selectpicker" @bind=flight.Livery>
                                 @foreach (var item in GetLiveries(flight.Aircraft))
                                 {
@@ -122,14 +122,14 @@
                             <label class="checkbox-wrapper row-checkbox">
                                 <input type="checkbox" checked=@flight.AIWingmen
                                 @onchange="eventArgs => { flight.AIWingmen = (bool)eventArgs.Value; StateHasChanged();}" />
-                                <span>AI Wingmen</span>
+                                <span>@BriefingRoom.Translate("AIWingmen")</span>
                             </label>
                              @if(Template.PlayerFlightGroups.First() != flight)
                             {
                                 <label class="checkbox-wrapper row-checkbox">
                                     <input type="checkbox" checked=@flight.Hostile
                                         @onchange="eventArgs => { flight.Hostile = (bool)eventArgs.Value; StateHasChanged();}" />
-                                        <span>Hostile</span>
+                                        <span>@BriefingRoom.Translate("Hostile")</span>
                                 </label>
                             }
                         </div>
@@ -144,21 +144,21 @@
                 <button type="button" class="btn btn-secondary" @onclick="AddFlightGroup">+</button>
                 @if(Template.AircraftPackages.Count > 0)
                 {
-                   <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;Strike Package configuration found that can only be edited in Full builder.
-                   <a @onclick="() => ClearStrikePackages()" style="color: #0366d6;">Remove strike packages</a></p>  
+                   <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("QuickBuilderStikePackageWarning")
+                   <a @onclick="() => ClearStrikePackages()" style="color: #0366d6;">@BriefingRoom.Translate("RemoveStrikePackages")</a></p>  
                 }
                 <hr />
             </div>
             <div id="objectives" class="generator-block">
-                <h3>Objectives</h3>
+                <h3>@BriefingRoom.Translate("Objectives")</h3>
                 <div class="generator-group flex-justify-spaced flex-margin-fix">
                     <div class="form-group flex-block">
-                        <label>Objective distance (zero means random)</label>
+                        <label>@BriefingRoom.Translate("ObjectiveDistance")</label>
                         <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistance">
                         </InputNumber>
                     </div>
                     <div class="form-group flex-block">
-                        <label>Objective seperation (zero means random)</label>
+                        <label>@BriefingRoom.Translate("ObjectiveSeperation")</label>
                         <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveSeperation">
                         </InputNumber>
                     </div>
@@ -166,8 +166,8 @@
                 @foreach (var objective in Template.Objectives)
                 {
                     <div class="generator-group flex-justify-spaced flex-margin-fix">
-                        <InputDataBase ClassString="flex-block" Label="Objective" @bind-Value="objective.Preset" DataBaseType="DatabaseEntryType.ObjectivePreset" HasDescription />
-                        <InputEnum ClassString="flex-block" Label="Target count" @bind-Value="objective.TargetCount" EnumType="Amount" />
+                        <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Objective") @bind-Value="objective.Preset" DataBaseType="DatabaseEntryType.ObjectivePreset" HasDescription />
+                        <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("TargetCount") @bind-Value="objective.TargetCount" EnumType="Amount" />
                         <div class="form-group flex-box">
                             <button type="button" class="btn btn-secondary row-button"
                             @onclick="() => CloneObjective(objective)"  title="Clone Objective"><span class="oi oi-layers"></span></button>
@@ -177,12 +177,12 @@
                     </div>
                         @if(objective.SubTasks.Count > 0)
                         {
-                            <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;Custom Subtaks Present from Full Builder:
+                            <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("QuickBuilderCustomSubObjectives"):
                                 @foreach (var subTask in objective.SubTasks)
                                 {
                                     <span>@subTask.Task&nbsp;@subTask.Target&nbsp;@subTask.TargetBehavior&nbsp;@subTask.TargetCount;</span>
                                 }
-                            &nbsp;<a @onclick="() => ClearSubTasks(objective)" style="color: #0366d6;">Remove Sub Tasks</a>
+                            &nbsp;<a @onclick="() => ClearSubTasks(objective)" style="color: #0366d6;">@BriefingRoom.Translate("RemoveSubTasks")</a>
                             </p>
                         }
                 }
@@ -191,56 +191,56 @@
             </div>
             <div id="mission-features" class="generator-block row">
                 <div class="col-6">
-                    <h3>Mission features</h3>
+                    <h3>@BriefingRoom.Translate("MissionFeatures")</h3>
                     <CheckBoxList
                         Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"
                         TextField="@(item =>item.Name.Get())" DescriptionField="@(item => item.Description.Get())"
-                        GroupingField="@(item => item.Category)" ValueField="@(item =>item.ID)"
+                        GroupingField="@(item => item.Category.Get())" ValueField="@(item =>item.ID)"
                         SelectedValues="Template.MissionFeatures" TItem="DatabaseEntryInfo" TItemOutput="string">
                     </CheckBoxList>
                 </div>
                 <div class="col-6">
-                    <h5><span class="oi oi-info"></span>&nbsp;Inheritied Settings</h5>
+                    <h5><span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("InheritiedSettings")</h5>
                     <p class="custom-warning">
-                        You can change these by using the full mission builder saving a template then loading it here.<br/>
-                        <b>Weather</b>
+                        @BriefingRoom.Translate("InheritiedSettingsText")<br/>
+                        <b>@BriefingRoom.Translate("Weather")</b>
                         <div class="generator-group flex-justify-spaced flex-margin-fix">
                            <div>
-                               Season: @Template.EnvironmentSeason<br/>
-                               Weather: @Template.EnvironmentWeatherPreset
+                               @BriefingRoom.Translate("Season"): @Template.EnvironmentSeason<br/>
+                               @BriefingRoom.Translate("Weather"): @Template.EnvironmentWeatherPreset
                            </div>
                            <div>
-                                Time of day: @Template.EnvironmentTimeOfDay<br/>
-                                Wind: @Template.EnvironmentWind
+                                @BriefingRoom.Translate("TimeOfDay"): @Template.EnvironmentTimeOfDay<br/>
+                                @BriefingRoom.Translate("Wind"): @Template.EnvironmentWind
                            </div>
                         </div> 
-                        <b>Situation</b>
+                        <b>@BriefingRoom.Translate("Situation")</b>
                         <div class="generator-group flex-justify-spaced flex-margin-fix">
                            <div>
-                               <b>Enemy</b><br/>
-                               AA: @Template.SituationEnemyAirDefense<br/>
-                               CAP: @Template.SituationEnemyAirForce<br/>
-                               Skill: @Template.SituationEnemySkill
+                               <b>@BriefingRoom.Translate("Enemy")</b><br/>
+                               @BriefingRoom.Translate("AA"): @Template.SituationEnemyAirDefense<br/>
+                               @BriefingRoom.Translate("CAP"): @Template.SituationEnemyAirForce<br/>
+                               @BriefingRoom.Translate("Skill"): @Template.SituationEnemySkill
                            </div>
                            <div>
-                               <b>Friendly</b><br/>
-                                AA: @Template.SituationFriendlyAirDefense<br/>
-                                CAP: @Template.SituationFriendlyAirForce<br/>
-                                Skill: @Template.SituationFriendlySkill
+                               <b>@BriefingRoom.Translate("Friendly")</b><br/>
+                                @BriefingRoom.Translate("AA"): @Template.SituationFriendlyAirDefense<br/>
+                                @BriefingRoom.Translate("CAP"): @Template.SituationFriendlyAirForce<br/>
+                                @BriefingRoom.Translate("Skill"): @Template.SituationFriendlySkill
                            </div>
                         </div>
                         <br/>
                         @if(Template.OptionsMission.Count > 0)
                         {
-                            <span><b>Options:</b>&nbsp;@string.Join(", ",Template.OptionsMission)</span><br/>
+                            <span><b>@BriefingRoom.Translate("Options"):</b>&nbsp;@string.Join(", ",Template.OptionsMission)</span><br/>
                         }
                         @if(Template.OptionsRealism.Count > 0)
                         {
-                            <span><b>Realisam</b>:&nbsp;@string.Join(", ",Template.OptionsRealism)</span><br/>
+                            <span><b>@BriefingRoom.Translate("Realisam")</b>:&nbsp;@string.Join(", ",Template.OptionsRealism)</span><br/>
                         }
                         @if(Template.Mods.Count > 0)
                         {
-                        <span><b>Mods:</b>&nbsp;@string.Join(", ",Template.Mods)</span>
+                        <span><b>@BriefingRoom.Translate("Mods"):</b>&nbsp;@string.Join(", ",Template.Mods)</span>
                         }
                     </p> 
                 </div>

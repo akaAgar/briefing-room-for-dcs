@@ -32,7 +32,7 @@ namespace BriefingRoom4DCS.Data
 
         internal LanguageString UIDisplayName { get; set; }
 
-        internal string UICategory { get; set; }
+        internal LanguageString UICategory { get; set; }
 
         internal LanguageString UIDescription { get; set; }
 
@@ -51,7 +51,7 @@ namespace BriefingRoom4DCS.Data
             var ini = new INIFile(iniFilePath);
             UIDisplayName = ini.GetLangStrings("GUI", "DisplayName");
             if (UIDisplayName.Count == 0) UIDisplayName = new LanguageString(ID);
-            UICategory = ini.GetValue<string>("GUI", "Category");
+            UICategory = ini.GetLangStrings("GUI", "Category");
             UIDescription = ini.GetLangStrings("GUI", "Description");
 
             return OnLoad(iniFilePath);

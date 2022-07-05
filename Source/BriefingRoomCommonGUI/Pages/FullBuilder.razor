@@ -208,7 +208,7 @@
                                 Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.MissionFeature).ToList()"
                                 TextField="@(item =>item.Name.Get())"
                                 DescriptionField="@(item => item.Description.Get())"
-                                GroupingField="@(item => item.Category)"
+                                GroupingField="@(item => item.Category.Get())"
                                 ValueField="@(item =>item.ID)"
                                 SelectedValues="Template.MissionFeatures"
                                 TItem="DatabaseEntryInfo"
