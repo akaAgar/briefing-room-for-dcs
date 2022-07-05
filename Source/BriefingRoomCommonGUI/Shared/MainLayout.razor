@@ -10,7 +10,7 @@
     <div class="main">
         <div class="top-row px-4">
             <div class="form-group language-selector">
-                <label>Language</label>
+                <label>@BriefingRoom.Translate("Language")</label>
                 <select  class="form-control" @bind=@BriefingRoom.LanguageDB.Language>
                     @foreach (var key in BriefingRoom.AvailableLanguagesMap.Keys)
                     {
@@ -18,7 +18,7 @@
                     }
                 </select>
             </div>
-            <a href="@BriefingRoom.WEBSITE_URL" target="_blank">About</a>
+            <a href="@BriefingRoom.WEBSITE_URL" target="_blank">@BriefingRoom.Translate("About")</a>
             <a href="@BriefingRoom.REPO_URL" target="_blank">GitHub</a>
             <label class="bulb">
                 <input type="checkbox" checked=@darkmode @onchange="eventArgs => SetDarkMode((bool)eventArgs.Value)" />

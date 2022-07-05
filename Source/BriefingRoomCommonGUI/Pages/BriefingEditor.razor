@@ -8,7 +8,7 @@
 @using System.Text
 
 <div class="title-bar">
-  <h1>Briefing Editor</h1>
+  <h1>@BriefingRoom.Translate("BriefingEditor")</h1>
   <TemplateButtons Title="Mission" LoadTemplate="LoadTemplate" SaveTemplate="SaveTemplate" ClearTemplate="ClearTemplate"
     AcceptString=".miz" />
 </div>
@@ -23,24 +23,20 @@
     }
   </div>
   <div class="full-width">
-    <h2>Situation</h2>
-    <p>@situationDictKey</p>
-    <textarea @bind="situation" class="form-control long" spellcheck="true" placeholder="Load your mission file. Situation goes here (BR uses this as briefing)."></textarea>
+    <h2>@BriefingRoom.Translate("Situation")</h2>
+    <textarea @bind="situation" class="form-control long" spellcheck="true" placeholder=@BriefingRoom.Translate("SituationPlaceholder")></textarea>
   </div>
   <div class="full-width">
-    <h2>Blue Task</h2>
-    <p>@blueTaskDictKey</p>
-    <textarea @bind="blueTask" class="form-control short" spellcheck="true" placeholder="Blue side specific information."></textarea>
+    <h2>@BriefingRoom.Translate("BlueTask")</h2>
+    <textarea @bind="blueTask" class="form-control short" spellcheck="true" placeholder=@BriefingRoom.Translate("BlueTaskPlaceholder")></textarea>
   </div>
   <div class="full-width">
-    <h2>Red Task</h2>
-    <p>@redTaskDictKey</p>
-    <textarea @bind="redTask" class="form-control short" spellcheck="true" placeholder="Red side specific information."></textarea>
+    <h2>@BriefingRoom.Translate("RedTask")</h2>
+    <textarea @bind="redTask" class="form-control short" spellcheck="true" placeholder=@BriefingRoom.Translate("RedTaskPlaceholder")></textarea>
   </div>
   <div class="full-width">
-    <h2>Neutral Task</h2>
-    <p>@neutralTaskDictKey</p>
-    <textarea @bind="neutralTask" class="form-control short" spellcheck="true" placeholder="Neutral side specific information."></textarea>
+    <h2>@BriefingRoom.Translate("NeutralTask")</h2>
+    <textarea @bind="neutralTask" class="form-control short" spellcheck="true" placeholder=@BriefingRoom.Translate("NeutralTaskPlaceholder")></textarea>
   </div>
   </div>
 </div>

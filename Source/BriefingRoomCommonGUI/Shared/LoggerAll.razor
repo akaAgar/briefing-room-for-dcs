@@ -7,9 +7,9 @@
                 <button class="btn btn-secondary" @onclick="() => ToggleShowLogs()"><span
                     class="oi oi-bug"></span>@logs.Count()</button>
                 <button class="btn btn-secondary" @onclick="() => ClearLogs()"><span
-                    class="oi oi-reload"></span>Clear</button>
+                    class="oi oi-reload"></span>@BriefingRoom.Translate("Clear")</button>
                 <button class="btn btn-secondary" @onclick="() => CopyLogs()">
-                    <span class="oi oi-clipboard"></span>Copy</button>
+                    <span class="oi oi-clipboard"></span>@BriefingRoom.Translate("Copy")</button>
             </div>
             @foreach (var log in logs)
             {

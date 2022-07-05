@@ -4,15 +4,15 @@
         <label class="btn btn-primary hidden-input-file">
             <InputFile OnChange="@LoadTemplate" accept="@AcceptString" />
             <span class="oi oi-data-transfer-upload"></span>
-            <span class="template-box-button-text">Load</span>
+            <span class="template-box-button-text">@BriefingRoom.Translate("Load")</span>
         </label>
         <button class="btn btn-secondary" aria-hidden="true" @onclick="() => SaveTemplate()">
             <span class="oi oi-data-transfer-download"></span>
-            <span class="template-box-button-text">Save</span>
+            <span class="template-box-button-text">@BriefingRoom.Translate("Save")</span>
         </button>
         <button class="btn btn-warning" aria-hidden="true" @onclick="() => ClearTemplate()">
             <span class="oi oi-reload"></span>
-            <span class="template-box-button-text">Reset</span>
+            <span class="template-box-button-text">@BriefingRoom.Translate("Reset")</span>
         </button>
     </div>
 </div>

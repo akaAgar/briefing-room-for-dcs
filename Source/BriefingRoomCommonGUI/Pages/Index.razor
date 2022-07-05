@@ -6,20 +6,20 @@
 <div class="landing-screen">
   <img src="_content/BriefingRoomCommonGUI/img/br-logo-white.png" alt="BriefingRoom Logo" />
   <div class="landing-menu">
-    <a href="/QuickBuilder" class="btn btn-primary">Quick Generator</a>
-    <a href="/FullBuilder" class="btn btn-primary">Full Generator</a>
-    <a href="/CampaignBuilder" class="btn btn-primary">Campaign Generator</a>
-    <a href="/BriefingEditor" class="btn btn-primary">Briefing Editor</a>
-    <a href="/Manual" class="btn btn-primary">Manual</a>
+    <a href="/QuickBuilder" class="btn btn-primary">@BriefingRoom.Translate("QuickGenerator")</a>
+    <a href="/FullBuilder" class="btn btn-primary">@BriefingRoom.Translate("FullGenerator")</a>
+    <a href="/CampaignBuilder" class="btn btn-primary">@BriefingRoom.Translate("CampaignGenerator")</a>
+    <a href="/BriefingEditor" class="btn btn-primary">@BriefingRoom.Translate("BriefingEditor")</a>
+    <a href="/Manual" class="btn btn-primary">@BriefingRoom.Translate("Manual")</a>
     <div class="form-group language-selector index">
-        <label>Language</label>
+        <label>@BriefingRoom.Translate("Language")</label>
         <select class="form-control" @bind=@BriefingRoom.LanguageDB.Language>
             @foreach (var key in BriefingRoom.AvailableLanguagesMap.Keys)
             {
                 <option value="@key">@BriefingRoom.AvailableLanguagesMap[key]</option>
             }
         </select>
-        <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;Translation support is incomplete, but we are open for translation submissions through github. See Manual for details.</p>
+        <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("LanguageWarning")</p>
     </div>
   </div>
   <div class="misc-info">
