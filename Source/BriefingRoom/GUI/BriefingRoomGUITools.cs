@@ -18,6 +18,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using System;
 using BriefingRoom4DCS.Template;
 
 namespace BriefingRoom4DCS.GUI
@@ -26,156 +27,14 @@ namespace BriefingRoom4DCS.GUI
     {
         public static string GetEnumName(object enumValue)
         {
-            if (enumValue == null) return "";
-
-            else if (enumValue is Amount)
-            {
-                switch ((Amount)enumValue)
-                {
-                    case Amount.VeryLow: return "Very low";
-                    case Amount.VeryHigh: return "Very high";
-                }
-            }
-            else if (enumValue is AmountNR)
-            {
-                switch ((AmountNR)enumValue)
-                {
-                    case AmountNR.VeryLow: return "Very low";
-                    case AmountNR.VeryHigh: return "Very high";
-                }
-            }
-            else if (enumValue is Decade)
-            {
-                switch ((Decade)enumValue)
-                {
-                    case Decade.Decade1940: return "1940s";
-                    case Decade.Decade1950: return "1950s";
-                    case Decade.Decade1960: return "1960s";
-                    case Decade.Decade1970: return "1970s";
-                    case Decade.Decade1980: return "1980s";
-                    case Decade.Decade1990: return "1990s";
-                    case Decade.Decade2000: return "2000s";
-                    case Decade.Decade2010: return "2010s";
-                    case Decade.Decade2020: return "2020s";
-                }
-            }
-            else if (enumValue is FogOfWar)
-            {
-                switch ((FogOfWar)enumValue)
-                {
-                    case FogOfWar.AlliesOnly: return "Allies only";
-                    case FogOfWar.KnownUnitsOnly: return "Known units only";
-                    case FogOfWar.SelfOnly: return "Self only";
-                }
-            }
-            else if (enumValue is ObjectiveOption)
-            {
-                switch ((ObjectiveOption)enumValue)
-                {
-                    case ObjectiveOption.EmbeddedAirDefense: return "Embedded air defense";
-                    case ObjectiveOption.HideTarget: return "Always hide";
-                    case ObjectiveOption.InaccurateWaypoint: return "Inaccurate waypoint";
-                    case ObjectiveOption.ShowTarget: return "Always show";
-                    case ObjectiveOption.Invisible: return "Hidden To AI";
-                }
-            }
-            else if (enumValue is PlayerStartLocation)
-            {
-                switch ((PlayerStartLocation)enumValue)
-                {
-                    case PlayerStartLocation.ParkingCold: return "Parking, cold";
-                    case PlayerStartLocation.ParkingHot: return "Parking, hot";
-                    case PlayerStartLocation.Runway: return "On runway";
-                }
-            }
-            else if (enumValue is RealismOption)
-            {
-                switch ((RealismOption)enumValue)
-                {
-                    case RealismOption.BirdStrikes: return "Bird strikes";
-                    case RealismOption.DisableDCSRadioAssists: return "Disable DCS radio assists";
-                    case RealismOption.HideLabels: return "Hide labels";
-                    case RealismOption.NoBDA: return "Disable DCS battle damage assessment log";
-                    case RealismOption.NoCheats: return "No cheats";
-                    case RealismOption.NoCrashRecovery: return "No crash recovery";
-                    case RealismOption.NoEasyComms: return "No easy comms";
-                    case RealismOption.NoExternalViews: return "No external views";
-                    case RealismOption.NoGameMode: return "No game mode";
-                    case RealismOption.NoOverlays: return "No overlays";
-                    case RealismOption.NoPadlock: return "No padlock";
-                    case RealismOption.RandomFailures: return "Random failures";
-                    case RealismOption.RealisticGEffects: return "Realistic G-effects";
-                    case RealismOption.WakeTurbulence: return "Wake turbulence";
-                }
-            }
-            else if (enumValue is TimeOfDay)
-            {
-                switch ((TimeOfDay)enumValue)
-                {
-                    case TimeOfDay.RandomDaytime: return "Random, daytime only";
-                }
-            }
-            else if (enumValue is Wind)
-            {
-                switch ((Wind)enumValue)
-                {
-                    case Wind.LightBreeze: return "Light breeze";
-                    case Wind.ModerateBreeze: return "Moderate breeze";
-                    case Wind.StrongBreeze: return "Strong breeze";
-                }
-            }
-
-            return enumValue.ToString();
+            if(enumValue == null) return "";
+            return BriefingRoom.Translate(enumValue.ToString());
         }
 
         public static string GetEnumDescription(object enumValue)
         {
             if (enumValue == null) return "";
-
-            if (enumValue is FogOfWar)
-            {
-                switch ((FogOfWar)enumValue)
-                {
-                    case FogOfWar.All: return "Show all units on the F10 map and the players' mission planner, perfect intelligence.";
-                    case FogOfWar.AlliesOnly: return "Show only allied units on the F10 map and the players' mission planner.";
-                    case FogOfWar.KnownUnitsOnly: return "Hide all units except those in view of an ally unit.";
-                    case FogOfWar.SelfOnly: return "Hide all units except the player on the F10 map.";
-                    case FogOfWar.None: return "Hide all units (INCLUDING the player) on the F10 map.";
-                }
-            }
-            else if (enumValue is ObjectiveOption)
-            {
-                switch ((ObjectiveOption)enumValue)
-                {
-                    case ObjectiveOption.EmbeddedAirDefense: return "Chance (according to coalition air defense settings) to spawn short-range air-defense near the target.";
-                    case ObjectiveOption.HideTarget: return "Targets are always hidden on the map";
-                    case ObjectiveOption.InaccurateWaypoint: return "Waypoint will be spawned a few miles away from the targets.";
-                    case ObjectiveOption.ShowTarget: return "Targets are always visible on the map";
-                    case ObjectiveOption.Invisible: return "AI (Including Wingmen) will not attack target units";
-                }
-            }
-            else if (enumValue is RealismOption)
-            {
-                switch ((RealismOption)enumValue)
-                {
-                    case RealismOption.BirdStrikes: return "Bird strikes";
-                    case RealismOption.DisableDCSRadioAssists: return "Disable DCS radio assists";
-                    case RealismOption.HideLabels: return "Hide labels";
-                    case RealismOption.NoBDA: return "Disable DCS battle damage assessment log";
-                    case RealismOption.NoCheats: return "No cheats";
-                    case RealismOption.NoCrashRecovery: return "No crash recovery";
-                    case RealismOption.NoEasyComms: return "No easy comms";
-                    case RealismOption.NoExternalViews: return "No external views";
-                    case RealismOption.NoGameMode: return "No game mode";
-                    case RealismOption.NoOverlays: return "No overlays";
-                    case RealismOption.NoPadlock: return "No padlock";
-                    case RealismOption.RandomFailures: return "Random failures";
-                    case RealismOption.RealisticGEffects: return "Realistic G-effects";
-                    case RealismOption.WakeTurbulence: return "Wake turbulence";
-                }
-            }
-
-            return "";
+            return BriefingRoom.Translate($"{enumValue.ToString()}.Description");
         }
     }
 }

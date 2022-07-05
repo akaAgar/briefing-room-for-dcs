@@ -232,6 +232,7 @@
                             <CheckBoxList
                                 Data="Enum.GetValues(typeof(RealismOption)).Cast<RealismOption>()"
                                 TextField="@(item => BriefingRoomGUITools.GetEnumName(item))"
+                                DescriptionField="@(item => BriefingRoomGUITools.GetEnumDescription(item))"
                                 ValueField="@(item =>item)"
                                 SelectedValues="Template.OptionsRealism"
                                 TItem="RealismOption"
