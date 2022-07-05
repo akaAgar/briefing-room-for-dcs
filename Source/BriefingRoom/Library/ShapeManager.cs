@@ -165,7 +165,8 @@ namespace BriefingRoom4DCS
             if (isInside(InclusionShape, coords))
                 return -1;
             var lastCoords = InclusionShape[0];
-            return InclusionShape.Min(x => {
+            return InclusionShape.Min(x =>
+            {
                 var dist = FindDistanceToSegment(coords, lastCoords, x);
                 lastCoords = x;
                 return dist;
@@ -183,7 +184,7 @@ namespace BriefingRoom4DCS
             if ((dx == 0) && (dy == 0))
             {
                 // It's a point not a line segment.
-               var closest = segStart;
+                var closest = segStart;
                 dx = pt.X - segStart.X;
                 dy = pt.Y - segStart.Y;
                 return Math.Sqrt(dx * dx + dy * dy);

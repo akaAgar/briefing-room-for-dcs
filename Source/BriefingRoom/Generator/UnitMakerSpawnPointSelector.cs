@@ -127,8 +127,8 @@ namespace BriefingRoom4DCS.Generator
             Coordinates?[] distanceOrigin = new Coordinates?[] { distanceOrigin1, distanceOrigin2 };
             MinMaxD?[] distanceFrom = new MinMaxD?[] { distanceFrom1, distanceFrom2 };
             var brokenSP = validSP.Where(x => CheckInSea(x.Coordinates)).Select(x => $"{x.UniqueID}={x.Coordinates.X},{x.Coordinates.Y},{x.PointType}").ToList();
-            if(brokenSP.Count > 0)
-                throw new BriefingRoomException($"Spawn Points in the sea!: {string.Join("\n",brokenSP)}");
+            if (brokenSP.Count > 0)
+                throw new BriefingRoomException($"Spawn Points in the sea!: {string.Join("\n", brokenSP)}");
             for (int i = 0; i < 2; i++) // Remove spawn points too far or too close from distanceOrigin1 and distanceOrigin2
             {
                 if (validSP.Count() == 0) return null;
@@ -302,9 +302,9 @@ namespace BriefingRoom4DCS.Generator
             var blue = SituationDB.GetBlueZone(InvertCoalition);
 
             var distanceLimit = Toolbox.NM_TO_METERS * 70;
-            var distance = ShapeManager.GetDistanceFromShape(coordinates, (coalition.Value == Coalition.Blue? blue : red));
+            var distance = ShapeManager.GetDistanceFromShape(coordinates, (coalition.Value == Coalition.Blue ? blue : red));
             return distance < distanceLimit;
-            
+
         }
 
         private bool CheckInSea(Coordinates coordinates)

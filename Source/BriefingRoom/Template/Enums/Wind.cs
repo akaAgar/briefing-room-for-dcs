@@ -24,25 +24,18 @@ namespace BriefingRoom4DCS.Template
 {
     public enum Wind
     {
-        [Display(Name = "Random", Description = "Wind level will be picked randomly")]
         Random = -1, // Auto must be < 0 for casts from Int32
 
-        [Display(Name = "Calm", Description = "Force 0, No wind at all. ")]
         Calm,
 
-        [Display(Name = "Light Breeze", Description = "Force 1-2, Light wind.")]
         LightBreeze,
 
-        [Display(Name = "Moderate breeze", Description = "Force 3-4, Average wind.")]
         ModerateBreeze,
 
-        [Display(Name = "Strong breeze", Description = "Force 5-6, Noticeable wind, flying and aiming may require skill.")]
         StrongBreeze,
 
-        [Display(Name = "Gale", Description = "Force 7-8, Strong wind. Flying and aiming will be heavily impaired.")]
         Gale,
 
-        [Display(Name = "Storm", Description = "Force 9-10, Very strong wind. Flying in these condition may prove dangerous.")]
         Storm
     }
 }

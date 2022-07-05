@@ -24,19 +24,14 @@ namespace BriefingRoom4DCS.Template
 {
     public enum FogOfWar
     {
-        [Display(Name = "Show all units", Description = "Show all units on the F10 map and the players' mission planner, perfect intelligence.")]
         All,
 
-        [Display(Name = "Show allies only", Description = "Show only allied units on the F10 map and the players' mission planner.")]
         AlliesOnly,
 
-        [Display(Name = "Show known units only", Description = "Hide all units except those in view of an ally unit.")]
         KnownUnitsOnly,
 
-        [Display(Name = "Show self only", Description = "Hide all units except the player on the F10 map.")]
         SelfOnly,
 
-        [Display(Name = "Show no units", Description = "Hide all units (INCLUDING the player) on the F10 map.")]
         None
     }
 }

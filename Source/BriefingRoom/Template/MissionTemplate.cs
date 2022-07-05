@@ -74,13 +74,13 @@ namespace BriefingRoom4DCS.Template
         public AmountNR SituationFriendlySkill { get; set; }
         public AmountNR SituationFriendlyAirDefense { get; set; }
         public AmountNR SituationFriendlyAirForce { get; set; }
-        public int CombinedArmsCommanderBlue  { get { return CombinedArmsCommanderBlue_; } set { CombinedArmsCommanderBlue_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
+        public int CombinedArmsCommanderBlue { get { return CombinedArmsCommanderBlue_; } set { CombinedArmsCommanderBlue_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
         private int CombinedArmsCommanderBlue_;
-        public int CombinedArmsCommanderRed  { get { return CombinedArmsCommanderRed_; } set { CombinedArmsCommanderRed_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
+        public int CombinedArmsCommanderRed { get { return CombinedArmsCommanderRed_; } set { CombinedArmsCommanderRed_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
         private int CombinedArmsCommanderRed_;
-        public int CombinedArmsJTACBlue  { get { return CombinedArmsJTACBlue_; } set { CombinedArmsJTACBlue_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
+        public int CombinedArmsJTACBlue { get { return CombinedArmsJTACBlue_; } set { CombinedArmsJTACBlue_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
         private int CombinedArmsJTACBlue_;
-        public int CombinedArmsJTACRed  { get { return CombinedArmsJTACRed_; } set { CombinedArmsJTACRed_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
+        public int CombinedArmsJTACRed { get { return CombinedArmsJTACRed_; } set { CombinedArmsJTACRed_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
         private int CombinedArmsJTACRed_;
 
 

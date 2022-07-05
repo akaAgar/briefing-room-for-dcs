@@ -24,46 +24,32 @@ namespace BriefingRoom4DCS.Template
 {
     public enum RealismOption
     {
-        [Display(Name = "Bird strikes", Description = "Enable bird strikes.")]
         BirdStrikes,
 
-        [Display(Name = "Disable radio assists", Description = "Disable DCS radio assists (\"fire\" when weapon release parameters are met, warning when a threat approaches, etc.)")]
         DisableDCSRadioAssists,
 
-        [Display(Name = "Hide labels", Description = "Disable unit labels.")]
         HideLabels,
 
-        [Display(Name = "No BDA", Description = "Disable DCS World's battle-damage assessment log displayed when players damage or destroy something.")]
         NoBDA,
 
-        [Display(Name = "No cheats", Description = "Disable all cheats (infinite weapons, infinite fuel, invulerability).")]
         NoCheats,
 
-        [Display(Name = "No crash recovery", Description = "Players cannot respawn in a new plane when crashing (\"single life\" mode).")]
         NoCrashRecovery,
 
-        [Display(Name = "No easy comms", Description = "Enforce realistic communications.")]
         NoEasyComms,
 
-        [Display(Name = "No external views", Description = "Disable external views.")]
         NoExternalViews,
 
-        [Display(Name = "No game mode", Description = "Disable \"game mode\" simplfications (flight model and avionics).")]
         NoGameMode,
 
-        [Display(Name = "No overlays", Description = "Disable overlays (arcade minimap, etc.)")]
         NoOverlays,
 
-        [Display(Name = "No padlock", Description = "Disable padlock views.")]
         NoPadlock,
 
-        [Display(Name = "Random failures", Description = "Enable random aircraft system failures.")]
         RandomFailures,
 
-        [Display(Name = "Realistic G-effects", Description = "Enable ealistic G-effects.")]
         RealisticGEffects,
 
-        [Display(Name = "Wake turbulence", Description = "Enable realistic wake turbulence.")]
         WakeTurbulence
     }
 }

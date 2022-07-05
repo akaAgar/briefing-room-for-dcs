@@ -67,8 +67,8 @@ function GetText(id) {
       return 'O'
     case id.includes("FOB"):
       return 'F'
-      case id.includes("CARRIER"):
-        return 'C'
+    case id.includes("CARRIER"):
+      return 'C'
     default:
       return null
   }
@@ -81,19 +81,19 @@ function GetColour(id) {
     case id === "BLUE":
       return '#0000ff55'
     case id === 'WATER':
-        return '#00000000'
+      return '#00000000'
     case id === 'NOSPAWN':
-        return '#50eb5d55'
+      return '#50eb5d55'
     case id.includes('ISLAND'):
-        return '#d4eb5088'
+      return '#d4eb5088'
     case id.includes("AIRBASE"):
       return '#ffffff'
     case id.includes("OBJECTIVE"):
       return '#eba134'
     case id.includes("FOB"):
       return '#b0b0b0'
-      case id.includes("CARRIER"):
-        return '#919191'
+    case id.includes("CARRIER"):
+      return '#919191'
     default:
       return '#ffffff'
   }
@@ -106,15 +106,15 @@ function RenderDot(x, y, color, text, ctx) {
   ctx.arc(x, y, 10, 0, 2 * Math.PI);
   ctx.stroke();
   ctx.fill();
-  if(text){
+  if (text) {
     ctx.fillStyle = "#000000";
     ctx.textAlign = "center";
     ctx.font = "15px Arial";
-    ctx.fillText(text, x, y+4);
+    ctx.fillText(text, x, y + 4);
   }
 }
 
-function RenderPolygon(coords, color, ctx,  isWater) {
+function RenderPolygon(coords, color, ctx, isWater) {
   ctx.strokeStyle = isWater ? '#00000000' : "#000000";
   ctx.fillStyle = color;
   ctx.beginPath();
@@ -132,8 +132,7 @@ function RenderPolygon(coords, color, ctx,  isWater) {
   ctx.fill();
 }
 
-function clearCanvas(ctx, canvas)
-{
+function clearCanvas(ctx, canvas) {
   const canvasW = canvas.getBoundingClientRect().width;
   const canvasH = canvas.getBoundingClientRect().height;
   ctx.clearRect(0, 0, canvasW, canvasH);
@@ -156,7 +155,7 @@ function scaleCoordinates(mapData, canvas) {
   const canvasH = canvas.getBoundingClientRect().height;
   const clonedMap = structuredClone(mapData);
   const maxCoords = getMaxCoors(Object.keys(clonedMap).map(key => getMaxCoors(clonedMap[key])));
-  const scaleMultiplier = canvasW/(maxCoords[0] > maxCoords[1] ? maxCoords[0] : maxCoords[1]);
+  const scaleMultiplier = canvasW / (maxCoords[0] > maxCoords[1] ? maxCoords[0] : maxCoords[1]);
 
   Object.keys(clonedMap).forEach(key => {
     clonedMap[key].forEach(coord => {

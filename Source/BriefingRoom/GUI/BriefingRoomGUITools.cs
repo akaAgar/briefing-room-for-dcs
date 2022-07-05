@@ -27,7 +27,7 @@ namespace BriefingRoom4DCS.GUI
     {
         public static string GetEnumName(object enumValue)
         {
-            if(enumValue == null) return "";
+            if (enumValue == null) return "";
             return BriefingRoom.Translate(enumValue.ToString());
         }
 

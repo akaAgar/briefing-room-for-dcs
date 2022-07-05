@@ -79,7 +79,7 @@ namespace BriefingRoom4DCS.Generator
 
         internal static void GenerateObjectiveWPCoordinatesLua(MissionTemplateRecord template, DCSMission mission, List<Waypoint> waypoints, DrawingMaker DrawingMaker)
         {
-            var scriptWaypoints = waypoints.Where(x =>  !x.ScriptIgnore).ToList();
+            var scriptWaypoints = waypoints.Where(x => !x.ScriptIgnore).ToList();
             for (int i = 0; i < scriptWaypoints.Count; i++)
             {
                 mission.AppendValue("ScriptObjectives",

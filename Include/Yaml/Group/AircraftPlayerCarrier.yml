@@ -8,7 +8,7 @@ waypoints:
     linkUnit: $LINKUNIT$
     helipadId: $LINKUNIT$
     speed: $SPEED$
-    tasks: 
+    tasks:
       - id: EPLRS
         parameters:
           wrapped: true

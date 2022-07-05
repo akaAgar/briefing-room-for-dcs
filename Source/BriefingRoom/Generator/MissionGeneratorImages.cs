@@ -56,7 +56,7 @@ namespace BriefingRoom4DCS.Generator
                 imageLayers.Add(new ImageMakerLayer("Theaters\\" + Path.GetFileName(Toolbox.RandomFrom(theaterImages))));
 
             var path = $"Flags\\{template.GetCoalitionID(template.ContextPlayerCoalition)}.png";
-            if(File.Exists($"{BRPaths.INCLUDE_JPG}{path}"))
+            if (File.Exists($"{BRPaths.INCLUDE_JPG}{path}"))
                 imageLayers.Add(new ImageMakerLayer(path, ContentAlignment.TopLeft, 8, 8, 0, .5));
 
             byte[] imageBytes = imageMaker.GetImageBytes(imageLayers.ToArray());
@@ -124,7 +124,7 @@ namespace BriefingRoom4DCS.Generator
             }
             catch (System.Exception e)
             {
-                throw new BriefingRoomException($"Failed to create KneeBoard Image converter logs {converterlogs}", e);    
+                throw new BriefingRoomException($"Failed to create KneeBoard Image converter logs {converterlogs}", e);
             }
 
         }

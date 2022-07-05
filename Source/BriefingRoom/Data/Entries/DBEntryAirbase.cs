@@ -87,7 +87,7 @@ namespace BriefingRoom4DCS.Data
             return parkingSpots;
         }
 
-        public DBEntryAirbase(){}
+        public DBEntryAirbase() { }
 
         internal DBEntryAirbase(Coordinates coords)
         {

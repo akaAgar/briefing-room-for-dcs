@@ -9,7 +9,7 @@ waypoints:
     etaLocked: true
     speedLocked: true
     y: $GROUPY$
-    x: $GROUPX$    
+    x: $GROUPX$
 groupId: $GROUPID$
 hidden: $HIDDEN$
 y: $GROUPY$

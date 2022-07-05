@@ -59,8 +59,8 @@ ctld.maximumMoveDistance = 2000 -- max distance for troops to move from drop poi
 
 ctld.minimumDeployDistance = 1000 -- minimum distance from a friendly pickup zone where you can deploy a crate
 
-ctld.numberOfTroops = 10 -- default number of troops to load on a transport heli or C-130 
-							-- also works as maximum size of group that'll fit into a helicopter unless overridden
+ctld.numberOfTroops = 10 -- default number of troops to load on a transport heli or C-130
+-- also works as maximum size of group that'll fit into a helicopter unless overridden
 ctld.enableFastRopeInsertion = true -- allows you to drop troops by fast rope
 ctld.fastRopeMaximumHeight = 18.28 -- in meters which is 60 ft max fast rope (not rappell) safe height
 
@@ -178,10 +178,10 @@ ctld.pickupZones = {
     { "pickzone7", "orange", -1, "yes", 0 },
     { "pickzone8", "orange", -1, "yes", 0 },
     { "pickzone9", "orange", -1, "yes", 0 }, -- limits pickup zone 9 to 5 groups of soldiers or vehicles, only red can pick up
-    { "pickzone10", "orange", -1, "yes", 0 },  -- limits pickup zone 10 to 10 groups of soldiers or vehicles, only blue can pick up
+    { "pickzone10", "orange", -1, "yes", 0 }, -- limits pickup zone 10 to 10 groups of soldiers or vehicles, only blue can pick up
 
-    { "pickzone11", "orange", -1, "yes", 0 },  -- limits pickup zone 11 to 20 groups of soldiers or vehicles, only blue can pick up. Zone starts inactive!
-    { "pickzone12", "orange", -1, "yes", 0 },  -- limits pickup zone 11 to 20 groups of soldiers or vehicles, only blue can pick up. Zone starts inactive!
+    { "pickzone11", "orange", -1, "yes", 0 }, -- limits pickup zone 11 to 20 groups of soldiers or vehicles, only blue can pick up. Zone starts inactive!
+    { "pickzone12", "orange", -1, "yes", 0 }, -- limits pickup zone 11 to 20 groups of soldiers or vehicles, only blue can pick up. Zone starts inactive!
     { "pickzone13", "orange", -1, "yes", 0 },
     { "pickzone14", "orange", -1, "yes", 0 },
     { "pickzone15", "orange", -1, "yes", 0 },
@@ -194,12 +194,12 @@ ctld.pickupZones = {
     { "USA Carrier", "blue", 10, "yes", 0, 1001 }, -- instead of a Zone Name you can also use the UNIT NAME of a ship
 }
 
-for i=1,2 do
-    for _,g in pairs(coalition.getGroups(i)) do
+for i = 1, 2 do
+    for _, g in pairs(coalition.getGroups(i)) do
         if g:getCategory() == Group.Category.SHIP then
-            for _,u in pairs(g:getUnits()) do
-                table.insert(ctld.pickupZones, { u:getName(), "none", -1, "yes", 0})
-                env.info("CTLD added ship pickup"..u:getID(), false)
+            for _, u in pairs(g:getUnits()) do
+                table.insert(ctld.pickupZones, { u:getName(), "none", -1, "yes", 0 })
+                env.info("CTLD added ship pickup" .. u:getID(), false)
             end
         end
     end
@@ -223,16 +223,16 @@ ctld.dropOffZones = {
 
 --wpZones = { "Zone name", "smoke color",  "ACTIVE (yes/no)", "side (0 = Both sides / 1 = Red / 2 = Blue )", }
 ctld.wpZones = {
-    { "wpzone1", "green","yes", 2 },
-    { "wpzone2", "blue","yes", 2 },
-    { "wpzone3", "orange","yes", 2 },
-    { "wpzone4", "none","yes", 2 },
-    { "wpzone5", "none","yes", 2 },
-    { "wpzone6", "none","yes", 1 },
-    { "wpzone7", "none","yes", 1 },
-    { "wpzone8", "none","yes", 1 },
-    { "wpzone9", "none","yes", 1 },
-    { "wpzone10", "none","no", 0 }, -- Both sides as its set to 0
+    { "wpzone1", "green", "yes", 2 },
+    { "wpzone2", "blue", "yes", 2 },
+    { "wpzone3", "orange", "yes", 2 },
+    { "wpzone4", "none", "yes", 2 },
+    { "wpzone5", "none", "yes", 2 },
+    { "wpzone6", "none", "yes", 1 },
+    { "wpzone7", "none", "yes", 1 },
+    { "wpzone8", "none", "yes", 1 },
+    { "wpzone9", "none", "yes", 1 },
+    { "wpzone10", "none", "no", 0 }, -- Both sides as its set to 0
 }
 
 
@@ -363,9 +363,9 @@ ctld.transportPilotNames = {
 }
 
 -- BR Generator add player units
-for i,o in ipairs(briefingRoom.playerPilotNames) do
+for i, o in ipairs(briefingRoom.playerPilotNames) do
     table.insert(ctld.transportPilotNames, o)
-    env.info("CTLD added player pilot"..o, false)
+    env.info("CTLD added player pilot" .. o, false)
 end
 
 -- *************** Optional Extractable GROUPS *****************
@@ -420,18 +420,18 @@ ctld.logisticUnits = {
     "logistic10",
 }
 -- BR Generator add Static unit & FARPs
-for i,name in ipairs(briefingRoom.mission.missionFeatures.unitNames.cTLD) do
+for i, name in ipairs(briefingRoom.mission.missionFeatures.unitNames.cTLD) do
     local unit = StaticObject.getByName(name)
     if unit ~= nil then
         table.insert(ctld.logisticUnits, unit:getName())
-        env.info("CTLD added logi static"..name, false)
+        env.info("CTLD added logi static" .. name, false)
     end
 end
-for i=1,2 do
-    for _,g in pairs(coalition.getStaticObjects(i)) do
+for i = 1, 2 do
+    for _, g in pairs(coalition.getStaticObjects(i)) do
         if g:getTypeName() == "FARP" then
             table.insert(ctld.logisticUnits, g:getName())
-        env.info("CTLD added logi FARP"..g:getID(), false)
+            env.info("CTLD added logi FARP" .. g:getID(), false)
         end
     end
 end
@@ -520,12 +520,12 @@ ctld.JTAC_WEIGHT = 15 -- kg
 -- You can also add an optional coalition side to limit the group to one side
 -- for the side - 2 is BLUE and 1 is RED
 ctld.loadableGroups = {
-    {name = "Standard Group", inf = 6, mg = 2, at = 2 }, -- will make a loadable group with 6 infantry, 2 MGs and 2 anti-tank for both coalitions
-    {name = "Anti Air", inf = 2, aa = 3  },
-    {name = "Anti Tank", inf = 2, at = 6  },
-    {name = "Mortar Squad", mortar = 6 },
-    {name = "JTAC Group", inf = 4, jtac = 1 }, -- will make a loadable group with 4 infantry and a JTAC soldier for both coalitions
-    {name = "Single JTAC", jtac = 1 }, -- will make a loadable group witha single JTAC soldier for both coalitions
+    { name = "Standard Group", inf = 6, mg = 2, at = 2 }, -- will make a loadable group with 6 infantry, 2 MGs and 2 anti-tank for both coalitions
+    { name = "Anti Air", inf = 2, aa = 3 },
+    { name = "Anti Tank", inf = 2, at = 6 },
+    { name = "Mortar Squad", mortar = 6 },
+    { name = "JTAC Group", inf = 4, jtac = 1 }, -- will make a loadable group with 4 infantry and a JTAC soldier for both coalitions
+    { name = "Single JTAC", jtac = 1 }, -- will make a loadable group witha single JTAC soldier for both coalitions
     -- {name = "Mortar Squad Red", inf = 2, mortar = 5, side =1 }, --would make a group loadable by RED only
 }
 
@@ -571,18 +571,18 @@ ctld.spawnableCrates = {
     },
     ["AA mid range"] = {
         -- HAWK System
-        { weight = 540, desc = "HAWK Launcher", unit = "Hawk ln", side = 2},
+        { weight = 540, desc = "HAWK Launcher", unit = "Hawk ln", side = 2 },
         { weight = 545, desc = "HAWK Search Radar", unit = "Hawk sr", side = 2 },
         { weight = 546, desc = "HAWK Track Radar", unit = "Hawk tr", side = 2 },
-        { weight = 547, desc = "HAWK PCP", unit = "Hawk pcp" , side = 2 }, -- Remove this if on 1.2
-	    { weight = 548, desc = "HAWK CWAR", unit = "Hawk cwar" , side = 2 }, -- Remove this if on 2.5	
-        { weight = 549, desc = "HAWK Repair", unit = "HAWK Repair" , side = 2 },
+        { weight = 547, desc = "HAWK PCP", unit = "Hawk pcp", side = 2 }, -- Remove this if on 1.2
+        { weight = 548, desc = "HAWK CWAR", unit = "Hawk cwar", side = 2 }, -- Remove this if on 2.5
+        { weight = 549, desc = "HAWK Repair", unit = "HAWK Repair", side = 2 },
         -- End of HAWK
 
         -- KUB SYSTEM
-        { weight = 560, desc = "KUB Launcher", unit = "Kub 2P25 ln", side = 1},
+        { weight = 560, desc = "KUB Launcher", unit = "Kub 2P25 ln", side = 1 },
         { weight = 565, desc = "KUB Radar", unit = "Kub 1S91 str", side = 1 },
-        { weight = 570, desc = "KUB Repair", unit = "KUB Repair", side = 1},
+        { weight = 570, desc = "KUB Repair", unit = "KUB Repair", side = 1 },
         -- End of KUB
 
         -- BUK System
@@ -595,12 +595,12 @@ ctld.spawnableCrates = {
     ["AA long range"] = {
         -- Patriot System
         { weight = 555, desc = "Patriot Launcher", unit = "Patriot ln", side = 2 },
-        { weight = 556, desc = "Patriot Radar", unit = "Patriot str" , side = 2 },
+        { weight = 556, desc = "Patriot Radar", unit = "Patriot str", side = 2 },
         { weight = 557, desc = "Patriot ECS", unit = "Patriot ECS", side = 2 },
         -- { weight = 553, desc = "Patriot ICC", unit = "Patriot cp", side = 2 },
         -- { weight = 554, desc = "Patriot EPP", unit = "Patriot EPP", side = 2 },
-        { weight = 558, desc = "Patriot AMG (optional)", unit = "Patriot AMG" , side = 2 },
-        { weight = 559, desc = "Patriot Repair", unit = "Patriot Repair" , side = 2 },
+        { weight = 558, desc = "Patriot AMG (optional)", unit = "Patriot AMG", side = 2 },
+        { weight = 559, desc = "Patriot Repair", unit = "Patriot Repair", side = 2 },
         -- End of Patriot
 
         { weight = 595, desc = "Early Warning Radar", unit = "1L13 EWR", side = 1 }, -- cant be used by BLUE coalition
@@ -663,7 +663,7 @@ ctld.spawnableCratesModel_sling = {
 
     ["shape_name"] = "trunks_small_cargo",
     ["type"] = "trunks_small_cargo",
-]]--
+]] --
 
 -- if the unit is on this list, it will be made into a JTAC when deployed
 ctld.jtacUnitTypes = {
@@ -730,7 +730,6 @@ function ctld.spawnGroupAtTrigger(_groupSide, _number, _triggerName, _searchRadi
     end
 end
 
-
 -----------------------------------------------------------------
 -- Spawn group at a Vec3 Point and set them as extractable. Usage:
 -- ctld.spawnGroupAtPoint("groupside", number,Vec3 Point, radius)
@@ -774,7 +773,6 @@ function ctld.spawnGroupAtPoint(_groupSide, _number, _point, _searchRadius)
     end
 end
 
-
 -- Preloads a transport with troops or vehicles
 -- replaces any troops currently on board
 function ctld.preLoadTransport(_unitName, _number, _troops)
@@ -789,7 +787,6 @@ function ctld.preLoadTransport(_unitName, _number, _troops)
         --        end
     end
 end
-
 
 -- Continuously counts the number of crates in a zone and sets the value of the passed in flag
 -- to the count amount
@@ -821,7 +818,7 @@ function ctld.cratesInZone(_zone, _flagNumber)
 
             --in air seems buggy with crates so if in air is true, get the height above ground and the speed magnitude
             if _crate ~= nil and _crate:getLife() > 0
-                    and (ctld.inAir(_crate) == false) then
+                and (ctld.inAir(_crate) == false) then
 
                 local _dist = ctld.getDistance(_crate:getPoint(), _zonePos)
 
@@ -873,9 +870,9 @@ function ctld.createExtractZone(_zone, _flagNumber, _smoke)
 
     trigger.action.setUserFlag(_flagNumber, 0) --start at 0
 
-    local _details = { point = _pos3, name = _zone, smoke = _smoke, flag = _flagNumber, radius = _triggerZone.radius}
+    local _details = { point = _pos3, name = _zone, smoke = _smoke, flag = _flagNumber, radius = _triggerZone.radius }
 
-    ctld.extractZones[_zone.."-".._flagNumber] =  _details
+    ctld.extractZones[_zone .. "-" .. _flagNumber] = _details
 
     if _smoke ~= nil and _smoke > -1 then
 
@@ -883,7 +880,7 @@ function ctld.createExtractZone(_zone, _flagNumber, _smoke)
 
         _smokeFunction = function(_args)
 
-            local _extractDetails = ctld.extractZones[_zone.."-".._flagNumber]
+            local _extractDetails = ctld.extractZones[_zone .. "-" .. _flagNumber]
             -- check zone is still active
             if _extractDetails == nil then
                 -- stop refreshing smoke, zone is done
@@ -901,7 +898,6 @@ function ctld.createExtractZone(_zone, _flagNumber, _smoke)
     end
 end
 
-
 -- Removes an extraction zone
 --
 -- The smoke will take up to 5 minutes to disappear depending on the last time the smoke was activated
@@ -913,13 +909,13 @@ end
 --
 --
 --
-function ctld.removeExtractZone(_zone,_flagNumber)
+function ctld.removeExtractZone(_zone, _flagNumber)
 
-    local _extractDetails = ctld.extractZones[_zone.."-".._flagNumber]
+    local _extractDetails = ctld.extractZones[_zone .. "-" .. _flagNumber]
 
     if _extractDetails ~= nil then
         --remove zone
-        ctld.extractZones[_zone.."-".._flagNumber] = nil
+        ctld.extractZones[_zone .. "-" .. _flagNumber] = nil
 
     end
 end
@@ -944,9 +940,9 @@ function ctld.countDroppedGroupsInZone(_zone, _blueFlag, _redFlag)
     local _redCount = 0;
     local _blueCount = 0;
 
-    local _allGroups = {ctld.droppedTroopsRED,ctld.droppedTroopsBLUE,ctld.droppedVehiclesRED,ctld.droppedVehiclesBLUE}
+    local _allGroups = { ctld.droppedTroopsRED, ctld.droppedTroopsBLUE, ctld.droppedVehiclesRED, ctld.droppedVehiclesBLUE }
     for _, _extractGroups in pairs(_allGroups) do
-        for _,_groupName  in pairs(_extractGroups) do
+        for _, _groupName in pairs(_extractGroups) do
             local _groupUnits = ctld.getGroup(_groupName)
 
             if #_groupUnits > 0 then
@@ -991,16 +987,16 @@ function ctld.countDroppedUnitsInZone(_zone, _blueFlag, _redFlag)
     local _redCount = 0;
     local _blueCount = 0;
 
-    local _allGroups = {ctld.droppedTroopsRED,ctld.droppedTroopsBLUE,ctld.droppedVehiclesRED,ctld.droppedVehiclesBLUE}
+    local _allGroups = { ctld.droppedTroopsRED, ctld.droppedTroopsBLUE, ctld.droppedVehiclesRED, ctld.droppedVehiclesBLUE }
 
     for _, _extractGroups in pairs(_allGroups) do
-        for _,_groupName  in pairs(_extractGroups) do
+        for _, _groupName in pairs(_extractGroups) do
             local _groupUnits = ctld.getGroup(_groupName)
 
             if #_groupUnits > 0 then
 
                 local _zonePos = mist.utils.zoneToVec3(_zone)
-                for _,_unit in pairs(_groupUnits) do
+                for _, _unit in pairs(_groupUnits) do
                     local _dist = ctld.getDistance(_unit:getPoint(), _zonePos)
 
                     if _dist <= _triggerZone.radius then
@@ -1023,7 +1019,6 @@ function ctld.countDroppedUnitsInZone(_zone, _blueFlag, _redFlag)
 
     --  env.info("Units in zone ".._blueCount.." ".._redCount)
 end
-
 
 -- Creates a radio beacon on a random UHF - VHF and HF/FM frequency for homing
 -- This WILL NOT WORK if you dont add beacon.ogg and beaconsilent.ogg to the mission!!!
@@ -1055,7 +1050,6 @@ function ctld.createRadioBeaconAtZone(_zone, _coalition, _batteryLife, _name)
     end
 end
 
-
 -- Activates a pickup zone
 -- Activates a pickup zone when called from a trigger
 -- EG: ctld.activatePickupZone("pickzone3")
@@ -1076,7 +1070,7 @@ function ctld.activatePickupZone(_zoneName)
 
     end
 
-    if _triggerZone == nil  then
+    if _triggerZone == nil then
         trigger.action.outText("CTLD.lua ERROR: Cant find zone or ship called " .. _zoneName, 10)
     end
 
@@ -1094,7 +1088,7 @@ function ctld.activatePickupZone(_zoneName)
             _zoneDetails[4] = 1 --activate zone
 
             if ctld.disableAllSmoke == true then --smoke disabled
-            return
+                return
             end
 
             if _zoneDetails[2] >= 0 then
@@ -1111,7 +1105,6 @@ function ctld.activatePickupZone(_zoneName)
         end
     end
 end
-
 
 -- Deactivates a pickup zone
 -- Deactivates a pickup zone when called from a trigger
@@ -1171,8 +1164,9 @@ function ctld.changeRemainingGroupsForPickupZone(_zoneName, _amount)
 
     end
 
-    if _triggerZone == nil  then
-        trigger.action.outText("CTLD.lua ctld.changeRemainingGroupsForPickupZone ERROR: Cant find zone called " .. _zoneName, 10)
+    if _triggerZone == nil then
+        trigger.action.outText("CTLD.lua ctld.changeRemainingGroupsForPickupZone ERROR: Cant find zone called " ..
+            _zoneName, 10)
         return
     end
 
@@ -1195,7 +1189,7 @@ function ctld.activateWaypointZone(_zoneName)
     local _triggerZone = trigger.misc.getZone(_zoneName) -- trigger to use as reference position
 
 
-    if _triggerZone == nil  then
+    if _triggerZone == nil then
         trigger.action.outText("CTLD.lua ERROR: Cant find zone  called " .. _zoneName, 10)
 
         return
@@ -1215,7 +1209,7 @@ function ctld.activateWaypointZone(_zoneName)
             _zoneDetails[3] = 1 --activate zone
 
             if ctld.disableAllSmoke == true then --smoke disabled
-            return
+                return
             end
 
             if _zoneDetails[2] >= 0 then
@@ -1232,7 +1226,6 @@ function ctld.activateWaypointZone(_zoneName)
         end
     end
 end
-
 
 -- Deactivates a Waypoint zone
 -- Deactivates a Waypoint zone when called from a trigger
@@ -1261,7 +1254,7 @@ end
 -- Causes an AI unit with the specified name to unload troops / vehicles when
 -- an enemy is detected within a specified distance
 -- The enemy must have Line or Sight to the unit to be detected
-function ctld.unloadInProximityToEnemy(_unitName,_distance)
+function ctld.unloadInProximityToEnemy(_unitName, _distance)
 
     local _unit = ctld.getTransportUnit(_unitName)
 
@@ -1270,7 +1263,7 @@ function ctld.unloadInProximityToEnemy(_unitName,_distance)
         -- no player name means AI!
         -- the findNearest visible enemy you'd want to modify as it'll find enemies quite far away
         -- limited by  ctld.JTAC_maxDistance
-        local _nearestEnemy = ctld.findNearestVisibleEnemy(_unit,"all",_distance)
+        local _nearestEnemy = ctld.findNearestVisibleEnemy(_unit, "all", _distance)
 
         if _nearestEnemy ~= nil then
 
@@ -1290,22 +1283,20 @@ function ctld.unloadInProximityToEnemy(_unitName,_distance)
 
 end
 
-
-
 -- Unit will unload any units onboard if the unit is on the ground
 -- when this function is called
 function ctld.unloadTransport(_unitName)
 
     local _unit = ctld.getTransportUnit(_unitName)
 
-    if _unit ~= nil  then
+    if _unit ~= nil then
 
         if ctld.troopsOnboard(_unit, true) then
-            ctld.unloadTroops({_unitName,true})
+            ctld.unloadTroops({ _unitName, true })
         end
 
         if ctld.unitCanCarryVehicles(_unit) and ctld.troopsOnboard(_unit, false) then
-            ctld.unloadTroops({_unitName,false})
+            ctld.unloadTroops({ _unitName, false })
         end
     end
 
@@ -1316,12 +1307,12 @@ function ctld.loadTransport(_unitName)
 
     local _unit = ctld.getTransportUnit(_unitName)
 
-    if _unit ~= nil  then
+    if _unit ~= nil then
 
-        ctld.loadTroopsFromZone({ _unitName, true,"",true })
+        ctld.loadTroopsFromZone({ _unitName, true, "", true })
 
-        if ctld.unitCanCarryVehicles(_unit)  then
-            ctld.loadTroopsFromZone({ _unitName, false,"",true })
+        if ctld.unitCanCarryVehicles(_unit) then
+            ctld.loadTroopsFromZone({ _unitName, false, "", true })
         end
 
     end
@@ -1331,7 +1322,7 @@ end
 -- adds a callback that will be called for many actions ingame
 function ctld.addCallback(_callback)
 
-    table.insert(ctld.callbacks,_callback)
+    table.insert(ctld.callbacks, _callback)
 
 end
 
@@ -1341,7 +1332,7 @@ end
 -- e.g. ctld.spawnCrateAtZone("red", 500,"triggerzone1") -- spawn a humvee at triggerzone 1 for red side
 -- e.g. ctld.spawnCrateAtZone("blue", 505,"triggerzone1") -- spawn a tow humvee at triggerzone1 for blue side
 --
-function ctld.spawnCrateAtZone(_side, _weight,_zone)
+function ctld.spawnCrateAtZone(_side, _weight, _zone)
     local _spawnTrigger = trigger.misc.getZone(_zone) -- trigger to use as reference position
 
     if _spawnTrigger == nil then
@@ -1373,7 +1364,7 @@ function ctld.spawnCrateAtZone(_side, _weight,_zone)
 
     local _name = string.format("%s #%i", _crateType.desc, _unitId)
 
-    local _spawnedCrate = ctld.spawnCrateStatic(_country, _unitId, _point, _name, _crateType.weight,_side)
+    local _spawnedCrate = ctld.spawnCrateStatic(_country, _unitId, _point, _name, _crateType.weight, _side)
 
 end
 
@@ -1385,7 +1376,7 @@ end
 -- e.g. ctld.spawnCrateAtZone("blue", 505,{x=1,y=2,z=3}) -- spawn a tow humvee at triggerzone1 for blue side at a specified point
 --
 --
-function ctld.spawnCrateAtPoint(_side, _weight,_point)
+function ctld.spawnCrateAtPoint(_side, _weight, _point)
 
 
     local _crateType = ctld.crateLookupTable[tostring(_weight)]
@@ -1408,7 +1399,7 @@ function ctld.spawnCrateAtPoint(_side, _weight,_point)
 
     local _name = string.format("%s #%i", _crateType.desc, _unitId)
 
-    local _spawnedCrate = ctld.spawnCrateStatic(_country, _unitId, _point, _name, _crateType.weight,_side)
+    local _spawnedCrate = ctld.spawnCrateStatic(_country, _unitId, _point, _name, _crateType.weight, _side)
 
 end
 
@@ -1424,11 +1415,11 @@ ctld.AASystemTemplate = {
         name = "HAWK AA System",
         count = 4,
         parts = {
-            {name = "Hawk ln", desc = "HAWK Launcher", launcher = true},
-            {name = "Hawk tr", desc = "HAWK Track Radar"},
-            {name = "Hawk sr", desc = "HAWK Search Radar"},
-            {name = "Hawk pcp", desc = "HAWK PCP"},
-	    {name = "Hawk cwar", desc = "HAWK CWAR"},
+            { name = "Hawk ln", desc = "HAWK Launcher", launcher = true },
+            { name = "Hawk tr", desc = "HAWK Track Radar" },
+            { name = "Hawk sr", desc = "HAWK Search Radar" },
+            { name = "Hawk pcp", desc = "HAWK PCP" },
+            { name = "Hawk cwar", desc = "HAWK CWAR" },
         },
         repair = "HAWK Repair",
     },
@@ -1436,19 +1427,19 @@ ctld.AASystemTemplate = {
         name = "Patriot AA System",
         count = 4,
         parts = {
-            {name = "Patriot ln", desc = "Patriot Launcher", launcher = true},
-            {name = "Patriot ECS", desc = "Patriot Control Unit"},
-            {name = "Patriot str", desc = "Patriot Search and Track Radar"},
+            { name = "Patriot ln", desc = "Patriot Launcher", launcher = true },
+            { name = "Patriot ECS", desc = "Patriot Control Unit" },
+            { name = "Patriot str", desc = "Patriot Search and Track Radar" },
         },
         repair = "Patriot Repair",
     },
-	{
+    {
         name = "BUK AA System",
         count = 3,
         parts = {
-            {name = "SA-11 Buk LN 9A310M1", desc = "BUK Launcher" , launcher = true},
-            {name = "SA-11 Buk CC 9S470M1", desc = "BUK CC Radar"},
-            {name = "SA-11 Buk SR 9S18M1", desc = "BUK Search Radar"},
+            { name = "SA-11 Buk LN 9A310M1", desc = "BUK Launcher", launcher = true },
+            { name = "SA-11 Buk CC 9S470M1", desc = "BUK CC Radar" },
+            { name = "SA-11 Buk SR 9S18M1", desc = "BUK Search Radar" },
         },
         repair = "BUK Repair",
     },
@@ -1456,8 +1447,8 @@ ctld.AASystemTemplate = {
         name = "KUB AA System",
         count = 2,
         parts = {
-            {name = "Kub 2P25 ln", desc = "KUB Launcher", launcher = true},
-            {name = "Kub 1S91 str", desc = "KUB Radar"},
+            { name = "Kub 2P25 ln", desc = "KUB Launcher", launcher = true },
+            { name = "Kub 1S91 str", desc = "KUB Radar" },
         },
         repair = "KUB Repair",
     },
@@ -1479,17 +1470,17 @@ function ctld.p(o, level)
     local MAX_LEVEL = 20
     if level == nil then level = 0 end
     if level > MAX_LEVEL then
-        ctld.logError("max depth reached in ctld.p : "..tostring(MAX_LEVEL))
+        ctld.logError("max depth reached in ctld.p : " .. tostring(MAX_LEVEL))
         return ""
     end
     local text = ""
     if (type(o) == "table") then
         text = "\n"
-        for key,value in pairs(o) do
-            for i=0, level do
+        for key, value in pairs(o) do
+            for i = 0, level do
                 text = text .. " "
             end
-            text = text .. ".".. key.."="..ctld.p(value, level+1) .. "\n"
+            text = text .. "." .. key .. "=" .. ctld.p(value, level + 1) .. "\n"
         end
     elseif (type(o) == "function") then
         text = "[function]"
@@ -1560,18 +1551,18 @@ function ctld.getTransportUnit(_unitName)
     return nil
 end
 
-function ctld.spawnCrateStatic(_country, _unitId, _point, _name, _weight,_side)
+function ctld.spawnCrateStatic(_country, _unitId, _point, _name, _weight, _side)
 
     local _crate
     local _spawnedCrate
 
     if ctld.staticBugWorkaround and ctld.slingLoad == false then
         local _groupId = ctld.getNextGroupId()
-        local _groupName = "Crate Group #".._groupId
+        local _groupName = "Crate Group #" .. _groupId
 
         local _group = {
             ["visible"] = false,
-           -- ["groupId"] = _groupId,
+            -- ["groupId"] = _groupId,
             ["hidden"] = false,
             ["units"] = {},
             --        ["y"] = _positions[1].z,
@@ -1580,7 +1571,7 @@ function ctld.spawnCrateStatic(_country, _unitId, _point, _name, _weight,_side)
             ["task"] = {},
         }
 
-        _group.units[1] = ctld.createUnit(_point.x , _point.z , 0, {type="UAZ-469",name=_name,unitId=_unitId})
+        _group.units[1] = ctld.createUnit(_point.x, _point.z, 0, { type = "UAZ-469", name = _name, unitId = _unitId })
 
         --switch to MIST
         _group.category = Group.Category.GROUND;
@@ -1597,7 +1588,7 @@ function ctld.spawnCrateStatic(_country, _unitId, _point, _name, _weight,_side)
         if ctld.slingLoad then
             _crate = mist.utils.deepCopy(ctld.spawnableCratesModel_sling)
             _crate["canCargo"] = true
-    	else
+        else
             _crate = mist.utils.deepCopy(ctld.spawnableCratesModel_load)
             _crate["canCargo"] = false
         end
@@ -1619,7 +1610,7 @@ function ctld.spawnCrateStatic(_country, _unitId, _point, _name, _weight,_side)
     local _crateType = ctld.crateLookupTable[tostring(_weight)]
 
     if _side == 1 then
-        ctld.spawnedCratesRED[_name] =_crateType
+        ctld.spawnedCratesRED[_name] = _crateType
     else
         ctld.spawnedCratesBLUE[_name] = _crateType
     end
@@ -1633,7 +1624,7 @@ function ctld.spawnFOBCrateStatic(_country, _unitId, _point, _name)
         ["category"] = "Fortifications",
         ["shape_name"] = "konteiner_red1",
         ["type"] = "Container red 1",
-     --   ["unitId"] = _unitId,
+        --   ["unitId"] = _unitId,
         ["y"] = _point.z,
         ["x"] = _point.x,
         ["name"] = _name,
@@ -1651,13 +1642,12 @@ function ctld.spawnFOBCrateStatic(_country, _unitId, _point, _name)
     return _spawnedCrate
 end
 
-
 function ctld.spawnFOB(_country, _unitId, _point, _name)
 
     local _crate = {
         ["category"] = "Fortifications",
         ["type"] = "outpost",
-      --  ["unitId"] = _unitId,
+        --  ["unitId"] = _unitId,
         ["y"] = _point.z,
         ["x"] = _point.x,
         ["name"] = _name,
@@ -1673,7 +1663,7 @@ function ctld.spawnFOB(_country, _unitId, _point, _name)
     local _id = ctld.getNextUnitId()
     local _tower = {
         ["type"] = "house2arm",
-     --   ["unitId"] = _id,
+        --   ["unitId"] = _id,
         ["rate"] = 100,
         ["y"] = _point.z + -36.57142857,
         ["x"] = _point.x + 14.85714286,
@@ -1689,7 +1679,6 @@ function ctld.spawnFOB(_country, _unitId, _point, _name)
 
     return _spawnedCrate
 end
-
 
 function ctld.spawnCrate(_arguments)
 
@@ -1737,16 +1726,20 @@ function ctld.spawnCrate(_arguments)
             local _position = _heli:getPosition()
 
             -- check crate spam
-            if _heli:getPlayerName() ~= nil and ctld.crateWait[_heli:getPlayerName()] and  ctld.crateWait[_heli:getPlayerName()] > timer.getTime() then
+            if _heli:getPlayerName() ~= nil and ctld.crateWait[_heli:getPlayerName()] and
+                ctld.crateWait[_heli:getPlayerName()] > timer.getTime() then
 
-                ctld.displayMessageToGroup(_heli,"Sorry you must wait "..(ctld.crateWait[_heli:getPlayerName()]  - timer.getTime()).. " seconds before you can get another crate", 20)
+                ctld.displayMessageToGroup(_heli,
+                    "Sorry you must wait " ..
+                    (ctld.crateWait[_heli:getPlayerName()] - timer.getTime()) ..
+                    " seconds before you can get another crate", 20)
                 return
             end
 
             if _heli:getPlayerName() ~= nil then
                 ctld.crateWait[_heli:getPlayerName()] = timer.getTime() + ctld.crateWaitTime
             end
-                --   trigger.action.outText("Spawn Crate".._args[1].." ".._args[2],10)
+            --   trigger.action.outText("Spawn Crate".._args[1].." ".._args[2],10)
 
             local _heli = ctld.getTransportUnit(_args[1])
 
@@ -1758,12 +1751,15 @@ function ctld.spawnCrate(_arguments)
 
             local _name = string.format("%s #%i", _crateType.desc, _unitId)
 
-            local _spawnedCrate = ctld.spawnCrateStatic(_heli:getCountry(), _unitId, _point, _name, _crateType.weight,_side)
+            local _spawnedCrate = ctld.spawnCrateStatic(_heli:getCountry(), _unitId, _point, _name, _crateType.weight,
+                _side)
 
             -- add to move table
             ctld.crateMove[_name] = _name
 
-            ctld.displayMessageToGroup(_heli, string.format("A %s crate weighing %s kg has been brought out and is at your 12 o'clock ", _crateType.desc, _crateType.weight), 20)
+            ctld.displayMessageToGroup(_heli,
+                string.format("A %s crate weighing %s kg has been brought out and is at your 12 o'clock ",
+                    _crateType.desc, _crateType.weight), 20)
 
         else
             env.info("Couldn't find crate item to spawn")
@@ -1849,7 +1845,9 @@ function ctld.safeToFastRope(_heli)
     end
 
     --landed or speed is less than 8 km/h and height is less than fast rope height
-    if (ctld.inAir(_heli) == false or (ctld.heightDiff(_heli) <= ctld.fastRopeMaximumHeight + 3.0 and mist.vec.mag(_heli:getVelocity()) < 2.2)) then
+    if (
+        ctld.inAir(_heli) == false or
+            (ctld.heightDiff(_heli) <= ctld.fastRopeMaximumHeight + 3.0 and mist.vec.mag(_heli:getVelocity()) < 2.2)) then
         return true
     end
 end
@@ -1911,12 +1909,16 @@ function ctld.deployTroops(_heli, _troops)
                     ctld.adaptWeightToCargo(_heli:getName())
 
                     if ctld.inAir(_heli) then
-                        trigger.action.outTextForCoalition(_heli:getCoalition(), ctld.getPlayerNameOrType(_heli) .. " fast-ropped troops from " .. _heli:getTypeName() .. " into combat", 10)
+                        trigger.action.outTextForCoalition(_heli:getCoalition(),
+                            ctld.getPlayerNameOrType(_heli) ..
+                            " fast-ropped troops from " .. _heli:getTypeName() .. " into combat", 10)
                     else
-                        trigger.action.outTextForCoalition(_heli:getCoalition(), ctld.getPlayerNameOrType(_heli) .. " dropped troops from " .. _heli:getTypeName() .. " into combat", 10)
+                        trigger.action.outTextForCoalition(_heli:getCoalition(),
+                            ctld.getPlayerNameOrType(_heli) ..
+                            " dropped troops from " .. _heli:getTypeName() .. " into combat", 10)
                     end
 
-                    ctld.processCallback({unit = _heli, unloaded = _droppedTroops, action = "dropped_troops"})
+                    ctld.processCallback({ unit = _heli, unloaded = _droppedTroops, action = "dropped_troops" })
 
 
                 else
@@ -1931,13 +1933,19 @@ function ctld.deployTroops(_heli, _troops)
                     ctld.adaptWeightToCargo(_heli:getName())
 
                     if ctld.inAir(_heli) then
-                        trigger.action.outTextForCoalition(_heli:getCoalition(), ctld.getPlayerNameOrType(_heli) .. " troops fast-ropped from " .. _heli:getTypeName() .. " into " .. _extractZone.name, 10)
+                        trigger.action.outTextForCoalition(_heli:getCoalition(),
+                            ctld.getPlayerNameOrType(_heli) ..
+                            " troops fast-ropped from " .. _heli:getTypeName() .. " into " .. _extractZone.name, 10)
                     else
-                        trigger.action.outTextForCoalition(_heli:getCoalition(), ctld.getPlayerNameOrType(_heli) .. " troops dropped from " .. _heli:getTypeName() .. " into " .. _extractZone.name, 10)
+                        trigger.action.outTextForCoalition(_heli:getCoalition(),
+                            ctld.getPlayerNameOrType(_heli) ..
+                            " troops dropped from " .. _heli:getTypeName() .. " into " .. _extractZone.name, 10)
                     end
                 end
             else
-                ctld.displayMessageToGroup(_heli, "Too high or too fast to drop troops into combat! Hover below " .. ctld.metersToFeet(ctld.fastRopeMaximumHeight) .. " feet or land.", 10)
+                ctld.displayMessageToGroup(_heli,
+                    "Too high or too fast to drop troops into combat! Hover below " ..
+                    ctld.metersToFeet(ctld.fastRopeMaximumHeight) .. " feet or land.", 10)
             end
         end
 
@@ -1958,25 +1966,28 @@ function ctld.deployTroops(_heli, _troops)
                 ctld.inTransitTroops[_heli:getName()].vehicles = nil
                 ctld.adaptWeightToCargo(_heli:getName())
 
-                ctld.processCallback({unit = _heli, unloaded = _droppedVehicles, action = "dropped_vehicles"})
+                ctld.processCallback({ unit = _heli, unloaded = _droppedVehicles, action = "dropped_vehicles" })
 
-                trigger.action.outTextForCoalition(_heli:getCoalition(), ctld.getPlayerNameOrType(_heli) .. " dropped vehicles from " .. _heli:getTypeName() .. " into combat", 10)
+                trigger.action.outTextForCoalition(_heli:getCoalition(),
+                    ctld.getPlayerNameOrType(_heli) .. " dropped vehicles from " .. _heli:getTypeName() .. " into combat"
+                    , 10)
             end
         end
     end
 end
 
-function ctld.insertIntoTroopsArray(_troopType,_count,_troopArray,_troopName)
+function ctld.insertIntoTroopsArray(_troopType, _count, _troopArray, _troopName)
 
     for _i = 1, _count do
         local _unitId = ctld.getNextUnitId()
-        table.insert(_troopArray, { type = _troopType, unitId = _unitId, name = string.format("Dropped %s #%i", _troopName or _troopType, _unitId) })
+        table.insert(_troopArray,
+            { type = _troopType, unitId = _unitId,
+                name = string.format("Dropped %s #%i", _troopName or _troopType, _unitId) })
     end
 
     return _troopArray
 
 end
-
 
 function ctld.generateTroopTypes(_side, _countOrTemplate, _country)
     local _troops = {}
@@ -1998,9 +2009,9 @@ function ctld.generateTroopTypes(_side, _countOrTemplate, _country)
         if _countOrTemplate.aa then
             ctld.logTrace(string.format("_countOrTemplate.aa=%s", ctld.p(_countOrTemplate.aa)))
             if _side == 2 then
-                _troops = ctld.insertIntoTroopsArray("Soldier stinger",_countOrTemplate.aa,_troops)
+                _troops = ctld.insertIntoTroopsArray("Soldier stinger", _countOrTemplate.aa, _troops)
             else
-                _troops = ctld.insertIntoTroopsArray("SA-18 Igla manpad",_countOrTemplate.aa,_troops)
+                _troops = ctld.insertIntoTroopsArray("SA-18 Igla manpad", _countOrTemplate.aa, _troops)
             end
             _weight = _weight + getSoldiersWeight(_countOrTemplate.aa, ctld.MANPAD_WEIGHT)
             ctld.logTrace(string.format("_weight=%s", ctld.p(_weight)))
@@ -2009,9 +2020,9 @@ function ctld.generateTroopTypes(_side, _countOrTemplate, _country)
         if _countOrTemplate.inf then
             ctld.logTrace(string.format("_countOrTemplate.inf=%s", ctld.p(_countOrTemplate.inf)))
             if _side == 2 then
-                _troops = ctld.insertIntoTroopsArray("Soldier M4",_countOrTemplate.inf,_troops)
+                _troops = ctld.insertIntoTroopsArray("Soldier M4", _countOrTemplate.inf, _troops)
             else
-                _troops = ctld.insertIntoTroopsArray("Soldier AK",_countOrTemplate.inf,_troops)
+                _troops = ctld.insertIntoTroopsArray("Soldier AK", _countOrTemplate.inf, _troops)
             end
             _weight = _weight + getSoldiersWeight(_countOrTemplate.inf, ctld.RIFLE_WEIGHT)
             ctld.logTrace(string.format("_weight=%s", ctld.p(_weight)))
@@ -2020,9 +2031,9 @@ function ctld.generateTroopTypes(_side, _countOrTemplate, _country)
         if _countOrTemplate.mg then
             ctld.logTrace(string.format("_countOrTemplate.mg=%s", ctld.p(_countOrTemplate.mg)))
             if _side == 2 then
-                _troops = ctld.insertIntoTroopsArray("Soldier M249",_countOrTemplate.mg,_troops)
+                _troops = ctld.insertIntoTroopsArray("Soldier M249", _countOrTemplate.mg, _troops)
             else
-                _troops = ctld.insertIntoTroopsArray("Paratrooper AKS-74",_countOrTemplate.mg,_troops)
+                _troops = ctld.insertIntoTroopsArray("Paratrooper AKS-74", _countOrTemplate.mg, _troops)
             end
             _weight = _weight + getSoldiersWeight(_countOrTemplate.mg, ctld.MG_WEIGHT)
             ctld.logTrace(string.format("_weight=%s", ctld.p(_weight)))
@@ -2030,14 +2041,14 @@ function ctld.generateTroopTypes(_side, _countOrTemplate, _country)
 
         if _countOrTemplate.at then
             ctld.logTrace(string.format("_countOrTemplate.at=%s", ctld.p(_countOrTemplate.at)))
-            _troops = ctld.insertIntoTroopsArray("Paratrooper RPG-16",_countOrTemplate.at,_troops)
+            _troops = ctld.insertIntoTroopsArray("Paratrooper RPG-16", _countOrTemplate.at, _troops)
             _weight = _weight + getSoldiersWeight(_countOrTemplate.at, ctld.RPG_WEIGHT)
             ctld.logTrace(string.format("_weight=%s", ctld.p(_weight)))
         end
 
         if _countOrTemplate.mortar then
             ctld.logTrace(string.format("_countOrTemplate.mortar=%s", ctld.p(_countOrTemplate.mortar)))
-            _troops = ctld.insertIntoTroopsArray("2B11 mortar",_countOrTemplate.mortar,_troops)
+            _troops = ctld.insertIntoTroopsArray("2B11 mortar", _countOrTemplate.mortar, _troops)
             _weight = _weight + getSoldiersWeight(_countOrTemplate.mortar, ctld.MORTAR_WEIGHT)
             ctld.logTrace(string.format("_weight=%s", ctld.p(_weight)))
         end
@@ -2045,9 +2056,9 @@ function ctld.generateTroopTypes(_side, _countOrTemplate, _country)
         if _countOrTemplate.jtac then
             ctld.logTrace(string.format("_countOrTemplate.jtac=%s", ctld.p(_countOrTemplate.jtac)))
             if _side == 2 then
-                _troops = ctld.insertIntoTroopsArray("Soldier M4",_countOrTemplate.jtac,_troops, "JTAC")
+                _troops = ctld.insertIntoTroopsArray("Soldier M4", _countOrTemplate.jtac, _troops, "JTAC")
             else
-                _troops = ctld.insertIntoTroopsArray("Soldier AK",_countOrTemplate.jtac,_troops, "JTAC")
+                _troops = ctld.insertIntoTroopsArray("Soldier AK", _countOrTemplate.jtac, _troops, "JTAC")
             end
             _hasJTAC = true
             _weight = _weight + getSoldiersWeight(_countOrTemplate.jtac, ctld.JTAC_WEIGHT + ctld.RIFLE_WEIGHT)
@@ -2060,7 +2071,7 @@ function ctld.generateTroopTypes(_side, _countOrTemplate, _country)
             local _unitType = "Soldier AK"
 
             if _side == 2 then
-                if _i <=2 then
+                if _i <= 2 then
                     _unitType = "Soldier M249"
                     _weight = _weight + getSoldiersWeight(1, ctld.MG_WEIGHT)
                     ctld.logTrace(string.format("_unitType=%s, _weight=%s", ctld.p(_unitType), ctld.p(_weight)))
@@ -2078,7 +2089,7 @@ function ctld.generateTroopTypes(_side, _countOrTemplate, _country)
                     ctld.logTrace(string.format("_unitType=%s, _weight=%s", ctld.p(_unitType), ctld.p(_weight)))
                 end
             else
-                if _i <=2 then
+                if _i <= 2 then
                     _unitType = "Paratrooper AKS-74"
                     _weight = _weight + getSoldiersWeight(1, ctld.MG_WEIGHT)
                     ctld.logTrace(string.format("_unitType=%s, _weight=%s", ctld.p(_unitType), ctld.p(_weight)))
@@ -2099,7 +2110,8 @@ function ctld.generateTroopTypes(_side, _countOrTemplate, _country)
 
             local _unitId = ctld.getNextUnitId()
 
-            _troops[_i] = { type = _unitType, unitId = _unitId, name = string.format("Dropped %s #%i", _unitType, _unitId) }
+            _troops[_i] = { type = _unitType, unitId = _unitId,
+                name = string.format("Dropped %s #%i", _unitType, _unitId) }
         end
     end
 
@@ -2108,7 +2120,8 @@ function ctld.generateTroopTypes(_side, _countOrTemplate, _country)
     if _hasJTAC then
         _groupName = "Dropped JTAC Group"
     end
-    local _details = { units = _troops, groupId = _groupId, groupName = string.format("%s %i", _groupName, _groupId), side = _side, country = _country, weight = _weight, jtac = _hasJTAC }
+    local _details = { units = _troops, groupId = _groupId, groupName = string.format("%s %i", _groupName, _groupId),
+        side = _side, country = _country, weight = _weight, jtac = _hasJTAC }
     ctld.logTrace(string.format("total  weight=%s", ctld.p(_weight)))
 
     return _details
@@ -2136,9 +2149,9 @@ function ctld.unloadExtractTroops(_args)
 
     if _extract ~= nil and not ctld.troopsOnboard(_heli, true) then
         -- search for nearest troops to pickup
-        return ctld.extractTroops({_heli:getName(), true})
+        return ctld.extractTroops({ _heli:getName(), true })
     else
-        return ctld.unloadTroops({_heli:getName(),true,true})
+        return ctld.unloadTroops({ _heli:getName(), true, true })
     end
 
 
@@ -2153,7 +2166,7 @@ function ctld.loadTroops(_heli, _troops, _numberOrTemplate)
     local _onboard = ctld.inTransitTroops[_heli:getName()]
 
     --number doesnt apply to vehicles
-    if _numberOrTemplate == nil  or (type(_numberOrTemplate) ~= "table" and type(_numberOrTemplate) ~= "number")  then
+    if _numberOrTemplate == nil or (type(_numberOrTemplate) ~= "table" and type(_numberOrTemplate) ~= "number") then
         _numberOrTemplate = ctld.numberOfTroops
     end
 
@@ -2172,18 +2185,20 @@ function ctld.loadTroops(_heli, _troops, _numberOrTemplate)
     if _troops then
         _onboard.troops = ctld.generateTroopTypes(_heli:getCoalition(), _numberOrTemplate, _heli:getCountry())
         ctld.logTrace(string.format("_onboard.troops=%s", ctld.p(_onboard.troops)))
-        trigger.action.outTextForCoalition(_heli:getCoalition(), ctld.getPlayerNameOrType(_heli) .. " loaded troops into " .. _heli:getTypeName(), 10)
+        trigger.action.outTextForCoalition(_heli:getCoalition(),
+            ctld.getPlayerNameOrType(_heli) .. " loaded troops into " .. _heli:getTypeName(), 10)
 
-        ctld.processCallback({unit = _heli, onboard = _onboard.troops, action = "load_troops"})
+        ctld.processCallback({ unit = _heli, onboard = _onboard.troops, action = "load_troops" })
     else
 
         _onboard.vehicles = ctld.generateVehiclesForTransport(_heli:getCoalition(), _heli:getCountry())
 
         local _count = #_list
 
-        ctld.processCallback({unit = _heli, onboard = _onboard.vehicles, action = "load_vehicles"})
+        ctld.processCallback({ unit = _heli, onboard = _onboard.vehicles, action = "load_vehicles" })
 
-        trigger.action.outTextForCoalition(_heli:getCoalition(), ctld.getPlayerNameOrType(_heli) .. " loaded " .. _count .. " vehicles into " .. _heli:getTypeName(), 10)
+        trigger.action.outTextForCoalition(_heli:getCoalition(),
+            ctld.getPlayerNameOrType(_heli) .. " loaded " .. _count .. " vehicles into " .. _heli:getTypeName(), 10)
     end
 
     ctld.inTransitTroops[_heli:getName()] = _onboard
@@ -2206,12 +2221,14 @@ function ctld.generateVehiclesForTransport(_side, _country)
 
         local _unitId = ctld.getNextUnitId()
         local _weight = ctld.vehiclesWeight[_type] or 2500
-        _vehicles[_i] = { type = _type, unitId = _unitId, name = string.format("Dropped %s #%i", _type, _unitId), weight = _weight }
+        _vehicles[_i] = { type = _type, unitId = _unitId, name = string.format("Dropped %s #%i", _type, _unitId),
+            weight = _weight }
     end
 
 
     local _groupId = ctld.getNextGroupId()
-    local _details = { units = _vehicles, groupId = _groupId, groupName = string.format("Dropped Group %i", _groupId), side = _side, country = _country }
+    local _details = { units = _vehicles, groupId = _groupId, groupName = string.format("Dropped Group %i", _groupId),
+        side = _side, country = _country }
 
     return _details
 end
@@ -2254,7 +2271,8 @@ function ctld.loadUnloadFOBCrate(_args)
 
         local _name = string.format("FOB Crate #%i", _unitId)
 
-        local _spawnedCrate = ctld.spawnFOBCrateStatic(_heli:getCountry(), ctld.getNextUnitId(), { x = _point.x + _xOffset, z = _point.z + _yOffset }, _name)
+        local _spawnedCrate = ctld.spawnFOBCrateStatic(_heli:getCountry(), ctld.getNextUnitId(),
+            { x = _point.x + _xOffset, z = _point.z + _yOffset }, _name)
 
         if _side == 1 then
             ctld.droppedFOBCratesRED[_name] = _name
@@ -2262,7 +2280,8 @@ function ctld.loadUnloadFOBCrate(_args)
             ctld.droppedFOBCratesBLUE[_name] = _name
         end
 
-        trigger.action.outTextForCoalition(_heli:getCoalition(), ctld.getPlayerNameOrType(_heli) .. " delivered a FOB Crate", 10)
+        trigger.action.outTextForCoalition(_heli:getCoalition(),
+            ctld.getPlayerNameOrType(_heli) .. " delivered a FOB Crate", 10)
 
         ctld.displayMessageToGroup(_heli, "Delivered FOB Crate 60m at 6'oclock to you", 10)
 
@@ -2277,7 +2296,8 @@ function ctld.loadUnloadFOBCrate(_args)
 
         ctld.inTransitFOBCrates[_heli:getName()] = true
 
-        trigger.action.outTextForCoalition(_heli:getCoalition(), ctld.getPlayerNameOrType(_heli) .. " loaded a FOB Crate ready for delivery!", 10)
+        trigger.action.outTextForCoalition(_heli:getCoalition(),
+            ctld.getPlayerNameOrType(_heli) .. " loaded a FOB Crate ready for delivery!", 10)
 
     else
 
@@ -2290,7 +2310,8 @@ function ctld.loadUnloadFOBCrate(_args)
             ctld.displayMessageToGroup(_heli, "FOB Crate Loaded", 10)
             ctld.inTransitFOBCrates[_heli:getName()] = true
 
-            trigger.action.outTextForCoalition(_heli:getCoalition(), ctld.getPlayerNameOrType(_heli) .. " loaded a FOB Crate ready for delivery!", 10)
+            trigger.action.outTextForCoalition(_heli:getCoalition(),
+                ctld.getPlayerNameOrType(_heli) .. " loaded a FOB Crate ready for delivery!", 10)
 
             if _side == 1 then
                 ctld.droppedFOBCratesRED[_nearestCrate.crateUnit:getName()] = nil
@@ -2353,14 +2374,14 @@ function ctld.loadTroopsFromZone(_args)
 
     if _extract ~= nil then
         -- search for nearest troops to pickup
-        return ctld.extractTroops({_heli:getName(), _troops})
+        return ctld.extractTroops({ _heli:getName(), _troops })
     elseif _zone.inZone == true then
 
         if _zone.limit - 1 >= 0 then
             -- decrease zone counter by 1
             ctld.updateZoneCounter(_zone.index, -1)
 
-            ctld.loadTroops(_heli, _troops,_groupTemplate)
+            ctld.loadTroops(_heli, _troops, _groupTemplate)
 
             return true
         else
@@ -2380,8 +2401,6 @@ function ctld.loadTroopsFromZone(_args)
     end
 end
 
-
-
 function ctld.unloadTroops(_args)
 
     local _heli = ctld.getTransportUnit(_args[1])
@@ -2392,7 +2411,7 @@ function ctld.unloadTroops(_args)
     end
 
     local _zone = ctld.inPickupZone(_heli)
-    if not ctld.troopsOnboard(_heli, _troops)  then
+    if not ctld.troopsOnboard(_heli, _troops) then
 
         ctld.displayMessageToGroup(_heli, "No one to unload", 10)
 
@@ -2405,14 +2424,16 @@ function ctld.unloadTroops(_args)
             if _troops then
                 ctld.displayMessageToGroup(_heli, "Dropped troops back to base", 20)
 
-                ctld.processCallback({unit = _heli, unloaded = ctld.inTransitTroops[_heli:getName()].troops, action = "unload_troops_zone"})
+                ctld.processCallback({ unit = _heli, unloaded = ctld.inTransitTroops[_heli:getName()].troops,
+                    action = "unload_troops_zone" })
 
                 ctld.inTransitTroops[_heli:getName()].troops = nil
 
             else
                 ctld.displayMessageToGroup(_heli, "Dropped vehicles back to base", 20)
 
-                ctld.processCallback({unit = _heli, unloaded = ctld.inTransitTroops[_heli:getName()].vehicles, action = "unload_vehicles_zone"})
+                ctld.processCallback({ unit = _heli, unloaded = ctld.inTransitTroops[_heli:getName()].vehicles,
+                    action = "unload_vehicles_zone" })
 
                 ctld.inTransitTroops[_heli:getName()].vehicles = nil
             end
@@ -2424,7 +2445,7 @@ function ctld.unloadTroops(_args)
 
             return true
 
-        elseif ctld.troopsOnboard(_heli, _troops)  then
+        elseif ctld.troopsOnboard(_heli, _troops) then
 
             return ctld.deployTroops(_heli, _troops)
         end
@@ -2445,7 +2466,7 @@ function ctld.extractTroops(_args)
         return false
     end
 
-    if  ctld.troopsOnboard(_heli, _troops)  then
+    if ctld.troopsOnboard(_heli, _troops) then
         if _troops then
             ctld.displayMessageToGroup(_heli, "You already have troops onboard.", 10)
         else
@@ -2478,11 +2499,13 @@ function ctld.extractTroops(_args)
 
             local _limit = ctld.getTransportLimit(_heli:getTypeName())
 
-            local _size =  #_extractTroops.group:getUnits()
+            local _size = #_extractTroops.group:getUnits()
 
             if _limit < #_extractTroops.group:getUnits() then
 
-                ctld.displayMessageToGroup(_heli, "Sorry - The group of ".._size.." is too large to fit. \n\nLimit is ".._limit.." for ".._heli:getTypeName(), 20)
+                ctld.displayMessageToGroup(_heli,
+                    "Sorry - The group of " ..
+                    _size .. " is too large to fit. \n\nLimit is " .. _limit .. " for " .. _heli:getTypeName(), 20)
 
                 return
             end
@@ -2494,7 +2517,8 @@ function ctld.extractTroops(_args)
                 _onboard.troops.jtac = true
             end
 
-            trigger.action.outTextForCoalition(_heli:getCoalition(), ctld.getPlayerNameOrType(_heli) .. " extracted troops in " .. _heli:getTypeName() .. " from combat", 10)
+            trigger.action.outTextForCoalition(_heli:getCoalition(),
+                ctld.getPlayerNameOrType(_heli) .. " extracted troops in " .. _heli:getTypeName() .. " from combat", 10)
 
             if _heli:getCoalition() == 1 then
                 ctld.droppedTroopsRED[_extractTroops.group:getName()] = nil
@@ -2502,7 +2526,7 @@ function ctld.extractTroops(_args)
                 ctld.droppedTroopsBLUE[_extractTroops.group:getName()] = nil
             end
 
-            ctld.processCallback({unit = _heli, extracted = _extractTroops, action = "extract_troops"})
+            ctld.processCallback({ unit = _heli, extracted = _extractTroops, action = "extract_troops" })
 
             --remove
             _extractTroops.group:destroy()
@@ -2537,9 +2561,10 @@ function ctld.extractTroops(_args)
                 ctld.droppedVehiclesBLUE[_extractVehicles.group:getName()] = nil
             end
 
-            trigger.action.outTextForCoalition(_heli:getCoalition(), ctld.getPlayerNameOrType(_heli) .. " extracted vehicles in " .. _heli:getTypeName() .. " from combat", 10)
+            trigger.action.outTextForCoalition(_heli:getCoalition(),
+                ctld.getPlayerNameOrType(_heli) .. " extracted vehicles in " .. _heli:getTypeName() .. " from combat", 10)
 
-            ctld.processCallback({unit = _heli, extracted = _extractVehicles, action = "extract_vehicles"})
+            ctld.processCallback({ unit = _heli, extracted = _extractVehicles, action = "extract_vehicles" })
             --remove
             _extractVehicles.group:destroy()
             _extracted = true
@@ -2555,7 +2580,6 @@ function ctld.extractTroops(_args)
 
     return _extracted
 end
-
 
 function ctld.checkTroopStatus(_args)
     local _unitName = _args[1]
@@ -2612,7 +2636,8 @@ function ctld.getWeightOfCargo(unitName)
             local _troops = _inTransit.troops
             if _troops and _troops.units then
                 ctld.logTrace(string.format("_troops.weight=%s", ctld.p(_troops.weight)))
-                _description = _description .. string.format("%s troops onboard (%s kg)\n", #_troops.units, _troops.weight)
+                _description = _description ..
+                    string.format("%s troops onboard (%s kg)\n", #_troops.units, _troops.weight)
                 _weight = _weight + _troops.weight
             end
             local _vehicles = _inTransit.vehicles
@@ -2668,7 +2693,8 @@ function ctld.checkHoverStatus()
             local _transUnit = ctld.getTransportUnit(_name)
 
             --only check transports that are hovering and not planes
-            if _transUnit ~= nil and ctld.inTransitSlingLoadCrates[_name] == nil and ctld.inAir(_transUnit) and ctld.unitCanCarryVehicles(_transUnit) == false then
+            if _transUnit ~= nil and ctld.inTransitSlingLoadCrates[_name] == nil and ctld.inAir(_transUnit) and
+                ctld.unitCanCarryVehicles(_transUnit) == false then
 
                 --ctld.logTrace(string.format("%s - capable of slingloading", ctld.p(_name)))
 
@@ -2700,10 +2726,15 @@ function ctld.checkHoverStatus()
                             end
 
                             if _time > 0 then
-                                ctld.displayMessageToGroup(_transUnit, "Hovering above " .. _crate.details.desc .. " crate. \n\nHold hover for " .. _time .. " seconds! \n\nIf the countdown stops you're too far away!", 10,true)
+                                ctld.displayMessageToGroup(_transUnit,
+                                    "Hovering above " ..
+                                    _crate.details.desc ..
+                                    " crate. \n\nHold hover for " ..
+                                    _time .. " seconds! \n\nIf the countdown stops you're too far away!", 10, true)
                             else
                                 ctld.hoverStatus[_transUnit:getName()] = nil
-                                ctld.displayMessageToGroup(_transUnit, "Loaded  " .. _crate.details.desc .. " crate!", 10,true)
+                                ctld.displayMessageToGroup(_transUnit, "Loaded  " .. _crate.details.desc .. " crate!", 10
+                                    , true)
 
                                 --crates been moved once!
                                 ctld.crateMove[_crate.crateUnit:getName()] = nil
@@ -2727,10 +2758,16 @@ function ctld.checkHoverStatus()
 
                             break
                         elseif _height <= ctld.minimumHoverHeight then
-                            ctld.displayMessageToGroup(_transUnit, "Too low to hook " .. _crate.details.desc .. " crate.\n\nHold hover for " .. ctld.hoverTime .. " seconds", 5,true)
+                            ctld.displayMessageToGroup(_transUnit,
+                                "Too low to hook " ..
+                                _crate.details.desc .. " crate.\n\nHold hover for " .. ctld.hoverTime .. " seconds", 5,
+                                true)
                             break
                         else
-                            ctld.displayMessageToGroup(_transUnit, "Too high to hook " .. _crate.details.desc .. " crate.\n\nHold hover for " .. ctld.hoverTime .. " seconds", 5, true)
+                            ctld.displayMessageToGroup(_transUnit,
+                                "Too high to hook " ..
+                                _crate.details.desc .. " crate.\n\nHold hover for " .. ctld.hoverTime .. " seconds", 5,
+                                true)
                             break
                         end
                     end
@@ -2751,10 +2788,10 @@ end
 function ctld.loadNearbyCrate(_name)
     local _transUnit = ctld.getTransportUnit(_name)
 
-    if _transUnit ~= nil  then
+    if _transUnit ~= nil then
 
         if ctld.inAir(_transUnit) then
-            ctld.displayMessageToGroup(_transUnit, "You must land before you can load a crate!", 10,true)
+            ctld.displayMessageToGroup(_transUnit, "You must land before you can load a crate!", 10, true)
             return
         end
 
@@ -2764,7 +2801,7 @@ function ctld.loadNearbyCrate(_name)
             for _, _crate in pairs(_crates) do
 
                 if _crate.dist < 50.0 then
-                    ctld.displayMessageToGroup(_transUnit, "Loaded  " .. _crate.details.desc .. " crate!", 10,true)
+                    ctld.displayMessageToGroup(_transUnit, "Loaded  " .. _crate.details.desc .. " crate!", 10, true)
 
                     if _transUnit:getCoalition() == 1 then
                         ctld.spawnedCratesRED[_crate.crateUnit:getName()] = nil
@@ -2784,11 +2821,12 @@ function ctld.loadNearbyCrate(_name)
                 end
             end
 
-            ctld.displayMessageToGroup(_transUnit, "No Crates within 50m to load!", 10,true)
+            ctld.displayMessageToGroup(_transUnit, "No Crates within 50m to load!", 10, true)
 
         else
             -- crate onboard
-            ctld.displayMessageToGroup(_transUnit, "You already have a "..ctld.inTransitSlingLoadCrates[_name].desc.." crate onboard!", 10,true)
+            ctld.displayMessageToGroup(_transUnit,
+                "You already have a " .. ctld.inTransitSlingLoadCrates[_name].desc .. " crate onboard!", 10, true)
         end
     end
 
@@ -2850,7 +2888,8 @@ function ctld.getClockDirection(_heli, _crate)
 
     local _headingVector = { x = math.cos(_playerHeading), y = 0, z = math.sin(_playerHeading) }
 
-    local _headingVectorPerpendicular = { x = math.cos(_playerHeading + math.pi / 2), y = 0, z = math.sin(_playerHeading + math.pi / 2) }
+    local _headingVectorPerpendicular = { x = math.cos(_playerHeading + math.pi / 2), y = 0,
+        z = math.sin(_playerHeading + math.pi / 2) }
 
     local _forwardDistance = mist.vec.dp(_relativePosition, _headingVector)
 
@@ -2868,7 +2907,6 @@ function ctld.getClockDirection(_heli, _crate)
 
     return _angle
 end
-
 
 function ctld.getCompassBearing(_ref, _unitPos)
 
@@ -2898,13 +2936,14 @@ function ctld.listNearbyCrates(_args)
     local _crates = ctld.getCratesAndDistance(_heli)
 
     --sort
-    local _sort = function( a,b ) return a.dist < b.dist end
-    table.sort(_crates,_sort)
+    local _sort = function(a, b) return a.dist < b.dist end
+    table.sort(_crates, _sort)
 
     for _, _crate in pairs(_crates) do
 
         if _crate.dist < 1000 and _crate.details.unit ~= "FOB" then
-            _message = string.format("%s\n%s crate - kg %i - %i m - %d o'clock", _message, _crate.details.desc, _crate.details.weight, _crate.dist, ctld.getClockDirection(_heli, _crate.crateUnit))
+            _message = string.format("%s\n%s crate - kg %i - %i m - %d o'clock", _message, _crate.details.desc,
+                _crate.details.weight, _crate.dist, ctld.getClockDirection(_heli, _crate.crateUnit))
         end
     end
 
@@ -2913,7 +2952,9 @@ function ctld.listNearbyCrates(_args)
     for _, _fobCrate in pairs(_crates) do
 
         if _fobCrate.dist < 1000 and _fobCrate.details.unit == "FOB" then
-            _fobMsg = _fobMsg .. string.format("FOB Crate - %d m - %d o'clock\n", _fobCrate.dist, ctld.getClockDirection(_heli, _fobCrate.crateUnit))
+            _fobMsg = _fobMsg ..
+                string.format("FOB Crate - %d m - %d o'clock\n", _fobCrate.dist,
+                    ctld.getClockDirection(_heli, _fobCrate.crateUnit))
         end
     end
 
@@ -2944,7 +2985,6 @@ function ctld.listNearbyCrates(_args)
         ctld.displayMessageToGroup(_heli, _txt, 20)
     end
 end
-
 
 function ctld.listFOBS(_args)
 
@@ -2994,13 +3034,12 @@ function ctld.getFOBPositionString(_fob)
     return _message
 end
 
-
-function ctld.displayMessageToGroup(_unit, _text, _time,_clear)
+function ctld.displayMessageToGroup(_unit, _text, _time, _clear)
 
     local _groupId = ctld.getGroupId(_unit)
     if _groupId then
         if _clear == true then
-            trigger.action.outTextForGroup(_groupId, _text, _time,_clear)
+            trigger.action.outTextForGroup(_groupId, _text, _time, _clear)
         else
             trigger.action.outTextForGroup(_groupId, _text, _time)
         end
@@ -3036,7 +3075,7 @@ function ctld.getCratesAndDistance(_heli)
 
         --in air seems buggy with crates so if in air is true, get the height above ground and the speed magnitude
         if _crate ~= nil and _crate:getLife() > 0
-                and (ctld.inAir(_crate) == false) then
+            and (ctld.inAir(_crate) == false) then
 
             local _dist = ctld.getDistance(_crate:getPoint(), _heli:getPoint())
 
@@ -3071,7 +3110,6 @@ function ctld.getCratesAndDistance(_heli)
     return _crates
 end
 
-
 function ctld.getClosestCrate(_heli, _crates, _type)
 
     local _closetCrate = nil
@@ -3093,7 +3131,7 @@ function ctld.getClosestCrate(_heli, _crates, _type)
     return _closetCrate
 end
 
-function ctld.findNearestAASystem(_heli,_aaSystem)
+function ctld.findNearestAASystem(_heli, _aaSystem)
 
     local _closestHawkGroup = nil
     local _shortestDistance = -1
@@ -3104,7 +3142,8 @@ function ctld.findNearestAASystem(_heli,_aaSystem)
         local _hawkGroup = Group.getByName(_groupName)
 
         --  env.info(_groupName..": "..mist.utils.tableShow(_hawkDetails))
-        if _hawkGroup ~= nil and _hawkGroup:getCoalition() == _heli:getCoalition() and _hawkDetails[1].system.name == _aaSystem.name then
+        if _hawkGroup ~= nil and _hawkGroup:getCoalition() == _heli:getCoalition() and
+            _hawkDetails[1].system.name == _aaSystem.name then
 
             local _units = _hawkGroup:getUnits()
 
@@ -3136,14 +3175,12 @@ function ctld.getCrateObject(_name)
     local _crate
 
     if ctld.staticBugWorkaround then
-        _crate  = Unit.getByName(_name)
+        _crate = Unit.getByName(_name)
     else
         _crate = StaticObject.getByName(_name)
     end
     return _crate
 end
-
-
 
 function ctld.unpackCrates(_arguments)
 
@@ -3159,7 +3196,7 @@ function ctld.unpackCrates(_arguments)
             local _crate = ctld.getClosestCrate(_heli, _crates)
 
 
-            if ctld.inLogisticsZone(_heli) == true  or  ctld.farEnoughFromLogisticZone(_heli) == false then
+            if ctld.inLogisticsZone(_heli) == true or ctld.farEnoughFromLogisticZone(_heli) == false then
 
                 ctld.displayMessageToGroup(_heli, "You can't unpack that here! Take it to where it's needed!", 20)
 
@@ -3169,7 +3206,7 @@ function ctld.unpackCrates(_arguments)
 
 
             if _crate ~= nil and _crate.dist < 750
-                    and (_crate.details.unit == "FOB" or _crate.details.unit == "FOB-SMALL") then
+                and (_crate.details.unit == "FOB" or _crate.details.unit == "FOB-SMALL") then
 
                 ctld.unpackFOBCrates(_crates, _heli)
 
@@ -3178,7 +3215,7 @@ function ctld.unpackCrates(_arguments)
             elseif _crate ~= nil and _crate.dist < 200 then
 
                 if ctld.forceCrateToBeMoved and ctld.crateMove[_crate.crateUnit:getName()] then
-                    ctld.displayMessageToGroup(_heli,"Sorry you must move this crate before you unpack it!", 20)
+                    ctld.displayMessageToGroup(_heli, "Sorry you must move this crate before you unpack it!", 20)
                     return
                 end
 
@@ -3188,9 +3225,9 @@ function ctld.unpackCrates(_arguments)
                 if _aaTemplate then
 
                     if _crate.details.unit == _aaTemplate.repair then
-                        ctld.repairAASystem(_heli, _crate,_aaTemplate)
+                        ctld.repairAASystem(_heli, _crate, _aaTemplate)
                     else
-                        ctld.unpackAASystem(_heli, _crate, _crates,_aaTemplate)
+                        ctld.unpackAASystem(_heli, _crate, _crates, _aaTemplate)
                     end
 
                     return -- stop processing
@@ -3210,9 +3247,9 @@ function ctld.unpackCrates(_arguments)
                     -- ctld.spawnCrateStatic( _heli:getCoalition(),ctld.getNextUnitId(),{x=100,z=100},_crateName,100)
 
                     --remove crate
-                  --  if ctld.slingLoad == false then
-                        _crate.crateUnit:destroy()
-                   -- end
+                    --  if ctld.slingLoad == false then
+                    _crate.crateUnit:destroy()
+                    -- end
 
                     local _spawnedGroups = ctld.spawnCrateGroup(_heli, { _cratePoint }, { _crate.details.unit })
 
@@ -3222,7 +3259,7 @@ function ctld.unpackCrates(_arguments)
                         ctld.spawnedCratesBLUE[_crateName] = nil
                     end
 
-                    ctld.processCallback({unit = _heli, crate = _crate , spawnedGroup = _spawnedGroups, action = "unpack"})
+                    ctld.processCallback({ unit = _heli, crate = _crate, spawnedGroup = _spawnedGroups, action = "unpack" })
 
                     if _crate.details.unit == "1L13 EWR" then
                         ctld.addEWRTask(_spawnedGroups)
@@ -3231,7 +3268,9 @@ function ctld.unpackCrates(_arguments)
                     end
 
 
-                    trigger.action.outTextForCoalition(_heli:getCoalition(), ctld.getPlayerNameOrType(_heli) .. " successfully deployed " .. _crate.details.desc .. " to the field", 10)
+                    trigger.action.outTextForCoalition(_heli:getCoalition(),
+                        ctld.getPlayerNameOrType(_heli) ..
+                        " successfully deployed " .. _crate.details.desc .. " to the field", 10)
 
                     if ctld.isJTACUnitType(_crate.details.unit) and ctld.JTAC_dropEnabled then
 
@@ -3255,7 +3294,6 @@ function ctld.unpackCrates(_arguments)
     end
 end
 
-
 -- builds a fob!
 function ctld.unpackFOBCrates(_crates, _heli)
 
@@ -3275,9 +3313,9 @@ function ctld.unpackFOBCrates(_crates, _heli)
 
     for _, _nearbyCrate in pairs(_crates) do
 
-        if _nearbyCrate.dist < 750  then
+        if _nearbyCrate.dist < 750 then
 
-            if  _nearbyCrate.details.unit == "FOB" then
+            if _nearbyCrate.details.unit == "FOB" then
                 _bigFobCrates = _bigFobCrates + 1
                 table.insert(_nearbyMultiCrates, _nearbyCrate)
             elseif _nearbyCrate.details.unit == "FOB-SMALL" then
@@ -3287,7 +3325,7 @@ function ctld.unpackFOBCrates(_crates, _heli)
 
             --catch divide by 0
             if _smallFobCrates > 0 then
-                _totalCrates = _bigFobCrates + (_smallFobCrates/3.0)
+                _totalCrates = _bigFobCrates + (_smallFobCrates / 3.0)
             else
                 _totalCrates = _bigFobCrates
             end
@@ -3339,26 +3377,30 @@ function ctld.unpackFOBCrates(_crates, _heli)
 
             local _radioBeaconDetails = ctld.createRadioBeacon(_args[1], _args[3], _args[2], _radioBeaconName, nil, true)
 
-            ctld.fobBeacons[_name] = { vhf = _radioBeaconDetails.vhf, uhf = _radioBeaconDetails.uhf, fm = _radioBeaconDetails.fm }
+            ctld.fobBeacons[_name] = { vhf = _radioBeaconDetails.vhf, uhf = _radioBeaconDetails.uhf,
+                fm = _radioBeaconDetails.fm }
 
             if ctld.troopPickupAtFOB == true then
                 table.insert(ctld.builtFOBS, _fob:getName())
 
-                trigger.action.outTextForCoalition(_args[3], "Finished building FOB! Crates and Troops can now be picked up.", 10)
+                trigger.action.outTextForCoalition(_args[3],
+                    "Finished building FOB! Crates and Troops can now be picked up.", 10)
             else
                 trigger.action.outTextForCoalition(_args[3], "Finished building FOB! Crates can now be picked up.", 10)
             end
         end, { _centroid, _heli:getCountry(), _heli:getCoalition() }, timer.getTime() + ctld.buildTimeFOB)
 
-        local _txt = string.format("%s started building FOB using %d FOB crates, it will be finished in %d seconds.\nPosition marked with smoke.", ctld.getPlayerNameOrType(_heli), _totalCrates, ctld.buildTimeFOB)
+        local _txt = string.format("%s started building FOB using %d FOB crates, it will be finished in %d seconds.\nPosition marked with smoke."
+            , ctld.getPlayerNameOrType(_heli), _totalCrates, ctld.buildTimeFOB)
 
-        ctld.processCallback({unit = _heli, position = _centroid, action = "fob"})
+        ctld.processCallback({ unit = _heli, position = _centroid, action = "fob" })
 
         trigger.action.smoke(_centroid, trigger.smokeColor.Green)
 
         trigger.action.outTextForCoalition(_heli:getCoalition(), _txt, 10)
     else
-        local _txt = string.format("Cannot build FOB!\n\nIt requires %d Large FOB crates ( 3 small FOB crates equal 1 large FOB Crate) and there are the equivalent of %d large FOB crates nearby\n\nOr the crates are not within 750m of each other", ctld.cratesRequiredForFOB, _totalCrates)
+        local _txt = string.format("Cannot build FOB!\n\nIt requires %d Large FOB crates ( 3 small FOB crates equal 1 large FOB Crate) and there are the equivalent of %d large FOB crates nearby\n\nOr the crates are not within 750m of each other"
+            , ctld.cratesRequiredForFOB, _totalCrates)
         ctld.displayMessageToGroup(_heli, _txt, 20)
     end
 end
@@ -3375,9 +3417,13 @@ function ctld.dropSlingCrate(_args)
 
     if _currentCrate == nil then
         if ctld.hoverPickup then
-            ctld.displayMessageToGroup(_heli, "You are not currently transporting any crates. \n\nTo Pickup a crate, hover for "..ctld.hoverTime.." seconds above the crate", 10)
+            ctld.displayMessageToGroup(_heli,
+                "You are not currently transporting any crates. \n\nTo Pickup a crate, hover for " ..
+                ctld.hoverTime .. " seconds above the crate", 10)
         else
-            ctld.displayMessageToGroup(_heli, "You are not currently transporting any crates. \n\nTo Pickup a crate - land and use F10 Crate Commands to load one.", 10)
+            ctld.displayMessageToGroup(_heli,
+                "You are not currently transporting any crates. \n\nTo Pickup a crate - land and use F10 Crate Commands to load one."
+                , 10)
         end
     else
 
@@ -3395,7 +3441,8 @@ function ctld.dropSlingCrate(_args)
         local _heightDiff = ctld.heightDiff(_heli)
 
         if ctld.inAir(_heli) == false or _heightDiff <= 7.5 then
-            ctld.displayMessageToGroup(_heli, _currentCrate.desc .. " crate has been safely unhooked and is at your 12 o'clock", 10)
+            ctld.displayMessageToGroup(_heli,
+                _currentCrate.desc .. " crate has been safely unhooked and is at your 12 o'clock", 10)
             _point = ctld.getPointAt12Oclock(_heli, 30)
             --        elseif _heightDiff > 40.0 then
             --            ctld.inTransitSlingLoadCrates[_heli:getName()] = nil
@@ -3413,7 +3460,8 @@ function ctld.dropSlingCrate(_args)
         --remove crate from cargo
         ctld.inTransitSlingLoadCrates[_heli:getName()] = nil
         ctld.adaptWeightToCargo(_heli:getName())
-        local _spawnedCrate = ctld.spawnCrateStatic(_heli:getCountry(), _unitId, _point, _name, _currentCrate.weight,_side)
+        local _spawnedCrate = ctld.spawnCrateStatic(_heli:getCountry(), _unitId, _point, _name, _currentCrate.weight,
+            _side)
     end
 end
 
@@ -3513,8 +3561,6 @@ function ctld.generateADFFrequencies()
     --- return {uhf=_uhf,vhf=_vhf}
 end
 
-
-
 function ctld.spawnRadioBeaconUnit(_point, _country, _type)
 
     local _groupId = ctld.getNextGroupId()
@@ -3523,14 +3569,14 @@ function ctld.spawnRadioBeaconUnit(_point, _country, _type)
 
     local _radioGroup = {
         ["visible"] = false,
-       -- ["groupId"] = _groupId,
+        -- ["groupId"] = _groupId,
         ["hidden"] = false,
         ["units"] = {
             [1] = {
                 ["y"] = _point.z,
                 ["type"] = "TACAN_beacon",
                 ["name"] = _type .. " Radio Beacon Unit #" .. _unitId,
-             --   ["unitId"] = _unitId,
+                --   ["unitId"] = _unitId,
                 ["heading"] = 0,
                 ["playerCanDrive"] = true,
                 ["skill"] = "Excellent",
@@ -3604,11 +3650,12 @@ function ctld.updateRadioBeacon(_beaconDetails)
             _sound = ctld.radioSoundFC3
         end
 
-        _sound = "l10n/DEFAULT/".._sound
+        _sound = "l10n/DEFAULT/" .. _sound
 
         _groupController:setOption(AI.Option.Ground.id.ROE, AI.Option.Ground.val.ROE.WEAPON_HOLD)
 
-        trigger.action.radioTransmission(_sound, _radio.group:getUnit(1):getPoint(), _radio.mode, false, _radio.freq, 1000)
+        trigger.action.radioTransmission(_sound, _radio.group:getUnit(1):getPoint(), _radio.mode, false, _radio.freq,
+            1000)
         --This function doesnt actually stop transmitting when then sound is false. My hope is it will stop if a new beacon is created on the same
         -- frequency... OR they fix the bug where it wont stop.
         --        end
@@ -3657,11 +3704,13 @@ function ctld.dropRadioBeacon(_args)
         ctld.beaconCount = ctld.beaconCount + 1
         local _name = "Beacon #" .. ctld.beaconCount
 
-        local _radioBeaconDetails = ctld.createRadioBeacon(_point, _heli:getCoalition(), _heli:getCountry(), _name, nil, false)
+        local _radioBeaconDetails = ctld.createRadioBeacon(_point, _heli:getCoalition(), _heli:getCountry(), _name, nil,
+            false)
 
         -- mark with flare?
 
-        trigger.action.outTextForCoalition(_heli:getCoalition(), ctld.getPlayerNameOrType(_heli) .. " deployed a Radio Beacon.\n\n" .. _radioBeaconDetails.text, 20)
+        trigger.action.outTextForCoalition(_heli:getCoalition(),
+            ctld.getPlayerNameOrType(_heli) .. " deployed a Radio Beacon.\n\n" .. _radioBeaconDetails.text, 20)
 
     else
         ctld.displayMessageToGroup(_heli, "You need to land before you can deploy a Radio Beacon!", 20)
@@ -3716,7 +3765,8 @@ function ctld.removeRadioBeacon(_args)
                 _fmGroup:destroy()
             end
 
-            trigger.action.outTextForCoalition(_heli:getCoalition(), ctld.getPlayerNameOrType(_heli) .. " removed a Radio Beacon.\n\n" .. _closetBeacon.text, 20)
+            trigger.action.outTextForCoalition(_heli:getCoalition(),
+                ctld.getPlayerNameOrType(_heli) .. " removed a Radio Beacon.\n\n" .. _closetBeacon.text, 20)
         else
             ctld.displayMessageToGroup(_heli, "No Radio Beacons within 500m.", 20)
         end
@@ -3746,15 +3796,15 @@ end
 
 function ctld.getAATemplate(_unitName)
 
-    for _,_system in pairs(ctld.AASystemTemplate) do
+    for _, _system in pairs(ctld.AASystemTemplate) do
 
         if _system.repair == _unitName then
             return _system
         end
 
-        for _,_part in pairs(_system.parts) do
+        for _, _part in pairs(_system.parts) do
 
-            if _unitName == _part.name  then
+            if _unitName == _part.name then
                 return _system
             end
         end
@@ -3765,7 +3815,7 @@ function ctld.getAATemplate(_unitName)
 end
 
 function ctld.getLauncherUnitFromAATemplate(_aaTemplate)
-    for _,_part in pairs(_aaTemplate.parts) do
+    for _, _part in pairs(_aaTemplate.parts) do
 
         if _part.launcher then
             return _part.name
@@ -3817,11 +3867,15 @@ function ctld.rearmAASystem(_heli, _nearestCrate, _nearbyCrates, _aaSystemTempla
 
                 local _spawnedGroup = ctld.spawnCrateGroup(_heli, _points, _types)
 
-                ctld.completeAASystems[_spawnedGroup:getName()] = ctld.getAASystemDetails(_spawnedGroup, _aaSystemTemplate)
+                ctld.completeAASystems[_spawnedGroup:getName()] = ctld.getAASystemDetails(_spawnedGroup,
+                    _aaSystemTemplate)
 
-                ctld.processCallback({unit = _heli, crate =  _nearestCrate , spawnedGroup = _spawnedGroup, action = "rearm"})
+                ctld.processCallback({ unit = _heli, crate = _nearestCrate, spawnedGroup = _spawnedGroup,
+                    action = "rearm" })
 
-                trigger.action.outTextForCoalition(_heli:getCoalition(), ctld.getPlayerNameOrType(_heli) .. " successfully rearmed a full ".._aaSystemTemplate.name.." in the field", 10)
+                trigger.action.outTextForCoalition(_heli:getCoalition(),
+                    ctld.getPlayerNameOrType(_heli) ..
+                    " successfully rearmed a full " .. _aaSystemTemplate.name .. " in the field", 10)
 
                 if _heli:getCoalition() == 1 then
                     ctld.spawnedCratesRED[_nearestCrate.crateUnit:getName()] = nil
@@ -3830,9 +3884,9 @@ function ctld.rearmAASystem(_heli, _nearestCrate, _nearbyCrates, _aaSystemTempla
                 end
 
                 -- remove crate
-           --     if ctld.slingLoad == false then
-                    _nearestCrate.crateUnit:destroy()
-              --  end
+                --     if ctld.slingLoad == false then
+                _nearestCrate.crateUnit:destroy()
+                --  end
 
                 return true -- all done so quit
             end
@@ -3842,14 +3896,15 @@ function ctld.rearmAASystem(_heli, _nearestCrate, _nearbyCrates, _aaSystemTempla
     return false
 end
 
-function ctld.getAASystemDetails(_hawkGroup,_aaSystemTemplate)
+function ctld.getAASystemDetails(_hawkGroup, _aaSystemTemplate)
 
     local _units = _hawkGroup:getUnits()
 
     local _hawkDetails = {}
 
     for _, _unit in pairs(_units) do
-        table.insert(_hawkDetails, { point = _unit:getPoint(), unit = _unit:getTypeName(), name = _unit:getName(), system =_aaSystemTemplate})
+        table.insert(_hawkDetails,
+            { point = _unit:getPoint(), unit = _unit:getTypeName(), name = _unit:getName(), system = _aaSystemTemplate })
     end
 
     return _hawkDetails
@@ -3872,9 +3927,9 @@ function ctld.countTableEntries(_table)
     return _count
 end
 
-function ctld.unpackAASystem(_heli, _nearestCrate, _nearbyCrates,_aaSystemTemplate)
+function ctld.unpackAASystem(_heli, _nearestCrate, _nearbyCrates, _aaSystemTemplate)
 
-    if ctld.rearmAASystem(_heli, _nearestCrate, _nearbyCrates,_aaSystemTemplate) then
+    if ctld.rearmAASystem(_heli, _nearestCrate, _nearbyCrates, _aaSystemTemplate) then
         -- rearmed hawk
         return
     end
@@ -3883,8 +3938,8 @@ function ctld.unpackAASystem(_heli, _nearestCrate, _nearbyCrates,_aaSystemTempla
     local _systemParts = {}
 
     --initialise list of parts
-    for _,_part in pairs(_aaSystemTemplate.parts) do
-        _systemParts[_part.name] = {name = _part.name,desc = _part.desc,found = false}
+    for _, _part in pairs(_aaSystemTemplate.parts) do
+        _systemParts[_part.name] = { name = _part.name, desc = _part.desc, found = false }
     end
 
     -- find all nearest crates and add them to the list if they're part of the AA System
@@ -3892,7 +3947,7 @@ function ctld.unpackAASystem(_heli, _nearestCrate, _nearbyCrates,_aaSystemTempla
 
         if _nearbyCrate.dist < 500 then
 
-            if _systemParts[_nearbyCrate.details.unit] ~= nil and _systemParts[_nearbyCrate.details.unit].found == false  then
+            if _systemParts[_nearbyCrate.details.unit] ~= nil and _systemParts[_nearbyCrate.details.unit].found == false then
                 local _foundPart = _systemParts[_nearbyCrate.details.unit]
 
                 _foundPart.found = true
@@ -3911,14 +3966,14 @@ function ctld.unpackAASystem(_heli, _nearestCrate, _nearbyCrates,_aaSystemTempla
     for _name, _systemPart in pairs(_systemParts) do
 
         if _systemPart.found == false then
-            _txt = _txt.."Missing ".._systemPart.desc.."\n"
+            _txt = _txt .. "Missing " .. _systemPart.desc .. "\n"
         else
 
             local _launcherPart = ctld.getLauncherUnitFromAATemplate(_aaSystemTemplate)
 
             --handle multiple launchers from one crate
             if (_name == "Hawk ln" and ctld.hawkLaunchers > 1)
-                    or (_launcherPart == _name and ctld.aaLaunchers  > 1) then
+                or (_launcherPart == _name and ctld.aaLaunchers > 1) then
 
                 --add multiple launcher
                 local _launchers = ctld.aaLaunchers
@@ -3952,15 +4007,18 @@ function ctld.unpackAASystem(_heli, _nearestCrate, _nearbyCrates,_aaSystemTempla
 
     local _allowed = ctld.getAllowedAASystems(_heli)
 
-    env.info("Active: ".._activeLaunchers.." Allowed: ".._allowed)
+    env.info("Active: " .. _activeLaunchers .. " Allowed: " .. _allowed)
 
     if _activeLaunchers + 1 > _allowed then
-        trigger.action.outTextForCoalition(_heli:getCoalition(), "Out of parts for AA Systems. Current limit is ".._allowed.." \n", 10)
+        trigger.action.outTextForCoalition(_heli:getCoalition(),
+            "Out of parts for AA Systems. Current limit is " .. _allowed .. " \n", 10)
         return
     end
 
-    if _txt ~= ""  then
-        ctld.displayMessageToGroup(_heli, "Cannot build ".._aaSystemTemplate.name.."\n" .. _txt .. "\n\nOr the crates are not close enough together", 20)
+    if _txt ~= "" then
+        ctld.displayMessageToGroup(_heli,
+            "Cannot build " .. _aaSystemTemplate.name ..
+            "\n" .. _txt .. "\n\nOr the crates are not close enough together", 20)
         return
     else
 
@@ -3974,19 +4032,23 @@ function ctld.unpackAASystem(_heli, _nearestCrate, _nearbyCrates,_aaSystemTempla
             end
 
             --destroy
-           -- if ctld.slingLoad == false then
-                _systemPart.crate.crateUnit:destroy()
+            -- if ctld.slingLoad == false then
+            _systemPart.crate.crateUnit:destroy()
             --end
         end
 
         -- HAWK / BUK READY!
         local _spawnedGroup = ctld.spawnCrateGroup(_heli, _posArray, _typeArray)
 
-        ctld.completeAASystems[_spawnedGroup:getName()] = ctld.getAASystemDetails(_spawnedGroup,_aaSystemTemplate)
+        ctld.completeAASystems[_spawnedGroup:getName()] = ctld.getAASystemDetails(_spawnedGroup, _aaSystemTemplate)
 
-        ctld.processCallback({unit = _heli, crate = _nearestCrate , spawnedGroup = _spawnedGroup, action = "unpack"})
+        ctld.processCallback({ unit = _heli, crate = _nearestCrate, spawnedGroup = _spawnedGroup, action = "unpack" })
 
-        trigger.action.outTextForCoalition(_heli:getCoalition(), ctld.getPlayerNameOrType(_heli) .. " successfully deployed a full ".._aaSystemTemplate.name.." to the field. \n\nAA Active System limit is: ".._allowed.."\nActive: "..(_activeLaunchers+1), 10)
+        trigger.action.outTextForCoalition(_heli:getCoalition(),
+            ctld.getPlayerNameOrType(_heli) ..
+            " successfully deployed a full " ..
+            _aaSystemTemplate.name ..
+            " to the field. \n\nAA Active System limit is: " .. _allowed .. "\nActive: " .. (_activeLaunchers + 1), 10)
 
     end
 end
@@ -4003,7 +4065,6 @@ function ctld.getAllowedAASystems(_heli)
 
 end
 
-
 function ctld.countCompleteAASystems(_heli)
 
     local _count = 0
@@ -4017,7 +4078,7 @@ function ctld.countCompleteAASystems(_heli)
 
             local _units = _hawkGroup:getUnits()
 
-            if _units ~=nil and #_units > 0 then
+            if _units ~= nil and #_units > 0 then
                 --get the system template
                 local _aaSystemTemplate = _hawkDetails[1].system
 
@@ -4040,8 +4101,9 @@ function ctld.countCompleteAASystems(_heli)
                 end
 
                 -- do we have the correct number of unique pieces and do we have enough points for all the pieces
-                if ctld.countTableEntries(_uniqueTypes) == _aaSystemTemplate.count and #_points >= _aaSystemTemplate.count then
-                    _count = _count +1
+                if ctld.countTableEntries(_uniqueTypes) == _aaSystemTemplate.count and
+                    #_points >= _aaSystemTemplate.count then
+                    _count = _count + 1
                 end
             end
         end
@@ -4050,11 +4112,10 @@ function ctld.countCompleteAASystems(_heli)
     return _count
 end
 
-
-function ctld.repairAASystem(_heli, _nearestCrate,_aaSystem)
+function ctld.repairAASystem(_heli, _nearestCrate, _aaSystem)
 
     -- find nearest COMPLETE AA system
-    local _nearestHawk = ctld.findNearestAASystem(_heli,_aaSystem)
+    local _nearestHawk = ctld.findNearestAASystem(_heli, _aaSystem)
 
 
 
@@ -4078,11 +4139,12 @@ function ctld.repairAASystem(_heli, _nearestCrate,_aaSystem)
 
         local _spawnedGroup = ctld.spawnCrateGroup(_heli, _points, _types)
 
-        ctld.completeAASystems[_spawnedGroup:getName()] = ctld.getAASystemDetails(_spawnedGroup,_aaSystem)
+        ctld.completeAASystems[_spawnedGroup:getName()] = ctld.getAASystemDetails(_spawnedGroup, _aaSystem)
 
-        ctld.processCallback({unit = _heli, crate = _nearestCrate , spawnedGroup = _spawnedGroup, action = "repair"})
+        ctld.processCallback({ unit = _heli, crate = _nearestCrate, spawnedGroup = _spawnedGroup, action = "repair" })
 
-        trigger.action.outTextForCoalition(_heli:getCoalition(), ctld.getPlayerNameOrType(_heli) .. " successfully repaired a full ".._aaSystem.name.." in the field", 10)
+        trigger.action.outTextForCoalition(_heli:getCoalition(),
+            ctld.getPlayerNameOrType(_heli) .. " successfully repaired a full " .. _aaSystem.name .. " in the field", 10)
 
         if _heli:getCoalition() == 1 then
             ctld.spawnedCratesRED[_nearestCrate.crateUnit:getName()] = nil
@@ -4091,12 +4153,13 @@ function ctld.repairAASystem(_heli, _nearestCrate,_aaSystem)
         end
 
         -- remove crate
-       -- if ctld.slingLoad == false then
-            _nearestCrate.crateUnit:destroy()
-       -- end
+        -- if ctld.slingLoad == false then
+        _nearestCrate.crateUnit:destroy()
+        -- end
 
     else
-        ctld.displayMessageToGroup(_heli, "Cannot repair  ".._aaSystem.name..". No damaged ".._aaSystem.name.." within 300m", 10)
+        ctld.displayMessageToGroup(_heli,
+            "Cannot repair  " .. _aaSystem.name .. ". No damaged " .. _aaSystem.name .. " within 300m", 10)
     end
 end
 
@@ -4139,28 +4202,29 @@ function ctld.unpackMultiCrate(_heli, _nearestCrate, _nearbyCrates)
             end
 
             --destroy
-         --   if ctld.slingLoad == false then
-                _crate.crateUnit:destroy()
-         --   end
+            --   if ctld.slingLoad == false then
+            _crate.crateUnit:destroy()
+            --   end
         end
 
 
         local _spawnedGroup = ctld.spawnCrateGroup(_heli, { _point }, { _nearestCrate.details.unit })
 
-        ctld.processCallback({unit = _heli, crate =  _nearestCrate , spawnedGroup = _spawnedGroup, action = "unpack"})
+        ctld.processCallback({ unit = _heli, crate = _nearestCrate, spawnedGroup = _spawnedGroup, action = "unpack" })
 
-        local _txt = string.format("%s successfully deployed %s to the field using %d crates", ctld.getPlayerNameOrType(_heli), _nearestCrate.details.desc, #_nearbyMultiCrates)
+        local _txt = string.format("%s successfully deployed %s to the field using %d crates",
+            ctld.getPlayerNameOrType(_heli), _nearestCrate.details.desc, #_nearbyMultiCrates)
 
         trigger.action.outTextForCoalition(_heli:getCoalition(), _txt, 10)
 
     else
 
-        local _txt = string.format("Cannot build %s!\n\nIt requires %d crates and there are %d \n\nOr the crates are not within 300m of each other", _nearestCrate.details.desc, _nearestCrate.details.cratesRequired, #_nearbyMultiCrates)
+        local _txt = string.format("Cannot build %s!\n\nIt requires %d crates and there are %d \n\nOr the crates are not within 300m of each other"
+            , _nearestCrate.details.desc, _nearestCrate.details.cratesRequired, #_nearbyMultiCrates)
 
         ctld.displayMessageToGroup(_heli, _txt, 20)
     end
 end
-
 
 function ctld.spawnCrateGroup(_heli, _positions, _types)
 
@@ -4172,7 +4236,7 @@ function ctld.spawnCrateGroup(_heli, _positions, _types)
 
     local _group = {
         ["visible"] = false,
-       -- ["groupId"] = _id,
+        -- ["groupId"] = _id,
         ["hidden"] = false,
         ["units"] = {},
         --        ["y"] = _positions[1].z,
@@ -4184,7 +4248,8 @@ function ctld.spawnCrateGroup(_heli, _positions, _types)
     if #_positions == 1 then
 
         local _unitId = ctld.getNextUnitId()
-        local _details = { type = _types[1], unitId = _unitId, name = string.format("Unpacked %s #%i", _types[1], _unitId) }
+        local _details = { type = _types[1], unitId = _unitId,
+            name = string.format("Unpacked %s #%i", _types[1], _unitId) }
 
         _group.units[1] = ctld.createUnit(_positions[1].x + 5, _positions[1].z + 5, 120, _details)
 
@@ -4193,7 +4258,8 @@ function ctld.spawnCrateGroup(_heli, _positions, _types)
         for _i, _pos in ipairs(_positions) do
 
             local _unitId = ctld.getNextUnitId()
-            local _details = { type = _types[_i], unitId = _unitId, name = string.format("Unpacked %s #%i", _types[_i], _unitId) }
+            local _details = { type = _types[_i], unitId = _unitId,
+                name = string.format("Unpacked %s #%i", _types[_i], _unitId) }
 
             _group.units[_i] = ctld.createUnit(_pos.x + 5, _pos.z + 5, 120, _details)
         end
@@ -4208,8 +4274,6 @@ function ctld.spawnCrateGroup(_heli, _positions, _types)
     return _spawnedGroup
 end
 
-
-
 -- spawn normal group
 function ctld.spawnDroppedGroup(_point, _details, _spawnBehind, _maxSearch)
 
@@ -4217,7 +4281,7 @@ function ctld.spawnDroppedGroup(_point, _details, _spawnBehind, _maxSearch)
 
     local _group = {
         ["visible"] = false,
-      --  ["groupId"] = _details.groupId,
+        --  ["groupId"] = _details.groupId,
         ["hidden"] = false,
         ["units"] = {},
         --        ["y"] = _positions[1].z,
@@ -4253,7 +4317,8 @@ function ctld.spawnDroppedGroup(_point, _details, _spawnBehind, _maxSearch)
 
 
         for _i, _detail in ipairs(_details.units) do
-            _group.units[_i] = ctld.createUnit(_pos.x + (_xOffset + 10 * _i), _pos.z + (_yOffset + 10 * _i), _angle, _detail)
+            _group.units[_i] = ctld.createUnit(_pos.x + (_xOffset + 10 * _i), _pos.z + (_yOffset + 10 * _i), _angle,
+                _detail)
         end
     end
 
@@ -4271,11 +4336,11 @@ function ctld.spawnDroppedGroup(_point, _details, _spawnBehind, _maxSearch)
         _maxSearch = ctld.maximumSearchDistance
     end
 
-    local _wpZone = ctld.inWaypointZone(_point,_spawnedGroup:getCoalition())
+    local _wpZone = ctld.inWaypointZone(_point, _spawnedGroup:getCoalition())
 
     if _wpZone.inZone then
         ctld.orderGroupToMoveToPoint(_spawnedGroup:getUnit(1), _wpZone.point)
-        env.info("Heading to waypoint - In Zone ".._wpZone.name)
+        env.info("Heading to waypoint - In Zone " .. _wpZone.name)
     else
         local _enemyPos = ctld.findNearestEnemy(_details.side, _point, _maxSearch)
 
@@ -4342,7 +4407,7 @@ function ctld.findNearestEnemy(_side, _point, _searchDistance)
         local _z = _heliPoint.z + math.random(0, ctld.maximumMoveDistance) - math.random(0, ctld.maximumMoveDistance)
         local _y = _heliPoint.y + math.random(0, ctld.maximumMoveDistance) - math.random(0, ctld.maximumMoveDistance)
 
-        return { x = _x, z = _z,y=_y }
+        return { x = _x, z = _z, y = _y }
     end
 end
 
@@ -4366,7 +4431,8 @@ function ctld.findNearestGroup(_heli, _groups)
 
                 local _leader = nil
 
-                local _groupDetails = { groupId = _group:getID(), groupName = _group:getName(), side = _group:getCoalition(), units = {} }
+                local _groupDetails = { groupId = _group:getID(), groupName = _group:getName(),
+                    side = _group:getCoalition(), units = {} }
 
                 -- find alive leader
                 for x = 1, #_units do
@@ -4378,7 +4444,8 @@ function ctld.findNearestGroup(_heli, _groups)
                             _groupDetails.country = _leader:getCountry()
                         end
 
-                        local _unitDetails = { type = _units[x]:getTypeName(), unitId = _units[x]:getID(), name = _units[x]:getName() }
+                        local _unitDetails = { type = _units[x]:getTypeName(), unitId = _units[x]:getID(),
+                            name = _units[x]:getName() }
 
                         table.insert(_groupDetails.units, _unitDetails)
                     end
@@ -4406,7 +4473,6 @@ function ctld.findNearestGroup(_heli, _groups)
         return nil
     end
 end
-
 
 function ctld.createUnit(_x, _y, _angle, _details)
 
@@ -4457,7 +4523,7 @@ function ctld.orderGroupToMoveToPoint(_leader, _destination)
         id = 'Mission',
         params = {
             route = {
-                points =_path
+                points = _path
             },
         },
     }
@@ -4474,7 +4540,7 @@ function ctld.orderGroupToMoveToPoint(_leader, _destination)
             _controller:setTask(_arg[2])
         end
     end
-        , {_group:getName(), _mission}, timer.getTime() + 2)
+        , { _group:getName(), _mission }, timer.getTime() + 2)
 
 end
 
@@ -4569,7 +4635,7 @@ function ctld.inDropoffZone(_heli)
 
         local _triggerZone = trigger.misc.getZone(_zoneDetails[1])
 
-        if _triggerZone ~= nil and (_zoneDetails[3] == _heli:getCoalition() or _zoneDetails[3]== 0) then
+        if _triggerZone ~= nil and (_zoneDetails[3] == _heli:getCoalition() or _zoneDetails[3] == 0) then
 
             --get distance to center
 
@@ -4585,26 +4651,26 @@ function ctld.inDropoffZone(_heli)
 end
 
 -- are we in a waypoint zone
-function ctld.inWaypointZone(_point,_coalition)
+function ctld.inWaypointZone(_point, _coalition)
 
     for _, _zoneDetails in pairs(ctld.wpZones) do
 
         local _triggerZone = trigger.misc.getZone(_zoneDetails[1])
 
         --right coalition and active?
-        if _triggerZone ~= nil and (_zoneDetails[4] == _coalition or _zoneDetails[4]== 0) and _zoneDetails[3] == 1 then
+        if _triggerZone ~= nil and (_zoneDetails[4] == _coalition or _zoneDetails[4] == 0) and _zoneDetails[3] == 1 then
 
             --get distance to center
 
             local _dist = ctld.getDistance(_point, _triggerZone.point)
 
             if _dist <= _triggerZone.radius then
-                return {inZone = true, point = _triggerZone.point, name = _zoneDetails[1]}
+                return { inZone = true, point = _triggerZone.point, name = _zoneDetails[1] }
             end
         end
     end
 
-    return {inZone = false}
+    return { inZone = false }
 end
 
 -- are we near friendly logistics zone
@@ -4633,7 +4699,6 @@ function ctld.inLogisticsZone(_heli)
 
     return false
 end
-
 
 -- are far enough from a friendly logistics zone
 function ctld.farEnoughFromLogisticZone(_heli)
@@ -4756,7 +4821,8 @@ function ctld.dropSmoke(_args)
 
         trigger.action.smoke(_pos3, _args[2])
 
-        trigger.action.outTextForCoalition(_heli:getCoalition(), ctld.getPlayerNameOrType(_heli) .. " dropped " .. _colour .. " smoke ", 10)
+        trigger.action.outTextForCoalition(_heli:getCoalition(),
+            ctld.getPlayerNameOrType(_heli) .. " dropped " .. _colour .. " smoke ", 10)
     end
 end
 
@@ -4821,7 +4887,6 @@ function ctld.processCallback(_callbackArgs)
     end
 end
 
-
 -- checks the status of all AI troop carriers and auto loads and unloads troops
 -- as long as the troops are on the ground
 function ctld.checkAIStatus()
@@ -4846,29 +4911,29 @@ function ctld.checkAIStatus()
                         local _team = nil
                         if _unit:getCoalition() == 1 then
                             _team = math.floor((math.random(#ctld.redTeams * 100) / 100) + 1)
-                            ctld.loadTroopsFromZone({ _unitName, true,ctld.loadableGroups[ctld.redTeams[_team]],true })
+                            ctld.loadTroopsFromZone({ _unitName, true, ctld.loadableGroups[ ctld.redTeams[_team] ], true })
                         else
                             _team = math.floor((math.random(#ctld.blueTeams * 100) / 100) + 1)
-                            ctld.loadTroopsFromZone({ _unitName, true,ctld.loadableGroups[ctld.blueTeams[_team]],true })
+                            ctld.loadTroopsFromZone({ _unitName, true, ctld.loadableGroups[ ctld.blueTeams[_team] ], true })
                         end
                     else
-                        ctld.loadTroopsFromZone({ _unitName, true,"",true })
+                        ctld.loadTroopsFromZone({ _unitName, true, "", true })
                     end
 
                 elseif ctld.inDropoffZone(_unit) and ctld.troopsOnboard(_unit, true) then
                     --     env.error("in dropoff zone, unloading.. ".._unit:getName())
-                    ctld.unloadTroops( { _unitName, true })
+                    ctld.unloadTroops({ _unitName, true })
                 end
 
                 if ctld.unitCanCarryVehicles(_unit) then
 
                     if _zone.inZone == true and not ctld.troopsOnboard(_unit, false) then
 
-                        ctld.loadTroopsFromZone({ _unitName, false,"",true })
+                        ctld.loadTroopsFromZone({ _unitName, false, "", true })
 
                     elseif ctld.inDropoffZone(_unit) and ctld.troopsOnboard(_unit, false) then
 
-                        ctld.unloadTroops( { _unitName, false })
+                        ctld.unloadTroops({ _unitName, false })
                     end
                 end
             end
@@ -4899,7 +4964,7 @@ function ctld.getUnitActions(_unitType)
         return ctld.unitActions[_unitType]
     end
 
-    return {crates=true,troops=true}
+    return { crates = true, troops = true }
 
 end
 
@@ -4928,41 +4993,51 @@ function ctld.addF10MenuOptions()
                         local _unitActions = ctld.getUnitActions(_unit:getTypeName())
                         ctld.logTrace(string.format("_unitActions=%s", ctld.p(_unitActions)))
 
-                        missionCommands.addCommandForGroup(_groupId, "Check Cargo", _rootPath, ctld.checkTroopStatus, { _unitName })
+                        missionCommands.addCommandForGroup(_groupId, "Check Cargo", _rootPath, ctld.checkTroopStatus,
+                            { _unitName })
 
                         if _unitActions.troops then
 
-                            local _troopCommandsPath = missionCommands.addSubMenuForGroup(_groupId, "Troop Transport", _rootPath)
+                            local _troopCommandsPath = missionCommands.addSubMenuForGroup(_groupId, "Troop Transport",
+                                _rootPath)
 
-                            missionCommands.addCommandForGroup(_groupId, "Unload / Extract Troops", _troopCommandsPath, ctld.unloadExtractTroops, { _unitName })
+                            missionCommands.addCommandForGroup(_groupId, "Unload / Extract Troops", _troopCommandsPath,
+                                ctld.unloadExtractTroops, { _unitName })
 
 
                             -- local _loadPath = missionCommands.addSubMenuForGroup(_groupId, "Load From Zone", _troopCommandsPath)
                             local _transportLimit = ctld.getTransportLimit(_unit:getTypeName())
                             ctld.logTrace(string.format("_transportLimit=%s", ctld.p(_transportLimit)))
-                            for _,_loadGroup in pairs(ctld.loadableGroups) do
+                            for _, _loadGroup in pairs(ctld.loadableGroups) do
                                 ctld.logTrace(string.format("_loadGroup=%s", ctld.p(_loadGroup)))
                                 if not _loadGroup.side or _loadGroup.side == _unit:getCoalition() then
 
                                     -- check size & unit
                                     if _transportLimit >= _loadGroup.total then
-                                        missionCommands.addCommandForGroup(_groupId, "Load ".._loadGroup.name, _troopCommandsPath, ctld.loadTroopsFromZone, { _unitName, true,_loadGroup,false })
+                                        missionCommands.addCommandForGroup(_groupId, "Load " .. _loadGroup.name,
+                                            _troopCommandsPath, ctld.loadTroopsFromZone,
+                                            { _unitName, true, _loadGroup, false })
                                     end
                                 end
                             end
 
                             if ctld.unitCanCarryVehicles(_unit) then
 
-                                local _vehicleCommandsPath = missionCommands.addSubMenuForGroup(_groupId, "Vehicle / FOB Transport", _rootPath)
+                                local _vehicleCommandsPath = missionCommands.addSubMenuForGroup(_groupId,
+                                    "Vehicle / FOB Transport", _rootPath)
 
-                                missionCommands.addCommandForGroup(_groupId, "Unload Vehicles", _vehicleCommandsPath, ctld.unloadTroops, { _unitName, false })
-                                missionCommands.addCommandForGroup(_groupId, "Load / Extract Vehicles", _vehicleCommandsPath, ctld.loadTroopsFromZone, { _unitName, false,"",true })
+                                missionCommands.addCommandForGroup(_groupId, "Unload Vehicles", _vehicleCommandsPath,
+                                    ctld.unloadTroops, { _unitName, false })
+                                missionCommands.addCommandForGroup(_groupId, "Load / Extract Vehicles",
+                                    _vehicleCommandsPath, ctld.loadTroopsFromZone, { _unitName, false, "", true })
 
                                 if ctld.enabledFOBBuilding and ctld.staticBugWorkaround == false then
 
-                                    missionCommands.addCommandForGroup(_groupId, "Load / Unload FOB Crate", _vehicleCommandsPath, ctld.loadUnloadFOBCrate, { _unitName, false })
+                                    missionCommands.addCommandForGroup(_groupId, "Load / Unload FOB Crate",
+                                        _vehicleCommandsPath, ctld.loadUnloadFOBCrate, { _unitName, false })
                                 end
-                                missionCommands.addCommandForGroup(_groupId, "Check Cargo", _vehicleCommandsPath, ctld.checkTroopStatus, { _unitName })
+                                missionCommands.addCommandForGroup(_groupId, "Check Cargo", _vehicleCommandsPath,
+                                    ctld.checkTroopStatus, { _unitName })
                             end
 
                         end
@@ -4976,21 +5051,24 @@ function ctld.addF10MenuOptions()
                                 -- add menu for spawning crates
                                 for _subMenuName, _crates in pairs(ctld.spawnableCrates) do
 
-                                    local _cratePath = missionCommands.addSubMenuForGroup(_groupId, _subMenuName, _rootPath)
+                                    local _cratePath = missionCommands.addSubMenuForGroup(_groupId, _subMenuName,
+                                        _rootPath)
                                     for _, _crate in pairs(_crates) do
 
                                         if ctld.isJTACUnitType(_crate.unit) == false
-                                                or (ctld.isJTACUnitType(_crate.unit) == true and ctld.JTAC_dropEnabled) then
+                                            or (ctld.isJTACUnitType(_crate.unit) == true and ctld.JTAC_dropEnabled) then
                                             if _crate.side == nil or (_crate.side == _unit:getCoalition()) then
 
                                                 local _crateRadioMsg = _crate.desc
 
                                                 --add in the number of crates required to build something
                                                 if _crate.cratesRequired ~= nil and _crate.cratesRequired > 1 then
-                                                    _crateRadioMsg = _crateRadioMsg.." (".._crate.cratesRequired..")"
+                                                    _crateRadioMsg = _crateRadioMsg .. " (" .. _crate.cratesRequired ..
+                                                        ")"
                                                 end
 
-                                                missionCommands.addCommandForGroup(_groupId,_crateRadioMsg, _cratePath, ctld.spawnCrate, { _unitName, _crate.weight })
+                                                missionCommands.addCommandForGroup(_groupId, _crateRadioMsg, _cratePath,
+                                                    ctld.spawnCrate, { _unitName, _crate.weight })
                                             end
                                         end
                                     end
@@ -5000,43 +5078,59 @@ function ctld.addF10MenuOptions()
 
                         if (ctld.enabledFOBBuilding or ctld.enableCrates) and _unitActions.crates then
 
-                            local _crateCommands = missionCommands.addSubMenuForGroup(_groupId, "CTLD Commands", _rootPath)
+                            local _crateCommands = missionCommands.addSubMenuForGroup(_groupId, "CTLD Commands",
+                                _rootPath)
                             if ctld.hoverPickup == false then
-                                if  ctld.slingLoad == false then
-                                    missionCommands.addCommandForGroup(_groupId, "Load Nearby Crate", _crateCommands, ctld.loadNearbyCrate,  _unitName )
+                                if ctld.slingLoad == false then
+                                    missionCommands.addCommandForGroup(_groupId, "Load Nearby Crate", _crateCommands,
+                                        ctld.loadNearbyCrate, _unitName)
                                 end
                             end
 
-                            missionCommands.addCommandForGroup(_groupId, "Unpack Any Crate", _crateCommands, ctld.unpackCrates, { _unitName })
+                            missionCommands.addCommandForGroup(_groupId, "Unpack Any Crate", _crateCommands,
+                                ctld.unpackCrates, { _unitName })
 
                             if ctld.slingLoad == false then
-                                missionCommands.addCommandForGroup(_groupId, "Drop Crate", _crateCommands, ctld.dropSlingCrate, { _unitName })
+                                missionCommands.addCommandForGroup(_groupId, "Drop Crate", _crateCommands,
+                                    ctld.dropSlingCrate, { _unitName })
                             end
 
-                            missionCommands.addCommandForGroup(_groupId, "List Nearby Crates", _crateCommands, ctld.listNearbyCrates, { _unitName })
+                            missionCommands.addCommandForGroup(_groupId, "List Nearby Crates", _crateCommands,
+                                ctld.listNearbyCrates, { _unitName })
 
                             if ctld.enabledFOBBuilding then
-                                missionCommands.addCommandForGroup(_groupId, "List FOBs", _crateCommands, ctld.listFOBS, { _unitName })
+                                missionCommands.addCommandForGroup(_groupId, "List FOBs", _crateCommands, ctld.listFOBS,
+                                    { _unitName })
                             end
                         end
 
 
                         if ctld.enableSmokeDrop then
                             local _smokeMenu = missionCommands.addSubMenuForGroup(_groupId, "Smoke Markers", _rootPath)
-                            missionCommands.addCommandForGroup(_groupId, "Drop Red Smoke", _smokeMenu, ctld.dropSmoke, { _unitName, trigger.smokeColor.Red })
-                            missionCommands.addCommandForGroup(_groupId, "Drop Blue Smoke", _smokeMenu, ctld.dropSmoke, { _unitName, trigger.smokeColor.Blue })
-                            missionCommands.addCommandForGroup(_groupId, "Drop Orange Smoke", _smokeMenu, ctld.dropSmoke, { _unitName, trigger.smokeColor.Orange })
-                            missionCommands.addCommandForGroup(_groupId, "Drop Green Smoke", _smokeMenu, ctld.dropSmoke, { _unitName, trigger.smokeColor.Green })
+                            missionCommands.addCommandForGroup(_groupId, "Drop Red Smoke", _smokeMenu, ctld.dropSmoke,
+                                { _unitName, trigger.smokeColor.Red })
+                            missionCommands.addCommandForGroup(_groupId, "Drop Blue Smoke", _smokeMenu, ctld.dropSmoke,
+                                { _unitName, trigger.smokeColor.Blue })
+                            missionCommands.addCommandForGroup(_groupId, "Drop Orange Smoke", _smokeMenu, ctld.dropSmoke
+                                , { _unitName, trigger.smokeColor.Orange })
+                            missionCommands.addCommandForGroup(_groupId, "Drop Green Smoke", _smokeMenu, ctld.dropSmoke,
+                                { _unitName, trigger.smokeColor.Green })
                         end
 
                         if ctld.enabledRadioBeaconDrop then
-                            local _radioCommands = missionCommands.addSubMenuForGroup(_groupId, "Radio Beacons", _rootPath)
-                            missionCommands.addCommandForGroup(_groupId, "List Beacons", _radioCommands, ctld.listRadioBeacons, { _unitName })
-                            missionCommands.addCommandForGroup(_groupId, "Drop Beacon", _radioCommands, ctld.dropRadioBeacon, { _unitName })
-                            missionCommands.addCommandForGroup(_groupId, "Remove Closet Beacon", _radioCommands, ctld.removeRadioBeacon, { _unitName })
+                            local _radioCommands = missionCommands.addSubMenuForGroup(_groupId, "Radio Beacons",
+                                _rootPath)
+                            missionCommands.addCommandForGroup(_groupId, "List Beacons", _radioCommands,
+                                ctld.listRadioBeacons, { _unitName })
+                            missionCommands.addCommandForGroup(_groupId, "Drop Beacon", _radioCommands,
+                                ctld.dropRadioBeacon, { _unitName })
+                            missionCommands.addCommandForGroup(_groupId, "Remove Closet Beacon", _radioCommands,
+                                ctld.removeRadioBeacon, { _unitName })
                         elseif ctld.deployedRadioBeacons ~= {} then
-                            local _radioCommands = missionCommands.addSubMenuForGroup(_groupId, "Radio Beacons", _rootPath)
-                            missionCommands.addCommandForGroup(_groupId, "List Beacons", _radioCommands, ctld.listRadioBeacons, { _unitName })
+                            local _radioCommands = missionCommands.addSubMenuForGroup(_groupId, "Radio Beacons",
+                                _rootPath)
+                            missionCommands.addCommandForGroup(_groupId, "List Beacons", _radioCommands,
+                                ctld.listRadioBeacons, { _unitName })
                         end
 
                         ctld.addedTo[tostring(_groupId)] = true
@@ -5095,7 +5189,8 @@ function ctld.addRadioListCommand(_side)
             if _groupId then
 
                 if ctld.addedTo[tostring(_groupId)] == nil then
-                    missionCommands.addCommandForGroup(_groupId, "List Radio Beacons", nil, ctld.listRadioBeacons, { _playerUnit:getName() })
+                    missionCommands.addCommandForGroup(_groupId, "List Radio Beacons", nil, ctld.listRadioBeacons,
+                        { _playerUnit:getName() })
                     ctld.addedTo[tostring(_groupId)] = true
                 end
             end
@@ -5117,7 +5212,8 @@ function ctld.addJTACRadioCommand(_side)
                 --   env.info("adding command for "..index)
                 if ctld.jtacRadioAdded[tostring(_groupId)] == nil then
                     -- env.info("about command for "..index)
-                    missionCommands.addCommandForGroup(_groupId, "JTAC Status", nil, ctld.getJTACStatus, { _playerUnit:getName() })
+                    missionCommands.addCommandForGroup(_groupId, "JTAC Status", nil, ctld.getJTACStatus,
+                        { _playerUnit:getName() })
                     ctld.jtacRadioAdded[tostring(_groupId)] = true
                     -- env.info("Added command for " .. index)
                 end
@@ -5130,7 +5226,7 @@ end
 
 function ctld.getGroupId(_unit)
 
-    local _unitDB =  mist.DBs.unitsById[tonumber(_unit:getID())]
+    local _unitDB = mist.DBs.unitsById[tonumber(_unit:getID())]
     if _unitDB ~= nil and _unitDB.groupId then
         return _unitDB.groupId
     end
@@ -5152,7 +5248,6 @@ function ctld.getDistance(_point1, _point2)
     return math.sqrt(xDiff * xDiff + yDiff * yDiff)
 end
 
-
 ------------ JTAC -----------
 
 
@@ -5168,7 +5263,8 @@ ctld.jtacLaserPointCodes = {}
 ctld.jtacRadioData = {}
 
 function ctld.JTACAutoLase(_jtacGroupName, _laserCode, _smoke, _lock, _colour, _radio)
-    ctld.logDebug(string.format("ctld.JTACAutoLase(_jtacGroupName=%s, _laserCode=%s", ctld.p(_jtacGroupName), ctld.p(_laserCode)))
+    ctld.logDebug(string.format("ctld.JTACAutoLase(_jtacGroupName=%s, _laserCode=%s", ctld.p(_jtacGroupName),
+        ctld.p(_laserCode)))
 
     local _radio = _radio
     if not _radio then
@@ -5176,15 +5272,15 @@ function ctld.JTACAutoLase(_jtacGroupName, _laserCode, _smoke, _lock, _colour, _
         if _laserCode then
             local _laserCode = tonumber(_laserCode)
             if _laserCode and _laserCode >= 1111 and _laserCode <= 1688 then
-                local _laserB = math.floor((_laserCode - 1000)/100)
-                local _laserCD = _laserCode - 1000 - _laserB*100
-                local _frequency = tostring(30+_laserB+_laserCD*0.05)
+                local _laserB = math.floor((_laserCode - 1000) / 100)
+                local _laserCD = _laserCode - 1000 - _laserB * 100
+                local _frequency = tostring(30 + _laserB + _laserCD * 0.05)
                 ctld.logTrace(string.format("_laserB=%s", ctld.p(_laserB)))
                 ctld.logTrace(string.format("_laserCD=%s", ctld.p(_laserCD)))
                 ctld.logTrace(string.format("_frequency=%s", ctld.p(_frequency)))
                 _radio.freq = _frequency
                 _radio.mod = "fm"
-            end        
+            end
         end
     end
 
@@ -5216,22 +5312,26 @@ function ctld.JTACAutoLase(_jtacGroupName, _laserCode, _smoke, _lock, _colour, _
         if ctld.inTransitTroops then
             for _, _onboard in pairs(ctld.inTransitTroops) do
                 if _onboard ~= nil then
-                    if _onboard.troops ~= nil and _onboard.troops.groupName ~= nil and _onboard.troops.groupName == _jtacGroupName then
+                    if _onboard.troops ~= nil and _onboard.troops.groupName ~= nil and
+                        _onboard.troops.groupName == _jtacGroupName then
 
                         --jtac soldier being transported by heli
                         ctld.cleanupJTAC(_jtacGroupName)
 
                         env.info(_jtacGroupName .. ' in Transport - Waiting 10 seconds')
-                        timer.scheduleFunction(ctld.timerJTACAutoLase, { _jtacGroupName, _laserCode, _smoke, _lock, _colour, _radio }, timer.getTime() + 10)
+                        timer.scheduleFunction(ctld.timerJTACAutoLase,
+                            { _jtacGroupName, _laserCode, _smoke, _lock, _colour, _radio }, timer.getTime() + 10)
                         return
                     end
 
-                    if _onboard.vehicles ~= nil and _onboard.vehicles.groupName ~= nil and _onboard.vehicles.groupName == _jtacGroupName then
+                    if _onboard.vehicles ~= nil and _onboard.vehicles.groupName ~= nil and
+                        _onboard.vehicles.groupName == _jtacGroupName then
                         --jtac vehicle being transported by heli
                         ctld.cleanupJTAC(_jtacGroupName)
 
                         env.info(_jtacGroupName .. ' in Transport - Waiting 10 seconds')
-                        timer.scheduleFunction(ctld.timerJTACAutoLase, { _jtacGroupName, _laserCode, _smoke, _lock, _colour, _radio }, timer.getTime() + 10)
+                        timer.scheduleFunction(ctld.timerJTACAutoLase,
+                            { _jtacGroupName, _laserCode, _smoke, _lock, _colour, _radio }, timer.getTime() + 10)
                         return
                     end
                 end
@@ -5240,7 +5340,8 @@ function ctld.JTACAutoLase(_jtacGroupName, _laserCode, _smoke, _lock, _colour, _
 
 
         if ctld.jtacUnits[_jtacGroupName] ~= nil then
-            ctld.notifyCoalition("JTAC Group " .. _jtacGroupName .. " KIA!", 10, ctld.jtacUnits[_jtacGroupName].side, _radio)
+            ctld.notifyCoalition("JTAC Group " .. _jtacGroupName .. " KIA!", 10, ctld.jtacUnits[_jtacGroupName].side,
+                _radio)
         end
 
         --remove from list
@@ -5284,7 +5385,8 @@ function ctld.JTACAutoLase(_jtacGroupName, _laserCode, _smoke, _lock, _colour, _
         ctld.cleanupJTAC(_jtacGroupName)
 
         env.info(_jtacGroupName .. ' Not Active - Waiting 30 seconds')
-        timer.scheduleFunction(ctld.timerJTACAutoLase, { _jtacGroupName, _laserCode, _smoke, _lock, _colour, _radio }, timer.getTime() + 30)
+        timer.scheduleFunction(ctld.timerJTACAutoLase, { _jtacGroupName, _laserCode, _smoke, _lock, _colour, _radio },
+            timer.getTime() + 30)
 
         return
     end
@@ -5310,8 +5412,8 @@ function ctld.JTACAutoLase(_jtacGroupName, _laserCode, _smoke, _lock, _colour, _
         --remove from smoke list
         ctld.jtacSmokeMarks[_tempUnitInfo.name] = nil
 
-    	-- JTAC Unit: resume his route ------------
-	    trigger.action.groupContinueMoving(Group.getByName(_jtacGroupName)) 	
+        -- JTAC Unit: resume his route ------------
+        trigger.action.groupContinueMoving(Group.getByName(_jtacGroupName))
 
         -- remove from target list
         ctld.jtacCurrentTargets[_jtacGroupName] = nil
@@ -5327,7 +5429,8 @@ function ctld.JTACAutoLase(_jtacGroupName, _laserCode, _smoke, _lock, _colour, _
         if _enemyUnit ~= nil then
 
             -- store current target for easy lookup
-            ctld.jtacCurrentTargets[_jtacGroupName] = { name = _enemyUnit:getName(), unitType = _enemyUnit:getTypeName(), unitId = _enemyUnit:getID() }
+            ctld.jtacCurrentTargets[_jtacGroupName] = { name = _enemyUnit:getName(), unitType = _enemyUnit:getTypeName(),
+                unitId = _enemyUnit:getID() }
             local action = ", lasing new target, "
             if targetLost then
                 action = ", target lost " .. action
@@ -5338,12 +5441,13 @@ function ctld.JTACAutoLase(_jtacGroupName, _laserCode, _smoke, _lock, _colour, _
             end
 
             local message = _jtacGroupName .. action .. _enemyUnit:getTypeName()
-            local fullMessage = message .. '. CODE: ' .. _laserCode .. ". POSITION: " .. ctld.getPositionString(_enemyUnit)
+            local fullMessage = message ..
+                '. CODE: ' .. _laserCode .. ". POSITION: " .. ctld.getPositionString(_enemyUnit)
             ctld.notifyCoalition(fullMessage, 10, _jtacUnit:getCoalition(), _radio, message)
 
-	        -- JTAC Unit stop his route -----------------
-	        trigger.action.groupStopMoving(Group.getByName(_jtacGroupName)) -- stop JTAC
-            
+            -- JTAC Unit stop his route -----------------
+            trigger.action.groupStopMoving(Group.getByName(_jtacGroupName)) -- stop JTAC
+
             -- create smoke
             if _smoke == true then
 
@@ -5358,7 +5462,8 @@ function ctld.JTACAutoLase(_jtacGroupName, _laserCode, _smoke, _lock, _colour, _
         ctld.laseUnit(_enemyUnit, _jtacUnit, _jtacGroupName, _laserCode)
 
         --   env.info('Timer timerSparkleLase '..jtacGroupName.." "..laserCode.." "..enemyUnit:getName())
-        timer.scheduleFunction(ctld.timerJTACAutoLase, { _jtacGroupName, _laserCode, _smoke, _lock, _colour, _radio }, timer.getTime() + 15)
+        timer.scheduleFunction(ctld.timerJTACAutoLase, { _jtacGroupName, _laserCode, _smoke, _lock, _colour, _radio },
+            timer.getTime() + 15)
 
 
         if _smoke == true then
@@ -5378,7 +5483,8 @@ function ctld.JTACAutoLase(_jtacGroupName, _laserCode, _smoke, _lock, _colour, _
         ctld.cancelLase(_jtacGroupName)
         --  env.info('Timer Slow timerSparkleLase '..jtacGroupName.." "..laserCode.." "..enemyUnit:getName())
 
-        timer.scheduleFunction(ctld.timerJTACAutoLase, { _jtacGroupName, _laserCode, _smoke, _lock, _colour, _radio }, timer.getTime() + 5)
+        timer.scheduleFunction(ctld.timerJTACAutoLase, { _jtacGroupName, _laserCode, _smoke, _lock, _colour, _radio },
+            timer.getTime() + 5)
     end
 
     if targetLost then
@@ -5410,7 +5516,6 @@ function ctld.cleanupJTAC(_jtacGroupName)
     ctld.jtacRadioData[_jtacGroupName] = nil
 end
 
-
 --- send a message to the coalition
 --- if _radio is set, the message will be read out loud via SRS
 function ctld.notifyCoalition(_message, _displayFor, _side, _radio, _shortMessage)
@@ -5418,10 +5523,10 @@ function ctld.notifyCoalition(_message, _displayFor, _side, _radio, _shortMessag
     ctld.logTrace(string.format("_radio=%s", ctld.p(_radio)))
 
     local _shortMessage = _shortMessage
-    if _shortMessage == nil then 
+    if _shortMessage == nil then
         _shortMessage = _message
     end
-    
+
     if STTS and STTS.TextToSpeech and _radio and _radio.freq then
         local _freq = _radio.freq
         local _modulation = _radio.mod or "FM"
@@ -5440,7 +5545,8 @@ function ctld.notifyCoalition(_message, _displayFor, _side, _radio, _shortMessag
         ctld.logTrace(string.format("_culture=%s", ctld.p(_culture)))
         ctld.logTrace(string.format("_voice=%s", ctld.p(_voice)))
         ctld.logTrace(string.format("_googleTTS=%s", ctld.p(_googleTTS)))
-        STTS.TextToSpeech(_shortMessage, _freq, _modulation, _volume, _name, _side, nil, 1, _gender, _culture, _voice, _googleTTS)
+        STTS.TextToSpeech(_shortMessage, _freq, _modulation, _volume, _name, _side, nil, 1, _gender, _culture, _voice,
+            _googleTTS)
     end
 
     trigger.action.outTextForCoalition(_side, _message, _displayFor)
@@ -5576,9 +5682,8 @@ function ctld.getCurrentUnit(_jtacUnit, _jtacGroupName)
     return nil
 end
 
-
 -- Find nearest enemy to JTAC that isn't blocked by terrain
-function ctld.findNearestVisibleEnemy(_jtacUnit, _targetType,_distance)
+function ctld.findNearestVisibleEnemy(_jtacUnit, _targetType, _distance)
 
     --local startTime = os.clock()
 
@@ -5587,7 +5692,7 @@ function ctld.findNearestVisibleEnemy(_jtacUnit, _targetType,_distance)
     local _nearestDistance = _maxDistance
 
     local _jtacPoint = _jtacUnit:getPoint()
-    local _coa =    _jtacUnit:getCoalition()
+    local _coa = _jtacUnit:getCoalition()
 
     local _offsetJTACPos = { x = _jtacPoint.x, y = _jtacPoint.y + 2.0, z = _jtacPoint.z }
 
@@ -5606,21 +5711,21 @@ function ctld.findNearestVisibleEnemy(_jtacUnit, _targetType,_distance)
         pcall(function()
 
             if _unit ~= nil
-                    and _unit:getLife() > 0
-                    and _unit:isActive()
-                    and _unit:getCoalition() ~= _coa
-                    and not _unit:inAir()
-                    and not ctld.alreadyTarget(_jtacUnit,_unit) then
+                and _unit:getLife() > 0
+                and _unit:isActive()
+                and _unit:getCoalition() ~= _coa
+                and not _unit:inAir()
+                and not ctld.alreadyTarget(_jtacUnit, _unit) then
 
                 local _tempPoint = _unit:getPoint()
                 local _offsetEnemyPos = { x = _tempPoint.x, y = _tempPoint.y + 2.0, z = _tempPoint.z }
 
-                if land.isVisible(_offsetJTACPos,_offsetEnemyPos ) then
+                if land.isVisible(_offsetJTACPos, _offsetEnemyPos) then
 
                     local _dist = ctld.getDistance(_offsetJTACPos, _offsetEnemyPos)
 
                     if _dist < _maxDistance then
-                        table.insert(_unitList,{unit=_unit, dist=_dist})
+                        table.insert(_unitList, { unit = _unit, dist = _dist })
 
                     end
                 end
@@ -5642,8 +5747,8 @@ function ctld.findNearestVisibleEnemy(_jtacUnit, _targetType,_distance)
     -- vehicle
     -- unit
 
-    local _sort = function( a,b ) return a.dist < b.dist end
-    table.sort(_unitList,_sort)
+    local _sort = function(a, b) return a.dist < b.dist end
+    table.sort(_unitList, _sort)
     -- sort list
 
     -- check for hpriority
@@ -5693,13 +5798,12 @@ function ctld.findNearestVisibleEnemy(_jtacUnit, _targetType,_distance)
 
 end
 
-
 function ctld.listNearbyEnemies(_jtacUnit)
 
-    local _maxDistance =  ctld.JTAC_maxDistance
+    local _maxDistance = ctld.JTAC_maxDistance
 
     local _jtacPoint = _jtacUnit:getPoint()
-    local _coa =    _jtacUnit:getCoalition()
+    local _coa = _jtacUnit:getCoalition()
 
     local _offsetJTACPos = { x = _jtacPoint.x, y = _jtacPoint.y + 2.0, z = _jtacPoint.z }
 
@@ -5716,15 +5820,15 @@ function ctld.listNearbyEnemies(_jtacUnit)
         pcall(function()
 
             if _unit ~= nil
-                    and _unit:getLife() > 0
-                    and _unit:isActive()
-                    and _unit:getCoalition() ~= _coa
-                    and not _unit:inAir() then
+                and _unit:getLife() > 0
+                and _unit:isActive()
+                and _unit:getCoalition() ~= _coa
+                and not _unit:inAir() then
 
                 local _tempPoint = _unit:getPoint()
                 local _offsetEnemyPos = { x = _tempPoint.x, y = _tempPoint.y + 2.0, z = _tempPoint.z }
 
-                if land.isVisible(_offsetJTACPos,_offsetEnemyPos ) then
+                if land.isVisible(_offsetJTACPos, _offsetEnemyPos) then
 
                     if not _enemies then
                         _enemies = {}
@@ -5758,7 +5862,6 @@ function ctld.alreadyTarget(_jtacUnit, _enemyUnit)
     return false
 end
 
-
 -- Returns only alive units from group but the group / unit may not be active
 
 function ctld.getGroup(groupName)
@@ -5774,8 +5877,8 @@ function ctld.getGroup(groupName)
 
         if _groupUnits ~= nil and #_groupUnits > 0 then
             for _x = 1, #_groupUnits do
-                if _groupUnits[_x]:getLife() > 0  then -- removed and _groupUnits[_x]:isExist() as isExist doesnt work on single units!
-                table.insert(_filteredUnits, _groupUnits[_x])
+                if _groupUnits[_x]:getLife() > 0 then -- removed and _groupUnits[_x]:isExist() as isExist doesnt work on single units!
+                    table.insert(_filteredUnits, _groupUnits[_x])
                 end
             end
         end
@@ -5818,7 +5921,8 @@ function ctld.getJTACStatus(_args)
         --look up units
         _jtacUnit = Unit.getByName(_jtacDetails.name)
 
-        if _jtacUnit ~= nil and _jtacUnit:getLife() > 0 and _jtacUnit:isActive() == true and _jtacUnit:getCoalition() == _side then
+        if _jtacUnit ~= nil and _jtacUnit:getLife() > 0 and _jtacUnit:isActive() == true and
+            _jtacUnit:getCoalition() == _side then
 
             local _enemyUnit = ctld.getCurrentUnit(_jtacUnit, _jtacGroupName)
 
@@ -5826,7 +5930,7 @@ function ctld.getJTACStatus(_args)
 
             local _start = _jtacGroupName
             if (_jtacDetails.radio) then
-                _start = _start .. ", available on ".._jtacDetails.radio.freq.." ".._jtacDetails.radio.mod ..","
+                _start = _start .. ", available on " .. _jtacDetails.radio.freq .. " " .. _jtacDetails.radio.mod .. ","
             end
 
             if _laserCode == nil then
@@ -5834,21 +5938,26 @@ function ctld.getJTACStatus(_args)
             end
 
             if _enemyUnit ~= nil and _enemyUnit:getLife() > 0 and _enemyUnit:isActive() == true then
-                _message = _message .. "" .. _start .. " targeting " .. _enemyUnit:getTypeName() .. " CODE: " .. _laserCode .. ctld.getPositionString(_enemyUnit) .. "\n"
+                _message = _message ..
+                    "" ..
+                    _start ..
+                    " targeting " ..
+                    _enemyUnit:getTypeName() .. " CODE: " .. _laserCode .. ctld.getPositionString(_enemyUnit) .. "\n"
 
                 local _list = ctld.listNearbyEnemies(_jtacUnit)
 
                 if _list then
-                    _message = _message.."Visual On: "
+                    _message = _message .. "Visual On: "
 
-                    for _,_type in pairs(_list) do
-                        _message = _message.._type.." "
+                    for _, _type in pairs(_list) do
+                        _message = _message .. _type .. " "
                     end
-                    _message = _message.."\n"
+                    _message = _message .. "\n"
                 end
 
             else
-                _message = _message .. "" .. _start .. " searching for targets" .. ctld.getPositionString(_jtacUnit) .. "\n"
+                _message = _message ..
+                    "" .. _start .. " searching for targets" .. ctld.getPositionString(_jtacUnit) .. "\n"
             end
         end
     end
@@ -5860,8 +5969,6 @@ function ctld.getJTACStatus(_args)
 
     ctld.notifyCoalition(_message, 10, _side)
 end
-
-
 
 function ctld.isInfantry(_unit)
 
@@ -5912,8 +6019,8 @@ function ctld.generateLaserCode()
             _code = _code + 1
 
             if not ctld.containsDigit(_code, 8)
-                    and not ctld.containsDigit(_code, 9)
-                    and not ctld.containsDigit(_code, 0) then
+                and not ctld.containsDigit(_code, 9)
+                and not ctld.containsDigit(_code, 0) then
 
                 table.insert(ctld.jtacGeneratedLaserCodes, _code)
 
@@ -6073,7 +6180,6 @@ function ctld.generateUHFrequencies()
     end
 end
 
-
 -- 220 - 399 MHZ, increments of 0.5MHZ
 --    -- first digit 3-7MHz
 --    -- second digit 0-5KHz
@@ -6116,7 +6222,6 @@ function ctld.getPositionString(_unit)
     return " @ " .. _latLngStr .. " - MGRS " .. _mgrsString
 end
 
-
 -- ***************** SETUP SCRIPT ****************
 function ctld.initialize(force)
     ctld.logInfo(string.format("Initializing version %s", ctld.Version))
@@ -6128,7 +6233,8 @@ function ctld.initialize(force)
         return
     end
 
-    assert(mist ~= nil, "\n\n** HEY MISSION-DESIGNER! **\n\nMiST has not been loaded!\n\nMake sure MiST 3.6 or higher is running\n*before* running this script!\n")
+    assert(mist ~= nil,
+        "\n\n** HEY MISSION-DESIGNER! **\n\nMiST has not been loaded!\n\nMake sure MiST 3.6 or higher is running\n*before* running this script!\n")
 
     ctld.addedTo = {}
     ctld.spawnedCratesRED = {} -- use to store crates that have been spawned
@@ -6286,7 +6392,7 @@ function ctld.initialize(force)
 
         --mark as active for refresh smoke logic to work
         -- change active to 1 / 0
-        if  _zone[3] == "yes" then
+        if _zone[3] == "yes" then
             _zone[3] = 1
         else
             _zone[3] = 0
@@ -6313,7 +6419,7 @@ function ctld.initialize(force)
     if ctld.allowRandomAiTeamPickups == true then
         ctld.redTeams = {}
         ctld.blueTeams = {}
-        for _,_loadGroup in pairs(ctld.loadableGroups) do
+        for _, _loadGroup in pairs(ctld.loadableGroups) do
             if not _loadGroup.side then
                 table.insert(ctld.redTeams, _)
                 table.insert(ctld.blueTeams, _)
@@ -6327,7 +6433,7 @@ function ctld.initialize(force)
 
     -- add total count
 
-    for _,_loadGroup in pairs(ctld.loadableGroups) do
+    for _, _loadGroup in pairs(ctld.loadableGroups) do
 
         _loadGroup.total = 0
         if _loadGroup.aa then
@@ -6369,7 +6475,7 @@ function ctld.initialize(force)
             timer.scheduleFunction(ctld.checkHoverStatus, nil, timer.getTime() + 1)
         end
 
-    end,nil, timer.getTime()+1 )
+    end, nil, timer.getTime() + 1)
 
     --event handler for deaths
     --world.addEventHandler(ctld.eventHandler)
@@ -6402,26 +6508,27 @@ function ctld.initialize(force)
     for _coalitionName, _coalitionData in pairs(env.mission.coalition) do
 
         if (_coalitionName == 'red' or _coalitionName == 'blue')
-                and type(_coalitionData) == 'table' then
+            and type(_coalitionData) == 'table' then
             if _coalitionData.country then --there is a country table
-            for _, _countryData in pairs(_coalitionData.country) do
+                for _, _countryData in pairs(_coalitionData.country) do
 
-                if type(_countryData) == 'table' then
-                    for _objectTypeName, _objectTypeData in pairs(_countryData) do
-                        if _objectTypeName == "static" then
+                    if type(_countryData) == 'table' then
+                        for _objectTypeName, _objectTypeData in pairs(_countryData) do
+                            if _objectTypeName == "static" then
 
-                            if ((type(_objectTypeData) == 'table')
+                                if ((type(_objectTypeData) == 'table')
                                     and _objectTypeData.group
                                     and (type(_objectTypeData.group) == 'table')
                                     and (#_objectTypeData.group > 0)) then
 
-                                for _groupId, _group in pairs(_objectTypeData.group) do
-                                    if _group and _group.units and type(_group.units) == 'table' then
-                                        for _unitNum, _unit in pairs(_group.units) do
-                                            if _unit.canCargo == true then
-                                                local _cargoName = env.getValueDictByKey(_unit.name)
-                                                ctld.missionEditorCargoCrates[_cargoName] = _cargoName
-                                                env.info("Crate Found: " .. _unit.name.." - Unit: ".._cargoName)
+                                    for _groupId, _group in pairs(_objectTypeData.group) do
+                                        if _group and _group.units and type(_group.units) == 'table' then
+                                            for _unitNum, _unit in pairs(_group.units) do
+                                                if _unit.canCargo == true then
+                                                    local _cargoName = env.getValueDictByKey(_unit.name)
+                                                    ctld.missionEditorCargoCrates[_cargoName] = _cargoName
+                                                    env.info("Crate Found: " .. _unit.name .. " - Unit: " .. _cargoName)
+                                                end
                                             end
                                         end
                                     end
@@ -6430,7 +6537,6 @@ function ctld.initialize(force)
                         end
                     end
                 end
-            end
             end
         end
     end
@@ -6442,9 +6548,10 @@ function ctld.initialize(force)
     env.info("CTLD READY")
 end
 
-
 -- initialize the random number generator to make it almost random
-math.random(); math.random(); math.random()
+math.random();
+math.random();
+math.random()
 
 --- Enable/Disable error boxes displayed on screen.
 env.setErrorMessageBoxEnabled(false)

@@ -56,7 +56,7 @@ namespace BriefingRoom4DCS.Generator
 
                 if (missionPackages.Any(x => x.Airbase == airbase))
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{airbase.Name}\t{airbase.Runways}\t{airbase.ATC}\t{airbase.ILS}\t{airbase.TACAN}");
-                mission.MapData.AddIfKeyUnused($"AIRBASE_${airbase.Name}", new List<Coordinates>{airbase.Coordinates});
+                mission.MapData.AddIfKeyUnused($"AIRBASE_${airbase.Name}", new List<Coordinates> { airbase.Coordinates });
                 missionPackages.Add(new DCSMissionPackage(_template.AircraftPackages.IndexOf(package), airbase));
                 mission.PopulatedAirbaseIds[_template.ContextPlayerCoalition].Add(airbase.DCSID);
             }
@@ -88,7 +88,7 @@ namespace BriefingRoom4DCS.Generator
                     ).ToList();
 
             if (opts.Count == 0)
-                if(!_template.PlayerFlightGroups.Any(x => string.IsNullOrEmpty(x.Carrier)))
+                if (!_template.PlayerFlightGroups.Any(x => string.IsNullOrEmpty(x.Carrier)))
                     return new DBEntryAirbase(Coordinates.GetCenter(_situationDB.GetBlueZone(_template.OptionsMission.Contains("InvertCountriesCoalitions")).ToArray()));
                 else
                     throw new BriefingRoomException($"No airbase found, cannot spawn player aircraft.");

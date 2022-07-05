@@ -65,7 +65,7 @@ namespace BriefingRoom4DCS.Generator
 
         internal UnitMakerCallsignGenerator CallsignGenerator { get; }
 
-        internal Dictionary<string, CarrierUnitMakerGroupInfo> carrierDictionary { get; } = new Dictionary<string, CarrierUnitMakerGroupInfo>{};
+        internal Dictionary<string, CarrierUnitMakerGroupInfo> carrierDictionary { get; } = new Dictionary<string, CarrierUnitMakerGroupInfo> { };
         private readonly List<string> IGNORE_PROPS = new List<string> { "Skill" };
 
         internal UnitMaker(
@@ -133,7 +133,7 @@ namespace BriefingRoom4DCS.Generator
             if (families.Count <= 0) throw new BriefingRoomException("No Unit Families Provided");
             DBEntryCoalition unitsCoalitionDB = CoalitionsDB[(int)((side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy())];
             var (country, units) = unitsCoalitionDB.GetRandomUnits(families, Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowLowPoly"), countMinMax: unitCountMinMax);
-            if(side == Side.Neutral)
+            if (side == Side.Neutral)
             {
                 (country, units) = GeneratorTools.GetNeutralRandomUnits(families, CoalitionsDB.SelectMany(x => x.Countries).ToList(), Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowLowPoly"), countMinMax: unitCountMinMax);
             }
@@ -223,9 +223,10 @@ namespace BriefingRoom4DCS.Generator
 
             if (unitFamily.GetUnitCategory().IsAircraft())
             {
-                if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ImmediateAircraftSpawn)) {
+                if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ImmediateAircraftSpawn))
+                {
                     dCSGroup.Name += "-IQ-";
-                    if(unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ScrambleStart))
+                    if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ScrambleStart))
                         dCSGroup.LateActivation = false;
                 }
                 else if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.RadioAircraftSpawn))
@@ -485,7 +486,7 @@ namespace BriefingRoom4DCS.Generator
             string skill,
             Country country,
             Dictionary<string, object> extraSettings,
-            bool singleUnit=false)
+            bool singleUnit = false)
         {
             if (!string.IsNullOrEmpty(unitDB.RequiredMod))
             {
@@ -544,11 +545,11 @@ namespace BriefingRoom4DCS.Generator
         }
 
         private void GetLivery(ref DCSUnit unit, DBEntryUnit unitDB, Country country, Dictionary<string, object> extraSettings)
-        {   
+        {
             var LiveryId = extraSettings.GetValueOrDefault("Livery", "default").ToString();
             if (LiveryId == "default")
-                LiveryId = unitDB.OperatorLiveries.GetValueOrDefault(country,"default");
-            unit.LiveryId =  LiveryId;
+                LiveryId = unitDB.OperatorLiveries.GetValueOrDefault(country, "default");
+            unit.LiveryId = LiveryId;
         }
 
         private void AddUnitGroupToTable(Country country, UnitCategory category, DCSGroup dCSGroup)
@@ -610,7 +611,7 @@ namespace BriefingRoom4DCS.Generator
 
         internal string GetRequiredModulesBriefing()
         {
-            if(ModUnits.Count == 0)
+            if (ModUnits.Count == 0)
                 return "";
             return "<p><strong>Required Mods:</strong><br/>" + string.Join("<br/>", ModUnits.Distinct().ToList()) + "</p>";
         }
@@ -624,7 +625,7 @@ namespace BriefingRoom4DCS.Generator
         }
 
         private (Coordinates unitCoordinates, double unitHeading) SetUnitCoordinatesAndHeading(
-            DBEntryUnit unitDB, int unitIndex, Coordinates groupCoordinates, double groupHeading, bool singleUnit=false)
+            DBEntryUnit unitDB, int unitIndex, Coordinates groupCoordinates, double groupHeading, bool singleUnit = false)
         {
             var unitCoordinates = groupCoordinates;
             var unitHeading = groupHeading;
@@ -638,7 +639,7 @@ namespace BriefingRoom4DCS.Generator
                     Coordinates offsetCoordinates = unitDB.OffsetCoordinates[unitIndex];
                     unitCoordinates = TransformFromOffset(unitHeading, groupCoordinates, offsetCoordinates);
                 }
-                else if(!singleUnit || unitDB.DCSIDs.Count() != 1) // No fixed coordinates, generate random coordinates
+                else if (!singleUnit || unitDB.DCSIDs.Count() != 1) // No fixed coordinates, generate random coordinates
                 {
                     switch (unitDB.Category)
                     {

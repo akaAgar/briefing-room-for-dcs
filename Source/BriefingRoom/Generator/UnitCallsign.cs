@@ -49,7 +49,8 @@ namespace BriefingRoom4DCS.Generator
         }
 
         internal dynamic GetLua(int unitIndex)
-        {   if (!string.IsNullOrEmpty(Lua))
+        {
+            if (!string.IsNullOrEmpty(Lua))
                 return Lua.Replace("$INDEX$", unitIndex.ToString());
             if (!LuaObj.ContainsKey(3))
                 LuaObj.Add(3, unitIndex);

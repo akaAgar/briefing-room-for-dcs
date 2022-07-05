@@ -1,7 +1,6 @@
-options = 
-{
+options = {
     ["playerName"] = "Player",
-    ["miscellaneous"] = 
+    ["miscellaneous"] =
     {
         ["allow_server_screenshots"] = false,
         ["headmove"] = false,
@@ -19,7 +18,7 @@ options =
         ["synchronize_controls"] = false,
         ["show_pilot_body"] = true,
     }, -- end of ["miscellaneous"]
-    ["difficulty"] = 
+    ["difficulty"] =
     {
         ["fuel"] = false,
         ["easyRadar"] = false,
@@ -55,7 +54,7 @@ options =
         ["userMarks"] = true,
         ["labels"] = 1,
     }, -- end of ["difficulty"]
-    ["VR"] = 
+    ["VR"] =
     {
         ["mirror_crop"] = false,
         ["enable"] = false,
@@ -72,7 +71,7 @@ options =
         ["custom_IPD"] = 63.5,
         ["hand_controllers"] = false,
     }, -- end of ["VR"]
-    ["graphics"] = 
+    ["graphics"] =
     {
         ["messagesFontScale"] = 2,
         ["forestDetailsFactor"] = 1,
@@ -114,13 +113,13 @@ options =
         ["height"] = 1440,
         ["clutterMaxDistance"] = 1000,
     }, -- end of ["graphics"]
-    ["plugins"] = 
+    ["plugins"] =
     {
-        ["Su-25T"] = 
+        ["Su-25T"] =
         {
             ["CPLocalList"] = "default",
         }, -- end of ["Su-25T"]
-        ["M-2000C"] = 
+        ["M-2000C"] =
         {
             ["FUEL_DETOT_AUTO"] = false,
             ["AOA_SHOWINHUD"] = false,
@@ -132,13 +131,13 @@ options =
             ["UNI_NODRIFT"] = false,
             ["TDC_KBPrecission"] = 100,
         }, -- end of ["M-2000C"]
-        ["A-10C_2"] = 
+        ["A-10C_2"] =
         {
             ["hmdEye"] = 1,
             ["CPLocalList"] = "aged",
             ["defaultGunMode"] = 0,
         }, -- end of ["A-10C_2"]
-        ["FC3"] = 
+        ["FC3"] =
         {
             ["CPLocalList_Su-25"] = "default",
             ["CPLocalList_Su-27"] = "default",
@@ -150,7 +149,7 @@ options =
             ["CPLocalList_MiG-29G"] = "default",
             ["CPLocalList_F-15C"] = "default",
         }, -- end of ["FC3"]
-        ["F/A-18C"] = 
+        ["F/A-18C"] =
         {
             ["abDetent"] = 0,
             ["canopyReflections"] = 0,
@@ -159,14 +158,14 @@ options =
             ["F18RealisticTDC"] = false,
             ["mfdReflections"] = 1,
         }, -- end of ["F/A-18C"]
-        ["Ka-50"] = 
+        ["Ka-50"] =
         {
             ["Ka50TrimmingMethod"] = 0,
             ["CPLocalList"] = "default",
             ["Ka50RudderTrimmer"] = false,
             ["helmetCircleDisplacement"] = 11,
         }, -- end of ["Ka-50"]
-        ["AV8BNA"] = 
+        ["AV8BNA"] =
         {
             ["INS_Alignment"] = 0,
             ["INS_GYROHasNAV"] = false,
@@ -174,7 +173,7 @@ options =
             ["USE_REAL_TDC"] = false,
             ["MPCD_EXPORT"] = false,
         }, -- end of ["AV8BNA"]
-        ["F-16C"] = 
+        ["F-16C"] =
         {
             ["abDetent"] = 0,
             ["canopyReflections"] = 0,
@@ -183,24 +182,24 @@ options =
             ["canopyTint"] = 1,
             ["mfdReflections"] = 0,
         }, -- end of ["F-16C"]
-        ["TF-51D"] = 
+        ["TF-51D"] =
         {
             ["assistance"] = 100,
             ["CPLocalList"] = "default",
             ["autoRudder"] = false,
         }, -- end of ["TF-51D"]
-        ["VRFree"] = 
+        ["VRFree"] =
         {
             ["enable"] = false,
             ["set_debug"] = false,
             ["mouseClickSrc"] = 0,
         }, -- end of ["VRFree"]
-        ["Supercarrier"] = 
+        ["Supercarrier"] =
         {
             ["enable_FLOLS_overlay"] = true,
             ["Use_native_ATC_text"] = false,
         }, -- end of ["Supercarrier"]
-        ["CaptoGlove"] = 
+        ["CaptoGlove"] =
         {
             ["shoulderJointZ_Right"] = 23,
             ["armBending"] = 60,
@@ -228,13 +227,13 @@ options =
             ["shoulderJointY_Right"] = -23,
             ["yawOffsetGlove_Right"] = 0,
         }, -- end of ["CaptoGlove"]
-        ["A-10C"] = 
+        ["A-10C"] =
         {
             ["CPLocalList"] = "default",
         }, -- end of ["A-10C"]
     }, -- end of ["plugins"]
     ["format"] = 1,
-    ["sound"] = 
+    ["sound"] =
     {
         ["main_output"] = "",
         ["FakeAfterburner"] = true,
@@ -258,9 +257,9 @@ options =
         ["voice_chat_input"] = "",
         ["gui"] = 100,
     }, -- end of ["sound"]
-    ["views"] = 
+    ["views"] =
     {
-        ["cockpit"] = 
+        ["cockpit"] =
         {
             ["mirrors"] = false,
             ["reflections"] = false,

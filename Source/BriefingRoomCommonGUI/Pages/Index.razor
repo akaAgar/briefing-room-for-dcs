@@ -12,14 +12,14 @@
     <a href="/BriefingEditor" class="btn btn-primary">@BriefingRoom.Translate("BriefingEditor")</a>
     <a href="/Manual" class="btn btn-primary">@BriefingRoom.Translate("Manual")</a>
     <div class="form-group language-selector index">
-        <label>@BriefingRoom.Translate("Language")</label>
-        <select class="form-control" @bind=@BriefingRoom.LanguageDB.Language>
-            @foreach (var key in BriefingRoom.AvailableLanguagesMap.Keys)
-            {
-                <option value="@key">@BriefingRoom.AvailableLanguagesMap[key]</option>
-            }
-        </select>
-        <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("LanguageWarning")</p>
+      <label>@BriefingRoom.Translate("Language")</label>
+      <select class="form-control" @bind=@BriefingRoom.LanguageDB.Language>
+        @foreach (var key in BriefingRoom.AvailableLanguagesMap.Keys)
+        {
+          <option value="@key">@BriefingRoom.AvailableLanguagesMap[key]</option>
+        }
+      </select>
+      <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("LanguageWarning")</p>
     </div>
   </div>
   <div class="misc-info">
@@ -31,5 +31,5 @@
 
 @code {
   [CascadingParameter]
-    public MainLayout Layout { get; set; }
+  public MainLayout Layout { get; set; }
 }

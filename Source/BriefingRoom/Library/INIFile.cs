@@ -134,9 +134,9 @@ namespace BriefingRoom4DCS
             var resultMap = new LanguageString();
             foreach (var langKey in BriefingRoom.AvailableLanguagesMap.Keys)
             {
-                var value = GetValue<string>(section, $"{key}{(langKey != "EN"? $".{langKey}" : "")}","");
-                if(!string.IsNullOrEmpty(value))
-                    resultMap.AddIfKeyUnused(langKey, '#'+value);
+                var value = GetValue<string>(section, $"{key}{(langKey != "EN" ? $".{langKey}" : "")}", "");
+                if (!string.IsNullOrEmpty(value))
+                    resultMap.AddIfKeyUnused(langKey, '#' + value);
             }
             return resultMap;
         }
@@ -236,8 +236,8 @@ namespace BriefingRoom4DCS
                 section = Sections[section].ParentSection;
                 keys.AddRange(Sections[section].Keys);
             }
-            if(ignoreLangs)
-               keys = keys.Where(x => !BriefingRoom.AvailableLanguagesMap.Keys.Any(y => x.EndsWith($".{y}"))).ToList(); 
+            if (ignoreLangs)
+                keys = keys.Where(x => !BriefingRoom.AvailableLanguagesMap.Keys.Any(y => x.EndsWith($".{y}"))).ToList();
             return keys.Distinct().OrderBy(x => x).ToArray();
         }
 
@@ -396,7 +396,7 @@ namespace BriefingRoom4DCS
             Type type = typeof(T);
 
             object outObject = defaultValue;
-            if(string.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
                 return (T)outObject;
             if (type == typeof(bool))
                 outObject = Convert.ToBoolean(value, NumberFormatInfo.InvariantInfo);
@@ -412,20 +412,20 @@ namespace BriefingRoom4DCS
                 outObject = Enum.Parse(typeof(T), value, true);
             else if (type == typeof(Coordinates))
             {
-                    object obj = new Coordinates(value);
-                    return (T)obj;
+                object obj = new Coordinates(value);
+                return (T)obj;
             }
             else if (type == typeof(MinMaxD))
             {
-                    string[] minMaxStr = value.Split(',');
-                    object obj = new MinMaxD(Convert.ToDouble(minMaxStr[0].Trim(), NumberFormatInfo.InvariantInfo), Convert.ToDouble(minMaxStr[1].Trim(), NumberFormatInfo.InvariantInfo));
-                    return (T)obj;
+                string[] minMaxStr = value.Split(',');
+                object obj = new MinMaxD(Convert.ToDouble(minMaxStr[0].Trim(), NumberFormatInfo.InvariantInfo), Convert.ToDouble(minMaxStr[1].Trim(), NumberFormatInfo.InvariantInfo));
+                return (T)obj;
             }
             else if (type == typeof(MinMaxI))
             {
-                    string[] minMaxStr = value.Split(',');
-                    object obj = new MinMaxI(Convert.ToInt32(minMaxStr[0].Trim(), NumberFormatInfo.InvariantInfo), Convert.ToInt32(minMaxStr[1].Trim(), NumberFormatInfo.InvariantInfo));
-                    return (T)obj;
+                string[] minMaxStr = value.Split(',');
+                object obj = new MinMaxI(Convert.ToInt32(minMaxStr[0].Trim(), NumberFormatInfo.InvariantInfo), Convert.ToInt32(minMaxStr[1].Trim(), NumberFormatInfo.InvariantInfo));
+                return (T)obj;
             }
 
             return (T)outObject;

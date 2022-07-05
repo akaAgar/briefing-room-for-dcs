@@ -24,13 +24,10 @@ namespace BriefingRoom4DCS.Template
 {
     public enum PlayerStartLocation
     {
-        [Display(Name = "Parking, cold", Description = "Player(s) start on ramp, plane cold, and must perform the start up procedure.")]
         ParkingCold,
 
-        [Display(Name = "Parking, hot", Description = "Player(s) start on ramp, plane hot, ready to taxi to the runway.")]
         ParkingHot,
 
-        [Display(Name = "Runway", Description = "Player(s) start on the runway, ready to takoff. Not available in multiplayer missions (automatically changed to \"Parking, hot\").")]
         Runway
     }
 }

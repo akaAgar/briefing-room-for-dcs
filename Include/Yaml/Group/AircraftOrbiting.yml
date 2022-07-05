@@ -8,7 +8,7 @@ waypoints:
   - alt: $ALTITUDE$
     action: Turning Point
     speed: $SPEED$
-    tasks: 
+    tasks:
       - id: Orbit
         parameters:
           altitude: $ALTITUDE$

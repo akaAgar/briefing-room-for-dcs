@@ -27,10 +27,10 @@ namespace BriefingRoom4DCS.Data
 {
     public class DatabaseLanguage
     {
-        public Dictionary<string,LanguageString> LangMap { get; private set; }
+        public Dictionary<string, LanguageString> LangMap { get; private set; }
 
-        public string Language {get; set;} = "EN";
-    
+        public string Language { get; set; } = "EN";
+
         public DatabaseLanguage() { }
 
         public void Load()
@@ -40,12 +40,12 @@ namespace BriefingRoom4DCS.Data
             string directory = $"{BRPaths.DATABASE}Language";
             if (!Directory.Exists(directory))
                 throw new Exception($"Directory {directory} not found.");
-            
+
             foreach (string filePath in Directory.EnumerateFiles(directory, "*.ini", SearchOption.AllDirectories))
             {
                 string id = Path.GetFileNameWithoutExtension(filePath).Replace(",", "").Trim(); // No commas in file names, so we don't break comma-separated arrays
 
-                
+
                 LoadValues(filePath);
                 BriefingRoom.PrintToLog($"Loaded {filePath} \"{id}\"");
             }
@@ -59,12 +59,12 @@ namespace BriefingRoom4DCS.Data
                 foreach (var key in ini.GetKeysInSection(section, true))
                 {
                     var upperKey = key.ToUpper();
-                    if(LangMap.ContainsKey(upperKey))
+                    if (LangMap.ContainsKey(upperKey))
                     {
                         BriefingRoom.PrintToLog($"Duplicate Lang Key {key}", LogMessageErrorLevel.Warning);
                         continue;
                     }
-                    LangMap.Add(upperKey, ini.GetLangStrings(section,key));
+                    LangMap.Add(upperKey, ini.GetLangStrings(section, key));
                 }
             }
         }

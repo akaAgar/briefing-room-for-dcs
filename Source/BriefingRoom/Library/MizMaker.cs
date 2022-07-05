@@ -38,7 +38,7 @@ namespace BriefingRoom4DCS
 
             AddStringValueToEntries(MizFileEntries, "briefing.html", mission.Briefing.GetBriefingAsHTML(true));
             AddStringValueToEntries(MizFileEntries, "credits.txt", $"Generated with BriefingRoom for DCS World (https://akaagar.itch.io/briefing-room-for-dcs) {BriefingRoom.VERSION} ({BriefingRoom.BUILD_VERSION})");
-            if(template != null)
+            if (template != null)
                 AddStringValueToEntries(MizFileEntries, "template.brt", Encoding.ASCII.GetString(template.GetIniBytes()));
             AddLuaFileToEntries(MizFileEntries, "mission", "Mission.lua", mission);
             AddLuaFileToEntries(MizFileEntries, "options", "Options.lua", null);

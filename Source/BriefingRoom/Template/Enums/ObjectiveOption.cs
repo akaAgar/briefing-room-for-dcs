@@ -24,16 +24,12 @@ namespace BriefingRoom4DCS.Template
 {
     public enum ObjectiveOption
     {
-        [Display(Name = "Embedded air defense", Description = "Spawn a short-range air defense group near the target, if air defense is enabled for the target's coalition in the mission template.")]
         EmbeddedAirDefense,
 
-        [Display(Name = "Hide target", Description = "Target is always hidden on the map, no matter the \"fog of war\" preferences. Ignored if \"Show target\" is set.")]
         HideTarget,
 
-        [Display(Name = "Inaccurate waypoint", Description = "Waypoint will not be spawned on the target itself (or at the target's initial position for moving targets) but a few nautical miles away, so player(s) will have to search for it.")]
         InaccurateWaypoint,
 
-        [Display(Name = "Show target", Description = "Target is always visible on the map, no matter the \"fog of war\" preferences. Overrides \"Hide target\".")]
         ShowTarget,
         Invisible,
     }

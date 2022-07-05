@@ -24,14 +24,14 @@ namespace LuaTableSerialiser
         {
             try
             {
-                return item.GetType().GetMethod("ToLuaString").Invoke(item, new object []{index});
+                return item.GetType().GetMethod("ToLuaString").Invoke(item, new object[] { index });
             }
             catch (System.Exception e)
             {
                 Console.WriteLine(e);
                 throw new ArgumentOutOfRangeException(nameof(item), $"Not expected value Type value: {item}");
             }
-            
+
         }
 
         private static string ConvertKey(object key) => key switch
@@ -40,7 +40,7 @@ namespace LuaTableSerialiser
             int => $"[{key}]",
             _ => throw new ArgumentOutOfRangeException(nameof(key), $"Not expected key Type value: {key}")
         };
-        
+
         private static string DictToLua<T>(T data, int nesting) where T : IDictionary
         {
             var str = "{";
@@ -69,7 +69,7 @@ namespace LuaTableSerialiser
         {
             var value = data
                 .Replace("\\", "\\\\")
-                .Replace("\t","\\t")
+                .Replace("\t", "\\t")
                 .Replace("\n", "\\n")
                 .Replace("\r", "\\r")
                 .Replace("\"", "\\\"")

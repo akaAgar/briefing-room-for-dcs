@@ -38,7 +38,7 @@ namespace BriefingRoom4DCS
     public static class DrawingColourExtensions
     {
         public static string ToValue(this DrawingColour colour) => colour switch
-        {   
+        {
             DrawingColour.Black => "0x000000ff",
             DrawingColour.Red => "0xff0000ff",
             DrawingColour.RedFill => "0xff000022",

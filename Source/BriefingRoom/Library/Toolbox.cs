@@ -108,11 +108,11 @@ namespace BriefingRoom4DCS
         {
             var dict = new Dictionary<string, object>();
             var regex = new Regex("\\[\\\"(.*?)\\\"\\] ?= ?(.*)");
-            if(string.IsNullOrEmpty(dataStr))
+            if (string.IsNullOrEmpty(dataStr))
                 return dict;
             foreach (string str in dataStr.Split(","))
             {
-                if(!regex.IsMatch(str))
+                if (!regex.IsMatch(str))
                     throw new Exception($"Invalid Lua {dataStr}");
                 var match = regex.Match(str);
                 dict.Add(match.Groups[1].Value, DeterminType(match.Groups[2].Value));
@@ -120,15 +120,16 @@ namespace BriefingRoom4DCS
             return dict;
         }
 
-        internal static object DeterminType(object value){
+        internal static object DeterminType(object value)
+        {
             if (!(value is string))
                 return value;
             var strVal = value as string;
-            if(bool.TryParse(strVal, out bool boolVal))
+            if (bool.TryParse(strVal, out bool boolVal))
                 return boolVal;
-            if(int.TryParse(strVal, out int intVal))
+            if (int.TryParse(strVal, out int intVal))
                 return intVal;
-            if(float.TryParse(strVal, out float floatVal))
+            if (float.TryParse(strVal, out float floatVal))
                 return floatVal;
             return strVal;
         }

@@ -66,11 +66,12 @@
             litems = BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DataBaseType, Grouping);
         else
             litems = BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DataBaseType);
-        
-        if(!litems.Select(x => x.ID).Contains(Value) && Value != "" && (string.IsNullOrEmpty(CustomOpt) || Value != CustomOpt.Split(",")[1]))
-            if(!string.IsNullOrEmpty(CustomOpt))
+
+        if (!litems.Select(x => x.ID).Contains(Value) && Value != "" && (string.IsNullOrEmpty(CustomOpt) || Value !=
+        CustomOpt.Split(",")[1]))
+            if (!string.IsNullOrEmpty(CustomOpt))
                 _ = ValueChangedChild(CustomOpt.Split(",")[1]);
-            else if(!string.IsNullOrEmpty(EmptOpt))
+            else if (!string.IsNullOrEmpty(EmptOpt))
                 _ = ValueChangedChild("");
             else
                 _ = ValueChangedChild(litems[0].ID);

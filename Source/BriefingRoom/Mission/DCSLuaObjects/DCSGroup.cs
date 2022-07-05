@@ -28,13 +28,13 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 
         public bool? HiddenOnMFD { get; set; }
 
-        public bool Dead {get; set;}
+        public bool Dead { get; set; }
 
-        public bool RadioSet {get; set;} = false;
+        public bool RadioSet { get; set; } = false;
 
         public string ToLuaString(int number)
-        {   
-            if(Static) return ToLuaStringStatic(number);
+        {
+            if (Static) return ToLuaStringStatic(number);
             var obj = new Dictionary<string, object> {
                 {"lateActivation", LateActivation},
                 {"modulation", Modulation},
@@ -58,7 +58,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"visible", Visible},
                 {"hiddenOnMFD", Visible},
             };
-            if(RadioSet)
+            if (RadioSet)
                 obj.Add("radioSet", true);
             return LuaSerialiser.Serialize(obj.Where(x => x.Value != null).ToDictionary(x => x.Key, x => x.Value));
         }
@@ -80,7 +80,8 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             return LuaSerialiser.Serialize(obj);
         }
 
-        public static DCSGroup YamlToGroup(string yaml){
+        public static DCSGroup YamlToGroup(string yaml)
+        {
             foreach (Match match in Regex.Matches(yaml, "\\$.*?\\$"))
                 BriefingRoom.PrintToLog($"Found a non-assigned value ({match.Value}) in Group Yaml \"{yaml}\".", LogMessageErrorLevel.Info);
             yaml = Regex.Replace(yaml, "\\$.*?\\$", "0");
@@ -89,7 +90,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             .Build();
             try
             {
-                return deserializer.Deserialize<Mission.DCSLuaObjects.DCSGroup>(yaml); 
+                return deserializer.Deserialize<Mission.DCSLuaObjects.DCSGroup>(yaml);
             }
             catch (System.Exception e)
             {

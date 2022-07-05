@@ -55,11 +55,11 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"formation_template", ""},
                 {"speed_locked", SpeedLocked}
             };
-            if(AirdromeId != default && LinkUnit == default)
+            if (AirdromeId != default && LinkUnit == default)
                 obj.Add("airdromeId", AirdromeId);
-            if(LinkUnit != default)
+            if (LinkUnit != default)
                 obj.Add("linkUnit", LinkUnit);
-            if(HelipadId != default)
+            if (HelipadId != default)
                 obj.Add("helipadId", HelipadId);
             return LuaSerialiser.Serialize(obj);
         }

@@ -16,7 +16,7 @@ waypoints:
   - alt: $ALTITUDE$
     action: Turning Point
     speed: $SPEED$
-    tasks: 
+    tasks:
       - id: CarpetBombing
         parameters:
           attackType: "Carpet"
@@ -26,7 +26,7 @@ waypoints:
           expend: All
           y: $GROUPY2$
           groupAttack: true
-          altitude:  $ALTITUDE$
+          altitude: $ALTITUDE$
           altitudeEnabled: false
           weaponType: 3221225470
           x: $GROUPX2$

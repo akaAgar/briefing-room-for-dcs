@@ -12,7 +12,7 @@ waypoints:
     #   angle: 0
     #   steer: 2
     speed: $SPEED$
-    tasks: 
+    tasks:
       - id: EPLRS
         parameters:
           wrapped: true

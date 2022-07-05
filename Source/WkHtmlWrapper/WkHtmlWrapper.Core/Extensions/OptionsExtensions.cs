@@ -19,7 +19,7 @@ namespace WkHtmlWrapper.Core.Extensions
         {
             var propertyName = property.GetCustomAttribute<ConsoleLineParameterAttribute>().ParameterName;
             var (propertyValue, skipProperty) = OptionsPropertyValueToString(options, property);
-            return skipProperty 
+            return skipProperty
                 ? string.Empty
                 : $"{propertyName}{(string.IsNullOrEmpty(propertyValue) ? string.Empty : $" {propertyValue}")}";
         }

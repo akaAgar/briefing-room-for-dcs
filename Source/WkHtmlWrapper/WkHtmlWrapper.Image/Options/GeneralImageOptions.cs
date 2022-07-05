@@ -16,7 +16,7 @@ namespace WkHtmlWrapper.Image.Options
 
         [ConsoleLineParameter("--crop-y")]
         public int CropY { get; set; }
-        
+
         [ConsoleLineParameter("--height")]
         public int Height { get; set; }
 

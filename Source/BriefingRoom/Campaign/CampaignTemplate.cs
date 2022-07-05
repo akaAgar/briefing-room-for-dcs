@@ -70,13 +70,13 @@ namespace BriefingRoom4DCS.Campaign
         public AmountNR SituationFriendlySkill { get; set; }
         public AmountNR SituationFriendlyAirDefense { get; set; }
         public AmountNR SituationFriendlyAirForce { get; set; }
-        public int CombinedArmsCommanderBlue  { get { return CombinedArmsCommanderBlue_; } set { CombinedArmsCommanderBlue_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
+        public int CombinedArmsCommanderBlue { get { return CombinedArmsCommanderBlue_; } set { CombinedArmsCommanderBlue_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
         private int CombinedArmsCommanderBlue_;
-        public int CombinedArmsCommanderRed  { get { return CombinedArmsCommanderRed_; } set { CombinedArmsCommanderRed_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
+        public int CombinedArmsCommanderRed { get { return CombinedArmsCommanderRed_; } set { CombinedArmsCommanderRed_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
         private int CombinedArmsCommanderRed_;
-        public int CombinedArmsJTACBlue  { get { return CombinedArmsJTACBlue_; } set { CombinedArmsJTACBlue_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
+        public int CombinedArmsJTACBlue { get { return CombinedArmsJTACBlue_; } set { CombinedArmsJTACBlue_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
         private int CombinedArmsJTACBlue_;
-        public int CombinedArmsJTACRed  { get { return CombinedArmsJTACRed_; } set { CombinedArmsJTACRed_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
+        public int CombinedArmsJTACRed { get { return CombinedArmsJTACRed_; } set { CombinedArmsJTACRed_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
         private int CombinedArmsJTACRed_;
 
         public CampaignTemplate()
@@ -123,7 +123,7 @@ namespace BriefingRoom4DCS.Campaign
             OptionsRealism = new RealismOption[] { RealismOption.DisableDCSRadioAssists, RealismOption.NoBDA }.ToList();
             var fg = new MissionTemplateFlightGroup();
             fg.AIWingmen = true;
-            PlayerFlightGroups = new List<MissionTemplateFlightGroup>{fg};
+            PlayerFlightGroups = new List<MissionTemplateFlightGroup> { fg };
             PlayerStartingAirbase = "";
 
             SituationEnemySkill = AmountNR.Random;
@@ -184,7 +184,7 @@ namespace BriefingRoom4DCS.Campaign
             foreach (string key in ini.GetTopLevelKeysInSection("PlayerFlightGroups"))
                 PlayerFlightGroups.Add(new MissionTemplateFlightGroup(ini, "PlayerFlightGroups", key));
 
-            if(PlayerFlightGroups.Count == 0) // Redundancy vs old single player version
+            if (PlayerFlightGroups.Count == 0) // Redundancy vs old single player version
                 PlayerFlightGroups.Add(new MissionTemplateFlightGroup(ini, "PlayerFlightGroups", "Player"));
 
             PlayerStartingAirbase = ini.GetValue("Player", "StartingAirbase", PlayerStartingAirbase);

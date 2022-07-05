@@ -38,9 +38,9 @@ namespace BriefingRoom4DCS.Template
         internal List<int> ObjectiveIndexes { get; init; }
         internal string Livery { get; init; }
         internal string OverrideRadioFrequency { get; init; } = "";
-        internal RadioModulation OverrideRadioBand { get; init; } =  RadioModulation.AM;
-        internal string OverrideCallsignName { get; set; } =  "";
-        internal int OverrideCallsignNumber { get; set; } =  1;
+        internal RadioModulation OverrideRadioBand { get; init; } = RadioModulation.AM;
+        internal string OverrideCallsignName { get; set; } = "";
+        internal int OverrideCallsignNumber { get; set; } = 1;
 
 
         internal MissionTemplateFlightGroupRecord(MissionTemplateFlightGroup flightGroup)

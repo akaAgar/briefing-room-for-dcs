@@ -43,6 +43,6 @@
     private bool LogsIfAboveWarn(Tuple<LogMessageErrorLevel, string> x) =>
     x.Item1 == LogMessageErrorLevel.Warning || x.Item1 == LogMessageErrorLevel.Error;
 
-    private List<Tuple<LogMessageErrorLevel, string>> GetLastRunLogs() => 
-        logs.Skip(logs.LastIndexOf (logs.Last(x => x.Item2 == "Generating mission date and time..."))).ToList();
+    private List<Tuple<LogMessageErrorLevel, string>> GetLastRunLogs() =>
+    logs.Skip(logs.LastIndexOf(logs.Last(x => x.Item2 == "Generating mission date and time..."))).ToList();
 }

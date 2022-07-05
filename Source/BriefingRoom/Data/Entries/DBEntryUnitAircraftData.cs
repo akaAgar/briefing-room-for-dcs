@@ -70,7 +70,7 @@ namespace BriefingRoom4DCS.Data
 
         internal List<string> Liveries { get; private set; }
 
-        internal List<string> Callsigns { get; private set; } = new List<string>{"1:Enfield","2:Springfield","3:Uzi","4:Colt","5:Dodge","6:Ford","7:Chevy" ,"8:Pontiac"};
+        internal List<string> Callsigns { get; private set; } = new List<string> { "1:Enfield", "2:Springfield", "3:Uzi", "4:Colt", "5:Dodge", "6:Ford", "7:Chevy", "8:Pontiac" };
 
         internal DBEntryUnitAircraftData() { }
 
@@ -122,11 +122,11 @@ namespace BriefingRoom4DCS.Data
             };
             Liveries.AddRange(ini.GetValueArray<string>("Aircraft", "Liveries"));
             GetDCSLiveries(ini.GetValue<string>("Aircraft", "DCSLiveriesName", ini.GetValue<string>("Unit", "DCSID")));
-            
+
             var callsigns = ini.GetValueList<string>("Aircraft", "Callsigns");
-            if(callsigns.Count > 0)
+            if (callsigns.Count > 0)
             {
-                if(callsigns[0].StartsWith("1"))
+                if (callsigns[0].StartsWith("1"))
                     Callsigns = callsigns;
                 else
                     Callsigns = callsigns.Concat(Callsigns).ToList();
@@ -192,13 +192,13 @@ namespace BriefingRoom4DCS.Data
                     }
                     BriefingRoom.PrintToLog($"Imported payload {task} for {DCSID}");
                 }
-                
+
             }
             catch (System.Exception)
             {
                 BriefingRoom.PrintToLog($"Cannot parse player payloads for {DCSID}. Likely as a payload name isn't happy with our parser, Reccomend you remove any of these characters {{}}/\\: from your custom payload names.", LogMessageErrorLevel.Warning);
             }
-            
+
         }
 
         private void GetDCSLiveries(string DCSID)
@@ -222,10 +222,10 @@ namespace BriefingRoom4DCS.Data
             foreach (var item in Directory.GetFiles(Path.Join(folderPath, $"{DCSID}"), "*.*", SearchOption.TopDirectoryOnly))
             {
                 var rawFileName = item.Replace(".zip", "").Split("\\").Last();
-                if(!Liveries.Contains(rawFileName))
+                if (!Liveries.Contains(rawFileName))
                     Liveries.Add(rawFileName);
             }
-           
+
         }
     }
 }

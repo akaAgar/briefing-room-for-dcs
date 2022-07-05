@@ -24,22 +24,16 @@ namespace BriefingRoom4DCS.Template
 {
     public enum TimeOfDay
     {
-        [Display(Name = "Random", Description = "Any time of the day or night.")]
         Random,
 
-        [Display(Name = "Random, daytime", Description = "Any time during daylight hours.")]
         RandomDaytime,
 
-        [Display(Name = "Dawn", Description = "Just after sunrise.")]
         Dawn,
 
-        [Display(Name = "Noon", Description = "In the middle of the day.")]
         Noon,
 
-        [Display(Name = "Twilight", Description = "Just before sunset.")]
         Twilight,
 
-        [Display(Name = "Night", Description = "At night.")]
         Night
     }
 }

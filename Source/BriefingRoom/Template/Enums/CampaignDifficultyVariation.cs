@@ -24,28 +24,20 @@ namespace BriefingRoom4DCS.Template
 {
     public enum CampaignDifficultyVariation
     {
-        [Display(Name = "Random", Description = "Pick a difficulty variation randomly.")]
         Random,
 
-        [Display(Name = "Considerably easier", Description = "Campaign become a lot easier as the player completes missions.")]
         ConsiderablyEasier,
 
-        [Display(Name = "Much easier", Description = "Campaign become easier as the player completes missions.")]
         MuchEasier,
 
-        [Display(Name = "Somewhat easier", Description = "Campaign become somewhat easier as the player completes missions.")]
         SomewhatEasier,
 
-        [Display(Name = "Steady", Description = "Campaign difficulty stays the same during all missions.")]
         Steady,
 
-        [Display(Name = "Somewhat harder", Description = "Campaign become somewhat harder as the player completes missions.")]
         SomewhatHarder,
 
-        [Display(Name = "Much harder", Description = "Campaign become harder as the player completes missions.")]
         MuchHarder,
 
-        [Display(Name = "Considerably harder", Description = "Campaign become a lot harder as the player completes missions.")]
         ConsiderablyHarder
     }
 }

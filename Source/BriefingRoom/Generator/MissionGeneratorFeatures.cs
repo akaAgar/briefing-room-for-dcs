@@ -69,8 +69,8 @@ namespace BriefingRoom4DCS.Generator
 
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ImmediateAircraftActivation))
                     groupFlags |= UnitMakerGroupFlags.ImmediateAircraftSpawn;
-                
-                if(_template.MissionFeatures.Contains("ContextScrambleStart"))
+
+                if (_template.MissionFeatures.Contains("ContextScrambleStart"))
                     groupFlags |= UnitMakerGroupFlags.ScrambleStart;
 
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.RadioAircraftActivation))
@@ -78,7 +78,7 @@ namespace BriefingRoom4DCS.Generator
 
                 Side groupSide = Side.Enemy;
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly)) groupSide = Side.Ally;
-                else if(featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Neutral)) groupSide = Side.Neutral;
+                else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Neutral)) groupSide = Side.Neutral;
                 else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.SameSideAsTarget) && objectiveTargetSide.HasValue) groupSide = objectiveTargetSide.Value;
 
                 if (hideEnemy && groupSide == Side.Enemy)
@@ -173,9 +173,9 @@ namespace BriefingRoom4DCS.Generator
         {
             if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.TACAN) && (featureDB.UnitGroupFamilies.Length > 0))
             {
-                var callsign = (GetType() == typeof(MissionGeneratorFeaturesObjectives) && extraSettings.ContainsKey("ObjectiveName")) ? extraSettings["ObjectiveName"].ToString().Substring(0,3) : $"{GeneratorTools.GetTACANCallsign(featureDB.UnitGroupFamilies[0])}{TACANIndex}";
-                if(extraSettings.ContainsKey("TACAN_NAME"))
-                    callsign = extraSettings["TACAN_NAME"].ToString().Substring(0,3);
+                var callsign = (GetType() == typeof(MissionGeneratorFeaturesObjectives) && extraSettings.ContainsKey("ObjectiveName")) ? extraSettings["ObjectiveName"].ToString().Substring(0, 3) : $"{GeneratorTools.GetTACANCallsign(featureDB.UnitGroupFamilies[0])}{TACANIndex}";
+                if (extraSettings.ContainsKey("TACAN_NAME"))
+                    callsign = extraSettings["TACAN_NAME"].ToString().Substring(0, 3);
                 var channel = ((GetType() == typeof(MissionGeneratorFeaturesObjectives)) ? 31 : 25) + TACANIndex;
                 extraSettings.AddIfKeyUnused("TACANFrequency", 1108000000);
                 extraSettings.AddIfKeyUnused("TACANCallsign", callsign);
@@ -209,7 +209,7 @@ namespace BriefingRoom4DCS.Generator
                 var unitFamily = Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
                 var luaUnit = featureDB.UnitGroupLuaUnit;
                 Coordinates? spawnCoords;
-                if(featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ExtraGroupsNearby))
+                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ExtraGroupsNearby))
                     spawnCoords = _unitMaker.SpawnPointSelector.GetNearestSpawnPoint(featureDB.UnitGroupValidSpawnPoints, coordinates);
                 else
                     spawnCoords = _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
@@ -217,10 +217,10 @@ namespace BriefingRoom4DCS.Generator
                         new MinMaxD(0, 5),
                         coalition: GeneratorTools.GetSpawnPointCoalition(_template, groupSide)
                         );
-                
+
                 if (!spawnCoords.HasValue)
                     continue;
-                
+
 
                 SetAirbase(featureDB, ref mission, unitFamily, ref groupLua, ref luaUnit, groupSide, ref coordinates, coordinates2, unitCount, ref extraSettings);
 

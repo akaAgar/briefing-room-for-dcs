@@ -7,7 +7,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 {
     public class DCSUnit
     {
-        internal DCSUnit(){}
+        internal DCSUnit() { }
         internal DCSUnit(string unitType)
         {
             this.unitType = unitType;
@@ -55,7 +55,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             "Static" => ToLuaStringStatic(number),
             "StaticFOB" => ToLuaStringStaticFOB(number),
             "Vehicle" => ToLuaStringVehicle(number),
-                _ => throw new BriefingRoomException($"Unsupported unit type {unitType}"),
+            _ => throw new BriefingRoomException($"Unsupported unit type {unitType}"),
         };
 
 
@@ -80,9 +80,9 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"callsign", Callsign},
                 {"onboard_num", OnboardNum},
             };
-            if(Skill == "Player" || Skill == "Client")
+            if (Skill == "Player" || Skill == "Client")
                 obj.Add("Radio", RadioPresets);
-            if(Parking > 0)
+            if (Parking > 0)
                 obj.Add("parking", Parking);
             return LuaSerialiser.Serialize(obj);
         }

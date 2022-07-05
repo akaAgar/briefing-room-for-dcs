@@ -4,7 +4,7 @@ using WkHtmlWrapper.Core.Options.Interfaces;
 
 namespace WkHtmlWrapper.Core.Converters.Interfaces
 {
-    public interface IConverter<TOptions> where TOptions: IOptions
+    public interface IConverter<TOptions> where TOptions : IOptions
     {
         Task<string> ConvertAsync(string html, string outputFile);
 

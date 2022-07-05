@@ -6,7 +6,7 @@ waypoints:
   - alt: $ALTITUDE$
     action: Turning Point
     speed: $SPEED$
-    tasks: 
+    tasks:
       - id: EngageTargets
         key: CAP
         parameters:

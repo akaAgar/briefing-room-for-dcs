@@ -34,7 +34,7 @@ namespace BriefingRoom4DCS
     public sealed class BriefingRoom
     {
         public static string TARGETED_DCS_WORLD_VERSION { get; private set; }
-        public static Dictionary<string,string>  AvailableLanguagesMap { get; private set; }
+        public static Dictionary<string, string> AvailableLanguagesMap { get; private set; }
 
         public static DatabaseLanguage LanguageDB { get; private set; }
 
@@ -57,10 +57,10 @@ namespace BriefingRoom4DCS
         {
             INIFile ini = new($"{BRPaths.DATABASE}Common.ini");
             TARGETED_DCS_WORLD_VERSION = ini.GetValue("Versions", "DCSVersion", "2.7");
-            
-            AvailableLanguagesMap = new Dictionary<string, string>{{"EN", "English"}};
+
+            AvailableLanguagesMap = new Dictionary<string, string> { { "EN", "English" } };
             foreach (var key in ini.GetKeysInSection("Languages"))
-               AvailableLanguagesMap.AddIfKeyUnused(key, ini.GetValue<string>("Languages", key)); 
+                AvailableLanguagesMap.AddIfKeyUnused(key, ini.GetValue<string>("Languages", key));
 
 
             OnMessageLogged += logHandler;
@@ -147,7 +147,7 @@ namespace BriefingRoom4DCS
 
         public static List<string> GetAircraftLiveries(string aircraftID) =>
             Database.Instance.GetEntry<DBEntryUnit>(aircraftID).AircraftData.Liveries;
-        
+
         public static List<string> GetAircraftCallsigns(string aircraftID) =>
             Database.Instance.GetEntry<DBEntryUnit>(aircraftID).AircraftData.Callsigns;
 
@@ -215,7 +215,7 @@ namespace BriefingRoom4DCS
         internal static void PrintToLog(string message, LogMessageErrorLevel errorLevel = LogMessageErrorLevel.Info)
         {
             OnMessageLogged?.Invoke(message, errorLevel);
-            if(errorLevel == LogMessageErrorLevel.Warning || errorLevel == LogMessageErrorLevel.Error)
+            if (errorLevel == LogMessageErrorLevel.Warning || errorLevel == LogMessageErrorLevel.Error)
                 Console.WriteLine($"{errorLevel}: {message}");
         }
     }

@@ -53,7 +53,7 @@ namespace BriefingRoom4DCS.Campaign
                 var template = CreateMissionTemplate(campaignTemplate, campaign.Name, i, (int)campaignTemplate.MissionsObjectiveCount);
 
                 var mission = await MissionGenerator.GenerateRetryableAsync(template, true);
-            
+
                 if (mission == null)
                 {
                     BriefingRoom.PrintToLog($"Failed to generate mission {i + 1} in the campaign.", LogMessageErrorLevel.Warning);

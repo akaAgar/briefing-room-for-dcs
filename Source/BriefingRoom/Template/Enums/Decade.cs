@@ -24,31 +24,22 @@ namespace BriefingRoom4DCS.Template
 {
     public enum Decade
     {
-        [Display(Name = "1940s (World war 2)", Description = "A random year between 1942 and 1945.")]
         Decade1940,
 
-        [Display(Name = "1950s", Description = "A random year between 1950 and 1959.")]
         Decade1950,
 
-        [Display(Name = "1960s", Description = "A random year between 1960 and 1969.")]
         Decade1960,
 
-        [Display(Name = "1970s", Description = "A random year between 1970 and 1979.")]
         Decade1970,
 
-        [Display(Name = "1980s", Description = "A random year between 1980 and 1989.")]
         Decade1980,
 
-        [Display(Name = "1990s", Description = "A random year between 1990 and 1999.")]
         Decade1990,
 
-        [Display(Name = "2000s", Description = "A random year between 2000 and 2009.")]
         Decade2000,
 
-        [Display(Name = "2010s", Description = "A random year between 2010 and 2019.")]
         Decade2010,
 
-        [Display(Name = "2020s", Description = "A random year between 2020 and 2029.")]
         Decade2020
     }
 }

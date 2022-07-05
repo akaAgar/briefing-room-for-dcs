@@ -1,7 +1,7 @@
 
 using System.Collections.Generic;
 
-namespace LuaTableSerialiser 
+namespace LuaTableSerialiser
 {
     public class LuaSerialiser
     {

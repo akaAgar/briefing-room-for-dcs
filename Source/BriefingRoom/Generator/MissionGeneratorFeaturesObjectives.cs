@@ -50,7 +50,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 coordinates = objectiveCoordinates + Coordinates.CreateRandom(10, 50);
             }
-            else if(FeatureHasUnitGroup(featureDB))
+            else if (FeatureHasUnitGroup(featureDB))
             {
                 Coordinates? spawnPoint =
                     _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
@@ -66,7 +66,7 @@ namespace BriefingRoom4DCS.Generator
                 coordinates = spawnPoint;
             }
 
-            if(coordinates.HasValue)
+            if (coordinates.HasValue)
                 coordinates2 = coordinates.Value + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
 
             Dictionary<string, object> extraSettings = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
@@ -76,10 +76,10 @@ namespace BriefingRoom4DCS.Generator
 
             if (featureID == "TargetDesignationLaser")
             {
-                var laserCode =  _template.OptionsMission.Contains("SingleLaserCode") ? 1688 : getNextLaserCode();
+                var laserCode = _template.OptionsMission.Contains("SingleLaserCode") ? 1688 : getNextLaserCode();
                 extraSettings.AddIfKeyUnused("LASERCODE", laserCode);
                 mission.Briefing.AddItem(DCSMissionBriefingItemType.JTAC, $"{objectiveName}\t{laserCode}");
-                
+
             }
 
             UnitMakerGroupInfo? groupInfo = AddMissionFeature(

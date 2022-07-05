@@ -13,31 +13,35 @@
     AcceptString=".miz" />
 </div>
 <div class="generator-group">
-   <div class="generator-form">
-  <div>
-    @if (!string.IsNullOrEmpty(errorMessage))
-    {
-      <div class="alert alert-danger" role="alert">
-        Error: @errorMessage
-      </div>
-    }
-  </div>
-  <div class="full-width">
-    <h2>@BriefingRoom.Translate("Situation")</h2>
-    <textarea @bind="situation" class="form-control long" spellcheck="true" placeholder=@BriefingRoom.Translate("SituationPlaceholder")></textarea>
-  </div>
-  <div class="full-width">
-    <h2>@BriefingRoom.Translate("BlueTask")</h2>
-    <textarea @bind="blueTask" class="form-control short" spellcheck="true" placeholder=@BriefingRoom.Translate("BlueTaskPlaceholder")></textarea>
-  </div>
-  <div class="full-width">
-    <h2>@BriefingRoom.Translate("RedTask")</h2>
-    <textarea @bind="redTask" class="form-control short" spellcheck="true" placeholder=@BriefingRoom.Translate("RedTaskPlaceholder")></textarea>
-  </div>
-  <div class="full-width">
-    <h2>@BriefingRoom.Translate("NeutralTask")</h2>
-    <textarea @bind="neutralTask" class="form-control short" spellcheck="true" placeholder=@BriefingRoom.Translate("NeutralTaskPlaceholder")></textarea>
-  </div>
+  <div class="generator-form">
+    <div>
+      @if (!string.IsNullOrEmpty(errorMessage))
+      {
+        <div class="alert alert-danger" role="alert">
+          Error: @errorMessage
+        </div>
+      }
+    </div>
+    <div class="full-width">
+      <h2>@BriefingRoom.Translate("Situation")</h2>
+      <textarea @bind="situation" class="form-control long" spellcheck="true"
+        placeholder=@BriefingRoom.Translate("SituationPlaceholder")></textarea>
+    </div>
+    <div class="full-width">
+      <h2>@BriefingRoom.Translate("BlueTask")</h2>
+      <textarea @bind="blueTask" class="form-control short" spellcheck="true"
+        placeholder=@BriefingRoom.Translate("BlueTaskPlaceholder")></textarea>
+    </div>
+    <div class="full-width">
+      <h2>@BriefingRoom.Translate("RedTask")</h2>
+      <textarea @bind="redTask" class="form-control short" spellcheck="true"
+        placeholder=@BriefingRoom.Translate("RedTaskPlaceholder")></textarea>
+    </div>
+    <div class="full-width">
+      <h2>@BriefingRoom.Translate("NeutralTask")</h2>
+      <textarea @bind="neutralTask" class="form-control short" spellcheck="true"
+        placeholder=@BriefingRoom.Translate("NeutralTaskPlaceholder")></textarea>
+    </div>
   </div>
 </div>
 
@@ -76,7 +80,7 @@
 
       situationDictKey = "";
       situation = getFromField(mission, "descriptionText");
-      if(situation.StartsWith("DictKey_"))
+      if (situation.StartsWith("DictKey_"))
       {
         situationDictKey = situation;
         situation = getFromField(dictonary, situation);
@@ -84,7 +88,7 @@
 
       blueTaskDictKey = "";
       blueTask = getFromField(mission, "descriptionBlueTask");
-      if(blueTask.StartsWith("DictKey_"))
+      if (blueTask.StartsWith("DictKey_"))
       {
         blueTaskDictKey = blueTask;
         blueTask = getFromField(dictonary, blueTask);
@@ -92,7 +96,7 @@
 
       redTaskDictKey = "";
       redTask = getFromField(mission, "descriptionRedTask");
-      if(redTask.StartsWith("DictKey_"))
+      if (redTask.StartsWith("DictKey_"))
       {
         redTaskDictKey = redTask;
         redTask = getFromField(dictonary, redTask);
@@ -100,7 +104,7 @@
 
       neutralTaskDictKey = "";
       neutralTask = getFromField(mission, "descriptionNeutralsTask");
-      if(neutralTask.StartsWith("DictKey_"))
+      if (neutralTask.StartsWith("DictKey_"))
       {
         neutralTaskDictKey = neutralTask;
         neutralTask = getFromField(dictonary, neutralTask);
@@ -119,11 +123,11 @@
   {
     var regex = GetRegex(target);
     return regex.Match(data).Value
-        .Replace($"[\"{target}\"] = \"", "")
-        .Replace("\\", "")
-        .TrimEnd('\n')
-        .TrimEnd(',')
-        .TrimEnd('"');
+    .Replace($"[\"{target}\"] = \"", "")
+    .Replace("\\", "")
+    .TrimEnd('\n')
+    .TrimEnd(',')
+    .TrimEnd('"');
   }
 
   private async Task SaveTemplate()
@@ -131,7 +135,7 @@
     errorMessage = "";
     try
     {
-      if(file == null)
+      if (file == null)
       {
         throw new Exception("File not loaded load a mission file first.");
       }
@@ -162,22 +166,22 @@
 
           var replacedMission = mission;
           var replacedDict = dictionary;
-          if(string.IsNullOrEmpty(situationDictKey))
-            replacedMission = replaceValue(dictionary, "descriptionText", situation); 
+          if (string.IsNullOrEmpty(situationDictKey))
+            replacedMission = replaceValue(dictionary, "descriptionText", situation);
           else
             replacedDict = replaceValue(dictionary, situationDictKey, situation);
 
-          if(string.IsNullOrEmpty(blueTaskDictKey))
+          if (string.IsNullOrEmpty(blueTaskDictKey))
             replacedMission = replaceValue(dictionary, "descriptionBlueTask", situation);
           else
             replacedDict = replaceValue(dictionary, blueTaskDictKey, blueTask);
 
-          if(string.IsNullOrEmpty(redTaskDictKey))
+          if (string.IsNullOrEmpty(redTaskDictKey))
             replacedMission = replaceValue(dictionary, "descriptionRedTask", situation);
           else
             replacedDict = replaceValue(dictionary, redTaskDictKey, redTask);
 
-          if(string.IsNullOrEmpty(neutralTaskDictKey))
+          if (string.IsNullOrEmpty(neutralTaskDictKey))
             replacedMission = replaceValue(dictionary, "descriptionNeutralsTask", situation);
           else
             replacedDict = replaceValue(dictionary, neutralTaskDictKey, neutralTask);

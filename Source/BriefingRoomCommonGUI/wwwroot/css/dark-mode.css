@@ -1,7 +1,8 @@
 .bulb {
     margin-left: 10px;
 }
-.bulb > input {
+
+.bulb>input {
     display: none;
     margin-left: 5px;
 }
@@ -11,7 +12,8 @@
     color: white;
 }
 
-.darkMode .main .top-row, .darkMode .sidebar .top-row {
+.darkMode .main .top-row,
+.darkMode .sidebar .top-row {
     background-color: #0a263f;
     color: white;
     border-color: black;
@@ -28,17 +30,19 @@
     color: white;
 }
 
-.darkMode .navbar-brand > img {
+.darkMode .navbar-brand>img {
     filter: drop-shadow(0 0 1rem rgb(255, 255, 255));
 }
 
 
-.darkMode .blazored-typeahead__input, .darkMode .blazored-typeahead__results {
+.darkMode .blazored-typeahead__input,
+.darkMode .blazored-typeahead__results {
     background-color: #0a263f;
     color: white;
 }
 
-.darkMode .blazored-typeahead__selected-item-highlighted, .darkMode .blazored-typeahead__selected-item {
+.darkMode .blazored-typeahead__selected-item-highlighted,
+.darkMode .blazored-typeahead__selected-item {
     color: black;
 }
 
@@ -50,12 +54,12 @@
     background-color: #020A10;
 }
 
-.darkMode .accordion-button{
+.darkMode .accordion-button {
     background-color: #0a263f;
     color: white;
 }
 
-.darkMode .accordion-button::after{
+.darkMode .accordion-button::after {
     color: white;
 }
 

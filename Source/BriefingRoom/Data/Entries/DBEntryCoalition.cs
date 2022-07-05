@@ -64,7 +64,7 @@ namespace BriefingRoom4DCS.Data
         {
             // Count is zero, return an empty array.
             if (count < 1) throw new BriefingRoomException("Asking for a zero unit list");
-            if(families.Select(x => x.GetUnitCategory()).Any(x => x != families.First().GetUnitCategory())) throw new BriefingRoomException($"Cannot mix Categories in types {string.Join(", ", families)}");
+            if (families.Select(x => x.GetUnitCategory()).Any(x => x != families.First().GetUnitCategory())) throw new BriefingRoomException($"Cannot mix Categories in types {string.Join(", ", families)}");
 
             UnitCategory category = families.First().GetUnitCategory();
             bool allowDifferentUnitTypes = false;
@@ -83,7 +83,7 @@ namespace BriefingRoom4DCS.Data
                     count = 1;
                     break;
                 case UnitCategory.Static:
-                    validUnits = countMinMax.HasValue ? LimitValidUnitsByRequestedUnitCount(countMinMax.Value, validUnits): validUnits;
+                    validUnits = countMinMax.HasValue ? LimitValidUnitsByRequestedUnitCount(countMinMax.Value, validUnits) : validUnits;
                     count = 1;
                     break;
                 // Units are ground vehicles, allow multiple unit types in the group
@@ -95,12 +95,12 @@ namespace BriefingRoom4DCS.Data
 
             var selectableUnits = new List<string>();
             var country = Toolbox.RandomFrom(validUnits.Keys.ToList());
-            if(requiredCountry.HasValue)
-                if(validUnits.ContainsKey(requiredCountry.Value))
+            if (requiredCountry.HasValue)
+                if (validUnits.ContainsKey(requiredCountry.Value))
                     country = requiredCountry.Value;
                 else
                     BriefingRoom.PrintToLog($"Could not find suitable units for {requiredCountry.Value} using units from other coalition members.", LogMessageErrorLevel.Info);
-            
+
             selectableUnits = validUnits[country];
 
 
@@ -111,12 +111,12 @@ namespace BriefingRoom4DCS.Data
                 for (int i = 0; i < count; i++)
                     selectedUnits.Add(Toolbox.RandomFrom(selectableUnits));
 
-                return new (country, selectedUnits.ToList());
+                return new(country, selectedUnits.ToList());
             }
 
             // Different unit types NOT allowed in the group, pick a random type and fill the whole array with it.
             string unit = Toolbox.RandomFrom(selectableUnits);
-            return new (country, Enumerable.Repeat(unit, count).ToList());
+            return new(country, Enumerable.Repeat(unit, count).ToList());
         }
 
         private Dictionary<Country, List<string>> LimitValidUnitsByRequestedUnitCount(
@@ -157,7 +157,7 @@ namespace BriefingRoom4DCS.Data
 
             if (validUnitsGroupSizeBetweenMinAndMax.Count < 1)
                 throw new BriefingRoomException("Requested Minimum Target Count greater than Maximum Configured Target Count");
-            
+
             return validUnitsGroupSizeBetweenMinAndMax;
         }
 
@@ -188,12 +188,12 @@ namespace BriefingRoom4DCS.Data
                 return validUnits;
 
             BriefingRoom.PrintToLog($"No Units of types {string.Join(", ", families)} found in coalition of {string.Join(", ", Countries.Where(x => x != Country.ALL))} forced to use defaults", LogMessageErrorLevel.Info);
-            return new Dictionary<Country, List<string>>{{Country.ALL,Database.GetEntry<DBEntryDefaultUnitList>(DefaultUnitList).DefaultUnits[(int)families.First(), (int)decade].ToList()}};
+            return new Dictionary<Country, List<string>> { { Country.ALL, Database.GetEntry<DBEntryDefaultUnitList>(DefaultUnitList).DefaultUnits[(int)families.First(), (int)decade].ToList() } };
         }
 
         internal void Merge(DBEntryCoalition entry)
         {
-           Countries = entry.Countries.Append(Country.ALL).ToArray();
+            Countries = entry.Countries.Append(Country.ALL).ToArray();
         }
     }
 }

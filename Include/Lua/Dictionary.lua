@@ -1,5 +1,4 @@
-dictionary = 
-{
+dictionary = {
     ["DictKey_missionName"] = "$MISSIONNAME$",
     ["DictKey_editorNotes"] = "$EDITORNOTES$",
     ["DictKey_briefing"] = "$DESCRIPTIONTEXT$",

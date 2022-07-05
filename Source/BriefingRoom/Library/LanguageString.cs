@@ -26,7 +26,7 @@ namespace BriefingRoom4DCS
 {
     public class LanguageString : Dictionary<string, string>
     {
-        public LanguageString(){}
+        public LanguageString() { }
         public LanguageString(string value)
         {
             this.Add("EN", value);
@@ -34,8 +34,8 @@ namespace BriefingRoom4DCS
         public string Get()
         {
             var key = BriefingRoom.LanguageDB.Language;
-            if(this.ContainsKey(key)) return this[key];
-            if(this.ContainsKey("EN")) return this["EN"];
+            if (this.ContainsKey(key)) return this[key];
+            if (this.ContainsKey("EN")) return this["EN"];
             return "";
         }
     }

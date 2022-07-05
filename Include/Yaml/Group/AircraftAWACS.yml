@@ -7,7 +7,7 @@ waypoints:
   - alt: $ALTITUDE$
     action: Turning Point
     speed: $SPEED$
-    tasks: 
+    tasks:
       - id: AWACS
       - id: EPLRS
         parameters:

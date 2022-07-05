@@ -108,7 +108,7 @@ namespace BriefingRoom4DCS.Generator
             var requiredRunway = template.PlayerFlightGroups.Select(x => Database.Instance.GetEntry<DBEntryUnit>(x.Aircraft).AircraftData.MinimumRunwayLengthFt).Max();
             var playerAirbase = airbasesGenerator.SelectStartingAirbase(mission, template.FlightPlanTheaterStartingAirbase, requiredRunway: requiredRunway);
             mission.PopulatedAirbaseIds[template.ContextPlayerCoalition].Add(playerAirbase.DCSID);
-            if(playerAirbase.DCSID > 0)
+            if (playerAirbase.DCSID > 0)
             {
                 mission.MapData.Add($"AIRBASE_HOME", new List<Coordinates> { playerAirbase.Coordinates });
                 mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{playerAirbase.Name}\t{playerAirbase.Runways}\t{playerAirbase.ATC}\t{playerAirbase.ILS}\t{playerAirbase.TACAN}");
@@ -194,7 +194,7 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("CountriesRed", unitMaker.GetUnitsLuaTable(Coalition.Red));
             mission.SetValue("CountriesNeutral", unitMaker.GetUnitsLuaTable(Coalition.Neutral));
             mission.SetValue("RequiredModules", unitMaker.GetRequiredModules());
-             mission.SetValue("RequiredModulesBriefing", unitMaker.GetRequiredModulesBriefing());
+            mission.SetValue("RequiredModulesBriefing", unitMaker.GetRequiredModulesBriefing());
             mission.SetValue("Drawings", drawingMaker.GetLuaDrawings());
             mission.SetValue("Zones", zoneMaker.GetLuaZones());
 
@@ -205,7 +205,7 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("MISSIONNAME", missionName);
 
             MissionGeneratorBriefing.GenerateMissionBriefingDescription(mission, template, objectiveTargetUnitFamilies, situationDB);
-            mission.SetValue("DescriptionText", mission.Briefing.GetBriefingAsRawText( "\\\n"));
+            mission.SetValue("DescriptionText", mission.Briefing.GetBriefingAsRawText("\\\n"));
             mission.SetValue("EditorNotes", mission.Briefing.GetEditorNotes("\\\n"));
 
             // Generate mission options
@@ -219,7 +219,7 @@ namespace BriefingRoom4DCS.Generator
             // Generate image files
             BriefingRoom.PrintToLog("Generating images...");
             MissionGeneratorImages.GenerateTitle(mission, template);
-            if(!template.OptionsMission.Contains("DisableKneeboardImages"))
+            if (!template.OptionsMission.Contains("DisableKneeboardImages"))
                 await MissionGeneratorImages.GenerateKneeboardImagesAsync(mission);
 
             return mission;

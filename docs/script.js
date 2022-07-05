@@ -12,24 +12,24 @@ const renderBetaRelease = async () => {
     renderRelease(release[0])
 }
 
-const renderRelease = (release, isLatest=false) => {
+const renderRelease = (release, isLatest = false) => {
     const node = document.createElement("div");
 
     const title = document.createElement("h3");
     node.appendChild(title)
 
     const download = document.createElement("a");
-    download.textContent = `${isLatest? "Latest - " : "Beta - "}${release.name}`
+    download.textContent = `${isLatest ? "Latest - " : "Beta - "}${release.name}`
     download.setAttribute("href", release.assets[0].browser_download_url)
     title.appendChild(download)
 
     const converter = new showdown.Converter()
     const changelog = document.createElement("div");
-    if(isLatest){
+    if (isLatest) {
         changelog.innerHTML = converter.makeHtml(release.body)
     } else {
         const text = document.createElement("p");
-        text.innerHTML = release.body.replaceAll("\n", "<br/>").replaceAll(/[0-9a-f]{5,40}/g,'* ')
+        text.innerHTML = release.body.replaceAll("\n", "<br/>").replaceAll(/[0-9a-f]{5,40}/g, '* ')
         changelog.appendChild(text)
     }
     node.appendChild(changelog)

@@ -32,7 +32,7 @@ namespace BriefingRoom4DCS.Mission
 
         private readonly List<string>[] Items;
 
-        internal List<DCSMissionFlightBriefing> FlightBriefings {get; set;} = new List<DCSMissionFlightBriefing>();
+        internal List<DCSMissionFlightBriefing> FlightBriefings { get; set; } = new List<DCSMissionFlightBriefing>();
 
         internal DCSMissionBriefing(DCSMission mission)
         {
@@ -79,7 +79,7 @@ namespace BriefingRoom4DCS.Mission
             string html = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardHeader.html") +
                 Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardTasksRemarks.html") +
                 Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}BriefingFooter.html");
-            
+
             html = BriefingRoom.LanguageDB.ReplaceValues(html);
             html = Mission.ReplaceValues(html);
 

@@ -27,11 +27,11 @@ namespace BriefingRoom4DCS.Mission
     public class DCSMissionFlightBriefing
     {
         internal string Type { get; set; }
-        internal string Name {get; set;}
-        internal List<string> Waypoints {get; set;}
+        internal string Name { get; set; }
+        internal List<string> Waypoints { get; set; }
 
         public string GetFlightBriefingKneeBoardHTML(DCSMission mission)
-        {   
+        {
             string html = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardHeader.html") +
                 Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardFlight.html") +
                 Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}BriefingFooter.html");
@@ -41,5 +41,5 @@ namespace BriefingRoom4DCS.Mission
             GeneratorTools.ReplaceKey(ref html, "BriefingWaypoints", GeneratorTools.MakeHTMLTable(Waypoints.ToArray()));
             return html;
         }
-    } 
+    }
 }

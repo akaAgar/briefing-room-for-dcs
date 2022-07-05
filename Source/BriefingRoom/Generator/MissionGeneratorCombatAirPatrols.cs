@@ -119,10 +119,10 @@ namespace BriefingRoom4DCS.Generator
 
                 UnitMakerGroupFlags groupFlags = 0;
 
-                if(Toolbox.RandomChance(4))
+                if (Toolbox.RandomChance(4))
                     groupFlags |= UnitMakerGroupFlags.ImmediateAircraftSpawn;
-                
-                if(template.MissionFeatures.Contains("ContextScrambleStart"))
+
+                if (template.MissionFeatures.Contains("ContextScrambleStart"))
                     groupFlags |= UnitMakerGroupFlags.ScrambleStart;
 
                 UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(

@@ -9,4 +9,3 @@ blueIADS:addSAMSitesByPrefix('BLUE-SAM')
 blueIADS:addEarlyWarningRadarsByPrefix('BLUE-EW')
 blueIADS:addRadioMenu()
 blueIADS:activate()
-

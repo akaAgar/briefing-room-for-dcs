@@ -37,10 +37,10 @@ namespace BriefingRoom4DCS.Template
         public string Livery { get; set; } = "default";
 
         public string OverrideRadioFrequency { get; set; } = "";
-        public RadioModulation OverrideRadioBand { get; set; } =  RadioModulation.AM;
+        public RadioModulation OverrideRadioBand { get; set; } = RadioModulation.AM;
 
-        public string OverrideCallsignName { get; set; } =  "";
-        public int OverrideCallsignNumber { get; set; } =  1;
+        public string OverrideCallsignName { get; set; } = "";
+        public int OverrideCallsignNumber { get; set; } = 1;
 
         public MissionTemplateFlightGroup()
         {

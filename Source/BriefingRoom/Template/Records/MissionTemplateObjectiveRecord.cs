@@ -45,11 +45,11 @@ namespace BriefingRoom4DCS.Template
 
         private string SelectPreset(string preset)
         {
-            if(string.IsNullOrEmpty(preset))
+            if (string.IsNullOrEmpty(preset))
                 return "";
             var presets = Database.Instance.GetAllEntries<DBEntryObjectivePreset>().Where(x => !x.ID.Contains("Random")).ToList();
-            var unsuitableFixedWingTasks = new List<string>{"TransportTroops", "TransportCargo", "LandNearAlly", "LandNearEnemy"};
-            var unsuitableRotorTargets = new List<string>{"PlaneAny", "PlaneAttack", "PlaneBomber", "PlaneFighter", "PlaneTransport."};
+            var unsuitableFixedWingTasks = new List<string> { "TransportTroops", "TransportCargo", "LandNearAlly", "LandNearEnemy" };
+            var unsuitableRotorTargets = new List<string> { "PlaneAny", "PlaneAttack", "PlaneBomber", "PlaneFighter", "PlaneTransport." };
             switch (preset)
             {
                 case "RandomFixedWing":

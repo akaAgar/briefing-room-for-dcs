@@ -29,15 +29,15 @@ namespace BriefingRoom4DCS.Generator
         internal void AddZone(
             string UIName,
             Coordinates coordinates, int radius) => AddToList(UIName, coordinates, radius);
-        
+
         internal void AddCTLDPickupZone(Coordinates coordinates, bool onTop = false)
         {
             var coords = coordinates;
-            if(!onTop)
+            if (!onTop)
             {
-                var spawnPoints = new List<SpawnPointType>{SpawnPointType.LandLarge}.ToArray();
+                var spawnPoints = new List<SpawnPointType> { SpawnPointType.LandLarge }.ToArray();
                 Coordinates? newCoords = _unitMaker.SpawnPointSelector.GetNearestSpawnPoint(spawnPoints, coordinates);
-                if(!newCoords.HasValue)
+                if (!newCoords.HasValue)
                     throw new BriefingRoomException("Can't find suitable zone Coordinates!");
                 coords = newCoords.Value;
             }
@@ -47,7 +47,7 @@ namespace BriefingRoom4DCS.Generator
 
         internal void AddAirbaseZones(List<string> missionFeatures, DBEntryAirbase homeBase, List<DCSMissionPackage> missionPackages)
         {
-            if(!missionFeatures.Contains("CTLD"))
+            if (!missionFeatures.Contains("CTLD"))
                 return;
             AddCTLDPickupZone(homeBase.Coordinates);
             missionPackages.ForEach(x => AddCTLDPickupZone(x.Airbase.Coordinates));
@@ -61,7 +61,7 @@ namespace BriefingRoom4DCS.Generator
             GeneratorTools.ReplaceKey(ref template, "RADIUS", radius);
             GeneratorTools.ReplaceKey(ref template, "X", coordinates.X);
             GeneratorTools.ReplaceKey(ref template, "Y", coordinates.Y);
-            GeneratorTools.ReplaceKey(ref template, "zoneId", new Random().Next(100,500));
+            GeneratorTools.ReplaceKey(ref template, "zoneId", new Random().Next(100, 500));
             LuaZones.Add(template);
         }
 

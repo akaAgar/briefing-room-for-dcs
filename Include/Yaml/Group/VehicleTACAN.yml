@@ -9,7 +9,7 @@ waypoints:
   - alt: 8
     action: Off Road
     speed: 5.5555555555556
-    tasks: 
+    tasks:
       - id: ActivateBeacon
         parameters:
           wrapped: true

@@ -12,7 +12,7 @@ using WkHtmlWrapper.Core.Services.Interfaces;
 
 namespace WkHtmlWrapper.Core.Converters
 {
-    public abstract class Converter<TOptions> : IConverter<TOptions> where TOptions: IOptions, new()
+    public abstract class Converter<TOptions> : IConverter<TOptions> where TOptions : IOptions, new()
     {
         private readonly IProcessService processService;
 
@@ -45,7 +45,7 @@ namespace WkHtmlWrapper.Core.Converters
             File.Delete(inputFilePath);
             return logs;
         }
-        
+
         private string GetExecutablePath() =>
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Executables", GetExecutableName());
 
