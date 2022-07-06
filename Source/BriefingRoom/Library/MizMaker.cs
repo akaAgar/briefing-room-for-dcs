@@ -68,6 +68,7 @@ namespace BriefingRoom4DCS
             string luaContent = File.ReadAllText(sourceFile);
             if (mission != null) // A mission was provided, do the required replacements in the file.
                 luaContent = mission.ReplaceValues(luaContent);
+            luaContent = BriefingRoom.LanguageDB.ReplaceValues(luaContent);
 
             foreach (Match match in Regex.Matches(luaContent, "\\$.*?\\$"))
                 BriefingRoom.PrintToLog($"Found a non-assigned value ({match.Value}) in Lua file \"{mizEntryKey}\".", LogMessageErrorLevel.Info);

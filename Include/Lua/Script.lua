@@ -673,7 +673,7 @@ function briefingRoom.transportManager.addTroopCargo(transportUnitName, unitName
   end
   for index, unitName in ipairs(unitNames) do
     if #briefingRoom.transportManager.transportRoster[transportUnitName].troops == briefingRoom.transportManager.maxTroops then
-      briefingRoom.radioManager.play("Troop: Pilot, We are full, let's get going. (Total troops: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops..")", "RadioTroopFull")
+      briefingRoom.radioManager.play("$LANGTRIOOP$: $LANGTRANSPORTFULL$ ($LANGTOTALTROOPS%: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops..")", "RadioTroopFull")
       return true
     end
     local unit = Unit.getByName(unitName)
@@ -686,7 +686,7 @@ function briefingRoom.transportManager.addTroopCargo(transportUnitName, unitName
       unit:destroy()
     end
   end
-  briefingRoom.radioManager.play("Troop: Pilot, Everyone is in, let's go. (Total troops: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops..")", "RadioTroopAllIn")
+  briefingRoom.radioManager.play("$LANGTRIOOP$: $LANGTRANSPORTALLIN$ ($LANGTOTALTROOPS%: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops..")", "RadioTroopAllIn")
 end
 
 function briefingRoom.transportManager.removeTroopCargo(transportUnitName, unitNames)
@@ -716,7 +716,7 @@ function briefingRoom.transportManager.removeTroopCargo(transportUnitName, unitN
       })
     end
   end
-  briefingRoom.radioManager.play("Troop: Pilot, Everyone is clear, good to take off. (Remaining troops: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops..")", "RadioTroopTakeoff")
+  briefingRoom.radioManager.play("$LANGTRIOOP$: $LANGTRANSPORTEVERYONEOUT$ ($LANGREMAININGTROOPS$: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops..")", "RadioTroopTakeoff")
   return removed
 end
 
