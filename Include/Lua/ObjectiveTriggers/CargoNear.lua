@@ -10,7 +10,7 @@ briefingRoom.mission.objectiveTimers[$OBJECTIVEINDEX$] = function()
       local vec2u = dcsExtensions.toVec2(unit:getPoint())
       local distance = dcsExtensions.getDistance(vec2p, vec2u);
       if distance < 500 and not unit:inAir() then -- less than 5nm away on the X/Z axis, less than 8000 feet of altitude difference
-        briefingRoom.radioManager.play("$LANGPILOT$: Command, Cargo Delivered.", "RadioPilotCargoDelivered")
+        briefingRoom.radioManager.play("$LANGPILOT$: $LANGCARGODELIVERED$", "RadioPilotCargoDelivered")
         table.removeValue(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, u)
         if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames < 1 then -- all target units destroyed, objective complete
           briefingRoom.mission.coreFunctions.completeObjective($OBJECTIVEINDEX$)

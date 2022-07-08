@@ -17,7 +17,7 @@ end
 -- "Mark target with smoke" F10 radio command
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurate = function()
   local objective = briefingRoom.mission.objectives[$OBJECTIVEINDEX$]
-  briefingRoom.radioManager.play("$LANGPILOT$: Can you toss a smoke grenade near the target's position?", "RadioPilotMarkTargetWithSmoke")
+  briefingRoom.radioManager.play("$LANGPILOT$: $LANGSMOKENEARREQUEST$", "RadioPilotMarkTargetWithSmoke")
 
   if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames == 0 then -- no target units left
     briefingRoom.radioManager.play(objective.name.." $LANGJTAC$:$LANGNOTARGET$", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
@@ -36,7 +36,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeM
   local timeNow = timer.getAbsTime()
   
   if timeNow < briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateNextSmoke then -- Smoke not ready
-    briefingRoom.radioManager.play(objective.name.." $LANGJTAC$: Already tossed a smoke. Target is "..tostring(briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateDistance).." meters "..dcsExtensions.degreesToCardinalDirection(briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateHeading).." of the smoke.", "RadioSupportTargetAlreadyMarkedWithSmoke", briefingRoom.radioManager.getAnswerDelay())
+    briefingRoom.radioManager.play(objective.name.." $LANGJTAC$: $LANGSMOKENEARBY$", "RadioSupportTargetAlreadyMarkedWithSmoke", briefingRoom.radioManager.getAnswerDelay())
     return
   end
   
@@ -49,7 +49,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeM
 
   local args = { position = unit:getPoint(), color = trigger.smokeColor.Red }
   if unit:getCoalition() == $LUAPLAYERCOALITION$ then args.color = trigger.smokeColor.Green end
-  briefingRoom.radioManager.play(objective.name.." $LANGJTAC$: Tossed a smoke grenade. Target is "..tostring(briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateDistance).." meters "..dcsExtensions.degreesToCardinalDirection(briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateHeading).." of the smoke.", "RadioSupportTargetMarkedWithSmoke", briefingRoom.radioManager.getAnswerDelay(), briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateDoSmoke, args)
+  briefingRoom.radioManager.play(objective.name.." $LANGJTAC$: $LANGSMOKENEARAFFIRM$"..dcsExtensions.degreesToCardinalDirection(briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateHeading).." of the smoke.", "RadioSupportTargetMarkedWithSmoke", briefingRoom.radioManager.getAnswerDelay(), briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateDoSmoke, args)
 end
       
 -- Add the command to the F10 menu
