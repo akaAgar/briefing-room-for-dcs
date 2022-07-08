@@ -17,10 +17,10 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
     local unit = objFeature.targetDesignationLaser.setRandomTarget()
     if unit == nil then
       objFeature.targetDesignationLaser.deleteLaser()
-      briefingRoom.radioManager.play(objective.name.." JTAC: No visual on any target, laser is off.", "RadioSupportLasingNoMoreTargets", briefingRoom.radioManager.getAnswerDelay())
+      briefingRoom.radioManager.play(objective.name.." $LANGJTAC$: No visual on any target, laser is off.", "RadioSupportLasingNoMoreTargets", briefingRoom.radioManager.getAnswerDelay())
       return
     end
-    briefingRoom.radioManager.play(objective.name.." JTAC: Painting next target", "RadioSupportLasingNextTarget", briefingRoom.radioManager.getAnswerDelay())
+    briefingRoom.radioManager.play(objective.name.." $LANGJTAC$: Painting next target", "RadioSupportLasingNextTarget", briefingRoom.radioManager.getAnswerDelay())
   end
 
   objFeature.targetDesignationLaser.updateLaserPos()
@@ -83,21 +83,21 @@ end
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.turnOn = function()
   local objFeature = briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$]
   local objective = briefingRoom.mission.objectives[$OBJECTIVEINDEX$]
-  briefingRoom.radioManager.play("Pilot: Can you paint the target for me?", "RadioPilotLaseTarget")
+  briefingRoom.radioManager.play("$LANGPILOT$: Can you paint the target for me?", "RadioPilotLaseTarget")
 
   -- already lasing something
   if objFeature.targetDesignationLaser.laserTarget ~= nil then
-    briefingRoom.radioManager.play(objective.name.." JTAC: Already painting the target. Check laser code. Laser code is "..tostring(objFeature.targetDesignationLaser.laserCode)..".", "RadioSupportTargetLasingAlready", briefingRoom.radioManager.getAnswerDelay())
+    briefingRoom.radioManager.play(objective.name.." $LANGJTAC$: Already painting the target. Check laser code. Laser code is "..tostring(objFeature.targetDesignationLaser.laserCode)..".", "RadioSupportTargetLasingAlready", briefingRoom.radioManager.getAnswerDelay())
     return
   end
 
   -- no target units left
   local unit = objFeature.targetDesignationLaser.setRandomTarget()
   if unit == nil then
-    briefingRoom.radioManager.play(objective.name.." JTAC: No more targets in sight. Laser Off.", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
+    briefingRoom.radioManager.play(objective.name.." $LANGJTAC$: No more targets in sight. Laser Off.", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
     return
   end
-  briefingRoom.radioManager.play(objective.name.." JTAC: Affirm. Laser on, painting the target now. Laser code is "..tostring(objFeature.targetDesignationLaser.laserCode)..".", "RadioSupportLasingOk", briefingRoom.radioManager.getAnswerDelay())
+  briefingRoom.radioManager.play(objective.name.." $LANGJTAC$: Affirm. Laser on, painting the target now. Laser code is "..tostring(objFeature.targetDesignationLaser.laserCode)..".", "RadioSupportLasingOk", briefingRoom.radioManager.getAnswerDelay())
   missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Lase diffrent target", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.newTarget)
   missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Stop lasing target", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.turnOff)
 end
@@ -106,29 +106,29 @@ end
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.turnOff = function()
   local objFeature = briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$]
   local objective = briefingRoom.mission.objectives[$OBJECTIVEINDEX$]
-  briefingRoom.radioManager.play("Pilot: Terminate. Laser off.", "RadioPilotLaseTargetStop")
+  briefingRoom.radioManager.play("$LANGPILOT$: Terminate. Laser off.", "RadioPilotLaseTargetStop")
   -- not lasing anything
   if objFeature.targetDesignationLaser.laserTarget == nil then
-    briefingRoom.radioManager.play(objective.name.." JTAC: Cannot comply, not lasing anything.", "RadioSupportLasingNotLasing", briefingRoom.radioManager.getAnswerDelay())
+    briefingRoom.radioManager.play(objective.name.." $LANGJTAC$: Cannot comply, not lasing anything.", "RadioSupportLasingNotLasing", briefingRoom.radioManager.getAnswerDelay())
     return
   end
 
   objFeature.targetDesignationLaser.deleteLaser()
-  briefingRoom.radioManager.play(objective.name.." JTAC: Copy. Terminate, laser is off.", "RadioSupportLasingStopped", briefingRoom.radioManager.getAnswerDelay())
+  briefingRoom.radioManager.play(objective.name.." $LANGJTAC$: Copy. Terminate, laser is off.", "RadioSupportLasingStopped", briefingRoom.radioManager.getAnswerDelay())
 end
 
 -- Get new target
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.newTarget = function()
   local objective = briefingRoom.mission.objectives[$OBJECTIVEINDEX$]
-  briefingRoom.radioManager.play("Pilot: Can you paint a diffrent target for me?", "RadioPilotLaseDiffrentTarget")
+  briefingRoom.radioManager.play("$LANGPILOT$: Can you paint a diffrent target for me?", "RadioPilotLaseDiffrentTarget")
 
   -- no target units left
   local unit = briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.setRandomTarget()
   if unit == nil then
-    briefingRoom.radioManager.play(objective.name.." JTAC: Negative, no visual on any target.", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
+    briefingRoom.radioManager.play(objective.name.." $LANGJTAC$:$LANGNOTARGET$", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
     return
   end
-  briefingRoom.radioManager.play(objective.name.." JTAC: Painting next target", "RadioSupportLasingNextTarget", briefingRoom.radioManager.getAnswerDelay())
+  briefingRoom.radioManager.play(objective.name.." $LANGJTAC$: Painting next target", "RadioSupportLasingNextTarget", briefingRoom.radioManager.getAnswerDelay())
 end
 
 

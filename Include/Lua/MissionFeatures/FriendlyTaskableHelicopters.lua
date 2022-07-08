@@ -9,7 +9,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.eventH
   if event.id == world.event.S_EVENT_MARK_REMOVED then
     if briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID ~= nil and event.idx == briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID then
       if not briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.disableCooRemovedRadioMessage then
-        briefingRoom.radioManager.play("Attack Choppers: Affirm, coordinates discarded. Awaiting new coordinates.", "RadioCoordinatesDiscardedM")
+        briefingRoom.radioManager.play("$LANGATTACKCHOPPERS$: $LANGDISCARDCOORDINATES$", "RadioCoordinatesDiscardedM")
       end
       briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID = nil
     end
@@ -22,14 +22,14 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.eventH
         briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.disableCooRemovedRadioMessage = false
       end
       briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID = event.idx
-      briefingRoom.radioManager.play("Attack Choppers: Copy, coordinates updated.", "RadioCoordinatesUpdatedM")
+      briefingRoom.radioManager.play("$LANGATTACKCHOPPERS$: $LANGUPDATECOORDINATES$", "RadioCoordinatesUpdatedM")
       return
     end
   elseif event.id == world.event.S_EVENT_MARK_CHANGE then
     local markText = string.lower(tostring(event.text or ""))
 
     if markText == briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.MARKER_NAME then
-      briefingRoom.radioManager.play("Attack Choppers: Copy, coordinates updated.", "RadioCoordinatesUpdatedM")
+      briefingRoom.radioManager.play("$LANGATTACKCHOPPERS$: $LANGUPDATECOORDINATES$", "RadioCoordinatesUpdatedM")
       if briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID ~= nil then
         briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.disableCooRemovedRadioMessage = true
         trigger.action.removeMark(briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID)
@@ -37,7 +37,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.eventH
       end
       briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID = event.idx
     elseif briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID ~= nil and event.idx == briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID then
-      briefingRoom.radioManager.play("Attack Choppers: Affirm, coordinates discarded. Awaiting new coordinates.", "RadioCoordinatesDiscardedM")
+      briefingRoom.radioManager.play("$LANGATTACKCHOPPERS$: $LANGDISCARDCOORDINATES$", "RadioCoordinatesDiscardedM")
       briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID = nil
     end
   end
@@ -45,7 +45,7 @@ end
 
 -- Radio command to launch bombing run (called from F10 menu)
 function briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.launchBombingRun()
-  briefingRoom.radioManager.play("Pilot: Attack Choppers, begin your attack.", "RadioPilotBeginYourAttack")
+  briefingRoom.radioManager.play("$LANGPILOT$: $LANGATTACKCOPPERSREQUEST$", "RadioPilotBeginYourAttack")
   local marks = world.getMarkPanels()
   for _,m in ipairs(marks) do
     if briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID ~= nil and m.idx == briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID then
@@ -59,13 +59,13 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.launch
         }
         group:getController():setCommand(Start)
         timer.scheduleFunction(briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.setTask, {}, timer.getTime() + 10) --just re-run after 10 s
-        briefingRoom.radioManager.play("Attack Choppers: Copy, beginning my attack.", "RadioOtherPilotBeginAttack", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
+        briefingRoom.radioManager.play("$LANGATTACKCHOPPERS$: $LANGBEGINATTACK$", "RadioOtherPilotBeginAttack", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
       end
       return
     end
   end
 
-  briefingRoom.radioManager.play("Attack Choppers: Cannot comply. No coordinates provided for patrol run (add a marker named \""..string.upper(briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.MARKER_NAME).."\" on the F10 map to designate a target).", "RadioArtilleryNoCoordinates", briefingRoom.radioManager.getAnswerDelay())
+  briefingRoom.radioManager.play("$LANGATTACKCHOPPERS$: $LANGATTACKCHOPPERSNOCOORDINATES$", "RadioArtilleryNoCoordinates", briefingRoom.radioManager.getAnswerDelay())
 end
 
 function briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.setTask()

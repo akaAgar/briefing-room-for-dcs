@@ -610,7 +610,7 @@ function briefingRoom.handleGeneralKill(event)
 
     if event.initiator:getCoalition() ~= $LUAPLAYERCOALITION$ then -- unit is an enemy, radio some variation of a "enemy destroyed" message
       local soundName = "UnitDestroyed"
-      local messages = { "Command: Weapon was effective.", "Command: Good hit! Good hit!", "Command: They're going down.", "Command: Splashed one!" }
+      local messages = { "$LANGCOMMAND$: Weapon was effective.", "$LANGCOMMAND$: Good hit! Good hit!", "$LANGCOMMAND$: They're going down.", "$LANGCOMMAND$: Splashed one!" }
       local messageIndex = math.random(1, 2)
       local messageIndexOffset = 0
 
@@ -756,12 +756,12 @@ function briefingRoom.mission.coreFunctions.completeObjective(index)
   if briefingRoom.mission.objectivesLeft <= 0 then
     briefingRoom.debugPrint("Mission marked as complete")
     briefingRoom.mission.complete = true
-    briefingRoom.radioManager.play("Command: Excellent work! Mission complete, you may return to base.", "RadioHQMissionComplete", math.random(6, 8))
+    briefingRoom.radioManager.play("$LANGCOMMAND$: $LANGMISSIONCOMPLETE$", "RadioHQMissionComplete", math.random(6, 8))
     trigger.action.setUserFlag(1, true) -- Mark the mission complete internally, so campaigns can move to the next mission
   elseif not briefingRoom.mission.hasStarted then
-    briefingRoom.radioManager.play("Auto Completed Objective "..objName.." (if your not using DSMC and have not edited the mission in the ME please report the bug (editing target units can break scripts))", "Radio0", math.random(6, 8))
+    briefingRoom.radioManager.play("$LANGAUTOCOMPLETEOBJECTIVE$", "Radio0", math.random(6, 8))
   else
-    briefingRoom.radioManager.play("Command: Good job! Objective "..objName.." complete, proceed to next objective.", "RadioHQObjectiveComplete", math.random(6, 8))
+    briefingRoom.radioManager.play("$LANGCOMMAND$: $LANGCOMPLETEOBJECTIVE$", "RadioHQObjectiveComplete", math.random(6, 8))
   end
 end
 
@@ -794,10 +794,10 @@ function briefingRoom.f10MenuCommands.missionStatus()
   local msnSound = ""
 
   if briefingRoom.mission.complete then
-    msnStatus = "Command: Mission complete, you may return to base.\n\n"
+    msnStatus = "$LANGCOMMAND$: Mission complete, you may return to base.\n\n"
     msnSound = "RadioHQMissionStatusComplete"
   else
-    msnStatus = "Command: Mission is still in progress.\n\n"
+    msnStatus = "$LANGCOMMAND$: Mission is still in progress.\n\n"
     msnSound = "RadioHQMissionStatusInProgress"
   end
 
@@ -817,14 +817,14 @@ function briefingRoom.f10MenuCommands.missionStatus()
     msnStatus = msnStatus.." "..o.task..objectiveProgress.."\n"
   end
 
-  briefingRoom.radioManager.play("Pilot: Command, require update on mission status.", "RadioPilotMissionStatus")
+  briefingRoom.radioManager.play("$LANGPILOT$: $LANGMISSIONSTATUSREQUEST$", "RadioPilotMissionStatus")
   briefingRoom.radioManager.play(msnStatus, msnSound, briefingRoom.radioManager.getAnswerDelay())
 end
 
 function briefingRoom.f10MenuCommands.getWaypointCoordinates(index)
   local cooMessage = dcsExtensions.vec2ToStringCoordinates(briefingRoom.mission.objectives[index].waypoint)
-  briefingRoom.radioManager.play("Pilot: Command, request confirmation of waypoint "..briefingRoom.mission.objectives[index].name.." coordinates.", "RadioPilotWaypointCoordinates")
-  briefingRoom.radioManager.play("Command: Acknowledged, transmitting waypoint "..briefingRoom.mission.objectives[index].name.." coordinates.\n\n"..cooMessage, "RadioHQWaypointCoordinates", briefingRoom.radioManager.getAnswerDelay())
+  briefingRoom.radioManager.play("$LANGPILOT$: $LANGWAYPOINTREQUEST$", "RadioPilotWaypointCoordinates")
+  briefingRoom.radioManager.play("$LANGCOMMAND$: $LANGWAYPOINTRESPONSE$\n\n"..cooMessage, "RadioHQWaypointCoordinates", briefingRoom.radioManager.getAnswerDelay())
   missionCommands.removeItemForCoalition($LUAPLAYERCOALITION$, briefingRoom.mission.objectives[index].waypointRadioCommand)
   briefingRoom.mission.objectives[index].waypointRadioCommand = missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Waypoint coordinates:\n"..cooMessage, briefingRoom.f10Menu.objectives[index], briefingRoom.f10MenuCommands.getWaypointCoordinates, index)
 end

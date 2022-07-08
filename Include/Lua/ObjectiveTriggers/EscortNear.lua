@@ -12,7 +12,7 @@ briefingRoom.mission.objectiveTimers[$OBJECTIVEINDEX$] = function()
       if distance < 500 then -- less than 5nm away on the X/Z axis, less than 8000 feet of altitude difference
         table.removeValue(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, u)
         if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames < 1 then -- all target units destroyed, objective complete
-          briefingRoom.radioManager.play("Pilot: Command, friendly forces have reached their objective.", "RadioPilotEscortComplete")
+          briefingRoom.radioManager.play("$LANGPILOT$: Command, friendly forces have reached their objective.", "RadioPilotEscortComplete")
           briefingRoom.mission.coreFunctions.completeObjective($OBJECTIVEINDEX$)
         end
       end
@@ -22,7 +22,7 @@ end
 
 briefingRoom.mission.objectives[$OBJECTIVEINDEX$].launchMission = function ()
   local objective = briefingRoom.mission.objectives[$OBJECTIVEINDEX$]
-  briefingRoom.radioManager.play("Pilot: Escort "..objective.name..", you are clear to begin.", "RadioPilotBeginEscort")
+  briefingRoom.radioManager.play("$LANGPILOT$: Escort "..objective.name..", you are clear to begin.", "RadioPilotBeginEscort")
   local unit = Unit.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
   if unit == nil then
     unit = StaticObject.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])

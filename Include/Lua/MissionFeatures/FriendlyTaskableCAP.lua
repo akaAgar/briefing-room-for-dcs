@@ -9,7 +9,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableCAP.eventHandler:o
   if event.id == world.event.S_EVENT_MARK_REMOVED then
     if briefingRoom.mission.missionFeatures.friendlyTaskableCAP.markID ~= nil and event.idx == briefingRoom.mission.missionFeatures.friendlyTaskableCAP.markID then
       if not briefingRoom.mission.missionFeatures.friendlyTaskableCAP.disableCooRemovedRadioMessage then
-        briefingRoom.radioManager.play("CAP: Affirm, coordinates discarded. Awaiting new coordinates.", "RadioCoordinatesDiscardedM")
+        briefingRoom.radioManager.play("$LANGCAP$: $LANGDISCARDCOORDINATES$", "RadioCoordinatesDiscardedM")
       end
       briefingRoom.mission.missionFeatures.friendlyTaskableCAP.markID = nil
     end
@@ -22,14 +22,14 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableCAP.eventHandler:o
         briefingRoom.mission.missionFeatures.friendlyTaskableCAP.disableCooRemovedRadioMessage = false
       end
       briefingRoom.mission.missionFeatures.friendlyTaskableCAP.markID = event.idx
-      briefingRoom.radioManager.play("CAP: Copy, coordinates updated.", "RadioCoordinatesUpdatedM")
+      briefingRoom.radioManager.play("$LANGCAP$: $LANGUPDATECOORDINATES$", "RadioCoordinatesUpdatedM")
       return
     end
   elseif event.id == world.event.S_EVENT_MARK_CHANGE then
     local markText = string.lower(tostring(event.text or ""))
 
     if markText == briefingRoom.mission.missionFeatures.friendlyTaskableCAP.MARKER_NAME then
-      briefingRoom.radioManager.play("CAP: Copy, coordinates updated.", "RadioCoordinatesUpdatedM")
+      briefingRoom.radioManager.play("$LANGCAP$: $LANGUPDATECOORDINATES$", "RadioCoordinatesUpdatedM")
       if briefingRoom.mission.missionFeatures.friendlyTaskableCAP.markID ~= nil then
         briefingRoom.mission.missionFeatures.friendlyTaskableCAP.disableCooRemovedRadioMessage = true
         trigger.action.removeMark(briefingRoom.mission.missionFeatures.friendlyTaskableCAP.markID)
@@ -37,7 +37,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableCAP.eventHandler:o
       end
       briefingRoom.mission.missionFeatures.friendlyTaskableCAP.markID = event.idx
     elseif briefingRoom.mission.missionFeatures.friendlyTaskableCAP.markID ~= nil and event.idx == briefingRoom.mission.missionFeatures.friendlyTaskableCAP.markID then
-      briefingRoom.radioManager.play("CAP: Affirm, coordinates discarded. Awaiting new coordinates.", "RadioCoordinatesDiscardedM")
+      briefingRoom.radioManager.play("$LANGCAP$: $LANGDISCARDCOORDINATES$", "RadioCoordinatesDiscardedM")
       briefingRoom.mission.missionFeatures.friendlyTaskableCAP.markID = nil
     end
   end
@@ -45,7 +45,7 @@ end
 
 -- Radio command to launch bombing run (called from F10 menu)
 function briefingRoom.mission.missionFeatures.friendlyTaskableCAP.launchBombingRun()
-  briefingRoom.radioManager.play("Pilot: Command, requesting CAP support.", "RadioPilotCAPSupport")
+  briefingRoom.radioManager.play("$LANGPILOT$: $LANGCAPREQUEST$", "RadioPilotCAPSupport")
   local marks = world.getMarkPanels()
   for _,m in ipairs(marks) do
     if briefingRoom.mission.missionFeatures.friendlyTaskableCAP.markID ~= nil and m.idx == briefingRoom.mission.missionFeatures.friendlyTaskableCAP.markID then
@@ -59,13 +59,13 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableCAP.launchBombingR
         }
         group:getController():setCommand(Start)
         timer.scheduleFunction(briefingRoom.mission.missionFeatures.friendlyTaskableCAP.setTask, {}, timer.getTime() + 10) --just re-run after 10 s
-        briefingRoom.radioManager.play("Command: Affirm, CAP support is on its way.", "RadioHQCAPSupport", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
+        briefingRoom.radioManager.play("$LANGCOMMAND$: $LANGCAPAFFIRM$", "RadioHQCAPSupport", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
       end
       return
     end
   end
 
-  briefingRoom.radioManager.play("CAP: Cannot comply. No coordinates provided for patrol run (add a marker named \""..string.upper(briefingRoom.mission.missionFeatures.friendlyTaskableCAP.MARKER_NAME).."\" on the F10 map to designate a target).", "RadioArtilleryNoCoordinates", briefingRoom.radioManager.getAnswerDelay())
+  briefingRoom.radioManager.play("$LANGCAP$: $LANGCAPNOCOORDINATES$", "RadioArtilleryNoCoordinates", briefingRoom.radioManager.getAnswerDelay())
 end
 
 function briefingRoom.mission.missionFeatures.friendlyTaskableCAP.setTask()
