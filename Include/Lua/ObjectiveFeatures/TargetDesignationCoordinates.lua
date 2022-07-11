@@ -1,11 +1,11 @@
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationCoordinates = function()
-  briefingRoom.radioManager.play("$LANGPILOT$: $LANGTARGETCOORDSREQUEST$", "RadioPilotTargetCoordinates")
+  briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_TARGETCOORDSREQUEST$", "RadioPilotTargetCoordinates")
   local objective = briefingRoom.mission.objectives[$OBJECTIVEINDEX$]
     
   local unit = dcsExtensions.getAliveUnitInGroup(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].groupID)
     
   if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames == 0 then -- no target units left
-    briefingRoom.radioManager.play(objective.name.." $LANGJTAC$: $LANGNOTARGET$", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
+    briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_NOTARGET$", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
     return
   end
     
@@ -13,7 +13,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationCoordi
   if unit == nil then -- no unit found with the ID, try searching for a static
     unit = StaticObject.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
     if unit == nil then -- no unit nor static found with the ID
-      briefingRoom.radioManager.play(objective.name.." $LANGJTAC$: $LANGNOTARGET$", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
+      briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_NOTARGET$", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
       return
     end
   end
@@ -21,10 +21,10 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationCoordi
   local unitVec3 = unit:getPoint()
   local unitVec2 = { x = unitVec3.x, y = unitVec3.z }
   local cooMessage = dcsExtensions.vec2ToStringCoordinates(unitVec2)
-  briefingRoom.radioManager.play(objective.name.." $LANGJTAC$: $LANGTARGETCOORDSAFFIRM$\n"..cooMessage, "RadioSupportTargetCoordinates", briefingRoom.radioManager.getAnswerDelay())
+  briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_TARGETCOORDSAFFIRM$\n"..cooMessage, "RadioSupportTargetCoordinates", briefingRoom.radioManager.getAnswerDelay())
   missionCommands.removeItemForCoalition($LUAPLAYERCOALITION$, briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].objRadioCommand)
-  briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].objRadioCommand = missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Require target coordinates.\nLast Coordinates:\n"..cooMessage, briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationCoordinates)
+  briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].objRadioCommand = missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_TARGETCOORDSMENU$.\n$LANG_TARGETCOORDSMENULAST$:\n"..cooMessage, briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationCoordinates)
 end
     
 -- Add the command to the F10 menu
-briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].objRadioCommand = missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Require target coordinates", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationCoordinates)
+briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].objRadioCommand = missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_TARGETCOORDSMENU$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationCoordinates)

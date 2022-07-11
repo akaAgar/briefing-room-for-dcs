@@ -74,7 +74,7 @@ namespace BriefingRoom4DCS.Data
             if (rawText == null) return null;
 
             foreach (KeyValuePair<string, LanguageString> keyPair in LangMap)
-                rawText = rawText.Replace($"$LANG{keyPair.Key.ToUpperInvariant()}$", keyPair.Value.Get());
+                rawText = rawText.Replace($"$LANG_{keyPair.Key.ToUpperInvariant()}$", keyPair.Value.Get());
 
             return rawText;
         }

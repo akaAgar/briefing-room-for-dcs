@@ -136,7 +136,7 @@ namespace BriefingRoom4DCS
             {
                 var value = GetValue<string>(section, $"{key}{(langKey != "EN" ? $".{langKey}" : "")}", "");
                 if (!string.IsNullOrEmpty(value))
-                    resultMap.AddIfKeyUnused(langKey, '#' + value);
+                    resultMap.AddIfKeyUnused(langKey, value);
             }
             return resultMap;
         }

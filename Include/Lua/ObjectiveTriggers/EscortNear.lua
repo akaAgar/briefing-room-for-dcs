@@ -12,7 +12,7 @@ briefingRoom.mission.objectiveTimers[$OBJECTIVEINDEX$] = function()
       if distance < 500 then -- less than 5nm away on the X/Z axis, less than 8000 feet of altitude difference
         table.removeValue(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, u)
         if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames < 1 then -- all target units destroyed, objective complete
-          briefingRoom.radioManager.play("$LANGPILOT$: $LANGESCORTCOMPLETE$", "RadioPilotEscortComplete")
+          briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_ESCORTCOMPLETE$", "RadioPilotEscortComplete")
           briefingRoom.mission.coreFunctions.completeObjective($OBJECTIVEINDEX$)
         end
       end
@@ -22,7 +22,7 @@ end
 
 briefingRoom.mission.objectives[$OBJECTIVEINDEX$].launchMission = function ()
   local objective = briefingRoom.mission.objectives[$OBJECTIVEINDEX$]
-  briefingRoom.radioManager.play("$LANGPILOT$: $LANGESCORTSTARTREQUEST$", "RadioPilotBeginEscort")
+  briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_ESCORTSTARTREQUEST$", "RadioPilotBeginEscort")
   local unit = Unit.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
   if unit == nil then
     unit = StaticObject.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
@@ -31,7 +31,7 @@ briefingRoom.mission.objectives[$OBJECTIVEINDEX$].launchMission = function ()
     local group = unit:getGroup()
     if group ~= nil then
       group:activate()
-      briefingRoom.radioManager.play("$LANGESCORT$ "..objective.name..": $LANGESCORTAFFIRM$", "RadioEscortMoving", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
+      briefingRoom.radioManager.play("$LANG_ESCORT$ "..objective.name..": $LANG_ESCORTAFFIRM$", "RadioEscortMoving", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
     end
   end
 end
@@ -41,5 +41,5 @@ if unit == nil then
   unit = StaticObject.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
 end
 if unit ~= nil and not unit:isActive() then
-  missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Launch Mission", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectives[$OBJECTIVEINDEX$].launchMission)
+  missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_ESCORTMENU$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectives[$OBJECTIVEINDEX$].launchMission)
 end

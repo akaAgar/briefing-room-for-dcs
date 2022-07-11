@@ -462,7 +462,7 @@ function dcsExtensions.vec2ToStringCoordinates(vec2)
   local mgrs = coord.LLtoMGRS(LLposN, LLposE)
   local mgrsString = mgrs.MGRSDigraph.." "..mgrs.UTMZone.." "..tostring(mgrs.Easting).." "..tostring(mgrs.Northing)
   cooString = cooString.."\nMGRS: "..mgrsString
-  cooString = cooString.."\nAltitude: "..math.floor(alt * 3.281).."ft"
+  cooString = cooString.."\n$LANG_ALTITUDE$: "..math.floor(alt * 3.281).."ft"
 
   return cooString
 end
@@ -610,7 +610,7 @@ function briefingRoom.handleGeneralKill(event)
 
     if event.initiator:getCoalition() ~= $LUAPLAYERCOALITION$ then -- unit is an enemy, radio some variation of a "enemy destroyed" message
       local soundName = "UnitDestroyed"
-      local messages = { "$LANGCOMMAND$: Weapon was effective.", "$LANGCOMMAND$: Good hit! Good hit!", "$LANGCOMMAND$: They're going down.", "$LANGCOMMAND$: Splashed one!" }
+      local messages = { "$LANG_COMMAND$: $LANG_DESTROY1$", "$LANG_COMMAND$: $LANG_DESTROY2$", "$LANG_COMMAND$: $LANG_SHOOTDOWN1$", "$LANG_COMMAND$: $LANG_SHOOTDOWN2$" }
       local messageIndex = math.random(1, 2)
       local messageIndexOffset = 0
 
@@ -673,7 +673,7 @@ function briefingRoom.transportManager.addTroopCargo(transportUnitName, unitName
   end
   for index, unitName in ipairs(unitNames) do
     if #briefingRoom.transportManager.transportRoster[transportUnitName].troops == briefingRoom.transportManager.maxTroops then
-      briefingRoom.radioManager.play("$LANGTRIOOP$: $LANGTRANSPORTFULL$ ($LANGTOTALTROOPS%: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops..")", "RadioTroopFull")
+      briefingRoom.radioManager.play("$LANG_TRIOOP$: $LANG_TRANSPORTFULL$ ($LANG_TOTALTROOPS%: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops..")", "RadioTroopFull")
       return true
     end
     local unit = Unit.getByName(unitName)
@@ -686,7 +686,7 @@ function briefingRoom.transportManager.addTroopCargo(transportUnitName, unitName
       unit:destroy()
     end
   end
-  briefingRoom.radioManager.play("$LANGTRIOOP$: $LANGTRANSPORTALLIN$ ($LANGTOTALTROOPS%: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops..")", "RadioTroopAllIn")
+  briefingRoom.radioManager.play("$LANG_TRIOOP$: $LANG_TRANSPORTALLIN$ ($LANG_TOTALTROOPS%: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops..")", "RadioTroopAllIn")
 end
 
 function briefingRoom.transportManager.removeTroopCargo(transportUnitName, unitNames)
@@ -716,7 +716,7 @@ function briefingRoom.transportManager.removeTroopCargo(transportUnitName, unitN
       })
     end
   end
-  briefingRoom.radioManager.play("$LANGTRIOOP$: $LANGTRANSPORTEVERYONEOUT$ ($LANGREMAININGTROOPS$: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops..")", "RadioTroopTakeoff")
+  briefingRoom.radioManager.play("$LANG_TRIOOP$: $LANG_TRANSPORTEVERYONEOUT$ ($LANG_REMAININGTROOPS$: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops..")", "RadioTroopTakeoff")
   return removed
 end
 
@@ -756,12 +756,12 @@ function briefingRoom.mission.coreFunctions.completeObjective(index)
   if briefingRoom.mission.objectivesLeft <= 0 then
     briefingRoom.debugPrint("Mission marked as complete")
     briefingRoom.mission.complete = true
-    briefingRoom.radioManager.play("$LANGCOMMAND$: $LANGMISSIONCOMPLETE$", "RadioHQMissionComplete", math.random(6, 8))
+    briefingRoom.radioManager.play("$LANG_COMMAND$: $LANG_MISSIONCOMPLETE$", "RadioHQMissionComplete", math.random(6, 8))
     trigger.action.setUserFlag(1, true) -- Mark the mission complete internally, so campaigns can move to the next mission
   elseif not briefingRoom.mission.hasStarted then
-    briefingRoom.radioManager.play("$LANGAUTOCOMPLETEOBJECTIVE$", "Radio0", math.random(6, 8))
+    briefingRoom.radioManager.play("$LANG_AUTOCOMPLETEOBJECTIVE$", "Radio0", math.random(6, 8))
   else
-    briefingRoom.radioManager.play("$LANGCOMMAND$: $LANGCOMPLETEOBJECTIVE$", "RadioHQObjectiveComplete", math.random(6, 8))
+    briefingRoom.radioManager.play("$LANG_COMMAND$: $LANG_COMPLETEOBJECTIVE$", "RadioHQObjectiveComplete", math.random(6, 8))
   end
 end
 
@@ -794,10 +794,10 @@ function briefingRoom.f10MenuCommands.missionStatus()
   local msnSound = ""
 
   if briefingRoom.mission.complete then
-    msnStatus = "$LANGCOMMAND$: Mission complete, you may return to base.\n\n"
+    msnStatus = "$LANG_COMMAND$: Mission complete, you may return to base.\n\n"
     msnSound = "RadioHQMissionStatusComplete"
   else
-    msnStatus = "$LANGCOMMAND$: Mission is still in progress.\n\n"
+    msnStatus = "$LANG_COMMAND$: Mission is still in progress.\n\n"
     msnSound = "RadioHQMissionStatusInProgress"
   end
 
@@ -817,21 +817,21 @@ function briefingRoom.f10MenuCommands.missionStatus()
     msnStatus = msnStatus.." "..o.task..objectiveProgress.."\n"
   end
 
-  briefingRoom.radioManager.play("$LANGPILOT$: $LANGMISSIONSTATUSREQUEST$", "RadioPilotMissionStatus")
+  briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_MISSIONSTATUSREQUEST$", "RadioPilotMissionStatus")
   briefingRoom.radioManager.play(msnStatus, msnSound, briefingRoom.radioManager.getAnswerDelay())
 end
 
 function briefingRoom.f10MenuCommands.getWaypointCoordinates(index)
   local cooMessage = dcsExtensions.vec2ToStringCoordinates(briefingRoom.mission.objectives[index].waypoint)
-  briefingRoom.radioManager.play("$LANGPILOT$: $LANGWAYPOINTREQUEST$", "RadioPilotWaypointCoordinates")
-  briefingRoom.radioManager.play("$LANGCOMMAND$: $LANGWAYPOINTRESPONSE$\n\n"..cooMessage, "RadioHQWaypointCoordinates", briefingRoom.radioManager.getAnswerDelay())
+  briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_WAYPOINTREQUEST$", "RadioPilotWaypointCoordinates")
+  briefingRoom.radioManager.play("$LANG_COMMAND$: $LANG_WAYPOINTRESPONSE$\n\n"..cooMessage, "RadioHQWaypointCoordinates", briefingRoom.radioManager.getAnswerDelay())
   missionCommands.removeItemForCoalition($LUAPLAYERCOALITION$, briefingRoom.mission.objectives[index].waypointRadioCommand)
-  briefingRoom.mission.objectives[index].waypointRadioCommand = missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Waypoint coordinates:\n"..cooMessage, briefingRoom.f10Menu.objectives[index], briefingRoom.f10MenuCommands.getWaypointCoordinates, index)
+  briefingRoom.mission.objectives[index].waypointRadioCommand = missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_WAYPOINTCOORDINATES$:\n"..cooMessage, briefingRoom.f10Menu.objectives[index], briefingRoom.f10MenuCommands.getWaypointCoordinates, index)
 end
 
 -- Common mission menu (mission status and mission features)
-briefingRoom.f10Menu.missionMenu = missionCommands.addSubMenuForCoalition($LUAPLAYERCOALITION$, "Mission", nil)
-missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Mission status", briefingRoom.f10Menu.missionMenu, briefingRoom.f10MenuCommands.missionStatus, nil)
+briefingRoom.f10Menu.missionMenu = missionCommands.addSubMenuForCoalition($LUAPLAYERCOALITION$, "$LANG_MISSION$", nil)
+missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_MISSIONSTATUS$", briefingRoom.f10Menu.missionMenu, briefingRoom.f10MenuCommands.missionStatus, nil)
 
 -- ===================================================================================
 -- 3.3 - OBJECTIVES TABLES (generated by BriefingRoom)
@@ -842,7 +842,7 @@ $SCRIPTOBJECTIVES$
 briefingRoom.mission.objectivesLeft = #briefingRoom.mission.objectives -- Store the total of objective left to complete
 
 for i=1,#briefingRoom.mission.objectives do
-  briefingRoom.mission.objectives[i].waypointRadioCommand = missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Request waypoint coordinates", briefingRoom.f10Menu.objectives[i], briefingRoom.f10MenuCommands.getWaypointCoordinates, i)
+  briefingRoom.mission.objectives[i].waypointRadioCommand = missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_WAYPOINTCOORDINATESREQUEST$", briefingRoom.f10Menu.objectives[i], briefingRoom.f10MenuCommands.getWaypointCoordinates, i)
 end
 
 -- ===================================================================================

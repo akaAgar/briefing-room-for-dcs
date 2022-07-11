@@ -9,7 +9,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.eventHandler:
   if event.id == world.event.S_EVENT_MARK_REMOVED then
     if briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.markID ~= nil and event.idx == briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.markID then
       if not briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.disableCooRemovedRadioMessage then
-        briefingRoom.radioManager.play("SEAD: $LANGDISCARDCOORDINATES$", "RadioCoordinatesDiscardedM")
+        briefingRoom.radioManager.play("$LANG_SEAD$: $LANG_DISCARDCOORDINATES$", "RadioCoordinatesDiscardedM")
       end
       briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.markID = nil
     end
@@ -22,14 +22,14 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.eventHandler:
         briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.disableCooRemovedRadioMessage = false
       end
       briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.markID = event.idx
-      briefingRoom.radioManager.play("SEAD: $LANGUPDATECOORDINATES$", "RadioCoordinatesUpdatedM")
+      briefingRoom.radioManager.play("$LANG_SEAD$: $LANG_UPDATECOORDINATES$", "RadioCoordinatesUpdatedM")
       return
     end
   elseif event.id == world.event.S_EVENT_MARK_CHANGE then
     local markText = string.lower(tostring(event.text or ""))
 
     if markText == briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.MARKER_NAME then
-      briefingRoom.radioManager.play("SEAD: $LANGUPDATECOORDINATES$", "RadioCoordinatesUpdatedM")
+      briefingRoom.radioManager.play("$LANG_SEAD$: $LANG_UPDATECOORDINATES$", "RadioCoordinatesUpdatedM")
       if briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.markID ~= nil then
         briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.disableCooRemovedRadioMessage = true
         trigger.action.removeMark(briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.markID)
@@ -37,7 +37,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.eventHandler:
       end
       briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.markID = event.idx
     elseif briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.markID ~= nil and event.idx == briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.markID then
-      briefingRoom.radioManager.play("SEAD: $LANGDISCARDCOORDINATES$", "RadioCoordinatesDiscardedM")
+      briefingRoom.radioManager.play("$LANG_SEAD$: $LANG_DISCARDCOORDINATES$", "RadioCoordinatesDiscardedM")
       briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.markID = nil
     end
   end
@@ -45,7 +45,7 @@ end
 
 -- Radio command to launch bombing run (called from F10 menu)
 function briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.launchBombingRun()
-  briefingRoom.radioManager.play("$LANGPILOT$: $LANGSEADREQUEST$", "RadioPilotSEADSupport")
+  briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_SEADREQUEST$", "RadioPilotSEADSupport")
 
   local marks = world.getMarkPanels()
   for _,m in ipairs(marks) do
@@ -60,13 +60,13 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.launchBombing
         }
         group:getController():setCommand(Start)
         timer.scheduleFunction(briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.setTask, {}, timer.getTime() + 10) --just re-run after 10 s
-        briefingRoom.radioManager.play("$LANGCOMMAND$: $LANGSEADAFFIRM$", "RadioHQSEADSupport", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
+        briefingRoom.radioManager.play("$LANG_COMMAND$: $LANG_SEADAFFIRM$", "RadioHQSEADSupport", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
       end
       return
     end
   end
 
-  briefingRoom.radioManager.play("SEAD: $LANGSEADNOCOORDINATES$", "RadioArtilleryNoCoordinates", briefingRoom.radioManager.getAnswerDelay())
+  briefingRoom.radioManager.play("$LANG_SEAD$: $LANG_SEADNOCOORDINATES$", "RadioArtilleryNoCoordinates", briefingRoom.radioManager.getAnswerDelay())
 end
 
 function briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.setTask()
@@ -143,7 +143,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.setTask()
 end
 
 -- Add F10 menu command
-missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Begin SEAD on provided coordinates", briefingRoom.f10Menu.missionMenu, briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.launchBombingRun, nil)
+missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_SEADMENU$", briefingRoom.f10Menu.missionMenu, briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.launchBombingRun, nil)
 
 -- Enable event handler
 world.addEventHandler(briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.eventHandler)

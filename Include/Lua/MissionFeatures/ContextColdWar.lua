@@ -40,7 +40,7 @@ function briefingRoom.mission.missionFeatures.contextColdWar.eventHandler:onEven
     end
   end
 
-  briefingRoom.radioManager.play("$LANGCOLDWARGONEHOTTRIGGER$"
+  briefingRoom.radioManager.play("$LANG_COLDWARGONEHOTTRIGGER$"
     , "RadioHQColdWarGoneHot")
   briefingRoom.mission.missionFeatures.contextColdWar.wasHasStarted = true -- War has begun
 end

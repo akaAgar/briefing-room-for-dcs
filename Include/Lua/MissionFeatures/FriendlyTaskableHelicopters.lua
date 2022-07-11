@@ -9,7 +9,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.eventH
   if event.id == world.event.S_EVENT_MARK_REMOVED then
     if briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID ~= nil and event.idx == briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID then
       if not briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.disableCooRemovedRadioMessage then
-        briefingRoom.radioManager.play("$LANGATTACKCHOPPERS$: $LANGDISCARDCOORDINATES$", "RadioCoordinatesDiscardedM")
+        briefingRoom.radioManager.play("$LANG_ATTACKCHOPPERS$: $LANG_DISCARDCOORDINATES$", "RadioCoordinatesDiscardedM")
       end
       briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID = nil
     end
@@ -22,14 +22,14 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.eventH
         briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.disableCooRemovedRadioMessage = false
       end
       briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID = event.idx
-      briefingRoom.radioManager.play("$LANGATTACKCHOPPERS$: $LANGUPDATECOORDINATES$", "RadioCoordinatesUpdatedM")
+      briefingRoom.radioManager.play("$LANG_ATTACKCHOPPERS$: $LANG_UPDATECOORDINATES$", "RadioCoordinatesUpdatedM")
       return
     end
   elseif event.id == world.event.S_EVENT_MARK_CHANGE then
     local markText = string.lower(tostring(event.text or ""))
 
     if markText == briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.MARKER_NAME then
-      briefingRoom.radioManager.play("$LANGATTACKCHOPPERS$: $LANGUPDATECOORDINATES$", "RadioCoordinatesUpdatedM")
+      briefingRoom.radioManager.play("$LANG_ATTACKCHOPPERS$: $LANG_UPDATECOORDINATES$", "RadioCoordinatesUpdatedM")
       if briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID ~= nil then
         briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.disableCooRemovedRadioMessage = true
         trigger.action.removeMark(briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID)
@@ -37,7 +37,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.eventH
       end
       briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID = event.idx
     elseif briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID ~= nil and event.idx == briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID then
-      briefingRoom.radioManager.play("$LANGATTACKCHOPPERS$: $LANGDISCARDCOORDINATES$", "RadioCoordinatesDiscardedM")
+      briefingRoom.radioManager.play("$LANG_ATTACKCHOPPERS$: $LANG_DISCARDCOORDINATES$", "RadioCoordinatesDiscardedM")
       briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID = nil
     end
   end
@@ -45,7 +45,7 @@ end
 
 -- Radio command to launch bombing run (called from F10 menu)
 function briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.launchBombingRun()
-  briefingRoom.radioManager.play("$LANGPILOT$: $LANGATTACKCOPPERSREQUEST$", "RadioPilotBeginYourAttack")
+  briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_ATTACKCOPPERSREQUEST$", "RadioPilotBeginYourAttack")
   local marks = world.getMarkPanels()
   for _,m in ipairs(marks) do
     if briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID ~= nil and m.idx == briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID then
@@ -59,13 +59,13 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.launch
         }
         group:getController():setCommand(Start)
         timer.scheduleFunction(briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.setTask, {}, timer.getTime() + 10) --just re-run after 10 s
-        briefingRoom.radioManager.play("$LANGATTACKCHOPPERS$: $LANGBEGINATTACK$", "RadioOtherPilotBeginAttack", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
+        briefingRoom.radioManager.play("$LANG_ATTACKCHOPPERS$: $LANG_BEGINATTACK$", "RadioOtherPilotBeginAttack", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
       end
       return
     end
   end
 
-  briefingRoom.radioManager.play("$LANGATTACKCHOPPERS$: $LANGATTACKCHOPPERSNOCOORDINATES$", "RadioArtilleryNoCoordinates", briefingRoom.radioManager.getAnswerDelay())
+  briefingRoom.radioManager.play("$LANG_ATTACKCHOPPERS$: $LANG_ATTACKCHOPPERSNOCOORDINATES$", "RadioArtilleryNoCoordinates", briefingRoom.radioManager.getAnswerDelay())
 end
 
 function briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.setTask()
@@ -145,7 +145,7 @@ end
 
 
 -- Add F10 menu command
-missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Begin Helo attack on provided coordinates", briefingRoom.f10Menu.missionMenu, briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.launchBombingRun, nil)
+missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_ATTACKCHOPPERMENU$", briefingRoom.f10Menu.missionMenu, briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.launchBombingRun, nil)
 
 
 -- Enable event handler

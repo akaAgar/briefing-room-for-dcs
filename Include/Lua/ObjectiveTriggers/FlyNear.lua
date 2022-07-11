@@ -13,9 +13,9 @@ briefingRoom.mission.objectiveTimers[$OBJECTIVEINDEX$] = function()
 
         if distance < 9260 and math.abs(vec2p.y - vec2u.y) < 2438 then -- less than 5nm away on the X/Z axis, less than 8000 feet of altitude difference
           if math.random(1, 2) == 1 then
-            briefingRoom.radioManager.play("$LANGPILOT$: Command, I have a good visual on target.", "RadioPilotTargetReconned1")
+            briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_FLYNEAR1$", "RadioPilotTargetReconned1")
           else
-            briefingRoom.radioManager.play("$LANGPILOT$: Command, positive visual on target.", "RadioPilotTargetReconned2")
+            briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_FLYNEAR2$", "RadioPilotTargetReconned2")
           end
           briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames = { }
           briefingRoom.mission.coreFunctions.completeObjective($OBJECTIVEINDEX$)

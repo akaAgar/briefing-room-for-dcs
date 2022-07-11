@@ -17,7 +17,7 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
       table.removeValue(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, value)
     end
     if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames < 1 then -- all target units destroyed, objective complete
-      briefingRoom.radioManager.play("$LANGPILOT$: Command, Troops Delivered.", "RadioPilotTroopsDelivered")
+      briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_TROOPSDELIVERED$", "RadioPilotTroopsDelivered")
       briefingRoom.mission.coreFunctions.completeObjective($OBJECTIVEINDEX$)
     end
     return true

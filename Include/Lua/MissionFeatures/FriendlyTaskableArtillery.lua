@@ -14,7 +14,7 @@ function briefingRoom.mission.missionFeatures.supportArtillery.eventHandler:onEv
   if event.id == world.event.S_EVENT_MARK_REMOVED then
     if briefingRoom.mission.missionFeatures.supportArtillery.markID ~= nil and event.idx == briefingRoom.mission.missionFeatures.supportArtillery.markID then
       if not briefingRoom.mission.missionFeatures.supportArtillery.disableCooRemovedRadioMessage then
-        briefingRoom.radioManager.play("$LANGFIRESUPPORT$: $LANGDISCARDCOORDINATES$", "RadioCoordinatesDiscardedM")
+        briefingRoom.radioManager.play("$LANG_FIRESUPPORT$: $LANG_DISCARDCOORDINATES$", "RadioCoordinatesDiscardedM")
       end
       briefingRoom.mission.missionFeatures.supportArtillery.markID = nil
     end
@@ -27,14 +27,14 @@ function briefingRoom.mission.missionFeatures.supportArtillery.eventHandler:onEv
         briefingRoom.mission.missionFeatures.supportArtillery.disableCooRemovedRadioMessage = false
       end
       briefingRoom.mission.missionFeatures.supportArtillery.markID = event.idx
-      briefingRoom.radioManager.play("$LANGFIRESUPPORT$: $LANGUPDATECOORDINATES$", "RadioCoordinatesUpdatedM")
+      briefingRoom.radioManager.play("$LANG_FIRESUPPORT$: $LANG_UPDATECOORDINATES$", "RadioCoordinatesUpdatedM")
       return
     end
   elseif event.id == world.event.S_EVENT_MARK_CHANGE then
     local markText = string.lower(tostring(event.text or ""))
 
     if markText == briefingRoom.mission.missionFeatures.supportArtillery.MARKER_NAME then
-      briefingRoom.radioManager.play("$LANGFIRESUPPORT$: $LANGUPDATECOORDINATES$", "RadioCoordinatesUpdatedM")
+      briefingRoom.radioManager.play("$LANG_FIRESUPPORT$: $LANG_UPDATECOORDINATES$", "RadioCoordinatesUpdatedM")
       if briefingRoom.mission.missionFeatures.supportArtillery.markID ~= nil then
         briefingRoom.mission.missionFeatures.supportArtillery.disableCooRemovedRadioMessage = true
         trigger.action.removeMark(briefingRoom.mission.missionFeatures.supportArtillery.markID)
@@ -42,7 +42,7 @@ function briefingRoom.mission.missionFeatures.supportArtillery.eventHandler:onEv
       end
       briefingRoom.mission.missionFeatures.supportArtillery.markID = event.idx
     elseif briefingRoom.mission.missionFeatures.supportArtillery.markID ~= nil and event.idx == briefingRoom.mission.missionFeatures.supportArtillery.markID then
-      briefingRoom.radioManager.play("$LANGFIRESUPPORT$: $LANGDISCARDCOORDINATES$", "RadioCoordinatesDiscardedM")
+      briefingRoom.radioManager.play("$LANG_FIRESUPPORT$: $LANG_DISCARDCOORDINATES$", "RadioCoordinatesDiscardedM")
       briefingRoom.mission.missionFeatures.supportArtillery.markID = nil
     end
   end
@@ -88,10 +88,10 @@ end
 
 -- Radio command to launch fire mission (called from F10 menu)
 function briefingRoom.mission.missionFeatures.supportArtillery.launchFireMission()
-  briefingRoom.radioManager.play("$LANGPILOT$: $LANGFIREREQUEST$", "RadioPilotArtillery")
+  briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_FIREREQUEST$", "RadioPilotArtillery")
  
   if briefingRoom.mission.missionFeatures.supportArtillery.fireMissionsLeft <= 0 then
-    briefingRoom.radioManager.play("$LANGFIRESUPPORT$: $LANGFIREREJECT$", "RadioArtilleryNoAmmo", briefingRoom.radioManager.getAnswerDelay())
+    briefingRoom.radioManager.play("$LANG_FIRESUPPORT$: $LANG_FIREREJECT$", "RadioArtilleryNoAmmo", briefingRoom.radioManager.getAnswerDelay())
     return
   end
 
@@ -100,19 +100,19 @@ function briefingRoom.mission.missionFeatures.supportArtillery.launchFireMission
     if briefingRoom.mission.missionFeatures.supportArtillery.markID ~= nil and m.idx == briefingRoom.mission.missionFeatures.supportArtillery.markID then
       local args = { ["position"] = m.pos }
       briefingRoom.mission.missionFeatures.supportArtillery.fireMissionsLeft = briefingRoom.mission.missionFeatures.supportArtillery.fireMissionsLeft - 1
-      briefingRoom.radioManager.play("$LANGFIRESUPPORT$: $LANGFIREAFFIRM$", "RadioArtilleryFiring", briefingRoom.radioManager.getAnswerDelay(), briefingRoom.mission.missionFeatures.supportArtillery.doFireMission, args)
+      briefingRoom.radioManager.play("$LANG_FIRESUPPORT$: $LANG_FIREAFFIRM$", "RadioArtilleryFiring", briefingRoom.radioManager.getAnswerDelay(), briefingRoom.mission.missionFeatures.supportArtillery.doFireMission, args)
       return
     end
   end
 
-  briefingRoom.radioManager.play("$LANGFIRESUPPORT$: $LANGFIRENOCOORDINATES$", "RadioArtilleryNoCoordinates", briefingRoom.radioManager.getAnswerDelay())
+  briefingRoom.radioManager.play("$LANG_FIRESUPPORT$: $LANG_FIRENOCOORDINATES$", "RadioArtilleryNoCoordinates", briefingRoom.radioManager.getAnswerDelay())
 end
 
 -- Set the correct number of fire missions
 briefingRoom.mission.missionFeatures.supportArtillery.fireMissionsLeft = briefingRoom.mission.missionFeatures.supportArtillery.FIRE_MISSIONS_PER_OBJECTIVE * math.max(1, #briefingRoom.mission.objectives)
 
 -- Add F10 menu command
-missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "Begin fire mission on provided coordinates", briefingRoom.f10Menu.missionMenu, briefingRoom.mission.missionFeatures.supportArtillery.launchFireMission, nil)
+missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_FIREMENU$", briefingRoom.f10Menu.missionMenu, briefingRoom.mission.missionFeatures.supportArtillery.launchFireMission, nil)
 
 -- Enable event handler
 world.addEventHandler(briefingRoom.mission.missionFeatures.supportArtillery.eventHandler)
