@@ -115,7 +115,7 @@ namespace BriefingRoom4DCS.Generator
                     new MinMaxD(10, maxDistance),
                     objectivesCenter,
                     new MinMaxD(10, 99999),
-                    GeneratorTools.GetSpawnPointCoalition(template, Side.Ally));
+                    template.OptionsMission.Contains("CarrierAllWaters") ? null : GeneratorTools.GetSpawnPointCoalition(template, Side.Ally));
                 if (!carrierGroupCoordinates.HasValue)
                 {
                     maxDistance += 25;
