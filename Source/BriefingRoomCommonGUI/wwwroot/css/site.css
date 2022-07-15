@@ -317,3 +317,9 @@ th {
 .landing-screen .language-selector select.form-control option {
     background-color: #0a263f;
 }
+
+.min-max {
+    width: 47%;
+    display: inline-block;
+    margin: 0 1%;
+}

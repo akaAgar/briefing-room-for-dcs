@@ -35,7 +35,9 @@ namespace BriefingRoom4DCS.Template
         public const int MAX_OBJECTIVES = 5;
         public const int MAX_PLAYER_FLIGHT_GROUPS = 8;
         public const int MAX_OBJECTIVE_DISTANCE = 300;
-        public const int MAX_OBJECTIVE_SEPERATION = 100;
+        public const int MAX_OBJECTIVE_SEPARATION = 100;
+        public const int MAX_BORDER_LIMIT = 300;
+        public const int MIN_BORDER_LIMIT = 10;
         public const int MAX_COMBINED_ARMS_SLOTS = 100;
         public string BriefingMissionName { get; set; }
         public string BriefingMissionDescription { get; set; }
@@ -49,10 +51,16 @@ namespace BriefingRoom4DCS.Template
         public TimeOfDay EnvironmentTimeOfDay { get; set; }
         public string EnvironmentWeatherPreset { get; set; }
         public Wind EnvironmentWind { get; set; }
-        public int FlightPlanObjectiveDistance { get { return FlightPlanObjectiveDistance_; } set { FlightPlanObjectiveDistance_ = Toolbox.Clamp(value, 0, MAX_OBJECTIVE_DISTANCE); } }
-        private int FlightPlanObjectiveDistance_;
-        public int FlightPlanObjectiveSeperation { get { return FlightPlanObjectiveSeperation_; } set { FlightPlanObjectiveSeperation_ = Toolbox.Clamp(value, 0, MAX_OBJECTIVE_SEPERATION); } }
-        private int FlightPlanObjectiveSeperation_;
+        public int FlightPlanObjectiveDistanceMax { get { return FlightPlanObjectiveDistanceMax_; } set { FlightPlanObjectiveDistanceMax_ = Toolbox.Clamp(value, 0, MAX_OBJECTIVE_DISTANCE); } }
+        private int FlightPlanObjectiveDistanceMax_;
+        public int FlightPlanObjectiveDistanceMin { get { return FlightPlanObjectiveDistanceMin_; } set { FlightPlanObjectiveDistanceMin_ = Toolbox.Clamp(value, 0, MAX_OBJECTIVE_DISTANCE); } }
+        private int FlightPlanObjectiveDistanceMin_;
+        public int FlightPlanObjectiveSeparationMax { get { return FlightPlanObjectiveSeparationMax_; } set { FlightPlanObjectiveSeparationMax_ = Toolbox.Clamp(value, 0, MAX_OBJECTIVE_SEPARATION); } }
+        private int FlightPlanObjectiveSeparationMax_;
+        public int FlightPlanObjectiveSeparationMin { get { return FlightPlanObjectiveSeparationMin_; } set { FlightPlanObjectiveSeparationMin_ = Toolbox.Clamp(value, 0, MAX_OBJECTIVE_DISTANCE); } }
+        private int FlightPlanObjectiveSeparationMin_;
+        public int BorderLimit { get { return BorderLimit_; } set { BorderLimit_ = Toolbox.Clamp(value, MIN_BORDER_LIMIT, MAX_BORDER_LIMIT); } }
+        private int BorderLimit_;
         public string FlightPlanTheaterStartingAirbase { get; set; }
         public List<string> MissionFeatures { get { return MissionFeatures_; } set { MissionFeatures_ = Database.Instance.CheckIDs<DBEntryFeatureMission>(value.ToArray()).ToList(); } }
         private List<string> MissionFeatures_ = new List<string>();
@@ -97,11 +105,11 @@ namespace BriefingRoom4DCS.Template
         public void Clear()
         {
             // If the default template is found, load it.
-            if (File.Exists(DEFAULT_TEMPLATE_FILEPATH))
-            {
-                LoadFromFile(DEFAULT_TEMPLATE_FILEPATH);
-                return;
-            }
+            // if (File.Exists(DEFAULT_TEMPLATE_FILEPATH))
+            // {
+            //     LoadFromFile(DEFAULT_TEMPLATE_FILEPATH);
+            //     return;
+            // }
             BriefingMissionName = "";
             BriefingMissionDescription = "";
 
@@ -117,8 +125,11 @@ namespace BriefingRoom4DCS.Template
             EnvironmentWeatherPreset = "";
             EnvironmentWind = Wind.Random;
 
-            FlightPlanObjectiveDistance = 80;
-            FlightPlanObjectiveSeperation = 30;
+            FlightPlanObjectiveDistanceMax = 160;
+            FlightPlanObjectiveDistanceMin = 40;
+            FlightPlanObjectiveSeparationMax = 100;
+            FlightPlanObjectiveSeparationMin = 10;
+            BorderLimit = 100;
             FlightPlanTheaterStartingAirbase = "";
 
             MissionFeatures = new List<string>{
@@ -183,8 +194,11 @@ namespace BriefingRoom4DCS.Template
             EnvironmentWeatherPreset = ini.GetValue("Environment", "WeatherPreset", EnvironmentWeatherPreset);
             EnvironmentWind = ini.GetValue("Environment", "Wind", EnvironmentWind);
 
-            FlightPlanObjectiveDistance = ini.GetValue("FlightPlan", "ObjectiveDistance", FlightPlanObjectiveDistance);
-            FlightPlanObjectiveSeperation = ini.GetValue("FlightPlan", "ObjectiveSeperation", FlightPlanObjectiveSeperation);
+            FlightPlanObjectiveDistanceMax = ini.GetValue("FlightPlan", "ObjectiveDistanceMax", FlightPlanObjectiveDistanceMax);
+            FlightPlanObjectiveDistanceMin = ini.GetValue("FlightPlan", "ObjectiveDistanceMin", FlightPlanObjectiveDistanceMin);
+            FlightPlanObjectiveSeparationMax = ini.GetValue("FlightPlan", "ObjectiveSeparationMax", FlightPlanObjectiveSeparationMax);
+            FlightPlanObjectiveSeparationMin = ini.GetValue("FlightPlan", "ObjectiveSeparationMin", FlightPlanObjectiveSeparationMin);
+            BorderLimit = ini.GetValue("FlightPlan", "BorderLimit", BorderLimit);
             FlightPlanTheaterStartingAirbase = ini.GetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
 
             MissionFeatures = ini.GetValueDistinctList<string>("MissionFeatures", "MissionFeatures");
@@ -255,8 +269,11 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue("Environment", "WeatherPreset", EnvironmentWeatherPreset);
             ini.SetValue("Environment", "Wind", EnvironmentWind);
 
-            ini.SetValue("FlightPlan", "ObjectiveDistance", FlightPlanObjectiveDistance);
-            ini.SetValue("FlightPlan", "ObjectiveSeperation", FlightPlanObjectiveSeperation);
+            ini.SetValue("FlightPlan", "ObjectiveDistanceMax", FlightPlanObjectiveDistanceMax);
+            ini.SetValue("FlightPlan", "ObjectiveDistanceMin", FlightPlanObjectiveDistanceMin);
+            ini.SetValue("FlightPlan", "ObjectiveSeparationMax", FlightPlanObjectiveSeparationMax);
+            ini.SetValue("FlightPlan", "ObjectiveSeparationMin", FlightPlanObjectiveSeparationMin);
+            ini.SetValue("FlightPlan", "BorderLimit", BorderLimit);
             ini.SetValue("FlightPlan", "TheaterStartingAirbase", FlightPlanTheaterStartingAirbase);
 
             ini.SetValueArray("MissionFeatures", "MissionFeatures", MissionFeatures.ToArray());

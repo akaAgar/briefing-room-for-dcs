@@ -208,7 +208,7 @@ namespace BriefingRoom4DCS.Mission
                 double.Parse(GetValue("MissionAirbaseX"), CultureInfo.InvariantCulture),
                 double.Parse(GetValue("MissionAirbaseY"), CultureInfo.InvariantCulture));
             distance = objCenter.GetDistanceFrom(playerAirbase) * Toolbox.METERS_TO_NM;
-            var extremeLimit = template.FlightPlanObjectiveDistance * 1.7;
+            var extremeLimit = template.FlightPlanObjectiveDistanceMax * 1.7;
             var isTooFar = distance > extremeLimit;
             if (isTooFar)
                 BriefingRoom.PrintToLog($"Distance too far {distance}NM > {extremeLimit}NM", LogMessageErrorLevel.Warning);

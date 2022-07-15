@@ -38,6 +38,8 @@ namespace BriefingRoom4DCS.Generator
 
         private readonly DBEntrySituation SituationDB;
 
+        private readonly int BorderLimit;
+
         private readonly bool InvertCoalition;
 
         private readonly List<UnitFamily> LARGE_AIRCRAFT = new List<UnitFamily>{
@@ -48,13 +50,14 @@ namespace BriefingRoom4DCS.Generator
                 UnitFamily.PlaneBomber,
             };
 
-        internal UnitMakerSpawnPointSelector(DBEntryTheater theaterDB, DBEntrySituation situationDB, bool invertCoalition)
+        internal UnitMakerSpawnPointSelector(DBEntryTheater theaterDB, DBEntrySituation situationDB, bool invertCoalition, int borderLimit)
         {
             TheaterDB = theaterDB;
             SituationDB = situationDB;
             AirbaseParkingSpots = new Dictionary<int, List<DBEntryAirbaseParkingSpot>>();
             SpawnPoints = new List<DBEntryTheaterSpawnPoint>();
             InvertCoalition = invertCoalition;
+            BorderLimit = borderLimit;
 
             if (TheaterDB.SpawnPoints is not null)
                 SpawnPoints.AddRange(TheaterDB.SpawnPoints.Where(x => CheckNotInNoSpawnCoords(x.Coordinates)).ToList());
@@ -301,7 +304,7 @@ namespace BriefingRoom4DCS.Generator
             var red = SituationDB.GetRedZone(InvertCoalition);
             var blue = SituationDB.GetBlueZone(InvertCoalition);
 
-            var distanceLimit = Toolbox.NM_TO_METERS * 100;
+            var distanceLimit = Toolbox.NM_TO_METERS * BorderLimit;
             var distance = ShapeManager.GetDistanceFromShape(coordinates, (coalition.Value == Coalition.Blue ? blue : red));
             return distance < distanceLimit;
 

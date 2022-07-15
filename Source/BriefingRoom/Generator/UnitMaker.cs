@@ -75,7 +75,7 @@ namespace BriefingRoom4DCS.Generator
             bool singlePlayerMission)
         {
             CallsignGenerator = new UnitMakerCallsignGenerator(coalitionsDB);
-            SpawnPointSelector = new UnitMakerSpawnPointSelector(theaterDB, situationDB, template.OptionsMission.Contains("InvertCountriesCoalitions"));
+            SpawnPointSelector = new UnitMakerSpawnPointSelector(theaterDB, situationDB, template.OptionsMission.Contains("InvertCountriesCoalitions"), template.BorderLimit);
 
             Mission = mission;
             Template = template;

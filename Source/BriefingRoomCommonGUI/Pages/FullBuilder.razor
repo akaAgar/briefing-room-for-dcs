@@ -105,13 +105,38 @@
                     <div id="objectives" class="generator-block">
                         <h3>@BriefingRoom.Translate("Objectives")</h3>
                         <div class="generator-group flex-justify-spaced flex-margin-fix">
-                            <div class="form-group flex-block">
-                                <label>@BriefingRoom.Translate("ObjectiveDistance")</label>
-                                <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistance"></InputNumber>
+                            <div class="flex-block">
+                                <h6>@BriefingRoom.Translate("ObjectiveDistance")</h6>
+                                <div class="min-max">
+                                    <label>@BriefingRoom.Translate("Min")</label>
+                                    <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistanceMin">
+                                    </InputNumber>
+                                </div>
+                                <div class="min-max">
+                                    <label>@BriefingRoom.Translate("Max")</label>
+                                    <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistanceMax">
+                                    </InputNumber>
+                                </div>
                             </div>
+                            <div class="flex-block">
+                                 <h6>@BriefingRoom.Translate("ObjectiveSeperation")</h6>
+                                <div class="min-max">
+                                    <label>@BriefingRoom.Translate("Min")</label>
+                                    <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveSeparationMin">
+                                    </InputNumber>
+                                </div>
+                                <div class="min-max">
+                                    <label>@BriefingRoom.Translate("Max")</label>
+                                    <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveSeparationMax">
+                                    </InputNumber>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="generator-group flex-justify-spaced flex-margin-fix">
                             <div class="form-group flex-block">
-                                <label>@BriefingRoom.Translate("ObjectiveSeperation")</label>
-                                <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveSeperation"></InputNumber>
+                                <label>@BriefingRoom.Translate("BorderLimit")</label>
+                                <InputNumber class="form-control" @bind-Value="Template.BorderLimit">
+                                </InputNumber>
                             </div>
                         </div>
                         <ul class="nav nav-tabs">

@@ -146,7 +146,7 @@ namespace BriefingRoom4DCS.Campaign
         private static MissionTemplate CreateMissionTemplate(CampaignTemplate campaignTemplate, string campaignName, int missionIndex, int missionCount)
         {
             string weatherPreset = GetWeatherForMission(campaignTemplate.EnvironmentBadWeatherChance);
-
+            var objDistance = GetObjectiveDistance(campaignTemplate.MissionsObjectiveDistance);
             MissionTemplate template = new MissionTemplate
             {
                 BriefingMissionName = $"{campaignName}, phase {missionIndex + 1}",
@@ -163,8 +163,9 @@ namespace BriefingRoom4DCS.Campaign
                 EnvironmentTimeOfDay = GetTimeOfDayForMission(campaignTemplate.EnvironmentNightMissionChance),
                 EnvironmentWeatherPreset = weatherPreset,
                 EnvironmentWind = GetWindForMission(campaignTemplate.EnvironmentBadWeatherChance, weatherPreset),
-
-                FlightPlanObjectiveDistance = GetObjectiveDistance(campaignTemplate.MissionsObjectiveDistance),
+                
+                FlightPlanObjectiveDistanceMax = objDistance.Max,
+                FlightPlanObjectiveDistanceMin = objDistance.Min,
                 FlightPlanTheaterStartingAirbase = campaignTemplate.PlayerStartingAirbase,
 
                 MissionFeatures = campaignTemplate.MissionsFeatures.ToList(),
@@ -200,15 +201,15 @@ namespace BriefingRoom4DCS.Campaign
             return template;
         }
 
-        private static int GetObjectiveDistance(Amount objectiveDistance)
+        private static MinMaxI GetObjectiveDistance(Amount objectiveDistance)
         {
             switch (objectiveDistance)
             {
-                case Amount.VeryLow: return Toolbox.RandomMinMax(40, 80);
-                case Amount.Low: return Toolbox.RandomMinMax(60, 100);
-                default: return Toolbox.RandomMinMax(80, 120); // case Amount.Average
-                case Amount.High: return Toolbox.RandomMinMax(100, 140);
-                case Amount.VeryHigh: return Toolbox.RandomMinMax(120, 160);
+                case Amount.VeryLow: return new MinMaxI(40, 80);
+                case Amount.Low: return new MinMaxI(60, 100);
+                default: return new MinMaxI(80, 120); // case Amount.Average
+                case Amount.High: return new MinMaxI(100, 140);
+                case Amount.VeryHigh: return new MinMaxI(120, 160);
             }
         }
 

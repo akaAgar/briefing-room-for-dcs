@@ -348,22 +348,12 @@ namespace BriefingRoom4DCS.Generator
 
         private Coordinates GetSpawnCoordinates(MissionTemplateRecord template, Coordinates lastCoordinates, DBEntryAirbase playerAirbase, DBEntryObjectiveTarget targetDB)
         {
-            int objectiveDistance = template.FlightPlanObjectiveDistance;
-            if (objectiveDistance < 1) objectiveDistance = Toolbox.RandomInt(40, 160);
-
-            int objectiveSeperation = template.FlightPlanObjectiveSeperation;
-            if (objectiveSeperation < 1) objectiveSeperation = Toolbox.RandomInt(10, 100);
-
             Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                 targetDB.ValidSpawnPoints,
-                 playerAirbase.Coordinates,
-                new MinMaxD(
-                    objectiveDistance * OBJECTIVE_DISTANCE_VARIATION_MIN,
-                    objectiveDistance * OBJECTIVE_DISTANCE_VARIATION_MAX),
+                playerAirbase.Coordinates,
+                template.FlightPlanObjectiveDistance,
                 lastCoordinates,
-                new MinMaxD(
-                    objectiveSeperation * OBJECTIVE_DISTANCE_VARIATION_MIN,
-                    objectiveSeperation * OBJECTIVE_DISTANCE_VARIATION_MAX),
+                template.FlightPlanObjectiveSeparation,
                 GeneratorTools.GetSpawnPointCoalition(template, Side.Enemy));
 
             if (!spawnPoint.HasValue)

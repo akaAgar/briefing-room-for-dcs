@@ -40,8 +40,9 @@ namespace BriefingRoom4DCS.Template
         internal TimeOfDay EnvironmentTimeOfDay { get; init; }
         internal string EnvironmentWeatherPreset { get; init; }
         internal Wind EnvironmentWind { get; init; }
-        internal int FlightPlanObjectiveDistance { get; init; }
-        internal int FlightPlanObjectiveSeperation { get; init; }
+        internal MinMaxD FlightPlanObjectiveDistance { get; init; }
+        internal MinMaxD FlightPlanObjectiveSeparation { get; init; }
+        internal int BorderLimit { get; init; }
         internal string FlightPlanTheaterStartingAirbase { get; init; }
         internal List<string> MissionFeatures { get; init; }
         internal List<string> Mods { get; init; }
@@ -77,8 +78,9 @@ namespace BriefingRoom4DCS.Template
             EnvironmentTimeOfDay = template.EnvironmentTimeOfDay;
             EnvironmentWeatherPreset = template.EnvironmentWeatherPreset;
             EnvironmentWind = template.EnvironmentWind;
-            FlightPlanObjectiveDistance = template.FlightPlanObjectiveDistance;
-            FlightPlanObjectiveSeperation = template.FlightPlanObjectiveSeperation;
+            FlightPlanObjectiveDistance = new MinMaxD(template.FlightPlanObjectiveDistanceMax, template.FlightPlanObjectiveDistanceMin) ;
+            FlightPlanObjectiveSeparation = new MinMaxD(template.FlightPlanObjectiveSeparationMax, template.FlightPlanObjectiveSeparationMin);
+            BorderLimit= template.BorderLimit;
             FlightPlanTheaterStartingAirbase = template.FlightPlanTheaterStartingAirbase;
             AppendPlayerAircraftMods(ref template);
             Mods = template.Mods;
