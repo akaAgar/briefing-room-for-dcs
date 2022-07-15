@@ -307,7 +307,7 @@ namespace BriefingRoom4DCS.Generator
 
         }
 
-        private bool CheckInSea(Coordinates coordinates)
+        internal bool CheckInSea(Coordinates coordinates)
         {
             return ShapeManager.IsPosValid(coordinates, TheaterDB.WaterCoordinates, TheaterDB.WaterExclusionCoordinates);
         }
