@@ -301,7 +301,7 @@ namespace BriefingRoom4DCS.Generator
             var red = SituationDB.GetRedZone(InvertCoalition);
             var blue = SituationDB.GetBlueZone(InvertCoalition);
 
-            var distanceLimit = Toolbox.NM_TO_METERS * 70;
+            var distanceLimit = Toolbox.NM_TO_METERS * 100;
             var distance = ShapeManager.GetDistanceFromShape(coordinates, (coalition.Value == Coalition.Blue ? blue : red));
             return distance < distanceLimit;
 
