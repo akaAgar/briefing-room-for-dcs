@@ -94,7 +94,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
   -- no target units left
   local unit = objFeature.targetDesignationLaser.setRandomTarget()
   if unit == nil then
-    briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_NOTARGETREMAINING$", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
+    briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_LASERNOTARGETREMAINING$", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
     return
   end
   briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_LASERAFFIRM$"..tostring(objFeature.targetDesignationLaser.laserCode)..".", "RadioSupportLasingOk", briefingRoom.radioManager.getAnswerDelay())
@@ -109,7 +109,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
   briefingRoom.radioManager.play("$LANG_PILOT$: Terminate. Laser off.", "RadioPilotLaseTargetStop")
   -- not lasing anything
   if objFeature.targetDesignationLaser.laserTarget == nil then
-    briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_LASERALREADYOFF", "RadioSupportLasingNotLasing", briefingRoom.radioManager.getAnswerDelay())
+    briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_LASERALREADYOFF$", "RadioSupportLasingNotLasing", briefingRoom.radioManager.getAnswerDelay())
     return
   end
 
@@ -135,4 +135,4 @@ end
 -- Begin updating laser designation
 timer.scheduleFunction(briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.laserWatch, nil, timer.getTime() + 1)
 
-missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_LASTERMENUNEW$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.turnOn)
+missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_LASERMENUNEW$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.turnOn)
