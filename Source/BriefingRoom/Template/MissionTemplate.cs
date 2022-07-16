@@ -105,11 +105,11 @@ namespace BriefingRoom4DCS.Template
         public void Clear()
         {
             // If the default template is found, load it.
-            // if (File.Exists(DEFAULT_TEMPLATE_FILEPATH))
-            // {
-            //     LoadFromFile(DEFAULT_TEMPLATE_FILEPATH);
-            //     return;
-            // }
+            if (File.Exists(DEFAULT_TEMPLATE_FILEPATH))
+            {
+                LoadFromFile(DEFAULT_TEMPLATE_FILEPATH);
+                return;
+            }
             BriefingMissionName = "";
             BriefingMissionDescription = "";
 
