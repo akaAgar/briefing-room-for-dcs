@@ -13,8 +13,11 @@ timeofday=RandomDaytime
 wind=Random
 
 [flightplan]
-objectivedistance=80
-objectiveseperation=30
+objectivedistancemax=160
+objectivedistancemin=40
+objectiveseparationmax=100
+objectiveseparationmin=10
+borderlimit=100
 
 [missionfeatures]
 missionfeatures=FriendlyAWACS,FriendlyTankerBasket,FriendlyTankerBoom
@@ -36,11 +39,14 @@ realism=DisableDCSRadioAssists,NoBDA
 [playerflightgroups]
 playerflightgroup000.aircrafttype=Su-25T
 playerflightgroup000.aiwingmen=False
+playerflightgroup000.hostile=False
 playerflightgroup000.count=2
 playerflightgroup000.payload=default
 playerflightgroup000.country=CJTFBlue
 playerflightgroup000.startlocation=Runway
 playerflightgroup000.livery=default
+playerflightgroup000.overrideradioband=AM
+playerflightgroup000.overridecallsignnumber=1
 
 [situation]
 enemyskill=Random
@@ -49,4 +55,10 @@ enemyairforce=Random
 friendlyskill=Random
 friendlyairdefense=Random
 friendlyairforce=Random
+
+[combinedarms]
+commanderblue=0
+commanderred=0
+jtacblue=0
+jtacred=0
 
