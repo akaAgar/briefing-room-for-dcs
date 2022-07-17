@@ -64,7 +64,19 @@ end
 -- Get Random Target
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.setRandomTarget = function()
   local objective = briefingRoom.mission.objectives[$OBJECTIVEINDEX$]
-  local randomUnitName = math.randomFromHashTable(objective.unitNames)
+  local randomUnitName = math.randomFromHashTable(table.filter(objective.unitNames, function(o, k, i)
+    local u = Unit.getByName(o)
+    if u == nil then
+      u = StaticObject.getByName(o)
+    end
+    if u == nil then
+      return false
+    end
+    return u:isExist()
+  end))
+  if randomUnitName == "" or randomUnitName == nil then
+    return nil
+  end
   local unit = Unit.getByName(randomUnitName)
   if unit == nil then -- no unit found with the ID, try searching for a static
     unit = StaticObject.getByName(randomUnitName)
@@ -87,7 +99,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
 
   -- already lasing something
   if objFeature.targetDesignationLaser.laserTarget ~= nil then
-    briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_LASERALREADYPAINTING$"..tostring(objFeature.targetDesignationLaser.laserCode)..".", "RadioSupportTargetLasingAlready", briefingRoom.radioManager.getAnswerDelay())
+    briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_LASERALREADYPAINTING$ "..tostring(objFeature.targetDesignationLaser.laserCode)..".", "RadioSupportTargetLasingAlready", briefingRoom.radioManager.getAnswerDelay())
     return
   end
 
@@ -97,7 +109,7 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
     briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_LASERNOTARGETREMAINING$", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
     return
   end
-  briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_LASERAFFIRM$"..tostring(objFeature.targetDesignationLaser.laserCode)..".", "RadioSupportLasingOk", briefingRoom.radioManager.getAnswerDelay())
+  briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_LASERAFFIRM$ "..tostring(objFeature.targetDesignationLaser.laserCode)..".", "RadioSupportLasingOk", briefingRoom.radioManager.getAnswerDelay())
   missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_LASERMENUNEWTARGET$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.newTarget)
   missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_LASERMENUSTOP$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.turnOff)
 end
