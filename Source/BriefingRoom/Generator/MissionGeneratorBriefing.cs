@@ -87,7 +87,7 @@ namespace BriefingRoom4DCS.Generator
 
             var description = GeneratorTools.ParseRandomString(JoinObjectiveDescriptions(briefingDescriptionList), mission);
             if (descriptionsMap.Keys.Count > 0 && briefingDescriptionList.Count == maxDescriptionCount)
-                description = $"{description} {Database.Instance.Common.Briefing.OverflowObjectiveDescriptionText}";
+                description = $"{description} {Database.Instance.Common.Briefing.OverflowObjectiveDescriptionText.Get()}";
             return description;
         }
 
@@ -95,7 +95,7 @@ namespace BriefingRoom4DCS.Generator
                 {
                     if (string.IsNullOrEmpty(acc))
                         return x;
-                    return $"{acc} {Toolbox.RandomFrom(Database.Instance.Common.Briefing.ObjectiveDescriptionConnectors)} {LowerFirstChar(GeneratorTools.ParseRandomString(x))}";
+                    return $"{acc} {Toolbox.RandomFrom(Database.Instance.Common.Briefing.ObjectiveDescriptionConnectors.Get().Split(","))} {LowerFirstChar(GeneratorTools.ParseRandomString(x))}";
                 });
 
         private static void AddSubTasks(MissionTemplateObjectiveRecord obj, List<UnitFamily> objectiveTargetUnitFamilies, ref Dictionary<string, List<string>> descriptionsMap, ref int familyCount)

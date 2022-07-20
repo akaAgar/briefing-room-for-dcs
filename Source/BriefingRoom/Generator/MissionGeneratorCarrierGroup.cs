@@ -90,7 +90,7 @@ namespace BriefingRoom4DCS.Generator
 
                 mission.Briefing.AddItem(
                     DCSMissionBriefingItemType.Airbase,
-                    $"{unitDB.UIDisplayName}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t{ilsChannel}\t{tacanCallsign}, {tacanChannel}X\t{link4Frequency}");
+                    $"{unitDB.UIDisplayName.Get()}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t{ilsChannel}\t{tacanCallsign}, {tacanChannel}X\t{link4Frequency}");
 
                 unitMaker.carrierDictionary.Add(flightGroup.Carrier, new CarrierUnitMakerGroupInfo(groupInfo.Value, unitDB.ParkingSpots));
                 mission.MapData.Add($"CARRIER_{flightGroup.Carrier}", new List<Coordinates> { groupInfo.Value.Coordinates });
@@ -192,7 +192,7 @@ namespace BriefingRoom4DCS.Generator
             zoneMaker.AddCTLDPickupZone(spawnPoint.Value, true);
             mission.Briefing.AddItem(
                      DCSMissionBriefingItemType.Airbase,
-                     $"{unitDB.UIDisplayName}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t\t");
+                     $"{unitDB.UIDisplayName.Get()}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t\t");
             unitMaker.carrierDictionary.Add(flightGroup.Carrier, new CarrierUnitMakerGroupInfo(groupInfo.Value, unitDB.ParkingSpots)); // This bit limits FOBS to one per game think about how we can fix this
             mission.MapData.Add($"FOB_{flightGroup.Carrier}", new List<Coordinates> { groupInfo.Value.Coordinates });
         }
