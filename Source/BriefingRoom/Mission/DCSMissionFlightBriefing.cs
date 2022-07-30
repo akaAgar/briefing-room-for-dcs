@@ -35,6 +35,7 @@ namespace BriefingRoom4DCS.Mission
             string html = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardHeader.html") +
                 Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardFlight.html") +
                 Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}BriefingFooter.html");
+            html = BriefingRoom.LanguageDB.ReplaceValues(html);
             GeneratorTools.ReplaceKey(ref html, "BriefingAirbases", GeneratorTools.MakeHTMLTable(mission.Briefing.GetItems(DCSMissionBriefingItemType.Airbase)));
             GeneratorTools.ReplaceKey(ref html, "BriefingJTAC", GeneratorTools.MakeHTMLTable(mission.Briefing.GetItems(DCSMissionBriefingItemType.JTAC)));
             GeneratorTools.ReplaceKey(ref html, "BriefingFlightName", Name);
