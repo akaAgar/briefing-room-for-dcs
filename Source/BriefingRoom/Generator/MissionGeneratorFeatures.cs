@@ -162,7 +162,6 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.ReplaceKey(ref remark, "GroupName", groupInfo.Value.Name);
                 GeneratorTools.ReplaceKey(ref remark, "GroupFrequency", GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency));
                 GeneratorTools.ReplaceKey(ref remark, "GroupUnitName", groupInfo.Value.UnitDB.UIDisplayName);
-
             }
 
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Remark, remark, featureDB is DBEntryFeatureMission);

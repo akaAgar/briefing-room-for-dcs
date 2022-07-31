@@ -432,6 +432,7 @@ namespace BriefingRoom4DCS
             if (value is int) return ((int)value).ToString(stringFormat, NumberFormatInfo.InvariantInfo);
             if (value is float) return ((float)value).ToString(stringFormat, NumberFormatInfo.InvariantInfo);
             if (value is double) return ((double)value).ToString(stringFormat, NumberFormatInfo.InvariantInfo);
+            if (value is LanguageString) return ((LanguageString)value).Get();
             return value.ToString();
         }
 
