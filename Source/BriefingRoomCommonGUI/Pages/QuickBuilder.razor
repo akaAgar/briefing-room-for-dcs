@@ -191,12 +191,29 @@
                             @onclick="() => RemoveObjective(objective)"><span class="oi oi-x"></span></button>
                         </div>
                     </div>
+                    @if(objective.Preset == "Custom"){
+                        <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("QuickBuilderCustomObjective"):
+                            &nbsp;@BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveTask, @objective.Task).Value.Name.Get()
+                            &nbsp;@BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveTarget, @objective.Target).Value.Name.Get()
+                            &nbsp;@BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveTargetBehavior, @objective.TargetBehavior).Value.Name.Get()
+                            &nbsp;@BriefingRoomGUITools.GetEnumName(objective.TargetCount)
+                            &nbsp;@BriefingRoom.Translate("Options"):
+                                &nbsp;@string.Join(", ", @objective.Options.Select(x => BriefingRoomGUITools.GetEnumName(x)))<br/>
+                            &nbsp;@BriefingRoom.Translate("Features"):
+                                &nbsp;@string.Join(", ", @objective.Features.Select(x => BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveFeature, x).Value.Name.Get()))
+                        </p>
+                    }
                         @if(objective.SubTasks.Count > 0)
                         {
-                            <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("QuickBuilderCustomSubObjectives"):
+                            <p class="custom-warning">&nbsp;@BriefingRoom.Translate("QuickBuilderCustomSubObjectives"):<br/>
                                 @foreach (var subTask in objective.SubTasks)
                                 {
-                                    <span>@subTask.Task&nbsp;@subTask.Target&nbsp;@subTask.TargetBehavior&nbsp;@subTask.TargetCount;</span>
+                                    <span>&nbsp;&nbsp;@(objective.SubTasks.IndexOf(subTask) + 1) -
+                                        &nbsp;@BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveTask, subTask.Task).Value.Name.Get()
+                                        &nbsp;@BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveTarget, subTask.Target).Value.Name.Get()
+                                        &nbsp;@BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveTargetBehavior, subTask.TargetBehavior).Value.Name.Get()
+                                        &nbsp;@BriefingRoomGUITools.GetEnumName(subTask.TargetCount)
+                                        &nbsp;@BriefingRoom.Translate("Options"):&nbsp;@string.Join(", ", @subTask.Options.Select(x => BriefingRoomGUITools.GetEnumName(x)))</span><br/>
                                 }
                             &nbsp;<a @onclick="() => ClearSubTasks(objective)" style="color: #0366d6;">@BriefingRoom.Translate("RemoveSubTasks")</a>
                             </p>
@@ -222,41 +239,41 @@
                         <b>@BriefingRoom.Translate("Weather")</b>
                         <div class="generator-group flex-justify-spaced flex-margin-fix">
                            <div>
-                               @BriefingRoom.Translate("Season"): @Template.EnvironmentSeason<br/>
-                               @BriefingRoom.Translate("Weather"): @Template.EnvironmentWeatherPreset
+                               @BriefingRoom.Translate("Season"): @BriefingRoomGUITools.GetEnumName(Template.EnvironmentSeason)<br/>
+                               @BriefingRoom.Translate("Weather"): @(string.IsNullOrEmpty(Template.EnvironmentWeatherPreset)? BriefingRoom.Translate("Random") : BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.WeatherPreset, Template.EnvironmentWeatherPreset).Value.Name.Get())
                            </div>
                            <div>
-                                @BriefingRoom.Translate("TimeOfDay"): @Template.EnvironmentTimeOfDay<br/>
-                                @BriefingRoom.Translate("Wind"): @Template.EnvironmentWind
+                                @BriefingRoom.Translate("TimeOfDay"): @BriefingRoomGUITools.GetEnumName(Template.EnvironmentTimeOfDay)<br/>
+                                @BriefingRoom.Translate("Wind"): @BriefingRoomGUITools.GetEnumName(Template.EnvironmentWind)
                            </div>
                         </div> 
                         <b>@BriefingRoom.Translate("Situation")</b>
                         <div class="generator-group flex-justify-spaced flex-margin-fix">
                            <div>
                                <b>@BriefingRoom.Translate("Enemy")</b><br/>
-                               @BriefingRoom.Translate("AA"): @Template.SituationEnemyAirDefense<br/>
-                               @BriefingRoom.Translate("CAP"): @Template.SituationEnemyAirForce<br/>
-                               @BriefingRoom.Translate("Skill"): @Template.SituationEnemySkill
+                               @BriefingRoom.Translate("AA"): @BriefingRoomGUITools.GetEnumName(Template.SituationEnemyAirDefense)<br/>
+                               @BriefingRoom.Translate("CAP"): @BriefingRoomGUITools.GetEnumName(Template.SituationEnemyAirForce)<br/>
+                               @BriefingRoom.Translate("Skill"): @BriefingRoomGUITools.GetEnumName(Template.SituationEnemySkill)
                            </div>
                            <div>
                                <b>@BriefingRoom.Translate("Friendly")</b><br/>
-                                @BriefingRoom.Translate("AA"): @Template.SituationFriendlyAirDefense<br/>
-                                @BriefingRoom.Translate("CAP"): @Template.SituationFriendlyAirForce<br/>
-                                @BriefingRoom.Translate("Skill"): @Template.SituationFriendlySkill
+                                @BriefingRoom.Translate("AA"): @BriefingRoomGUITools.GetEnumName(Template.SituationFriendlyAirDefense)<br/>
+                                @BriefingRoom.Translate("CAP"): @BriefingRoomGUITools.GetEnumName(Template.SituationFriendlyAirForce)<br/>
+                                @BriefingRoom.Translate("Skill"): @BriefingRoomGUITools.GetEnumName(Template.SituationFriendlySkill)
                            </div>
                         </div>
                         <br/>
                         @if(Template.OptionsMission.Count > 0)
                         {
-                            <span><b>@BriefingRoom.Translate("Options"):</b>&nbsp;@string.Join(", ",Template.OptionsMission)</span><br/>
+                            <span><b>@BriefingRoom.Translate("Options"):</b>&nbsp;@string.Join(", ",Template.OptionsMission.Select(x => BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.OptionsMission, x).Value.Name.Get()))</span><br/>
                         }
                         @if(Template.OptionsRealism.Count > 0)
                         {
-                            <span><b>@BriefingRoom.Translate("Realisam")</b>:&nbsp;@string.Join(", ",Template.OptionsRealism)</span><br/>
+                            <span><b>@BriefingRoom.Translate("Realisam")</b>:&nbsp;@string.Join(", ",Template.OptionsRealism.Select(x => BriefingRoomGUITools.GetEnumName(x)))</span><br/>
                         }
                         @if(Template.Mods.Count > 0)
                         {
-                        <span><b>@BriefingRoom.Translate("Mods"):</b>&nbsp;@string.Join(", ",Template.Mods)</span>
+                        <span><b>@BriefingRoom.Translate("Mods"):</b>&nbsp;@string.Join(", ",Template.Mods.Select(x => BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.DCSMod, x).Value.Name.Get())))</span>
                         }
                     </p> 
                 </div>

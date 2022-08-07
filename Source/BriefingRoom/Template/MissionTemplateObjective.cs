@@ -44,27 +44,17 @@ namespace BriefingRoom4DCS.Template
 
         public List<MissionTemplateSubTask> SubTasks { get; set; } = new List<MissionTemplateSubTask>();
 
-        public MissionTemplateObjective()
+        public MissionTemplateObjective(bool setPreset = false)
         {
             Features = new List<string>();
             Options = new List<ObjectiveOption>();
-            Preset = "Interdiction";
+            Preset = setPreset ? "Custom": "Interdiction";
             Target = "VehicleAny";
             TargetBehavior = "Idle";
             TargetCount = Amount.Average;
             Task = "DestroyAll";
         }
 
-        public MissionTemplateObjective(string target, string targetBehavior, string task, string[] features, Amount targetCount = Amount.Average, params ObjectiveOption[] options)
-        {
-            Features = new List<string>(features);
-            Options = new List<ObjectiveOption>(options);
-            Preset = "";
-            Target = target;
-            TargetBehavior = targetBehavior;
-            TargetCount = targetCount;
-            Task = task;
-        }
 
         public MissionTemplateObjective(string presetID, Amount targetCount = Amount.Average)
         {

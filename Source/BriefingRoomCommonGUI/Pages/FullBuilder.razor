@@ -563,12 +563,10 @@
     protected override void OnInitialized()
     {
         Template = new MissionTemplate();
+        Template.Objectives[0].Preset = "Custom";
         flightGroupTab = Template.PlayerFlightGroups[0];
         ObjectiveTab = Template.Objectives[0];
     }
-
-    
-
 
     private void clearTemplateMessageDelay()
     {
@@ -629,6 +627,7 @@
     {
         tempateMessage = "Template Reset"; 
         Template.Clear();
+        Template.Objectives[0].Preset = "Custom";
         clearTemplateMessageDelay();
         StateHasChanged();
         return Task.CompletedTask;
@@ -774,7 +773,7 @@
 
     private void AddObjective()
     {
-        MissionTemplateObjective obj = new();
+        MissionTemplateObjective obj = new(true);
         ObjectiveTab = obj;
         obj.Alias = BriefingRoom.GetAlias(Template.Objectives.Count);
         obj.Preset = "Custom";
@@ -782,7 +781,7 @@
     }
 
     private void CloneObjective(MissionTemplateObjective obj) {
-        MissionTemplateObjective newObj = new(){
+        MissionTemplateObjective newObj = new(true){
             Target = obj.Target,
             TargetBehavior = obj.TargetBehavior,
             TargetCount = obj.TargetCount,
