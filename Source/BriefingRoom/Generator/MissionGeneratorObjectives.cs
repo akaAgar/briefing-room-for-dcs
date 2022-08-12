@@ -264,8 +264,13 @@ namespace BriefingRoom4DCS.Generator
 
 
             // Assign target suffix
-            targetGroupInfo.Value.DCSGroup.Name += $"-TGT-{objectiveName}";
-            //targetGroupInfo.Value.DCSGroup.Units.ForEach(x => x.Name += $"-TGT-{objectiveName}");
+            var i = 0;
+            var isStatic = objectiveTargetUnitFamily.GetUnitCategory() == UnitCategory.Static;
+            targetGroupInfo.Value.DCSGroups.ForEach(x => {
+                x.Name += $"{(i == 0 ? "" : i)}-TGT-{objectiveName}";
+                if(isStatic) x.Units.ForEach(u => u.Name += $"{(i == 0 ? "" : i)}-TGT-{objectiveName}");
+                i++;
+            });
             mission.Briefing.AddItem(DCSMissionBriefingItemType.TargetGroupName, $"-TGT-{objectiveName}");
 
             var pluralIndex = targetGroupInfo.Value.UnitNames.Length == 1 ? 0 : 1;

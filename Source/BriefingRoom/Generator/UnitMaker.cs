@@ -22,11 +22,20 @@ namespace BriefingRoom4DCS.Generator
         internal DBEntryUnit UnitDB { get; }
 
         internal DCSGroup DCSGroup { get; }
+        internal List<DCSGroup> DCSGroups { get; }
 
         internal UnitMakerGroupInfo(ref DCSGroup dCSGroup, DBEntryUnit unitDB = null)
         {
             UnitDB = unitDB;
             DCSGroup = dCSGroup;
+            DCSGroups = new List<DCSGroup>{dCSGroup};
+        }
+
+        internal UnitMakerGroupInfo(ref List<DCSGroup> dCSGroups, DBEntryUnit unitDB = null)
+        {
+            UnitDB = unitDB;
+            DCSGroup = dCSGroups.First();
+            DCSGroups = dCSGroups;
         }
     }
 
@@ -380,8 +389,7 @@ namespace BriefingRoom4DCS.Generator
         {
             List<int> unitsIDList = new List<int>();
             var initalGroupId = GroupID;
-            var firstDCSGroup = new DCSGroup();
-            var first = true;
+            var DCSGroups = new List<DCSGroup>();
             foreach (var unitSet in unitSets)
             {
                 DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(unitSet);
@@ -426,11 +434,7 @@ namespace BriefingRoom4DCS.Generator
 
                     dCSGroup.Units = new List<DCSUnit> { dCSUnit };
 
-                    if (first)
-                    {
-                        firstDCSGroup = dCSGroup;
-                        first = false;
-                    }
+                    DCSGroups.Add(dCSGroup);
                     AddUnitGroupToTable(country, UnitCategory.Static, dCSGroup);
 
                     BriefingRoom.PrintToLog($"Added group of {DCSID} {coalition} {unitFamily} at {coordinates}");
@@ -471,7 +475,7 @@ namespace BriefingRoom4DCS.Generator
             }
 
             var firstUnitDB = Database.Instance.GetEntry<DBEntryUnit>(unitSets.First());
-            return new UnitMakerGroupInfo(ref firstDCSGroup, firstUnitDB);
+            return new UnitMakerGroupInfo(ref DCSGroups, firstUnitDB);
         }
 
 
