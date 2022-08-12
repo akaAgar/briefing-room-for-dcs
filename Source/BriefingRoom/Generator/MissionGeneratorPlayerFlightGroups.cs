@@ -86,8 +86,8 @@ namespace BriefingRoom4DCS.Generator
                 groupLuaFile = "AircraftPlayerCarrier";
                 carrierUnitID = carrier.UnitMakerGroupInfo.DCSGroup.Units[0].UnitId;
                 carrierName = carrier.UnitMakerGroupInfo.UnitDB.UIDisplayName.Get();
-
-                for (int i = 0; i < flightGroup.Count; i++)
+                var spotOffset = carrier.TotalSpotCount - carrier.RemainingSpotCount;
+                for (int i = spotOffset; i < flightGroup.Count + spotOffset; i++)
                 {
                     parkingSpotIDsList.Add(i + 1);
                     parkingSpotCoordinatesList.Add(carrier.UnitMakerGroupInfo.Coordinates);

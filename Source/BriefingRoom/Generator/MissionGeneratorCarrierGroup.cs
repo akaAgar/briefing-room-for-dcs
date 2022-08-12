@@ -193,7 +193,7 @@ namespace BriefingRoom4DCS.Generator
             mission.Briefing.AddItem(
                      DCSMissionBriefingItemType.Airbase,
                      $"{unitDB.UIDisplayName.Get()}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t\t");
-            unitMaker.carrierDictionary.Add(flightGroup.Carrier, new CarrierUnitMakerGroupInfo(groupInfo.Value, unitDB.ParkingSpots)); // This bit limits FOBS to one per game think about how we can fix this
+            unitMaker.carrierDictionary.Add(flightGroup.Carrier, new CarrierUnitMakerGroupInfo(groupInfo.Value, unitDB.ParkingSpots));
             mission.MapData.Add($"FOB_{flightGroup.Carrier}", new List<Coordinates> { groupInfo.Value.Coordinates });
         }
     }

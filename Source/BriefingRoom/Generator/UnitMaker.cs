@@ -34,11 +34,13 @@ namespace BriefingRoom4DCS.Generator
     {
         internal UnitMakerGroupInfo UnitMakerGroupInfo { get; }
         internal int RemainingSpotCount { get; set; }
+        internal int TotalSpotCount { get; init; }
 
         internal CarrierUnitMakerGroupInfo(UnitMakerGroupInfo unitMakerGroupInfo, int remainingSpotCount)
         {
             UnitMakerGroupInfo = unitMakerGroupInfo;
             RemainingSpotCount = remainingSpotCount;
+            TotalSpotCount = remainingSpotCount;
         }
     }
 
