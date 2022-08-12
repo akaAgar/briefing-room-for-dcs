@@ -32,13 +32,12 @@ namespace BriefingRoom4DCS.Template
     public sealed class MissionTemplate
     {
         private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BRPaths.ROOT}Default.brt";
-        public const int MAX_OBJECTIVES = 5;
-        public const int MAX_PLAYER_FLIGHT_GROUPS = 8;
-        public const int MAX_OBJECTIVE_DISTANCE = 300;
-        public const int MAX_OBJECTIVE_SEPARATION = 100;
-        public const int MAX_BORDER_LIMIT = 300;
-        public const int MIN_BORDER_LIMIT = 10;
-        public const int MAX_COMBINED_ARMS_SLOTS = 100;
+        public static readonly int MAX_PLAYER_FLIGHT_GROUPS = Database.Instance.Common.MaxPlayerFlightGroups;
+        public static readonly int MAX_OBJECTIVE_DISTANCE = Database.Instance.Common.MaxObjectiveDistance;
+        public static readonly int MAX_OBJECTIVE_SEPARATION = Database.Instance.Common.MaxObjectiveSeparation;
+        public static readonly int MAX_BORDER_LIMIT = Database.Instance.Common.MaxBorderLimit;
+        public static readonly int MIN_BORDER_LIMIT = Database.Instance.Common.MinBorderLimit;
+        public static readonly int MAX_COMBINED_ARMS_SLOTS = Database.Instance.Common.MaxCombinedArmsSlots;
         public string BriefingMissionName { get; set; }
         public string BriefingMissionDescription { get; set; }
         public string ContextCoalitionBlue { get; set; }
@@ -57,7 +56,7 @@ namespace BriefingRoom4DCS.Template
         private int FlightPlanObjectiveDistanceMin_;
         public int FlightPlanObjectiveSeparationMax { get { return FlightPlanObjectiveSeparationMax_; } set { FlightPlanObjectiveSeparationMax_ = Toolbox.Clamp(value, 0, MAX_OBJECTIVE_SEPARATION); } }
         private int FlightPlanObjectiveSeparationMax_;
-        public int FlightPlanObjectiveSeparationMin { get { return FlightPlanObjectiveSeparationMin_; } set { FlightPlanObjectiveSeparationMin_ = Toolbox.Clamp(value, 0, MAX_OBJECTIVE_DISTANCE); } }
+        public int FlightPlanObjectiveSeparationMin { get { return FlightPlanObjectiveSeparationMin_; } set { FlightPlanObjectiveSeparationMin_ = Toolbox.Clamp(value, 0, MAX_OBJECTIVE_SEPARATION); } }
         private int FlightPlanObjectiveSeparationMin_;
         public int BorderLimit { get { return BorderLimit_; } set { BorderLimit_ = Toolbox.Clamp(value, MIN_BORDER_LIMIT, MAX_BORDER_LIMIT); } }
         private int BorderLimit_;

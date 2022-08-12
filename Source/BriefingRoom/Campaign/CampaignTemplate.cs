@@ -33,9 +33,8 @@ namespace BriefingRoom4DCS.Campaign
     public sealed class CampaignTemplate
     {
         private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BRPaths.ROOT}Default.cbrt";
-        private const int MIN_CAMPAIGN_MISSIONS = 2;
-        private const int MAX_CAMPAIGN_MISSIONS = 20;
-        public const int MAX_COMBINED_ARMS_SLOTS = 100;
+        private static readonly int MIN_CAMPAIGN_MISSIONS = Database.Instance.Common.MinCampaignMissions;
+        private static readonly int MAX_CAMPAIGN_MISSIONS = Database.Instance.Common.MaxCampaignMissions;
         public string BriefingCampaignName { get; set; }
         public string ContextCoalitionBlue { get; set; }
         public Coalition ContextPlayerCoalition { get; set; }
@@ -70,13 +69,13 @@ namespace BriefingRoom4DCS.Campaign
         public AmountNR SituationFriendlySkill { get; set; }
         public AmountNR SituationFriendlyAirDefense { get; set; }
         public AmountNR SituationFriendlyAirForce { get; set; }
-        public int CombinedArmsCommanderBlue { get { return CombinedArmsCommanderBlue_; } set { CombinedArmsCommanderBlue_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
+        public int CombinedArmsCommanderBlue { get { return CombinedArmsCommanderBlue_; } set { CombinedArmsCommanderBlue_ = Toolbox.Clamp(value, 0, MissionTemplate.MAX_COMBINED_ARMS_SLOTS); } }
         private int CombinedArmsCommanderBlue_;
-        public int CombinedArmsCommanderRed { get { return CombinedArmsCommanderRed_; } set { CombinedArmsCommanderRed_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
+        public int CombinedArmsCommanderRed { get { return CombinedArmsCommanderRed_; } set { CombinedArmsCommanderRed_ = Toolbox.Clamp(value, 0, MissionTemplate.MAX_COMBINED_ARMS_SLOTS); } }
         private int CombinedArmsCommanderRed_;
-        public int CombinedArmsJTACBlue { get { return CombinedArmsJTACBlue_; } set { CombinedArmsJTACBlue_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
+        public int CombinedArmsJTACBlue { get { return CombinedArmsJTACBlue_; } set { CombinedArmsJTACBlue_ = Toolbox.Clamp(value, 0, MissionTemplate.MAX_COMBINED_ARMS_SLOTS); } }
         private int CombinedArmsJTACBlue_;
-        public int CombinedArmsJTACRed { get { return CombinedArmsJTACRed_; } set { CombinedArmsJTACRed_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
+        public int CombinedArmsJTACRed { get { return CombinedArmsJTACRed_; } set { CombinedArmsJTACRed_ = Toolbox.Clamp(value, 0, MissionTemplate.MAX_COMBINED_ARMS_SLOTS); } }
         private int CombinedArmsJTACRed_;
 
         public CampaignTemplate()

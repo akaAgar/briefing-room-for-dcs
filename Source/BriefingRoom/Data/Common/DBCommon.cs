@@ -27,7 +27,15 @@ namespace BriefingRoom4DCS.Data
     internal class DatabaseCommon
     {
         internal string[] CommonOGG { get; private set; }
-
+        public int MaxCombinedArmsSlots { get; private set; }
+        public int MaxPlayerFlightGroups { get; private set; }
+        public int MaxObjectives { get; private set; }
+        public int MaxObjectiveDistance { get; private set; }
+        public int MaxObjectiveSeparation { get; private set; }
+        public int MinBorderLimit { get; private set; }
+        public int MaxBorderLimit { get; private set; }
+        public int MinCampaignMissions { get; private set; }
+        public int MaxCampaignMissions { get; private set; }
         internal DBCommonAirDefense AirDefense { get; private set; }
 
         internal DBCommonCAP CAP { get; private set; }
@@ -49,6 +57,15 @@ namespace BriefingRoom4DCS.Data
             BriefingRoom.PrintToLog("Loading common global settings...");
             INIFile commonIni = new($"{BRPaths.DATABASE}Common.ini");
             CommonOGG = commonIni.GetValueArray<string>("Include", "CommonOgg");
+            MaxCombinedArmsSlots = commonIni.GetValue<int>("Limits", "MaxCombinedArmsSlots");
+            MaxPlayerFlightGroups = commonIni.GetValue<int>("Limits", "MaxPlayerFlightGroups");
+            MaxObjectives = commonIni.GetValue<int>("Limits", "MaxObjectives");
+            MaxObjectiveDistance = commonIni.GetValue<int>("Limits", "MaxObjectiveDistance");
+            MaxObjectiveSeparation = commonIni.GetValue<int>("Limits", "MaxObjectiveSeparation");
+            MinBorderLimit = commonIni.GetValue<int>("Limits", "MinBorderLimit");
+            MaxBorderLimit = commonIni.GetValue<int>("Limits", "MaxBorderLimit");
+            MinCampaignMissions = commonIni.GetValue<int>("Limits", "MinCampaignMissions");
+            MaxCampaignMissions = commonIni.GetValue<int>("Limits", "MaxCampaignMissions");
             foreach (string f in CommonOGG)
                 if (!File.Exists($"{BRPaths.INCLUDE_OGG}{f}.ogg"))
                     BriefingRoom.PrintToLog($"File \"Include\\Ogg\\{f}.ogg\" doesn't exist.", LogMessageErrorLevel.Warning);

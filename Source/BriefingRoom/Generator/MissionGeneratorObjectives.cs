@@ -31,10 +31,6 @@ namespace BriefingRoom4DCS.Generator
     {
         private readonly List<string> ObjectiveNames = new List<string>();
 
-        private const double OBJECTIVE_DISTANCE_VARIATION_MIN = 0.75;
-
-        private const double OBJECTIVE_DISTANCE_VARIATION_MAX = 1.25;
-
         private static readonly List<DBEntryObjectiveTargetBehaviorLocation> AIRBASE_LOCATIONS = new List<DBEntryObjectiveTargetBehaviorLocation>{
             DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbase,
             DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking,
