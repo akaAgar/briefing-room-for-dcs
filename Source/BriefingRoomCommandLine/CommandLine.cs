@@ -37,7 +37,7 @@ namespace BriefingRoom4DCS.CommandLineTool
         private readonly BriefingRoom BriefingRoomGenerator;
 
         [STAThread]
-        private static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
 #if DEBUG
             if (args.Length == 0) args = new string[] { "Default.brt" };
@@ -45,7 +45,7 @@ namespace BriefingRoom4DCS.CommandLineTool
 
             try
             {
-                new CommandLine().DoCommandLineAsync(args);
+                await new CommandLine().DoCommandLineAsync(args);
             }
             catch (Exception e)
             {
