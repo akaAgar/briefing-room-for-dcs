@@ -19,7 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using System.Collections.Generic;
-using LuaTableSerialiser;
+using LuaTableSerializer;
 
 namespace BriefingRoom4DCS.Data
 {
@@ -37,7 +37,7 @@ namespace BriefingRoom4DCS.Data
 
         public string ToLuaString(int number)
         {
-            return LuaSerialiser.Serialize(new Dictionary<string, object>{
+            return LuaSerializer.Serialize(new Dictionary<string, object>{
                 {"modulations", Modulations},
                 {"channels", Channels}
             });

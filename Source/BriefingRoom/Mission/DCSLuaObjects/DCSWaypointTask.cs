@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using LuaTableSerialiser;
+using LuaTableSerializer;
 
 namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 {
@@ -38,7 +38,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             };
             if (!string.IsNullOrEmpty(Key))
                 obj.Add("key", Key);
-            return LuaSerialiser.Serialize(obj);
+            return LuaSerializer.Serialize(obj);
         }
 
         private Dictionary<string, object> DeterminTypes(Dictionary<string, object> values)

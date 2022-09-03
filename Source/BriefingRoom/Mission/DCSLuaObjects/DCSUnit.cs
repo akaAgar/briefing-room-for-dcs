@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BriefingRoom4DCS.Data;
-using LuaTableSerialiser;
+using LuaTableSerializer;
 
 namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 {
@@ -84,7 +84,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 obj.Add("Radio", RadioPresets);
             if (Parking > 0)
                 obj.Add("parking", Parking);
-            return LuaSerialiser.Serialize(obj);
+            return LuaSerializer.Serialize(obj);
         }
 
         private string ToLuaStringShip(int number)
@@ -102,7 +102,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"modulation", Modulation},
                 {"frequency", RadioFrequency},
             };
-            return LuaSerialiser.Serialize(obj);
+            return LuaSerializer.Serialize(obj);
         }
 
         private string ToLuaStringCargo(int number)
@@ -120,7 +120,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"rate", 100},
                 {"shape_name", ShapeName}
             };
-            return LuaSerialiser.Serialize(obj);
+            return LuaSerializer.Serialize(obj);
         }
 
         private string ToLuaStringStatic(int number)
@@ -134,7 +134,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"heading", Heading},
                 {"shape_name", ShapeName}
             };
-            return LuaSerialiser.Serialize(obj);
+            return LuaSerializer.Serialize(obj);
         }
 
         private string ToLuaStringStaticFOB(int number)
@@ -153,7 +153,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"heliport_callsign_id", heliportCallsignId},
                 {"heliport_frequency", heliportFrequency},
             };
-            return LuaSerialiser.Serialize(obj);
+            return LuaSerializer.Serialize(obj);
         }
 
         private string ToLuaStringVehicle(int number)
@@ -170,7 +170,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"skill", Skill},
                 {"PlayerCanDrive", PlayerCanDrive},
             };
-            return LuaSerialiser.Serialize(obj);
+            return LuaSerializer.Serialize(obj);
         }
     }
 }

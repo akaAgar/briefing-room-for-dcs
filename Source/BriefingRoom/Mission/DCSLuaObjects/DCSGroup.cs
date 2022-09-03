@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using LuaTableSerialiser;
+using LuaTableSerializer;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
@@ -60,7 +60,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             };
             if (RadioSet)
                 obj.Add("radioSet", true);
-            return LuaSerialiser.Serialize(obj.Where(x => x.Value != null).ToDictionary(x => x.Key, x => x.Value));
+            return LuaSerializer.Serialize(obj.Where(x => x.Value != null).ToDictionary(x => x.Key, x => x.Value));
         }
 
         private string ToLuaStringStatic(int number)
@@ -77,7 +77,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"name", Name},
                 {"dead", Dead},
             };
-            return LuaSerialiser.Serialize(obj);
+            return LuaSerializer.Serialize(obj);
         }
 
         public static DCSGroup YamlToGroup(string yaml)

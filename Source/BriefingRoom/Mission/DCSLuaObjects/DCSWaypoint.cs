@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using LuaTableSerialiser;
+using LuaTableSerializer;
 
 namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 {
@@ -61,7 +61,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 obj.Add("linkUnit", LinkUnit);
             if (HelipadId != default)
                 obj.Add("helipadId", HelipadId);
-            return LuaSerialiser.Serialize(obj);
+            return LuaSerializer.Serialize(obj);
         }
     }
 }

@@ -19,7 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCS.Template;
-using LuaTableSerialiser;
+using LuaTableSerializer;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -177,7 +177,7 @@ namespace BriefingRoom4DCS.Data
                 .Replace("return unitPayloads", "");
             try
             {
-                var obj = LuaSerialiser.Deserialize(file_text);
+                var obj = LuaSerializer.Deserialize(file_text);
                 foreach (var item in (IDictionary)obj["payloads"])
                 {
                     var itemEntry = (IDictionary)((DictionaryEntry)item).Value;

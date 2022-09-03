@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using LuaTableSerialiser;
+using LuaTableSerializer;
 
 namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 {
@@ -16,7 +16,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 
         public new string ToLuaString(int number)
         {
-            return LuaSerialiser.Serialize(new Dictionary<string, object> {
+            return LuaSerializer.Serialize(new Dictionary<string, object> {
                 {"id", "WrappedAction"},
                 {"number", number},
                 {"enabled", Enabled},
