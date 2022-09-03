@@ -42,7 +42,7 @@ namespace BriefingRoom4DCS
 
         public const string WEBSITE_URL = "https://akaagar.itch.io/briefing-room-for-dcs";
 
-        public const string VERSION = "0.5.206.22";
+        public const string VERSION = "0.5.209.03";
 
         public const string BUILD_VERSION = "~BUILD_VERSION~";
 

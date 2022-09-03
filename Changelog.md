@@ -1,4 +1,38 @@
 ## Changelog
+* Version 0.5.209.03(Sept, 03, 2022)
+    * Added:
+        * Added: Mirage F1
+    * Fixed:
+        * Fix: Command Line Exe
+        * Fix: correct Chile spelling in scenario
+        * Fix: Static objective was always singular in tasks
+        * Fix: Script failing to track static unit objectives
+        * Fix: Player spawning didn't account for taken spots
+        * Fix: Quick builder not picking up on custom objectives (also  details)
+        * Fix: Title improvements
+        * Fix: Remove custom hornet payload file name
+        * Fix: Untranslated Remark Sections
+        * Fix: Flight Kneeboard missing translations
+        * Fix: Tankers not taking up comms settings
+        * Fix: Corrupt Lua
+        * Fix: Bad Playable Mirage config
+        * Fix: More incomplete translations   
+    * Updated:
+        * Updated: use LuaTableSerializer package over localized version
+        * Updated: South Atlantic map with new airbases
+        * Updated: Doubled max search area for mission feats
+        * Updated: Disabled South Atlantic Assets pack and migrate units to base game
+        * Updated: Move limits into CommonDB
+        * Updated: F1 Cruise Speed
+        * Updated: Skynet to 3.0.0 main release
+    * Misc:
+        * Misc: Removed unused make file
+    * Upgrades:
+        * Upgrade: Bump Microsoft.AspNetCore.Components.Web in /Source
+        * Upgrade: Bump Markdig from 0.30.2 to 0.30.3 in /Source
+        * Upgrade: Bump Swashbuckle.AspNetCore from 6.3.2 to 6.4.0 in /Source
+        * Upgrade: Bump YamlDotNet from 11.2.1 to 12.0.0 in /Source
+        * Upgrade: Bump Microsoft.AspNetCore.Components.Web in /Source
 * Version 0.5.206.22(Jun, 22, 2022)    
     * Added    
         * Added: Initial South Atlantic Asset Pack Mod
