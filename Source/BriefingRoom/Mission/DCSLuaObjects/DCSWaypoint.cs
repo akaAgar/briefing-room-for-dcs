@@ -8,6 +8,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
     {
 
         public int Alt { get; set; }
+        public string AltType { get; set; } = "BARO";
         public string Action { get; set; }
         public double Speed { get; set; }
         private List<DCSWaypointTask> _tasks = new List<DCSWaypointTask>();
@@ -37,7 +38,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             var obj = new Dictionary<string, object> {
                 {"alt", Alt},
                 {"action", Action},
-                {"alt_type", "BARO"},
+                {"alt_type", AltType},
                 {"speed", Speed},
                 {"task", new Dictionary<string, object>{
                     {"id", "ComboTask"},

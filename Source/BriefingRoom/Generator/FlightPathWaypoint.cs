@@ -46,6 +46,7 @@ namespace BriefingRoom4DCS.Generator
             return new DCSWaypoint
             {
                 Alt = OnGround ? 0 : aircraftData.CruiseAltitude,
+                AltType = OnGround ? "RADIO" : "BARO",
                 Action = "Turning Point",
                 Speed = aircraftData.CruiseSpeed,
                 Type = "Turning Point",
