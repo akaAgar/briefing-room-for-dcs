@@ -37,6 +37,11 @@ namespace BriefingRoom4DCS.Generator
             DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter,
         };
 
+        private static readonly List<DBEntryObjectiveTargetBehaviorLocation> AIR_ON_GROUND_LOCATIONS = new List<DBEntryObjectiveTargetBehaviorLocation>{
+            DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking,
+            DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter
+        };
+
         private static readonly List<SpawnPointType> LAND_SPAWNS = new List<SpawnPointType>{
             SpawnPointType.LandSmall,
             SpawnPointType.LandMedium,
@@ -241,7 +246,11 @@ namespace BriefingRoom4DCS.Generator
                 }
             }
 
-            if (objectiveTargetUnitFamily.GetUnitCategory().IsAircraft() && !groupFlags.HasFlag(UnitMakerGroupFlags.RadioAircraftSpawn))
+            if (
+                objectiveTargetUnitFamily.GetUnitCategory().IsAircraft() &&
+                !groupFlags.HasFlag(UnitMakerGroupFlags.RadioAircraftSpawn) &&
+                !AIR_ON_GROUND_LOCATIONS.Contains(targetBehaviorDB.Location)
+                )
                 groupFlags |= UnitMakerGroupFlags.ImmediateAircraftSpawn;
 
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
@@ -266,13 +275,14 @@ namespace BriefingRoom4DCS.Generator
             // Assign target suffix
             var i = 0;
             var isStatic = objectiveTargetUnitFamily.GetUnitCategory() == UnitCategory.Static;
-            targetGroupInfo.Value.DCSGroups.ForEach(x => {
+            targetGroupInfo.Value.DCSGroups.ForEach(x =>
+            {
                 x.Name += $"{(i == 0 ? "" : i)}-TGT-{objectiveName}";
-                if(isStatic) x.Units.ForEach(u => u.Name += $"{(i == 0 ? "" : i)}-TGT-{objectiveName}");
+                if (isStatic) x.Units.ForEach(u => u.Name += $"{(i == 0 ? "" : i)}-TGT-{objectiveName}");
                 i++;
             });
             mission.Briefing.AddItem(DCSMissionBriefingItemType.TargetGroupName, $"-TGT-{objectiveName}");
-            var length = isStatic? targetGroupInfo.Value.DCSGroups.Count : targetGroupInfo.Value.UnitNames.Length;
+            var length = isStatic ? targetGroupInfo.Value.DCSGroups.Count : targetGroupInfo.Value.UnitNames.Length;
             var pluralIndex = length == 1 ? 0 : 1;
             var taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex].Get(), mission).Replace("\"", "''");
             CreateTaskString(mission, pluralIndex, ref taskString, objectiveName, objectiveTargetUnitFamily);
@@ -456,16 +466,12 @@ namespace BriefingRoom4DCS.Generator
 
         private Waypoint GenerateObjectiveWaypoint(MissionTemplateSubTaskRecord objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName, MissionTemplateRecord template, bool scriptIgnore = false)
         {
-            var AirOnGroundBehaviorLocations = new List<DBEntryObjectiveTargetBehaviorLocation>{
-                DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking,
-                DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter};
-
             var targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
             var targetBehaviorLocation = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior).Location;
             if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective.");
 
             Coordinates waypointCoordinates = objectiveCoordinates;
-            bool onGround = !targetDB.UnitCategory.IsAircraft() || AirOnGroundBehaviorLocations.Contains(targetBehaviorLocation); // Ground targets = waypoint on the ground
+            bool onGround = !targetDB.UnitCategory.IsAircraft() || AIR_ON_GROUND_LOCATIONS.Contains(targetBehaviorLocation); // Ground targets = waypoint on the ground
 
             var taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task);
             if (objectiveTemplate.Options.Contains(ObjectiveOption.InaccurateWaypoint) && !TRANSPORT_TASKS.Contains(taskDB.ID))
