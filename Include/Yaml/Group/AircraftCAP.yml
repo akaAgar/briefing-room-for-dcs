@@ -1,6 +1,7 @@
 lateActivation: true
 modulation: $RADIOBAND$
 task: CAP
+radioSet: true
 uncontrolled: false
 waypoints:
   - alt: $ALTITUDE$
