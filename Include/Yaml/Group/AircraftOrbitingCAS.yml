@@ -1,6 +1,7 @@
 lateActivation: true
 modulation: $RADIOBAND$
 task: CAS
+radioSet: true
 uncontrolled: false
 taskSelected: true
 routeRelativeTOT: true
