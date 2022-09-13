@@ -1,6 +1,7 @@
 lateActivation: true
 modulation: $RADIOBAND$
 task: Nothing
+radioSet: true
 uncontrolled: false
 taskSelected: true
 waypoints:
