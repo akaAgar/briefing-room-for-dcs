@@ -243,7 +243,7 @@ namespace BriefingRoom4DCS.Generator
             _ => Toolbox.RandomFrom(DCSSkillLevel.Average, DCSSkillLevel.Good, DCSSkillLevel.High, DCSSkillLevel.Excellent),
         };
 
-        internal static object FormatRadioFrequency(double radioFrequency)
+        internal static string FormatRadioFrequency(double radioFrequency)
         {
             return radioFrequency.ToString("F1", NumberFormatInfo.InvariantInfo);
         }

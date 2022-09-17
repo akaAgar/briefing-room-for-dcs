@@ -28,7 +28,7 @@ namespace BriefingRoom4DCS.Generator
         {
             UnitDB = unitDB;
             DCSGroup = dCSGroup;
-            DCSGroups = new List<DCSGroup>{dCSGroup};
+            DCSGroups = new List<DCSGroup> { dCSGroup };
         }
 
         internal UnitMakerGroupInfo(ref List<DCSGroup> dCSGroups, DBEntryUnit unitDB = null)
@@ -532,7 +532,12 @@ namespace BriefingRoom4DCS.Generator
                 unit.Name = callsign.Value.GetUnitName(unitLuaIndex);
                 unit.OnboardNum = Toolbox.RandomInt(1, 1000).ToString("000");
                 unit.PropsLua = Toolbox.ToDictionaryObject(unitDB.AircraftData.PropsLua);
-                unit.RadioPresets = unitDB.AircraftData.RadioPresets;
+                unit.RadioPresets = unitDB.AircraftData.RadioPresets.Select(x => x.SetOverrides(
+                    (double)extraSettings.GetValueOrDefault("RadioFrequency", unitDB.AircraftData.RadioFrequency),
+                    (int)extraSettings.GetValueOrDefault("RadioBand", (int)unitDB.AircraftData.RadioModulation),
+                    (double?)extraSettings.GetValueOrDefault("AirbaseRadioFrequency", null),
+                    (int?)extraSettings.GetValueOrDefault("AirbaseRadioModulation", null)
+                    )).ToList();
                 unit.PayloadCommon = Toolbox.ToDictionaryObject(unitDB.AircraftData.PayloadCommon);
                 unit.Pylons = unitDB.AircraftData.GetPylonsObject(extraSettings.GetValueOrDefault("Payload", "default").ToString());
                 unit.Parking = ((List<int>)extraSettings.GetValueOrDefault("ParkingID", new List<int>())).ElementAtOrDefault(unitLuaIndex - 1);

@@ -71,6 +71,7 @@ namespace BriefingRoom4DCS.Generator
             var extraSettings = new Dictionary<string, object>();
             UnitMakerGroupFlags unitMakerGroupFlags = flightGroup.AIWingmen ? UnitMakerGroupFlags.FirstUnitIsClient : 0;
             DCSSkillLevel skillLevel = flightGroup.AIWingmen ? Toolbox.RandomFrom(DCSSkillLevel.High, DCSSkillLevel.Excellent) : DCSSkillLevel.Client;
+            var atcRadioFrequency = double.Parse(airbase.ATC.Split("/")[0]);
 
             if (!string.IsNullOrEmpty(flightGroup.Carrier) && unitMaker.carrierDictionary.ContainsKey(flightGroup.Carrier) && !flightGroup.Hostile) // Carrier take off
             {
@@ -94,6 +95,7 @@ namespace BriefingRoom4DCS.Generator
                 }
                 groupStartingCoords = carrier.UnitMakerGroupInfo.Coordinates;
                 carrier.RemainingSpotCount = carrier.RemainingSpotCount - flightGroup.Count;
+                atcRadioFrequency = carrier.UnitMakerGroupInfo.Frequency / 1000000.0;
             }
             else if (flightGroup.Hostile)
             {
@@ -103,6 +105,7 @@ namespace BriefingRoom4DCS.Generator
                 parkingSpotCoordinatesList = hostileParkingSpotCoordinatesList;
                 groupStartingCoords = hostileParkingSpotCoordinatesList.First();
                 airbase = hostileAirbase;
+                atcRadioFrequency = double.Parse(airbase.ATC.Split("/")[0]);
 
                 if (country == Country.CJTFBlue || country == Country.CJTFRed)
                     country = coalition == Coalition.Blue ? Country.CJTFBlue : Country.CJTFRed;
@@ -121,7 +124,7 @@ namespace BriefingRoom4DCS.Generator
             if (!string.IsNullOrEmpty(flightGroup.OverrideRadioFrequency))
             {
                 extraSettings.AddIfKeyUnused("RadioBand", (int)flightGroup.OverrideRadioBand);
-                extraSettings.AddIfKeyUnused("RadioFrequency", int.Parse(flightGroup.OverrideRadioFrequency));
+                extraSettings.AddIfKeyUnused("RadioFrequency", GeneratorTools.GetRadioFrequency(double.Parse(flightGroup.OverrideRadioFrequency)));
             }
 
             if (!string.IsNullOrEmpty(flightGroup.OverrideCallsignName))
@@ -144,6 +147,8 @@ namespace BriefingRoom4DCS.Generator
             extraSettings.AddIfKeyUnused("MissionAirbaseY", groupStartingCoords.Y);
             extraSettings.AddIfKeyUnused("MissionAirbaseID", airbase.DCSID);
             extraSettings.AddIfKeyUnused("Livery", flightGroup.Livery);
+            extraSettings.AddIfKeyUnused("AirbaseRadioFrequency", atcRadioFrequency);
+            extraSettings.AddIfKeyUnused("AirbaseRadioModulation", 0);
 
             UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(
                 Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), side, unitDB.Families[0],

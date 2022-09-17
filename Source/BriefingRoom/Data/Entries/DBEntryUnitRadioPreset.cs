@@ -19,20 +19,54 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using System.Collections.Generic;
+using System.Linq;
 using LuaTableSerializer;
 
 namespace BriefingRoom4DCS.Data
 {
-    internal struct DBEntryUnitRadioPreset
+    internal class DBEntryUnitRadioPreset
     {
-        internal double[] Modulations { get; }
+        internal int[] Modulations { get; }
 
         internal double[] Channels { get; }
 
-        internal DBEntryUnitRadioPreset(double[] channels, double[] modulations)
+        internal RadioType Type { get; }
+
+        internal DBEntryUnitRadioPreset(double[] channels, int[] modulations, RadioType type)
         {
             Channels = channels;
             Modulations = modulations;
+            Type = type;
+        }
+
+        internal DBEntryUnitRadioPresetModified SetOverrides(double radioFrequency, int radioModulation, double? atcRadioFrequency, int? atcRadioModulation)
+        {
+            if (Type == RadioType.Air)
+                return new DBEntryUnitRadioPresetModified(this, radioFrequency, radioModulation);
+            else if (Type == RadioType.ATC)
+                return new DBEntryUnitRadioPresetModified(this, atcRadioFrequency, atcRadioModulation);
+            else
+                return new DBEntryUnitRadioPresetModified(this, null, null);
+        }
+    }
+
+    internal class DBEntryUnitRadioPresetModified
+    {
+        internal int[] Modulations { get; }
+
+        internal double[] Channels { get; }
+
+        internal RadioType Type { get; }
+
+        internal DBEntryUnitRadioPresetModified(DBEntryUnitRadioPreset preset, double? overrideFrequency, int? overrideModulation)
+        {
+            Channels = preset.Channels.Select(x => x).ToArray();
+            if (overrideFrequency.HasValue)
+                Channels[0] = overrideFrequency.Value;
+            Modulations = preset.Modulations.Select(x => x).ToArray();
+            if (overrideModulation.HasValue)
+                Modulations[0] = overrideModulation.Value;
+            Type = preset.Type;
         }
 
         public string ToLuaString(int number)

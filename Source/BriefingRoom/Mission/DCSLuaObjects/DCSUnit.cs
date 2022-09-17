@@ -29,7 +29,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         internal Dictionary<string, object> PayloadCommon { get; set; } = new Dictionary<string, object>();
         internal dynamic Callsign { get; set; }
         internal string OnboardNum { get; set; }
-        internal List<DBEntryUnitRadioPreset> RadioPresets { get; set; } = new List<DBEntryUnitRadioPreset>();
+        internal List<DBEntryUnitRadioPresetModified> RadioPresets { get; set; } = new List<DBEntryUnitRadioPresetModified>();
         internal int Parking { get; set; }
 
         // Ship

@@ -115,7 +115,8 @@ namespace BriefingRoom4DCS.Data
                     RadioPresets.Add(
                         new DBEntryUnitRadioPreset(
                             ini.GetValueArray<double>("Aircraft", $"Radio.Presets.{i}.Channels"),
-                            ini.GetValueArray<double>("Aircraft", $"Radio.Presets.{i}.Modulations")));
+                            ini.GetValueArray<int>("Aircraft", $"Radio.Presets.{i}.Modulations"),
+                            ini.GetValue<RadioType>("Aircraft", $"Radio.Presets.{i}.Type", RadioType.Unknown)));
             }
             Liveries = new List<string>{
                 "default"
