@@ -110,13 +110,15 @@ namespace BriefingRoom4DCS.Generator
         private void AddTheaterZones()
         {
             DrawWaterAndIslands();
+            if(Template.OptionsMission.Contains("SpawnAnywhere"))
+                return;
             var invertCoalition = Template.OptionsMission.Contains("InvertCountriesCoalitions");
+            var hideBorders = Template.OptionsMission.Contains("HideBorders");
             var red = SituationDB.GetRedZone(invertCoalition);
-            var redColour = Template.OptionsMission.Contains("HideBorders") ? DrawingColour.Clear : DrawingColour.RedFill;
+            var redColour = hideBorders ? DrawingColour.Clear : DrawingColour.RedFill;
 
             var blue = SituationDB.GetBlueZone(invertCoalition);
-            var blueColour = Template.OptionsMission.Contains("HideBorders") ? DrawingColour.Clear : DrawingColour.BlueFill;
-
+            var blueColour = hideBorders ? DrawingColour.Clear : DrawingColour.BlueFill;
             AddFree(
                 "Red Control",
                 red.First(),
@@ -135,7 +137,7 @@ namespace BriefingRoom4DCS.Generator
             if (SituationDB.NoSpawnCoordinates != null)
             {
                 var noSpawn = SituationDB.NoSpawnCoordinates;
-                var noSpawnColour = Template.OptionsMission.Contains("HideBorders") ? DrawingColour.Clear : DrawingColour.GreenFill;
+                var noSpawnColour = hideBorders ? DrawingColour.Clear : DrawingColour.GreenFill;
                 AddFree(
                     "Neutural (NoSpawning)",
                     noSpawn.First(),
