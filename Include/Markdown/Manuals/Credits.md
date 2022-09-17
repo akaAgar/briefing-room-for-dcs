@@ -20,6 +20,7 @@ The creators of Briefing Room would like to thank for following for their direct
 * ciribob (CSAR & CTLD)
 * NovaLogicDev
 * sandman
+* Juanillus
 
 We would also like to thank anyone who has taken the time to report bugs, test betas & help others on Discord or Github.
 
