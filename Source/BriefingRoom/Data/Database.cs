@@ -54,6 +54,12 @@ namespace BriefingRoom4DCS.Data
             DBEntries = new Dictionary<Type, Dictionary<string, DBEntry>>();
         }
 
+        internal static void Reset()
+        {
+            _Instance = new Database();
+            _Instance.Initialize();
+        }
+
         internal void Initialize()
         {
             if (Initialized) return;

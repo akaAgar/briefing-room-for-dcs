@@ -37,7 +37,7 @@ namespace BriefingRoom4DCS.Mission
 
         public DCSMissionBriefing Briefing { get; }
 
-        internal Dictionary<string, List<Coordinates>> MapData { get; }
+        internal Dictionary<string, List<double[]>> MapData { get; }
 
         private readonly Dictionary<string, string> Values;
 
@@ -81,7 +81,7 @@ namespace BriefingRoom4DCS.Mission
             MissionPackages = new List<DCSMissionPackage>();
             MediaFiles = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
             Values = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
-            MapData = new Dictionary<string, List<Coordinates>>();
+            MapData = new Dictionary<string, List<double[]>>();
             PopulatedAirbaseIds = new Dictionary<Coalition, List<int>>{
                     {Coalition.Blue, new List<int>()},
                     {Coalition.Red, new List<int>()},
@@ -215,8 +215,9 @@ namespace BriefingRoom4DCS.Mission
             return isTooFar;
         }
 
-        public Dictionary<string, List<List<double>>> GetMapData() =>
-            MapData.ToDictionary(t => t.Key, t => t.Value.Select(x => x.ToList()).ToList());
+        public Dictionary<string, List<double[]>> GetMapData(){
+            return MapData; 
+        }
     }
 }
 

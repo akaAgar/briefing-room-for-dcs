@@ -1,3 +1,4 @@
+let map
 async function BlazorDownloadFile(filename, contentType, data) {
   // Create the URL
   const fileType = filename.split(".").at(-1)
@@ -44,19 +45,34 @@ const getMinCoors = (arr) => [Math.min.apply(Math, arr.map(x => x[0])), Math.min
 const getMaxCoors = (arr) => [Math.max.apply(Math, arr.map(x => x[0])), Math.max.apply(Math, arr.map(x => x[1]))]
 
 function RenderMap(mapData) {
-  let canvas = document.getElementById("canvas");
-  let ctx = canvas.getContext("2d");
-  clearCanvas(ctx, canvas)
-  const scaledMapData = scaleCoordinates(centerData(mapData), canvas);
-  Object.keys(scaledMapData).forEach(key => {
-    colour = GetColour(key)
-    if (scaledMapData[key].length == 1) {
-      let coords = scaledMapData[key][0];
-      RenderDot(coords[0], coords[1], colour, GetText(key), ctx)
-      return
+  try {
+    map = L.map('map')
+    L.esri.basemapLayer("Imagery").addTo(map);
+    L.esri.basemapLayer("ImageryLabels").addTo(map);
+
+    // L.esri.Vector.vectorBasemapLayer("ArcGIS:Imagery", { apiKey: apiKey }).addTo(map);
+  } catch (error) {
+
+  }
+  Object.keys(mapData).forEach(key => {
+    console.log(key, [0])
+    data = mapData[key]
+    if (data.length == 1) {
+      new L.Marker(mapData[key][0], {
+        icon: new L.DivIcon({
+            html: `<div class="map_point_icon" style="background-color: ${GetColour(key)};">${GetText(key)}</div>`
+        })
+    }).addTo(map)
+    } else {
+      L.polygon(mapData[key], {
+        color: GetColour(key),
+        fillColor: GetColour(key),
+        fillOpacity: 0.8,
+      }).addTo(map);
+
     }
-    RenderPolygon(scaledMapData[key], colour, ctx, key === "WATER")
   })
+  map.setView(mapData["AIRBASE_HOME"][0], 5);
 }
 
 function GetText(id) {
@@ -165,3 +181,4 @@ function scaleCoordinates(mapData, canvas) {
   })
   return clonedMap;
 }
+
