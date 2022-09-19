@@ -537,7 +537,8 @@
               TertiaryFunc="ClearMission"  TertiaryLabel="" TertiaryIcon="x"
             />
             <div>
-                <canvas height="360" width="640" id="canvas"></canvas>  
+                <div id="map"></div>
+                @* <canvas height="360" width="640" id="canvas"></canvas>   *@
             </div>
             <div>@((MarkupString)mission.Briefing.GetBriefingAsHTML(false))</div>
         </div>

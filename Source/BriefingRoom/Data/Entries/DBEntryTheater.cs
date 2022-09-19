@@ -22,6 +22,8 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using ProjNet.CoordinateSystems;
+using ProjNet.CoordinateSystems.Transformations;
 
 namespace BriefingRoom4DCS.Data
 {
@@ -44,6 +46,12 @@ namespace BriefingRoom4DCS.Data
         internal DBEntryTheaterSpawnPoint[] SpawnPoints { get; private set; }
         internal MinMaxI[] Temperature { get; private set; }
 
+        internal double FalseEasting { get; private set; }
+        internal double FalseNorthing { get; private set; }
+
+        internal int CentralMeridian { get; private set; }
+        internal double ScaleFactor { get; private set; }
+
 
         protected override bool OnLoad(string iniFilePath)
         {
@@ -55,6 +63,11 @@ namespace BriefingRoom4DCS.Data
             DCSID = ini.GetValue<string>("Theater", "DCSID");
             DefaultMapCenter = ini.GetValue<Coordinates>("Theater", "DefaultMapCenter");
             MagneticDeclination = ini.GetValue<double>("Theater", "MagneticDeclination");
+
+            FalseEasting = ini.GetValue<double>("Theater", "FalseEasting");
+            FalseNorthing = ini.GetValue<double>("Theater", "FalseNorthing");
+            CentralMeridian = ini.GetValue<int>("Theater", "CentralMeridian");
+            ScaleFactor = ini.GetValue<double>("Theater", "ScaleFactor");
 
             // [Daytime] section
             DayTime = new MinMaxI[12];
@@ -139,6 +152,20 @@ namespace BriefingRoom4DCS.Data
             if (vals[0] > vals[1]) return null; // Min value > Max value. BAD!
 
             return new MinMaxI(vals[0], vals[1]);
+        }
+
+        internal double[] GetRealWorldCoordinates(Coordinates coords){
+            var cFac = new CoordinateSystemFactory();
+            List<ProjectionParameter> parameters = new List<ProjectionParameter>();
+            parameters.Add(new ProjectionParameter("latitude_of_origin", 0));
+            parameters.Add(new ProjectionParameter("central_meridian", CentralMeridian));
+            parameters.Add(new ProjectionParameter("false_easting", FalseEasting));
+            parameters.Add(new ProjectionParameter("false_northing", FalseNorthing));
+            parameters.Add(new ProjectionParameter("scale_factor",ScaleFactor));
+            var projection = cFac.CreateProjection("Mercator_1SP", "Mercator_1SP", parameters);
+            var dcsSys = cFac.CreateProjectedCoordinateSystem("World Mercator WGS84", GeographicCoordinateSystem.WGS84, projection, LinearUnit.Metre, new AxisInfo("North", AxisOrientationEnum.North), new AxisInfo("East", AxisOrientationEnum.East));
+            var trans = new CoordinateTransformationFactory().CreateFromCoordinateSystems(dcsSys, GeographicCoordinateSystem.WGS84);
+            return trans.MathTransform.Transform(coords.ToList().ToArray());
         }
     }
 }

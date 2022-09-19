@@ -132,8 +132,8 @@ namespace BriefingRoom4DCS.Generator
                 "Colour".ToKeyValuePair(blueColour),
                 "FillColour".ToKeyValuePair(blueColour));
 
-            Mission.MapData.Add("RED", red);
-            Mission.MapData.Add("BLUE", blue);
+            Mission.MapData.Add("RED", red.Select(x => TheaterDB.GetRealWorldCoordinates(x)).ToList());
+            Mission.MapData.Add("BLUE", blue.Select(x => TheaterDB.GetRealWorldCoordinates(x)).ToList());
             if (SituationDB.NoSpawnCoordinates != null)
             {
                 var noSpawn = SituationDB.NoSpawnCoordinates;
@@ -144,7 +144,7 @@ namespace BriefingRoom4DCS.Generator
                     "Points".ToKeyValuePair(noSpawn.Select(coord => coord - noSpawn.First()).ToList()),
                     "Colour".ToKeyValuePair(noSpawnColour),
                     "FillColour".ToKeyValuePair(noSpawnColour));
-                Mission.MapData.Add("NOSPAWN", noSpawn);
+                Mission.MapData.Add("NOSPAWN", noSpawn.Select(x => TheaterDB.GetRealWorldCoordinates(x)).ToList());
             }
 
         }
@@ -158,7 +158,7 @@ namespace BriefingRoom4DCS.Generator
                 "Points".ToKeyValuePair(TheaterDB.WaterCoordinates.Select(coord => coord - TheaterDB.WaterCoordinates.First()).ToList()),
                 "Colour".ToKeyValuePair(DrawingColour.Clear),
                 "FillColour".ToKeyValuePair(DrawingColour.Clear));
-            Mission.MapData.Add("WATER", TheaterDB.WaterCoordinates);
+            Mission.MapData.Add("WATER", TheaterDB.WaterCoordinates.Select(x => TheaterDB.GetRealWorldCoordinates(x)).ToList());
             var i = 0;
             foreach (var item in TheaterDB.WaterExclusionCoordinates)
             {
@@ -168,7 +168,7 @@ namespace BriefingRoom4DCS.Generator
                     "Points".ToKeyValuePair(item.Select(coord => coord - item.First()).ToList()),
                     "Colour".ToKeyValuePair(DrawingColour.Clear),
                     "FillColour".ToKeyValuePair(DrawingColour.Clear));
-                Mission.MapData.Add($"ISLAND_{i}", item);
+                Mission.MapData.Add($"ISLAND_{i}", item.Select(x => TheaterDB.GetRealWorldCoordinates(x)).ToList());
                 i++;
             }
         }

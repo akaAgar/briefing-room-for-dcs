@@ -39,7 +39,7 @@ namespace BriefingRoom4DCS.Generator
             _situationDB = situationDB;
         }
 
-        internal void SelectStartingAirbaseForPackages(DCSMission mission, DBEntryAirbase homeBase)
+        internal void SelectStartingAirbaseForPackages(DCSMission mission, DBEntryAirbase homeBase, DBEntryTheater theaterDB)
         {
             var missionPackages = new List<DCSMissionPackage>();
             foreach (var package in _template.AircraftPackages)
@@ -56,7 +56,7 @@ namespace BriefingRoom4DCS.Generator
 
                 if (missionPackages.Any(x => x.Airbase == airbase))
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{airbase.Name}\t{airbase.Runways}\t{airbase.ATC}\t{airbase.ILS}\t{airbase.TACAN}");
-                mission.MapData.AddIfKeyUnused($"AIRBASE_${airbase.Name}", new List<Coordinates> { airbase.Coordinates });
+                mission.MapData.AddIfKeyUnused($"AIRBASE_${airbase.Name}", new List<double[]> {  theaterDB.GetRealWorldCoordinates(airbase.Coordinates) });
                 missionPackages.Add(new DCSMissionPackage(_template.AircraftPackages.IndexOf(package), airbase));
                 mission.PopulatedAirbaseIds[_template.ContextPlayerCoalition].Add(airbase.DCSID);
             }

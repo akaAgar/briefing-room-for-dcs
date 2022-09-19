@@ -1,3 +1,4 @@
+let map
 async function BlazorDownloadFile(filename, contentType, data) {
   // Create the URL
   const fileType = filename.split(".").at(-1)
@@ -44,19 +45,35 @@ const getMinCoors = (arr) => [Math.min.apply(Math, arr.map(x => x[0])), Math.min
 const getMaxCoors = (arr) => [Math.max.apply(Math, arr.map(x => x[0])), Math.max.apply(Math, arr.map(x => x[1]))]
 
 function RenderMap(mapData) {
-  let canvas = document.getElementById("canvas");
-  let ctx = canvas.getContext("2d");
-  clearCanvas(ctx, canvas)
-  const scaledMapData = scaleCoordinates(centerData(mapData), canvas);
-  Object.keys(scaledMapData).forEach(key => {
-    colour = GetColour(key)
-    if (scaledMapData[key].length == 1) {
-      let coords = scaledMapData[key][0];
-      RenderDot(coords[0], coords[1], colour, GetText(key), ctx)
-      return
-    }
-    RenderPolygon(scaledMapData[key], colour, ctx, key === "WATER")
+  try {
+    map = L.map('map')
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap'
+    }).addTo(map);
+  } catch (error) {
+
+  }
+  Object.keys(mapData).forEach(key => {
+    console.log(key, mapData[key][0])
+    L.marker(mapData[key][0]).addTo(map);
   })
+  map.setView(mapData["AIRBASE_HOME"][0], 5);
+
+
+  // let canvas = document.getElementById("canvas");
+  // let ctx = canvas.getContext("2d");
+  // clearCanvas(ctx, canvas)
+  // const scaledMapData = scaleCoordinates(centerData(mapData), canvas);
+  // Object.keys(scaledMapData).forEach(key => {
+  //   colour = GetColour(key)
+  //   if (scaledMapData[key].length == 1) {
+  //     let coords = scaledMapData[key][0];
+  //     RenderDot(coords[0], coords[1], colour, GetText(key), ctx)
+  //     return
+  //   }
+  //   RenderPolygon(scaledMapData[key], colour, ctx, key === "WATER")
+  // })
 }
 
 function GetText(id) {
@@ -165,3 +182,4 @@ function scaleCoordinates(mapData, canvas) {
   })
   return clonedMap;
 }
+

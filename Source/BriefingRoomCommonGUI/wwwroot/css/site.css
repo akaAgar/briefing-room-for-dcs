@@ -323,3 +323,4 @@ th {
     display: inline-block;
     margin: 0 1%;
 }
+#map { height: 360px; width: 100%; min-width: 640px; }
