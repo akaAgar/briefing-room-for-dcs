@@ -55,6 +55,8 @@ namespace BriefingRoom4DCS.Generator
                 );
             if (template.ContextSituation.StartsWith(template.ContextTheater))
                 situationDB = Database.Instance.GetEntry<DBEntrySituation>(template.ContextSituation);
+            else if (template.ContextSituation == "None")
+                template.OptionsMission.Add("SpawnAnywhere");
 
 
             var coalitionsDB = new DBEntryCoalition[]
@@ -65,7 +67,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Copy values from the template
             mission.SetValue("BriefingTheater", theaterDB.UIDisplayName.Get());
-            mission.SetValue("BriefingSituation", situationDB.UIDisplayName.Get());
+            mission.SetValue("BriefingSituation", template.ContextSituation == "None" ? "" : situationDB.UIDisplayName.Get());
             mission.SetValue("BriefingAllyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition].UIDisplayName.Get());
             mission.SetValue("BriefingEnemyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition.GetEnemy()].UIDisplayName.Get());
             mission.SetValue("EnableAudioRadioMessages", !template.OptionsMission.Contains("RadioMessagesTextOnly"));
