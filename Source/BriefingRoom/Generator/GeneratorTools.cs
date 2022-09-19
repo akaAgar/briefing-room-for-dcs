@@ -234,13 +234,12 @@ namespace BriefingRoom4DCS.Generator
 
         internal static DCSSkillLevel GetDefaultSkillLevel(MissionTemplateRecord template, Side side) => (Side.Ally == side ? template.SituationFriendlySkill : template.SituationEnemySkill) switch
         {
-            AmountNR.None => DCSSkillLevel.Average,
-            AmountNR.VeryLow => DCSSkillLevel.Average,
-            AmountNR.Low => Toolbox.RandomFrom(DCSSkillLevel.Average, DCSSkillLevel.Good),
-            AmountNR.Average => Toolbox.RandomFrom(DCSSkillLevel.Average, DCSSkillLevel.Good, DCSSkillLevel.High),
-            AmountNR.High => Toolbox.RandomFrom(DCSSkillLevel.Good, DCSSkillLevel.High),
-            AmountNR.VeryHigh => Toolbox.RandomFrom(DCSSkillLevel.High, DCSSkillLevel.Excellent),
-            _ => Toolbox.RandomFrom(DCSSkillLevel.Average, DCSSkillLevel.Good, DCSSkillLevel.High, DCSSkillLevel.Excellent),
+            AmountR.VeryLow => DCSSkillLevel.Average,
+            AmountR.Low => Toolbox.RandomFrom(DCSSkillLevel.Average, DCSSkillLevel.Good),
+            AmountR.Average => Toolbox.RandomFrom(DCSSkillLevel.Average, DCSSkillLevel.Good, DCSSkillLevel.High),
+            AmountR.High => Toolbox.RandomFrom(DCSSkillLevel.Good, DCSSkillLevel.High),
+            AmountR.VeryHigh => Toolbox.RandomFrom(DCSSkillLevel.High, DCSSkillLevel.Excellent),
+            _ => DCSSkillLevel.Random,
         };
 
         internal static string FormatRadioFrequency(double radioFrequency)

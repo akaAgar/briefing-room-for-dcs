@@ -52,10 +52,10 @@ namespace BriefingRoom4DCS.Template
         internal List<RealismOption> OptionsRealism { get; init; }
         internal List<MissionTemplateFlightGroupRecord> PlayerFlightGroups { get; init; }
         internal List<MissionTemplatePackageRecord> AircraftPackages { get; init; }
-        internal AmountNR SituationEnemySkill { get; init; }
+        internal AmountR SituationEnemySkill { get; init; }
         internal AmountNR SituationEnemyAirDefense { get; init; }
         internal AmountNR SituationEnemyAirForce { get; init; }
-        internal AmountNR SituationFriendlySkill { get; init; }
+        internal AmountR SituationFriendlySkill { get; init; }
         internal AmountNR SituationFriendlyAirDefense { get; init; }
         internal AmountNR SituationFriendlyAirForce { get; init; }
         internal int CombinedArmsCommanderBlue { get; init; }

@@ -173,7 +173,6 @@ namespace BriefingRoom4DCS.Generator
 
             var coalition = (side == Side.Ally) ? PlayerCoalition : (side == Side.Neutral ? Coalition.Neutral : PlayerCoalition.GetEnemy());
             var country = (Country)extraSettings.GetValueOrDefault("Country", (coalition == Coalition.Blue) ? Country.CJTFBlue : Country.CJTFRed);
-            var skill = extraSettings.GetValueOrDefault("Skill", GeneratorTools.GetDefaultSkillLevel(Template, side)).ToString();
             var isUsingSkynet = Template.MissionFeatures.Contains("SkynetIADS");
             var groupName = GeneratorTools.GetGroupName(GroupID, unitFamily, side, isUsingSkynet);
             UnitCallsign? callsign = null;
@@ -182,7 +181,6 @@ namespace BriefingRoom4DCS.Generator
                 return AddStaticGroup(
                     country,
                     coalition,
-                    skill,
                     unitFamily,
                     side,
                     units,
@@ -222,8 +220,8 @@ namespace BriefingRoom4DCS.Generator
                 unitTypeLua,
                 coordinates,
                 unitMakerGroupFlags,
-                skill,
                 country,
+                side,
                 extraSettings
             );
 
@@ -327,8 +325,8 @@ namespace BriefingRoom4DCS.Generator
             string unitTypeLua,
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags,
-            string skill,
             Country country,
+            Side side,
             Dictionary<string, object> extraSettings
             )
         {
@@ -356,8 +354,8 @@ namespace BriefingRoom4DCS.Generator
                        unitTypeLua,
                        coordinates,
                        unitMakerGroupFlags,
-                       skill,
                        country,
+                       side,
                        extraSettings,
                        unitSets.Count() == 1
                        ));
@@ -374,7 +372,6 @@ namespace BriefingRoom4DCS.Generator
         private UnitMakerGroupInfo? AddStaticGroup(
             Country country,
             Coalition coalition,
-            string skill,
             UnitFamily unitFamily,
             Side side,
             string[] unitSets,
@@ -423,8 +420,8 @@ namespace BriefingRoom4DCS.Generator
                         unitTypeLua,
                         coordinates,
                         unitMakerGroupFlags,
-                        skill,
                         country,
+                        side,
                         extraSettings
                         );
 
@@ -463,8 +460,8 @@ namespace BriefingRoom4DCS.Generator
                     "Vehicle",
                     coordinates,
                     unitMakerGroupFlags,
-                    skill,
                     country,
+                    side,
                     extraSettings
                 );
                 dCSGroup.Units = unitsLuaTable;
@@ -489,8 +486,8 @@ namespace BriefingRoom4DCS.Generator
             string unitType,
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags,
-            string skill,
             Country country,
+            Side side,
             Dictionary<string, object> extraSettings,
             bool singleUnit = false)
         {
@@ -522,7 +519,7 @@ namespace BriefingRoom4DCS.Generator
             if (Toolbox.IsAircraft(unitDB.Category) && (unitLuaIndex == 1) && unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.FirstUnitIsClient))
                 unit.Skill = SinglePlayerMission ? "Player" : "Client";
             else
-                unit.Skill = skill;
+                unit.Skill = extraSettings.GetValueOrDefault("Skill", GeneratorTools.GetDefaultSkillLevel(Template, side)).ToString();;
 
             GetLivery(ref unit, unitDB, country, extraSettings);
 

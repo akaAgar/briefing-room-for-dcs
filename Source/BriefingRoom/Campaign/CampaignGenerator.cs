@@ -236,9 +236,32 @@ namespace BriefingRoom4DCS.Campaign
             return (Wind)Toolbox.Clamp((int)wind, (int)Wind.Calm, (int)Wind.Storm);
         }
 
-        private static AmountNR GetPowerLevel(AmountNR amount, CampaignDifficultyVariation variation, int missionIndex, int missionsCount, bool reverseVariation = false)
+        private static AmountR GetPowerLevel(AmountR amount, CampaignDifficultyVariation variation, int missionIndex, int missionsCount, bool reverseVariation = false)
         {
-            if (amount == AmountNR.Random) return AmountNR.Random;
+            if (amount == AmountR.Random) return AmountR.Random;
+            if (variation == CampaignDifficultyVariation.Steady) return amount;
+
+            double campaignProgress = missionIndex / (double)(Math.Max(2, missionsCount) - 1.0);
+
+            double amountOffset = 0;
+            switch (variation)
+            {
+                case CampaignDifficultyVariation.ConsiderablyEasier: amountOffset = -3.5; break;
+                case CampaignDifficultyVariation.MuchEasier: amountOffset = -2.25; break;
+                case CampaignDifficultyVariation.SomewhatEasier: amountOffset = -1.5; break;
+                case CampaignDifficultyVariation.SomewhatHarder: amountOffset = 1.5; break;
+                case CampaignDifficultyVariation.MuchHarder: amountOffset = 2.25; break;
+                case CampaignDifficultyVariation.ConsiderablyHarder: amountOffset = 3.5; break;
+            }
+            double amountDouble = (double)amount + amountOffset * campaignProgress;
+            if (reverseVariation) amountDouble = -amountDouble;
+
+            return (AmountR)Toolbox.Clamp((int)amountDouble, (int)AmountR.VeryLow, (int)AmountR.VeryHigh);
+        }
+
+         private static AmountNR GetPowerLevel(AmountNR amount, CampaignDifficultyVariation variation, int missionIndex, int missionsCount, bool reverseVariation = false)
+        {
+            if (amount == AmountNR.None || amount == AmountNR.Random) return amount;
             if (variation == CampaignDifficultyVariation.Steady) return amount;
 
             double campaignProgress = missionIndex / (double)(Math.Max(2, missionsCount) - 1.0);

@@ -63,10 +63,10 @@ namespace BriefingRoom4DCS.Campaign
         public List<MissionTemplateFlightGroup> PlayerFlightGroups { get { return PlayerFlightGroups_; } set { PlayerFlightGroups_ = value.Take(MissionTemplate.MAX_PLAYER_FLIGHT_GROUPS).ToList(); } }
         private List<MissionTemplateFlightGroup> PlayerFlightGroups_ = new List<MissionTemplateFlightGroup>();
         public string PlayerStartingAirbase { get; set; }
-        public AmountNR SituationEnemySkill { get; set; }
+        public AmountR SituationEnemySkill { get; set; }
         public AmountNR SituationEnemyAirDefense { get; set; }
         public AmountNR SituationEnemyAirForce { get; set; }
-        public AmountNR SituationFriendlySkill { get; set; }
+        public AmountR SituationFriendlySkill { get; set; }
         public AmountNR SituationFriendlyAirDefense { get; set; }
         public AmountNR SituationFriendlyAirForce { get; set; }
         public int CombinedArmsCommanderBlue { get { return CombinedArmsCommanderBlue_; } set { CombinedArmsCommanderBlue_ = Toolbox.Clamp(value, 0, MissionTemplate.MAX_COMBINED_ARMS_SLOTS); } }
@@ -125,11 +125,11 @@ namespace BriefingRoom4DCS.Campaign
             PlayerFlightGroups = new List<MissionTemplateFlightGroup> { fg };
             PlayerStartingAirbase = "";
 
-            SituationEnemySkill = AmountNR.Random;
+            SituationEnemySkill = AmountR.Random;
             SituationEnemyAirDefense = AmountNR.Random;
             SituationEnemyAirForce = AmountNR.Random;
 
-            SituationFriendlySkill = AmountNR.Random;
+            SituationFriendlySkill = AmountR.Random;
             SituationFriendlyAirDefense = AmountNR.Random;
             SituationFriendlyAirForce = AmountNR.Random;
 

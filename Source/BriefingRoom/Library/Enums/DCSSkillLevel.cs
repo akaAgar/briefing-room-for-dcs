@@ -24,10 +24,10 @@ namespace BriefingRoom4DCS
     {
         Player,
         Client,
-
         Average,
         Good,
         High,
-        Excellent
+        Excellent,
+        Random
     }
 }
