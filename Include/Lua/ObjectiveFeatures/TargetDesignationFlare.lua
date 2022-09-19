@@ -10,8 +10,15 @@ end
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationFlare = function()
   briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_FLAIRREQUEST$", "RadioPilotMarkSelfWithFlare")
   local objective = briefingRoom.mission.objectives[$OBJECTIVEINDEX$]
+  local objectiveFeature = briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$]
+
+  if objectiveFeature.targetDesignationFlareFlaresLeft <= 0 then
+    briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_FLAIRNOFLAIRS$", "RadioSupportShootingFlareOut", briefingRoom.radioManager.getAnswerDelay())
+    return
+  end
 
   if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames == 0 then -- no target units left
+    briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$:$LANG_NOTARGET$", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
     return
   end
 
@@ -19,21 +26,16 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationFlare 
   if unit == nil then -- no unit found with the ID, try searching for a static
     unit = StaticObject.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
     if unit == nil then -- no unit nor static found with the ID
+      briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$:$LANG_NOTARGET$", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
       return
     end
   end
-
-  -- out of flares
-  if briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationFlareFlaresLeft <= 0 then
-    briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_FLAIRNOFLAIRS$", "RadioSupportShootingFlareOut", briefingRoom.radioManager.getAnswerDelay())
-    return
-  end
-
-  briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationFlareFlaresLeft = briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationFlareFlaresLeft - 1
+  
+  objectiveFeature.targetDesignationFlareFlaresLeft = objectiveFeature.targetDesignationFlareFlaresLeft - 1
 
   local args = { ["position"] = unit:getPoint() }
 
-  briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_FLAIRAFFIRM$", "RadioSupportShootingFlare", briefingRoom.radioManager.getAnswerDelay(), briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationFlareDoFlare, args)
+  briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_FLAIRAFFIRM$", "RadioSupportShootingFlare", briefingRoom.radioManager.getAnswerDelay(), objectiveFeature.targetDesignationFlareDoFlare, args)
 end
       
 -- Add the command to the F10 menu

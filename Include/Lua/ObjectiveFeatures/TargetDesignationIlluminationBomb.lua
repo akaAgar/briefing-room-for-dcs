@@ -11,7 +11,13 @@ end
 briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationIlluminationBomb = function()
   briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_ILLUMINATIONREQUEST$", "RadioPilotDropIlluminationBomb")
   local objective = briefingRoom.mission.objectives[$OBJECTIVEINDEX$]
-
+  local objectiveFeature = briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$]
+  -- out of bombs
+  if objectiveFeature.targetDesignationIlluminationBombBombsLeft <= 0 then
+    briefingRoom.radioManager.play(objective.name.." $LANG_RECON$: $LANG_ILLUMINATIONREJECT$", "RadioSupportIlluminationBombOut", briefingRoom.radioManager.getAnswerDelay())
+    return
+  end
+  
   if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames == 0 then -- no target units left
     briefingRoom.radioManager.play(objective.name.." $LANG_RECON$:$LANG_NOTARGET$", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
     return
@@ -26,17 +32,11 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationIllumi
     end
   end
 
-  -- out of bombs
-  if briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationIlluminationBombBombsLeft <= 0 then
-    briefingRoom.radioManager.play(objective.name.." $LANG_RECON$: $LANG_ILLUMINATIONREJECT$", "RadioSupportIlluminationBombOut", briefingRoom.radioManager.getAnswerDelay())
-    return
-  end
-
-  briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationIlluminationBombBombsLeft = briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationIlluminationBombBombsLeft - 1
+  objectiveFeature.targetDesignationIlluminationBombBombsLeft = objectiveFeature.targetDesignationIlluminationBombBombsLeft - 1
 
   local args = { ["position"] = unit:getPoint() }
 
-  briefingRoom.radioManager.play(objective.name.." $LANG_RECON$: $LANG_ILLUMINATIONAFFIRM$", "RadioSupportIlluminationBomb", briefingRoom.radioManager.getAnswerDelay(), briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationIlluminationBombDoBomb, args)
+  briefingRoom.radioManager.play(objective.name.." $LANG_RECON$: $LANG_ILLUMINATIONAFFIRM$", "RadioSupportIlluminationBomb", briefingRoom.radioManager.getAnswerDelay(), objectiveFeature.targetDesignationIlluminationBombDoBomb, args)
 end
       
 -- Add the command to the F10 menu
