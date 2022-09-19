@@ -91,9 +91,11 @@ h4 {
 }
 
 .generator-preview {
+    grid-area: nav;
     border-left: 1px solid gray;
-    max-width: 50%;
+    max-width: 80%;
     flex-shrink: 1;
+    resize: horizontal;
 }
 
 .delete-flight {
@@ -322,4 +324,25 @@ th {
     width: 47%;
     display: inline-block;
     margin: 0 1%;
+}
+
+#map {
+    height: 800px;
+    width: 100%;
+}
+
+.map_point_icon {
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    line-height: 12px;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    position: relative;
+    font-size: 14px;
+    top: -12px;
+    left: -12px;
 }
