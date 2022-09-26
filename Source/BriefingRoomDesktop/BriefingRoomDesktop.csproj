@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebView.WindowsForms" Version="6.0.536" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebView.WindowsForms" Version="6.0.540+0-sha.e1fd215f1-azdo.6712673" />
     <ProjectReference Include="../BriefingRoomCommonGUI/BriefingRoomCommonGUI.csproj" />
   </ItemGroup>
 
