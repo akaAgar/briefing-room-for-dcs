@@ -67,7 +67,7 @@ namespace BriefingRoom4DCS
 
         public override string ToString() { return Toolbox.ValToString(X) + "," + Toolbox.ValToString(Y); }
 
-        public List<double> ToList() => new List<double> { Y, X };
+        public double[] ToArray() => new double[] { X, Y };
 
         internal static Coordinates FromAngleInDegrees(double angle)
         {

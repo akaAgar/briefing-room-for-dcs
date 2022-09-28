@@ -175,8 +175,9 @@ namespace BriefingRoom4DCS.Generator
             // Generate player flight groups
             BriefingRoom.PrintToLog("Generating player flight groups...");
             foreach (var templateFlightGroup in template.PlayerFlightGroups)
-                MissionGeneratorPlayerFlightGroups.GeneratePlayerFlightGroup(unitMaker, mission, template, templateFlightGroup, playerAirbase, waypoints, averageInitialPosition, objectivesCenter);
+                MissionGeneratorPlayerFlightGroups.GeneratePlayerFlightGroup(unitMaker, mission, template, templateFlightGroup, playerAirbase, waypoints, averageInitialPosition, objectivesCenter, theaterDB);
 
+            
             // Generate mission features
             BriefingRoom.PrintToLog("Generating mission features...");
             mission.AppendValue("ScriptMissionFeatures", ""); // Just in case there's no features
