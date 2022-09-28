@@ -346,3 +346,15 @@ th {
     top: -12px;
     left: -12px;
 }
+
+.arrow-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.arrow-icon>div {
+    margin-left: -1px;
+    margin-top: -3px;
+    transform-origin: center center;
+    font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+}

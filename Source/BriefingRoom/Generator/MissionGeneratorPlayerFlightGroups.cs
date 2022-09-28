@@ -38,7 +38,8 @@ namespace BriefingRoom4DCS.Generator
             DBEntryAirbase playerAirbase,
             List<Waypoint> waypoints,
             Coordinates averageInitialLocation,
-            Coordinates objectivesCenter)
+            Coordinates objectivesCenter,
+            DBEntryTheater theaterDB)
         {
             DBEntryAirbase airbase = playerAirbase;
             List<Waypoint> flightWaypoints = new List<Waypoint>(waypoints);
@@ -173,6 +174,10 @@ namespace BriefingRoom4DCS.Generator
                 flightWaypoints,
                 template.OptionsMission.Contains("ImperialUnitsForBriefing"),
                 groupInfo);
+
+            var mapWaypoints = flightWaypoints.Select(x => theaterDB.GetRealWorldCoordinates(x.Coordinates)).ToList();
+            mapWaypoints = mapWaypoints.Prepend(theaterDB.GetRealWorldCoordinates(groupStartingCoords)).ToList();
+            mission.MapData.Add($"WAYPOINTS{groupInfo.Value.DCSGroup.GroupId}", mapWaypoints);
         }
 
         private static void SaveFlightGroup(DCSMission mission, UnitMakerGroupInfo? groupInfo, MissionTemplateFlightGroupRecord flightGroup, DBEntryUnit unitDB, string homeBase)

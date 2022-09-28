@@ -391,7 +391,7 @@
             errorMessage = "";
             mission = await Layout.briefingRoom.GenerateMissionAsync(Template, true);
             StateHasChanged();
-            await Policy.Handle<Exception>().RetryAsync(3).ExecuteAsync(async () => await JSRuntime.InvokeVoidAsync("RenderMap", mission.GetMapData()));
+            await Policy.Handle<Exception>().RetryAsync(3).ExecuteAsync(async () => await JSRuntime.InvokeVoidAsync("RenderMap", mission.GetMapData(), Template.ContextTheater));
         } catch (Exception ex){
             Console.WriteLine(ex);
             errorMessage = ex.Message;

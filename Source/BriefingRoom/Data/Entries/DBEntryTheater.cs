@@ -22,8 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using ProjNet.CoordinateSystems;
-using ProjNet.CoordinateSystems.Transformations;
+using DotSpatial.Projections;
 
 namespace BriefingRoom4DCS.Data
 {
@@ -46,12 +45,6 @@ namespace BriefingRoom4DCS.Data
         internal DBEntryTheaterSpawnPoint[] SpawnPoints { get; private set; }
         internal MinMaxI[] Temperature { get; private set; }
 
-        internal double FalseEasting { get; private set; }
-        internal double FalseNorthing { get; private set; }
-
-        internal int CentralMeridian { get; private set; }
-        internal double ScaleFactor { get; private set; }
-
 
         protected override bool OnLoad(string iniFilePath)
         {
@@ -63,11 +56,6 @@ namespace BriefingRoom4DCS.Data
             DCSID = ini.GetValue<string>("Theater", "DCSID");
             DefaultMapCenter = ini.GetValue<Coordinates>("Theater", "DefaultMapCenter");
             MagneticDeclination = ini.GetValue<double>("Theater", "MagneticDeclination");
-
-            FalseEasting = ini.GetValue<double>("Theater", "FalseEasting");
-            FalseNorthing = ini.GetValue<double>("Theater", "FalseNorthing");
-            CentralMeridian = ini.GetValue<int>("Theater", "CentralMeridian");
-            ScaleFactor = ini.GetValue<double>("Theater", "ScaleFactor");
 
             // [Daytime] section
             DayTime = new MinMaxI[12];
@@ -123,7 +111,7 @@ namespace BriefingRoom4DCS.Data
             Temperature = new MinMaxI[12];
             for (i = 0; i < 12; i++)
                 Temperature[i] = ini.GetValue<MinMaxI>("Temperature", ((Month)i).ToString());
-
+            printMinMaxCoords();
             return true;
         }
 
@@ -154,19 +142,54 @@ namespace BriefingRoom4DCS.Data
             return new MinMaxI(vals[0], vals[1]);
         }
 
-        internal double[] GetRealWorldCoordinates(Coordinates coords){
-            var cFac = new CoordinateSystemFactory();
-            List<ProjectionParameter> parameters = new List<ProjectionParameter>();
-            parameters.Add(new ProjectionParameter("latitude_of_origin", 0));
-            parameters.Add(new ProjectionParameter("central_meridian", CentralMeridian));
-            parameters.Add(new ProjectionParameter("false_easting", FalseEasting));
-            parameters.Add(new ProjectionParameter("false_northing", FalseNorthing));
-            parameters.Add(new ProjectionParameter("scale_factor",ScaleFactor));
-            parameters.Add(new ProjectionParameter("azimuth",45.0));
-            var projection = cFac.CreateProjection("Mercator_1SP", "Mercator_1SP", parameters);
-            var dcsSys = cFac.CreateProjectedCoordinateSystem("World Mercator WGS84", GeographicCoordinateSystem.WGS84, projection, LinearUnit.Metre, new AxisInfo("North", AxisOrientationEnum.East), new AxisInfo("East", AxisOrientationEnum.North));
-            var trans = new CoordinateTransformationFactory().CreateFromCoordinateSystems(dcsSys, GeographicCoordinateSystem.WGS84);
-            return trans.MathTransform.Transform(coords.ToList().ToArray()).Reverse().ToArray();
+        internal void printMinMaxCoords()
+        {
+            double minX = 123;
+            double minY = 123;
+            double maxX = 123;
+            double maxY = 123;
+
+            foreach (var coord in WaterCoordinates)
+            {
+                processCoord(coord, ref minX, ref minY, ref maxX, ref maxY);
+            }
+            foreach (var area in WaterExclusionCoordinates)
+            {
+                foreach (var coord in area)
+                {
+                    processCoord(coord, ref minX, ref minY, ref maxX, ref maxY);
+                }
+            }
+            foreach (var sp in SpawnPoints)
+            {
+                processCoord(sp.Coordinates, ref minX, ref minY, ref maxX, ref maxY);
+            }
+            Console.WriteLine($"{DCSID} {Math.Floor(minX/1000)*1000},{Math.Floor(minY/1000)*1000} -> {Math.Ceiling(maxX/1000)*1000},{Math.Ceiling(maxY/1000)*1000}");
+        }
+
+        private void processCoord(Coordinates coord, ref double minX, ref double minY, ref double maxX, ref double maxY)
+        {
+            if (minX == 123)
+            {
+                minX = coord.X;
+                minY = coord.Y;
+                maxX = coord.X;
+                maxY = coord.Y;
+            }
+            if (coord.X < minX)
+                minX = coord.X;
+            if (coord.Y < minY)
+                minY = coord.Y;
+            if (coord.X > maxX)
+                maxX = coord.X;
+            if (coord.Y > maxY)
+                maxY = coord.Y;
+        }
+
+        internal double[] GetRealWorldCoordinates(Coordinates coords)
+        {
+            var point = coords.ToArray().Copy();
+            return point;
         }
     }
 }

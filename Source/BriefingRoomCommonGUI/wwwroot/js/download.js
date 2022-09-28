@@ -1,4 +1,5 @@
 let map
+const waypointColors = ["Cyan", "orange", "Chartreuse", "Magenta", "DeepPink", "Gold"]
 async function BlazorDownloadFile(filename, contentType, data) {
   // Create the URL
   const fileType = filename.split(".").at(-1)
@@ -44,35 +45,58 @@ function CopyLogs(logs) {
 const getMinCoors = (arr) => [Math.min.apply(Math, arr.map(x => x[0])), Math.min.apply(Math, arr.map(x => x[1]))]
 const getMaxCoors = (arr) => [Math.max.apply(Math, arr.map(x => x[0])), Math.max.apply(Math, arr.map(x => x[1]))]
 
-function RenderMap(mapData) {
+function getFromMapCoordData(pos, mapCoordData) {
+  x = Math.round(pos[0] / 1000) * 1000
+  z = Math.round(pos[1] / 1000) * 1000
+  key = `x:${x},z:${z}`
+  pos2 = mapCoordData[key]
+  if (pos2 == undefined) {
+    throw `Key ${key} not found in positional data`
+  }
+  return [pos2["x"], pos2["y"]]
+}
+
+async function RenderMap(mapData, map) {
+  const response = await fetch(`_content/BriefingRoomCommonGUI/js/${map}.json`)
+  const MapCoordMap = await response.json()
   try {
     map = L.map('map')
     L.esri.basemapLayer("Imagery").addTo(map);
     L.esri.basemapLayer("ImageryLabels").addTo(map);
-
-    // L.esri.Vector.vectorBasemapLayer("ArcGIS:Imagery", { apiKey: apiKey }).addTo(map);
   } catch (error) {
 
   }
   Object.keys(mapData).forEach(key => {
-    console.log(key, [0])
+    if (key.includes('ISLAND')) {
+      return
+    }
     data = mapData[key]
     if (data.length == 1) {
-      new L.Marker(mapData[key][0], {
+      new L.Marker(getFromMapCoordData(data[0], MapCoordMap), {
         icon: new L.DivIcon({
-            html: `<div class="map_point_icon" style="background-color: ${GetColour(key)};">${GetText(key)}</div>`
+          html: `<div class="map_point_icon" style="background-color: ${GetColour(key)};">${GetText(key)}</div>`
         })
-    }).addTo(map)
+      }).addTo(map)
+    } else if (key.includes("WAYPOINTS")) {
+      let color = waypointColors[Math.floor(Math.random() * waypointColors.length)];
+      let coords = data.map(x => getFromMapCoordData(x, MapCoordMap))
+      new L.polyline(coords, {
+        color: color,
+        weight: 2,
+        opacity: 1,
+        smoothFactor: 2
+      }).addTo(map);
+      L.featureGroup(getArrows(coords, color, 1, map)).addTo(map);
     } else {
-      L.polygon(mapData[key], {
+      let coords = data.map(x => getFromMapCoordData(x, MapCoordMap))
+      L.polygon(coords, {
         color: GetColour(key),
         fillColor: GetColour(key),
         fillOpacity: 0.8,
       }).addTo(map);
-
     }
   })
-  map.setView(mapData["AIRBASE_HOME"][0], 5);
+  map.setView(getFromMapCoordData(mapData["AIRBASE_HOME"][0], MapCoordMap), 5);
 }
 
 function GetText(id) {
@@ -115,70 +139,86 @@ function GetColour(id) {
   }
 }
 
-function RenderDot(x, y, color, text, ctx) {
-  ctx.strokeStyle = "#000000";
-  ctx.fillStyle = color;
-  ctx.beginPath();
-  ctx.arc(x, y, 10, 0, 2 * Math.PI);
-  ctx.stroke();
-  ctx.fill();
-  if (text) {
-    ctx.fillStyle = "#000000";
-    ctx.textAlign = "center";
-    ctx.font = "15px Arial";
-    ctx.fillText(text, x, y + 4);
-  }
-}
+function getArrows(arrLatlngs, color, arrowCount, mapObj) {
 
-function RenderPolygon(coords, color, ctx, isWater) {
-  ctx.strokeStyle = isWater ? '#00000000' : "#000000";
-  ctx.fillStyle = color;
-  ctx.beginPath();
-  let first = true
-  coords.forEach(coord => {
-    if (first) {
-      ctx.moveTo(coord[0], coord[1])
-      first = false
-    } else {
-      ctx.lineTo(coord[0], coord[1])
+  if (typeof arrLatlngs === undefined || arrLatlngs == null ||
+    (!arrLatlngs.length) || arrLatlngs.length < 2)
+    return [];
+
+  if (typeof arrowCount === 'undefined' || arrowCount == null)
+    arrowCount = 1;
+
+  if (typeof color === 'undefined' || color == null)
+    color = '';
+  else
+    color = 'color:' + color;
+
+  var result = [];
+  for (var i = 1; i < arrLatlngs.length; i++) {
+    var icon = L.divIcon({ className: 'arrow-icon', bgPos: [5, 5], html: '<div style="' + color + ';transform: rotate(' + getAngle(arrLatlngs[i - 1], arrLatlngs[i], -1).toString() + 'deg)">▶</div>' });
+    for (var c = 1; c <= arrowCount; c++) {
+      result.push(L.marker(myMidPoint(arrLatlngs[i], arrLatlngs[i - 1], (c / (arrowCount + 1)), mapObj), { icon: icon }));
     }
-  })
-  ctx.closePath();
-  ctx.stroke();
-  ctx.fill();
+  }
+  return result;
 }
 
-function clearCanvas(ctx, canvas) {
-  const canvasW = canvas.getBoundingClientRect().width;
-  const canvasH = canvas.getBoundingClientRect().height;
-  ctx.clearRect(0, 0, canvasW, canvasH);
+function getAngle(latLng1, latlng2, coef) {
+  var dy = latlng2[0] - latLng1[0];
+  var dx = Math.cos(Math.PI / 180 * latLng1[0]) * (latlng2[1] - latLng1[1]);
+  var ang = ((Math.atan2(dy, dx) / Math.PI) * 180 * coef);
+  return (ang).toFixed(2);
 }
 
-function centerData(mapData) {
-  const clonedMap = structuredClone(mapData);
-  const minCoords = getMinCoors(Object.keys(clonedMap).map(key => getMinCoors(clonedMap[key])));
-  Object.keys(clonedMap).forEach(key => {
-    clonedMap[key].forEach(coord => {
-      coord[0] = coord[0] + (minCoords[0] * -1)
-      coord[1] = coord[1] + (minCoords[1] * -1)
-    })
-  })
-  return clonedMap
+function myMidPoint(latlng1, latlng2, per, mapObj) {
+  if (!mapObj)
+    throw new Error('map is not defined');
+
+  var halfDist, segDist, dist, p1, p2, ratio,
+    points = [];
+
+  p1 = mapObj.project(new L.latLng(latlng1));
+  p2 = mapObj.project(new L.latLng(latlng2));
+
+  halfDist = distanceTo(p1, p2) * per;
+
+  if (halfDist === 0)
+    return mapObj.unproject(p1);
+
+  dist = distanceTo(p1, p2);
+
+  if (dist > halfDist) {
+    ratio = (dist - halfDist) / dist;
+    var res = mapObj.unproject(new Point(p2.x - ratio * (p2.x - p1.x), p2.y - ratio * (p2.y - p1.y)));
+    return [res.lat, res.lng];
+  }
+
 }
 
-function scaleCoordinates(mapData, canvas) {
-  const canvasW = canvas.getBoundingClientRect().width;
-  const canvasH = canvas.getBoundingClientRect().height;
-  const clonedMap = structuredClone(mapData);
-  const maxCoords = getMaxCoors(Object.keys(clonedMap).map(key => getMaxCoors(clonedMap[key])));
-  const scaleMultiplier = canvasW / (maxCoords[0] > maxCoords[1] ? maxCoords[0] : maxCoords[1]);
+function distanceTo(p1, p2) {
+  var x = p2.x - p1.x,
+    y = p2.y - p1.y;
 
-  Object.keys(clonedMap).forEach(key => {
-    clonedMap[key].forEach(coord => {
-      coord[0] = (coord[0] * scaleMultiplier)
-      coord[1] = canvasH - (coord[1] * scaleMultiplier)
-    })
-  })
-  return clonedMap;
+  return Math.sqrt(x * x + y * y);
 }
 
+function toPoint(x, y, round) {
+  if (x instanceof Point) {
+    return x;
+  }
+  if (isArray(x)) {
+    return new Point(x[0], x[1]);
+  }
+  if (x === undefined || x === null) {
+    return x;
+  }
+  if (typeof x === 'object' && 'x' in x && 'y' in x) {
+    return new Point(x.x, x.y);
+  }
+  return new Point(x, y, round);
+}
+
+function Point(x, y, round) {
+  this.x = (round ? Math.round(x) : x);
+  this.y = (round ? Math.round(y) : y);
+}

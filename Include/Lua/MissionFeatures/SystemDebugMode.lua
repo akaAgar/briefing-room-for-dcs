@@ -1,3 +1,4 @@
+
 briefingRoom.f10MenuCommands.debug = {} -- Create F10 debug sub-menu
 briefingRoom.printDebugMessages = true -- Enable debug messages
 
@@ -74,6 +75,50 @@ function briefingRoom.f10MenuCommands.debug.dumpAirbaseIDData()
   briefingRoom.debugPrint("DONE AIRBASE ID DUMP");
 end
 
+function briefingRoom.f10MenuCommands.debug.map_zero_coords()
+  local zero = {
+    ["x"] = 0,
+    ["y"] = 0,
+    ["z"] = 0,
+  }
+  lat, lon, alt = coord.LOtoLL(zero)
+  briefingRoom.debugPrint("lat:" .. tostring(lat) .. " lon:" .. tostring(lon) .. " alt:" .. alt);
+
+end
+
+function briefingRoom.f10MenuCommands.debug.map_coords()
+  local minMax ={
+    ["minX"] = -462000,
+    ["minY"] = 176000,
+    ["maxX"] = 87000,
+    ["maxY"] = 975000,
+  }
+  local spot = {
+    ["x"] = minMax["minX"],
+    ["y"] = 0,
+    ["z"] = minMax["minY"],
+  }
+  local coordinates = {}
+  briefingRoom.debugPrint("Getting Data");
+  while spot["x"] < minMax["maxX"] do
+    while spot["z"] < minMax["maxY"] do
+      lat, lon, alt = coord.LOtoLL(spot)
+      coordinates["\"x:" .. spot["x"] .. ",z:" .. spot["z"]] = {
+        ["x"] = lat,
+        ["y"] = lon
+      }
+      spot["z"] = spot["z"] + 1000
+    end
+    spot["z"] = minMax["minY"]
+    spot["x"] = spot["x"] + 1000
+  end
+  local fp = io.open(lfs.writedir() .. "\\coords.json", 'w')
+  fp:write(json:encode(coordinates))
+  fp:close()
+  briefingRoom.debugPrint("Done"..lfs.writedir() .. "\\coords.json");
+
+end
+
 -- Create the debug menu
 do
   briefingRoom.f10Menu.debug = missionCommands.addSubMenu("(DEBUG MENU)", nil)
@@ -87,5 +132,6 @@ do
     briefingRoom.f10MenuCommands.debug.dumpAirbaseParkingData)
   missionCommands.addCommand("Dump All Airbase ID Data", briefingRoom.f10Menu.debug,
     briefingRoom.f10MenuCommands.debug.dumpAirbaseIDData)
-
+  missionCommands.addCommand("Dump Map coords", briefingRoom.f10Menu.debug,
+    briefingRoom.f10MenuCommands.debug.map_coords)
 end
