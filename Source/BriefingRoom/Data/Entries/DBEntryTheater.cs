@@ -162,10 +162,11 @@ namespace BriefingRoom4DCS.Data
             parameters.Add(new ProjectionParameter("false_easting", FalseEasting));
             parameters.Add(new ProjectionParameter("false_northing", FalseNorthing));
             parameters.Add(new ProjectionParameter("scale_factor",ScaleFactor));
+            parameters.Add(new ProjectionParameter("azimuth",45.0));
             var projection = cFac.CreateProjection("Mercator_1SP", "Mercator_1SP", parameters);
-            var dcsSys = cFac.CreateProjectedCoordinateSystem("World Mercator WGS84", GeographicCoordinateSystem.WGS84, projection, LinearUnit.Metre, new AxisInfo("North", AxisOrientationEnum.North), new AxisInfo("East", AxisOrientationEnum.East));
+            var dcsSys = cFac.CreateProjectedCoordinateSystem("World Mercator WGS84", GeographicCoordinateSystem.WGS84, projection, LinearUnit.Metre, new AxisInfo("North", AxisOrientationEnum.East), new AxisInfo("East", AxisOrientationEnum.North));
             var trans = new CoordinateTransformationFactory().CreateFromCoordinateSystems(dcsSys, GeographicCoordinateSystem.WGS84);
-            return trans.MathTransform.Transform(coords.ToList().ToArray());
+            return trans.MathTransform.Transform(coords.ToList().ToArray()).Reverse().ToArray();
         }
     }
 }

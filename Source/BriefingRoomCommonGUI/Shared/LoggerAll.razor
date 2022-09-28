@@ -10,6 +10,8 @@
                     class="oi oi-reload"></span>@BriefingRoom.Translate("Clear")</button>
                 <button class="btn btn-secondary" @onclick="() => CopyLogs()">
                     <span class="oi oi-clipboard"></span>@BriefingRoom.Translate("Copy")</button>
+                <button class="btn btn-secondary" @onclick="() => ReloadDatabase()">
+                    <span class="oi oi-reload"></span>@BriefingRoom.Translate("ReloadDatabase")</button>
             </div>
             @foreach (var log in logs)
             {
@@ -42,5 +44,10 @@ else
     private void CopyLogs()
     {
         JSRuntime.InvokeVoidAsync("CopyLogs", logs.Select(x => $"{x.Item1}: {x.Item2}").ToList());
+    }
+
+    private void ReloadDatabase()
+    {
+        BriefingRoom.ReloadDatabase();
     }
 }
