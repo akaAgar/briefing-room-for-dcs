@@ -211,6 +211,13 @@ function table.containsKey(t, key)
   return false
 end
 
+function table.merge(t1,t2)
+  for i=1,#t2 do
+      t1[#t1+1] = t2[i]
+  end
+  return t1
+end
+
 -- Creates a new table which countains count elements from table valTable
 function table.createFromRandomElements(valTable, count)
   local t = { }
@@ -538,7 +545,7 @@ briefingRoom.aircraftActivator = { }
 briefingRoom.aircraftActivator.INTERVAL = { 10, 20 } -- min/max interval (in seconds) between two updates
 briefingRoom.aircraftActivator.currentQueue = dcsExtensions.getGroupNamesContaining("-IQ-") -- current queue of aircraft group IDs to spawn every INTERVAL seconds
 briefingRoom.aircraftActivator.reserveQueue = dcsExtensions.getGroupNamesContaining("-RQ-") -- additional aircraft group IDs to be added to the queue later
-briefingRoom.aircraftActivator.responsiveMode = $AIRCRAFTACTIVATORISRESPONSEIVE$
+briefingRoom.aircraftActivator.responsiveMode = false
 
 function briefingRoom.aircraftActivator.getRandomInterval()
   return math.random(briefingRoom.aircraftActivator.INTERVAL[1], briefingRoom.aircraftActivator.INTERVAL[2])

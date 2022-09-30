@@ -1,3 +1,4 @@
+briefingRoom.aircraftActivator.responsiveMode = true
 briefingRoom.mission.missionFeatures.ImprovementResponsiveAircraftActivator = { }
 briefingRoom.mission.missionFeatures.ImprovementResponsiveAircraftActivator.interval = 60
 
