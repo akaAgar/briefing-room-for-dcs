@@ -609,6 +609,7 @@ briefingRoom.aircraftActivator.reserveQueueInitialCount = #briefingRoom.aircraft
 -- ===================================================================================
 
 briefingRoom.eventHandler = {}
+briefingRoom.eventHandler.BDASetting = "$BDASETTING$"
 
 function briefingRoom.handleGeneralKill(event) 
   if event.id == world.event.S_EVENT_DEAD or event.id == world.event.S_EVENT_CRASH then
@@ -633,8 +634,9 @@ function briefingRoom.handleGeneralKill(event)
           return -- No "target splashed" message when destroying a target aircraft on the ground (mostly for OCA missions)
         end
       end
-
-      briefingRoom.radioManager.play(messages[messageIndex + messageIndexOffset], "RadioHQ"..soundName..targetType..tostring(messageIndex), math.random(1, 3))
+      if briefingRoom.eventHandler.BDASetting == "ALL" then
+        briefingRoom.radioManager.play(messages[messageIndex + messageIndexOffset], "RadioHQ"..soundName..targetType..tostring(messageIndex), math.random(1, 3))
+      end
       briefingRoom.aircraftActivator.possibleResponsiveSpawn()
     end
   end

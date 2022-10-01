@@ -34,7 +34,9 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
       targetType = "Air"
       messageIndexOffset = 2
     end
-    briefingRoom.radioManager.play(messages[messageIndex + messageIndexOffset], "RadioHQ"..soundName..targetType..tostring(messageIndex), math.random(1, 3))
+    if briefingRoom.eventHandler.BDASetting == "ALL" or briefingRoom.eventHandler.BDASetting == "TARGETONLY" then
+      briefingRoom.radioManager.play(messages[messageIndex + messageIndexOffset], "RadioHQ"..soundName..targetType..tostring(messageIndex), math.random(1, 3))
+    end
   
     -- Mark the objective as complete if all targets have been destroyed
     if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames < 1 then -- all target units destroyed, objective complete
