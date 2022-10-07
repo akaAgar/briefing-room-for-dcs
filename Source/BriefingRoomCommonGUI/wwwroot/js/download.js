@@ -43,16 +43,21 @@ function getFromMapCoordData(pos, mapCoordData) {
   key = `x:${x},z:${z}`
   pos2 = mapCoordData[key]
   if (pos2 == undefined) {
-    throw `Key ${key} not found in positional data`
+    throw `Key ${key} not found in positional data.`
   }
   return [pos2["x"], pos2["y"]]
 }
 
 async function RenderMap(mapData, map) {
-  const response = await fetch(`_content/BriefingRoomCommonGUI/js/${map}.json.gz`)
-  const fileReader = await response.arrayBuffer();
-  const binData = new Uint8Array(fileReader);
-  var MapCoordMap = JSON.parse(pako.ungzip(binData,{ 'to': 'string' }));
+  try {
+    const response = await fetch(`_content/BriefingRoomCommonGUI/j/${map}.json.gz`)
+    const fileReader = await response.arrayBuffer();
+    const binData = new Uint8Array(fileReader);
+    var MapCoordMap = JSON.parse(pako.ungzip(binData,{ 'to': 'string' }));
+  } catch (error) {
+    throw `Either can't find ${map} data file or failed to parse it. raw error: ${error}`
+  }
+  
   try {
     map = L.map('map')
     L.esri.basemapLayer("Imagery").addTo(map);
