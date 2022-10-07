@@ -50,12 +50,12 @@ function getFromMapCoordData(pos, mapCoordData) {
 
 async function RenderMap(mapData, map) {
   try {
-    const response = await fetch(`_content/BriefingRoomCommonGUI/j/${map}.json.gz`)
+    const response = await fetch(`_content/BriefingRoomCommonGUI/js/${map}.json.gz`)
     const fileReader = await response.arrayBuffer();
     const binData = new Uint8Array(fileReader);
     var MapCoordMap = JSON.parse(pako.ungzip(binData,{ 'to': 'string' }));
   } catch (error) {
-    throw `Either can't find ${map} data file or failed to parse it. raw error: ${error}`
+    throw `Either can't find ${map} data file or failed to parse it. raw error: ${error} ${error.stack}`
   }
   
   try {
