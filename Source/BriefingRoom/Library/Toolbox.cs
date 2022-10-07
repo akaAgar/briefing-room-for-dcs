@@ -30,6 +30,7 @@ using System.Text;
 using System.IO.Compression;
 using BriefingRoom4DCS.Data;
 using System.Text.RegularExpressions;
+using BriefingRoom4DCS.Mission;
 
 namespace BriefingRoom4DCS
 {
@@ -539,6 +540,63 @@ namespace BriefingRoom4DCS
             }
 
             return mizBytes;
+        }
+
+        internal static void setMinMaxTheaterCoords(DBEntryTheater theater, DCSMission mission)
+        {
+            double minX = 123;
+            double minY = 123;
+            double maxX = 123;
+            double maxY = 123;
+
+            foreach (var coord in theater.WaterCoordinates)
+            {
+                GetMinMaxCoords(coord, ref minX, ref minY, ref maxX, ref maxY);
+            }
+            foreach (var area in theater.WaterExclusionCoordinates)
+            {
+                foreach (var coord in area)
+                {
+                    GetMinMaxCoords(coord, ref minX, ref minY, ref maxX, ref maxY);
+                }
+            }
+            foreach (var sp in theater.SpawnPoints)
+            {
+                GetMinMaxCoords(sp.Coordinates, ref minX, ref minY, ref maxX, ref maxY);
+            }
+            var situations = Database.Instance.GetAllEntries<DBEntrySituation>()
+                    .Where(x => x.Theater == theater.DCSID.ToLower())
+                    .ToList();
+            foreach (var situation in situations)
+            {
+                foreach (var coord in situation.RedCoordinates.Concat(situation.BlueCoordinates).Concat(situation.NoSpawnCoordinates ?? new List<Coordinates>()))
+                {
+                    GetMinMaxCoords(coord, ref minX, ref minY, ref maxX, ref maxY);
+                }
+            }
+            mission.SetValue("TheaterMinX", Math.Floor(minX/1000)*1000);
+            mission.SetValue("TheaterMinY", Math.Floor(minY/1000)*1000);
+            mission.SetValue("TheaterMaxX", Math.Ceiling(maxX/1000)*1000);
+            mission.SetValue("TheaterMaxY", Math.Ceiling(maxY/1000)*1000);
+        }
+
+        private static void GetMinMaxCoords(Coordinates coord, ref double minX, ref double minY, ref double maxX, ref double maxY)
+        {
+            if (minX == 123)
+            {
+                minX = coord.X;
+                minY = coord.Y;
+                maxX = coord.X;
+                maxY = coord.Y;
+            }
+            if (coord.X < minX)
+                minX = coord.X;
+            if (coord.Y < minY)
+                minY = coord.Y;
+            if (coord.X > maxX)
+                maxX = coord.X;
+            if (coord.Y > maxY)
+                maxY = coord.Y;
         }
     }
 }

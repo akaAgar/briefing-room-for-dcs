@@ -48,6 +48,7 @@ namespace BriefingRoom4DCS.Generator
             var waypoints = new List<Waypoint>();
 
             var theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
+            Toolbox.setMinMaxTheaterCoords(theaterDB, mission);
             var situationDB = Toolbox.RandomFrom(
                 Database.Instance.GetAllEntries<DBEntrySituation>()
                     .Where(x => x.Theater == template.ContextTheater.ToLower())
@@ -113,7 +114,7 @@ namespace BriefingRoom4DCS.Generator
             mission.PopulatedAirbaseIds[template.ContextPlayerCoalition].Add(playerAirbase.DCSID);
             if (playerAirbase.DCSID > 0)
             {
-                mission.MapData.Add($"AIRBASE_HOME", new List<double[]> {  theaterDB.GetRealWorldCoordinates(playerAirbase.Coordinates) });
+                mission.MapData.Add($"AIRBASE_HOME", new List<double[]> {  playerAirbase.Coordinates.ToArray() });
                 mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{playerAirbase.Name}\t{playerAirbase.Runways}\t{playerAirbase.ATC}\t{playerAirbase.ILS}\t{playerAirbase.TACAN}");
             }
             airbasesGenerator.SelectStartingAirbaseForPackages(mission, playerAirbase, theaterDB);
@@ -143,7 +144,7 @@ namespace BriefingRoom4DCS.Generator
                     objectiveTemplate, lastObjectiveCoordinates, playerAirbase, useObjectivePresets,
                     ref i, ref objectiveCoordinates, ref waypoints, ref objectiveTargetUnitFamilies);
                 lastObjectiveCoordinates = objectiveCoords;
-                mission.MapData.Add($"OBJECTIVE_AREA{i}", new List<double[]> { theaterDB.GetRealWorldCoordinates(objectiveCoords) });
+                mission.MapData.Add($"OBJECTIVE_AREA{i}", new List<double[]> { objectiveCoords.ToArray() });
                 objectiveGroupedWaypoints.Add(waypointGroup);
                 i++;
             }
