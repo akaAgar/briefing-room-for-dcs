@@ -45,9 +45,27 @@ function briefingRoom.f10MenuCommands.debug.dumpAirbaseParkingData()
   briefingRoom.debugPrint("STARTING AIRBASE PARKING DUMP");
   local base = world.getAirbases()
   for i = 1, #base do
-    briefingRoom.debugPrint(base[i]:getID() .. ":\n")
     local parkingData = base[i]:getParking()
-    local parkingString = ""
+    local parkingString = [[
+[Airbase]
+ATC=
+Coalition=
+Coordinates=
+DCSID=]]..base[i]:getID()..[[
+
+Elevation=
+Flags=
+ILS=
+Name=]]..base[i]:getDesc()['displayName']..[[
+
+Runways=
+RunwayLengthFt=
+TACAN=
+Theater=]]..env.mission.theatre..[[
+
+
+[Parking]
+]]
     for j = 1, #parkingData do
       if parkingData[j].Term_Type ~= 16 then
         parkingString = parkingString ..
@@ -56,24 +74,15 @@ function briefingRoom.f10MenuCommands.debug.dumpAirbaseParkingData()
         parkingString = parkingString ..
             "\nSpot" .. j .. ".Type=" .. briefingRoom.f10MenuCommands.debug.dumpAirbaseDataType(parkingData[j].Term_Type)
       end
-      if j % 10 == 5 then
-        briefingRoom.debugPrint(parkingString)
-        parkingString = ""
-      end
     end
-    briefingRoom.debugPrint(parkingString .. ";")
+    local fp = io.open(lfs.writedir() .. "\\"..env.mission.theatre..base[i]:getDesc()['displayName']..".ini", 'w')
+    fp:write(parkingString)
+    fp:close()
+    briefingRoom.debugPrint("Done"..lfs.writedir() .. "\\"..env.mission.theatre..base[i]:getDesc()['displayName']..".ini");
   end
   briefingRoom.debugPrint("DONE AIRBASE PARKING DUMP");
 end
 
-function briefingRoom.f10MenuCommands.debug.dumpAirbaseIDData()
-  briefingRoom.debugPrint("STARTING AIRBASE ID DUMP");
-  local base = world.getAirbases()
-  for i = 1, #base do
-    briefingRoom.debugPrint(base[i]:getID() .. ": " .. base[i]:getCallsign() .. ", " .. base[i]:getDesc()['displayName'])
-  end
-  briefingRoom.debugPrint("DONE AIRBASE ID DUMP");
-end
 
 function briefingRoom.f10MenuCommands.debug.map_zero_coords()
   local zero = {
@@ -130,8 +139,6 @@ do
     briefingRoom.f10MenuCommands.debug.activateAllAircraft)
   missionCommands.addCommand("Dump All Airbase parking Data", briefingRoom.f10Menu.debug,
     briefingRoom.f10MenuCommands.debug.dumpAirbaseParkingData)
-  missionCommands.addCommand("Dump All Airbase ID Data", briefingRoom.f10Menu.debug,
-    briefingRoom.f10MenuCommands.debug.dumpAirbaseIDData)
   missionCommands.addCommand("Dump Map coords", briefingRoom.f10Menu.debug,
     briefingRoom.f10MenuCommands.debug.map_coords)
 end
