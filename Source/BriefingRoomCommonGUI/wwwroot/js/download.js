@@ -37,14 +37,6 @@ async function BlazorDownloadFile(filename, contentType, data) {
 
 }
 
-function CopyLogs(logs) {
-  navigator.clipboard.writeText(logs.join('\n'));
-}
-
-
-const getMinCoors = (arr) => [Math.min.apply(Math, arr.map(x => x[0])), Math.min.apply(Math, arr.map(x => x[1]))]
-const getMaxCoors = (arr) => [Math.max.apply(Math, arr.map(x => x[0])), Math.max.apply(Math, arr.map(x => x[1]))]
-
 function getFromMapCoordData(pos, mapCoordData) {
   x = Math.round(pos[0] / 1000) * 1000
   z = Math.round(pos[1] / 1000) * 1000
@@ -57,8 +49,10 @@ function getFromMapCoordData(pos, mapCoordData) {
 }
 
 async function RenderMap(mapData, map) {
-  const response = await fetch(`_content/BriefingRoomCommonGUI/js/${map}.json`)
-  const MapCoordMap = await response.json()
+  const response = await fetch(`_content/BriefingRoomCommonGUI/js/${map}.json.gz`)
+  const fileReader = await response.arrayBuffer();
+  const binData = new Uint8Array(fileReader);
+  var MapCoordMap = JSON.parse(pako.ungzip(binData,{ 'to': 'string' }));
   try {
     map = L.map('map')
     L.esri.basemapLayer("Imagery").addTo(map);
