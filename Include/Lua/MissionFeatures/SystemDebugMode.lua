@@ -88,10 +88,10 @@ end
 
 function briefingRoom.f10MenuCommands.debug.map_coords()
   local minMax ={
-    ["minX"] = -462000,
-    ["minY"] = 176000,
-    ["maxX"] = 87000,
-    ["maxY"] = 975000,
+    ["minX"] = $THEATERMINX$,
+    ["minY"] = $THEATERMINY$,
+    ["maxX"] = $THEATERMAXX$,
+    ["maxY"] = $THEATERMAXY$,
   }
   local spot = {
     ["x"] = minMax["minX"],
@@ -100,8 +100,8 @@ function briefingRoom.f10MenuCommands.debug.map_coords()
   }
   local coordinates = {}
   briefingRoom.debugPrint("Getting Data");
-  while spot["x"] < minMax["maxX"] do
-    while spot["z"] < minMax["maxY"] do
+  while spot["x"] <= minMax["maxX"] do
+    while spot["z"] <= minMax["maxY"] do
       lat, lon, alt = coord.LOtoLL(spot)
       coordinates["\"x:" .. spot["x"] .. ",z:" .. spot["z"]] = {
         ["x"] = lat,

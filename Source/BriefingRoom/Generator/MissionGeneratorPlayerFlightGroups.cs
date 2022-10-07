@@ -175,8 +175,8 @@ namespace BriefingRoom4DCS.Generator
                 template.OptionsMission.Contains("ImperialUnitsForBriefing"),
                 groupInfo);
 
-            var mapWaypoints = flightWaypoints.Select(x => theaterDB.GetRealWorldCoordinates(x.Coordinates)).ToList();
-            mapWaypoints = mapWaypoints.Prepend(theaterDB.GetRealWorldCoordinates(groupStartingCoords)).ToList();
+            var mapWaypoints = flightWaypoints.Select(x => x.Coordinates.ToArray()).ToList();
+            mapWaypoints = mapWaypoints.Prepend(groupStartingCoords.ToArray()).ToList();
             mission.MapData.Add($"WAYPOINTS{groupInfo.Value.DCSGroup.GroupId}", mapWaypoints);
         }
 

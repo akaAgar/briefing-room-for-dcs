@@ -27,9 +27,9 @@ namespace BriefingRoom4DCS.Data
     internal class DBEntrySituation : DBEntry
     {
 
-        private List<Coordinates> RedCoordinates { get; set; }
+        internal List<Coordinates> RedCoordinates { get; set; }
 
-        private List<Coordinates> BlueCoordinates { get; set; }
+        internal List<Coordinates> BlueCoordinates { get; set; }
 
         internal List<Coordinates> NoSpawnCoordinates { get; set; }
 
