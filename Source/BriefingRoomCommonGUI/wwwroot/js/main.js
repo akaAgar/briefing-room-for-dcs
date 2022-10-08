@@ -38,6 +38,16 @@ async function BlazorDownloadFile(filename, contentType, data) {
 
 }
 
+const memoize = (fn) => {
+  let cache = {};
+  return async (...args) => {
+      let strX = JSON.stringify(args);
+      return strX in cache 
+        ? cache[strX] 
+        : (cache[strX] = await fn(...args));
+  };
+};
+
 function toggleLayer(id) {
   group = mapGroups[id]
   if (group._map) {
@@ -58,15 +68,19 @@ function getFromMapCoordData(pos, mapCoordData) {
   return [pos2["x"], pos2["y"]]
 }
 
-async function RenderMap(mapData, map) {
+const getMapData = memoize(async (map) => {
   try {
     const response = await fetch(`_content/BriefingRoomCommonGUI/js/${map}.json.gz`)
     const fileReader = await response.arrayBuffer();
     const binData = new Uint8Array(fileReader);
-    var MapCoordMap = JSON.parse(pako.ungzip(binData, { 'to': 'string' }));
+    return JSON.parse(pako.ungzip(binData, { 'to': 'string' }));
   } catch (error) {
     throw `Either can't find ${leafMap} data file or failed to parse it. raw error: ${error} ${error.stack}`
   }
+})
+
+async function RenderMap(mapData, map) {
+  var MapCoordMap = await getMapData(map)
   if(leafMap) {
     leafMap.off();
     leafMap.remove();
