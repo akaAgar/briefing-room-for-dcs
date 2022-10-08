@@ -21,6 +21,7 @@
     <TemplateButtons LoadTemplate="LoadTemplate" SaveTemplate="SaveTemplate" ClearTemplate="ClearTemplate" AcceptString=".cbrt,.zip" />
 </div>
 <div class="generator-group">
+    @if(showGenerator) {
     <div class="generator-form">
         <div>
             @if(!string.IsNullOrEmpty(tempateMessage)){
@@ -328,6 +329,7 @@
             <LoggerAll logs="MainLayout.logs"/>
         </div>
     </div>
+    }
     @if (campaign != null)
     {
         <div class="generator-preview">
@@ -337,6 +339,13 @@
               SecondaryFunc="DownloadBriefing"  SecondaryLabel=@BriefingRoom.Translate("Briefings") SecondaryIcon="browser"
               TertiaryFunc="ClearCampaign"  TertiaryLabel="" TertiaryIcon="x"
             />
+             @if(!showGenerator){
+                <button class="btn btn-secondary float-right"  @onclick="() => showGenerator = true"><span class="oi oi-fullscreen-exit"></span></button>
+                <button class="btn btn-primary form-control"  @onclick="() => GenerateCampaign()">@BriefingRoom.Translate("Generate")</button>
+            }
+            else {
+                <button class="btn btn-secondary float-right"  @onclick="() => showGenerator = false"><span class="oi oi-fullscreen-enter"></span></button>
+            }
             <h3>@campaign.Name (@campaign.MissionCount)</h3>
             <ul class="nav nav-tabs">
                 @foreach (var mission in campaign.Missions)
@@ -348,7 +357,8 @@
                 }
             </ul>
             <div>
-                <canvas height="360" width="640" id="canvas"></canvas>  
+                <div id="map"></div>
+                <p>@BriefingRoom.Translate("MapWarning")</p> 
             </div>
             <div>@((MarkupString)missionTab.Briefing.GetBriefingAsHTML(false))</div>
         </div>
@@ -364,6 +374,8 @@
     private string errorMessage;
 
     private string tempateMessage;
+
+    private bool showGenerator = true;
 
 
     private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BriefingRoom.GetBriefingRoomRootPath()}Default.cbrt";
@@ -463,6 +475,7 @@
     private Task ClearCampaign()
     {
         campaign = null;
+        showGenerator = true;
         StateHasChanged();
         return Task.CompletedTask;
     }

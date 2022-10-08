@@ -20,6 +20,7 @@
     <TemplateButtons LoadTemplate="LoadTemplate" SaveTemplate="SaveTemplate" ClearTemplate="ClearTemplate" AcceptString=".brt,.miz" />
 </div>
 <div class="generator-group">
+    @if(showGenerator) {
     <div class="generator-form">
         <div>
             @if (!string.IsNullOrEmpty(tempateMessage))
@@ -283,6 +284,7 @@
             <LoggerAll logs="MainLayout.logs" />
         </div>
     </div>
+    }
     @if (mission != null)
     {
         <div class="generator-preview">
@@ -290,8 +292,16 @@
             <ButtonTrio PrimaryFunc="DownloadMission" PrimaryLabel=@BriefingRoom.Translate("Mission") PrimaryIcon="data-transfer-download"
             SecondaryFunc="DownloadBriefing" SecondaryLabel=@BriefingRoom.Translate("Briefing") SecondaryIcon="browser"
             TertiaryFunc="ClearMission" TertiaryLabel="" TertiaryIcon="x" />
+            @if(!showGenerator){
+                <button class="btn btn-secondary float-right"  @onclick="() => showGenerator = true"><span class="oi oi-fullscreen-exit"></span></button>
+                <button class="btn btn-primary form-control"  @onclick="() => GenerateMissionAsync()">@BriefingRoom.Translate("Generate")</button>
+            }
+            else {
+                <button class="btn btn-secondary float-right"  @onclick="() => showGenerator = false"><span class="oi oi-fullscreen-enter"></span></button>
+            }
             <div>
-                <canvas height="360" width="640" id="canvas"></canvas>  
+                <div id="map"></div>
+                <p>@BriefingRoom.Translate("MapWarning")</p>
             </div>
             <div>@((MarkupString)mission.Briefing.GetBriefingAsHTML(false))</div>
         </div>
@@ -307,6 +317,7 @@
     private string errorMessage;
 
     private string tempateMessage;
+    private bool showGenerator = true;
 
     private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BriefingRoom.GetBriefingRoomRootPath()}Default.brt";
 
@@ -404,6 +415,7 @@
     private Task ClearMission()
     {
         mission = null;
+        showGenerator = true;
         StateHasChanged();
         return Task.CompletedTask;
     }
