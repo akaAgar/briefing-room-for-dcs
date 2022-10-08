@@ -93,7 +93,7 @@ namespace BriefingRoom4DCS.Generator
                 targetBehaviorDB,
                 situationDB,
                 ref objectiveIndex,
-                objectiveCoordinates,
+                ref objectiveCoordinates,
                 objectiveOptions,
                 playerAirbase,
                 template,
@@ -146,7 +146,7 @@ namespace BriefingRoom4DCS.Generator
                 throw new BriefingRoomException("Cannot Mix Land and Sea Objectives. Check Sub Objective targets");
             if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location) && !AIRBASE_LOCATIONS.Contains(mainObjLocation))
                 throw new BriefingRoomException("Spawning on airbase is not a valid Sub Objective unless main objective is also spawning on airbase.");
-
+            var objectiveCoords = GetNearestSpawnCoordinates(template, coreCoordinates, targetDB);
             CreateObjective(
                 task,
                 taskDB,
@@ -154,7 +154,7 @@ namespace BriefingRoom4DCS.Generator
                 targetBehaviorDB,
                 situationDB,
                 ref objectiveIndex,
-                GetNearestSpawnCoordinates(template, coreCoordinates, targetDB),
+                ref objectiveCoords,
                 objectiveOptions,
                 playerAirbase,
                 template,
@@ -164,6 +164,7 @@ namespace BriefingRoom4DCS.Generator
                 featuresID,
                 ref objectiveCoordinatesList,
                 ref objectiveTargetUnitFamilies);
+                mission.MapData.Add($"OBJECTIVE_SMALL_AREA{objectiveIndex}", new List<double[]> { objectiveCoords.ToArray() });
         }
 
         private void CreateObjective(
@@ -173,7 +174,7 @@ namespace BriefingRoom4DCS.Generator
             DBEntryObjectiveTargetBehavior targetBehaviorDB,
             DBEntrySituation situationDB,
             ref int objectiveIndex,
-            Coordinates objectiveCoordinates,
+            ref Coordinates objectiveCoordinates,
             ObjectiveOption[] objectiveOptions,
             DBEntryAirbase playerAirbase,
             MissionTemplateRecord template,

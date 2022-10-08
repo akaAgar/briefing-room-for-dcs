@@ -38,7 +38,7 @@ async function BlazorDownloadFile(filename, contentType, data) {
 
 }
 
-const memoize = (fn) => {
+const Memoize = (fn) => {
   let cache = {};
   return async (...args) => {
       let strX = JSON.stringify(args);
@@ -48,7 +48,7 @@ const memoize = (fn) => {
   };
 };
 
-function toggleLayer(id) {
+function ToggleLayer(id) {
   group = mapGroups[id]
   if (group._map) {
     group.remove()
@@ -57,7 +57,7 @@ function toggleLayer(id) {
   group.addTo(leafMap)
 }
 
-function getFromMapCoordData(pos, mapCoordData) {
+function GetFromMapCoordData(pos, mapCoordData) {
   x = Math.round(pos[0] / 1000) * 1000
   z = Math.round(pos[1] / 1000) * 1000
   key = `x:${x},z:${z}`
@@ -68,7 +68,7 @@ function getFromMapCoordData(pos, mapCoordData) {
   return [pos2["x"], pos2["y"]]
 }
 
-const getMapData = memoize(async (map) => {
+const GetMapData = Memoize(async (map) => {
   try {
     const response = await fetch(`_content/BriefingRoomCommonGUI/js/${map}.json.gz`)
     const fileReader = await response.arrayBuffer();
@@ -80,7 +80,7 @@ const getMapData = memoize(async (map) => {
 })
 
 async function RenderMap(mapData, map) {
-  var MapCoordMap = await getMapData(map)
+  var MapCoordMap = await GetMapData(map)
   if(leafMap) {
     leafMap.off();
     leafMap.remove();
@@ -106,51 +106,53 @@ async function RenderMap(mapData, map) {
     }
     data = mapData[key]
     if (data.length == 1) {
-      addIcon(key, data, leafMap, MapCoordMap)
+      AddIcon(key, data, leafMap, MapCoordMap)
     } else if (key.includes("WAYPOINTS")) {
-      addWaypoints(data, leafMap, MapCoordMap)
+      AddWaypoints(data, leafMap, MapCoordMap)
     } else {
-      addZone(key, data, leafMap, MapCoordMap)
+      AddZone(key, data, leafMap, MapCoordMap)
     }
   })
-  leafMap.setView(getFromMapCoordData(mapData["AIRBASE_HOME"][0], MapCoordMap), 6.5);
+  leafMap.setView(GetFromMapCoordData(mapData["AIRBASE_HOME"][0], MapCoordMap), 6.5);
   new ResizeObserver(() => leafMap.invalidateSize()).observe(document.querySelector(".generator-preview"))
 }
 
 function addButtons() {
   L.easyButton('oi oi-audio', function (btn, map) {
-    toggleLayer("SAMLongRange")
+    ToggleLayer("SAMLongRange")
   }).addTo(leafMap);
   L.easyButton('oi oi-audio', function (btn, map) {
-    toggleLayer("SAMMediumRange")
+    ToggleLayer("SAMMediumRange")
   }).addTo(leafMap);
   L.easyButton('oi oi-audio', function (btn, map) {
-    toggleLayer("GroundForces")
+    ToggleLayer("GroundForces")
   }).addTo(leafMap);
 }
 
-function addIcon(key, data, map, MapCoordMap) {
+function AddIcon(key, data, map, MapCoordMap) {
   if (key.startsWith("UNIT")) {
-    addUnit(key, data, map, MapCoordMap)
+    AddUnit(key, data, map, MapCoordMap)
   } else {
-    new L.Marker(getFromMapCoordData(data[0], MapCoordMap), {
+    new L.Marker(GetFromMapCoordData(data[0], MapCoordMap), {
+      title: GetTitle(key),
       icon: new L.DivIcon({
-        html: `<div class="map_point_icon" style="background-color: ${GetColour(key)};">${GetText(key)}</div>`
+        html: `<div class="map_point_icon ${key.includes("OBJECTIVE_SMALL") ? 'map_unit': ''}" style="background-color: ${GetColour(key)};">${GetText(key)}</div>`
       }),
-      zIndexOffset: ["OBJECTIVE", "AIRBASE_HOME"].includes(key) ? 200 : 100
+      zIndexOffset: key == "AIRBASE_HOME" || key.includes("OBJECTIVE_AREA") ? 200 : 100
     }).addTo(map)
   }
 }
 
-function addUnit(key, data, map, MapCoordMap) {
-  const coords = getFromMapCoordData(data[0], MapCoordMap)
-  group = mapGroups[getGroup(key)]
+function AddUnit(key, data, map, MapCoordMap) {
+  const coords = GetFromMapCoordData(data[0], MapCoordMap)
+  group = mapGroups[GetGroup(key)]
   group.addLayer(new L.Marker(coords, {
+    title: GetTitle(key),
     icon: new L.DivIcon({
       html: `<div class="map_point_icon map_unit" style="background-color: ${GetColour(key)};">${GetText(key)}</div>`
     })
   }))
-  const range = getRange(key);
+  const range = GetRange(key);
   if (range > 0) {
     group.addLayer(new L.Circle(coords, {
       radius: range,
@@ -161,20 +163,20 @@ function addUnit(key, data, map, MapCoordMap) {
   }
 }
 
-function addWaypoints(data, map, MapCoordMap) {
+function AddWaypoints(data, map, MapCoordMap) {
   let color = waypointColors[Math.floor(Math.random() * waypointColors.length)];
-  let coords = data.map(x => getFromMapCoordData(x, MapCoordMap))
+  let coords = data.map(x => GetFromMapCoordData(x, MapCoordMap))
   new L.polyline(coords, {
     color: color,
     weight: 2,
     opacity: 1,
     smoothFactor: 2
   }).addTo(map);
-  L.featureGroup(getArrows(coords, color, 1, map)).addTo(map);
+  L.featureGroup(GetArrows(coords, color, 1, map)).addTo(map);
 }
 
-function addZone(key, data, map, MapCoordMap) {
-  let coords = data.map(x => getFromMapCoordData(x, MapCoordMap))
+function AddZone(key, data, map, MapCoordMap) {
+  let coords = data.map(x => GetFromMapCoordData(x, MapCoordMap))
   L.polygon(coords, {
     color: GetColour(key),
     fillColor: GetColour(key),
@@ -182,7 +184,7 @@ function addZone(key, data, map, MapCoordMap) {
   }).addTo(map);
 }
 
-function getGroup(id) {
+function GetGroup(id) {
   switch (true) {
     case id.includes("LongRange"):
       return "SAMLongRange";
@@ -193,7 +195,7 @@ function getGroup(id) {
   }
 }
 
-function getRange(id) {
+function GetRange(id) {
   switch (true) {
     case id.includes("LongRange"):
       return 40 * 1852;
@@ -201,6 +203,29 @@ function getRange(id) {
       return 20 * 1852;
     default:
       return 0
+  }
+}
+
+function GetTitle(id) {
+  switch (true) {
+    case id.includes("AIRBASE"):
+      return 'Airbase'
+    case id.includes("OBJECTIVE"):
+      return 'Objective'
+    case id.includes("FOB"):
+      return 'FOB'
+    case id.includes("CARRIER"):
+      return 'Carrier'
+    case id.includes("SAM"):
+      return 'SAM site'
+    case id.includes("Vehicle"):
+      return 'Vehicles'
+    case id.includes("Ship"):
+      return 'Boat'
+    case id.includes("Static"):
+      return 'Facility'
+    default:
+      return null
   }
 }
 
@@ -215,17 +240,13 @@ function GetText(id) {
     case id.includes("CARRIER"):
       return 'C'
     case id.includes("SAM"):
-      return 'M'
+      return 'S'
     case id.includes("Vehicle"):
       return 'V'
     case id.includes("Ship"):
-      return 'S'
-    case id.includes("Static"):
       return 'B'
-    case id.includes("Plane"):
-      return 'P'
-    case id.includes("Helicopter"):
-      return 'H'
+    case id.includes("Static"):
+      return 'F'
     default:
       return null
   }
@@ -260,7 +281,7 @@ function GetColour(id) {
   }
 }
 
-function getArrows(arrLatlngs, color, arrowCount, mapObj) {
+function GetArrows(arrLatlngs, color, arrowCount, mapObj) {
 
   if (typeof arrLatlngs === undefined || arrLatlngs == null ||
     (!arrLatlngs.length) || arrLatlngs.length < 2)
@@ -276,22 +297,22 @@ function getArrows(arrLatlngs, color, arrowCount, mapObj) {
 
   var result = [];
   for (var i = 1; i < arrLatlngs.length; i++) {
-    var icon = L.divIcon({ className: 'arrow-icon', bgPos: [5, 5], html: '<div style="' + color + ';transform: rotate(' + getAngle(arrLatlngs[i - 1], arrLatlngs[i], -1).toString() + 'deg)">▶</div>' });
+    var icon = L.divIcon({ className: 'arrow-icon', bgPos: [5, 5], html: '<div style="' + color + ';transform: rotate(' + GetAngle(arrLatlngs[i - 1], arrLatlngs[i], -1).toString() + 'deg)">▶</div>' });
     for (var c = 1; c <= arrowCount; c++) {
-      result.push(L.marker(myMidPoint(arrLatlngs[i], arrLatlngs[i - 1], (c / (arrowCount + 1)), mapObj), { icon: icon }));
+      result.push(L.marker(MyMidPoint(arrLatlngs[i], arrLatlngs[i - 1], (c / (arrowCount + 1)), mapObj), { icon: icon }));
     }
   }
   return result;
 }
 
-function getAngle(latLng1, latlng2, coef) {
+function GetAngle(latLng1, latlng2, coef) {
   var dy = latlng2[0] - latLng1[0];
   var dx = Math.cos(Math.PI / 180 * latLng1[0]) * (latlng2[1] - latLng1[1]);
   var ang = ((Math.atan2(dy, dx) / Math.PI) * 180 * coef);
   return (ang).toFixed(2);
 }
 
-function myMidPoint(latlng1, latlng2, per, mapObj) {
+function MyMidPoint(latlng1, latlng2, per, mapObj) {
   if (!mapObj)
     throw new Error('map is not defined');
 
@@ -301,12 +322,12 @@ function myMidPoint(latlng1, latlng2, per, mapObj) {
   p1 = mapObj.project(new L.latLng(latlng1));
   p2 = mapObj.project(new L.latLng(latlng2));
 
-  halfDist = distanceTo(p1, p2) * per;
+  halfDist = DistanceTo(p1, p2) * per;
 
   if (halfDist === 0)
     return mapObj.unproject(p1);
 
-  dist = distanceTo(p1, p2);
+  dist = DistanceTo(p1, p2);
 
   if (dist > halfDist) {
     ratio = (dist - halfDist) / dist;
@@ -316,14 +337,14 @@ function myMidPoint(latlng1, latlng2, per, mapObj) {
 
 }
 
-function distanceTo(p1, p2) {
+function DistanceTo(p1, p2) {
   var x = p2.x - p1.x,
     y = p2.y - p1.y;
 
   return Math.sqrt(x * x + y * y);
 }
 
-function toPoint(x, y, round) {
+function ToPoint(x, y, round) {
   if (x instanceof Point) {
     return x;
   }
