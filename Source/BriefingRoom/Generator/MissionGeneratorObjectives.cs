@@ -339,7 +339,7 @@ namespace BriefingRoom4DCS.Generator
                 (from DBEntryAirbase airbaseDB in situationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"))
                  where airbaseDB.DCSID != playerAirbase.DCSID
                  select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(objectiveCoordinates));
-            DBEntryAirbase targetAirbase = targetAirbaseOptions.FirstOrDefault(x => template.OptionsMission.Contains("SpawnAnywhere") ? true : x.Coalition == template.ContextPlayerCoalition.GetEnemy());
+            DBEntryAirbase targetAirbase = targetAirbaseOptions.FirstOrDefault(x => template.SpawnAnywhere  ? true : x.Coalition == template.ContextPlayerCoalition.GetEnemy());
 
             airbaseID = targetAirbase.DCSID;
 

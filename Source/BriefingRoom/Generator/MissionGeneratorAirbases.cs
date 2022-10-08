@@ -82,7 +82,7 @@ namespace BriefingRoom4DCS.Generator
 
             var opts = airbases.Where(x =>
                     x.ParkingSpots.Length >= requiredParkingSpots &&
-                    (x.Coalition == _template.ContextPlayerCoalition || _template.OptionsMission.Contains("SpawnAnywhere")) &&
+                    (x.Coalition == _template.ContextPlayerCoalition || _template.SpawnAnywhere) &&
                     x.RunwayLengthFt > requiredRunway &&
                     (MissionPrefersShoreAirbase() ? x.Flags.HasFlag(AirbaseFlag.NearWater) : true)
                     ).ToList();

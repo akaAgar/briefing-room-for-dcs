@@ -72,7 +72,9 @@ namespace BriefingRoom4DCS.Generator
             var extraSettings = new Dictionary<string, object>();
             UnitMakerGroupFlags unitMakerGroupFlags = flightGroup.AIWingmen ? UnitMakerGroupFlags.FirstUnitIsClient : 0;
             DCSSkillLevel skillLevel = flightGroup.AIWingmen ? Toolbox.RandomFrom(DCSSkillLevel.High, DCSSkillLevel.Excellent) : DCSSkillLevel.Client;
-            var atcRadioFrequency = double.Parse(airbase.ATC.Split("/")[0]);
+            var atcRadioFrequency = 0d;
+            if(airbase.ATC != null)
+                double.TryParse(airbase.ATC.Split("/")[0], out atcRadioFrequency);
 
             if (!string.IsNullOrEmpty(flightGroup.Carrier) && unitMaker.carrierDictionary.ContainsKey(flightGroup.Carrier) && !flightGroup.Hostile) // Carrier take off
             {
@@ -106,7 +108,8 @@ namespace BriefingRoom4DCS.Generator
                 parkingSpotCoordinatesList = hostileParkingSpotCoordinatesList;
                 groupStartingCoords = hostileParkingSpotCoordinatesList.First();
                 airbase = hostileAirbase;
-                atcRadioFrequency = double.Parse(airbase.ATC.Split("/")[0]);
+                if(airbase.ATC != null)
+                    double.TryParse(airbase.ATC.Split("/")[0], out atcRadioFrequency);
 
                 if (country == Country.CJTFBlue || country == Country.CJTFRed)
                     country = coalition == Coalition.Blue ? Country.CJTFBlue : Country.CJTFRed;
@@ -148,7 +151,8 @@ namespace BriefingRoom4DCS.Generator
             extraSettings.AddIfKeyUnused("MissionAirbaseY", groupStartingCoords.Y);
             extraSettings.AddIfKeyUnused("MissionAirbaseID", airbase.DCSID);
             extraSettings.AddIfKeyUnused("Livery", flightGroup.Livery);
-            extraSettings.AddIfKeyUnused("AirbaseRadioFrequency", atcRadioFrequency);
+            if(atcRadioFrequency > 0)
+                extraSettings.AddIfKeyUnused("AirbaseRadioFrequency", atcRadioFrequency);
             extraSettings.AddIfKeyUnused("AirbaseRadioModulation", 0);
 
             UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(
