@@ -88,13 +88,14 @@ h4 {
 
 .generator-form {
     flex-grow: 1;
+    flex-shrink: 1;
 }
 
 .generator-preview {
     grid-area: nav;
     border-left: 1px solid gray;
-    max-width: 80%;
     flex-shrink: 1;
+    flex-grow: 1;
     resize: horizontal;
 }
 
@@ -333,19 +334,41 @@ th {
 
 .map_point_icon {
     border: 2px solid black;
-    padding: 5px;
+    padding: 7px;
     border-radius: 50%;
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     line-height: 12px;
     text-align: center;
     color: black;
     font-weight: bold;
     position: relative;
     font-size: 14px;
-    top: -12px;
-    left: -12px;
+    top: -15px;
+    left: -15px;
 }
+
+.map_unit {
+    padding: 1.5px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    line-height: 12px;
+    font-size: 12px;
+    top: -5px;
+    left: -5px;
+}
+
+.map_point_range {
+    width: 25px;
+    height: 25px;
+    border: 2px solid black;
+    border-radius: 50%;
+    position: inherit;
+    top: -12.5px;
+    left: -12.5px;
+}
+
 
 .arrow-icon {
     width: 24px;
