@@ -88,8 +88,7 @@ async function RenderMap(mapData, map) {
 
   try {
     mapGroups = {
-      "SAMLongRange": new L.layerGroup(),
-      "SAMMediumRange": new L.layerGroup(),
+      "SAMs": new L.layerGroup(),
       "GroundForces": new L.layerGroup(),
     }
     leafMap = L.map('map')
@@ -119,12 +118,9 @@ async function RenderMap(mapData, map) {
 
 function addButtons() {
   L.easyButton('oi oi-audio', function (btn, map) {
-    ToggleLayer("SAMLongRange")
+    ToggleLayer("SAMs")
   }).addTo(leafMap);
-  L.easyButton('oi oi-audio', function (btn, map) {
-    ToggleLayer("SAMMediumRange")
-  }).addTo(leafMap);
-  L.easyButton('oi oi-audio', function (btn, map) {
+  L.easyButton('oi oi-dial', function (btn, map) {
     ToggleLayer("GroundForces")
   }).addTo(leafMap);
 }
@@ -186,10 +182,8 @@ function AddZone(key, data, map, MapCoordMap) {
 
 function GetGroup(id) {
   switch (true) {
-    case id.includes("LongRange"):
-      return "SAMLongRange";
-    case id.includes("MediumRange"):
-      return "SAMMediumRange";
+    case id.includes("SAM"):
+      return "SAMs";
     default:
       return "GroundForces";
   }
