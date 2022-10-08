@@ -1,8 +1,8 @@
 briefingRoom.mission.missionFeatures.respawnAircraft = {}
 briefingRoom.mission.missionFeatures.respawnAircraft.totalGroups = table.merge(dcsExtensions.getGroupNamesContaining("-RQ-")
     , dcsExtensions.getGroupNamesContaining("-IQ-"))
-briefingRoom.mission.missionFeatures.respawnAircraft.spawnChance = 3 -- out of 10 each check when suitable
-briefingRoom.mission.missionFeatures.respawnAircraft.intervalMultiplier = 2 -- how much longer is the random check interval vs normal aircraftActivator
+briefingRoom.mission.missionFeatures.respawnAircraft.spawnChance = 1.5 -- out of 10 each check when suitable
+briefingRoom.mission.missionFeatures.respawnAircraft.intervalMultiplier = 10 -- how much longer is the random check interval vs normal aircraftActivator
 
 function briefingRoom.mission.missionFeatures.respawnAircraft.checkDeadGroups(args, time)
     if not briefingRoom.mission.hasStarted then
