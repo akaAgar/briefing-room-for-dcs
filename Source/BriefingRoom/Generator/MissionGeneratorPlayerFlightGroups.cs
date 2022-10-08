@@ -110,7 +110,7 @@ namespace BriefingRoom4DCS.Generator
 
                 if (country == Country.CJTFBlue || country == Country.CJTFRed)
                     country = coalition == Coalition.Blue ? Country.CJTFBlue : Country.CJTFRed;
-
+                mission.MapData.AddIfKeyUnused($"AIRBASE_Enemy_${hostileAirbase.Name}",  new List<double[]> {  hostileAirbase.Coordinates.ToArray() });
             }
             else // Land airbase take off
             {

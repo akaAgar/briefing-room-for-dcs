@@ -105,7 +105,6 @@ namespace BriefingRoom4DCS.Generator
                 UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, spawnPoint.Value, spawnPoint.Value, ref extraSettings);
 
                 AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
-
             }
         }
 

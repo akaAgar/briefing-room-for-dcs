@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCS.Data;
+using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGeneratorAirDefense
     {
 
-        internal static void GenerateAirDefense(MissionTemplateRecord template, UnitMaker unitMaker, Coordinates averageInitialPosition, Coordinates objectivesCenter)
+        internal static void GenerateAirDefense(MissionTemplateRecord template, DCSMission mission, UnitMaker unitMaker, Coordinates averageInitialPosition, Coordinates objectivesCenter)
         {
             foreach (Coalition coalition in Toolbox.GetEnumValues<Coalition>())
             {
@@ -40,12 +41,12 @@ namespace BriefingRoom4DCS.Generator
                 Coordinates opposingPoint = ally ? objectivesCenter : averageInitialPosition;
 
                 foreach (AirDefenseRange airDefenseRange in Toolbox.GetEnumValues<AirDefenseRange>())
-                    CreateAirDefenseGroups(template, unitMaker, side, coalition, airDefenseAmount, airDefenseRange, centerPoint, opposingPoint);
+                    CreateAirDefenseGroups(template, mission, unitMaker, side, coalition, airDefenseAmount, airDefenseRange, centerPoint, opposingPoint);
             }
         }
 
         private static void CreateAirDefenseGroups(
-            MissionTemplateRecord template, UnitMaker unitMaker, Side side, Coalition coalition,
+            MissionTemplateRecord template, DCSMission mission, UnitMaker unitMaker, Side side, Coalition coalition,
             AmountNR airDefenseAmount, AirDefenseRange airDefenseRange,
             Coordinates centerPoint, Coordinates opposingPoint)
         {
@@ -103,6 +104,8 @@ namespace BriefingRoom4DCS.Generator
                     BriefingRoom.PrintToLog(
                         $"Failed to add {airDefenseRange} air defense unit group for {coalition} coalition.",
                         LogMessageErrorLevel.Warning);
+                if (airDefenseRange == AirDefenseRange.MediumRange || airDefenseRange == AirDefenseRange.LongRange)
+                    mission.MapData.Add($"UNIT-SAM-{side}-{airDefenseRange}-{groupInfo.Value.GroupID}", new List<double[]>{groupInfo.Value.Coordinates.ToArray()});
             }
         }
     }

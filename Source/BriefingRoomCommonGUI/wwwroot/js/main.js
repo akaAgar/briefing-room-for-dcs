@@ -1,5 +1,6 @@
-let map
 const waypointColors = ["Cyan", "orange", "Chartreuse", "Magenta", "DeepPink", "Gold"]
+let mapGroups = {}
+let leafMap
 async function BlazorDownloadFile(filename, contentType, data) {
   // Create the URL
   const fileType = filename.split(".").at(-1)
@@ -37,6 +38,15 @@ async function BlazorDownloadFile(filename, contentType, data) {
 
 }
 
+function toggleLayer(id) {
+  group = mapGroups[id]
+  if (group._map) {
+    group.remove()
+    return
+  }
+  group.addTo(leafMap)
+}
+
 function getFromMapCoordData(pos, mapCoordData) {
   x = Math.round(pos[0] / 1000) * 1000
   z = Math.round(pos[1] / 1000) * 1000
@@ -53,49 +63,131 @@ async function RenderMap(mapData, map) {
     const response = await fetch(`_content/BriefingRoomCommonGUI/js/${map}.json.gz`)
     const fileReader = await response.arrayBuffer();
     const binData = new Uint8Array(fileReader);
-    var MapCoordMap = JSON.parse(pako.ungzip(binData,{ 'to': 'string' }));
+    var MapCoordMap = JSON.parse(pako.ungzip(binData, { 'to': 'string' }));
   } catch (error) {
-    throw `Either can't find ${map} data file or failed to parse it. raw error: ${error} ${error.stack}`
+    throw `Either can't find ${leafMap} data file or failed to parse it. raw error: ${error} ${error.stack}`
   }
-  
-  try {
-    map = L.map('map')
-    L.esri.basemapLayer("Imagery").addTo(map);
-    L.esri.basemapLayer("ImageryLabels").addTo(map);
-  } catch (error) {
+  if(leafMap) {
+    leafMap.off();
+    leafMap.remove();
+  }
 
+  try {
+    mapGroups = {
+      "SAMLongRange": new L.layerGroup(),
+      "SAMMediumRange": new L.layerGroup(),
+      "GroundForces": new L.layerGroup(),
+    }
+    leafMap = L.map('map')
+    L.esri.basemapLayer("Imagery").addTo(leafMap);
+    L.esri.basemapLayer("ImageryLabels").addTo(leafMap);
+    addButtons()
+  } catch (error) {
+    console.warn(error)
   }
+
   Object.keys(mapData).forEach(key => {
     if (key.includes('ISLAND')) {
       return
     }
     data = mapData[key]
     if (data.length == 1) {
-      new L.Marker(getFromMapCoordData(data[0], MapCoordMap), {
-        icon: new L.DivIcon({
-          html: `<div class="map_point_icon" style="background-color: ${GetColour(key)};">${GetText(key)}</div>`
-        })
-      }).addTo(map)
+      addIcon(key, data, leafMap, MapCoordMap)
     } else if (key.includes("WAYPOINTS")) {
-      let color = waypointColors[Math.floor(Math.random() * waypointColors.length)];
-      let coords = data.map(x => getFromMapCoordData(x, MapCoordMap))
-      new L.polyline(coords, {
-        color: color,
-        weight: 2,
-        opacity: 1,
-        smoothFactor: 2
-      }).addTo(map);
-      L.featureGroup(getArrows(coords, color, 1, map)).addTo(map);
+      addWaypoints(data, leafMap, MapCoordMap)
     } else {
-      let coords = data.map(x => getFromMapCoordData(x, MapCoordMap))
-      L.polygon(coords, {
-        color: GetColour(key),
-        fillColor: GetColour(key),
-        fillOpacity: 0.8,
-      }).addTo(map);
+      addZone(key, data, leafMap, MapCoordMap)
     }
   })
-  map.setView(getFromMapCoordData(mapData["AIRBASE_HOME"][0], MapCoordMap), 5);
+  leafMap.setView(getFromMapCoordData(mapData["AIRBASE_HOME"][0], MapCoordMap), 6.5);
+  new ResizeObserver(() => leafMap.invalidateSize()).observe(document.querySelector(".generator-preview"))
+}
+
+function addButtons() {
+  L.easyButton('oi oi-audio', function (btn, map) {
+    toggleLayer("SAMLongRange")
+  }).addTo(leafMap);
+  L.easyButton('oi oi-audio', function (btn, map) {
+    toggleLayer("SAMMediumRange")
+  }).addTo(leafMap);
+  L.easyButton('oi oi-audio', function (btn, map) {
+    toggleLayer("GroundForces")
+  }).addTo(leafMap);
+}
+
+function addIcon(key, data, map, MapCoordMap) {
+  if (key.startsWith("UNIT")) {
+    addUnit(key, data, map, MapCoordMap)
+  } else {
+    new L.Marker(getFromMapCoordData(data[0], MapCoordMap), {
+      icon: new L.DivIcon({
+        html: `<div class="map_point_icon" style="background-color: ${GetColour(key)};">${GetText(key)}</div>`
+      }),
+      zIndexOffset: ["OBJECTIVE", "AIRBASE_HOME"].includes(key) ? 200 : 100
+    }).addTo(map)
+  }
+}
+
+function addUnit(key, data, map, MapCoordMap) {
+  const coords = getFromMapCoordData(data[0], MapCoordMap)
+  group = mapGroups[getGroup(key)]
+  group.addLayer(new L.Marker(coords, {
+    icon: new L.DivIcon({
+      html: `<div class="map_point_icon map_unit" style="background-color: ${GetColour(key)};">${GetText(key)}</div>`
+    })
+  }))
+  const range = getRange(key);
+  if (range > 0) {
+    group.addLayer(new L.Circle(coords, {
+      radius: range,
+      color: GetColour(key),
+      fillColor: GetColour(key),
+      fillOpacity: 0.4
+    }))
+  }
+}
+
+function addWaypoints(data, map, MapCoordMap) {
+  let color = waypointColors[Math.floor(Math.random() * waypointColors.length)];
+  let coords = data.map(x => getFromMapCoordData(x, MapCoordMap))
+  new L.polyline(coords, {
+    color: color,
+    weight: 2,
+    opacity: 1,
+    smoothFactor: 2
+  }).addTo(map);
+  L.featureGroup(getArrows(coords, color, 1, map)).addTo(map);
+}
+
+function addZone(key, data, map, MapCoordMap) {
+  let coords = data.map(x => getFromMapCoordData(x, MapCoordMap))
+  L.polygon(coords, {
+    color: GetColour(key),
+    fillColor: GetColour(key),
+    fillOpacity: 0.4,
+  }).addTo(map);
+}
+
+function getGroup(id) {
+  switch (true) {
+    case id.includes("LongRange"):
+      return "SAMLongRange";
+    case id.includes("MediumRange"):
+      return "SAMMediumRange";
+    default:
+      return "GroundForces";
+  }
+}
+
+function getRange(id) {
+  switch (true) {
+    case id.includes("LongRange"):
+      return 40 * 1852;
+    case id.includes("MediumRange"):
+      return 20 * 1852;
+    default:
+      return 0
+  }
 }
 
 function GetText(id) {
@@ -108,6 +200,18 @@ function GetText(id) {
       return 'F'
     case id.includes("CARRIER"):
       return 'C'
+    case id.includes("SAM"):
+      return 'M'
+    case id.includes("Vehicle"):
+      return 'V'
+    case id.includes("Ship"):
+      return 'S'
+    case id.includes("Static"):
+      return 'B'
+    case id.includes("Plane"):
+      return 'P'
+    case id.includes("Helicopter"):
+      return 'H'
     default:
       return null
   }
@@ -115,13 +219,17 @@ function GetText(id) {
 
 function GetColour(id) {
   switch (true) {
-    case id === "RED":
+    case id.includes("Enemy"):
+      return '#bb0000'
+    case id.includes("Ally"):
+      return '#5555bb'
+    case id.includes("RED"):
       return '#ff000055'
-    case id === "BLUE":
+    case id.includes("BLUE"):
       return '#0000ff55'
-    case id === 'WATER':
+    case id.includes('WATER'):
       return '#00000000'
-    case id === 'NOSPAWN':
+    case id.includes('NOSPAWN'):
       return '#50eb5d55'
     case id.includes('ISLAND'):
       return '#d4eb5088'

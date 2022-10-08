@@ -168,7 +168,7 @@ namespace BriefingRoom4DCS.Generator
             MissionGeneratorFlightPlan.GenerateIngressAndEgressWaypoints(template, waypoints, averageInitialPosition, objectivesCenter);
 
             // Generate surface-to-air defenses
-            MissionGeneratorAirDefense.GenerateAirDefense(template, unitMaker, averageInitialPosition, objectivesCenter);
+            MissionGeneratorAirDefense.GenerateAirDefense(template, mission, unitMaker, averageInitialPosition, objectivesCenter);
 
             // Generate combat air patrols
             MissionGeneratorCombatAirPatrols.GenerateCAP(unitMaker, template, mission, averageInitialPosition, objectivesCenter);

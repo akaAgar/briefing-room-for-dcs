@@ -115,6 +115,7 @@ namespace BriefingRoom4DCS.Generator
                     extraSettings.AddIfKeyUnused("GroupAirbaseID", airbase.DCSID);
                     mission.PopulatedAirbaseIds[coalition].Add(airbase.DCSID);
                     extraSettings.AddIfKeyUnused("UnitCoords", parkingSpotCoordinatesList);
+                    mission.MapData.AddIfKeyUnused($"AIRBASE_AI_{side}_${airbase.Name}",  new List<double[]> {  airbase.Coordinates.ToArray() });
                 }
 
                 UnitMakerGroupFlags groupFlags = 0;

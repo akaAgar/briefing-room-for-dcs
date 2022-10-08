@@ -112,6 +112,7 @@ namespace BriefingRoom4DCS.Generator
                             $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}{TACANStr}\t" +
                             $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}"); // TODO: human-readable payload name
 
+                mission.MapData.Add($"UNIT-{groupInfo.Value.UnitDB.Category}-{groupSide}-{groupInfo.Value.GroupID}", new List<double[]>{groupInfo.Value.Coordinates.ToArray()});
                 if (featureDB.ExtraGroups.Max > 1)
                     SpawnExtraGroups(featureDB, mission, groupSide, groupFlags, coordinatesValue, coordinates2.Value, extraSettings);
             }
@@ -243,6 +244,7 @@ namespace BriefingRoom4DCS.Generator
                             $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get()}\t" +
                             $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
                             $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}");
+                mission.MapData.Add($"UNIT-{groupInfo.Value.UnitDB.Category}-{groupSide}-{groupInfo.Value.GroupID}", new List<double[]>{groupInfo.Value.Coordinates.ToArray()});
             }
         }
 
@@ -264,6 +266,7 @@ namespace BriefingRoom4DCS.Generator
                 var midPoint = Coordinates.Lerp(coordinates, coordinates2, 0.4);
                 extraSettings.AddIfKeyUnused("GroupMidX", midPoint.X);
                 extraSettings.AddIfKeyUnused("GroupMidY", midPoint.Y);
+                mission.MapData.AddIfKeyUnused($"AIRBASE_AI_{groupSide}_${airbase.Name}",  new List<double[]> {  airbase.Coordinates.ToArray() });
             }
         }
 
