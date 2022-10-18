@@ -273,6 +273,14 @@ function table.shuffle(t)
   return t
 end
 
+function table.removeNils(t)
+  local ans = {}
+  for _,v in pairs(t) do
+    ans[ #ans+1 ] = v
+  end
+  return ans
+end
+
 function table.filter(t, filterIter)
   local out = {}
 
