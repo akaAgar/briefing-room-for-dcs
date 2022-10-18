@@ -1,16 +1,22 @@
 briefingRoom.mission.missionFeatures.respawnAircraft = {}
 briefingRoom.mission.missionFeatures.respawnAircraft.totalGroups = table.merge(dcsExtensions.getGroupNamesContaining("-RQ-")
     , dcsExtensions.getGroupNamesContaining("-IQ-"))
-briefingRoom.mission.missionFeatures.respawnAircraft.spawnChance = 1.5 -- out of 10 each check when suitable
-briefingRoom.mission.missionFeatures.respawnAircraft.intervalMultiplier = 10 -- how much longer is the random check interval vs normal aircraftActivator
+briefingRoom.mission.missionFeatures.respawnAircraft.spawnChance = 3 -- out of 10 each check when suitable
+briefingRoom.mission.missionFeatures.respawnAircraft.interval = { 300, 600 } -- min/max interval (in seconds) between two updates
+
+
+function briefingRoom.mission.missionFeatures.respawnAircraft.getRandomInterval()
+    return math.random(briefingRoom.mission.missionFeatures.respawnAircraft.interval[1], briefingRoom.aircraftActivator.INTERVAL[2])
+  end
+
 
 function briefingRoom.mission.missionFeatures.respawnAircraft.checkDeadGroups(args, time)
     if not briefingRoom.mission.hasStarted then
-        return time + briefingRoom.aircraftActivator.getRandomInterval() * briefingRoom.mission.missionFeatures.respawnAircraft.intervalMultiplier
+        return time + briefingRoom.mission.missionFeatures.respawnAircraft.getRandomInterval()
     end
     briefingRoom.mission.missionFeatures.respawnAircraft.trySpawnQueue(briefingRoom.mission.missionFeatures.respawnAircraft
         .totalGroups)
-    return time + briefingRoom.aircraftActivator.getRandomInterval() * briefingRoom.mission.missionFeatures.respawnAircraft.intervalMultiplier
+    return time + briefingRoom.mission.missionFeatures.respawnAircraft.getRandomInterval()
 end
 
 function briefingRoom.mission.missionFeatures.respawnAircraft.trySpawnQueue(queueTable)
@@ -37,4 +43,4 @@ function briefingRoom.mission.missionFeatures.respawnAircraft.trySpawnQueue(queu
 end
 
 timer.scheduleFunction(briefingRoom.mission.missionFeatures.respawnAircraft.checkDeadGroups, {},
-    timer.getTime() + briefingRoom.aircraftActivator.getRandomInterval())
+    timer.getTime() + briefingRoom.mission.missionFeatures.respawnAircraft.getRandomInterval())
