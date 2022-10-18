@@ -245,13 +245,13 @@ namespace BriefingRoom4DCS.Generator
             }
 
             if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.Immortal))
-                dCSGroup.Waypoints[0].Tasks.Add(new DCSWrappedWaypointTask("SetImmortal", new Dictionary<string, object> { { "value", true } }, _auto: false));
+                dCSGroup.Waypoints[0].Tasks = dCSGroup.Waypoints[0].Tasks.Prepend(new DCSWrappedWaypointTask("SetImmortal", new Dictionary<string, object> { { "value", true } }, _auto: false)).ToList();
 
             if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.Inert))
                 dCSGroup.Waypoints[0].Tasks.Add(new DCSWrappedWaypointTask("Option", new Dictionary<string, object> { { "value", 4 }, { "name", 0 } }));
 
             if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.Invisible))
-                dCSGroup.Waypoints[0].Tasks.Add(new DCSWrappedWaypointTask("SetInvisible", new Dictionary<string, object> { { "value", true } }, _auto: false));
+                dCSGroup.Waypoints[0].Tasks = dCSGroup.Waypoints[0].Tasks.Prepend(new DCSWrappedWaypointTask("SetInvisible", new Dictionary<string, object> { { "value", true } }, _auto: false)).ToList();
 
             dCSGroup.Waypoints[0].X = dCSGroup.Units[0].Coordinates.X;
             dCSGroup.Waypoints[0].Y = dCSGroup.Units[0].Coordinates.Y;
