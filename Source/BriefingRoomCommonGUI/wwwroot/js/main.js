@@ -132,7 +132,7 @@ function AddIcon(key, data, map, MapCoordMap) {
     new L.Marker(GetFromMapCoordData(data[0], MapCoordMap), {
       title: GetTitle(key),
       icon: new L.DivIcon({
-        html: `<img class="map_point_icon ${key.includes("OBJECTIVE_SMALL") ? 'map_unit' : ''}" src="_content/BriefingRoomCommonGUI/img/nato-icons/${GetNatoIcon(key)}.svg" alt="${GetText(key)}"/>`
+        html: `<img class="map_point_icon ${key.includes("OBJECTIVE_SMALL") ? 'map_unit' : ''}" src="_content/BriefingRoomCommonGUI/img/nato-icons/${GetNatoIcon(key)}.svg" alt="${key}"/>`
       }),
       zIndexOffset: key == "AIRBASE_HOME" || key.includes("OBJECTIVE_AREA") ? 200 : 100
     }).addTo(map)
@@ -145,7 +145,7 @@ function AddUnit(key, data, map, MapCoordMap) {
   group.addLayer(new L.Marker(coords, {
     title: GetTitle(key),
     icon: new L.DivIcon({
-      html: `<img class="map_point_icon map_unit"src="_content/BriefingRoomCommonGUI/img/nato-icons/${GetNatoIcon(key)}.svg" alt="${GetText(key)}"/>`
+      html: `<img class="map_point_icon map_unit"src="_content/BriefingRoomCommonGUI/img/nato-icons/${GetNatoIcon(key)}.svg" alt="${key}"/>`
     })
   }))
   const range = GetRange(key);
@@ -154,7 +154,8 @@ function AddUnit(key, data, map, MapCoordMap) {
       radius: range,
       color: GetColour(key),
       fillColor: GetColour(key),
-      fillOpacity: 0.4
+      fillOpacity: 0.25,
+      zIndexOffset: 99999999999
     }))
   }
 }
@@ -176,7 +177,7 @@ function AddZone(key, data, map, MapCoordMap) {
   L.polygon(coords, {
     color: GetColour(key),
     fillColor: GetColour(key),
-    fillOpacity: 0.4,
+    fillOpacity: 0.2,
   }).addTo(map);
 }
 
@@ -203,9 +204,9 @@ function GetRange(id) {
 function GetTitle(id) {
   switch (true) {
     case id.includes("AIRBASE"):
-      return 'Airbase'
+      return "Airbase"
     case id.includes("OBJECTIVE"):
-      return 'Objective'
+      return "Objective"
     case id.includes("FOB"):
       return 'FOB'
     case id.includes("CARRIER"):
@@ -213,44 +214,51 @@ function GetTitle(id) {
     case id.includes("SAM"):
       switch (true) {
         case id.includes("Long"):
-          return "Long Range SAM site"
+          return "SAM Site Long Range"
         case id.includes("Medium"):
-          return "Medium Range SAM site"
+          return "SAM Site Medium Range"
         case id.includes("Short"):
-          return "Short Range Air Defense"
+          return "SAM Site Short Range"
       }
-
     case id.includes("Vehicle"):
-      return 'Vehicles'
+      switch (true) {
+        case id.includes("APC"):
+          return "APC"
+        case id.includes("Artillery"):
+          return "Artillery"
+        case id.includes("Infantry"):
+          return "Infantry"
+        case id.includes("MBT"):
+          return "MBT"
+        case id.includes("Missile"):
+          return "Missile Launcher"
+        case id.includes("Transport"):
+          return "Transport"
+        default:
+          return "Vehicle Type Unknown"
+      }
     case id.includes("Ship"):
-      return 'Boat'
+      switch (true) {
+        case id.includes("Cruiser"):
+          return "Cruiser"
+        case id.includes("Frigate"):
+          return "Frigate"
+        case id.includes("Submarine"):
+          return "Submarine"
+        default:
+          return "Ship"
+      }
     case id.includes("Static"):
-      return 'Facility'
-    default:
-      return null
-  }
-}
-
-function GetText(id) {
-  switch (true) {
-    case id.includes("AIRBASE"):
-      return 'A'
-    case id.includes("OBJECTIVE"):
-      return 'O'
-    case id.includes("FOB"):
-      return 'F'
-    case id.includes("CARRIER"):
-      return 'C'
-    case id.includes("SAM"):
-      return 'S'
-    case id.includes("Vehicle"):
-      return 'V'
-    case id.includes("Ship"):
-      return 'B'
-    case id.includes("Static"):
-      return 'F'
-    default:
-      return null
+      switch (true) {
+        case id.includes("Military"):
+          return "Military Facility"
+        case id.includes("Production"):
+          return "Production Facility"
+        case id.includes("Offshore"):
+          return "Offshore Facility"
+        default:
+          return "Facility"
+      }
   }
 }
 
@@ -313,11 +321,44 @@ function GetNatoIcon(id) {
           return prefix + "SAM_SM"
       }
     case id.includes("Vehicle"):
-      return prefix + 'VEHICLE'
+      switch (true) {
+        case id.includes("APC"):
+          return prefix + "VEHICLE_APC"
+        case id.includes("Artillery"):
+          return prefix + "VEHICLE_ARTILLERY"
+        case id.includes("Infantry"):
+          return prefix + "VEHICLE_INFANTRY"
+        case id.includes("MBT"):
+          return prefix + "VEHICLE_MBT"
+        case id.includes("Missile"):
+          return prefix + "VEHICLE_MISSILE"
+        case id.includes("Transport"):
+          return prefix + "VEHICLE_TRANSPORT"
+        default:
+          return prefix + "VEHICLE"
+      }
     case id.includes("Ship"):
-      return prefix + "SHIP"
+      switch (true) {
+        case id.includes("Cruiser"):
+          return prefix + "SHIP_CRUISER"
+        case id.includes("Frigate"):
+          return prefix + "SHIP_FRIGATE"
+        case id.includes("Submarine"):
+          return prefix + "SHIP_SUBMARINE"
+        default:
+          return prefix + "SHIP"
+      }
     case id.includes("Static"):
-      return prefix + "STATIC"
+      switch (true) {
+        case id.includes("Military"):
+          return prefix + "STATIC_MILITARY"
+        case id.includes("Production"):
+          return prefix + "STATIC_PRODUCTION"
+        case id.includes("Offshore"):
+          return prefix + "STATIC_OFFSHORE"
+        default:
+          return prefix + "STATIC"
+      }
   }
 }
 
@@ -361,7 +402,6 @@ function MyMidPoint(latlng1, latlng2, per, mapObj) {
 
   p1 = mapObj.project(new L.latLng(latlng1));
   p2 = mapObj.project(new L.latLng(latlng2));
-
   halfDist = DistanceTo(p1, p2) * per;
 
   if (halfDist === 0)
