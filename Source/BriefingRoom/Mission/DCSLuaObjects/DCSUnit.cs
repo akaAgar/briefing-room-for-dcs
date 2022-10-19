@@ -41,8 +41,8 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 
         // Static Fob
         internal int HeliportModulation { get; set; }
-        internal int heliportCallsignId { get; set; }
-        internal string heliportFrequency { get; set; }
+        internal int HeliportCallsignId { get; set; }
+        internal string HeliportFrequency { get; set; }
 
         // Vehicle
         internal bool PlayerCanDrive { get; set; }
@@ -52,8 +52,8 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             "Aircraft" => ToLuaStringAircraft(number),
             "Ship" => ToLuaStringShip(number),
             "Cargo" => ToLuaStringCargo(number),
-            "Static" => ToLuaStringStatic(number),
             "StaticFOB" => ToLuaStringStaticFOB(number),
+            "Static" => ToLuaStringStatic(number),
             "Vehicle" => ToLuaStringVehicle(number),
             _ => throw new BriefingRoomException($"Unsupported unit type {unitType}"),
         };
@@ -146,12 +146,11 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"y", Coordinates.Y},
                 {"name", Name},
                 {"heading", Heading},
-                {"mass", 100},
                 {"category", "Heliports"},
                 {"shape_name", ShapeName},
                 {"heliport_modulation", HeliportModulation},
-                {"heliport_callsign_id", heliportCallsignId},
-                {"heliport_frequency", heliportFrequency},
+                {"heliport_callsign_id", HeliportCallsignId},
+                {"heliport_frequency", HeliportFrequency},
             };
             return LuaSerializer.Serialize(obj);
         }

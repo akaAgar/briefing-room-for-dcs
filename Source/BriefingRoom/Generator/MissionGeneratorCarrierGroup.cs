@@ -176,6 +176,7 @@ namespace BriefingRoom4DCS.Generator
                 "FOB_Moscow",
                 "FOB_Berlin"
             };
+            var radioFrequencyValue = GeneratorTools.GetRadioFrequency(radioFrequency);
 
             UnitMakerGroupInfo? groupInfo =
                 unitMaker.AddUnitGroup(
@@ -183,9 +184,11 @@ namespace BriefingRoom4DCS.Generator
                     "Static", "StaticFOB",
                     spawnPoint.Value, 0,
                     new Dictionary<string, object>{
-                    {"FOBCallSignIndex", FOBNames.IndexOf(flightGroup.Carrier) + 1},
+                    {"HeliportCallsignId", FOBNames.IndexOf(flightGroup.Carrier) + 1},
+                    {"HeliportModulation", (int)RadioModulation.AM},
+                    {"HeliportFrequency", GeneratorTools.FormatRadioFrequency(radioFrequency)},
                     {"RadioBand", (int)RadioModulation.AM},
-                    {"RadioFrequency", GeneratorTools.GetRadioFrequency(radioFrequency)},
+                    {"RadioFrequency", radioFrequencyValue},
                     {"playerCanDrive", false},
                     {"NoCM", true}});
             if (!groupInfo.HasValue || (groupInfo.Value.UnitNames.Length == 0)) return; // Couldn't generate group
