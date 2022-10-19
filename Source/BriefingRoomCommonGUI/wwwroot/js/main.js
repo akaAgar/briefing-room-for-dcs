@@ -41,10 +41,10 @@ async function BlazorDownloadFile(filename, contentType, data) {
 const Memoize = (fn) => {
   let cache = {};
   return async (...args) => {
-      let strX = JSON.stringify(args);
-      return strX in cache 
-        ? cache[strX] 
-        : (cache[strX] = await fn(...args));
+    let strX = JSON.stringify(args);
+    return strX in cache
+      ? cache[strX]
+      : (cache[strX] = await fn(...args));
   };
 };
 
@@ -81,7 +81,7 @@ const GetMapData = Memoize(async (map) => {
 
 async function RenderMap(mapData, map) {
   var MapCoordMap = await GetMapData(map)
-  if(leafMap) {
+  if (leafMap) {
     leafMap.off();
     leafMap.remove();
   }
@@ -132,7 +132,7 @@ function AddIcon(key, data, map, MapCoordMap) {
     new L.Marker(GetFromMapCoordData(data[0], MapCoordMap), {
       title: GetTitle(key),
       icon: new L.DivIcon({
-        html: `<div class="map_point_icon ${key.includes("OBJECTIVE_SMALL") ? 'map_unit': ''}" style="background-color: ${GetColour(key)};">${GetText(key)}</div>`
+        html: `<img class="map_point_icon ${key.includes("OBJECTIVE_SMALL") ? 'map_unit' : ''}" src="_content/BriefingRoomCommonGUI/img/nato-icons/${GetNatoIcon(key)}.svg" alt="${GetText(key)}"/>`
       }),
       zIndexOffset: key == "AIRBASE_HOME" || key.includes("OBJECTIVE_AREA") ? 200 : 100
     }).addTo(map)
@@ -145,7 +145,7 @@ function AddUnit(key, data, map, MapCoordMap) {
   group.addLayer(new L.Marker(coords, {
     title: GetTitle(key),
     icon: new L.DivIcon({
-      html: `<div class="map_point_icon map_unit" style="background-color: ${GetColour(key)};">${GetText(key)}</div>`
+      html: `<img class="map_point_icon map_unit"src="_content/BriefingRoomCommonGUI/img/nato-icons/${GetNatoIcon(key)}.svg" alt="${GetText(key)}"/>`
     })
   }))
   const range = GetRange(key);
@@ -211,7 +211,15 @@ function GetTitle(id) {
     case id.includes("CARRIER"):
       return 'Carrier'
     case id.includes("SAM"):
-      return 'SAM site'
+      switch (true) {
+        case id.includes("Long"):
+          return "Long Range SAM site"
+        case id.includes("Medium"):
+          return "Medium Range SAM site"
+        case id.includes("Short"):
+          return "Short Range Air Defense"
+      }
+
     case id.includes("Vehicle"):
       return 'Vehicles'
     case id.includes("Ship"):
@@ -272,6 +280,44 @@ function GetColour(id) {
       return '#919191'
     default:
       return '#ffffff'
+  }
+}
+
+
+function GetNatoIcon(id) {
+  let prefix = ""
+  switch (true) {
+    case id.includes("Enemy"):
+      prefix = "RED_"
+      break
+    case id.includes("Ally"):
+      prefix = "BLUE_"
+      break
+  }
+  switch (true) {
+    case id.includes("AIRBASE"):
+      return prefix + "AIRBASE"
+    case id.includes("OBJECTIVE"):
+      return "OBJECTIVE"
+    case id.includes("FOB"):
+      return 'FOB'
+    case id.includes("CARRIER"):
+      return 'CARRIER'
+    case id.includes("SAM"):
+      switch (true) {
+        case id.includes("Long"):
+          return prefix + "SAM_LONG"
+        case id.includes("Medium"):
+          return prefix + "SAM_MID"
+        case id.includes("Short"):
+          return prefix + "SAM_SM"
+      }
+    case id.includes("Vehicle"):
+      return prefix + 'VEHICLE'
+    case id.includes("Ship"):
+      return prefix + "SHIP"
+    case id.includes("Static"):
+      return prefix + "STATIC"
   }
 }
 

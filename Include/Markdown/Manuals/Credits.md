@@ -22,6 +22,7 @@ The creators of Briefing Room would like to thank for following for their direct
 * sandman
 * Juanillus
 * NaDs
+* https://spatialillusions.com/unitgenerator/ (Map Icons)
 
 We would also like to thank anyone who has taken the time to report bugs, test betas & help others on Discord or Github.
 

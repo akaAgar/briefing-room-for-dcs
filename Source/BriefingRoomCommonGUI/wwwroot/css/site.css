@@ -333,9 +333,7 @@ th {
 }
 
 .map_point_icon {
-    border: 2px solid black;
     padding: 7px;
-    border-radius: 50%;
     width: 30px;
     height: 30px;
     line-height: 12px;
@@ -350,7 +348,6 @@ th {
 
 .map_unit {
     padding: 1.5px;
-    border-radius: 50%;
     width: 20px;
     height: 20px;
     line-height: 12px;

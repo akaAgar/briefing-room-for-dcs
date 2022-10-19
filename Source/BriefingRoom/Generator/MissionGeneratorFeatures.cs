@@ -113,7 +113,7 @@ namespace BriefingRoom4DCS.Generator
                             $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}"); // TODO: human-readable payload name
 
                 if(!groupInfo.Value.UnitDB.IsAircraft)
-                    mission.MapData.Add($"UNIT-{groupInfo.Value.UnitDB.Category}-{groupSide}-{groupInfo.Value.GroupID}", new List<double[]>{groupInfo.Value.Coordinates.ToArray()});
+                    mission.MapData.Add($"UNIT-{groupInfo.Value.UnitDB.Families[0]}-{groupSide}-{groupInfo.Value.GroupID}", new List<double[]>{groupInfo.Value.Coordinates.ToArray()});
 
                 if (featureDB.ExtraGroups.Max > 1)
                     SpawnExtraGroups(featureDB, mission, groupSide, groupFlags, coordinatesValue, coordinates2.Value, extraSettings);
@@ -247,7 +247,7 @@ namespace BriefingRoom4DCS.Generator
                             $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
                             $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}");
                 if(!groupInfo.Value.UnitDB.IsAircraft)
-                    mission.MapData.Add($"UNIT-{groupInfo.Value.UnitDB.Category}-{groupSide}-{groupInfo.Value.GroupID}", new List<double[]>{groupInfo.Value.Coordinates.ToArray()});
+                    mission.MapData.Add($"UNIT-{groupInfo.Value.UnitDB.Families[0]}-{groupSide}-{groupInfo.Value.GroupID}", new List<double[]>{groupInfo.Value.Coordinates.ToArray()});
             }
         }
 
