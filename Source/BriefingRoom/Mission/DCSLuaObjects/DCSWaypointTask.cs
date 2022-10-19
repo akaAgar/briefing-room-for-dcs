@@ -10,6 +10,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         public bool Auto { get; init; } = true;
         public string Id { get; init; }
         public string Key { get; set; }
+        public int Priority {get; set;} = 9;
         private Dictionary<string, object> _parameters = new Dictionary<string, object>();
         public Dictionary<string, object> parameters
         {
@@ -19,12 +20,13 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 
         public DCSWaypointTask() { }
 
-        public DCSWaypointTask(string _id, Dictionary<string, object> _parameters, bool _enabled = true, bool _auto = true)
+        public DCSWaypointTask(string _id, Dictionary<string, object> _parameters, bool _enabled = true, bool _auto = true, int _priority = 9)
         {
             Id = _id;
             parameters = _parameters;
             Enabled = _enabled;
             Auto = _auto;
+            Priority = _priority;
         }
 
         public string ToLuaString(int number)

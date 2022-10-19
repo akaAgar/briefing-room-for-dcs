@@ -43,7 +43,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"task", new Dictionary<string, object>{
                     {"id", "ComboTask"},
                     {"params", new Dictionary<string, object>{
-                        {"tasks", Tasks}
+                        {"tasks", Tasks.OrderBy(x => x.Priority).ToList()}
                     }}
                     }
                 },
