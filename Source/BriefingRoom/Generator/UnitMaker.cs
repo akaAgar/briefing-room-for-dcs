@@ -45,11 +45,14 @@ namespace BriefingRoom4DCS.Generator
         internal int RemainingSpotCount { get; set; }
         internal int TotalSpotCount { get; init; }
 
-        internal CarrierUnitMakerGroupInfo(UnitMakerGroupInfo unitMakerGroupInfo, int remainingSpotCount)
+        internal Coalition Coalition {get; init;}
+
+        internal CarrierUnitMakerGroupInfo(UnitMakerGroupInfo unitMakerGroupInfo, int remainingSpotCount, Coalition coalition)
         {
             UnitMakerGroupInfo = unitMakerGroupInfo;
             RemainingSpotCount = remainingSpotCount;
             TotalSpotCount = remainingSpotCount;
+            Coalition = coalition;
         }
     }
 

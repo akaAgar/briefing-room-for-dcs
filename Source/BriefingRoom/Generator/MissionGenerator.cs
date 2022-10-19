@@ -217,7 +217,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Generate warehouses
             BriefingRoom.PrintToLog("Generating warehouses...");
-            MissionGeneratorWarehouses.GenerateWarehouses(mission);
+            MissionGeneratorWarehouses.GenerateWarehouses(mission, unitMaker.carrierDictionary);
 
             // Generate image files
             BriefingRoom.PrintToLog("Generating images...");

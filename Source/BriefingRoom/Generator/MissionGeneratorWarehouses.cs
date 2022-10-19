@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Mission;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace BriefingRoom4DCS.Generator
@@ -28,7 +29,7 @@ namespace BriefingRoom4DCS.Generator
     {
         private static readonly string AIRPORT_TEMPLATE_FILEPATH = $"{BRPaths.INCLUDE_LUA}Warehouses\\Airport.lua";
 
-        internal static void GenerateWarehouses(DCSMission mission)
+        internal static void GenerateWarehouses(DCSMission mission, Dictionary<string, CarrierUnitMakerGroupInfo> carrierDictionary)
         {
             string warehousesAirportLua = "";
 
@@ -47,6 +48,18 @@ namespace BriefingRoom4DCS.Generator
             }
 
             mission.SetValue("WarehousesAirports", warehousesAirportLua);
+
+            string warehousesCarriersLua = "";
+
+            foreach (CarrierUnitMakerGroupInfo carrier in carrierDictionary.Values)
+            {
+                string carrierLua = airportLuaTemplate;
+                GeneratorTools.ReplaceKey(ref carrierLua, "index", carrier.UnitMakerGroupInfo.DCSGroup.Units[0].UnitId);
+                GeneratorTools.ReplaceKey(ref carrierLua, "coalition", carrier.Coalition.ToString().ToUpperInvariant());
+
+                warehousesCarriersLua += carrierLua + "\r\n";
+            }
+            mission.SetValue("WAREHOUSESCARRIERS", warehousesCarriersLua);
         }
     }
 }
