@@ -36,9 +36,9 @@ __Commented out:__
 ## Dump Map Data for the tools map
 The map in the tool is powered by a big mapping on 1km squares from DCS coordinates to Lat, Long coordinates. In the event of a new map or a map having a large area expansion this data needs to be created/refreshed.
 
-1. Create mission on map with the "Debug" feature turned on.
+1. Use the Briefing Room Full Builder to create a mission on your target map with the "Debug mode" Mission feature turned on.
 1. Load DCS and Run mission
-1. Use F-10 to go to Debug menu and run Dump Map Data (you game will freeze for a few seconds depending on map size)
+1. In Comms menu use F-10 to go to Debug menu and run "Dump Map coords" (you game will freeze for a few seconds depending on map size)
 1. Message will print with output location
 1. Open File and replace all `"\` with nothing. This should now be valid json
 1. Gzip the file using 7-Zip
