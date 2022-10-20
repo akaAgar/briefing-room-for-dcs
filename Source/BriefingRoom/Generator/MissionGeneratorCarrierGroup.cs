@@ -198,6 +198,13 @@ namespace BriefingRoom4DCS.Generator
                      $"{unitDB.UIDisplayName.Get()}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t\t");
             unitMaker.carrierDictionary.Add(flightGroup.Carrier, new CarrierUnitMakerGroupInfo(groupInfo.Value, unitDB.ParkingSpots, template.ContextPlayerCoalition));
             mission.MapData.Add($"FOB_{flightGroup.Carrier}", new List<double[]> { groupInfo.Value.Coordinates.ToArray() });
+
+            foreach (var group in groupInfo.Value.DCSGroups)
+            {      
+                var unit = group.Units.First();
+                if(unit.DCSID != "FARP")
+                    unit.unitType = "StaticSupply";
+            }
         }
     }
 }

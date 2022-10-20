@@ -53,6 +53,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             "Ship" => ToLuaStringShip(number),
             "Cargo" => ToLuaStringCargo(number),
             "StaticFOB" => ToLuaStringStaticFOB(number),
+            "StaticSupply" => ToLuaStringStaticSupply(number),
             "Static" => ToLuaStringStatic(number),
             "Vehicle" => ToLuaStringVehicle(number),
             _ => throw new BriefingRoomException($"Unsupported unit type {unitType}"),
@@ -133,6 +134,21 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"name", Name},
                 {"heading", Heading},
                 {"shape_name", ShapeName}
+            };
+            return LuaSerializer.Serialize(obj);
+        }
+
+        private string ToLuaStringStaticSupply(int number)
+        {
+            var obj = new Dictionary<string, object>{
+                {"type", DCSID},
+                {"unitId", UnitId},
+                {"x", Coordinates.X},
+                {"y", Coordinates.Y},
+                {"name", Name},
+                {"heading", Heading},
+                {"shape_name", ShapeName},
+                {"rate", 100}
             };
             return LuaSerializer.Serialize(obj);
         }
