@@ -168,7 +168,7 @@ namespace BriefingRoom4DCS.Generator
                 return;
             }
 
-            groupInfo.Value.DCSGroup.Waypoints.InsertRange(1, waypoints.Select(x => x.ToDCSWaypoint(unitDB.AircraftData)).ToList());
+            groupInfo.Value.DCSGroup.Waypoints.InsertRange(1, flightWaypoints.Select(x => x.ToDCSWaypoint(unitDB.AircraftData)).ToList());
 
 
             SaveFlightGroup(mission, groupInfo, flightGroup, unitDB, carrierName ?? airbase.Name);
