@@ -36,6 +36,8 @@ namespace BriefingRoom4DCS.Data
 
         internal string[] IncludeOgg { get; private set; }
 
+        internal string IncludeOggFolder { get; private set; }
+
         internal UnitFamily[] UnitGroupFamilies { get; private set; }
 
         internal FeatureUnitGroupFlags UnitGroupFlags { get; private set; }
@@ -66,6 +68,7 @@ namespace BriefingRoom4DCS.Data
             IncludeLua = Toolbox.AddMissingFileExtensions(ini.GetValueArray<string>("Include", "Lua"), ".lua");
             IncludeLuaSettings = ini.GetValue<string>("Lua", "LuaSettings");
             IncludeOgg = Toolbox.AddMissingFileExtensions(ini.GetValueArray<string>("Include", "Ogg"), ".ogg");
+            IncludeOggFolder = ini.GetValue<string>("Include", "OggFolder");
 
             foreach (string f in IncludeLua)
                 if (!File.Exists($"{SourceLuaDirectory}{f}"))

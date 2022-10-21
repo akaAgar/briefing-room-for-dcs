@@ -150,6 +150,20 @@ namespace BriefingRoom4DCS.Mission
             MediaFiles.Add(fileName, sourceFilePath);
         }
 
+        internal void AddMediaFolder(string folderName, string sourceFolderPath)
+        {
+            if (!Directory.Exists(sourceFolderPath)) return;
+            foreach (string file in Directory.EnumerateFiles(sourceFolderPath, "*.*", SearchOption.AllDirectories))
+            {
+                var filePath = file.Split(sourceFolderPath)[1];
+                if(!MediaFiles.ContainsKey($"{folderName}{filePath}")){
+                    var endPath = $"{folderName}{filePath}".Replace("\\", "/");
+                    MediaFiles.Add(endPath, sourceFolderPath + filePath);
+                }
+            }
+
+        }
+
         internal void AddMediaFile(string fileName, byte[] mediaFileBytes)
         {
             if (string.IsNullOrEmpty(fileName) || MediaFiles.ContainsKey(fileName)) return;
