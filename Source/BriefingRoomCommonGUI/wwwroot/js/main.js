@@ -128,6 +128,8 @@ function addButtons() {
 function AddIcon(key, data, map, MapCoordMap) {
   if (key.startsWith("UNIT")) {
     AddUnit(key, data, map, MapCoordMap)
+  } else if (key.includes("WAYPOINT_")) {
+    AddWaypoint(key, data, map, MapCoordMap)
   } else {
     new L.Marker(GetFromMapCoordData(data[0], MapCoordMap), {
       title: GetTitle(key),
@@ -137,6 +139,25 @@ function AddIcon(key, data, map, MapCoordMap) {
       zIndexOffset: key == "AIRBASE_HOME" || key.includes("OBJECTIVE_AREA") ? 200 : 100
     }).addTo(map)
   }
+}
+
+function AddWaypoint(key, data, map, MapCoordMap) {
+  const title =  key.replace("WAYPOINT_", "")
+  const coords = GetFromMapCoordData(data[0], MapCoordMap)
+  new L.circleMarker(coords, {
+    title: title,
+    radius: 10,
+    weight: 5,
+    color: `Gold`,
+    fillOpacity: 0.0,
+    zIndexOffset: 100
+  }).addTo(map)
+  new L.Marker(coords, {
+    title: title,
+    icon: new L.DivIcon({
+      html: `<p class="map-label">${title}</p>`
+    })
+  }).addTo(map)
 }
 
 function AddUnit(key, data, map, MapCoordMap) {
@@ -192,9 +213,9 @@ function GetGroup(id) {
 
 function GetRange(id) {
   switch (true) {
-    case id.includes("LongRange"):
+    case id.includes("Long"):
       return 40 * 1852;
-    case id.includes("MediumRange"):
+    case id.includes("Medium"):
       return 20 * 1852;
     default:
       return 0

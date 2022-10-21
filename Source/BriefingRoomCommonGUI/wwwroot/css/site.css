@@ -347,6 +347,18 @@ th {
     left: -10px;
 }
 
+.map-label{
+    font-weight: bold;
+    position: relative;
+    left: 25px;
+    top: -3px;
+}
+
+.leaflet-div-icon {
+    background-color: transparent;
+    border-color: transparent;
+}
+
 .arrow-icon {
     width: 24px;
     height: 24px;

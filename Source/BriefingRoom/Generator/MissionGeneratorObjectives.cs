@@ -314,6 +314,7 @@ namespace BriefingRoom4DCS.Generator
             waypoints.Add(waypoint);
             waypointList.Add(waypoint);
             objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);
+            mission.MapData.Add($"UNIT-{targetGroupInfo.Value.UnitDB.Families[0]}-{taskDB.TargetSide}-{targetGroupInfo.Value.GroupID}", new List<double[]>{targetGroupInfo.Value.Coordinates.ToArray()});
         }
 
         private (string luaUnit, int unitCount, MinMaxI unitCountMinMax, UnitFamily objectiveTargetUnitFamily, UnitMakerGroupFlags groupFlags) GetUnitData(MissionTemplateSubTaskRecord task, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, ObjectiveOption[] objectiveOptions)
