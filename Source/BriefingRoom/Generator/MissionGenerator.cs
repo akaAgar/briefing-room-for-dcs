@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -112,7 +112,7 @@ namespace BriefingRoom4DCS.Generator
             mission.PopulatedAirbaseIds[template.ContextPlayerCoalition].Add(playerAirbase.DCSID);
             if (playerAirbase.DCSID > 0)
             {
-                mission.MapData.Add($"AIRBASE_HOME", new List<double[]> {  playerAirbase.Coordinates.ToArray() });
+                mission.MapData.Add($"AIRBASE_HOME", new List<double[]> { playerAirbase.Coordinates.ToArray() });
                 mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{playerAirbase.Name}\t{playerAirbase.Runways}\t{playerAirbase.ATC}\t{playerAirbase.ILS}\t{playerAirbase.TACAN}");
             }
             airbasesGenerator.SelectStartingAirbaseForPackages(mission, playerAirbase, theaterDB);
@@ -166,6 +166,11 @@ namespace BriefingRoom4DCS.Generator
             MissionGeneratorFlightPlan.GenerateAircraftPackageWaypoints(template, mission, objectiveGroupedWaypoints, averageInitialPosition, objectivesCenter, waypointNameGenerator);
             MissionGeneratorFlightPlan.GenerateIngressAndEgressWaypoints(template, waypoints, averageInitialPosition, objectivesCenter, waypointNameGenerator);
 
+            foreach (var waypoint in waypoints)
+            {
+                mission.MapData.AddIfKeyUnused($"WAYPOINT_{waypoint.Name}", new List<double[]> { waypoint.Coordinates.ToArray() });
+            }
+
             // Generate surface-to-air defenses
             MissionGeneratorAirDefense.GenerateAirDefense(template, mission, unitMaker, averageInitialPosition, objectivesCenter);
 
@@ -177,7 +182,7 @@ namespace BriefingRoom4DCS.Generator
             foreach (var templateFlightGroup in template.PlayerFlightGroups)
                 MissionGeneratorPlayerFlightGroups.GeneratePlayerFlightGroup(unitMaker, mission, template, templateFlightGroup, playerAirbase, waypoints, averageInitialPosition, objectivesCenter, theaterDB);
 
-            
+
             // Generate mission features
             BriefingRoom.PrintToLog("Generating mission features...");
             mission.AppendValue("ScriptMissionFeatures", ""); // Just in case there's no features

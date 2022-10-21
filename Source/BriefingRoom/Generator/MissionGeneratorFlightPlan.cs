@@ -51,6 +51,11 @@ namespace BriefingRoom4DCS.Generator
                 var missionPackage = mission.MissionPackages.First(x => x.RecordIndex == template.AircraftPackages.IndexOf(package));
                 missionPackage.Waypoints = objectiveGroupedWaypoints.Where((v, i) => package.ObjectiveIndexes.Contains(i)).SelectMany(x => x).ToList(); // THIS IS WHERE THE OBJECTIVES ARE BROKEN
                 GenerateIngressAndEgressWaypoints(template, missionPackage.Waypoints, averageInitialLocation, objectivesCenter, waypointNameGenerator);
+
+                foreach (var waypoint in missionPackage.Waypoints)
+                {
+                    mission.MapData.AddIfKeyUnused($"WAYPOINT_{waypoint.Name}", new List<double[]> { waypoint.Coordinates.ToArray() });
+                }
             }
         }
 

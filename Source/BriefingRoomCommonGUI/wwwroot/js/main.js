@@ -106,7 +106,7 @@ async function RenderMap(mapData, map) {
     data = mapData[key]
     if (data.length == 1) {
       AddIcon(key, data, leafMap, MapCoordMap)
-    } else if (key.includes("WAYPOINTS")) {
+    } else if (key.includes("ROUTE_")) {
       AddWaypoints(data, leafMap, MapCoordMap)
     } else {
       AddZone(key, data, leafMap, MapCoordMap)
