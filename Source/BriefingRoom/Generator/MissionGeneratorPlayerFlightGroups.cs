@@ -1,4 +1,4 @@
-﻿/*
+/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -41,11 +41,11 @@ namespace BriefingRoom4DCS.Generator
             Coordinates objectivesCenter,
             DBEntryTheater theaterDB)
         {
-            DBEntryAirbase airbase = playerAirbase;
-            List<Waypoint> flightWaypoints = new List<Waypoint>(waypoints);
-            Coordinates groupStartingCoords = playerAirbase.Coordinates;
+            var airbase = playerAirbase;
+            var flightWaypoints = new List<Waypoint>(waypoints);
+            var groupStartingCoords = playerAirbase.Coordinates;
 
-            var package = template.AircraftPackages.FirstOrDefault(x => x.FlightGroupIndexes.Contains(template.PlayerFlightGroups.IndexOf(flightGroup)));
+            var package = template.AircraftPackages.FirstOrDefault(x => x.FlightGroupIndexes.Contains(flightGroup.Index));
             if (package is not null)
             {
                 var missionPackage = mission.MissionPackages.First(x => x.RecordIndex == template.AircraftPackages.IndexOf(package));

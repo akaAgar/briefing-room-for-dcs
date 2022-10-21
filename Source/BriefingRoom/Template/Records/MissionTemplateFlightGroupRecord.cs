@@ -42,8 +42,9 @@ namespace BriefingRoom4DCS.Template
         internal string OverrideCallsignName { get; set; } = "";
         internal int OverrideCallsignNumber { get; set; } = 1;
 
+        internal int Index { get; init; }
 
-        internal MissionTemplateFlightGroupRecord(MissionTemplateFlightGroup flightGroup)
+        internal MissionTemplateFlightGroupRecord(MissionTemplateFlightGroup flightGroup, int _index)
         {
             Aircraft = flightGroup.Aircraft;
             AIWingmen = flightGroup.AIWingmen;
@@ -58,6 +59,7 @@ namespace BriefingRoom4DCS.Template
             OverrideRadioBand = flightGroup.OverrideRadioBand;
             OverrideCallsignName = flightGroup.OverrideCallsignName;
             OverrideCallsignNumber = flightGroup.OverrideCallsignNumber;
+            Index = _index;
         }
     }
 }
