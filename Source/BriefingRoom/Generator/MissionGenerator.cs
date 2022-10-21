@@ -1,4 +1,4 @@
-﻿/*
+/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -129,6 +129,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Generate objectives
             BriefingRoom.PrintToLog("Generating objectives...");
+            var waypointNameGenerator = new WaypointNameGenerator();
             var objectiveCoordinates = new List<Coordinates>();
             var objectiveTargetUnitFamilies = new List<UnitFamily>();
             var lastObjectiveCoordinates = playerAirbase.Coordinates;
@@ -139,7 +140,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 var (objectiveCoords, waypointGroup) = objectivesGenerator.GenerateObjective(
                     mission, template, situationDB,
-                    objectiveTemplate, lastObjectiveCoordinates, playerAirbase, useObjectivePresets,
+                    objectiveTemplate, lastObjectiveCoordinates, playerAirbase, waypointNameGenerator, useObjectivePresets,
                     ref i, ref objectiveCoordinates, ref waypoints, ref objectiveTargetUnitFamilies);
                 lastObjectiveCoordinates = objectiveCoords;
                 mission.MapData.Add($"OBJECTIVE_AREA{i}", new List<double[]> { objectiveCoords.ToArray() });
@@ -162,8 +163,8 @@ namespace BriefingRoom4DCS.Generator
             // Generate extra flight plan info
             MissionGeneratorFlightPlan.GenerateBullseyes(mission, objectivesCenter);
             MissionGeneratorFlightPlan.GenerateObjectiveWPCoordinatesLua(template, mission, waypoints, drawingMaker);
-            MissionGeneratorFlightPlan.GenerateAircraftPackageWaypoints(template, mission, objectiveGroupedWaypoints, averageInitialPosition, objectivesCenter);
-            MissionGeneratorFlightPlan.GenerateIngressAndEgressWaypoints(template, waypoints, averageInitialPosition, objectivesCenter);
+            MissionGeneratorFlightPlan.GenerateAircraftPackageWaypoints(template, mission, objectiveGroupedWaypoints, averageInitialPosition, objectivesCenter, waypointNameGenerator);
+            MissionGeneratorFlightPlan.GenerateIngressAndEgressWaypoints(template, waypoints, averageInitialPosition, objectivesCenter, waypointNameGenerator);
 
             // Generate surface-to-air defenses
             MissionGeneratorAirDefense.GenerateAirDefense(template, mission, unitMaker, averageInitialPosition, objectivesCenter);

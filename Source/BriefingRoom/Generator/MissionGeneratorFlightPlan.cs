@@ -44,18 +44,18 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("BullseyeRedY", objectivesCenter.Y + GetBullseyeRandomDistance());
         }
 
-        internal static void GenerateAircraftPackageWaypoints(MissionTemplateRecord template, DCSMission mission, List<List<Waypoint>> objectiveGroupedWaypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter)
+        internal static void GenerateAircraftPackageWaypoints(MissionTemplateRecord template, DCSMission mission, List<List<Waypoint>> objectiveGroupedWaypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter, WaypointNameGenerator waypointNameGenerator)
         {
             foreach (var package in template.AircraftPackages)
             {
                 var missionPackage = mission.MissionPackages.First(x => x.RecordIndex == template.AircraftPackages.IndexOf(package));
                 missionPackage.Waypoints = objectiveGroupedWaypoints.Where((v, i) => package.ObjectiveIndexes.Contains(i)).SelectMany(x => x).ToList(); // THIS IS WHERE THE OBJECTIVES ARE BROKEN
-                GenerateIngressAndEgressWaypoints(template, missionPackage.Waypoints, averageInitialLocation, objectivesCenter);
+                GenerateIngressAndEgressWaypoints(template, missionPackage.Waypoints, averageInitialLocation, objectivesCenter, waypointNameGenerator);
             }
         }
 
 
-        internal static void GenerateIngressAndEgressWaypoints(MissionTemplateRecord template, List<Waypoint> waypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter)
+        internal static void GenerateIngressAndEgressWaypoints(MissionTemplateRecord template, List<Waypoint> waypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter, WaypointNameGenerator waypointNameGenerator)
         {
             if (!template.MissionFeatures.Contains("IngressEgressWaypoints"))
                 return;
@@ -68,12 +68,12 @@ namespace BriefingRoom4DCS.Generator
 
             waypoints.Insert(0,
                 new Waypoint(
-                    Database.Instance.Common.Names.WPIngressName.Get().ToUpperInvariant(),
+                    $"{Database.Instance.Common.Names.WPIngressName.Get().ToUpperInvariant()}_{waypointNameGenerator.GetWaypointName()}",
                     baseIngressPosition + Coordinates.CreateRandom(ingressDeviation * 0.9, ingressDeviation * 1.1)));
 
             waypoints.Add(
                 new Waypoint(
-                    Database.Instance.Common.Names.WPEgressName.Get().ToUpperInvariant(),
+                    $"{Database.Instance.Common.Names.WPEgressName.Get().ToUpperInvariant()}_{waypointNameGenerator.GetWaypointName()}",
                     baseIngressPosition + Coordinates.CreateRandom(ingressDeviation * 0.9, ingressDeviation * 1.1)));
         }
 
@@ -90,6 +90,11 @@ namespace BriefingRoom4DCS.Generator
                 {
                     DrawingMaker.AddDrawing(waypoint.Name, DrawingType.TextBox, waypoint.Coordinates, "Text".ToKeyValuePair(waypoint.Name));
                 }
+
+            foreach (var waypoint in waypoints)
+            {
+                mission.MapData.AddIfKeyUnused($"WAYPOINT_{waypoint.Name}", new List<double[]> { waypoint.Coordinates.ToArray() });
+            }
         }
 
         private static double GetBullseyeRandomDistance()

@@ -29,8 +29,6 @@ namespace BriefingRoom4DCS.Generator
 {
     internal class MissionGeneratorObjectives
     {
-        private readonly List<string> ObjectiveNames = new List<string>();
-
         private static readonly List<DBEntryObjectiveTargetBehaviorLocation> AIRBASE_LOCATIONS = new List<DBEntryObjectiveTargetBehaviorLocation>{
             DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbase,
             DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking,
@@ -65,7 +63,6 @@ namespace BriefingRoom4DCS.Generator
             UnitMaker = unitMaker;
             DrawingMaker = drawingMaker;
             FeaturesGenerator = new MissionGeneratorFeaturesObjectives(unitMaker, template);
-            ObjectiveNames = new List<string>(Database.Instance.Common.Names.WPObjectivesNames.Get().Split(","));
         }
 
         internal Tuple<Coordinates, List<Waypoint>> GenerateObjective(
@@ -75,6 +72,7 @@ namespace BriefingRoom4DCS.Generator
             MissionTemplateObjectiveRecord task,
             Coordinates lastCoordinates,
             DBEntryAirbase playerAirbase,
+            WaypointNameGenerator waypointNameGenerator,
             bool useObjectivePreset,
             ref int objectiveIndex,
             ref List<Coordinates> objectiveCoordinatesList,
@@ -92,6 +90,7 @@ namespace BriefingRoom4DCS.Generator
                 targetDB,
                 targetBehaviorDB,
                 situationDB,
+                waypointNameGenerator,
                 ref objectiveIndex,
                 ref objectiveCoordinates,
                 objectiveOptions,
@@ -114,6 +113,7 @@ namespace BriefingRoom4DCS.Generator
                     situationDB, subTasks,
                     objectiveCoordinates, playerAirbase,
                     preValidSpawns, targetBehaviorDB.Location,
+                    waypointNameGenerator,
                     featuresID, ref objectiveIndex,
                     ref objectiveCoordinatesList, ref waypoints,
                     ref waypointList, ref objectiveTargetUnitFamilies);
@@ -131,6 +131,7 @@ namespace BriefingRoom4DCS.Generator
             DBEntryAirbase playerAirbase,
             List<SpawnPointType> preValidSpawns,
             DBEntryObjectiveTargetBehaviorLocation mainObjLocation,
+            WaypointNameGenerator waypointNameGenerator,
             string[] featuresID,
             ref int objectiveIndex,
             ref List<Coordinates> objectiveCoordinatesList,
@@ -153,6 +154,7 @@ namespace BriefingRoom4DCS.Generator
                 targetDB,
                 targetBehaviorDB,
                 situationDB,
+                waypointNameGenerator,
                 ref objectiveIndex,
                 ref objectiveCoords,
                 objectiveOptions,
@@ -173,6 +175,7 @@ namespace BriefingRoom4DCS.Generator
             DBEntryObjectiveTarget targetDB,
             DBEntryObjectiveTargetBehavior targetBehaviorDB,
             DBEntrySituation situationDB,
+            WaypointNameGenerator waypointNameGenerator,
             ref int objectiveIndex,
             ref Coordinates objectiveCoordinates,
             ObjectiveOption[] objectiveOptions,
@@ -223,9 +226,7 @@ namespace BriefingRoom4DCS.Generator
             extraSettings.Add("NoCM", true);
 
             var unitCoordinates = objectiveCoordinates;
-            var objectiveName = Toolbox.RandomFrom(ObjectiveNames);
-            ObjectiveNames.Remove(objectiveName);
-            objectiveName = objectiveName.ToUpperInvariant();
+            var objectiveName = waypointNameGenerator.GetWaypointName();
             if (TRANSPORT_TASKS.Contains(taskDB.ID))
             {
                 Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(

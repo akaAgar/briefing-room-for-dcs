@@ -18,8 +18,9 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using System;
+using System.Collections.Generic;
 using BriefingRoom4DCS.Mission.DCSLuaObjects;
+using BriefingRoom4DCS.Data;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -56,6 +57,22 @@ namespace BriefingRoom4DCS.Generator
                 Y = Coordinates.Y,
                 Name = Name,
             };
+        }
+    }
+
+    internal class WaypointNameGenerator
+    {
+        private readonly List<string> ObjectiveNames = new List<string>();
+        internal WaypointNameGenerator()
+        {
+             ObjectiveNames = new List<string>(Database.Instance.Common.Names.WPObjectivesNames.Get().Split(","));
+        }
+
+        internal string GetWaypointName()
+        {
+            var objectiveName = Toolbox.RandomFrom(ObjectiveNames);
+            ObjectiveNames.Remove(objectiveName);
+            return objectiveName.ToUpperInvariant();
         }
     }
 }
