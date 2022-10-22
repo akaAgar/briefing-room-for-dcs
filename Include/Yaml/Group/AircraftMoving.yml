@@ -9,6 +9,27 @@ waypoints:
   - alt: $ALTITUDE$
     action: Turning Point
     speed: $SPEED$
+    tasks:
+      - id: Option
+        parameters:
+          wrapped: true
+          value: 4
+          name: 18
+      - id: Option
+        parameters:
+          wrapped: true
+          value: 3
+          name: 0
+      - id: Option
+        parameters:
+          wrapped: true
+          value: 5
+          name: 1
+      - id: Option
+        parameters:
+          wrapped: true
+          value: 3
+          name: 1
     type: Turning Point
     etaLocked: true
     speedLocked: true

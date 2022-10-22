@@ -1,6 +1,6 @@
 lateActivation: true
 modulation: $RADIOBAND$
-task: Nothing
+task: CAP
 radioSet: true
 uncontrolled: false
 taskSelected: true
@@ -9,6 +9,36 @@ waypoints:
     action: Turning Point
     speed: $SPEED$
     tasks:
+      - id: EngageTargets
+        key: CAP
+        parameters:
+          targetTypes:
+            - Air
+      - id: Option
+        parameters:
+          wrapped: true
+          value: true
+          name: 17
+      - id: Option
+        parameters:
+          wrapped: true
+          value: 4
+          name: 18
+      - id: Option
+        parameters:
+          wrapped: true
+          value: 1
+          name: 0
+      - id: Option
+        parameters:
+          wrapped: true
+          value: 5
+          name: 1
+      - id: Option
+        parameters:
+          wrapped: true
+          value: 3
+          name: 1
       - id: Orbit
         auto: false
         parameters:

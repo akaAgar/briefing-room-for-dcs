@@ -10,6 +10,19 @@ waypoints:
     action: Turning Point
     speed: $SPEED$
     tasks:
+      - id: EngageTargets
+        key: CAS
+        parameters:
+          targetTypes:
+            - Helicopters
+            - Ground Units
+            - Light armed ships
+          priority: 0
+      - id: Option
+        parameters:
+          wrapped: true
+          value: 2
+          name: 1
       - id: Orbit
         parameters:
           altitude: $ALTITUDE$
