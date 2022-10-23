@@ -37,10 +37,13 @@ namespace BriefingRoom4DCS.Data
 
         internal List<LanguageString> BriefingDescriptions { get; private set; }
 
+        internal List<string> RelatedSituations {get; private set; }
+
         protected override bool OnLoad(string iniFilePath)
         {
             var ini = new INIFile(iniFilePath);
             Theater = ini.GetValue<string>("Situation", "Theater").ToLowerInvariant();
+            RelatedSituations = ini.GetValueList<string>("Situation", "RelatedSituations");
 
             RedCoordinates = new List<Coordinates>();
             foreach (string key in ini.GetKeysInSection("RedCoordinates"))

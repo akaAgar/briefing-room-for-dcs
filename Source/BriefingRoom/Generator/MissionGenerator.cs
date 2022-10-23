@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -67,6 +67,7 @@ namespace BriefingRoom4DCS.Generator
             // Copy values from the template
             mission.SetValue("BriefingTheater", theaterDB.UIDisplayName.Get());
             mission.SetValue("BriefingSituation", template.SpawnAnywhere ? "None" : situationDB.UIDisplayName.Get());
+            mission.SetValue("BriefingSituationId", template.SpawnAnywhere ? "None" : situationDB.ID);
             mission.SetValue("BriefingAllyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition].UIDisplayName.Get());
             mission.SetValue("BriefingEnemyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition.GetEnemy()].UIDisplayName.Get());
             mission.SetValue("EnableAudioRadioMessages", !template.OptionsMission.Contains("RadioMessagesTextOnly"));
@@ -119,6 +120,7 @@ namespace BriefingRoom4DCS.Generator
             airbasesGenerator.SetupAirbasesCoalitions(mission, playerAirbase);
             zoneMaker.AddAirbaseZones(template.MissionFeatures, playerAirbase, mission.MissionPackages);
             mission.SetValue("PlayerAirbaseName", playerAirbase.Name);
+            mission.SetValue("PlayerAirbaseId", playerAirbase.ID);
             mission.SetValue("MissionAirbaseX", playerAirbase.Coordinates.X);
             mission.SetValue("MissionAirbaseY", playerAirbase.Coordinates.Y);
 
@@ -132,7 +134,7 @@ namespace BriefingRoom4DCS.Generator
             var waypointNameGenerator = new WaypointNameGenerator();
             var objectiveCoordinates = new List<Coordinates>();
             var objectiveTargetUnitFamilies = new List<UnitFamily>();
-            var lastObjectiveCoordinates = playerAirbase.Coordinates;
+            var lastObjectiveCoordinates = template.FlightPlanObjectiveCoordinateHint.ToString() == "0,0" ? playerAirbase.Coordinates : template.FlightPlanObjectiveCoordinateHint;
             var objectivesGenerator = new MissionGeneratorObjectives(unitMaker, drawingMaker, template);
             var objectiveGroupedWaypoints = new List<List<Waypoint>>();
             var i = 0;

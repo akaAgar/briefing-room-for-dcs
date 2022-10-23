@@ -53,6 +53,8 @@ namespace BriefingRoom4DCS.Campaign
         private List<string> MissionObjectives_ = new List<string>();
         public Amount MissionsObjectiveCount { get; set; }
         public Amount MissionsObjectiveDistance { get; set; }
+        public Amount MissionsObjectiveVariationDistance { get; set; }
+        public Amount MissionsAirbaseVariationDistance { get; set; }
         public FogOfWar OptionsFogOfWar { get; set; }
         public List<string> OptionsMission { get { return OptionsMission_; } set { OptionsMission_ = Database.Instance.CheckIDs<DBEntryOptionsMission>(value.ToArray()).ToList(); } }
         private List<string> OptionsMission_ = new List<string>();
@@ -115,6 +117,8 @@ namespace BriefingRoom4DCS.Campaign
             MissionsObjectives = BriefingRoom.GetDatabaseEntriesIDs(DatabaseEntryType.ObjectivePreset).ToList();
             MissionsObjectiveCount = Amount.Average;
             MissionsObjectiveDistance = Amount.Average;
+            MissionsObjectiveVariationDistance = Amount.Average;
+            MissionsAirbaseVariationDistance = Amount.Average;
 
             OptionsFogOfWar = FogOfWar.All;
             OptionsMods = new List<string>();
@@ -173,6 +177,8 @@ namespace BriefingRoom4DCS.Campaign
             MissionsObjectives = ini.GetValueList<string>("Missions", "Objectives");
             MissionsObjectiveCount = ini.GetValue("Missions", "ObjectiveCount", MissionsObjectiveCount);
             MissionsObjectiveDistance = ini.GetValue("Missions", "ObjectiveDistance", MissionsObjectiveDistance);
+            MissionsObjectiveVariationDistance = ini.GetValue("Missions", "ObjectiveVariationDistance", MissionsObjectiveVariationDistance);
+            MissionsAirbaseVariationDistance = ini.GetValue("Missions", "AirbaseVariationDistance", MissionsAirbaseVariationDistance);
 
             OptionsFogOfWar = ini.GetValue("Options", "FogOfWar", OptionsFogOfWar);
             OptionsMods = ini.GetValueDistinctList<string>("Options", "Mods");
@@ -239,6 +245,8 @@ namespace BriefingRoom4DCS.Campaign
             ini.SetValueArray("Missions", "Objectives", MissionsObjectives.ToArray());
             ini.SetValue("Missions", "ObjectiveCount", MissionsObjectiveCount);
             ini.SetValue("Missions", "ObjectiveDistance", MissionsObjectiveDistance);
+            ini.SetValue("Missions", "ObjectiveVariationDistance", MissionsObjectiveVariationDistance);
+            ini.SetValue("Missions", "AirbaseVariationDistance", MissionsAirbaseVariationDistance);
 
             ini.SetValue("Options", "FogOfWar", OptionsFogOfWar);
             ini.SetValueArray("Options", "Mods", OptionsMods.ToArray());

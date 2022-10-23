@@ -46,11 +46,15 @@ namespace BriefingRoom4DCS.Campaign
 
             DateTime date = GenerateCampaignDate(campaignTemplate);
 
+            string previousSituationId = "";
+            Coordinates previousObjectiveCenterCoords = new Coordinates();
+            string previousPlayerAirbaseId = "";
+
             for (int i = 0; i < campaignTemplate.MissionsCount; i++)
             {
                 if (i > 0) date = IncrementDate(date);
 
-                var template = CreateMissionTemplate(campaignTemplate, campaign.Name, i, (int)campaignTemplate.MissionsObjectiveCount);
+                var template = CreateMissionTemplate(campaignTemplate, campaign.Name, i, (int)campaignTemplate.MissionsObjectiveCount, previousSituationId, previousObjectiveCenterCoords, previousPlayerAirbaseId);
 
                 var mission = await MissionGenerator.GenerateRetryableAsync(template, true);
 
@@ -66,6 +70,10 @@ namespace BriefingRoom4DCS.Campaign
                 mission.SetValue("BriefingDate", $"{date.Day:00}/{date.Month:00}/{date.Year:0000}");
 
                 campaign.AddMission(mission);
+
+                previousSituationId = mission.GetValue("BriefingSituationId");
+                previousObjectiveCenterCoords = new Coordinates(double.Parse(mission.GetValue("MissionCenterX")), double.Parse(mission.GetValue("MissionCenterY")));
+                previousPlayerAirbaseId = mission.GetValue("PlayerAirbaseId");
             }
 
             if (campaign.MissionCount < 1) // No missions generated, something went very wrong.
@@ -143,7 +151,10 @@ namespace BriefingRoom4DCS.Campaign
             return lua.Replace("\r\n", "\n");
         }
 
-        private static MissionTemplate CreateMissionTemplate(CampaignTemplate campaignTemplate, string campaignName, int missionIndex, int missionCount)
+        private static MissionTemplate CreateMissionTemplate(
+            CampaignTemplate campaignTemplate, string campaignName,
+            int missionIndex, int missionCount,
+            string previousSituationId, Coordinates previousObjectiveCenterCoords, string previousPlayerAirbaseId)
         {
             string weatherPreset = GetWeatherForMission(campaignTemplate.EnvironmentBadWeatherChance);
             var objDistance = GetObjectiveDistance(campaignTemplate.MissionsObjectiveDistance);
@@ -163,7 +174,7 @@ namespace BriefingRoom4DCS.Campaign
                 EnvironmentTimeOfDay = GetTimeOfDayForMission(campaignTemplate.EnvironmentNightMissionChance),
                 EnvironmentWeatherPreset = weatherPreset,
                 EnvironmentWind = GetWindForMission(campaignTemplate.EnvironmentBadWeatherChance, weatherPreset),
-                
+
                 FlightPlanObjectiveDistanceMax = objDistance.Max,
                 FlightPlanObjectiveDistanceMin = objDistance.Min,
                 FlightPlanTheaterStartingAirbase = campaignTemplate.PlayerStartingAirbase,
@@ -194,6 +205,26 @@ namespace BriefingRoom4DCS.Campaign
                 CombinedArmsJTACRed = campaignTemplate.CombinedArmsJTACRed,
             };
 
+            if (!String.IsNullOrEmpty(previousPlayerAirbaseId))
+            {
+                template.FlightPlanObjectiveCoordinateHint = previousObjectiveCenterCoords.CreateNearRandom(5 * Toolbox.NM_TO_METERS, GetObjectiveVariationDistance(campaignTemplate.MissionsObjectiveVariationDistance) * Toolbox.NM_TO_METERS); // TODO: Expose Max value 
+
+                var situationOptions = new List<string> { previousSituationId };
+                var previousSituationDB = Database.Instance.GetEntry<DBEntrySituation>(previousSituationId);
+                situationOptions.AddRange(previousSituationDB.RelatedSituations);
+                template.ContextSituation = Toolbox.RandomFrom(situationOptions.ToArray());
+                var nextSituationDB = Database.Instance.GetEntry<DBEntrySituation>(template.ContextSituation);
+
+                var airbases = nextSituationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"));
+                var previousPlayerAirbase = airbases.First(x => x.ID == previousPlayerAirbaseId);
+                var airbaseOptions = airbases.Where(x =>
+                    x.Coalition == template.ContextPlayerCoalition &&
+                    x.Coordinates.GetDistanceFrom(previousPlayerAirbase.Coordinates) < (GetAirbaseVariationDistance(campaignTemplate.MissionsAirbaseVariationDistance) * Toolbox.NM_TO_METERS)).ToList();
+                template.FlightPlanTheaterStartingAirbase = Toolbox.RandomFrom(airbaseOptions).ID;
+            }
+
+
+
             int objectiveCount = GetObjectiveCountForMission(campaignTemplate.MissionsObjectiveCount);
             for (int i = 0; i < objectiveCount; i++)
                 template.Objectives.Add(new MissionTemplateObjective(Toolbox.RandomFrom(campaignTemplate.MissionsObjectives)));
@@ -210,6 +241,30 @@ namespace BriefingRoom4DCS.Campaign
                 default: return new MinMaxI(80, 120); // case Amount.Average
                 case Amount.High: return new MinMaxI(100, 140);
                 case Amount.VeryHigh: return new MinMaxI(120, 160);
+            }
+        }
+
+        private static double GetObjectiveVariationDistance(Amount objectiveVariationDistance)
+        {
+            switch (objectiveVariationDistance)
+            {
+                case Amount.VeryLow: return 10;
+                case Amount.Low: return 25;
+                default: return 50; // case Amount.Average
+                case Amount.High: return 75;
+                case Amount.VeryHigh: return 100;
+            }
+        }
+
+        private static double GetAirbaseVariationDistance(Amount airbaseVariationDistance)
+        {
+            switch (airbaseVariationDistance)
+            {
+                case Amount.VeryLow: return 10;
+                case Amount.Low: return 25;
+                default: return 50; // case Amount.Average
+                case Amount.High: return 75;
+                case Amount.VeryHigh: return 100;
             }
         }
 
@@ -259,7 +314,7 @@ namespace BriefingRoom4DCS.Campaign
             return (AmountR)Toolbox.Clamp((int)amountDouble, (int)AmountR.VeryLow, (int)AmountR.VeryHigh);
         }
 
-         private static AmountNR GetPowerLevel(AmountNR amount, CampaignDifficultyVariation variation, int missionIndex, int missionsCount, bool reverseVariation = false)
+        private static AmountNR GetPowerLevel(AmountNR amount, CampaignDifficultyVariation variation, int missionIndex, int missionsCount, bool reverseVariation = false)
         {
             if (amount == AmountNR.None || amount == AmountNR.Random) return amount;
             if (variation == CampaignDifficultyVariation.Steady) return amount;

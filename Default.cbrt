@@ -17,6 +17,8 @@ difficultyvariation=Random
 objectives=AirbaseStrike,AntiShipStrike,CloseAirSupport,CombatAirPatrol,CombatSearchAndRescue,CommandoDrop,DeepStrike,DeepStrikeJTAC,DEAD,HeloHunt,Interception,Interdiction,InterdictionJTAC,OffensiveCounterAir,Reconnaissance
 objectivecount=Average
 objectivedistance=Average
+objectiveVariationDistance=Average
+airbaseVariationDistance=Average
 
 [options]
 fogofwar=All
