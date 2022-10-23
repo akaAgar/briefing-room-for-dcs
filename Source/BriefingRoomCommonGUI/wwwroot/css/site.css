@@ -327,7 +327,7 @@ th {
     margin: 0 1%;
 }
 
-#map {
+#map, #hintMap {
     height: 800px;
     width: 100%;
 }

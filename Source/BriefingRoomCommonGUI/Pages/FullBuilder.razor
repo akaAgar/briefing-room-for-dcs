@@ -133,6 +133,33 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="accordion" id="hintAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="hintheader">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hintCollapse" aria-expanded="false" aria-controls="hintCollapse" @onclick='async() => await RenderHintMap()'>
+                                    @BriefingRoom.Translate("LocationHint")
+                                </button>
+                                </h2>
+                                <div id="hintCollapse" class="accordion-collapse collapse" aria-labelledby="hintheader" data-bs-parent="#hintAccordion">
+                                    <div class="accordion-body">
+                                         @if(!string.IsNullOrEmpty(hintErrorMessage)){
+                                            <div class="alert alert-danger" role="alert">
+                                                @BriefingRoom.Translate("Error"): @hintErrorMessage
+                                            </div>
+                                        }
+                                        @if(!string.IsNullOrEmpty(hintMessage)){
+                                            <div class="alert alert-info" role="info">
+                                                @hintMessage
+                                            </div>
+                                        }
+                                        <button type="button" class="btn btn-secondary form-control" @onclick='async() => await ApplyLocationHint()' title='@BriefingRoom.Translate("TakeHint")'>@BriefingRoom.Translate("TakeHint")</button>
+                                        <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("HintNote")</p>
+                                        <div id="hintMap"></div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="generator-group flex-justify-spaced flex-margin-fix">
                             <div class="form-group flex-block">
                                 <label>@BriefingRoom.Translate("BorderLimit")</label>
@@ -572,6 +599,9 @@
 
     private bool spinner = false;
 
+    private string hintErrorMessage;
+    private string hintMessage;
+
     protected override void OnInitialized()
     {
         Template = new MissionTemplate();
@@ -693,6 +723,30 @@
         catch (Exception ex) {
             Console.WriteLine(ex);
         }
+    }
+
+    private async Task RenderHintMap()
+    {
+        await JSRuntime.InvokeVoidAsync("RenderHintMap", Template.ContextTheater);
+    }
+
+    private async Task ApplyLocationHint()
+    {
+        try
+        {
+           hintMessage = "";
+           hintErrorMessage = "";
+           var result = await JSRuntime.InvokeAsync<double[]>("GetHintPoint", Template.ContextTheater);
+           Template.FlightPlanObjectiveCoordinateHint = result; 
+           hintMessage = "Hint Taken";
+           StateHasChanged();
+        }
+        catch (System.Exception)
+        {
+            hintErrorMessage = "Failed to take hint.";
+        }
+        StateHasChanged();
+        
     }
 
     private string tab = "context-&-enviroment";

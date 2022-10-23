@@ -58,7 +58,8 @@ namespace BriefingRoom4DCS.Template
         private int FlightPlanObjectiveSeparationMax_;
         public int FlightPlanObjectiveSeparationMin { get { return FlightPlanObjectiveSeparationMin_; } set { FlightPlanObjectiveSeparationMin_ = Toolbox.Clamp(value, 0, MAX_OBJECTIVE_SEPARATION); } }
         private int FlightPlanObjectiveSeparationMin_;
-        internal Coordinates FlightPlanObjectiveCoordinateHint { get; set; }
+        public double[] FlightPlanObjectiveCoordinateHint { set { FlightPlanObjectiveCoordinateHint_ = new Coordinates(value[0], value[1]); } }
+        internal Coordinates FlightPlanObjectiveCoordinateHint_ { get; set; }
         public int BorderLimit { get { return BorderLimit_; } set { BorderLimit_ = Toolbox.Clamp(value, MIN_BORDER_LIMIT, MAX_BORDER_LIMIT); } }
         private int BorderLimit_;
         public string FlightPlanTheaterStartingAirbase { get; set; }

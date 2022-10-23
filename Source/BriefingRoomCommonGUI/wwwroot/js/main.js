@@ -1,6 +1,6 @@
 const waypointColors = ["Cyan", "orange", "Chartreuse", "Magenta", "DeepPink", "Gold"]
 let mapGroups = {}
-let leafMap
+let leafMap, leafHintMap, hintPos, hintMarker, hintMarkerMap
 async function BlazorDownloadFile(filename, contentType, data) {
   // Create the URL
   const fileType = filename.split(".").at(-1)
@@ -79,6 +79,57 @@ const GetMapData = Memoize(async (map) => {
   }
 })
 
+function distance(p, point) {
+  return Math.sqrt(Math.pow(point.lat - p.x, 2) + Math.pow(point.lng - p.y, 2))
+}
+
+async function RenderHintMap(map) {
+  if(map != hintMarkerMap)
+  {
+    hintPos = null
+    hintMarker = null
+  }
+  var MapCoordMap = await GetMapData(map)
+  if (leafHintMap) {
+    leafHintMap.off();
+    leafHintMap.remove();
+  }
+
+  try {
+    leafHintMap = L.map('hintMap')
+    L.esri.basemapLayer("Imagery").addTo(leafHintMap);
+    L.esri.basemapLayer("ImageryLabels").addTo(leafHintMap);
+  } catch (error) {
+    console.warn(error)
+  }
+  if(hintPos){
+    hintMarker = new L.marker([hintPos.x, hintPos.y]).addTo(leafHintMap);
+  }
+  let keys = Object.keys(MapCoordMap);
+  let randomPos = MapCoordMap[keys[Math.floor(keys.length * Math.random())]];
+  leafHintMap.setView([randomPos["x"], randomPos["y"]], 6.5);
+  leafHintMap.on('click', function (e) {
+    hintMarkerMap = map
+    hintPos = Object.values(MapCoordMap).reduce((a, b) => distance(a, e.latlng) < distance(b, e.latlng) ? a : b);
+    if (!hintMarker) {
+      hintMarker = new L.marker([hintPos.x, hintPos.y]).addTo(leafHintMap);
+    } else {
+      hintMarker.setLatLng([hintPos.x, hintPos.y])
+    }
+  });
+}
+
+async function GetHintPoint(map) {
+  var MapCoordMap = await GetMapData(map)
+  for (const key in MapCoordMap) {
+    const pos = MapCoordMap[key]
+    if (hintPos.x == pos.x && hintPos.y == pos.y) {
+      const parts = key.replace("x:", "").replace("z:", "").split(",")
+      return parts.map(x => parseFloat(x));
+    }
+  }
+}
+
 async function RenderMap(mapData, map) {
   var MapCoordMap = await GetMapData(map)
   if (leafMap) {
@@ -142,7 +193,7 @@ function AddIcon(key, data, map, MapCoordMap) {
 }
 
 function AddWaypoint(key, data, map, MapCoordMap) {
-  const title =  key.replace("WAYPOINT_", "")
+  const title = key.replace("WAYPOINT_", "")
   const coords = GetFromMapCoordData(data[0], MapCoordMap)
   new L.circleMarker(coords, {
     title: title,
