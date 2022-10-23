@@ -166,7 +166,6 @@ namespace BriefingRoom4DCS.Generator
                 featuresID,
                 ref objectiveCoordinatesList,
                 ref objectiveTargetUnitFamilies);
-                mission.MapData.Add($"OBJECTIVE_SMALL_AREA{objectiveIndex}", new List<double[]> { objectiveCoords.ToArray() });
         }
 
         private void CreateObjective(
@@ -314,6 +313,7 @@ namespace BriefingRoom4DCS.Generator
             var waypoint = GenerateObjectiveWaypoint(task, objectiveCoordinates, objectiveName, template);
             waypoints.Add(waypoint);
             waypointList.Add(waypoint);
+            mission.MapData.Add($"OBJECTIVE_AREA_{objectiveIndex}", new List<double[]> { waypoint.Coordinates.ToArray() });
             objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);
             if(!targetGroupInfo.Value.UnitDB.IsAircraft)
                 mission.MapData.Add($"UNIT-{targetGroupInfo.Value.UnitDB.Families[0]}-{taskDB.TargetSide}-{targetGroupInfo.Value.GroupID}", new List<double[]>{targetGroupInfo.Value.Coordinates.ToArray()});

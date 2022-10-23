@@ -134,7 +134,7 @@ function AddIcon(key, data, map, MapCoordMap) {
     new L.Marker(GetFromMapCoordData(data[0], MapCoordMap), {
       title: GetTitle(key),
       icon: new L.DivIcon({
-        html: `<img class="map_point_icon ${key.includes("OBJECTIVE_SMALL") ? 'map_unit' : ''}" src="_content/BriefingRoomCommonGUI/img/nato-icons/${GetNatoIcon(key)}.svg" alt="${key}"/>`
+        html: `<img class="map_point_icon" src="_content/BriefingRoomCommonGUI/img/nato-icons/${GetNatoIcon(key)}.svg" alt="${key}"/>`
       }),
       zIndexOffset: key == "AIRBASE_HOME" || key.includes("OBJECTIVE_AREA") ? 200 : 100
     }).addTo(map)
