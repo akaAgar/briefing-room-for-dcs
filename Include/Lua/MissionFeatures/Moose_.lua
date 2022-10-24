@@ -1,3 +1,4 @@
+-- BR SINGLETON FLAG
 env.info('*** MOOSE GITHUB Commit Hash ID: 2022-09-23T08:28:35.0000000Z-d8bdf6a8d3cd24cbdea114ea3ddc309c96b35ddd ***')
 env.info('*** MOOSE STATIC INCLUDE START *** ')
 ENUMS={}

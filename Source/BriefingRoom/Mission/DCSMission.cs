@@ -43,6 +43,8 @@ namespace BriefingRoom4DCS.Mission
 
         private readonly Dictionary<string, object> MediaFiles;
 
+        internal HashSet<string> SingletonSet { get; }
+
         internal Dictionary<int, Coalition> Airbases { get; }
 
         internal Dictionary<Coalition, List<int>> PopulatedAirbaseIds { get; }
@@ -81,6 +83,7 @@ namespace BriefingRoom4DCS.Mission
             MissionPackages = new List<DCSMissionPackage>();
             MediaFiles = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
             Values = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
+            SingletonSet = new HashSet<string>();
             MapData = new Dictionary<string, List<double[]>>();
             PopulatedAirbaseIds = new Dictionary<Coalition, List<int>>{
                     {Coalition.Blue, new List<int>()},
@@ -116,6 +119,14 @@ namespace BriefingRoom4DCS.Mission
         internal void AppendValue(string key, string value)
         {
             SetValue(key, value, true);
+        }
+
+        internal void AppendSingletonValue(string id, string key, string value)
+        {
+            if(SingletonSet.Contains(id))
+                return;
+            AppendValue(key, value);
+            SingletonSet.Add(id);
         }
 
         private void SetValue(string key, string value, bool append)
