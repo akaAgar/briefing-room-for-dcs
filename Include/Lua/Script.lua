@@ -310,7 +310,7 @@ end
 function dcsExtensions.getAllPlayers()
   local players = { }
   
-  for i=1,2 do
+  for coaName, i in pairs(coalition.side) do
     for _,g in pairs(coalition.getGroups(i)) do
       for __,u in pairs(g:getUnits()) do
         if u:getPlayerName() ~= nil then
@@ -373,7 +373,7 @@ end
 
 function dcsExtensions.getGroupNamesContaining(search)
   local groups = { }
-  for i=1,2 do
+  for coaName, i in pairs(coalition.side) do
     for _,g in pairs(coalition.getGroups(i)) do
         if string.match(g:getName(), search) then
           table.insert(groups, g:getName())
@@ -386,7 +386,7 @@ end
 
 function dcsExtensions.getUnitNamesByGroupNameSuffix(suffix)
   local unitNames = {}
-  for i=1,2 do
+  for coaName, i in pairs(coalition.side) do
     for _,g in pairs(coalition.getGroups(i)) do
         if string.endsWith(g:getName(), suffix) then
           for _,u in pairs(g:getUnits()) do
