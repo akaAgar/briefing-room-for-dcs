@@ -111,7 +111,7 @@ namespace BriefingRoom4DCS.Generator
                     groupInfo.Value.UnitDB.IsAircraft &&
                     !featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.StaticAircraft))
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
-                            $"{groupInfo.Value.Name}\t" +
+                            $"{groupInfo.Value.Name.Split("-")[0]}\t" +
                             $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get()}\t" +
                             $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}{TACANStr}\t" +
                             $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}"); // TODO: human-readable payload name
@@ -256,7 +256,7 @@ namespace BriefingRoom4DCS.Generator
                    groupInfo.Value.UnitDB.IsAircraft &&
                    !featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.StaticAircraft))
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
-                            $"{groupInfo.Value.Name}\t" +
+                            $"{groupInfo.Value.Name.Split("-")[0]}\t" +
                             $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get()}\t" +
                             $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
                             $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}");
