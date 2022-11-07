@@ -108,7 +108,8 @@ namespace BriefingRoom4DCS.Generator
                     groupSide == Side.Ally &&
                     groupInfo.HasValue &&
                     groupInfo.Value.UnitDB != null &&
-                    groupInfo.Value.UnitDB.IsAircraft)
+                    groupInfo.Value.UnitDB.IsAircraft &&
+                    !featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.StaticAircraft))
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
                             $"{groupInfo.Value.Name}\t" +
                             $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get()}\t" +
@@ -252,7 +253,8 @@ namespace BriefingRoom4DCS.Generator
                    groupSide == Side.Ally &&
                    groupInfo.HasValue &&
                    groupInfo.Value.UnitDB != null &&
-                   groupInfo.Value.UnitDB.IsAircraft)
+                   groupInfo.Value.UnitDB.IsAircraft &&
+                   !featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.StaticAircraft))
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
                             $"{groupInfo.Value.Name}\t" +
                             $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get()}\t" +
