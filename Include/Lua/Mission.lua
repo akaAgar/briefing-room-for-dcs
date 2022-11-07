@@ -255,6 +255,10 @@ mission =
         }, -- end of ["wind"]
         ["enable_fog"] = $WEATHERFOG$,
         ["groundTurbulence"] = $WEATHERGROUNDTURBULENCE$,
+        ["halo"] = 
+        {
+            ["preset"] = "auto",
+        }, -- end of ["halo"]
         ["enable_dust"] = $WEATHERDUST$,
         ["season"] = 
         {
