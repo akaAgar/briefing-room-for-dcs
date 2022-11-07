@@ -611,6 +611,33 @@ function briefingRoom.aircraftActivator.possibleResponsiveSpawn()
   end
 end
 
+function briefingRoom.aircraftActivator.convertToStatic()
+  local queue = dcsExtensions.getGroupNamesContaining("-STATIC-") -- aircraft to be converted to static version on mission load for performance
+  for k, name in pairs(queue) do
+    local acGroup = Group.getByName(name) -- get the group
+    local mistGroupData = mist.getGroupData(name)
+    for l, unit in pairs(acGroup:getUnits()) do
+      local unitpos = unit:getPosition()
+      local unitPoint = dcsExtensions.toVec2(unit:getPoint())
+      local vars = 
+      {
+        type = unit:getTypeName(),
+        country = unit:getCountry(),
+        category = unit:getCategory(),
+        x = unitPoint['x'],
+        y = unitPoint['y'],
+        heading =  mist.getHeading(unit),
+        livery_id = mistGroupData.units[l].livery_id
+      }
+      unit:destroy()
+      mist.dynAddStatic(vars)
+    end
+    acGroup:destroy()
+  end
+end
+
+briefingRoom.aircraftActivator.convertToStatic()
+
 briefingRoom.aircraftActivator.reserveQueueInitialCount = #briefingRoom.aircraftActivator.reserveQueue
 
 -- ===================================================================================

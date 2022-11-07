@@ -40,5 +40,6 @@ namespace BriefingRoom4DCS.Generator
         Inert = 128,
         Invisible = 256,
         ScrambleStart = 512,
+        StaticAircraft = 1024,
     }
 }

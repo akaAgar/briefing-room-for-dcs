@@ -59,6 +59,9 @@ namespace BriefingRoom4DCS.Generator
 
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Immortal))
                     groupFlags |= UnitMakerGroupFlags.Immortal;
+                
+                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.StaticAircraft))
+                    groupFlags |= UnitMakerGroupFlags.StaticAircraft;
 
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Inert))
                     groupFlags |= UnitMakerGroupFlags.Inert;
@@ -313,6 +316,7 @@ namespace BriefingRoom4DCS.Generator
             groupInfo.Value.DCSGroup.Waypoints[0].Y = (float)carrier.UnitMakerGroupInfo.Coordinates.Y;
             groupInfo.Value.DCSGroup.X = (float)carrier.UnitMakerGroupInfo.Coordinates.X;
             groupInfo.Value.DCSGroup.Y = (float)carrier.UnitMakerGroupInfo.Coordinates.Y;
+            groupInfo.Value.DCSGroup.Name = groupInfo.Value.DCSGroup.Name.Replace("-STATIC-", ""); // Remove Static code if on carrier as we can't replace it automatically
             carrier.RemainingSpotCount = carrier.RemainingSpotCount - unitCount;
         }
 
