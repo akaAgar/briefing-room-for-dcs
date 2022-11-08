@@ -327,7 +327,7 @@ th {
     margin: 0 1%;
 }
 
-#map, #hintMap {
+#map, #hintMap, #situationMap {
     height: 800px;
     width: 100%;
 }
@@ -357,6 +357,11 @@ th {
 .leaflet-div-icon {
     background-color: transparent;
     border-color: transparent;
+}
+
+.leaflet-div-icon.leaflet-editing-icon {
+    background-color: #fff;
+    border-color: #666;
 }
 
 .arrow-icon {
