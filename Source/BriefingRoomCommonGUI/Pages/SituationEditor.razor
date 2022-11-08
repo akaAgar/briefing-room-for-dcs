@@ -1,0 +1,112 @@
+@page "/SituationEditor"
+@inject IJSRuntime JSRuntime
+@using BriefingRoom4DCS
+@using Polly
+
+
+<div class="title-bar">
+  <h1>@BriefingRoom.Translate("SituationEditor")</h1>
+</div>
+<div class="generator-group">
+  <div class="generator-form">
+    <div>
+      @if (!string.IsNullOrEmpty(errorMessage))
+      {
+        <div class="alert alert-danger" role="alert">
+          Error: @errorMessage
+        </div>
+      }
+    </div>
+    <div class="full-width">
+      <EditForm Model="ContextTheater">
+        <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Theater") @bind-Value="ContextTheater"
+          DataBaseType="DatabaseEntryType.Theater" />
+        <button class="btn btn-primary form-control"
+          @onclick="() => GetMapAsync()">@BriefingRoom.Translate("SetMap")</button>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="sideRadio" value="BLUE" id="RadioBLUFOR" checked>
+          <label class="form-check-label" for="RadioBLUFOR">
+            @BriefingRoom.Translate("Blue")
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="sideRadio" value="RED" id="RadioREDFOR">
+          <label class="form-check-label" for="RadioREDFOR">
+            @BriefingRoom.Translate("Red")
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="sideRadio" value="NEUTRAL" id="RadioNEUTRAL">
+          <label class="form-check-label" for="RadioNEUTRAL">
+            @BriefingRoom.Translate("Neutral")
+          </label>
+        </div>
+      </EditForm>
+    </div>
+    <div>
+      <div id="situationMap"></div>
+      <button class="btn btn-primary form-control"
+        @onclick="() => GenerateSituation()">@BriefingRoom.Translate("GenerateSituation")</button>
+      @if (!String.IsNullOrEmpty(GeneratedSituation))
+      {
+        <div>
+          <h3>@BriefingRoom.Translate("GeneratedSituation")</h3>
+          <p>@BriefingRoom.Translate("GeneratedSituationInstructions")</p>
+          <textarea @bind="GeneratedSituation" class="form-control long" spellcheck="true"></textarea>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+
+@code {
+  private string errorMessage;
+  private string ContextTheater = "Caucasus";
+  private string GeneratedSituation = "";
+
+  private async Task GetMapAsync()
+  {
+    await Policy.Handle<Exception>().RetryAsync(3).ExecuteAsync(async () => await
+    JSRuntime.InvokeVoidAsync("RenderEditorMap", ContextTheater));
+  }
+
+  private async Task GenerateSituation()
+  {
+    errorMessage = "";
+    try
+    {
+      var result = await JSRuntime.InvokeAsync<string[]>("GetSituationCoordinates", ContextTheater);
+      var RedCoordString = result[0];
+      var BlueCoordString = result[1];
+      var NeuturalCoordsString = result[2];
+      var NeuturalCoordsTitle = !String.IsNullOrEmpty(NeuturalCoordsString) ? "[NoSpawnCoordinates]" : "";
+      GeneratedSituation = $@"[GUI]
+DisplayName=<NAME HERE>
+
+[BriefingDescription]
+briefing000=<BRIEFING DESCRIPTION>
+briefing001=<ALTERNATE BRIEFING DESCRIPTION>
+; You can add more if you want just increment the number up
+
+[Situation]
+Theater={ContextTheater}
+; RelatedSituations=<FILE NAMES OF LINKED SITUATIONS FOR CAMPAIGNS>
+
+[RedCoordinates]
+{RedCoordString}
+
+[BlueCoordinates]
+{BlueCoordString}
+
+{NeuturalCoordsTitle}
+{NeuturalCoordsString}
+";
+    }
+    catch (System.Exception e)
+    {
+      errorMessage = $"Must have Red and Blue Zones {e.Message}";
+      return;
+    }
+
+  }
+}
