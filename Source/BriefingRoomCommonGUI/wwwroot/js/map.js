@@ -129,11 +129,12 @@ async function RenderEditorMap(map) {
                 },
                 showArea: true,
                 metric: false,
-                repeatMode: true
+                repeatMode: false
             },
             polyline: false,
-            rect: false,
+            rectangle: false,
             circle: false,
+            circlemarker: false,
             marker: false
         },
         edit: {
