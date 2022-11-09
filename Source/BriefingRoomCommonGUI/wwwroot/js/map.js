@@ -195,7 +195,7 @@ async function GetSituationCoordinates(map) {
     return [redCoordsString, blueCoordsString, neutralCoordString]
 }
 
-async function RenderMap(mapData, map) {
+async function RenderMap(mapData, map, inverted) {
     var MapCoordMap = await GetMapData(map)
     if (leafMap) {
         leafMap.off();
@@ -221,7 +221,7 @@ async function RenderMap(mapData, map) {
         }
         data = mapData[key]
         if (data.length == 1) {
-            AddIcon(key, data, leafMap, MapCoordMap)
+            AddIcon(key, data, leafMap, MapCoordMap, inverted)
         } else if (key.includes("ROUTE_")) {
             AddWaypoints(data, leafMap, MapCoordMap)
         } else {
@@ -241,16 +241,16 @@ function addButtons() {
     }).addTo(leafMap);
 }
 
-function AddIcon(key, data, map, MapCoordMap) {
+function AddIcon(key, data, map, MapCoordMap, inverted) {
     if (key.startsWith("UNIT")) {
-        AddUnit(key, data, map, MapCoordMap)
+        AddUnit(key, data, map, MapCoordMap, inverted)
     } else if (key.includes("WAYPOINT_")) {
         AddWaypoint(key, data, map, MapCoordMap)
     } else {
         new L.Marker(GetFromMapCoordData(data[0], MapCoordMap), {
             title: GetTitle(key),
             icon: new L.DivIcon({
-                html: `<img class="map_point_icon" src="_content/BriefingRoomCommonGUI/img/nato-icons/${GetNatoIcon(key)}.svg" alt="${key}"/>`
+                html: `<img class="map_point_icon" src="_content/BriefingRoomCommonGUI/img/nato-icons/${GetNatoIcon(key, inverted)}.svg" alt="${key}"/>`
             }),
             zIndexOffset: key == "AIRBASE_HOME" || key.includes("OBJECTIVE_AREA") ? 200 : 100
         }).addTo(map)
@@ -276,21 +276,21 @@ function AddWaypoint(key, data, map, MapCoordMap) {
     }).addTo(map)
 }
 
-function AddUnit(key, data, map, MapCoordMap) {
+function AddUnit(key, data, map, MapCoordMap, inverted) {
     const coords = GetFromMapCoordData(data[0], MapCoordMap)
     group = mapGroups[GetGroup(key)]
     group.addLayer(new L.Marker(coords, {
         title: GetTitle(key),
         icon: new L.DivIcon({
-            html: `<img class="map_point_icon map_unit"src="_content/BriefingRoomCommonGUI/img/nato-icons/${GetNatoIcon(key)}.svg" alt="${key}"/>`
+            html: `<img class="map_point_icon map_unit"src="_content/BriefingRoomCommonGUI/img/nato-icons/${GetNatoIcon(key, inverted)}.svg" alt="${key}"/>`
         })
     }))
     const range = GetRange(key);
     if (range > 0) {
         group.addLayer(new L.Circle(coords, {
             radius: range,
-            color: GetColour(key),
-            fillColor: GetColour(key),
+            color: GetColour(key, inverted),
+            fillColor: GetColour(key, inverted),
             fillOpacity: 0.25,
             zIndexOffset: 99999999999
         }))
@@ -399,12 +399,12 @@ function GetTitle(id) {
     }
 }
 
-function GetColour(id) {
+function GetColour(id, inverted) {
     switch (true) {
         case id.includes("Enemy"):
-            return '#bb0000'
+            return inverted ? '#5555bb' : '#bb0000'
         case id.includes("Ally"):
-            return '#5555bb'
+            return inverted ? '#bb0000' : '#5555bb'
         case id.includes("RED"):
             return '#ff000055'
         case id.includes("BLUE"):
@@ -429,14 +429,14 @@ function GetColour(id) {
 }
 
 
-function GetNatoIcon(id) {
-    let prefix = ""
+function GetNatoIcon(id, invert = false) {
+    let prefix = invert ? "RED_" : "BLUE_"
     switch (true) {
         case id.includes("Enemy"):
-            prefix = "RED_"
+            prefix = invert ? "BLUE_" : "RED_"
             break
-        case id.includes("Ally"):
-            prefix = "BLUE_"
+        case id.includes("Neutral"):
+            prefix = "GREEN_"
             break
     }
     switch (true) {
@@ -445,9 +445,9 @@ function GetNatoIcon(id) {
         case id.includes("OBJECTIVE"):
             return "OBJECTIVE"
         case id.includes("FOB"):
-            return 'FOB'
+            return prefix + 'FOB'
         case id.includes("CARRIER"):
-            return 'CARRIER'
+            return prefix + 'CARRIER'
         case id.includes("SAM"):
             switch (true) {
                 case id.includes("Long"):

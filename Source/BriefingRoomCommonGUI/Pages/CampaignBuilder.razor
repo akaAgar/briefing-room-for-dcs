@@ -464,7 +464,7 @@
             campaign = await Layout.briefingRoom.GenerateCampaignAsync(Template);
             missionTab = campaign.Missions.First();
             StateHasChanged();
-            await Policy.Handle<Exception>().RetryAsync(3).ExecuteAsync(async () => await JSRuntime.InvokeVoidAsync("RenderMap", missionTab.GetMapData(), Template.ContextTheater));
+            await Policy.Handle<Exception>().RetryAsync(3).ExecuteAsync(async () => await JSRuntime.InvokeVoidAsync("RenderMap", missionTab.GetMapData(), Template.ContextTheater, Template.ContextPlayerCoalition == Coalition.Red));
         } catch (Exception ex){
             Console.WriteLine(ex);
             errorMessage = ex.Message;
@@ -559,7 +559,7 @@
     private void SetMissionTab(DCSMission var)
     {
         missionTab = var;
-        Policy.Handle<Exception>().RetryAsync(3).ExecuteAsync(async () => await JSRuntime.InvokeVoidAsync("RenderMap", missionTab.GetMapData(), Template.ContextTheater));
+        Policy.Handle<Exception>().RetryAsync(3).ExecuteAsync(async () => await JSRuntime.InvokeVoidAsync("RenderMap", missionTab.GetMapData(), Template.ContextTheater, Template.ContextPlayerCoalition == Coalition.Red));
     }
 
     private List<string> GetLiveries(string aircraftId) =>
