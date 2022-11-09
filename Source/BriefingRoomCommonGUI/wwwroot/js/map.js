@@ -167,29 +167,30 @@ async function RenderEditorMap(map) {
     });
 }
 
-
-
-function CoordToString(coord, MapCoordMap) {
-    const spotKey = Object.keys(MapCoordMap).find(k => distance(MapCoordMap[k], coord) < 0.007)
-    if (spotKey == undefined) {
-        const min_dist = Object.keys(MapCoordMap).map(k => distance(MapCoordMap[k], coord)).reduce((min, v) => min <= v ? min : v, Infinity)
-        throw `Can't find coordinate spot to map to. Nearest is ${min_dist}`
-    }
-    return spotKey.replace("x:", "").replace("z:", "")
+function CoordFind(coord, MapCoordMap) {
+    return Object.keys(MapCoordMap).map(k => ({ k, d: distance(MapCoordMap[k], coord), v: MapCoordMap[k] })).reduce((min, v) => min.d <= v.d ? min : v, { d: Infinity })
 }
 
-function CreateCoordsString(coords, MapCoordMap) {
-    return coords.map((x, i) => `Waypoint${i.toString().padStart(4, "0")}=${CoordToString(x, MapCoordMap)}`).join("\n")
+
+function CoordToString(spot) {
+    return spot.k.replace("x:", "").replace("z:", "")
+}
+
+function CreateCoordsString(layer, MapCoordMap) {
+    const coordMap = layer.editing.latlngs[0][0].map(x => CoordFind(x, MapCoordMap))
+    const newCoords = coordMap.map(x => ({ lat: x.v.x, lng: x.v.y }))
+    layer.setLatLngs(newCoords)
+    return coordMap.map((x, i) => `Waypoint${i.toString().padStart(4, "0")}=${CoordToString(x)}`).join("\n")
 }
 
 async function GetSituationCoordinates(map) {
     let redCoordsString, blueCoordsString, neutralCoordString;
     var MapCoordMap = await GetMapData(map)
 
-    blueCoordsString = CreateCoordsString(situationMapLayers.BLUE.editing.latlngs[0][0], MapCoordMap)
-    redCoordsString = CreateCoordsString(situationMapLayers.RED.editing.latlngs[0][0], MapCoordMap)
+    blueCoordsString = CreateCoordsString(situationMapLayers.BLUE, MapCoordMap)
+    redCoordsString = CreateCoordsString(situationMapLayers.RED, MapCoordMap)
     if (situationMapLayers.NEUTRAL) {
-        neutralCoordString = CreateCoordsString(situationMapLayers.NEUTRAL.editing.latlngs[0][0], MapCoordMap)
+        neutralCoordString = CreateCoordsString(situationMapLayers.NEUTRAL, MapCoordMap)
     }
     return [redCoordsString, blueCoordsString, neutralCoordString]
 }
