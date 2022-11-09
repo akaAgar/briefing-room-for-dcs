@@ -59,7 +59,7 @@ namespace BriefingRoom4DCS.Generator
 
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Immortal))
                     groupFlags |= UnitMakerGroupFlags.Immortal;
-                
+
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.StaticAircraft))
                     groupFlags |= UnitMakerGroupFlags.StaticAircraft;
 
@@ -116,8 +116,8 @@ namespace BriefingRoom4DCS.Generator
                             $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}{TACANStr}\t" +
                             $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}"); // TODO: human-readable payload name
 
-                if(!groupInfo.Value.UnitDB.IsAircraft)
-                    mission.MapData.Add($"UNIT-{groupInfo.Value.UnitDB.Families[0]}-{groupSide}-{groupInfo.Value.GroupID}", new List<double[]>{groupInfo.Value.Coordinates.ToArray()});
+                if (!groupInfo.Value.UnitDB.IsAircraft)
+                    mission.MapData.Add($"UNIT-{groupInfo.Value.UnitDB.Families[0]}-{groupSide}-{groupInfo.Value.GroupID}", new List<double[]> { groupInfo.Value.Coordinates.ToArray() });
 
                 if (featureDB.ExtraGroups.Max > 1)
                     SpawnExtraGroups(featureDB, mission, groupSide, groupFlags, coordinatesValue, coordinates2.Value, extraSettings);
@@ -134,9 +134,11 @@ namespace BriefingRoom4DCS.Generator
             }
 
             if (!string.IsNullOrEmpty(featureDB.IncludeLuaSettings)) featureLua = featureDB.IncludeLuaSettings + "\n";
-            foreach (string luaFile in featureDB.IncludeLua){
+            foreach (string luaFile in featureDB.IncludeLua)
+            {
                 var fileLua = Toolbox.ReadAllTextIfFileExists($"{featureDB.SourceLuaDirectory}{luaFile}");
-                if(fileLua.StartsWith("-- BR SINGLETON FLAG")){ // Script should be used only once in the app and should be ordered infront of all feature scripts
+                if (fileLua.StartsWith("-- BR SINGLETON FLAG"))
+                { // Script should be used only once in the app and should be ordered infront of all feature scripts
                     mission.AppendSingletonValue(luaFile, "ScriptSingletons", fileLua);
                     continue;
                 }
@@ -153,8 +155,8 @@ namespace BriefingRoom4DCS.Generator
             // Add feature ogg files
             foreach (string oggFile in featureDB.IncludeOgg)
                 mission.AddMediaFile($"l10n/DEFAULT/{oggFile}", $"{BRPaths.INCLUDE_OGG}{oggFile}");
-            
-            if(!String.IsNullOrEmpty(featureDB.IncludeOggFolder))
+
+            if (!String.IsNullOrEmpty(featureDB.IncludeOggFolder))
                 mission.AddMediaFolder(featureDB.IncludeOggFolder, $"{BRPaths.INCLUDE_OGG}{featureDB.IncludeOggFolder}");
 
             return groupInfo;
@@ -260,8 +262,8 @@ namespace BriefingRoom4DCS.Generator
                             $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get()}\t" +
                             $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
                             $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}");
-                if(!groupInfo.Value.UnitDB.IsAircraft)
-                    mission.MapData.Add($"UNIT-{groupInfo.Value.UnitDB.Families[0]}-{groupSide}-{groupInfo.Value.GroupID}", new List<double[]>{groupInfo.Value.Coordinates.ToArray()});
+                if (!groupInfo.Value.UnitDB.IsAircraft)
+                    mission.MapData.Add($"UNIT-{groupInfo.Value.UnitDB.Families[0]}-{groupSide}-{groupInfo.Value.GroupID}", new List<double[]> { groupInfo.Value.Coordinates.ToArray() });
             }
         }
 
@@ -283,7 +285,7 @@ namespace BriefingRoom4DCS.Generator
                 var midPoint = Coordinates.Lerp(coordinates, coordinates2, 0.4);
                 extraSettings.AddIfKeyUnused("GroupMidX", midPoint.X);
                 extraSettings.AddIfKeyUnused("GroupMidY", midPoint.Y);
-                mission.MapData.AddIfKeyUnused($"AIRBASE_AI_{groupSide}_${airbase.Name}",  new List<double[]> {  airbase.Coordinates.ToArray() });
+                mission.MapData.AddIfKeyUnused($"AIRBASE_AI_{groupSide}_${airbase.Name}", new List<double[]> { airbase.Coordinates.ToArray() });
             }
         }
 

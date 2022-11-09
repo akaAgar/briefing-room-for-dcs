@@ -327,7 +327,9 @@ th {
     margin: 0 1%;
 }
 
-#map, #hintMap, #situationMap {
+#map,
+#hintMap,
+#situationMap {
     height: 800px;
     width: 100%;
 }
@@ -347,7 +349,7 @@ th {
     left: -10px;
 }
 
-.map-label{
+.map-label {
     font-weight: bold;
     position: relative;
     left: 25px;

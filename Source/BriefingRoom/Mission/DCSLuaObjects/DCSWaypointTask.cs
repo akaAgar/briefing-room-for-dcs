@@ -10,7 +10,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         public bool Auto { get; init; } = true;
         public string Id { get; init; }
         public string Key { get; set; }
-        public int Priority {get; set;} = 9;
+        public int Priority { get; set; } = 9;
         private Dictionary<string, object> _parameters = new Dictionary<string, object>();
         public Dictionary<string, object> parameters
         {

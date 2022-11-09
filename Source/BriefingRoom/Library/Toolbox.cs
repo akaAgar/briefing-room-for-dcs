@@ -574,10 +574,10 @@ namespace BriefingRoom4DCS
                     GetMinMaxCoords(coord, ref minX, ref minY, ref maxX, ref maxY);
                 }
             }
-            mission.SetValue("TheaterMinX", Math.Floor(minX/1000)*1000);
-            mission.SetValue("TheaterMinY", Math.Floor(minY/1000)*1000);
-            mission.SetValue("TheaterMaxX", Math.Ceiling(maxX/1000)*1000);
-            mission.SetValue("TheaterMaxY", Math.Ceiling(maxY/1000)*1000);
+            mission.SetValue("TheaterMinX", Math.Floor(minX / 1000) * 1000);
+            mission.SetValue("TheaterMinY", Math.Floor(minY / 1000) * 1000);
+            mission.SetValue("TheaterMaxX", Math.Ceiling(maxX / 1000) * 1000);
+            mission.SetValue("TheaterMaxY", Math.Ceiling(maxY / 1000) * 1000);
         }
 
         private static void GetMinMaxCoords(Coordinates coord, ref double minX, ref double minY, ref double maxX, ref double maxY)

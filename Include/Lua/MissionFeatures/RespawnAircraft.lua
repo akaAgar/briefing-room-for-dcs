@@ -6,9 +6,9 @@ briefingRoom.mission.missionFeatures.respawnAircraft.interval = { 300, 600 } -- 
 
 
 function briefingRoom.mission.missionFeatures.respawnAircraft.getRandomInterval()
-    return math.random(briefingRoom.mission.missionFeatures.respawnAircraft.interval[1], briefingRoom.aircraftActivator.INTERVAL[2])
-  end
-
+    return math.random(briefingRoom.mission.missionFeatures.respawnAircraft.interval[1],
+        briefingRoom.aircraftActivator.INTERVAL[2])
+end
 
 function briefingRoom.mission.missionFeatures.respawnAircraft.checkDeadGroups(args, time)
     if not briefingRoom.mission.hasStarted then

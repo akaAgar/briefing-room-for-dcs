@@ -200,9 +200,9 @@ namespace BriefingRoom4DCS.Generator
             mission.MapData.Add($"FOB_{flightGroup.Carrier}", new List<double[]> { groupInfo.Value.Coordinates.ToArray() });
 
             foreach (var group in groupInfo.Value.DCSGroups)
-            {      
+            {
                 var unit = group.Units.First();
-                if(unit.DCSID != "FARP")
+                if (unit.DCSID != "FARP")
                     unit.unitType = "StaticSupply";
             }
         }

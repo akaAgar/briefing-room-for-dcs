@@ -315,8 +315,8 @@ namespace BriefingRoom4DCS.Generator
             waypointList.Add(waypoint);
             mission.MapData.Add($"OBJECTIVE_AREA_{objectiveIndex}", new List<double[]> { waypoint.Coordinates.ToArray() });
             objectiveTargetUnitFamilies.Add(objectiveTargetUnitFamily);
-            if(!targetGroupInfo.Value.UnitDB.IsAircraft)
-                mission.MapData.Add($"UNIT-{targetGroupInfo.Value.UnitDB.Families[0]}-{taskDB.TargetSide}-{targetGroupInfo.Value.GroupID}", new List<double[]>{targetGroupInfo.Value.Coordinates.ToArray()});
+            if (!targetGroupInfo.Value.UnitDB.IsAircraft)
+                mission.MapData.Add($"UNIT-{targetGroupInfo.Value.UnitDB.Families[0]}-{taskDB.TargetSide}-{targetGroupInfo.Value.GroupID}", new List<double[]> { targetGroupInfo.Value.Coordinates.ToArray() });
         }
 
         private (string luaUnit, int unitCount, MinMaxI unitCountMinMax, UnitFamily objectiveTargetUnitFamily, UnitMakerGroupFlags groupFlags) GetUnitData(MissionTemplateSubTaskRecord task, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, ObjectiveOption[] objectiveOptions)
@@ -343,7 +343,7 @@ namespace BriefingRoom4DCS.Generator
                 (from DBEntryAirbase airbaseDB in situationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"))
                  where airbaseDB.DCSID != playerAirbase.DCSID
                  select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(objectiveCoordinates));
-            DBEntryAirbase targetAirbase = targetAirbaseOptions.FirstOrDefault(x => template.SpawnAnywhere  ? true : x.Coalition == template.ContextPlayerCoalition.GetEnemy());
+            DBEntryAirbase targetAirbase = targetAirbaseOptions.FirstOrDefault(x => template.SpawnAnywhere ? true : x.Coalition == template.ContextPlayerCoalition.GetEnemy());
 
             airbaseID = targetAirbase.DCSID;
 

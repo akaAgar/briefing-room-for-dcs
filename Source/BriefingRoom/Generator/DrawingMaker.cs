@@ -110,7 +110,7 @@ namespace BriefingRoom4DCS.Generator
         private void AddTheaterZones()
         {
             DrawWaterAndIslands();
-            if(Template.OptionsMission.Contains("SpawnAnywhere") || Template.ContextSituation == "None")
+            if (Template.OptionsMission.Contains("SpawnAnywhere") || Template.ContextSituation == "None")
                 return;
             var invertCoalition = Template.OptionsMission.Contains("InvertCountriesCoalitions");
             var hideBorders = Template.OptionsMission.Contains("HideBorders");

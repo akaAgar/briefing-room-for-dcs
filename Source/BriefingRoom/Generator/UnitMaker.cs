@@ -45,7 +45,7 @@ namespace BriefingRoom4DCS.Generator
         internal int RemainingSpotCount { get; set; }
         internal int TotalSpotCount { get; init; }
 
-        internal Coalition Coalition {get; init;}
+        internal Coalition Coalition { get; init; }
 
         internal CarrierUnitMakerGroupInfo(UnitMakerGroupInfo unitMakerGroupInfo, int remainingSpotCount, Coalition coalition)
         {
@@ -524,7 +524,7 @@ namespace BriefingRoom4DCS.Generator
             if (Toolbox.IsAircraft(unitDB.Category) && (unitLuaIndex == 1) && unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.FirstUnitIsClient))
                 unit.Skill = SinglePlayerMission ? "Player" : "Client";
             else
-                unit.Skill = extraSettings.GetValueOrDefault("Skill", GeneratorTools.GetDefaultSkillLevel(Template, side)).ToString();;
+                unit.Skill = extraSettings.GetValueOrDefault("Skill", GeneratorTools.GetDefaultSkillLevel(Template, side)).ToString(); ;
 
             GetLivery(ref unit, unitDB, country, extraSettings);
 

@@ -49,8 +49,8 @@ namespace BriefingRoom4DCS.Generator
             if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.SpawnOnObjective))
             {
                 coordinates = objectiveCoordinates + Coordinates.CreateRandom(10, 50);
-                if(
-                    !(featureDB.UnitGroupValidSpawnPoints.Contains(SpawnPointType.Sea) || featureDB.UnitGroupValidSpawnPoints.Contains(SpawnPointType.Air)) && 
+                if (
+                    !(featureDB.UnitGroupValidSpawnPoints.Contains(SpawnPointType.Sea) || featureDB.UnitGroupValidSpawnPoints.Contains(SpawnPointType.Air)) &&
                     _unitMaker.SpawnPointSelector.CheckInSea(coordinates.Value))
                 {
                     BriefingRoom.PrintToLog($"Can't spawn objective feature {featureID}, Invalid spawn.", LogMessageErrorLevel.Warning);

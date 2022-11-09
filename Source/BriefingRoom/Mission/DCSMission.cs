@@ -124,7 +124,7 @@ namespace BriefingRoom4DCS.Mission
 
         internal void AppendSingletonValue(string id, string key, string value)
         {
-            if(SingletonSet.Contains(id))
+            if (SingletonSet.Contains(id))
                 return;
             AppendValue(key, value);
             SingletonSet.Add(id);
@@ -168,7 +168,8 @@ namespace BriefingRoom4DCS.Mission
             foreach (string file in Directory.EnumerateFiles(sourceFolderPath, "*.*", SearchOption.AllDirectories))
             {
                 var filePath = file.Split(sourceFolderPath)[1];
-                if(!MediaFiles.ContainsKey($"{folderName}{filePath}")){
+                if (!MediaFiles.ContainsKey($"{folderName}{filePath}"))
+                {
                     var endPath = $"{folderName}{filePath}".Replace("\\", "/");
                     MediaFiles.Add(endPath, sourceFolderPath + filePath);
                 }
@@ -241,8 +242,9 @@ namespace BriefingRoom4DCS.Mission
             return isTooFar;
         }
 
-        public Dictionary<string, List<double[]>> GetMapData(){
-            return MapData; 
+        public Dictionary<string, List<double[]>> GetMapData()
+        {
+            return MapData;
         }
     }
 }

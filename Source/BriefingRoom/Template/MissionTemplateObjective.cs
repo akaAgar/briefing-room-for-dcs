@@ -48,7 +48,7 @@ namespace BriefingRoom4DCS.Template
         {
             Features = new List<string>();
             Options = new List<ObjectiveOption>();
-            Preset = setPreset ? "Custom": "Interdiction";
+            Preset = setPreset ? "Custom" : "Interdiction";
             Target = "VehicleAny";
             TargetBehavior = "Idle";
             TargetCount = Amount.Average;

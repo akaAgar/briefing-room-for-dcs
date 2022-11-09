@@ -14,7 +14,8 @@ briefingRoom.mission.missionFeatures.activeGroundUnits.formationOptions = {
 function briefingRoom.mission.missionFeatures.activeGroundUnits.directUnit(group, oppositeSide)
     local path = {}
     local groupPoint = group:getUnit(1):getPoint()
-    local _sort = function(a, b) return  mist.utils.get2DDist(groupPoint ,a:getUnit(1):getPoint()) <  mist.utils.get2DDist(groupPoint ,b:getUnit(1):getPoint()) end
+    local _sort = function(a, b) return mist.utils.get2DDist(groupPoint, a:getUnit(1):getPoint()) <
+        mist.utils.get2DDist(groupPoint, b:getUnit(1):getPoint()) end
     table.sort(oppositeSide, _sort)
     local randomGroup = oppositeSide[1]
     if randomGroup == nil then
@@ -37,7 +38,8 @@ function briefingRoom.mission.missionFeatures.activeGroundUnits.activateGroundUn
         local coalitionGroups = coalition.getGroups(i)
         suitableGroups[i] = table.removeNils(table.filter(coalitionGroups, function(o, k, i)
             return not string.find(o:getName(), "-TGT-") and #table.filter(o:getUnits(), function(j, k, i)
-                return not j:hasAttribute("Ground Units Non Airdefence") or j:hasAttribute("Unarmed vehicles") or j:hasAttribute("Indirect fire")
+                return not j:hasAttribute("Ground Units Non Airdefence") or j:hasAttribute("Unarmed vehicles") or
+                    j:hasAttribute("Indirect fire")
             end) == 0
         end))
         suitableGroups[i] = table.filter(suitableGroups[i], function(o, k, i) return o ~= nil end)

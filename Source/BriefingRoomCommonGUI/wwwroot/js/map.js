@@ -168,30 +168,26 @@ async function RenderEditorMap(map) {
 
 
 
-function CoordToString(coord, MapCoordMap)
-{
+function CoordToString(coord, MapCoordMap) {
     const spotKey = Object.keys(MapCoordMap).find(k => distance(MapCoordMap[k], coord) < 0.007)
-    if(spotKey == undefined)
-    {
+    if (spotKey == undefined) {
         const min_dist = Object.keys(MapCoordMap).map(k => distance(MapCoordMap[k], coord)).reduce((min, v) => min <= v ? min : v, Infinity)
         throw `Can't find coordinate spot to map to. Nearest is ${min_dist}`
     }
-    return spotKey.replace("x:", "").replace("z:","")
+    return spotKey.replace("x:", "").replace("z:", "")
 }
 
-function CreateCoordsString(coords, MapCoordMap)
-{
-    return coords.map((x,i) => `Waypoint${i.toString().padStart(4, "0")}=${CoordToString(x, MapCoordMap)}`).join("\n")
+function CreateCoordsString(coords, MapCoordMap) {
+    return coords.map((x, i) => `Waypoint${i.toString().padStart(4, "0")}=${CoordToString(x, MapCoordMap)}`).join("\n")
 }
 
-async function GetSituationCoordinates(map)
-{
+async function GetSituationCoordinates(map) {
     let redCoordsString, blueCoordsString, neutralCoordString;
     var MapCoordMap = await GetMapData(map)
-    
+
     blueCoordsString = CreateCoordsString(situationMapLayers.BLUE.editing.latlngs[0][0], MapCoordMap)
     redCoordsString = CreateCoordsString(situationMapLayers.RED.editing.latlngs[0][0], MapCoordMap)
-    if(situationMapLayers.NEUTRAL) {
+    if (situationMapLayers.NEUTRAL) {
         neutralCoordString = CreateCoordsString(situationMapLayers.NEUTRAL.editing.latlngs[0][0], MapCoordMap)
     }
     return [redCoordsString, blueCoordsString, neutralCoordString]
