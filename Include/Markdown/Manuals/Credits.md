@@ -24,6 +24,7 @@ The creators of Briefing Room would like to thank for following for their direct
 * NaDs
 * https://spatialillusions.com/unitgenerator/ (Map Icons)
 * Moose Development Team (Mission Object Oriented Scripting Environment for DCS World)
+*  Sorbus (Enhanced Gamemaster Script)
 
 We would also like to thank anyone who has taken the time to report bugs, test betas & help others on Discord or Github.
 
