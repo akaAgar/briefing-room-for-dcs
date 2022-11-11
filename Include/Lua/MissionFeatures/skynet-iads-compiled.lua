@@ -1,3 +1,4 @@
+-- BR SINGLETON FLAG
 env.info("--- SKYNET VERSION: 3.0.1 | BUILD TIME: 06.11.2022 1728Z ---")
 do
 --this file contains the required units per sam type
