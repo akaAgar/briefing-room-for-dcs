@@ -292,6 +292,14 @@ function table.filter(t, filterIter)
   return out
 end
 
+function table.find(t, filterIter)
+  for k, v in pairs(t) do
+    if filterIter(v, k, t) then return v end
+  end
+
+  return nil
+end
+
 -- ===================================================================================
 -- 1.3 - DCS WORLD EXTENSIONS: Provides additional functions to DCS World scripting
 -- ===================================================================================
@@ -494,7 +502,8 @@ $SCRIPTMIST$
 -- ***********************************************************************************
 -- * 2 - TOOLS                                                                       *
 -- ***********************************************************************************
-
+briefingRoom.playerCoalition = $LUAPLAYERCOALITION$
+briefingRoom.enemyCoalition = $LUAENEMYCOALITION$
 -- ===================================================================================
 -- 2.1 - RADIO MANAGER : plays radio messages (text and audio)
 -- ===================================================================================
@@ -530,13 +539,13 @@ function briefingRoom.radioManager.doRadioMessage(args, time)
   if args.message ~= nil then -- a message was provided, print it
     args.message = tostring(args.message)
     local duration = briefingRoom.radioManager.getReadingTime(args.message)
-    trigger.action.outTextForCoalition($LUAPLAYERCOALITION$, args.message, duration, false)
+    trigger.action.outTextForCoalition(briefingRoom.playerCoalition, args.message, duration, false)
   end
 
   if args.oggFile ~= nil and briefingRoom.radioManager.enableAudioMessages then -- a sound was provided and radio sounds are enabled, play it
-    trigger.action.outSoundForCoalition($LUAPLAYERCOALITION$, args.oggFile..".ogg")
+    trigger.action.outSoundForCoalition(briefingRoom.playerCoalition, args.oggFile..".ogg")
   else -- else play the default sound
-    trigger.action.outSoundForCoalition($LUAPLAYERCOALITION$, "Radio0.ogg")
+    trigger.action.outSoundForCoalition(briefingRoom.playerCoalition, "Radio0.ogg")
   end
 
   if args.functionToRun ~= nil then -- a function was provided, run it
@@ -652,7 +661,7 @@ function briefingRoom.handleGeneralKill(event)
     if event.initiator == nil then return end -- no initiator
     if event.initiator:getCategory() ~= Object.Category.UNIT and event.initiator:getCategory() ~= Object.Category.STATIC then return end -- initiator was not an unit or static
 
-    if event.initiator:getCoalition() ~= $LUAPLAYERCOALITION$ then -- unit is an enemy, radio some variation of a "enemy destroyed" message
+    if event.initiator:getCoalition() ~= briefingRoom.playerCoalition then -- unit is an enemy, radio some variation of a "enemy destroyed" message
       local soundName = "UnitDestroyed"
       local messages = { "$LANG_COMMAND$: $LANG_DESTROY1$", "$LANG_COMMAND$: $LANG_DESTROY2$", "$LANG_COMMAND$: $LANG_SHOOTDOWN1$", "$LANG_COMMAND$: $LANG_SHOOTDOWN2$" }
       local messageIndex = math.random(1, 2)
@@ -793,7 +802,7 @@ function briefingRoom.mission.coreFunctions.completeObjective(index)
 
   -- Remove objective menu from the F10 menu
   if briefingRoom.f10Menu.objectives[index] ~= nil then
-    missionCommands.removeItemForCoalition($LUAPLAYERCOALITION$, briefingRoom.f10Menu.objectives[index])
+    missionCommands.removeItemForCoalition(briefingRoom.playerCoalition, briefingRoom.f10Menu.objectives[index])
     briefingRoom.f10Menu.objectives[index] = nil
   end
 
@@ -870,13 +879,13 @@ function briefingRoom.f10MenuCommands.getWaypointCoordinates(index)
   local cooMessage = dcsExtensions.vec2ToStringCoordinates(briefingRoom.mission.objectives[index].waypoint)
   briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_WAYPOINTREQUEST$", "RadioPilotWaypointCoordinates")
   briefingRoom.radioManager.play("$LANG_COMMAND$: $LANG_WAYPOINTRESPONSE$\n\n"..cooMessage, "RadioHQWaypointCoordinates", briefingRoom.radioManager.getAnswerDelay())
-  missionCommands.removeItemForCoalition($LUAPLAYERCOALITION$, briefingRoom.mission.objectives[index].waypointRadioCommand)
-  briefingRoom.mission.objectives[index].waypointRadioCommand = missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_WAYPOINTCOORDINATES$:\n"..cooMessage, briefingRoom.f10Menu.objectives[index], briefingRoom.f10MenuCommands.getWaypointCoordinates, index)
+  missionCommands.removeItemForCoalition(briefingRoom.playerCoalition, briefingRoom.mission.objectives[index].waypointRadioCommand)
+  briefingRoom.mission.objectives[index].waypointRadioCommand = missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_WAYPOINTCOORDINATES$:\n"..cooMessage, briefingRoom.f10Menu.objectives[index], briefingRoom.f10MenuCommands.getWaypointCoordinates, index)
 end
 
 -- Common mission menu (mission status and mission features)
-briefingRoom.f10Menu.missionMenu = missionCommands.addSubMenuForCoalition($LUAPLAYERCOALITION$, "$LANG_MISSION$", nil)
-missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_MISSIONSTATUS$", briefingRoom.f10Menu.missionMenu, briefingRoom.f10MenuCommands.missionStatus, nil)
+briefingRoom.f10Menu.missionMenu = missionCommands.addSubMenuForCoalition(briefingRoom.playerCoalition, "$LANG_MISSION$", nil)
+missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_MISSIONSTATUS$", briefingRoom.f10Menu.missionMenu, briefingRoom.f10MenuCommands.missionStatus, nil)
 
 -- ===================================================================================
 -- 3.3 - OBJECTIVES TABLES (generated by BriefingRoom)
@@ -887,7 +896,7 @@ $SCRIPTOBJECTIVES$
 briefingRoom.mission.objectivesLeft = #briefingRoom.mission.objectives -- Store the total of objective left to complete
 
 for i=1,#briefingRoom.mission.objectives do
-  briefingRoom.mission.objectives[i].waypointRadioCommand = missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_WAYPOINTCOORDINATESREQUEST$", briefingRoom.f10Menu.objectives[i], briefingRoom.f10MenuCommands.getWaypointCoordinates, i)
+  briefingRoom.mission.objectives[i].waypointRadioCommand = missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_WAYPOINTCOORDINATESREQUEST$", briefingRoom.f10Menu.objectives[i], briefingRoom.f10MenuCommands.getWaypointCoordinates, i)
 end
 
 -- ===================================================================================

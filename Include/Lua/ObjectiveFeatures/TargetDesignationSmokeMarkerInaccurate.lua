@@ -48,9 +48,9 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeM
   briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateHeading = math.random(0, 359)
 
   local args = { position = unit:getPoint(), color = trigger.smokeColor.Red }
-  if unit:getCoalition() == $LUAPLAYERCOALITION$ then args.color = trigger.smokeColor.Green end
+  if unit:getCoalition() == briefingRoom.playerCoalition then args.color = trigger.smokeColor.Green end
   briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_SMOKENEARAFFIRM$"..dcsExtensions.degreesToCardinalDirection(briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateHeading).." of the smoke.", "RadioSupportTargetMarkedWithSmoke", briefingRoom.radioManager.getAnswerDelay(), briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurateDoSmoke, args)
 end
       
 -- Add the command to the F10 menu
-missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_SMOKENEARMENU$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurate)
+missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_SMOKENEARMENU$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerInaccurate)

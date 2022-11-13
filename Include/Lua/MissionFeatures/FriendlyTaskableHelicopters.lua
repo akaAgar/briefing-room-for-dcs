@@ -1,152 +1,88 @@
-briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters = { }
+briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters = {}
 briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.AUTO_AIM_RADIUS = 1000 -- in meters
 briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.MARKER_NAME = "helo"
+briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.LANG_UNIT = "$LANG_ATTACKCHOPPERS$"
+briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.LANG_REQEUEST = "$LANG_ATTACKCOPPERSREQUEST$"
+briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.RADIO_REQEUEST = "RadioPilotBeginYourAttack"
+briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.LANG_AFFIRM = "$LANG_BEGINATTACK$"
+briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.RADIO_AFFRIM = "RadioOtherPilotBeginAttack"
+briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.LANG_NO_COORDS = "$LANG_ATTACKCHOPPERSNOCOORDINATES$"
 briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID = nil -- ID of the mark on the map
 briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.disableCooRemovedRadioMessage = false
 
-briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.eventHandler = { }
-function briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.eventHandler:onEvent(event)
-  if event.id == world.event.S_EVENT_MARK_REMOVED then
-    if briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID ~= nil and event.idx == briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID then
-      if not briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.disableCooRemovedRadioMessage then
-        briefingRoom.radioManager.play("$LANG_ATTACKCHOPPERS$: $LANG_DISCARDCOORDINATES$", "RadioCoordinatesDiscardedM")
-      end
-      briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID = nil
-    end
-  elseif event.id == world.event.S_EVENT_MARK_ADDED then
-    local markText = string.lower(tostring(event.text or ""))
-    if markText == briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.MARKER_NAME then
-      if briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID ~= nil then
-        briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.disableCooRemovedRadioMessage = true
-        trigger.action.removeMark(briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID)
-        briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.disableCooRemovedRadioMessage = false
-      end
-      briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID = event.idx
-      briefingRoom.radioManager.play("$LANG_ATTACKCHOPPERS$: $LANG_UPDATECOORDINATES$", "RadioCoordinatesUpdatedM")
-      return
-    end
-  elseif event.id == world.event.S_EVENT_MARK_CHANGE then
-    local markText = string.lower(tostring(event.text or ""))
-
-    if markText == briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.MARKER_NAME then
-      briefingRoom.radioManager.play("$LANG_ATTACKCHOPPERS$: $LANG_UPDATECOORDINATES$", "RadioCoordinatesUpdatedM")
-      if briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID ~= nil then
-        briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.disableCooRemovedRadioMessage = true
-        trigger.action.removeMark(briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID)
-        briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.disableCooRemovedRadioMessage = false
-      end
-      briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID = event.idx
-    elseif briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID ~= nil and event.idx == briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID then
-      briefingRoom.radioManager.play("$LANG_ATTACKCHOPPERS$: $LANG_DISCARDCOORDINATES$", "RadioCoordinatesDiscardedM")
-      briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID = nil
-    end
-  end
-end
 
 -- Radio command to launch bombing run (called from F10 menu)
 function briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.launchBombingRun()
-  briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_ATTACKCOPPERSREQUEST$", "RadioPilotBeginYourAttack")
-  local marks = world.getMarkPanels()
-  for _,m in ipairs(marks) do
-    if briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID ~= nil and m.idx == briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID then
-      local group = Group.getByName(briefingRoom.mission.missionFeatures.groupNames.friendlyTaskableHelicopters)
-      if group ~= nil then
-        group:activate()
-        local Start = {
-          id = 'Start',
-          params = {
-          }
-        }
-        group:getController():setCommand(Start)
-        timer.scheduleFunction(briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.setTask, {}, timer.getTime() + 10) --just re-run after 10 s
-        briefingRoom.radioManager.play("$LANG_ATTACKCHOPPERS$: $LANG_BEGINATTACK$", "RadioOtherPilotBeginAttack", briefingRoom.radioManager.getAnswerDelay(), nil, nil)
-      end
-      return
-    end
-  end
-
-  briefingRoom.radioManager.play("$LANG_ATTACKCHOPPERS$: $LANG_ATTACKCHOPPERSNOCOORDINATES$", "RadioArtilleryNoCoordinates", briefingRoom.radioManager.getAnswerDelay())
-end
-
-function briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.setTask()
-  local marks = world.getMarkPanels()
-  for _,m in ipairs(marks) do
-    if briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID ~= nil and m.idx == briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID then
-      local group = Group.getByName(briefingRoom.mission.missionFeatures.groupNames.friendlyTaskableHelicopters)
-      if group ~= nil then
-        local currPos = mist.getLeadPos(group)
-        local newTask = {
-          id = 'Mission',
-          airborne = true,
-          params = {
-            route = {
-              points = {
-                [1] = {
-                  speed = 100,
-                  x = dcsExtensions.lerp(currPos.x, m.pos.x,0.9),
-                  y = dcsExtensions.lerp(currPos.z, m.pos.z,0.9),
-                  type = 'Turning Point',
-                  ETA_locked = false,
-                  ETA = 100,
-                  alt = 152.4,
-                  alt_type = "RADIO",
-                  speed_locked = false,
-                  action = "Fly Over Point",
-                  name = "CAS",
-                  task = {
-                    id = "ComboTask",
-                    params = {
-                      tasks = {
-                        [1] = {
-                          enabled = true,
-                          auto = false,
-                          id = "EngageTargetsInZone",
-                          number = 1,
-                          params = {
-                            y = m.pos.z,
-                            x = m.pos.x,
-                            targetTypes = {
-                              [1] = "All",
-                            },
-                            value = "All;",
-                            noTargetTypes = {
-                            },
-                            priority = 0,
-                            zoneRadius = 5000,
-                          },
+  briefingRoom.taskables.launchCurry(briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters,
+    briefingRoom.mission.missionFeatures.groupNames.friendlyTaskableHelicopters, function(group, mark)
+    local currPos = mist.getLeadPos(group)
+    return {
+      id = 'Mission',
+      airborne = true,
+      params = {
+        route = {
+          points = {
+            [1] = {
+              speed = 100,
+              x = mark.pos.x, 0.9,
+              y = mark.pos.z, 0.9,
+              type = 'Turning Point',
+              ETA_locked = false,
+              ETA = 100,
+              alt = 152.4,
+              alt_type = "RADIO",
+              speed_locked = false,
+              action = "Fly Over Point",
+              name = "CAS",
+              task = {
+                id = "ComboTask",
+                params = {
+                  tasks = {
+                    [1] = {
+                      enabled = true,
+                      auto = false,
+                      id = "EngageTargetsInZone",
+                      number = 1,
+                      params = {
+                        y = mark.pos.z,
+                        x = mark.pos.x,
+                        targetTypes = {
+                          [1] = "All",
                         },
-                        [2] = {
-                          enabled = true,
-                          auto = false,
-                          id = "Orbit",
-                          number = 2,
-                          params = {
-                            altitude = 152.4,
-                            pattern = "Circle",
-                            speed = 100,
-                          }
-                        }
+                        value = "All;",
+                        noTargetTypes = {
+                        },
+                        priority = 0,
+                        zoneRadius = 5000,
+                      },
+                    },
+                    [2] = {
+                      enabled = true,
+                      auto = false,
+                      id = "Orbit",
+                      number = 2,
+                      params = {
+                        altitude = 152.4,
+                        pattern = "Circle",
+                        speed = 100,
                       }
                     }
                   }
                 }
               }
-            },
-          },
-        }
-        group:getController():setTask(newTask)
-      end
-      return
-    end
-  end
+            }
+          }
+        },
+      },
+    }
+  end)
 end
 
-
-
-
 -- Add F10 menu command
-missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_ATTACKCHOPPERMENU$", briefingRoom.f10Menu.missionMenu, briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.launchBombingRun, nil)
+missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_ATTACKCHOPPERMENU$",
+  briefingRoom.f10Menu.missionMenu, briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.launchBombingRun,
+  nil)
 
 
 -- Enable event handler
-world.addEventHandler(briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.eventHandler)
+world.addEventHandler(briefingRoom.taskables.markerManager(briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters))

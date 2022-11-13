@@ -110,8 +110,8 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
     return
   end
   briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_LASERAFFIRM$ "..tostring(objFeature.targetDesignationLaser.laserCode)..".", "RadioSupportLasingOk", briefingRoom.radioManager.getAnswerDelay())
-  missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_LASERMENUNEWTARGET$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.newTarget)
-  missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_LASERMENUSTOP$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.turnOff)
+  missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_LASERMENUNEWTARGET$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.newTarget)
+  missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_LASERMENUSTOP$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.turnOff)
 end
 
 -- Stops lasing the target
@@ -147,4 +147,4 @@ end
 -- Begin updating laser designation
 timer.scheduleFunction(briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.laserWatch, nil, timer.getTime() + 1)
 
-missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_LASERMENUNEW$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.turnOn)
+missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_LASERMENUNEW$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.turnOn)

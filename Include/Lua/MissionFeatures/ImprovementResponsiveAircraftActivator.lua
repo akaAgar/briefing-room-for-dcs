@@ -12,7 +12,7 @@ end
 
 function briefingRoom.mission.missionFeatures.ImprovementResponsiveAircraftActivator.isCASInAir()
     briefingRoom.debugPrint("Checking if enemy CAP is in the air")
-    for _,g in pairs(coalition.getGroups($LUAENEMYCOALITION$), Group.Category.AIRPLANE) do
+    for _,g in pairs(coalition.getGroups(briefingRoom.enemyCoalition), Group.Category.AIRPLANE) do
         local groupRouteData = mist.getGroupRoute(g:getName(), true)
         if dcsExtensions.getAliveUnitInGroup(g:getName())and #groupRouteData[1].task.params.tasks > 0 and groupRouteData[1].task.params.tasks[1].key == "CAP" then
             briefingRoom.debugPrint("Enemy CAP is in the air")
@@ -26,7 +26,7 @@ end
 function briefingRoom.mission.missionFeatures.ImprovementResponsiveAircraftActivator.isPlayerDetected()
     briefingRoom.debugPrint("Checking is player detected")
     for _, player in ipairs(dcsExtensions.getAllPlayers()) do
-        for _,g in pairs(coalition.getGroups($LUAENEMYCOALITION$)) do
+        for _,g in pairs(coalition.getGroups(briefingRoom.enemyCoalition)) do
             if dcsExtensions.getAliveUnitInGroup(g:getName()) then
                 for __,u in pairs(g:getUnits()) do
                     local con = u:getController()

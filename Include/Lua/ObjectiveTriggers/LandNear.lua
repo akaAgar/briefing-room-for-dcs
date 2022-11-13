@@ -6,7 +6,7 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
   
     if event.initiator == nil then return false end -- Initiator was nil
     if Object.getCategory(event.initiator) ~= Object.Category.UNIT then return false end -- Initiator was not an unit
-    if event.initiator:getCoalition() ~= $LUAPLAYERCOALITION$ then return false end -- Initiator was not a friendy unit
+    if event.initiator:getCoalition() ~= briefingRoom.playerCoalition then return false end -- Initiator was not a friendy unit
 
     local position = dcsExtensions.toVec2(event.initiator:getPoint()) -- get the landing unit position
 

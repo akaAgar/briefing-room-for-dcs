@@ -38,9 +38,9 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeM
   
   -- Play radio message and setup smoke creating function
   local args = { position = unit:getPoint(), color = trigger.smokeColor.Red }
-  if unit:getCoalition() == $LUAPLAYERCOALITION$ then args.color = trigger.smokeColor.Green end
+  if unit:getCoalition() == briefingRoom.playerCoalition then args.color = trigger.smokeColor.Green end
   briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_SMOKEAFFIRM$", "RadioSupportTargetMarkedWithSmoke", briefingRoom.radioManager.getAnswerDelay(), briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarkerDoSmoke, args)
 end
       
 -- Add the command to the F10 menu
-missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_SMOKEMENU$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarker)
+missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_SMOKEMENU$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarker)

@@ -3,50 +3,13 @@ briefingRoom.mission.missionFeatures.supportArtillery.FIRE_MISSIONS_PER_OBJECTIV
 briefingRoom.mission.missionFeatures.supportArtillery.AUTO_AIM_RADIUS = 1000 -- in meters
 briefingRoom.mission.missionFeatures.supportArtillery.INACCURACY = 500 -- in meters
 briefingRoom.mission.missionFeatures.supportArtillery.MARKER_NAME = "arty"
+briefingRoom.mission.missionFeatures.supportArtillery.LANG_UNIT = "$LANG_FIRESUPPORT$"
 briefingRoom.mission.missionFeatures.supportArtillery.SHELLS_PER_FIRE_MISSION = 10
 briefingRoom.mission.missionFeatures.supportArtillery.fireMissionsLeft = 0
 briefingRoom.mission.missionFeatures.supportArtillery.markID = nil -- ID of the mark on the map
 briefingRoom.mission.missionFeatures.supportArtillery.shellsLeftInFireMission = 0
 briefingRoom.mission.missionFeatures.supportArtillery.disableCooRemovedRadioMessage = false
 
-briefingRoom.mission.missionFeatures.supportArtillery.eventHandler = { }
-function briefingRoom.mission.missionFeatures.supportArtillery.eventHandler:onEvent(event)
-  if event.id == world.event.S_EVENT_MARK_REMOVED then
-    if briefingRoom.mission.missionFeatures.supportArtillery.markID ~= nil and event.idx == briefingRoom.mission.missionFeatures.supportArtillery.markID then
-      if not briefingRoom.mission.missionFeatures.supportArtillery.disableCooRemovedRadioMessage then
-        briefingRoom.radioManager.play("$LANG_FIRESUPPORT$: $LANG_DISCARDCOORDINATES$", "RadioCoordinatesDiscardedM")
-      end
-      briefingRoom.mission.missionFeatures.supportArtillery.markID = nil
-    end
-  elseif event.id == world.event.S_EVENT_MARK_ADDED then
-    local markText = string.lower(tostring(event.text or ""))
-    if markText == briefingRoom.mission.missionFeatures.supportArtillery.MARKER_NAME then
-      if briefingRoom.mission.missionFeatures.supportArtillery.markID ~= nil then
-        briefingRoom.mission.missionFeatures.supportArtillery.disableCooRemovedRadioMessage = true
-        trigger.action.removeMark(briefingRoom.mission.missionFeatures.supportArtillery.markID)
-        briefingRoom.mission.missionFeatures.supportArtillery.disableCooRemovedRadioMessage = false
-      end
-      briefingRoom.mission.missionFeatures.supportArtillery.markID = event.idx
-      briefingRoom.radioManager.play("$LANG_FIRESUPPORT$: $LANG_UPDATECOORDINATES$", "RadioCoordinatesUpdatedM")
-      return
-    end
-  elseif event.id == world.event.S_EVENT_MARK_CHANGE then
-    local markText = string.lower(tostring(event.text or ""))
-
-    if markText == briefingRoom.mission.missionFeatures.supportArtillery.MARKER_NAME then
-      briefingRoom.radioManager.play("$LANG_FIRESUPPORT$: $LANG_UPDATECOORDINATES$", "RadioCoordinatesUpdatedM")
-      if briefingRoom.mission.missionFeatures.supportArtillery.markID ~= nil then
-        briefingRoom.mission.missionFeatures.supportArtillery.disableCooRemovedRadioMessage = true
-        trigger.action.removeMark(briefingRoom.mission.missionFeatures.supportArtillery.markID)
-        briefingRoom.mission.missionFeatures.supportArtillery.disableCooRemovedRadioMessage = false
-      end
-      briefingRoom.mission.missionFeatures.supportArtillery.markID = event.idx
-    elseif briefingRoom.mission.missionFeatures.supportArtillery.markID ~= nil and event.idx == briefingRoom.mission.missionFeatures.supportArtillery.markID then
-      briefingRoom.radioManager.play("$LANG_FIRESUPPORT$: $LANG_DISCARDCOORDINATES$", "RadioCoordinatesDiscardedM")
-      briefingRoom.mission.missionFeatures.supportArtillery.markID = nil
-    end
-  end
-end
 
 function briefingRoom.mission.missionFeatures.supportArtillery.doShell(args, time)
   briefingRoom.mission.missionFeatures.supportArtillery.shellsLeftInFireMission = briefingRoom.mission.missionFeatures.supportArtillery.shellsLeftInFireMission - 1
@@ -60,7 +23,7 @@ function briefingRoom.mission.missionFeatures.supportArtillery.doShell(args, tim
     impactPoint.z = impactPoint.z + inaccuracy.y
 
     if i == 1 then
-      local enemyUnits = dcsExtensions.getCoalitionUnits($LUAENEMYCOALITION$)
+      local enemyUnits = dcsExtensions.getCoalitionUnits(briefingRoom.enemyCoalition)
       for _,u in ipairs(enemyUnits) do
         if dcsExtensions.getDistance(dcsExtensions.toVec2(u:getPoint()), impactPointV2) < briefingRoom.mission.missionFeatures.supportArtillery.AUTO_AIM_RADIUS then
           if not u:inAir() then
@@ -112,7 +75,7 @@ end
 briefingRoom.mission.missionFeatures.supportArtillery.fireMissionsLeft = briefingRoom.mission.missionFeatures.supportArtillery.FIRE_MISSIONS_PER_OBJECTIVE * math.max(1, #briefingRoom.mission.objectives)
 
 -- Add F10 menu command
-missionCommands.addCommandForCoalition($LUAPLAYERCOALITION$, "$LANG_FIREMENU$", briefingRoom.f10Menu.missionMenu, briefingRoom.mission.missionFeatures.supportArtillery.launchFireMission, nil)
+missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_FIREMENU$", briefingRoom.f10Menu.missionMenu, briefingRoom.mission.missionFeatures.supportArtillery.launchFireMission, nil)
 
 -- Enable event handler
-world.addEventHandler(briefingRoom.mission.missionFeatures.supportArtillery.eventHandler)
+world.addEventHandler(briefingRoom.taskables.markerManager(briefingRoom.mission.missionFeatures.supportArtillery))
