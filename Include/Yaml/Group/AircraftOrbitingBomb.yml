@@ -1,6 +1,6 @@
 lateActivation: true
 modulation: $RADIOBAND$
-task: CAS
+task: Ground Attack
 radioSet: true
 uncontrolled: false
 taskSelected: true
@@ -10,18 +10,15 @@ waypoints:
     action: Turning Point
     speed: $SPEED$
     tasks:
-      - id: EngageTargets
-        key: CAS
-        parameters:
-          targetTypes:
-            - Helicopters
-            - Ground Units
-            - Light armed ships
-          priority: 0
       - id: Option
         parameters:
           wrapped: true
-          value: 2
+          value: 5
+          name: 1
+      - id: Option
+        parameters:
+          wrapped: true
+          value: 3
           name: 1
       - id: Orbit
         parameters:

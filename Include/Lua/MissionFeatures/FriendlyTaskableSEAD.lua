@@ -62,9 +62,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.launchBombing
                       id = "Orbit",
                       number = 2,
                       params = {
-                        altitude = 7620,
                         pattern = "Circle",
-                        speed = 100,
                         }
                       }
                     }

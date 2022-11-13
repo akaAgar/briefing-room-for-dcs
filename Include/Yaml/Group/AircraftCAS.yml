@@ -37,9 +37,7 @@ waypoints:
     tasks:
       - id: Orbit
         parameters:
-          altitude: $ALTITUDE$
           pattern: Circle
-          speed: $SPEED$
     type: Turning Point
     etaLocked: false
     speedLocked: true

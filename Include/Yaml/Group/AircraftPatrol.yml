@@ -42,9 +42,7 @@ waypoints:
       - id: Orbit
         auto: false
         parameters:
-          altitude: $ALTITUDE$
           pattern: Race-Track
-          speed: $SPEED$
     type: Turning Point
     etaLocked: true
     speedLocked: true

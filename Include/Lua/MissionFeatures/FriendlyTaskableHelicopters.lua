@@ -62,9 +62,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.launch
                       id = "Orbit",
                       number = 2,
                       params = {
-                        altitude = 152.4,
                         pattern = "Circle",
-                        speed = 100,
                       }
                     }
                   }

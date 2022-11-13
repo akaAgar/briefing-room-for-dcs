@@ -45,7 +45,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableBomber.launchBombi
                       number = 1,
                       params = {
                         direction = 0,
-                        attackQtyLimit = false,
+                        attackQtyLimit = true,
                         attackQty = 1,
                         expend = "Auto",
                         directionEnabled = false,
@@ -63,9 +63,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableBomber.launchBombi
                       id = "Orbit",
                       number = 2,
                       params = {
-                        altitude = 7620,
                         pattern = "Circle",
-                        speed = 100,
                       }
                     }
                   }

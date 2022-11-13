@@ -37,9 +37,7 @@ waypoints:
           name: 1
       - id: Orbit
         parameters:
-          altitude: $ALTITUDE$
           pattern: Circle
-          speed: $SPEED$
     type: Turning Point
     etaLocked: true
     speedLocked: true
