@@ -7,7 +7,7 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Blazored.LocalStorage" Version="4.2.0" />
+    <PackageReference Include="Blazored.LocalStorage" Version="4.3.0" />
     <PackageReference Include="Blazored.Typeahead" Version="4.7.0" />
     <PackageReference Include="Markdig" Version="0.30.4" />
     <ProjectReference Include="../BriefingRoom/BriefingRoom.csproj" />
