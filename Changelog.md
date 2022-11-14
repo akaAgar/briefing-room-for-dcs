@@ -1,4 +1,125 @@
 ## Changelog
+* Version 0.5.211.15(Nov, 15, 2022)
+    * Added:
+        * Added: Enhanced Gamemaster Script (Zeus)
+        * Added: Situation Editor
+        * Added: Auto convert ground static aircraft to actual static units (for performance, though loss of loadout)
+        * Added: Ice Halo set to auto
+        * Added: Full Builder Objective Location hint option
+        * Added: Linkage between campaign missions (starting airbase, objective area & situation)
+        * Added: Friendly and Enemy Bombers as mission feature
+        * Added: Moose Core and Moose ATIS for home base
+        * Added: Ingress and Egress points have unique names
+        * Added: Active Ground units
+        * Added: Objective feature friendly/enemy ground forces
+        * Added: Mapping support for Caucuses, South Atlantic, Mariana Islands, Persian Gulf and Syria (using Gzip Tech)
+        * Added: Basic Data based mapping method
+        * Added: waypoints for flights on UI map
+        * Added: Js real world map the UI
+        * Added: No BDA and Target Only BDA options
+        * Added: Aircraft Respawn Script
+        * Added: F-16 auto preset config
+        * Added: Auto set Air & ATC frequencies for players (where configured)
+        * Added: OV-10A Bronco mod
+    * Fixed:
+        * Fix: Spelling
+        * Fix: Map Icons showing Blue if player on Red side & Neutral airbase icon missing
+        * Fix: Briefings showing trigger suffixes
+        * Fix: Briefings ignore static aircraft
+        * Fix: Scripts not checking for NEUTRAL coalition units.
+        * Fix: Static carrier aircraft not having group names
+        * Fix: Script crash
+        * Fix: Singleton scripts (such as Moose) should only run once & before other feature scripts
+        * Fix: UI map giving away position of objective with inaccurate waypoint
+        * Fix: Strike packages given wrong waypoints in game
+        * Fix: Strike Packages not correctly identified
+        * Fix: MP FARPS no-rearm & double spawing
+        * Fix: Dedicated Server Duplicate FARPS (no more extra units)
+        * Fix: Corrupted FARP
+        * Fix: Some Ships not able to re-arm
+        * Fix: Immortal and invisible commands take priority in AI commands
+        * Fix: Friendly AWACS and Tankers now invisible to AI not invincible
+        * Fix: No ATC caused failed generate
+        * Fix: Cache map data on UI
+        * Fix: Broken file path
+        * Fix: Danger Close units not spawning danger close
+        * Fix: Removing old spawn anywhere broke quick builder
+        * Fix: Template can now survive ED's editing
+        * Fix: Remove Skill None, Use DCS Random Skill & Choose skill per unit not per group.
+        * Fix: Flair and Illumination Bomb calls
+        * Fix: Spawn anywhere not using any airbase
+        * Fix: Parked target AI aircraft activating when they shouldn't
+        * Fix: Set Waypoint to AGL 0 for ground targets
+        * Fix: Correct Bronco AI speed
+    * Updated:
+        * Updated: Let AI sort out Orbit speed and Alt
+        * Updated: Refactored Taskable unit scripts
+        * Updated: Moose to 2.7.16
+        * Updated: Situation Editor now adjusts to actual positions on generate
+        * Updated: Skynet to 3.0.1
+        * Updated: Moose ATIS to 227.00
+        * Updated: MarianaIslandsHopping situations related for campaign usage.
+        * Updated: Give AI Aircraft hints that they can avoid threats and fire back sometimes.
+        * Updated: B-1B Loadouts
+        * Updated: AircraftRespawn Script get independent 5-10 min check interval with 30% spawn chance.
+        * Updated: Tuned Ground forces mission feature placement
+        * Updated: Map warning
+        * Updated: Migrate Spawn anywhere to Situation option
+        * Updated: Syria ATC Radios
+        * Updated: All packages to net6
+        * Updated: Increase Respawn time and lower chance for AI
+        * Updated: FA-18C_hornet.ini
+        * Updated: Script.ini
+        * Updated: AircraftBomb.yml
+        * Updated: AircraftCAP.yml
+        * Updated: AircraftCAS.yml
+        * Updated: AircraftAWACS.yml
+        * Updated: AircraftSEAD.yml
+        * Updated: AircraftPatrol.yml
+        * Updated: AircraftOrbitingSEAD.yml
+        * Updated: AircraftUncontrolled.yml
+        * Updated: AircraftOrbiting.yml
+        * Updated: AircraftTankerNOTACAN.yml
+        * Updated: AircraftOrbitingCAS.yml
+        * Updated: AircraftMoving.yml
+    * UI:
+        * UI: Situation Editor improve descriptions
+        * UI: Situation Editor disable circle and rectangle
+        * UI: Minor updates for Situation Editor
+        * UI: Fix missing images for objectives
+        * UI: Map better routing
+        * UI: Improve waypoints and objectives
+        * UI: Complete NATO icons
+        * UI: Add nato unit icons (general)
+        * UI: Add Channel Map support
+        * UI: Normandy Map Support
+        * UI: Add Nevada Map support
+        * UI: Minor map updates
+        * UI: Icon hits and SubTasks
+        * UI: Remove aircraft from map icons
+        * UI: Map add units, SAM sites & Bases
+        * UI: Fix full screen Briefing
+        * UI: Add missing maps and Allow Full screen Briefing
+    * Misc:
+        * Misc: Format Files
+        * Misc: Credit Moose
+        * Misc: Credit NaDs
+        * Misc: Support task priority ordering
+        * Misc: Improved map error message
+        * Misc: enable and document data extraction for dev
+    * Docs:
+        * Docs: Improve Dump map data docs
+        * Docs: Credit Juanillus
+    * Upgrades:
+        * Upgrade: Bump Microsoft.AspNetCore.Components.Web in /Source
+        * Upgrade: Bump Microsoft.AspNetCore.Components.WebView.WindowsForms
+        * Upgrade: Bump YamlDotNet from 12.0.1 to 12.0.2 in /Source
+        * Upgrade: Bump Microsoft.AspNetCore.Components.WebView.WindowsForms
+        * Upgrade: Bump Markdig from 0.30.3 to 0.30.4 in /Source
+        * Upgrade: Bump Microsoft.AspNetCore.Components.Web in /Source
+        * Upgrade: Bump YamlDotNet from 12.0.0 to 12.0.1 in /Source
+        * Upgrade: Microsoft.AspNetCore.Components.WebView.WindowsForms
+
 * Version 0.5.209.03(Sept, 03, 2022)
     * Added:
         * Added: Mirage F1
