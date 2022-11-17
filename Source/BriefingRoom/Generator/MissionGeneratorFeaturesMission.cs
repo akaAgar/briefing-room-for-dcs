@@ -47,6 +47,12 @@ namespace BriefingRoom4DCS.Generator
                 return;
             }
 
+            if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ForEachCarrier))
+            {
+                ForEachCarrier(mission, featureID, featureDB);
+                return;
+            }
+
             if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ForEachFOB))
             {
                 ForEachFob(mission, featureID, featureDB);
@@ -105,6 +111,24 @@ namespace BriefingRoom4DCS.Generator
                 UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, spawnPoint.Value, spawnPoint.Value, ref extraSettings);
 
                 AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
+            }
+        }
+
+        private void ForEachCarrier(DCSMission mission, string featureID, DBEntryFeatureMission featureDB)
+        {
+            var carriers = _unitMaker.carrierDictionary
+                .Where(x => !x.Value.UnitMakerGroupInfo.UnitDB.Families.Contains(UnitFamily.FOB))
+                .Select(x => x.Value)
+                .ToList();
+            foreach (var carrier in carriers)
+            {
+
+                var coordinates = carrier.UnitMakerGroupInfo.Coordinates + Coordinates.CreateRandom(30, 100);
+                Dictionary<string, object> extraSettings = new Dictionary<string, object> { { "CarrierGroupId", carrier.UnitMakerGroupInfo.GroupID } };
+                UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, coordinates, coordinates, ref extraSettings);
+
+                AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
+
             }
         }
 

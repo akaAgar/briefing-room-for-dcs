@@ -59,5 +59,6 @@ namespace BriefingRoom4DCS.Data
         Neutral = 1048576,
         MoveAnyWhere = 2097152,
         StaticAircraft = 4194304,
+        ForEachCarrier = 8388608,
     }
 }
