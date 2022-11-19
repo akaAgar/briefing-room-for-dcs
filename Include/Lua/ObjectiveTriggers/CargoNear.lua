@@ -1,10 +1,7 @@
-briefingRoom.mission.objectiveTimers[$OBJECTIVEINDEX$] = function()
+briefingRoom.mission.objectiveTimers[OBJECTIVEINDEX] = function()
   if briefingRoom.mission.objectives[$OBJECTIVEINDEX$].complete then return false end -- Objective complete, nothing to do
   for __,u in ipairs(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames) do
-    local unit = Unit.getByName(u)
-    if unit == nil then
-      unit = StaticObject.getByName(u)
-    end
+    local unit = dcsExtensions.getUnitOrStatic(u)
     if unit ~= nil then
       local vec2p = briefingRoom.mission.objectives[$OBJECTIVEINDEX$].waypoint
       local vec2u = dcsExtensions.toVec2(unit:getPoint())

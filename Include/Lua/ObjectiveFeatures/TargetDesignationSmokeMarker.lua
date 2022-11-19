@@ -17,13 +17,10 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeM
     return
   end
   
-  local unit = Unit.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
-  if unit == nil then -- no unit found with the ID, try searching for a static
-    unit = StaticObject.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
-    if unit == nil then -- no unit nor static found with the ID
+  local unit = dcsExtensions.getUnitOrStatic(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
+  if unit == nil then -- no unit nor static found with the ID
       briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$:$LANG_NOTARGET$", "RadioSupportNoTarget", briefingRoom.radioManager.getAnswerDelay())
       return
-    end
   end
   
   local timeNow = timer.getAbsTime()

@@ -77,12 +77,9 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.
   if randomUnitName == "" or randomUnitName == nil then
     return nil
   end
-  local unit = Unit.getByName(randomUnitName)
-  if unit == nil then -- no unit found with the ID, try searching for a static
-    unit = StaticObject.getByName(randomUnitName)
+  local unit = dcsExtensions.getUnitOrStatic(randomUnitName)
     if unit == nil then -- no unit nor static found with the ID
       return nil
-    end
   end
   briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.laserTarget = unit
   briefingRoom.debugPrint("JTAC $OBJECTIVEINDEX$: Assigned Laser Target:"..randomUnitName, 1)

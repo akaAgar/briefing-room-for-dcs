@@ -347,6 +347,14 @@ function dcsExtensions.isUnitAlive(name)
   return true
 end
 
+function dcsExtensions.getUnitOrStatic(name)
+  local unit = Unit.getByName(name)
+  if unit == nil then -- no unit found with the ID, try searching for a static
+    unit = StaticObject.getByName(name)
+  end
+  return unit
+end
+
 
 -- Returns the first unit alive in group with ID groupID, or nil if group doesn't exist or is completely destroyed
 function dcsExtensions.getAliveUnitInGroup(groupName)
