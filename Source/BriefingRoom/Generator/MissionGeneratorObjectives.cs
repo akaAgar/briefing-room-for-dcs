@@ -189,6 +189,7 @@ namespace BriefingRoom4DCS.Generator
         {
             var extraSettings = new Dictionary<string, object>();
             var (luaUnit, unitCount, unitCountMinMax, objectiveTargetUnitFamily, groupFlags) = GetUnitData(task, targetDB, targetBehaviorDB, objectiveOptions);
+            var isInverseTransportWayPoint = false;
 
             if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location) && targetDB.UnitCategory.IsAircraft())
                 objectiveCoordinates = PlaceInAirbase(template, situationDB, playerAirbase, extraSettings, targetDB, targetBehaviorDB, ref luaUnit, objectiveCoordinates, unitCount, objectiveTargetUnitFamily);
@@ -236,6 +237,13 @@ namespace BriefingRoom4DCS.Generator
                 if (!spawnPoint.HasValue) // Failed to generate target group
                     throw new BriefingRoomException($"Failed to find Cargo SpawnPoint");
                 unitCoordinates = spawnPoint.Value;
+                if (targetBehaviorDB.ID.StartsWith("GoToPlayerBase"))
+                {
+                    var spawnTempCoords = objectiveCoordinates;
+                    objectiveCoordinates = unitCoordinates;
+                    unitCoordinates = spawnTempCoords;
+                    isInverseTransportWayPoint = true;
+                }
                 var cargoWaypoint = GenerateObjectiveWaypoint(task, unitCoordinates, $"{objectiveName} Pickup", template, true);
                 waypoints.Add(cargoWaypoint);
                 waypointList.Add(cargoWaypoint);
@@ -244,6 +252,11 @@ namespace BriefingRoom4DCS.Generator
                     extraSettings["GroupX2"] = objectiveCoordinates.X;
                     extraSettings["GroupY2"] = objectiveCoordinates.Y;
                     groupFlags |= UnitMakerGroupFlags.RadioAircraftSpawn;
+                } else {
+                    // Units shouldn't really move from pickup point if not escorted.
+                    extraSettings.Remove("GroupX2");
+                    extraSettings.Remove("GroupY2");
+                    groupLua = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>("Idle").GroupLua[(int)targetDB.UnitCategory];
                 }
             }
 
@@ -309,7 +322,7 @@ namespace BriefingRoom4DCS.Generator
             foreach (string featureID in featuresID)
                 FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value.GroupID, targetGroupInfo.Value.Coordinates, taskDB.TargetSide, objectiveOptions.Contains(ObjectiveOption.HideTarget));
 
-            objectiveCoordinatesList.Add(objectiveCoordinates);
+            objectiveCoordinatesList.Add(isInverseTransportWayPoint? unitCoordinates : objectiveCoordinates);
             var waypoint = GenerateObjectiveWaypoint(task, objectiveCoordinates, objectiveName, template);
             waypoints.Add(waypoint);
             waypointList.Add(waypoint);
