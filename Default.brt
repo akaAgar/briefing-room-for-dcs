@@ -25,7 +25,7 @@ missionfeatures=FriendlyAWACS,FriendlyTankerBasket,FriendlyTankerBoom
 [mods]
 
 [objectives]
-objective000.preset=Interdiction
+objective000.preset=Custom
 objective000.task=DestroyAll
 objective000.target=VehicleAny
 objective000.targetbehavior=Idle

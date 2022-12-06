@@ -17,8 +17,8 @@ difficultyvariation=Random
 objectives=AirbaseStrike,AntiShipStrike,CloseAirSupport,CombatAirPatrol,CombatSearchAndRescue,CommandoDrop,DeepStrike,DeepStrikeJTAC,DEAD,HeloHunt,Interception,Interdiction,InterdictionJTAC,OffensiveCounterAir,Reconnaissance
 objectivecount=Average
 objectivedistance=Average
-objectiveVariationDistance=Average
-airbaseVariationDistance=Average
+objectivevariationdistance=Average
+airbasevariationdistance=Average
 
 [options]
 fogofwar=All
@@ -26,13 +26,16 @@ mission=ImperialUnitsForBriefing
 realism=DisableDCSRadioAssists,NoBDA
 
 [playerflightgroups]
-player.aircrafttype=Su-25T
-player.aiwingmen=False
-player.count=2
-player.payload=default
-player.country=CJTFBlue
-player.startlocation=Runway
-player.livery=default
+playerflightgroup000.aircrafttype=Su-25T
+playerflightgroup000.aiwingmen=False
+playerflightgroup000.hostile=False
+playerflightgroup000.count=2
+playerflightgroup000.payload=default
+playerflightgroup000.country=CJTFBlue
+playerflightgroup000.startlocation=Runway
+playerflightgroup000.livery=default
+playerflightgroup000.overrideradioband=AM
+playerflightgroup000.overridecallsignnumber=1
 
 [player]
 
@@ -43,4 +46,10 @@ enemyairforce=Random
 friendlyskill=Random
 friendlyairdefense=Random
 friendlyairforce=Random
+
+[combinedarms]
+commanderblue=1
+commanderred=0
+jtacblue=1
+jtacred=0
 
