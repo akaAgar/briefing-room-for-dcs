@@ -41,14 +41,12 @@ namespace BriefingRoom4DCS.Generator
                 return;
             }
 
-            double spawnDistance = Math.Max(1.0, featureDB.UnitGroupSpawnDistance) * Toolbox.NM_TO_METERS;
-
             Coordinates? coordinates = null;
             Coordinates? coordinates2 = null;
 
             if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.SpawnOnObjective))
             {
-                coordinates = objectiveCoordinates + Coordinates.CreateRandom(10, 50);
+                coordinates = objectiveCoordinates.CreateNearRandom(featureDB.UnitGroupSpawnDistance * .75, featureDB.UnitGroupSpawnDistance * 1.5); //UnitGroupSpawnDistance treated as Meters here rather than NM
                 if (
                     !(featureDB.UnitGroupValidSpawnPoints.Contains(SpawnPointType.Sea) || featureDB.UnitGroupValidSpawnPoints.Contains(SpawnPointType.Air)) &&
                     _unitMaker.SpawnPointSelector.CheckInSea(coordinates.Value))
@@ -62,7 +60,7 @@ namespace BriefingRoom4DCS.Generator
                 Coordinates? spawnPoint =
                     _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         featureDB.UnitGroupValidSpawnPoints, objectiveCoordinates,
-                        new MinMaxD(spawnDistance * .75, spawnDistance * 1.5));
+                        new MinMaxD(featureDB.UnitGroupSpawnDistance * .75, featureDB.UnitGroupSpawnDistance * 1.5));
 
                 if (!spawnPoint.HasValue) // No spawn point found
                 {
