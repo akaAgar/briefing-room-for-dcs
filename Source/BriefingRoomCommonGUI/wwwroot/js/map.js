@@ -348,6 +348,8 @@ function GetTitle(id) {
             return 'FOB'
         case id.includes("CARRIER"):
             return 'Carrier'
+        case id.includes("SUPPLY"):
+            return 'Supply Base'
         case id.includes("SAM"):
             switch (true) {
                 case id.includes("Long"):
@@ -448,6 +450,8 @@ function GetNatoIcon(id, invert = false) {
             return prefix + 'FOB'
         case id.includes("CARRIER"):
             return prefix + 'CARRIER'
+        case id.includes("SUPPLY"):
+            return prefix + 'SUPPLY'
         case id.includes("SAM"):
             switch (true) {
                 case id.includes("Long"):

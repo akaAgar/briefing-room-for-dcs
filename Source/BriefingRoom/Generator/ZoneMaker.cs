@@ -11,12 +11,16 @@ namespace BriefingRoom4DCS.Generator
     internal class ZoneMaker
     {
         private readonly UnitMaker _unitMaker;
+        private readonly DrawingMaker _drawingMaker;
+        private readonly DCSMission _mission;
         private readonly List<string> LuaZones = new List<string>();
         private int CTLDZoneCount = 1;
 
-        internal ZoneMaker(UnitMaker unitMaker)
+        internal ZoneMaker(UnitMaker unitMaker, DrawingMaker drawingMaker, DCSMission mission)
         {
             _unitMaker = unitMaker;
+            _drawingMaker = drawingMaker;
+            _mission = mission;
             CTLDZoneCount = 1;
             Clear();
         }
@@ -40,6 +44,10 @@ namespace BriefingRoom4DCS.Generator
                 if (!newCoords.HasValue)
                     throw new BriefingRoomException("Can't find suitable zone Coordinates!");
                 coords = newCoords.Value;
+                _drawingMaker.AddDrawing($"Supply_{CTLDZoneCount}", DrawingType.TextBox, coords, "Text".ToKeyValuePair($"Supply Base"));
+                _drawingMaker.AddDrawing($"Supply_zone_{CTLDZoneCount}", DrawingType.Circle, coords, "Radius".ToKeyValuePair(500), "Colour".ToKeyValuePair(DrawingColour.White));
+                _mission.MapData.Add($"SUPPLY_{CTLDZoneCount}", new List<double[]> { coords.ToArray() });
+                _unitMaker.AddUnitGroup(UnitFamily.VehicleTransport, new MinMaxI(2,5).GetValue(), Side.Ally, "Vehicle", "Vehicle", coords, UnitMakerGroupFlags.Inert, new Dictionary<string, object>());
             }
             AddToList($"pickzone{CTLDZoneCount}", coords, 500);
             CTLDZoneCount++;

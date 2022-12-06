@@ -98,7 +98,7 @@ namespace BriefingRoom4DCS.Generator
             var unitMaker = new UnitMaker(mission, template, coalitionsDB, theaterDB, situationDB, template.ContextPlayerCoalition, coalitionsCountries, template.GetPlayerSlotsCount() == 1);
 
             var drawingMaker = new DrawingMaker(mission, template, theaterDB, situationDB);
-            var zoneMaker = new ZoneMaker(unitMaker);
+            var zoneMaker = new ZoneMaker(unitMaker, drawingMaker, mission);
 
 
             BriefingRoom.PrintToLog("Generating mission date and time...");
