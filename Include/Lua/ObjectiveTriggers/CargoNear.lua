@@ -1,4 +1,4 @@
-briefingRoom.mission.objectiveTimers[OBJECTIVEINDEX] = function()
+briefingRoom.mission.objectiveTimers[$OBJECTIVEINDEX$] = function()
   if briefingRoom.mission.objectives[$OBJECTIVEINDEX$].complete then return false end -- Objective complete, nothing to do
   for __,u in ipairs(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames) do
     local unit = dcsExtensions.getUnitOrStatic(u)
