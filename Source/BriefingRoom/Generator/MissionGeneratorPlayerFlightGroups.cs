@@ -194,7 +194,7 @@ namespace BriefingRoom4DCS.Generator
                 $"{Toolbox.FormatPayload(flightGroup.Payload)}\t" +
                 $"{homeBase}");
             for (int i = 0; i < flightGroup.Count; i++)
-                mission.AppendValue("SCRIPTCLIENTPILOTNAMES", $"\"{groupInfo.Value.Name} {i + 2}\",");
+                mission.AppendValue("SCRIPTCLIENTPILOTNAMES", $"\"{groupInfo.Value.Name} {i + 1}\",");
         }
 
         private static void SaveWaypointsToBriefing(DCSMission mission, Coordinates initialCoordinates, List<Waypoint> waypoints, bool useImperialSystem, UnitMakerGroupInfo? groupInfo)
