@@ -220,7 +220,8 @@ namespace BriefingRoom4DCS.Campaign
                 var airbaseOptions = airbases.Where(x =>
                     x.Coalition == template.ContextPlayerCoalition &&
                     x.Coordinates.GetDistanceFrom(previousPlayerAirbase.Coordinates) < (GetAirbaseVariationDistance(campaignTemplate.MissionsAirbaseVariationDistance) * Toolbox.NM_TO_METERS)).ToList();
-                template.FlightPlanTheaterStartingAirbase = Toolbox.RandomFrom(airbaseOptions).ID;
+                if (airbaseOptions.Count > 0)
+                    template.FlightPlanTheaterStartingAirbase = Toolbox.RandomFrom(airbaseOptions).ID;
             }
 
 
