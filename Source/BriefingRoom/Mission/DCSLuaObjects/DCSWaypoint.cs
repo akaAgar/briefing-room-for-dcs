@@ -31,6 +31,8 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 
         public int HelipadId { get; set; }
 
+        internal Coordinates Coordinates {get {return new Coordinates(X, Y);}}
+
         private List<DCSWaypointTask> SortTasks(List<DCSWaypointTask> tasks) => tasks.Select(x => x.parameters.ContainsKey("wrapped") ? new DCSWrappedWaypointTask(x) : x).ToList();
 
         public string ToLuaString(int number)
