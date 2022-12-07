@@ -23,6 +23,7 @@ using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
@@ -128,7 +129,7 @@ namespace BriefingRoom4DCS.Generator
             if (!string.IsNullOrEmpty(flightGroup.OverrideRadioFrequency))
             {
                 extraSettings.AddIfKeyUnused("RadioBand", (int)flightGroup.OverrideRadioBand);
-                extraSettings.AddIfKeyUnused("RadioFrequency", GeneratorTools.GetRadioFrequency(double.Parse(flightGroup.OverrideRadioFrequency)));
+                extraSettings.AddIfKeyUnused("RadioFrequency", GeneratorTools.GetRadioFrequency(double.Parse(flightGroup.OverrideRadioFrequency, CultureInfo.InvariantCulture)));
             }
 
             if (!string.IsNullOrEmpty(flightGroup.OverrideCallsignName))

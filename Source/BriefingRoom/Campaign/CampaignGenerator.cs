@@ -26,6 +26,7 @@ using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -72,7 +73,7 @@ namespace BriefingRoom4DCS.Campaign
                 campaign.AddMission(mission);
 
                 previousSituationId = mission.GetValue("BriefingSituationId");
-                previousObjectiveCenterCoords = new Coordinates(double.Parse(mission.GetValue("MissionCenterX")), double.Parse(mission.GetValue("MissionCenterY")));
+                previousObjectiveCenterCoords = new Coordinates(double.Parse(mission.GetValue("MissionCenterX"), CultureInfo.InvariantCulture), double.Parse(mission.GetValue("MissionCenterY"), CultureInfo.InvariantCulture));
                 previousPlayerAirbaseId = mission.GetValue("PlayerAirbaseId");
             }
 
