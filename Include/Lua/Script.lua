@@ -729,6 +729,50 @@ function briefingRoom.transportManager.initTransport(transportUnitName)
   }
 end
 
+function briefingRoom.transportManager.troopsMoveToGetIn(transportUnitName, unitNames)
+  local _leader = Unit.getByName(unitNames[1])
+  local _helo = Unit.getByName(transportUnitName)
+  local _group = _leader:getGroup()
+  local _destination = dcsExtensions.toVec2(_helo:getPoint())
+  local _distance = dcsExtensions.getDistance(_destination, dcsExtensions.toVec2(_leader:getPoint()))
+  local _time = math.floor((_distance * 135) / 500)
+  -- BLOCK TAKEN FROM MIST CSAR
+
+    local _path = {}
+    table.insert(_path, mist.ground.buildWP(_leader:getPoint(), 'Off Road', 50))
+    table.insert(_path, mist.ground.buildWP(_destination, 'Off Road', 50))
+
+    local _mission = {
+        id = 'Mission',
+        params = {
+            route = {
+                points = _path
+            },
+        },
+    }
+
+    -- delayed 2 second to work around bug
+    timer.scheduleFunction(function(_arg)
+        local _grp = csar.getAliveGroup(_arg[1])
+
+        if _grp ~= nil then
+            local _controller = _grp:getController();
+            Controller.setOption(_controller, AI.Option.Ground.id.ALARM_STATE, AI.Option.Ground.val.ALARM_STATE.GREEN)
+            Controller.setOption(_controller, AI.Option.Ground.id.ROE, AI.Option.Ground.val.ROE.WEAPON_HOLD)
+            _controller:setTask(_arg[2])
+        end
+    end
+        , { _group:getName(), _mission }, timer.getTime() + 2)
+    -- BLOCK TAKEN FROM MIST CSAR
+    local groupUnitNames = {}
+    for index, data in pairs(_group:getUnits()) do
+      table.insert(groupUnitNames, data:getName())
+    end
+    timer.scheduleFunction(function(_arg)
+      briefingRoom.transportManager.addTroopCargo(_arg[1], _arg[2])
+    end, { transportUnitName, groupUnitNames }, timer.getTime() + _time)
+end
+
 function briefingRoom.transportManager.addTroopCargo(transportUnitName, unitNames)
   if not table.containsKey(briefingRoom.transportManager.transportRoster, transportUnitName) then
     briefingRoom.transportManager.initTransport(transportUnitName)

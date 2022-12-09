@@ -35,6 +35,6 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
     end
   end
   if #collect > 0 then
-    briefingRoom.transportManager.addTroopCargo(event.initiator:getName(), collect)
+    briefingRoom.transportManager.troopsMoveToGetIn(event.initiator:getName(), collect)
   end
 end
