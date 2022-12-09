@@ -778,8 +778,9 @@ function briefingRoom.transportManager.addTroopCargo(transportUnitName, unitName
     briefingRoom.transportManager.initTransport(transportUnitName)
   end
   for index, unitName in ipairs(unitNames) do
-    if #briefingRoom.transportManager.transportRoster[transportUnitName].troops == briefingRoom.transportManager.maxTroops then
-      briefingRoom.radioManager.play("$LANG_TROOP$: $LANG_TRANSPORTFULL$ ($LANG_TOTALTROOPS$: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops..")", "RadioTroopFull")
+    local unitCount = #briefingRoom.transportManager.transportRoster[transportUnitName].troops
+    if unitCount == briefingRoom.transportManager.maxTroops then
+      briefingRoom.radioManager.play("$LANG_TROOP$: $LANG_TRANSPORTFULL$ ($LANG_TOTALTROOPS$: "..briefingRoom.transportManager.maxTroops..")", "RadioTroopFull")
       return true
     end
     local unit = Unit.getByName(unitName)
@@ -792,7 +793,7 @@ function briefingRoom.transportManager.addTroopCargo(transportUnitName, unitName
       unit:destroy()
     end
   end
-  briefingRoom.radioManager.play("$LANG_TROOP$: $LANG_TRANSPORTALLIN$ ($LANG_TOTALTROOPS$: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops..")", "RadioTroopAllIn")
+  briefingRoom.radioManager.play("$LANG_TROOP$: $LANG_TRANSPORTALLIN$ ($LANG_TOTALTROOPS$: "..#unitNames..")", "RadioTroopAllIn")
 end
 
 function briefingRoom.transportManager.removeTroopCargo(transportUnitName, unitNames)
