@@ -82,8 +82,8 @@ namespace BriefingRoom4DCS.Generator
             var waypointList = new List<Waypoint>();
             var (featuresID, targetDB, targetBehaviorDB, taskDB, objectiveOptions) = GetObjectiveData(task, useObjectivePreset);
             var useHintCoordinates = task.CoordinatesHint.ToString() != "0,0";
-            lastCoordinates =  useHintCoordinates ? task.CoordinatesHint: lastCoordinates;
-            var objectiveCoordinates = GetSpawnCoordinates(template, lastCoordinates, playerAirbase, targetDB);
+            lastCoordinates = useHintCoordinates ? task.CoordinatesHint : lastCoordinates;
+            var objectiveCoordinates = GetSpawnCoordinates(template, lastCoordinates, playerAirbase, targetDB, useHintCoordinates);
 
 
             CreateObjective(
@@ -254,7 +254,9 @@ namespace BriefingRoom4DCS.Generator
                     extraSettings["GroupX2"] = objectiveCoordinates.X;
                     extraSettings["GroupY2"] = objectiveCoordinates.Y;
                     groupFlags |= UnitMakerGroupFlags.RadioAircraftSpawn;
-                } else {
+                }
+                else
+                {
                     // Units shouldn't really move from pickup point if not escorted.
                     extraSettings.Remove("GroupX2");
                     extraSettings.Remove("GroupY2");
@@ -324,7 +326,7 @@ namespace BriefingRoom4DCS.Generator
             foreach (string featureID in featuresID)
                 FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value.GroupID, targetGroupInfo.Value.Coordinates, taskDB.TargetSide, objectiveOptions.Contains(ObjectiveOption.HideTarget));
 
-            objectiveCoordinatesList.Add(isInverseTransportWayPoint? unitCoordinates : objectiveCoordinates);
+            objectiveCoordinatesList.Add(isInverseTransportWayPoint ? unitCoordinates : objectiveCoordinates);
             var waypoint = GenerateObjectiveWaypoint(task, objectiveCoordinates, objectiveName, template);
             waypoints.Add(waypoint);
             waypointList.Add(waypoint);
@@ -376,15 +378,17 @@ namespace BriefingRoom4DCS.Generator
             return targetAirbase.Coordinates;
         }
 
-        private Coordinates GetSpawnCoordinates(MissionTemplateRecord template, Coordinates lastCoordinates, DBEntryAirbase playerAirbase, DBEntryObjectiveTarget targetDB)
+        private Coordinates GetSpawnCoordinates(MissionTemplateRecord template, Coordinates lastCoordinates, DBEntryAirbase playerAirbase, DBEntryObjectiveTarget targetDB, bool usingHint)
         {
+            var anyRange = new MinMaxD(1, double.MaxValue);
+            var hintRange = new MinMaxD(0, 10);
             Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                 targetDB.ValidSpawnPoints,
                 playerAirbase.Coordinates,
-                template.FlightPlanObjectiveDistance,
+                usingHint ? anyRange : template.FlightPlanObjectiveDistance,
                 lastCoordinates,
-                template.FlightPlanObjectiveSeparation,
-                GeneratorTools.GetSpawnPointCoalition(template, Side.Enemy));
+                usingHint ? hintRange : template.FlightPlanObjectiveSeparation,
+                usingHint ? null : GeneratorTools.GetSpawnPointCoalition(template, Side.Enemy));
 
             if (!spawnPoint.HasValue)
                 throw new BriefingRoomException($"Failed to spawn objective unit group. {String.Join(",", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList())} Please try again (Consider Adusting Flight Plan)");
