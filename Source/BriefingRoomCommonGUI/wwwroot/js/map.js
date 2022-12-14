@@ -5,7 +5,11 @@ const situationMapLayers = {
     "RED": null,
     "NEUTRAL": null,
 }
-let leafMap, leafHintMap, leafSituationMap, hintPos, hintMarker, hintMarkerMap
+let leafMap, leafHintMap, leafSituationMap, hintMarkerMap, hintTarget
+
+
+let hintPositions = {}
+let hintMarkers = {}
 
 function ToggleLayer(id) {
     group = mapGroups[id]
@@ -42,10 +46,12 @@ function distance(p, point) {
     return Math.sqrt(Math.pow(point.lat - p.x, 2) + Math.pow(point.lng - p.y, 2))
 }
 
-async function RenderHintMap(map) {
+async function RenderHintMap(map, hintKey) {
+    //Show hint map
+    document.getElementById("hint-map-button").click()
     if (map != hintMarkerMap) {
-        hintPos = null
-        hintMarker = null
+        hintPositions = {}
+        hintMarkers = {}
     }
     var MapCoordMap = await GetMapData(map)
     if (leafHintMap) {
@@ -60,32 +66,52 @@ async function RenderHintMap(map) {
     } catch (error) {
         console.warn(error)
     }
-    if (hintPos) {
-        hintMarker = new L.marker([hintPos.x, hintPos.y]).addTo(leafHintMap);
-    }
+    Object.keys(hintPositions).forEach(key => {
+        hintMarkers[key] = new L.marker([hintPositions[key].x, hintPositions[key].y], {
+            icon: new L.DivIcon({
+                className: 'my-div-icon',
+                html: `<img class="map_point_icon" src="_content/BriefingRoomCommonGUI/img/nato-icons/${GetNatoIcon(key, false)}.svg" alt="${key}"/>` +
+                    `<span class="map_point_icon">${key.split('_')[1]}</span>`
+            })
+        }).addTo(leafHintMap);
+    })
     let keys = Object.keys(MapCoordMap);
     let randomPos = MapCoordMap[keys[Math.floor(keys.length * Math.random())]];
     leafHintMap.setView([randomPos["x"], randomPos["y"]], 6.5);
     leafHintMap.on('click', function (e) {
         hintMarkerMap = map
-        hintPos = Object.values(MapCoordMap).reduce((a, b) => distance(a, e.latlng) < distance(b, e.latlng) ? a : b);
-        if (!hintMarker) {
-            hintMarker = new L.marker([hintPos.x, hintPos.y]).addTo(leafHintMap);
+        hintPositions[hintKey] = Object.values(MapCoordMap).reduce((a, b) => distance(a, e.latlng) < distance(b, e.latlng) ? a : b);
+        if (hintKey in hintMarkers) {
+            hintMarkers[hintKey].setLatLng([hintPositions[hintKey].x, hintPositions[hintKey].y])
         } else {
-            hintMarker.setLatLng([hintPos.x, hintPos.y])
+            var marker = new L.marker([hintPositions[hintKey].x, hintPositions[hintKey].y], {
+                icon: new L.DivIcon({
+                    className: 'my-div-icon',
+                    html: `<img class="map_point_icon" src="_content/BriefingRoomCommonGUI/img/nato-icons/${GetNatoIcon(hintKey, false)}.svg" alt="${hintKey}"/>` +
+                        `<span class="map_point_icon">${hintKey.split('_')[1]}</span>`
+                })
+            })
+            hintMarkers[hintKey] = marker
+            marker.addTo(leafHintMap);
         }
+        document.getElementById("hint-map-button").click()
     });
 }
 
-async function GetHintPoint(map) {
+async function GetHintPoints(map) {
     var MapCoordMap = await GetMapData(map)
-    for (const key in MapCoordMap) {
-        const pos = MapCoordMap[key]
-        if (hintPos.x == pos.x && hintPos.y == pos.y) {
-            const parts = key.replace("x:", "").replace("z:", "").split(",")
-            return parts.map(x => parseFloat(x));
+    const data = {}
+    Object.keys(hintPositions).forEach(hintKey => {
+        for (const key in MapCoordMap) {
+            const pos = MapCoordMap[key]
+            if (hintPositions[hintKey].x == pos.x && hintPositions[hintKey].y == pos.y) {
+                const parts = key.replace("x:", "").replace("z:", "").split(",")
+                data[hintKey] = parts.map(x => parseFloat(x));
+                return
+            }
         }
-    }
+    });
+    return data
 }
 
 async function RenderEditorMap(map) {

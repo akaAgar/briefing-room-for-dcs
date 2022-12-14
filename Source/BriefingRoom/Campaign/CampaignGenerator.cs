@@ -207,8 +207,6 @@ namespace BriefingRoom4DCS.Campaign
 
             if (!String.IsNullOrEmpty(previousPlayerAirbaseId))
             {
-                template.FlightPlanObjectiveCoordinateHint_ = previousObjectiveCenterCoords.CreateNearRandom(5 * Toolbox.NM_TO_METERS, GetObjectiveVariationDistance(campaignTemplate.MissionsObjectiveVariationDistance) * Toolbox.NM_TO_METERS); // TODO: Expose Max value 
-
                 var situationOptions = new List<string> { previousSituationId };
                 var previousSituationDB = Database.Instance.GetEntry<DBEntrySituation>(previousSituationId);
                 situationOptions.AddRange(previousSituationDB.RelatedSituations);
@@ -229,6 +227,9 @@ namespace BriefingRoom4DCS.Campaign
             int objectiveCount = GetObjectiveCountForMission(campaignTemplate.MissionsObjectiveCount);
             for (int i = 0; i < objectiveCount; i++)
                 template.Objectives.Add(new MissionTemplateObjective(Toolbox.RandomFrom(campaignTemplate.MissionsObjectives)));
+            
+            if (!String.IsNullOrEmpty(previousPlayerAirbaseId))
+               template.Objectives[0].CoordinateHint_ = previousObjectiveCenterCoords.CreateNearRandom(5 * Toolbox.NM_TO_METERS, GetObjectiveVariationDistance(campaignTemplate.MissionsObjectiveVariationDistance) * Toolbox.NM_TO_METERS);
 
             return template;
         }
