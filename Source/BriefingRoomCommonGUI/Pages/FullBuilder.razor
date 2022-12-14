@@ -133,33 +133,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion" id="hintAccordion">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="hintheader">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hintCollapse" aria-expanded="false" aria-controls="hintCollapse" @onclick='async() => await RenderHintMap()'>
-                                    @BriefingRoom.Translate("LocationHint")
-                                </button>
-                                </h2>
-                                <div id="hintCollapse" class="accordion-collapse collapse" aria-labelledby="hintheader" data-bs-parent="#hintAccordion">
-                                    <div class="accordion-body">
-                                         @if(!string.IsNullOrEmpty(hintErrorMessage)){
-                                            <div class="alert alert-danger" role="alert">
-                                                @BriefingRoom.Translate("Error"): @hintErrorMessage
-                                            </div>
-                                        }
-                                        @if(!string.IsNullOrEmpty(hintMessage)){
-                                            <div class="alert alert-info" role="info">
-                                                @hintMessage
-                                            </div>
-                                        }
-                                        <button type="button" class="btn btn-secondary form-control" @onclick='async() => await ApplyLocationHint()' title='@BriefingRoom.Translate("TakeHint")'>@BriefingRoom.Translate("TakeHint")</button>
-                                        <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("HintNote")</p>
-                                        <div id="hintMap"></div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="generator-group flex-justify-spaced flex-margin-fix">
                             <div class="form-group flex-block">
                                 <label>@BriefingRoom.Translate("BorderLimit")</label>
@@ -193,6 +166,7 @@
                                 <div class="flight-group">
                                     <div class="form-group">
                                         <button type="button" class="btn btn-secondary float-right" @onclick="() => CloneObjective(objective)"  title="Clone Objective"><span class="oi oi-layers"></span></button>
+                                        <button type="button" class="btn btn-secondary float-right" @onclick='() => RenderHintMap("OBJECTIVE_"+ objective.Alias)'  title='@BriefingRoom.Translate("TakeHint")'><span class="oi oi-globe"></span></button>
                                         <h4>@BriefingRoom.Translate("Features")</h4>
                                         <CheckBoxList
                                             Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveFeature).ToList()"
@@ -551,6 +525,31 @@
                     break;
             }
         </EditForm>
+        <div class="accordion" id="hintAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="hintheader">
+                <button id="hint-map-button" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hintCollapse" aria-expanded="false" aria-controls="hintCollapse">
+                    @BriefingRoom.Translate("LocationHint")
+                </button>
+                </h2>
+                <div id="hintCollapse" class="accordion-collapse collapse" aria-labelledby="hintheader" data-bs-parent="#hintAccordion">
+                    <div class="accordion-body">
+                        @if(!string.IsNullOrEmpty(hintErrorMessage)){
+                            <div class="alert alert-danger" role="alert">
+                                @BriefingRoom.Translate("Error"): @hintErrorMessage
+                            </div>
+                        }
+                        @if(!string.IsNullOrEmpty(hintMessage)){
+                            <div class="alert alert-info" role="info">
+                                @hintMessage
+                            </div>
+                        }
+                        <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("HintNote")</p>
+                        <div id="hintMap"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class=bottom-bar>
             <LoggerAll logs="MainLayout.logs"/>
         </div>
@@ -675,6 +674,23 @@
         return Task.CompletedTask;
     }
 
+    private async Task AddPositionHints()
+    {
+        var result = await JSRuntime.InvokeAsync<Dictionary<string, double[]>>("GetHintPoints", Template.ContextTheater);
+        foreach (var kv in result)
+        {
+            switch (true)
+            {
+                case true when kv.Key.StartsWith("OBJECTIVE"):
+                    var obj = Template.Objectives.Find(x => x.Alias ==  kv.Key.Replace("OBJECTIVE_", ""));
+                    obj.CoordinateHint = kv.Value;
+                    break;
+                default:
+                    throw new Exception($"Can't process hint key {kv.Key}");
+            }
+        }
+    }
+
     private async void GenerateMissionAsync()
     {
         try {
@@ -682,6 +698,7 @@
             StateHasChanged();
             mission = null;
             errorMessage = "";
+            await AddPositionHints();
             mission = await Layout.briefingRoom.GenerateMissionAsync(Template);
             StateHasChanged();
             await Policy.Handle<Exception>().RetryAsync(3).ExecuteAsync(async () => await JSRuntime.InvokeVoidAsync("RenderMap", mission.GetMapData(), Template.ContextTheater, Template.ContextPlayerCoalition == Coalition.Red));
@@ -725,28 +742,10 @@
         }
     }
 
-    private async Task RenderHintMap()
+    private async Task RenderHintMap(string hintKey)
     {
-        await JSRuntime.InvokeVoidAsync("RenderHintMap", Template.ContextTheater);
-    }
+        await JSRuntime.InvokeVoidAsync("RenderHintMap", Template.ContextTheater, hintKey);
 
-    private async Task ApplyLocationHint()
-    {
-        try
-        {
-           hintMessage = "";
-           hintErrorMessage = "";
-           var result = await JSRuntime.InvokeAsync<double[]>("GetHintPoint", Template.ContextTheater);
-           Template.FlightPlanObjectiveCoordinateHint = result; 
-           hintMessage = "Hint Taken";
-           StateHasChanged();
-        }
-        catch (System.Exception)
-        {
-            hintErrorMessage = "Failed to take hint.";
-        }
-        StateHasChanged();
-        
     }
 
     private string tab = "context-&-enviroment";

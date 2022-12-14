@@ -41,6 +41,8 @@ namespace BriefingRoom4DCS.Template
         public Amount TargetCount { get; set; }
         public string Task { get { return Task_; } set { Task_ = Database.Instance.CheckID<DBEntryObjectiveTask>(value); } }
         private string Task_;
+        public double[] CoordinateHint { set { CoordinateHint_ = new Coordinates(value[0], value[1]); } }
+        internal Coordinates CoordinateHint_ { get; set; }
 
         public List<MissionTemplateSubTask> SubTasks { get; set; } = new List<MissionTemplateSubTask>();
 

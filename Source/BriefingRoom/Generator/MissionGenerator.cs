@@ -134,7 +134,7 @@ namespace BriefingRoom4DCS.Generator
             var waypointNameGenerator = new WaypointNameGenerator();
             var objectiveCoordinates = new List<Coordinates>();
             var objectiveTargetUnitFamilies = new List<UnitFamily>();
-            var lastObjectiveCoordinates = template.FlightPlanObjectiveCoordinateHint.ToString() == "0,0" ? playerAirbase.Coordinates : template.FlightPlanObjectiveCoordinateHint;
+            var lastObjectiveCoordinates =  playerAirbase.Coordinates;
             var objectivesGenerator = new MissionGeneratorObjectives(unitMaker, drawingMaker, template);
             var objectiveGroupedWaypoints = new List<List<Waypoint>>();
             var i = 0;

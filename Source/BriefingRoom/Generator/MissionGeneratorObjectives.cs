@@ -81,6 +81,8 @@ namespace BriefingRoom4DCS.Generator
         {
             var waypointList = new List<Waypoint>();
             var (featuresID, targetDB, targetBehaviorDB, taskDB, objectiveOptions) = GetObjectiveData(task, useObjectivePreset);
+            var useHintCoordinates = task.CoordinatesHint.ToString() != "0,0";
+            lastCoordinates =  useHintCoordinates ? task.CoordinatesHint: lastCoordinates;
             var objectiveCoordinates = GetSpawnCoordinates(template, lastCoordinates, playerAirbase, targetDB);
 
 
