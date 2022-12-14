@@ -525,27 +525,37 @@
                     break;
             }
         </EditForm>
+        <button id="hint-open-map-button" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom"><span class="oi oi-globe"></span> @BriefingRoom.Translate("LocationHint")</button>
+        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasBottomLabel">@BriefingRoom.Translate("LocationHint")</h5>
+            <button id="hint-close-map-button" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            @if(!string.IsNullOrEmpty(hintErrorMessage)){
+                <div class="alert alert-danger" role="alert">
+                    @BriefingRoom.Translate("Error"): @hintErrorMessage
+                </div>
+            }
+            @if(!string.IsNullOrEmpty(hintMessage)){
+                <div class="alert alert-info" role="info">
+                    @hintMessage
+                </div>
+            }
+            <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("HintNote")</p>
+            <div id="hintMap"></div>
+        </div>
+        </div>
         <div class="accordion" id="hintAccordion">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="hintheader">
-                <button id="hint-map-button" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hintCollapse" aria-expanded="false" aria-controls="hintCollapse">
-                    @BriefingRoom.Translate("LocationHint")
+                <button  class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hintCollapse" aria-expanded="false" aria-controls="hintCollapse">
+                  
                 </button>
                 </h2>
                 <div id="hintCollapse" class="accordion-collapse collapse" aria-labelledby="hintheader" data-bs-parent="#hintAccordion">
                     <div class="accordion-body">
-                        @if(!string.IsNullOrEmpty(hintErrorMessage)){
-                            <div class="alert alert-danger" role="alert">
-                                @BriefingRoom.Translate("Error"): @hintErrorMessage
-                            </div>
-                        }
-                        @if(!string.IsNullOrEmpty(hintMessage)){
-                            <div class="alert alert-info" role="info">
-                                @hintMessage
-                            </div>
-                        }
-                        <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("HintNote")</p>
-                        <div id="hintMap"></div>
+
                     </div>
                 </div>
             </div>

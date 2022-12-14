@@ -66,3 +66,8 @@
 .darkMode .language-selector label {
     background-color: #0a263f;
 }
+
+.darkMode .offcanvas {
+    background-color: #0a263f;
+    color: white;
+}

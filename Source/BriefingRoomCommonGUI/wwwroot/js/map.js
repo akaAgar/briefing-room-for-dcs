@@ -48,7 +48,7 @@ function distance(p, point) {
 
 async function RenderHintMap(map, hintKey) {
     //Show hint map
-    document.getElementById("hint-map-button").click()
+    document.getElementById("hint-open-map-button").click()
     if (map != hintMarkerMap) {
         hintPositions = {}
         hintMarkers = {}
@@ -94,7 +94,6 @@ async function RenderHintMap(map, hintKey) {
             hintMarkers[hintKey] = marker
             marker.addTo(leafHintMap);
         }
-        document.getElementById("hint-map-button").click()
     });
 }
 
