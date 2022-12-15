@@ -135,9 +135,21 @@
                                 TItemOutput="string">
                             </CheckBoxList>
                         </div>
+                        <div class="flex-block">
+                                <h6>@BriefingRoom.Translate("ObjectiveDistance")</h6>
+                                <div class="min-max">
+                                    <label>@BriefingRoom.Translate("Min")</label>
+                                    <InputNumber class="form-control" @bind-Value="Template.MissionsObjectiveDistanceMin">
+                                    </InputNumber>
+                                </div>
+                                <div class="min-max">
+                                    <label>@BriefingRoom.Translate("Max")</label>
+                                    <InputNumber class="form-control" @bind-Value="Template.MissionsObjectiveDistanceMax">
+                                    </InputNumber>
+                                </div>
+                            </div>
                         <div class="generator-group flex-justify-spaced flex-margin-fix">
                             <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("ObjectivesCount") @bind-Value="Template.MissionsObjectiveCount" EnumType="Amount"/>
-                            <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("ObjectivesDistance") @bind-Value="Template.MissionsObjectiveDistance" EnumType="Amount"/>
                             <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("ObjectiveVariationDistance") @bind-Value="Template.MissionsObjectiveVariationDistance" EnumType="Amount"/>
                             <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("AirbaseVariationDistance") @bind-Value="Template.MissionsAirbaseVariationDistance" EnumType="Amount"/>
                         </div>

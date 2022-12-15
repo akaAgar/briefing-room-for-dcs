@@ -158,7 +158,6 @@ namespace BriefingRoom4DCS.Campaign
             string previousSituationId, Coordinates previousObjectiveCenterCoords, string previousPlayerAirbaseId)
         {
             string weatherPreset = GetWeatherForMission(campaignTemplate.EnvironmentBadWeatherChance);
-            var objDistance = GetObjectiveDistance(campaignTemplate.MissionsObjectiveDistance);
             MissionTemplate template = new MissionTemplate
             {
                 BriefingMissionName = $"{campaignName}, phase {missionIndex + 1}",
@@ -176,8 +175,8 @@ namespace BriefingRoom4DCS.Campaign
                 EnvironmentWeatherPreset = weatherPreset,
                 EnvironmentWind = GetWindForMission(campaignTemplate.EnvironmentBadWeatherChance, weatherPreset),
 
-                FlightPlanObjectiveDistanceMax = objDistance.Max,
-                FlightPlanObjectiveDistanceMin = objDistance.Min,
+                FlightPlanObjectiveDistanceMax = campaignTemplate.MissionsObjectiveDistanceMax,
+                FlightPlanObjectiveDistanceMin = campaignTemplate.MissionsObjectiveDistanceMin,
                 FlightPlanTheaterStartingAirbase = campaignTemplate.PlayerStartingAirbase,
 
                 MissionFeatures = campaignTemplate.MissionsFeatures.ToList(),
@@ -232,18 +231,6 @@ namespace BriefingRoom4DCS.Campaign
                 template.Objectives.Add(new MissionTemplateObjective(Toolbox.RandomFrom(campaignTemplate.MissionsObjectives)));
 
             return template;
-        }
-
-        private static MinMaxI GetObjectiveDistance(Amount objectiveDistance)
-        {
-            switch (objectiveDistance)
-            {
-                case Amount.VeryLow: return new MinMaxI(40, 80);
-                case Amount.Low: return new MinMaxI(60, 100);
-                default: return new MinMaxI(80, 120); // case Amount.Average
-                case Amount.High: return new MinMaxI(100, 140);
-                case Amount.VeryHigh: return new MinMaxI(120, 160);
-            }
         }
 
         private static double GetObjectiveVariationDistance(Amount objectiveVariationDistance)

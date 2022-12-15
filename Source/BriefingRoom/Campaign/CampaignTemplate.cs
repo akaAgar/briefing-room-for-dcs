@@ -52,7 +52,10 @@ namespace BriefingRoom4DCS.Campaign
         public List<string> MissionsObjectives { get { return MissionObjectives_; } set { MissionObjectives_ = value.Distinct().ToList(); } }
         private List<string> MissionObjectives_ = new List<string>();
         public Amount MissionsObjectiveCount { get; set; }
-        public Amount MissionsObjectiveDistance { get; set; }
+        public int MissionsObjectiveDistanceMin  { get { return MissionsObjectiveDistanceMin_; } set { MissionsObjectiveDistanceMin_ = Toolbox.Clamp(value, 0, MissionTemplate.MAX_OBJECTIVE_DISTANCE); } }
+        private int MissionsObjectiveDistanceMin_;
+        public int MissionsObjectiveDistanceMax  { get { return MissionsObjectiveDistanceMax_; } set { MissionsObjectiveDistanceMax_ = Toolbox.Clamp(value, 0, MissionTemplate.MAX_OBJECTIVE_DISTANCE); } }
+        private int MissionsObjectiveDistanceMax_;
         public Amount MissionsObjectiveVariationDistance { get; set; }
         public Amount MissionsAirbaseVariationDistance { get; set; }
         public FogOfWar OptionsFogOfWar { get; set; }
@@ -116,7 +119,8 @@ namespace BriefingRoom4DCS.Campaign
             MissionsFeatures = new List<string>();
             MissionsObjectives = BriefingRoom.GetDatabaseEntriesIDs(DatabaseEntryType.ObjectivePreset).ToList();
             MissionsObjectiveCount = Amount.Average;
-            MissionsObjectiveDistance = Amount.Average;
+            MissionsObjectiveDistanceMin = 80;
+            MissionsObjectiveDistanceMax = 120;
             MissionsObjectiveVariationDistance = Amount.Average;
             MissionsAirbaseVariationDistance = Amount.Average;
 
@@ -176,7 +180,8 @@ namespace BriefingRoom4DCS.Campaign
             MissionsFeatures = ini.GetValueDistinctList<string>("Missions", "Features");
             MissionsObjectives = ini.GetValueList<string>("Missions", "Objectives");
             MissionsObjectiveCount = ini.GetValue("Missions", "ObjectiveCount", MissionsObjectiveCount);
-            MissionsObjectiveDistance = ini.GetValue("Missions", "ObjectiveDistance", MissionsObjectiveDistance);
+            MissionsObjectiveDistanceMin = ini.GetValue("Missions", "ObjectiveDistanceMin", MissionsObjectiveDistanceMin);
+            MissionsObjectiveDistanceMax = ini.GetValue("Missions", "ObjectiveDistanceMax", MissionsObjectiveDistanceMax);
             MissionsObjectiveVariationDistance = ini.GetValue("Missions", "ObjectiveVariationDistance", MissionsObjectiveVariationDistance);
             MissionsAirbaseVariationDistance = ini.GetValue("Missions", "AirbaseVariationDistance", MissionsAirbaseVariationDistance);
 
@@ -244,7 +249,8 @@ namespace BriefingRoom4DCS.Campaign
             ini.SetValueArray("Missions", "Features", MissionsFeatures.ToArray());
             ini.SetValueArray("Missions", "Objectives", MissionsObjectives.ToArray());
             ini.SetValue("Missions", "ObjectiveCount", MissionsObjectiveCount);
-            ini.SetValue("Missions", "ObjectiveDistance", MissionsObjectiveDistance);
+            ini.SetValue("Missions", "ObjectiveDistanceMin", MissionsObjectiveDistanceMin);
+            ini.SetValue("Missions", "ObjectiveDistanceMax", MissionsObjectiveDistanceMax);
             ini.SetValue("Missions", "ObjectiveVariationDistance", MissionsObjectiveVariationDistance);
             ini.SetValue("Missions", "AirbaseVariationDistance", MissionsAirbaseVariationDistance);
 
