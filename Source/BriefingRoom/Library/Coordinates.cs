@@ -166,5 +166,10 @@ namespace BriefingRoom4DCS
                 (from coordinate in coordinates select coordinate.X).Sum(),
                 (from coordinate in coordinates select coordinate.Y).Sum());
         }
+
+        internal double GetHeadingFrom(Coordinates lastWP)
+        {
+            return  Math.Round(ToAngleInRadians(lastWP, this) * Toolbox.RADIANS_TO_DEGREES);
+        }
     }
 }

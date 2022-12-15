@@ -178,7 +178,8 @@ namespace BriefingRoom4DCS.Generator
                 groupStartingCoords,
                 flightWaypoints,
                 template.OptionsMission.Contains("ImperialUnitsForBriefing"),
-                groupInfo);
+                groupInfo,
+                theaterDB);
 
             var mapWaypoints = flightWaypoints.Select(x => x.Coordinates.ToArray()).ToList();
             mapWaypoints = mapWaypoints.Prepend(groupStartingCoords.ToArray()).ToList();
@@ -198,7 +199,7 @@ namespace BriefingRoom4DCS.Generator
                 mission.AppendValue("SCRIPTCLIENTPILOTNAMES", $"\"{groupInfo.Value.Name} {i + 1}\",");
         }
 
-        private static void SaveWaypointsToBriefing(DCSMission mission, Coordinates initialCoordinates, List<Waypoint> waypoints, bool useImperialSystem, UnitMakerGroupInfo? groupInfo)
+        private static void SaveWaypointsToBriefing(DCSMission mission, Coordinates initialCoordinates, List<Waypoint> waypoints, bool useImperialSystem, UnitMakerGroupInfo? groupInfo, DBEntryTheater theaterDB)
         {
             double totalDistance = 0;
             Coordinates lastWP = initialCoordinates;
@@ -213,13 +214,16 @@ namespace BriefingRoom4DCS.Generator
             foreach (Waypoint waypoint in allWaypoints)
             {
                 double distanceFromLast = waypoint.Coordinates.GetDistanceFrom(lastWP);
+                double heading = waypoint.Coordinates.GetHeadingFrom(lastWP);
+                double magHeading = theaterDB.GetMagneticHeading(heading);
                 totalDistance += distanceFromLast;
                 lastWP = waypoint.Coordinates;
 
                 string waypointText =
                     allWaypoints.IndexOf(waypoint) + ": " + waypoint.Name + "\t" +
                     (useImperialSystem ? $"{distanceFromLast * Toolbox.METERS_TO_NM:F0} nm" : $"{distanceFromLast / 1000.0:F0} Km") + "\t" +
-                    (useImperialSystem ? $"{totalDistance * Toolbox.METERS_TO_NM:F0} nm" : $"{totalDistance / 1000.0:F0} Km");
+                    (useImperialSystem ? $"{totalDistance * Toolbox.METERS_TO_NM:F0} nm" : $"{totalDistance / 1000.0:F0} Km") + '\t' +
+                    $"{heading} ({magHeading})";
 
                 mission.Briefing.AddItem(DCSMissionBriefingItemType.Waypoint, waypointText);
                 waypointTextRows.Add(waypointText);

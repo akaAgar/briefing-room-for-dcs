@@ -113,6 +113,16 @@ namespace BriefingRoom4DCS.Data
             return true;
         }
 
+        internal double GetMagneticHeading(double heading)
+        {
+            var tunedHeading = Math.Round(heading + MagneticDeclination);
+            if(tunedHeading > 360)
+                tunedHeading =- 360;
+            if(tunedHeading < 0)
+                tunedHeading =+ 360;
+            return tunedHeading;
+        }
+
         private MinMaxI? ParseMinMaxTime(string[] timeValues)
         {
             if (timeValues.Length != 2) return null;
