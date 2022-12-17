@@ -385,6 +385,7 @@ namespace BriefingRoom4DCS
                 (type == typeof(float)) ||
                 (type == typeof(int)) ||
                 (type == typeof(string)) ||
+                (type == typeof(Coordinates)) ||
                 type.IsEnum)
                 return true;
 
@@ -446,6 +447,8 @@ namespace BriefingRoom4DCS
                 outString = ((float)inObject).ToString(NumberFormatInfo.InvariantInfo);
             else if (type == typeof(int))
                 outString = ((int)inObject).ToString(NumberFormatInfo.InvariantInfo);
+            else if (type == typeof(Coordinates))
+                outString = ((Coordinates)inObject).ToString();
 
             return outString;
         }
