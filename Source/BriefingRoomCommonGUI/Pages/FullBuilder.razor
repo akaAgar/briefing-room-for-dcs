@@ -525,41 +525,17 @@
                     break;
             }
         </EditForm>
-        <button id="hint-open-map-button" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom"><span class="oi oi-globe"></span> @BriefingRoom.Translate("LocationHint")</button>
-        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasBottomLabel">@BriefingRoom.Translate("LocationHint")</h5>
-            <button id="hint-close-map-button" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            @if(!string.IsNullOrEmpty(hintErrorMessage)){
-                <div class="alert alert-danger" role="alert">
-                    @BriefingRoom.Translate("Error"): @hintErrorMessage
-                </div>
-            }
-            @if(!string.IsNullOrEmpty(hintMessage)){
-                <div class="alert alert-info" role="info">
-                    @hintMessage
-                </div>
-            }
-            <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("HintNote")</p>
-            <div id="hintMap"></div>
-        </div>
-        </div>
-        <div class="accordion" id="hintAccordion">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="hintheader">
-                <button  class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hintCollapse" aria-expanded="false" aria-controls="hintCollapse">
-                  
-                </button>
-                </h2>
-                <div id="hintCollapse" class="accordion-collapse collapse" aria-labelledby="hintheader" data-bs-parent="#hintAccordion">
-                    <div class="accordion-body">
-
-                    </div>
+        <button id="hint-open-map-button" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" @onclick='() => RenderHintMap("")'><span class="oi oi-globe"></span> @BriefingRoom.Translate("LocationHint")</button>
+        <div class="offcanvas offcanvas-bottom h-auto" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasBottomLabel">@BriefingRoom.Translate("LocationHint")</h5>
+                <button id="hint-close-map-button" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+                <div class="offcanvas-body">
+                    <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("HintNote")</p>
+                    <div id="hintMap"></div>
                 </div>
             </div>
-        </div>
         <div class=bottom-bar>
             <LoggerAll logs="MainLayout.logs"/>
         </div>
@@ -608,9 +584,6 @@
 
     private bool spinner = false;
 
-    private string hintErrorMessage;
-    private string hintMessage;
-
     protected override void OnInitialized()
     {
         Template = new MissionTemplate();
@@ -650,7 +623,13 @@
                 using var reader = new StreamReader(targetFile);
                 data = await reader.ReadToEndAsync();
             }
-            Template.LoadFromString(data); 
+            Template.LoadFromString(data);
+            var hints = new Dictionary<string, double[]>();
+            foreach (var obj in Template.Objectives)
+            {
+                hints.Add($"OBJECTIVE_{obj.Alias}", obj.CoordinateHint);
+            }
+            await JSRuntime.InvokeVoidAsync("SetHintPositions", hints, Template.ContextTheater);
             tempateMessage = "Template Loaded";
             clearTemplateMessageDelay();
             
@@ -664,7 +643,8 @@
 
     private async Task SaveTemplate()
     {
-        try { 
+        try {
+            await AddPositionHints();
             var fileBytes = Template.GetIniBytes();
             await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"Default.brt", "application/octet-stream", fileBytes);
             tempateMessage = "Template Saved"; 
@@ -674,14 +654,14 @@
         }
     }
 
-    private Task ClearTemplate()
+    private async Task ClearTemplate()
     {
         tempateMessage = "Template Reset"; 
         Template.Clear();
         Template.Objectives[0].Preset = "Custom";
+        await JSRuntime.InvokeVoidAsync("SetHintPositions", new Dictionary<string, double[]>(),  Template.ContextTheater);
         clearTemplateMessageDelay();
         StateHasChanged();
-        return Task.CompletedTask;
     }
 
     private async Task AddPositionHints()

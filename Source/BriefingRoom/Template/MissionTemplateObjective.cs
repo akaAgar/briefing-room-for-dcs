@@ -41,7 +41,7 @@ namespace BriefingRoom4DCS.Template
         public Amount TargetCount { get; set; }
         public string Task { get { return Task_; } set { Task_ = Database.Instance.CheckID<DBEntryObjectiveTask>(value); } }
         private string Task_;
-        public double[] CoordinateHint { set { CoordinateHint_ = new Coordinates(value[0], value[1]); } }
+        public double[] CoordinateHint { get { return CoordinateHint_.ToArray(); } set { CoordinateHint_ = new Coordinates(value[0], value[1]); } }
         internal Coordinates CoordinateHint_ { get; set; }
 
         public List<MissionTemplateSubTask> SubTasks { get; set; } = new List<MissionTemplateSubTask>();
@@ -98,6 +98,7 @@ namespace BriefingRoom4DCS.Template
             TargetBehavior = ini.GetValue<string>(section, $"{key}.TargetBehavior");
             TargetCount = ini.GetValue<Amount>(section, $"{key}.TargetCount");
             Task = ini.GetValue<string>(section, $"{key}.Task");
+            CoordinateHint_ = ini.GetValue<Coordinates>(section, $"{key}.CoordinateHint");
             foreach (var subKey in ini.GetKeysInSection(section)
                 .Where(x => x.Contains(key))
                 .Select(x => x.Split(".")[1])
@@ -117,6 +118,7 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue(section, $"{key}.Target", Target);
             ini.SetValue(section, $"{key}.TargetBehavior", TargetBehavior);
             ini.SetValue(section, $"{key}.TargetCount", TargetCount);
+            ini.SetValue(section, $"{key}.CoordinateHint", CoordinateHint_);
             var i = 0;
             foreach (var subTask in SubTasks)
             {
