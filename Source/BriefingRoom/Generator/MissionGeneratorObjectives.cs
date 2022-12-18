@@ -380,14 +380,12 @@ namespace BriefingRoom4DCS.Generator
 
         private Coordinates GetSpawnCoordinates(MissionTemplateRecord template, Coordinates lastCoordinates, DBEntryAirbase playerAirbase, DBEntryObjectiveTarget targetDB, bool usingHint)
         {
-            var anyRange = new MinMaxD(1, double.MaxValue);
-            var hintRange = new MinMaxD(0, 10);
             Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                 targetDB.ValidSpawnPoints,
                 playerAirbase.Coordinates,
-                usingHint ? anyRange : template.FlightPlanObjectiveDistance,
+                usingHint ? Toolbox.ANY_RANGE : template.FlightPlanObjectiveDistance,
                 lastCoordinates,
-                usingHint ? hintRange : template.FlightPlanObjectiveSeparation,
+                usingHint ? Toolbox.HINT_RANGE : template.FlightPlanObjectiveSeparation,
                 usingHint ? null : GeneratorTools.GetSpawnPointCoalition(template, Side.Enemy));
 
             if (!spawnPoint.HasValue)

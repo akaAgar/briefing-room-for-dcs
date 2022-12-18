@@ -51,6 +51,7 @@ async function SetHintPositions(positionsDict, map){
     hintPositions = {}
     var MapCoordMap = await GetMapData(map)
     Object.keys(positionsDict).forEach(key => {
+        if(positionsDict[key][0] === 0 && positionsDict[key][1] === 0) return
         hintPositions[key] = GetFromMapCoordDataXY(positionsDict[key], MapCoordMap)
     })
 }
@@ -90,16 +91,21 @@ async function RenderHintMap(map, hintKey) {
     let randomPos = MapCoordMap[keys[Math.floor(keys.length * Math.random())]];
     leafHintMap.setView([randomPos["x"], randomPos["y"]], 6.5);
     if(hintKey){
-        leafHintMap.once('click', function (e) {
-            hintMarkerMap = map
-            hintPositions[hintKey] = getNearestValidPos(e.latlng, MapCoordMap)
-            if (hintKey in hintMarkers) {
-                hintMarkers[hintKey].setLatLng([hintPositions[hintKey].x, hintPositions[hintKey].y])
-            } else {
-                createHintMarker(hintKey, map)
-            }
-        });
+        await PrepClickHint(hintKey, map)
     }
+}
+
+async function PrepClickHint(hintKey, map) {
+    var MapCoordMap = await GetMapData(map)
+    leafHintMap.once('click', function (e) {
+        hintMarkerMap = map
+        hintPositions[hintKey] = getNearestValidPos(e.latlng, MapCoordMap)
+        if (hintKey in hintMarkers) {
+            hintMarkers[hintKey].setLatLng([hintPositions[hintKey].x, hintPositions[hintKey].y])
+        } else {
+            createHintMarker(hintKey, map)
+        }
+    });
 }
 
 
@@ -109,7 +115,7 @@ function createHintMarker(key, map) {
         icon: new L.DivIcon({
             className: 'my-div-icon',
             html: `<img class="map_point_icon" src="_content/BriefingRoomCommonGUI/img/nato-icons/${GetNatoIcon(key, false)}.svg" alt="${key}"/>` +
-                `<span class="map_point_icon">${key.split('_')[1]}</span>`
+                `<span class="map_point_icon map_point_icon_text">${key.slice(key.indexOf('_') + 1).replaceAll("_", " ")}</span>`
         }),
         draggable:'true'
     })
@@ -120,7 +126,12 @@ function createHintMarker(key, map) {
         var position = marker.getLatLng();
         var MapCoordMap = await GetMapData(map)
         hintPositions[key] = getNearestValidPos(position, MapCoordMap)
-        marker.setLatLng(position,{id:uni,draggable:'true'}).bindPopup(position).update();
+        marker.setLatLng([hintPositions[key].x, hintPositions[key].y])
+    });
+    hintMarkers[key].on('dblclick', async function(event){
+        var marker = event.target;
+        marker.remove()
+        delete hintPositions[key]
     });
 }
 

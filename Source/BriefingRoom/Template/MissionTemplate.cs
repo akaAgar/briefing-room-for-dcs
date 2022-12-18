@@ -89,6 +89,7 @@ namespace BriefingRoom4DCS.Template
         private int CombinedArmsJTACBlue_;
         public int CombinedArmsJTACRed { get { return CombinedArmsJTACRed_; } set { CombinedArmsJTACRed_ = Toolbox.Clamp(value, 0, MAX_COMBINED_ARMS_SLOTS); } }
         private int CombinedArmsJTACRed_;
+        public Dictionary<string, double[]> CarrierHints { get; set; } = new Dictionary<string, double[]>();
 
 
         public MissionTemplate()
@@ -161,6 +162,8 @@ namespace BriefingRoom4DCS.Template
             CombinedArmsJTACBlue = 0;
             CombinedArmsJTACRed = 0;
 
+            CarrierHints = new Dictionary<string, double[]>();
+
             AssignAliases();
         }
 
@@ -232,6 +235,12 @@ namespace BriefingRoom4DCS.Template
             CombinedArmsCommanderRed = ini.GetValue("CombinedArms", "CommanderRed", CombinedArmsCommanderRed);
             CombinedArmsJTACBlue = ini.GetValue("CombinedArms", "JTACBlue", CombinedArmsJTACBlue);
             CombinedArmsJTACRed = ini.GetValue("CombinedArms", "JTACRed", CombinedArmsJTACRed);
+            
+            CarrierHints.Clear();
+            foreach (string key in ini.GetTopLevelKeysInSection("CarrierHints"))
+            {
+                CarrierHints.Add(ini.GetValue("CarrierHintsNames", key, ""), ini.GetValue("CarrierHints", key, new double[]{0,0}));
+            }
             AssignAliases();
             return true;
         }
@@ -304,6 +313,12 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue("CombinedArms", "CommanderRed", CombinedArmsCommanderRed);
             ini.SetValue("CombinedArms", "JTACBlue", CombinedArmsJTACBlue);
             ini.SetValue("CombinedArms", "JTACRed", CombinedArmsJTACRed);
+
+             foreach (string key in CarrierHints.Keys)
+             {
+                ini.SetValue("CarrierHints", key, CarrierHints[key]);
+                ini.SetValue("CarrierHintsNames", key, key);
+             }
 
             return ini;
         }

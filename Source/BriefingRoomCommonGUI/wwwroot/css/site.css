@@ -342,6 +342,10 @@ th {
     left: -15px;
 }
 
+.map_point_icon_text {
+    white-space: nowrap;
+}
+
 .map_unit {
     width: 30px !important;
     height: 30px;

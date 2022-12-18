@@ -46,8 +46,7 @@ namespace BriefingRoom4DCS.Generator
             var usedCoordinates = new List<Coordinates>();
             foreach (MissionTemplateFlightGroupRecord flightGroup in template.PlayerFlightGroups)
             {
-                if (string.IsNullOrEmpty(flightGroup.Carrier)) continue; // No carrier for
-                if (unitMaker.carrierDictionary.ContainsKey(flightGroup.Carrier)) continue; // Carrier type already added
+                if (string.IsNullOrEmpty(flightGroup.Carrier) || unitMaker.carrierDictionary.ContainsKey(flightGroup.Carrier)) continue;
                 if (flightGroup.Carrier.StartsWith("FOB"))
                 {
                     //It Carries therefore carrier not because I can't think of a name to rename this lot
@@ -57,7 +56,7 @@ namespace BriefingRoom4DCS.Generator
                 DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(flightGroup.Carrier);
                 if ((unitDB == null) || !unitDB.Families.Any(x => x.IsCarrier())) continue; // Unit doesn't exist or is not a carrier
 
-                var (shipCoordinates, shipDestination) = GetSpawnAndDestination(unitMaker, template, theaterDB, usedCoordinates, landbaseCoordinates, objectivesCenter, carrierPathDeg);
+                var (shipCoordinates, shipDestination) = GetSpawnAndDestination(unitMaker, template, theaterDB, usedCoordinates, landbaseCoordinates, objectivesCenter, carrierPathDeg, flightGroup);
                 usedCoordinates.Add(shipCoordinates);
                 string cvnID = unitMaker.carrierDictionary.Count > 0 ? (unitMaker.carrierDictionary.Count + 1).ToString() : "";
                 int ilsChannel = 11 + unitMaker.carrierDictionary.Count;
@@ -100,16 +99,24 @@ namespace BriefingRoom4DCS.Generator
         private static Tuple<Coordinates, Coordinates> GetSpawnAndDestination(
             UnitMaker unitMaker, MissionTemplateRecord template, DBEntryTheater theaterDB,
             List<Coordinates> usedCoordinates, Coordinates landbaseCoordinates, Coordinates objectivesCenter,
-            double carrierPathDeg)
+            double carrierPathDeg, MissionTemplateFlightGroupRecord flightGroup)
         {
             var travelMinMax = new MinMaxD(Database.Instance.Common.CarrierGroup.CourseLength, Database.Instance.Common.CarrierGroup.CourseLength * 2);
             Coordinates? carrierGroupCoordinates = null;
             Coordinates? destinationPath = null;
             var iteration = 0;
             var maxDistance = 25;
+            var usingHint = template.CarrierHints.ContainsKey(flightGroup.Carrier);
+            var location = objectivesCenter;
+            if (usingHint)
+            {
+                location = new Coordinates(template.CarrierHints[flightGroup.Carrier]);
+                if (!ShapeManager.IsPosValid(location, theaterDB.WaterCoordinates, theaterDB.WaterExclusionCoordinates))
+                    throw new BriefingRoomException($"Carrier Hint location is on shore");
+            }
             while (iteration < 100)
             {
-                carrierGroupCoordinates = unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                carrierGroupCoordinates = usingHint ? location : unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                     new SpawnPointType[] { SpawnPointType.Sea },
                     landbaseCoordinates,
                     new MinMaxD(10, maxDistance),
@@ -150,14 +157,18 @@ namespace BriefingRoom4DCS.Generator
             DBEntryTheater theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
             if (theaterDB == null) return; // Theater doesn't exist. Should never happen.
 
+            var usingHint = template.CarrierHints.ContainsKey(flightGroup.Carrier);
+            var location = objectivesCenter;
+            if (usingHint)
+                location = new Coordinates(template.CarrierHints[flightGroup.Carrier]);
 
             Coordinates? spawnPoint =
                     unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         new SpawnPointType[] { SpawnPointType.LandLarge },
                         landbaseCoordinates,
-                        new MinMaxD(5, template.FlightPlanObjectiveDistance.Max),
-                        objectivesCenter,
-                        new MinMaxD(10, template.FlightPlanObjectiveDistance.Max / 2), template.ContextPlayerCoalition);
+                        usingHint ? Toolbox.ANY_RANGE : new MinMaxD(5, template.FlightPlanObjectiveDistance.Max),
+                        location,
+                        usingHint ? Toolbox.HINT_RANGE : new MinMaxD(10, template.FlightPlanObjectiveDistance.Max / 2), template.ContextPlayerCoalition);
 
             if (!spawnPoint.HasValue)
             {

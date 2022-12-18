@@ -367,6 +367,7 @@ namespace BriefingRoom4DCS
                 (type == typeof(int)) ||
                 (type == typeof(string)) ||
                 (type == typeof(Coordinates)) ||
+                (type == typeof(double[])) ||
                 (type == typeof(MinMaxD)) ||
                 (type == typeof(MinMaxI)) ||
                 type.IsEnum)
@@ -386,6 +387,7 @@ namespace BriefingRoom4DCS
                 (type == typeof(int)) ||
                 (type == typeof(string)) ||
                 (type == typeof(Coordinates)) ||
+                (type == typeof(double[])) ||
                 type.IsEnum)
                 return true;
 
@@ -414,6 +416,11 @@ namespace BriefingRoom4DCS
             else if (type == typeof(Coordinates))
             {
                 object obj = new Coordinates(value);
+                return (T)obj;
+            }
+            else if (type == typeof(double[]))
+            {
+                object obj = new Coordinates(value).ToArray();
                 return (T)obj;
             }
             else if (type == typeof(MinMaxD))
@@ -449,6 +456,8 @@ namespace BriefingRoom4DCS
                 outString = ((int)inObject).ToString(NumberFormatInfo.InvariantInfo);
             else if (type == typeof(Coordinates))
                 outString = ((Coordinates)inObject).ToString();
+            else if (type == typeof(double[]))
+                outString = string.Join(",", ((double[])inObject).Select(x => x.ToString(NumberFormatInfo.InvariantInfo)));
 
             return outString;
         }
