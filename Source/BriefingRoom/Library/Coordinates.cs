@@ -33,6 +33,7 @@ namespace BriefingRoom4DCS
         internal readonly double Y;
 
         internal Coordinates(double both) { X = both; Y = both; }
+        internal Coordinates(double[] arr) { X = arr[0]; Y = arr[1]; }
 
         internal Coordinates(double x, double y) { X = x; Y = y; }
 

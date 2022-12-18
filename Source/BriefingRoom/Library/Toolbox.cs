@@ -54,6 +54,9 @@ namespace BriefingRoom4DCS
 
         internal const double KNOTS_TO_METERS_PER_SECOND = 0.514444;
 
+        internal static readonly MinMaxD ANY_RANGE = new MinMaxD(1, double.MaxValue);
+        internal static readonly MinMaxD HINT_RANGE = new MinMaxD(0, 10);
+
         internal static List<string> ALIASES = new List<string>{
                 "Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliet", "Kilo",
                 "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Romeo", "Sierra", "Tango", "Uniform", "Victor",

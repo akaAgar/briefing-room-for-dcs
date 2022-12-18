@@ -379,6 +379,10 @@
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
                                         <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("StartingSetup") @bind-Value="flight.StartLocation" EnumType="PlayerStartLocation"/>
                                         <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("StartOn") @bind-Value="flight.Carrier" DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt=@BriefingRoom.Translate("Airbase")/>
+                                        @if(!String.IsNullOrEmpty(flight.Carrier))
+                                        {
+                                            <button type="button" class="btn btn-secondary row-button" @onclick='() => RenderHintMap(flight.Carrier.StartsWith("FOB") ? flight.Carrier : $"CARRIER_{flight.Carrier}")' title="@BriefingRoom.Translate("LocationHint")"><span class="oi oi-globe"></span></button>
+                                        }
                                     </div>
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
                                         <div class="flex-block form-group">
@@ -629,6 +633,13 @@
             {
                 hints.Add($"OBJECTIVE_{obj.Alias}", obj.CoordinateHint);
             }
+            foreach (var key in Template.CarrierHints.Keys)
+            {   
+                if(key.StartsWith("fob"))
+                    hints.Add(key, Template.CarrierHints[key]);
+                else
+                    hints.Add($"CARRIER_{key}", Template.CarrierHints[key]);
+            }
             await JSRuntime.InvokeVoidAsync("SetHintPositions", hints, Template.ContextTheater);
             tempateMessage = "Template Loaded";
             clearTemplateMessageDelay();
@@ -667,6 +678,7 @@
     private async Task AddPositionHints()
     {
         var result = await JSRuntime.InvokeAsync<Dictionary<string, double[]>>("GetHintPoints", Template.ContextTheater);
+        Template.CarrierHints = new Dictionary<string, double[]>();
         foreach (var kv in result)
         {
             switch (true)
@@ -674,6 +686,12 @@
                 case true when kv.Key.StartsWith("OBJECTIVE"):
                     var obj = Template.Objectives.Find(x => x.Alias ==  kv.Key.Replace("OBJECTIVE_", ""));
                     obj.CoordinateHint = kv.Value;
+                    break;
+                case true when kv.Key.StartsWith("CARRIER"):
+                    Template.CarrierHints.Add(kv.Key.Replace("CARRIER_", ""), kv.Value);
+                    break;
+                case true when kv.Key.StartsWith("FOB"):
+                    Template.CarrierHints.Add(kv.Key, kv.Value);
                     break;
                 default:
                     throw new Exception($"Can't process hint key {kv.Key}");
