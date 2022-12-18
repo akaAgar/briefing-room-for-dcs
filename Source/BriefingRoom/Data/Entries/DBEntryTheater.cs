@@ -116,10 +116,10 @@ namespace BriefingRoom4DCS.Data
         internal double GetMagneticHeading(double heading)
         {
             var tunedHeading = Math.Round(heading + MagneticDeclination);
-            if(tunedHeading > 360)
-                tunedHeading =- 360;
+            if(tunedHeading >= 360)
+                tunedHeading -= 360;
             if(tunedHeading < 0)
-                tunedHeading =+ 360;
+                tunedHeading += 360;
             return tunedHeading;
         }
 
