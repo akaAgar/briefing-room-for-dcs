@@ -57,10 +57,10 @@
                         <div class="generator-group flex-justify-spaced flex-margin-fix">
                             <div class="form-group flex-block">
                                 <label>@BriefingRoom.Translate("BlueCoalition")</label>
-                                <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionBlue" 
+                                <BlazoredTypeahead SearchMethod="BuilderUtils.SearchCoalition" @bind-Value="Template.ContextCoalitionBlue" 
                                 EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true" MaximumSuggestions="1000">
                                     <SelectedTemplate Context="coalitionId">
-                                        @GetCoalitionDisplayName(@coalitionId)
+                                        @BuilderUtils.GetCoalitionDisplayName(@coalitionId)
                                     </SelectedTemplate>
                                     <ResultTemplate Context="coalition">
                                         @coalition.Name.Get()
@@ -69,10 +69,10 @@
                             </div>
                             <div class="form-group flex-block">
                                     <label>@BriefingRoom.Translate("RedCoalition")</label>
-                                <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionRed" 
+                                <BlazoredTypeahead SearchMethod="BuilderUtils.SearchCoalition" @bind-Value="Template.ContextCoalitionRed" 
                                 EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true" MaximumSuggestions="1000">
                                     <SelectedTemplate Context="coalitionId">
-                                        @GetCoalitionDisplayName(@coalitionId)
+                                        @BuilderUtils.GetCoalitionDisplayName(@coalitionId)
                                     </SelectedTemplate>
                                     <ResultTemplate Context="coalition">
                                         @coalition.Name.Get()
@@ -144,28 +144,28 @@
                             @foreach (var value in Template.Objectives)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link @(ObjectiveTab == value ? "active" : "")" aria-current="page"
-                            @onclick='() => SetObjectiveTab(value)'>
+                                    <a class="nav-link @(objectiveUtil.Tab == value ? "active" : "")" aria-current="page"
+                            @onclick='() => objectiveUtil.SetObjectiveTab(value)'>
                                         @value.Alias
                                         @if (Template.Objectives.Count > 1)
                                         {
-                                            <a class="delete-flight" @onclick="() =>  RemoveObjective(value)">x</a>
+                                            <a class="delete-flight" @onclick="() =>  objectiveUtil.RemoveObjective(value, ref Template)">x</a>
                                         }
                                     </a>
                                 </li>
                             }
                             <li class="nav-item">
-                                <a class="nav-link" @onclick="AddObjective">+</a>
+                                <a class="nav-link" @onclick="() => objectiveUtil.AddObjective(ref Template)">+</a>
                             </li>
                         </ul>
 
                         @foreach (var objective in Template.Objectives)
                         {
-                            if (ObjectiveTab == objective)
+                            if (objectiveUtil.Tab == objective)
                             {
                                 <div class="flight-group">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-secondary float-right" @onclick="() => CloneObjective(objective)"  title="Clone Objective"><span class="oi oi-layers"></span></button>
+                                        <button type="button" class="btn btn-secondary float-right" @onclick="() => objectiveUtil.CloneObjective(objective, ref Template)"  title="Clone Objective"><span class="oi oi-layers"></span></button>
                                         <button type="button" class="btn btn-secondary float-right" @onclick='() => RenderHintMap("OBJECTIVE_"+ objective.Alias)'  title='@BriefingRoom.Translate("TakeHint")'><span class="oi oi-globe"></span></button>
                                         <h4>@BriefingRoom.Translate("Features")</h4>
                                         <CheckBoxList
@@ -185,7 +185,7 @@
                                         <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Target") @bind-Value="objective.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget" Grouping="@objective.Task"/>
                                         <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("TargetBehavior") @bind-Value="objective.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior" Grouping="@objective.Target"/>
                                         <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("TargetCount") @bind-Value="objective.TargetCount" EnumType="Amount"/>
-                                        <button type="button" class="btn btn-secondary row-button" @onclick="() => CloneObjectiveTask(objective)"  title="Clone Task"><span class="oi oi-layers"></span></button>
+                                        <button type="button" class="btn btn-secondary row-button" @onclick="() => objectiveUtil.CloneObjectiveTask(objective)"  title="Clone Task"><span class="oi oi-layers"></span></button>
                                     </div>
                                     <div class="form-group">
                                         <CheckBoxList
@@ -206,8 +206,8 @@
                                             <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Target") @bind-Value="subTask.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget" Grouping="@subTask.Task"/>
                                             <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("TargetBehavior") @bind-Value="subTask.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior"/>
                                             <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("TargetCount") @bind-Value="subTask.TargetCount" EnumType="Amount"/>
-                                            <button type="button" class="btn btn-secondary row-button" @onclick="() => CloneObjectiveSubTask(subTask, objective)"  title="Clone Task"><span class="oi oi-layers"></span></button>
-                                            <button type="button" class="btn btn-secondary row-button" @onclick="() => RemoveSubTask(objective, subTask)">x</button>
+                                            <button type="button" class="btn btn-secondary row-button" @onclick="() => objectiveUtil.CloneObjectiveSubTask(subTask, objective)"  title="Clone Task"><span class="oi oi-layers"></span></button>
+                                            <button type="button" class="btn btn-secondary row-button" @onclick="() => objectiveUtil.RemoveSubTask(objective, subTask)">x</button>
                                         </div>
                                         <CheckBoxList
                                             Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
@@ -219,7 +219,7 @@
                                             TItemOutput="ObjectiveOption">
                                         </CheckBoxList>
                                     }
-                                    <button type="button" class="btn btn-secondary form-control" @onclick="() => AddSubTask(objective)">+</button>
+                                    <button type="button" class="btn btn-secondary form-control" @onclick="() => objectiveUtil.AddSubTask(objective)">+</button>
                                 </div>
                             }
                         }
@@ -327,34 +327,34 @@
                             @foreach (var value in Template.PlayerFlightGroups)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link @(flightGroupTab == value ? "active" : "") @(value.Hostile ? "hostile" : "")" aria-current="page"
-                            @onclick='() => SetFlightGroupTab(value)'>
-                                       @value.Alias: @GetAircraftDisplayName(@value.Aircraft) x @value.Count
+                                    <a class="nav-link @(flightGroupUtil.Tab == value ? "active" : "") @(value.Hostile ? "hostile" : "")" aria-current="page"
+                            @onclick='() => flightGroupUtil.SetFlightGroupTab(value)'>
+                                       @value.Alias: @BuilderUtils.GetAircraftDisplayName(@value.Aircraft) x @value.Count
                                         @if (Template.PlayerFlightGroups.Count > 1)
                                         {
-                                            <a class="delete-flight" @onclick="() =>  RemoveFlightGroup(value)">x</a>
+                                            <a class="delete-flight" @onclick="() =>  flightGroupUtil.RemoveFlightGroup(value, Template)">x</a>
                                         }
                                     </a>
                                 </li>
                             }
                             <li class="nav-item">
-                                <a class="nav-link" @onclick="AddFlightGroup">+</a>
+                                <a class="nav-link" @onclick="() => flightGroupUtil.AddFlightGroup(Template)">+</a>
                             </li>
                         </ul>
 
                         @foreach (var flight in Template.PlayerFlightGroups)
                         {
-                            if (flightGroupTab == flight)
+                            if (flightGroupUtil.Tab == flight)
                             {
                                 <div class="flight-group  @(flight.Hostile ? "hostile" : "")">
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
                                         <div class="form-group flex-block">
                                             <label>@BriefingRoom.Translate("Aircraft")</label>
-                                            <BlazoredTypeahead SearchMethod="SearchAircraft" @bind-Value="flight.Aircraft"
+                                            <BlazoredTypeahead SearchMethod="BuilderUtils.SearchAircraft" @bind-Value="flight.Aircraft"
                                                 EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
                                                 MaximumSuggestions="1000">
                                                 <SelectedTemplate Context="aircraftId">
-                                                    @GetAircraftDisplayName(@aircraftId)
+                                                    @BuilderUtils.GetAircraftDisplayName(@aircraftId)
                                                 </SelectedTemplate>
                                                 <ResultTemplate Context="aircraft">
                                                     @aircraft.Name.Get()
@@ -368,13 +368,13 @@
                                         <div class="form-group flex-block">
                                             <label>@BriefingRoom.Translate("Payload")</label>
                                             <select class="form-control selectpicker" @bind=flight.Payload>
-                                                @foreach (var item in GetAircraftPayloads(flight.Aircraft))
+                                                @foreach (var item in BriefingRoom.GetAircraftPayloads(flight.Aircraft))
                                                 {
                                                     <option value="@item">@BriefingRoom.FormatPayload(item)</option> // Blazor needs to know what values it binds to!
                                                 }
                                             </select>
                                         </div>
-                                        <button type="button" class="btn btn-secondary row-button" @onclick="() => CloneFlightGroup(flight)" title="Clone Flight Group"><span class="oi oi-layers"></span></button>
+                                        <button type="button" class="btn btn-secondary row-button" @onclick="() => flightGroupUtil.CloneFlightGroup(flight, Template)" title="Clone Flight Group"><span class="oi oi-layers"></span></button>
                                     </div>
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
                                         <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("StartingSetup") @bind-Value="flight.StartLocation" EnumType="PlayerStartLocation"/>
@@ -388,7 +388,7 @@
                                         <div class="flex-block form-group">
                                             <label>@BriefingRoom.Translate("Livery")</label>
                                             <select class="form-control selectpicker" @bind=flight.Livery>
-                                            @foreach (var item in GetLiveries(flight.Aircraft))
+                                            @foreach (var item in BriefingRoom.GetAircraftLiveries(flight.Aircraft))
                                             {
                                                 <option value="@item">@item</option> // Blazor needs to know what values it binds to!
                                             }
@@ -396,7 +396,7 @@
                                         </div>
                                         <div class="flex-block form-group">
                                             <label>@BriefingRoom.Translate("Country")</label>
-                                            <BlazoredTypeahead SearchMethod="SearchCountry" @bind-Value="flight.Country"
+                                            <BlazoredTypeahead SearchMethod="BuilderUtils.SearchCountry" @bind-Value="flight.Country"
                                                 EnableDropDown="true" DisableClear="true" MaximumSuggestions="1000">
                                                 <SelectedTemplate Context="country">
                                                     @country
@@ -429,7 +429,7 @@
                                                         <label>@BriefingRoom.Translate("OverrideCallsignName")</label>
                                                         <select class="form-control selectpicker" @bind=flight.OverrideCallsignName>
                                                             <option value=""></option>
-                                                            @foreach (var item in GetCallsigns(flight.Aircraft))
+                                                            @foreach (var item in BriefingRoom.GetAircraftCallsigns(flight.Aircraft))
                                                             {
                                                                 <option value="@item">@item.Split(":")[1]</option> // Blazor needs to know what values it binds to!
                                                             }
@@ -588,12 +588,15 @@
 
     private bool spinner = false;
 
+    private FlightGroupUtils flightGroupUtil = new FlightGroupUtils();
+    private ObjectiveUtils objectiveUtil = new ObjectiveUtils(false);
+
     protected override void OnInitialized()
     {
         Template = new MissionTemplate();
         Template.Objectives[0].Preset = "Custom";
-        flightGroupTab = Template.PlayerFlightGroups[0];
-        ObjectiveTab = Template.Objectives[0];
+        flightGroupUtil.Tab = Template.PlayerFlightGroups[0];
+        objectiveUtil.Tab = Template.Objectives[0];
     }
 
     private void clearTemplateMessageDelay()
@@ -611,39 +614,10 @@
     {
         try
         {
-            var targetFile = e.File.OpenReadStream(BriefingRoom.MAXFILESIZE);
-            var data = "";
-            if(e.File.Name.EndsWith(".miz"))
-            {
-                using var ms = new MemoryStream();
-                await targetFile.CopyToAsync(ms);
-                using var zip = new ZipArchive(ms);
-                if (!zip.Entries.Any(entry => entry.Name == "template.brt"))
-                    throw new Exception("Template File not found within mission");
-                targetFile.Close();
-                using var reader = new StreamReader(zip.Entries.First(entry => entry.Name == "template.brt").Open());
-                data = await reader.ReadToEndAsync();
-            } else {
-                using var reader = new StreamReader(targetFile);
-                data = await reader.ReadToEndAsync();
-            }
-            Template.LoadFromString(data);
-            var hints = new Dictionary<string, double[]>();
-            foreach (var obj in Template.Objectives)
-            {
-                hints.Add($"OBJECTIVE_{obj.Alias}", obj.CoordinateHint);
-            }
-            foreach (var key in Template.CarrierHints.Keys)
-            {   
-                if(key.StartsWith("fob"))
-                    hints.Add(key, Template.CarrierHints[key]);
-                else
-                    hints.Add($"CARRIER_{key}", Template.CarrierHints[key]);
-            }
-            await JSRuntime.InvokeVoidAsync("SetHintPositions", hints, Template.ContextTheater);
+            Template = await BuilderUtils.LoadTemplateFile(e, Template);
+            await JSRuntime.InvokeVoidAsync("SetHintPositions", BuilderUtils.LoadHints(ref Template), Template.ContextTheater);
             tempateMessage = "Template Loaded";
-            clearTemplateMessageDelay();
-            
+            clearTemplateMessageDelay();    
         }
         catch (Exception ex)
         {
@@ -678,25 +652,7 @@
     private async Task AddPositionHints()
     {
         var result = await JSRuntime.InvokeAsync<Dictionary<string, double[]>>("GetHintPoints", Template.ContextTheater);
-        Template.CarrierHints = new Dictionary<string, double[]>();
-        foreach (var kv in result)
-        {
-            switch (true)
-            {
-                case true when kv.Key.StartsWith("OBJECTIVE"):
-                    var obj = Template.Objectives.Find(x => x.Alias ==  kv.Key.Replace("OBJECTIVE_", ""));
-                    obj.CoordinateHint = kv.Value;
-                    break;
-                case true when kv.Key.StartsWith("CARRIER"):
-                    Template.CarrierHints.Add(kv.Key.Replace("CARRIER_", ""), kv.Value);
-                    break;
-                case true when kv.Key.StartsWith("FOB"):
-                    Template.CarrierHints.Add(kv.Key, kv.Value);
-                    break;
-                default:
-                    throw new Exception($"Can't process hint key {kv.Key}");
-            }
-        }
+        BuilderUtils.SetTemplateHints(result, ref Template);
     }
 
     private async void GenerateMissionAsync()
@@ -770,46 +726,6 @@
         tab = var;
     }
 
-    private MissionTemplateFlightGroup flightGroupTab;
-    private void SetFlightGroupTab(MissionTemplateFlightGroup var)
-    {
-        flightGroupTab = var;
-    }
-
-    private void AddFlightGroup()
-    {
-        MissionTemplateFlightGroup newflight = new();
-        newflight.Alias = BriefingRoom.GetAlias(Template.PlayerFlightGroups.Count);
-        Template.PlayerFlightGroups.Add(newflight);
-        flightGroupTab = newflight;
-    }
-
-    private void CloneFlightGroup(MissionTemplateFlightGroup flight) {
-        MissionTemplateFlightGroup newflight = new(){
-            Aircraft = flight.Aircraft,
-            AIWingmen = flight.AIWingmen,
-            Carrier = flight.Carrier,
-            Count = flight.Count,
-            Country = flight.Country,
-            Payload = flight.Payload,
-            StartLocation = flight.StartLocation,
-            Livery = flight.Livery
-        };
-        newflight.Alias = BriefingRoom.GetAlias(Template.PlayerFlightGroups.Count);
-        Template.PlayerFlightGroups.Add(newflight);
-        flightGroupTab = newflight;
-    }
-
-    private void RemoveFlightGroup(MissionTemplateFlightGroup flight)
-    {
-        Template.PlayerFlightGroups.Remove(flight);
-        if (Template.PlayerFlightGroups.Count == 1)
-        {
-            flightGroupTab = Template.PlayerFlightGroups[0];
-        }
-    }
-
-
     private MissionTemplatePackage packageTab;
     private void SetPackageTab(MissionTemplatePackage var)
     {
@@ -838,104 +754,4 @@
         var restOfPackages = Template.AircraftPackages.Where(x => x != package);
         return Template.PlayerFlightGroups.Where((v,i) => !v.Hostile && (package.FlightGroupIndexes.Contains(i) || !restOfPackages.Any(y => y.FlightGroupIndexes.Contains(i)))).ToList();
     }
-
-    private MissionTemplateObjective ObjectiveTab;
-    private void SetObjectiveTab(MissionTemplateObjective var)
-    {
-        ObjectiveTab = var;
-    }
-
-    private void AddObjective()
-    {
-        MissionTemplateObjective obj = new(true);
-        ObjectiveTab = obj;
-        obj.Alias = BriefingRoom.GetAlias(Template.Objectives.Count);
-        obj.Preset = "Custom";
-        Template.Objectives.Add(obj);
-    }
-
-    private void CloneObjective(MissionTemplateObjective obj) {
-        MissionTemplateObjective newObj = new(true){
-            Target = obj.Target,
-            TargetBehavior = obj.TargetBehavior,
-            TargetCount = obj.TargetCount,
-            Task = obj.Task,
-            Options = obj.Options,
-            Features = obj.Features,
-            SubTasks = obj.SubTasks
-        };
-        newObj.Alias = BriefingRoom.GetAlias(Template.Objectives.Count);
-        obj.Preset = "Custom";
-        Template.Objectives.Add(newObj);
-        ObjectiveTab = newObj;
-    }
-
-    private void CloneObjectiveTask(MissionTemplateObjective obj) {
-        MissionTemplateSubTask newSubT = new(){
-            Target = obj.Target,
-            TargetBehavior = obj.TargetBehavior,
-            TargetCount = obj.TargetCount,
-            Task = obj.Task,
-            Options = obj.Options
-        };
-        obj.SubTasks.Add(newSubT);
-    }
-    private void CloneObjectiveSubTask(MissionTemplateSubTask subTask, MissionTemplateObjective obj) {
-        MissionTemplateSubTask newSubT = new(){
-            Target = subTask.Target,
-            TargetBehavior = subTask.TargetBehavior,
-            TargetCount = subTask.TargetCount,
-            Task = subTask.Task,
-            Options = subTask.Options
-        };
-        obj.SubTasks.Add(newSubT);
-    }
-
-    private void RemoveObjective(MissionTemplateObjective obj)
-    {
-        Template.Objectives.Remove(obj);
-        if(ObjectiveTab == obj)
-            ObjectiveTab = Template.Objectives.First();
-    }
-
-    private void AddSubTask(MissionTemplateObjective obj)
-    {
-        obj.SubTasks.Add(new MissionTemplateSubTask());
-    }
-
-    private void RemoveSubTask(MissionTemplateObjective obj, MissionTemplateSubTask subTsk)
-    {
-        obj.SubTasks.Remove(subTsk);
-    }
-
-    private List<string> GetLiveries(string aircraftId) =>
-        BriefingRoom.GetAircraftLiveries(aircraftId);
-    
-    private List<string> GetCallsigns(string aircraftId) =>
-        BriefingRoom.GetAircraftCallsigns(aircraftId);
-
-    private List<string> GetAircraftPayloads(string aircraftId) =>
-        BriefingRoom.GetAircraftPayloads(aircraftId);
-
-    private async Task<IEnumerable<Country>> SearchCountry(string searchText) =>
-    await Typeahead.SearchEnum<Country>(searchText);
-
-    private async Task<IEnumerable<DatabaseEntryInfo>> SearchAircraft(string searchText) =>
-    await Typeahead.SearchDB(DatabaseEntryType.UnitFlyableAircraft, searchText);
-    private string GetAircraftDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.UnitFlyableAircraft, id);
-
-    private async Task<IEnumerable<DatabaseEntryInfo>> SearchObjectiveType(string searchText) =>
-    await Typeahead.SearchDB(DatabaseEntryType.ObjectiveTask, searchText);
-    private string GetObjectiveTypeDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTask, id);
-
-    private string GetObjectiveTargetDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTarget, id);
-
-    private async Task<IEnumerable<DatabaseEntryInfo>> SearchCoalition(string searchText) =>
-    await Typeahead.SearchDB(DatabaseEntryType.Coalition, searchText);
-
-    private string GetCoalitionDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.Coalition, id);
 }

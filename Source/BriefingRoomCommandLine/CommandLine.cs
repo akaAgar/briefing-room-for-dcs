@@ -18,7 +18,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using BriefingRoom4DCS.Campaign;
 using BriefingRoom4DCS.Mission;
 using System;
 using System.IO;

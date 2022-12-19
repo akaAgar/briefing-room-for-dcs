@@ -19,7 +19,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCS.Data;
-using BriefingRoom4DCS.Generator;
 using BriefingRoom4DCS.Media;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
@@ -31,7 +30,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BriefingRoom4DCS.Campaign
+namespace BriefingRoom4DCS.Generator
 {
     internal class CampaignGenerator
     {
@@ -175,13 +174,13 @@ namespace BriefingRoom4DCS.Campaign
                 EnvironmentWeatherPreset = weatherPreset,
                 EnvironmentWind = GetWindForMission(campaignTemplate.EnvironmentBadWeatherChance, weatherPreset),
 
-                FlightPlanObjectiveDistanceMax = campaignTemplate.MissionsObjectiveDistanceMax,
-                FlightPlanObjectiveDistanceMin = campaignTemplate.MissionsObjectiveDistanceMin,
-                FlightPlanTheaterStartingAirbase = campaignTemplate.PlayerStartingAirbase,
+                FlightPlanObjectiveDistanceMax = campaignTemplate.FlightPlanObjectiveDistanceMax,
+                FlightPlanObjectiveDistanceMin = campaignTemplate.FlightPlanObjectiveDistanceMin,
+                FlightPlanTheaterStartingAirbase = campaignTemplate.FlightPlanTheaterStartingAirbase,
 
-                MissionFeatures = campaignTemplate.MissionsFeatures.ToList(),
+                MissionFeatures = campaignTemplate.MissionFeatures.ToList(),
 
-                Mods = campaignTemplate.OptionsMods.ToList(),
+                Mods = campaignTemplate.Mods.ToList(),
 
                 Objectives = new(),
 
@@ -227,9 +226,9 @@ namespace BriefingRoom4DCS.Campaign
             int objectiveCount = GetObjectiveCountForMission(campaignTemplate.MissionsObjectiveCount);
             for (int i = 0; i < objectiveCount; i++)
                 template.Objectives.Add(new MissionTemplateObjective(Toolbox.RandomFrom(campaignTemplate.MissionsObjectives)));
-            
+
             if (!String.IsNullOrEmpty(previousPlayerAirbaseId))
-               template.Objectives[0].CoordinateHint_ = previousObjectiveCenterCoords.CreateNearRandom(5 * Toolbox.NM_TO_METERS, GetObjectiveVariationDistance(campaignTemplate.MissionsObjectiveVariationDistance) * Toolbox.NM_TO_METERS);
+                template.Objectives[0].CoordinateHint_ = previousObjectiveCenterCoords.CreateNearRandom(5 * Toolbox.NM_TO_METERS, GetObjectiveVariationDistance(campaignTemplate.MissionsObjectiveVariationDistance) * Toolbox.NM_TO_METERS);
 
             return template;
         }

@@ -2,7 +2,6 @@
 @inject IJSRuntime JSRuntime
 @inject Blazored.LocalStorage.ILocalStorageService localStorage
 @using BriefingRoom4DCS
-@using BriefingRoom4DCS.Campaign
 @using BriefingRoom4DCS.Data
 @using BriefingRoom4DCS.Template
 @using BriefingRoom4DCS.Generator
@@ -60,10 +59,10 @@
                         <div class="generator-group flex-justify-spaced flex-margin-fix">
                             <div class="form-group flex-block">
                                 <label>@BriefingRoom.Translate("BlueCoalition")</label>
-                                <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionBlue" 
+                                <BlazoredTypeahead SearchMethod="BuilderUtils.SearchCoalition" @bind-Value="Template.ContextCoalitionBlue" 
                                 EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true" MaximumSuggestions="1000">
                                     <SelectedTemplate Context="coalitionId">
-                                        @GetCoalitionDisplayName(@coalitionId)
+                                        @BuilderUtils.GetCoalitionDisplayName(@coalitionId)
                                     </SelectedTemplate>
                                     <ResultTemplate Context="coalition">
                                         @coalition.Name.Get()
@@ -72,10 +71,10 @@
                             </div>
                             <div class="form-group flex-block">
                                     <label>@BriefingRoom.Translate("RedCoalition")</label>
-                                <BlazoredTypeahead SearchMethod="SearchCoalition" @bind-Value="Template.ContextCoalitionRed" 
+                                <BlazoredTypeahead SearchMethod="BuilderUtils.SearchCoalition" @bind-Value="Template.ContextCoalitionRed" 
                                 EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true" MaximumSuggestions="1000">
                                     <SelectedTemplate Context="coalitionId">
-                                        @GetCoalitionDisplayName(@coalitionId)
+                                        @BuilderUtils.GetCoalitionDisplayName(@coalitionId)
                                     </SelectedTemplate>
                                     <ResultTemplate Context="coalition">
                                         @coalition.Name.Get()
@@ -87,7 +86,7 @@
                             <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Theater") @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater"/>
                             <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Situation") @bind-Value="Template.ContextSituation" DataBaseType="DatabaseEntryType.Situation" Grouping="@Template.ContextTheater" EmptOpt=@BriefingRoom.Translate("Random")/>
                         </div>
-                        <InputDataBase Label=@BriefingRoom.Translate("HomeAirbase") @bind-Value="Template.PlayerStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt=@BriefingRoom.Translate("Random")/>
+                        <InputDataBase Label=@BriefingRoom.Translate("HomeAirbase") @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt=@BriefingRoom.Translate("Random")/>
                         <InputEnum Label=@BriefingRoom.Translate("TimePeriod") @bind-Value="Template.ContextDecade" EnumType="Decade"/>
                         <InputEnum Label=@BriefingRoom.Translate("PlayerSide") @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition"/>
                     </div>
@@ -118,7 +117,7 @@
                                 DescriptionField="@(item => item.Description.Get())"
                                 GroupingField="@(item => item.Category.Get())"
                                 ValueField="@(item =>item.ID)"
-                                SelectedValues="Template.MissionsFeatures"
+                                SelectedValues="Template.MissionFeatures"
                                 TItem="DatabaseEntryInfo"
                                 TItemOutput="string">
                             </CheckBoxList>
@@ -139,12 +138,12 @@
                                 <h6>@BriefingRoom.Translate("ObjectiveDistance")</h6>
                                 <div class="min-max">
                                     <label>@BriefingRoom.Translate("Min")</label>
-                                    <InputNumber class="form-control" @bind-Value="Template.MissionsObjectiveDistanceMin">
+                                    <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistanceMin">
                                     </InputNumber>
                                 </div>
                                 <div class="min-max">
                                     <label>@BriefingRoom.Translate("Max")</label>
-                                    <InputNumber class="form-control" @bind-Value="Template.MissionsObjectiveDistanceMax">
+                                    <InputNumber class="form-control" @bind-Value="Template.FlightPlanObjectiveDistanceMax">
                                     </InputNumber>
                                 </div>
                             </div>
@@ -187,7 +186,7 @@
                                 TextField="@(item =>item.Name.Get())"
                                 DescriptionField="@(item => item.Description.Get())"
                                 ValueField="@(item =>item.ID)"
-                                SelectedValues="Template.OptionsMods"
+                                SelectedValues="Template.Mods"
                                 TItem="DatabaseEntryInfo"
                                 TItemOutput="string">
                             </CheckBoxList>
@@ -241,34 +240,34 @@
                             @foreach (var value in Template.PlayerFlightGroups)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link @(flightGroupTab == value ? "active" : "") @(value.Hostile ? "hostile" : "")" aria-current="page"
-                            @onclick='() => SetFlightGroupTab(value)'>
-                                       @value.Alias: @GetAircraftDisplayName(@value.Aircraft) x @value.Count
+                                    <a class="nav-link @(flightGroupUtil.Tab == value ? "active" : "") @(value.Hostile ? "hostile" : "")" aria-current="page"
+                            @onclick='() => flightGroupUtil.SetFlightGroupTab(value)'>
+                                       @value.Alias: @BuilderUtils.GetAircraftDisplayName(@value.Aircraft) x @value.Count
                                         @if (Template.PlayerFlightGroups.Count > 1)
                                         {
-                                            <a class="delete-flight" @onclick="() =>  RemoveFlightGroup(value)">x</a>
+                                            <a class="delete-flight" @onclick="() =>  flightGroupUtil.RemoveFlightGroup(value, Template)">x</a>
                                         }
                                     </a>
                                 </li>
                             }
                             <li class="nav-item">
-                                <a class="nav-link" @onclick="AddFlightGroup">+</a>
+                                <a class="nav-link" @onclick="() => flightGroupUtil.AddFlightGroup(Template)">+</a>
                             </li>
                         </ul>
 
                         @foreach (var flight in Template.PlayerFlightGroups)
                         {
-                            if (flightGroupTab == flight)
+                            if (flightGroupUtil.Tab == flight)
                             {
                                 <div class="flight-group  @(flight.Hostile ? "hostile" : "")">
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
                                         <div class="form-group flex-block">
                                             <label>@BriefingRoom.Translate("Aircraft")</label>
-                                            <BlazoredTypeahead SearchMethod="SearchAircraft" @bind-Value="flight.Aircraft"
+                                            <BlazoredTypeahead SearchMethod="BuilderUtils.SearchAircraft" @bind-Value="flight.Aircraft"
                                                 EnableDropDown="true" ConvertMethod="Typeahead.ConvertDB" DisableClear="true"
                                                 MaximumSuggestions="1000">
                                                 <SelectedTemplate Context="aircraftId">
-                                                    @GetAircraftDisplayName(@aircraftId)
+                                                    @BuilderUtils.GetAircraftDisplayName(@aircraftId)
                                                 </SelectedTemplate>
                                                 <ResultTemplate Context="aircraft">
                                                     @aircraft.Name.Get()
@@ -282,13 +281,13 @@
                                         <div class="form-group flex-block">
                                             <label>@BriefingRoom.Translate("Payload")</label>
                                             <select class="form-control selectpicker" @bind=flight.Payload>
-                                                @foreach (var item in GetAircraftPayloads(flight.Aircraft))
+                                                @foreach (var item in BriefingRoom.GetAircraftPayloads(flight.Aircraft))
                                                 {
                                                     <option value="@item">@BriefingRoom.FormatPayload(item)</option> // Blazor needs to know what values it binds to!
                                                 }
                                             </select>
                                         </div>
-                                        <button type="button" class="btn btn-secondary row-button" @onclick="() => CloneFlightGroup(flight)" title="Clone Flight Group"><span class="oi oi-layers"></span></button>
+                                        <button type="button" class="btn btn-secondary row-button" @onclick="() => flightGroupUtil.CloneFlightGroup(flight, Template)" title="Clone Flight Group"><span class="oi oi-layers"></span></button>
                                     </div>
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
                                         <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("StartingSetup") @bind-Value="flight.StartLocation" EnumType="PlayerStartLocation"/>
@@ -298,7 +297,7 @@
                                         <div class="flex-block form-group">
                                             <label>@BriefingRoom.Translate("Livery")</label>
                                             <select class="form-control selectpicker" @bind=flight.Livery>
-                                            @foreach (var item in GetLiveries(flight.Aircraft))
+                                            @foreach (var item in BriefingRoom.GetAircraftLiveries(flight.Aircraft))
                                             {
                                                 <option value="@item">@item</option> // Blazor needs to know what values it binds to!
                                             }
@@ -306,7 +305,7 @@
                                         </div>
                                         <div class="flex-block form-group">
                                             <label>@BriefingRoom.Translate("Country")</label>
-                                            <BlazoredTypeahead SearchMethod="SearchCountry" @bind-Value="flight.Country"
+                                            <BlazoredTypeahead SearchMethod="BuilderUtils.SearchCountry" @bind-Value="flight.Country"
                                                 EnableDropDown="true" DisableClear="true" MaximumSuggestions="1000">
                                                 <SelectedTemplate Context="country">
                                                     @country
@@ -398,10 +397,12 @@
 
     private bool spinner = false;
 
+    private FlightGroupUtils flightGroupUtil = new FlightGroupUtils();
+
     protected override void OnInitialized()
     {
         Template = new CampaignTemplate();
-        flightGroupTab = Template.PlayerFlightGroups[0];
+        flightGroupUtil.Tab = Template.PlayerFlightGroups[0];
     }
 
     private void clearTemplateMessageDelay()
@@ -527,78 +528,10 @@
         tab = var;
     }
 
-    private MissionTemplateFlightGroup flightGroupTab;
-
-    private void SetFlightGroupTab(MissionTemplateFlightGroup var)
-    {
-        flightGroupTab = var;
-    }
-
-    private void AddFlightGroup()
-    {
-        MissionTemplateFlightGroup newflight = new();
-        newflight.Alias = BriefingRoom.GetAlias(Template.PlayerFlightGroups.Count);
-        Template.PlayerFlightGroups.Add(newflight);
-        flightGroupTab = newflight;
-    }
-
-    private void CloneFlightGroup(MissionTemplateFlightGroup flight) {
-        MissionTemplateFlightGroup newflight = new(){
-            Aircraft = flight.Aircraft,
-            AIWingmen = flight.AIWingmen,
-            Carrier = flight.Carrier,
-            Count = flight.Count,
-            Country = flight.Country,
-            Payload = flight.Payload,
-            StartLocation = flight.StartLocation,
-            Livery = flight.Livery
-        };
-        newflight.Alias = BriefingRoom.GetAlias(Template.PlayerFlightGroups.Count);
-        Template.PlayerFlightGroups.Add(newflight);
-        flightGroupTab = newflight;
-    }
-
-    private void RemoveFlightGroup(MissionTemplateFlightGroup flight)
-    {
-        Template.PlayerFlightGroups.Remove(flight);
-        if (Template.PlayerFlightGroups.Count == 1)
-        {
-            flightGroupTab = Template.PlayerFlightGroups[0];
-        }
-    }
-
     private DCSMission missionTab;
     private void SetMissionTab(DCSMission var)
     {
         missionTab = var;
         Policy.Handle<Exception>().RetryAsync(3).ExecuteAsync(async () => await JSRuntime.InvokeVoidAsync("RenderMap", missionTab.GetMapData(), Template.ContextTheater, Template.ContextPlayerCoalition == Coalition.Red));
     }
-
-    private List<string> GetLiveries(string aircraftId) =>
-        BriefingRoom.GetAircraftLiveries(aircraftId);
-
-    private List<string> GetAircraftPayloads(string aircraftId) =>
-        BriefingRoom.GetAircraftPayloads(aircraftId);
-
-    private async Task<IEnumerable<Country>> SearchCountry(string searchText) =>
-    await Typeahead.SearchEnum<Country>(searchText);
-
-    private async Task<IEnumerable<DatabaseEntryInfo>> SearchAircraft(string searchText) =>
-    await Typeahead.SearchDB(DatabaseEntryType.UnitFlyableAircraft, searchText);
-    private string GetAircraftDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.UnitFlyableAircraft, id);
-
-    private async Task<IEnumerable<DatabaseEntryInfo>> SearchObjectiveType(string searchText) =>
-    await Typeahead.SearchDB(DatabaseEntryType.ObjectiveTask, searchText);
-    private string GetObjectiveTypeDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTask, id);
-
-    private string GetObjectiveTargetDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.ObjectiveTarget, id);
-
-    private async Task<IEnumerable<DatabaseEntryInfo>> SearchCoalition(string searchText) =>
-    await Typeahead.SearchDB(DatabaseEntryType.Coalition, searchText);
-
-    private string GetCoalitionDisplayName(string id) =>
-    Typeahead.GetDBDisplayName(DatabaseEntryType.Coalition, id);
 }

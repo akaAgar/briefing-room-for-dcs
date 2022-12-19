@@ -18,16 +18,14 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using BriefingRoom4DCS.Mission;
+
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.IO.Compression;
-using System.Linq;
 using System.Text;
+using BriefingRoom4DCS.Template;
 
-namespace BriefingRoom4DCS.Campaign
+namespace BriefingRoom4DCS.Mission
 {
     public sealed class DCSCampaign
     {
