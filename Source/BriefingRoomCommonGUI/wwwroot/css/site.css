@@ -269,6 +269,9 @@ h4 {
     margin: 0;
     padding: 0;
 }
+.custom-warning a {
+    color: #0366d6;
+}
 
 textarea.long {
     height: 50vh;
@@ -380,4 +383,8 @@ th {
     margin-top: -3px;
     transform-origin: center center;
     font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+.hint-remove-center {
+    margin: auto 0;
 }

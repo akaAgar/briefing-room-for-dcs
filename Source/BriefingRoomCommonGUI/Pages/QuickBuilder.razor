@@ -107,13 +107,18 @@
                         </div>
                         <InputDataBase ClassString="flex-block"  Label=@BriefingRoom.Translate("StartOn") @bind-Value="flight.Carrier"
                         DataBaseType="DatabaseEntryType.UnitCarrier" EmptOpt=@BriefingRoom.Translate("Airbase") />
+                        @if(Template.CarrierHints.ContainsKey(flight.Carrier))
+                        {
+                            <p class="custom-warning flex-block form-group hint-remove-center">
+                                <a @onclick="() => ClearCarrierHint(flight.Carrier)" >@BriefingRoom.Translate("RemoveCarrierHint")</a>
+                            </p>
+                        }
                         <div class="flex-block form-group">
                             <label>@BriefingRoom.Translate("Livery")</label>
                             <select class="form-control selectpicker" @bind=flight.Livery>
                                 @foreach (var item in BriefingRoom.GetAircraftLiveries(flight.Aircraft))
                                 {
                                     <option value="@item">@item</option>
-                                    // Blazor needs to know what values it binds to!
                                 }
                             </select>
                         </div>
@@ -144,7 +149,7 @@
                 @if(Template.AircraftPackages.Count > 0)
                 {
                    <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("QuickBuilderStikePackageWarning")
-                   <a @onclick="() => ClearStrikePackages()" style="color: #0366d6;">@BriefingRoom.Translate("RemoveStrikePackages")</a></p>  
+                   <a @onclick="() => ClearStrikePackages()" >@BriefingRoom.Translate("RemoveStrikePackages")</a></p>  
                 }
                 <hr />
             </div>
@@ -202,21 +207,27 @@
                                 &nbsp;@string.Join(", ", @objective.Features.Select(x => BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveFeature, x).Value.Name.Get()))
                         </p>
                     }
-                        @if(objective.SubTasks.Count > 0)
-                        {
-                            <p class="custom-warning">&nbsp;@BriefingRoom.Translate("QuickBuilderCustomSubObjectives"):<br/>
-                                @foreach (var subTask in objective.SubTasks)
-                                {
-                                    <span>&nbsp;&nbsp;@(objective.SubTasks.IndexOf(subTask) + 1) -
-                                        &nbsp;@BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveTask, subTask.Task).Value.Name.Get()
-                                        &nbsp;@BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveTarget, subTask.Target).Value.Name.Get()
-                                        &nbsp;@BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveTargetBehavior, subTask.TargetBehavior).Value.Name.Get()
-                                        &nbsp;@BriefingRoomGUITools.GetEnumName(subTask.TargetCount)
-                                        &nbsp;@BriefingRoom.Translate("Options"):&nbsp;@string.Join(", ", @subTask.Options.Select(x => BriefingRoomGUITools.GetEnumName(x)))</span><br/>
-                                }
-                            &nbsp;<a @onclick="() => objectiveUtil.ClearSubTasks(objective)" style="color: #0366d6;">@BriefingRoom.Translate("RemoveSubTasks")</a>
-                            </p>
-                        }
+                    @if(objective.CoordinateHint[0] != 0 && objective.CoordinateHint[1] != 0)
+                    {
+                        <p class="custom-warning">
+                            <a @onclick="() => objectiveUtil.ClearObjectiveHint(objective)" >@BriefingRoom.Translate("RemoveHint")</a>
+                        </p>
+                    }
+                    @if(objective.SubTasks.Count > 0)
+                    {
+                        <p class="custom-warning">&nbsp;@BriefingRoom.Translate("QuickBuilderCustomSubObjectives"):<br/>
+                            @foreach (var subTask in objective.SubTasks)
+                            {
+                                <span>&nbsp;&nbsp;@(objective.SubTasks.IndexOf(subTask) + 1) -
+                                    &nbsp;@BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveTask, subTask.Task).Value.Name.Get()
+                                    &nbsp;@BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveTarget, subTask.Target).Value.Name.Get()
+                                    &nbsp;@BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveTargetBehavior, subTask.TargetBehavior).Value.Name.Get()
+                                    &nbsp;@BriefingRoomGUITools.GetEnumName(subTask.TargetCount)
+                                    &nbsp;@BriefingRoom.Translate("Options"):&nbsp;@string.Join(", ", @subTask.Options.Select(x => BriefingRoomGUITools.GetEnumName(x)))</span><br/>
+                            }
+                        &nbsp;<a @onclick="() => objectiveUtil.ClearSubTasks(objective)" >@BriefingRoom.Translate("RemoveSubTasks")</a>
+                        </p>
+                    }
                 }
                 <button type="button" class="btn btn-secondary" @onclick="() => objectiveUtil.AddObjective(ref Template)">+</button>
                 <hr />
@@ -445,5 +456,10 @@
     private void ClearStrikePackages()
     {
         Template.AircraftPackages = new List<MissionTemplatePackage>();
+    }
+
+    private void ClearCarrierHint(string key)
+    {
+        Template.CarrierHints.Remove(key);
     }
 }

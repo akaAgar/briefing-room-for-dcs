@@ -71,3 +71,7 @@
     background-color: #0a263f;
     color: white;
 }
+
+.darkMode .custom-warning a {
+    color: #0378ff;
+}

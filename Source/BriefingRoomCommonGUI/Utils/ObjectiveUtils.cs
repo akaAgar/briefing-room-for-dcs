@@ -92,5 +92,10 @@ namespace BriefingRoom4DCS.GUI.Utils
             obj.SubTasks = new List<MissionTemplateSubTask>();
         }
 
+        internal void ClearObjectiveHint(MissionTemplateObjective obj)
+        {
+            obj.CoordinateHint = new double[]{0,0};
+        }
+
     }
 }
