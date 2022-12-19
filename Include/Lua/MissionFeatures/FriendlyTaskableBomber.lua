@@ -24,8 +24,8 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableBomber.launchBombi
           points = {
             [1] = {
               speed = 200,
-              x = dcsExtensions.lerp(currPos.x, mark.pos.x,0.7),
-              y = dcsExtensions.lerp(currPos.z, mark.pos.z,0.7),
+              x = dcsExtensions.lerp(currPos.x, mark.pos.x, 0.7),
+              y = dcsExtensions.lerp(currPos.z, mark.pos.z, 0.7),
               type = 'Turning Point',
               ETA_locked = false,
               ETA = 100,

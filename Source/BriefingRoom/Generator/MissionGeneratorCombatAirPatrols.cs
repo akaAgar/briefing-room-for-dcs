@@ -176,32 +176,32 @@ namespace BriefingRoom4DCS.Generator
         }
 
         private static List<Mission.DCSLuaObjects.DCSWaypoint> CreateExtraWaypoints(List<Mission.DCSLuaObjects.DCSWaypoint> waypoints)
-        {   
-            
+        {
+
             var L = CalculateParallelVector(waypoints);
             var firstWP = waypoints.First();
             var mid1 = OffsetWaypoint(waypoints, firstWP.Coordinates, L);
             var lastWP = waypoints.Last();
-            var mid3 = OffsetWaypoint(waypoints,lastWP.Coordinates, L);
-            var mid2 = OffsetWaypoint(waypoints,Coordinates.Lerp(firstWP.Coordinates, lastWP.Coordinates, new MinMaxD(0.2, 0.7).GetValue()), L);
+            var mid3 = OffsetWaypoint(waypoints, lastWP.Coordinates, L);
+            var mid2 = OffsetWaypoint(waypoints, Coordinates.Lerp(firstWP.Coordinates, lastWP.Coordinates, new MinMaxD(0.2, 0.7).GetValue()), L);
             var lastWaypoint = waypoints.Last();
             var extraWaypoints = new List<Mission.DCSLuaObjects.DCSWaypoint>();
 
-            foreach (var waypointCoords in new Coordinates[]{mid1, mid2, mid3})
+            foreach (var waypointCoords in new Coordinates[] { mid1, mid2, mid3 })
             {
-                if(new Random().NextDouble() >= 0.5)
-                  extraWaypoints.Add(new Mission.DCSLuaObjects.DCSWaypoint
-                {
-                    Alt = lastWaypoint.Alt,
-                    AltType = lastWaypoint.AltType,
-                    Action = "Turning Point",
-                    Speed = lastWaypoint.Speed,
-                    Type = "Turning Point",
-                    EtaLocked = false,
-                    SpeedLocked = true,
-                    X = waypointCoords.X,
-                    Y = waypointCoords.Y,
-                });
+                if (new Random().NextDouble() >= 0.5)
+                    extraWaypoints.Add(new Mission.DCSLuaObjects.DCSWaypoint
+                    {
+                        Alt = lastWaypoint.Alt,
+                        AltType = lastWaypoint.AltType,
+                        Action = "Turning Point",
+                        Speed = lastWaypoint.Speed,
+                        Type = "Turning Point",
+                        EtaLocked = false,
+                        SpeedLocked = true,
+                        X = waypointCoords.X,
+                        Y = waypointCoords.Y,
+                    });
             }
 
             waypoints.InsertRange(waypoints.Count - 1, extraWaypoints);
@@ -215,10 +215,10 @@ namespace BriefingRoom4DCS.Generator
             return Math.Sqrt((firstWP.X - lastWp.X) * (firstWP.X - lastWp.X) + (firstWP.Y - lastWp.Y) * (firstWP.Y - lastWp.Y));
         }
 
-        private static Coordinates OffsetWaypoint(List<Mission.DCSLuaObjects.DCSWaypoint> waypoints, Coordinates waypoint,  double L)
+        private static Coordinates OffsetWaypoint(List<Mission.DCSLuaObjects.DCSWaypoint> waypoints, Coordinates waypoint, double L)
         {
             var offsetRange = new MinMaxD(-30, 30);
-            var offsetPixels =  offsetRange.GetValue() * Toolbox.NM_TO_METERS;
+            var offsetPixels = offsetRange.GetValue() * Toolbox.NM_TO_METERS;
             var firstWP = waypoints.First();
             var lastWp = waypoints.Last();
             var x1p = waypoint.X + offsetPixels * (lastWp.Y - firstWP.Y) / L;

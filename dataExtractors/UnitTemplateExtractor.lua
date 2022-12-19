@@ -4,12 +4,12 @@
 
 require "mission" -- Mission lua file
 
-function __genOrderedIndex( t )
+function __genOrderedIndex(t)
     local orderedIndex = {}
     for key in pairs(t) do
-        table.insert( orderedIndex, key )
+        table.insert(orderedIndex, key)
     end
-    table.sort( orderedIndex )
+    table.sort(orderedIndex)
     return orderedIndex
 end
 
@@ -22,13 +22,13 @@ function orderedNext(t, state)
     --print("orderedNext: state = "..tostring(state) )
     if state == nil then
         -- the first time, generate the index
-        t.__orderedIndex = __genOrderedIndex( t )
+        t.__orderedIndex = __genOrderedIndex(t)
         key = t.__orderedIndex[1]
     else
         -- fetch the next value
-        for i = 1,table.getn(t.__orderedIndex) do
+        for i = 1, table.getn(t.__orderedIndex) do
             if t.__orderedIndex[i] == state then
-                key = t.__orderedIndex[i+1]
+                key = t.__orderedIndex[i + 1]
             end
         end
     end
@@ -48,8 +48,6 @@ function orderedPairs(t)
     return orderedNext, t, nil
 end
 
-
-
 -- Static Units as single group
 if mission.coalition.red.country[1].static ~= nil then
     local ids = "DCSID="
@@ -58,45 +56,42 @@ if mission.coalition.red.country[1].static ~= nil then
     local shape = "Shape="
     local originX = mission.coalition.red.country[1].static.group[1].x
     local originY = mission.coalition.red.country[1].static.group[1].y
-    for _,value in orderedPairs(mission.coalition.red.country[1].static.group) do --actualcode
-        ids = ids..value.units[1].type..","
-        coordinates = coordinates..(originX - value.units[1].x)..","..(originY - value.units[1].y)..";"
-        headings = headings..value.units[1].heading..","
-        if value.units[1].shape_name == nil  then
-            shape = shape..","
+    for _, value in orderedPairs(mission.coalition.red.country[1].static.group) do --actualcode
+        ids = ids .. value.units[1].type .. ","
+        coordinates = coordinates .. (originX - value.units[1].x) .. "," .. (originY - value.units[1].y) .. ";"
+        headings = headings .. value.units[1].heading .. ","
+        if value.units[1].shape_name == nil then
+            shape = shape .. ","
         else
-            shape = shape..value.units[1].shape_name..","
+            shape = shape .. value.units[1].shape_name .. ","
         end
     end
 
-    local file = io.open(mission.coalition.red.country[1].static.group.name..".ini", "w")
-    file:write(ids.."\n")
-    file:write(coordinates.."\n")
-    file:write(headings.."\n")
-    file:write(shape.."\n")
+    local file = io.open(mission.coalition.red.country[1].static.group.name .. ".ini", "w")
+    file:write(ids .. "\n")
+    file:write(coordinates .. "\n")
+    file:write(headings .. "\n")
+    file:write(shape .. "\n")
     file:close()
 end
 
 
 -- Red Ground Groups
-for _,groupValue in orderedPairs(mission.coalition.red.country[1].vehicle.group) do --actualcode
+for _, groupValue in orderedPairs(mission.coalition.red.country[1].vehicle.group) do --actualcode
     local ids = "DCSID="
     local coordinates = "Offset.Coordinates="
     local headings = "Offset.Heading="
     local shape = "Shape="
     local originX = groupValue.x
     local originY = groupValue.y
-    for _,value in orderedPairs(groupValue.units) do --actualcode
-        ids = ids..value.type..","
-        coordinates = coordinates..(originX - value.x)..","..(originY - value.y)..";"
-        headings = headings..value.heading..","
+    for _, value in orderedPairs(groupValue.units) do --actualcode
+        ids = ids .. value.type .. ","
+        coordinates = coordinates .. (originX - value.x) .. "," .. (originY - value.y) .. ";"
+        headings = headings .. value.heading .. ","
     end
-    local file = io.open(groupValue.name..".ini", "w")
-    file:write(ids.."\n")
-    file:write(coordinates.."\n")
-    file:write(headings.."\n")
+    local file = io.open(groupValue.name .. ".ini", "w")
+    file:write(ids .. "\n")
+    file:write(coordinates .. "\n")
+    file:write(headings .. "\n")
     file:close()
 end
-
-
-

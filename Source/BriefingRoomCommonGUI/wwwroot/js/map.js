@@ -31,9 +31,9 @@ function GetFromMapCoordData(pos, mapCoordData) {
     return [pos2["x"], pos2["y"]]
 }
 
-function GetFromMapCoordDataXY(pos, mapCoordData){
+function GetFromMapCoordDataXY(pos, mapCoordData) {
     const postArry = GetFromMapCoordData(pos, mapCoordData)
-    return {x: postArry[0], y:postArry[1]}
+    return { x: postArry[0], y: postArry[1] }
 }
 
 const GetMapData = Memoize(async (map) => {
@@ -47,11 +47,11 @@ const GetMapData = Memoize(async (map) => {
     }
 })
 
-async function SetHintPositions(positionsDict, map){
+async function SetHintPositions(positionsDict, map) {
     hintPositions = {}
     var MapCoordMap = await GetMapData(map)
     Object.keys(positionsDict).forEach(key => {
-        if(positionsDict[key][0] === 0 && positionsDict[key][1] === 0) return
+        if (positionsDict[key][0] === 0 && positionsDict[key][1] === 0) return
         hintPositions[key] = GetFromMapCoordDataXY(positionsDict[key], MapCoordMap)
     })
 }
@@ -64,7 +64,7 @@ const getNearestValidPos = (pos, MapCoordMap) => Object.values(MapCoordMap).redu
 
 async function RenderHintMap(map, hintKey) {
     //Show hint map
-    if(hintKey){
+    if (hintKey) {
         var bsOffcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasBottom'))
         bsOffcanvas.show()
     }
@@ -90,7 +90,7 @@ async function RenderHintMap(map, hintKey) {
     let keys = Object.keys(MapCoordMap);
     let randomPos = MapCoordMap[keys[Math.floor(keys.length * Math.random())]];
     leafHintMap.setView([randomPos["x"], randomPos["y"]], 6.5);
-    if(hintKey){
+    if (hintKey) {
         await PrepClickHint(hintKey, map)
     }
 }
@@ -117,18 +117,18 @@ function createHintMarker(key, map) {
             html: `<img class="map_point_icon" src="_content/BriefingRoomCommonGUI/img/nato-icons/${GetNatoIcon(key, false)}.svg" alt="${key}"/>` +
                 `<span class="map_point_icon map_point_icon_text">${key.slice(key.indexOf('_') + 1).replaceAll("_", " ")}</span>`
         }),
-        draggable:'true'
+        draggable: 'true'
     })
     hintMarkers[key] = marker
     marker.addTo(leafHintMap);
-    hintMarkers[key].on('dragend', async function(event){
+    hintMarkers[key].on('dragend', async function (event) {
         var marker = event.target;
         var position = marker.getLatLng();
         var MapCoordMap = await GetMapData(map)
         hintPositions[key] = getNearestValidPos(position, MapCoordMap)
         marker.setLatLng([hintPositions[key].x, hintPositions[key].y])
     });
-    hintMarkers[key].on('dblclick', async function(event){
+    hintMarkers[key].on('dblclick', async function (event) {
         var marker = event.target;
         marker.remove()
         delete hintPositions[key]

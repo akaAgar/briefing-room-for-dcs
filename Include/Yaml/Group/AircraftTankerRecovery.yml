@@ -41,7 +41,7 @@ waypoints:
           lastWptIndexFlagChangedManually: false
           groupId: $CARRIERGROUPID$
           lastWptIndex: 2
-          targetTypes: 
+          targetTypes:
             - Ships
     type: Turning Point
     etaLocked: true

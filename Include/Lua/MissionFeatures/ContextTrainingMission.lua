@@ -1,5 +1,5 @@
 -- Makes enemy units hold their fire, turning the mission into a training mission
-for _,g in pairs(coalition.getGroups(briefingRoom.enemyCoalition)) do
+for _, g in pairs(coalition.getGroups(briefingRoom.enemyCoalition)) do
   local controller = g:getController()
 
   if g:getCategory() == Group.Category.AIRPLANE or g:getCategory() == Group.Category.HELICOPTER then -- AIRCRAFT

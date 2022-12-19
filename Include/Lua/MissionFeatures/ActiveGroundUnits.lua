@@ -15,7 +15,8 @@ function briefingRoom.mission.missionFeatures.activeGroundUnits.directUnit(group
     local path = {}
     local groupPoint = group:getUnit(1):getPoint()
     local _sort = function(a, b) return mist.utils.get2DDist(groupPoint, a:getUnit(1):getPoint()) <
-        mist.utils.get2DDist(groupPoint, b:getUnit(1):getPoint()) end
+            mist.utils.get2DDist(groupPoint, b:getUnit(1):getPoint())
+    end
     table.sort(oppositeSide, _sort)
     local randomGroup = oppositeSide[1]
     if randomGroup == nil then

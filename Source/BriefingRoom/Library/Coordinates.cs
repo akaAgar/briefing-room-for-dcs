@@ -170,7 +170,7 @@ namespace BriefingRoom4DCS
 
         internal double GetHeadingFrom(Coordinates lastWP)
         {
-            return  Math.Round(ToAngleInRadians(lastWP, this) * Toolbox.RADIANS_TO_DEGREES);
+            return Math.Round(ToAngleInRadians(lastWP, this) * Toolbox.RADIANS_TO_DEGREES);
         }
     }
 }

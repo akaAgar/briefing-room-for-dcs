@@ -5050,7 +5050,8 @@ function ctld.addF10MenuOptions()
 
                                                 --add in the number of crates required to build something
                                                 if _crate.cratesRequired ~= nil and _crate.cratesRequired > 1 then
-                                                    _crateRadioMsg = _crateRadioMsg .. " (" .. _crate.cratesRequired ..
+                                                    _crateRadioMsg = _crateRadioMsg ..
+                                                        " (" .. _crate.cratesRequired ..
                                                         ")"
                                                 end
 

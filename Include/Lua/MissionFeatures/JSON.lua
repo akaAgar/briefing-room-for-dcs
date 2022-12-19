@@ -23,8 +23,8 @@ local AUTHOR_NOTE = "-[ JSON.lua package by Jeffrey Friedl (http://regex.info/bl
 -- included in OBJDEF below mostly to quiet warnings about unused variables.
 --
 local OBJDEF = {
-   VERSION      = VERSION,
-   AUTHOR_NOTE  = AUTHOR_NOTE,
+   VERSION     = VERSION,
+   AUTHOR_NOTE = AUTHOR_NOTE,
 }
 
 
@@ -289,8 +289,10 @@ local OBJDEF = {
 local default_pretty_indent  = "  "
 local default_pretty_options = { pretty = true, align_keys = false, indent = default_pretty_indent }
 
-local isArray  = { __tostring = function() return "JSON array"  end }    isArray.__index  = isArray
-local isObject = { __tostring = function() return "JSON object" end }    isObject.__index = isObject
+local isArray    = { __tostring = function() return "JSON array" end }
+isArray.__index  = isArray
+local isObject   = { __tostring = function() return "JSON object" end }
+isObject.__index = isObject
 
 
 function OBJDEF:newArray(tbl)
@@ -315,7 +317,7 @@ local function unicode_codepoint_as_utf8(codepoint)
       local highpart = math.floor(codepoint / 0x40)
       local lowpart  = codepoint - (0x40 * highpart)
       return string.char(0xC0 + highpart,
-                         0x80 + lowpart)
+         0x80 + lowpart)
 
    elseif codepoint <= 65535 then
       --
@@ -334,16 +336,16 @@ local function unicode_codepoint_as_utf8(codepoint)
       -- Check for an invalid character (thanks Andy R. at Adobe).
       -- See table 3.7, page 93, in http://www.unicode.org/versions/Unicode5.2.0/ch03.pdf#G28070
       --
-      if ( highpart == 0xE0 and midpart < 0xA0 ) or
-         ( highpart == 0xED and midpart > 0x9F ) or
-         ( highpart == 0xF0 and midpart < 0x90 ) or
-         ( highpart == 0xF4 and midpart > 0x8F )
+      if (highpart == 0xE0 and midpart < 0xA0) or
+          (highpart == 0xED and midpart > 0x9F) or
+          (highpart == 0xF0 and midpart < 0x90) or
+          (highpart == 0xF4 and midpart > 0x8F)
       then
          return "?"
       else
          return string.char(highpart,
-                            midpart,
-                            lowpart)
+            midpart,
+            lowpart)
       end
 
    else
@@ -358,9 +360,9 @@ local function unicode_codepoint_as_utf8(codepoint)
       local lowpart   = remainder - 0x40 * midB
 
       return string.char(0xF0 + highpart,
-                         0x80 + midA,
-                         0x80 + midB,
-                         0x80 + lowpart)
+         0x80 + midA,
+         0x80 + midB,
+         0x80 + lowpart)
    end
 end
 
@@ -404,7 +406,7 @@ local function grok_number(self, text, start, etc)
    -- Grab the integer part
    --
    local integer_part = text:match('^-?[1-9]%d*', start)
-                     or text:match("^-?0",        start)
+       or text:match("^-?0", start)
 
    if not integer_part then
       self:onDecodeError("expected number", text, start, etc)
@@ -436,10 +438,9 @@ local function grok_number(self, text, start, etc)
    return as_number, i
 end
 
-
 local function grok_string(self, text, start, etc)
 
-   if text:sub(start,start) ~= '"' then
+   if text:sub(start, start) ~= '"' then
       self:onDecodeError("expected string's opening quote", text, start, etc)
    end
 
@@ -447,7 +448,7 @@ local function grok_string(self, text, start, etc)
    local text_len = text:len()
    local VALUE = ""
    while i <= text_len do
-      local c = text:sub(i,i)
+      local c = text:sub(i, i)
       if c == '"' then
          return VALUE, i + 1
       end
@@ -470,7 +471,8 @@ local function grok_string(self, text, start, etc)
          VALUE = VALUE .. "\t"
          i = i + 2
       else
-         local hex = text:match('^\\u([0123456789aAbBcCdDeEfF][0123456789aAbBcCdDeEfF][0123456789aAbBcCdDeEfF][0123456789aAbBcCdDeEfF])', i)
+         local hex = text:match('^\\u([0123456789aAbBcCdDeEfF][0123456789aAbBcCdDeEfF][0123456789aAbBcCdDeEfF][0123456789aAbBcCdDeEfF])'
+            , i)
          if hex then
             i = i + 6 -- bypass what we just read
 
@@ -514,15 +516,15 @@ end
 local grok_one -- assigned later
 
 local function grok_object(self, text, start, etc)
-   if text:sub(start,start) ~= '{' then
+   if text:sub(start, start) ~= '{' then
       self:onDecodeError("expected '{'", text, start, etc)
    end
 
    local i = skip_whitespace(text, start + 1) -- +1 to skip the '{'
 
-   local VALUE = self.strictTypes and self:newObject { } or { }
+   local VALUE = self.strictTypes and self:newObject {} or {}
 
-   if text:sub(i,i) == '}' then
+   if text:sub(i, i) == '}' then
       return VALUE, i + 1
    end
    local text_len = text:len()
@@ -546,7 +548,7 @@ local function grok_object(self, text, start, etc)
       --
       i = skip_whitespace(text, new_i)
 
-      local c = text:sub(i,i)
+      local c = text:sub(i, i)
 
       if c == '}' then
          return VALUE, i + 1
@@ -563,13 +565,13 @@ local function grok_object(self, text, start, etc)
 end
 
 local function grok_array(self, text, start, etc)
-   if text:sub(start,start) ~= '[' then
+   if text:sub(start, start) ~= '[' then
       self:onDecodeError("expected '['", text, start, etc)
    end
 
    local i = skip_whitespace(text, start + 1) -- +1 to skip the '['
-   local VALUE = self.strictTypes and self:newArray { } or { }
-   if text:sub(i,i) == ']' then
+   local VALUE = self.strictTypes and self:newArray {} or {}
+   if text:sub(i, i) == ']' then
       return VALUE, i + 1
    end
 
@@ -588,7 +590,7 @@ local function grok_array(self, text, start, etc)
       --
       -- Expect now either ']' to end things, or a ',' to allow us to continue.
       --
-      local c = text:sub(i,i)
+      local c = text:sub(i, i)
       if c == ']' then
          return VALUE, i + 1
       end
@@ -599,7 +601,6 @@ local function grok_array(self, text, start, etc)
    end
    self:onDecodeError("unclosed '['", text, start, etc)
 end
-
 
 grok_one = function(self, text, start, etc)
    -- Skip any whitespace
@@ -660,7 +661,7 @@ function OBJDEF:decode(text, etc)
    -- Those are perfectly valid encodings for JSON (as per RFC 4627 section 3),
    -- but this package can't handle them.
    --
-   if text:sub(1,1):byte() == 0 or (text:len() >= 2 and text:sub(2,2):byte() == 0) then
+   if text:sub(1, 1):byte() == 0 or (text:len() >= 2 and text:sub(2, 2):byte() == 0) then
       self:onDecodeError("JSON package groks only UTF-8, sorry", text, nil, etc)
    end
 
@@ -700,13 +701,12 @@ local function backslash_replacement_function(c)
    end
 end
 
-local chars_to_be_escaped_in_JSON_string
-   = '['
-   ..    '"'    -- class sub-pattern to match a double quote
-   ..    '%\\'  -- class sub-pattern to match a backslash
-   ..    '%z'   -- class sub-pattern to match a null
-   ..    '\001' .. '-' .. '\031' -- class sub-pattern to match control characters
-   .. ']'
+local chars_to_be_escaped_in_JSON_string = '['
+    .. '"' -- class sub-pattern to match a double quote
+    .. '%\\' -- class sub-pattern to match a backslash
+    .. '%z' -- class sub-pattern to match a null
+    .. '\001' .. '-' .. '\031' -- class sub-pattern to match control characters
+    .. ']'
 
 local function json_string_literal(value)
    local newval = value:gsub(chars_to_be_escaped_in_JSON_string, backslash_replacement_function)
@@ -721,8 +721,8 @@ local function object_or_array(self, T, etc)
    -- If we'll be converting to a JSON object, we'll want to sort the keys so that the
    -- end result is deterministic.
    --
-   local string_keys = { }
-   local number_keys = { }
+   local string_keys = {}
+   local number_keys = {}
    local number_keys_must_be_strings = false
    local maximum_number_key
 
@@ -750,7 +750,7 @@ local function object_or_array(self, T, etc)
       elseif tostring(T) == "JSON array" then
          return nil
       elseif tostring(T) == "JSON object" then
-         return { }
+         return {}
       else
          -- have to guess, so we'll pick array, since empty arrays are likely more common than empty objects
          return nil
@@ -773,7 +773,7 @@ local function object_or_array(self, T, etc)
       --
       -- Have to make a shallow copy of the source table so we can remap the numeric keys to be strings
       --
-      map = { }
+      map = {}
       for key, val in pairs(T) do
          map[key] = val
       end
@@ -786,10 +786,11 @@ local function object_or_array(self, T, etc)
       for _, number_key in ipairs(number_keys) do
          local string_key = tostring(number_key)
          if map[string_key] == nil then
-            table.insert(string_keys , string_key)
+            table.insert(string_keys, string_key)
             map[string_key] = T[number_key]
          else
-            self:onEncodeError("conflict converting table with mixed-type keys into a JSON object: key " .. number_key .. " exists both as a string and a number.", etc)
+            self:onEncodeError("conflict converting table with mixed-type keys into a JSON object: key " ..
+               number_key .. " exists both as a string and a number.", etc)
          end
       end
    end
@@ -873,7 +874,7 @@ function encode_value(self, value, parents, etc, options, indent)
          --
          -- An array...
          --
-         local ITEMS = { }
+         local ITEMS = {}
          for i = 1, maximum_number_key do
             table.insert(ITEMS, encode_value(self, T[i], parents, etc, options, indent))
          end
@@ -881,7 +882,7 @@ function encode_value(self, value, parents, etc, options, indent)
          if options.pretty then
             result_value = "[ " .. table.concat(ITEMS, ", ") .. " ]"
          else
-            result_value = "["  .. table.concat(ITEMS, ",")  .. "]"
+            result_value = "[" .. table.concat(ITEMS, ",") .. "]"
          end
 
       elseif object_keys then
@@ -892,7 +893,7 @@ function encode_value(self, value, parents, etc, options, indent)
 
          if options.pretty then
 
-            local KEYS = { }
+            local KEYS = {}
             local max_key_length = 0
             for _, key in ipairs(object_keys) do
                local encoded = encode_value(self, tostring(key), parents, etc, options, indent)
@@ -905,7 +906,7 @@ function encode_value(self, value, parents, etc, options, indent)
             local subtable_indent = key_indent .. string.rep(" ", max_key_length) .. (options.align_keys and "  " or "")
             local FORMAT = "%s%" .. string.format("%d", max_key_length) .. "s: %s"
 
-            local COMBINED_PARTS = { }
+            local COMBINED_PARTS = {}
             for i, key in ipairs(object_keys) do
                local encoded_val = encode_value(self, TT[key], parents, etc, options, subtable_indent)
                table.insert(COMBINED_PARTS, string.format(FORMAT, key_indent, KEYS[i], encoded_val))
@@ -914,9 +915,9 @@ function encode_value(self, value, parents, etc, options, indent)
 
          else
 
-            local PARTS = { }
+            local PARTS = {}
             for _, key in ipairs(object_keys) do
-               local encoded_val = encode_value(self, TT[key],       parents, etc, options, indent)
+               local encoded_val = encode_value(self, TT[key], parents, etc, options, indent)
                local encoded_key = encode_value(self, tostring(key), parents, etc, options, indent)
                table.insert(PARTS, string.format("%s:%s", encoded_key, encoded_val))
             end
@@ -934,7 +935,6 @@ function encode_value(self, value, parents, etc, options, indent)
       return result_value
    end
 end
-
 
 function OBJDEF:encode(value, etc, options)
    if type(self) ~= 'table' or self.__index ~= OBJDEF then
@@ -957,7 +957,7 @@ end
 OBJDEF.__index = OBJDEF
 
 function OBJDEF:new(args)
-   local new = { }
+   local new = {}
 
    if args then
       for key, val in pairs(args) do

@@ -132,6 +132,7 @@ do -- the main scope
 					mist.DBs.zonesByNum[#mist.DBs.zonesByNum + 1] = mist.utils.deepCopy(zone) --[[deepcopy so that the zone in zones_by_name and the zone in
 																								zones_by_num se are different objects.. don't want them linked.]]
 
+
 				end
 			end
 		end
@@ -2977,8 +2978,8 @@ do
 		local map_objs = {}
 		local zones = {}
 		for i = 1, #zone_names do
-			if mist.DBs.zonesByName[ zone_names[i] ] then
-				zones[#zones + 1] = mist.DBs.zonesByName[ zone_names[i] ]
+			if mist.DBs.zonesByName[zone_names[i]] then
+				zones[#zones + 1] = mist.DBs.zonesByName[zone_names[i]]
 			end
 		end
 		for obj_id, obj in pairs(mist.DBs.deadObjects) do
@@ -3246,7 +3247,7 @@ do
 
 
 		for k = 1, #zone_names do
-			local zone = mist.DBs.zonesByName[ zone_names[k] ]
+			local zone = mist.DBs.zonesByName[zone_names[k]]
 			if zone then
 				zones[#zones + 1] = { radius = zone.radius, x = zone.point.x, y = zone.point.y, z = zone.point.z,
 					verts = zone.verticies }
@@ -3331,8 +3332,9 @@ do
 
 				local zone_unit_pos = zone_units[zone_units_ind]:getPosition().p
 				if unit_pos and zone_unit_pos and ((lCat == 1 and lUnit:isActive()) or lCat ~= 1) then
-					if zone_type == 'cylinder' and (((unit_pos.x - zone_unit_pos.x) ^ 2 + (unit_pos.z - zone_unit_pos.z) ^ 2) ^ 0.5 <=
-						radius) then
+					if zone_type == 'cylinder' and
+						(((unit_pos.x - zone_unit_pos.x) ^ 2 + (unit_pos.z - zone_unit_pos.z) ^ 2) ^ 0.5 <=
+							radius) then
 						in_zone_units[#in_zone_units + 1] = lUnit
 						break
 					elseif zone_type == 'sphere' and
@@ -3380,7 +3382,8 @@ do
 		for unit1_ind = 1, #unit_info1 do
 			local unit_added = false
 			for unit2_ind = 1, #unit_info2 do
-				if radius == math.huge or (mist.vec.mag(mist.vec.sub(unit_info1[unit1_ind].pos, unit_info2[unit2_ind].pos)) < radius
+				if radius == math.huge or
+					(mist.vec.mag(mist.vec.sub(unit_info1[unit1_ind].pos, unit_info2[unit2_ind].pos)) < radius
 					) then -- inside radius
 					local point1 = { x = unit_info1[unit1_ind].pos.x, y = unit_info1[unit1_ind].pos.y + altoffset1,
 						z = unit_info1[unit1_ind].pos.z }
@@ -4296,7 +4299,7 @@ do -- group functions scope
 		if type(zone) == 'string' then
 			zone = mist.DBs.zonesByName[zone]
 		elseif type(zone) == 'table' and not zone.radius then
-			zone = mist.DBs.zonesByName[ zone[math.random(1, #zone)] ]
+			zone = mist.DBs.zonesByName[zone[math.random(1, #zone)]]
 		end
 		local vars = {}
 		vars.gpName = gpName
@@ -4326,7 +4329,7 @@ do -- group functions scope
 		if type(zone) == 'string' then
 			zone = mist.DBs.zonesByName[zone]
 		elseif type(zone) == 'table' and not zone.radius then
-			zone = mist.DBs.zonesByName[ zone[math.random(1, #zone)] ]
+			zone = mist.DBs.zonesByName[zone[math.random(1, #zone)]]
 		end
 		local vars = {}
 		vars.gpName = gpName
@@ -4354,7 +4357,7 @@ do -- group functions scope
 		if type(zone) == 'string' then
 			zone = mist.DBs.zonesByName[zone]
 		elseif type(zone) == 'table' and not zone.radius then
-			zone = mist.DBs.zonesByName[ zone[math.random(1, #zone)] ]
+			zone = mist.DBs.zonesByName[zone[math.random(1, #zone)]]
 		end
 
 		local vars = {}
@@ -5169,7 +5172,7 @@ do -- mist.util scope
 						type_key_str = type_key_str .. '/'
 					end
 					type_key_str = type_key_str .. tostring(type_key[i])
-					if var_tbl[ type_key[i] ] ~= nil then
+					if var_tbl[type_key[i]] ~= nil then
 						act_key = type_key[i] -- found a non-nil entry, make act_key now this val.
 					end
 				end
@@ -5838,7 +5841,8 @@ initial_number
 			initial_number = #mist.getDeadMapObjsInZones(zones)
 		end
 
-		if stopflag == -1 or (type(trigger.misc.getUserFlag(stopflag)) == 'number' and trigger.misc.getUserFlag(stopflag) == 0
+		if stopflag == -1 or
+			(type(trigger.misc.getUserFlag(stopflag)) == 'number' and trigger.misc.getUserFlag(stopflag) == 0
 			) or (type(trigger.misc.getUserFlag(stopflag)) == 'boolean' and trigger.misc.getUserFlag(stopflag) == false) then
 			if (#mist.getDeadMapObjsInZones(zones) - initial_number) >= req_num and trigger.misc.getUserFlag(flag) == 0 then
 				trigger.action.setUserFlag(flag, true)
@@ -5902,7 +5906,8 @@ initial_number
 			initial_number = #mist.getDeadMapObjsInPolygonZone(zone)
 		end
 
-		if stopflag == -1 or (type(trigger.misc.getUserFlag(stopflag)) == 'number' and trigger.misc.getUserFlag(stopflag) == 0
+		if stopflag == -1 or
+			(type(trigger.misc.getUserFlag(stopflag)) == 'number' and trigger.misc.getUserFlag(stopflag) == 0
 			) or (type(trigger.misc.getUserFlag(stopflag)) == 'boolean' and trigger.misc.getUserFlag(stopflag) == false) then
 			if (#mist.getDeadMapObjsInPolygonZone(zone) - initial_number) >= req_num and trigger.misc.getUserFlag(flag) == 0 then
 				trigger.action.setUserFlag(flag, true)
@@ -5972,7 +5977,8 @@ unitTableDef = table or nil
 			end
 		end
 
-		if stopflag == -1 or (type(trigger.misc.getUserFlag(stopflag)) == 'number' and trigger.misc.getUserFlag(stopflag) == 0
+		if stopflag == -1 or
+			(type(trigger.misc.getUserFlag(stopflag)) == 'number' and trigger.misc.getUserFlag(stopflag) == 0
 			) or (type(trigger.misc.getUserFlag(stopflag)) == 'boolean' and trigger.misc.getUserFlag(stopflag) == 0) then
 			local num_in_zone = 0
 			for i = 1, #units do
@@ -6050,7 +6056,8 @@ unitTableDef = table or nil
 			end
 		end
 
-		if stopflag == -1 or (type(trigger.misc.getUserFlag(stopflag)) == 'number' and trigger.misc.getUserFlag(stopflag) == 0
+		if stopflag == -1 or
+			(type(trigger.misc.getUserFlag(stopflag)) == 'number' and trigger.misc.getUserFlag(stopflag) == 0
 			) or (type(trigger.misc.getUserFlag(stopflag)) == 'boolean' and trigger.misc.getUserFlag(stopflag) == false) then
 
 			local in_zone_units = mist.getUnitsInZones(units, zones, zone_type)
@@ -6142,7 +6149,8 @@ unitTableDef = table or nil
 
 		end
 
-		if stopflag == -1 or (type(trigger.misc.getUserFlag(stopflag)) == 'number' and trigger.misc.getUserFlag(stopflag) == 0
+		if stopflag == -1 or
+			(type(trigger.misc.getUserFlag(stopflag)) == 'number' and trigger.misc.getUserFlag(stopflag) == 0
 			) or (type(trigger.misc.getUserFlag(stopflag)) == 'boolean' and trigger.misc.getUserFlag(stopflag) == false) then
 
 			local in_zone_units = mist.getUnitsInMovingZones(units, zone_units, radius, zone_type)
@@ -6231,7 +6239,8 @@ toggle = boolean or nil
 		end
 
 
-		if stopflag == -1 or (type(trigger.misc.getUserFlag(stopflag)) == 'number' and trigger.misc.getUserFlag(stopflag) == 0
+		if stopflag == -1 or
+			(type(trigger.misc.getUserFlag(stopflag)) == 'number' and trigger.misc.getUserFlag(stopflag) == 0
 			) or (type(trigger.misc.getUserFlag(stopflag)) == 'boolean' and trigger.misc.getUserFlag(stopflag) == false) then
 
 			local unitLOSdata = mist.getUnitsLOS(unitset1, altoffset1, unitset2, altoffset2, radius)
@@ -6281,7 +6290,8 @@ stopFlag
 		local toggle = vars.toggle or nil
 
 
-		if stopflag == -1 or (type(trigger.misc.getUserFlag(stopflag)) == 'number' and trigger.misc.getUserFlag(stopflag) == 0
+		if stopflag == -1 or
+			(type(trigger.misc.getUserFlag(stopflag)) == 'number' and trigger.misc.getUserFlag(stopflag) == 0
 			) or (type(trigger.misc.getUserFlag(stopflag)) == 'boolean' and trigger.misc.getUserFlag(stopflag) == false) then
 			if Group.getByName(groupName) and Group.getByName(groupName):isExist() == true and
 				#Group.getByName(groupName):getUnits() > 0 then
@@ -6325,7 +6335,8 @@ stopFlag
 		local toggle = vars.toggle or nil
 
 
-		if stopflag == -1 or (type(trigger.misc.getUserFlag(stopflag)) == 'number' and trigger.misc.getUserFlag(stopflag) == 0
+		if stopflag == -1 or
+			(type(trigger.misc.getUserFlag(stopflag)) == 'number' and trigger.misc.getUserFlag(stopflag) == 0
 			) or (type(trigger.misc.getUserFlag(stopflag)) == 'boolean' and trigger.misc.getUserFlag(stopflag) == false) then
 			if (Group.getByName(groupName) and Group.getByName(groupName):isExist() == false) or
 				(Group.getByName(groupName) and #Group.getByName(groupName):getUnits() < 1) or not Group.getByName(groupName) then
@@ -6370,7 +6381,8 @@ stopFlag
 		local toggle = vars.toggle or nil
 
 
-		if stopflag == -1 or (type(trigger.misc.getUserFlag(stopflag)) == 'number' and trigger.misc.getUserFlag(stopflag) == 0
+		if stopflag == -1 or
+			(type(trigger.misc.getUserFlag(stopflag)) == 'number' and trigger.misc.getUserFlag(stopflag) == 0
 			) or (type(trigger.misc.getUserFlag(stopflag)) == 'boolean' and trigger.misc.getUserFlag(stopflag) == false) then
 			if Group.getByName(groupName) and Group.getByName(groupName):isExist() == true then
 				if Group.getByName(groupName):getSize() / Group.getByName(groupName):getInitialSize() < percent / 100 then
@@ -6420,7 +6432,8 @@ stopFlag
 		local toggle = vars.toggle or nil
 
 
-		if stopflag == -1 or (type(trigger.misc.getUserFlag(stopflag)) == 'number' and trigger.misc.getUserFlag(stopflag) == 0
+		if stopflag == -1 or
+			(type(trigger.misc.getUserFlag(stopflag)) == 'number' and trigger.misc.getUserFlag(stopflag) == 0
 			) or (type(trigger.misc.getUserFlag(stopflag)) == 'boolean' and trigger.misc.getUserFlag(stopflag) == false) then
 			if Group.getByName(groupName) and Group.getByName(groupName):isExist() == true then
 				if Group.getByName(groupName):getSize() / Group.getByName(groupName):getInitialSize() > percent / 100 then
@@ -7287,7 +7300,8 @@ do -- mist.demos scope
 						unitAcc = string.format('%12.2f', mist.vec.mag({ x = xAcc, y = yAcc, z = zAcc }))
 						Gs = string.format('%12.2f', mist.vec.mag({ x = xAcc, y = yAcc + 9.81, z = zAcc }) / 9.81)
 						axialGs = string.format('%12.2f', mist.vec.dp({ x = xAcc, y = yAcc + 9.81, z = zAcc }, unitPos.x) / 9.81)
-						transGs = string.format('%12.2f', mist.vec.mag(mist.vec.cp({ x = xAcc, y = yAcc + 9.81, z = zAcc }, unitPos.x)) /
+						transGs = string.format('%12.2f',
+							mist.vec.mag(mist.vec.cp({ x = xAcc, y = yAcc + 9.81, z = zAcc }, unitPos.x)) /
 							9.81)
 					end
 
@@ -8848,7 +8862,7 @@ do -- group tasks scope
 		if type(zone) == 'string' then
 			zone = mist.DBs.zonesByName[zone]
 		elseif type(zone) == 'table' and not zone.radius then
-			zone = mist.DBs.zonesByName[ zone[math.random(1, #zone)] ]
+			zone = mist.DBs.zonesByName[zone[math.random(1, #zone)]]
 		end
 
 		if speed then

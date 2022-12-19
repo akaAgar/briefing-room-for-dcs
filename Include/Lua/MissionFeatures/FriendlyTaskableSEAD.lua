@@ -1,4 +1,4 @@
-briefingRoom.mission.missionFeatures.friendlyTaskableSEAD = { }
+briefingRoom.mission.missionFeatures.friendlyTaskableSEAD = {}
 briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.AUTO_AIM_RADIUS = 1000 -- in meters
 briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.MARKER_NAME = "sead"
 briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.LANG_UNIT = "$LANG_SEAD$"
@@ -24,8 +24,8 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.launchBombing
           points = {
             [1] = {
               speed = 200,
-              x = dcsExtensions.lerp(currPos.x, mark.pos.x,0.9),
-              y = dcsExtensions.lerp(currPos.z, mark.pos.z,0.9),
+              x = dcsExtensions.lerp(currPos.x, mark.pos.x, 0.9),
+              y = dcsExtensions.lerp(currPos.z, mark.pos.z, 0.9),
               type = 'Turning Point',
               ETA_locked = false,
               ETA = 100,
@@ -63,23 +63,22 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.launchBombing
                       number = 2,
                       params = {
                         pattern = "Circle",
-                        }
                       }
                     }
                   }
                 }
               }
             }
-          },
+          }
         },
-      }
-    end)
-  end
-
-
+      },
+    }
+  end)
+end
 
 -- Add F10 menu command
-missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_SEADMENU$", briefingRoom.f10Menu.missionMenu, briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.launchBombingRun, nil)
+missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_SEADMENU$", briefingRoom.f10Menu.missionMenu
+  , briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.launchBombingRun, nil)
 
 -- Enable event handler
 world.addEventHandler(briefingRoom.taskables.markerManager(briefingRoom.mission.missionFeatures.friendlyTaskableSEAD))
