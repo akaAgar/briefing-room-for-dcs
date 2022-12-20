@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net7.0-windows</TargetFramework>
     <RootNamespace>BriefingRoom4DCS</RootNamespace>
@@ -7,7 +7,7 @@
   <ItemGroup>
     <PackageReference Include="LuaTableSerializer" Version="0.0.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
-    <PackageReference Include="FluentRandomPicker" Version="3.3.0" />
+    <PackageReference Include="FluentRandomPicker" Version="3.4.0" />
     <PackageReference Include="Polly" Version="7.2.3" />
     <PackageReference Include="YamlDotNet" Version="12.3.1" />
     <ProjectReference Include="../WkHtmlWrapper/WkHtmlWrapper.Image/WkHtmlWrapper.Image.csproj" />
