@@ -96,8 +96,10 @@ namespace BriefingRoom4DCS.Data
 
             var payloads = ini.GetKeysInSection("Aircraft").Where(x => x.StartsWith("payload.task")).Select(x => x.Split('.')[2]).Distinct().ToList();
 
-            if (!custom)
+            if (!custom) {
                 PayloadTasks.Add("default", new string[MAX_PYLONS]);
+                PayloadTasks.Add("clean", new string[MAX_PYLONS]);
+            }
 
             foreach (string task in payloads)
             {
