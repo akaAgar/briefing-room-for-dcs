@@ -2,7 +2,7 @@ name: .NET
 
 on:
   push:
-    branches: [ revert-565-revert-562-net7 ]
+    branches: [ beta-release ]
  
 jobs:
   build:
@@ -57,17 +57,17 @@ jobs:
     
       
     - name: Zip Release
-      run: 7z a -tzip beta-release-${{ steps.current-time.outputs.formattedTime }}-net7.zip BriefingRoom-build${{ steps.current-time.outputs.formattedTime }} "-xr!.git\" "-xr!.github\" "-xr!.git*" "-xr!.vscode\" "-xr!dataExtractors\"  "-xr!Source\" "-xr!docs\" "-x!*.bat" "-x!*.filelist" 
+      run: 7z a -tzip beta-release-${{ steps.current-time.outputs.formattedTime }}.zip BriefingRoom-build${{ steps.current-time.outputs.formattedTime }} "-xr!.git\" "-xr!.github\" "-xr!.git*" "-xr!.vscode\" "-xr!dataExtractors\"  "-xr!Source\" "-xr!docs\" "-x!*.bat" "-x!*.filelist" 
 
 
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
-          tag: "beta-release-${{ steps.current-time.outputs.formattedTime }}-net7"
-          name: "beta-release-${{ steps.current-time.outputs.formattedTime }}-net7"
+          tag: "beta-release-${{ steps.current-time.outputs.formattedTime }}"
+          name: "beta-release-${{ steps.current-time.outputs.formattedTime }}"
           body: |
             This is a automated beta build. This may not work. Its not recommend to overwrite a official release with this.
             ${{ steps.change_log.outputs.log }}
           prerelease: true
-          artifacts: "beta-release-${{ steps.current-time.outputs.formattedTime }}-net7.zip"
+          artifacts: "beta-release-${{ steps.current-time.outputs.formattedTime }}.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
