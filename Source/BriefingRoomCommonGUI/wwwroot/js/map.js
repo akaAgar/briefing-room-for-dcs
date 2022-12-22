@@ -47,6 +47,30 @@ const GetMapData = Memoize(async (map) => {
     }
 })
 
+const GetBounds = Memoize(async (map) => {
+    const MapCoordMap = await GetMapData(map)
+    const MapCoordArray = Object.values(MapCoordMap);
+    const XCoords = MapCoordArray.map(o => o.x)
+    const YCoords = MapCoordArray.map(o => o.y)
+    const bounds = [[XCoords.reduce((min, v) => min <= v ? min : v, Infinity), YCoords.reduce((min, v) => min <= v ? min : v, Infinity)], [XCoords.reduce((max, v) => max >= v ? max : v, -Infinity), YCoords.reduce((max, v) => max >= v ? max : v, -Infinity)]];
+    return bounds
+})
+
+async function GetCenterView(map, leafMap) {
+    const bounds = await GetBounds(map)
+    const viewCoords = [(bounds[0][0] + (bounds[1][0] - bounds[0][0]) / 2), (bounds[0][1] + (bounds[1][1] - bounds[0][1]) / 2)]
+    leafMap.setView(viewCoords, 6.5);
+}
+
+async function DrawMapBounds(map, leafMap) {
+    const bounds = await GetBounds(map)
+    L.rectangle(bounds, {
+        color: 'Yellow',
+        weight: 5,
+        fillOpacity: 0.0
+    }).addTo(leafMap);
+}
+
 async function SetHintPositions(positionsDict, map) {
     hintPositions = {}
     var MapCoordMap = await GetMapData(map)
@@ -71,7 +95,6 @@ async function RenderHintMap(map, hintKey) {
     if (map != hintMarkerMap) {
         hintMarkers = {}
     }
-    var MapCoordMap = await GetMapData(map)
     if (leafHintMap) {
         leafHintMap.off();
         leafHintMap.remove();
@@ -87,9 +110,8 @@ async function RenderHintMap(map, hintKey) {
     Object.keys(hintPositions).forEach(key => {
         createHintMarker(key, map)
     })
-    let keys = Object.keys(MapCoordMap);
-    let randomPos = MapCoordMap[keys[Math.floor(keys.length * Math.random())]];
-    leafHintMap.setView([randomPos["x"], randomPos["y"]], 6.5);
+    await GetCenterView(map, leafHintMap)
+    await DrawMapBounds(map, leafHintMap)
     if (hintKey) {
         await PrepClickHint(hintKey, map)
     }
@@ -152,7 +174,6 @@ async function GetHintPoints(map) {
 }
 
 async function RenderEditorMap(map) {
-    var MapCoordMap = await GetMapData(map)
     if (leafSituationMap) {
         leafSituationMap.off();
         leafSituationMap.remove();
@@ -165,17 +186,11 @@ async function RenderEditorMap(map) {
     } catch (error) {
         console.warn(error)
     }
-    const MapCoordArray = Object.values(MapCoordMap);
-    const XCoords = MapCoordArray.map(o => o.x)
-    const YCoords = MapCoordArray.map(o => o.y)
-    const bounds = [[XCoords.reduce((min, v) => min <= v ? min : v, Infinity), YCoords.reduce((min, v) => min <= v ? min : v, Infinity)], [XCoords.reduce((max, v) => max >= v ? max : v, -Infinity), YCoords.reduce((max, v) => max >= v ? max : v, -Infinity)]];
-    const viewCoords = [(bounds[0][0] + (bounds[1][0] - bounds[0][0]) / 2), (bounds[0][1] + (bounds[1][1] - bounds[0][1]) / 2)]
-    leafSituationMap.setView(viewCoords, 6.5);
-    L.rectangle(bounds, {
-        color: 'Yellow',
-        weight: 5,
-        fillOpacity: 0.0
-    }).addTo(leafSituationMap);
+    
+    await GetCenterView(map, leafSituationMap)
+    await DrawMapBounds(map, leafSituationMap)
+
+    leafSituationMap
     var drawnItems = new L.FeatureGroup();
     leafSituationMap.addLayer(drawnItems);
 
