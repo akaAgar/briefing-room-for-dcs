@@ -529,13 +529,14 @@
                     break;
             }
         </EditForm>
-        <button id="hint-open-map-button" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" @onclick='() => RenderHintMap("")'><span class="oi oi-globe"></span> @BriefingRoom.Translate("LocationHint")</button>
+        <button id="hint-open-map-button" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" @onclick='() => RenderHintMap("")'><span class="oi oi-globe"></span> @BriefingRoom.Translate("ViewLocationHint")</button>
         <div class="offcanvas offcanvas-bottom h-auto" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasBottomLabel">@BriefingRoom.Translate("LocationHint")</h5>
                 <button id="hint-close-map-button" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
                 <div class="offcanvas-body">
+                    <p>@BriefingRoom.Translate("HintUsageP1")&nbsp;<span class="oi oi-globe"></span>&nbsp;@BriefingRoom.Translate("HintUsageP2")</p>
                     <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("HintNote")</p>
                     <div id="hintMap"></div>
                 </div>
