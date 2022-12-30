@@ -207,6 +207,8 @@ namespace BriefingRoom4DCS.Generator
                         _ => objectiveTargetUnitFamily == UnitFamily.VehicleInfantryMANPADS || objectiveTargetUnitFamily == UnitFamily.VehicleInfantry ? Coordinates.CreateRandom(1, 5) :  Coordinates.CreateRandom(10, 15)
                     } * Toolbox.NM_TO_METERS
                 );
+            if(targetDB.UnitCategory == UnitCategory.Vehicle)
+                destinationPoint = GetNearestSpawnCoordinates(template, destinationPoint, targetDB);
 
             var groupLua = targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory];
             if (targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.GoToPlayerAirbase)
@@ -294,7 +296,7 @@ namespace BriefingRoom4DCS.Generator
             if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense) && (targetDB.UnitCategory == UnitCategory.Static))
                 AddEmbeddedAirDefenseUnits(template, targetDB, targetBehaviorDB, taskDB, objectiveOptions, objectiveCoordinates, groupFlags, extraSettings);
 
-            targetGroupInfo.Value.DCSGroup.Waypoints = DCSWaypoint.CreateExtraWaypoints(targetGroupInfo.Value.DCSGroup.Waypoints, targetGroupInfo.Value.UnitDB.Families.First());
+            targetGroupInfo.Value.DCSGroup.Waypoints = DCSWaypoint.CreateExtraWaypoints(targetGroupInfo.Value.DCSGroup.Waypoints, targetGroupInfo.Value.UnitDB.Families.First(), UnitMaker.SpawnPointSelector);
 
             // Assign target suffix
             var i = 0;
@@ -522,7 +524,7 @@ namespace BriefingRoom4DCS.Generator
                 coreCoordinates);
 
             if (!spawnPoint.HasValue)
-                throw new BriefingRoomException($"Failed to spawn nearby objective unit group. {String.Join(",", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList())} Please try again (Consider Adusting Flight Plan)");
+                throw new BriefingRoomException($"Failed to spawn nearby objective point. {String.Join(",", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList())} Please try again (Consider Adusting Flight Plan)");
 
             Coordinates objectiveCoordinates = spawnPoint.Value;
             return objectiveCoordinates;

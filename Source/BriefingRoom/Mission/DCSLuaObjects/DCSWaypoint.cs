@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BriefingRoom4DCS.Data;
+using BriefingRoom4DCS.Generator;
 using LuaTableSerializer;
 
 namespace BriefingRoom4DCS.Mission.DCSLuaObjects
@@ -68,7 +70,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             return LuaSerializer.Serialize(obj);
         }
 
-        internal static List<DCSWaypoint> CreateExtraWaypoints(List<DCSWaypoint> waypoints, UnitFamily unitFamily)
+        internal static List<DCSWaypoint> CreateExtraWaypoints(List<DCSWaypoint> waypoints, UnitFamily unitFamily, UnitMakerSpawnPointSelector spawnPointSelector)
         {
             var firstWP = waypoints.First();
             var lastWP = waypoints.Last();
@@ -83,19 +85,30 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 
             foreach (var waypointCoords in new Coordinates[] { mid1, mid2, mid3 })
             {
-                if (new Random().NextDouble() >= 0.5)
-                    extraWaypoints.Add(new DCSWaypoint
-                    {
-                        Alt = lastWaypoint.Alt,
-                        AltType = lastWaypoint.AltType,
-                        Action = "Turning Point",
-                        Speed = lastWaypoint.Speed,
-                        Type = "Turning Point",
-                        EtaLocked = false,
-                        SpeedLocked = true,
-                        X = waypointCoords.X,
-                        Y = waypointCoords.Y,
-                    });
+                var tempWaypointCoords = waypointCoords;
+                if (new Random().NextDouble() <= 0.5)
+                    continue; 
+                
+                if(unitFamily.GetUnitCategory() == UnitCategory.Vehicle)
+                {
+                    var waypointCoordsSpawn = spawnPointSelector.GetNearestSpawnPoint(new SpawnPointType[] { SpawnPointType.LandLarge, SpawnPointType.LandMedium, SpawnPointType.LandSmall }, tempWaypointCoords);
+                    if(!waypointCoordsSpawn.HasValue)
+                        continue;
+                    tempWaypointCoords = waypointCoordsSpawn.Value;
+                }
+            
+                extraWaypoints.Add(new DCSWaypoint
+                {
+                    Alt = lastWaypoint.Alt,
+                    AltType = lastWaypoint.AltType,
+                    Action = "Turning Point",
+                    Speed = lastWaypoint.Speed,
+                    Type = "Turning Point",
+                    EtaLocked = false,
+                    SpeedLocked = true,
+                    X = tempWaypointCoords.X,
+                    Y = tempWaypointCoords.Y,
+                });
             }
 
             waypoints.InsertRange(waypoints.Count - 1, extraWaypoints);

@@ -138,7 +138,7 @@ namespace BriefingRoom4DCS.Generator
 
                 SetCarrier(template, unitMaker, side, ref groupInfo);
 
-                groupInfo.Value.DCSGroup.Waypoints = DCSWaypoint.CreateExtraWaypoints(groupInfo.Value.DCSGroup.Waypoints,  groupInfo.Value.UnitDB.Families.First());
+                groupInfo.Value.DCSGroup.Waypoints = DCSWaypoint.CreateExtraWaypoints(groupInfo.Value.DCSGroup.Waypoints,  groupInfo.Value.UnitDB.Families.First(),  unitMaker.SpawnPointSelector);
 
             } while (unitsLeftToSpawn > 0);
         }
