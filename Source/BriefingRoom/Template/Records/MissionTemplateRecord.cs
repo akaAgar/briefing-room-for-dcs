@@ -80,8 +80,8 @@ namespace BriefingRoom4DCS.Template
             EnvironmentTimeOfDay = template.EnvironmentTimeOfDay;
             EnvironmentWeatherPreset = template.EnvironmentWeatherPreset;
             EnvironmentWind = template.EnvironmentWind;
-            FlightPlanObjectiveDistance = new MinMaxD(template.FlightPlanObjectiveDistanceMax, template.FlightPlanObjectiveDistanceMin);
-            FlightPlanObjectiveSeparation = new MinMaxD(template.FlightPlanObjectiveSeparationMax, template.FlightPlanObjectiveSeparationMin);
+            FlightPlanObjectiveDistance = new MinMaxD(template.FlightPlanObjectiveDistanceMin, template.FlightPlanObjectiveDistanceMax);
+            FlightPlanObjectiveSeparation = new MinMaxD(template.FlightPlanObjectiveSeparationMin, template.FlightPlanObjectiveSeparationMax);
             BorderLimit = template.BorderLimit;
             FlightPlanTheaterStartingAirbase = template.FlightPlanTheaterStartingAirbase;
             AppendPlayerAircraftMods(ref template);

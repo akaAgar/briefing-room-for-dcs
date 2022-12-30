@@ -54,7 +54,7 @@ namespace BriefingRoom4DCS
 
         internal const double KNOTS_TO_METERS_PER_SECOND = 0.514444;
 
-        internal static readonly MinMaxD ANY_RANGE = new MinMaxD(1, double.MaxValue);
+        internal static readonly MinMaxD ANY_RANGE = new MinMaxD(1, 1000);
         internal static readonly MinMaxD HINT_RANGE = new MinMaxD(0, 10);
 
         internal static List<string> ALIASES = new List<string>{

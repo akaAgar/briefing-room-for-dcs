@@ -1,29 +1,22 @@
-[briefing]
-
 [context]
-coalitions.blue=USA
-coalitions.player=Blue
-coalitions.red=Russia
+coalitionblue=USA
+coalitionred=Russia
 decade=Decade2000
+playercoalition=Blue
 theater=Caucasus
 
-[environment]
-badweatherchance=VeryLow
-nightmissionchance=VeryLow
+[flightplan]
+objectivedistancemax=160
+objectivedistancemin=40
 
-[missions]
-count=5
-difficultyvariation=Random
-objectives=AirbaseStrike,AntiShipStrike,CloseAirSupport,CombatAirPatrol,CombatSearchAndRescue,CommandoDrop,DeepStrike,DeepStrikeJTAC,DEAD,HeloHunt,Interception,Interdiction,InterdictionJTAC,OffensiveCounterAir,Reconnaissance
-objectivecount=Average
-objectivedistancemin=80
-objectivedistancemax=120
-objectivevariationdistance=Average
-airbasevariationdistance=Average
+[missionfeatures]
+missionfeatures=FriendlyAWACS,FriendlyTankerBasket,FriendlyTankerBoom
+
+[mods]
 
 [options]
 fogofwar=All
-mission=ImperialUnitsForBriefing
+mission=ImperialUnitsForBriefing,MarkWaypoints
 realism=DisableDCSRadioAssists,NoBDA
 
 [playerflightgroups]
@@ -38,8 +31,6 @@ playerflightgroup000.livery=default
 playerflightgroup000.overrideradioband=AM
 playerflightgroup000.overridecallsignnumber=1
 
-[player]
-
 [situation]
 enemyskill=Random
 enemyairdefense=Random
@@ -49,8 +40,22 @@ friendlyairdefense=Random
 friendlyairforce=Random
 
 [combinedarms]
-commanderblue=1
+commanderblue=0
 commanderred=0
-jtacblue=1
+jtacblue=0
 jtacred=0
+
+[briefing]
+
+[environment]
+badweatherchance=VeryLow
+nightmissionchance=VeryLow
+
+[missions]
+count=5
+difficultyvariation=Random
+objectives=AirbaseStrike,AntiShipStrike,CloseAirSupport,CombatAirPatrol,CombatSearchAndRescue,CommandoDrop,Custom,DeepStrike,DeepStrikeJTAC,DEAD,EscortGroundForces,EscortHelicopters,EscortPlane,HeloHunt,Interception,Interdiction,InterdictionJTAC,OffensiveCounterAir,Random,RandomFixedWing,RandomRotor,Reconnaissance,TransportCargo,TransportTroops
+objectivecount=Average
+objectivevariationdistance=Average
+airbasevariationdistance=Average
 

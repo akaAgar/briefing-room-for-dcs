@@ -38,7 +38,7 @@ namespace BriefingRoom4DCS.Generator
 
         private readonly DBEntrySituation SituationDB;
 
-        private readonly int BorderLimit;
+        private readonly int MinBorderLimit;
 
         private readonly bool InvertCoalition;
 
@@ -50,14 +50,14 @@ namespace BriefingRoom4DCS.Generator
                 UnitFamily.PlaneBomber,
             };
 
-        internal UnitMakerSpawnPointSelector(DBEntryTheater theaterDB, DBEntrySituation situationDB, bool invertCoalition, int borderLimit)
+        internal UnitMakerSpawnPointSelector(DBEntryTheater theaterDB, DBEntrySituation situationDB, bool invertCoalition, int minBorderLimit)
         {
             TheaterDB = theaterDB;
             SituationDB = situationDB;
             AirbaseParkingSpots = new Dictionary<int, List<DBEntryAirbaseParkingSpot>>();
             SpawnPoints = new List<DBEntryTheaterSpawnPoint>();
             InvertCoalition = invertCoalition;
-            BorderLimit = borderLimit;
+            MinBorderLimit = minBorderLimit;
 
             if (TheaterDB.SpawnPoints is not null)
                 SpawnPoints.AddRange(TheaterDB.SpawnPoints.Where(x => CheckNotInNoSpawnCoords(x.Coordinates)).ToList());
@@ -137,6 +137,7 @@ namespace BriefingRoom4DCS.Generator
                 if (validSP.Count() == 0) return null;
                 if (!distanceFrom[i].HasValue || !distanceOrigin[i].HasValue) continue;
 
+                var borderLimit = (double) MinBorderLimit;
                 var searchRange = distanceFrom[i].Value * Toolbox.NM_TO_METERS; // convert distance to meters
 
                 IEnumerable<DBEntryTheaterSpawnPoint> validSPInRange = (from DBEntryTheaterSpawnPoint s in validSP select s);
@@ -151,11 +152,12 @@ namespace BriefingRoom4DCS.Generator
                                       where
                                           searchRange.Contains(origin.GetDistanceFrom(s.Coordinates)) &&
                                           CheckNotInHostileCoords(s.Coordinates, coalition) &&
-                                          CheckNotFarFromBorders(s.Coordinates, coalition) &&
-                                          !CheckInSea(s.Coordinates)
+                                          CheckNotFarFromBorders(s.Coordinates, borderLimit, coalition)
                                       select s);
                     searchRange = new MinMaxD(searchRange.Min * 0.9, Math.Max(100, searchRange.Max * 1.1));
                     validSP = (from DBEntryTheaterSpawnPoint s in validSPInRange select s);
+                    if(iterationsLeft < 22)
+                        borderLimit = borderLimit * 1.1;
                     iterationsLeft--;
                 } while ((validSPInRange.Count() == 0) && (iterationsLeft > 0));
             }
@@ -173,21 +175,23 @@ namespace BriefingRoom4DCS.Generator
             Coalition? coalition = null)
         {
             var searchRange = distanceFrom1 * Toolbox.NM_TO_METERS;
-
+            var borderLimit = (double)MinBorderLimit;
             MinMaxD? secondSearchRange = null;
             if (distanceOrigin2.HasValue && distanceFrom2.HasValue)
+            {
                 secondSearchRange = distanceFrom2.Value * Toolbox.NM_TO_METERS;
+            }
 
             var iterations = 0;
             do
             {
-                var coordOptionsLinq = Enumerable.Range(0, 50)
+                var coordOptionsLinq = Enumerable.Range(0, 5000)
                     .Select(x => Coordinates.CreateRandom(distanceOrigin1, searchRange))
-                    .Where(x => CheckNotInHostileCoords(x, coalition) && CheckNotInNoSpawnCoords(x) && CheckNotFarFromBorders(x, coalition));
-
+                    .Where(x => CheckNotInHostileCoords(x, coalition) && CheckNotInNoSpawnCoords(x) && CheckNotFarFromBorders(x, borderLimit, coalition));
+                
                 if (secondSearchRange.HasValue)
                     coordOptionsLinq = coordOptionsLinq.Where(x => secondSearchRange.Value.Contains(distanceOrigin2.Value.GetDistanceFrom(x)));
-
+                
                 if (validTypes.First() == SpawnPointType.Sea) //sea position
                     coordOptionsLinq = coordOptionsLinq.Where(x => CheckInSea(x));
 
@@ -199,6 +203,9 @@ namespace BriefingRoom4DCS.Generator
 
                 if (secondSearchRange.HasValue)
                     secondSearchRange = new MinMaxD(secondSearchRange.Value.Min * 0.9, secondSearchRange.Value.Max * 1.1);
+
+                if(iterations > 10)
+                    borderLimit = borderLimit * 1.1;
 
                 iterations++;
             } while (iterations < MAX_RADIUS_SEARCH_ITERATIONS);
@@ -296,7 +303,7 @@ namespace BriefingRoom4DCS.Generator
             return !ShapeManager.IsPosValid(coordinates, SituationDB.NoSpawnCoordinates);
         }
 
-        private bool CheckNotFarFromBorders(Coordinates coordinates, Coalition? coalition = null)
+        private bool CheckNotFarFromBorders(Coordinates coordinates, double borderLimit, Coalition? coalition = null)
         {
             if (!coalition.HasValue)
                 return true;
@@ -304,7 +311,7 @@ namespace BriefingRoom4DCS.Generator
             var red = SituationDB.GetRedZone(InvertCoalition);
             var blue = SituationDB.GetBlueZone(InvertCoalition);
 
-            var distanceLimit = Toolbox.NM_TO_METERS * BorderLimit;
+            var distanceLimit = Toolbox.NM_TO_METERS * borderLimit;
             var distance = ShapeManager.GetDistanceFromShape(coordinates, (coalition.Value == Coalition.Blue ? blue : red));
             return distance < distanceLimit;
 
