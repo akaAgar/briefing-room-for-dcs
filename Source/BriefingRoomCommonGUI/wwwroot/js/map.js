@@ -20,13 +20,24 @@ function ToggleLayer(id) {
     group.addTo(leafMap)
 }
 
+function GetMapKeyDistance(key, x, z) {
+    const keyParts = key.split(',')
+    const keyX = parseInt(keyParts[0].split(":")[1])
+    const keyZ = parseInt(keyParts[1].split(":")[1])
+    return Math.sqrt(Math.pow(keyX - x, 2) + Math.pow(keyZ - z, 2))
+}
+
 function GetFromMapCoordData(pos, mapCoordData) {
     x = Math.round(pos[0] / 1000) * 1000
     z = Math.round(pos[1] / 1000) * 1000
     key = `x:${x},z:${z}`
     pos2 = mapCoordData[key]
     if (pos2 == undefined) {
-        throw `Key ${key} not found in positional data.`
+        const nearestKey = Object.keys(mapCoordData).reduce((a, b) => GetMapKeyDistance(a, x, z) < GetMapKeyDistance(b, x, z) ? a : b);
+        pos2 = mapCoordData[nearestKey]
+        if (pos2 == undefined) {
+            throw `Key ${key} not found in positional data.`
+        }
     }
     return [pos2["x"], pos2["y"]]
 }
