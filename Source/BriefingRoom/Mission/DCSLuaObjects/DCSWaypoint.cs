@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using LuaTableSerializer;
@@ -65,6 +66,71 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             if (HelipadId != default)
                 obj.Add("helipadId", HelipadId);
             return LuaSerializer.Serialize(obj);
+        }
+
+        internal static List<DCSWaypoint> CreateExtraWaypoints(List<DCSWaypoint> waypoints, UnitFamily unitFamily)
+        {
+            var firstWP = waypoints.First();
+            var lastWP = waypoints.Last();
+            if (firstWP == lastWP)
+                return waypoints;
+            var L = CalculateParallelVector(waypoints);
+            var mid1 = OffsetWaypoint(waypoints, firstWP.Coordinates, L, unitFamily);
+            var mid3 = OffsetWaypoint(waypoints, lastWP.Coordinates, L, unitFamily);
+            var mid2 = OffsetWaypoint(waypoints, Coordinates.Lerp(firstWP.Coordinates, lastWP.Coordinates, new MinMaxD(0.2, 0.7).GetValue()), L, unitFamily);
+            var lastWaypoint = waypoints.Last();
+            var extraWaypoints = new List<DCSWaypoint>();
+
+            foreach (var waypointCoords in new Coordinates[] { mid1, mid2, mid3 })
+            {
+                if (new Random().NextDouble() >= 0.5)
+                    extraWaypoints.Add(new DCSWaypoint
+                    {
+                        Alt = lastWaypoint.Alt,
+                        AltType = lastWaypoint.AltType,
+                        Action = "Turning Point",
+                        Speed = lastWaypoint.Speed,
+                        Type = "Turning Point",
+                        EtaLocked = false,
+                        SpeedLocked = true,
+                        X = waypointCoords.X,
+                        Y = waypointCoords.Y,
+                    });
+            }
+
+            waypoints.InsertRange(waypoints.Count - 1, extraWaypoints);
+            return waypoints;
+        }
+
+        private static double CalculateParallelVector(List<DCSWaypoint> waypoints)
+        {
+            var firstWP = waypoints.First();
+            var lastWp = waypoints.Last();
+            return Math.Sqrt((firstWP.X - lastWp.X) * (firstWP.X - lastWp.X) + (firstWP.Y - lastWp.Y) * (firstWP.Y - lastWp.Y));
+        }
+
+        private static Coordinates OffsetWaypoint(List<DCSWaypoint> waypoints, Coordinates waypoint, double L, UnitFamily unitFamily)
+        {
+
+            var offsetRange = unitFamily.GetUnitCategory() switch
+            {
+                UnitCategory.Plane => new MinMaxD(-30, 30),
+                UnitCategory.Helicopter => new MinMaxD(-20, 20),
+                _ => unitFamily == UnitFamily.VehicleInfantryMANPADS || unitFamily == UnitFamily.VehicleInfantry ? new MinMaxD(-5, 5) :  new MinMaxD(-10, 10)
+            };
+            var randomRange = unitFamily.GetUnitCategory() switch
+            {
+                UnitCategory.Plane => 20,
+                UnitCategory.Helicopter => 10,
+                _ => unitFamily == UnitFamily.VehicleInfantryMANPADS || unitFamily == UnitFamily.VehicleInfantry ? 1 :  5
+            };
+
+            var offsetPixels = offsetRange.GetValue() * Toolbox.NM_TO_METERS;
+            var firstWP = waypoints.First();
+            var lastWp = waypoints.Last();
+            var x1p = waypoint.X + offsetPixels * (lastWp.Y - firstWP.Y) / L;
+            var y1p = waypoint.Y + offsetPixels * (firstWP.X - lastWp.X) / L;
+            return new Coordinates(x1p, y1p).CreateNearRandom(0, randomRange * Toolbox.NM_TO_METERS);
         }
     }
 }

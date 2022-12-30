@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
+using BriefingRoom4DCS.Mission.DCSLuaObjects;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
@@ -137,7 +138,7 @@ namespace BriefingRoom4DCS.Generator
 
                 SetCarrier(template, unitMaker, side, ref groupInfo);
 
-                groupInfo.Value.DCSGroup.Waypoints = CreateExtraWaypoints(groupInfo.Value.DCSGroup.Waypoints);
+                groupInfo.Value.DCSGroup.Waypoints = DCSWaypoint.CreateExtraWaypoints(groupInfo.Value.DCSGroup.Waypoints,  groupInfo.Value.UnitDB.Families.First());
 
             } while (unitsLeftToSpawn > 0);
         }
@@ -173,57 +174,6 @@ namespace BriefingRoom4DCS.Generator
             groupInfo.Value.DCSGroup.X = (float)carrier.UnitMakerGroupInfo.Coordinates.X;
             groupInfo.Value.DCSGroup.Y = (float)carrier.UnitMakerGroupInfo.Coordinates.Y;
             carrier.RemainingSpotCount = carrier.RemainingSpotCount - unitCount;
-        }
-
-        private static List<Mission.DCSLuaObjects.DCSWaypoint> CreateExtraWaypoints(List<Mission.DCSLuaObjects.DCSWaypoint> waypoints)
-        {
-
-            var L = CalculateParallelVector(waypoints);
-            var firstWP = waypoints.First();
-            var mid1 = OffsetWaypoint(waypoints, firstWP.Coordinates, L);
-            var lastWP = waypoints.Last();
-            var mid3 = OffsetWaypoint(waypoints, lastWP.Coordinates, L);
-            var mid2 = OffsetWaypoint(waypoints, Coordinates.Lerp(firstWP.Coordinates, lastWP.Coordinates, new MinMaxD(0.2, 0.7).GetValue()), L);
-            var lastWaypoint = waypoints.Last();
-            var extraWaypoints = new List<Mission.DCSLuaObjects.DCSWaypoint>();
-
-            foreach (var waypointCoords in new Coordinates[] { mid1, mid2, mid3 })
-            {
-                if (new Random().NextDouble() >= 0.5)
-                    extraWaypoints.Add(new Mission.DCSLuaObjects.DCSWaypoint
-                    {
-                        Alt = lastWaypoint.Alt,
-                        AltType = lastWaypoint.AltType,
-                        Action = "Turning Point",
-                        Speed = lastWaypoint.Speed,
-                        Type = "Turning Point",
-                        EtaLocked = false,
-                        SpeedLocked = true,
-                        X = waypointCoords.X,
-                        Y = waypointCoords.Y,
-                    });
-            }
-
-            waypoints.InsertRange(waypoints.Count - 1, extraWaypoints);
-            return waypoints;
-        }
-
-        private static double CalculateParallelVector(List<Mission.DCSLuaObjects.DCSWaypoint> waypoints)
-        {
-            var firstWP = waypoints.First();
-            var lastWp = waypoints.Last();
-            return Math.Sqrt((firstWP.X - lastWp.X) * (firstWP.X - lastWp.X) + (firstWP.Y - lastWp.Y) * (firstWP.Y - lastWp.Y));
-        }
-
-        private static Coordinates OffsetWaypoint(List<Mission.DCSLuaObjects.DCSWaypoint> waypoints, Coordinates waypoint, double L)
-        {
-            var offsetRange = new MinMaxD(-30, 30);
-            var offsetPixels = offsetRange.GetValue() * Toolbox.NM_TO_METERS;
-            var firstWP = waypoints.First();
-            var lastWp = waypoints.Last();
-            var x1p = waypoint.X + offsetPixels * (lastWp.Y - firstWP.Y) / L;
-            var y1p = waypoint.Y + offsetPixels * (firstWP.X - lastWp.X) / L;
-            return new Coordinates(x1p, y1p).CreateNearRandom(0, 20 * Toolbox.NM_TO_METERS);
         }
     }
 }
