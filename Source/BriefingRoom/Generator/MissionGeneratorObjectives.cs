@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
+using BriefingRoom4DCS.Mission.DCSLuaObjects;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
@@ -199,8 +200,12 @@ namespace BriefingRoom4DCS.Generator
             // Set destination point for moving unit groups
             Coordinates destinationPoint = objectiveCoordinates +
                 (
-                    (targetDB.UnitCategory == UnitCategory.Plane ? Coordinates.CreateRandom(30, 60) : Coordinates.CreateRandom(10, 20)) *
-                    Toolbox.NM_TO_METERS
+                    targetDB.UnitCategory switch
+                    {
+                        UnitCategory.Plane => Coordinates.CreateRandom(30, 60),
+                        UnitCategory.Helicopter => Coordinates.CreateRandom(10, 20),
+                        _ => objectiveTargetUnitFamily == UnitFamily.VehicleInfantryMANPADS || objectiveTargetUnitFamily == UnitFamily.VehicleInfantry ? Coordinates.CreateRandom(1, 5) :  Coordinates.CreateRandom(10, 15)
+                    } * Toolbox.NM_TO_METERS
                 );
 
             var groupLua = targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory];
