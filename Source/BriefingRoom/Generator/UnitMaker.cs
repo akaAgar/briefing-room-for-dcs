@@ -69,7 +69,7 @@ namespace BriefingRoom4DCS.Generator
         private readonly Country[][] CoalitionsCountries;
 
         private readonly List<string> ModUnits = new List<string>();
-        private readonly Dictionary<Country, Dictionary<UnitCategory, List<DCSGroup>>> UnitLuaTables = new Dictionary<Country, Dictionary<UnitCategory, List<DCSGroup>>>();
+        private readonly Dictionary<Country, Dictionary<DCSUnitCategory, List<DCSGroup>>> UnitLuaTables = new Dictionary<Country, Dictionary<DCSUnitCategory, List<DCSGroup>>>();
 
         private int GroupID;
         private int UnitID;
@@ -155,10 +155,9 @@ namespace BriefingRoom4DCS.Generator
             if (country != Country.ALL)
                 extraSettings["Country"] = country;
 
-
-            if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.EmbeddedAirDefense) && (families.First().GetUnitCategory() == UnitCategory.Vehicle))
+            if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.EmbeddedAirDefense))
             {
-                string[] airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(Template, side, country != Country.ALL ? country : null);
+                string[] airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(Template, side, families.First().GetUnitCategory(), country != Country.ALL ? country : null);
                 units.AddRange(airDefenseUnits);
             }
 
@@ -261,7 +260,7 @@ namespace BriefingRoom4DCS.Generator
             dCSGroup.Waypoints[0].X = dCSGroup.Units[0].Coordinates.X;
             dCSGroup.Waypoints[0].Y = dCSGroup.Units[0].Coordinates.Y;
 
-            AddUnitGroupToTable(country, unitFamily.GetUnitCategory(), dCSGroup);
+            AddUnitGroupToTable(country, unitFamily.GetDCSUnitCategory(), dCSGroup);
 
             BriefingRoom.PrintToLog($"Added group of {units.Length} {coalition} {unitFamily} at {dCSGroup.Units[0].Coordinates}");
             GroupID++;
@@ -437,7 +436,7 @@ namespace BriefingRoom4DCS.Generator
                     dCSGroup.Units = new List<DCSUnit> { dCSUnit };
 
                     DCSGroups.Add(dCSGroup);
-                    AddUnitGroupToTable(country, UnitCategory.Static, dCSGroup);
+                    AddUnitGroupToTable(country, DCSUnitCategory.Static, dCSGroup);
 
                     BriefingRoom.PrintToLog($"Added group of {DCSID} {coalition} {unitFamily} at {coordinates}");
 
@@ -448,7 +447,7 @@ namespace BriefingRoom4DCS.Generator
             if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.EmbeddedAirDefense) && unitFamily != UnitFamily.StaticStructureOffshore)
             {
                 var firstUnitID = UnitID;
-                string[] airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(Template, side);
+                string[] airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(Template, side, unitFamily.GetUnitCategory());
                 var dCSGroup = CreateGroup(
                         "Vehicle",
                         coordinates,
@@ -472,7 +471,7 @@ namespace BriefingRoom4DCS.Generator
                 dCSGroup.Units = unitsLuaTable;
                 GroupID++;
                 unitsIDList.AddRange(embeddedunitsIDList);
-                AddUnitGroupToTable(country, UnitCategory.Vehicle, dCSGroup);
+                AddUnitGroupToTable(country, DCSUnitCategory.Vehicle, dCSGroup);
                 BriefingRoom.PrintToLog($"Added group of Embedded Air Defense for Static {coalition} {unitFamily} at {coordinates}");
             }
 
@@ -565,9 +564,9 @@ namespace BriefingRoom4DCS.Generator
             unit.LiveryId = LiveryId;
         }
 
-        private void AddUnitGroupToTable(Country country, UnitCategory category, DCSGroup dCSGroup)
+        private void AddUnitGroupToTable(Country country, DCSUnitCategory category, DCSGroup dCSGroup)
         {
-            if (!UnitLuaTables.ContainsKey(country)) UnitLuaTables.Add(country, new Dictionary<UnitCategory, List<DCSGroup>>());
+            if (!UnitLuaTables.ContainsKey(country)) UnitLuaTables.Add(country, new Dictionary<DCSUnitCategory, List<DCSGroup>>());
             if (!UnitLuaTables[country].ContainsKey(category)) UnitLuaTables[country].Add(category, new List<DCSGroup>());
             UnitLuaTables[country][category].Add(dCSGroup);
         }
@@ -589,7 +588,7 @@ namespace BriefingRoom4DCS.Generator
 
                 if (UnitLuaTables.ContainsKey(country))
                 {
-                    foreach (UnitCategory unitCategory in Toolbox.GetEnumValues<UnitCategory>()) // Check all coalitions
+                    foreach (DCSUnitCategory unitCategory in Toolbox.GetEnumValues<DCSUnitCategory>()) // Check all coalitions
                     {
                         if (!UnitLuaTables[country].ContainsKey(unitCategory)) continue; // No unit for this unit category
 

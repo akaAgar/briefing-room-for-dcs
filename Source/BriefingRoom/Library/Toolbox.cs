@@ -205,7 +205,8 @@ namespace BriefingRoom4DCS
 
         internal static void AddIfKeyUnused<T1, T2>(this Dictionary<T1, T2> dictionary, T1 key, T2 value)
         {
-            if (dictionary.ContainsKey(key)) return;
+            if (dictionary.ContainsKey(key)) 
+                return;
             dictionary.Add(key, value);
         }
 
@@ -388,8 +389,55 @@ namespace BriefingRoom4DCS
                     return UnitCategory.Static;
                 case UnitFamily.Cargo:
                     return UnitCategory.Cargo;
+                case UnitFamily.Infantry:
+                case UnitFamily.InfantryMANPADS:
+                    return UnitCategory.Infantry;
                 default:
                     return UnitCategory.Vehicle;
+            }
+        }
+
+        internal static DCSUnitCategory GetDCSUnitCategory(this UnitFamily unitFamily)
+        {
+            switch (unitFamily)
+            {
+                case UnitFamily.HelicopterAttack:
+                case UnitFamily.HelicopterTransport:
+                case UnitFamily.HelicopterUtility:
+                    return DCSUnitCategory.Helicopter;
+                case UnitFamily.PlaneAttack:
+                case UnitFamily.PlaneAWACS:
+                case UnitFamily.PlaneBomber:
+                case UnitFamily.PlaneDrone:
+                case UnitFamily.PlaneFighter:
+                case UnitFamily.PlaneInterceptor:
+                case UnitFamily.PlaneSEAD:
+                case UnitFamily.PlaneStrike:
+                case UnitFamily.PlaneTankerBasket:
+                case UnitFamily.PlaneTankerBoom:
+                case UnitFamily.PlaneTransport:
+                case UnitFamily.PlaneCATOBAR:
+                case UnitFamily.PlaneSTOBAR:
+                case UnitFamily.PlaneSTOVL:
+                    return DCSUnitCategory.Plane;
+                case UnitFamily.ShipCarrierCATOBAR:
+                case UnitFamily.ShipCarrierSTOBAR:
+                case UnitFamily.ShipCarrierSTOVL:
+                case UnitFamily.ShipCruiser:
+                case UnitFamily.ShipFrigate:
+                case UnitFamily.ShipSpeedboat:
+                case UnitFamily.ShipSubmarine:
+                case UnitFamily.ShipTransport:
+                    return DCSUnitCategory.Ship;
+                case UnitFamily.StaticStructureMilitary:
+                case UnitFamily.StaticStructureProduction:
+                case UnitFamily.FOB:
+                case UnitFamily.StaticStructureOffshore:
+                    return DCSUnitCategory.Static;
+                case UnitFamily.Cargo:
+                    return DCSUnitCategory.Cargo;
+                default:
+                    return DCSUnitCategory.Vehicle;
             }
         }
 
@@ -404,7 +452,7 @@ namespace BriefingRoom4DCS
             {
                 case UnitFamily.VehicleAAA:
                 case UnitFamily.VehicleAAAStatic:
-                case UnitFamily.VehicleInfantryMANPADS:
+                case UnitFamily.InfantryMANPADS:
                 case UnitFamily.VehicleSAMLong:
                 case UnitFamily.VehicleSAMMedium:
                 case UnitFamily.VehicleSAMShort:

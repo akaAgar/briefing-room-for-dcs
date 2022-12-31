@@ -34,7 +34,7 @@ namespace BriefingRoom4DCS.Generator
     {
         private static readonly int[] DAYS_PER_MONTH = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-        internal static string[] GetEmbeddedAirDefenseUnits(MissionTemplateRecord template, Side side, Country? country = null)
+        internal static string[] GetEmbeddedAirDefenseUnits(MissionTemplateRecord template, Side side, UnitCategory unitCategory, Country? country = null)
         {
             DBCommonAirDefenseLevel airDefenseInfo = (side == Side.Ally) ?
                  Database.Instance.Common.AirDefense.AirDefenseLevels[(int)template.SituationFriendlyAirDefense.Get()] :
@@ -49,11 +49,18 @@ namespace BriefingRoom4DCS.Generator
 
             int airDefenseUnitsCount = airDefenseInfo.EmbeddedUnitCount.GetValue();
 
+            var families = unitCategory switch {
+                UnitCategory.Infantry => new List<UnitFamily> { UnitFamily.InfantryMANPADS },
+                UnitCategory.Static => new List<UnitFamily> { UnitFamily.InfantryMANPADS, UnitFamily.VehicleAAA, UnitFamily.VehicleAAAStatic, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShort },
+                UnitCategory.Vehicle => new List<UnitFamily> { UnitFamily.VehicleAAA, UnitFamily.VehicleAAA, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShort },
+                _ => new List<UnitFamily>()
+            };
+
+            if(families.Count == 0)
+                return units.ToArray();
+
             for (int i = 0; i < airDefenseUnitsCount; i++)
-            {
-                var families = new List<UnitFamily> { UnitFamily.VehicleAAA, UnitFamily.VehicleAAA, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShort };
                 units.AddRange(unitsCoalitionDB.GetRandomUnits(families, template.ContextDecade, 1, template.Mods, template.OptionsMission.Contains("AllowLowPoly"), country).Item2);
-            }
 
             return units.ToArray();
         }
@@ -62,9 +69,9 @@ namespace BriefingRoom4DCS.Generator
         {
             // Count is zero, return an empty array.
             if (count < 1) throw new BriefingRoomException("Asking for a zero unit list");
-            if (families.Select(x => x.GetUnitCategory()).Any(x => x != families.First().GetUnitCategory())) throw new BriefingRoomException($"Cannot mix Categories in types {string.Join(", ", families)}");
+            if (families.Select(x => x.GetDCSUnitCategory()).Any(x => x != families.First().GetDCSUnitCategory())) throw new BriefingRoomException($"Cannot mix Categories in types {string.Join(", ", families)}");
 
-            UnitCategory category = families.First().GetUnitCategory();
+            var category = families.First().GetDCSUnitCategory();
             bool allowDifferentUnitTypes = false;
 
             var validUnits = new Dictionary<Country, List<string>>();
@@ -91,16 +98,16 @@ namespace BriefingRoom4DCS.Generator
             switch (category)
             {
                 // Units are planes or helicopters, make sure unit count does not exceed the maximum flight group size
-                case UnitCategory.Helicopter:
-                case UnitCategory.Plane:
+                case DCSUnitCategory.Helicopter:
+                case DCSUnitCategory.Plane:
                     count = Toolbox.Clamp(count, 1, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE);
                     break;
                 // Units are ships or static buildings, only one unit per group (that's the law in DCS World, buddy)
-                case UnitCategory.Ship:
+                case DCSUnitCategory.Ship:
                     count = 1;
                     break;
                 // Units are ground vehicles, allow multiple unit types in the group
-                case UnitCategory.Vehicle:
+                case DCSUnitCategory.Vehicle:
                     allowDifferentUnitTypes = true;
                     break;
             }

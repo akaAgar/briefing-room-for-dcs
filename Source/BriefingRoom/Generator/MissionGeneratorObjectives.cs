@@ -204,13 +204,13 @@ namespace BriefingRoom4DCS.Generator
                     {
                         UnitCategory.Plane => Coordinates.CreateRandom(30, 60),
                         UnitCategory.Helicopter => Coordinates.CreateRandom(10, 20),
-                        _ => objectiveTargetUnitFamily == UnitFamily.VehicleInfantryMANPADS || objectiveTargetUnitFamily == UnitFamily.VehicleInfantry ? Coordinates.CreateRandom(1, 5) :  Coordinates.CreateRandom(10, 15)
+                        _ => objectiveTargetUnitFamily == UnitFamily.InfantryMANPADS || objectiveTargetUnitFamily == UnitFamily.Infantry ? Coordinates.CreateRandom(1, 5) :  Coordinates.CreateRandom(10, 15)
                     } * Toolbox.NM_TO_METERS
                 );
-            if(targetDB.UnitCategory == UnitCategory.Vehicle)
+            if(targetDB.DCSUnitCategory == DCSUnitCategory.Vehicle)
                 destinationPoint = GetNearestSpawnCoordinates(template, destinationPoint, targetDB);
 
-            var groupLua = targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory];
+            var groupLua = targetBehaviorDB.GroupLua[(int)targetDB.DCSUnitCategory];
             if (targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.GoToPlayerAirbase)
             {
                 destinationPoint = playerAirbase.ParkingSpots.Count() > 1 ? Toolbox.RandomFrom(playerAirbase.ParkingSpots).Coordinates : playerAirbase.Coordinates;
@@ -267,7 +267,7 @@ namespace BriefingRoom4DCS.Generator
                     // Units shouldn't really move from pickup point if not escorted.
                     extraSettings.Remove("GroupX2");
                     extraSettings.Remove("GroupY2");
-                    groupLua = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>("Idle").GroupLua[(int)targetDB.UnitCategory];
+                    groupLua = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>("Idle").GroupLua[(int)targetDB.DCSUnitCategory];
                 }
             }
 
@@ -351,7 +351,7 @@ namespace BriefingRoom4DCS.Generator
             if (objectiveOptions.Contains(ObjectiveOption.ShowTarget)) groupFlags = UnitMakerGroupFlags.NeverHidden;
             else if (objectiveOptions.Contains(ObjectiveOption.HideTarget)) groupFlags = UnitMakerGroupFlags.AlwaysHidden;
             if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense)) groupFlags |= UnitMakerGroupFlags.EmbeddedAirDefense;
-            return (targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
+            return (targetBehaviorDB.UnitLua[(int)targetDB.DCSUnitCategory],
                 targetDB.UnitCount[(int)task.TargetCount].GetValue(),
                 targetDB.UnitCount[(int)task.TargetCount],
                 Toolbox.RandomFrom(targetDB.UnitFamilies),
@@ -447,13 +447,13 @@ namespace BriefingRoom4DCS.Generator
         private void AddEmbeddedAirDefenseUnits(MissionTemplateRecord template, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB, ObjectiveOption[] objectiveOptions, Coordinates objectiveCoordinates, UnitMakerGroupFlags groupFlags, Dictionary<string, object> extraSettings)
         {
             // Static targets (aka buildings) need to have their "embedded" air defenses spawned in another group
-            string[] airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(template, taskDB.TargetSide);
+            string[] airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(template, taskDB.TargetSide, UnitCategory.Static);
 
             if (airDefenseUnits.Length > 0)
                 UnitMaker.AddUnitGroup(
                     airDefenseUnits,
                     taskDB.TargetSide, UnitFamily.VehicleAAA,
-                    targetBehaviorDB.GroupLua[(int)targetDB.UnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.UnitCategory],
+                    targetBehaviorDB.GroupLua[(int)targetDB.DCSUnitCategory], targetBehaviorDB.UnitLua[(int)targetDB.DCSUnitCategory],
                     objectiveCoordinates + Coordinates.CreateRandom(100, 500),
                     groupFlags,
                     extraSettings);

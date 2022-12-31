@@ -89,7 +89,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 if (new Random().NextDouble() <= 0.5)
                     continue; 
                 
-                if(unitFamily.GetUnitCategory() == UnitCategory.Vehicle)
+                if(unitFamily.GetUnitCategory() == UnitCategory.Vehicle || unitFamily.GetUnitCategory() == UnitCategory.Infantry)
                 {
                     var waypointCoordsSpawn = spawnPointSelector.GetNearestSpawnPoint(new SpawnPointType[] { SpawnPointType.LandLarge, SpawnPointType.LandMedium, SpawnPointType.LandSmall }, tempWaypointCoords);
                     if(!waypointCoordsSpawn.HasValue)
@@ -129,13 +129,13 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             {
                 UnitCategory.Plane => new MinMaxD(-30, 30),
                 UnitCategory.Helicopter => new MinMaxD(-20, 20),
-                _ => unitFamily == UnitFamily.VehicleInfantryMANPADS || unitFamily == UnitFamily.VehicleInfantry ? new MinMaxD(-5, 5) :  new MinMaxD(-10, 10)
+                _ => unitFamily == UnitFamily.InfantryMANPADS || unitFamily == UnitFamily.Infantry ? new MinMaxD(-5, 5) :  new MinMaxD(-10, 10)
             };
             var randomRange = unitFamily.GetUnitCategory() switch
             {
                 UnitCategory.Plane => 20,
                 UnitCategory.Helicopter => 10,
-                _ => unitFamily == UnitFamily.VehicleInfantryMANPADS || unitFamily == UnitFamily.VehicleInfantry ? 1 :  5
+                _ => unitFamily == UnitFamily.InfantryMANPADS || unitFamily == UnitFamily.Infantry ? 1 :  5
             };
 
             var offsetPixels = offsetRange.GetValue() * Toolbox.NM_TO_METERS;

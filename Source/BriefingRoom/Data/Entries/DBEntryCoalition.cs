@@ -64,9 +64,9 @@ namespace BriefingRoom4DCS.Data
         {
             // Count is zero, return an empty array.
             if (count < 1) throw new BriefingRoomException("Asking for a zero unit list");
-            if (families.Select(x => x.GetUnitCategory()).Any(x => x != families.First().GetUnitCategory())) throw new BriefingRoomException($"Cannot mix Categories in types {string.Join(", ", families)}");
+            if (families.Select(x => x.GetDCSUnitCategory()).Any(x => x != families.First().GetDCSUnitCategory())) throw new BriefingRoomException($"Cannot mix Categories in types {string.Join(", ", families)}");
 
-            UnitCategory category = families.First().GetUnitCategory();
+            var category = families.First().GetDCSUnitCategory();
             bool allowDifferentUnitTypes = false;
 
             var validUnits = SelectValidUnits(families, decade, unitMods, allowLowPolly);
@@ -74,20 +74,20 @@ namespace BriefingRoom4DCS.Data
             switch (category)
             {
                 // Units are planes or helicopters, make sure unit count does not exceed the maximum flight group size
-                case UnitCategory.Helicopter:
-                case UnitCategory.Plane:
+                case DCSUnitCategory.Helicopter:
+                case DCSUnitCategory.Plane:
                     count = Toolbox.Clamp(count, 1, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE);
                     break;
                 // Units are ships or static buildings, only one unit per group (that's the law in DCS World, buddy)
-                case UnitCategory.Ship:
+                case DCSUnitCategory.Ship:
                     count = 1;
                     break;
-                case UnitCategory.Static:
+                case DCSUnitCategory.Static:
                     validUnits = countMinMax.HasValue ? LimitValidUnitsByRequestedUnitCount(countMinMax.Value, validUnits) : validUnits;
                     count = 1;
                     break;
                 // Units are ground vehicles, allow multiple unit types in the group
-                case UnitCategory.Vehicle:
+                case DCSUnitCategory.Vehicle:
                     allowDifferentUnitTypes = true;
                     break;
             }

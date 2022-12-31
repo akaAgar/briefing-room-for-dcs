@@ -27,6 +27,7 @@ namespace BriefingRoom4DCS.Data
         internal LanguageString[] BriefingName { get; private set; }
 
         internal UnitCategory UnitCategory { get { return UnitFamilies[0].GetUnitCategory(); } }
+        internal DCSUnitCategory DCSUnitCategory { get { return UnitFamilies[0].GetDCSUnitCategory(); } }
 
         internal MinMaxI[] UnitCount { get; private set; }
 

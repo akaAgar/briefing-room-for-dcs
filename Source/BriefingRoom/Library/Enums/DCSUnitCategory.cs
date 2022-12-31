@@ -20,14 +20,13 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 namespace BriefingRoom4DCS
 {
-    public enum UnitCategory
+    public enum DCSUnitCategory
     {
         Helicopter,
         Plane,
         Ship,
         Static,
         Vehicle,
-        Infantry,
         Cargo
     }
 }
