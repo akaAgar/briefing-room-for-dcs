@@ -41,5 +41,6 @@ namespace BriefingRoom4DCS.Generator
         Invisible = 256,
         ScrambleStart = 512,
         StaticAircraft = 1024,
+        LowUnitVariation = 2048,
     }
 }

@@ -1,4 +1,4 @@
-﻿/*
+/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar
@@ -60,5 +60,8 @@ namespace BriefingRoom4DCS.Data
         MoveAnyWhere = 2097152,
         StaticAircraft = 4194304,
         ForEachCarrier = 8388608,
+        MoveToObjective = 16777216,
+        AttackTargetUnits = 33554432,
+        LowUnitVariation = 67108864,
     }
 }

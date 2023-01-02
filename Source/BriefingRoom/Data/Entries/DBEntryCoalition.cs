@@ -18,6 +18,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using BriefingRoom4DCS.Generator;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
@@ -60,7 +61,7 @@ namespace BriefingRoom4DCS.Data
             return true;
         }
 
-        internal Tuple<Country, List<string>> GetRandomUnits(List<UnitFamily> families, Decade decade, int count, List<string> unitMods, bool allowLowPolly, Country? requiredCountry = null, MinMaxI? countMinMax = null)
+        internal Tuple<Country, List<string>> GetRandomUnits(List<UnitFamily> families, Decade decade, int count, List<string> unitMods, bool allowLowPolly, Country? requiredCountry = null, MinMaxI? countMinMax = null, bool lowUnitVariation = false)
         {
             // Count is zero, return an empty array.
             if (count < 1) throw new BriefingRoomException("Asking for a zero unit list");
@@ -107,6 +108,8 @@ namespace BriefingRoom4DCS.Data
             // Different unit types allowed in the group, pick a random type for each unit.
             if (allowDifferentUnitTypes)
             {
+                if(lowUnitVariation)
+                   selectableUnits = new List<string>{Toolbox.RandomFrom(selectableUnits),Toolbox.RandomFrom(selectableUnits)};
                 List<string> selectedUnits = new List<string>();
                 for (int i = 0; i < count; i++)
                     selectedUnits.Add(Toolbox.RandomFrom(selectableUnits));

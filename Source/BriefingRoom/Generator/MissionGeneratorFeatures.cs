@@ -78,6 +78,9 @@ namespace BriefingRoom4DCS.Generator
 
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.RadioAircraftActivation))
                     groupFlags |= UnitMakerGroupFlags.RadioAircraftSpawn;
+                
+                if (flags.HasFlag(FeatureUnitGroupFlags.LowUnitVariation))
+                    groupFlags |= UnitMakerGroupFlags.LowUnitVariation;
 
                 Side groupSide = Side.Enemy;
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly)) groupSide = Side.Ally;
