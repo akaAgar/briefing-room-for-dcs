@@ -753,7 +753,7 @@ function briefingRoom.transportManager.troopsMoveToGetIn(transportUnitName, unit
 
     -- delayed 2 second to work around bug
     timer.scheduleFunction(function(_arg)
-        local _grp = csar.getAliveGroup(_arg[1])
+        local _grp = Group.getByName(_arg[1])
 
         if _grp ~= nil then
             local _controller = _grp:getController();

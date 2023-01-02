@@ -47,12 +47,6 @@ namespace BriefingRoom4DCS.Generator
             SpawnPointType.LandLarge,
         };
 
-        private static readonly List<string> TRANSPORT_TASKS = new List<string>{
-            "TransportCargo",
-            "TransportTroops",
-            "Escort"
-        };
-
         private readonly UnitMaker UnitMaker;
 
         private readonly DrawingMaker DrawingMaker;
@@ -236,7 +230,7 @@ namespace BriefingRoom4DCS.Generator
 
             var unitCoordinates = objectiveCoordinates;
             var objectiveName = waypointNameGenerator.GetWaypointName();
-            if (TRANSPORT_TASKS.Contains(taskDB.ID))
+            if (taskDB.UICategory.ContainsValue("Transport"))
             {
                 Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                 targetDB.ValidSpawnPoints,
@@ -290,7 +284,7 @@ namespace BriefingRoom4DCS.Generator
             if (!targetGroupInfo.HasValue) // Failed to generate target group
                 throw new BriefingRoomException($"Failed to generate group for objective.");
 
-            if (template.MissionFeatures.Contains("ContextScrambleStart") && !TRANSPORT_TASKS.Contains(taskDB.ID))
+            if (template.MissionFeatures.Contains("ContextScrambleStart") && !taskDB.UICategory.ContainsValue("Transport"))
                 targetGroupInfo.Value.DCSGroup.LateActivation = false;
 
             if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense) && (targetDB.UnitCategory == UnitCategory.Static))
@@ -508,13 +502,13 @@ namespace BriefingRoom4DCS.Generator
             bool onGround = !targetDB.UnitCategory.IsAircraft() || AIR_ON_GROUND_LOCATIONS.Contains(targetBehaviorLocation); // Ground targets = waypoint on the ground
 
             var taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task);
-            if (objectiveTemplate.Options.Contains(ObjectiveOption.InaccurateWaypoint) && !TRANSPORT_TASKS.Contains(taskDB.ID))
+            if (objectiveTemplate.Options.Contains(ObjectiveOption.InaccurateWaypoint) && !taskDB.UICategory.ContainsValue("Transport"))
             {
                 waypointCoordinates += Coordinates.CreateRandom(3.0, 6.0) * Toolbox.NM_TO_METERS;
                 if (template.OptionsMission.Contains("MarkWaypoints"))
                     DrawingMaker.AddDrawing($"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(6.0 * Toolbox.NM_TO_METERS));
             }
-            else if (TRANSPORT_TASKS.Contains(taskDB.ID))
+            else if (taskDB.UICategory.ContainsValue("Transport"))
                 DrawingMaker.AddDrawing($"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(500));
 
             return new Waypoint(objectiveName, waypointCoordinates, onGround, scriptIgnore);
