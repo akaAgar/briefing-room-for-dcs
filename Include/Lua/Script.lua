@@ -865,12 +865,15 @@ function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
   if briefingRoom.mission.objectivesLeft <= 0 then
     briefingRoom.debugPrint("Mission marked as complete")
     briefingRoom.mission.complete = true
-    briefingRoom.radioManager.play("$LANG_COMMAND$: "..(failed and "$LANG_MISSIONCOMPLETEWITHFAILURES$" or "$LANG_MISSIONCOMPLETE$"), "RadioHQMissionComplete", math.random(6, 8))
+    local hasFailed = #table.filter(briefingRoom.mission.objectives, function(o, k, i)
+      return o.failed
+    end) > 0
+    briefingRoom.radioManager.play("$LANG_COMMAND$: "..(hasFailed and "$LANG_MISSIONCOMPLETEWITHFAILURES$" or "$LANG_MISSIONCOMPLETE$"), (hasFailed and  "RadioHQMissionFailed" or "RadioHQMissionComplete"), math.random(6, 8))
     trigger.action.setUserFlag(1, true) -- Mark the mission complete internally, so campaigns can move to the next mission
   elseif not briefingRoom.mission.hasStarted then
     briefingRoom.radioManager.play("$LANG_AUTOCOMPLETEOBJECTIVE$", "Radio0", math.random(6, 8))
   else
-    briefingRoom.radioManager.play("$LANG_COMMAND$: "..(failed and "$LANG_FAILEDOBJECTIVE$" or "$LANG_COMPLETEOBJECTIVE$"), "RadioHQObjectiveComplete", math.random(6, 8))
+    briefingRoom.radioManager.play("$LANG_COMMAND$: "..(failed and "$LANG_FAILEDOBJECTIVE$" or "$LANG_COMPLETEOBJECTIVE$"), (failed and "RadioHQObjectiveFailed" or "RadioHQObjectiveComplete"), math.random(6, 8))
   end
 end
 
