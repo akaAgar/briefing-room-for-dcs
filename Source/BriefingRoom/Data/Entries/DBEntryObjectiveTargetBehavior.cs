@@ -38,12 +38,12 @@ namespace BriefingRoom4DCS.Data
             var ini = new INIFile(iniFilePath);
             Location = ini.GetValue<DBEntryObjectiveTargetBehaviorLocation>("Behavior", "Location");
 
-            GroupLua = new string[Toolbox.EnumCount<UnitCategory>()];
-            foreach (UnitCategory unitCategory in Toolbox.GetEnumValues<UnitCategory>())
+            GroupLua = new string[Toolbox.EnumCount<DCSUnitCategory>()];
+            foreach (DCSUnitCategory unitCategory in Toolbox.GetEnumValues<DCSUnitCategory>())
                 GroupLua[(int)unitCategory] = ini.GetValue<string>("Lua", $"Group.{unitCategory}");
 
-            UnitLua = new string[Toolbox.EnumCount<UnitCategory>()];
-            foreach (UnitCategory unitLua in Toolbox.GetEnumValues<UnitCategory>())
+            UnitLua = new string[Toolbox.EnumCount<DCSUnitCategory>()];
+            foreach (DCSUnitCategory unitLua in Toolbox.GetEnumValues<DCSUnitCategory>())
                 UnitLua[(int)unitLua] = ini.GetValue<string>("Lua", $"Unit.{unitLua}");
 
             ValidUnitCategories = ini.GetValueArray<UnitCategory>("Behavior", "ValidUnitCategories").Distinct().ToArray();
