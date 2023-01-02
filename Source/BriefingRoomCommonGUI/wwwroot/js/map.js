@@ -448,14 +448,16 @@ function GetTitle(id) {
                 case id.includes("Short"):
                     return "SAM Site Short Range"
             }
+        case id.includes("Infantry"):
+            return "Infantry"
         case id.includes("Vehicle"):
             switch (true) {
                 case id.includes("APC"):
                     return "APC"
+                case id.includes("AAA"):
+                    return "AAA"
                 case id.includes("Artillery"):
                     return "Artillery"
-                case id.includes("Infantry"):
-                    return "Infantry"
                 case id.includes("MBT"):
                     return "MBT"
                 case id.includes("Missile"):
@@ -463,7 +465,7 @@ function GetTitle(id) {
                 case id.includes("Transport"):
                     return "Transport"
                 default:
-                    return "Vehicle Type Unknown"
+                    return `Vehicle Type Unknown - ${id}`
             }
         case id.includes("Ship"):
             switch (true) {
@@ -550,14 +552,16 @@ function GetNatoIcon(id, invert = false) {
                 case id.includes("Short"):
                     return prefix + "SAM_SM"
             }
+        case id.includes("Infantry"):
+            return prefix + "VEHICLE_INFANTRY"
         case id.includes("Vehicle"):
             switch (true) {
                 case id.includes("APC"):
                     return prefix + "VEHICLE_APC"
+                case id.includes("AAA"):
+                    return prefix + "VEHICLE_AAA"
                 case id.includes("Artillery"):
                     return prefix + "VEHICLE_ARTILLERY"
-                case id.includes("Infantry"):
-                    return prefix + "VEHICLE_INFANTRY"
                 case id.includes("MBT"):
                     return prefix + "VEHICLE_MBT"
                 case id.includes("Missile"):
