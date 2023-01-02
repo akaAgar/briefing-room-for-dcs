@@ -169,7 +169,7 @@
                                         <button type="button" class="btn btn-secondary float-right" @onclick='() => RenderHintMap("OBJECTIVE_"+ objective.Alias)'  title='@BriefingRoom.Translate("TakeHint")'><span class="oi oi-globe"></span></button>
                                         <h4>@BriefingRoom.Translate("Features")</h4>
                                         <CheckBoxList
-                                            Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveFeature).ToList()"
+                                            Data='BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.ObjectiveFeature).Where(x => !x.Category.ContainsValue("Hidden")).ToList()'
                                             TextField="@(item =>item.Name.Get())"
                                             DescriptionField="@(item =>item.Description.Get())"
                                             ValueField="@(item =>item.ID)"
