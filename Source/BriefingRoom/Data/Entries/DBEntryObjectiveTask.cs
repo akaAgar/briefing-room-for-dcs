@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -39,6 +39,8 @@ namespace BriefingRoom4DCS.Data
 
         internal string[] IncludeOgg { get; private set; }
 
+        internal string[] RequiredFeatures { get; private set; }
+
         protected override bool OnLoad(string iniFilePath)
         {
             var ini = new INIFile(iniFilePath);
@@ -70,6 +72,8 @@ namespace BriefingRoom4DCS.Data
 
             // Included files
             IncludeOgg = Toolbox.AddMissingFileExtensions(ini.GetValueArray<string>("Include", "Ogg"), ".ogg");
+
+            RequiredFeatures = ini.GetValueArray<string>("Include", "RequiredFeatures");
 
             return true;
         }

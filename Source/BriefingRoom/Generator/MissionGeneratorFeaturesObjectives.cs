@@ -73,6 +73,9 @@ namespace BriefingRoom4DCS.Generator
 
             if (coordinates.HasValue)
                 coordinates2 = coordinates.Value + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
+            
+            if (flags.HasFlag(FeatureUnitGroupFlags.MoveToObjective))
+                coordinates2 = objectiveCoordinates;
 
             Dictionary<string, object> extraSettings = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
             extraSettings.AddIfKeyUnused("ObjectiveName", objectiveName);

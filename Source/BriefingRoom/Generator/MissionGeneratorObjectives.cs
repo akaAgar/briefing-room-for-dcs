@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -331,7 +331,8 @@ namespace BriefingRoom4DCS.Generator
 
             // Add objective features Lua for this objective
             mission.AppendValue("ScriptObjectivesFeatures", ""); // Just in case there's no features
-            foreach (string featureID in featuresID)
+            var featureList = taskDB.RequiredFeatures.Concat(featuresID).ToHashSet();
+            foreach (string featureID in featureList)
                 FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value.GroupID, targetGroupInfo.Value.Coordinates, taskDB.TargetSide, objectiveOptions.Contains(ObjectiveOption.HideTarget));
 
             objectiveCoordinatesList.Add(isInverseTransportWayPoint ? unitCoordinates : objectiveCoordinates);
@@ -464,6 +465,7 @@ namespace BriefingRoom4DCS.Generator
             // Add Lua table for this objective
             string objectiveLua = $"briefingRoom.mission.objectives[{objectiveIndex + 1}] = {{ ";
             objectiveLua += $"complete = false, ";
+            objectiveLua += $"failed = false, ";
             objectiveLua += $"groupName = \"{targetGroupInfo.Value.Name}\", ";
             objectiveLua += $"hideTargetCount = false, ";
             objectiveLua += $"name = \"{objectiveName}\", ";
