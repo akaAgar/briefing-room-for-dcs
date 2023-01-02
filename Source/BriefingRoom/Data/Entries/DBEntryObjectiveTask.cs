@@ -1,4 +1,4 @@
-﻿/*
+/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -31,7 +31,7 @@ namespace BriefingRoom4DCS.Data
 
         internal LanguageString BriefingRemarks { get; private set; }
 
-        internal string CompletionTriggerLua { get; private set; }
+        internal string[] CompletionTriggersLua { get; private set; }
 
         internal Side TargetSide { get; private set; }
 
@@ -55,12 +55,13 @@ namespace BriefingRoom4DCS.Data
 
             BriefingRemarks = ini.GetLangStrings("Briefing", "Remarks");
 
-            CompletionTriggerLua = Toolbox.AddMissingFileExtension(ini.GetValue<string>("ObjectiveTask", "CompletionTriggerLua"), ".lua");
-            if (!File.Exists($"{BRPaths.INCLUDE_LUA_OBJECTIVETRIGGERS}{CompletionTriggerLua}"))
-            {
-                BriefingRoom.PrintToLog($"Completion trigger Lua file {CompletionTriggerLua} for objective task \"{ID}\" not found.", LogMessageErrorLevel.Warning);
-                return false;
-            }
+            CompletionTriggersLua = Toolbox.AddMissingFileExtensions(ini.GetValueArray<string>("ObjectiveTask", "CompletionTriggersLua"), ".lua");
+            foreach (var CompletionTriggerLua in CompletionTriggersLua)
+                if (!File.Exists($"{BRPaths.INCLUDE_LUA_OBJECTIVETRIGGERS}{CompletionTriggerLua}"))
+                {
+                    BriefingRoom.PrintToLog($"Completion trigger Lua file {CompletionTriggerLua} for objective task \"{ID}\" not found.", LogMessageErrorLevel.Warning);
+                    return false;
+                }
 
             TargetSide = ini.GetValue<Side>("ObjectiveTask", "TargetSide");
 

@@ -43,8 +43,8 @@ namespace BriefingRoom4DCS.Generator
 
             Coordinates? coordinates = null;
             Coordinates? coordinates2 = null;
-
-            if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.SpawnOnObjective))
+            var flags = featureDB.UnitGroupFlags;
+            if (flags.HasFlag(FeatureUnitGroupFlags.SpawnOnObjective))
             {
                 coordinates = objectiveCoordinates.CreateNearRandom(featureDB.UnitGroupSpawnDistance * .75, featureDB.UnitGroupSpawnDistance * 1.5); //UnitGroupSpawnDistance treated as Meters here rather than NM
                 if (

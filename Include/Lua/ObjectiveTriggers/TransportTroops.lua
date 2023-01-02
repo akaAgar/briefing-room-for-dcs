@@ -1,4 +1,4 @@
-briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
+table.insert(briefingRoom.mission.objectiveTriggers, function(event)
   if briefingRoom.mission.complete then return false end -- Mission complete, nothing to do
   if briefingRoom.mission.objectives[$OBJECTIVEINDEX$].complete then return false end -- Objective complete, nothing to do
   if event.id ~= world.event.S_EVENT_LAND then return false end -- Not a "land" event, nothing to do
@@ -16,7 +16,7 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
     for index, value in ipairs(removed) do
       table.removeValue(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames, value)
     end
-    if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames < 1 then -- all target units destroyed, objective complete
+    if #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames < 1 then -- all target units moved or dead, objective complete
       briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_TROOPSDELIVERED$", "RadioPilotTroopsDelivered")
       briefingRoom.mission.coreFunctions.completeObjective($OBJECTIVEINDEX$)
     end
@@ -37,4 +37,4 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
   if #collect > 0 then
     briefingRoom.transportManager.troopsMoveToGetIn(event.initiator:getName(), collect)
   end
-end
+end)

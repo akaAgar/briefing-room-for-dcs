@@ -1,4 +1,4 @@
-briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
+table.insert(briefingRoom.mission.objectiveTriggers,  function(event)
     -- Mission complete, nothing to do
     if briefingRoom.mission.complete then return false end
 
@@ -40,4 +40,4 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
     end
 
     return true
-end
+end)

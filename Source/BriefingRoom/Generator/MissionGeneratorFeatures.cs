@@ -56,36 +56,36 @@ namespace BriefingRoom4DCS.Generator
                 var TACANStr = GetExtraSettingsFromFeature(featureDB, ref extraSettings); // Add specific settings for this feature (TACAN frequencies, etc)
                 var coordinatesValue = coordinates.Value;
                 UnitMakerGroupFlags groupFlags = 0;
-
-                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Immortal))
+                var flags = featureDB.UnitGroupFlags;
+                if (flags.HasFlag(FeatureUnitGroupFlags.Immortal))
                     groupFlags |= UnitMakerGroupFlags.Immortal;
 
-                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.StaticAircraft))
+                if (flags.HasFlag(FeatureUnitGroupFlags.StaticAircraft))
                     groupFlags |= UnitMakerGroupFlags.StaticAircraft;
 
-                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Inert))
+                if (flags.HasFlag(FeatureUnitGroupFlags.Inert))
                     groupFlags |= UnitMakerGroupFlags.Inert;
 
-                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Invisible))
+                if (flags.HasFlag(FeatureUnitGroupFlags.Invisible))
                     groupFlags |= UnitMakerGroupFlags.Invisible;
 
 
-                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ImmediateAircraftActivation))
+                if (flags.HasFlag(FeatureUnitGroupFlags.ImmediateAircraftActivation))
                     groupFlags |= UnitMakerGroupFlags.ImmediateAircraftSpawn;
 
                 if (_template.MissionFeatures.Contains("ContextScrambleStart"))
                     groupFlags |= UnitMakerGroupFlags.ScrambleStart;
 
-                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.RadioAircraftActivation))
+                if (flags.HasFlag(FeatureUnitGroupFlags.RadioAircraftActivation))
                     groupFlags |= UnitMakerGroupFlags.RadioAircraftSpawn;
                 
                 if (flags.HasFlag(FeatureUnitGroupFlags.LowUnitVariation))
                     groupFlags |= UnitMakerGroupFlags.LowUnitVariation;
 
                 Side groupSide = Side.Enemy;
-                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly)) groupSide = Side.Ally;
-                else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Neutral)) groupSide = Side.Neutral;
-                else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.SameSideAsTarget) && objectiveTargetSide.HasValue) groupSide = objectiveTargetSide.Value;
+                if (flags.HasFlag(FeatureUnitGroupFlags.Friendly)) groupSide = Side.Ally;
+                else if (flags.HasFlag(FeatureUnitGroupFlags.Neutral)) groupSide = Side.Neutral;
+                else if (flags.HasFlag(FeatureUnitGroupFlags.SameSideAsTarget) && objectiveTargetSide.HasValue) groupSide = objectiveTargetSide.Value;
 
                 if (hideEnemy && groupSide == Side.Enemy)
                     groupFlags |= UnitMakerGroupFlags.AlwaysHidden;
@@ -112,7 +112,7 @@ namespace BriefingRoom4DCS.Generator
                     groupInfo.HasValue &&
                     groupInfo.Value.UnitDB != null &&
                     groupInfo.Value.UnitDB.IsAircraft &&
-                    !featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.StaticAircraft))
+                    !flags.HasFlag(FeatureUnitGroupFlags.StaticAircraft))
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
                             $"{groupInfo.Value.Name.Split("-")[0]}\t" +
                             $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get()}\t" +
@@ -215,9 +215,10 @@ namespace BriefingRoom4DCS.Generator
 
         private void SpawnExtraGroups(T featureDB, DCSMission mission, Side groupSide, UnitMakerGroupFlags groupFlags, Coordinates coordinates, Coordinates coordinates2, Dictionary<string, object> extraSettings)
         {
+            var flags = featureDB.UnitGroupFlags;
             foreach (var i in Enumerable.Range(1, featureDB.ExtraGroups.GetValue()))
             {
-                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.MoveAnyWhere))
+                if (flags.HasFlag(FeatureUnitGroupFlags.MoveAnyWhere))
                 {
                     coordinates = coordinates.CreateNearRandom(50 * Toolbox.NM_TO_METERS, 100 * Toolbox.NM_TO_METERS);
                     coordinates2 = coordinates.CreateNearRandom(50 * Toolbox.NM_TO_METERS, 100 * Toolbox.NM_TO_METERS);
@@ -229,7 +230,7 @@ namespace BriefingRoom4DCS.Generator
                 var unitFamily = Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
                 var luaUnit = featureDB.UnitGroupLuaUnit;
                 Coordinates? spawnCoords;
-                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ExtraGroupsNearby))
+                if (flags.HasFlag(FeatureUnitGroupFlags.ExtraGroupsNearby))
                     spawnCoords = _unitMaker.SpawnPointSelector.GetNearestSpawnPoint(featureDB.UnitGroupValidSpawnPoints, coordinates);
                 else
                     spawnCoords = _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
@@ -259,7 +260,7 @@ namespace BriefingRoom4DCS.Generator
                    groupInfo.HasValue &&
                    groupInfo.Value.UnitDB != null &&
                    groupInfo.Value.UnitDB.IsAircraft &&
-                   !featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.StaticAircraft))
+                   !flags.HasFlag(FeatureUnitGroupFlags.StaticAircraft))
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
                             $"{groupInfo.Value.Name.Split("-")[0]}\t" +
                             $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get()}\t" +

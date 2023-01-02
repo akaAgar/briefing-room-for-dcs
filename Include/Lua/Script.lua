@@ -703,9 +703,9 @@ function briefingRoom.eventHandler:onEvent(event)
 
   local eventHandled = false
   -- Pass the event to the completion trigger of all objectives that have one
-  for i=1,#briefingRoom.mission.objectives do
-    if briefingRoom.mission.objectiveTriggers[i] ~= nil then
-      local didHandle = briefingRoom.mission.objectiveTriggers[i](event)
+  for k, func in pairs(briefingRoom.mission.objectiveTriggers) do
+    if func ~= nil then
+      local didHandle = func(event)
       if didHandle then
         eventHandled = true
       end
@@ -843,13 +843,15 @@ briefingRoom.mission.coreFunctions = { }
 briefingRoom.mission.hasStarted = false -- has at least one player taken off?
 
 -- Marks objective with index index as complete, and completes the mission itself if all objectives are complete
-function briefingRoom.mission.coreFunctions.completeObjective(index)
+function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
+  failed = failed or false
   if briefingRoom.mission.complete then return end -- mission already complete
   if briefingRoom.mission.objectives[index].complete then return end -- objective already complete
 
   local objName = briefingRoom.mission.objectives[index].name
-  briefingRoom.debugPrint("Objective "..objName.." marked as complete")
+  briefingRoom.debugPrint("Objective "..objName.." marked as "..(failed and "failed" or"complete"))
   briefingRoom.mission.objectives[index].complete = true
+  briefingRoom.mission.objectives[index].failed = failed
   briefingRoom.mission.objectivesLeft = briefingRoom.mission.objectivesLeft - 1
   briefingRoom.aircraftActivator.pushFromReserveQueue() -- activate next batch of aircraft (so more CAP will pop up)
 
@@ -863,12 +865,12 @@ function briefingRoom.mission.coreFunctions.completeObjective(index)
   if briefingRoom.mission.objectivesLeft <= 0 then
     briefingRoom.debugPrint("Mission marked as complete")
     briefingRoom.mission.complete = true
-    briefingRoom.radioManager.play("$LANG_COMMAND$: $LANG_MISSIONCOMPLETE$", "RadioHQMissionComplete", math.random(6, 8))
+    briefingRoom.radioManager.play("$LANG_COMMAND$: "..(failed and "$LANG_MISSIONCOMPLETEWITHFAILURES$" or "$LANG_MISSIONCOMPLETE$"), "RadioHQMissionComplete", math.random(6, 8))
     trigger.action.setUserFlag(1, true) -- Mark the mission complete internally, so campaigns can move to the next mission
   elseif not briefingRoom.mission.hasStarted then
     briefingRoom.radioManager.play("$LANG_AUTOCOMPLETEOBJECTIVE$", "Radio0", math.random(6, 8))
   else
-    briefingRoom.radioManager.play("$LANG_COMMAND$: $LANG_COMPLETEOBJECTIVE$", "RadioHQObjectiveComplete", math.random(6, 8))
+    briefingRoom.radioManager.play("$LANG_COMMAND$: "..(failed and "$LANG_FAILEDOBJECTIVE$" or "$LANG_COMPLETEOBJECTIVE$"), "RadioHQObjectiveComplete", math.random(6, 8))
   end
 end
 
@@ -910,7 +912,7 @@ function briefingRoom.f10MenuCommands.missionStatus()
 
   for i,o in ipairs(briefingRoom.mission.objectives) do
     if o.complete then
-      msnStatus = msnStatus.."[X]"
+      msnStatus = msnStatus..(o.failed and "[/]" or "[X]")
     else
       msnStatus = msnStatus.."[ ]"
     end

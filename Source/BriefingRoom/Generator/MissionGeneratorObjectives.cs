@@ -1,4 +1,4 @@
-﻿/*
+/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -479,9 +479,12 @@ namespace BriefingRoom4DCS.Generator
             mission.AppendValue("ScriptObjectives", objectiveLua);
 
             // Add objective trigger Lua for this objective
-            string triggerLua = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA_OBJECTIVETRIGGERS}{taskDB.CompletionTriggerLua}");
-            GeneratorTools.ReplaceKey(ref triggerLua, "ObjectiveIndex", objectiveIndex + 1);
-            mission.AppendValue("ScriptObjectivesTriggers", triggerLua);
+            foreach (var CompletionTriggerLua in taskDB.CompletionTriggersLua)
+            {
+                string triggerLua = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA_OBJECTIVETRIGGERS}{CompletionTriggerLua}");
+                GeneratorTools.ReplaceKey(ref triggerLua, "ObjectiveIndex", objectiveIndex + 1);
+                mission.AppendValue("ScriptObjectivesTriggers", triggerLua);
+            }
         }
 
         private static void CreateTaskString(DCSMission mission, int pluralIndex, ref string taskString, string objectiveName, UnitFamily objectiveTargetUnitFamily)

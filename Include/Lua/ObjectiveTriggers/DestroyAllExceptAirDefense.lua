@@ -1,5 +1,5 @@
 -- Triggers the completion of objective $OBJECTIVEINDEX$ when all targets are destroyed
-briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
+table.insert(briefingRoom.mission.objectiveTriggers, function(event)
     -- Mission complete, nothing to do
     if briefingRoom.mission.complete then return false end
   
@@ -63,5 +63,5 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
       briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames = newTargetTable
       briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsCount = #newTargetTable
     end
-  end
+  end)
   

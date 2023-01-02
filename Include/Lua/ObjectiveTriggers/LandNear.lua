@@ -1,5 +1,5 @@
 -- Triggers the completion of objective $OBJECTIVEINDEX$ when a friendly helicopter lands near the target
-briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
+table.insert(briefingRoom.mission.objectiveTriggers, function(event)
     if briefingRoom.mission.complete then return false end -- Mission complete, nothing to do
     if briefingRoom.mission.objectives[$OBJECTIVEINDEX$].complete then return false end -- Objective complete, nothing to do
     if event.id ~= world.event.S_EVENT_LAND then return false end -- Not a "land" event, nothing to do
@@ -23,6 +23,6 @@ briefingRoom.mission.objectiveTriggers[$OBJECTIVEINDEX$] = function(event)
         end
       end
     end
-end
+end)
 
 briefingRoom.mission.objectives[$OBJECTIVEINDEX$].hideTargetCount = true
