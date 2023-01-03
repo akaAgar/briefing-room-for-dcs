@@ -846,13 +846,12 @@ briefingRoom.mission.hasStarted = false -- has at least one player taken off?
 function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
   failed = failed or false
   if briefingRoom.mission.complete then return end -- mission already complete
-  if briefingRoom.mission.objectives[index].complete then return end -- objective already complete
+  if briefingRoom.mission.objectives[index].complete and briefingRoom.mission.objectives[index].failed == failed then return end -- objective already complete with same fail state
 
   local objName = briefingRoom.mission.objectives[index].name
   briefingRoom.debugPrint("Objective "..objName.." marked as "..(failed and "failed" or"complete"))
   briefingRoom.mission.objectives[index].complete = true
   briefingRoom.mission.objectives[index].failed = failed
-  briefingRoom.mission.objectivesLeft = briefingRoom.mission.objectivesLeft - 1
   briefingRoom.aircraftActivator.pushFromReserveQueue() -- activate next batch of aircraft (so more CAP will pop up)
 
   -- Remove objective menu from the F10 menu
@@ -862,7 +861,10 @@ function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
   end
 
   -- Add a little delay before playing the "mission/objective complete" sounds to make sure all "target destroyed", "target photographed", etc. sounds are done playing
-  if briefingRoom.mission.objectivesLeft <= 0 then
+  local missionOver = #table.filter(briefingRoom.mission.objectives, function(o, k, i)
+    return o.completed
+  end) >= #briefingRoom.mission.objectives
+  if missionOver then
     briefingRoom.debugPrint("Mission marked as complete")
     briefingRoom.mission.complete = true
     local hasFailed = #table.filter(briefingRoom.mission.objectives, function(o, k, i)
@@ -951,7 +953,6 @@ missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_MISS
 
 briefingRoom.mission.objectives = { } -- Main objective table
 $SCRIPTOBJECTIVES$
-briefingRoom.mission.objectivesLeft = #briefingRoom.mission.objectives -- Store the total of objective left to complete
 
 for i=1,#briefingRoom.mission.objectives do
   briefingRoom.mission.objectives[i].waypointRadioCommand = missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_WAYPOINTCOORDINATESREQUEST$", briefingRoom.f10Menu.objectives[i], briefingRoom.f10MenuCommands.getWaypointCoordinates, i)

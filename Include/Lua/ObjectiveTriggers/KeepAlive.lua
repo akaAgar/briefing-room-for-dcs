@@ -3,9 +3,6 @@ table.insert(briefingRoom.mission.objectiveTriggers, function(event)
   -- Mission complete, nothing to do
   if briefingRoom.mission.complete then return false end
 
-  -- Objective complete, nothing to do
-  if briefingRoom.mission.objectives[$OBJECTIVEINDEX$].complete then return false end
-
   -- Check if event is a "destruction" event
   local destructionEvent = false
   if event.id == world.event.S_EVENT_DEAD or event.id == world.event.S_EVENT_CRASH then destructionEvent = true end
