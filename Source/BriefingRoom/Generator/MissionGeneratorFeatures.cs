@@ -106,7 +106,7 @@ namespace BriefingRoom4DCS.Generator
                     extraSettings);
 
                 SetCarrier(featureDB, groupSide, ref groupInfo);
-
+                SetSupportingTargetGroupName(ref groupInfo, flags, extraSettings);
                 if (
                     groupSide == Side.Ally &&
                     groupInfo.HasValue &&
@@ -253,6 +253,7 @@ namespace BriefingRoom4DCS.Generator
                    extraSettings);
 
                 SetCarrier(featureDB, groupSide, ref groupInfo);
+                SetSupportingTargetGroupName(ref groupInfo, flags, extraSettings);
 
 
                 if (
@@ -326,6 +327,12 @@ namespace BriefingRoom4DCS.Generator
             groupInfo.Value.DCSGroup.Y = (float)carrier.UnitMakerGroupInfo.Coordinates.Y;
             groupInfo.Value.DCSGroup.Name = groupInfo.Value.DCSGroup.Name.Replace("-STATIC-", ""); // Remove Static code if on carrier as we can't replace it automatically
             carrier.RemainingSpotCount = carrier.RemainingSpotCount - unitCount;
+        }
+    
+        private void SetSupportingTargetGroupName(ref UnitMakerGroupInfo? groupInfo,FeatureUnitGroupFlags flags, Dictionary<string, object> extraSettings)
+        {
+            if(flags.HasFlag(FeatureUnitGroupFlags.SupportingTarget))
+                groupInfo.Value.DCSGroups.ForEach(x =>x.Name += $"-STGT-{extraSettings["ObjectiveName"].ToString()}");
         }
 
     }

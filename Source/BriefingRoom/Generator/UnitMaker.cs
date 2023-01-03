@@ -21,20 +21,18 @@ namespace BriefingRoom4DCS.Generator
 
         internal DBEntryUnit UnitDB { get; }
 
-        internal DCSGroup DCSGroup { get; }
+        internal DCSGroup DCSGroup { get {return DCSGroups.First();} }
         internal List<DCSGroup> DCSGroups { get; }
 
         internal UnitMakerGroupInfo(ref DCSGroup dCSGroup, DBEntryUnit unitDB = null)
         {
             UnitDB = unitDB;
-            DCSGroup = dCSGroup;
             DCSGroups = new List<DCSGroup> { dCSGroup };
         }
 
         internal UnitMakerGroupInfo(ref List<DCSGroup> dCSGroups, DBEntryUnit unitDB = null)
         {
             UnitDB = unitDB;
-            DCSGroup = dCSGroups.First();
             DCSGroups = dCSGroups;
         }
     }

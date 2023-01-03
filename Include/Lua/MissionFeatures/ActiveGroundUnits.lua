@@ -38,7 +38,7 @@ function briefingRoom.mission.missionFeatures.activeGroundUnits.activateGroundUn
     for i = 1, 2 do
         local coalitionGroups = coalition.getGroups(i)
         suitableGroups[i] = table.removeNils(table.filter(coalitionGroups, function(o, k, i)
-            return not string.find(o:getName(), "-TGT-") and #table.filter(o:getUnits(), function(j, k, i)
+            return not string.find(o:getName(), "-TGT-") and not string.find(o:getName(), "-STGT-") and #table.filter(o:getUnits(), function(j, k, i)
                 return not j:hasAttribute("Ground Units Non Airdefence") or j:hasAttribute("Unarmed vehicles") or
                     j:hasAttribute("Indirect fire")
             end) == 0
