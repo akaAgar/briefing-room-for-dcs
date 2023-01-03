@@ -569,8 +569,8 @@ end
 
 briefingRoom.aircraftActivator = { }
 briefingRoom.aircraftActivator.INTERVAL = { 10, 20 } -- min/max interval (in seconds) between two updates
-briefingRoom.aircraftActivator.currentQueue = dcsExtensions.getGroupNamesContaining("-IQ-") -- current queue of aircraft group IDs to spawn every INTERVAL seconds
-briefingRoom.aircraftActivator.reserveQueue = dcsExtensions.getGroupNamesContaining("-RQ-") -- additional aircraft group IDs to be added to the queue later
+briefingRoom.aircraftActivator.currentQueue = dcsExtensions.getGroupNamesContaining("%-IQ%-") -- current queue of aircraft group IDs to spawn every INTERVAL seconds
+briefingRoom.aircraftActivator.reserveQueue = dcsExtensions.getGroupNamesContaining("%-RQ%-") -- additional aircraft group IDs to be added to the queue later
 briefingRoom.aircraftActivator.responsiveMode = false
 
 function briefingRoom.aircraftActivator.getRandomInterval()
@@ -629,7 +629,7 @@ function briefingRoom.aircraftActivator.possibleResponsiveSpawn()
 end
 
 function briefingRoom.aircraftActivator.convertToStatic()
-  local queue = dcsExtensions.getGroupNamesContaining("-STATIC-") -- aircraft to be converted to static version on mission load for performance
+  local queue = dcsExtensions.getGroupNamesContaining("%-STATIC%-") -- aircraft to be converted to static version on mission load for performance
   for k, name in pairs(queue) do
     local acGroup = Group.getByName(name) -- get the group
     local mistGroupData = mist.getGroupData(name)

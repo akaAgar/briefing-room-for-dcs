@@ -1,6 +1,6 @@
 briefingRoom.mission.missionFeatures.respawnAircraft = {}
-briefingRoom.mission.missionFeatures.respawnAircraft.totalGroups = table.merge(dcsExtensions.getGroupNamesContaining("-RQ-")
-    , dcsExtensions.getGroupNamesContaining("-IQ-"))
+briefingRoom.mission.missionFeatures.respawnAircraft.totalGroups = table.merge(dcsExtensions.getGroupNamesContaining("%-RQ%-")
+    , dcsExtensions.getGroupNamesContaining("%-IQ%-"))
 briefingRoom.mission.missionFeatures.respawnAircraft.spawnChance = 3 -- out of 10 each check when suitable
 briefingRoom.mission.missionFeatures.respawnAircraft.interval = { 300, 600 } -- min/max interval (in seconds) between two updates
 
