@@ -691,6 +691,20 @@ function briefingRoom.handleGeneralKill(event)
         briefingRoom.radioManager.play(messages[messageIndex + messageIndexOffset], "RadioHQ"..soundName..targetType..tostring(messageIndex), math.random(1, 3))
       end
       briefingRoom.aircraftActivator.possibleResponsiveSpawn()
+    else
+      local unitName = event.initiator:getName()
+      briefingRoom.debugPrint("Friendly Crash "..unitName)
+      if table.containsKey(briefingRoom.transportManager.transportRoster, unitName) then
+        local toopNames={}
+        local n=0
+        for k,v in pairs(briefingRoom.transportManager.transportRoster[unitName].troops) do
+          n=n+1
+          toopNames[n]=k
+        end
+        briefingRoom.debugPrint("unpacking troops "..#toopNames)
+        -- Assume all troops are main characters and survive the crash no issues
+        briefingRoom.transportManager.removeTroopCargo(unitName, toopNames, event.initiator:getPoint())
+      end
     end
   end
 end
@@ -796,12 +810,17 @@ function briefingRoom.transportManager.addTroopCargo(transportUnitName, unitName
   briefingRoom.radioManager.play("$LANG_TROOP$: $LANG_TRANSPORTALLIN$ ($LANG_TOTALTROOPS$: "..#unitNames..")", "RadioTroopAllIn")
 end
 
-function briefingRoom.transportManager.removeTroopCargo(transportUnitName, unitNames)
+function briefingRoom.transportManager.removeTroopCargo(transportUnitName, unitNames, unitPos)
   local transportUnit = Unit.getByName(transportUnitName)
-  if not table.containsKey(briefingRoom.transportManager.transportRoster, transportUnitName) or transportUnit == nil then
+  if not table.containsKey(briefingRoom.transportManager.transportRoster, transportUnitName) then
+    briefingRoom.debugPrint("transport unload bailing no roster")
     return {}
   end
-  local transportUnitPoint = transportUnit:getPoint()
+  local transportUnitPoint = unitPos or transportUnit:getPoint()
+  if transportUnitPoint == nil then
+    briefingRoom.debugPrint("transport unload bailing no pos")
+    return {}
+  end
   local removed = {}
   for index, unitName in ipairs(unitNames) do
     if table.containsKey(briefingRoom.transportManager.transportRoster[transportUnitName].troops, unitName) then
@@ -823,7 +842,9 @@ function briefingRoom.transportManager.removeTroopCargo(transportUnitName, unitN
       })
     end
   end
-  briefingRoom.radioManager.play("$LANG_TROOP$: $LANG_TRANSPORTEVERYONEOUT$ ($LANG_REMAININGTROOPS$: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops..")", "RadioTroopTakeoff")
+  if unitPos == nil then
+    briefingRoom.radioManager.play("$LANG_TROOP$: $LANG_TRANSPORTEVERYONEOUT$ ($LANG_REMAININGTROOPS$: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops..")", "RadioTroopTakeoff")
+  end
   return removed
 end
 
