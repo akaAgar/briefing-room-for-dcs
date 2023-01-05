@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -79,7 +79,16 @@ namespace BriefingRoom4DCS.Data
             return rawText;
         }
 
-        public string Translate(string key) => LangMap[key.ToUpperInvariant()].Get();
+        public string Translate(string key)
+        {
+            var searchKey = key.ToUpper();
+            if(!LangMap.ContainsKey(searchKey))
+            {
+                Console.WriteLine($"ERR_Missing_Translation_key:{key} (map size: {LangMap.Keys.Count})");
+                return $"ERR_Missing_Translation_key:{key}";
+            }
+            return LangMap[searchKey].Get();
+        }
 
     }
 }
