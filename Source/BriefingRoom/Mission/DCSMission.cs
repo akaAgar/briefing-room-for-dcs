@@ -58,12 +58,12 @@ namespace BriefingRoom4DCS.Mission
 
             foreach (KeyValuePair<string, string> keyPair in Values) // Replace included scripts first so later replacements (objective count, player coalition, etc) will be applied to them too
             {
-                if (!keyPair.Key.ToLowerInvariant().StartsWith("script")) continue;
-                rawText = rawText.Replace($"${keyPair.Key.ToUpperInvariant()}$", keyPair.Value);
+                if (!keyPair.Key.ToLower().StartsWith("script")) continue;
+                rawText = rawText.Replace($"${keyPair.Key.ToUpper()}$", keyPair.Value);
             }
 
             foreach (KeyValuePair<string, string> keyPair in Values) // Replace other values
-                rawText = rawText.Replace($"${keyPair.Key.ToUpperInvariant()}$", keyPair.Value);
+                rawText = rawText.Replace($"${keyPair.Key.ToUpper()}$", keyPair.Value);
 
             return rawText;
         }
@@ -91,7 +91,7 @@ namespace BriefingRoom4DCS.Mission
                     {Coalition.Neutral, new List<int>()}
                 };
 
-            UniqueID = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()).ToLowerInvariant();
+            UniqueID = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()).ToLower();
             SetValue("MissionID", UniqueID);
             SetValue("ScriptMIST", Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA}MIST.lua"));
             SetValue("ScriptSingletons", "");
@@ -109,7 +109,7 @@ namespace BriefingRoom4DCS.Mission
 
         internal void SetValue(string key, bool value)
         {
-            SetValue(key, value.ToString(NumberFormatInfo.InvariantInfo).ToLowerInvariant(), false);
+            SetValue(key, value.ToString(NumberFormatInfo.InvariantInfo).ToLower(), false);
         }
 
         internal void SetValue(string key, string value)
@@ -133,14 +133,14 @@ namespace BriefingRoom4DCS.Mission
         private void SetValue(string key, string value, bool append)
         {
             if (string.IsNullOrEmpty(key)) return;
-            key = key.ToUpperInvariant();
+            key = key.ToUpper();
             value = value ?? "";
             value = value.Replace("\r\n", "\n");
 
             string displayedValue = value.Replace("\n", " ");
             if (displayedValue.Length > MAX_VALUE_LENGTH_DISPLAY) displayedValue = displayedValue.Substring(0, MAX_VALUE_LENGTH_DISPLAY) + "...";
 
-            BriefingRoom.PrintToLog($"Mission parameter \"{key.ToLowerInvariant()}\" {(append ? "appended with" : "set to")} \"{displayedValue}\".");
+            BriefingRoom.PrintToLog($"Mission parameter \"{key.ToLower()}\" {(append ? "appended with" : "set to")} \"{displayedValue}\".");
 
             if (!Values.ContainsKey(key))
                 Values.Add(key, value);

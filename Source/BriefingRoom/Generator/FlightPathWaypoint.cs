@@ -72,7 +72,7 @@ namespace BriefingRoom4DCS.Generator
         {
             var objectiveName = Toolbox.RandomFrom(ObjectiveNames);
             ObjectiveNames.Remove(objectiveName);
-            return objectiveName.ToUpperInvariant();
+            return objectiveName.ToUpper();
         }
     }
 }

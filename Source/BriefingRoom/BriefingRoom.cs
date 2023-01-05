@@ -75,13 +75,13 @@ namespace BriefingRoom4DCS
                     if (string.IsNullOrEmpty(parameter)) // No parameter, return none
                         return new DatabaseEntryInfo[] { };
                     else // A parameter was provided, return all airbases from specified theater
-                        return (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>() where airbase.Theater == parameter.ToLowerInvariant() select airbase.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
+                        return (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>() where airbase.Theater == parameter.ToLower() select airbase.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
 
                 case DatabaseEntryType.Situation:
                     if (string.IsNullOrEmpty(parameter)) // No parameter, return none
                         return new DatabaseEntryInfo[] { };
                     else // A parameter was provided, return all airbases from specified theater
-                        return (from DBEntrySituation situation in Database.Instance.GetAllEntries<DBEntrySituation>() where situation.Theater == parameter.ToLowerInvariant() select situation.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
+                        return (from DBEntrySituation situation in Database.Instance.GetAllEntries<DBEntrySituation>() where situation.Theater == parameter.ToLower() select situation.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
                 case DatabaseEntryType.ObjectiveTarget:
                     if (string.IsNullOrEmpty(parameter)) // No parameter, return none
                         return (from DBEntryObjectiveTarget objectiveTarget in Database.Instance.GetAllEntries<DBEntryObjectiveTarget>() select objectiveTarget.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
@@ -140,7 +140,7 @@ namespace BriefingRoom4DCS
             DatabaseEntryInfo[] databaseEntryInfos = GetDatabaseEntriesInfo(entryType);
             return
                 (from DatabaseEntryInfo databaseEntryInfo in databaseEntryInfos
-                 where databaseEntryInfo.ID.ToLowerInvariant() == id.ToLowerInvariant()
+                 where databaseEntryInfo.ID.ToLower() == id.ToLower()
                  select databaseEntryInfo).First();
         }
 

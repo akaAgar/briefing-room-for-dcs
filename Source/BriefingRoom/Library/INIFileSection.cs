@@ -35,7 +35,7 @@ namespace BriefingRoom4DCS
         internal INIFileSection(bool isAbstract = false, string parentSection = null)
         {
             Abstract = isAbstract;
-            ParentSection = parentSection?.ToLowerInvariant();
+            ParentSection = parentSection?.ToLower();
 
             Values = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
         }
@@ -48,7 +48,7 @@ namespace BriefingRoom4DCS
             }
             set
             {
-                key = key?.ToLowerInvariant();
+                key = key?.ToLower();
 
                 if (Values.ContainsKey(key))
                     Values[key] = value;

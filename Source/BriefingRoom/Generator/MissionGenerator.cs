@@ -72,8 +72,8 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("BriefingEnemyCoalition", coalitionsDB[(int)template.ContextPlayerCoalition.GetEnemy()].UIDisplayName.Get());
             mission.SetValue("EnableAudioRadioMessages", !template.OptionsMission.Contains("RadioMessagesTextOnly"));
             mission.SetValue("BDASetting", template.OptionsMission.Contains("NoBDA") ? "NONE" : (template.OptionsMission.Contains("TargetOnlyBDA") ? "TARGETONLY" : "ALL"));
-            mission.SetValue("LuaPlayerCoalition", $"coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}");
-            mission.SetValue("LuaEnemyCoalition", $"coalition.side.{template.ContextPlayerCoalition.GetEnemy().ToString().ToUpperInvariant()}");
+            mission.SetValue("LuaPlayerCoalition", $"coalition.side.{template.ContextPlayerCoalition.ToString().ToUpper()}");
+            mission.SetValue("LuaEnemyCoalition", $"coalition.side.{template.ContextPlayerCoalition.GetEnemy().ToString().ToUpper()}");
             mission.SetValue("TheaterID", theaterDB.DCSID);
             mission.SetValue("AircraftActivatorCurrentQueue", ""); // Just to make sure aircraft groups spawning queues are empty
             mission.SetValue("AircraftActivatorReserveQueue", "");
@@ -195,7 +195,7 @@ namespace BriefingRoom4DCS.Generator
             // Add ogg files to the media files dictionary
             foreach (string mediaFile in mission.GetMediaFileNames())
             {
-                if (!mediaFile.ToLowerInvariant().EndsWith(".ogg")) continue; // Not an .ogg file
+                if (!mediaFile.ToLower().EndsWith(".ogg")) continue; // Not an .ogg file
                 mission.AppendValue("MapResourcesFiles", $"[\"ResKey_Snd_{Path.GetFileNameWithoutExtension(mediaFile)}\"] = \"{Path.GetFileName(mediaFile)}\",\n");
             }
 

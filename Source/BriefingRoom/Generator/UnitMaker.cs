@@ -590,7 +590,7 @@ namespace BriefingRoom4DCS.Generator
                     {
                         if (!UnitLuaTables[country].ContainsKey(unitCategory)) continue; // No unit for this unit category
 
-                        unitsLuaTable += $"[\"{unitCategory.ToString().ToLowerInvariant()}\"] =\n";
+                        unitsLuaTable += $"[\"{unitCategory.ToString().ToLower()}\"] =\n";
                         unitsLuaTable += "{\n";
                         unitsLuaTable += "[\"group\"] =\n";
                         unitsLuaTable += "{\n";
@@ -600,7 +600,7 @@ namespace BriefingRoom4DCS.Generator
                         }
 
                         unitsLuaTable += $"}}, -- end of [\"group\"]\n";
-                        unitsLuaTable += $"}}, -- end of [\"{unitCategory.ToString().ToLowerInvariant()}\"]\n";
+                        unitsLuaTable += $"}}, -- end of [\"{unitCategory.ToString().ToLower()}\"]\n";
                     }
                 }
                 unitsLuaTable += $"}}, -- end of [{countryIndex + 1}]\n";

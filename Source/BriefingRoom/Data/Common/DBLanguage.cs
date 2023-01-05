@@ -1,4 +1,4 @@
-﻿/*
+/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -74,7 +74,7 @@ namespace BriefingRoom4DCS.Data
             if (rawText == null) return null;
 
             foreach (KeyValuePair<string, LanguageString> keyPair in LangMap)
-                rawText = rawText.Replace($"$LANG_{keyPair.Key.ToUpperInvariant()}$", keyPair.Value.Get());
+                rawText = rawText.Replace($"$LANG_{keyPair.Key.ToUpper()}$", keyPair.Value.Get());
 
             return rawText;
         }

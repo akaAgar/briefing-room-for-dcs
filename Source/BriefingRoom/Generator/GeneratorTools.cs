@@ -140,8 +140,8 @@ namespace BriefingRoom4DCS.Generator
         internal static object LowercaseFirstCharacter(string str)
         {
             if (string.IsNullOrEmpty(str)) return str;
-            if (str.Length == 1) return str.ToLowerInvariant();
-            return str.Substring(0, 1).ToLowerInvariant() + str.Substring(1);
+            if (str.Length == 1) return str.ToLower();
+            return str.Substring(0, 1).ToLower() + str.Substring(1);
         }
 
         internal static string MakeHTMLList(params string[] listEntries)
@@ -257,9 +257,9 @@ namespace BriefingRoom4DCS.Generator
         internal static void ReplaceKey(ref string lua, string key, object value)
         {
             string valueStr = Toolbox.ValToString(value);
-            if (value is bool) valueStr = valueStr.ToLowerInvariant();
+            if (value is bool) valueStr = valueStr.ToLower();
 
-            lua = lua.Replace($"${key.ToUpperInvariant()}$", valueStr);
+            lua = lua.Replace($"${key.ToUpper()}$", valueStr);
         }
 
         internal static void ReplaceKey(ref string lua, string key, object arrayValue, int arrayIndex)

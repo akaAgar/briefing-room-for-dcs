@@ -206,8 +206,8 @@ namespace BriefingRoom4DCS.Generator
 
             // Add first (takeoff) and last (landing) waypoints to get a complete list of all waypoints
             List<Waypoint> allWaypoints = new List<Waypoint>(waypoints);
-            allWaypoints.Insert(0, new Waypoint(Database.Instance.Common.Names.WPInitialName.Get().ToUpperInvariant(), initialCoordinates));
-            allWaypoints.Add(new Waypoint(Database.Instance.Common.Names.WPFinalName.Get().ToUpperInvariant(), initialCoordinates));
+            allWaypoints.Insert(0, new Waypoint(Database.Instance.Common.Names.WPInitialName.Get().ToUpper(), initialCoordinates));
+            allWaypoints.Add(new Waypoint(Database.Instance.Common.Names.WPFinalName.Get().ToUpper(), initialCoordinates));
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Waypoint, $"\t{groupInfo.Value.Name}\t");
 
             List<string> waypointTextRows = new List<string>();

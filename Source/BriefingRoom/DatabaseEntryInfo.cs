@@ -42,7 +42,7 @@ namespace BriefingRoom4DCS
 
         public string GetNameAndDescription(string separator = " - ", bool upperCaseName = false)
         {
-            string casedName = upperCaseName ? Name.Get().ToUpperInvariant() : Name.Get();
+            string casedName = upperCaseName ? Name.Get().ToUpper() : Name.Get();
             var description = Description.Get();
             if (string.IsNullOrEmpty(description)) return casedName;
             return $"{casedName}{separator}{description}";

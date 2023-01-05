@@ -42,7 +42,7 @@ namespace BriefingRoom4DCS.Data
         protected override bool OnLoad(string iniFilePath)
         {
             var ini = new INIFile(iniFilePath);
-            Theater = ini.GetValue<string>("Situation", "Theater").ToLowerInvariant();
+            Theater = ini.GetValue<string>("Situation", "Theater").ToLower();
             RelatedSituations = ini.GetValueList<string>("Situation", "RelatedSituations");
 
             RedCoordinates = new List<Coordinates>();

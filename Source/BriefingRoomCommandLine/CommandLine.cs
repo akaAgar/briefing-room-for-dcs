@@ -90,7 +90,7 @@ namespace BriefingRoom4DCS.CommandLineTool
 
             foreach (string t in templateFiles)
             {
-                if (Path.GetExtension(t).ToLowerInvariant() == ".cbrt") // Template file is a campaign template
+                if (Path.GetExtension(t).ToLower() == ".cbrt") // Template file is a campaign template
                 {
                     DCSCampaign campaign = await BriefingRoomGenerator.GenerateCampaignAsync(t);
                     if (campaign == null)

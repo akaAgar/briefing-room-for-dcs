@@ -471,7 +471,7 @@ namespace BriefingRoom4DCS.Generator
             objectiveLua += "}\n";
 
             // Add F10 sub-menu for this objective
-            objectiveLua += $"briefingRoom.f10Menu.objectives[{objectiveIndex + 1}] = missionCommands.addSubMenuForCoalition(coalition.side.{template.ContextPlayerCoalition.ToString().ToUpperInvariant()}, \"$LANG_OBJECTIVE$ {objectiveName}\", nil)\n";
+            objectiveLua += $"briefingRoom.f10Menu.objectives[{objectiveIndex + 1}] = missionCommands.addSubMenuForCoalition(coalition.side.{template.ContextPlayerCoalition.ToString().ToUpper()}, \"$LANG_OBJECTIVE$ {objectiveName}\", nil)\n";
             mission.AppendValue("ScriptObjectives", objectiveLua);
 
             // Add objective trigger Lua for this objective

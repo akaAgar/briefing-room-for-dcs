@@ -73,12 +73,12 @@ namespace BriefingRoom4DCS.Generator
 
             waypoints.Insert(0,
                 new Waypoint(
-                    $"{Database.Instance.Common.Names.WPIngressName.Get().ToUpperInvariant()}_{waypointNameGenerator.GetWaypointName()}",
+                    $"{Database.Instance.Common.Names.WPIngressName.Get().ToUpper()}_{waypointNameGenerator.GetWaypointName()}",
                     baseIngressPosition + Coordinates.CreateRandom(ingressDeviation * 0.9, ingressDeviation * 1.1)));
 
             waypoints.Add(
                 new Waypoint(
-                    $"{Database.Instance.Common.Names.WPEgressName.Get().ToUpperInvariant()}_{waypointNameGenerator.GetWaypointName()}",
+                    $"{Database.Instance.Common.Names.WPEgressName.Get().ToUpper()}_{waypointNameGenerator.GetWaypointName()}",
                     baseIngressPosition + Coordinates.CreateRandom(ingressDeviation * 0.9, ingressDeviation * 1.1)));
         }
 

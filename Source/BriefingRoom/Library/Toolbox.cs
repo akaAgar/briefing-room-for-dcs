@@ -100,7 +100,7 @@ namespace BriefingRoom4DCS
         {
             if ((string1 == null) || (string2 == null)) return string1 == string2;
 
-            return string1.ToLowerInvariant() == string2.ToLowerInvariant();
+            return string1.ToLower() == string2.ToLower();
         }
 
         internal static string ToInvariantString(this double value)

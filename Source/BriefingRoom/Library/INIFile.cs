@@ -229,10 +229,10 @@ namespace BriefingRoom4DCS
 
             while (
                 !string.IsNullOrEmpty(Sections[section].ParentSection) &&
-                !checkedSections.Contains(section.ToLowerInvariant()) &&
+                !checkedSections.Contains(section.ToLower()) &&
                 Sections.ContainsKey(Sections[section].ParentSection))
             {
-                checkedSections.Add(section.ToLowerInvariant()); // To avoid circular inheritances
+                checkedSections.Add(section.ToLower()); // To avoid circular inheritances
                 section = Sections[section].ParentSection;
                 keys.AddRange(Sections[section].Keys);
             }
@@ -273,8 +273,8 @@ namespace BriefingRoom4DCS
                 if (string.IsNullOrEmpty(Sections[section].ParentSection))
                     return null;
 
-                checkedSections.Add(section.ToLowerInvariant()); // To avoid circular inheritances
-                if (checkedSections.Contains(Sections[section].ParentSection.ToLowerInvariant()))
+                checkedSections.Add(section.ToLower()); // To avoid circular inheritances
+                if (checkedSections.Contains(Sections[section].ParentSection.ToLower()))
                     return null;
 
                 section = Sections[section].ParentSection;
@@ -285,8 +285,8 @@ namespace BriefingRoom4DCS
 
         private bool WriteValue(string section, string key, string value)
         {
-            section = (section ?? "").ToLowerInvariant().Trim();
-            key = (key ?? "").ToLowerInvariant().Trim();
+            section = (section ?? "").ToLower().Trim();
+            key = (key ?? "").ToLower().Trim();
             value = value ?? "";
             if (string.IsNullOrEmpty(section) || string.IsNullOrEmpty(key)) return false;
 
@@ -314,7 +314,7 @@ namespace BriefingRoom4DCS
                 if (l.StartsWith("[")) // found a new section
                 {
                     // try to get section name, make sure it's valid
-                    section = l.Trim('[', ']', ' ', '\t', ':').ToLowerInvariant();
+                    section = l.Trim('[', ']', ' ', '\t', ':').ToLower();
                     string parentSection = null;
 
                     if (section.Contains(':')) // Sections inherits another section, name declared in the [SECTION:PARENT_SECTION] format
@@ -327,7 +327,7 @@ namespace BriefingRoom4DCS
                         }
                         catch (Exception)
                         {
-                            section = l.Trim('[', ']', ' ', '\t', ':').ToLowerInvariant();
+                            section = l.Trim('[', ']', ' ', '\t', ':').ToLower();
                             parentSection = null;
                         }
                     }
@@ -349,7 +349,7 @@ namespace BriefingRoom4DCS
                     string[] v = l.Split(new char[] { '=' }, 2); // Split the line at the first "equal" sign: key = value
                     if (v.Length < 2) continue;
 
-                    string key = v[0].Trim().Trim('"').ToLowerInvariant();
+                    string key = v[0].Trim().Trim('"').ToLower();
                     string value = v[1].Trim().Trim('"');
                     WriteValue(section, key, value);
                 }

@@ -36,7 +36,7 @@ namespace BriefingRoom4DCS
             var key = BriefingRoom.LanguageDB.Language;
             if (this.ContainsKey(key)) return this[key];
             if (this.ContainsKey("EN")) return this["EN"];
-            return "";
+            return $"";
         }
     }
 }

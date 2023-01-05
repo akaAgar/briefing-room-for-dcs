@@ -99,14 +99,14 @@ namespace BriefingRoom4DCS.Data
 
         private void LoadEntries<T>(string subDirectory) where T : DBEntry, new()
         {
-            BriefingRoom.PrintToLog($"Loading {subDirectory.ToLowerInvariant()}...");
+            BriefingRoom.PrintToLog($"Loading {subDirectory.ToLower()}...");
 
             string directory = $"{BRPaths.DATABASE}{subDirectory}";
             if (!Directory.Exists(directory))
                 throw new Exception($"Directory {directory} not found.");
 
             Type dbType = typeof(T);
-            string shortTypeName = dbType.Name.Substring(7).ToLowerInvariant();
+            string shortTypeName = dbType.Name.Substring(7).ToLower();
 
             if (!DBEntries.ContainsKey(dbType))
                 DBEntries.Add(dbType, new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase));
@@ -138,14 +138,14 @@ namespace BriefingRoom4DCS.Data
 
         private void LoadCustomUnitEntries<T>(string subDirectory) where T : DBEntry, new()
         {
-            BriefingRoom.PrintToLog($"Custom Loading {subDirectory.ToLowerInvariant()}...");
+            BriefingRoom.PrintToLog($"Custom Loading {subDirectory.ToLower()}...");
 
             string directory = $"{BRPaths.CUSTOMDATABASE}{subDirectory}";
             if (!Directory.Exists(directory))
                 return;
 
             Type dbType = typeof(T);
-            string shortTypeName = dbType.Name.Substring(7).ToLowerInvariant();
+            string shortTypeName = dbType.Name.Substring(7).ToLower();
 
             foreach (string filePath in Directory.EnumerateFiles(directory, "*.ini", SearchOption.AllDirectories))
             {

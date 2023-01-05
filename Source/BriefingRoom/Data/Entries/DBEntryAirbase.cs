@@ -65,7 +65,7 @@ namespace BriefingRoom4DCS.Data
             Runways = ini.GetValue<string>("Airbase", "Runways");
             RunwayLengthFt = ini.GetValue<int>("Airbase", "RunwayLengthFt", -1);
             TACAN = ini.GetValue<string>("Airbase", "TACAN");
-            Theater = ini.GetValue<string>("Airbase", "Theater").ToLowerInvariant();
+            Theater = ini.GetValue<string>("Airbase", "Theater").ToLower();
 
             if (!Database.Instance.EntryExists<DBEntryTheater>(Theater))
                 throw new Exception($"Airbase \"{ID}\" located on non-existing theater \"{Theater}\".");
