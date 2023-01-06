@@ -791,23 +791,30 @@ function briefingRoom.transportManager.addTroopCargo(transportUnitName, unitName
   if not table.containsKey(briefingRoom.transportManager.transportRoster, transportUnitName) then
     briefingRoom.transportManager.initTransport(transportUnitName)
   end
+  local addedCount = 0
   for index, unitName in ipairs(unitNames) do
     local unitCount = #briefingRoom.transportManager.transportRoster[transportUnitName].troops
     if unitCount == briefingRoom.transportManager.maxTroops then
       briefingRoom.radioManager.play("$LANG_TROOP$: $LANG_TRANSPORTFULL$ ($LANG_TOTALTROOPS$: "..briefingRoom.transportManager.maxTroops..")", "RadioTroopFull")
       return true
     end
+    local isUnitAlreadyInHelo = #table.filter(briefingRoom.transportManager.transportRoster, function(o, k, i)
+      return table.containsKey(o.troops, unitName)
+    end) > 0
     local unit = Unit.getByName(unitName)
-    if unit ~= nil then
+    if unit ~= nil and not isUnitAlreadyInHelo then
       briefingRoom.transportManager.transportRoster[transportUnitName].troops[unitName] = {
         ["type"] = unit:getTypeName(),
         ["name"] = unit:getName(),
         ["country"] = unit: getCountry()
       }
       unit:destroy()
+      addedCount = addedCount + 1
     end
   end
-  briefingRoom.radioManager.play("$LANG_TROOP$: $LANG_TRANSPORTALLIN$ ($LANG_TOTALTROOPS$: "..#unitNames..")", "RadioTroopAllIn")
+  if addedCount > 0 then
+    briefingRoom.radioManager.play("$LANG_TROOP$: $LANG_TRANSPORTALLIN$ ($LANG_TOTALTROOPS$: "..#briefingRoom.transportManager.transportRoster[transportUnitName].troops + addedCount..")", "RadioTroopAllIn")
+  end
 end
 
 function briefingRoom.transportManager.removeTroopCargo(transportUnitName, unitNames, unitPos)
