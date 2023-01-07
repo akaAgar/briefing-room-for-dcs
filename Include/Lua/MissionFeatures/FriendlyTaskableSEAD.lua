@@ -1,5 +1,4 @@
 briefingRoom.mission.missionFeatures.friendlyTaskableSEAD = {}
-briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.AUTO_AIM_RADIUS = 1000 -- in meters
 briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.MARKER_NAME = "sead"
 briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.LANG_UNIT = "$LANG_SEAD$"
 briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.LANG_REQEUEST = "$LANG_SEADREQUEST$"

@@ -1,11 +1,11 @@
 briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters = {}
-briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.MARKER_NAME = "helo"
-briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.LANG_UNIT = "$LANG_ATTACKCHOPPERS$"
-briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.LANG_REQEUEST = "$LANG_ATTACKCHOPPERSREQUEST$"
+briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.MARKER_NAME = "transport"
+briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.LANG_UNIT = "$LANG_TRANSPORTCHOPPERS$"
+briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.LANG_REQEUEST = "$LANG_TRANSPORTCHOPPERSREQUEST$"
 briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.RADIO_REQEUEST = "RadioPilotBeginYourAttack"
-briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.LANG_AFFIRM = "$LANG_BEGINATTACK$"
+briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.LANG_AFFIRM = "$LANG_TRANSPORTCHOPPERSAFFIRM$"
 briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.RADIO_AFFRIM = "RadioOtherPilotBeginAttack"
-briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.LANG_NO_COORDS = "$LANG_ATTACKCHOPPERSNOCOORDINATES$"
+briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.LANG_NO_COORDS = "$LANG_TRANSPORTCHOPPERSNOCOORDINATES$"
 briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.markID = nil -- ID of the mark on the map
 briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.disableCooRemovedRadioMessage = false
 
@@ -13,7 +13,7 @@ briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.disabl
 -- Radio command to launch bombing run (called from F10 menu)
 function briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.launchBombingRun()
   briefingRoom.taskables.launchCurry(briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters,
-    briefingRoom.mission.missionFeatures.groupNames.friendlyTaskableHelicopters, function(group, mark)
+    briefingRoom.mission.missionFeatures.groupNames.friendlyTaskableTransportHelicopters, function(group, mark)
     local currPos = mist.getLeadPos(group)
     return {
       id = 'Mission',
@@ -31,7 +31,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopte
               alt = 152.4,
               alt_type = "RADIO",
               speed_locked = false,
-              action = "Fly Over Point",
+              action = "Turning Point",
               name = "CAS",
               task = {
                 id = "ComboTask",
@@ -40,29 +40,14 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopte
                     [1] = {
                       enabled = true,
                       auto = false,
-                      id = "EngageTargetsInZone",
+                      id = "Land",
                       number = 1,
                       params = {
                         y = mark.pos.z,
                         x = mark.pos.x,
-                        targetTypes = {
-                          [1] = "All",
-                        },
-                        value = "All;",
-                        noTargetTypes = {
-                        },
-                        priority = 0,
-                        zoneRadius = 5000,
+                        duration = 300,
+                        durationFlag = false,
                       },
-                    },
-                    [2] = {
-                      enabled = true,
-                      auto = false,
-                      id = "Orbit",
-                      number = 2,
-                      params = {
-                        pattern = "Circle",
-                      }
                     }
                   }
                 }
@@ -76,7 +61,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopte
 end
 
 -- Add F10 menu command
-missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_ATTACKCHOPPERMENU$",
+missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_TRANSPORTCHOPPERMENU$",
   briefingRoom.f10Menu.missionMenu, briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.launchBombingRun,
   nil)
 

@@ -1,5 +1,4 @@
 briefingRoom.mission.missionFeatures.friendlyTaskableCAP = {}
-briefingRoom.mission.missionFeatures.friendlyTaskableCAP.AUTO_AIM_RADIUS = 1000 -- in meters
 briefingRoom.mission.missionFeatures.friendlyTaskableCAP.MARKER_NAME = "cap"
 briefingRoom.mission.missionFeatures.friendlyTaskableCAP.LANG_UNIT = "$LANG_CAP$"
 briefingRoom.mission.missionFeatures.friendlyTaskableCAP.LANG_REQEUEST = "$LANG_CAPREQUEST$"
