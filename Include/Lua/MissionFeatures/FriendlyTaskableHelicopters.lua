@@ -4,7 +4,7 @@ briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.LANG_U
 briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.LANG_REQEUEST = "$LANG_ATTACKCHOPPERSREQUEST$"
 briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.RADIO_REQEUEST = "RadioPilotBeginYourAttack"
 briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.LANG_AFFIRM = "$LANG_BEGINATTACK$"
-briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.RADIO_AFFRIM = "RadioOtherPilotBeginAttack"
+briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.RADIO_AFFIRM = "RadioOtherPilotBeginAttack"
 briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.LANG_NO_COORDS = "$LANG_ATTACKCHOPPERSNOCOORDINATES$"
 briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.markID = nil -- ID of the mark on the map
 briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.disableCooRemovedRadioMessage = false

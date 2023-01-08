@@ -74,7 +74,7 @@ function briefingRoom.taskables.launchCurry(dataObj, groupName, newTaskFunc)
     timer.scheduleFunction(briefingRoom.taskables.setTaskCurry(newTaskFunc, dataObj.markID,
         groupName), {}, timer.getTime() + 10)
     briefingRoom.radioManager.play(dataObj.LANG_UNIT .. ": " .. dataObj.LANG_AFFIRM, dataObj.RADIO_AFFIRM,
-        briefingRoom.radioManager.getAnswerDelay(), nil, nil)
+        briefingRoom.radioManager.getAnswerDelay())
 end
 
 function briefingRoom.taskables.setTaskCurry(newTaskFunc, markerId, groupName)
