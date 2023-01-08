@@ -1,18 +1,18 @@
-briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters = {}
-briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.MARKER_NAME = "helo"
-briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.LANG_UNIT = "$LANG_ATTACKCHOPPERS$"
-briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.LANG_REQEUEST = "$LANG_ATTACKCHOPPERSREQUEST$"
-briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.RADIO_REQEUEST = "RadioPilotBeginYourAttack"
-briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.LANG_AFFIRM = "$LANG_BEGINATTACK$"
-briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.RADIO_AFFIRM = "RadioOtherPilotBeginAttack"
-briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.LANG_NO_COORDS = "$LANG_ATTACKCHOPPERSNOCOORDINATES$"
-briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.markID = nil -- ID of the mark on the map
-briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.disableCooRemovedRadioMessage = false
+briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters = {}
+briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.MARKER_NAME = "helo"
+briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.LANG_UNIT = "$LANG_ATTACKCHOPPERS$"
+briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.LANG_REQEUEST = "$LANG_ATTACKCHOPPERSREQUEST$"
+briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.RADIO_REQEUEST = "RadioPilotBeginYourAttack"
+briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.LANG_AFFIRM = "$LANG_BEGINATTACK$"
+briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.RADIO_AFFIRM = "RadioOtherPilotBeginAttack"
+briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.LANG_NO_COORDS = "$LANG_ATTACKCHOPPERSNOCOORDINATES$"
+briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.markID = nil -- ID of the mark on the map
+briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.disableCooRemovedRadioMessage = false
 
 
 -- Radio command to launch bombing run (called from F10 menu)
-function briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.launchBombingRun()
-  briefingRoom.taskables.launchCurry(briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters,
+function briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.launchBombingRun()
+  briefingRoom.taskables.launchCurry(briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters,
     briefingRoom.mission.missionFeatures.groupNames.friendlyTaskableHelicopters, function(group, mark)
     local currPos = mist.getLeadPos(group)
     return {
@@ -77,9 +77,9 @@ end
 
 -- Add F10 menu command
 missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_ATTACKCHOPPERMENU$",
-  briefingRoom.f10Menu.missionMenu, briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters.launchBombingRun,
+  briefingRoom.f10Menu.missionMenu, briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.launchBombingRun,
   nil)
 
 
 -- Enable event handler
-world.addEventHandler(briefingRoom.taskables.markerManager(briefingRoom.mission.missionFeatures.friendlyTaskableTransportHelicopters))
+world.addEventHandler(briefingRoom.taskables.markerManager(briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters))
