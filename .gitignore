@@ -24,3 +24,5 @@
 /*.txt
 
 CustomConfigs/**/*.ini
+
+Source/test
