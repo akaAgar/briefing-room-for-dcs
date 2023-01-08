@@ -317,7 +317,11 @@ async function RenderMap(mapData, map, inverted) {
             AddZone(key, data, leafMap, MapCoordMap)
         }
     })
-    leafMap.setView(GetFromMapCoordData(mapData["AIRBASE_HOME"][0], MapCoordMap), 6.5);
+    if(Object.keys(mapData).includes("AIRBASE_HOME"))
+        leafMap.setView(GetFromMapCoordData(mapData["AIRBASE_HOME"][0], MapCoordMap), 6.5);
+    else {
+        await GetCenterView(map, leafMap)
+    }
     new ResizeObserver(() => leafMap.invalidateSize()).observe(document.querySelector(".generator-preview"))
 }
 
