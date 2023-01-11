@@ -23,8 +23,8 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableHelicopters.launch
           points = {
             [1] = {
               speed = 100,
-              x = mark.pos.x, 0.9,
-              y = mark.pos.z, 0.9,
+              x = mark.pos.x,
+              y = mark.pos.z,
               type = 'Turning Point',
               ETA_locked = false,
               ETA = 100,
