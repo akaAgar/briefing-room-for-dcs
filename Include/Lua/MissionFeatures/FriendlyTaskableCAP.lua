@@ -22,6 +22,41 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableCAP.launchBombingR
           points = {
             [1] = {
               speed = 200,
+              x = dcsExtensions.lerp(currPos.x, mark.pos.x, 0.2),
+              y = dcsExtensions.lerp(currPos.z, mark.pos.z, 0.2),
+              type = 'Turning Point',
+              ETA_locked = false,
+              ETA = 100,
+              alt = 7620,
+              alt_type = "BARO",
+              speed_locked = false,
+              action = "Turning Point",
+              name = " ",
+              task = {
+                id = "ComboTask",
+                params = {
+                  tasks = {
+                    [1] = {
+                      enabled = true,
+                      key = "CAP",
+                      id = "EngageTargets",
+                      number = 1,
+                      auto = true,
+                      params =
+                      {
+                        targetTypes =
+                        {
+                          [1] = "Air",
+                        }, -- end of ["targetTypes"]
+                        priority = 0,
+                      }, -- end of ["params"]
+                    },
+                  },
+                },
+              },
+            },
+            [2] = {
+              speed = 220,
               x = mark.pos.x,
               y = mark.pos.z,
               type = 'Turning Point',
@@ -30,7 +65,7 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableCAP.launchBombingR
               alt = 7620,
               alt_type = "BARO",
               speed_locked = false,
-              action = "Fly Over Point",
+              action = "Turning Point",
               name = "CAP",
               task = {
                 id = "ComboTask",
@@ -38,33 +73,55 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableCAP.launchBombingR
                   tasks = {
                     [1] = {
                       enabled = true,
-                      auto = false,
+                      key = "CAP",
                       id = "EngageTargets",
                       number = 1,
-                      params = {
-                        targetTypes = {
+                      auto = true,
+                      params =
+                      {
+                        targetTypes =
+                        {
                           [1] = "Air",
-                        },
-                        value = "Air;",
-                        noTargetTypes = {
-                        },
+                        }, -- end of ["targetTypes"]
                         priority = 0,
-                      },
+                      }, -- end of ["params"]
                     },
-                    [2] = {
+                    [2] =
+                    {
+                      enabled = true,
+                      auto = false,
+                      id = "EngageTargetsInZone",
+                      number = 2,
+                      params =
+                      {
+                        x = mark.pos.x,
+                        y = mark.pos.z,
+                        targetTypes =
+                        {
+                          [1] = "Air",
+                        }, -- end of ["targetTypes"]
+                        value = "Air;",
+                        noTargetTypes =
+                        {
+                        }, -- end of ["noTargetTypes"]
+                        priority = 0,
+                        zoneRadius = 36576,
+                      }, -- end of ["params"]
+                    }, -- end of [2]
+                    [3] = {
                       enabled = true,
                       auto = false,
                       id = "Orbit",
-                      number = 2,
+                      number = 3,
                       params = {
                         pattern = "Circle",
-                      }
-                    }
-                  }
-                }
-              }
+                      },
+                    },
+                  },
+                },
+              },
             },
-          }
+          },
         },
       },
     }

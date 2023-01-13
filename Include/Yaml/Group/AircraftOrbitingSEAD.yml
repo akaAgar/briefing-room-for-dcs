@@ -10,12 +10,6 @@ waypoints:
     action: Turning Point
     speed: $SPEED$
     tasks:
-      - id: EngageTargets
-        key: SEAD
-        parameters:
-          targetTypes:
-            - Air Defence
-          priority: 0
       - id: Option
         parameters:
           wrapped: true
@@ -31,9 +25,6 @@ waypoints:
           wrapped: true
           value: $EPLRS$
           groupId: $GROUPID$
-      - id: Orbit
-        parameters:
-          pattern: Circle
     type: Turning Point
     etaLocked: true
     speedLocked: true

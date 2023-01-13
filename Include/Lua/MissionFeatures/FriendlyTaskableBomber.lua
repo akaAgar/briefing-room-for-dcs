@@ -21,14 +21,34 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableBomber.launchBombi
       params = {
         route = {
           points = {
-			[1] = {
+            [1] = {
               speed = 260,
-              x = dcsExtensions.lerp(currPos.x, mark.pos.x, 0.3),
-              y = dcsExtensions.lerp(currPos.z, mark.pos.z, 0.3),
+              x = dcsExtensions.lerp(currPos.x, mark.pos.x, 0.1),
+              y = dcsExtensions.lerp(currPos.z, mark.pos.z, 0.1),
               type = 'Turning Point',
               ETA_locked = false,
               ETA = 100,
-              alt = 7620,
+              alt = 9144,
+              alt_type = "BARO",
+              speed_locked = false,
+              action = "Turning Point",
+              name = " ",
+              task = {
+                id = "ComboTask",
+                params = {
+                  tasks = {
+                  },
+                },
+              },
+            },
+            [2] = {
+              speed = 260,
+              x = dcsExtensions.lerp(currPos.x, mark.pos.x, 0.6),
+              y = dcsExtensions.lerp(currPos.z, mark.pos.z, 0.6),
+              type = 'Turning Point',
+              ETA_locked = false,
+              ETA = 100,
+              alt = 9144,
               alt_type = "BARO",
               speed_locked = false,
               action = "Turning Point",
@@ -37,19 +57,69 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableBomber.launchBombi
                 id = "ComboTask",
                 params = {
                   tasks = {
-                    
+                    [1] = {
+                      enabled = true,
+                      auto = false,
+                      id = "WrappedAction",
+                      number = 1,
+                      params = {
+                        action =
+                        {
+                          id = "Option",
+                          params =
+                          {
+                            value = 2,
+                            name = 13,
+                          }, -- end of ["params"]
+                        }, -- end of ["action"]
+                      },
+                    },
+                    [2] = {
+                      enabled = true,
+                      auto = false,
+                      id = "WrappedAction",
+                      number = 2,
+                      params = {
+                        action =
+                        {
+                          id = "Option",
+                          params =
+                          {
+                            value = 2,
+                            name = 1,
+                          }, -- end of ["params"]
+                        }, -- end of ["action"]
+                      },
+                    },
+                    [3] = {
+                      enabled = true,
+                      auto = false,
+                      id = "WrappedAction",
+                      number = 3,
+                      params = {
+                        action =
+                        {
+                          id = "Option",
+                          params =
+                          {
+                            value = 1,
+                            name = 4,
+                          }, -- end of ["params"]
+                        }, -- end of ["action"]
+                      },
+                    },
                   },
                 },
               },
             },
-            [2] = {
+            [3] = {
               speed = 320,
               x = dcsExtensions.lerp(currPos.x, mark.pos.x, 0.7),
               y = dcsExtensions.lerp(currPos.z, mark.pos.z, 0.7),
               type = 'Turning Point',
               ETA_locked = false,
               ETA = 100,
-              alt = 7620,
+              alt = 9144,
               alt_type = "BARO",
               speed_locked = false,
               action = "Turning Point",
@@ -81,14 +151,14 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableBomber.launchBombi
                 },
               },
             },
-			[3] = {
+            [4] = {
               speed = 200,
               x = dcsExtensions.lerp(currPos.x, mark.pos.x, 0.5),
               y = dcsExtensions.lerp(currPos.z, mark.pos.z, 0.5),
               type = 'Turning Point',
               ETA_locked = false,
               ETA = 100,
-              alt = 7620,
+              alt = 9144,
               alt_type = "BARO",
               speed_locked = false,
               action = "Turning Point",
