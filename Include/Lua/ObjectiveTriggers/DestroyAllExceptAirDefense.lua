@@ -46,7 +46,7 @@ table.insert(briefingRoom.mission.objectiveTriggers, function(event)
     end
   
     return true
-  end
+  end)
   
   -- Remove all non-tracking radar units from the targets list (unless there's no tracking radar at all)
   do
@@ -63,5 +63,5 @@ table.insert(briefingRoom.mission.objectiveTriggers, function(event)
       briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames = newTargetTable
       briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitsCount = #newTargetTable
     end
-  end)
+  end
   
