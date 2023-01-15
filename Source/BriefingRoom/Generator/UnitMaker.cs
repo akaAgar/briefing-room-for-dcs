@@ -496,9 +496,7 @@ namespace BriefingRoom4DCS.Generator
             if (!string.IsNullOrEmpty(unitDB.RequiredMod))
             {
                 DBEntryDCSMod mod = Database.Instance.GetEntry<DBEntryDCSMod>(unitDB.RequiredMod);
-                if (string.IsNullOrEmpty(mod.RequiredID))
-                    ModUnits.AddRange(unitDB.DCSIDs);
-                else
+                if (!string.IsNullOrEmpty(mod.RequiredID))
                     ModUnits.Add(mod.RequiredID);
             }
             var unit = new DCSUnit(unitType);
