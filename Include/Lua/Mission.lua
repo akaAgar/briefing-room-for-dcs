@@ -25,7 +25,7 @@ mission =
         ["conditions"] = 
         {
             [1] = "return(true)",
-            [2] = "return(c_flag_is_true(2) )",
+            [2] = "return(c_flag_is_true(\"BR_END_MISSION\") )",
         }, -- end of ["conditions"]
         ["customStartup"] = 
         {
@@ -51,7 +51,7 @@ mission =
         {
             ["conditions"] = 
             {
-                [1] = "return(c_flag_is_true(1))",
+                [1] = "return(c_flag_is_true(\"BR_MISSION_COMPLETE\") )",
             }, -- end of ["conditions"]
             ["actions"] = 
             {
@@ -220,7 +220,7 @@ mission =
             {
                 [1] = 
                 {
-                    ["flag"] = 1,
+                    ["flag"] = "BR_MISSION_COMPLETE",
                     ["predicate"] = "c_flag_is_true",
                     ["zone"] = "",
                 }, -- end of [1]
@@ -228,7 +228,7 @@ mission =
             ["side"] = "OFFLINE",
             ["score"] = 100,
             ["predicate"] = "score",
-            ["comment"] = "",
+            ["comment"] = "MissionComplete",
         }, -- end of [1]
     }, -- end of ["goals"]
     ["descriptionNeutralsTask"] = "DictKey_editorNotes",
@@ -407,7 +407,7 @@ mission =
             {
                 [1] = 
                 {
-                    ["flag"] = 2,
+                    ["flag"] = "BR_END_MISSION",
                     ["predicate"] = "c_flag_is_true",
                     ["zone"] = "",
                 }, -- end of [1]
@@ -420,12 +420,11 @@ mission =
                 [1] = 
                 {
                     ["text"] = "",
-                    ["start_delay"] = 0,
+                    ["start_delay"] = 600,
                     ["zone"] = "",
                     ["predicate"] = "a_end_mission",
-                    ["winner"] = "blue",
+                    ["winner"] = "$LUAPLAYERCOALITION$",
                     ["KeyDict_text"] = "",
-                    ["meters"] = 1000,
                 }, -- end of [1]
             }, -- end of ["actions"]
         }, -- end of [2]

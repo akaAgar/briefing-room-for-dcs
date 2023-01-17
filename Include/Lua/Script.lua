@@ -869,6 +869,7 @@ briefingRoom.mission = {} -- Main BriefingRoom mission table
 briefingRoom.mission.complete = false -- Is the mission complete?
 briefingRoom.mission.coreFunctions = { }
 briefingRoom.mission.hasStarted = false -- has at least one player taken off?
+briefingRoom.mission.autoEnd = $ENDMISSIONAUTOMATICALLY$
 
 -- Marks objective with index index as complete, and completes the mission itself if all objectives are complete
 function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
@@ -899,7 +900,10 @@ function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
       return o.failed
     end) > 0
     briefingRoom.radioManager.play("$LANG_COMMAND$: "..(hasFailed and "$LANG_MISSIONCOMPLETEWITHFAILURES$" or "$LANG_MISSIONCOMPLETE$"), (hasFailed and  "RadioHQMissionFailed" or "RadioHQMissionComplete"), math.random(6, 8))
-    trigger.action.setUserFlag(1, true) -- Mark the mission complete internally, so campaigns can move to the next mission
+    trigger.action.setUserFlag("BR_MISSION_COMPLETE", true) -- Mark the mission complete internally, so campaigns can move to the next mission
+    if briefingRoom.mission.autoEnd then
+      trigger.action.setUserFlag("BR_END_MISSION", true) -- Set off end mission trigger
+    end
   elseif not briefingRoom.mission.hasStarted then
     briefingRoom.radioManager.play("$LANG_AUTOCOMPLETEOBJECTIVE$", "Radio0", math.random(6, 8))
   else
