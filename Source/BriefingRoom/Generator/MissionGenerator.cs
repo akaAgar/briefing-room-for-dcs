@@ -86,6 +86,7 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("CaJTACRed", template.CombinedArmsJTACRed);
             mission.SetValue("CaPilotControl", template.OptionsMission.Contains("CombinedArmsPilotControl"));
             mission.SetValue("EndMissionAutomatically", template.OptionsMission.Contains("EndMissionAutomatically"));
+            mission.SetValue("EndMissionOnCommand", template.OptionsMission.Contains("EndMissionOnCommand"));
 
 
 

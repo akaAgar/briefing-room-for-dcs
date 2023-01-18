@@ -870,6 +870,7 @@ briefingRoom.mission.complete = false -- Is the mission complete?
 briefingRoom.mission.coreFunctions = { }
 briefingRoom.mission.hasStarted = false -- has at least one player taken off?
 briefingRoom.mission.autoEnd = $ENDMISSIONAUTOMATICALLY$
+briefingRoom.mission.commandEnd = $ENDMISSIONONCOMMAND$
 
 -- Marks objective with index index as complete, and completes the mission itself if all objectives are complete
 function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
@@ -903,6 +904,9 @@ function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
     trigger.action.setUserFlag("BR_MISSION_COMPLETE", true) -- Mark the mission complete internally, so campaigns can move to the next mission
     if briefingRoom.mission.autoEnd then
       trigger.action.setUserFlag("BR_END_MISSION", true) -- Set off end mission trigger
+    end
+    if briefingRoom.mission.commandEnd then
+      missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_ENDMISSION$", nil, briefingRoom.f10MenuCommands.endMission, nil)
     end
   elseif not briefingRoom.mission.hasStarted then
     briefingRoom.radioManager.play("$LANG_AUTOCOMPLETEOBJECTIVE$", "Radio0", math.random(6, 8))
@@ -973,6 +977,10 @@ function briefingRoom.f10MenuCommands.getWaypointCoordinates(index)
   briefingRoom.radioManager.play("$LANG_COMMAND$: $LANG_WAYPOINTRESPONSE$\n\n"..cooMessage, "RadioHQWaypointCoordinates", briefingRoom.radioManager.getAnswerDelay())
   missionCommands.removeItemForCoalition(briefingRoom.playerCoalition, briefingRoom.mission.objectives[index].waypointRadioCommand)
   briefingRoom.mission.objectives[index].waypointRadioCommand = missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_WAYPOINTCOORDINATES$:\n"..cooMessage, briefingRoom.f10Menu.objectives[index], briefingRoom.f10MenuCommands.getWaypointCoordinates, index)
+end
+
+function briefingRoom.f10MenuCommands.endMission ()
+  trigger.action.setUserFlag("BR_END_MISSION_NOW", true)
 end
 
 -- Common mission menu (mission status and mission features)

@@ -6,6 +6,7 @@ mission =
         {
             [1] = "a_do_script_file(getValueResourceByKey(\"ResKey_Script\"));",
             [2] = "a_end_mission(\"$LUAPLAYERCOALITION$\", \"\", 0); mission.trig.func[2]=nil;",
+            [3] = "a_end_mission(\"$LUAPLAYERCOALITION$\", getValueDictByKey(\"\"), 0); mission.trig.func[3]=nil;",
         }, -- end of ["actions"]
         ["events"] = 
         {
@@ -26,6 +27,7 @@ mission =
         {
             [1] = "return(true)",
             [2] = "return(c_flag_is_true(\"BR_END_MISSION\") )",
+            [3] = "return(c_flag_is_true(\"BR_END_MISSION_NOW\") )",
         }, -- end of ["conditions"]
         ["customStartup"] = 
         {
@@ -412,7 +414,7 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-            ["comment"] = "Ends mission when trigger 2 is true",
+            ["comment"] = "Ends mission when triggered by flag",
             ["eventlist"] = "",
             ["predicate"] = "triggerOnce",
             ["actions"] = 
@@ -428,6 +430,33 @@ mission =
                 }, -- end of [1]
             }, -- end of ["actions"]
         }, -- end of [2]
+        [3] = 
+        {
+            ["rules"] = 
+            {
+                [1] = 
+                {
+                    ["flag"] = "BR_END_MISSION_NOW",
+                    ["predicate"] = "c_flag_is_true",
+                    ["zone"] = "",
+                }, -- end of [1]
+            }, -- end of ["rules"]
+            ["comment"] = "Ends mission when triggered by flag",
+            ["eventlist"] = "",
+            ["predicate"] = "triggerOnce",
+            ["actions"] = 
+            {
+                [1] = 
+                {
+                    ["text"] = "",
+                    ["start_delay"] = 0,
+                    ["zone"] = "",
+                    ["predicate"] = "a_end_mission",
+                    ["winner"] = "$LUAPLAYERCOALITION$",
+                    ["KeyDict_text"] = "",
+                }, -- end of [1]
+            }, -- end of ["actions"]
+        }, -- end of [3]
     }, -- end of ["trigrules"]
     ["currentKey"] = 0,
     ["start_time"] = $STARTTIME$,
