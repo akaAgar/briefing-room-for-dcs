@@ -20,62 +20,48 @@ function ToggleLayer(id) {
     group.addTo(leafMap)
 }
 
-function GetMapKeyDistance(key, x, z) {
-    const keyParts = key.split(',')
-    const keyX = parseInt(keyParts[0].split(":")[1])
-    const keyZ = parseInt(keyParts[1].split(":")[1])
-    return Math.sqrt(Math.pow(keyX - x, 2) + Math.pow(keyZ - z, 2))
+
+function GetFromMapCoordData(pos, map) {
+    return DCStoLatLong(pos, GetDCSMapProjector(map)).reverse()
 }
 
-function GetFromMapCoordData(pos, mapCoordData) {
-    x = Math.round(pos[0] / 1000) * 1000
-    z = Math.round(pos[1] / 1000) * 1000
-    key = `x:${x},z:${z}`
-    pos2 = mapCoordData[key]
-    if (pos2 == undefined) {
-        const nearestKey = Object.keys(mapCoordData).reduce((a, b) => GetMapKeyDistance(a, x, z) < GetMapKeyDistance(b, x, z) ? a : b);
-        pos2 = mapCoordData[nearestKey]
-        if (pos2 == undefined) {
-            throw `Key ${key} not found in positional data.`
-        }
-    }
-    return [pos2["x"], pos2["y"]]
-}
-
-function GetFromMapCoordDataXY(pos, mapCoordData) {
-    const postArry = GetFromMapCoordData(pos, mapCoordData)
+function GetFromMapCoordDataXY(pos, map) {
+    const postArry = GetFromMapCoordData(pos, map)
     return { x: postArry[0], y: postArry[1] }
 }
 
-const GetMapData = Memoize(async (map) => {
-    try {
-        const response = await fetch(`_content/BriefingRoomCommonGUI/js/${map}.json.gz`)
-        const fileReader = await response.arrayBuffer();
-        const binData = new Uint8Array(fileReader);
-        return JSON.parse(pako.ungzip(binData, { 'to': 'string' }));
-    } catch (error) {
-        throw `Either can't find ${leafMap} data file or failed to parse it. raw error: ${error} ${error.stack}`
-    }
-})
 
-const GetBounds = Memoize(async (map) => {
-    const MapCoordMap = await GetMapData(map)
-    const MapCoordArray = Object.values(MapCoordMap);
-    const XCoords = MapCoordArray.map(o => o.x)
-    const YCoords = MapCoordArray.map(o => o.y)
-    const bounds = [[XCoords.reduce((min, v) => min <= v ? min : v, Infinity), YCoords.reduce((min, v) => min <= v ? min : v, Infinity)], [XCoords.reduce((max, v) => max >= v ? max : v, -Infinity), YCoords.reduce((max, v) => max >= v ? max : v, -Infinity)]];
-    return bounds
-})
-
-async function GetCenterView(map, leafMap) {
-    const bounds = await GetBounds(map)
-    const viewCoords = [(bounds[0][0] + (bounds[1][0] - bounds[0][0]) / 2), (bounds[0][1] + (bounds[1][1] - bounds[0][1]) / 2)]
-    leafMap.setView(viewCoords, 6.5);
+const GetBounds = (map) => {
+    dataset = MapBoundaries[map]
+    return [
+        [dataset[0].lat, dataset[0].lon],
+        [dataset[1].lat, dataset[1].lon],
+        [dataset[2].lat, dataset[2].lon],
+        [dataset[3].lat, dataset[3].lon],
+    ]
 }
 
-async function DrawMapBounds(map, leafMap) {
-    const bounds = await GetBounds(map)
-    L.rectangle(bounds, {
+function GetSquareBounds(map) {
+    const bounds = GetBounds(map)
+    const xArr = bounds.map(bound => bound[0])
+    const yArr = bounds.map(bound => bound[1])
+    return [[Math.min(...xArr), Math.min(...yArr)], [Math.max(...xArr), Math.max(...yArr)]]
+}
+
+function PullPosWithinBounds(pos, map)
+{
+    const bounds = GetSquareBounds(map)
+    return [Math.max(Math.min(pos[0], bounds[1][0]), bounds[0][0]), Math.max(Math.min(pos[1], bounds[1][1]), bounds[0][1])]
+}
+
+function GetCenterView(map, leafMap) {
+    const bounds = GetSquareBounds(map)
+    leafMap.setView([(bounds[0][0] + bounds[1][0]) / 2, (bounds[0][1] + bounds[1][1]) / 2], 6.5);
+}
+
+function DrawMapBounds(map, leafMap) {
+    const bounds = GetBounds(map)
+    L.polygon(bounds, {
         color: 'Yellow',
         weight: 5,
         fillOpacity: 0.0
@@ -84,18 +70,12 @@ async function DrawMapBounds(map, leafMap) {
 
 async function SetHintPositions(positionsDict, map) {
     hintPositions = {}
-    var MapCoordMap = await GetMapData(map)
     Object.keys(positionsDict).forEach(key => {
         if (positionsDict[key][0] === 0 && positionsDict[key][1] === 0) return
-        hintPositions[key] = GetFromMapCoordDataXY(positionsDict[key], MapCoordMap)
+        hintPositions[key] = GetFromMapCoordDataXY(positionsDict[key], map)
     })
 }
 
-function distance(p, point) {
-    return Math.sqrt(Math.pow(point.lat - p.x, 2) + Math.pow(point.lng - p.y, 2))
-}
-
-const getNearestValidPos = (pos, MapCoordMap) => Object.values(MapCoordMap).reduce((a, b) => distance(a, pos) < distance(b, pos) ? a : b);
 
 async function RenderHintMap(map, hintKey) {
     //Show hint map
@@ -121,18 +101,19 @@ async function RenderHintMap(map, hintKey) {
     Object.keys(hintPositions).forEach(key => {
         createHintMarker(key, map)
     })
-    await GetCenterView(map, leafHintMap)
-    await DrawMapBounds(map, leafHintMap)
+    leafHintMap.setView([0, 0], 6.5);
+    GetCenterView(map, leafHintMap)
+    DrawMapBounds(map, leafHintMap)
     if (hintKey) {
         await PrepClickHint(hintKey, map)
     }
 }
 
-async function PrepClickHint(hintKey, map) {
-    var MapCoordMap = await GetMapData(map)
+function PrepClickHint(hintKey, map) {
     leafHintMap.once('click', function (e) {
         hintMarkerMap = map
-        hintPositions[hintKey] = getNearestValidPos(e.latlng, MapCoordMap)
+        boundedPos = PullPosWithinBounds([e.latlng.lat, e.latlng.lng],map)
+        hintPositions[hintKey] = { x: boundedPos[0], y: boundedPos[1] }
         if (hintKey in hintMarkers) {
             hintMarkers[hintKey].setLatLng([hintPositions[hintKey].x, hintPositions[hintKey].y])
         } else {
@@ -157,8 +138,8 @@ function createHintMarker(key, map) {
     hintMarkers[key].on('dragend', async function (event) {
         var marker = event.target;
         var position = marker.getLatLng();
-        var MapCoordMap = await GetMapData(map)
-        hintPositions[key] = getNearestValidPos(position, MapCoordMap)
+        boundedPos = PullPosWithinBounds([position.lat, position.lng],map)
+        hintPositions[key] = { x: boundedPos[0], y: boundedPos[1] }
         marker.setLatLng([hintPositions[key].x, hintPositions[key].y])
     });
     hintMarkers[key].on('dblclick', async function (event) {
@@ -168,18 +149,10 @@ function createHintMarker(key, map) {
     });
 }
 
-async function GetHintPoints(map) {
-    var MapCoordMap = await GetMapData(map)
+function GetHintPoints(map) {
     const data = {}
     Object.keys(hintPositions).forEach(hintKey => {
-        for (const key in MapCoordMap) {
-            const pos = MapCoordMap[key]
-            if (hintPositions[hintKey].x == pos.x && hintPositions[hintKey].y == pos.y) {
-                const parts = key.replace("x:", "").replace("z:", "").split(",")
-                data[hintKey] = parts.map(x => parseFloat(x));
-                return
-            }
-        }
+        data[hintKey] = latLongToDCS([hintPositions[hintKey].x, hintPositions[hintKey].y], GetDCSMapProjector(map))
     });
     return data
 }
@@ -197,9 +170,9 @@ async function RenderEditorMap(map) {
     } catch (error) {
         console.warn(error)
     }
-    
-    await GetCenterView(map, leafSituationMap)
-    await DrawMapBounds(map, leafSituationMap)
+
+    GetCenterView(map, leafSituationMap)
+    DrawMapBounds(map, leafSituationMap)
 
     leafSituationMap
     var drawnItems = new L.FeatureGroup();
@@ -256,36 +229,30 @@ async function RenderEditorMap(map) {
     });
 }
 
-function CoordFind(coord, MapCoordMap) {
-    return Object.keys(MapCoordMap).map(k => ({ k, d: distance(MapCoordMap[k], coord), v: MapCoordMap[k] })).reduce((min, v) => min.d <= v.d ? min : v, { d: Infinity })
+
+function CreateCoordsString(layer, map) {
+    const projector = GetDCSMapProjector(map)
+    const adjustedCoords = layer.editing.latlngs[0][0].map(x => {
+        const pos2 = PullPosWithinBounds([x.lat, x.lng], map)
+        return {lat: pos2[0], lng: pos2[1]}
+    })
+    layer.setLatLngs(adjustedCoords)
+
+    return adjustedCoords.map(x => [x.lat, x.lng]).map((x, i) => `Waypoint${i.toString().padStart(4, "0")}=${latLongToDCS(x, projector)}`).join("\n")
 }
 
-
-function CoordToString(spot) {
-    return spot.k.replace("x:", "").replace("z:", "")
-}
-
-function CreateCoordsString(layer, MapCoordMap) {
-    const coordMap = layer.editing.latlngs[0][0].map(x => CoordFind(x, MapCoordMap))
-    const newCoords = coordMap.map(x => ({ lat: x.v.x, lng: x.v.y }))
-    layer.setLatLngs(newCoords)
-    return coordMap.map((x, i) => `Waypoint${i.toString().padStart(4, "0")}=${CoordToString(x)}`).join("\n")
-}
-
-async function GetSituationCoordinates(map) {
+function GetSituationCoordinates(map) {
     let redCoordsString, blueCoordsString, neutralCoordString;
-    var MapCoordMap = await GetMapData(map)
 
-    blueCoordsString = CreateCoordsString(situationMapLayers.BLUE, MapCoordMap)
-    redCoordsString = CreateCoordsString(situationMapLayers.RED, MapCoordMap)
+    blueCoordsString = CreateCoordsString(situationMapLayers.BLUE, map)
+    redCoordsString = CreateCoordsString(situationMapLayers.RED, map)
     if (situationMapLayers.NEUTRAL) {
-        neutralCoordString = CreateCoordsString(situationMapLayers.NEUTRAL, MapCoordMap)
+        neutralCoordString = CreateCoordsString(situationMapLayers.NEUTRAL, map)
     }
     return [redCoordsString, blueCoordsString, neutralCoordString]
 }
 
 async function RenderMap(mapData, map, inverted) {
-    var MapCoordMap = await GetMapData(map)
     if (leafMap) {
         leafMap.off();
         leafMap.remove();
@@ -305,20 +272,20 @@ async function RenderMap(mapData, map, inverted) {
     }
 
     Object.keys(mapData).forEach(key => {
-        if (key.includes('ISLAND')) {
-            return
-        }
+        // if (key.includes('ISLAND')) {
+        //     return
+        // }
         data = mapData[key]
         if (data.length == 1) {
-            AddIcon(key, data, leafMap, MapCoordMap, inverted)
+            AddIcon(key, data, leafMap, map, inverted)
         } else if (key.includes("ROUTE_")) {
-            AddWaypoints(data, leafMap, MapCoordMap)
+            AddWaypoints(data, leafMap, map)
         } else {
-            AddZone(key, data, leafMap, MapCoordMap)
+            AddZone(key, data, leafMap, map)
         }
     })
-    if(Object.keys(mapData).includes("AIRBASE_HOME"))
-        leafMap.setView(GetFromMapCoordData(mapData["AIRBASE_HOME"][0], MapCoordMap), 6.5);
+    if (Object.keys(mapData).includes("AIRBASE_HOME"))
+        leafMap.setView(GetFromMapCoordData(mapData["AIRBASE_HOME"][0].reverse(), map), 6.5);
     else {
         await GetCenterView(map, leafMap)
     }
@@ -334,13 +301,13 @@ function addButtons() {
     }).addTo(leafMap);
 }
 
-function AddIcon(key, data, map, MapCoordMap, inverted) {
+function AddIcon(key, data, map, mapName, inverted) {
     if (key.startsWith("UNIT")) {
-        AddUnit(key, data, map, MapCoordMap, inverted)
+        AddUnit(key, data, map, mapName, inverted)
     } else if (key.includes("WAYPOINT_")) {
-        AddWaypoint(key, data, map, MapCoordMap)
+        AddWaypoint(key, data, map, mapName)
     } else {
-        new L.Marker(GetFromMapCoordData(data[0], MapCoordMap), {
+        new L.Marker(GetFromMapCoordData(data[0], mapName), {
             title: GetTitle(key),
             icon: new L.DivIcon({
                 html: `<img class="map_point_icon" src="_content/BriefingRoomCommonGUI/img/nato-icons/${GetNatoIcon(key, inverted)}.svg" alt="${key}"/>`
@@ -350,9 +317,9 @@ function AddIcon(key, data, map, MapCoordMap, inverted) {
     }
 }
 
-function AddWaypoint(key, data, map, MapCoordMap) {
+function AddWaypoint(key, data, map, mapName) {
     const title = key.replace("WAYPOINT_", "")
-    const coords = GetFromMapCoordData(data[0], MapCoordMap)
+    const coords = GetFromMapCoordData(data[0], mapName)
     new L.circleMarker(coords, {
         title: title,
         radius: 10,
@@ -369,8 +336,8 @@ function AddWaypoint(key, data, map, MapCoordMap) {
     }).addTo(map)
 }
 
-function AddUnit(key, data, map, MapCoordMap, inverted) {
-    const coords = GetFromMapCoordData(data[0], MapCoordMap)
+function AddUnit(key, data, map, mapName, inverted) {
+    const coords = GetFromMapCoordData(data[0], mapName)
     group = mapGroups[GetGroup(key)]
     group.addLayer(new L.Marker(coords, {
         title: GetTitle(key),
@@ -390,9 +357,9 @@ function AddUnit(key, data, map, MapCoordMap, inverted) {
     }
 }
 
-function AddWaypoints(data, map, MapCoordMap) {
+function AddWaypoints(data, map, mapName) {
     let color = waypointColors[Math.floor(Math.random() * waypointColors.length)];
-    let coords = data.map(x => GetFromMapCoordData(x, MapCoordMap))
+    let coords = data.map(x => GetFromMapCoordData(x, mapName))
     new L.polyline(coords, {
         color: color,
         weight: 2,
@@ -402,8 +369,8 @@ function AddWaypoints(data, map, MapCoordMap) {
     L.featureGroup(GetArrows(coords, color, 1, map)).addTo(map);
 }
 
-function AddZone(key, data, map, MapCoordMap) {
-    let coords = data.map(x => GetFromMapCoordData(x, MapCoordMap))
+function AddZone(key, data, map, mapName) {
+    let coords = data.map(x => GetFromMapCoordData(x, mapName))
     L.polygon(coords, {
         color: GetColour(key),
         fillColor: GetColour(key),
