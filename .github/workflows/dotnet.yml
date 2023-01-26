@@ -28,7 +28,7 @@ jobs:
       uses: 1466587594/get-current-time@v2
       id: current-time
       with:
-        format: YYMMDD-HHMM
+        format: YYMMDD-HHMMSS
         utcOffset: "+00:00"
 
     - name: Set Build Version
@@ -63,7 +63,7 @@ jobs:
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
-          tag: "beta-release-${{ steps.current-time.outputs.formattedTime }}"
+          tag: "beta-release-${{ steps.current-time.outputs.formattedTime }}-${{ github.run_id }}-${{ github.run_attempt }}"
           name: "beta-release-${{ steps.current-time.outputs.formattedTime }}"
           body: |
             This is a automated beta build. This may not work. Its not recommend to overwrite a official release with this.
