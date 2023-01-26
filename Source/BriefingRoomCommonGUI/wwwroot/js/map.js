@@ -272,9 +272,9 @@ async function RenderMap(mapData, map, inverted) {
     }
 
     Object.keys(mapData).forEach(key => {
-        // if (key.includes('ISLAND')) {
-        //     return
-        // }
+        if (key.includes('ISLAND')) {
+            return
+        }
         data = mapData[key]
         if (data.length == 1) {
             AddIcon(key, data, leafMap, map, inverted)
