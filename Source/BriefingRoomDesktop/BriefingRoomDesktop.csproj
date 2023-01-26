@@ -1,34 +1,47 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
-    <RootNamespace>BriefingRoom4DCS.GUI.Desktop</RootNamespace>
-    <UseWindowsForms>true</UseWindowsForms>
-    <PublishSingleFile>true</PublishSingleFile>
-    <SelfContained>true</SelfContained>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-    <PublishTrimmed>false</PublishTrimmed>
-    <PublishReadyToRun>true</PublishReadyToRun>
-    <PublishReadyToRunShowWarnings>true</PublishReadyToRunShowWarnings>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFrameworks>net7.0-windows10.0.19041.0</TargetFrameworks>
+        <OutputType>Exe</OutputType>
+        <RootNamespace>BriefingRoom4DCS.GUI.Desktop</RootNamespace>
+        <UseMaui>true</UseMaui>
+        <SingleProject>true</SingleProject>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <EnableDefaultCssItems>false</EnableDefaultCssItems>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebView.WindowsForms" Version="7.0.58" />
-    <ProjectReference Include="../BriefingRoomCommonGUI/BriefingRoomCommonGUI.csproj" />
-  </ItemGroup>
+        <!-- Display name -->
+        <ApplicationTitle>BriefingRoom4DCS.GUI.Desktop</ApplicationTitle>
 
-  <ItemGroup>
-    <Content Include="..\..\Database\**" LinkBase="Database" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="..\..\CustomConfigs\**" LinkBase="CustomConfigs" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="..\..\Include\**" LinkBase="Include" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="..\..\Media\**" LinkBase="Media" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="..\..\README.md" LinkBase="" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="Resources\**" LinkBase="Resources" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
-  </ItemGroup>
+        <!-- App Identifier -->
+        <ApplicationId>com.companyname.briefingroom4dcs.gui.desktop</ApplicationId>
+        <ApplicationIdGuid>547F6D3F-3EBE-4162-8633-1156D549E8EA</ApplicationIdGuid>
 
-  <PropertyGroup>
-    <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
-  </PropertyGroup>
+        <!-- Versions -->
+        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+        <ApplicationVersion>1</ApplicationVersion>
+    </PropertyGroup>
 
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="..\..\Database\**" LinkBase="Database" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
+		<Content Include="..\..\CustomConfigs\**" LinkBase="CustomConfigs" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
+		<Content Include="..\..\Include\**" LinkBase="Include" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
+		<Content Include="..\..\Media\**" LinkBase="Media" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
+		<Content Include="..\..\README.md" LinkBase="" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
+		<Content Include="Resources\**" LinkBase="Resources" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
+
+	<ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+    </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\briefing-room-for-dcs\Source\BriefingRoomCommonGUI\BriefingRoomCommonGUI.csproj" />
+	</ItemGroup>
 </Project>

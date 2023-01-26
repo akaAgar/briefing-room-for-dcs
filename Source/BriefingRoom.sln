@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoom", "BriefingRoo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoomWeb", "BriefingRoomWeb\BriefingRoomWeb.csproj", "{1721B4FA-181B-4BB3-8D1F-67F639A52C6A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoomDesktop", "BriefingRoomDesktop\BriefingRoomDesktop.csproj", "{A3E437D2-8115-497B-9C98-AE8C90B15828}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WkHtmlWrapper", "WkHtmlWrapper", "{3315B5DD-1E45-4893-ACEE-2D244C73B965}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WkHtmlWrapper.Core", "WkHtmlWrapper\WkHtmlWrapper.Core\WkHtmlWrapper.Core.csproj", "{03C7CF2D-244C-4526-A0CF-98E09C09E459}"
@@ -18,6 +16,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WkHtmlWrapper.Image", "WkHtmlWrapper\WkHtmlWrapper.Image\WkHtmlWrapper.Image.csproj", "{9F8EB2E8-9F2E-4F5D-A1A2-1F45D42269DF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoomCommonGUI", "BriefingRoomCommonGUI\BriefingRoomCommonGUI.csproj", "{D6FAF643-7539-4200-AEC5-412422616F3B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoomDesktop", "BriefingRoomDesktop\BriefingRoomDesktop.csproj", "{6B68E106-BB52-46EF-99EA-770152E14FCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +37,6 @@ Global
 		{1721B4FA-181B-4BB3-8D1F-67F639A52C6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1721B4FA-181B-4BB3-8D1F-67F639A52C6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1721B4FA-181B-4BB3-8D1F-67F639A52C6A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A3E437D2-8115-497B-9C98-AE8C90B15828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3E437D2-8115-497B-9C98-AE8C90B15828}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3E437D2-8115-497B-9C98-AE8C90B15828}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A3E437D2-8115-497B-9C98-AE8C90B15828}.Release|Any CPU.Build.0 = Release|Any CPU
 		{03C7CF2D-244C-4526-A0CF-98E09C09E459}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{03C7CF2D-244C-4526-A0CF-98E09C09E459}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03C7CF2D-244C-4526-A0CF-98E09C09E459}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -53,6 +49,12 @@ Global
 		{D6FAF643-7539-4200-AEC5-412422616F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6FAF643-7539-4200-AEC5-412422616F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6FAF643-7539-4200-AEC5-412422616F3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B68E106-BB52-46EF-99EA-770152E14FCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B68E106-BB52-46EF-99EA-770152E14FCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B68E106-BB52-46EF-99EA-770152E14FCD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6B68E106-BB52-46EF-99EA-770152E14FCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B68E106-BB52-46EF-99EA-770152E14FCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B68E106-BB52-46EF-99EA-770152E14FCD}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
