@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30225.117
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoomCommandLine", "BriefingRoomCommandLine\BriefingRoomCommandLine.csproj", "{015DF5C0-B3DE-459F-A700-5968FE1A7F7C}"
 EndProject
@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoomDesktop", "Brie
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WkHtmlWrapper", "WkHtmlWrapper", "{3315B5DD-1E45-4893-ACEE-2D244C73B965}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WkHtmlWrapper.Core", "WkHtmlWrapper\WkHtmlWrapper.Core\WkHtmlWrapper.Core.csproj", "{03C7CF2D-244C-4526-A0CF-98E09C09E459}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WkHtmlWrapper.Core", "WkHtmlWrapper\WkHtmlWrapper.Core\WkHtmlWrapper.Core.csproj", "{03C7CF2D-244C-4526-A0CF-98E09C09E459}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WkHtmlWrapper.Image", "WkHtmlWrapper\WkHtmlWrapper.Image\WkHtmlWrapper.Image.csproj", "{9F8EB2E8-9F2E-4F5D-A1A2-1F45D42269DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WkHtmlWrapper.Image", "WkHtmlWrapper\WkHtmlWrapper.Image\WkHtmlWrapper.Image.csproj", "{9F8EB2E8-9F2E-4F5D-A1A2-1F45D42269DF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoomCommonGUI", "BriefingRoomCommonGUI\BriefingRoomCommonGUI.csproj", "{D6FAF643-7539-4200-AEC5-412422616F3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,15 +49,19 @@ Global
 		{9F8EB2E8-9F2E-4F5D-A1A2-1F45D42269DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F8EB2E8-9F2E-4F5D-A1A2-1F45D42269DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F8EB2E8-9F2E-4F5D-A1A2-1F45D42269DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6FAF643-7539-4200-AEC5-412422616F3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6FAF643-7539-4200-AEC5-412422616F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6FAF643-7539-4200-AEC5-412422616F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6FAF643-7539-4200-AEC5-412422616F3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {764B1D44-5565-4D8F-B21D-0EDE35C5400B}
-	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{03C7CF2D-244C-4526-A0CF-98E09C09E459} = {3315B5DD-1E45-4893-ACEE-2D244C73B965}
 		{9F8EB2E8-9F2E-4F5D-A1A2-1F45D42269DF} = {3315B5DD-1E45-4893-ACEE-2D244C73B965}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {764B1D44-5565-4D8F-B21D-0EDE35C5400B}
 	EndGlobalSection
 EndGlobal
