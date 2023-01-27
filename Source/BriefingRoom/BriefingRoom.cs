@@ -34,18 +34,20 @@ namespace BriefingRoom4DCS
     {
         public static string TARGETED_DCS_WORLD_VERSION { get; private set; }
         public static Dictionary<string, string> AvailableLanguagesMap { get; private set; }
+        public static bool RUNNING_IN_DOCKER = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
 
         public static DatabaseLanguage LanguageDB { get; private set; }
 
         public const string REPO_URL = "https://github.com/akaAgar/briefing-room-for-dcs";
 
-        public const string WEBSITE_URL = "https://akaagar.itch.io/briefing-room-for-dcs";
+        public const string WEBSITE_URL = "https://akaagar.github.io/briefing-room-for-dcs/";
 
         public const string VERSION = "0.5.301.28";
 
         public const string BUILD_VERSION = "~BUILD_VERSION~";
 
         public const int MAXFILESIZE = 50000000;
+
 
 
         public delegate void LogHandler(string message, LogMessageErrorLevel errorLevel);

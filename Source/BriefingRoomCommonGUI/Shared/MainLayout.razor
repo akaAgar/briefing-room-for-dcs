@@ -18,6 +18,10 @@
                         }
                     </select>
                 </div>
+                @if (BriefingRoom.RUNNING_IN_DOCKER)
+                {
+                    <div>&nbsp;<span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("DockerWarn")&nbsp;</div>
+                }
                 <a href="@BriefingRoom.WEBSITE_URL" target="_blank">@BriefingRoom.Translate("About")</a>
                 <a href="@BriefingRoom.REPO_URL" target="_blank">GitHub</a>
                 <label class="bulb">
