@@ -54,7 +54,7 @@ namespace BriefingRoom4DCS
 
         public BriefingRoom(LogHandler logHandler = null)
         {
-            INIFile ini = new($"{BRPaths.DATABASE}Common.ini");
+            INIFile ini = new(Path.Combine(BRPaths.DATABASE, "Common.ini"));
             TARGETED_DCS_WORLD_VERSION = ini.GetValue("Versions", "DCSVersion", "2.7");
 
             AvailableLanguagesMap = new Dictionary<string, string> { { "EN", "English" } };

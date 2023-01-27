@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using System.Drawing;
+using System.IO;
 
 namespace BriefingRoom4DCS.Media
 {
@@ -51,7 +52,7 @@ namespace BriefingRoom4DCS.Media
             ContentAlignment alignment = ContentAlignment.MiddleCenter,
             int offsetX = 0, int offsetY = 0, int rotation = 0, double scale = 1.0)
         {
-            ImageData = Image.FromFile($"{BRPaths.INCLUDE_JPG}{filePath}");
+            ImageData = Image.FromFile(Path.Combine(BRPaths.INCLUDE_JPG, filePath));
             Alignment = alignment;
             Offset = new Point(offsetX, offsetY);
             Rotation = rotation;

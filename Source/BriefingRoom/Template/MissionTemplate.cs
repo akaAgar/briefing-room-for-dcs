@@ -30,7 +30,7 @@ namespace BriefingRoom4DCS.Template
 {
     public sealed class MissionTemplate : BaseTemplate, IBaseTemplate
     {
-        private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BRPaths.ROOT}Default.brt";
+        private static readonly string DEFAULT_TEMPLATE_FILEPATH = Path.Combine(BRPaths.ROOT, "Default.brt");
         public string BriefingMissionName { get; set; }
         public string BriefingMissionDescription { get; set; }
         public Season EnvironmentSeason { get; set; }

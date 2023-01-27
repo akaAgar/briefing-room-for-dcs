@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Template;
 using System;
+using System.IO;
 
 namespace BriefingRoom4DCS.Data
 {
@@ -33,7 +34,7 @@ namespace BriefingRoom4DCS.Data
 
         internal DBCommonAirDefense()
         {
-            INIFile ini = new($"{BRPaths.DATABASE}AirDefense.ini");
+            INIFile ini = new(Path.Combine(BRPaths.DATABASE, "AirDefense.ini"));
             AirDefenseLevels = new DBCommonAirDefenseLevel[Toolbox.EnumCount<AmountNR>()];
             for (var i = 0; i < Toolbox.EnumCount<AmountNR>(); i++)
                 AirDefenseLevels[i] = new DBCommonAirDefenseLevel(ini, (AmountNR)i);

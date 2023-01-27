@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Generator;
 using System.Collections.Generic;
+using System.IO;
 
 namespace BriefingRoom4DCS.Mission
 {
@@ -58,9 +59,9 @@ namespace BriefingRoom4DCS.Mission
 
         public string GetBriefingAsHTML(bool htmlHeaderAndFooter = true)
         {
-            string html = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}Briefing.html");
+            string html = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "Briefing.html"));
             if (htmlHeaderAndFooter)
-                html = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}BriefingHeader.html") + html + Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}BriefingFooter.html");
+                html = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "BriefingHeader.html")) + html + Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "BriefingFooter.html"));
             html = BriefingRoom.LanguageDB.ReplaceValues(html);
             html = Mission.ReplaceValues(html);
 
@@ -76,9 +77,9 @@ namespace BriefingRoom4DCS.Mission
 
         public string GetBriefingKneeBoardTasksAndRemarksHTML()
         {
-            string html = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardHeader.html") +
-                Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardTasksRemarks.html") +
-                Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}BriefingFooter.html");
+            string html = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "KneeboardHeader.html")) +
+                Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "KneeboardTasksRemarks.html")) +
+                Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "BriefingFooter.html"));
 
             html = BriefingRoom.LanguageDB.ReplaceValues(html);
             html = Mission.ReplaceValues(html);
@@ -91,9 +92,9 @@ namespace BriefingRoom4DCS.Mission
 
         public string GetBriefingKneeBoardFlightsHTML()
         {
-            string html = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardHeader.html") +
-                Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardFlights.html") +
-                Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}BriefingFooter.html");
+            string html = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "KneeboardHeader.html")) +
+                Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "KneeboardFlights.html")) +
+                Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "BriefingFooter.html"));
 
             html = BriefingRoom.LanguageDB.ReplaceValues(html);
             html = Mission.ReplaceValues(html);
@@ -105,7 +106,7 @@ namespace BriefingRoom4DCS.Mission
 
         public string GetBriefingAsRawText(string newLine = "\n")
         {
-            string text = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}Briefing.txt");
+            string text = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "Briefing.txt"));
             text = BriefingRoom.LanguageDB.ReplaceValues(text);
             text = Mission.ReplaceValues(text);
 
@@ -121,7 +122,7 @@ namespace BriefingRoom4DCS.Mission
 
         public string GetEditorNotes(string newLine = "\n")
         {
-            string text = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}EditorNotes.txt");
+            string text = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "EditorNotes.txt"));
             text = BriefingRoom.LanguageDB.ReplaceValues(text);
             GeneratorTools.ReplaceKey(ref text, "TARGETGROUPNAMES", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.TargetGroupName)).Replace("\t", "    "));
             return text.Replace("\r\n", "\n").Replace("\n", newLine).Replace("\"", "''");

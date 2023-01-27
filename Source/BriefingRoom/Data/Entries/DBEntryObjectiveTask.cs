@@ -59,7 +59,7 @@ namespace BriefingRoom4DCS.Data
 
             CompletionTriggersLua = Toolbox.AddMissingFileExtensions(ini.GetValueArray<string>("ObjectiveTask", "CompletionTriggersLua"), ".lua");
             foreach (var CompletionTriggerLua in CompletionTriggersLua)
-                if (!File.Exists($"{BRPaths.INCLUDE_LUA_OBJECTIVETRIGGERS}{CompletionTriggerLua}"))
+                if (!File.Exists(Path.Combine(BRPaths.INCLUDE_LUA_OBJECTIVETRIGGERS, CompletionTriggerLua)))
                 {
                     BriefingRoom.PrintToLog($"Completion trigger Lua file {CompletionTriggerLua} for objective task \"{ID}\" not found.", LogMessageErrorLevel.Warning);
                     return false;

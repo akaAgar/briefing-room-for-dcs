@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Template;
 using System;
+using System.IO;
 using System.Linq;
 
 namespace BriefingRoom4DCS.Data
@@ -44,7 +45,7 @@ namespace BriefingRoom4DCS.Data
 
         internal DBCommonCAP()
         {
-            INIFile ini = new($"{BRPaths.DATABASE}CAP.ini");
+            INIFile ini = new(Path.Combine(BRPaths.DATABASE, "CAP.ini"));
             DistanceFromCenter = ini.GetValue<MinMaxD>("CAP", "DistanceFromCenter");
             GroupSize = (from int groupSize in ini.GetValueArray<int>("CAP", "GroupSize") where groupSize > 0 select groupSize).ToArray();
             if (GroupSize.Length == 0) GroupSize = new int[] { 1 };

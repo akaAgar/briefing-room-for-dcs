@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 
 using System.Collections.Generic;
+using System.IO;
 using BriefingRoom4DCS.Generator;
 
 namespace BriefingRoom4DCS.Mission
@@ -32,9 +33,9 @@ namespace BriefingRoom4DCS.Mission
 
         public string GetFlightBriefingKneeBoardHTML(DCSMission mission)
         {
-            string html = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardHeader.html") +
-                Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}KneeboardFlight.html") +
-                Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_HTML}BriefingFooter.html");
+            string html = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "KneeboardHeader.html")) +
+                Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "KneeboardFlight.html")) +
+                Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "BriefingFooter.html"));
             html = BriefingRoom.LanguageDB.ReplaceValues(html);
             GeneratorTools.ReplaceKey(ref html, "BriefingAirbases", GeneratorTools.MakeHTMLTable(mission.Briefing.GetItems(DCSMissionBriefingItemType.Airbase)));
             GeneratorTools.ReplaceKey(ref html, "BriefingJTAC", GeneratorTools.MakeHTMLTable(mission.Briefing.GetItems(DCSMissionBriefingItemType.JTAC)));

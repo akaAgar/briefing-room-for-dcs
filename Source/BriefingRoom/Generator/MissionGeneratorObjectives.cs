@@ -24,6 +24,7 @@ using BriefingRoom4DCS.Mission.DCSLuaObjects;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
@@ -320,7 +321,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Add feature ogg files
             foreach (string oggFile in taskDB.IncludeOgg)
-                mission.AddMediaFile($"l10n/DEFAULT/{oggFile}", $"{BRPaths.INCLUDE_OGG}{oggFile}");
+                mission.AddMediaFile($"l10n/DEFAULT/{oggFile}", Path.Combine(BRPaths.INCLUDE_OGG, oggFile));
 
 
             // Add objective features Lua for this objective
@@ -477,7 +478,7 @@ namespace BriefingRoom4DCS.Generator
             // Add objective trigger Lua for this objective
             foreach (var CompletionTriggerLua in taskDB.CompletionTriggersLua)
             {
-                string triggerLua = Toolbox.ReadAllTextIfFileExists($"{BRPaths.INCLUDE_LUA_OBJECTIVETRIGGERS}{CompletionTriggerLua}");
+                string triggerLua = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_LUA_OBJECTIVETRIGGERS, CompletionTriggerLua));
                 GeneratorTools.ReplaceKey(ref triggerLua, "ObjectiveIndex", objectiveIndex + 1);
                 mission.AppendValue("ScriptObjectivesTriggers", triggerLua);
             }

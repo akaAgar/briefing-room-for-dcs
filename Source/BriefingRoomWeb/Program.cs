@@ -36,7 +36,7 @@ namespace BriefingRoom4DCS.GUI.Web
     OPEN Browser on http://localhost:5000                                                                                                                                                                                                 
                                                                                                               
 Server Logs:");
-            Process.Start("explorer.exe", "http://localhost:5000");
+            // Process.Start("explorer.exe", "http://localhost:5000");
             CreateHostBuilder(args).Build().Run();
         }
 
