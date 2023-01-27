@@ -3,6 +3,10 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>BriefingRoom4DCS.GUI.Web</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Flavor)'=='EXE'">
+
     <OutputType>Exe</OutputType>
     <PublishSingleFile>true</PublishSingleFile>
     <SelfContained>true</SelfContained>
@@ -19,10 +23,10 @@
 
 
   <ItemGroup>
-    <Content Include="..\..\Database\**" LinkBase="Database" CopyToPublishDirectory="PreserveNewest" />
-    <Content Include="..\..\CustomConfigs\**" LinkBase="CustomConfigs" CopyToPublishDirectory="PreserveNewest" />
-    <Content Include="..\..\Include\**" LinkBase="Include" CopyToPublishDirectory="PreserveNewest" />
-    <Content Include="..\..\Media\**" LinkBase="Media" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\Database\**" LinkBase="Database" CopyToPublishDirectory="PreserveNewest"  />
+    <Content Include="..\..\CustomConfigs\**" LinkBase="CustomConfigs" CopyToPublishDirectory="PreserveNewest"  />
+    <Content Include="..\..\Include\**" LinkBase="Include" CopyToPublishDirectory="PreserveNewest"  />
+    <Content Include="..\..\Media\**" LinkBase="Media" CopyToPublishDirectory="PreserveNewest"  />
   </ItemGroup>
 
 </Project>
