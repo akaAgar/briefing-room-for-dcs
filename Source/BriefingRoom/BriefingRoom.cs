@@ -195,7 +195,7 @@ namespace BriefingRoom4DCS
 
             for (int i = 0; i < possibleDCSPaths.Length; i++)
             {
-                string dcsPath = Toolbox.PATH_USER + "Saved Games\\" + possibleDCSPaths[i] + "\\Missions\\";
+                string dcsPath = Path.Combine(Toolbox.PATH_USER, "Saved Games", possibleDCSPaths[i], "Missions");
                 if (Directory.Exists(dcsPath)) return dcsPath;
             }
 
@@ -204,7 +204,7 @@ namespace BriefingRoom4DCS
 
         public static string GetDCSCampaignPath()
         {
-            string campaignPath = $"{GetDCSMissionPath()}Campaigns\\multilang\\";
+            string campaignPath = Path.Combine(GetDCSMissionPath(), "Campaigns", "multilang");
 
             if (Directory.Exists(campaignPath)) return campaignPath;
 
