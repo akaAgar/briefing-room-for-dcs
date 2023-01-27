@@ -65,7 +65,7 @@ namespace BriefingRoom4DCS.Generator
 
         private void AddToList(string UIName, Coordinates coordinates, int radius)
         {
-            string template = File.ReadAllText($"{BRPaths.INCLUDE_LUA_MISSION}\\Zone.lua");
+            string template = File.ReadAllText(Path.Combine(BRPaths.INCLUDE_LUA_MISSION, "Zone.lua"));
             GeneratorTools.ReplaceKey(ref template, "NAME", UIName);
             GeneratorTools.ReplaceKey(ref template, "RADIUS", radius);
             GeneratorTools.ReplaceKey(ref template, "X", coordinates.X);

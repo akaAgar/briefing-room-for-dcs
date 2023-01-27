@@ -49,14 +49,14 @@ namespace BriefingRoom4DCS.Generator
             imageMaker.TextOverlay.Text = mission.Briefing.Name;
 
             List<ImageMakerLayer> imageLayers = new List<ImageMakerLayer>();
-            string[] theaterImages = Directory.GetFiles($"{BRPaths.INCLUDE_JPG}Theaters\\", $"{Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater).DCSID}*.jpg");
+            string[] theaterImages = Directory.GetFiles(Path.Combine(BRPaths.INCLUDE_JPG, "Theaters"), $"{Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater).DCSID}*.jpg");
             if (theaterImages.Length == 0)
                 imageLayers.Add(new ImageMakerLayer("_default.jpg"));
             else
-                imageLayers.Add(new ImageMakerLayer("Theaters\\" + Path.GetFileName(Toolbox.RandomFrom(theaterImages))));
+                imageLayers.Add(new ImageMakerLayer(Path.Combine("Theaters", Path.GetFileName(Toolbox.RandomFrom(theaterImages)))));
 
-            var path = $"Flags\\{template.GetCoalitionID(template.ContextPlayerCoalition)}.png";
-            if (File.Exists($"{BRPaths.INCLUDE_JPG}{path}"))
+            var path = Path.Combine("Flags",$"{template.GetCoalitionID(template.ContextPlayerCoalition)}.png");
+            if (File.Exists(Path.Combine(BRPaths.INCLUDE_JPG, path)))
                 imageLayers.Add(new ImageMakerLayer(path, ContentAlignment.TopLeft, 8, 8, 0, .5));
 
             byte[] imageBytes = imageMaker.GetImageBytes(imageLayers.ToArray());

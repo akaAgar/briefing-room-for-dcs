@@ -29,48 +29,48 @@ namespace BriefingRoom4DCS
     {
         internal static string ROOT { get; } = FindRoot();
 
-        internal static string DATABASE { get; } = $"{ROOT}Database\\";
+        internal static string DATABASE { get; } =  Path.Combine(ROOT, "Database");
 
-        internal static string CUSTOMDATABASE { get; } = $"{ROOT}CustomConfigs\\";
+        internal static string CUSTOMDATABASE { get; } =  Path.Combine(ROOT, "CustomConfigs");
 
 #if DEBUG
-        internal static string DEBUGOUTPUT { get; } = $"{ROOT}DebugOutput\\";
+        internal static string DEBUGOUTPUT { get; } =  Path.Combine(ROOT, "DebugOutput");
 #endif
 
-        internal static string INCLUDE { get; } = $"{ROOT}Include\\";
+        internal static string INCLUDE { get; } =  Path.Combine(ROOT, "Include");
 
-        internal static string INCLUDE_HTML { get; } = $"{INCLUDE}Html\\";
+        internal static string INCLUDE_HTML { get; } = Path.Combine(INCLUDE, "Html");
 
-        internal static string INCLUDE_JPG { get; } = $"{INCLUDE}Jpg\\";
+        internal static string INCLUDE_JPG { get; } = Path.Combine(INCLUDE, "Jpg");
 
-        internal static string INCLUDE_LUA { get; } = $"{INCLUDE}Lua\\";
+        internal static string INCLUDE_LUA { get; } = Path.Combine(INCLUDE, "Lua");
 
-        internal static string INCLUDE_MARKDOWN { get; } = $"{INCLUDE}Markdown\\";
+        internal static string INCLUDE_MARKDOWN { get; } = Path.Combine(INCLUDE, "Markdown");
 
-        internal static string INCLUDE_YAML { get; } = $"{INCLUDE}Yaml\\";
+        internal static string INCLUDE_YAML { get; } = Path.Combine(INCLUDE, "Yaml");
 
 
-        internal static string INCLUDE_LUA_MISSIONFEATURES { get; } = $"{INCLUDE_LUA}MissionFeatures\\";
+        internal static string INCLUDE_LUA_MISSIONFEATURES { get; } = Path.Combine(INCLUDE_LUA,"MissionFeatures");
 
-        internal static string INCLUDE_LUA_OPTIONSMISSION { get; } = $"{INCLUDE_LUA}OptionsMission\\";
+        internal static string INCLUDE_LUA_OPTIONSMISSION { get; } = Path.Combine(INCLUDE_LUA,"OptionsMission");
 
-        internal static string INCLUDE_LUA_OBJECTIVEFEATURES { get; } = $"{INCLUDE_LUA}ObjectiveFeatures\\";
+        internal static string INCLUDE_LUA_OBJECTIVEFEATURES { get; } = Path.Combine(INCLUDE_LUA,"ObjectiveFeatures");
 
-        internal static string INCLUDE_LUA_OBJECTIVETRIGGERS { get; } = $"{INCLUDE_LUA}ObjectiveTriggers\\";
+        internal static string INCLUDE_LUA_OBJECTIVETRIGGERS { get; } = Path.Combine(INCLUDE_LUA,"ObjectiveTriggers");
 
-        internal static string INCLUDE_LUA_MISSION { get; } = $"{INCLUDE_LUA}Mission\\";
+        internal static string INCLUDE_LUA_MISSION { get; } = Path.Combine(INCLUDE_LUA,"Mission");
 
-        internal static string INCLUDE_LUA_UNITS { get; } = $"{INCLUDE_LUA}Units\\";
+        internal static string INCLUDE_LUA_UNITS { get; } = Path.Combine(INCLUDE_LUA,"Units");
 
-        internal static string INCLUDE_YAML_UNIT { get; } = $"{INCLUDE_YAML}Unit\\";
+        internal static string INCLUDE_YAML_UNIT { get; } = Path.Combine(INCLUDE_YAML, "Unit");
 
-        internal static string INCLUDE_YAML_GROUP { get; } = $"{INCLUDE_YAML}Group\\";
+        internal static string INCLUDE_YAML_GROUP { get; } = Path.Combine(INCLUDE_YAML, "Group");
 
-        internal static string INCLUDE_OGG { get; } = $"{INCLUDE}Ogg\\";
+        internal static string INCLUDE_OGG { get; } = Path.Combine(INCLUDE, "Ogg");
 
-        internal static string MEDIA { get; } = $"{ROOT}Media\\";
+        internal static string MEDIA { get; } = Path.Combine(ROOT, "Media");
 
-        internal static string MEDIA_ICONS16 { get; } = $"{MEDIA}Icons16\\";
+        internal static string MEDIA_ICONS16 { get; } = Path.Combine(MEDIA, "Icons16");
 
         private static string FindRoot(string path = "", int loop = 0)
         {
@@ -83,7 +83,7 @@ namespace BriefingRoom4DCS
                 return Toolbox.NormalizeDirectoryPath(path);
             if (loop > 10)
                 throw new Exception("Can't Find Database within 10 levels up on app");
-            return FindRoot(path + "/..", loop + 1);
+            return FindRoot(Path.Combine(path, ".."), loop + 1);
         }
     }
 }

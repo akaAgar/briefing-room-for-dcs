@@ -37,7 +37,7 @@ namespace BriefingRoom4DCS.Data
         {
             LangMap = new Dictionary<string, LanguageString>();
             BriefingRoom.PrintToLog("Loading language global settings...");
-            string directory = $"{BRPaths.DATABASE}Language";
+            string directory = Path.Combine(BRPaths.DATABASE, "Language");
             if (!Directory.Exists(directory))
                 throw new Exception($"Directory {directory} not found.");
 

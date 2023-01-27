@@ -65,7 +65,7 @@ namespace BriefingRoom4DCS
         private static bool AddLuaFileToEntries(Dictionary<string, byte[]> mizFileEntries, string mizEntryKey, string sourceFile, DCSMission mission = null)
         {
             if (string.IsNullOrEmpty(mizEntryKey) || mizFileEntries.ContainsKey(mizEntryKey) || string.IsNullOrEmpty(sourceFile)) return false;
-            sourceFile = $"{BRPaths.INCLUDE_LUA}{sourceFile}";
+            sourceFile = Path.Combine(BRPaths.INCLUDE_LUA, sourceFile);
             if (!File.Exists(sourceFile)) return false;
 
             string luaContent = File.ReadAllText(sourceFile);

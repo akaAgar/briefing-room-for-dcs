@@ -500,7 +500,7 @@ namespace BriefingRoom4DCS
         internal static string NormalizeDirectoryPath(string path)
         {
             if (string.IsNullOrEmpty(path)) return "";
-            return path.Replace('/', '\\').TrimEnd('\\') + "\\";
+            return path;
         }
 
         internal static double Lerp(double value1, double value2, double linearInterpolation)

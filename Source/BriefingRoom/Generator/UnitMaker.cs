@@ -277,7 +277,7 @@ namespace BriefingRoom4DCS.Generator
             Dictionary<string, object> extraSettings
             )
         {
-            string groupYml = File.ReadAllText($"{BRPaths.INCLUDE_YAML_GROUP}{Toolbox.AddMissingFileExtension(groupTypeLua, ".yml")}");
+            string groupYml = File.ReadAllText(Path.Combine(BRPaths.INCLUDE_YAML_GROUP, Toolbox.AddMissingFileExtension(groupTypeLua, ".yml")));
             foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
                 if (!(extraSetting.Value is Array)) // Array extra settings are treated on a per-unit basis
                     GeneratorTools.ReplaceKey(ref groupYml, extraSetting.Key, extraSetting.Value);

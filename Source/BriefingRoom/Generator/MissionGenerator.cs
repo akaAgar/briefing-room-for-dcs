@@ -91,7 +91,7 @@ namespace BriefingRoom4DCS.Generator
 
 
             foreach (string oggFile in Database.Instance.Common.CommonOGG)
-                mission.AddMediaFile($"l10n/DEFAULT/{Toolbox.AddMissingFileExtension(oggFile, ".ogg")}", $"{BRPaths.INCLUDE_OGG}{Toolbox.AddMissingFileExtension(oggFile, ".ogg")}");
+                mission.AddMediaFile($"l10n/DEFAULT/{Toolbox.AddMissingFileExtension(oggFile, ".ogg")}", Path.Combine(BRPaths.INCLUDE_OGG, Toolbox.AddMissingFileExtension(oggFile, ".ogg")));
 
 
             var coalitionsCountries = MissionGeneratorCountries.GenerateCountries(mission, template);

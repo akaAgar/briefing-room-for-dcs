@@ -71,11 +71,11 @@ namespace BriefingRoom4DCS.Data
             IncludeOggFolder = ini.GetValue<string>("Include", "OggFolder");
 
             foreach (string f in IncludeLua)
-                if (!File.Exists($"{SourceLuaDirectory}{f}"))
+                if (!File.Exists(Path.Combine(SourceLuaDirectory, f)))
                     BriefingRoom.PrintToLog($"File \"{SourceLuaDirectory}{f}\", required by feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
 
             foreach (string f in IncludeOgg)
-                if (!File.Exists($"{BRPaths.INCLUDE_OGG}{f}"))
+                if (!File.Exists(Path.Combine(BRPaths.INCLUDE_OGG, f)))
                     BriefingRoom.PrintToLog($"File \"{BRPaths.INCLUDE_OGG}{f}\", required by feature \"{ID}\", doesn't exist.", LogMessageErrorLevel.Warning);
 
             // Unit group
