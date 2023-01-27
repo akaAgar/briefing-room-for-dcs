@@ -231,7 +231,7 @@ namespace BriefingRoom4DCS.Generator
             // Generate image files
             BriefingRoom.PrintToLog("Generating images...");
             MissionGeneratorImages.GenerateTitle(mission, template);
-            if (!template.OptionsMission.Contains("DisableKneeboardImages"))
+            if (!template.OptionsMission.Contains("DisableKneeboardImages") && !BriefingRoom.RUNNING_IN_DOCKER)
                 await MissionGeneratorImages.GenerateKneeboardImagesAsync(mission);
 
             return mission;
