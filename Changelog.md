@@ -1,4 +1,117 @@
 ## Changelog
+* Version 0.5.301.28(Jan, 28, 2023)
+    * Added:    
+        * Added: httpd script for DCS Fiddle
+        * Added: SA new Airbases
+        * Added: Ropucha-class landing ship & Mirage-F1EE (as playable)
+        * Added: End Mission on command option
+        * Added: Auto End mission after 10 mins option
+        * Added: Super Hornet Mod support
+        * Added: Custom transport helicopter calls
+        * Added: Taskable Transport Helicopter
+        * Added: Support attack started with radio command
+        * Added: Proximity for Complete defend & possible to fail if all die post completion
+        * Added: Extract troops task
+        * Added: Defend Attack Task
+        * Added: Support Attack Objective Task
+        * Added: Support for multiple event triggers per objective
+        * Added: lowUnitVariation support (for attacking groups)
+        * Added: Objective Patrol extra waypoints
+        * Added: MB-339
+        * Added: All aircraft have a clean payload option
+        * Added: FOB and Carrier Hint locations
+        * Added: Hint Saving and Better UI
+        * Added: hint per objective
+        * Added: SA Rio Chico
+        * Added: Ka-50 Hokum 3.0
+        * Added: True and Magnetic Heading to briefings
+        * Added: CAP random mid course route changes
+        * Added: Carrier Recovery Tankers
+    * Fixed:
+        * Fix: Hide Landmass
+        * Fix: Get Taskable helos working from ground start
+        * Fix: Moose ATIS wasn't working
+        * Fix: Destroy Tracking radars causing script errors
+        * Fix: Taskable attack helicopters broken
+        * Fix: Taskable affirm sounds not working
+        * Fix: Remove Culture issue risk from changing cases
+        * Fix: broken Gamemaster_Functions script post formatting
+        * Fix: Cargo task not generating
+        * Fix: attempt mitigation of map point failure error
+        * Fix: Minor spelling
+        * Fix: Transport counts showing as 0
+        * Fix: Campaign gen crashed if can't find another airbase to move to.
+        * Fix: Objective Feature Unit positioning
+        * Fix: UH-1H Bad radio
+        * Fix: Combat Search and Rescue Preset
+        * Fix: Bad troop transport spelling
+        * Fix: Bad A-4E Radio
+        * Fix: Objective Scenery Fire not near objective units
+        * Fix: CTLD off by one meant first pilot didn't get CTLD options
+        * Fix: Cargo Objective scripting error
+        * Fix: double parsing not InvariantCulture
+        * Fix: CTLD logistic vehicles
+        * Fix: Bad F-86F Sabre radio frequency
+        * Fix: Mirage 2000C bad default radio
+        * Fix: Magnetic heading could go into negatives
+        * Fix: Significantly reduce bad position chance.
+        * Fix: Objective ground units cannot be directed into the sea
+        * Fix: Ka-50 3 Modification not set
+        * Fix: Minor Typo in Location Hints text.
+        * Fix: Support target units picked up by ActiveGround units
+        * Fix: Don't crash on missing translation
+        * Fix: UI map crash if AIRBASE_HOME doesn't exist in map data
+        * Fix: Friendly Taskable Bomber not bombing  - Thanks Eagle01
+        * Fix: remove odd lua code
+        * Fix: Destroy all but air defense script error  - Thanks Eagle01
+        * Fix: Missing Proj4 Import on desktop
+        * Fix: No longer default to UnitID for mods if required mod string isn't provided
+        * Fix: Mission not marking as complete
+    * Updated:
+        * Updated: Support Proj4Js projector for maps
+        * Updated: Removed Position Lookup Files
+        * Updated: Various fixes to Taskable Units - Thanks Eagle01
+        * Updated: PersianGulf radio frequencies
+        * Updated: Mitigate double troop pickups
+        * Updated: Transported Troops considered main characters and survive crashes.
+        * Updated: Embedded Air defense more suitable Infantry now only have infantry AAA Statics can now have static AAA (units not SAM sites)
+        * Updated: Scale patrol distances by unit type
+        * Updated: Core to dotnet7
+        * Updated: Refactored Page & Template code
+        * Updated: changed distance settings using hint and ignore borders
+        * Updated: Campaign generator now has specific min-max objective distance
+        * Updated: Troop Transport AI now move to aircraft
+        * Updated: MIST CSAR script added MI-24 & AH-64
+        * Updated: Default.cbrt and Default.brt
+        * Updated: CTLD Pickup zones marked on maps
+        * Updated: CTLD to Sept 2020 dev version
+        * Updated: Remove CTLD default spawned units
+        * Updated: CSAR script to Moose version
+        * Updated: escort, troop or cargo transport missions reverse direction with GoToPlayerBase
+        * Updated: South Atlantic Airfields
+    * UI:
+        * UI: missing AAA icon
+        * UI: Hide purposely hidden objective features
+        * UI: Hints now show bounding box
+        * UI: Better hint info
+        * UI: Able to remove location hints in quick builder
+        * UI: Note Moose script is automatically loaded by other scripts and not mandatory
+        * UI: Rename Moose ATIS to ATIS (may break templates)
+    * Misc:
+        * Misc: de-risk releases failing
+        * Misc: Added jboecker (httpd) credit
+        * Misc: Spelling
+        * Misc: Update credits
+        * Misc: revert branch CI net7 change
+        * Misc: Mass formatting
+    * Upgrades:
+        * Upgrade: Bump Microsoft.AspNetCore.Components.WebView.WindowsForms
+        * Upgrade: Bump Swashbuckle.AspNetCore from 6.4.0 to 6.5.0 in /Source
+        * Upgrade: Bump Microsoft.AspNetCore.Components.Web in /Source
+        * Upgrade: Bump YamlDotNet from 12.2.0 to 12.3.1 in /Source
+        * Upgrade: Bump Blazored.LocalStorage from 4.2.0 to 4.3.0 in /Source
+        * Upgrade: Bump Newtonsoft.Json from 13.0.1 to 13.0.2 in /Source
+        * Upgrade: Bump YamlDotNet from 12.0.2 to 12.2.0 in /Source
 * Version 0.5.211.15(Nov, 15, 2022)
     * Added:
         * Added: Enhanced Gamemaster Script (Zeus)
