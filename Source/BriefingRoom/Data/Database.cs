@@ -101,7 +101,7 @@ namespace BriefingRoom4DCS.Data
         {
             BriefingRoom.PrintToLog($"Loading {subDirectory.ToLower()}...");
 
-            string directory = $"{BRPaths.DATABASE}{subDirectory}";
+            string directory = Path.Combine(BRPaths.DATABASE, subDirectory);
             if (!Directory.Exists(directory))
                 throw new Exception($"Directory {directory} not found.");
 
@@ -140,7 +140,7 @@ namespace BriefingRoom4DCS.Data
         {
             BriefingRoom.PrintToLog($"Custom Loading {subDirectory.ToLower()}...");
 
-            string directory = $"{BRPaths.CUSTOMDATABASE}{subDirectory}";
+            string directory = Path.Combine(BRPaths.CUSTOMDATABASE, subDirectory);
             if (!Directory.Exists(directory))
                 return;
 

@@ -30,7 +30,7 @@ namespace BriefingRoom4DCS.Template
 {
     public sealed class CampaignTemplate : BaseTemplate, IBaseTemplate
     {
-        private static readonly string DEFAULT_TEMPLATE_FILEPATH = $"{BRPaths.ROOT}Default.cbrt";
+        private static readonly string DEFAULT_TEMPLATE_FILEPATH = Path.Combine(BRPaths.ROOT, "Default.cbrt");
         private static readonly int MIN_CAMPAIGN_MISSIONS = Database.Instance.Common.MinCampaignMissions;
         private static readonly int MAX_CAMPAIGN_MISSIONS = Database.Instance.Common.MaxCampaignMissions;
         public string BriefingCampaignName { get; set; }

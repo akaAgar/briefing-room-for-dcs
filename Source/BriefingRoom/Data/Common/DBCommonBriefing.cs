@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Template;
 using System;
+using System.IO;
 using System.Linq;
 
 namespace BriefingRoom4DCS.Data
@@ -34,7 +35,7 @@ namespace BriefingRoom4DCS.Data
 
         internal DBCommonBriefing()
         {
-            INIFile ini = new($"{BRPaths.DATABASE}Briefing.ini");
+            INIFile ini = new(Path.Combine(BRPaths.DATABASE, "Briefing.ini"));
             MaxObjectiveDescriptionCount = ini.GetValue<int>("Briefing", "MaxObjectiveDescriptionCount");
             OverflowObjectiveDescriptionText = ini.GetLangStrings("Briefing", "OverflowObjectiveDescriptionText");
             ObjectiveDescriptionConnectors = ini.GetLangStrings("Briefing", "ObjectiveDescriptionConnectors");

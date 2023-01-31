@@ -34,8 +34,8 @@ namespace BriefingRoom4DCS.Generator
 {
     internal class CampaignGenerator
     {
-        private static readonly string CAMPAIGN_LUA_TEMPLATE = $"{BRPaths.INCLUDE_LUA}Campaign\\Campaign.lua";
-        private static readonly string CAMPAIGN_STAGE_LUA_TEMPLATE = $"{BRPaths.INCLUDE_LUA}Campaign\\CampaignStage.lua";
+        private static readonly string CAMPAIGN_LUA_TEMPLATE = Path.Combine(BRPaths.INCLUDE_LUA, "Campaign", "Campaign.lua");
+        private static readonly string CAMPAIGN_STAGE_LUA_TEMPLATE = Path.Combine(BRPaths.INCLUDE_LUA, "Campaign", "CampaignStage.lua");
 
         internal static async Task<DCSCampaign> GenerateAsync(CampaignTemplate campaignTemplate)
         {
@@ -104,11 +104,11 @@ namespace BriefingRoom4DCS.Generator
 
             ImageMaker imgMaker = new();
             string theaterImage;
-            string[] theaterImages = Directory.GetFiles($"{BRPaths.INCLUDE_JPG}Theaters\\", $"{campaignTemplate.ContextTheater}*.jpg");
+            string[] theaterImages = Directory.GetFiles(Path.Combine(BRPaths.INCLUDE_JPG, "Theaters"), $"{campaignTemplate.ContextTheater}*.jpg");
             if (theaterImages.Length == 0)
                 theaterImage = "_default.jpg";
             else
-                theaterImage = "Theaters\\" + Path.GetFileName(Toolbox.RandomFrom(theaterImages));
+                theaterImage = Path.Combine("Theaters", Path.GetFileName(Toolbox.RandomFrom(theaterImages)));
 
             // Print the name of the campaign over the campaign "title picture"
             imgMaker.TextOverlay.Text = campaign.Name;
@@ -116,15 +116,15 @@ namespace BriefingRoom4DCS.Generator
             campaign.AddMediaFile($"{baseFileName}_Title.jpg",
                 imgMaker.GetImageBytes(
                     new ImageMakerLayer(theaterImage),
-                    new ImageMakerLayer($"Flags\\{enemyFlagName}.png", ContentAlignment.MiddleCenter, -32, -32),
-                    new ImageMakerLayer($"Flags\\{allyFlagName}.png", ContentAlignment.MiddleCenter, 32, 32)));
+                    new ImageMakerLayer(Path.Combine("Flags", $"{enemyFlagName}.png"), ContentAlignment.MiddleCenter, -32, -32),
+                    new ImageMakerLayer(Path.Combine("Flags", $"{allyFlagName}.png"), ContentAlignment.MiddleCenter, 32, 32)));
 
             // Reset background and text overlay
             imgMaker.BackgroundColor = Color.Black;
             imgMaker.TextOverlay.Text = "";
 
-            campaign.AddMediaFile($"{baseFileName}_Success.jpg", imgMaker.GetImageBytes("Sky.jpg", $"Flags\\{allyFlagName}.png"));
-            campaign.AddMediaFile($"{baseFileName}_Failure.jpg", imgMaker.GetImageBytes("Fire.jpg", $"Flags\\{allyFlagName}.png", "Burning.png"));
+            campaign.AddMediaFile($"{baseFileName}_Success.jpg", imgMaker.GetImageBytes("Sky.jpg", Path.Combine("Flags", $"{allyFlagName}.png")));
+            campaign.AddMediaFile($"{baseFileName}_Failure.jpg", imgMaker.GetImageBytes("Fire.jpg", Path.Combine("Flags", $"{allyFlagName}.png"), "Burning.png"));
         }
 
         private static string GetCMPFile(CampaignTemplate campaignTemplate, string campaignName)

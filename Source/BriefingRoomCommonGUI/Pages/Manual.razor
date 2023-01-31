@@ -40,8 +40,9 @@
   protected override void OnInitialized()
   {
     var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
-    var files = Directory.GetFiles($"{BriefingRoom.GetBriefingRoomMarkdownPath()}Manuals\\", "*.md");
-    Documents = files.ToDictionary(x => x.Split("\\").Last().Replace(".md", "").Replace("_", " "), x =>
+    var sourcePath = Path.Combine(BriefingRoom.GetBriefingRoomMarkdownPath(), "Manuals");
+    var files = Directory.GetFiles(sourcePath, "*.md");
+    Documents = files.ToDictionary(x => x.Replace(sourcePath, "").Replace(".md", "").Replace("_", " ").Replace("\\", "").Replace("/", ""), x =>
     Markdown.ToHtml(File.ReadAllText(x).Replace("Media/SplashScreen.png",
     "_content/BriefingRoomCommonGUI/img/br-logo-white.png"), pipeline));
   }

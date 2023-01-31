@@ -59,8 +59,8 @@ namespace BriefingRoom4DCS.Generator
 
         private void AddFree(string UIName, Coordinates coordinates, params KeyValuePair<string, object>[] extraSettings)
         {
-            string drawingLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_MISSION}\\Drawing\\Free.lua");
-            string freePosLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_MISSION}\\Drawing\\FreePos.lua");
+            string drawingLuaTemplate = File.ReadAllText(Path.Combine(BRPaths.INCLUDE_LUA_MISSION, "Drawing", "Free.lua"));
+            string freePosLuaTemplate = File.ReadAllText(Path.Combine(BRPaths.INCLUDE_LUA_MISSION, "Drawing", "FreePos.lua"));
 
             var points = "";
             var index = 1;
@@ -81,7 +81,7 @@ namespace BriefingRoom4DCS.Generator
 
         private void AddOval(string UIName, Coordinates coordinates, params KeyValuePair<string, object>[] extraSettings)
         {
-            string drawingLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_MISSION}\\Drawing\\Circle.lua");
+            string drawingLuaTemplate = File.ReadAllText(Path.Combine(BRPaths.INCLUDE_LUA_MISSION, "Drawing", "Circle.lua"));
             GeneratorTools.ReplaceKey(ref drawingLuaTemplate, "Radius", extraSettings.First(x => x.Key == "Radius").Value);
             DrawingColour colour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "Colour").Value ?? DrawingColour.Red);
             DrawingColour fillColour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "FillColour").Value ?? DrawingColour.Clear);
@@ -90,7 +90,7 @@ namespace BriefingRoom4DCS.Generator
 
         private void AddTextBox(string UIName, Coordinates coordinates, params KeyValuePair<string, object>[] extraSettings)
         {
-            string drawingLuaTemplate = File.ReadAllText($"{BRPaths.INCLUDE_LUA_MISSION}\\Drawing\\TextBox.lua");
+            string drawingLuaTemplate = File.ReadAllText(Path.Combine(BRPaths.INCLUDE_LUA_MISSION, "Drawing", "TextBox.lua"));
             GeneratorTools.ReplaceKey(ref drawingLuaTemplate, "Text", extraSettings.First(x => x.Key == "Text").Value);
             DrawingColour colour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "Colour").Value ?? DrawingColour.Black);
             DrawingColour fillColour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "FillColour").Value ?? DrawingColour.WhiteBackground);

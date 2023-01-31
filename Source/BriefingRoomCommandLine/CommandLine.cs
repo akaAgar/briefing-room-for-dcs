@@ -23,13 +23,12 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace BriefingRoom4DCS.CommandLineTool
 {
     public class CommandLine
     {
-        private static readonly string LOG_FILE = $"{Application.StartupPath}\\BriefingRoomCommandLineDebugLog.txt";
+        private static readonly string LOG_FILE = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "BriefingRoomCommandLineDebugLog.txt");
 
         private readonly StreamWriter LogWriter;
 
@@ -101,12 +100,12 @@ namespace BriefingRoom4DCS.CommandLineTool
 
                     string campaignDirectory;
                     if (templateFiles.Length == 1) // Single template file provided, use  campaign name as campaign path.
-                        campaignDirectory = Path.Combine(Application.StartupPath, RemoveInvalidPathCharacters(campaign.Name));
+                        campaignDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, RemoveInvalidPathCharacters(campaign.Name));
                     else // Multiple template files provided, use the template name as campaign name so we know from which template campaign was generated.
-                        campaignDirectory = Path.Combine(Application.StartupPath, Path.GetFileNameWithoutExtension(t));
+                        campaignDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.GetFileNameWithoutExtension(t));
                     campaignDirectory = GetUnusedFileName(campaignDirectory);
 
-                    campaign.ExportToDirectory(Application.StartupPath);
+                    campaign.ExportToDirectory(AppDomain.CurrentDomain.BaseDirectory);
                     WriteToDebugLog($"Campaign {Path.GetFileName(campaignDirectory)} exported to directory from template {Path.GetFileName(t)}");
                 }
                 else // Template file is a mission template
@@ -120,9 +119,9 @@ namespace BriefingRoom4DCS.CommandLineTool
 
                     string mizFileName;
                     if (templateFiles.Length == 1) // Single template file provided, use "theater + mission name" as file name.
-                        mizFileName = Path.Combine(Application.StartupPath, $"{mission.TheaterID} - {RemoveInvalidPathCharacters(mission.Briefing.Name)}.miz");
+                        mizFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"{mission.TheaterID} - {RemoveInvalidPathCharacters(mission.Briefing.Name)}.miz");
                     else // Multiple template files provided, use the template name as file name so we know from which template mission was generated.
-                        mizFileName = Path.Combine(Application.StartupPath, Path.GetFileNameWithoutExtension(t) + ".miz");
+                        mizFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.GetFileNameWithoutExtension(t) + ".miz");
                     mizFileName = GetUnusedFileName(mizFileName);
 
                     if (!mission.SaveToMizFile(mizFileName))

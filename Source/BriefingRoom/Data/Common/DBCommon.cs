@@ -55,7 +55,7 @@ namespace BriefingRoom4DCS.Data
             int i;
 
             BriefingRoom.PrintToLog("Loading common global settings...");
-            INIFile commonIni = new($"{BRPaths.DATABASE}Common.ini");
+            INIFile commonIni = new(Path.Combine(BRPaths.DATABASE, "Common.ini"));
             CommonOGG = commonIni.GetValueArray<string>("Include", "CommonOgg");
             MaxCombinedArmsSlots = commonIni.GetValue<int>("Limits", "MaxCombinedArmsSlots");
             MaxPlayerFlightGroups = commonIni.GetValue<int>("Limits", "MaxPlayerFlightGroups");
@@ -67,7 +67,7 @@ namespace BriefingRoom4DCS.Data
             MinCampaignMissions = commonIni.GetValue<int>("Limits", "MinCampaignMissions");
             MaxCampaignMissions = commonIni.GetValue<int>("Limits", "MaxCampaignMissions");
             foreach (string f in CommonOGG)
-                if (!File.Exists($"{BRPaths.INCLUDE_OGG}{f}.ogg"))
+                if (!File.Exists(Path.Combine(BRPaths.INCLUDE_OGG,$"{f}.ogg")))
                     BriefingRoom.PrintToLog($"File \"Include\\Ogg\\{f}.ogg\" doesn't exist.", LogMessageErrorLevel.Warning);
 
 
@@ -87,7 +87,7 @@ namespace BriefingRoom4DCS.Data
             Briefing = new DBCommonBriefing();
 
             BriefingRoom.PrintToLog("Loading common wind settings...");
-            INIFile windIni = new($"{BRPaths.DATABASE}Wind.ini");
+            INIFile windIni = new(Path.Combine(BRPaths.DATABASE, "Wind.ini"));
             Wind = new DBCommonWind[Toolbox.EnumCount<Wind>() - 1]; // -1 because we don't want "Random"
             for (i = 0; i < Wind.Length; i++)
                 Wind[i] = new DBCommonWind(windIni, ((Wind)i).ToString());

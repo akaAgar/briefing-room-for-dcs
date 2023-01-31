@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using System;
+using System.IO;
 
 namespace BriefingRoom4DCS.Data
 {
@@ -38,7 +39,7 @@ namespace BriefingRoom4DCS.Data
 
         internal DBCommonCarrierGroup()
         {
-            INIFile ini = new($"{BRPaths.DATABASE}CarrierGroup.ini");
+            INIFile ini = new(Path.Combine(BRPaths.DATABASE, "CarrierGroup.ini"));
             CourseLength = Math.Max(5.0, ini.GetValue<double>("CarrierGroup", "CourseLength")) * Toolbox.NM_TO_METERS;
             IdealWindOfDeck = Math.Max(0.0, ini.GetValue<double>("CarrierGroup", "IdealWindOfDeck")) * Toolbox.KNOTS_TO_METERS_PER_SECOND;
             MinimumCarrierSpeed = Math.Max(0.0, ini.GetValue<double>("CarrierGroup", "MinimumCarrierSpeed")) * Toolbox.KNOTS_TO_METERS_PER_SECOND;

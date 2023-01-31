@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using System;
+using System.IO;
 using System.Linq;
 
 namespace BriefingRoom4DCS.Data
@@ -50,7 +51,7 @@ namespace BriefingRoom4DCS.Data
             int i;
 
             BriefingRoom.PrintToLog("Loading common global settings...");
-            INIFile ini = new($"{BRPaths.DATABASE}Names.ini");
+            INIFile ini = new(Path.Combine(BRPaths.DATABASE, "Names.ini"));
             MissionNameTemplate = ini.GetLangStrings("Mission", "Template");
             for (i = 0; i < MISSION_NAMES_PART_COUNT; i++)
                 MissionNameParts[i] = ini.GetLangStrings("Mission", $"Part{i + 1}");

@@ -25,7 +25,6 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
 using System.Text;
 using System.IO.Compression;
 using BriefingRoom4DCS.Data;
@@ -283,8 +282,6 @@ namespace BriefingRoom4DCS
         internal static string PATH_USER_DOCS { get; } = NormalizeDirectoryPath(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
 
 
-        internal const TextFormatFlags CENTER_TEXT_FLAGS = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.WordBreak;
-
         internal static T[] GetEnumValues<T>() where T : Enum
         {
             return (T[])Enum.GetValues(typeof(T));
@@ -503,7 +500,7 @@ namespace BriefingRoom4DCS
         internal static string NormalizeDirectoryPath(string path)
         {
             if (string.IsNullOrEmpty(path)) return "";
-            return path.Replace('/', '\\').TrimEnd('\\') + "\\";
+            return path;
         }
 
         internal static double Lerp(double value1, double value2, double linearInterpolation)
