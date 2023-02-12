@@ -29,7 +29,6 @@ The creators of Briefing Room would like to thank for following for their direct
     * Moose Development Team (Mission Object Oriented Scripting Environment for DCS World)
     * Sorbus (Enhanced Gamemaster Script)
     * walder (Skynet IADS)
-    * jboecker (httpd)
 * Helpful community gurus:
     * Lancer
 
