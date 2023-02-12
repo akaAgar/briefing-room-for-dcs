@@ -11,69 +11,69 @@ const MapBoundaries = {
     "Caucasus": [
         // top left
         {
-            lat: ConvertDMSToDD(48, 23, 15, 'N'),
-            lon: ConvertDMSToDD(26, 46, 43, 'E'),
+            lat: 48.387663480938,
+            lon: 26.778743595881,
         },
         // bottom left
         {
-            lat: ConvertDMSToDD(39, 36, 32, "N"),
-            lon: ConvertDMSToDD(27, 38, 14, "E"),
+            lat:  47.382221906262,
+            lon: 49.309787386754,
         },
         // bottom right
         {
-            lat: ConvertDMSToDD(38, 51, 54, 'N'),
-            lon: ConvertDMSToDD(47, 8, 32, 'E'),
+            lat: 38.86511140611,
+            lon: 47.142314272867,
         },
         // top right
         {
-            lat: ConvertDMSToDD(47, 22, 56, 'N'),
-            lon: ConvertDMSToDD(49, 18, 35, 'E'),
+            lat: 39.608931903399,
+            lon: 27.637331401126,
         },
     ],
 
     "Syria": [
         // top left
         {
-            lat: ConvertDMSToDD(37, 21.654, 0, 'N'),
-            lon: ConvertDMSToDD(29, 16.483, 0, 'E'),
+            lat:  37.470301761465,
+            lon: 29.480123666167,
         },
         // bottom left
         {
-            lat: ConvertDMSToDD(31, 50.940, 0, 'N'),
-            lon: ConvertDMSToDD(29, 53.849, 0, 'E'),
+            lat: 37.814134114831,
+            lon: 42.148931009427,
         },
         // bottom right
         {
-            lat: ConvertDMSToDD(32, 8.514, 0, 'N'),
-            lon: ConvertDMSToDD(42, 8.502, 0, 'E'),
+            lat: 31.960960214436,
+            lon: 41.932899899137,
         },
         // top right
         {
-            lat: ConvertDMSToDD(37, 43.72, 0, "N"),
-            lon: ConvertDMSToDD(42, 22.301, 0, "E"),
+            lat: 31.683960285685,
+            lon: 30.123622480902,
         },
     ],
 
-    "Persian Gulf": [
+    "PersianGulf": [
         {
-            lat: 32.9355285,
-            lon: 46.5623682
+            lat: 32.955527544002,
+            lon: 46.583433745255
         },
         {
-            lat: 21.729393,
-            lon: 47.572675
+            lat: 33.150981840679,
+            lon: 64.756585025318
         },
         {
-            lat: 21.8501348,
-            lon: 63.9734737
+            lat: 21.869681127563,
+            lon: 63.997389263298
         },
         {
-            lat: 33.131584,
-            lon: 64.7313594
+            lat: 21.749230188233,
+            lon: 47.594358099874
         },
     ],
 
-    "Channel": [
+    "TheChannel": [
         // top left
         {
             lat: 51.5174,
@@ -120,43 +120,42 @@ const MapBoundaries = {
         },
     ],
 
-    "Nevada":
-        [
+    "Nevada":[
             {
-                lat: 38.8449971,
-                lon: -118.1394373,
+                lat: 39.801712624973,
+                lon: -119.9902311096,
             },
             {
-                lat: 34.3919386,
-                lon: -118.1394373,
+                lat: 39.737162541546,
+                lon: -112.44599267994,
             },
             {
-                lat: 34.3919386,
+                lat: 34.346907399159,
                 lon: -112.4519427,
             },
             {
-                lat: 38.8449971,
-                lon: -112.4519427,
+                lat: 34.400025213159,
+                lon: -119.78488669575,
             },
         ],
 
-    "Marianas":
+    "MarianaIslands":
         [
             {
-                lat: 22.09,
-                lon: 135.0572222
+                lat:22.220143285088,
+                lon: 136.96126049266
             },
             {
-                lat: 10.5777778,
-                lon: 135.7477778
+                lat: 22.44081213808,
+                lon: 152.4517401234
             },
             {
-                lat: 10.7725,
-                lon: 149.3918333
+                lat: 10.739229846557,
+                lon: 152.12973515767
             },
             {
-                lat: 22.5127778,
-                lon: 149.5427778
+                lat: 10.637681299806,
+                lon: 137.54638410345
             }
         ],
 
