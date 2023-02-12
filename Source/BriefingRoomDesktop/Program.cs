@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace BriefingRoom4DCS.GUI.Desktop
@@ -11,6 +12,8 @@ namespace BriefingRoom4DCS.GUI.Desktop
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InstalledUICulture;
             try
             {
                 Application.Run(new BriefingRoomBlazorWrapper());
