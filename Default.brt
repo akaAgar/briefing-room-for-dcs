@@ -1,16 +1,9 @@
-[briefing]
-
 [context]
 coalitionblue=USA
 coalitionred=Russia
 decade=Decade2000
 playercoalition=Blue
 theater=Caucasus
-
-[environment]
-season=Random
-timeofday=RandomDaytime
-wind=Random
 
 [flightplan]
 objectivedistancemax=160
@@ -23,13 +16,6 @@ borderlimit=100
 missionfeatures=FriendlyAWACS,FriendlyTankerBasket,FriendlyTankerBoom
 
 [mods]
-
-[objectives]
-objective000.preset=Custom
-objective000.task=DestroyAll
-objective000.target=VehicleAny
-objective000.targetbehavior=Idle
-objective000.targetcount=Average
 
 [options]
 fogofwar=All
@@ -61,4 +47,19 @@ commanderblue=0
 commanderred=0
 jtacblue=0
 jtacred=0
+
+[briefing]
+
+[environment]
+season=Random
+timeofday=RandomDaytime
+wind=Random
+
+[objectives]
+objective000.preset=Custom
+objective000.task=DestroyAll
+objective000.target=VehicleAny
+objective000.targetbehavior=Idle
+objective000.targetcount=Average
+objective000.coordinatehint=0,0
 

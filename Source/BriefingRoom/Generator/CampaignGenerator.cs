@@ -225,7 +225,7 @@ namespace BriefingRoom4DCS.Generator
 
             int objectiveCount = GetObjectiveCountForMission(campaignTemplate.MissionsObjectiveCount);
             for (int i = 0; i < objectiveCount; i++)
-                template.Objectives.Add(new MissionTemplateObjective(Toolbox.RandomFrom(campaignTemplate.MissionsObjectives)));
+                template.Objectives.Add(new MissionTemplateObjective(Toolbox.RandomFrom(campaignTemplate.MissionsObjectives), campaignTemplate.MissionTargetCount));
 
             if (!String.IsNullOrEmpty(previousPlayerAirbaseId))
                 template.Objectives[0].CoordinateHint_ = previousObjectiveCenterCoords.CreateNearRandom(5 * Toolbox.NM_TO_METERS, GetObjectiveVariationDistance(campaignTemplate.MissionsObjectiveVariationDistance) * Toolbox.NM_TO_METERS);

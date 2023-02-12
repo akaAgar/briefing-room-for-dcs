@@ -59,7 +59,7 @@ namespace BriefingRoom4DCS.Template
         }
 
 
-        public MissionTemplateObjective(string presetID, Amount targetCount = Amount.Average)
+        public MissionTemplateObjective(string presetID, Amount targetCount)
         {
             DBEntryObjectivePreset preset = Database.Instance.GetEntry<DBEntryObjectivePreset>(presetID);
 

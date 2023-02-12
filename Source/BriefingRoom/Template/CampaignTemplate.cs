@@ -44,6 +44,7 @@ namespace BriefingRoom4DCS.Template
         public Amount MissionsObjectiveCount { get; set; }
         public Amount MissionsObjectiveVariationDistance { get; set; }
         public Amount MissionsAirbaseVariationDistance { get; set; }
+        public Amount MissionTargetCount { get; set; }
 
         public CampaignTemplate()
         {
@@ -57,12 +58,6 @@ namespace BriefingRoom4DCS.Template
 
         public new void Clear()
         {
-            // If the default template is found, load it.
-            if (File.Exists(DEFAULT_TEMPLATE_FILEPATH))
-            {
-                LoadFromFile(DEFAULT_TEMPLATE_FILEPATH);
-                return;
-            }
 
             base.Clear();
 
@@ -77,8 +72,16 @@ namespace BriefingRoom4DCS.Template
             MissionsObjectiveCount = Amount.Average;
             MissionsObjectiveVariationDistance = Amount.Average;
             MissionsAirbaseVariationDistance = Amount.Average;
+            MissionTargetCount = Amount.Average;
 
             AssignAliases();
+
+            // if (File.Exists(DEFAULT_TEMPLATE_FILEPATH))
+            // {
+            //     LoadFromFile(DEFAULT_TEMPLATE_FILEPATH);
+            //     return;
+            // }
+
         }
 
         public bool LoadFromFile(string filePath)
@@ -107,6 +110,7 @@ namespace BriefingRoom4DCS.Template
             MissionsObjectiveCount = ini.GetValue("Missions", "ObjectiveCount", MissionsObjectiveCount);
             MissionsObjectiveVariationDistance = ini.GetValue("Missions", "ObjectiveVariationDistance", MissionsObjectiveVariationDistance);
             MissionsAirbaseVariationDistance = ini.GetValue("Missions", "AirbaseVariationDistance", MissionsAirbaseVariationDistance);
+            MissionTargetCount = ini.GetValue("Missions", "TargetCount", MissionTargetCount);
 
             PlayerFlightGroups.Clear();
             foreach (string key in ini.GetTopLevelKeysInSection("PlayerFlightGroups"))
@@ -142,6 +146,7 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue("Missions", "ObjectiveCount", MissionsObjectiveCount);
             ini.SetValue("Missions", "ObjectiveVariationDistance", MissionsObjectiveVariationDistance);
             ini.SetValue("Missions", "AirbaseVariationDistance", MissionsAirbaseVariationDistance);
+            ini.SetValue("Missions", "TargetCount", MissionTargetCount);
 
             AssignAliases();
             return ini;

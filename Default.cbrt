@@ -58,4 +58,5 @@ objectives=AirbaseStrike,AntiShipStrike,CloseAirSupport,CombatAirPatrol,CombatSe
 objectivecount=Average
 objectivevariationdistance=Average
 airbasevariationdistance=Average
+targetcount=Average
 
