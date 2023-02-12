@@ -1,5 +1,5 @@
 function ConvertDMSToDD(degrees, minutes, seconds, direction) {
-    var dd = degrees + minutes/60 + seconds/(60*60);
+    var dd = degrees + minutes / 60 + seconds / (60 * 60);
 
     if (direction == "S" || direction == "W") {
         dd = dd * -1;
@@ -16,7 +16,7 @@ const MapBoundaries = {
         },
         // bottom left
         {
-            lat:  47.382221906262,
+            lat: 47.382221906262,
             lon: 49.309787386754,
         },
         // bottom right
@@ -34,7 +34,7 @@ const MapBoundaries = {
     "Syria": [
         // top left
         {
-            lat:  37.470301761465,
+            lat: 37.470301761465,
             lon: 29.480123666167,
         },
         // bottom left
@@ -120,29 +120,29 @@ const MapBoundaries = {
         },
     ],
 
-    "Nevada":[
-            {
-                lat: 39.801712624973,
-                lon: -119.9902311096,
-            },
-            {
-                lat: 39.737162541546,
-                lon: -112.44599267994,
-            },
-            {
-                lat: 34.346907399159,
-                lon: -112.4519427,
-            },
-            {
-                lat: 34.400025213159,
-                lon: -119.78488669575,
-            },
-        ],
+    "Nevada": [
+        {
+            lat: 39.801712624973,
+            lon: -119.9902311096,
+        },
+        {
+            lat: 39.737162541546,
+            lon: -112.44599267994,
+        },
+        {
+            lat: 34.346907399159,
+            lon: -112.4519427,
+        },
+        {
+            lat: 34.400025213159,
+            lon: -119.78488669575,
+        },
+    ],
 
     "MarianaIslands":
         [
             {
-                lat:22.220143285088,
+                lat: 22.220143285088,
                 lon: 136.96126049266
             },
             {
@@ -158,5 +158,24 @@ const MapBoundaries = {
                 lon: 137.54638410345
             }
         ],
+    "Falklands":
+        [
+            {
+                lat: -45.850907963742,
+                lon: -84.733179722768,
+            },
+            {
+                lat: -48.278746783249,
+                lon: -41.444185881767,
+            },
+            {
+                lat: -56.442360340952,
+                lon: -38.172247338514,
+            },
+            {
+                lat: -53.241290032056,
+                lon: -89.780310307149
+            },
+        ]
 
 }
