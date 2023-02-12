@@ -69,14 +69,14 @@ namespace BriefingRoom4DCS.Generator
             Coordinates lastCoordinates,
             DBEntryAirbase playerAirbase,
             WaypointNameGenerator waypointNameGenerator,
-            bool useObjectivePreset,
+
             ref int objectiveIndex,
             ref List<Coordinates> objectiveCoordinatesList,
             ref List<Waypoint> waypoints,
             ref List<UnitFamily> objectiveTargetUnitFamilies)
         {
             var waypointList = new List<Waypoint>();
-            var (featuresID, targetDB, targetBehaviorDB, taskDB, objectiveOptions) = GetObjectiveData(task, useObjectivePreset);
+            var (featuresID, targetDB, targetBehaviorDB, taskDB, objectiveOptions) = GetObjectiveData(task);
             var useHintCoordinates = task.CoordinatesHint.ToString() != "0,0";
             lastCoordinates = useHintCoordinates ? task.CoordinatesHint : lastCoordinates;
             var objectiveCoordinates = GetSpawnCoordinates(template, lastCoordinates, playerAirbase, targetDB, useHintCoordinates);
@@ -138,7 +138,7 @@ namespace BriefingRoom4DCS.Generator
             ref List<UnitFamily> objectiveTargetUnitFamilies
             )
         {
-            var (targetDB, targetBehaviorDB, taskDB, objectiveOptions) = GetObjectiveData(task);
+            var (targetDB, targetBehaviorDB, taskDB, objectiveOptions, _) = GetCustomObjectiveData(task);
 
             preValidSpawns.AddRange(targetDB.ValidSpawnPoints);
             if (preValidSpawns.Contains(SpawnPointType.Sea) && preValidSpawns.Any(x => LAND_SPAWNS.Contains(x)))
@@ -199,10 +199,10 @@ namespace BriefingRoom4DCS.Generator
                     {
                         UnitCategory.Plane => Coordinates.CreateRandom(30, 60),
                         UnitCategory.Helicopter => Coordinates.CreateRandom(10, 20),
-                        _ => objectiveTargetUnitFamily == UnitFamily.InfantryMANPADS || objectiveTargetUnitFamily == UnitFamily.Infantry ? Coordinates.CreateRandom(1, 5) :  Coordinates.CreateRandom(10, 15)
+                        _ => objectiveTargetUnitFamily == UnitFamily.InfantryMANPADS || objectiveTargetUnitFamily == UnitFamily.Infantry ? Coordinates.CreateRandom(1, 5) : Coordinates.CreateRandom(10, 15)
                     } * Toolbox.NM_TO_METERS
                 );
-            if(targetDB.DCSUnitCategory == DCSUnitCategory.Vehicle)
+            if (targetDB.DCSUnitCategory == DCSUnitCategory.Vehicle)
                 destinationPoint = GetNearestSpawnCoordinates(template, destinationPoint, targetDB);
 
             var groupLua = targetBehaviorDB.GroupLua[(int)targetDB.DCSUnitCategory];
@@ -399,35 +399,37 @@ namespace BriefingRoom4DCS.Generator
             return objectiveCoordinates;
         }
 
-        private static (string[] featuresID, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB, ObjectiveOption[] objectiveOptions) GetObjectiveData(MissionTemplateObjectiveRecord objectiveTemplate, bool useObjectivePreset)
+        private static (string[] featuresID, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB, ObjectiveOption[] objectiveOptions) GetObjectiveData(MissionTemplateObjectiveRecord objectiveTemplate)
         {
-            var (targetDB, targetBehaviorDB, taskDB, objectiveOptions) = GetObjectiveData(objectiveTemplate);
-            var featuresID = objectiveTemplate.Features.ToArray();
-            if (useObjectivePreset && objectiveTemplate.Preset != "Custom")
+            var (targetDB, targetBehaviorDB, taskDB, objectiveOptions, presetDB) = GetCustomObjectiveData(objectiveTemplate);
+            var featuresID = objectiveTemplate.HasPreset ? presetDB.Features.ToArray() : objectiveTemplate.Features.ToArray();
+
+            ObjectiveNullCheck(targetDB, targetBehaviorDB, taskDB);
+            return (featuresID, targetDB, targetBehaviorDB, taskDB, objectiveOptions);
+        }
+
+        private static (DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB, ObjectiveOption[] objectiveOptions, DBEntryObjectivePreset presetDB) GetCustomObjectiveData(MissionTemplateSubTaskRecord objectiveTemplate)
+        {
+            var targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
+            var targetBehaviorDB = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior);
+            var taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task);
+            var objectiveOptions = objectiveTemplate.Options.ToArray();
+            DBEntryObjectivePreset presetDB = null;
+
+            if (objectiveTemplate.HasPreset)
             {
-                DBEntryObjectivePreset presetDB = Database.Instance.GetEntry<DBEntryObjectivePreset>(objectiveTemplate.Preset);
+                presetDB = Database.Instance.GetEntry<DBEntryObjectivePreset>(objectiveTemplate.Preset);
                 if (presetDB != null)
                 {
-                    featuresID = presetDB.Features.ToArray();
                     targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(Toolbox.RandomFrom(presetDB.Targets));
                     targetBehaviorDB = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(Toolbox.RandomFrom(presetDB.TargetsBehaviors));
                     taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(Toolbox.RandomFrom(presetDB.Tasks));
                     objectiveOptions = presetDB.Options.ToArray();
                 }
             }
-            ObjectiveNullCheck(targetDB, targetBehaviorDB, taskDB);
-            return (featuresID, targetDB, targetBehaviorDB, taskDB, objectiveOptions);
-        }
-
-        private static (DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB, ObjectiveOption[] objectiveOptions) GetObjectiveData(MissionTemplateSubTaskRecord objectiveTemplate)
-        {
-            var targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
-            var targetBehaviorDB = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior);
-            var taskDB = Database.Instance.GetEntry<DBEntryObjectiveTask>(objectiveTemplate.Task);
-            var objectiveOptions = objectiveTemplate.Options.ToArray();
 
             ObjectiveNullCheck(targetDB, targetBehaviorDB, taskDB);
-            return (targetDB, targetBehaviorDB, taskDB, objectiveOptions);
+            return (targetDB, targetBehaviorDB, taskDB, objectiveOptions, presetDB);
         }
 
         private static void ObjectiveNullCheck(DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB)

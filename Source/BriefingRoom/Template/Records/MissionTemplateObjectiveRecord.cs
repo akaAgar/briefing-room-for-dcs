@@ -28,7 +28,6 @@ namespace BriefingRoom4DCS.Template
     internal record MissionTemplateObjectiveRecord : MissionTemplateSubTaskRecord
     {
         internal List<string> Features { get; init; }
-        internal string Preset { get; init; }
         internal List<MissionTemplateSubTaskRecord> SubTasks { get; init; }
         internal Coordinates CoordinatesHint { get; init; }
 

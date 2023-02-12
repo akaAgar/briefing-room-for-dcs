@@ -388,3 +388,8 @@ th {
 .hint-remove-center {
     margin: auto 0;
 }
+
+.inputEnum select:disabled {
+    color: #666;
+    border-color: #666;
+}

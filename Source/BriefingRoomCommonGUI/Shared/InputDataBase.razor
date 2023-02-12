@@ -1,7 +1,7 @@
 <div class="form-group inputEnum @ClassString">
     <label>@Label</label>
     <InputSelect class="form-control" Value="Value" ValueExpression="@(()=>Value)"
-        ValueChanged="@((string s) => ValueChangedChild(s))">
+        ValueChanged="@((string s) => ValueChangedChild(s))" disabled="@IsDisabled">
         @if (!String.IsNullOrEmpty(CustomOpt))
         {
             <option value="@CustomOpt.Split(",")[1]">@CustomOpt.Split(",")[0]</option>
@@ -47,12 +47,16 @@
 
     [Parameter]
     public string Grouping { get; set; }
+    
+    [Parameter]
+    public bool IsDisabled { get; set; } = false;
 
     [Parameter]
     public string Value { get; set; }
 
     [Parameter]
     public EventCallback<string> ValueChanged { get; set; }
+
 
     private async Task ValueChangedChild(string value)
     {

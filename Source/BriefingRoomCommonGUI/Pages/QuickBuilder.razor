@@ -195,7 +195,7 @@
                             @onclick="() => objectiveUtil.RemoveObjective(objective, ref Template)"><span class="oi oi-x"></span></button>
                         </div>
                     </div>
-                    @if(objective.Preset == "Custom"){
+                    @if(!objective.HasPreset){
                         <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("QuickBuilderCustomObjective"):
                             &nbsp;@BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveTask, @objective.Task).Value.Name.Get()
                             &nbsp;@BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.ObjectiveTarget, @objective.Target).Value.Name.Get()

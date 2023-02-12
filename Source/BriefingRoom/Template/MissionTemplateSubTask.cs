@@ -38,6 +38,10 @@ namespace BriefingRoom4DCS.Template
         public string Task { get { return Task_; } set { Task_ = Database.Instance.CheckID<DBEntryObjectiveTask>(value); } }
         private string Task_;
 
+        public string Preset { get { return Preset_; } set { Preset_ = Database.Instance.CheckID<DBEntryObjectivePreset>(value); } }
+        private string Preset_ = "Custom";
+        public bool HasPreset { get { return Preset_ != "Custom"; }}
+
         public MissionTemplateSubTask()
         {
             Options = new List<ObjectiveOption>();
@@ -45,6 +49,7 @@ namespace BriefingRoom4DCS.Template
             TargetBehavior = "Idle";
             TargetCount = Amount.Average;
             Task = "DestroyAll";
+            Preset = "Custom";
         }
 
         public MissionTemplateSubTask(string target, string targetBehavior, string task, string[] features, Amount targetCount = Amount.Average, params ObjectiveOption[] options)
@@ -54,6 +59,7 @@ namespace BriefingRoom4DCS.Template
             TargetBehavior = targetBehavior;
             TargetCount = targetCount;
             Task = task;
+             Preset = "Custom";
         }
 
         internal MissionTemplateSubTask(INIFile ini, string section, string key)
@@ -68,6 +74,7 @@ namespace BriefingRoom4DCS.Template
             TargetBehavior = ini.GetValue<string>(section, $"{key}.TargetBehavior");
             TargetCount = ini.GetValue<Amount>(section, $"{key}.TargetCount");
             Task = ini.GetValue<string>(section, $"{key}.Task");
+            Preset = ini.GetValue<string>(section, $"{key}.Preset", "Custom");
         }
 
         internal void SaveToFile(INIFile ini, string section, string key)
@@ -77,6 +84,7 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue(section, $"{key}.Target", Target);
             ini.SetValue(section, $"{key}.TargetBehavior", TargetBehavior);
             ini.SetValue(section, $"{key}.TargetCount", TargetCount);
+            ini.SetValue(section, $"{key}.Preset", Preset);
         }
     }
 }

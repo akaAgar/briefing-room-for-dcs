@@ -34,6 +34,7 @@ namespace BriefingRoom4DCS.Template
         private List<ObjectiveOption> Options_;
         public string Preset { get { return Preset_; } set { Preset_ = Database.Instance.CheckID<DBEntryObjectivePreset>(value); } }
         private string Preset_;
+        public bool HasPreset { get { return Preset_ != "Custom"; }}
         public string Target { get { return Target_; } set { Target_ = Database.Instance.CheckID<DBEntryObjectiveTarget>(value); } }
         private string Target_;
         public string TargetBehavior { get { return TargetBehavior_; } set { TargetBehavior_ = Database.Instance.CheckID<DBEntryObjectiveTargetBehavior>(value); } }
@@ -93,7 +94,7 @@ namespace BriefingRoom4DCS.Template
         {
             Features = Database.Instance.CheckIDs<DBEntryFeatureObjective>(ini.GetValueArray<string>(section, $"{key}.Features")).ToList();
             Options = ini.GetValueArray<ObjectiveOption>(section, $"{key}.Options").ToList();
-            Preset = ini.GetValue<string>(section, $"{key}.Preset");
+            Preset = ini.GetValue<string>(section, $"{key}.Preset", "Custom");
             Target = ini.GetValue<string>(section, $"{key}.Target");
             TargetBehavior = ini.GetValue<string>(section, $"{key}.TargetBehavior");
             TargetCount = ini.GetValue<Amount>(section, $"{key}.TargetCount");

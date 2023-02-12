@@ -181,43 +181,57 @@
                                     
                                     <h4>@BriefingRoom.Translate("Tasks")</h4>
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
-                                        <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Task") @bind-Value="objective.Task" DataBaseType="DatabaseEntryType.ObjectiveTask"/>
-                                        <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Target") @bind-Value="objective.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget" Grouping="@objective.Task"/>
-                                        <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("TargetBehavior") @bind-Value="objective.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior" Grouping="@objective.Target"/>
+                                        <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Preset") @bind-Value="objective.Preset" DataBaseType="DatabaseEntryType.ObjectivePreset" HasDescription />
+                                        @if (!objective.HasPreset)
+                                        {
+                                            <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Task") @bind-Value="objective.Task" DataBaseType="DatabaseEntryType.ObjectiveTask"/>
+                                            <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Target") @bind-Value="objective.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget" Grouping="@objective.Task"/>
+                                            <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("TargetBehavior") @bind-Value="objective.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior" Grouping="@objective.Target"/>
+                                        }
                                         <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("TargetCount") @bind-Value="objective.TargetCount" EnumType="Amount"/>
                                         <button type="button" class="btn btn-secondary row-button" @onclick="() => objectiveUtil.CloneObjectiveTask(objective)"  title="Clone Task"><span class="oi oi-layers"></span></button>
                                     </div>
-                                    <div class="form-group">
-                                        <CheckBoxList
-                                            Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
-                                            TextField="@(item =>BriefingRoomGUITools.GetEnumName(item))"
-                                            DescriptionField="@(item => BriefingRoomGUITools.GetEnumDescription(item))"
-                                            ValueField="@(item =>item)"
-                                            SelectedValues="objective.Options"
-                                            TItem="ObjectiveOption"
-                                            TItemOutput="ObjectiveOption">
-                                        </CheckBoxList>
-                                    </div>
+                                     @if (!objective.HasPreset)
+                                     {
+                                        <div class="form-group">
+                                            <CheckBoxList
+                                                Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
+                                                TextField="@(item =>BriefingRoomGUITools.GetEnumName(item))"
+                                                DescriptionField="@(item => BriefingRoomGUITools.GetEnumDescription(item))"
+                                                ValueField="@(item =>item)"
+                                                SelectedValues="objective.Options"
+                                                TItem="ObjectiveOption"
+                                                TItemOutput="ObjectiveOption">
+                                            </CheckBoxList>
+                                        </div>
+                                    }
                                     @foreach (var subTask in objective.SubTasks)
                                     {
                                     <hr/>
                                         <div class="generator-group flex-justify-spaced flex-margin-fix">
+                                            <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Preset") @bind-Value="subTask.Preset" DataBaseType="DatabaseEntryType.ObjectivePreset" HasDescription />
+                                        @if (!subTask.HasPreset)
+                                        {
                                             <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Task") @bind-Value="subTask.Task" DataBaseType="DatabaseEntryType.ObjectiveTask"/>
                                             <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Target") @bind-Value="subTask.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget" Grouping="@subTask.Task"/>
                                             <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("TargetBehavior") @bind-Value="subTask.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior"/>
+                                        }
                                             <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("TargetCount") @bind-Value="subTask.TargetCount" EnumType="Amount"/>
                                             <button type="button" class="btn btn-secondary row-button" @onclick="() => objectiveUtil.CloneObjectiveSubTask(subTask, objective)"  title="Clone Task"><span class="oi oi-layers"></span></button>
                                             <button type="button" class="btn btn-secondary row-button" @onclick="() => objectiveUtil.RemoveSubTask(objective, subTask)">x</button>
                                         </div>
-                                        <CheckBoxList
-                                            Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
-                                            TextField="@(item =>BriefingRoomGUITools.GetEnumName(item))"
-                                            DescriptionField="@(item => BriefingRoomGUITools.GetEnumDescription(item))"
-                                            ValueField="@(item =>item)"
-                                            SelectedValues="subTask.Options"
-                                            TItem="ObjectiveOption"
-                                            TItemOutput="ObjectiveOption">
-                                        </CheckBoxList>
+                                        @if (!subTask.HasPreset)
+                                        {
+                                            <CheckBoxList
+                                                Data="Enum.GetValues(typeof(ObjectiveOption)).Cast<ObjectiveOption>()"
+                                                TextField="@(item =>BriefingRoomGUITools.GetEnumName(item))"
+                                                DescriptionField="@(item => BriefingRoomGUITools.GetEnumDescription(item))"
+                                                ValueField="@(item =>item)"
+                                                SelectedValues="subTask.Options"
+                                                TItem="ObjectiveOption"
+                                                TItemOutput="ObjectiveOption">
+                                            </CheckBoxList>
+                                        }
                                     }
                                     <button type="button" class="btn btn-secondary form-control" @onclick="() => objectiveUtil.AddSubTask(objective)">+</button>
                                 </div>

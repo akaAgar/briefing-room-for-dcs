@@ -53,7 +53,8 @@ namespace BriefingRoom4DCS.GUI.Utils
                 TargetBehavior = obj.TargetBehavior,
                 TargetCount = obj.TargetCount,
                 Task = obj.Task,
-                Options = obj.Options
+                Options = obj.Options,
+                Preset= obj.Preset
             };
             obj.SubTasks.Add(newSubT);
         }
@@ -65,7 +66,8 @@ namespace BriefingRoom4DCS.GUI.Utils
                 TargetBehavior = subTask.TargetBehavior,
                 TargetCount = subTask.TargetCount,
                 Task = subTask.Task,
-                Options = subTask.Options
+                Options = subTask.Options,
+                Preset= subTask.Preset
             };
             obj.SubTasks.Add(newSubT);
         }

@@ -27,6 +27,8 @@ namespace BriefingRoom4DCS.Template
     {
         internal List<ObjectiveOption> Options { get; init; }
         internal string Target { get; init; }
+        internal string Preset { get; init; }
+        internal bool HasPreset { get { return Preset != "Custom"; } }
         internal string TargetBehavior { get; init; }
         internal Amount TargetCount { get; init; }
         internal string Task { get; init; }
@@ -39,6 +41,7 @@ namespace BriefingRoom4DCS.Template
             TargetBehavior = objective.TargetBehavior;
             TargetCount = objective.TargetCount;
             Task = objective.Task;
+            Preset = objective.Preset;
         }
     }
 }
