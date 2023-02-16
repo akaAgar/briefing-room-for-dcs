@@ -22,25 +22,18 @@ using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Media;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
+using IronPdf;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using WkHtmlWrapper.Image.Converters;
-using WkHtmlWrapper.Image.Options;
 
 namespace BriefingRoom4DCS.Generator
 {
     internal class MissionGeneratorImages
     {
-
-        // Just a bit of fun
-        private static List<ImageMakerLayer> easterEggLogos = new List<ImageMakerLayer> {
-            new ImageMakerLayer("icon.png", ContentAlignment.BottomRight, offsetX:-20, offsetY: -20, scale: 0.3),
-            new ImageMakerLayer("razbari.png", ContentAlignment.BottomRight, offsetX:-20, offsetY: -20, scale: 0.1),
-        };
 
         internal static void GenerateTitle(DCSMission mission, MissionTemplateRecord template)
         {
@@ -55,7 +48,7 @@ namespace BriefingRoom4DCS.Generator
             else
                 imageLayers.Add(new ImageMakerLayer(Path.Combine("Theaters", Path.GetFileName(Toolbox.RandomFrom(theaterImages)))));
 
-            var path = Path.Combine("Flags",$"{template.GetCoalitionID(template.ContextPlayerCoalition)}.png");
+            var path = Path.Combine("Flags", $"{template.GetCoalitionID(template.ContextPlayerCoalition)}.png");
             if (File.Exists(Path.Combine(BRPaths.INCLUDE_JPG, path)))
                 imageLayers.Add(new ImageMakerLayer(path, ContentAlignment.TopLeft, 8, 8, 0, .5));
 
@@ -83,42 +76,26 @@ namespace BriefingRoom4DCS.Generator
             var converterlogs = "";
             try
             {
-                string tempRenderPath = Path.ChangeExtension(Path.GetTempFileName(), ".png");
-                converterlogs = await new HtmlToImageConverter().ConvertAsync(html, tempRenderPath, new GeneralImageOptions
+                string tempRenderPath = Path.ChangeExtension(Path.GetTempFileName(), ".png").Replace(".png", "_*.png");
+                ChromePdfRenderer renderer = new ChromePdfRenderer();
+                renderer.RenderingOptions.PaperSize = IronPdf.Rendering.PdfPaperSize.Custom;
+                renderer.RenderingOptions.SetCustomPaperSizeinPixelsOrPoints(1200, 1725);
+                PdfDocument pdf = await renderer.RenderHtmlAsPdfAsync(html);
+                var imagePaths = pdf.ToPngImages(tempRenderPath, 1200, 1725);
+
+
+                foreach (var path in imagePaths)
                 {
-                    Width = 1200,
-                    Transparent = true
-                });
-                var img = Image.FromFile(tempRenderPath);
-                var pageCount = Math.Ceiling((decimal)(img.Size.Height / 1725.0));
-                for (int i = 0; i < pageCount; i++)
-                {
-                    var page = new Bitmap(1200, 1800);
-                    var graphics = Graphics.FromImage(page);
-                    graphics.DrawImage(img, new Rectangle(0, 25, 1200, 1750), new Rectangle(0, i * 1725, 1200, 1750), GraphicsUnit.Pixel);
-                    graphics.Dispose();
-                    byte[] imageBytes;
-
-                    ImageMaker imgMaker = new();
-                    imgMaker.ImageSizeX = 1200;
-                    imgMaker.ImageSizeY = 1800;
-
-                    List<ImageMakerLayer> layers = new List<ImageMakerLayer>{
-                        new ImageMakerLayer("notebook.png"),
-                        new ImageMakerLayer(page)
-                    };
-
-                    var random = new Random();
-                    if (random.Next(100) < 3)
-                        layers.Add(easterEggLogos[random.Next(easterEggLogos.Count)]);
-
-                    imageBytes = imgMaker.GetImageBytes(layers.ToArray());
+                    var img = Image.FromFile(path);
                     var midPath = !string.IsNullOrEmpty(aircraftID) ? $"{aircraftID}/" : "";
-                    mission.AddMediaFile($"KNEEBOARD/{midPath}IMAGES/comms_{mission.UniqueID}_{inc}.jpg", imageBytes);
+                    using var ms = new MemoryStream();
+                    img.Save(ms, img.RawFormat);
+                    mission.AddMediaFile($"KNEEBOARD/{midPath}IMAGES/comms_{mission.UniqueID}_{inc}.png", ms.ToArray());
+                    img.Dispose();
+                    File.Delete(path);
                     inc++;
                 }
-                img.Dispose();
-                File.Delete(tempRenderPath);
+
                 return inc;
 
             }

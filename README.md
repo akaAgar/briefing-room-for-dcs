@@ -67,13 +67,18 @@ The generation of Kneeboard images has been prone to issues. While we aim to fix
 * Released under the [GNU General Public License 3.0](https://www.gnu.org/licenses/gpl-3.0.en.html)
 * Project website: [akaagar.itch.io/briefing-room-for-dcs](https://akaagar.itch.io/briefing-room-for-dcs/)
 * Source code repository: [github.com/akaAgar/briefing-room-for-dcs](https://github.com/akaAgar/briefing-room-for-dcs)
-* App makes use of [wkhtmltoimage](https://wkhtmltopdf.org/) and uses a wrapper heavily based on [flopik3-5 WkHtmlWrapper](https://github.com/flopik3-5/WkHtmlWrapper)settings
 
 [Credits](Include/Markdown/Manuals/Credits.md)
 
-### Planned for future versions
+### Docker
+Build
 
-The development roadmap and a list of features planned for future versions can be found on Trello: [trello.com/b/iGsqgbTu/briefingroom-project-tracker](https://trello.com/b/iGsqgbTu/briefingroom-project-tracker)
+    docker build -t johnharvey/dcs-briefing-room-web:latest .
+
+Run responding on port localhost:5000 
+
+    docker run --rm -it -p 5000:80  johnharvey/dcs-briefing-room-web:latest
+
 
 ## Changelog
 

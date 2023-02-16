@@ -11,12 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoomWeb", "Briefing
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefingRoomDesktop", "BriefingRoomDesktop\BriefingRoomDesktop.csproj", "{A3E437D2-8115-497B-9C98-AE8C90B15828}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WkHtmlWrapper", "WkHtmlWrapper", "{3315B5DD-1E45-4893-ACEE-2D244C73B965}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WkHtmlWrapper.Core", "WkHtmlWrapper\WkHtmlWrapper.Core\WkHtmlWrapper.Core.csproj", "{03C7CF2D-244C-4526-A0CF-98E09C09E459}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WkHtmlWrapper.Image", "WkHtmlWrapper\WkHtmlWrapper.Image\WkHtmlWrapper.Image.csproj", "{9F8EB2E8-9F2E-4F5D-A1A2-1F45D42269DF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BriefingRoomCommonGUI", "BriefingRoomCommonGUI\BriefingRoomCommonGUI.csproj", "{503B5393-5C76-4912-9C2F-25260957AFEE}"
 EndProject
 Global
