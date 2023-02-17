@@ -37,7 +37,11 @@ jobs:
         (Get-Content -path  Source\BriefingRoom\BriefingRoom.cs -Raw) -replace '~BUILD_VERSION~','${{ steps.current-time.outputs.formattedTime }}' | Set-Content Source\BriefingRoom\BriefingRoom.cs
  
     - name: Build and Publish App
-      run: dotnet publish Source/BriefingRoom.sln -o BriefingRoom-build${{ steps.current-time.outputs.formattedTime }} -c Release
+      run: |
+        dotnet publish Source/BriefingRoomCommandLine-o BriefingRoom-build${{ steps.current-time.outputs.formattedTime }} -c Release &
+        dotnet publish Source/BriefingRoomWeb -o BriefingRoom-build${{ steps.current-time.outputs.formattedTime }} -c Release &
+        dotnet publish Source/BriefingRoomDesktop -o BriefingRoom-build${{ steps.current-time.outputs.formattedTime }} -c Release
+
 
     - name: Get previous version
       id: previous_version
