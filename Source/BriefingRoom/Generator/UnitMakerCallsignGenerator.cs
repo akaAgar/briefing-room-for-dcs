@@ -71,10 +71,10 @@ namespace BriefingRoom4DCS.Generator
             NATOCallsigns.Add(groupName);
 
             var unitName = groupName + " $INDEX$";
-
+            var prefixedUnitName = unitName;
             if (isUsingSkynet && unitDB.Families[0] == UnitFamily.PlaneAWACS)
-                unitName = SetSkyNetPrefix(unitName, side);
-            return new UnitCallsign(groupName, unitName/*, onboardNum*/, new Dictionary<object, object> { { 1, callSignEnum[0] }, { 2, randomNumber }, { "name", unitName.Replace(" ", "") } });
+                prefixedUnitName = SetSkyNetPrefix(unitName, side);
+            return new UnitCallsign(groupName, prefixedUnitName/*, onboardNum*/, new Dictionary<object, object> { { 1, callSignEnum[0] }, { 2, randomNumber }, { "name", unitName.Replace(" ", "") } });
         }
 
 
