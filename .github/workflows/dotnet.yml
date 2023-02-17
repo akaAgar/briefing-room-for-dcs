@@ -38,8 +38,8 @@ jobs:
  
     - name: Build and Publish App
       run: |
-        dotnet publish Source/BriefingRoomCommandLine-o BriefingRoom-build${{ steps.current-time.outputs.formattedTime }} -c Release &
-        dotnet publish Source/BriefingRoomWeb -o BriefingRoom-build${{ steps.current-time.outputs.formattedTime }} -c Release &
+        dotnet publish Source/BriefingRoomCommandLine-o BriefingRoom-build${{ steps.current-time.outputs.formattedTime }} -c Release
+        dotnet publish Source/BriefingRoomWeb -o BriefingRoom-build${{ steps.current-time.outputs.formattedTime }} -c Release
         dotnet publish Source/BriefingRoomDesktop -o BriefingRoom-build${{ steps.current-time.outputs.formattedTime }} -c Release
 
 
