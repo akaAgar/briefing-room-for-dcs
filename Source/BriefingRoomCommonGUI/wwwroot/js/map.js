@@ -61,7 +61,8 @@ function GetCenterView(map, leafMap) {
 
 function DrawMapBounds(map, leafMap) {
     const bounds = GetBounds(map)
-    L.polygon(bounds, {
+    bounds.push(bounds[0])
+    L.geodesic(bounds, {
         color: 'Yellow',
         weight: 5,
         fillOpacity: 0.0
