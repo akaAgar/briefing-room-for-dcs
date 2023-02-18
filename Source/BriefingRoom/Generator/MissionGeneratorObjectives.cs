@@ -329,7 +329,7 @@ namespace BriefingRoom4DCS.Generator
             mission.AppendValue("ScriptObjectivesFeatures", ""); // Just in case there's no features
             var featureList = taskDB.RequiredFeatures.Concat(featuresID).ToHashSet();
             foreach (string featureID in featureList)
-                FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value.GroupID, targetGroupInfo.Value.Coordinates, taskDB.TargetSide, objectiveOptions.Contains(ObjectiveOption.HideTarget));
+                FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value, taskDB.TargetSide, objectiveOptions.Contains(ObjectiveOption.HideTarget));
 
             objectiveCoordinatesList.Add(isInverseTransportWayPoint ? unitCoordinates : objectiveCoordinates);
             var objCoords = objectiveCoordinates;

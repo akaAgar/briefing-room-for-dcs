@@ -1,0 +1,91 @@
+lateActivation: true
+modulation: $RADIOBAND$
+task: Escort
+radioSet: true
+uncontrolled: false
+taskSelected: true
+routeRelativeTOT: false
+waypoints:
+  - alt: $ALTITUDE$
+    action: Turning Point
+    speed: $SPEED$
+    tasks:
+      - id: Option
+        parameters:
+          wrapped: true
+          value: true
+          name: 17
+      - id: Option
+        parameters:
+          wrapped: true
+          value: 4
+          name: 18
+      - id: Option
+        parameters:
+          wrapped: true
+          value: true
+          name: 19
+      - id: Option
+        parameters:
+          wrapped: true
+          value: "none;"
+          name: 21
+          targetTypes: []
+          noTargetTypes:
+            - "Fighters"
+            - "Multirole fighters"
+            - "Bombers"
+            - "Helicopters"
+            - "UAVs"
+            - "Infantry"
+            - "Fortifications"
+            - "Tanks"
+            - "IFV"
+            - "APC"
+            - "Artillery"
+            - "Unarmed vehicles"
+            - "AAA"
+            - "SR SAM"
+            - "MR SAM"
+            - "LR SAM"
+            - "Aircraft Carriers"
+            - "Cruisers"
+            - "Destroyers"
+            - "Frigates"
+            - "Corvettes"
+            - "Light armed ships"
+            - "Unarmed ships"
+            - "Submarines"
+            - "Cruise missiles"
+            - "Antiship Missiles"
+            - "AA Missiles"
+            - "AG Missiles"
+            - "SA Missiles"
+      - id: Escort
+        auto: false
+        parameters:
+          wrapped: true
+          groupId: $OBJECTIVEGROUPID$
+          noTargetTypes: []
+          targetTypes:
+            - Air
+          engagementDistMax: 60000
+          lastWptIndexFlagChangedManually: false
+          value: "Air;"
+          lastWptIndexFlag: true
+          lastWptIndex: $LASTWAYPOINTINDEX$
+          pos:
+            x: 500
+            y: 0
+            z: 200
+    type: Turning Point
+    etaLocked: true
+    speedLocked: true
+    y: $GROUPY$
+    x: $GROUPX$
+groupId: $GROUPID$
+hidden: $HIDDEN$
+y: $GROUPY$
+x: $GROUPX$
+name: $NAME$
+frequency: $RADIOFREQUENCY$

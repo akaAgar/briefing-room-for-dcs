@@ -42,7 +42,7 @@ namespace BriefingRoom4DCS.Data
 
         internal FeatureUnitGroupFlags UnitGroupFlags { get; private set; }
 
-        internal string UnitGroupLuaGroup { get; private set; }
+        internal string UnitGroupLuaGroup { get; set; }
 
         internal string UnitGroupLuaUnit { get; private set; }
 
