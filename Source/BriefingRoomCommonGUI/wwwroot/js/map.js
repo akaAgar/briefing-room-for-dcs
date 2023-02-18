@@ -64,7 +64,7 @@ function DrawMapBounds(map, leafMap) {
     bounds.push(bounds[0])
     L.geodesic(bounds, {
         color: 'Yellow',
-        weight: 5,
+        weight: 2,
         fillOpacity: 0.0
     }).addTo(leafMap);
 }
@@ -290,6 +290,7 @@ async function RenderMap(mapData, map, inverted) {
     else {
         await GetCenterView(map, leafMap)
     }
+    DrawMapBounds(map, leafMap)
     new ResizeObserver(() => leafMap.invalidateSize()).observe(document.querySelector(".generator-preview"))
 }
 
