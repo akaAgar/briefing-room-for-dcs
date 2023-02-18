@@ -35,7 +35,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"id", Id},
                 {"number", number},
                 {"enabled", Enabled},
-                {"auto", Enabled},
+                {"auto", Auto},
                 {"params", parameters},
             };
             if (!string.IsNullOrEmpty(Key))

@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
+using BriefingRoom4DCS.Mission.DCSLuaObjects;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace BriefingRoom4DCS.Generator
         private int prevLaserCode { get; set; } = 1687;
         internal MissionGeneratorFeaturesObjectives(UnitMaker unitMaker, MissionTemplateRecord template) : base(unitMaker, template) { }
 
-        internal void GenerateMissionFeature(DCSMission mission, string featureID, string objectiveName, int objectiveIndex, int objectiveGroupID, Coordinates objectiveCoordinates, Side objectiveTargetSide, bool hideEnemy = false)
+        internal void GenerateMissionFeature(DCSMission mission, string featureID, string objectiveName, int objectiveIndex, UnitMakerGroupInfo objectiveTarget,  Side objectiveTargetSide, bool hideEnemy = false)
         {
             DBEntryFeatureObjective featureDB = Database.Instance.GetEntry<DBEntryFeatureObjective>(featureID);
             if (featureDB == null) // Feature doesn't exist
@@ -46,7 +47,7 @@ namespace BriefingRoom4DCS.Generator
             var flags = featureDB.UnitGroupFlags;
             if (flags.HasFlag(FeatureUnitGroupFlags.SpawnOnObjective))
             {
-                coordinates = objectiveCoordinates.CreateNearRandom(featureDB.UnitGroupSpawnDistance * .75, featureDB.UnitGroupSpawnDistance * 1.5); //UnitGroupSpawnDistance treated as Meters here rather than NM
+                coordinates = objectiveTarget.Coordinates.CreateNearRandom(featureDB.UnitGroupSpawnDistance * .75, featureDB.UnitGroupSpawnDistance * 1.5); //UnitGroupSpawnDistance treated as Meters here rather than NM
                 if (
                     !(featureDB.UnitGroupValidSpawnPoints.Contains(SpawnPointType.Sea) || featureDB.UnitGroupValidSpawnPoints.Contains(SpawnPointType.Air)) &&
                     _unitMaker.SpawnPointSelector.CheckInSea(coordinates.Value))
@@ -59,7 +60,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 Coordinates? spawnPoint =
                     _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                        featureDB.UnitGroupValidSpawnPoints, objectiveCoordinates,
+                        featureDB.UnitGroupValidSpawnPoints, objectiveTarget.Coordinates,
                         new MinMaxD(featureDB.UnitGroupSpawnDistance * .75, featureDB.UnitGroupSpawnDistance * 1.5));
 
                 if (!spawnPoint.HasValue) // No spawn point found
@@ -73,20 +74,26 @@ namespace BriefingRoom4DCS.Generator
 
             if (coordinates.HasValue)
                 coordinates2 = coordinates.Value + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
-            
+
             if (flags.HasFlag(FeatureUnitGroupFlags.MoveToObjective))
-                coordinates2 = objectiveCoordinates;
+                coordinates2 = objectiveTarget.Coordinates;
 
             Dictionary<string, object> extraSettings = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
             extraSettings.AddIfKeyUnused("ObjectiveName", objectiveName);
             extraSettings.AddIfKeyUnused("ObjectiveIndex", objectiveIndex + 1);
-            extraSettings.AddIfKeyUnused("ObjectiveGroupID", objectiveGroupID);
+            extraSettings.AddIfKeyUnused("ObjectiveGroupID", objectiveTarget.GroupID);
 
             if (featureID == "TargetDesignationLaser")
             {
                 var laserCode = _template.OptionsMission.Contains("SingleLaserCode") || _template.OptionsMission.Contains("FC3LaserCode") ? (_template.OptionsMission.Contains("FC3LaserCode") ? 1113 : 1688) : getNextLaserCode();
                 extraSettings.AddIfKeyUnused("LASERCODE", laserCode);
                 mission.Briefing.AddItem(DCSMissionBriefingItemType.JTAC, $"{objectiveName}\t{laserCode}");
+            }
+
+            if (featureID == "EnemyCAP" && objectiveTarget.UnitDB.Category == UnitCategory.Plane)
+            {
+                featureDB.UnitGroupLuaGroup = "AircraftEscort";
+                extraSettings.AddIfKeyUnused("LastWaypointIndex", objectiveTarget.DCSGroup.Waypoints.Count);
             }
 
             UnitMakerGroupInfo? groupInfo = AddMissionFeature(
