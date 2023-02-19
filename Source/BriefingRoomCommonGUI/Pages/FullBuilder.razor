@@ -632,7 +632,9 @@
             Template = await BuilderUtils.LoadTemplateFile(e, Template);
             await JSRuntime.InvokeVoidAsync("SetHintPositions", BuilderUtils.LoadHints(ref Template), Template.ContextTheater);
             tempateMessage = "Template Loaded";
-            clearTemplateMessageDelay();    
+            clearTemplateMessageDelay();
+            flightGroupUtil.Tab = Template.PlayerFlightGroups[0];
+            objectiveUtil.Tab = Template.Objectives[0];  
         }
         catch (Exception ex)
         {
@@ -661,6 +663,8 @@
         Template.Objectives[0].Preset = "Custom";
         await JSRuntime.InvokeVoidAsync("SetHintPositions", new Dictionary<string, double[]>(),  Template.ContextTheater);
         clearTemplateMessageDelay();
+        objectiveUtil.Tab = Template.Objectives[0];  
+        flightGroupUtil.Tab = Template.PlayerFlightGroups[0];
         StateHasChanged();
     }
 
