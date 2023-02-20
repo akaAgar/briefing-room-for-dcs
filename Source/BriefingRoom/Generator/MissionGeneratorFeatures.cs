@@ -140,7 +140,8 @@ namespace BriefingRoom4DCS.Generator
             if (!string.IsNullOrEmpty(featureDB.IncludeLuaSettings)) featureLua = featureDB.IncludeLuaSettings + "\n";
             foreach (string luaFile in featureDB.IncludeLua)
             {
-                var fileLua = Toolbox.ReadAllTextIfFileExists($"{featureDB.SourceLuaDirectory}{luaFile}");
+                var fileLua = Toolbox.ReadAllTextIfFileExists(Path.Combine(featureDB.SourceLuaDirectory, luaFile));
+                Console.WriteLine(fileLua);
                 if (fileLua.StartsWith("-- BR SINGLETON FLAG"))
                 { // Script should be used only once in the app and should be ordered infront of all feature scripts
                     mission.AppendSingletonValue(luaFile, "ScriptSingletons", fileLua);
