@@ -1,5 +1,6 @@
 ![BriefingRoom logo](Media/SplashScreen.png)
 
+![Discord Banner 2](https://discordapp.com/api/guilds/809863694678491157/widget.png?style=banner2)
 ----
 ## Installation
  App is generally standalone .exe with caveats on desktop:

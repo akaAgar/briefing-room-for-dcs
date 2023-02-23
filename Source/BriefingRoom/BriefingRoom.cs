@@ -42,6 +42,8 @@ namespace BriefingRoom4DCS
 
         public const string WEBSITE_URL = "https://akaagar.github.io/briefing-room-for-dcs/";
 
+        public const string DISCORD_URL = "https://discord.gg/MvdFTYxkpx";
+
         public const string VERSION = "0.5.301.28";
 
         public const string BUILD_VERSION = "~BUILD_VERSION~";

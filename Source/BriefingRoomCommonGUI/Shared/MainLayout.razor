@@ -23,7 +23,8 @@
                     <div>&nbsp;<span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("DockerWarn")&nbsp;</div>
                 }
                 <a href="@BriefingRoom.WEBSITE_URL" target="_blank">@BriefingRoom.Translate("About")</a>
-                <a href="@BriefingRoom.REPO_URL" target="_blank">GitHub</a>
+                <a href="@BriefingRoom.DISCORD_URL" target="_blank" class="img-link"><img alt="Discord" src="_content/BriefingRoomCommonGUI/img/discord-icon-svgrepo-com.svg"></a>
+                <a href="@BriefingRoom.REPO_URL" target="_blank" class="img-link"><img alt="Github" src="_content/BriefingRoomCommonGUI/img/github-mark@((darkmode? "-white" : "")).svg"></a>
                 <label class="bulb">
                     <input type="checkbox" checked=@darkmode
                         @onchange="eventArgs => SetDarkMode((bool)eventArgs.Value)" />

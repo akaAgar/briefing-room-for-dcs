@@ -34,6 +34,17 @@ generator-block {
     border-color: #1861ac;
 }
 
+.img-link img {
+    height: 40px;
+    width: 40px;
+    text-align: center;
+}
+
+.img-link:hover img {
+    border-radius: 5px;
+    border: solid 1px transparent;
+}
+
 .content {
     padding-top: 1.1rem;
 }
@@ -129,7 +140,7 @@ h4 {
 
 }
 
-.landing-screen img {
+.landing-screen .img {
     margin: 10vh auto;
     width: 30%;
     display: block;
@@ -140,7 +151,7 @@ h4 {
     width: 30%;
 }
 
-.landing-menu a {
+.landing-menu .btn {
     width: 100%;
     margin-top: .5em;
     background-color: #56B1CE;
@@ -159,6 +170,10 @@ h4 {
 .landing-screen .misc-info .ver,
 .float-right {
     float: right;
+}
+
+.landing-screen .row {
+    margin-top: .5em;
 }
 
 

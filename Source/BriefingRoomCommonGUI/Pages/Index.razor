@@ -4,7 +4,7 @@
 @using BriefingRoom4DCS
 
 <div class="landing-screen">
-  <img src="_content/BriefingRoomCommonGUI/img/br-logo-white.png" alt="BriefingRoom Logo" />
+  <img class="img" src="_content/BriefingRoomCommonGUI/img/br-logo-white.png" alt="BriefingRoom Logo" />
   <div class="landing-menu">
     <a href="/QuickBuilder" class="btn btn-primary">@BriefingRoom.Translate("QuickGenerator")</a>
     <a href="/FullBuilder" class="btn btn-primary">@BriefingRoom.Translate("FullGenerator")</a>
@@ -20,7 +20,12 @@
           <option value="@key">@BriefingRoom.AvailableLanguagesMap[key]</option>
         }
       </select>
-      <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("LanguageWarning")</p>
+    </div>
+    <div class="row flex-justify-spaced">
+      <a href="@BriefingRoom.DISCORD_URL" target="_blank" class="col-1 img-link"><img alt="Discord"
+          src="_content/BriefingRoomCommonGUI/img/discord-icon-svgrepo-com.svg"></a>
+      <a href="@BriefingRoom.REPO_URL" target="_blank" class="col-1 img-link"><img alt="Github"
+          src="_content/BriefingRoomCommonGUI/img/github-mark-white.svg"></a>
     </div>
   </div>
   <div class="misc-info">
