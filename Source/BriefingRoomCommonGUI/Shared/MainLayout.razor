@@ -23,8 +23,18 @@
                     <div>&nbsp;<span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("DockerWarn")&nbsp;</div>
                 }
                 <a href="@BriefingRoom.WEBSITE_URL" target="_blank">@BriefingRoom.Translate("About")</a>
-                <a href="@BriefingRoom.DISCORD_URL" target="_blank" class="img-link"><img alt="Discord" src="_content/BriefingRoomCommonGUI/img/discord-icon-svgrepo-com.svg"></a>
-                <a href="@BriefingRoom.REPO_URL" target="_blank" class="img-link"><img alt="Github" src="_content/BriefingRoomCommonGUI/img/github-mark@((darkmode? "-white" : "")).svg"></a>
+                <a href="@BriefingRoom.DISCORD_URL" target="_blank" class="img-link"><img alt="Discord"
+                        src="_content/BriefingRoomCommonGUI/img/discord-icon-svgrepo-com.svg"></a>
+                <a href="@BriefingRoom.REPO_URL" target="_blank" class="img-link"><img alt="Github"
+                        src="_content/BriefingRoomCommonGUI/img/github-mark@((darkmode? "-white" : "")).svg"></a>
+                @if (BriefingRoom.RUNNING_IN_DOCKER)
+                {
+                    <div class="btn-container"><a title="Support me on ko-fi.com" class="kofi-button"
+                            style="background-color:#29abe0;" href="https://ko-fi.com/V7V0IZI9N" target="_blank"> <span
+                                class="kofitext"><img src="https://storage.ko-fi.com/cdn/cup-border.png"
+                                    alt="Ko-fi donations"
+                                    class="kofiimg">@BriefingRoom.Translate("KoFiContributeBeg")</span></a></div>
+                }
                 <label class="bulb">
                     <input type="checkbox" checked=@darkmode
                         @onchange="eventArgs => SetDarkMode((bool)eventArgs.Value)" />
