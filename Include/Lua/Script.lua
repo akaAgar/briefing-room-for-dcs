@@ -891,9 +891,11 @@ function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
   end
 
   -- Add a little delay before playing the "mission/objective complete" sounds to make sure all "target destroyed", "target photographed", etc. sounds are done playing
-  local missionOver = #table.filter(briefingRoom.mission.objectives, function(o, k, i)
+  local completeCount = #table.filter(briefingRoom.mission.objectives, function(o, k, i)
     return o.complete
-  end) >= #briefingRoom.mission.objectives
+  end)
+  local missionOver = completeCount >= #briefingRoom.mission.objectives
+  briefingRoom.debugPrint("Objective Completion state: "..string(completeCount).."/"..string(#briefingRoom.mission.objectives).."=".. string(missionOver))
   if missionOver then
     briefingRoom.debugPrint("Mission marked as complete")
     briefingRoom.mission.complete = true
