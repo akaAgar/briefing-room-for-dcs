@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCS.Generator;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -31,7 +32,7 @@ namespace BriefingRoom4DCS.Mission
         public string Name { get; internal set; } = "";
         public string Description { get; internal set; } = "";
 
-        private readonly List<string>[] Items;
+        private readonly Dictionary<DCSMissionBriefingItemType, List<string>> Items;
 
         internal List<DCSMissionFlightBriefing> FlightBriefings { get; set; } = new List<DCSMissionFlightBriefing>();
 
@@ -39,22 +40,30 @@ namespace BriefingRoom4DCS.Mission
         {
             Mission = mission;
 
-            Items = new List<string>[Toolbox.EnumCount<DCSMissionBriefingItemType>()];
-            for (int i = 0; i < Items.Length; i++)
-                Items[i] = new List<string>();
+            Items = new Dictionary<DCSMissionBriefingItemType, List<string>>{};
+            var enumList = Enum.GetValues(typeof(DCSMissionBriefingItemType));
+            foreach (DCSMissionBriefingItemType enumItem in enumList)
+            {
+                Items.Add(enumItem, new List<string>());
+            }
         }
 
-        public string[] GetItems(DCSMissionBriefingItemType briefingItemType)
+        public List<string> GetItems(DCSMissionBriefingItemType briefingItemType)
         {
-            return Items[(int)briefingItemType].ToArray();
+            return Items[briefingItemType];
+        }
+
+        public void UpdateItem(DCSMissionBriefingItemType briefingItemType, int index, string str)
+        {
+            Items[briefingItemType][index] = str;
         }
 
         internal void AddItem(DCSMissionBriefingItemType briefingItemType, string briefingItem, bool insertFirst = false)
         {
             if (insertFirst)
-                Items[(int)briefingItemType].Insert(0, briefingItem);
+                Items[briefingItemType].Insert(0, briefingItem);
             else
-                Items[(int)briefingItemType].Add(briefingItem);
+                Items[briefingItemType].Add(briefingItem);
         }
 
         public string GetBriefingAsHTML(bool htmlHeaderAndFooter = true)
@@ -110,12 +119,12 @@ namespace BriefingRoom4DCS.Mission
             text = BriefingRoom.LanguageDB.ReplaceValues(text);
             text = Mission.ReplaceValues(text);
 
-            GeneratorTools.ReplaceKey(ref text, "BriefingAirbases", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Airbase)).Replace("\t", "    "));
-            GeneratorTools.ReplaceKey(ref text, "BriefingFlightGroups", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.FlightGroup)).Replace("\t", "    "));
-            GeneratorTools.ReplaceKey(ref text, "BriefingRemarks", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Remark)).Replace("\t", "    "));
-            GeneratorTools.ReplaceKey(ref text, "BriefingTasks", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Task)).Replace("\t", "    "));
-            GeneratorTools.ReplaceKey(ref text, "BriefingWaypoints", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.Waypoint)).Replace("\t", "    "));
-            GeneratorTools.ReplaceKey(ref text, "BriefingJTAC", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.JTAC)).Replace("\t", "    "));
+            GeneratorTools.ReplaceKey(ref text, "BriefingAirbases", GeneratorTools.MakeRawTextList(GetItems(DCSMissionBriefingItemType.Airbase)).Replace("\t", "    "));
+            GeneratorTools.ReplaceKey(ref text, "BriefingFlightGroups", GeneratorTools.MakeRawTextList(GetItems(DCSMissionBriefingItemType.FlightGroup)).Replace("\t", "    "));
+            GeneratorTools.ReplaceKey(ref text, "BriefingRemarks", GeneratorTools.MakeRawTextList(GetItems(DCSMissionBriefingItemType.Remark)).Replace("\t", "    "));
+            GeneratorTools.ReplaceKey(ref text, "BriefingTasks", GeneratorTools.MakeRawTextList(GetItems(DCSMissionBriefingItemType.Task)).Replace("\t", "    "));
+            GeneratorTools.ReplaceKey(ref text, "BriefingWaypoints", GeneratorTools.MakeRawTextList(GetItems(DCSMissionBriefingItemType.Waypoint)).Replace("\t", "    "));
+            GeneratorTools.ReplaceKey(ref text, "BriefingJTAC", GeneratorTools.MakeRawTextList(GetItems(DCSMissionBriefingItemType.JTAC)).Replace("\t", "    "));
 
             return text.Replace("\r\n", "\n").Replace("\n", newLine).Replace("\"", "''");
         }
@@ -124,7 +133,7 @@ namespace BriefingRoom4DCS.Mission
         {
             string text = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "EditorNotes.txt"));
             text = BriefingRoom.LanguageDB.ReplaceValues(text);
-            GeneratorTools.ReplaceKey(ref text, "TARGETGROUPNAMES", GeneratorTools.MakeRawTextList("\n", GetItems(DCSMissionBriefingItemType.TargetGroupName)).Replace("\t", "    "));
+            GeneratorTools.ReplaceKey(ref text, "TARGETGROUPNAMES", GeneratorTools.MakeRawTextList(GetItems(DCSMissionBriefingItemType.TargetGroupName)).Replace("\t", "    "));
             return text.Replace("\r\n", "\n").Replace("\n", newLine).Replace("\"", "''");
         }
 

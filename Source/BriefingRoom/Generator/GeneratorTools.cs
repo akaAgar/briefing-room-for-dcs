@@ -144,7 +144,7 @@ namespace BriefingRoom4DCS.Generator
             return str.Substring(0, 1).ToLower() + str.Substring(1);
         }
 
-        internal static string MakeHTMLList(params string[] listEntries)
+        internal static string MakeHTMLList(List<string> listEntries)
         {
             string list = "";
             foreach (string listEntry in listEntries)
@@ -169,7 +169,7 @@ namespace BriefingRoom4DCS.Generator
         }
 
 
-        internal static string MakeRawTextList(string newLine = "\n", params string[] listEntries)
+        internal static string MakeRawTextList(List<string> listEntries, string newLine = "\n")
         {
             string list = "";
             foreach (string listEntry in listEntries)
@@ -177,7 +177,7 @@ namespace BriefingRoom4DCS.Generator
             return list;
         }
 
-        internal static string MakeHTMLTable(params string[] tableEntries)
+        internal static string MakeHTMLTable(List<string> tableEntries)
         {
             string table = "";
             foreach (string tableRow in tableEntries)
