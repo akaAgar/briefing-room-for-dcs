@@ -1,4 +1,4 @@
-﻿/*
+/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -203,6 +203,8 @@ namespace BriefingRoom4DCS.Generator
                     {"playerCanDrive", false},
                     {"NoCM", true}});
             if (!groupInfo.HasValue || (groupInfo.Value.UnitNames.Length == 0)) return; // Couldn't generate group
+            groupInfo.Value.DCSGroup.Name = unitDB.UIDisplayName.Get();
+            groupInfo.Value.DCSGroup.Units.First().Name = unitDB.UIDisplayName.Get();
             zoneMaker.AddCTLDPickupZone(spawnPoint.Value, true);
             mission.Briefing.AddItem(
                      DCSMissionBriefingItemType.Airbase,
