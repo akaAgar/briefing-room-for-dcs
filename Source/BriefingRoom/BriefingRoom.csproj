@@ -4,7 +4,7 @@
     <RootNamespace>BriefingRoom4DCS</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="IronPdf" Version="2023.1.11416" />
+    <PackageReference Include="IronPdf" Version="2023.2.4" />
     <PackageReference Include="LuaTableSerializer" Version="0.0.3" />
     <PackageReference Include="Microsoft.Maui.Graphics" Version="7.0.59" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
