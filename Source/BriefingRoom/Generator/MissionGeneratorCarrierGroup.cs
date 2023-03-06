@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -188,10 +188,9 @@ namespace BriefingRoom4DCS.Generator
                 "FOB_Berlin"
             };
             var radioFrequencyValue = GeneratorTools.GetRadioFrequency(radioFrequency);
-
-            UnitMakerGroupInfo? groupInfo =
+            var groupInfo = 
                 unitMaker.AddUnitGroup(
-                    unitDB.Families[0], 1, Side.Ally,
+                    new string[]{flightGroup.Carrier}, Side.Ally, unitDB.Families[0],
                     "Static", "StaticFOB",
                     spawnPoint.Value, 0,
                     new Dictionary<string, object>{
@@ -208,7 +207,7 @@ namespace BriefingRoom4DCS.Generator
             zoneMaker.AddCTLDPickupZone(spawnPoint.Value, true);
             mission.Briefing.AddItem(
                      DCSMissionBriefingItemType.Airbase,
-                     $"{unitDB.UIDisplayName.Get()}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t\t");
+                     $"{groupInfo.Value.Name}\t\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t\t");
             unitMaker.carrierDictionary.Add(flightGroup.Carrier, new CarrierUnitMakerGroupInfo(groupInfo.Value, unitDB.ParkingSpots, template.ContextPlayerCoalition));
             mission.MapData.Add($"FOB_{flightGroup.Carrier}", new List<double[]> { groupInfo.Value.Coordinates.ToArray() });
 

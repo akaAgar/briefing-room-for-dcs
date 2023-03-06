@@ -145,11 +145,12 @@ namespace BriefingRoom4DCS.Generator
             {
 
                 var coordinates = fob.UnitMakerGroupInfo.Coordinates + Coordinates.CreateRandom(30, 100);
-                Dictionary<string, object> extraSettings = new Dictionary<string, object> { { "TACAN_NAME", fob.UnitMakerGroupInfo.Name } };
+                Dictionary<string, object> extraSettings = new Dictionary<string, object> { { "TACAN_NAME", fob.UnitMakerGroupInfo.Name.Replace("FOB ", "") } };
                 UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, coordinates, coordinates, ref extraSettings);
 
                 AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
-
+                if(featureID == "TacanFOBs")
+                    AppendTacanToBriefing(mission, fob.UnitMakerGroupInfo.Name, extraSettings);
             }
         }
 
