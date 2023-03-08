@@ -1,0 +1,7374 @@
+{
+  "airdromes": {
+    "12": {
+      "reference_point": {
+        "y": 243128.820313,
+        "x": -5412.409668
+      },
+      "fueldepots": [
+        "externalId:220001",
+        "externalId:220002",
+        "externalId:220003",
+        "externalId:220004",
+        "externalId:220005",
+        "externalId:220006",
+        "externalId:220007",
+        "externalId:220008",
+        "externalId:220009",
+        "externalId:220010",
+        "externalId:220011",
+        "externalId:220012",
+        "externalId:220013",
+        "externalId:220014",
+        "externalId:220015",
+        "externalId:220016",
+        "externalId:220017"
+      ],
+      "code": "URKA",
+      "runways": {
+        "0": {
+          "start": "22",
+          "id": 1,
+          "name": "22-04",
+          "end": "04"
+        }
+      },
+      "projectors": [
+        {
+          "sceneObjects": [
+            "externalId:220130",
+            "externalId:220131"
+          ],
+          "runwayId": 1,
+          "runwaySide": "22"
+        }
+      ],
+      "names": {
+        "en": "Anapa-Vityazevo"
+      },
+      "default_camera_position": {
+        "bearing": 164.60256,
+        "pnt": [
+          -4737.000488,
+          145,
+          242694.875
+        ]
+      },
+      "display_name": "Anapa-Vityazevo",
+      "radio": [
+        "airfield12_0"
+      ],
+      "civilian": true,
+      "runwayName": [
+        "04"
+      ],
+      "towers": [
+        "externalId:220000"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Anapa.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Anapa.rn4",
+      "shelters": [
+        "externalId:220018",
+        "externalId:220019",
+        "externalId:220020",
+        "externalId:220021",
+        "externalId:220022",
+        "externalId:220023",
+        "externalId:220024",
+        "externalId:220025",
+        "externalId:220026",
+        "externalId:220027",
+        "externalId:220028",
+        "externalId:220029",
+        "externalId:220030",
+        "externalId:220031",
+        "externalId:220032",
+        "externalId:220033",
+        "externalId:220034",
+        "externalId:220035",
+        "externalId:220036",
+        "externalId:220037",
+        "externalId:220038",
+        "externalId:220039",
+        "externalId:220040",
+        "externalId:220041",
+        "externalId:220042",
+        "externalId:220043",
+        "externalId:220044",
+        "externalId:220045",
+        "externalId:220046",
+        "externalId:220047",
+        "externalId:220048",
+        "externalId:220049",
+        "externalId:220050",
+        "externalId:220051",
+        "externalId:220052",
+        "externalId:220053",
+        "externalId:220054",
+        "externalId:220055",
+        "externalId:220056",
+        "externalId:220057",
+        "externalId:220058",
+        "externalId:220059",
+        "externalId:220060",
+        "externalId:220061",
+        "externalId:220062",
+        "externalId:220063",
+        "externalId:220064",
+        "externalId:220065",
+        "externalId:220066",
+        "externalId:220067",
+        "externalId:220068",
+        "externalId:220069"
+      ],
+      "warehouses": [
+        "externalId:220070",
+        "externalId:220071",
+        "externalId:220072",
+        "externalId:220073",
+        "externalId:220074",
+        "externalId:220075",
+        "externalId:220076",
+        "externalId:220077",
+        "externalId:220078",
+        "externalId:220079",
+        "externalId:220080",
+        "externalId:220081",
+        "externalId:220082",
+        "externalId:220083",
+        "externalId:220084",
+        "externalId:220085",
+        "externalId:220086",
+        "externalId:220087",
+        "externalId:220088",
+        "externalId:220089",
+        "externalId:220090",
+        "externalId:220091",
+        "externalId:220092",
+        "externalId:220093",
+        "externalId:220094",
+        "externalId:220095",
+        "externalId:220096",
+        "externalId:220097",
+        "externalId:220098",
+        "externalId:220099",
+        "externalId:220100",
+        "externalId:220101",
+        "externalId:220102",
+        "externalId:220103",
+        "externalId:220104",
+        "externalId:220105",
+        "externalId:220106",
+        "externalId:220107",
+        "externalId:220108",
+        "externalId:220109",
+        "externalId:220110",
+        "externalId:220111",
+        "externalId:220112",
+        "externalId:220113",
+        "externalId:220114",
+        "externalId:220115",
+        "externalId:220116",
+        "externalId:220117",
+        "externalId:220118",
+        "externalId:220119",
+        "externalId:220120",
+        "externalId:220121",
+        "externalId:220122",
+        "externalId:220123",
+        "externalId:220124",
+        "externalId:220125",
+        "externalId:220126",
+        "externalId:220127"
+      ],
+      "id": "Anapa",
+      "beacons": [
+        {
+          "runwayName": "04-22",
+          "runwayId": 1,
+          "runwaySide": "22",
+          "beaconId": "airfield12_1"
+        },
+        {
+          "runwayName": "04-22",
+          "runwayId": 1,
+          "runwaySide": "04",
+          "beaconId": "airfield12_2"
+        },
+        {
+          "runwayName": "04-22",
+          "runwayId": 1,
+          "runwaySide": "04",
+          "beaconId": "airfield12_3"
+        }
+      ],
+      "class": "1"
+    },
+    "13": {
+      "reference_point": {
+        "y": 367933.515625,
+        "x": 11685.205078
+      },
+      "fueldepots": [
+        "externalId:230001",
+        "externalId:230002",
+        "externalId:230003",
+        "externalId:230004",
+        "externalId:230005",
+        "externalId:230006",
+        "externalId:230007",
+        "externalId:230008",
+        "externalId:230009",
+        "externalId:230010",
+        "externalId:230011",
+        "externalId:230012",
+        "externalId:230013",
+        "externalId:230014",
+        "externalId:230015",
+        "externalId:230016"
+      ],
+      "code": "URKL",
+      "runways": {
+        "0": {
+          "start": "09",
+          "id": 1,
+          "name": "09-27",
+          "end": "27"
+        }
+      },
+      "projectors": [
+        {
+          "sceneObjects": [
+            "externalId:230110",
+            "externalId:230111"
+          ],
+          "runwayId": 1,
+          "runwaySide": "27"
+        }
+      ],
+      "names": {
+        "en": "Krasnodar-Center"
+      },
+      "default_camera_position": {
+        "bearing": 296.982313,
+        "pnt": [
+          11046.841797,
+          130,
+          367780.84375
+        ]
+      },
+      "display_name": "Krasnodar-Center",
+      "radio": [
+        "airfield13_0"
+      ],
+      "civilian": false,
+      "runwayName": [
+        "27"
+      ],
+      "towers": [
+        "externalId:230000"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Krasnodar.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Krasnodar.rn4",
+      "shelters": [
+        "externalId:230017",
+        "externalId:230018",
+        "externalId:230019",
+        "externalId:230020",
+        "externalId:230021",
+        "externalId:230022",
+        "externalId:230023",
+        "externalId:230024",
+        "externalId:230025",
+        "externalId:230026",
+        "externalId:230027",
+        "externalId:230028",
+        "externalId:230029",
+        "externalId:230030",
+        "externalId:230031",
+        "externalId:230032",
+        "externalId:230033",
+        "externalId:230034",
+        "externalId:230035",
+        "externalId:230036",
+        "externalId:230037",
+        "externalId:230038",
+        "externalId:230039",
+        "externalId:230040",
+        "externalId:230041",
+        "externalId:230042",
+        "externalId:230043",
+        "externalId:230044",
+        "externalId:230045",
+        "externalId:230046",
+        "externalId:230047",
+        "externalId:230048",
+        "externalId:230049"
+      ],
+      "warehouses": [
+        "externalId:230050",
+        "externalId:230051",
+        "externalId:230052",
+        "externalId:230053",
+        "externalId:230054",
+        "externalId:230055",
+        "externalId:230056",
+        "externalId:230057",
+        "externalId:230058",
+        "externalId:230059",
+        "externalId:230060",
+        "externalId:230061",
+        "externalId:230062",
+        "externalId:230063",
+        "externalId:230064",
+        "externalId:230065",
+        "externalId:230066",
+        "externalId:230067",
+        "externalId:230068",
+        "externalId:230069",
+        "externalId:230070",
+        "externalId:230071",
+        "externalId:230072",
+        "externalId:230073",
+        "externalId:230074",
+        "externalId:230075",
+        "externalId:230076",
+        "externalId:230077",
+        "externalId:230078",
+        "externalId:230079",
+        "externalId:230080",
+        "externalId:230081",
+        "externalId:230082",
+        "externalId:230083",
+        "externalId:230084",
+        "externalId:230085",
+        "externalId:230086",
+        "externalId:230087",
+        "externalId:230088",
+        "externalId:230089",
+        "externalId:230090",
+        "externalId:230091",
+        "externalId:230092",
+        "externalId:230093",
+        "externalId:230094",
+        "externalId:230095",
+        "externalId:230096",
+        "externalId:230097",
+        "externalId:230098",
+        "externalId:230099",
+        "externalId:230100",
+        "externalId:230101",
+        "externalId:230102",
+        "externalId:230103",
+        "externalId:230104",
+        "externalId:230105",
+        "externalId:230106",
+        "externalId:230107"
+      ],
+      "id": "Krasnodar",
+      "beacons": [
+        {
+          "runwayName": "09-27",
+          "runwayId": 1,
+          "runwaySide": "27",
+          "beaconId": "airfield13_1"
+        },
+        {
+          "runwayName": "09-27",
+          "runwayId": 1,
+          "runwaySide": "09",
+          "beaconId": "airfield13_2"
+        },
+        {
+          "runwayName": "09-27",
+          "runwayId": 1,
+          "runwaySide": "09",
+          "beaconId": "airfield13_3"
+        },
+        {
+          "runwayName": "09-27",
+          "runwayId": 1,
+          "runwaySide": "09",
+          "beaconId": "airfield13_4"
+        },
+        {
+          "runwayName": "09-27",
+          "runwayId": 1,
+          "runwaySide": "09",
+          "beaconId": "airfield13_5"
+        },
+        {
+          "beaconId": "airfield13_6"
+        }
+      ],
+      "class": "2"
+    },
+    "14": {
+      "reference_point": {
+        "y": 279256.0625,
+        "x": -40917.535156
+      },
+      "fueldepots": [
+        "externalId:240000",
+        "externalId:240001",
+        "externalId:240002",
+        "externalId:240003",
+        "externalId:240004",
+        "externalId:240005",
+        "externalId:240006",
+        "externalId:240007",
+        "externalId:240008",
+        "externalId:240009",
+        "externalId:240010",
+        "externalId:240011",
+        "externalId:240012",
+        "externalId:240013",
+        "externalId:240014",
+        "externalId:240015"
+      ],
+      "code": "URKN",
+      "runways": {
+        "0": {
+          "start": "22",
+          "id": 1,
+          "name": "22-04",
+          "end": "04"
+        }
+      },
+      "projectors": [
+        {
+          "sceneObjects": [
+            "externalId:240111",
+            "externalId:240112"
+          ],
+          "runwayId": 1,
+          "runwaySide": "22"
+        }
+      ],
+      "names": {
+        "en": "Novorossiysk"
+      },
+      "default_camera_position": {
+        "bearing": 152.865453,
+        "pnt": [
+          -40432.242188,
+          140,
+          279253.59375
+        ]
+      },
+      "display_name": "Novorossiysk",
+      "radio": [
+        "airfield14_0"
+      ],
+      "civilian": false,
+      "runwayName": [
+        "04"
+      ],
+      "towers": [
+        "externalId:240038"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Novorossiysk.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Novorossiysk.rn4",
+      "shelters": [
+        "externalId:240016",
+        "externalId:240017",
+        "externalId:240018",
+        "externalId:240019",
+        "externalId:240020",
+        "externalId:240021",
+        "externalId:240022",
+        "externalId:240023",
+        "externalId:240024",
+        "externalId:240025",
+        "externalId:240026",
+        "externalId:240027",
+        "externalId:240028",
+        "externalId:240029",
+        "externalId:240030",
+        "externalId:240031",
+        "externalId:240032",
+        "externalId:240033",
+        "externalId:240034",
+        "externalId:240035",
+        "externalId:240036",
+        "externalId:240037"
+      ],
+      "warehouses": [
+        "externalId:240039",
+        "externalId:240040",
+        "externalId:240041",
+        "externalId:240042",
+        "externalId:240043",
+        "externalId:240044",
+        "externalId:240045",
+        "externalId:240046",
+        "externalId:240047",
+        "externalId:240048",
+        "externalId:240049",
+        "externalId:240050",
+        "externalId:240051",
+        "externalId:240052",
+        "externalId:240053",
+        "externalId:240054",
+        "externalId:240055",
+        "externalId:240056",
+        "externalId:240057",
+        "externalId:240058",
+        "externalId:240059",
+        "externalId:240060",
+        "externalId:240061",
+        "externalId:240062",
+        "externalId:240063",
+        "externalId:240064",
+        "externalId:240065",
+        "externalId:240066",
+        "externalId:240067",
+        "externalId:240068",
+        "externalId:240069",
+        "externalId:240070",
+        "externalId:240071",
+        "externalId:240072",
+        "externalId:240073",
+        "externalId:240074",
+        "externalId:240075",
+        "externalId:240076",
+        "externalId:240077",
+        "externalId:240078",
+        "externalId:240079",
+        "externalId:240080",
+        "externalId:240081",
+        "externalId:240082",
+        "externalId:240083",
+        "externalId:240084",
+        "externalId:240085",
+        "externalId:240086",
+        "externalId:240087",
+        "externalId:240088",
+        "externalId:240089",
+        "externalId:240090",
+        "externalId:240091",
+        "externalId:240092",
+        "externalId:240093",
+        "externalId:240094",
+        "externalId:240095",
+        "externalId:240096",
+        "externalId:240097",
+        "externalId:240098",
+        "externalId:240099",
+        "externalId:240100",
+        "externalId:240101",
+        "externalId:240102",
+        "externalId:240103",
+        "externalId:240104",
+        "externalId:240105",
+        "externalId:240106",
+        "externalId:240107",
+        "externalId:240108"
+      ],
+      "id": "Novorossiysk",
+      "beacons": {},
+      "class": "2"
+    },
+    "15": {
+      "reference_point": {
+        "y": 294388.125,
+        "x": -6576.524658
+      },
+      "fueldepots": [
+        "externalId:250016",
+        "externalId:250017",
+        "externalId:250018",
+        "externalId:250019",
+        "externalId:250020",
+        "externalId:250021",
+        "externalId:250022",
+        "externalId:250023",
+        "externalId:250024",
+        "externalId:250025",
+        "externalId:250026",
+        "externalId:250027",
+        "externalId:250028",
+        "externalId:250029",
+        "externalId:250030",
+        "externalId:250031"
+      ],
+      "code": "URKW",
+      "runways": {
+        "0": {
+          "start": "04",
+          "id": 1,
+          "name": "04-22",
+          "end": "22"
+        }
+      },
+      "projectors": [
+        {
+          "sceneObjects": [
+            "externalId:250104",
+            "externalId:250105"
+          ],
+          "runwayId": 1,
+          "runwaySide": "22"
+        }
+      ],
+      "names": {
+        "en": "Krymsk"
+      },
+      "default_camera_position": {
+        "bearing": 342.153424,
+        "pnt": [
+          -6715.005005,
+          120,
+          294749.529297
+        ]
+      },
+      "display_name": "Krymsk",
+      "radio": [
+        "airfield15_0"
+      ],
+      "civilian": false,
+      "runwayName": [
+        "22"
+      ],
+      "towers": [
+        "externalId:250015"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Krymsk.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Krymsk.rn4",
+      "shelters": [
+        "externalId:250000",
+        "externalId:250001",
+        "externalId:250002",
+        "externalId:250003",
+        "externalId:250004",
+        "externalId:250005",
+        "externalId:250006",
+        "externalId:250007",
+        "externalId:250008",
+        "externalId:250009",
+        "externalId:250010",
+        "externalId:250011",
+        "externalId:250012",
+        "externalId:250013",
+        "externalId:250014",
+        "externalId:250032",
+        "externalId:250033",
+        "externalId:250034",
+        "externalId:250035",
+        "externalId:250036",
+        "externalId:250037",
+        "externalId:250038",
+        "externalId:250039",
+        "externalId:250040",
+        "externalId:250041",
+        "externalId:250042",
+        "externalId:250043"
+      ],
+      "warehouses": [
+        "externalId:250044",
+        "externalId:250045",
+        "externalId:250046",
+        "externalId:250047",
+        "externalId:250048",
+        "externalId:250049",
+        "externalId:250050",
+        "externalId:250051",
+        "externalId:250052",
+        "externalId:250053",
+        "externalId:250054",
+        "externalId:250055",
+        "externalId:250056",
+        "externalId:250057",
+        "externalId:250058",
+        "externalId:250059",
+        "externalId:250060",
+        "externalId:250061",
+        "externalId:250062",
+        "externalId:250063",
+        "externalId:250064",
+        "externalId:250065",
+        "externalId:250066",
+        "externalId:250067",
+        "externalId:250068",
+        "externalId:250069",
+        "externalId:250070",
+        "externalId:250071",
+        "externalId:250072",
+        "externalId:250073",
+        "externalId:250074",
+        "externalId:250075",
+        "externalId:250076",
+        "externalId:250077",
+        "externalId:250078",
+        "externalId:250079",
+        "externalId:250080",
+        "externalId:250081",
+        "externalId:250082",
+        "externalId:250083",
+        "externalId:250084",
+        "externalId:250085",
+        "externalId:250086",
+        "externalId:250087",
+        "externalId:250088",
+        "externalId:250089",
+        "externalId:250090",
+        "externalId:250091",
+        "externalId:250092",
+        "externalId:250093",
+        "externalId:250094",
+        "externalId:250095",
+        "externalId:250096",
+        "externalId:250097",
+        "externalId:250098",
+        "externalId:250099",
+        "externalId:250100",
+        "externalId:250101"
+      ],
+      "id": "Krymsk",
+      "beacons": [
+        {
+          "runwayName": "04-22",
+          "runwayId": 1,
+          "runwaySide": "22",
+          "beaconId": "airfield15_1"
+        },
+        {
+          "runwayName": "04-22",
+          "runwayId": 1,
+          "runwaySide": "04",
+          "beaconId": "airfield15_2"
+        },
+        {
+          "runwayName": "04-22",
+          "runwayId": 1,
+          "runwaySide": "04",
+          "beaconId": "airfield15_3"
+        },
+        {
+          "runwayName": "04-22",
+          "runwayId": 1,
+          "runwaySide": "04",
+          "beaconId": "airfield15_4"
+        },
+        {
+          "runwayName": "04-22",
+          "runwayId": 1,
+          "runwaySide": "22",
+          "beaconId": "airfield15_5"
+        },
+        {
+          "runwayName": "04-22",
+          "runwayId": 1,
+          "runwaySide": "22",
+          "beaconId": "airfield15_6"
+        },
+        {
+          "runwayName": "04-22",
+          "runwayId": 1,
+          "runwaySide": "04",
+          "beaconId": "airfield15_7"
+        },
+        {
+          "beaconId": "airfield15_8"
+        }
+      ],
+      "class": "1"
+    },
+    "16": {
+      "reference_point": {
+        "y": 458048.84375,
+        "x": -26437.275391
+      },
+      "fueldepots": [
+        "externalId:260001",
+        "externalId:260002",
+        "externalId:260003",
+        "externalId:260004",
+        "externalId:260005",
+        "externalId:260006",
+        "externalId:260007",
+        "externalId:260008",
+        "externalId:260009",
+        "externalId:260010",
+        "externalId:260011",
+        "externalId:260012",
+        "externalId:260013",
+        "externalId:260014",
+        "externalId:260015",
+        "externalId:260016",
+        "externalId:260017"
+      ],
+      "code": "URKH",
+      "runways": {
+        "0": {
+          "start": "04",
+          "id": 1,
+          "name": "04-22",
+          "end": "22"
+        }
+      },
+      "projectors": [
+        {
+          "sceneObjects": [
+            "externalId:260079",
+            "externalId:260080"
+          ],
+          "runwayId": 1,
+          "runwaySide": "22"
+        }
+      ],
+      "names": {
+        "en": "Maykop-Khanskaya"
+      },
+      "default_camera_position": {
+        "bearing": 334.614192,
+        "pnt": [
+          -26871.365234,
+          280,
+          458253.875
+        ]
+      },
+      "display_name": "Maykop-Khanskaya",
+      "radio": [
+        "airfield16_0"
+      ],
+      "civilian": false,
+      "id": "Maykop",
+      "towers": [
+        "externalId:260018"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Maykop.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Maykop.rn4",
+      "warehouses": [
+        "externalId:260000",
+        "externalId:260019",
+        "externalId:260020",
+        "externalId:260021",
+        "externalId:260022",
+        "externalId:260023",
+        "externalId:260024",
+        "externalId:260025",
+        "externalId:260026",
+        "externalId:260027",
+        "externalId:260028",
+        "externalId:260029",
+        "externalId:260030",
+        "externalId:260031",
+        "externalId:260032",
+        "externalId:260033",
+        "externalId:260034",
+        "externalId:260035",
+        "externalId:260036",
+        "externalId:260037",
+        "externalId:260038",
+        "externalId:260039",
+        "externalId:260040",
+        "externalId:260041",
+        "externalId:260042",
+        "externalId:260043",
+        "externalId:260044",
+        "externalId:260045",
+        "externalId:260046",
+        "externalId:260047",
+        "externalId:260048",
+        "externalId:260049",
+        "externalId:260050",
+        "externalId:260051",
+        "externalId:260052",
+        "externalId:260053",
+        "externalId:260054",
+        "externalId:260055",
+        "externalId:260056",
+        "externalId:260057",
+        "externalId:260058",
+        "externalId:260059",
+        "externalId:260060",
+        "externalId:260061",
+        "externalId:260062",
+        "externalId:260063",
+        "externalId:260064",
+        "externalId:260065",
+        "externalId:260066",
+        "externalId:260067",
+        "externalId:260068",
+        "externalId:260069",
+        "externalId:260070",
+        "externalId:260071",
+        "externalId:260072",
+        "externalId:260073",
+        "externalId:260074",
+        "externalId:260075",
+        "externalId:260076"
+      ],
+      "runwayName": [
+        "22"
+      ],
+      "beacons": [
+        {
+          "runwayName": "04-22",
+          "runwayId": 1,
+          "runwaySide": "22",
+          "beaconId": "airfield16_1"
+        },
+        {
+          "runwayName": "04-22",
+          "runwayId": 1,
+          "runwaySide": "04",
+          "beaconId": "airfield16_2"
+        },
+        {
+          "runwayName": "04-22",
+          "runwayId": 1,
+          "runwaySide": "04",
+          "beaconId": "airfield16_3"
+        },
+        {
+          "runwayName": "04-22",
+          "runwayId": 1,
+          "runwaySide": "04",
+          "beaconId": "airfield16_4"
+        },
+        {
+          "runwayName": "04-22",
+          "runwayId": 1,
+          "runwaySide": "04",
+          "beaconId": "airfield16_5"
+        },
+        {
+          "beaconId": "airfield16_6"
+        }
+      ],
+      "class": "1"
+    },
+    "17": {
+      "reference_point": {
+        "y": 298406.15625,
+        "x": -50378.611328
+      },
+      "fueldepots": [
+        "externalId:270059",
+        "externalId:270060",
+        "externalId:270061",
+        "externalId:270062",
+        "externalId:270063",
+        "externalId:270064",
+        "externalId:270065",
+        "externalId:270066",
+        "externalId:270067",
+        "externalId:270068",
+        "externalId:270069",
+        "externalId:270070",
+        "externalId:270071",
+        "externalId:270072",
+        "externalId:270073",
+        "externalId:270074"
+      ],
+      "code": "URKG",
+      "runways": {
+        "0": {
+          "start": "01",
+          "id": 1,
+          "name": "01-19",
+          "end": "19"
+        }
+      },
+      "projectors": [
+        {
+          "sceneObjects": [
+            "externalId:270077",
+            "externalId:270078"
+          ],
+          "runwayId": 1,
+          "runwaySide": "19"
+        }
+      ],
+      "names": {
+        "en": "Gelendzhik"
+      },
+      "default_camera_position": {
+        "bearing": 155.890543,
+        "pnt": [
+          -50287.039063,
+          125,
+          298195.5625
+        ]
+      },
+      "display_name": "Gelendzhik",
+      "radio": [
+        "airfield17_0"
+      ],
+      "civilian": true,
+      "id": "Gelendzhik",
+      "towers": [
+        "externalId:270058"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Gelendzhik.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Gelendzhik.rn4",
+      "warehouses": [
+        "externalId:270000",
+        "externalId:270001",
+        "externalId:270002",
+        "externalId:270003",
+        "externalId:270004",
+        "externalId:270005",
+        "externalId:270006",
+        "externalId:270007",
+        "externalId:270008",
+        "externalId:270009",
+        "externalId:270010",
+        "externalId:270011",
+        "externalId:270012",
+        "externalId:270013",
+        "externalId:270014",
+        "externalId:270015",
+        "externalId:270016",
+        "externalId:270017",
+        "externalId:270018",
+        "externalId:270019",
+        "externalId:270020",
+        "externalId:270021",
+        "externalId:270022",
+        "externalId:270023",
+        "externalId:270024",
+        "externalId:270025",
+        "externalId:270026",
+        "externalId:270027",
+        "externalId:270028",
+        "externalId:270029",
+        "externalId:270030",
+        "externalId:270031",
+        "externalId:270032",
+        "externalId:270033",
+        "externalId:270034",
+        "externalId:270035",
+        "externalId:270036",
+        "externalId:270037",
+        "externalId:270038",
+        "externalId:270039",
+        "externalId:270040",
+        "externalId:270041",
+        "externalId:270042",
+        "externalId:270043",
+        "externalId:270044",
+        "externalId:270045",
+        "externalId:270046",
+        "externalId:270047",
+        "externalId:270048",
+        "externalId:270049",
+        "externalId:270050",
+        "externalId:270051",
+        "externalId:270052",
+        "externalId:270053",
+        "externalId:270054",
+        "externalId:270055",
+        "externalId:270056",
+        "externalId:270057"
+      ],
+      "runwayName": [
+        "19"
+      ],
+      "beacons": [
+        {
+          "beaconId": "airfield17_1"
+        }
+      ],
+      "class": "2"
+    },
+    "18": {
+      "reference_point": {
+        "y": 462218.921875,
+        "x": -164496.46875
+      },
+      "fueldepots": [
+        "externalId:280025",
+        "externalId:280026",
+        "externalId:280027",
+        "externalId:280028",
+        "externalId:280029",
+        "externalId:280030",
+        "externalId:280031",
+        "externalId:280032",
+        "externalId:280033",
+        "externalId:280034",
+        "externalId:280035",
+        "externalId:280036",
+        "externalId:280037",
+        "externalId:280038",
+        "externalId:280039",
+        "externalId:280040",
+        "externalId:280041"
+      ],
+      "code": "URSS",
+      "runways": {
+        "0": {
+          "start": "06",
+          "id": 1,
+          "name": "06-24",
+          "end": "24"
+        }
+      },
+      "projectors": [
+        {
+          "sceneObjects": [
+            "externalId:280105",
+            "externalId:280106"
+          ],
+          "runwayId": 1,
+          "runwaySide": "24"
+        }
+      ],
+      "names": {
+        "en": "Sochi-Adler"
+      },
+      "default_camera_position": {
+        "bearing": 0,
+        "pnt": [
+          -164405.78125,
+          30.017223,
+          462202.5625
+        ]
+      },
+      "display_name": "Sochi-Adler",
+      "radio": [
+        "airfield18_0"
+      ],
+      "civilian": true,
+      "runwayName": [
+        "24"
+      ],
+      "towers": [
+        "externalId:280024"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Sochi.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Sochi.rn4",
+      "shelters": [
+        "externalId:280000",
+        "externalId:280001",
+        "externalId:280002",
+        "externalId:280003",
+        "externalId:280004",
+        "externalId:280005",
+        "externalId:280006",
+        "externalId:280007",
+        "externalId:280008",
+        "externalId:280009",
+        "externalId:280010",
+        "externalId:280011",
+        "externalId:280012",
+        "externalId:280013",
+        "externalId:280014",
+        "externalId:280015",
+        "externalId:280016",
+        "externalId:280017",
+        "externalId:280018",
+        "externalId:280019",
+        "externalId:280020",
+        "externalId:280021",
+        "externalId:280022",
+        "externalId:280023",
+        "externalId:280042",
+        "externalId:280043",
+        "externalId:280044"
+      ],
+      "warehouses": [
+        "externalId:280045",
+        "externalId:280046",
+        "externalId:280047",
+        "externalId:280048",
+        "externalId:280049",
+        "externalId:280050",
+        "externalId:280051",
+        "externalId:280052",
+        "externalId:280053",
+        "externalId:280054",
+        "externalId:280055",
+        "externalId:280056",
+        "externalId:280057",
+        "externalId:280058",
+        "externalId:280059",
+        "externalId:280060",
+        "externalId:280061",
+        "externalId:280062",
+        "externalId:280063",
+        "externalId:280064",
+        "externalId:280065",
+        "externalId:280066",
+        "externalId:280067",
+        "externalId:280068",
+        "externalId:280069",
+        "externalId:280070",
+        "externalId:280071",
+        "externalId:280072",
+        "externalId:280073",
+        "externalId:280074",
+        "externalId:280075",
+        "externalId:280076",
+        "externalId:280077",
+        "externalId:280078",
+        "externalId:280079",
+        "externalId:280080",
+        "externalId:280081",
+        "externalId:280082",
+        "externalId:280083",
+        "externalId:280084",
+        "externalId:280085",
+        "externalId:280086",
+        "externalId:280087",
+        "externalId:280088",
+        "externalId:280089",
+        "externalId:280090",
+        "externalId:280091",
+        "externalId:280092",
+        "externalId:280093",
+        "externalId:280094",
+        "externalId:280095",
+        "externalId:280096",
+        "externalId:280097",
+        "externalId:280098",
+        "externalId:280099",
+        "externalId:280100",
+        "externalId:280101",
+        "externalId:280102"
+      ],
+      "id": "Sochi",
+      "beacons": [
+        {
+          "runwayName": "06-24",
+          "runwayId": 1,
+          "runwaySide": "06",
+          "beaconId": "airfield18_1"
+        },
+        {
+          "runwayName": "06-24",
+          "runwayId": 1,
+          "runwaySide": "06",
+          "beaconId": "airfield18_2"
+        }
+      ],
+      "class": "1"
+    },
+    "19": {
+      "reference_point": {
+        "y": 387878.803876,
+        "x": 7717.637452
+      },
+      "fueldepots": [
+        "externalId:290001",
+        "externalId:290002",
+        "externalId:290003",
+        "externalId:290004",
+        "externalId:290005",
+        "externalId:290006",
+        "externalId:290007",
+        "externalId:290008",
+        "externalId:290009",
+        "externalId:290010",
+        "externalId:290011",
+        "externalId:290012",
+        "externalId:290013",
+        "externalId:290014",
+        "externalId:290015",
+        "externalId:290016",
+        "externalId:290017"
+      ],
+      "code": "URKK",
+      "runways": {
+        "0": {
+          "start": "23L",
+          "id": 1,
+          "name": "23L-05R",
+          "end": "05R"
+        }
+      },
+      "projectors": [
+        {
+          "sceneObjects": [
+            "externalId:290078",
+            "externalId:290079"
+          ],
+          "runwayId": 1,
+          "runwaySide": "23L"
+        }
+      ],
+      "names": {
+        "en": "Krasnodar-Pashkovsky"
+      },
+      "default_camera_position": {
+        "bearing": 115.93843,
+        "pnt": [
+          7805.66748,
+          134,
+          389024.71875
+        ]
+      },
+      "display_name": "Krasnodar-Pashkovsky",
+      "radio": [
+        "airfield19_0"
+      ],
+      "civilian": true,
+      "id": "Krasnodar_P",
+      "towers": [
+        "externalId:290000"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Krasnodar_P.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Krasnodar_P.rn4",
+      "warehouses": [
+        "externalId:290018",
+        "externalId:290019",
+        "externalId:290020",
+        "externalId:290021",
+        "externalId:290022",
+        "externalId:290023",
+        "externalId:290024",
+        "externalId:290025",
+        "externalId:290026",
+        "externalId:290027",
+        "externalId:290028",
+        "externalId:290029",
+        "externalId:290030",
+        "externalId:290031",
+        "externalId:290032",
+        "externalId:290033",
+        "externalId:290034",
+        "externalId:290035",
+        "externalId:290036",
+        "externalId:290037",
+        "externalId:290038",
+        "externalId:290039",
+        "externalId:290040",
+        "externalId:290041",
+        "externalId:290042",
+        "externalId:290043",
+        "externalId:290044",
+        "externalId:290045",
+        "externalId:290046",
+        "externalId:290047",
+        "externalId:290048",
+        "externalId:290049",
+        "externalId:290050",
+        "externalId:290051",
+        "externalId:290052",
+        "externalId:290053",
+        "externalId:290054",
+        "externalId:290055",
+        "externalId:290056",
+        "externalId:290057",
+        "externalId:290058",
+        "externalId:290059",
+        "externalId:290060",
+        "externalId:290061",
+        "externalId:290062",
+        "externalId:290063",
+        "externalId:290064",
+        "externalId:290065",
+        "externalId:290066",
+        "externalId:290067",
+        "externalId:290068",
+        "externalId:290069",
+        "externalId:290070",
+        "externalId:290071",
+        "externalId:290072",
+        "externalId:290073",
+        "externalId:290074",
+        "externalId:290075"
+      ],
+      "runwayName": [
+        "05R"
+      ],
+      "beacons": [
+        {
+          "runwayName": "05-23",
+          "runwayId": 1,
+          "runwaySide": "05",
+          "beaconId": "airfield19_1"
+        },
+        {
+          "runwayName": "05-23",
+          "runwayId": 1,
+          "runwaySide": "23",
+          "beaconId": "airfield19_2"
+        },
+        {
+          "runwayName": "05-23",
+          "runwayId": 1,
+          "runwaySide": "23",
+          "beaconId": "airfield19_3"
+        },
+        {
+          "beaconId": "airfield19_4"
+        }
+      ],
+      "class": "1"
+    },
+    "20": {
+      "reference_point": {
+        "y": 564391.96875,
+        "x": -220592.328125
+      },
+      "fueldepots": [
+        "externalId:300002"
+      ],
+      "code": "UGSS",
+      "runways": {
+        "0": {
+          "start": "30",
+          "id": 1,
+          "name": "30-12",
+          "end": "12"
+        }
+      },
+      "projectors": [
+        {
+          "sceneObjects": [
+            "externalId:300005",
+            "externalId:300006"
+          ],
+          "runwayId": 1,
+          "runwaySide": "30"
+        }
+      ],
+      "names": {
+        "en": "Sukhumi-Babushara"
+      },
+      "default_camera_position": {
+        "bearing": 63.172115,
+        "pnt": [
+          -221973.076538,
+          707.003174,
+          567160.07666
+        ]
+      },
+      "display_name": "Sukhumi-Babushara",
+      "radio": [
+        "airfield20_0"
+      ],
+      "civilian": true,
+      "id": "Sukhumi",
+      "towers": [
+        "externalId:300000"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Sukhumi.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Sukhumi.rn4",
+      "warehouses": [
+        "externalId:300001"
+      ],
+      "runwayName": [
+        "12"
+      ],
+      "beacons": [
+        {
+          "runwayName": "12-30",
+          "runwayId": 1,
+          "runwaySide": "30",
+          "beaconId": "airfield20_1"
+        }
+      ],
+      "class": "1"
+    },
+    "21": {
+      "reference_point": {
+        "y": 516451.6875,
+        "x": -196710.085938
+      },
+      "fueldepots": [
+        "externalId:310000",
+        "externalId:310001",
+        "externalId:310002",
+        "externalId:310003",
+        "externalId:310004",
+        "externalId:310005",
+        "externalId:310006",
+        "externalId:310007",
+        "externalId:310008",
+        "externalId:310009",
+        "externalId:310010",
+        "externalId:310011",
+        "externalId:310012",
+        "externalId:310013",
+        "externalId:310014",
+        "externalId:310015",
+        "externalId:310016"
+      ],
+      "code": "UG23",
+      "runways": {
+        "0": {
+          "start": "15",
+          "id": 1,
+          "name": "15-33",
+          "end": "33"
+        }
+      },
+      "projectors": [
+        {
+          "sceneObjects": [
+            "externalId:310099",
+            "externalId:310100"
+          ],
+          "runwayId": 1,
+          "runwaySide": "33"
+        }
+      ],
+      "names": {
+        "en": "Gudauta"
+      },
+      "default_camera_position": {
+        "bearing": 233.055909,
+        "pnt": [
+          -196846.65625,
+          121,
+          515809.75
+        ]
+      },
+      "display_name": "Gudauta",
+      "radio": [
+        "airfield21_0"
+      ],
+      "civilian": false,
+      "runwayName": [
+        "33"
+      ],
+      "towers": [
+        "externalId:310017"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Gudauta.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Gudauta.rn4",
+      "shelters": [
+        "externalId:310018",
+        "externalId:310019",
+        "externalId:310020",
+        "externalId:310021",
+        "externalId:310022",
+        "externalId:310023",
+        "externalId:310024",
+        "externalId:310025",
+        "externalId:310026",
+        "externalId:310027",
+        "externalId:310028",
+        "externalId:310029",
+        "externalId:310030",
+        "externalId:310031",
+        "externalId:310032",
+        "externalId:310033",
+        "externalId:310034",
+        "externalId:310035",
+        "externalId:310036",
+        "externalId:310037",
+        "externalId:310038"
+      ],
+      "warehouses": [
+        "externalId:310039",
+        "externalId:310040",
+        "externalId:310041",
+        "externalId:310042",
+        "externalId:310043",
+        "externalId:310044",
+        "externalId:310045",
+        "externalId:310046",
+        "externalId:310047",
+        "externalId:310048",
+        "externalId:310049",
+        "externalId:310050",
+        "externalId:310051",
+        "externalId:310052",
+        "externalId:310053",
+        "externalId:310054",
+        "externalId:310055",
+        "externalId:310056",
+        "externalId:310057",
+        "externalId:310058",
+        "externalId:310059",
+        "externalId:310060",
+        "externalId:310061",
+        "externalId:310062",
+        "externalId:310063",
+        "externalId:310064",
+        "externalId:310065",
+        "externalId:310066",
+        "externalId:310067",
+        "externalId:310068",
+        "externalId:310069",
+        "externalId:310070",
+        "externalId:310071",
+        "externalId:310072",
+        "externalId:310073",
+        "externalId:310074",
+        "externalId:310075",
+        "externalId:310076",
+        "externalId:310077",
+        "externalId:310078",
+        "externalId:310079",
+        "externalId:310080",
+        "externalId:310081",
+        "externalId:310082",
+        "externalId:310083",
+        "externalId:310084",
+        "externalId:310085",
+        "externalId:310086",
+        "externalId:310087",
+        "externalId:310088",
+        "externalId:310089",
+        "externalId:310090",
+        "externalId:310091",
+        "externalId:310092",
+        "externalId:310093",
+        "externalId:310094",
+        "externalId:310095",
+        "externalId:310096"
+      ],
+      "id": "Gudauta",
+      "beacons": {
+        "0": {
+          "runwayName": "15-33",
+          "runwayId": 1,
+          "runwaySide": "33",
+          "beaconId": "airfield21_0"
+        }
+      },
+      "class": "1"
+    },
+    "22": {
+      "reference_point": {
+        "y": 617386.1875,
+        "x": -355810.6875
+      },
+      "fueldepots": [
+        "externalId:320000",
+        "externalId:320001",
+        "externalId:320002"
+      ],
+      "code": "UGSB",
+      "runways": {
+        "0": {
+          "start": "31",
+          "id": 1,
+          "name": "31-13",
+          "end": "13"
+        }
+      },
+      "projectors": [
+        {
+          "sceneObjects": [
+            "externalId:320008",
+            "externalId:320009"
+          ],
+          "runwayId": 1,
+          "runwaySide": "31"
+        }
+      ],
+      "names": {
+        "en": "Batumi"
+      },
+      "default_camera_position": {
+        "bearing": 217.948567,
+        "pnt": [
+          -355655.84375,
+          77.165054,
+          617717.4375
+        ]
+      },
+      "display_name": "Batumi",
+      "radio": [
+        "airfield22_0"
+      ],
+      "civilian": true,
+      "id": "Batumi",
+      "towers": [
+        "externalId:320005"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Batumi.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Batumi.rn4",
+      "warehouses": [
+        "externalId:320003",
+        "externalId:320004"
+      ],
+      "runwayName": [
+        "13"
+      ],
+      "beacons": [
+        {
+          "runwayName": "13-31",
+          "runwayId": 1,
+          "runwaySide": "13",
+          "beaconId": "airfield22_1"
+        },
+        {
+          "beaconId": "airfield22_2"
+        },
+        {
+          "beaconId": "airfield22_3"
+        }
+      ],
+      "class": "2"
+    },
+    "23": {
+      "reference_point": {
+        "y": 647279.46875,
+        "x": -281782.46875
+      },
+      "fueldepots": [
+        "externalId:330000",
+        "externalId:330001",
+        "externalId:330002",
+        "externalId:330003",
+        "externalId:330004",
+        "externalId:330005",
+        "externalId:330006",
+        "externalId:330007",
+        "externalId:330008",
+        "externalId:330009",
+        "externalId:330010",
+        "externalId:330011",
+        "externalId:330012",
+        "externalId:330013",
+        "externalId:330014",
+        "externalId:330015",
+        "externalId:330016",
+        "externalId:330017"
+      ],
+      "code": "UGKS",
+      "runways": {
+        "0": {
+          "start": "27",
+          "id": 1,
+          "name": "27-09",
+          "end": "09"
+        }
+      },
+      "projectors": [
+        {
+          "sceneObjects": [
+            "externalId:330131",
+            "externalId:330132"
+          ],
+          "runwayId": 1,
+          "runwaySide": "27"
+        }
+      ],
+      "names": {
+        "en": "Senaki-Kolkhi"
+      },
+      "default_camera_position": {
+        "bearing": 136.670063,
+        "pnt": [
+          -280777.5672,
+          72.825691,
+          647247.025879
+        ]
+      },
+      "display_name": "Senaki-Kolkhi",
+      "radio": [
+        "airfield23_0"
+      ],
+      "civilian": false,
+      "runwayName": [
+        "09"
+      ],
+      "towers": [
+        "externalId:330068"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Senaki.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Senaki.rn4",
+      "shelters": [
+        "externalId:330018",
+        "externalId:330019",
+        "externalId:330020",
+        "externalId:330021",
+        "externalId:330022",
+        "externalId:330023",
+        "externalId:330024",
+        "externalId:330025",
+        "externalId:330026",
+        "externalId:330027",
+        "externalId:330028",
+        "externalId:330029",
+        "externalId:330030",
+        "externalId:330031",
+        "externalId:330032",
+        "externalId:330033",
+        "externalId:330034",
+        "externalId:330035",
+        "externalId:330036",
+        "externalId:330037",
+        "externalId:330038",
+        "externalId:330039",
+        "externalId:330040",
+        "externalId:330041",
+        "externalId:330042",
+        "externalId:330043",
+        "externalId:330044",
+        "externalId:330045",
+        "externalId:330046",
+        "externalId:330047",
+        "externalId:330048",
+        "externalId:330049",
+        "externalId:330050",
+        "externalId:330051",
+        "externalId:330052",
+        "externalId:330053",
+        "externalId:330054",
+        "externalId:330055",
+        "externalId:330056",
+        "externalId:330057",
+        "externalId:330058",
+        "externalId:330059",
+        "externalId:330060",
+        "externalId:330061",
+        "externalId:330062",
+        "externalId:330063",
+        "externalId:330064",
+        "externalId:330065",
+        "externalId:330066",
+        "externalId:330067",
+        "externalId:330069",
+        "externalId:330070"
+      ],
+      "warehouses": [
+        "externalId:330071",
+        "externalId:330072",
+        "externalId:330073",
+        "externalId:330074",
+        "externalId:330075",
+        "externalId:330076",
+        "externalId:330077",
+        "externalId:330078",
+        "externalId:330079",
+        "externalId:330080",
+        "externalId:330081",
+        "externalId:330082",
+        "externalId:330083",
+        "externalId:330084",
+        "externalId:330085",
+        "externalId:330086",
+        "externalId:330087",
+        "externalId:330088",
+        "externalId:330089",
+        "externalId:330090",
+        "externalId:330091",
+        "externalId:330092",
+        "externalId:330093",
+        "externalId:330094",
+        "externalId:330095",
+        "externalId:330096",
+        "externalId:330097",
+        "externalId:330098",
+        "externalId:330099",
+        "externalId:330100",
+        "externalId:330101",
+        "externalId:330102",
+        "externalId:330103",
+        "externalId:330104",
+        "externalId:330105",
+        "externalId:330106",
+        "externalId:330107",
+        "externalId:330108",
+        "externalId:330109",
+        "externalId:330110",
+        "externalId:330111",
+        "externalId:330112",
+        "externalId:330113",
+        "externalId:330114",
+        "externalId:330115",
+        "externalId:330116",
+        "externalId:330117",
+        "externalId:330118",
+        "externalId:330119",
+        "externalId:330120",
+        "externalId:330121",
+        "externalId:330122",
+        "externalId:330123",
+        "externalId:330124",
+        "externalId:330125",
+        "externalId:330126",
+        "externalId:330127",
+        "externalId:330128"
+      ],
+      "id": "Senaki",
+      "beacons": [
+        {
+          "runwayName": "09-27",
+          "runwayId": 1,
+          "runwaySide": "09",
+          "beaconId": "airfield23_1"
+        },
+        {
+          "runwayName": "09-27",
+          "runwayId": 1,
+          "runwaySide": "09",
+          "beaconId": "airfield23_2"
+        },
+        {
+          "runwayName": "09-27",
+          "runwayId": 1,
+          "runwaySide": "09",
+          "beaconId": "airfield23_3"
+        },
+        {
+          "beaconId": "airfield23_4"
+        }
+      ],
+      "class": "2"
+    },
+    "24": {
+      "reference_point": {
+        "y": 635632.96875,
+        "x": -317962.296875
+      },
+      "fueldepots": [
+        "externalId:340017",
+        "externalId:340018",
+        "externalId:340019",
+        "externalId:340020",
+        "externalId:340021",
+        "externalId:340022",
+        "externalId:340023",
+        "externalId:340024",
+        "externalId:340025",
+        "externalId:340026",
+        "externalId:340027",
+        "externalId:340028"
+      ],
+      "code": "UG5X",
+      "runways": {
+        "0": {
+          "start": "25",
+          "id": 1,
+          "name": "25-07",
+          "end": "07"
+        }
+      },
+      "projectors": [
+        {
+          "sceneObjects": [
+            "externalId:340089",
+            "externalId:340090"
+          ],
+          "runwayId": 1,
+          "runwaySide": "25"
+        }
+      ],
+      "names": {
+        "en": "Kobuleti"
+      },
+      "default_camera_position": {
+        "bearing": 122.05301,
+        "pnt": [
+          -318105.768433,
+          266.593872,
+          634954.806824
+        ]
+      },
+      "display_name": "Kobuleti",
+      "radio": [
+        "airfield24_0"
+      ],
+      "civilian": true,
+      "runwayName": [
+        "07"
+      ],
+      "towers": [
+        "externalId:340016"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/KOBULETI.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/KOBULETI.rn4",
+      "shelters": [
+        "externalId:340000",
+        "externalId:340001",
+        "externalId:340002",
+        "externalId:340003",
+        "externalId:340004",
+        "externalId:340005",
+        "externalId:340006",
+        "externalId:340007",
+        "externalId:340008",
+        "externalId:340009",
+        "externalId:340010",
+        "externalId:340011",
+        "externalId:340012",
+        "externalId:340013",
+        "externalId:340014",
+        "externalId:340015"
+      ],
+      "warehouses": [
+        "externalId:340029",
+        "externalId:340030",
+        "externalId:340031",
+        "externalId:340032",
+        "externalId:340033",
+        "externalId:340034",
+        "externalId:340035",
+        "externalId:340036",
+        "externalId:340037",
+        "externalId:340038",
+        "externalId:340039",
+        "externalId:340040",
+        "externalId:340041",
+        "externalId:340042",
+        "externalId:340043",
+        "externalId:340044",
+        "externalId:340045",
+        "externalId:340046",
+        "externalId:340047",
+        "externalId:340048",
+        "externalId:340049",
+        "externalId:340050",
+        "externalId:340051",
+        "externalId:340052",
+        "externalId:340053",
+        "externalId:340054",
+        "externalId:340055",
+        "externalId:340056",
+        "externalId:340057",
+        "externalId:340058",
+        "externalId:340059",
+        "externalId:340060",
+        "externalId:340061",
+        "externalId:340062",
+        "externalId:340063",
+        "externalId:340064",
+        "externalId:340065",
+        "externalId:340066",
+        "externalId:340067",
+        "externalId:340068",
+        "externalId:340069",
+        "externalId:340070",
+        "externalId:340071",
+        "externalId:340072",
+        "externalId:340073",
+        "externalId:340074",
+        "externalId:340075",
+        "externalId:340076",
+        "externalId:340077",
+        "externalId:340078",
+        "externalId:340079",
+        "externalId:340080",
+        "externalId:340081",
+        "externalId:340082",
+        "externalId:340083",
+        "externalId:340084",
+        "externalId:340085",
+        "externalId:340086"
+      ],
+      "id": "KOBULETI",
+      "beacons": [
+        {
+          "runwayName": "07-25",
+          "runwayId": 1,
+          "runwaySide": "07",
+          "beaconId": "airfield24_1"
+        },
+        {
+          "runwayName": "07-25",
+          "runwayId": 1,
+          "runwaySide": "07",
+          "beaconId": "airfield24_2"
+        },
+        {
+          "runwayName": "07-25",
+          "runwayId": 1,
+          "runwaySide": "07",
+          "beaconId": "airfield24_3"
+        },
+        {
+          "beaconId": "airfield24_4"
+        }
+      ],
+      "class": "2"
+    },
+    "25": {
+      "reference_point": {
+        "y": 683858.71875,
+        "x": -284887.375
+      },
+      "fueldepots": [
+        "externalId:350000",
+        "externalId:350001",
+        "externalId:350002",
+        "externalId:350003",
+        "externalId:350004",
+        "externalId:350005",
+        "externalId:350006",
+        "externalId:350007",
+        "externalId:350008",
+        "externalId:350009",
+        "externalId:350010",
+        "externalId:350011",
+        "externalId:350012",
+        "externalId:350013",
+        "externalId:350014",
+        "externalId:350015",
+        "externalId:350016",
+        "externalId:350017"
+      ],
+      "code": "UGKO",
+      "runways": {
+        "0": {
+          "start": "25",
+          "id": 1,
+          "name": "25-07",
+          "end": "07"
+        }
+      },
+      "projectors": [
+        {
+          "sceneObjects": [
+            "externalId:350112",
+            "externalId:350113"
+          ],
+          "runwayId": 1,
+          "runwaySide": "25"
+        }
+      ],
+      "names": {
+        "en": "Kutaisi"
+      },
+      "default_camera_position": {
+        "bearing": 120.466457,
+        "pnt": [
+          -284569.75,
+          145,
+          683788.25
+        ]
+      },
+      "display_name": "Kutaisi",
+      "radio": [
+        "airfield25_0"
+      ],
+      "civilian": true,
+      "runwayName": [
+        "07"
+      ],
+      "towers": [
+        "externalId:350076"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/KUTAISI.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/KUTAISI.rn4",
+      "shelters": [
+        "externalId:350077",
+        "externalId:350078",
+        "externalId:350079",
+        "externalId:350080",
+        "externalId:350081",
+        "externalId:350082",
+        "externalId:350083",
+        "externalId:350084",
+        "externalId:350085",
+        "externalId:350086",
+        "externalId:350087",
+        "externalId:350088",
+        "externalId:350089",
+        "externalId:350090",
+        "externalId:350091",
+        "externalId:350092",
+        "externalId:350093",
+        "externalId:350094",
+        "externalId:350095",
+        "externalId:350096",
+        "externalId:350097",
+        "externalId:350098",
+        "externalId:350099",
+        "externalId:350100",
+        "externalId:350101",
+        "externalId:350102",
+        "externalId:350103",
+        "externalId:350104",
+        "externalId:350105",
+        "externalId:350106",
+        "externalId:350107",
+        "externalId:350108",
+        "externalId:350109"
+      ],
+      "warehouses": [
+        "externalId:350018",
+        "externalId:350019",
+        "externalId:350020",
+        "externalId:350021",
+        "externalId:350022",
+        "externalId:350023",
+        "externalId:350024",
+        "externalId:350025",
+        "externalId:350026",
+        "externalId:350027",
+        "externalId:350028",
+        "externalId:350029",
+        "externalId:350030",
+        "externalId:350031",
+        "externalId:350032",
+        "externalId:350033",
+        "externalId:350034",
+        "externalId:350035",
+        "externalId:350036",
+        "externalId:350037",
+        "externalId:350038",
+        "externalId:350039",
+        "externalId:350040",
+        "externalId:350041",
+        "externalId:350042",
+        "externalId:350043",
+        "externalId:350044",
+        "externalId:350045",
+        "externalId:350046",
+        "externalId:350047",
+        "externalId:350048",
+        "externalId:350049",
+        "externalId:350050",
+        "externalId:350051",
+        "externalId:350052",
+        "externalId:350053",
+        "externalId:350054",
+        "externalId:350055",
+        "externalId:350056",
+        "externalId:350057",
+        "externalId:350058",
+        "externalId:350059",
+        "externalId:350060",
+        "externalId:350061",
+        "externalId:350062",
+        "externalId:350063",
+        "externalId:350064",
+        "externalId:350065",
+        "externalId:350066",
+        "externalId:350067",
+        "externalId:350068",
+        "externalId:350069",
+        "externalId:350070",
+        "externalId:350071",
+        "externalId:350072",
+        "externalId:350073",
+        "externalId:350074",
+        "externalId:350075"
+      ],
+      "id": "KUTAISI",
+      "beacons": [
+        {
+          "runwayName": "07-25",
+          "runwayId": 1,
+          "runwaySide": "07",
+          "beaconId": "airfield25_1"
+        },
+        {
+          "beaconId": "airfield25_2"
+        },
+        {
+          "beaconId": "airfield25_3"
+        },
+        {
+          "beaconId": "airfield25_4"
+        }
+      ],
+      "class": "1"
+    },
+    "26": {
+      "reference_point": {
+        "y": 705734.026899,
+        "x": -51259.983985
+      },
+      "fueldepots": [
+        "externalId:360000",
+        "externalId:360001",
+        "externalId:360002",
+        "externalId:360003",
+        "externalId:360004",
+        "externalId:360005",
+        "externalId:360006",
+        "externalId:360007",
+        "externalId:360008",
+        "externalId:360009"
+      ],
+      "code": "URMM",
+      "runways": {
+        "0": {
+          "start": "30",
+          "id": 1,
+          "name": "30-12",
+          "end": "12"
+        }
+      },
+      "projectors": [
+        {
+          "sceneObjects": [
+            "externalId:360071",
+            "externalId:360072"
+          ],
+          "runwayId": 1,
+          "runwaySide": "30"
+        }
+      ],
+      "names": {
+        "en": "Mineralnye Vody"
+      },
+      "default_camera_position": {
+        "bearing": 285.314899,
+        "pnt": [
+          -52318.605469,
+          420,
+          706581.125
+        ]
+      },
+      "display_name": "Mineralnye Vody",
+      "radio": [
+        "airfield26_0"
+      ],
+      "civilian": true,
+      "id": "MinVody",
+      "towers": [
+        "externalId:360010"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/MinVody.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/MinVody.rn4",
+      "warehouses": [
+        "externalId:360011",
+        "externalId:360012",
+        "externalId:360013",
+        "externalId:360014",
+        "externalId:360015",
+        "externalId:360016",
+        "externalId:360017",
+        "externalId:360018",
+        "externalId:360019",
+        "externalId:360020",
+        "externalId:360021",
+        "externalId:360022",
+        "externalId:360023",
+        "externalId:360024",
+        "externalId:360025",
+        "externalId:360026",
+        "externalId:360027",
+        "externalId:360028",
+        "externalId:360029",
+        "externalId:360030",
+        "externalId:360031",
+        "externalId:360032",
+        "externalId:360033",
+        "externalId:360034",
+        "externalId:360035",
+        "externalId:360036",
+        "externalId:360037",
+        "externalId:360038",
+        "externalId:360039",
+        "externalId:360040",
+        "externalId:360041",
+        "externalId:360042",
+        "externalId:360043",
+        "externalId:360044",
+        "externalId:360045",
+        "externalId:360046",
+        "externalId:360047",
+        "externalId:360048",
+        "externalId:360049",
+        "externalId:360050",
+        "externalId:360051",
+        "externalId:360052",
+        "externalId:360053",
+        "externalId:360054",
+        "externalId:360055",
+        "externalId:360056",
+        "externalId:360057",
+        "externalId:360058",
+        "externalId:360059",
+        "externalId:360060",
+        "externalId:360061",
+        "externalId:360062",
+        "externalId:360063",
+        "externalId:360064",
+        "externalId:360065",
+        "externalId:360066",
+        "externalId:360067",
+        "externalId:360068"
+      ],
+      "runwayName": [
+        "12"
+      ],
+      "beacons": [
+        {
+          "runwayName": "12-30",
+          "runwayId": 1,
+          "runwaySide": "30",
+          "beaconId": "airfield26_1"
+        },
+        {
+          "runwayName": "12-30",
+          "runwayId": 1,
+          "runwaySide": "30",
+          "beaconId": "airfield26_2"
+        },
+        {
+          "runwayName": "12-30",
+          "runwayId": 1,
+          "runwaySide": "30",
+          "beaconId": "airfield26_3"
+        },
+        {
+          "runwayName": "12-30",
+          "runwayId": 1,
+          "runwaySide": "12",
+          "beaconId": "airfield26_4"
+        },
+        {
+          "runwayName": "12-30",
+          "runwayId": 1,
+          "runwaySide": "12",
+          "beaconId": "airfield26_5"
+        },
+        {
+          "runwayName": "12-30",
+          "runwayId": 1,
+          "runwaySide": "12",
+          "beaconId": "airfield26_6"
+        },
+        {
+          "runwayName": "12-30",
+          "runwayId": 1,
+          "runwaySide": "12",
+          "beaconId": "airfield26_7"
+        },
+        {
+          "beaconId": "airfield26_8"
+        }
+      ],
+      "class": "1"
+    },
+    "27": {
+      "reference_point": {
+        "y": 760421.182617,
+        "x": -124932.167279
+      },
+      "fueldepots": [
+        "externalId:370059",
+        "externalId:370060",
+        "externalId:370061",
+        "externalId:370062",
+        "externalId:370063",
+        "externalId:370064",
+        "externalId:370065",
+        "externalId:370066",
+        "externalId:370067",
+        "externalId:370068",
+        "externalId:370069",
+        "externalId:370070",
+        "externalId:370071",
+        "externalId:370072",
+        "externalId:370073",
+        "externalId:370074",
+        "externalId:370075",
+        "externalId:370076"
+      ],
+      "code": "URMN",
+      "runways": {
+        "0": {
+          "start": "06",
+          "id": 1,
+          "name": "06-24",
+          "end": "24"
+        }
+      },
+      "projectors": [
+        {
+          "sceneObjects": [
+            "externalId:370079",
+            "externalId:370080"
+          ],
+          "runwayId": 1,
+          "runwaySide": "24"
+        }
+      ],
+      "names": {
+        "en": "Nalchik"
+      },
+      "default_camera_position": {
+        "bearing": 306.555176,
+        "pnt": [
+          -125303.486816,
+          470.921204,
+          759974.361328
+        ]
+      },
+      "display_name": "Nalchik",
+      "radio": [
+        "airfield27_0"
+      ],
+      "civilian": true,
+      "id": "Nalchick",
+      "towers": [
+        "externalId:370000"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Nalchick.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Nalchick.rn4",
+      "warehouses": [
+        "externalId:370001",
+        "externalId:370002",
+        "externalId:370003",
+        "externalId:370004",
+        "externalId:370005",
+        "externalId:370006",
+        "externalId:370007",
+        "externalId:370008",
+        "externalId:370009",
+        "externalId:370010",
+        "externalId:370011",
+        "externalId:370012",
+        "externalId:370013",
+        "externalId:370014",
+        "externalId:370015",
+        "externalId:370016",
+        "externalId:370017",
+        "externalId:370018",
+        "externalId:370019",
+        "externalId:370020",
+        "externalId:370021",
+        "externalId:370022",
+        "externalId:370023",
+        "externalId:370024",
+        "externalId:370025",
+        "externalId:370026",
+        "externalId:370027",
+        "externalId:370028",
+        "externalId:370029",
+        "externalId:370030",
+        "externalId:370031",
+        "externalId:370032",
+        "externalId:370033",
+        "externalId:370034",
+        "externalId:370035",
+        "externalId:370036",
+        "externalId:370037",
+        "externalId:370038",
+        "externalId:370039",
+        "externalId:370040",
+        "externalId:370041",
+        "externalId:370042",
+        "externalId:370043",
+        "externalId:370044",
+        "externalId:370045",
+        "externalId:370046",
+        "externalId:370047",
+        "externalId:370048",
+        "externalId:370049",
+        "externalId:370050",
+        "externalId:370051",
+        "externalId:370052",
+        "externalId:370053",
+        "externalId:370054",
+        "externalId:370055",
+        "externalId:370056",
+        "externalId:370057",
+        "externalId:370058"
+      ],
+      "runwayName": [
+        "24"
+      ],
+      "beacons": [
+        {
+          "runwayName": "06-24",
+          "runwayId": 1,
+          "runwaySide": "24",
+          "beaconId": "airfield27_1"
+        },
+        {
+          "runwayName": "06-24",
+          "runwayId": 1,
+          "runwaySide": "24",
+          "beaconId": "airfield27_2"
+        },
+        {
+          "runwayName": "06-24",
+          "runwayId": 1,
+          "runwaySide": "24",
+          "beaconId": "airfield27_3"
+        }
+      ],
+      "class": "2"
+    },
+    "28": {
+      "reference_point": {
+        "y": 834461.78125,
+        "x": -83450.417969
+      },
+      "fueldepots": [
+        "externalId:380003",
+        "externalId:380004",
+        "externalId:380005",
+        "externalId:380006",
+        "externalId:380007",
+        "externalId:380008",
+        "externalId:380009",
+        "externalId:380010",
+        "externalId:380011",
+        "externalId:380012",
+        "externalId:380013",
+        "externalId:380014",
+        "externalId:380016",
+        "externalId:380017",
+        "externalId:380018",
+        "externalId:380019",
+        "externalId:380020",
+        "externalId:380021",
+        "externalId:380022"
+      ],
+      "code": "XRMF",
+      "runways": {
+        "0": {
+          "start": "26",
+          "id": 1,
+          "name": "26-08",
+          "end": "08"
+        }
+      },
+      "projectors": [
+        {
+          "sceneObjects": [
+            "externalId:380025",
+            "externalId:380026"
+          ],
+          "runwayId": 1,
+          "runwaySide": "26"
+        }
+      ],
+      "names": {
+        "en": "Mozdok"
+      },
+      "default_camera_position": {
+        "bearing": 306.555176,
+        "pnt": [
+          -84166.185059,
+          162.69075,
+          834518.361816
+        ]
+      },
+      "display_name": "Mozdok",
+      "radio": [
+        "airfield28_0"
+      ],
+      "civilian": false,
+      "id": "Mozdok",
+      "towers": [
+        "externalId:380015"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Mozdok.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Mozdok.rn4",
+      "warehouses": [
+        "externalId:380000",
+        "externalId:380001",
+        "externalId:380002"
+      ],
+      "runwayName": [
+        "08"
+      ],
+      "beacons": [
+        {
+          "runwayName": "08-26",
+          "runwayId": 1,
+          "runwaySide": "08",
+          "beaconId": "airfield28_1"
+        },
+        {
+          "runwayName": "08-26",
+          "runwayId": 1,
+          "runwaySide": "26",
+          "beaconId": "airfield28_2"
+        },
+        {
+          "runwayName": "08-26",
+          "runwayId": 1,
+          "runwaySide": "26",
+          "beaconId": "airfield28_3"
+        },
+        {
+          "runwayName": "08-26",
+          "runwayId": 1,
+          "runwaySide": "08",
+          "beaconId": "airfield28_4"
+        },
+        {
+          "runwayName": "08-26",
+          "runwayId": 1,
+          "runwaySide": "08",
+          "beaconId": "airfield28_5"
+        },
+        {
+          "runwayName": "08-26",
+          "runwayId": 1,
+          "runwaySide": "26",
+          "beaconId": "airfield28_6"
+        },
+        {
+          "runwayName": "08-26",
+          "runwayId": 1,
+          "runwaySide": "26",
+          "beaconId": "airfield28_7"
+        },
+        {
+          "beaconId": "airfield28_8"
+        }
+      ],
+      "class": "1"
+    },
+    "29": {
+      "reference_point": {
+        "y": 896629.78125,
+        "x": -315671.078125
+      },
+      "fueldepots": [
+        "externalId:390001",
+        "externalId:390002",
+        "externalId:390003",
+        "externalId:390004",
+        "externalId:390005",
+        "externalId:390006",
+        "externalId:390007",
+        "externalId:390010"
+      ],
+      "code": "UGTB",
+      "runways": {
+        "0": {
+          "start": "13R",
+          "id": 1,
+          "name": "13R-31L",
+          "end": "31L"
+        }
+      },
+      "projectors": [
+        {
+          "sceneObjects": [
+            "externalId:390013",
+            "externalId:390014"
+          ],
+          "runwayId": 1,
+          "runwaySide": "31L"
+        }
+      ],
+      "names": {
+        "en": "Tbilisi-Lochini"
+      },
+      "default_camera_position": {
+        "bearing": 71.911632,
+        "pnt": [
+          -315226.860352,
+          586.962158,
+          897460.30957
+        ]
+      },
+      "display_name": "Tbilisi-Lochini",
+      "radio": [
+        "airfield29_0"
+      ],
+      "civilian": true,
+      "id": "Lochini",
+      "towers": [
+        "externalId:390009"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Lochini.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Lochini.rn4",
+      "warehouses": [
+        "externalId:390000",
+        "externalId:390008"
+      ],
+      "runwayName": [
+        "31L"
+      ],
+      "beacons": [
+        {
+          "runwayName": "13-31",
+          "runwayId": 1,
+          "runwaySide": "13",
+          "beaconId": "airfield29_1"
+        },
+        {
+          "runwayName": "13-31",
+          "runwayId": 1,
+          "runwaySide": "13",
+          "beaconId": "airfield29_2"
+        },
+        {
+          "runwayName": "13-31",
+          "runwayId": 1,
+          "runwaySide": "13",
+          "beaconId": "airfield29_3"
+        },
+        {
+          "runwayName": "13-31",
+          "runwayId": 1,
+          "runwaySide": "31",
+          "beaconId": "airfield29_4"
+        },
+        {
+          "runwayName": "13-31",
+          "runwayId": 1,
+          "runwaySide": "31",
+          "beaconId": "airfield29_5"
+        },
+        {
+          "runwayName": "13-31",
+          "runwayId": 1,
+          "runwaySide": "31",
+          "beaconId": "airfield29_6"
+        },
+        {
+          "runwayName": "13-31",
+          "runwayId": 1,
+          "runwaySide": "31",
+          "beaconId": "airfield29_7"
+        },
+        {
+          "beaconId": "airfield29_8"
+        },
+        {
+          "beaconId": "airfield29_9"
+        }
+      ],
+      "class": "1"
+    },
+    "30": {
+      "reference_point": {
+        "y": 895407.1875,
+        "x": -317828.046875
+      },
+      "fueldepots": [
+        "externalId:400001",
+        "externalId:400002",
+        "externalId:400003",
+        "externalId:400004",
+        "externalId:400005"
+      ],
+      "code": "UG24",
+      "runways": {
+        "0": {
+          "start": "14",
+          "id": 1,
+          "name": "14-32",
+          "end": "32"
+        }
+      },
+      "projectors": [
+        {
+          "sceneObjects": [
+            "externalId:400066",
+            "externalId:400067"
+          ],
+          "runwayId": 1,
+          "runwaySide": "32"
+        }
+      ],
+      "names": {
+        "en": "Soganlug"
+      },
+      "default_camera_position": {
+        "bearing": 248.654056,
+        "pnt": [
+          -318023.126465,
+          530,
+          894732.36377
+        ]
+      },
+      "display_name": "Soganlug",
+      "radio": [
+        "airfield30_0"
+      ],
+      "civilian": true,
+      "id": "TbilisiMilitary",
+      "towers": [
+        "externalId:400000"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/TbilisiMilitary.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/TbilisiMilitary.rn4",
+      "warehouses": [
+        "externalId:400006",
+        "externalId:400007",
+        "externalId:400008",
+        "externalId:400009",
+        "externalId:400010",
+        "externalId:400011",
+        "externalId:400012",
+        "externalId:400013",
+        "externalId:400014",
+        "externalId:400015",
+        "externalId:400016",
+        "externalId:400017",
+        "externalId:400018",
+        "externalId:400019",
+        "externalId:400020",
+        "externalId:400021",
+        "externalId:400022",
+        "externalId:400023",
+        "externalId:400024",
+        "externalId:400025",
+        "externalId:400026",
+        "externalId:400027",
+        "externalId:400028",
+        "externalId:400029",
+        "externalId:400030",
+        "externalId:400031",
+        "externalId:400032",
+        "externalId:400033",
+        "externalId:400034",
+        "externalId:400035",
+        "externalId:400036",
+        "externalId:400037",
+        "externalId:400038",
+        "externalId:400039",
+        "externalId:400040",
+        "externalId:400041",
+        "externalId:400042",
+        "externalId:400043",
+        "externalId:400044",
+        "externalId:400045",
+        "externalId:400046",
+        "externalId:400047",
+        "externalId:400048",
+        "externalId:400049",
+        "externalId:400050",
+        "externalId:400051",
+        "externalId:400052",
+        "externalId:400053",
+        "externalId:400054",
+        "externalId:400055",
+        "externalId:400056",
+        "externalId:400057",
+        "externalId:400058",
+        "externalId:400059",
+        "externalId:400060",
+        "externalId:400061",
+        "externalId:400062",
+        "externalId:400063"
+      ],
+      "runwayName": [
+        "32"
+      ],
+      "beacons": {},
+      "class": "2"
+    },
+    "31": {
+      "reference_point": {
+        "y": 903148.53125,
+        "x": -319064.875
+      },
+      "fueldepots": [
+        "externalId:410058",
+        "externalId:410059",
+        "externalId:410060",
+        "externalId:410061",
+        "externalId:410062",
+        "externalId:410063",
+        "externalId:410064",
+        "externalId:410065",
+        "externalId:410066",
+        "externalId:410067",
+        "externalId:410068",
+        "externalId:410069",
+        "externalId:410070",
+        "externalId:410071",
+        "externalId:410072",
+        "externalId:410073"
+      ],
+      "code": "UG27",
+      "runways": {
+        "0": {
+          "start": "13R",
+          "id": 1,
+          "name": "13R-31L",
+          "end": "31L"
+        }
+      },
+      "projectors": [
+        {
+          "sceneObjects": [
+            "externalId:410134",
+            "externalId:410135"
+          ],
+          "runwayId": 1,
+          "runwaySide": "31L"
+        }
+      ],
+      "names": {
+        "en": "Vaziani"
+      },
+      "default_camera_position": {
+        "bearing": 207.332275,
+        "pnt": [
+          -317693.375,
+          631.42804,
+          902557.0625
+        ]
+      },
+      "display_name": "Vaziani",
+      "radio": [
+        "airfield31_0"
+      ],
+      "civilian": false,
+      "runwayName": [
+        "31L"
+      ],
+      "towers": [
+        "externalId:410000"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Vaziani.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Vaziani.rn4",
+      "shelters": [
+        "externalId:410001",
+        "externalId:410002",
+        "externalId:410003",
+        "externalId:410004",
+        "externalId:410005",
+        "externalId:410006",
+        "externalId:410007",
+        "externalId:410008",
+        "externalId:410009",
+        "externalId:410010",
+        "externalId:410011",
+        "externalId:410012",
+        "externalId:410013",
+        "externalId:410014",
+        "externalId:410015",
+        "externalId:410016",
+        "externalId:410017",
+        "externalId:410018",
+        "externalId:410019",
+        "externalId:410020",
+        "externalId:410021",
+        "externalId:410022",
+        "externalId:410023",
+        "externalId:410024",
+        "externalId:410025",
+        "externalId:410026",
+        "externalId:410027",
+        "externalId:410028",
+        "externalId:410029",
+        "externalId:410030",
+        "externalId:410031",
+        "externalId:410032",
+        "externalId:410033",
+        "externalId:410034",
+        "externalId:410035",
+        "externalId:410036",
+        "externalId:410037",
+        "externalId:410038",
+        "externalId:410039",
+        "externalId:410040",
+        "externalId:410041",
+        "externalId:410042",
+        "externalId:410043",
+        "externalId:410044",
+        "externalId:410045",
+        "externalId:410046",
+        "externalId:410047",
+        "externalId:410048",
+        "externalId:410049",
+        "externalId:410050",
+        "externalId:410051",
+        "externalId:410052",
+        "externalId:410053",
+        "externalId:410054",
+        "externalId:410055",
+        "externalId:410056",
+        "externalId:410057"
+      ],
+      "warehouses": [
+        "externalId:410074",
+        "externalId:410075",
+        "externalId:410076",
+        "externalId:410077",
+        "externalId:410078",
+        "externalId:410079",
+        "externalId:410080",
+        "externalId:410081",
+        "externalId:410082",
+        "externalId:410083",
+        "externalId:410084",
+        "externalId:410085",
+        "externalId:410086",
+        "externalId:410087",
+        "externalId:410088",
+        "externalId:410089",
+        "externalId:410090",
+        "externalId:410091",
+        "externalId:410092",
+        "externalId:410093",
+        "externalId:410094",
+        "externalId:410095",
+        "externalId:410096",
+        "externalId:410097",
+        "externalId:410098",
+        "externalId:410099",
+        "externalId:410100",
+        "externalId:410101",
+        "externalId:410102",
+        "externalId:410103",
+        "externalId:410104",
+        "externalId:410105",
+        "externalId:410106",
+        "externalId:410107",
+        "externalId:410108",
+        "externalId:410109",
+        "externalId:410110",
+        "externalId:410111",
+        "externalId:410112",
+        "externalId:410113",
+        "externalId:410114",
+        "externalId:410115",
+        "externalId:410116",
+        "externalId:410117",
+        "externalId:410118",
+        "externalId:410119",
+        "externalId:410120",
+        "externalId:410121",
+        "externalId:410122",
+        "externalId:410123",
+        "externalId:410124",
+        "externalId:410125",
+        "externalId:410126",
+        "externalId:410127",
+        "externalId:410128",
+        "externalId:410129",
+        "externalId:410130",
+        "externalId:410131"
+      ],
+      "id": "Vaziani",
+      "beacons": [
+        {
+          "runwayName": "13-31",
+          "runwayId": 0,
+          "runwaySide": "13",
+          "beaconId": "airfield31_1"
+        },
+        {
+          "runwayName": "31-13",
+          "runwayId": 1,
+          "runwaySide": "31",
+          "beaconId": "airfield31_2"
+        },
+        {
+          "runwayName": "31-13",
+          "runwayId": 1,
+          "runwaySide": "31",
+          "beaconId": "airfield31_3"
+        },
+        {
+          "beaconId": "airfield31_4"
+        }
+      ],
+      "class": "2"
+    },
+    "32": {
+      "reference_point": {
+        "y": 843668.625,
+        "x": -148590.171875
+      },
+      "fueldepots": [
+        "externalId:420005",
+        "externalId:420006",
+        "externalId:420007",
+        "externalId:420008",
+        "externalId:420009",
+        "externalId:420010",
+        "externalId:420011",
+        "externalId:420012",
+        "externalId:420013",
+        "externalId:420014",
+        "externalId:420015",
+        "externalId:420016",
+        "externalId:420017",
+        "externalId:420018",
+        "externalId:420019",
+        "externalId:420020"
+      ],
+      "code": "URMO",
+      "runways": {
+        "0": {
+          "start": "10",
+          "id": 1,
+          "name": "10-28",
+          "end": "28"
+        }
+      },
+      "projectors": {
+        "0": {
+          "sceneObjects": [
+            "externalId:420021",
+            "externalId:420022",
+            "externalId:420023"
+          ],
+          "runwayId": 1,
+          "runwaySide": "10"
+        }
+      },
+      "names": {
+        "en": "Beslan"
+      },
+      "default_camera_position": {
+        "bearing": 217.948566,
+        "pnt": [
+          -148294.46875,
+          588.516602,
+          843231.9375
+        ]
+      },
+      "display_name": "Beslan",
+      "radio": [
+        "airfield32_0"
+      ],
+      "civilian": true,
+      "id": "Beslan",
+      "towers": [
+        "externalId:420000"
+      ],
+      "roadnet5": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Beslan.rn5",
+      "abandoned": false,
+      "roadnet": "./Mods/terrains/Caucasus/AirfieldsTaxiways/Beslan.rn4",
+      "warehouses": [
+        "externalId:420001",
+        "externalId:420002",
+        "externalId:420003",
+        "externalId:420004"
+      ],
+      "runwayName": [
+        "28"
+      ],
+      "beacons": [
+        {
+          "runwayName": "10-28",
+          "runwayId": 1,
+          "runwaySide": "10",
+          "beaconId": "airfield32_1"
+        },
+        {
+          "runwayName": "10-28",
+          "runwayId": 1,
+          "runwaySide": "10",
+          "beaconId": "airfield32_2"
+        },
+        {
+          "runwayName": "10-28",
+          "runwayId": 1,
+          "runwaySide": "10",
+          "beaconId": "airfield32_3"
+        }
+      ],
+      "class": "1"
+    }
+  },
+  "beacons": [
+    {
+      "direction": 41.500201,
+      "beaconId": "airfield12_0",
+      "sceneObjects": [
+        "t:297697280"
+      ],
+      "display_name": "Anapa-Vityazevo",
+      "position": [
+        -1321.801758,
+        12.352437,
+        246748.5
+      ],
+      "positionGeo": {
+        "longitude": 37.396435,
+        "latitude": 45.039907
+      },
+      "callsign": "AP",
+      "type": 16408,
+      "frequency": 443000
+    },
+    {
+      "direction": 41.500201,
+      "beaconId": "airfield12_1",
+      "sceneObjects": [
+        "t:297664512"
+      ],
+      "display_name": "Anapa-Vityazevo",
+      "position": [
+        -3343.976563,
+        40.271662,
+        244959.421875
+      ],
+      "positionGeo": {
+        "longitude": 37.372401,
+        "latitude": 45.022628
+      },
+      "callsign": "P",
+      "type": 16424,
+      "frequency": 215000
+    },
+    {
+      "direction": -138.499789,
+      "beaconId": "airfield12_2",
+      "sceneObjects": [
+        "t:294420488"
+      ],
+      "display_name": "Anapa-Vityazevo",
+      "position": [
+        -9500.015625,
+        24.885315,
+        239511.625
+      ],
+      "positionGeo": {
+        "longitude": 37.299308,
+        "latitude": 44.969992
+      },
+      "callsign": "AN",
+      "type": 16408,
+      "frequency": 443000
+    },
+    {
+      "direction": -138.499789,
+      "beaconId": "airfield12_3",
+      "sceneObjects": [
+        "t:295927808"
+      ],
+      "display_name": "Anapa-Vityazevo",
+      "position": [
+        -7477.841797,
+        36.126909,
+        241300.703125
+      ],
+      "positionGeo": {
+        "longitude": 37.323297,
+        "latitude": 44.987288
+      },
+      "callsign": "N",
+      "type": 16424,
+      "frequency": 215000
+    },
+    {
+      "type": 16640,
+      "beaconId": "airfield22_0",
+      "sceneObjects": [
+        "t:168395386"
+      ],
+      "chartOffsetX": 2519,
+      "display_name": "Batumi",
+      "position": [
+        -356584.8125,
+        10.03014,
+        618472.4375
+      ],
+      "positionGeo": {
+        "longitude": 41.612203,
+        "latitude": 41.601731
+      },
+      "callsign": "ILU",
+      "direction": -54.415131,
+      "frequency": 110300000
+    },
+    {
+      "type": 16896,
+      "beaconId": "airfield22_1",
+      "sceneObjects": [
+        "t:318309567"
+      ],
+      "chartOffsetX": 120,
+      "display_name": "Batumi",
+      "position": [
+        -355396.8125,
+        10.044037,
+        616600.5
+      ],
+      "positionGeo": {
+        "longitude": 41.591406,
+        "latitude": 41.613985
+      },
+      "callsign": "ILU",
+      "direction": -54.415131,
+      "frequency": 110300000
+    },
+    {
+      "direction": 0,
+      "beaconId": "airfield22_2",
+      "positionGeo": {
+        "longitude": 41.600419,
+        "latitude": 41.610899
+      },
+      "sceneObjects": [
+        "t:168920280"
+      ],
+      "display_name": "Batumi",
+      "channel": 16,
+      "callsign": "BTM",
+      "position": [
+        -355664.40625,
+        10.044037,
+        617386.8125
+      ],
+      "type": 4,
+      "frequency": 977000000
+    },
+    {
+      "direction": -60.999996,
+      "beaconId": "airfield22_3",
+      "sceneObjects": [
+        "t:168428658"
+      ],
+      "display_name": "Batumi",
+      "position": [
+        -356480.125,
+        10.113043,
+        618549.1875
+      ],
+      "positionGeo": {
+        "longitude": 41.613238,
+        "latitude": 41.602594
+      },
+      "callsign": "LU",
+      "type": 4104,
+      "frequency": 430000
+    },
+    {
+      "direction": -86.499961,
+      "beaconId": "airfield32_0",
+      "sceneObjects": [
+        "t:239140869"
+      ],
+      "display_name": "Beslan",
+      "position": [
+        -148253.15625,
+        542.239983,
+        838154.1875
+      ],
+      "positionGeo": {
+        "longitude": 44.539874,
+        "latitude": 43.2155
+      },
+      "callsign": "CX",
+      "type": 16408,
+      "frequency": 1050000
+    },
+    {
+      "direction": -86.499961,
+      "beaconId": "airfield32_1",
+      "sceneObjects": [
+        "t:239173633"
+      ],
+      "display_name": "Beslan",
+      "position": [
+        -148418,
+        524.825537,
+        840849.1875
+      ],
+      "positionGeo": {
+        "longitude": 44.5721,
+        "latitude": 43.210717
+      },
+      "callsign": "C",
+      "type": 16424,
+      "frequency": 250000
+    },
+    {
+      "type": 16640,
+      "beaconId": "airfield32_2",
+      "sceneObjects": [
+        "t:239206458"
+      ],
+      "chartOffsetX": 3219,
+      "display_name": "Beslan",
+      "position": [
+        -148692.109375,
+        529.274577,
+        845322.875
+      ],
+      "positionGeo": {
+        "longitude": 44.62558,
+        "latitude": 43.202754
+      },
+      "callsign": "ICH",
+      "direction": -86.499961,
+      "frequency": 110500000
+    },
+    {
+      "type": 16896,
+      "beaconId": "airfield32_3",
+      "sceneObjects": [
+        "t:463175689"
+      ],
+      "chartOffsetX": 120,
+      "display_name": "Beslan",
+      "position": [
+        -148636.890625,
+        524.825537,
+        842454
+      ],
+      "positionGeo": {
+        "longitude": 44.591083,
+        "latitude": 43.2068
+      },
+      "callsign": "",
+      "direction": -86.499961,
+      "frequency": 110500000
+    },
+    {
+      "direction": -139.999984,
+      "beaconId": "airfield17_0",
+      "sceneObjects": [
+        "t:279478273"
+      ],
+      "display_name": "Gelendzhik",
+      "position": [
+        -50752.625,
+        22.009923,
+        298204.46875
+      ],
+      "positionGeo": {
+        "longitude": 38.008795,
+        "latitude": 44.569658
+      },
+      "callsign": "GN",
+      "type": 4104,
+      "frequency": 1000000
+    },
+    {
+      "direction": 0,
+      "beaconId": "airfield17_1",
+      "positionGeo": {
+        "longitude": 38.012222,
+        "latitude": 44.572498
+      },
+      "sceneObjects": [
+        "t:118526060"
+      ],
+      "display_name": "Gelendzhik",
+      "channel": 90,
+      "callsign": "GN",
+      "position": [
+        -50420.347656,
+        22.009923,
+        298457.125
+      ],
+      "type": 1,
+      "frequency": 114300000
+    },
+    {
+      "direction": 151.003298,
+      "beaconId": "airfield21_0",
+      "sceneObjects": [
+        "t:222199809"
+      ],
+      "display_name": "Gudauta",
+      "position": [
+        -198344.5625,
+        10.015866,
+        517357
+      ],
+      "positionGeo": {
+        "longitude": 40.578961,
+        "latitude": 43.099003
+      },
+      "callsign": "XC",
+      "type": 4136,
+      "frequency": 395000
+    },
+    {
+      "direction": -109.999979,
+      "beaconId": "airfield24_0",
+      "sceneObjects": [
+        "t:175898624"
+      ],
+      "display_name": "Kobuleti",
+      "position": [
+        -319739.03125,
+        10.928995,
+        630753.5625
+      ],
+      "positionGeo": {
+        "longitude": 41.802928,
+        "latitude": 41.918616
+      },
+      "callsign": "KT",
+      "type": 16408,
+      "frequency": 870000
+    },
+    {
+      "direction": -109.999979,
+      "beaconId": "airfield24_1",
+      "sceneObjects": [
+        "t:176947200"
+      ],
+      "display_name": "Kobuleti",
+      "position": [
+        -318815.5625,
+        18.272494,
+        633290.6875
+      ],
+      "positionGeo": {
+        "longitude": 41.834303,
+        "latitude": 41.924494
+      },
+      "callsign": "T",
+      "type": 16424,
+      "frequency": 490000
+    },
+    {
+      "type": 16640,
+      "beaconId": "airfield24_2",
+      "sceneObjects": [
+        "t:176980890"
+      ],
+      "chartOffsetX": 2550,
+      "display_name": "Kobuleti",
+      "position": [
+        -317495.75,
+        18.017043,
+        636918.25
+      ],
+      "positionGeo": {
+        "longitude": 41.879171,
+        "latitude": 41.932878
+      },
+      "callsign": "IKB",
+      "direction": -109.999979,
+      "frequency": 111500000
+    },
+    {
+      "type": 16896,
+      "beaconId": "airfield24_3",
+      "sceneObjects": [
+        "t:334561284"
+      ],
+      "chartOffsetX": 120,
+      "display_name": "Kobuleti",
+      "position": [
+        -318329.625,
+        18.010018,
+        634820.8125
+      ],
+      "positionGeo": {
+        "longitude": 41.85314,
+        "latitude": 41.927403
+      },
+      "callsign": "IKB",
+      "direction": -109.999979,
+      "frequency": 111500000
+    },
+    {
+      "direction": 0,
+      "beaconId": "airfield24_4",
+      "positionGeo": {
+        "longitude": 41.86197,
+        "latitude": 41.93077
+      },
+      "sceneObjects": [
+        "t:176980891"
+      ],
+      "display_name": "Kobuleti",
+      "channel": 67,
+      "callsign": "KBL",
+      "position": [
+        -317879,
+        18.010018,
+        635514.8125
+      ],
+      "type": 4,
+      "frequency": 1154000000
+    },
+    {
+      "direction": 87.003387,
+      "beaconId": "airfield13_0",
+      "sceneObjects": [
+        "t:302153728"
+      ],
+      "display_name": "Krasnodar-Center",
+      "position": [
+        11980.96875,
+        31.707849,
+        373613.71875
+      ],
+      "positionGeo": {
+        "longitude": 39.012047,
+        "latitude": 45.085828
+      },
+      "callsign": "OC",
+      "type": 16408,
+      "frequency": 625000
+    },
+    {
+      "direction": 87.003387,
+      "beaconId": "airfield13_1",
+      "sceneObjects": [
+        "t:302120975"
+      ],
+      "display_name": "Krasnodar-Center",
+      "position": [
+        11804.427734,
+        29.328925,
+        370241.34375
+      ],
+      "positionGeo": {
+        "longitude": 38.969263,
+        "latitude": 45.086491
+      },
+      "callsign": "O",
+      "type": 16424,
+      "frequency": 303000
+    },
+    {
+      "direction": -92.996632,
+      "beaconId": "airfield13_2",
+      "sceneObjects": [
+        "t:302055424"
+      ],
+      "display_name": "Krasnodar-Center",
+      "position": [
+        11410.707031,
+        25.57611,
+        362701.09375
+      ],
+      "positionGeo": {
+        "longitude": 38.873594,
+        "latitude": 45.087925
+      },
+      "callsign": "MB",
+      "type": 16408,
+      "frequency": 625000
+    },
+    {
+      "direction": -92.996632,
+      "beaconId": "airfield13_3",
+      "sceneObjects": [
+        "t:302088209"
+      ],
+      "display_name": "Krasnodar-Center",
+      "position": [
+        11567.539063,
+        25.479861,
+        365697
+      ],
+      "positionGeo": {
+        "longitude": 38.911608,
+        "latitude": 45.087368
+      },
+      "callsign": "M",
+      "type": 16424,
+      "frequency": 303000
+    },
+    {
+      "type": 33024,
+      "beaconId": "airfield13_4",
+      "sceneObjects": [
+        "t:678953724"
+      ],
+      "chartOffsetX": 3410,
+      "positionGeo": {
+        "longitude": 38.967638,
+        "latitude": 45.08652
+      },
+      "display_name": "Krasnodar-Center",
+      "channel": 38,
+      "callsign": "MB",
+      "position": [
+        11798.22168,
+        29.298262,
+        370113.1875
+      ],
+      "direction": -92.996632,
+      "frequency": 838000000
+    },
+    {
+      "direction": -92.996632,
+      "beaconId": "airfield13_5",
+      "positionGeo": {
+        "longitude": 38.928677,
+        "latitude": 45.085808
+      },
+      "sceneObjects": [
+        "t:678953725"
+      ],
+      "display_name": "Krasnodar-Center",
+      "channel": 38,
+      "callsign": "MB",
+      "position": [
+        11492.823242,
+        30.010032,
+        367052.96875
+      ],
+      "type": 33280,
+      "frequency": 838000000
+    },
+    {
+      "direction": -92.996652,
+      "beaconId": "airfield13_6",
+      "positionGeo": {
+        "longitude": 38.927839,
+        "latitude": 45.083171
+      },
+      "sceneObjects": [
+        "t:678954398"
+      ],
+      "display_name": "Krasnodar-Center",
+      "channel": 40,
+      "callsign": "MB",
+      "position": [
+        11195.09375,
+        30.866661,
+        367008.5625
+      ],
+      "type": 128,
+      "frequency": 840000000
+    },
+    {
+      "direction": -132.994767,
+      "beaconId": "airfield19_0",
+      "sceneObjects": [
+        "t:298778624"
+      ],
+      "display_name": "Krasnodar-Pashkovsky",
+      "position": [
+        3919.23291,
+        29.862306,
+        383806.1875
+      ],
+      "positionGeo": {
+        "longitude": 39.133081,
+        "latitude": 45.006796
+      },
+      "callsign": "KR",
+      "type": 16408,
+      "frequency": 493000
+    },
+    {
+      "direction": -132.994767,
+      "beaconId": "airfield19_1",
+      "sceneObjects": [
+        "t:300613649"
+      ],
+      "display_name": "Krasnodar-Pashkovsky",
+      "position": [
+        5760.449219,
+        29.579169,
+        385781
+      ],
+      "positionGeo": {
+        "longitude": 39.159769,
+        "latitude": 45.021929
+      },
+      "callsign": "K",
+      "type": 16424,
+      "frequency": 240000
+    },
+    {
+      "direction": 47.005224,
+      "beaconId": "airfield19_2",
+      "sceneObjects": [
+        "t:302284800"
+      ],
+      "display_name": "Krasnodar-Pashkovsky",
+      "position": [
+        11497.123047,
+        34.370228,
+        391935.4375
+      ],
+      "positionGeo": {
+        "longitude": 39.243028,
+        "latitude": 45.069032
+      },
+      "callsign": "LD",
+      "type": 16408,
+      "frequency": 493000
+    },
+    {
+      "direction": 47.005224,
+      "beaconId": "airfield19_3",
+      "sceneObjects": [
+        "t:302284801"
+      ],
+      "display_name": "Krasnodar-Pashkovsky",
+      "position": [
+        9655.907227,
+        31.752404,
+        389960.625
+      ],
+      "positionGeo": {
+        "longitude": 39.216297,
+        "latitude": 45.053921
+      },
+      "callsign": "L",
+      "type": 16424,
+      "frequency": 240000
+    },
+    {
+      "direction": 0,
+      "beaconId": "airfield19_4",
+      "positionGeo": {
+        "longitude": 39.163887,
+        "latitude": 45.020832
+      },
+      "sceneObjects": [
+        "t:137596182"
+      ],
+      "display_name": "Krasnodar-Pashkovsky",
+      "channel": 105,
+      "callsign": "KN",
+      "position": [
+        5663.36377,
+        30.493774,
+        386114.75
+      ],
+      "type": 1,
+      "frequency": 115800000
+    },
+    {
+      "direction": 39.519802,
+      "beaconId": "airfield15_0",
+      "sceneObjects": [
+        "t:298090496"
+      ],
+      "display_name": "Krymsk",
+      "position": [
+        -2232.675781,
+        5.000005,
+        297972.09375
+      ],
+      "positionGeo": {
+        "longitude": 38.043726,
+        "latitude": 45.004894
+      },
+      "callsign": "KW",
+      "type": 16408,
+      "frequency": 408000
+    },
+    {
+      "direction": 39.519802,
+      "beaconId": "airfield15_1",
+      "sceneObjects": [
+        "t:296321025"
+      ],
+      "display_name": "Krymsk",
+      "position": [
+        -4801.45459,
+        7.267079,
+        295853.0625
+      ],
+      "positionGeo": {
+        "longitude": 38.014927,
+        "latitude": 44.983041
+      },
+      "callsign": "K",
+      "type": 16424,
+      "frequency": 803000
+    },
+    {
+      "direction": -140.480217,
+      "beaconId": "airfield15_2",
+      "sceneObjects": [
+        "t:294715421"
+      ],
+      "display_name": "Krymsk",
+      "position": [
+        -10679.844727,
+        72.04253,
+        291002.59375
+      ],
+      "positionGeo": {
+        "longitude": 37.949089,
+        "latitude": 44.933004
+      },
+      "callsign": "OX",
+      "type": 16408,
+      "frequency": 408000
+    },
+    {
+      "direction": -140.480217,
+      "beaconId": "airfield15_3",
+      "sceneObjects": [
+        "t:294715422"
+      ],
+      "display_name": "Krymsk",
+      "position": [
+        -8481.339844,
+        32.852633,
+        292816.1875
+      ],
+      "positionGeo": {
+        "longitude": 37.973692,
+        "latitude": 44.951723
+      },
+      "callsign": "O",
+      "type": 16424,
+      "frequency": 803000
+    },
+    {
+      "direction": -141.000009,
+      "beaconId": "airfield15_4",
+      "sceneObjects": [
+        "t:678953730"
+      ],
+      "display_name": "Krymsk",
+      "position": [
+        -7411.83252,
+        20.010304,
+        293592
+      ],
+      "positionGeo": {
+        "longitude": 37.984323,
+        "latitude": 44.960886
+      },
+      "callsign": "OX",
+      "type": 33280,
+      "frequency": 826000000
+    },
+    {
+      "direction": 38.99997,
+      "beaconId": "airfield15_5",
+      "sceneObjects": [
+        "t:678953731"
+      ],
+      "display_name": "Krymsk",
+      "position": [
+        -5648.416504,
+        20.010304,
+        295048.15625
+      ],
+      "positionGeo": {
+        "longitude": 38.004094,
+        "latitude": 44.975894
+      },
+      "callsign": "KW",
+      "type": 33280,
+      "frequency": 826000000
+    },
+    {
+      "type": 33024,
+      "beaconId": "airfield15_6",
+      "sceneObjects": [
+        "t:678953732"
+      ],
+      "chartOffsetX": 3649,
+      "positionGeo": {
+        "longitude": 37.974655,
+        "latitude": 44.952449
+      },
+      "display_name": "Krymsk",
+      "channel": 26,
+      "callsign": "KW",
+      "position": [
+        -8396.038086,
+        31.785951,
+        292887.1875
+      ],
+      "direction": 39.519802,
+      "frequency": 826000000
+    },
+    {
+      "type": 33024,
+      "beaconId": "airfield15_7",
+      "sceneObjects": [
+        "t:678953733"
+      ],
+      "chartOffsetX": 3589,
+      "positionGeo": {
+        "longitude": 38.01474,
+        "latitude": 44.982907
+      },
+      "display_name": "Krymsk",
+      "channel": 26,
+      "callsign": "OX",
+      "position": [
+        -4817.330078,
+        7.263302,
+        295839.3125
+      ],
+      "direction": -140.480217,
+      "frequency": 826000000
+    },
+    {
+      "direction": -140.480229,
+      "beaconId": "airfield15_8",
+      "positionGeo": {
+        "longitude": 37.996805,
+        "latitude": 44.966653
+      },
+      "sceneObjects": [
+        "t:678954399"
+      ],
+      "display_name": "Krymsk",
+      "channel": 28,
+      "callsign": "KW",
+      "position": [
+        -6710.505371,
+        20.866651,
+        294536.875
+      ],
+      "type": 128,
+      "frequency": 828000000
+    },
+    {
+      "type": 16640,
+      "beaconId": "airfield25_0",
+      "sceneObjects": [
+        "t:190480920"
+      ],
+      "chartOffsetX": 2650,
+      "display_name": "Kutaisi",
+      "position": [
+        -284502.84375,
+        46.542794,
+        685199.5
+      ],
+      "positionGeo": {
+        "longitude": 42.49782,
+        "latitude": 42.179695
+      },
+      "callsign": "IKS",
+      "direction": -105.999085,
+      "frequency": 109750000
+    },
+    {
+      "type": 16896,
+      "beaconId": "airfield25_1",
+      "sceneObjects": [
+        "t:366314246"
+      ],
+      "chartOffsetX": 120,
+      "display_name": "Kutaisi",
+      "position": [
+        -285264.53125,
+        45.010047,
+        682978.4375
+      ],
+      "positionGeo": {
+        "longitude": 42.470274,
+        "latitude": 42.175142
+      },
+      "callsign": "IKS",
+      "direction": -105.999085,
+      "frequency": 109750000
+    },
+    {
+      "direction": 74.000018,
+      "beaconId": "airfield25_2",
+      "sceneObjects": [
+        "t:190447634"
+      ],
+      "display_name": "Kutaisi",
+      "position": [
+        -285504.6875,
+        44.662974,
+        681690.0625
+      ],
+      "positionGeo": {
+        "longitude": 42.454567,
+        "latitude": 42.174289
+      },
+      "callsign": "TI",
+      "type": 4136,
+      "frequency": 477000
+    },
+    {
+      "direction": 0,
+      "beaconId": "airfield25_3",
+      "positionGeo": {
+        "longitude": 42.479213,
+        "latitude": 42.178443
+      },
+      "sceneObjects": [
+        "t:190447972"
+      ],
+      "display_name": "Kutaisi",
+      "channel": 44,
+      "callsign": "KTS",
+      "position": [
+        -284814.6875,
+        45.299522,
+        683676.5
+      ],
+      "type": 4,
+      "frequency": 1005000000
+    },
+    {
+      "direction": 0,
+      "beaconId": "airfield25_4",
+      "positionGeo": {
+        "longitude": 42.455276,
+        "latitude": 42.174389
+      },
+      "sceneObjects": [
+        "t:68354887"
+      ],
+      "display_name": "Kutaisi",
+      "channel": 83,
+      "callsign": "KT",
+      "position": [
+        -285487.03125,
+        44.387457,
+        681747.5
+      ],
+      "type": 1,
+      "frequency": 113600000
+    },
+    {
+      "direction": -52.001372,
+      "beaconId": "airfield29_0",
+      "sceneObjects": [
+        "t:179339272"
+      ],
+      "display_name": "Tbilisi-Lochini",
+      "position": [
+        -312185.40625,
+        567.552264,
+        892170.1875
+      ],
+      "positionGeo": {
+        "longitude": 44.909623,
+        "latitude": 41.703274
+      },
+      "callsign": "BP",
+      "type": 16408,
+      "frequency": 342000
+    },
+    {
+      "direction": -52.001372,
+      "beaconId": "airfield29_1",
+      "sceneObjects": [
+        "t:179372035"
+      ],
+      "display_name": "Tbilisi-Lochini",
+      "position": [
+        -313847.625,
+        516.680448,
+        894297.875
+      ],
+      "positionGeo": {
+        "longitude": 44.931895,
+        "latitude": 41.685992
+      },
+      "callsign": "B",
+      "type": 16424,
+      "frequency": 923000
+    },
+    {
+      "type": 16640,
+      "beaconId": "airfield29_2",
+      "sceneObjects": [
+        "t:177897928"
+      ],
+      "chartOffsetX": 3117,
+      "display_name": "Tbilisi-Lochini",
+      "position": [
+        -316544.0625,
+        479.302481,
+        897748.5
+      ],
+      "positionGeo": {
+        "longitude": 44.967988,
+        "latitude": 41.657953
+      },
+      "callsign": "IVP",
+      "direction": -52.001372,
+      "frequency": 110300000
+    },
+    {
+      "type": 16896,
+      "beaconId": "airfield29_3",
+      "sceneObjects": [
+        "t:338363236"
+      ],
+      "chartOffsetX": 120,
+      "display_name": "Tbilisi-Lochini",
+      "position": [
+        -314937,
+        479.218985,
+        895496.5625
+      ],
+      "positionGeo": {
+        "longitude": 44.944184,
+        "latitude": 41.674907
+      },
+      "callsign": "IVP",
+      "direction": -52.001372,
+      "frequency": 110300000
+    },
+    {
+      "direction": 127.998645,
+      "beaconId": "airfield29_4",
+      "sceneObjects": [
+        "t:177897476"
+      ],
+      "display_name": "Tbilisi-Lochini",
+      "position": [
+        -318920.96875,
+        459.637972,
+        900790.1875
+      ],
+      "positionGeo": {
+        "longitude": 44.999778,
+        "latitude": 41.633231
+      },
+      "callsign": "NA",
+      "type": 16408,
+      "frequency": 211000
+    },
+    {
+      "direction": 127.998645,
+      "beaconId": "airfield29_5",
+      "sceneObjects": [
+        "t:177897477"
+      ],
+      "display_name": "Tbilisi-Lochini",
+      "position": [
+        -317258.75,
+        474.729601,
+        898662.5
+      ],
+      "positionGeo": {
+        "longitude": 44.977543,
+        "latitude": 41.650521
+      },
+      "callsign": "N",
+      "type": 16424,
+      "frequency": 435000
+    },
+    {
+      "type": 16640,
+      "beaconId": "airfield29_6",
+      "sceneObjects": [
+        "t:179373206"
+      ],
+      "chartOffsetX": 3117,
+      "display_name": "Tbilisi-Lochini",
+      "position": [
+        -314562.3125,
+        482.002923,
+        895211.875
+      ],
+      "positionGeo": {
+        "longitude": 44.941458,
+        "latitude": 41.678562
+      },
+      "callsign": "INA",
+      "direction": 127.998645,
+      "frequency": 108900000
+    },
+    {
+      "type": 16896,
+      "beaconId": "airfield29_7",
+      "sceneObjects": [
+        "t:337118335"
+      ],
+      "chartOffsetX": 120,
+      "display_name": "Tbilisi-Lochini",
+      "position": [
+        -316169.375,
+        479.694816,
+        897463.8125
+      ],
+      "positionGeo": {
+        "longitude": 44.965264,
+        "latitude": 41.661608
+      },
+      "callsign": "INA",
+      "direction": 127.998645,
+      "frequency": 108900000
+    },
+    {
+      "direction": 0,
+      "beaconId": "airfield29_8",
+      "positionGeo": {
+        "longitude": 44.946945,
+        "latitude": 41.670555
+      },
+      "sceneObjects": [
+        "t:60394710"
+      ],
+      "display_name": "Tbilisi-Lochini",
+      "channel": 84,
+      "callsign": "TB",
+      "position": [
+        -315388.90625,
+        477.110096,
+        895795.0625
+      ],
+      "type": 1,
+      "frequency": 113700000
+    },
+    {
+      "direction": 0,
+      "beaconId": "airfield29_9",
+      "positionGeo": {
+        "longitude": 44.930298,
+        "latitude": 41.670577
+      },
+      "sceneObjects": [
+        "t:177865979"
+      ],
+      "display_name": "Tbilisi-Lochini",
+      "channel": 25,
+      "callsign": "GTB",
+      "position": [
+        -315581.71875,
+        484.049312,
+        894405.6875
+      ],
+      "type": 4,
+      "frequency": 986000000
+    },
+    {
+      "direction": 38.999724,
+      "beaconId": "airfield16_0",
+      "sceneObjects": [
+        "t:290979840"
+      ],
+      "display_name": "Maykop-Khanskaya",
+      "position": [
+        -22082.919922,
+        213.198242,
+        461575.46875
+      ],
+      "positionGeo": {
+        "longitude": 40.084181,
+        "latitude": 44.717443
+      },
+      "callsign": "RK",
+      "type": 16408,
+      "frequency": 289000
+    },
+    {
+      "direction": 38.999724,
+      "beaconId": "airfield16_1",
+      "sceneObjects": [
+        "t:290979841"
+      ],
+      "display_name": "Maykop-Khanskaya",
+      "position": [
+        -24414.369141,
+        175.805962,
+        459687.53125
+      ],
+      "positionGeo": {
+        "longitude": 40.057981,
+        "latitude": 44.698086
+      },
+      "callsign": "R",
+      "type": 16424,
+      "frequency": 591000
+    },
+    {
+      "direction": -141.000295,
+      "beaconId": "airfield16_2",
+      "sceneObjects": [
+        "t:287866880"
+      ],
+      "display_name": "Maykop-Khanskaya",
+      "position": [
+        -30802.216797,
+        173.935217,
+        454513.53125
+      ],
+      "positionGeo": {
+        "longitude": 39.986269,
+        "latitude": 44.645015
+      },
+      "callsign": "DG",
+      "type": 16408,
+      "frequency": 289000
+    },
+    {
+      "direction": -141.000295,
+      "beaconId": "airfield16_3",
+      "sceneObjects": [
+        "t:289308672"
+      ],
+      "display_name": "Maykop-Khanskaya",
+      "position": [
+        -28470.767578,
+        174.66561,
+        456401.46875
+      ],
+      "positionGeo": {
+        "longitude": 40.012421,
+        "latitude": 44.664391
+      },
+      "callsign": "D",
+      "type": 16424,
+      "frequency": 591000
+    },
+    {
+      "type": 33024,
+      "beaconId": "airfield16_4",
+      "sceneObjects": [
+        "t:678953740"
+      ],
+      "chartOffsetX": 4179,
+      "positionGeo": {
+        "longitude": 40.057712,
+        "latitude": 44.697894
+      },
+      "display_name": "Maykop-Khanskaya",
+      "channel": 36,
+      "callsign": "DG",
+      "position": [
+        -24437.523438,
+        175.942833,
+        459668.125
+      ],
+      "direction": -141.000295,
+      "frequency": 836000000
+    },
+    {
+      "direction": -141.000295,
+      "beaconId": "airfield16_5",
+      "positionGeo": {
+        "longitude": 40.024984,
+        "latitude": 44.67207
+      },
+      "sceneObjects": [
+        "t:678953741"
+      ],
+      "display_name": "Maykop-Khanskaya",
+      "channel": 36,
+      "callsign": "DG",
+      "position": [
+        -27531.527344,
+        180.01019,
+        457323.53125
+      ],
+      "type": 33280,
+      "frequency": 836000000
+    },
+    {
+      "direction": -141.000307,
+      "beaconId": "airfield16_6",
+      "positionGeo": {
+        "longitude": 40.035455,
+        "latitude": 44.679754
+      },
+      "sceneObjects": [
+        "t:678954400"
+      ],
+      "display_name": "Maykop-Khanskaya",
+      "channel": 34,
+      "callsign": "DG",
+      "position": [
+        -26605.978516,
+        180.866789,
+        458079.46875
+      ],
+      "type": 128,
+      "frequency": 834000000
+    },
+    {
+      "direction": 115.300122,
+      "beaconId": "airfield26_0",
+      "sceneObjects": [
+        "t:279150595"
+      ],
+      "display_name": "MineralnyeVody",
+      "position": [
+        -53842.230469,
+        303.327421,
+        711195.0625
+      ],
+      "positionGeo": {
+        "longitude": 43.14453,
+        "latitude": 44.198946
+      },
+      "callsign": "NR",
+      "type": 16408,
+      "frequency": 583000
+    },
+    {
+      "direction": 115.300122,
+      "beaconId": "airfield26_1",
+      "sceneObjects": [
+        "t:280625160"
+      ],
+      "display_name": "MineralnyeVody",
+      "position": [
+        -52688.359375,
+        316.610912,
+        708754.0625
+      ],
+      "positionGeo": {
+        "longitude": 43.116226,
+        "latitude": 44.211867
+      },
+      "callsign": "N",
+      "type": 16424,
+      "frequency": 283000
+    },
+    {
+      "type": 16640,
+      "beaconId": "airfield26_2",
+      "sceneObjects": [
+        "t:280559890"
+      ],
+      "chartOffsetX": 4216,
+      "display_name": "MineralnyeVody",
+      "position": [
+        -50326.4375,
+        313.023903,
+        703758.5625
+      ],
+      "positionGeo": {
+        "longitude": 43.058263,
+        "latitude": 44.238297
+      },
+      "callsign": "IMW",
+      "direction": 115.300122,
+      "frequency": 109300000
+    },
+    {
+      "type": 16896,
+      "beaconId": "airfield26_3",
+      "sceneObjects": [
+        "t:543818727"
+      ],
+      "chartOffsetX": 120,
+      "display_name": "MineralnyeVody",
+      "position": [
+        -51889.148438,
+        319.947341,
+        707345.3125
+      ],
+      "positionGeo": {
+        "longitude": 43.10009,
+        "latitude": 44.220503
+      },
+      "callsign": "IMW",
+      "direction": 115.300122,
+      "frequency": 109300000
+    },
+    {
+      "direction": -64.699902,
+      "beaconId": "airfield26_4",
+      "sceneObjects": [
+        "t:281935872"
+      ],
+      "display_name": "MineralnyeVody",
+      "position": [
+        -48676.292969,
+        310.76325,
+        700268.875
+      ],
+      "positionGeo": {
+        "longitude": 43.017738,
+        "latitude": 44.256747
+      },
+      "callsign": "MD",
+      "type": 16408,
+      "frequency": 583000
+    },
+    {
+      "direction": -64.699902,
+      "beaconId": "airfield26_5",
+      "sceneObjects": [
+        "t:280559616"
+      ],
+      "display_name": "MineralnyeVody",
+      "position": [
+        -49830.164063,
+        307.123507,
+        702709.875
+      ],
+      "positionGeo": {
+        "longitude": 43.046088,
+        "latitude": 44.243846
+      },
+      "callsign": "D",
+      "type": 16424,
+      "frequency": 283000
+    },
+    {
+      "type": 16640,
+      "beaconId": "airfield26_6",
+      "sceneObjects": [
+        "t:280593623"
+      ],
+      "chartOffsetX": 4216,
+      "display_name": "MineralnyeVody",
+      "position": [
+        -52192.085938,
+        315.340281,
+        707705.4375
+      ],
+      "positionGeo": {
+        "longitude": 43.104064,
+        "latitude": 44.217421
+      },
+      "callsign": "IMD",
+      "direction": -64.699902,
+      "frequency": 111700000
+    },
+    {
+      "type": 16896,
+      "beaconId": "airfield26_7",
+      "sceneObjects": [
+        "t:546079473"
+      ],
+      "chartOffsetX": 120,
+      "display_name": "MineralnyeVody",
+      "position": [
+        -50629.375,
+        320.01033,
+        704118.625
+      ],
+      "positionGeo": {
+        "longitude": 43.06224,
+        "latitude": 44.235217
+      },
+      "callsign": "IMD",
+      "direction": -64.699902,
+      "frequency": 111700000
+    },
+    {
+      "direction": 0,
+      "beaconId": "airfield26_8",
+      "positionGeo": {
+        "longitude": 43.054165,
+        "latitude": 44.239445
+      },
+      "sceneObjects": [
+        "t:119900926"
+      ],
+      "display_name": "MineralnyeVody",
+      "channel": 118,
+      "callsign": "MN",
+      "position": [
+        -50239.421875,
+        314.087991,
+        703415.5
+      ],
+      "type": 1,
+      "frequency": 117100000
+    },
+    {
+      "direction": -97.236068,
+      "beaconId": "airfield28_0",
+      "sceneObjects": [
+        "t:266174464"
+      ],
+      "display_name": "Mozdok",
+      "position": [
+        -84144.421875,
+        148.005153,
+        829029.375
+      ],
+      "positionGeo": {
+        "longitude": 44.538494,
+        "latitude": 43.79238
+      },
+      "callsign": "DO",
+      "type": 16408,
+      "frequency": 525000
+    },
+    {
+      "direction": -97.236068,
+      "beaconId": "airfield28_1",
+      "sceneObjects": [
+        "t:266174465"
+      ],
+      "display_name": "Mozdok",
+      "position": [
+        -83892.507813,
+        146.142297,
+        831013.4375
+      ],
+      "positionGeo": {
+        "longitude": 44.563089,
+        "latitude": 43.792126
+      },
+      "callsign": "D",
+      "type": 16424,
+      "frequency": 1065000
+    },
+    {
+      "direction": 82.763916,
+      "beaconId": "airfield28_2",
+      "sceneObjects": [
+        "t:266272768"
+      ],
+      "display_name": "Mozdok",
+      "position": [
+        -82791.179688,
+        139.140398,
+        839695.25
+      ],
+      "positionGeo": {
+        "longitude": 44.670692,
+        "latitude": 43.790945
+      },
+      "callsign": "RM",
+      "type": 16408,
+      "frequency": 525000
+    },
+    {
+      "direction": 82.763916,
+      "beaconId": "airfield28_3",
+      "sceneObjects": [
+        "t:266240000"
+      ],
+      "display_name": "Mozdok",
+      "position": [
+        -83147.640625,
+        140.692066,
+        836887.8125
+      ],
+      "positionGeo": {
+        "longitude": 44.635898,
+        "latitude": 43.791336
+      },
+      "callsign": "R",
+      "type": 16424,
+      "frequency": 1065000
+    },
+    {
+      "type": 33024,
+      "beaconId": "airfield28_4",
+      "sceneObjects": [
+        "t:678953746"
+      ],
+      "chartOffsetX": 4418,
+      "positionGeo": {
+        "longitude": 44.632072,
+        "latitude": 43.791382
+      },
+      "display_name": "Mozdok",
+      "channel": 22,
+      "callsign": "MZ",
+      "position": [
+        -83186.351563,
+        140.971363,
+        836579
+      ],
+      "direction": -97.236068,
+      "frequency": 822000000
+    },
+    {
+      "direction": -97.236068,
+      "beaconId": "airfield28_5",
+      "positionGeo": {
+        "longitude": 44.586565,
+        "latitude": 43.791251
+      },
+      "sceneObjects": [
+        "t:678953747"
+      ],
+      "display_name": "Mozdok",
+      "channel": 22,
+      "callsign": "MZ",
+      "position": [
+        -83721.84375,
+        154.758974,
+        832917.3125
+      ],
+      "type": 33280,
+      "frequency": 822000000
+    },
+    {
+      "type": 33024,
+      "beaconId": "airfield28_6",
+      "sceneObjects": [
+        "t:678953748"
+      ],
+      "chartOffsetX": 4179,
+      "positionGeo": {
+        "longitude": 44.572203,
+        "latitude": 43.792027
+      },
+      "display_name": "Mozdok",
+      "channel": 22,
+      "callsign": "MK",
+      "position": [
+        -83799.640625,
+        145.067482,
+        831748.8125
+      ],
+      "direction": 82.763916,
+      "frequency": 822000000
+    },
+    {
+      "direction": 82.763916,
+      "beaconId": "airfield28_7",
+      "positionGeo": {
+        "longitude": 44.618731,
+        "latitude": 43.790905
+      },
+      "sceneObjects": [
+        "t:678953749"
+      ],
+      "display_name": "Mozdok",
+      "channel": 22,
+      "callsign": "MK",
+      "position": [
+        -83392.328125,
+        154.627688,
+        835512.4375
+      ],
+      "type": 33280,
+      "frequency": 822000000
+    },
+    {
+      "direction": 82.763916,
+      "beaconId": "airfield28_8",
+      "positionGeo": {
+        "longitude": 44.602658,
+        "latitude": 43.790367
+      },
+      "sceneObjects": [
+        "t:678954401"
+      ],
+      "display_name": "Mozdok",
+      "channel": 20,
+      "callsign": "MZ",
+      "position": [
+        -83636.195313,
+        154.866778,
+        834226.9375
+      ],
+      "type": 128,
+      "frequency": 820000000
+    },
+    {
+      "direction": 55.506625,
+      "beaconId": "airfield27_0",
+      "sceneObjects": [
+        "t:249823232"
+      ],
+      "display_name": "Nalchik",
+      "position": [
+        -122005.132813,
+        376.161387,
+        764682.375
+      ],
+      "positionGeo": {
+        "longitude": 43.692885,
+        "latitude": 43.535011
+      },
+      "callsign": "NL",
+      "type": 16408,
+      "frequency": 718000
+    },
+    {
+      "direction": 55.506625,
+      "beaconId": "airfield27_1",
+      "sceneObjects": [
+        "t:248381440"
+      ],
+      "display_name": "Nalchik",
+      "position": [
+        -123534.171875,
+        417.185293,
+        762457.0625
+      ],
+      "positionGeo": {
+        "longitude": 43.663409,
+        "latitude": 43.524039
+      },
+      "callsign": "N",
+      "type": 16424,
+      "frequency": 350000
+    },
+    {
+      "type": 16640,
+      "beaconId": "airfield27_2",
+      "sceneObjects": [
+        "t:248350149"
+      ],
+      "chartOffsetX": 2453,
+      "display_name": "Nalchik",
+      "position": [
+        -125664.609375,
+        430.35773,
+        759355.6875
+      ],
+      "positionGeo": {
+        "longitude": 43.622345,
+        "latitude": 43.508738
+      },
+      "callsign": "INL",
+      "direction": 55.506625,
+      "frequency": 110500000
+    },
+    {
+      "type": 16896,
+      "beaconId": "airfield27_3",
+      "sceneObjects": [
+        "t:477429855"
+      ],
+      "chartOffsetX": 120,
+      "display_name": "Nalchik",
+      "position": [
+        -124349.5625,
+        430.010409,
+        761057.625
+      ],
+      "positionGeo": {
+        "longitude": 43.645107,
+        "latitude": 43.518429
+      },
+      "callsign": "INL",
+      "direction": 55.506625,
+      "frequency": 110500000
+    },
+    {
+      "direction": -85.299767,
+      "beaconId": "airfield23_0",
+      "sceneObjects": [
+        "t:192282630"
+      ],
+      "display_name": "Senaki-Kolkhi",
+      "position": [
+        -281354.25,
+        11.487805,
+        642080
+      ],
+      "positionGeo": {
+        "longitude": 41.986317,
+        "latitude": 42.249592
+      },
+      "callsign": "BI",
+      "type": 16408,
+      "frequency": 335000
+    },
+    {
+      "direction": -85.299767,
+      "beaconId": "airfield23_1",
+      "sceneObjects": [
+        "t:192315394"
+      ],
+      "display_name": "Senaki-Kolkhi",
+      "position": [
+        -281575.5,
+        23.342671,
+        644770.9375
+      ],
+      "positionGeo": {
+        "longitude": 42.018251,
+        "latitude": 42.245075
+      },
+      "callsign": "B",
+      "type": 16424,
+      "frequency": 688000
+    },
+    {
+      "type": 16640,
+      "beaconId": "airfield23_2",
+      "sceneObjects": [
+        "t:192349269"
+      ],
+      "chartOffsetX": 2530,
+      "display_name": "Senaki-Kolkhi",
+      "position": [
+        -281888.875,
+        13.025524,
+        648576.3125
+      ],
+      "positionGeo": {
+        "longitude": 42.0634,
+        "latitude": 42.238667
+      },
+      "callsign": "ITS",
+      "direction": -85.299767,
+      "frequency": 108900000
+    },
+    {
+      "type": 16896,
+      "beaconId": "airfield23_3",
+      "sceneObjects": [
+        "t:371785767"
+      ],
+      "chartOffsetX": 120,
+      "display_name": "Senaki-Kolkhi",
+      "position": [
+        -281827.96875,
+        12.790726,
+        646370.875
+      ],
+      "positionGeo": {
+        "longitude": 42.03708,
+        "latitude": 42.241309
+      },
+      "callsign": "ITS",
+      "direction": -85.299767,
+      "frequency": 108900000
+    },
+    {
+      "direction": 0,
+      "beaconId": "airfield23_4",
+      "positionGeo": {
+        "longitude": 42.04702,
+        "latitude": 42.242087
+      },
+      "sceneObjects": [
+        "t:192349270"
+      ],
+      "display_name": "Senaki-Kolkhi",
+      "channel": 31,
+      "callsign": "TSK",
+      "position": [
+        -281653.6875,
+        13.239942,
+        647182.625
+      ],
+      "type": 4,
+      "frequency": 992000000
+    },
+    {
+      "direction": -117.994619,
+      "beaconId": "airfield18_0",
+      "sceneObjects": [
+        "t:233340945"
+      ],
+      "display_name": "Sochi-Adler",
+      "position": [
+        -165720.53125,
+        5.664159,
+        459873.46875
+      ],
+      "positionGeo": {
+        "longitude": 39.911051,
+        "latitude": 43.435164
+      },
+      "callsign": "CO",
+      "type": 4136,
+      "frequency": 761000
+    },
+    {
+      "type": 16640,
+      "beaconId": "airfield18_1",
+      "sceneObjects": [
+        "t:234586966"
+      ],
+      "chartOffsetX": 3265,
+      "display_name": "Sochi-Adler",
+      "position": [
+        -163681.03125,
+        23.207581,
+        463753.71875
+      ],
+      "positionGeo": {
+        "longitude": 39.960744,
+        "latitude": 43.450492
+      },
+      "callsign": "ISO",
+      "direction": -117.994619,
+      "frequency": 111100000
+    },
+    {
+      "type": 16896,
+      "beaconId": "airfield18_2",
+      "sceneObjects": [
+        "t:453214300"
+      ],
+      "chartOffsetX": 120,
+      "display_name": "Sochi-Adler",
+      "position": [
+        -165170.921875,
+        30.010034,
+        461206.65625
+      ],
+      "positionGeo": {
+        "longitude": 39.927967,
+        "latitude": 43.439082
+      },
+      "callsign": "ISO",
+      "direction": -117.994619,
+      "frequency": 111100000
+    },
+    {
+      "direction": 116.485379,
+      "beaconId": "airfield20_0",
+      "sceneObjects": [
+        "t:214663172"
+      ],
+      "display_name": "Sukhumi-Babushara",
+      "position": [
+        -223173.765625,
+        25.161868,
+        569571.375
+      ],
+      "positionGeo": {
+        "longitude": 41.184697,
+        "latitude": 42.833582
+      },
+      "callsign": "AV",
+      "type": 16408,
+      "frequency": 489000
+    },
+    {
+      "direction": 116.485379,
+      "beaconId": "airfield20_1",
+      "sceneObjects": [
+        "t:214630400"
+      ],
+      "display_name": "Sukhumi-Babushara",
+      "position": [
+        -221969.65625,
+        16.383441,
+        567154.75
+      ],
+      "positionGeo": {
+        "longitude": 41.156849,
+        "latitude": 42.846418
+      },
+      "callsign": "A",
+      "type": 16424,
+      "frequency": 995000
+    },
+    {
+      "type": 16640,
+      "beaconId": "airfield31_0",
+      "sceneObjects": [
+        "t:176751131"
+      ],
+      "chartOffsetX": 2635,
+      "display_name": "Vaziani",
+      "position": [
+        -320054.40625,
+        464.386573,
+        904121.9375
+      ],
+      "positionGeo": {
+        "longitude": 45.037014,
+        "latitude": 41.619095
+      },
+      "callsign": "IVZ",
+      "direction": -44.514716,
+      "frequency": 108750000
+    },
+    {
+      "type": 16896,
+      "beaconId": "airfield31_1",
+      "sceneObjects": [
+        "t:335675402"
+      ],
+      "chartOffsetX": 120,
+      "display_name": "Vaziani",
+      "position": [
+        -318477.9375,
+        464.59983,
+        902403.625
+      ],
+      "positionGeo": {
+        "longitude": 45.019459,
+        "latitude": 41.635125
+      },
+      "callsign": "IVZ",
+      "direction": -44.514716,
+      "frequency": 108750000
+    },
+    {
+      "type": 16640,
+      "beaconId": "airfield31_2",
+      "sceneObjects": [
+        "t:177930581"
+      ],
+      "chartOffsetX": 2727,
+      "display_name": "Vaziani",
+      "position": [
+        -318069.34375,
+        464.97541,
+        902170.1875
+      ],
+      "positionGeo": {
+        "longitude": 45.017397,
+        "latitude": 41.639015
+      },
+      "callsign": "IVI",
+      "direction": 135.485284,
+      "frequency": 108750000
+    },
+    {
+      "type": 16896,
+      "beaconId": "airfield31_3",
+      "sceneObjects": [
+        "t:334430229"
+      ],
+      "chartOffsetX": 120,
+      "display_name": "Vaziani",
+      "position": [
+        -319645.90625,
+        464.500495,
+        903888.25
+      ],
+      "positionGeo": {
+        "longitude": 45.03495,
+        "latitude": 41.622985
+      },
+      "callsign": "IVI",
+      "direction": 135.485284,
+      "frequency": 108750000
+    },
+    {
+      "direction": 0,
+      "beaconId": "airfield31_4",
+      "positionGeo": {
+        "longitude": 45.02734,
+        "latitude": 41.630707
+      },
+      "sceneObjects": [
+        "t:177930582"
+      ],
+      "display_name": "Vaziani",
+      "channel": 22,
+      "callsign": "VAS",
+      "position": [
+        -318876.5,
+        464.500465,
+        903131.125
+      ],
+      "type": 4,
+      "frequency": 983000000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_0",
+      "sceneObjects": [
+        "t:310870017"
+      ],
+      "display_name": "Ust-Labinks",
+      "position": [
+        31587.583984,
+        80.409993,
+        422850.9375
+      ],
+      "positionGeo": {
+        "longitude": 39.65415,
+        "latitude": 45.226576
+      },
+      "callsign": "NZ",
+      "type": 8,
+      "frequency": 330000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_1",
+      "sceneObjects": [
+        "t:314638336"
+      ],
+      "display_name": "Chervonoglinskoye",
+      "position": [
+        96729.375,
+        5.000005,
+        -379810.53125
+      ],
+      "positionGeo": {
+        "longitude": 29.383333,
+        "latitude": 45.949908
+      },
+      "callsign": "AR",
+      "type": 8,
+      "frequency": 440000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_2",
+      "sceneObjects": [
+        "t:313491456"
+      ],
+      "display_name": "Dmitrovka",
+      "position": [
+        41259.871094,
+        31.694215,
+        61344.707031
+      ],
+      "positionGeo": {
+        "longitude": 35.058601,
+        "latitude": 45.489353
+      },
+      "callsign": "DM",
+      "type": 8,
+      "frequency": 690000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_3",
+      "sceneObjects": [
+        "t:260177920"
+      ],
+      "display_name": "Agoy",
+      "position": [
+        -93707.710938,
+        138.342149,
+        383231.0625
+      ],
+      "positionGeo": {
+        "longitude": 39.034429,
+        "latitude": 44.133242
+      },
+      "callsign": "AG",
+      "type": 8,
+      "frequency": 381000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_4",
+      "sceneObjects": [
+        "t:287997952"
+      ],
+      "display_name": "Maykop",
+      "position": [
+        -32141.814453,
+        243.75766,
+        467470.5625
+      ],
+      "positionGeo": {
+        "longitude": 40.146927,
+        "latitude": 44.622965
+      },
+      "callsign": "MA",
+      "type": 8,
+      "frequency": 682000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_5",
+      "sceneObjects": [
+        "t:314966016"
+      ],
+      "display_name": "Herson",
+      "position": [
+        170119.265625,
+        2.524128,
+        -137766.03125
+      ],
+      "positionGeo": {
+        "longitude": 32.499994,
+        "latitude": 46.666575
+      },
+      "callsign": "HS",
+      "type": 8,
+      "frequency": 1065000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_6",
+      "sceneObjects": [
+        "t:290422784"
+      ],
+      "display_name": "Smolenkaya",
+      "position": [
+        -22412.445313,
+        78.688853,
+        359018.03125
+      ],
+      "positionGeo": {
+        "longitude": 38.796373,
+        "latitude": 44.787409
+      },
+      "callsign": "SM",
+      "type": 8,
+      "frequency": 662000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_7",
+      "sceneObjects": [
+        "t:263684096"
+      ],
+      "display_name": "Kislovodsk",
+      "position": [
+        -87247.726563,
+        803.118113,
+        675046.6875
+      ],
+      "positionGeo": {
+        "longitude": 42.649979,
+        "latitude": 43.941577
+      },
+      "callsign": "KW",
+      "type": 8,
+      "frequency": 995000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_8",
+      "sceneObjects": [
+        "t:315555840"
+      ],
+      "display_name": "Taganrog",
+      "position": [
+        251346.78125,
+        5.000005,
+        341832.1875
+      ],
+      "positionGeo": {
+        "longitude": 38.833317,
+        "latitude": 47.249909
+      },
+      "callsign": "TC",
+      "type": 8,
+      "frequency": 470000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_9",
+      "sceneObjects": [
+        "t:294354944"
+      ],
+      "display_name": "Feodosiya",
+      "position": [
+        -10721.782227,
+        0.302752,
+        91145.75
+      ],
+      "positionGeo": {
+        "longitude": 35.419712,
+        "latitude": 45.014353
+      },
+      "callsign": "IL",
+      "type": 8,
+      "frequency": 300500
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_10",
+      "sceneObjects": [
+        "t:315621376"
+      ],
+      "display_name": "Shyriaeve",
+      "position": [
+        255448.65625,
+        5.000005,
+        -304739.375
+      ],
+      "positionGeo": {
+        "longitude": 30.279998,
+        "latitude": 47.403241
+      },
+      "callsign": "SH",
+      "type": 8,
+      "frequency": 389000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_11",
+      "sceneObjects": [
+        "t:314867712"
+      ],
+      "display_name": "Odessa",
+      "position": [
+        132623.734375,
+        2.000002,
+        -279618.625
+      ],
+      "positionGeo": {
+        "longitude": 30.661109,
+        "latitude": 46.306297
+      },
+      "callsign": "OD",
+      "type": 8,
+      "frequency": 348000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_12",
+      "sceneObjects": [
+        "t:315326464"
+      ],
+      "display_name": "Yalta",
+      "position": [
+        202840.78125,
+        0,
+        230918.171875
+      ],
+      "positionGeo": {
+        "longitude": 37.33693,
+        "latitude": 46.879909
+      },
+      "callsign": "BS",
+      "type": 8,
+      "frequency": 300500
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_13",
+      "sceneObjects": [
+        "t:313458688"
+      ],
+      "display_name": "Stavropol",
+      "position": [
+        39516.828125,
+        352.025468,
+        622585
+      ],
+      "positionGeo": {
+        "longitude": 42.181646,
+        "latitude": 45.121577
+      },
+      "callsign": "KT",
+      "type": 8,
+      "frequency": 730000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_14",
+      "sceneObjects": [
+        "t:315097088"
+      ],
+      "display_name": "Yegorlykskaya",
+      "position": [
+        189361.796875,
+        101.853572,
+        487761.8125
+      ],
+      "positionGeo": {
+        "longitude": 40.666647,
+        "latitude": 46.583243
+      },
+      "callsign": "ER",
+      "type": 8,
+      "frequency": 435000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_15",
+      "sceneObjects": [
+        "t:314834944"
+      ],
+      "display_name": "Komisarivka",
+      "position": [
+        127528.007813,
+        2.000002,
+        55884.429688
+      ],
+      "positionGeo": {
+        "longitude": 35.016657,
+        "latitude": 46.266575
+      },
+      "callsign": "KM",
+      "type": 8,
+      "frequency": 950000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_16",
+      "sceneObjects": [
+        "t:314736640"
+      ],
+      "display_name": "Skadovsk",
+      "position": [
+        110740.085938,
+        3.859469,
+        -105954.679688
+      ],
+      "positionGeo": {
+        "longitude": 32.91666,
+        "latitude": 46.133242
+      },
+      "callsign": "SK",
+      "type": 8,
+      "frequency": 680000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_17",
+      "sceneObjects": [
+        "t:207519744"
+      ],
+      "display_name": "Gali",
+      "position": [
+        -244178.796875,
+        132.854198,
+        621256.25
+      ],
+      "positionGeo": {
+        "longitude": 41.783315,
+        "latitude": 42.59991
+      },
+      "callsign": "DA",
+      "type": 8,
+      "frequency": 525000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_18",
+      "sceneObjects": [
+        "t:187695104"
+      ],
+      "display_name": "Mukhrani",
+      "position": [
+        -292419.78125,
+        522.836949,
+        860239.0625
+      ],
+      "positionGeo": {
+        "longitude": 44.565533,
+        "latitude": 41.916577
+      },
+      "callsign": "DF",
+      "type": 8,
+      "frequency": 520000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_19",
+      "sceneObjects": [
+        "t:313327616"
+      ],
+      "display_name": "Ladozhskaya",
+      "position": [
+        39622.871094,
+        62.237573,
+        442914.4375
+      ],
+      "positionGeo": {
+        "longitude": 39.916649,
+        "latitude": 45.283243
+      },
+      "callsign": "RF",
+      "type": 8,
+      "frequency": 324000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_20",
+      "sceneObjects": [
+        "t:279281664"
+      ],
+      "display_name": "Teplorechensky",
+      "position": [
+        -54782.4375,
+        253.499033,
+        742905.8125
+      ],
+      "positionGeo": {
+        "longitude": 43.533311,
+        "latitude": 44.15491
+      },
+      "callsign": "FM",
+      "type": 8,
+      "frequency": 1182000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_21",
+      "sceneObjects": [
+        "t:253198336"
+      ],
+      "display_name": "Kalaus",
+      "position": [
+        -112412.046875,
+        347.660656,
+        889038.25
+      ],
+      "positionGeo": {
+        "longitude": 45.216642,
+        "latitude": 43.466578
+      },
+      "callsign": "BJ",
+      "type": 8,
+      "frequency": 735000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_22",
+      "sceneObjects": [
+        "t:315260928"
+      ],
+      "display_name": "Nikolaev-Kulbakino",
+      "position": [
+        200023.625,
+        2.973928,
+        -168025.390625
+      ],
+      "positionGeo": {
+        "longitude": 32.099995,
+        "latitude": 46.933241
+      },
+      "callsign": "NK",
+      "type": 8,
+      "frequency": 1030000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_23",
+      "sceneObjects": [
+        "t:315457536"
+      ],
+      "display_name": "Manychsky",
+      "position": [
+        238988.84375,
+        93.700884,
+        459902.875
+      ],
+      "positionGeo": {
+        "longitude": 40.366647,
+        "latitude": 47.049909
+      },
+      "callsign": "MN",
+      "type": 8,
+      "frequency": 705000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_24",
+      "sceneObjects": [
+        "t:309755904"
+      ],
+      "display_name": "Kerch",
+      "position": [
+        31183.582031,
+        35.950666,
+        166738.03125
+      ],
+      "positionGeo": {
+        "longitude": 36.399988,
+        "latitude": 45.366575
+      },
+      "callsign": "KC",
+      "type": 8,
+      "frequency": 1050000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_25",
+      "sceneObjects": [
+        "t:315490304"
+      ],
+      "display_name": "TaganrogYuzhny",
+      "position": [
+        245887.234375,
+        5.000005,
+        343510.5625
+      ],
+      "positionGeo": {
+        "longitude": 38.849984,
+        "latitude": 47.199909
+      },
+      "callsign": "TY",
+      "type": 8,
+      "frequency": 720000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_26",
+      "sceneObjects": [
+        "t:193265664"
+      ],
+      "display_name": "Ali",
+      "position": [
+        -282495.46875,
+        723.020682,
+        781223.5
+      ],
+      "positionGeo": {
+        "longitude": 43.644701,
+        "latitude": 42.096021
+      },
+      "callsign": "AL",
+      "type": 8,
+      "frequency": 353000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_27",
+      "sceneObjects": [
+        "t:315293696"
+      ],
+      "display_name": "Elista",
+      "position": [
+        200185.21875,
+        88.166821,
+        771829.25
+      ],
+      "positionGeo": {
+        "longitude": 44.333308,
+        "latitude": 46.373244
+      },
+      "callsign": "SA",
+      "type": 8,
+      "frequency": 311000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_28",
+      "sceneObjects": [
+        "t:298942464"
+      ],
+      "display_name": "Ryazanskaya",
+      "position": [
+        2140.25708,
+        45.922802,
+        418337.25
+      ],
+      "positionGeo": {
+        "longitude": 39.56665,
+        "latitude": 44.966576
+      },
+      "callsign": "XT",
+      "type": 8,
+      "frequency": 312000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_29",
+      "sceneObjects": [
+        "t:315064320"
+      ],
+      "display_name": "Kakhovka",
+      "position": [
+        185859.78125,
+        3.237596,
+        -61623.34375
+      ],
+      "positionGeo": {
+        "longitude": 33.496659,
+        "latitude": 46.808241
+      },
+      "callsign": "KH",
+      "type": 8,
+      "frequency": 485000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_30",
+      "sceneObjects": [
+        "t:315523072"
+      ],
+      "display_name": "Vesely",
+      "position": [
+        248966.796875,
+        7.052212,
+        485735.125
+      ],
+      "positionGeo": {
+        "longitude": 40.716647,
+        "latitude": 47.116576
+      },
+      "callsign": "WS",
+      "type": 8,
+      "frequency": 641000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_31",
+      "sceneObjects": [
+        "t:314933248"
+      ],
+      "display_name": "Odessa",
+      "position": [
+        153563.03125,
+        2.412611,
+        -274177.90625
+      ],
+      "positionGeo": {
+        "longitude": 30.723886,
+        "latitude": 46.496019
+      },
+      "callsign": "WR",
+      "type": 8,
+      "frequency": 309500
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_32",
+      "sceneObjects": [
+        "t:304971776"
+      ],
+      "display_name": "Armavir",
+      "position": [
+        13270.845703,
+        232.423328,
+        540570.375
+      ],
+      "positionGeo": {
+        "longitude": 41.116648,
+        "latitude": 44.966576
+      },
+      "callsign": "VM",
+      "type": 8,
+      "frequency": 740000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_33",
+      "sceneObjects": [
+        "t:251691008"
+      ],
+      "display_name": "Grozny",
+      "position": [
+        -115728.125,
+        6.828314,
+        929610.25
+      ],
+      "positionGeo": {
+        "longitude": 45.699975,
+        "latitude": 43.383244
+      },
+      "callsign": "WK",
+      "type": 8,
+      "frequency": 830000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_34",
+      "sceneObjects": [
+        "t:315195392"
+      ],
+      "display_name": "Tiraspol",
+      "position": [
+        197836.03125,
+        5.000005,
+        -358637.03125
+      ],
+      "positionGeo": {
+        "longitude": 29.599999,
+        "latitude": 46.866575
+      },
+      "callsign": "TH",
+      "type": 8,
+      "frequency": 515000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_35",
+      "sceneObjects": [
+        "t:282361856"
+      ],
+      "display_name": "Simferopol",
+      "position": [
+        -42789.855469,
+        44.657801,
+        -54661.699219
+      ],
+      "positionGeo": {
+        "longitude": 33.566659,
+        "latitude": 44.749908
+      },
+      "callsign": "KC",
+      "type": 8,
+      "frequency": 580000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_36",
+      "sceneObjects": [
+        "t:294322176"
+      ],
+      "display_name": "Sultanskoye",
+      "position": [
+        -14871.457031,
+        377.109447,
+        667798.1875
+      ],
+      "positionGeo": {
+        "longitude": 42.666645,
+        "latitude": 44.591577
+      },
+      "callsign": "SN",
+      "type": 8,
+      "frequency": 866000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_37",
+      "sceneObjects": [
+        "t:315228160"
+      ],
+      "display_name": "Buyalyk",
+      "position": [
+        198494.375,
+        5.000005,
+        -274699.25
+      ],
+      "positionGeo": {
+        "longitude": 30.699997,
+        "latitude": 46.899908
+      },
+      "callsign": "DW",
+      "type": 8,
+      "frequency": 625000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_38",
+      "sceneObjects": [
+        "t:255819776"
+      ],
+      "display_name": "Sarmakovo",
+      "position": [
+        -104016.257813,
+        1117.211933,
+        715148.0625
+      ],
+      "positionGeo": {
+        "longitude": 43.116645,
+        "latitude": 43.74991
+      },
+      "callsign": "SR",
+      "type": 8,
+      "frequency": 907000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_39",
+      "sceneObjects": [
+        "t:314900480"
+      ],
+      "display_name": "Tendrovskiy",
+      "position": [
+        132383.515625,
+        1.000001,
+        -213243.359375
+      ],
+      "positionGeo": {
+        "longitude": 31.522774,
+        "latitude": 46.318519
+      },
+      "callsign": "TD",
+      "type": 8,
+      "frequency": 309500
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_40",
+      "sceneObjects": [
+        "t:315588608"
+      ],
+      "display_name": "Sukhoy",
+      "position": [
+        252081.109375,
+        13.852774,
+        533942.125
+      ],
+      "positionGeo": {
+        "longitude": 41.349979,
+        "latitude": 47.09991
+      },
+      "callsign": "SH",
+      "type": 8,
+      "frequency": 862000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_41",
+      "sceneObjects": [
+        "t:268500992"
+      ],
+      "display_name": "Dzhubga",
+      "position": [
+        -74816.820313,
+        63.20854,
+        355136.0625
+      ],
+      "positionGeo": {
+        "longitude": 38.701374,
+        "latitude": 44.320464
+      },
+      "callsign": "DV",
+      "type": 8,
+      "frequency": 420000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_42",
+      "sceneObjects": [
+        "t:314769408"
+      ],
+      "display_name": "Genichesk",
+      "position": [
+        117802.703125,
+        1.887341,
+        40644.195313
+      ],
+      "positionGeo": {
+        "longitude": 34.816102,
+        "latitude": 46.182408
+      },
+      "callsign": "GE",
+      "type": 8,
+      "frequency": 300500
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_43",
+      "sceneObjects": [
+        "t:314802176"
+      ],
+      "display_name": "Primorsko-Akhtarsk",
+      "position": [
+        114807.015625,
+        8.405183,
+        305325.96875
+      ],
+      "positionGeo": {
+        "longitude": 38.233318,
+        "latitude": 46.049909
+      },
+      "callsign": "GW",
+      "type": 8,
+      "frequency": 920000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_44",
+      "sceneObjects": [
+        "t:315392000"
+      ],
+      "display_name": "Yasnaya",
+      "position": [
+        222679.15625,
+        98.023337,
+        484495.90625
+      ],
+      "positionGeo": {
+        "longitude": 40.666647,
+        "latitude": 46.883243
+      },
+      "callsign": "QG",
+      "type": 8,
+      "frequency": 435000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_45",
+      "sceneObjects": [
+        "t:279445504"
+      ],
+      "display_name": "Alushta",
+      "position": [
+        -50326.164063,
+        5.000005,
+        11313.958008
+      ],
+      "positionGeo": {
+        "longitude": 34.398325,
+        "latitude": 44.674908
+      },
+      "callsign": "AL",
+      "type": 8,
+      "frequency": 384000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_46",
+      "sceneObjects": [
+        "t:308346880"
+      ],
+      "display_name": "Dobrushyn",
+      "position": [
+        26887.388672,
+        50.001286,
+        -71200.710938
+      ],
+      "positionGeo": {
+        "longitude": 33.36166,
+        "latitude": 45.377964
+      },
+      "callsign": "DO",
+      "type": 8,
+      "frequency": 1175000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_47",
+      "sceneObjects": [
+        "t:314671104"
+      ],
+      "display_name": "Bolshevik",
+      "position": [
+        95501.28125,
+        65.056957,
+        462884.59375
+      ],
+      "positionGeo": {
+        "longitude": 40.233315,
+        "latitude": 45.766576
+      },
+      "callsign": "ND",
+      "type": 8,
+      "frequency": 507000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_48",
+      "sceneObjects": [
+        "t:267354112"
+      ],
+      "display_name": "Peredovay",
+      "position": [
+        -78315.664063,
+        631.934653,
+        578030.8125
+      ],
+      "positionGeo": {
+        "longitude": 41.466648,
+        "latitude": 44.116576
+      },
+      "callsign": "PR",
+      "type": 8,
+      "frequency": 1210000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_49",
+      "sceneObjects": [
+        "t:315031552"
+      ],
+      "display_name": "Parutine",
+      "position": [
+        173728.484375,
+        2.022021,
+        -183237.75
+      ],
+      "positionGeo": {
+        "longitude": 31.904995,
+        "latitude": 46.694908
+      },
+      "callsign": "PA",
+      "type": 8,
+      "frequency": 905000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_50",
+      "sceneObjects": [
+        "t:191430656"
+      ],
+      "display_name": "Gori",
+      "position": [
+        -286124.3125,
+        604.993647,
+        822770.125
+      ],
+      "positionGeo": {
+        "longitude": 44.1322,
+        "latitude": 42.016577
+      },
+      "callsign": "OE",
+      "type": 8,
+      "frequency": 462000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_51",
+      "sceneObjects": [
+        "t:314310656"
+      ],
+      "display_name": "Liubymivka",
+      "position": [
+        56011.175781,
+        50.001397,
+        48464.128906
+      ],
+      "positionGeo": {
+        "longitude": 34.898324,
+        "latitude": 45.624908
+      },
+      "callsign": "LY",
+      "type": 8,
+      "frequency": 670000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_52",
+      "sceneObjects": [
+        "t:315424768"
+      ],
+      "display_name": "Mariupol",
+      "position": [
+        225914.703125,
+        2.405937,
+        238245.421875
+      ],
+      "positionGeo": {
+        "longitude": 37.449986,
+        "latitude": 47.083242
+      },
+      "callsign": "MA",
+      "type": 8,
+      "frequency": 770000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_53",
+      "sceneObjects": [
+        "t:312410112"
+      ],
+      "display_name": "Akhilleon",
+      "position": [
+        40930.476563,
+        77.22712,
+        201825.6875
+      ],
+      "positionGeo": {
+        "longitude": 36.853043,
+        "latitude": 45.439909
+      },
+      "callsign": "AH",
+      "type": 8,
+      "frequency": 300500
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_54",
+      "sceneObjects": [
+        "t:315359232"
+      ],
+      "display_name": "Nikolaev-Matveyevka",
+      "position": [
+        217274.171875,
+        3.520703,
+        -177463.6875
+      ],
+      "positionGeo": {
+        "longitude": 31.973051,
+        "latitude": 47.087408
+      },
+      "callsign": "NK",
+      "type": 8,
+      "frequency": 1030000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_55",
+      "sceneObjects": [
+        "t:315129856"
+      ],
+      "display_name": "Melitopol",
+      "position": [
+        194790.4375,
+        2.729047,
+        75772.835938
+      ],
+      "positionGeo": {
+        "longitude": 35.299989,
+        "latitude": 46.866575
+      },
+      "callsign": "NE",
+      "type": 8,
+      "frequency": 740000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_56",
+      "sceneObjects": [
+        "t:285310976"
+      ],
+      "display_name": "TchervonoLissya",
+      "position": [
+        -32929.128906,
+        419.738579,
+        -713.123108
+      ],
+      "positionGeo": {
+        "longitude": 34.249992,
+        "latitude": 44.833242
+      },
+      "callsign": "LE",
+      "type": 8,
+      "frequency": 395000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_57",
+      "sceneObjects": [
+        "t:314703872"
+      ],
+      "display_name": "Tikhoretsk",
+      "position": [
+        101857.085938,
+        60.508731,
+        450564
+      ],
+      "positionGeo": {
+        "longitude": 40.083315,
+        "latitude": 45.833243
+      },
+      "callsign": "UH",
+      "type": 8,
+      "frequency": 528000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_58",
+      "sceneObjects": [
+        "t:315654144"
+      ],
+      "display_name": "Rostov-Na-Donu",
+      "position": [
+        254315.078125,
+        64.840397,
+        412917.5
+      ],
+      "positionGeo": {
+        "longitude": 39.769982,
+        "latitude": 47.224909
+      },
+      "callsign": "RE",
+      "type": 8,
+      "frequency": 320000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_59",
+      "sceneObjects": [
+        "t:250314755"
+      ],
+      "display_name": "Lazarevskoye",
+      "position": [
+        -115885.585938,
+        55.1332,
+        409331.03125
+      ],
+      "positionGeo": {
+        "longitude": 39.337484,
+        "latitude": 43.917131
+      },
+      "callsign": "LA",
+      "type": 8,
+      "frequency": 307000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_60",
+      "sceneObjects": [
+        "t:315162624"
+      ],
+      "display_name": "Berdyansk",
+      "position": [
+        193557.578125,
+        2.010851,
+        187810.609375
+      ],
+      "positionGeo": {
+        "longitude": 36.766654,
+        "latitude": 46.816575
+      },
+      "callsign": "BD",
+      "type": 8,
+      "frequency": 342000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_61",
+      "sceneObjects": [
+        "t:314507264"
+      ],
+      "display_name": "Kropotkin",
+      "position": [
+        62738.71875,
+        125.442501,
+        492136.125
+      ],
+      "positionGeo": {
+        "longitude": 40.566648,
+        "latitude": 45.449909
+      },
+      "callsign": "KP",
+      "type": 8,
+      "frequency": 214000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_62",
+      "sceneObjects": [
+        "t:314998784"
+      ],
+      "display_name": "Lymans-Ke",
+      "position": [
+        174369.8125,
+        5.000005,
+        -329002.8125
+      ],
+      "positionGeo": {
+        "longitude": 29.999999,
+        "latitude": 46.666575
+      },
+      "callsign": "LA",
+      "type": 8,
+      "frequency": 750000
+    },
+    {
+      "direction": -179.999978,
+      "beaconId": "world_63",
+      "sceneObjects": [
+        "t:315686912"
+      ],
+      "display_name": "Krasny",
+      "position": [
+        255528.015625,
+        5.000005,
+        457062.96875
+      ],
+      "positionGeo": {
+        "longitude": 40.349981,
+        "latitude": 47.199909
+      },
+      "callsign": "KS",
+      "type": 8,
+      "frequency": 1025000
+    }
+  ],
+  "radios": [
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "common": [
+            "Anapa",
+            "Anapa"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:136022192"
+      ],
+      "radioId": "airfield12_0",
+      "frequency": [
+        [
+          0,
+          38400000
+        ],
+        [
+          0,
+          121000000
+        ],
+        [
+          0,
+          250000000
+        ]
+      ]
+    },
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "nato": [
+            "Batumi",
+            "Batumi"
+          ]
+        },
+        {
+          "ussr": [
+            "Druzhinnik",
+            "Druzhinnik"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:54694615"
+      ],
+      "radioId": "airfield22_0",
+      "frequency": [
+        [
+          0,
+          40400000
+        ],
+        [
+          0,
+          131000000
+        ],
+        [
+          0,
+          260000000
+        ]
+      ]
+    },
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "nato": [
+            "Beslan",
+            "Beslan"
+          ]
+        },
+        {
+          "ussr": [
+            "Stavok",
+            "Stavok"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:95522046"
+      ],
+      "radioId": "airfield32_0",
+      "frequency": [
+        [
+          0,
+          42400000
+        ],
+        [
+          0,
+          141000000
+        ],
+        [
+          0,
+          270000000
+        ]
+      ]
+    },
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "nato": [
+            "Gelendzhik",
+            "Gelendzhik"
+          ]
+        },
+        {
+          "ussr": [
+            "Maslenka",
+            "Maslenka"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:118525997"
+      ],
+      "radioId": "airfield17_0",
+      "frequency": [
+        [
+          0,
+          39400000
+        ],
+        [
+          0,
+          126000000
+        ],
+        [
+          0,
+          255000000
+        ]
+      ]
+    },
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "nato": [
+            "Gudauta",
+            "Gudauta"
+          ]
+        },
+        {
+          "ussr": [
+            "Lachuga",
+            "Lachuga"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:86311003"
+      ],
+      "radioId": "airfield21_0",
+      "frequency": [
+        [
+          0,
+          40200000
+        ],
+        [
+          0,
+          130000000
+        ],
+        [
+          0,
+          259000000
+        ]
+      ]
+    },
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "common": [
+            "Kobuleti",
+            "Kobuleti"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:59082457"
+      ],
+      "radioId": "airfield24_0",
+      "frequency": [
+        [
+          0,
+          40800000
+        ],
+        [
+          0,
+          133000000
+        ],
+        [
+          0,
+          262000000
+        ]
+      ]
+    },
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "nato": [
+            "Krasnodar",
+            "Krasnodar"
+          ]
+        },
+        {
+          "ussr": [
+            "Volokno",
+            "Volokno"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:141067227"
+      ],
+      "radioId": "airfield13_0",
+      "frequency": [
+        [
+          0,
+          38600000
+        ],
+        [
+          0,
+          122000000
+        ],
+        [
+          0,
+          251000000
+        ]
+      ]
+    },
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "nato": [
+            "Pashkovsky",
+            "Pashkovsky"
+          ]
+        },
+        {
+          "ussr": [
+            "Krasnodar",
+            "Krasnodar"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:137592844"
+      ],
+      "radioId": "airfield19_0",
+      "frequency": [
+        [
+          0,
+          39800000
+        ],
+        [
+          0,
+          128000000
+        ],
+        [
+          0,
+          257000000
+        ]
+      ]
+    },
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "nato": [
+            "Krymsk",
+            "Krymsk"
+          ]
+        },
+        {
+          "ussr": [
+            "Taymyr",
+            "Taymyr"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:136814292"
+      ],
+      "radioId": "airfield15_0",
+      "frequency": [
+        [
+          0,
+          39000000
+        ],
+        [
+          0,
+          124000000
+        ],
+        [
+          0,
+          253000000
+        ]
+      ]
+    },
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "common": [
+            "Kutaisi",
+            "Kutaisi"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:68355409"
+      ],
+      "radioId": "airfield25_0",
+      "frequency": [
+        [
+          0,
+          41000000
+        ],
+        [
+          0,
+          134000000
+        ],
+        [
+          0,
+          263000000
+        ]
+      ]
+    },
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "common": [
+            "Lochini",
+            "Lochini"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:14615718"
+      ],
+      "radioId": "airfield29_0",
+      "frequency": [
+        [
+          0,
+          41800000
+        ],
+        [
+          0,
+          138000000
+        ],
+        [
+          0,
+          267000000
+        ]
+      ]
+    },
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "nato": [
+            "Khanskaya",
+            "Khanskaya"
+          ]
+        },
+        {
+          "ussr": [
+            "Sokrat",
+            "Sokrat"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:127571804"
+      ],
+      "radioId": "airfield16_0",
+      "frequency": [
+        [
+          0,
+          39200000
+        ],
+        [
+          0,
+          125000000
+        ],
+        [
+          0,
+          254000000
+        ]
+      ]
+    },
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "common": [
+            "Minvody",
+            "Minvody"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:119998387"
+      ],
+      "radioId": "airfield26_0",
+      "frequency": [
+        [
+          0,
+          41200000
+        ],
+        [
+          0,
+          135000000
+        ],
+        [
+          0,
+          264000000
+        ]
+      ]
+    },
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "nato": [
+            "Mozdok",
+            "Mozdok"
+          ]
+        },
+        {
+          "ussr": [
+            "Assistent",
+            "Assistent"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:110430036"
+      ],
+      "radioId": "airfield28_0",
+      "frequency": [
+        [
+          0,
+          41600000
+        ],
+        [
+          0,
+          137000000
+        ],
+        [
+          0,
+          266000000
+        ]
+      ]
+    },
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "common": [
+            "Nalchik",
+            "Nalchik"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:100045189"
+      ],
+      "radioId": "airfield27_0",
+      "frequency": [
+        [
+          0,
+          41400000
+        ],
+        [
+          0,
+          136000000
+        ],
+        [
+          0,
+          265000000
+        ]
+      ]
+    },
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "nato": [
+            "Novorossiysk",
+            "Novorossiysk"
+          ]
+        },
+        {
+          "ussr": [
+            "Myskhako",
+            "Myskhako"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:123869211"
+      ],
+      "radioId": "airfield14_0",
+      "frequency": [
+        [
+          0,
+          38800000
+        ],
+        [
+          0,
+          123000000
+        ],
+        [
+          0,
+          252000000
+        ]
+      ]
+    },
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "nato": [
+            "Kolkhi",
+            "Kolkhi"
+          ]
+        },
+        {
+          "ussr": [
+            "Tzokot",
+            "Tzokot"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:67406890"
+      ],
+      "radioId": "airfield23_0",
+      "frequency": [
+        [
+          0,
+          40600000
+        ],
+        [
+          0,
+          132000000
+        ],
+        [
+          0,
+          261000000
+        ]
+      ]
+    },
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "common": [
+            "Sochi",
+            "Sochi"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:91554927"
+      ],
+      "radioId": "airfield18_0",
+      "frequency": [
+        [
+          0,
+          39600000
+        ],
+        [
+          0,
+          127000000
+        ],
+        [
+          0,
+          256000000
+        ]
+      ]
+    },
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "nato": [
+            "Sukhumi",
+            "Sukhumi"
+          ]
+        },
+        {
+          "ussr": [
+            "Uklad",
+            "Uklad"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:23201191"
+      ],
+      "radioId": "airfield20_0",
+      "frequency": [
+        [
+          0,
+          40000000
+        ],
+        [
+          0,
+          129000000
+        ],
+        [
+          0,
+          258000000
+        ]
+      ]
+    },
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "common": [
+            "Soganlug",
+            "Soganlug"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:60361261"
+      ],
+      "radioId": "airfield30_0",
+      "frequency": [
+        [
+          0,
+          42000000
+        ],
+        [
+          0,
+          139000000
+        ],
+        [
+          0,
+          268000000
+        ]
+      ]
+    },
+    {
+      "role": [
+        "ground",
+        "tower",
+        "approach"
+      ],
+      "callsign": [
+        {
+          "common": [
+            "Vaziani",
+            "Vaziani"
+          ]
+        }
+      ],
+      "sceneObjects": [
+        "t:58884600"
+      ],
+      "radioId": "airfield31_0",
+      "frequency": [
+        [
+          0,
+          42200000
+        ],
+        [
+          0,
+          140000000
+        ],
+        [
+          0,
+          269000000
+        ]
+      ]
+    }
+  ]
+}
