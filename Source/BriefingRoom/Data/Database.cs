@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
+
 namespace BriefingRoom4DCS.Data
 {
     internal class Database
@@ -78,7 +79,8 @@ namespace BriefingRoom4DCS.Data
             LoadEntries<DBEntryObjectiveTask>("ObjectiveTasks"); // Must be loaded after other DBEntryBriefingDescription, as it depends on it
             LoadEntries<DBEntryObjectivePreset>("ObjectivePresets"); // Must be loaded after other DBEntryObjective*, as it depends on them
             LoadEntries<DBEntryTheater>("Theaters");
-            LoadEntries<DBEntryAirbase>("TheatersAirbases"); // Must be loaded after DBEntryTheater, as it depends on it
+            LoadJSONEntries<DBEntryAirbase>("TheatersAirbases");
+            // LoadEntries<DBEntryAirbase>("TheatersAirbases"); // Must be loaded after DBEntryTheater, as it depends on it
             LoadEntries<DBEntrySituation>("TheaterSituations"); // Must be loaded after DBEntryTheater, as it depends on it
             LoadEntries<DBEntryDCSMod>("DCSMods");
             LoadEntries<DBEntryUnit>("Units"); // Must be loaded after DBEntryDCSMod, as it depends on it
@@ -123,6 +125,43 @@ namespace BriefingRoom4DCS.Data
                 DBEntries[dbType].Add(id, entry);
                 BriefingRoom.PrintToLog($"Loaded {shortTypeName} \"{id}\"");
             }
+            BriefingRoom.PrintToLog($"Found {DBEntries[dbType].Count} database entries of type \"{typeof(T).Name}\"");
+
+            bool mustHaveAtLeastOneEntry = true;
+            if ((dbType == typeof(DBEntryDefaultUnitList)) ||
+                (dbType == typeof(DBEntryFeatureMission)) ||
+                (dbType == typeof(DBEntryFeatureObjective)))
+                mustHaveAtLeastOneEntry = false;
+
+            // If a required database type has no entries, raise an error.
+            if ((DBEntries[dbType].Count == 0) && mustHaveAtLeastOneEntry)
+                throw new BriefingRoomException($"No valid database entries found in the \"{subDirectory}\" directory");
+        }
+
+        private void LoadJSONEntries<T>(string subDirectory) where T : DBEntry, new()
+        {
+            BriefingRoom.PrintToLog($"Loading {subDirectory.ToLower()}...");
+
+            string filePath = Path.Combine(BRPaths.DATABASEJSON, subDirectory + ".json");
+            if (!File.Exists(filePath))
+                throw new Exception($"File {filePath} not found.");
+
+            Type dbType = typeof(T);
+
+
+            if (!DBEntries.ContainsKey(dbType))
+                DBEntries.Add(dbType, new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase));
+
+            DBEntries[dbType].Clear();
+
+               switch (new T())
+               {
+                case DBEntryAirbase a:
+                    DBEntries[dbType] = DBEntries[dbType].Concat(DBEntryAirbase.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
+                    break;
+                default:
+                    break;
+               }
             BriefingRoom.PrintToLog($"Found {DBEntries[dbType].Count} database entries of type \"{typeof(T).Name}\"");
 
             bool mustHaveAtLeastOneEntry = true;

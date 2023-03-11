@@ -31,6 +31,8 @@ namespace BriefingRoom4DCS
 
         internal static string DATABASE { get; } =  Path.Combine(ROOT, "Database");
 
+        internal static string DATABASEJSON { get; } =  Path.Combine(ROOT, "DatabaseJSON");
+
         internal static string CUSTOMDATABASE { get; } =  Path.Combine(ROOT, "CustomConfigs");
 
 #if DEBUG

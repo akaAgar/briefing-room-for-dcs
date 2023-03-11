@@ -19,7 +19,12 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using BriefingRoom4DCS.Data.JSON;
+using BriefingRoom4DCS.Generator;
+using Newtonsoft.Json;
 
 namespace BriefingRoom4DCS.Data
 {
@@ -35,8 +40,6 @@ namespace BriefingRoom4DCS.Data
 
         internal double Elevation { get; private set; }
 
-        internal AirbaseFlag Flags { get; private set; }
-
         internal string ILS { get; private set; }
 
         internal string Name { get; private set; }
@@ -51,29 +54,37 @@ namespace BriefingRoom4DCS.Data
 
         internal string Theater { get; private set; }
 
-        protected override bool OnLoad(string iniFilePath)
+        protected override bool OnLoad(string o)
         {
-            var ini = new INIFile(iniFilePath);
-            ATC = ini.GetValue<string>("Airbase", "ATC");
-            Coordinates = ini.GetValue<Coordinates>("Airbase", "Coordinates");
-            DCSID = ini.GetValue<int>("Airbase", "DCSID");
-            Elevation = ini.GetValue<double>("Airbase", "Elevation");
-            Flags = ini.GetValueArrayAsEnumFlags<AirbaseFlag>("Airbase", "Flags");
-            ILS = ini.GetValue<string>("Airbase", "ILS");
-            Name = ini.GetValue<string>("Airbase", "Name");
-            UIDisplayName = ini.GetLangStrings("Airbase", "Name");
-            Runways = ini.GetValue<string>("Airbase", "Runways");
-            RunwayLengthFt = ini.GetValue<int>("Airbase", "RunwayLengthFt", -1);
-            TACAN = ini.GetValue<string>("Airbase", "TACAN");
-            Theater = ini.GetValue<string>("Airbase", "Theater").ToLower();
+           throw new NotImplementedException();
+        }
 
-            if (!Database.Instance.EntryExists<DBEntryTheater>(Theater))
-                throw new Exception($"Airbase \"{ID}\" located on non-existing theater \"{Theater}\".");
 
-            ParkingSpots = LoadParkingSpots(ini, "Parking");
-            if (ParkingSpots.Length == 0) throw new Exception($"No parking spots for airbase \"{ID}\".");
+        internal static Dictionary<string, DBEntry> LoadJSON(string filepath)
+        {
+            var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
+            var data = JsonConvert.DeserializeObject<List<Airbase>>(File.ReadAllText(filepath));
+            foreach (var airbase in data)
+            {
+                var id = $"Caucasus{airbase.typeName}";
+                itemMap.Add(id, new DBEntryAirbase{
+                    ID = id,
+                    UIDisplayName =  new LanguageString(airbase.displayName),
+                    ATC = String.Join("/", airbase.airdromeData.ATC.Select(x =>GeneratorTools.FormatRadioFrequency(x))),
+                    Coordinates = new Coordinates(airbase.pos.DCS.x, airbase.pos.DCS.z),
+                    DCSID = airbase.ID,
+                    Elevation = airbase.pos.World.alt,
+                    ILS = String.Join("/", airbase.airdromeData.ILS.Select(x => GeneratorTools.FormatRadioFrequency(x))),
+                    Name = airbase.displayName,
+                    Runways = String.Join("/", airbase.airdromeData.runways),
+                    RunwayLengthFt = (int)(airbase.runways.First().length * Toolbox.METERS_TO_FEET),
+                    TACAN = String.Join("/", airbase.airdromeData.TACAN.Select(x => $"{x}X")),
+                    Theater = airbase.theatre.ToLower(),
+                    ParkingSpots = DBEntryAirbaseParkingSpot.LoadJSON(airbase.parking)
+                });
+            }
 
-            return true;
+            return itemMap;
         }
 
         private DBEntryAirbaseParkingSpot[] LoadParkingSpots(INIFile ini, string section)

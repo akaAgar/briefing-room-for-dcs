@@ -25,6 +25,7 @@ namespace BriefingRoom4DCS.Template
         HelicopterOnly,
         HardenedAirShelter,
         AirplaneOnly,
-        OpenAirSpawn
+        OpenAirSpawn,
+        Runway
     }
 }
