@@ -18,24 +18,39 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using BriefingRoom4DCS.Data.JSON;
 using BriefingRoom4DCS.Template;
 
 namespace BriefingRoom4DCS.Data
 {
     internal struct DBEntryAirbaseParkingSpot
     {
-        internal int DCSID { get; }
+        internal int DCSID { get; private set;}
 
-        internal Coordinates Coordinates { get; }
+        internal Coordinates Coordinates { get; private set;}
 
-        internal ParkingSpotType ParkingType { get; }
+        internal ParkingSpotType ParkingType { get; private set;}
 
+        public DBEntryAirbaseParkingSpot() {}
         internal DBEntryAirbaseParkingSpot(INIFile ini, string section, string parkingKey)
         {
             DCSID = ini.GetValue<int>(section, $"{parkingKey}.DCSID");
             Coordinates = ini.GetValue<Coordinates>(section, $"{parkingKey}.Coordinates");
 
             ParkingType = ini.GetValue<ParkingSpotType>(section, $"{parkingKey}.Type");
+        }
+
+        internal static DBEntryAirbaseParkingSpot[] LoadJSON(List<Parking> data)
+        {
+            return data.Select(p => new DBEntryAirbaseParkingSpot{
+                DCSID = p.Term_Index,
+                Coordinates =  new Coordinates(p.pos.DCS.x, p.pos.DCS.y),
+                ParkingType = (ParkingSpotType)Enum.Parse(typeof(ParkingSpotType), p.Term_Type_Name, true)
+
+            }).ToArray();
         }
     }
 }

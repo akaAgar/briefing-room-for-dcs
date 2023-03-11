@@ -50,6 +50,7 @@ namespace BriefingRoom4DCS
         internal const int SECONDS_PER_DAY = MINUTES_PER_DAY * 60;
 
         internal const double FEET_TO_METERS = 0.3048;
+        internal const double METERS_TO_FEET = 3.28084;
 
         internal const double KNOTS_TO_METERS_PER_SECOND = 0.514444;
 
