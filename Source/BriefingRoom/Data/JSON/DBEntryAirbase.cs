@@ -66,7 +66,7 @@ namespace BriefingRoom4DCS.Data
             var data = JsonConvert.DeserializeObject<List<Airbase>>(File.ReadAllText(filepath));
             foreach (var airbase in data)
             {
-                var id = $"Caucasus{airbase.typeName}";
+                var id = $"{airbase.theatre}{airbase.typeName}";
                 itemMap.Add(id, new DBEntryAirbase{
                     ID = id,
                     UIDisplayName =  new LanguageString(airbase.displayName),
@@ -77,7 +77,7 @@ namespace BriefingRoom4DCS.Data
                     ILS = String.Join("/", airbase.airdromeData.ILS.Select(x => GeneratorTools.FormatRadioFrequency(x))),
                     Name = airbase.displayName,
                     Runways = String.Join("/", airbase.airdromeData.runways),
-                    RunwayLengthFt = (int)(airbase.runways.First().length * Toolbox.METERS_TO_FEET),
+                    RunwayLengthFt = (int)(airbase.runways.Select(x => x.length).DefaultIfEmpty().Max() * Toolbox.METERS_TO_FEET),
                     TACAN = String.Join("/", airbase.airdromeData.TACAN.Select(x => $"{x}X")),
                     Theater = airbase.theatre.ToLower(),
                     ParkingSpots = DBEntryAirbaseParkingSpot.LoadJSON(airbase.parking)

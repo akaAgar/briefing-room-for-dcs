@@ -5,7 +5,7 @@ namespace BriefingRoom4DCS.Data.JSON
 {
     public class AirdromeData
     {
-        public List<Runway> runways { get; set; }
+        public List<string> runways { get; set; }
         public List<int> ATC { get; set; }
         public List<int> TACAN { get; set; }
         public List<int> ILS { get; set; }
