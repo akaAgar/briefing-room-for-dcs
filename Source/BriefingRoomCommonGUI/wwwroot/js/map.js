@@ -402,6 +402,8 @@ function GetRange(id) {
 
 function GetTitle(id) {
     switch (true) {
+        case id.includes("PLAYER"):
+            return "Player Flight";
         case id.includes("AIRBASE"):
             return "Airbase"
         case id.includes("OBJECTIVE"):
@@ -506,6 +508,8 @@ function GetNatoIcon(id, invert = false) {
             break
     }
     switch (true) {
+        case id.includes("PLAYER"):
+            return prefix + "PLAYER";
         case id.includes("AIRBASE"):
             return prefix + "AIRBASE"
         case id.includes("OBJECTIVE"):
