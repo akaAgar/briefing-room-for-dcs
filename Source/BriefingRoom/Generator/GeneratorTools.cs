@@ -275,25 +275,6 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        internal static bool GetHiddenStatus(FogOfWar fogOfWar, Side side, UnitMakerGroupFlags unitMakerGroupFlags)
-        {
-            if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.AlwaysHidden)) return true;
-            if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.NeverHidden)) return false;
-
-            switch (fogOfWar)
-            {
-                default:
-                case FogOfWar.All:
-                    return false;
-                case FogOfWar.AlliesOnly:
-                case FogOfWar.KnownUnitsOnly:
-                    return side == Side.Enemy;
-                case FogOfWar.SelfOnly:
-                case FogOfWar.None:
-                    return true;
-            }
-        }
-
         internal static int GetTACANFrequency(int channel, char channelMode, bool AA)
         {
             int res;

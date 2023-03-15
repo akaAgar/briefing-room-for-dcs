@@ -206,7 +206,7 @@ namespace BriefingRoom4DCS.Generator
                 groupTypeLua,
                 coordinates,
                 groupName,
-                GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags),
+                unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.AlwaysHidden),
                 unitFamily,
                 firstUnitDB,
                 extraSettings
@@ -407,7 +407,7 @@ namespace BriefingRoom4DCS.Generator
                         groupTypeLua,
                         unitCoordinates,
                         groupName,
-                        GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags),
+                        unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.AlwaysHidden),
                         UnitFamily.StaticStructureMilitary,
                         unitDB,
                         extraSettings
@@ -450,7 +450,7 @@ namespace BriefingRoom4DCS.Generator
                         "Vehicle",
                         coordinates,
                         groupName,
-                        GeneratorTools.GetHiddenStatus(Template.OptionsFogOfWar, side, unitMakerGroupFlags),
+                        unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.AlwaysHidden),
                         UnitFamily.VehicleAAA,
                         null,
                         extraSettings
