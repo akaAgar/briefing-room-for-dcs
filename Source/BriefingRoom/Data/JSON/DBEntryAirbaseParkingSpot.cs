@@ -47,7 +47,7 @@ namespace BriefingRoom4DCS.Data
         {
             return data.Select(p => new DBEntryAirbaseParkingSpot{
                 DCSID = p.Term_Index,
-                Coordinates =  new Coordinates(p.pos.DCS.x, p.pos.DCS.y),
+                Coordinates =  new Coordinates(p.pos.DCS.x, p.pos.DCS.z),
                 ParkingType = (ParkingSpotType)Enum.Parse(typeof(ParkingSpotType), p.Term_Type_Name, true)
 
             }).ToArray();
