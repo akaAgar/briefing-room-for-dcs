@@ -184,6 +184,7 @@ namespace BriefingRoom4DCS.Generator
             var mapWaypoints = flightWaypoints.Select(x => x.Coordinates.ToArray()).ToList();
             mapWaypoints = mapWaypoints.Prepend(groupStartingCoords.ToArray()).ToList();
             mapWaypoints.Add(groupStartingCoords.ToArray());
+            mission.MapData.Add($"UNIT_{side}_PLAYER_{groupInfo.Value.DCSGroup.GroupId}", new List<double[]>{mapWaypoints.First()});
             mission.MapData.Add($"ROUTE_{groupInfo.Value.DCSGroup.GroupId}", mapWaypoints);
         }
 
