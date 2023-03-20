@@ -16,6 +16,7 @@ RUN apt update \
 WORKDIR /app
 COPY --from=build /app .
 COPY Database Database
+COPY DatabaseJSON DatabaseJSON
 COPY CustomConfigs CustomConfigs
 COPY Media Media
 COPY Include Include
