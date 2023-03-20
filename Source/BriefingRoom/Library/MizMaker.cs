@@ -36,8 +36,13 @@ namespace BriefingRoom4DCS
         {
             Dictionary<string, byte[]> MizFileEntries = new Dictionary<string, byte[]>();
 
-            AddStringValueToEntries(MizFileEntries, "briefing.html", mission.Briefing.GetBriefingAsHTML(true));
-            AddStringValueToEntries(MizFileEntries, "credits.txt", $"Generated with BriefingRoom for DCS World (https://akaagar.itch.io/briefing-room-for-dcs) {BriefingRoom.VERSION} ({BriefingRoom.BUILD_VERSION})");
+            AddStringValueToEntries(MizFileEntries, "l10n/DEFAULT/briefing.html", mission.Briefing.GetBriefingAsHTML(true));
+            mission.AppendValue("MapResourcesFiles", $"[\"ResKey_Snd_briefing_html\"] = \"briefing.html\",\n");
+    
+            AddStringValueToEntries(MizFileEntries, "l10n/DEFAULT/credits.txt", $"Generated with BriefingRoom for DCS World (https://akaagar.itch.io/briefing-room-for-dcs) {BriefingRoom.VERSION} ({BriefingRoom.BUILD_VERSION})");
+            mission.AppendValue("MapResourcesFiles", $"[\"ResKey_Snd_credits_txt\"] = \"credits.txt\",\n");
+
+            AddStringValueToEntries(MizFileEntries, "BR_purity_seal.txt", "The Omnissiah has blessed this Miz!\nFor it has not been corrupted by the forces of ED\n :D");
             if (template != null)
             {
                 AddStringValueToEntries(MizFileEntries, "l10n/DEFAULT/template.brt", Encoding.ASCII.GetString(template.GetIniBytes()));
