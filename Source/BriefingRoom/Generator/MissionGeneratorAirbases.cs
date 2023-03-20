@@ -52,7 +52,7 @@ namespace BriefingRoom4DCS.Generator
                 var flights = _template.PlayerFlightGroups.Where((v, i) => package.FlightGroupIndexes.Contains(i));
                 var requiredSpots = flights.Sum(x => x.Count);
                 var requiredRunway = flights.Select(x => Database.Instance.GetEntry<DBEntryUnit>(x.Aircraft).AircraftData.MinimumRunwayLengthFt).Max();
-                var airbase = SelectStartingAirbase(mission, package.StartingAirbase, requiredSpots, requiredRunway);
+                var airbase = SelectStartingAirbase(mission, package.StartingAirbase, theaterDB, requiredSpots, requiredRunway);
 
                 if (missionPackages.Any(x => x.Airbase == airbase))
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{airbase.Name}\t{airbase.Runways}\t{airbase.ATC}\t{airbase.ILS}\t{airbase.TACAN}");
@@ -63,7 +63,7 @@ namespace BriefingRoom4DCS.Generator
             mission.MissionPackages.AddRange(missionPackages);
         }
 
-        internal DBEntryAirbase SelectStartingAirbase(DCSMission mission, string selectedAirbaseID, int requiredParkingSpots = 0, int requiredRunway = 0)
+        internal DBEntryAirbase SelectStartingAirbase(DCSMission mission, string selectedAirbaseID, DBEntryTheater theaterDB, int requiredParkingSpots = 0, int requiredRunway = 0)
         {
             // Get total number of required parking spots for flight groups
             if (requiredParkingSpots == 0)
@@ -84,7 +84,7 @@ namespace BriefingRoom4DCS.Generator
                     x.ParkingSpots.Length >= requiredParkingSpots &&
                     (x.Coalition == _template.ContextPlayerCoalition || _template.SpawnAnywhere) &&
                     x.RunwayLengthFt > requiredRunway &&
-                    (MissionPrefersShoreAirbase() ? throw new NotImplementedException("John forgot to complete this") : true)
+                    (MissionPrefersShoreAirbase() ? IsNearWater(x.Coordinates, theaterDB): true)
                     ).ToList();
 
             if (opts.Count == 0)
@@ -121,6 +121,10 @@ namespace BriefingRoom4DCS.Generator
                 var coalition = airbase.DCSID == playerAirbase.DCSID || mission.MissionPackages.Any(x => x.Airbase.DCSID == airbase.DCSID) ? _template.ContextPlayerCoalition : airbase.Coalition;
                 mission.SetAirbase(airbase.DCSID, coalition);
             }
+        }
+
+        private bool IsNearWater(Coordinates coords, DBEntryTheater theaterDB){
+            return ShapeManager.GetDistanceFromShape(coords, theaterDB.WaterCoordinates) * Toolbox.METERS_TO_NM  < 50;
         }
     }
 }
