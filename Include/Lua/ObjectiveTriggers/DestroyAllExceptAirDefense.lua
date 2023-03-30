@@ -9,6 +9,8 @@ table.insert(briefingRoom.mission.objectiveTriggers, function(event)
     -- Check if event is a "destruction" event
     local destructionEvent = false
     if event.id == world.event.S_EVENT_DEAD or event.id == world.event.S_EVENT_CRASH then destructionEvent = true end
+    -- Check if parked AI Aircraft are damaged enough to be considered dead
+    if briefingRoom.mission.objectives[$OBJECTIVEINDEX$].targetCategory == Unit.Category.AIRPLANE and event.id == world.event.S_EVENT_AI_ABORT_MISSION then destructionEvent = true end
     -- "Landing" events are considered kills for helicopter targets
     if briefingRoom.mission.objectives[$OBJECTIVEINDEX$].targetCategory == Unit.Category.HELICOPTER and event.id == world.event.S_EVENT_LAND then destructionEvent = true end
     if not destructionEvent then return false end
