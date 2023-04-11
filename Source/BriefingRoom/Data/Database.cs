@@ -84,6 +84,7 @@ namespace BriefingRoom4DCS.Data
             LoadEntries<DBEntrySituation>("TheaterSituations"); // Must be loaded after DBEntryTheater, as it depends on it
             LoadEntries<DBEntryDCSMod>("DCSMods");
             LoadEntries<DBEntryUnit>("Units"); // Must be loaded after DBEntryDCSMod, as it depends on it
+            LoadJSONEntries<DBEntryCar>("UnitCars");
             LoadCustomUnitEntries<DBEntryUnit>("Units");
             LoadEntries<DBEntryDefaultUnitList>("DefaultUnitLists"); // Must be loaded after DBEntryUnit, as it depends on it
             LoadEntries<DBEntryCoalition>("Coalitions"); // Must be loaded after DBEntryUnit and DBEntryDefaultUnitList, as it depends on them
@@ -159,8 +160,11 @@ namespace BriefingRoom4DCS.Data
                 case DBEntryAirbase a:
                     DBEntries[dbType] = DBEntries[dbType].Concat(DBEntryAirbase.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
                     break;
-                default:
+                case DBEntryCar a:
+                    DBEntries[dbType] = DBEntries[dbType].Concat(DBEntryCar.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
                     break;
+                default:
+                    throw new BriefingRoomException($"JSON type {dbType} not implemented.");
                }
             BriefingRoom.PrintToLog($"Found {DBEntries[dbType].Count} database entries of type \"{typeof(T).Name}\"");
 
