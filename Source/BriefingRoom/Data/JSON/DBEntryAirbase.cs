@@ -80,7 +80,7 @@ namespace BriefingRoom4DCS.Data
                     RunwayLengthFt = (int)(airbase.runways.Select(x => x.length).DefaultIfEmpty().Max() * Toolbox.METERS_TO_FEET),
                     TACAN = String.Join("/", airbase.airdromeData.TACAN.Select(x => $"{x}X")),
                     Theater = airbase.theatre.ToLower(),
-                    ParkingSpots = DBEntryAirbaseParkingSpot.LoadJSON(airbase.parking)
+                    ParkingSpots = DBEntryAirbaseParkingSpot.LoadJSON(airbase.parking, id)
                 });
             }
 

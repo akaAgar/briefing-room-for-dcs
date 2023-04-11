@@ -28,13 +28,13 @@ namespace BriefingRoom4DCS.Data
 {
     internal struct DBEntryAirbaseParkingSpot
     {
-        internal int DCSID { get; private set;}
+        internal int DCSID { get; private set; }
 
-        internal Coordinates Coordinates { get; private set;}
+        internal Coordinates Coordinates { get; private set; }
 
-        internal ParkingSpotType ParkingType { get; private set;}
+        internal ParkingSpotType ParkingType { get; private set; }
 
-        public DBEntryAirbaseParkingSpot() {}
+        public DBEntryAirbaseParkingSpot() { }
         internal DBEntryAirbaseParkingSpot(INIFile ini, string section, string parkingKey)
         {
             DCSID = ini.GetValue<int>(section, $"{parkingKey}.DCSID");
@@ -43,13 +43,25 @@ namespace BriefingRoom4DCS.Data
             ParkingType = ini.GetValue<ParkingSpotType>(section, $"{parkingKey}.Type");
         }
 
-        internal static DBEntryAirbaseParkingSpot[] LoadJSON(List<Parking> data)
+        internal static DBEntryAirbaseParkingSpot[] LoadJSON(List<Parking> data, string airbaseId)
         {
-            return data.Select(p => new DBEntryAirbaseParkingSpot{
-                DCSID = p.Term_Index,
-                Coordinates =  new Coordinates(p.pos.DCS.x, p.pos.DCS.z),
-                ParkingType = (ParkingSpotType)Enum.Parse(typeof(ParkingSpotType), p.Term_Type_Name, true)
-
+            return data.Select(p =>
+            {
+                var parkingSpotType = ParkingSpotType.Unknown;
+                try
+                {
+                    parkingSpotType = (ParkingSpotType)Enum.Parse(typeof(ParkingSpotType), p.Term_Type_Name, true);
+                }
+                catch (System.Exception)
+                {
+                    BriefingRoom.PrintToLog($"Failed to parse parking type: {p.Term_Type_Name} (airbase: {airbaseId}, id: {p.Term_Index})", LogMessageErrorLevel.Warning);
+                }
+                return new DBEntryAirbaseParkingSpot
+                {
+                    DCSID = p.Term_Index,
+                    Coordinates = new Coordinates(p.pos.DCS.x, p.pos.DCS.z),
+                    ParkingType = parkingSpotType
+                };
             }).ToArray();
         }
     }
