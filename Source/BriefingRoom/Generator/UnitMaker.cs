@@ -172,7 +172,7 @@ namespace BriefingRoom4DCS.Generator
             if (units.Length == 0) return null;
 
             var coalition = (side == Side.Ally) ? PlayerCoalition : (side == Side.Neutral ? Coalition.Neutral : PlayerCoalition.GetEnemy());
-            var country = (Country)extraSettings.GetValueOrDefault("Country", (coalition == Coalition.Blue) ? Country.CJTFBlue : Country.CJTFRed);
+            var country = (Country)extraSettings.GetValueOrDefault("Country", (coalition == Coalition.Blue) ? Country.CombinedJointTaskForcesBlue : Country.CombinedJointTaskForcesRed);
             var isUsingSkynet = Template.MissionFeatures.Contains("SkynetIADS");
             var groupName = GeneratorTools.GetGroupName(GroupID, unitFamily, side, isUsingSkynet);
             UnitCallsign? callsign = null;

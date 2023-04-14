@@ -112,8 +112,8 @@ namespace BriefingRoom4DCS.Generator
                 if (airbase.ATC != null)
                     double.TryParse(airbase.ATC.Split("/")[0], out atcRadioFrequency);
 
-                if (country == Country.CJTFBlue || country == Country.CJTFRed)
-                    country = coalition == Coalition.Blue ? Country.CJTFBlue : Country.CJTFRed;
+                if (country == Country.CombinedJointTaskForcesBlue || country == Country.CombinedJointTaskForcesRed)
+                    country = coalition == Coalition.Blue ? Country.CombinedJointTaskForcesBlue : Country.CombinedJointTaskForcesRed;
                 mission.MapData.AddIfKeyUnused($"AIRBASE_Enemy_${hostileAirbase.Name}", new List<double[]> { hostileAirbase.Coordinates.ToArray() });
             }
             else // Land airbase take off

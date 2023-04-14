@@ -29,7 +29,7 @@ namespace BriefingRoom4DCS.Generator
     internal class UnitMakerCallsignGenerator
     {
 
-        private static readonly List<Country> NON_NATO_CALLSIGN_NATIONS = new List<Country> { Country.Russia, Country.Abkhazia, Country.Belarus, Country.China, Country.Insurgents, Country.SouthOsetia, Country.Ukraine, Country.USSR, Country.Yugoslavia };
+        private static readonly List<Country> NON_NATO_CALLSIGN_NATIONS = new List<Country> { Country.Russia, Country.Abkhazia, Country.Belarus, Country.China, Country.Insurgents, Country.SouthOssetia, Country.Ukraine, Country.USSR, Country.Yugoslavia };
 
         private readonly DBEntryCoalition[] CoalitionsDB;
 

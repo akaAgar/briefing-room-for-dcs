@@ -95,7 +95,7 @@ namespace BriefingRoom4DCS.Template
             Carrier = "";
             Count = 2;
             Payload = "default";
-            Country = Country.CJTFBlue;
+            Country = Country.CombinedJointTaskForcesBlue;
             StartLocation = PlayerStartLocation.Runway;
             Livery = "default";
             OverrideRadioFrequency = "";

@@ -29,7 +29,7 @@ namespace BriefingRoom4DCS.Generator
 {
     internal class MissionGeneratorCountries
     {
-        private static readonly Country[] DEFAULT_COUNTRIES = new Country[] { Country.CJTFBlue, Country.CJTFRed };
+        private static readonly Country[] DEFAULT_COUNTRIES = new Country[] { Country.CombinedJointTaskForcesBlue, Country.CombinedJointTaskForcesRed };
 
         internal static Country[][] GenerateCountries(DCSMission mission, MissionTemplateRecord template)
         {
