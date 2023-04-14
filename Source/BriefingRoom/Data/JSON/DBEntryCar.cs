@@ -21,6 +21,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using BriefingRoom4DCS.Data.JSON;
 using Newtonsoft.Json;
 
@@ -30,9 +31,8 @@ namespace BriefingRoom4DCS.Data
     {
         internal string DCSID { get; private set; }
         internal string DCSCategory { get; set; }
-        internal Dictionary<string, List<string>> Liveries { get; private set; }
-        internal List<string> Countries { get; private set; }
-        internal List<int> CountriesWorldID { get; private set; }
+        internal Dictionary<Country, List<string>> Liveries { get; private set; }
+        internal List<Country> Countries { get; private set; }
         internal UnitCategory Category { get { return Families[0].GetUnitCategory(); } }
         internal UnitFamily[] Families { get; private set; }
         internal bool IsAircraft { get { return (Category == UnitCategory.Helicopter) || (Category == UnitCategory.Plane); } }
@@ -56,8 +56,8 @@ namespace BriefingRoom4DCS.Data
                     ID = id,
                     UIDisplayName = new LanguageString(car.DisplayName),
                     DCSID = car.type,
-                    Liveries = car.paintSchemes,
-                    Countries = car.Countries,
+                    Liveries = car.paintSchemes.ToDictionary(pair => (Country)Enum.Parse(typeof(Country), pair.Key.Replace(" ", ""), true), pair => pair.Value),
+                    Countries = car.Countries.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)).ToList(),
                     DCSCategory = car.category
                 });
             }
