@@ -27,38 +27,20 @@ using Newtonsoft.Json;
 
 namespace BriefingRoom4DCS.Data
 {
-    internal class DBEntryCar : DBEntryJSONUnit
+    internal class DBEntryJSONUnit : DBEntry
     {
-        
-        internal string Category { get; init; }
+        internal string DCSID { get; init; }
+        internal Dictionary<Country, List<string>> Liveries { get; init; }
+        internal List<Country> Countries { get; init; }
+        internal string Module { get; init; }
+
 
         protected override bool OnLoad(string o)
         {
             throw new NotImplementedException();
         }
 
-        internal static Dictionary<string, DBEntry> LoadJSON(string filepath)
-        {
-            var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
-            var data = JsonConvert.DeserializeObject<List<Car>>(File.ReadAllText(filepath));
-            foreach (var car in data)
-            {
-                var id = car.type;
-                itemMap.Add(id, new DBEntryCar
-                {
-                    ID = id,
-                    UIDisplayName = new LanguageString(car.displayName),
-                    DCSID = car.type,
-                    Liveries = car.paintSchemes.ToDictionary(pair => (Country)Enum.Parse(typeof(Country), pair.Key.Replace(" ", ""), true), pair => pair.Value),
-                    Countries = car.countries.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)).ToList(),
-                    Category = car.category,
-                    Module = car.module
-                });
-            }
 
-            return itemMap;
-        }
-
-        public DBEntryCar(){}
+        public DBEntryJSONUnit() { }
     }
 }

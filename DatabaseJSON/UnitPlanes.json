@@ -33614,14 +33614,14 @@
             }
         ],
         "fuel": 1500,
-        "extraProps": {},
+        "extraProps": [],
         "radio": {
             "frequency": 251,
             "modulation": 0
         },
         "inheriteCommonCallnames": true,
         "specificCallnames": {
-            "USA": {}
+            "USA": []
         },
         "maxAlt": 10000,
         "cruiseSpeed": 125,
@@ -34296,7 +34296,7 @@
         "fuel": 5029,
         "flares": 120,
         "chaff": 240,
-        "extraProps": {},
+        "extraProps": [],
         "radio": {
             "frequency": 124,
             "modulation": 0
@@ -37422,7 +37422,7 @@
         "fuel": 5029,
         "flares": 120,
         "chaff": 240,
-        "extraProps": {},
+        "extraProps": [],
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -41470,7 +41470,7 @@
         "fuel": 5029,
         "flares": 240,
         "chaff": 240,
-        "extraProps": {},
+        "extraProps": [],
         "playable": true,
         "radio": {
             "frequency": 251,
@@ -91740,14 +91740,14 @@
             }
         ],
         "fuel": 7600,
-        "extraProps": {},
+        "extraProps": [],
         "radio": {
             "frequency": 251,
             "modulation": 0
         },
         "inheriteCommonCallnames": true,
         "specificCallnames": {
-            "USA": {}
+            "USA": []
         },
         "maxAlt": 10000,
         "cruiseSpeed": 125,
@@ -91819,14 +91819,14 @@
             }
         ],
         "fuel": 2120,
-        "extraProps": {},
+        "extraProps": [],
         "radio": {
             "frequency": 251,
             "modulation": 0
         },
         "inheriteCommonCallnames": true,
         "specificCallnames": {
-            "USA": {}
+            "USA": []
         },
         "maxAlt": 10000,
         "cruiseSpeed": 125,
@@ -91859,14 +91859,14 @@
             }
         ],
         "fuel": 1470,
-        "extraProps": {},
+        "extraProps": [],
         "radio": {
             "frequency": 251,
             "modulation": 0
         },
         "inheriteCommonCallnames": true,
         "specificCallnames": {
-            "USA": {}
+            "USA": []
         },
         "maxAlt": 7315,
         "cruiseSpeed": 125,

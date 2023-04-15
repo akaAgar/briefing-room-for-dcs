@@ -85,6 +85,8 @@ namespace BriefingRoom4DCS.Data
             LoadEntries<DBEntryDCSMod>("DCSMods");
             LoadEntries<DBEntryUnit>("Units"); // Must be loaded after DBEntryDCSMod, as it depends on it
             LoadJSONEntries<DBEntryCar>("UnitCars");
+            LoadJSONEntries<DBEntryAircraft>("UnitPlanes");
+            LoadJSONEntries<DBEntryAircraft>("UnitHelicopters");
             LoadCustomUnitEntries<DBEntryUnit>("Units");
             LoadEntries<DBEntryDefaultUnitList>("DefaultUnitLists"); // Must be loaded after DBEntryUnit, as it depends on it
             LoadEntries<DBEntryCoalition>("Coalitions"); // Must be loaded after DBEntryUnit and DBEntryDefaultUnitList, as it depends on them
@@ -153,20 +155,25 @@ namespace BriefingRoom4DCS.Data
             if (!DBEntries.ContainsKey(dbType))
                 DBEntries.Add(dbType, new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase));
 
-            DBEntries[dbType].Clear();
-
-               switch (new T())
-               {
+            Dictionary<string, DBEntry> entries;
+            switch (new T())
+            {
                 case DBEntryAirbase a:
-                    DBEntries[dbType] = DBEntries[dbType].Concat(DBEntryAirbase.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
+                    entries = DBEntries[dbType].Concat(DBEntryAirbase.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
                     break;
                 case DBEntryCar a:
-                    DBEntries[dbType] = DBEntries[dbType].Concat(DBEntryCar.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
+                    entries = DBEntries[dbType].Concat(DBEntryCar.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
+                    break;
+                case DBEntryAircraft a:
+                    entries = DBEntries[dbType].Concat(DBEntryAircraft.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
                     break;
                 default:
                     throw new BriefingRoomException($"JSON type {dbType} not implemented.");
-               }
+            }
+            DBEntries[dbType] = entries;
             BriefingRoom.PrintToLog($"Found {DBEntries[dbType].Count} database entries of type \"{typeof(T).Name}\"");
+
+
 
             bool mustHaveAtLeastOneEntry = true;
             if ((dbType == typeof(DBEntryDefaultUnitList)) ||

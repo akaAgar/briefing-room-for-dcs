@@ -31,8 +31,6 @@ namespace BriefingRoom4DCS.Data
 {
     internal class DBEntryUnitAircraftData
     {
-        private const Decade DEFAULT_PAYLOAD_DECADE = Decade.Decade2000;
-
         internal const int MAX_PYLONS = 24;
 
         internal int[] AirToAirRating { get; private set; } = new int[] { 1, 1 };
