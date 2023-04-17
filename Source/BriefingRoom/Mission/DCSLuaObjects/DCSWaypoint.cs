@@ -91,7 +91,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 
                 if(unitFamily.GetUnitCategory() == UnitCategory.Vehicle || unitFamily.GetUnitCategory() == UnitCategory.Infantry)
                 {
-                    var waypointCoordsSpawn = spawnPointSelector.GetNearestSpawnPoint(new SpawnPointType[] { SpawnPointType.LandLarge, SpawnPointType.LandMedium, SpawnPointType.LandSmall }, tempWaypointCoords);
+                    var waypointCoordsSpawn = spawnPointSelector.GetNearestSpawnPoint(new SpawnPointType[] { SpawnPointType.LandLarge, SpawnPointType.LandMedium, SpawnPointType.LandSmall }, tempWaypointCoords, false);
                     if(!waypointCoordsSpawn.HasValue)
                         continue;
                     tempWaypointCoords = waypointCoordsSpawn.Value;

@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -203,7 +203,7 @@ namespace BriefingRoom4DCS.Generator
                     } * Toolbox.NM_TO_METERS
                 );
             if (targetDB.DCSUnitCategory == DCSUnitCategory.Vehicle)
-                destinationPoint = GetNearestSpawnCoordinates(template, destinationPoint, targetDB);
+                destinationPoint = GetNearestSpawnCoordinates(template, destinationPoint, targetDB, false);
 
             var groupLua = targetBehaviorDB.GroupLua[(int)targetDB.DCSUnitCategory];
             if (targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.GoToPlayerAirbase)
@@ -522,11 +522,11 @@ namespace BriefingRoom4DCS.Generator
 
         //----------------SUB TASK SUPPORT FUNCTIONS-------------------------------
 
-        private Coordinates GetNearestSpawnCoordinates(MissionTemplateRecord template, Coordinates coreCoordinates, DBEntryObjectiveTarget targetDB)
+        private Coordinates GetNearestSpawnCoordinates(MissionTemplateRecord template, Coordinates coreCoordinates, DBEntryObjectiveTarget targetDB, bool remove=true)
         {
             Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetNearestSpawnPoint(
                 targetDB.ValidSpawnPoints,
-                coreCoordinates);
+                coreCoordinates, remove);
 
             if (!spawnPoint.HasValue)
                 throw new BriefingRoomException($"Failed to spawn nearby objective point. {String.Join(",", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList())} Please try again (Consider Adusting Flight Plan)");
