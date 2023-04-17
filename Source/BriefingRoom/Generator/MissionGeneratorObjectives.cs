@@ -199,7 +199,7 @@ namespace BriefingRoom4DCS.Generator
                     {
                         UnitCategory.Plane => Coordinates.CreateRandom(30, 60),
                         UnitCategory.Helicopter => Coordinates.CreateRandom(10, 20),
-                        _ => objectiveTargetUnitFamily == UnitFamily.InfantryMANPADS || objectiveTargetUnitFamily == UnitFamily.Infantry ? Coordinates.CreateRandom(1, 5) : Coordinates.CreateRandom(10, 15)
+                        _ => objectiveTargetUnitFamily == UnitFamily.InfantryMANPADS || objectiveTargetUnitFamily == UnitFamily.Infantry ? Coordinates.CreateRandom(1, 5) : Coordinates.CreateRandom(5, 10)
                     } * Toolbox.NM_TO_METERS
                 );
             if (targetDB.DCSUnitCategory == DCSUnitCategory.Vehicle)
