@@ -23,6 +23,7 @@ namespace BriefingRoom4DCS.Data
     internal enum DBEntryObjectiveTargetBehaviorLocation
     {
         Default,
+        Patrolling,
         GoToPlayerAirbase,
         SpawnOnAirbase,
         SpawnOnAirbaseParking,

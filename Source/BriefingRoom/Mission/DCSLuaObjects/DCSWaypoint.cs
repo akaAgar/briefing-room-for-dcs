@@ -129,13 +129,13 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             {
                 UnitCategory.Plane => new MinMaxD(-30, 30),
                 UnitCategory.Helicopter => new MinMaxD(-20, 20),
-                _ => unitFamily == UnitFamily.InfantryMANPADS || unitFamily == UnitFamily.Infantry ? new MinMaxD(-5, 5) :  new MinMaxD(-10, 10)
+                _ => unitFamily == UnitFamily.InfantryMANPADS || unitFamily == UnitFamily.Infantry ? new MinMaxD(-5, 5) :  new MinMaxD(-8, 8)
             };
             var randomRange = unitFamily.GetUnitCategory() switch
             {
                 UnitCategory.Plane => 20,
                 UnitCategory.Helicopter => 10,
-                _ => unitFamily == UnitFamily.InfantryMANPADS || unitFamily == UnitFamily.Infantry ? 1 :  5
+                _ => unitFamily == UnitFamily.InfantryMANPADS || unitFamily == UnitFamily.Infantry ? 1 :  3
             };
 
             var offsetPixels = offsetRange.GetValue() * Toolbox.NM_TO_METERS;

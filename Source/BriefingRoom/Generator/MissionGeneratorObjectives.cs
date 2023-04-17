@@ -248,7 +248,7 @@ namespace BriefingRoom4DCS.Generator
                     unitCoordinates = spawnTempCoords;
                     isInverseTransportWayPoint = true;
                 }
-                var cargoWaypoint = GenerateObjectiveWaypoint(task, unitCoordinates, $"{objectiveName} Pickup", template, true);
+                var cargoWaypoint = GenerateObjectiveWaypoint(task, unitCoordinates, unitCoordinates, $"{objectiveName} Pickup", template, true);
                 waypoints.Add(cargoWaypoint);
                 waypointList.Add(cargoWaypoint);
                 if (taskDB.isEscort())
@@ -331,7 +331,7 @@ namespace BriefingRoom4DCS.Generator
                 FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value.GroupID, targetGroupInfo.Value.Coordinates, taskDB.TargetSide, objectiveOptions.Contains(ObjectiveOption.HideTarget));
 
             objectiveCoordinatesList.Add(isInverseTransportWayPoint ? unitCoordinates : objectiveCoordinates);
-            var waypoint = GenerateObjectiveWaypoint(task, objectiveCoordinates, objectiveName, template);
+            var waypoint = GenerateObjectiveWaypoint(task, objectiveCoordinates, destinationPoint, objectiveName, template);
             waypoints.Add(waypoint);
             waypointList.Add(waypoint);
             mission.MapData.Add($"OBJECTIVE_AREA_{objectiveIndex}", new List<double[]> { waypoint.Coordinates.ToArray() });
@@ -495,7 +495,7 @@ namespace BriefingRoom4DCS.Generator
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Task, taskString);
         }
 
-        private Waypoint GenerateObjectiveWaypoint(MissionTemplateSubTaskRecord objectiveTemplate, Coordinates objectiveCoordinates, string objectiveName, MissionTemplateRecord template, bool scriptIgnore = false)
+        private Waypoint GenerateObjectiveWaypoint(MissionTemplateSubTaskRecord objectiveTemplate, Coordinates objectiveCoordinates, Coordinates ObjectiveDestinationCoordinates, string objectiveName, MissionTemplateRecord template, bool scriptIgnore = false)
         {
             var targetDB = Database.Instance.GetEntry<DBEntryObjectiveTarget>(objectiveTemplate.Target);
             var targetBehaviorLocation = Database.Instance.GetEntry<DBEntryObjectiveTargetBehavior>(objectiveTemplate.TargetBehavior).Location;
@@ -513,7 +513,8 @@ namespace BriefingRoom4DCS.Generator
             }
             else if (taskDB.UICategory.ContainsValue("Transport"))
                 DrawingMaker.AddDrawing($"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(500));
-
+            else if (targetBehaviorLocation == DBEntryObjectiveTargetBehaviorLocation.Patrolling)
+                DrawingMaker.AddDrawing($"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(ObjectiveDestinationCoordinates.GetDistanceFrom(objectiveCoordinates)));
             return new Waypoint(objectiveName, waypointCoordinates, onGround, scriptIgnore);
         }
 
