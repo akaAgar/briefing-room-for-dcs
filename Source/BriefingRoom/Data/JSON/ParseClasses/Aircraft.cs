@@ -42,7 +42,6 @@ namespace BriefingRoom4DCS.Data.JSON
         public double fuel { get; set; }
         public int flares { get; set; }
         public int chaff { get; set; }
-        public bool playable { get; set; }
         public Radio radio { get; set; }
         public int maxAlt { get; set; }
         public double cruiseSpeed { get; set; }

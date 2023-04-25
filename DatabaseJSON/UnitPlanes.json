@@ -275,7 +275,6 @@
         "fuel": 4663,
         "flares": 45,
         "chaff": 90,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -676,7 +675,6 @@
         "fuel": 4663,
         "flares": 45,
         "chaff": 90,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -1625,7 +1623,6 @@
         "fuel": 4930,
         "flares": 15,
         "chaff": 30,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -3110,7 +3107,6 @@
         "fuel": 4900,
         "flares": 15,
         "chaff": 30,
-        "playable": false,
         "radio": {
             "frequency": 305,
             "modulation": 0
@@ -3358,7 +3354,6 @@
         "fuel": 7348,
         "flares": 15,
         "chaff": 30,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -3536,7 +3531,6 @@
         "fuel": 50000,
         "flares": 48,
         "chaff": 48,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -4187,7 +4181,6 @@
         "fuel": 4864,
         "flares": 30,
         "chaff": 60,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -4363,7 +4356,6 @@
         "fuel": 141135,
         "flares": 192,
         "chaff": 1125,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -4881,7 +4873,6 @@
         "fuel": 4500,
         "flares": 60,
         "chaff": 60,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -6303,7 +6294,6 @@
         "fuel": 9400,
         "flares": 96,
         "chaff": 96,
-        "playable": false,
         "radio": {
             "frequency": 127.5,
             "modulation": 0
@@ -6734,7 +6724,6 @@
         "fuel": 3800,
         "flares": 60,
         "chaff": 60,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -8261,7 +8250,6 @@
         "fuel": 2835,
         "flares": 128,
         "chaff": 128,
-        "playable": false,
         "radio": {
             "frequency": 124,
             "modulation": 0
@@ -9900,7 +9888,6 @@
         "fuel": 3790,
         "flares": 128,
         "chaff": 128,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -11677,7 +11664,6 @@
         "fuel": 3790,
         "flares": 128,
         "chaff": 128,
-        "playable": true,
         "radio": {
             "frequency": 124,
             "modulation": 0
@@ -13245,7 +13231,6 @@
         "fuel": 9500,
         "flares": 48,
         "chaff": 48,
-        "playable": false,
         "radio": {
             "frequency": 124,
             "modulation": 0
@@ -13400,7 +13385,6 @@
         "fuel": 15245,
         "flares": 64,
         "chaff": 64,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -13511,7 +13495,6 @@
             }
         ],
         "fuel": 15245,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -15089,7 +15072,6 @@
         "fuel": 9400,
         "flares": 96,
         "chaff": 96,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -15931,7 +15913,6 @@
         "fuel": 3770,
         "flares": 64,
         "chaff": 64,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -16161,7 +16142,6 @@
             }
         ],
         "fuel": 15500,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -16226,7 +16206,6 @@
         "fuel": 87000,
         "flares": 48,
         "chaff": 48,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -17297,7 +17276,6 @@
         "fuel": 11700,
         "flares": 96,
         "chaff": 96,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -17490,7 +17468,6 @@
         "fuel": 11700,
         "flares": 96,
         "chaff": 96,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -17562,7 +17539,6 @@
         "fuel": 171000,
         "flares": 72,
         "chaff": 72,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -17660,7 +17636,6 @@
             }
         ],
         "fuel": 8255,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -17938,7 +17913,6 @@
         "fuel": 88450,
         "flares": 30,
         "chaff": 60,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -18221,7 +18195,6 @@
         "fuel": 5500,
         "flares": 30,
         "chaff": 30,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -18270,7 +18243,6 @@
         "fuel": 8000,
         "flares": 30,
         "chaff": 30,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -18639,7 +18611,6 @@
         "fuel": 3160,
         "flares": 16,
         "chaff": 112,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -19274,7 +19245,6 @@
         "fuel": 6103,
         "flares": 60,
         "chaff": 120,
-        "playable": false,
         "radio": {
             "frequency": 124,
             "modulation": 0
@@ -21366,7 +21336,6 @@
         "fuel": 10246,
         "flares": 60,
         "chaff": 120,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -22213,7 +22182,6 @@
         "fuel": 3376,
         "flares": 30,
         "chaff": 30,
-        "playable": false,
         "radio": {
             "frequency": 124,
             "modulation": 0
@@ -22724,7 +22692,6 @@
         "fuel": 3376,
         "flares": 30,
         "chaff": 30,
-        "playable": false,
         "radio": {
             "frequency": 124,
             "modulation": 0
@@ -22789,7 +22756,6 @@
         "fuel": 87000,
         "flares": 48,
         "chaff": 48,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -22881,7 +22847,6 @@
         "fuel": 20830,
         "flares": 60,
         "chaff": 120,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -23050,7 +23015,6 @@
         "fuel": 5500,
         "flares": 384,
         "chaff": 384,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -23155,7 +23119,6 @@
         "fuel": 5500,
         "flares": 192,
         "chaff": 192,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -23209,7 +23172,6 @@
         "fuel": 132405,
         "flares": 60,
         "chaff": 120,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -23311,7 +23273,6 @@
         "fuel": 70000,
         "flares": 192,
         "chaff": 192,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -23374,7 +23335,6 @@
         "fuel": 65000,
         "flares": 60,
         "chaff": 120,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -23457,7 +23417,6 @@
         "fuel": 70000,
         "flares": 96,
         "chaff": 96,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -23522,7 +23481,6 @@
         "fuel": 5624,
         "flares": 60,
         "chaff": 120,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -23589,7 +23547,6 @@
         "fuel": 70000,
         "flares": 96,
         "chaff": 96,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -24436,7 +24393,6 @@
         "fuel": 3104,
         "flares": 45,
         "chaff": 90,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -25683,7 +25639,6 @@
         "fuel": 3104,
         "flares": 45,
         "chaff": 90,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -26668,7 +26623,6 @@
         "fuel": 3104,
         "flares": 30,
         "chaff": 60,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -28013,7 +27967,6 @@
         "fuel": 3104,
         "flares": 30,
         "chaff": 60,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -28113,7 +28066,6 @@
             }
         ],
         "fuel": 490,
-        "playable": false,
         "radio": {
             "frequency": 127.5,
             "modulation": 0
@@ -28178,7 +28130,6 @@
             }
         ],
         "fuel": 3080,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -28271,7 +28222,6 @@
             }
         ],
         "fuel": 90700,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -41526,7 +41476,6 @@
         "flares": 240,
         "chaff": 240,
         "extraProps": [],
-        "playable": true,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -43835,7 +43784,6 @@
                 "id": "MissionGeneratorSetting"
             }
         ],
-        "playable": true,
         "radio": {
             "frequency": 305,
             "modulation": 0
@@ -47434,7 +47382,6 @@
                 "id": "AAR_Zone3"
             }
         ],
-        "playable": true,
         "radio": {
             "frequency": 243,
             "modulation": 0
@@ -53461,7 +53408,6 @@
             }
         ],
         "fuel": 70000,
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -59920,7 +59866,6 @@
                 "id": "HelmetMountedDevice"
             }
         ],
-        "playable": true,
         "radio": {
             "frequency": 305,
             "modulation": 0
@@ -75342,7 +75287,6 @@
                 "id": "HelmetMountedDevice"
             }
         ],
-        "playable": true,
         "radio": {
             "frequency": 305,
             "modulation": 0
@@ -76344,7 +76288,6 @@
                 "id": "landingTorch"
             }
         ],
-        "playable": false,
         "radio": {
             "frequency": 124,
             "modulation": 0
@@ -79027,7 +78970,6 @@
                 "defValue": false
             }
         ],
-        "playable": true,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -92140,7 +92082,6 @@
             }
         ],
         "fuel": 501,
-        "playable": true,
         "radio": {
             "frequency": 124,
             "modulation": 0
