@@ -49,13 +49,19 @@ namespace BriefingRoom4DCS.Data
             throw new NotImplementedException();
         }
 
-        internal static Dictionary<string, DBEntry> LoadJSON(string filepath)
+        internal static Dictionary<string, DBEntry> LoadJSON(string filepath, Dictionary<string, DBEntryUnit> unitDict)
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Aircraft>>(File.ReadAllText(filepath));
             foreach (var aircraft in data)
             {
                 var id = aircraft.type;
+                if (!unitDict.ContainsKey(id))
+                {
+                    BriefingRoom.PrintToLog($"Ini unit missing {id}", LogMessageErrorLevel.Warning);
+                    continue;
+                }
+                var iniUnit = unitDict[id];
                 itemMap.Add(id, new DBEntryAircraft
                 {
                     ID = id,
@@ -84,6 +90,7 @@ namespace BriefingRoom4DCS.Data
                     EPLRS = (bool)(aircraft.EPLRS ?? false),
                     InheritCommonCallNames = (bool)(aircraft.inheriteCommonCallnames ?? false),
                     SpecificCallNames = aircraft.specificCallnames,
+                    Families = iniUnit.Families,
 
                 });
             }
