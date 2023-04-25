@@ -232,7 +232,7 @@ namespace BriefingRoom4DCS.Generator
             mission.Briefing.FlightBriefings.Add(new DCSMissionFlightBriefing
             {
                 Name = groupInfo.Value.Name,
-                Type = groupInfo.Value.UnitDB.DCSIDs.First(),
+                Type = groupInfo.Value.UnitDB.DCSID,
                 Waypoints = waypointTextRows
             });
         }

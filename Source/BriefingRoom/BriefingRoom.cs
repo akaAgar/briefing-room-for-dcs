@@ -127,7 +127,7 @@ namespace BriefingRoom4DCS
                     return (from DBEntryUnit unitCarrier in Database.Instance.GetAllEntries<DBEntryUnit>() where Toolbox.CARRIER_FAMILIES.Intersect(unitCarrier.Families).Count() > 0 select unitCarrier.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
 
                 case DatabaseEntryType.UnitFlyableAircraft:
-                    return (from DBEntryAircraft unitFlyable in Database.Instance.GetAllEntries<DBEntryJSONUnit,DBEntryAircraft>() where unitFlyable.PlayerControllable select unitFlyable.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
+                    return (from DBEntryAircraft unitFlyable in Database.Instance.GetAllEntries<DBEntryJSONUnit, DBEntryAircraft>() where unitFlyable.PlayerControllable select unitFlyable.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
 
                 case DatabaseEntryType.WeatherPreset:
                     return (from DBEntryWeatherPreset weatherPreset in Database.Instance.GetAllEntries<DBEntryWeatherPreset>() select weatherPreset.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
@@ -149,13 +149,16 @@ namespace BriefingRoom4DCS
         }
 
         public static List<string> GetAircraftLiveries(string aircraftID) =>
-            Database.Instance.GetEntry<DBEntryJSONUnit, DBEntryAircraft>(aircraftID).Liveries;
+            Database.Instance.GetEntry<DBEntryJSONUnit, DBEntryAircraft>(aircraftID).Liveries
+            .Select(x => x.Value)
+            .Aggregate(new List<string>(), (acc, x) => { acc.AddRange(x); return acc; })
+            .Distinct().Order().ToList();
 
-        public static List<string> GetAircraftCallsigns(string aircraftID) =>
-            Database.Instance.GetEntry<DBEntryJSONUnit, DBEntryAircraft>(aircraftID).AircraftData.Callsigns;
+        public static List<string> GetAircraftCallsigns(string aircraftID) => new List<string>{};
+            // Database.Instance.GetEntry<DBEntryJSONUnit, DBEntryAircraft>(aircraftID).AircraftData.Callsigns;
 
         public static List<string> GetAircraftPayloads(string aircraftID) =>
-            Database.Instance.GetEntry<DBEntryJSONUnit, DBEntryAircraft>(aircraftID).PayloadTasks.Keys.ToList();
+            Database.Instance.GetEntry<DBEntryJSONUnit, DBEntryAircraft>(aircraftID).Payloads.Select(x => x.name).Distinct().Order().ToList();
 
 
         public static string GetAlias(int index) => Toolbox.GetAlias(index);
