@@ -20,10 +20,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using BriefingRoom4DCS.Data.JSON;
-using Newtonsoft.Json;
 
 namespace BriefingRoom4DCS.Data
 {
@@ -33,6 +29,8 @@ namespace BriefingRoom4DCS.Data
         internal Dictionary<Country, List<string>> Liveries { get; init; }
         internal List<Country> Countries { get; init; }
         internal string Module { get; init; }
+        internal UnitCategory Category { get { return Families[0].GetUnitCategory(); } }
+        internal UnitFamily[] Families { get; init; }
 
 
         protected override bool OnLoad(string o)

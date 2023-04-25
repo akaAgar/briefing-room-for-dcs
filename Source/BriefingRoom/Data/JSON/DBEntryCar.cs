@@ -30,20 +30,26 @@ namespace BriefingRoom4DCS.Data
     internal class DBEntryCar : DBEntryJSONUnit
     {
         
-        internal string Category { get; init; }
+        internal string DCSCategory { get; init; }
 
         protected override bool OnLoad(string o)
         {
             throw new NotImplementedException();
         }
 
-        internal static Dictionary<string, DBEntry> LoadJSON(string filepath)
+        internal static Dictionary<string, DBEntry> LoadJSON(string filepath, Dictionary<string, DBEntryUnit> unitDict)
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Car>>(File.ReadAllText(filepath));
             foreach (var car in data)
             {
                 var id = car.type;
+                if (!unitDict.ContainsKey(id))
+                {
+                    BriefingRoom.PrintToLog($"Ini unit missing {id}", LogMessageErrorLevel.Warning);
+                    continue;
+                }
+                var iniUnit = unitDict[id];
                 itemMap.Add(id, new DBEntryCar
                 {
                     ID = id,
@@ -51,7 +57,7 @@ namespace BriefingRoom4DCS.Data
                     DCSID = car.type,
                     Liveries = car.paintSchemes.ToDictionary(pair => (Country)Enum.Parse(typeof(Country), pair.Key.Replace(" ", ""), true), pair => pair.Value),
                     Countries = car.countries.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)).ToList(),
-                    Category = car.category,
+                    DCSCategory = car.category,
                     Module = car.module
                 });
             }

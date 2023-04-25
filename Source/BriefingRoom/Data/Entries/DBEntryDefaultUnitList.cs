@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCS.Template;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BriefingRoom4DCS.Data
@@ -37,10 +38,13 @@ namespace BriefingRoom4DCS.Data
                     DefaultUnits[i, j] = new string[0];
 
             var ini = new INIFile(iniFilePath);
+            var jsonUnsupported = new List<UnitCategory>{UnitCategory.Ship, UnitCategory.Static, UnitCategory.Cargo};
             foreach (UnitFamily family in Toolbox.GetEnumValues<UnitFamily>())
                 foreach (Decade decade in Toolbox.GetEnumValues<Decade>())
                 {
-                    string[] units = GetValidDBEntryIDs<DBEntryUnit>(ini.GetValueArray<string>($"{decade}", $"{family}"), out string[] invalidUnits);
+                    var valArray = ini.GetValueArray<string>($"{decade}", $"{family}");
+                    string[] invalidUnits;
+                    string[] units = jsonUnsupported.Contains(family.GetUnitCategory()) ?  GetValidDBEntryIDs<DBEntryUnit>(valArray, out invalidUnits) : GetValidDBEntryIDs<DBEntryJSONUnit>(valArray, out invalidUnits);
 
                     foreach (string u in invalidUnits)
                         BriefingRoom.PrintToLog($"Unit \"{u}\" not found in default unit list \"{ID}\".", LogMessageErrorLevel.Warning);
@@ -51,13 +55,13 @@ namespace BriefingRoom4DCS.Data
                         DefaultUnits[(int)family, i] = units.ToArray();
                 }
 
-            for (i = 0; i < Toolbox.EnumCount<UnitFamily>(); i++)
-                for (j = 0; j < Toolbox.EnumCount<Decade>(); j++)
-                    if (DefaultUnits[i, j].Length == 0)
-                    {
-                        BriefingRoom.PrintToLog($"Default unit list \"{ID}\" has no unit of family \"{(UnitFamily)i}\" during {(Decade)j}, unit list was ignored.", LogMessageErrorLevel.Warning);
-                        return false;
-                    }
+            // for (i = 0; i < Toolbox.EnumCount<UnitFamily>(); i++)
+            //     for (j = 0; j < Toolbox.EnumCount<Decade>(); j++)
+            //         if (DefaultUnits[i, j].Length == 0)
+            //         {
+            //             BriefingRoom.PrintToLog($"Default unit list \"{ID}\" has no unit of family \"{(UnitFamily)i}\" during {(Decade)j}, unit list was ignored.", LogMessageErrorLevel.Warning);
+            //             return false;
+            //         }
 
 
             return true;

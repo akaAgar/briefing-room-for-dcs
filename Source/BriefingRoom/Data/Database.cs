@@ -80,23 +80,19 @@ namespace BriefingRoom4DCS.Data
             LoadEntries<DBEntryObjectivePreset>("ObjectivePresets"); // Must be loaded after other DBEntryObjective*, as it depends on them
             LoadEntries<DBEntryTheater>("Theaters");
             LoadJSONEntries<DBEntryAirbase>("TheatersAirbases");
-            // LoadEntries<DBEntryAirbase>("TheatersAirbases"); // Must be loaded after DBEntryTheater, as it depends on it
             LoadEntries<DBEntrySituation>("TheaterSituations"); // Must be loaded after DBEntryTheater, as it depends on it
             LoadEntries<DBEntryDCSMod>("DCSMods");
             LoadEntries<DBEntryUnit>("Units"); // Must be loaded after DBEntryDCSMod, as it depends on it
-            LoadJSONEntries<DBEntryCar>("UnitCars");
-            LoadJSONEntries<DBEntryAircraft>("UnitPlanes");
-            LoadJSONEntries<DBEntryAircraft>("UnitHelicopters");
-            LoadCustomUnitEntries<DBEntryUnit>("Units");
-            LoadEntries<DBEntryDefaultUnitList>("DefaultUnitLists"); // Must be loaded after DBEntryUnit, as it depends on it
-            LoadEntries<DBEntryCoalition>("Coalitions"); // Must be loaded after DBEntryUnit and DBEntryDefaultUnitList, as it depends on them
+            LoadJSONEntries<DBEntryCar>("UnitCars", true);
+            LoadJSONEntries<DBEntryAircraft>("UnitPlanes", true);
+            LoadJSONEntries<DBEntryAircraft>("UnitHelicopters", true);
+            LoadEntries<DBEntryDefaultUnitList>("DefaultUnitLists"); // Must be loaded after Units, as it depends on it
+            LoadEntries<DBEntryCoalition>("Coalitions"); // Must be loaded after Unit and DBEntryDefaultUnitList, as it depends on them
             LoadCustomUnitEntries<DBEntryCoalition>("Coalitions");
             LoadEntries<DBEntryWeatherPreset>("WeatherPresets");
 
             // Can't start without at least one player-controllable aircraft
-            if ((from DBEntryUnit unit in GetAllEntries<DBEntryUnit>()
-                 where unit.AircraftData.PlayerControllable
-                 select unit.ID).Count() == 0)
+            if (!GetAllEntries<DBEntryJSONUnit>().Any(x => typeof(DBEntryAircraft).Equals(x.GetType()) && ((DBEntryAircraft)x).PlayerControllable))
                 throw new BriefingRoomException("No player-controllable aircraft found.");
 
             Initialized = true;
@@ -141,7 +137,7 @@ namespace BriefingRoom4DCS.Data
                 throw new BriefingRoomException($"No valid database entries found in the \"{subDirectory}\" directory");
         }
 
-        private void LoadJSONEntries<T>(string subDirectory) where T : DBEntry, new()
+        private void LoadJSONEntries<T>(string subDirectory, bool unitType = false) where T : DBEntry, new()
         {
             BriefingRoom.PrintToLog($"Loading {subDirectory.ToLower()}...");
 
@@ -150,6 +146,8 @@ namespace BriefingRoom4DCS.Data
                 throw new Exception($"File {filePath} not found.");
 
             Type dbType = typeof(T);
+            if (unitType)
+                dbType = typeof(DBEntryJSONUnit);
 
 
             if (!DBEntries.ContainsKey(dbType))
@@ -162,10 +160,10 @@ namespace BriefingRoom4DCS.Data
                     entries = DBEntries[dbType].Concat(DBEntryAirbase.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
                     break;
                 case DBEntryCar a:
-                    entries = DBEntries[dbType].Concat(DBEntryCar.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
+                    entries = DBEntries[dbType].Concat(DBEntryCar.LoadJSON(filePath, GetAllEntriesDict<DBEntryUnit>())).ToDictionary(pair => pair.Key, pair => pair.Value);
                     break;
                 case DBEntryAircraft a:
-                    entries = DBEntries[dbType].Concat(DBEntryAircraft.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
+                    entries = DBEntries[dbType].Concat(DBEntryAircraft.LoadJSON(filePath, GetAllEntriesDict<DBEntryUnit>())).ToDictionary(pair => pair.Key, pair => pair.Value);
                     break;
                 default:
                     throw new BriefingRoomException($"JSON type {dbType} not implemented.");
@@ -252,6 +250,18 @@ namespace BriefingRoom4DCS.Data
             return (from entry in DBEntries[typeof(T)].Values select (T)entry).ToArray();
         }
 
+        internal Dictionary<string, T> GetAllEntriesDict<T>() where T : DBEntry
+        {
+            return DBEntries[typeof(T)].ToDictionary(x => x.Key, x => (T)x.Value);
+        }
+
+        internal ST[] GetAllEntries<T, ST>()
+            where T : DBEntry
+            where ST : DBEntry
+        {
+            return (from entry in DBEntries[typeof(T)].Values where typeof(ST).Equals(entry.GetType()) select (ST)entry).ToArray();
+        }
+
         internal string[] GetAllEntriesIDs<T>() where T : DBEntry
         {
             if (!DBEntries.ContainsKey(typeof(T))) return null;
@@ -263,6 +273,15 @@ namespace BriefingRoom4DCS.Data
             id = id ?? "";
             if (!DBEntries[typeof(T)].ContainsKey(id)) return null;
             return (T)DBEntries[typeof(T)][id];
+        }
+    
+        internal ST GetEntry<T,ST>(string id)
+            where T : DBEntry
+            where ST : DBEntry
+        {
+            id = id ?? "";
+            if (!DBEntries[typeof(T)].ContainsKey(id)) return null;
+            return (ST)DBEntries[typeof(T)][id];
         }
 
         internal T[] GetEntries<T>(params string[] ids) where T : DBEntry
