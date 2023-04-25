@@ -77,7 +77,7 @@ namespace BriefingRoom4DCS.Data
                     AmmoType = aircraft.ammoType,
                     MaxAlt = aircraft.maxAlt,
                     CruiseSpeed = aircraft.maxAlt,
-                    PlayerControllable = aircraft.playable,
+                    PlayerControllable = iniUnit.AircraftData.PlayerControllable,
                     Radio = new RadioChannel(aircraft.radio.frequency, (RadioModulation)aircraft.radio.modulation),
                     PanelRadios = (aircraft.panelRadio ?? new List<PanelRadio>()).Select(x => x.channels.Select(x =>
                     {

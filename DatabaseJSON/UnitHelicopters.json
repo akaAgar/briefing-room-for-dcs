@@ -825,7 +825,6 @@
         "fuel": 1704,
         "flares": 192,
         "chaff": 0,
-        "playable": false,
         "radio": {
             "frequency": 127.5,
             "modulation": 0
@@ -1461,7 +1460,6 @@
                 "defValue": true
             }
         ],
-        "playable": false,
         "radio": {
             "frequency": 127.5,
             "modulation": 0
@@ -1866,7 +1864,6 @@
         "fuel": 9600,
         "flares": 192,
         "chaff": 0,
-        "playable": false,
         "radio": {
             "frequency": 127.5,
             "modulation": 0
@@ -1938,7 +1935,6 @@
             }
         ],
         "fuel": 2616,
-        "playable": false,
         "radio": {
             "frequency": 127.5,
             "modulation": 0
@@ -2056,7 +2052,6 @@
         "fuel": 1100,
         "flares": 30,
         "chaff": 30,
-        "playable": false,
         "radio": {
             "frequency": 127.5,
             "modulation": 0
@@ -2137,7 +2132,6 @@
         "fuel": 2880,
         "flares": 60,
         "chaff": 60,
-        "playable": false,
         "radio": {
             "frequency": 127.5,
             "modulation": 0
@@ -2195,7 +2189,6 @@
         "fuel": 3600,
         "flares": 120,
         "chaff": 120,
-        "playable": false,
         "radio": {
             "frequency": 127.5,
             "modulation": 0
@@ -2537,7 +2530,6 @@
         "fuel": 2132,
         "flares": 30,
         "chaff": 30,
-        "playable": false,
         "radio": {
             "frequency": 127.5,
             "modulation": 0
@@ -2764,7 +2756,6 @@
         "fuel": 1157,
         "flares": 30,
         "chaff": 30,
-        "playable": false,
         "radio": {
             "frequency": 127.5,
             "modulation": 0
@@ -3016,7 +3007,6 @@
         "fuel": 1157,
         "flares": 30,
         "chaff": 30,
-        "playable": false,
         "radio": {
             "frequency": 127.5,
             "modulation": 0
@@ -3482,7 +3472,6 @@
         "fuel": 1250,
         "flares": 30,
         "chaff": 30,
-        "playable": false,
         "radio": {
             "frequency": 127.5,
             "modulation": 0
@@ -3555,7 +3544,6 @@
         "fuel": 1100,
         "flares": 30,
         "chaff": 30,
-        "playable": false,
         "radio": {
             "frequency": 127.5,
             "modulation": 0
@@ -3897,7 +3885,6 @@
                 "id": "NetCrewControlPriority"
             }
         ],
-        "playable": false,
         "radio": {
             "frequency": 251,
             "modulation": 0
@@ -4692,7 +4679,6 @@
         "fuel": 1500,
         "flares": 128,
         "chaff": 0,
-        "playable": false,
         "radio": {
             "frequency": 127.5,
             "modulation": 0
@@ -4884,7 +4870,6 @@
         "fuel": 454,
         "flares": 30,
         "chaff": 30,
-        "playable": false,
         "radio": {
             "frequency": 127.5,
             "modulation": 0
@@ -8042,7 +8027,6 @@
                 "id": "IMU alignment type"
             }
         ],
-        "playable": true,
         "radio": {
             "frequency": 124,
             "modulation": 0
