@@ -148,7 +148,7 @@ namespace BriefingRoom4DCS.Generator
             if (
                 side == Side.Enemy ||
                 !template.MissionFeatures.Contains("ContextGroundStartAircraft") ||
-                groupInfo.Value.UnitDB.AircraftData.CarrierTypes.Count() == 0
+                 true //groupInfo.Value.UnitDB.AircraftData.CarrierTypes.Count() == 0
             )
                 return;
 

@@ -45,7 +45,7 @@ namespace BriefingRoom4DCS.Generator
             RussianCallsigns.Clear();
         }
 
-        internal UnitCallsign GetCallsign(DBEntryUnit unitDB, Country country, Side side, bool isUsingSkynet, string overrideName, int overrideNumber)
+        internal UnitCallsign GetCallsign(DBEntryAircraft unitDB, Country country, Side side, bool isUsingSkynet, string overrideName, int overrideNumber)
         {
 
             if (NON_NATO_CALLSIGN_NATIONS.Contains(country))
@@ -57,14 +57,14 @@ namespace BriefingRoom4DCS.Generator
             return GetNATOCallsign(unitDB, side, isUsingSkynet);
         }
 
-        private UnitCallsign GetNATOCallsign(DBEntryUnit unitDB, Side side, bool isUsingSkynet)
+        private UnitCallsign GetNATOCallsign(DBEntryAircraft unitDB, Side side, bool isUsingSkynet)
         {
             string groupName;
             int randomNumber;
             string[] callSignEnum;
             do
             {
-                callSignEnum = Toolbox.RandomFrom<string>(unitDB.AircraftData.Callsigns).Split(":");
+                callSignEnum = Toolbox.RandomFrom<string>(unitDB.Callsigns).Split(":");
                 randomNumber = Toolbox.RandomMinMax(1, 9);
                 groupName = $"{callSignEnum[1]} {randomNumber}";
             } while (NATOCallsigns.Contains(groupName));

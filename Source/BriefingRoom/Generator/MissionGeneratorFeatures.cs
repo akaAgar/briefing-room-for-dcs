@@ -301,7 +301,7 @@ namespace BriefingRoom4DCS.Generator
             if (
                 side == Side.Enemy ||
                 (!_template.MissionFeatures.Contains("ContextGroundStartAircraft") && featureDB.ID != "FriendlyStaticAircraftCarrier") ||
-                groupInfo.Value.UnitDB.AircraftData.CarrierTypes.Count() == 0
+                true //groupInfo.Value.UnitDB.AircraftData.CarrierTypes.Count() == 0
             )
                 return;
 

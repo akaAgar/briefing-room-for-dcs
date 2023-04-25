@@ -35,7 +35,7 @@ namespace BriefingRoom4DCS.Data.JSON
     {
         public string _id { get; set; }
         public Dictionary<string, List<string>> paintSchemes { get; set; }
-        public object payloadPresets { get; set; }
+        public List<Payload> payloadPresets { get; set; }
         public string type { get; set; }
         public string displayName { get; set; }
         public List<Task> tasks { get; set; }
@@ -61,5 +61,19 @@ namespace BriefingRoom4DCS.Data.JSON
         public string OldID { get; set; }
         public string Name { get; set; }
         public int WorldID { get; set; }
+    }
+
+    public class Payload
+    {
+        public List<Pylon> pylons { get; set; }
+        public List<int> tasks { get; set; }
+        public string name { get; set; }
+        public string displayName { get; set; }
+    }
+
+    public class Pylon
+    {
+        public string CLSID { get; set; }
+        public int num { get; set; }
     }
 }

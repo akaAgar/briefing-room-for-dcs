@@ -30,6 +30,7 @@ namespace BriefingRoom4DCS.Data
         internal List<Country> Countries { get; init; }
         internal string Module { get; init; }
         internal UnitCategory Category { get { return Families[0].GetUnitCategory(); } }
+        internal bool IsAircraft { get { return Category.IsAircraft(); } }
         internal UnitFamily[] Families { get; init; }
 
 
