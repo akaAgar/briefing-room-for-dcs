@@ -38,12 +38,23 @@ namespace BriefingRoom4DCS.Data
         internal double CruiseSpeed { get; init; }
         internal bool PlayerControllable { get; init; }
         internal RadioChannel Radio { get; init; }
-        internal List<List<RadioChannel>> PanelRadios { get; init; }
+        internal List<DBEntryUnitRadioPreset> PanelRadios { get; init; }
         internal Dictionary<string, object> ExtraProps { get; init; }
         internal bool EPLRS { get; init; }
         internal Dictionary<string, List<List<string>>> SpecificCallNames { get; init; }
         internal List<string> CallSigns { get; init; }
         internal List<Payload> Payloads { get; init; }
+
+        internal Dictionary<string, object> PayloadCommon { get {
+            var dict = new Dictionary<string, object>{
+                {"flare", Flares},
+                {"chaff", Chaff},
+                {"gun", 100}
+                };
+            if(AmmoType.HasValue)
+                dict.Add("ammo_type", AmmoType.Value);
+            return dict;
+        }}
 
         protected override bool OnLoad(string o)
         {
@@ -80,13 +91,14 @@ namespace BriefingRoom4DCS.Data
                     CruiseSpeed = aircraft.maxAlt,
                     PlayerControllable = iniUnit.AircraftData.PlayerControllable,
                     Radio = new RadioChannel(aircraft.radio.frequency, (RadioModulation)aircraft.radio.modulation),
-                    PanelRadios = (aircraft.panelRadio ?? new List<PanelRadio>()).Select(x => x.channels.Select(x =>
-                    {
-                        var modulation = RadioModulation.AM;
-                        if (!string.IsNullOrEmpty(x.modulation) && x.modulation != "AM/FM")
-                            modulation = (RadioModulation)Enum.Parse(typeof(RadioModulation), x.modulation, true);
-                        return new RadioChannel(x.@default, modulation);
-                    }).ToList()).ToList(),
+                    PanelRadios = (aircraft.panelRadio ?? new List<PanelRadio>()).Select(radio => {
+                        return new DBEntryUnitRadioPreset(radio.channels.Select(x => x.@default).ToArray(), radio.channels.Select(x => {
+                            var modulation = RadioModulation.AM;
+                            if (!string.IsNullOrEmpty(x.modulation) && x.modulation != "AM/FM")
+                                modulation = (RadioModulation)Enum.Parse(typeof(RadioModulation), x.modulation, true);
+                            return (int)modulation;
+                        }).ToArray(), RadioType.Unknown);
+                    }).ToList(),
                     ExtraProps = (aircraft.extraProps ?? new List<ExtraProp>()).Where(x => x.defValue is not null).ToDictionary(x => x.id, x => x.defValue),
                     EPLRS = (bool)(aircraft.EPLRS ?? false),
                     CallSigns = new List<string> { "1:Enfield", "2:Springfield", "3:Uzi", "4:Colt", "5:Dodge", "6:Ford", "7:Chevy", "8:Pontiac" },
@@ -102,5 +114,14 @@ namespace BriefingRoom4DCS.Data
         }
 
         public DBEntryAircraft() { }
+
+        internal Dictionary<int, Dictionary<string, string>> GetPylonsObject(string aircraftPayload)
+        {   
+            if (Payloads.Count() == 0)
+                return new Dictionary<int, Dictionary<string, string>>();
+            var payload = Toolbox.RandomFrom(Payloads);
+            return payload.pylons.ToDictionary(x => x.num, x => new Dictionary<string, string> { { "CLSID", x.CLSID }});
+        }
+
     }
 }

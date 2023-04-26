@@ -86,6 +86,7 @@ namespace BriefingRoom4DCS.Data
             LoadJSONEntries<DBEntryCar>("UnitCars", true);
             LoadJSONEntries<DBEntryAircraft>("UnitPlanes", true);
             LoadJSONEntries<DBEntryAircraft>("UnitHelicopters", true);
+            LoadJSONEntries<DBEntryShip>("UnitShips", true);
             LoadEntries<DBEntryDefaultUnitList>("DefaultUnitLists"); // Must be loaded after Units, as it depends on it
             LoadEntries<DBEntryCoalition>("Coalitions"); // Must be loaded after Unit and DBEntryDefaultUnitList, as it depends on them
             LoadCustomUnitEntries<DBEntryCoalition>("Coalitions");
@@ -164,6 +165,9 @@ namespace BriefingRoom4DCS.Data
                     break;
                 case DBEntryAircraft a:
                     entries = DBEntries[dbType].Concat(DBEntryAircraft.LoadJSON(filePath, GetAllEntriesDict<DBEntryUnit>())).ToDictionary(pair => pair.Key, pair => pair.Value);
+                    break;
+                case DBEntryShip a:
+                    entries = DBEntries[dbType].Concat(DBEntryShip.LoadJSON(filePath, GetAllEntriesDict<DBEntryUnit>())).ToDictionary(pair => pair.Key, pair => pair.Value);
                     break;
                 default:
                     throw new BriefingRoomException($"JSON type {dbType} not implemented.");
