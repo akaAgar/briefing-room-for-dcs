@@ -337,17 +337,17 @@ namespace BriefingRoom4DCS.Generator
             var dCSUnits = new List<DCSUnit>();
             foreach (var unitSet in unitSets)
             {
-                DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(unitSet);
+                DBEntryJSONUnit unitDB = Database.Instance.GetEntry<DBEntryJSONUnit>(unitSet);
                 if (unitDB == null)
                 {
                     BriefingRoom.PrintToLog($"Unit \"{unitSet}\" not found.", LogMessageErrorLevel.Warning);
                     continue;
                 }
                 int unitSetIndex = 0;
-                foreach (string DCSID in unitDB.DCSIDs)
-                {
+                // foreach (string DCSID in unitDB.DCSIDs)
+                // {
                     dCSUnits.Add(AddUnit(
-                       DCSID,
+                       unitDB.DCSID,
                        groupName,
                        callsign,
                        unitLuaIndex,
@@ -366,7 +366,7 @@ namespace BriefingRoom4DCS.Generator
                     unitSetIndex++;
                     unitLuaIndex++;
                     UnitID++;
-                }
+                // }
             }
             return (dCSUnits, unitsIDList);
         }
@@ -485,7 +485,7 @@ namespace BriefingRoom4DCS.Generator
             UnitCallsign? callsign,
             int unitLuaIndex,
             int unitSetIndex,
-            DBEntryUnit unitDB,
+            DBEntryJSONUnit unitDB,
             string unitType,
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags,
@@ -494,10 +494,10 @@ namespace BriefingRoom4DCS.Generator
             Dictionary<string, object> extraSettings,
             bool singleUnit = false)
         {
-            if (!string.IsNullOrEmpty(unitDB.RequiredMod))
+            if (!string.IsNullOrEmpty(unitDB.Module) && DBEntryDCSMod.coreMods.Contains(unitDB.Module, StringComparer.InvariantCultureIgnoreCase))
             {
-                DBEntryDCSMod mod = Database.Instance.GetEntry<DBEntryDCSMod>(unitDB.RequiredMod);
-                if (!string.IsNullOrEmpty(mod.RequiredID))
+                DBEntryDCSMod mod = Database.Instance.GetEntry<DBEntryDCSMod>(unitDB.Module);
+                if (mod != null && !string.IsNullOrEmpty(mod.RequiredID))
                     ModUnits.Add(mod.RequiredID);
             }
             var unit = new DCSUnit(unitType);
@@ -526,24 +526,25 @@ namespace BriefingRoom4DCS.Generator
 
             if (Toolbox.IsAircraft(unitDB.Category))
             {
+                var aircraftUnitDB = (DBEntryAircraft)unitDB;
                 unit.Callsign = callsign.Value.GetLua(unitLuaIndex);
                 unit.Name = callsign.Value.GetUnitName(unitLuaIndex);
                 unit.OnboardNum = Toolbox.RandomInt(1, 1000).ToString("000");
-                unit.PropsLua = Toolbox.ToDictionaryObject(unitDB.AircraftData.PropsLua);
-                unit.RadioPresets = unitDB.AircraftData.RadioPresets.Select(x => x.SetOverrides(
-                    (double)extraSettings.GetValueOrDefault("RadioFrequency", unitDB.AircraftData.RadioFrequency),
-                    (int)extraSettings.GetValueOrDefault("RadioBand", (int)unitDB.AircraftData.RadioModulation),
+                unit.PropsLua = aircraftUnitDB.ExtraProps;
+                unit.RadioPresets = aircraftUnitDB.PanelRadios.Select(x => x.SetOverrides(
+                    (double)extraSettings.GetValueOrDefault("RadioFrequency", aircraftUnitDB.Radio.Frequency),
+                    (int)extraSettings.GetValueOrDefault("RadioBand", (int)aircraftUnitDB.Radio.Modulation),
                     (double?)extraSettings.GetValueOrDefault("AirbaseRadioFrequency", null),
                     (int?)extraSettings.GetValueOrDefault("AirbaseRadioModulation", null)
                     )).ToList();
-                unit.PayloadCommon = Toolbox.ToDictionaryObject(unitDB.AircraftData.PayloadCommon);
-                unit.Pylons = unitDB.AircraftData.GetPylonsObject(extraSettings.GetValueOrDefault("Payload", "default").ToString());
+                unit.PayloadCommon = aircraftUnitDB.PayloadCommon;
+                unit.Pylons = aircraftUnitDB.GetPylonsObject(extraSettings.GetValueOrDefault("Payload", "default").ToString());
                 unit.Parking = ((List<int>)extraSettings.GetValueOrDefault("ParkingID", new List<int>())).ElementAtOrDefault(unitLuaIndex - 1);
             }
             else if (unitDB.Category == UnitCategory.Static || unitDB.Category == UnitCategory.Cargo)
             {
-                if (unitDB.Shape.Length - 1 > unitSetIndex)
-                    unit.ShapeName = unitDB.Shape[unitSetIndex];
+                // if (unitDB.Shape.Length - 1 > unitSetIndex)
+                //     unit.ShapeName = unitDB.Shape[unitSetIndex];
                 unit.Name = $"{groupName} {unitLuaIndex}";
             }
             else
@@ -553,11 +554,11 @@ namespace BriefingRoom4DCS.Generator
             return unit;
         }
 
-        private void GetLivery(ref DCSUnit unit, DBEntryUnit unitDB, Country country, Dictionary<string, object> extraSettings)
+        private void GetLivery(ref DCSUnit unit, DBEntryJSONUnit unitDB, Country country, Dictionary<string, object> extraSettings)
         {
             var LiveryId = extraSettings.GetValueOrDefault("Livery", "default").ToString();
             if (LiveryId == "default")
-                LiveryId = unitDB.OperatorLiveries.GetValueOrDefault(country, "default");
+                LiveryId = Toolbox.RandomFrom(unitDB.Liveries.GetValueOrDefault(country, new List<string>{"default"}));
             unit.LiveryId = LiveryId;
         }
 
@@ -634,43 +635,43 @@ namespace BriefingRoom4DCS.Generator
         }
 
         private (Coordinates unitCoordinates, double unitHeading) SetUnitCoordinatesAndHeading(
-            DBEntryUnit unitDB, int unitIndex, Coordinates groupCoordinates, double groupHeading, bool singleUnit = false)
+            DBEntryJSONUnit unitDB, int unitIndex, Coordinates groupCoordinates, double groupHeading, bool singleUnit = false)
         {
             var unitCoordinates = groupCoordinates;
             var unitHeading = groupHeading;
 
             if (unitDB.IsAircraft)
                 unitCoordinates = groupCoordinates + new Coordinates(AIRCRAFT_UNIT_SPACING, AIRCRAFT_UNIT_SPACING) * unitIndex;
-            else
-            {
-                if (unitDB.OffsetCoordinates.Length > unitIndex) // Unit has a fixed set of coordinates (for SAM sites, etc.)
-                {
-                    Coordinates offsetCoordinates = unitDB.OffsetCoordinates[unitIndex];
-                    unitCoordinates = TransformFromOffset(unitHeading, groupCoordinates, offsetCoordinates);
-                }
-                else if (!singleUnit || unitDB.DCSIDs.Count() != 1) // No fixed coordinates, generate random coordinates
-                {
-                    switch (unitDB.Category)
-                    {
-                        case UnitCategory.Ship:
-                            if (unitIndex > 0)
-                                unitCoordinates = groupCoordinates.CreateNearRandom(SHIP_UNIT_SPACING, SHIP_UNIT_SPACING * 10);
-                            break;
-                        case UnitCategory.Cargo:
-                        case UnitCategory.Static:
-                            // Static units are spawned exactly on the group location (and there's only a single unit per group)
-                            break;
-                        default:
-                            unitCoordinates = groupCoordinates.CreateNearRandom(VEHICLE_UNIT_SPACING, VEHICLE_UNIT_SPACING * 10);
-                            break;
-                    }
-                }
+            // else
+            // {
+            //     if (unitDB.OffsetCoordinates.Length > unitIndex) // Unit has a fixed set of coordinates (for SAM sites, etc.)
+            //     {
+            //         Coordinates offsetCoordinates = unitDB.OffsetCoordinates[unitIndex];
+            //         unitCoordinates = TransformFromOffset(unitHeading, groupCoordinates, offsetCoordinates);
+            //     }
+            //     else if (!singleUnit || unitDB.DCSIDs.Count() != 1) // No fixed coordinates, generate random coordinates
+            //     {
+            //         switch (unitDB.Category)
+            //         {
+            //             case UnitCategory.Ship:
+            //                 if (unitIndex > 0)
+            //                     unitCoordinates = groupCoordinates.CreateNearRandom(SHIP_UNIT_SPACING, SHIP_UNIT_SPACING * 10);
+            //                 break;
+            //             case UnitCategory.Cargo:
+            //             case UnitCategory.Static:
+            //                 // Static units are spawned exactly on the group location (and there's only a single unit per group)
+            //                 break;
+            //             default:
+            //                 unitCoordinates = groupCoordinates.CreateNearRandom(VEHICLE_UNIT_SPACING, VEHICLE_UNIT_SPACING * 10);
+            //                 break;
+            //         }
+            //     }
 
-                if (unitDB.OffsetHeading.Length > unitIndex) // Unit has a fixed heading (for SAM sites, etc.)
-                    unitHeading = Toolbox.ClampAngle(unitHeading + unitDB.OffsetHeading[unitIndex]);
-                else if (unitDB.Category != UnitCategory.Ship)
-                    unitHeading = Toolbox.RandomDouble(Toolbox.TWO_PI);
-            }
+            //     if (unitDB.OffsetHeading.Length > unitIndex) // Unit has a fixed heading (for SAM sites, etc.)
+            //         unitHeading = Toolbox.ClampAngle(unitHeading + unitDB.OffsetHeading[unitIndex]);
+            //     else if (unitDB.Category != UnitCategory.Ship)
+            //         unitHeading = Toolbox.RandomDouble(Toolbox.TWO_PI);
+            // }
             return (unitCoordinates, unitHeading);
         }
 
