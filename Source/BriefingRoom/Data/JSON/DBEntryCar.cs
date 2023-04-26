@@ -58,7 +58,8 @@ namespace BriefingRoom4DCS.Data
                     Liveries = car.paintSchemes.ToDictionary(pair => (Country)Enum.Parse(typeof(Country), pair.Key.Replace(" ", ""), true), pair => pair.Value),
                     Countries = car.countries.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)).ToList(),
                     DCSCategory = car.category,
-                    Module = car.module
+                    Module = car.module,
+                    Families = iniUnit.Families
                 });
             }
 

@@ -64,7 +64,7 @@ namespace BriefingRoom4DCS.Generator
             string[] callSignEnum;
             do
             {
-                callSignEnum = Toolbox.RandomFrom<string>(unitDB.Callsigns).Split(":");
+                callSignEnum = Toolbox.RandomFrom<string>(unitDB.CallSigns).Split(":");
                 randomNumber = Toolbox.RandomMinMax(1, 9);
                 groupName = $"{callSignEnum[1]} {randomNumber}";
             } while (NATOCallsigns.Contains(groupName));

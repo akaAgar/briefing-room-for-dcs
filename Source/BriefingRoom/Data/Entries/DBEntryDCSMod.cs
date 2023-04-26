@@ -18,10 +18,56 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
+using System.Collections.Generic;
+
 namespace BriefingRoom4DCS.Data
 {
     internal class DBEntryDCSMod : DBEntry
     {
+        internal static List<string> coreMods = new List<string>{
+            "World War II AI Units by Eagle Dynamics",
+            "Characters",
+            "Animals",
+            "TAVKR 1143 High Detail",
+            "RailwayObjectsPack",
+            "South_Atlantic_Assets",
+            "TechWeaponPack",
+            "USS_Nimitz",
+            "A-10 Warthog",
+            "AH-64D BLK.II AI",
+            "AJS37 AI by Heatblur Simulations",
+            "AV-8B N/A AI by RAZBAM Sims",
+            "AircraftWeaponPack",
+            "C-101 Aviojet by AvioDev",
+            "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+            "Christen Eagle II AI by Magnitude 3 LLC",
+            "F-16C bl.50 AI",
+            "F-5E/E-3 by Belsimtek",
+            "F-86F Sabre AI by Eagle Dynamics",
+            "F-14B AI by Heatblur Simulations",
+            "F/A-18C AI",
+            "Hawk T.1A AI by VEAO Simulations",
+            "I-16 AI by OctopusG",
+            "Ka-50 Black Shark",
+            "L-39C/ZA by Eagle Dynamics",
+            "M-2000C AI by RAZBAM Sims",
+            "MB-339A/PAN AI by IndiaFoxtEcho",
+            "MQ-9 Reaper AI",
+            "Mi-24P AI by Eagle Dynamics",
+            "MiG-15bis AI by Eagle Dynamics",
+            "MiG-19P AI by RAZBAM",
+            "MiG-21Bis AI by Magnitude 3 LLC",
+            "./CoreMods/aircraft/Mirage-F1",
+            "SA342 AI by Polychop-Simulations",
+            "Su-34 AI",
+            "./CoreMods/aircraft/Yak-52",
+            "CaptoGloveSupport",
+            "LeapMotionSupport",
+            "SensoryxVRFreeSupport",
+            "VoiceChat",
+            "jsAvionics"
+        };
+
         internal string RequiredID { get; private set; }
         protected override bool OnLoad(string iniFilePath)
         {
