@@ -42,7 +42,7 @@ namespace BriefingRoom4DCS.Data
         internal Dictionary<string, object> ExtraProps { get; init; }
         internal bool EPLRS { get; init; }
         internal Dictionary<string, List<List<string>>> SpecificCallNames { get; init; }
-        internal List<string> Callsigns { get; init; }
+        internal List<string> CallSigns { get; init; }
         internal List<Payload> Payloads { get; init; }
 
         protected override bool OnLoad(string o)
@@ -89,7 +89,7 @@ namespace BriefingRoom4DCS.Data
                     }).ToList()).ToList(),
                     ExtraProps = (aircraft.extraProps ?? new List<ExtraProp>()).Where(x => x.defValue is not null).ToDictionary(x => x.id, x => x.defValue),
                     EPLRS = (bool)(aircraft.EPLRS ?? false),
-                    Callsigns = (bool)(aircraft.inheriteCommonCallnames ?? false) ?  new List<string> { "1:Enfield", "2:Springfield", "3:Uzi", "4:Colt", "5:Dodge", "6:Ford", "7:Chevy", "8:Pontiac" } : new List<string>(),
+                    CallSigns = new List<string> { "1:Enfield", "2:Springfield", "3:Uzi", "4:Colt", "5:Dodge", "6:Ford", "7:Chevy", "8:Pontiac" },
                     SpecificCallNames = aircraft.specificCallnames,
                     Families = iniUnit.Families,
                     Payloads = aircraft.payloadPresets

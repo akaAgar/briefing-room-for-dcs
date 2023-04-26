@@ -176,11 +176,11 @@ namespace BriefingRoom4DCS.Data
 
             foreach (Country country in Countries)
                 validUnits[country] = (
-                        from DBEntryUnit unit in Database.GetAllEntries<DBEntryUnit>()
-                        where unit.Families.Intersect(families).ToList().Count > 0 && unit.Operators.ContainsKey(country) &&
-                            (string.IsNullOrEmpty(unit.RequiredMod) || unitMods.Contains(unit.RequiredMod, StringComparer.InvariantCultureIgnoreCase)) &&
-                            (unit.Operators[country][0] <= decade) && (unit.Operators[country][1] >= decade) &&
-                            (!unit.Flags.HasFlag(DBEntryUnitFlags.LowPolly) || allowLowPolly)
+                        from unit in Database.GetAllEntries<DBEntryJSONUnit>()
+                        where unit.Families.Intersect(families).ToList().Count > 0 && unit.Countries.Contains(country)
+                            && (string.IsNullOrEmpty(unit.Module) || unitMods.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase) || DBEntryDCSMod.coreMods.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase))
+                            // && (unit.Operators[country][0] <= decade) && (unit.Operators[country][1] >= decade) &&
+                            //(!unit.Flags.HasFlag(DBEntryUnitFlags.LowPolly) || allowLowPolly)
                         select unit.ID
                     ).Distinct().ToList();
 
