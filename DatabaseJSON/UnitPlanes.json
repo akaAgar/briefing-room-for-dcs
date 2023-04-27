@@ -47404,6 +47404,124 @@
         ]
     },
     {
+        "_id": "a93fd657ae090fc4b0652e2595e2124bff3065ed",
+        "paintSchemes": {
+            "2": [
+                "Default"
+            ]
+        },
+        "payloadPresets": [],
+        "type": "KC130",
+        "displayName": "KC-130",
+        "categories": [
+            "{8A302789-A55D-4897-B647-66493FA6826F}",
+            "Tanker"
+        ],
+        "module": "AV-8B N/A AI by RAZBAM Sims",
+        "tasks": [
+            {
+                "OldID": "Refueling",
+                "Name": "Refueling",
+                "WorldID": 13
+            }
+        ],
+        "fuel": 30000,
+        "flares": 60,
+        "chaff": 120,
+        "radio": {
+            "frequency": 251,
+            "modulation": 0
+        },
+        "specificCallnames": {},
+        "maxAlt": 9315,
+        "cruiseSpeed": 174,
+        "countries": [
+            "USA",
+            "France",
+            "Canada",
+            "Spain",
+            "Israel",
+            "Italy",
+            "Japan",
+            "Saudi Arabia",
+            "Sweden",
+            "Morocco",
+            "Malaysia",
+            "Libya",
+            "Indonesia",
+            "Brazil",
+            "Kuwait",
+            "Argentina",
+            "Peru"
+        ],
+        "countriesWorldID": [
+            2,
+            5,
+            8,
+            9,
+            15,
+            20,
+            36,
+            42,
+            46,
+            55,
+            57,
+            58,
+            60,
+            64,
+            71,
+            83,
+            89
+        ]
+    },
+    {
+        "_id": "3c77e0d24f64aa14d8de3cd420adfec2ed437347",
+        "EPLRS": true,
+        "paintSchemes": {
+            "2": [
+                "100th ARW",
+                "22nd ARW"
+            ]
+        },
+        "payloadPresets": [],
+        "type": "KC135MPRS",
+        "displayName": "KC-135MPRS Tanker",
+        "categories": [
+            "{8A302789-A55D-4897-B647-66493FA6826F}",
+            "Tanker"
+        ],
+        "module": "AV-8B N/A AI by RAZBAM Sims",
+        "tasks": [
+            {
+                "OldID": "Refueling",
+                "Name": "Refueling",
+                "WorldID": 13
+            }
+        ],
+        "fuel": 90700,
+        "flares": 60,
+        "chaff": 120,
+        "radio": {
+            "frequency": 251,
+            "modulation": 0
+        },
+        "specificCallnames": {},
+        "maxAlt": 12000,
+        "cruiseSpeed": 220,
+        "countries": [
+            "USA",
+            "Turkey",
+            "France",
+            "Chile"
+        ],
+        "countriesWorldID": [
+            2,
+            3,
+            5,
+            63
+        ]
+    },
+    {
         "_id": "57d5cdee7e85d91c3a0133f8792e5046f0f01385",
         "paintSchemes": {
             "0": [
