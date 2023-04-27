@@ -125,5 +125,13 @@ namespace BriefingRoom4DCS.Data
             return payload.pylons.ToDictionary(x => x.num, x => new Dictionary<string, string> { { "CLSID", x.CLSID }});
         }
 
+        internal Dictionary<int, Dictionary<string, string>> GetPylonsObject(DCSTask task)
+        {   
+            if (Payloads.Count() == 0)
+                return new Dictionary<int, Dictionary<string, string>>();
+            var payload = Toolbox.RandomFrom(Payloads.Where(x => x.tasks.Contains((int)task)).ToList());
+            return payload.pylons.ToDictionary(x => x.num, x => new Dictionary<string, string> { { "CLSID", x.CLSID }});
+        }
+
     }
 }

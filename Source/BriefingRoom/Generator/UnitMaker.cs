@@ -2,6 +2,7 @@
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Mission.DCSLuaObjects;
 using BriefingRoom4DCS.Template;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -149,7 +150,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 (country, units) = GeneratorTools.GetNeutralRandomUnits(families, CoalitionsDB.SelectMany(x => x.Countries).ToList(), Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowLowPoly"), countMinMax: unitCountMinMax);
             }
-            if (units.Count == 0) throw new BriefingRoomException($"Found no units for {string.Join(", ", families)} {country}");
+            if (units.Where(x => x != null).Count() == 0) throw new BriefingRoomException($"Found no units for {string.Join(", ", families)} {country}");
             if (country != Country.ALL)
                 extraSettings["Country"] = country;
 
@@ -538,7 +539,7 @@ namespace BriefingRoom4DCS.Generator
                     (int?)extraSettings.GetValueOrDefault("AirbaseRadioModulation", null)
                     )).ToList();
                 unit.PayloadCommon = aircraftUnitDB.PayloadCommon;
-                unit.Pylons = aircraftUnitDB.GetPylonsObject(extraSettings.GetValueOrDefault("Payload", "default").ToString());
+                unit.Pylons = extraSettings.ContainsKey("Payload")? aircraftUnitDB.GetPylonsObject(extraSettings.GetValueOrDefault("Payload", "").ToString()) : aircraftUnitDB.GetPylonsObject((DCSTask)extraSettings.GetValueOrDefault("DCSTask", DCSTask.Nothing));
                 unit.Parking = ((List<int>)extraSettings.GetValueOrDefault("ParkingID", new List<int>())).ElementAtOrDefault(unitLuaIndex - 1);
             }
             else if (unitDB.Category == UnitCategory.Static || unitDB.Category == UnitCategory.Cargo)

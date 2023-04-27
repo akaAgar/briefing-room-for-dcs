@@ -62,15 +62,6 @@ namespace BriefingRoom4DCS
                 "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Romeo", "Sierra", "Tango", "Uniform", "Victor",
                 "Whiskey", "X-Ray", "Yankee", "Zulu"};
 
-        internal static string FormatPayload(string key)
-        {
-            if (key == "default")
-            {
-                return "General";
-            }
-            var textInfo = new CultureInfo("en-US", false).TextInfo;
-            return textInfo.ToTitleCase(key.Replace("-", " "));
-        }
         internal static bool CreateMissingDirectory(string path)
         {
             if (Directory.Exists(path)) return true;

@@ -163,8 +163,6 @@ namespace BriefingRoom4DCS
 
         public static string GetAlias(int index) => Toolbox.GetAlias(index);
 
-        public static string FormatPayload(string payload) => Toolbox.FormatPayload(payload);
-
         public static string[] GetDatabaseEntriesIDs(DatabaseEntryType entryType, string parameter = "")
         {
             return (from DatabaseEntryInfo entryInfo in GetDatabaseEntriesInfo(entryType, parameter) select entryInfo.ID).ToArray();
