@@ -91,7 +91,7 @@ namespace BriefingRoom4DCS.Generator
                 if (hideEnemy && groupSide == Side.Enemy)
                     groupFlags |= UnitMakerGroupFlags.AlwaysHidden;
 
-                extraSettings.AddIfKeyUnused("Payload", featureDB.UnitGroupPayload);
+                extraSettings.AddIfKeyUnused("DCSTask", featureDB.UnitGroupTask);
 
                 var groupLua = featureDB.UnitGroupLuaGroup;
                 var unitCount = featureDB.UnitGroupSize.GetValue();
@@ -118,7 +118,7 @@ namespace BriefingRoom4DCS.Generator
                             $"{groupInfo.Value.Name.Split("-")[0]}\t" +
                             $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get()}\t" +
                             $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}{TACANStr}\t" +
-                            $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}"); // TODO: human-readable payload name
+                            $"{featureDB.UnitGroupTask}"); // TODO: human-readable payload name
 
                 if (!groupInfo.Value.UnitDB.IsAircraft)
                     mission.MapData.Add($"UNIT-{groupInfo.Value.UnitDB.Families[0]}-{groupSide}-{groupInfo.Value.GroupID}", new List<double[]> { groupInfo.Value.Coordinates.ToArray() });
@@ -267,7 +267,7 @@ namespace BriefingRoom4DCS.Generator
                             $"{groupInfo.Value.Name.Split("-")[0]}\t" +
                             $"{unitCount}× {groupInfo.Value.UnitDB.UIDisplayName.Get()}\t" +
                             $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
-                            $"{Toolbox.FormatPayload(featureDB.UnitGroupPayload)}");
+                            $"{featureDB.UnitGroupTask}");
                 if (!groupInfo.Value.UnitDB.IsAircraft)
                     mission.MapData.Add($"UNIT-{groupInfo.Value.UnitDB.Families[0]}-{groupSide}-{groupInfo.Value.GroupID}", new List<double[]> { groupInfo.Value.Coordinates.ToArray() });
             }

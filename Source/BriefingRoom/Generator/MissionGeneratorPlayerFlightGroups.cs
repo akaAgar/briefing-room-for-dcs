@@ -194,7 +194,7 @@ namespace BriefingRoom4DCS.Generator
                 $"{groupInfo.Value.Name}(P)\t" +
                 $"{flightGroup.Count}× {unitDB.UIDisplayName.Get()}\t" +
                 $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
-                $"{Toolbox.FormatPayload(flightGroup.Payload)}\t" +
+                $"{flightGroup.Payload}\t" +
                 $"{homeBase}");
             for (int i = 0; i < flightGroup.Count; i++)
                 mission.AppendValue("SCRIPTCLIENTPILOTNAMES", $"\"{groupInfo.Value.Name} {i + 1}\",");

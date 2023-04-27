@@ -284,7 +284,7 @@
                                             <select class="form-control selectpicker" @bind=flight.Payload>
                                                 @foreach (var item in BriefingRoom.GetAircraftPayloads(flight.Aircraft))
                                                 {
-                                                    <option value="@item">@BriefingRoom.FormatPayload(item)</option> // Blazor needs to know what values it binds to!
+                                                    <option value="@item">@item</option> // Blazor needs to know what values it binds to!
                                                 }
                                             </select>
                                         </div>
