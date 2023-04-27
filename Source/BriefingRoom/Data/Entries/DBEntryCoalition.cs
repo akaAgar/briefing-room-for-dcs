@@ -108,8 +108,8 @@ namespace BriefingRoom4DCS.Data
             // Different unit types allowed in the group, pick a random type for each unit.
             if (allowDifferentUnitTypes)
             {
-                if(lowUnitVariation)
-                   selectableUnits = new List<string>{Toolbox.RandomFrom(selectableUnits),Toolbox.RandomFrom(selectableUnits)};
+                if (lowUnitVariation)
+                    selectableUnits = new List<string> { Toolbox.RandomFrom(selectableUnits), Toolbox.RandomFrom(selectableUnits) };
                 List<string> selectedUnits = new List<string>();
                 for (int i = 0; i < count; i++)
                     selectedUnits.Add(Toolbox.RandomFrom(selectableUnits));
@@ -170,7 +170,7 @@ namespace BriefingRoom4DCS.Data
             return potentiallyValidUnit.DCSIDs.Length >= minUnitCount && potentiallyValidUnit.DCSIDs.Length <= maxUnitCount;
         }
 
-        private Dictionary<Country, List<string>> SelectValidUnits(List<UnitFamily> families, Decade decade, List<string> unitMods, bool allowLowPolly)
+        private Dictionary<Country, List<string>> SelectValidUnits(List<UnitFamily> families, Decade decade, List<string> unitMods, bool allowLowPoly)
         {
             var validUnits = new Dictionary<Country, List<string>>();
 
@@ -179,8 +179,8 @@ namespace BriefingRoom4DCS.Data
                         from unit in Database.GetAllEntries<DBEntryJSONUnit>()
                         where unit.Families.Intersect(families).ToList().Count > 0 && unit.Countries.Contains(country)
                             && (string.IsNullOrEmpty(unit.Module) || unitMods.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase) || DBEntryDCSMod.coreMods.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase))
-                            // && (unit.Operators[country][0] <= decade) && (unit.Operators[country][1] >= decade) &&
-                            //(!unit.Flags.HasFlag(DBEntryUnitFlags.LowPolly) || allowLowPolly)
+                            && (unit.Operational[0] <= decade) && (unit.Operational[1] >= decade)
+                            && (!unit.LowPoly || allowLowPoly)
                         select unit.ID
                     ).Distinct().ToList();
 

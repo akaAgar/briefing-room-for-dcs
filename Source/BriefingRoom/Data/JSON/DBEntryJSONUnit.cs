@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using System;
 using System.Collections.Generic;
+using BriefingRoom4DCS.Template;
 
 namespace BriefingRoom4DCS.Data
 {
@@ -32,6 +33,8 @@ namespace BriefingRoom4DCS.Data
         internal UnitCategory Category { get { return Families[0].GetUnitCategory(); } }
         internal bool IsAircraft { get { return Category.IsAircraft(); } }
         internal UnitFamily[] Families { get; init; }
+        internal List<Decade> Operational { get; init; }
+        internal bool LowPoly { get; init; } = false;
 
 
         protected override bool OnLoad(string o)
@@ -41,5 +44,19 @@ namespace BriefingRoom4DCS.Data
 
 
         public DBEntryJSONUnit() { }
+
+        internal static List<Decade> GetOperationalPeriod(Dictionary<Country, Template.Decade[]> iniOperators)
+        {
+            Decade min = Decade.Decade2020;
+            Decade max = Decade.Decade1940;
+            foreach (var value in iniOperators.Values)
+            {
+                if (value[0] < min)
+                    min = value[0];
+                if (value[1] > min)
+                    max = value[1];
+            }
+            return new List<Decade> { min, max };
+        }
     }
 }
