@@ -89,7 +89,6 @@ namespace BriefingRoom4DCS.Data
                     AmmoType = aircraft.ammoType,
                     MaxAlt = aircraft.maxAlt,
                     CruiseSpeed = aircraft.maxAlt,
-                    PlayerControllable = iniUnit.AircraftData.PlayerControllable,
                     Radio = new RadioChannel(aircraft.radio.frequency, (RadioModulation)aircraft.radio.modulation),
                     PanelRadios = (aircraft.panelRadio ?? new List<PanelRadio>()).Select(radio => {
                         return new DBEntryUnitRadioPreset(radio.channels.Select(x => x.@default).ToArray(), radio.channels.Select(x => {
@@ -103,10 +102,13 @@ namespace BriefingRoom4DCS.Data
                     EPLRS = (bool)(aircraft.EPLRS ?? false),
                     CallSigns = new List<string> { "1:Enfield", "2:Springfield", "3:Uzi", "4:Colt", "5:Dodge", "6:Ford", "7:Chevy", "8:Pontiac" },
                     SpecificCallNames = aircraft.specificCallnames,
+                    Payloads = aircraft.payloadPresets,
+
+                    // Look to replace/simplify
+                    PlayerControllable = iniUnit.AircraftData.PlayerControllable,
                     Families = iniUnit.Families,
-                    Payloads = aircraft.payloadPresets
-
-
+                    Operational = GetOperationalPeriod(iniUnit.Operators),
+                    LowPoly = iniUnit.Flags.HasFlag(DBEntryUnitFlags.LowPolly)
                 });
             }
 

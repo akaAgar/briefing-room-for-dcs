@@ -55,7 +55,11 @@ namespace BriefingRoom4DCS.Data
                     DCSID = ship.type,
                     Countries = ship.countries.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)).ToList(),
                     Module = ship.module,
-                    Families = iniUnit.Families
+
+                    // Look to replace/simplify
+                    Families = iniUnit.Families,
+                    Operational = GetOperationalPeriod(iniUnit.Operators),
+                    LowPoly = iniUnit.Flags.HasFlag(DBEntryUnitFlags.LowPolly)
                 });
             }
 
