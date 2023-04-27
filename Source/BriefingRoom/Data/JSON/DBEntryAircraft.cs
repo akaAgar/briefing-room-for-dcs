@@ -45,16 +45,20 @@ namespace BriefingRoom4DCS.Data
         internal List<string> CallSigns { get; init; }
         internal List<Payload> Payloads { get; init; }
 
-        internal Dictionary<string, object> PayloadCommon { get {
-            var dict = new Dictionary<string, object>{
+        internal Dictionary<string, object> PayloadCommon
+        {
+            get
+            {
+                var dict = new Dictionary<string, object>{
                 {"flare", Flares},
                 {"chaff", Chaff},
                 {"gun", 100}
                 };
-            if(AmmoType.HasValue)
-                dict.Add("ammo_type", AmmoType.Value);
-            return dict;
-        }}
+                if (AmmoType.HasValue)
+                    dict.Add("ammo_type", AmmoType.Value);
+                return dict;
+            }
+        }
 
         protected override bool OnLoad(string o)
         {
@@ -90,8 +94,10 @@ namespace BriefingRoom4DCS.Data
                     MaxAlt = aircraft.maxAlt,
                     CruiseSpeed = aircraft.maxAlt,
                     Radio = new RadioChannel(aircraft.radio.frequency, (RadioModulation)aircraft.radio.modulation),
-                    PanelRadios = (aircraft.panelRadio ?? new List<PanelRadio>()).Select(radio => {
-                        return new DBEntryUnitRadioPreset(radio.channels.Select(x => x.@default).ToArray(), radio.channels.Select(x => {
+                    PanelRadios = (aircraft.panelRadio ?? new List<PanelRadio>()).Select(radio =>
+                    {
+                        return new DBEntryUnitRadioPreset(radio.channels.Select(x => x.@default).ToArray(), radio.channels.Select(x =>
+                        {
                             var modulation = RadioModulation.AM;
                             if (!string.IsNullOrEmpty(x.modulation) && x.modulation != "AM/FM")
                                 modulation = (RadioModulation)Enum.Parse(typeof(RadioModulation), x.modulation, true);
@@ -118,19 +124,23 @@ namespace BriefingRoom4DCS.Data
         public DBEntryAircraft() { }
 
         internal Dictionary<int, Dictionary<string, string>> GetPylonsObject(string aircraftPayload)
-        {   
+        {
             if (Payloads.Count() == 0)
                 return new Dictionary<int, Dictionary<string, string>>();
             var payload = Toolbox.RandomFrom(Payloads);
-            return payload.pylons.ToDictionary(x => x.num, x => new Dictionary<string, string> { { "CLSID", x.CLSID }});
+            return payload.pylons.ToDictionary(x => x.num, x => new Dictionary<string, string> { { "CLSID", x.CLSID } });
         }
 
         internal Dictionary<int, Dictionary<string, string>> GetPylonsObject(DCSTask task)
-        {   
+        {
             if (Payloads.Count() == 0)
                 return new Dictionary<int, Dictionary<string, string>>();
             var payload = Toolbox.RandomFrom(Payloads.Where(x => x.tasks.Contains((int)task)).ToList());
-            return payload.pylons.ToDictionary(x => x.num, x => new Dictionary<string, string> { { "CLSID", x.CLSID }});
+            if (payload == null)
+                payload = Toolbox.RandomFrom(Payloads);
+
+            return payload.pylons.Where(x => x != null).ToDictionary(x => x.num, x => new Dictionary<string, string> { { "CLSID", x.CLSID } });
+
         }
 
     }

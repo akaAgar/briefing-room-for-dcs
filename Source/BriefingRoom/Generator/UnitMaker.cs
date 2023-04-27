@@ -296,7 +296,7 @@ namespace BriefingRoom4DCS.Generator
             if (unitFamily.GetUnitCategory().IsAircraft())
             {
                 var aircraftDB = (DBEntryAircraft)firstUnitDB;
-                GeneratorTools.ReplaceKey(ref groupYml, "Altitude", aircraftDB.MaxAlt * 0.6);
+                GeneratorTools.ReplaceKey(ref groupYml, "Altitude", (int)Math.Floor(aircraftDB.MaxAlt * 0.6));
                 GeneratorTools.ReplaceKey(ref groupYml, "EPLRS", aircraftDB.EPLRS);
                 GeneratorTools.ReplaceKey(ref groupYml, "RadioBand", (int)aircraftDB.Radio.Modulation);
                 GeneratorTools.ReplaceKey(ref groupYml, "RadioFrequency", aircraftDB.Radio.Frequency);
