@@ -895,7 +895,11 @@ function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
     return o.complete
   end)
   local missionOver = completeCount >= #briefingRoom.mission.objectives
-  briefingRoom.debugPrint("Objective Completion state: "..string(completeCount).."/"..string(#briefingRoom.mission.objectives).."=".. string(missionOver))
+  -- Debug missions called complete early
+  if briefingRoom.printDebugMessages then
+    briefingRoom.debugPrint("Objective Completion state: "..tostring(completeCount).."/"..tostring(#briefingRoom.mission.objectives).."=".. tostring(missionOver))
+  end
+  -- End Debug
   if missionOver then
     briefingRoom.debugPrint("Mission marked as complete")
     briefingRoom.mission.complete = true
