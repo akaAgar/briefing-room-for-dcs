@@ -52,7 +52,8 @@ namespace BriefingRoom4DCS.Data
                 var dict = new Dictionary<string, object>{
                 {"flare", Flares},
                 {"chaff", Chaff},
-                {"gun", 100}
+                {"gun", 100},
+                {"fuel", Fuel}
                 };
                 if (AmmoType.HasValue)
                     dict.Add("ammo_type", AmmoType.Value);
@@ -125,9 +126,9 @@ namespace BriefingRoom4DCS.Data
 
         internal Dictionary<int, Dictionary<string, string>> GetPylonsObject(string aircraftPayload)
         {
-            if (Payloads.Count() == 0)
+            var payload = Payloads.Find(x => x.name == aircraftPayload);
+            if (payload == null)
                 return new Dictionary<int, Dictionary<string, string>>();
-            var payload = Toolbox.RandomFrom(Payloads);
             return payload.pylons.ToDictionary(x => x.num, x => new Dictionary<string, string> { { "CLSID", x.CLSID } });
         }
 
