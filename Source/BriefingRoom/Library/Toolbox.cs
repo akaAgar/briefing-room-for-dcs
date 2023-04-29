@@ -268,6 +268,26 @@ namespace BriefingRoom4DCS
             }
         }
 
+        internal static Season GetSeasonFromMonth(int monthInt)
+        {
+            var month = (Month)(monthInt - 1);
+            return month switch {
+                Month.January => Season.Winter,
+                Month.February => Season.Winter,
+                Month.March => Season.Spring,
+                Month.April => Season.Spring,
+                Month.May => Season.Spring,
+                Month.June => Season.Summer,
+                Month.July => Season.Summer,
+                Month.August => Season.Summer,
+                Month.September => Season.Fall,
+                Month.October => Season.Fall,
+                Month.November => Season.Fall,
+                Month.December => Season.Winter,
+                _ => Season.Summer
+            };
+        }
+
 
         internal static string PATH_USER { get; } = NormalizeDirectoryPath(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
 

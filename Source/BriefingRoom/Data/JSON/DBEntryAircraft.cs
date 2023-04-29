@@ -128,14 +128,14 @@ namespace BriefingRoom4DCS.Data
         {
             var payload = Payloads.Find(x => x.name == aircraftPayload);
             if (payload == null)
-                return new Dictionary<int, Dictionary<string, string>>();
+                return null;
             return payload.pylons.ToDictionary(x => x.num, x => new Dictionary<string, string> { { "CLSID", x.CLSID } });
         }
 
         internal Dictionary<int, Dictionary<string, string>> GetPylonsObject(DCSTask task)
         {
             if (Payloads.Count() == 0)
-                return new Dictionary<int, Dictionary<string, string>>();
+                return null;
             var payload = Toolbox.RandomFrom(Payloads.Where(x => x.tasks.Contains((int)task)).ToList());
             if (payload == null)
                 payload = Toolbox.RandomFrom(Payloads);
