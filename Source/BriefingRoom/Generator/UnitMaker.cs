@@ -202,7 +202,12 @@ namespace BriefingRoom4DCS.Generator
                 groupName = callsign.Value.GroupName;
                 if (extraSettings.ContainsKey("PlayerStartingType") && extraSettings.GetValueOrDefault("PlayerStartingType").ToString() == "TakeOffParking")
                     groupName += "(C)";
+                var aircraftUnitDB = (DBEntryAircraft)firstUnitDB;
+                extraSettings["Pylons"] = extraSettings.ContainsKey("Payload")? aircraftUnitDB.GetPylonsObject(extraSettings.GetValueOrDefault("Payload", "").ToString()) : aircraftUnitDB.GetPylonsObject((DCSTask)extraSettings.GetValueOrDefault("DCSTask", DCSTask.Nothing));
             }
+
+            GetLivery(firstUnitDB, country, ref extraSettings);
+
             var dCSGroup = CreateGroup(
                 groupTypeLua,
                 coordinates,
@@ -523,7 +528,7 @@ namespace BriefingRoom4DCS.Generator
             else
                 unit.Skill = extraSettings.GetValueOrDefault("Skill", GeneratorTools.GetDefaultSkillLevel(Template, side)).ToString(); ;
 
-            GetLivery(ref unit, unitDB, country, extraSettings);
+            unit.LiveryId = extraSettings.GetValueOrDefault("Livery", "default").ToString();
 
             if (Toolbox.IsAircraft(unitDB.Category))
             {
@@ -539,7 +544,7 @@ namespace BriefingRoom4DCS.Generator
                     (int?)extraSettings.GetValueOrDefault("AirbaseRadioModulation", null)
                     )).ToList();
                 unit.PayloadCommon = aircraftUnitDB.PayloadCommon;
-                unit.Pylons = extraSettings.ContainsKey("Payload")? aircraftUnitDB.GetPylonsObject(extraSettings.GetValueOrDefault("Payload", "").ToString()) : aircraftUnitDB.GetPylonsObject((DCSTask)extraSettings.GetValueOrDefault("DCSTask", DCSTask.Nothing));
+                unit.Pylons = (Dictionary<int, Dictionary<string, string>>)extraSettings.GetValueOrDefault("Pylons", new Dictionary<int, Dictionary<string, string>>()); 
                 unit.Parking = ((List<int>)extraSettings.GetValueOrDefault("ParkingID", new List<int>())).ElementAtOrDefault(unitLuaIndex - 1);
             }
             else if (unitDB.Category == UnitCategory.Static || unitDB.Category == UnitCategory.Cargo)
@@ -555,13 +560,30 @@ namespace BriefingRoom4DCS.Generator
             return unit;
         }
 
-        private void GetLivery(ref DCSUnit unit, DBEntryJSONUnit unitDB, Country country, Dictionary<string, object> extraSettings)
+        private void GetLivery(DBEntryJSONUnit unitDB, Country country, ref Dictionary<string, object> extraSettings)
         {
             var LiveryId = extraSettings.GetValueOrDefault("Livery", "default").ToString();
-            if (LiveryId == "default")
-                LiveryId = Toolbox.RandomFrom(unitDB.Liveries.GetValueOrDefault(country, new List<string>{"default"}));
-            unit.LiveryId = LiveryId;
+            if (LiveryId != "default")
+                return;
+            var options = unitDB.Liveries.GetValueOrDefault(country, new List<string>{"default"});
+            if(DBEntryTheater.DESERT_MAPS.Contains(Mission.TheaterID))
+            {
+                var subset = options.Where(x => x.ToLower().Contains("desert")).ToList();
+                if(subset.Count() > 0)
+                    options = subset;
+            } else {
+                var subset = options.Where(x => !x.ToLower().Contains("desert")).ToList();
+                if(subset.Count() > 0)
+                    options = subset;
+            }
+
+            var season = Toolbox.GetSeasonFromMonth(int.Parse(Mission.GetValue("DateMonth")));
+            var seasonSubset = options.Where(x => x.ToLower().Contains(season.ToString().ToLower())).ToList();
+            if(seasonSubset.Count() > 0)
+                    options = seasonSubset;
+            extraSettings["Livery"] = Toolbox.RandomFrom(options);
         }
+
 
         private void AddUnitGroupToTable(Country country, DCSUnitCategory category, DCSGroup dCSGroup)
         {
