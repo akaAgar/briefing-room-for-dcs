@@ -14,6 +14,7 @@ briefingRoom.mission.missionFeatures.friendlyTaskableCAP.disableCooRemovedRadioM
 function briefingRoom.mission.missionFeatures.friendlyTaskableCAP.launchBombingRun()
   briefingRoom.taskables.launchCurry(briefingRoom.mission.missionFeatures.friendlyTaskableCAP,
     briefingRoom.mission.missionFeatures.groupNames.friendlyTaskableCAP, function(group, mark)
+    local currPos = mist.getLeadPos(group)
     return {
       id = 'Mission',
       airborne = true,
