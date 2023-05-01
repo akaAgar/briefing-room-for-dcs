@@ -1,0 +1,32 @@
+[
+    {
+        "_id": "c2dcd2625908c51562cdc42bc28c3a5b4cf89cbc",
+        "type": "Warehouse",
+        "displayName": "Warehouse",
+        "shapeName": "sklad"
+    },
+    {
+        "_id": "132a6fe55c31bc6546fa7232bf73aa9a6bae2144",
+        "type": "Tank",
+        "displayName": "Tank 1",
+        "shapeName": "bak"
+    },
+    {
+        "_id": "a1d802cce11de31fb1d9cd18c64de18a50562bed",
+        "type": ".Ammunition depot",
+        "displayName": "Ammunition depot",
+        "shapeName": "SkladC"
+    },
+    {
+        "_id": "3aeeac88ab89450dbb917b50c860d2c03b8680b8",
+        "type": "Tank 2",
+        "displayName": "Tank 2",
+        "shapeName": "airbase_tbilisi_tank_01"
+    },
+    {
+        "_id": "1245654ad74af14938474b6007d1988862b8bef7",
+        "type": "Tank 3",
+        "displayName": "Tank 3",
+        "shapeName": "airbase_tbilisi_tank_02"
+    }
+]

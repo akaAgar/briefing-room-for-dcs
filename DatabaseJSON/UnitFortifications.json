@@ -1,0 +1,564 @@
+[
+    {
+        "_id": "a2a8297a109a269f41e3b7ee500e4c9601aede49",
+        "type": ".Command Center",
+        "displayName": "Command Center",
+        "shapeName": "ComCenter"
+    },
+    {
+        "_id": "9170fdea48669744b984005656605da7003ccdf3",
+        "type": "Hangar A",
+        "displayName": "Hangar A",
+        "shapeName": "angar_a"
+    },
+    {
+        "_id": "9ab8accbf63886cf46dfddc5ad203156d6863c42",
+        "type": "Tech hangar A",
+        "displayName": "Tech hangar A",
+        "shapeName": "ceh_ang_a"
+    },
+    {
+        "_id": "2514b894ab8b750a4b87325d0cbf1b987572b566",
+        "type": "Farm A",
+        "displayName": "Farm A",
+        "shapeName": "ferma_a"
+    },
+    {
+        "_id": "69590d528d5c8dc946011525777591066a8e56d4",
+        "type": "Farm B",
+        "displayName": "Farm B",
+        "shapeName": "ferma_b"
+    },
+    {
+        "_id": "81649ec3d45618ff4b2591498cd92e23f14a67d4",
+        "type": "Garage A",
+        "displayName": "Garage A",
+        "shapeName": "garage_a"
+    },
+    {
+        "_id": "3f266732d87a0bf7b542f5bcafa34acdfaa7c76d",
+        "type": "Boiler-house A",
+        "displayName": "Boiler-house A",
+        "shapeName": "kotelnaya_a"
+    },
+    {
+        "_id": "dfea0c53be0be9d4ce2eb16f16f6b4a43abb24a1",
+        "type": "Restaurant 1",
+        "displayName": "Restaurant 1",
+        "shapeName": "restoran1"
+    },
+    {
+        "_id": "3d5e07c4684bfea02d97a3e75dc6b5718b9fa003",
+        "type": "Comms tower M",
+        "displayName": "Comms tower M",
+        "shapeName": "tele_bash_m"
+    },
+    {
+        "_id": "84ec42a6174214c6a6f439feeb53dbeeb6fcd706",
+        "type": "Cafe",
+        "displayName": "Cafe",
+        "shapeName": "stolovaya"
+    },
+    {
+        "_id": "afce0ad49fec590e031fe240ffe6c17bc717203b",
+        "type": "Workshop A",
+        "displayName": "Workshop A",
+        "shapeName": "tec_a"
+    },
+    {
+        "_id": "6eca9bcbe394816fdf84ab8fe4d958f44de156b9",
+        "type": "Electric power box",
+        "displayName": "Electric power box",
+        "shapeName": "tr_budka"
+    },
+    {
+        "_id": "f9e45759405d33b66378db45f02eec043ef20152",
+        "type": "Supermarket A",
+        "displayName": "Supermarket A",
+        "shapeName": "uniwersam_a"
+    },
+    {
+        "_id": "30adb4ed8e5a362d3bc90ec1ccb2f2e57699b879",
+        "type": "Water tower A",
+        "displayName": "Water tower A",
+        "shapeName": "wodokachka_a"
+    },
+    {
+        "_id": "72a8c63336b83460410348d217c7927fff5b5703",
+        "type": "TV tower",
+        "displayName": "TV tower",
+        "shapeName": "tele_bash"
+    },
+    {
+        "_id": "cfb07d2601550242014e948db62f4d2089d41051",
+        "type": "Shelter",
+        "displayName": "Shelter",
+        "shapeName": "ukrytie"
+    },
+    {
+        "_id": "599f1876c7b1d0b644326024df669dffec91eb8a",
+        "type": "Repair workshop",
+        "displayName": "Repair workshop",
+        "shapeName": "tech"
+    },
+    {
+        "_id": "915e49ee55e31812f29f843ae38a7f75d39c23bf",
+        "type": "Railway station",
+        "displayName": "Railway station",
+        "shapeName": "r_vok_sd"
+    },
+    {
+        "_id": "9e21f7a3d98e94a4af2800355b164d0fa19d6385",
+        "type": "Railway crossing A",
+        "displayName": "Railway crossing A",
+        "shapeName": "pereezd_big"
+    },
+    {
+        "_id": "d382c94458a483a1875c6f73817a5d6b0be1fa69",
+        "type": "Railway crossing B",
+        "displayName": "Railway crossing B",
+        "shapeName": "pereezd_small"
+    },
+    {
+        "_id": "0f18108114674e3d5b7c4fba7fc79c88af7986a9",
+        "type": "WC",
+        "displayName": "WC",
+        "shapeName": "WC"
+    },
+    {
+        "_id": "efaf59f8d2e578dbcd15b8e12aa268c9b422338b",
+        "type": "Small house 1A area",
+        "displayName": "Small house 1A area",
+        "shapeName": "domik1a-all"
+    },
+    {
+        "_id": "2c76211c9d8594b06a4595776cb307d117ba27b0",
+        "type": "Small house 1A",
+        "displayName": "Small house 1A",
+        "shapeName": "domik1a"
+    },
+    {
+        "_id": "864ff2907922bde90fb123fd1e2b7189f594385f",
+        "type": "Small house 1B area",
+        "displayName": "Small house 1B area",
+        "shapeName": "domik1b-all"
+    },
+    {
+        "_id": "69bc254f4f863bbe7c9ae24ab11bf1175ae0c91f",
+        "type": "Small house 1B",
+        "displayName": "Small house 1B",
+        "shapeName": "domik1b"
+    },
+    {
+        "_id": "c9ad7a2948da99394d1a1aed1f38edb2e19e8901",
+        "type": "Small house 1C area",
+        "displayName": "Small house 1C area",
+        "shapeName": "dom2c-all"
+    },
+    {
+        "_id": "b81e3189b429ba06ef12c14b9531ac70923f47ec",
+        "type": "Small house 2C",
+        "displayName": "Small house 2C",
+        "shapeName": "dom2c"
+    },
+    {
+        "_id": "715bff2ec742e0a29da41e67678c8437db39bd11",
+        "type": "Shop",
+        "displayName": "Shop",
+        "shapeName": "magazin"
+    },
+    {
+        "_id": "dbe32d4494460c76fe0aa9b24b319171bb396d23",
+        "type": "Tech combine",
+        "displayName": "Tech combine",
+        "shapeName": "kombinat"
+    },
+    {
+        "_id": "2db4629255e6d937f2bfd4b17e5b7b8a96929fd4",
+        "type": "Chemical tank A",
+        "displayName": "Chemical tank A",
+        "shapeName": "him_bak_a"
+    },
+    {
+        "_id": "0467a5f11f747be8bd1619b8675ccd566d5e13b2",
+        "type": "Small werehouse 1",
+        "displayName": "Small warehouse 1",
+        "shapeName": "s1"
+    },
+    {
+        "_id": "e987144f510d5a1f161490312a5c292b030624a0",
+        "type": "Small werehouse 2",
+        "displayName": "Small warehouse 2",
+        "shapeName": "s2"
+    },
+    {
+        "_id": "d1c1dd1eb6c54fb073897eebdd67ae2f682421f0",
+        "type": "Small werehouse 3",
+        "displayName": "Small warehouse 3",
+        "shapeName": "s3"
+    },
+    {
+        "_id": "b500733546f73b1df05bdea4521276ab580056cd",
+        "type": "Small werehouse 4",
+        "displayName": "Small warehouse 4",
+        "shapeName": "s4"
+    },
+    {
+        "_id": "904a4eb1ec1b14130660b3f36cafc3caf70dfe6c",
+        "type": "Garage B",
+        "displayName": "Garage B",
+        "shapeName": "garage_b"
+    },
+    {
+        "_id": "c32474f36884e59cd0e0a3fd7773edb7d803bc80",
+        "type": "Garage small A",
+        "displayName": "Garage small A",
+        "shapeName": "garagh-small-a"
+    },
+    {
+        "_id": "f5bb855f1f970c9d047383f6cf1e6b5992eb56ba",
+        "type": "Garage small B",
+        "displayName": "Garage small B",
+        "shapeName": "garagh-small-b"
+    },
+    {
+        "_id": "b32b86d7a56d11f474d5de8d515fd1265c14809c",
+        "type": "Pump station",
+        "displayName": "Pump station",
+        "shapeName": "nasos"
+    },
+    {
+        "_id": "2e4585c3194ef35ee5745eee347596cce4509abe",
+        "type": "Oil derrick",
+        "displayName": "Oil derrick",
+        "shapeName": "neftevyshka"
+    },
+    {
+        "_id": "03a5dea14a4b9b7126c0a1bcd6996f14bc1c0236",
+        "type": "Container red 1",
+        "displayName": "Container red 1",
+        "shapeName": "konteiner_red1"
+    },
+    {
+        "_id": "8485cd7bc32e03a4d1ff2b7d57129284675d3ae9",
+        "type": "Container red 2",
+        "displayName": "Container red 2",
+        "shapeName": "konteiner_red2"
+    },
+    {
+        "_id": "3e302791d97a399fcc189af2fb889680182af5da",
+        "type": "Container red 3",
+        "displayName": "Container red 3",
+        "shapeName": "konteiner_red3"
+    },
+    {
+        "_id": "f76b6ddb03cd93ca78b1087ed0e0a7cb8a49bb7d",
+        "type": "Container white",
+        "displayName": "Container white",
+        "shapeName": "konteiner_white"
+    },
+    {
+        "_id": "e4bdda5ef0fbc04d3e11c6fe861aa909bf674bf0",
+        "type": "Container brown",
+        "displayName": "Container brown",
+        "shapeName": "konteiner_brown"
+    },
+    {
+        "_id": "5faa5089f6cee76603c629d3466d768076a7ce91",
+        "type": "Barracks 2",
+        "displayName": "Barracks 2",
+        "shapeName": "kazarma2"
+    },
+    {
+        "_id": "24a622f12d6511c36fe445753a57ffd4d180269d",
+        "type": "Military staff",
+        "displayName": "Military staff",
+        "shapeName": "aviashtab"
+    },
+    {
+        "_id": "b609df3613e3ff76d40f5617ce86a6d24b57075e",
+        "type": "Hangar B",
+        "displayName": "Hangar B",
+        "shapeName": "angar_b"
+    },
+    {
+        "_id": "284961060b64177a9aa2b35ae8c80e8ce9e20003",
+        "type": "Fuel tank",
+        "displayName": "Fuel tank",
+        "shapeName": "toplivo-bak"
+    },
+    {
+        "_id": "ae23740a1ce2fe3cefbf4b8aa87ce7a23732b53c",
+        "type": "Shelter B",
+        "displayName": "Shelter B",
+        "shapeName": "ukrytie_b"
+    },
+    {
+        "_id": "3deaac1ada30bb528e6e842b3a2099ef40e0c211",
+        "type": "Oil platform",
+        "displayName": "Oil platform",
+        "shapeName": "plavbaza"
+    },
+    {
+        "_id": "19e394715b1d876461dc9bea0816903f95f31d43",
+        "type": "Subsidiary structure 1",
+        "displayName": "Subsidiary structure 1",
+        "shapeName": "hozdomik1"
+    },
+    {
+        "_id": "418a5cadb101d264edc93643688b67f4fcf83c9b",
+        "type": "Subsidiary structure 2",
+        "displayName": "Subsidiary structure 2",
+        "shapeName": "hozdomik2"
+    },
+    {
+        "_id": "f30fdede989d1584c3f2e4d14f353cc21aa3827d",
+        "type": "Subsidiary structure 3",
+        "displayName": "Subsidiary structure 3",
+        "shapeName": "hozdomik3"
+    },
+    {
+        "_id": "3c94359b45dd28d795fd29d033b473266f54aa31",
+        "type": "Subsidiary structure A",
+        "displayName": "Subsidiary structure A",
+        "shapeName": "saray-a"
+    },
+    {
+        "_id": "d226b864975e01833c5e7324b2c0db6d7ffc72ce",
+        "type": "Subsidiary structure B",
+        "displayName": "Subsidiary structure B",
+        "shapeName": "saray-b"
+    },
+    {
+        "_id": "d83c85848f68bd42f20536a0973258286bc4aeaf",
+        "type": "Subsidiary structure C",
+        "displayName": "Subsidiary structure C",
+        "shapeName": "saray-c"
+    },
+    {
+        "_id": "8d99b385f67ba581581c34627e2832f2c2b8c717",
+        "type": "Subsidiary structure D",
+        "displayName": "Subsidiary structure D",
+        "shapeName": "saray-d"
+    },
+    {
+        "_id": "d82e8e3f263c4594c22f292eeae3b54dfc54cb93",
+        "type": "Subsidiary structure E",
+        "displayName": "Subsidiary structure E",
+        "shapeName": "saray-e"
+    },
+    {
+        "_id": "27d5574734fc5e91a19f54bf7cc97c4d109961bc",
+        "type": "Subsidiary structure F",
+        "displayName": "Subsidiary structure F",
+        "shapeName": "saray-f"
+    },
+    {
+        "_id": "4a463cfb3a8cddb22c7f7fd7adbb328af435e5cc",
+        "type": "Subsidiary structure G",
+        "displayName": "Subsidiary structure G",
+        "shapeName": "saray-g"
+    },
+    {
+        "_id": "3ca8ee7f0c038d52e17446f2f8976a9544b83e0d",
+        "type": "Landmine",
+        "displayName": "Landmine",
+        "shapeName": "landmine"
+    },
+    {
+        "_id": "8e50b39875986030f31678d5449674e0899f01ba",
+        "type": "FARP Ammo Dump Coating",
+        "displayName": "FARP Ammo Storage",
+        "shapeName": "SetkaKP"
+    },
+    {
+        "_id": "04575c1d1c3e798fbd9fb9e5b24724376ecd25eb",
+        "type": "FARP Tent",
+        "displayName": "FARP Tent",
+        "shapeName": "PalatkaB"
+    },
+    {
+        "_id": "cfd26dc47d1adea8936a3cfb57b36f4edcbd22ee",
+        "type": "FARP CP Blindage",
+        "displayName": "FARP Command Post",
+        "shapeName": "kp_ug"
+    },
+    {
+        "_id": "4a1518e0dae158b0fa44dbc411408eb3f71c8ae6",
+        "type": "FARP Fuel Depot",
+        "displayName": "FARP Fuel Depot",
+        "shapeName": "GSM Rus"
+    },
+    {
+        "_id": "52a6ccf6c62eaa1384a960404e9d970a8963b6ba",
+        "type": "GeneratorF",
+        "displayName": "GeneratorF",
+        "shapeName": "GeneratorF"
+    },
+    {
+        "_id": "6c3c445ed1d0afb4d0f5b558658a4f8d24d363d4",
+        "type": "Airshow_Cone",
+        "displayName": "Airshow cone",
+        "shapeName": "Comp_cone"
+    },
+    {
+        "_id": "4cef3e2729c0e428bf67a2a042868ed1e394d6da",
+        "type": "Airshow_Crowd",
+        "displayName": "Airshow Crowd",
+        "shapeName": "Crowd1"
+    },
+    {
+        "_id": "82cd940c97ec186a212f837f3a768abfa6ada741",
+        "type": "Red_Flag",
+        "displayName": "Mark Flag Red",
+        "shapeName": "H-flag_R"
+    },
+    {
+        "_id": "921fd20702aa276d9e58bcfbb4616335721d0e94",
+        "type": "White_Flag",
+        "displayName": "Mark Flag White",
+        "shapeName": "H-Flag_W"
+    },
+    {
+        "_id": "543edcfea062307bcf3415ab34073261a6e64bb2",
+        "type": "Black_Tyre",
+        "displayName": "Mark Tyre Black",
+        "shapeName": "H-tyre_B"
+    },
+    {
+        "_id": "49ee7841a5272ed8b33bec44b0ac13fbb7b6db45",
+        "type": "White_Tyre",
+        "displayName": "Mark Tyre White",
+        "shapeName": "H-tyre_W"
+    },
+    {
+        "_id": "1b4b6c86e89fb7b4e39c8ae6aa5c67ad2fafaeed",
+        "type": "Black_Tyre_RF",
+        "displayName": "Mark Tyre with Red Flag",
+        "shapeName": "H-tyre_B_RF"
+    },
+    {
+        "_id": "7564e5b2fe0e6e2f52b661a00bdadb19a43b2379",
+        "type": "Black_Tyre_WF",
+        "displayName": "Mark Tyre with White Flag",
+        "shapeName": "H-tyre_B_WF"
+    },
+    {
+        "_id": "4eae5073a82547b5b2a88b77385c9ae1d02158d8",
+        "type": "Windsock",
+        "displayName": "Windsock",
+        "shapeName": "H-Windsock_RW"
+    },
+    {
+        "_id": "f60954f8b37619ae7f0a386a4edb1ab57c36911a",
+        "type": "Beer Bomb",
+        "displayName": "Barrel",
+        "module": "World War II AI Units by Eagle Dynamics",
+        "shapeName": "barrelofbeer_support"
+    },
+    {
+        "_id": "6d55766a307a334d5d12dcea499b9daa20b8e48f",
+        "type": "Orca",
+        "displayName": "Orca Whale",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "Orca"
+    },
+    {
+        "_id": "1441b16bf3a377f8a3894c5ac9b7288437cd2e8f",
+        "type": "WindTurbine",
+        "displayName": "Wind Turbine",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "WindTurbine_10"
+    },
+    {
+        "_id": "5e40d112fd471079c648362ebe05dbdba5d54976",
+        "type": "WindTurbine_11",
+        "displayName": "Wind Turbine 2",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "WindTurbine_11"
+    },
+    {
+        "_id": "00bfed0a65d5743929da944f0a4a96791c83a114",
+        "type": "billboard_motorized",
+        "displayName": "Billboard Motorized",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "billboard_motorized"
+    },
+    {
+        "_id": "5f60296b416758fd742e99a432a19516dcf36978",
+        "type": "Stanley_LightHouse",
+        "displayName": "Stanley LightHouse",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "ST_LightHouse"
+    },
+    {
+        "_id": "70049d67be46f446b7a90085ae718ff110a7f183",
+        "type": "345 Excavator",
+        "displayName": "Excavator",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "cat_345l"
+    },
+    {
+        "_id": "4a7597152aaed8728a3d08f15f297573db42c0dc",
+        "type": "Tower Crane",
+        "displayName": "TowerCrane",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "TowerCrane_01"
+    },
+    {
+        "_id": "14c11460b82ac3e44caf2002a84146603ae005f3",
+        "type": "Small_LightHouse",
+        "displayName": "Small_LightHouse",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "Small_LightHouse"
+    },
+    {
+        "_id": "ef1a1c6bb10e379835b1305eb6855ab6f4d633f4",
+        "type": "Nodding_Donkey_Pump",
+        "displayName": "Nodding Donkey Pump",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "Nodding_Donkey"
+    },
+    {
+        "_id": "7c893ac8d909ab18da0307493b16e773debba0ad",
+        "type": "offshore WindTurbine",
+        "displayName": "Offshore Wind Turbine",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "offshore_windturbine"
+    },
+    {
+        "_id": "1c9d4141441d36d1b40c23bd0a0b741827913e81",
+        "type": "offshore WindTurbine2",
+        "displayName": "Offshore Wind Turbine 2",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "offshore_windturbine2"
+    },
+    {
+        "_id": "909306fc4df476e6897543ac42e30eb50f354f4e",
+        "type": "container_40ft",
+        "displayName": "Container 40ft",
+        "module": "TechWeaponPack",
+        "shapeName": "container_40ft"
+    },
+    {
+        "_id": "2f36b1878c1cda0c97ceb39f5666700e7690146c",
+        "type": "container_20ft",
+        "displayName": "Container 20ft",
+        "module": "TechWeaponPack",
+        "shapeName": "container_20ft"
+    },
+    {
+        "_id": "9ae15cf9b652db321695ea7277940493c8e2532d",
+        "type": "warning_board_a",
+        "displayName": "Warning Board: Spy Cannot Escape!",
+        "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shapeName": "biaoyu"
+    },
+    {
+        "_id": "f5fb4ad8c87c1d05d226d48b3df6d9d8adaa946a",
+        "type": "warning_board_b",
+        "displayName": "Warning Board: Catch Spy!",
+        "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shapeName": "biaoyu-2"
+    }
+]
