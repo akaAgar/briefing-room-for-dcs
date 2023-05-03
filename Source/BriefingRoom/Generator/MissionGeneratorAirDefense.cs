@@ -23,6 +23,7 @@ using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -92,13 +93,25 @@ namespace BriefingRoom4DCS.Generator
                     BriefingRoom.PrintToLog($"No spawn point found for {airDefenseRange} air defense unit groups", LogMessageErrorLevel.Warning);
                     return;
                 }
-
-                var groupInfo = unitMaker.AddUnitGroup(
-                    unitFamilies, 1, side,
+                 UnitMakerGroupInfo? groupInfo;
+                if(unitFamilies.Contains(UnitFamily.VehicleSAMMedium) || unitFamilies.Contains(UnitFamily.VehicleSAMLong))
+                {
+                    var options = Database.Instance.GetAllEntries<DBEntryTemplate>().Where(x => unitFamilies.Contains(x.Family) ).ToList();
+                    groupInfo = unitMaker.AddUnitGroup(
+                    Toolbox.RandomFrom(options), side,
                     "Vehicle", "Vehicle",
                     spawnPoint.Value,
                     0,
                     new Dictionary<string, object>());
+
+                } else {
+                    groupInfo = unitMaker.AddUnitGroup(
+                        unitFamilies, 1, side,
+                        "Vehicle", "Vehicle",
+                        spawnPoint.Value,
+                        0,
+                        new Dictionary<string, object>());
+                }
 
                 if (!groupInfo.HasValue) // Failed to generate a group
                     BriefingRoom.PrintToLog(
