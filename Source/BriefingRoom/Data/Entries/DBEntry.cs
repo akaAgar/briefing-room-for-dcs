@@ -78,6 +78,11 @@ namespace BriefingRoom4DCS.Data
             return accepted;
         }
 
+        protected string[] GetValidDBEntryIDs<T>(List<string> values, out string[] rejected) where T : DBEntry
+        {
+            return GetValidDBEntryIDs<T>(values.ToArray(), out rejected);
+        }
+
         internal virtual void Merge(DBEntry entry)
         {
             throw new NotImplementedException();

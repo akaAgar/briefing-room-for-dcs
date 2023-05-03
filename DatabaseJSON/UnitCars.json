@@ -636,6 +636,7 @@
         },
         "type": "2B11 mortar",
         "displayName": "Mortar 2B11 120mm",
+        "shape": "2B11",
         "countries": [
             "Russia",
             "Ukraine",
@@ -1694,6 +1695,7 @@
         },
         "type": "SAU Gvozdika",
         "displayName": "SPH 2S1 Gvozdika 122mm",
+        "shape": "2c1",
         "countries": [
             "Russia",
             "Ukraine",
@@ -2768,6 +2770,7 @@
         },
         "type": "SAU Msta",
         "displayName": "SPH 2S19 Msta 152mm",
+        "shape": "2-c19",
         "countries": [
             "Russia",
             "Ukraine",
@@ -3796,6 +3799,7 @@
         },
         "type": "SAU Akatsia",
         "displayName": "SPH 2S3 Akatsia 152mm",
+        "shape": "2-c3",
         "countries": [
             "Russia",
             "Ukraine",
@@ -4850,6 +4854,7 @@
         },
         "type": "SAU 2-C9",
         "displayName": "SPM 2S9 Nona 120mm M",
+        "shape": "2-c9",
         "countries": [
             "Russia",
             "Ukraine",
@@ -5880,6 +5885,7 @@
         },
         "type": "M-109",
         "displayName": "SPH M109 Paladin 155mm",
+        "shape": "m-109",
         "countries": [
             "USA",
             "Turkey",
@@ -6220,6 +6226,7 @@
         },
         "type": "SpGH_Dana",
         "displayName": "SPH Dana vz77 152mm",
+        "shape": "SpGH_Dana",
         "countries": [
             "USAF Aggressors",
             "Georgia",
@@ -6884,6 +6891,7 @@
         },
         "type": "AAV7",
         "displayName": "APC AAV-7 Amphibious",
+        "shape": "AAV-7",
         "countries": [
             "USA",
             "Turkey",
@@ -8002,6 +8010,7 @@
         },
         "type": "BMD-1",
         "displayName": "IFV BMD-1",
+        "shape": "bmd-1",
         "countries": [
             "Russia",
             "Ukraine",
@@ -10120,6 +10129,7 @@
         },
         "type": "BMP-1",
         "displayName": "IFV BMP-1",
+        "shape": "bmp-1",
         "countries": [
             "Russia",
             "Ukraine",
@@ -11922,6 +11932,7 @@
         },
         "type": "BMP-2",
         "displayName": "IFV BMP-2",
+        "shape": "bmp-2",
         "countries": [
             "Russia",
             "Ukraine",
@@ -12988,6 +12999,7 @@
         },
         "type": "BMP-3",
         "displayName": "IFV BMP-3",
+        "shape": "BMP-3",
         "countries": [
             "Russia",
             "Ukraine",
@@ -14022,6 +14034,7 @@
         },
         "type": "BRDM-2",
         "displayName": "Scout BRDM-2",
+        "shape": "brdm-2",
         "countries": [
             "Russia",
             "Ukraine",
@@ -15104,6 +15117,7 @@
         },
         "type": "BTR_D",
         "displayName": "APC BTR-RD",
+        "shape": "btr-d",
         "countries": [
             "Russia",
             "Ukraine",
@@ -15137,6 +15151,7 @@
         "paintSchemes": {},
         "type": "Cobra",
         "displayName": "Scout Cobra",
+        "shape": "Otokar_Cobra",
         "countries": [
             "Turkey",
             "USAF Aggressors",
@@ -16167,6 +16182,7 @@
         },
         "type": "LAV-25",
         "displayName": "IFV LAV-25",
+        "shape": "lav-25",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -17185,6 +17201,7 @@
         },
         "type": "M1043 HMMWV Armament",
         "displayName": "Scout HMMWV",
+        "shape": "HMMWV_M1043",
         "countries": [
             "Ukraine",
             "USA",
@@ -18277,6 +18294,7 @@
         },
         "type": "M1045 HMMWV TOW",
         "displayName": "ATGM HMMWV",
+        "shape": "HMMWV_M1045",
         "countries": [
             "Ukraine",
             "USA",
@@ -18352,6 +18370,7 @@
         "paintSchemes": {},
         "type": "M1126 Stryker ICV",
         "displayName": "IFV M1126 Stryker ICV",
+        "shape": "M1126",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -20354,6 +20373,7 @@
         },
         "type": "M-113",
         "displayName": "APC M113",
+        "shape": "m-113",
         "countries": [
             "USA",
             "Turkey",
@@ -20457,6 +20477,7 @@
         "paintSchemes": {},
         "type": "M1134 Stryker ATGM",
         "displayName": "ATGM Stryker",
+        "shape": "M1134",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -21109,6 +21130,7 @@
         },
         "type": "M-2 Bradley",
         "displayName": "IFV M2A2 Bradley",
+        "shape": "m-2",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -21765,6 +21787,7 @@
         },
         "type": "MCV-80",
         "displayName": "IFV Warrior ",
+        "shape": "mcv-80",
         "countries": [
             "UK",
             "USAF Aggressors",
@@ -22779,6 +22802,7 @@
         },
         "type": "MTLB",
         "displayName": "APC MTLB",
+        "shape": "MTLB",
         "countries": [
             "Russia",
             "Ukraine",
@@ -23473,6 +23497,7 @@
         },
         "type": "Marder",
         "displayName": "IFV Marder",
+        "shape": "marder",
         "countries": [
             "Germany",
             "USAF Aggressors",
@@ -23500,6 +23525,7 @@
         "paintSchemes": {},
         "type": "TPZ",
         "displayName": "APC TPz Fuchs ",
+        "shape": "tpz",
         "countries": [
             "USA",
             "UK",
@@ -23545,6 +23571,7 @@
         "paintSchemes": {},
         "type": "Grad_FDDM",
         "displayName": "Grad MRL FDDM (FC)",
+        "shape": "BOMAN",
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -23574,6 +23601,7 @@
         "paintSchemes": {},
         "type": "Bunker",
         "displayName": "Bunker 2",
+        "shape": "dot2",
         "countries": [
             "Russia",
             "Ukraine",
@@ -23765,6 +23793,7 @@
         "paintSchemes": {},
         "type": "Paratrooper RPG-16",
         "displayName": "Paratrooper RPG-16",
+        "shape": "Infantry_typeD_RPG-16",
         "countries": [
             "Russia",
             "Ukraine",
@@ -23802,6 +23831,7 @@
         "paintSchemes": {},
         "type": "Paratrooper AKS-74",
         "displayName": "Paratrooper AKS",
+        "shape": "Infantry_typeD_AKS-74",
         "countries": [
             "Russia",
             "Ukraine",
@@ -23839,6 +23869,7 @@
         "paintSchemes": {},
         "type": "Infantry AK Ins",
         "displayName": "Insurgent AK-74",
+        "shape": "soldier_ins_00",
         "countries": [
             "USAF Aggressors",
             "Insurgents",
@@ -23866,6 +23897,7 @@
         "paintSchemes": {},
         "type": "Sandbox",
         "displayName": "Bunker 1",
+        "shape": "dot",
         "countries": [
             "Russia",
             "Ukraine",
@@ -24057,6 +24089,7 @@
         "paintSchemes": {},
         "type": "Soldier AK",
         "displayName": "Infantry AK-74",
+        "shape": "Soldier_AK",
         "countries": [
             "USAF Aggressors",
             "Insurgents",
@@ -24084,6 +24117,7 @@
         "paintSchemes": {},
         "type": "Infantry AK",
         "displayName": "Infantry AK-74 Rus ver1",
+        "shape": "soldier_ru_00",
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -25028,6 +25062,7 @@
         },
         "type": "Soldier M249",
         "displayName": "Infantry M249",
+        "shape": "Soldier_M249",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -25962,6 +25997,7 @@
         },
         "type": "Soldier M4",
         "displayName": "Infantry M4",
+        "shape": "Soldier_M4",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -25999,6 +26035,7 @@
         "paintSchemes": {},
         "type": "Soldier M4 GRG",
         "displayName": "Infantry M4 Georgia",
+        "shape": "soldier_ge_00",
         "countries": [
             "USAF Aggressors",
             "Georgia",
@@ -26020,6 +26057,7 @@
         "paintSchemes": {},
         "type": "Soldier RPG",
         "displayName": "Infantry RPG",
+        "shape": "Soldier_RPG",
         "countries": [
             "USAF Aggressors",
             "Georgia",
@@ -26051,6 +26089,7 @@
         "paintSchemes": {},
         "type": "MLRS FDDM",
         "displayName": "MRLS FDDM (FC)",
+        "shape": "HMMWV_M1043",
         "countries": [
             "USA",
             "Turkey",
@@ -26102,6 +26141,7 @@
         "paintSchemes": {},
         "type": "Infantry AK ver2",
         "displayName": "Infantry AK-74 Rus ver2",
+        "shape": "soldier_ru_01",
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -26145,6 +26185,7 @@
         "paintSchemes": {},
         "type": "Infantry AK ver3",
         "displayName": "Infantry AK-74 Rus ver3",
+        "shape": "soldier_ru_02",
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -26188,6 +26229,7 @@
         "paintSchemes": {},
         "type": "Grad-URAL",
         "displayName": "MLRS BM-21 Grad 122mm",
+        "shape": "bm-21-40",
         "countries": [
             "Russia",
             "Ukraine",
@@ -26299,6 +26341,7 @@
         "paintSchemes": {},
         "type": "Uragan_BM-27",
         "displayName": "MLRS 9K57 Uragan BM-27 220mm",
+        "shape": "Uragan_9k57",
         "countries": [
             "Russia",
             "Ukraine",
@@ -26334,6 +26377,7 @@
         "paintSchemes": {},
         "type": "Smerch",
         "displayName": "MLRS 9A52 Smerch CM 300mm",
+        "shape": "smerch",
         "countries": [
             "Russia",
             "Ukraine",
@@ -26381,6 +26425,7 @@
         "paintSchemes": {},
         "type": "Smerch_HE",
         "displayName": "MLRS 9A52 Smerch HE 300mm",
+        "shape": "smerch",
         "countries": [
             "Russia",
             "Ukraine",
@@ -27419,6 +27464,7 @@
         },
         "type": "MLRS",
         "displayName": "MLRS M270 227mm",
+        "shape": "MLRS",
         "countries": [
             "USA",
             "Turkey",
@@ -28463,6 +28509,7 @@
         },
         "type": "2S6 Tunguska",
         "displayName": "SAM SA-19 Tunguska \"Grison\" ",
+        "shape": "2c6m",
         "countries": [
             "Russia",
             "Ukraine",
@@ -29131,6 +29178,7 @@
         },
         "type": "Kub 2P25 ln",
         "displayName": "SAM SA-6 Kub \"Gainful\" TEL",
+        "shape": "2p25",
         "countries": [
             "Russia",
             "Ukraine",
@@ -30195,6 +30243,7 @@
         },
         "type": "5p73 s-125 ln",
         "displayName": "SAM SA-3 S-125 \"Goa\" LN",
+        "shape": "5P73_LAUNCH",
         "countries": [
             "Russia",
             "Ukraine",
@@ -30905,6 +30954,7 @@
         },
         "type": "S-300PS 5P85C ln",
         "displayName": "SAM SA-10 S-300 \"Grumble\" TEL D",
+        "shape": "5p85c",
         "countries": [
             "Russia",
             "Ukraine",
@@ -31591,6 +31641,7 @@
         },
         "type": "S-300PS 5P85D ln",
         "displayName": "SAM SA-10 S-300 \"Grumble\" TEL C",
+        "shape": "5p85d",
         "countries": [
             "Russia",
             "Ukraine",
@@ -31917,6 +31968,7 @@
         },
         "type": "SA-11 Buk LN 9A310M1",
         "displayName": "SAM SA-11 Buk \"Gadfly\" Fire Dome TEL",
+        "shape": "9a310m1",
         "countries": [
             "Russia",
             "Ukraine",
@@ -32595,6 +32647,7 @@
         },
         "type": "Osa 9A33 ln",
         "displayName": "SAM SA-8 Osa \"Gecko\" TEL",
+        "shape": "9A33",
         "countries": [
             "Russia",
             "Ukraine",
@@ -34013,6 +34066,7 @@
         },
         "type": "Tor 9A331",
         "displayName": "SAM SA-15 Tor \"Gauntlet\"",
+        "shape": "9a331",
         "countries": [
             "Russia",
             "Ukraine",
@@ -35045,6 +35099,7 @@
         },
         "type": "Strela-10M3",
         "displayName": "SAM SA-13 Strela 10M3 \"Gopher\" TEL",
+        "shape": "9a35",
         "countries": [
             "Russia",
             "Ukraine",
@@ -36083,6 +36138,7 @@
         },
         "type": "Strela-1 9P31",
         "displayName": "SAM SA-9 Strela 1 \"Gaskin\" TEL",
+        "shape": "9p31",
         "countries": [
             "Russia",
             "Ukraine",
@@ -37513,6 +37569,7 @@
         },
         "type": "SA-11 Buk CC 9S470M1",
         "displayName": "SAM SA-11 Buk \"Gadfly\" C2 ",
+        "shape": "9S470M1",
         "countries": [
             "Russia",
             "Ukraine",
@@ -38191,6 +38248,7 @@
         },
         "type": "Patriot AMG",
         "displayName": "SAM Patriot CR (AMG AN/MRC-137)",
+        "shape": "patriot-ag",
         "countries": [
             "USA",
             "Germany",
@@ -38865,6 +38923,7 @@
         },
         "type": "Patriot ECS",
         "displayName": "SAM Patriot ECS",
+        "shape": "patriot-ECS",
         "countries": [
             "USA",
             "Germany",
@@ -39539,6 +39598,7 @@
         },
         "type": "Gepard",
         "displayName": "SPAAA Gepard",
+        "shape": "gepard",
         "countries": [
             "Germany",
             "USAF Aggressors",
@@ -39572,6 +39632,7 @@
         "paintSchemes": {},
         "type": "Hawk pcp",
         "displayName": "SAM Hawk Platoon Command Post (PCP)",
+        "shape": "hawk-cv",
         "countries": [
             "USA",
             "Turkey",
@@ -40988,6 +41049,7 @@
         },
         "type": "Vulcan",
         "displayName": "SPAAA Vulcan M163",
+        "shape": "VULCAN",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -41035,6 +41097,7 @@
         "paintSchemes": {},
         "type": "Hawk ln",
         "displayName": "SAM Hawk LN M192",
+        "shape": "hawk-pu",
         "countries": [
             "USA",
             "Turkey",
@@ -42451,6 +42514,7 @@
         },
         "type": "M48 Chaparral",
         "displayName": "SAM Chaparral M48",
+        "shape": "M48",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -43117,6 +43181,7 @@
         },
         "type": "M6 Linebacker",
         "displayName": "SAM Linebacker - Bradley M6",
+        "shape": "M6",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -43769,6 +43834,7 @@
         },
         "type": "Patriot ln",
         "displayName": "SAM Patriot LN",
+        "shape": "patriot-pu",
         "countries": [
             "USA",
             "Germany",
@@ -43812,6 +43878,7 @@
         "paintSchemes": {},
         "type": "M1097 Avenger",
         "displayName": "SAM Avenger (Stinger)",
+        "shape": "HMMWV_M973",
         "countries": [
             "USA",
             "Turkey",
@@ -44480,6 +44547,7 @@
         },
         "type": "Patriot EPP",
         "displayName": "SAM Patriot EPP-III",
+        "shape": "patriot-epp",
         "countries": [
             "USA",
             "Germany",
@@ -45154,6 +45222,7 @@
         },
         "type": "Patriot cp",
         "displayName": "SAM Patriot C2 ICC",
+        "shape": "patriot-kp",
         "countries": [
             "USA",
             "Germany",
@@ -45468,6 +45537,7 @@
         },
         "type": "Roland ADS",
         "displayName": "SAM Roland ADS",
+        "shape": "roland",
         "countries": [
             "USA",
             "France",
@@ -46140,6 +46210,7 @@
         },
         "type": "S-300PS 54K6 cp",
         "displayName": "SAM SA-10 S-300 \"Grumble\" C2 ",
+        "shape": "54k6",
         "countries": [
             "Russia",
             "Ukraine",
@@ -46213,6 +46284,7 @@
         },
         "type": "Soldier stinger",
         "displayName": "MANPADS Stinger",
+        "shape": "soldier_stinger",
         "countries": [
             "USA",
             "Turkey",
@@ -46294,6 +46366,7 @@
         "paintSchemes": {},
         "type": "Stinger comm dsr",
         "displayName": "MANPADS Stinger C2 Desert",
+        "shape": "Stinger_com2",
         "countries": [
             "UK",
             "France",
@@ -46958,6 +47031,7 @@
         },
         "type": "Stinger comm",
         "displayName": "MANPADS Stinger C2",
+        "shape": "Stinger_com",
         "countries": [
             "USA",
             "Turkey",
@@ -48746,6 +48820,7 @@
         },
         "type": "ZSU-23-4 Shilka",
         "displayName": "SPAAA ZSU-23-4 Shilka \"Gun Dish\"",
+        "shape": "zsu-23-4",
         "countries": [
             "Russia",
             "Ukraine",
@@ -49468,6 +49543,7 @@
         },
         "type": "ZU-23 Emplacement Closed",
         "displayName": "AAA ZU-23 Closed Emplacement",
+        "shape": "ZU-23",
         "countries": [
             "Russia",
             "Ukraine",
@@ -50196,6 +50272,7 @@
         },
         "type": "ZU-23 Emplacement",
         "displayName": "AAA ZU-23 Emplacement",
+        "shape": "ZU-23_S",
         "countries": [
             "Russia",
             "Ukraine",
@@ -50564,6 +50641,7 @@
         },
         "type": "Ural-375 ZU-23",
         "displayName": "SPAAA ZU-23-2 Mounted Ural 375",
+        "shape": "Ural_ZU-23",
         "countries": [
             "Russia",
             "Ukraine",
@@ -50641,6 +50719,7 @@
         "paintSchemes": {},
         "type": "ZU-23 Closed Insurgent",
         "displayName": "AAA ZU-23 Insurgent Closed Emplacement",
+        "shape": "ZU-23_CHECH",
         "countries": [
             "USAF Aggressors",
             "Insurgents",
@@ -50937,6 +51016,7 @@
         },
         "type": "Ural-375 ZU-23 Insurgent",
         "displayName": "SPAAA ZU-23-2 Insurgent Mounted Ural-375",
+        "shape": "Ural_ZU-23_CHECH",
         "countries": [
             "USAF Aggressors",
             "Insurgents",
@@ -50962,6 +51042,7 @@
         "paintSchemes": {},
         "type": "ZU-23 Insurgent",
         "displayName": "AAA ZU-23 Insurgent Emplacement",
+        "shape": "ZU-23_S_CHECH",
         "countries": [
             "USAF Aggressors",
             "Insurgents",
@@ -50985,6 +51066,7 @@
         "paintSchemes": {},
         "type": "SA-18 Igla manpad",
         "displayName": "MANPADS SA-18 Igla \"Grouse\"",
+        "shape": "SA18_manpad2",
         "countries": [
             "Russia",
             "Ukraine",
@@ -51058,6 +51140,7 @@
         "paintSchemes": {},
         "type": "SA-18 Igla comm",
         "displayName": "MANPADS SA-18 Igla \"Grouse\" C2",
+        "shape": "SA18_com2",
         "countries": [
             "Russia",
             "Ukraine",
@@ -51135,6 +51218,7 @@
         "paintSchemes": {},
         "type": "SA-18 Igla-S manpad",
         "displayName": "MANPADS SA-18 Igla-S \"Grouse\"",
+        "shape": "soldier_ru_03",
         "countries": [
             "Russia",
             "Ukraine",
@@ -51192,6 +51276,7 @@
         "paintSchemes": {},
         "type": "SA-18 Igla-S comm",
         "displayName": "MANPADS SA-18 Igla-S \"Grouse\" C2",
+        "shape": "SA18_com1",
         "countries": [
             "Russia",
             "Ukraine",
@@ -51247,6 +51332,7 @@
         "paintSchemes": {},
         "type": "Igla manpad INS",
         "displayName": "MANPADS SA-18 Igla \"Grouse\" Ins",
+        "shape": "soldier_INS_03",
         "countries": [
             "USAF Aggressors",
             "Insurgents",
@@ -51543,6 +51629,7 @@
         },
         "type": "1L13 EWR",
         "displayName": "EWR 1L13",
+        "shape": "1l13",
         "countries": [
             "Russia",
             "Ukraine",
@@ -52209,6 +52296,7 @@
         },
         "type": "Kub 1S91 str",
         "displayName": "SAM SA-6 Kub \"Straight Flush\" STR",
+        "shape": "1s91",
         "countries": [
             "Russia",
             "Ukraine",
@@ -52913,6 +53001,7 @@
         },
         "type": "S-300PS 40B6M tr",
         "displayName": "SAM SA-10 S-300 \"Grumble\" Flap Lid TR ",
+        "shape": "40b6m",
         "countries": [
             "Russia",
             "Ukraine",
@@ -53599,6 +53688,7 @@
         },
         "type": "S-300PS 40B6MD sr",
         "displayName": "SAM SA-10 S-300PS Low Alt SR 5N66M",
+        "shape": "s-300_40v6md_5n66m_nvo",
         "countries": [
             "Russia",
             "Ukraine",
@@ -53925,6 +54015,7 @@
         },
         "type": "55G6 EWR",
         "displayName": "EWR 55G6",
+        "shape": "55g6",
         "countries": [
             "Russia",
             "Ukraine",
@@ -54587,6 +54678,7 @@
         },
         "type": "S-300PS 64H6E sr",
         "displayName": "SAM SA-10 S-300 \"Grumble\" Big Bird SR ",
+        "shape": "64H6E",
         "countries": [
             "Russia",
             "Ukraine",
@@ -55993,6 +56085,7 @@
         },
         "type": "SA-11 Buk SR 9S18M1",
         "displayName": "SAM SA-11 Buk \"Gadfly\" Snow Drift SR",
+        "shape": "9S18M1",
         "countries": [
             "Russia",
             "Ukraine",
@@ -57391,6 +57484,7 @@
         },
         "type": "Dog Ear radar",
         "displayName": "MCC-SR Sborka \"Dog Ear\" SR",
+        "shape": "Sborka",
         "countries": [
             "Russia",
             "Ukraine",
@@ -57426,6 +57520,7 @@
         "paintSchemes": {},
         "type": "Hawk tr",
         "displayName": "SAM Hawk TR (AN/MPQ-46)",
+        "shape": "hawk-upr",
         "countries": [
             "USA",
             "Turkey",
@@ -57491,6 +57586,7 @@
         "paintSchemes": {},
         "type": "Hawk sr",
         "displayName": "SAM Hawk SR (AN/MPQ-50)",
+        "shape": "hawk-rls",
         "countries": [
             "USA",
             "Turkey",
@@ -58187,6 +58283,7 @@
         },
         "type": "Patriot str",
         "displayName": "SAM Patriot STR",
+        "shape": "patriot-rls",
         "countries": [
             "USA",
             "Germany",
@@ -58230,6 +58327,7 @@
         "paintSchemes": {},
         "type": "Hawk cwar",
         "displayName": "SAM Hawk CWAR AN/MPQ-55",
+        "shape": "hawk-cwar",
         "countries": [
             "USA",
             "Turkey",
@@ -59286,6 +59384,7 @@
         },
         "type": "p-19 s-125 sr",
         "displayName": "SAM SA-2/3/5 P19 \"Flat Face\" SR ",
+        "shape": "Zil_p19_Radar",
         "countries": [
             "Russia",
             "Ukraine",
@@ -59646,6 +59745,7 @@
         },
         "type": "Roland Radar",
         "displayName": "SAM Roland EWR",
+        "shape": "roland-rls",
         "countries": [
             "USA",
             "France",
@@ -60676,6 +60776,7 @@
         },
         "type": "snr s-125 tr",
         "displayName": "SAM SA-3 S-125 \"Low Blow\" TR",
+        "shape": "snr-125",
         "countries": [
             "Russia",
             "Ukraine",
@@ -60755,6 +60856,7 @@
         "paintSchemes": {},
         "type": "house1arm",
         "displayName": "Barracks armed",
+        "shape": "kazarma1",
         "countries": [
             "Russia",
             "Ukraine",
@@ -60946,6 +61048,7 @@
         "paintSchemes": {},
         "type": "house2arm",
         "displayName": "Watch tower armed",
+        "shape": "ohr-vyshka",
         "countries": [
             "Russia",
             "Ukraine",
@@ -61137,6 +61240,7 @@
         "paintSchemes": {},
         "type": "outpost_road",
         "displayName": "Road outpost",
+        "shape": "block-onroad",
         "countries": [
             "Russia",
             "Ukraine",
@@ -61328,6 +61432,7 @@
         "paintSchemes": {},
         "type": "outpost",
         "displayName": "Outpost",
+        "shape": "block",
         "countries": [
             "Russia",
             "Ukraine",
@@ -61519,6 +61624,7 @@
         "paintSchemes": {},
         "type": "houseA_arm",
         "displayName": "Building armed",
+        "shape": "home1_a",
         "countries": [
             "Russia",
             "Ukraine",
@@ -61710,6 +61816,7 @@
         "paintSchemes": {},
         "type": "TACAN_beacon",
         "displayName": "Beacon TACAN Portable TTS 3030",
+        "shape": "tacan_b",
         "countries": [
             "Russia",
             "Ukraine",
@@ -62262,6 +62369,7 @@
         },
         "type": "Challenger2",
         "displayName": "MBT Challenger II",
+        "shape": "CHALLENGER-2",
         "countries": [
             "UK",
             "USAF Aggressors",
@@ -62556,6 +62664,7 @@
         },
         "type": "Leclerc",
         "displayName": "MBT Leclerc",
+        "shape": "Leclerc",
         "countries": [
             "France",
             "USAF Aggressors",
@@ -63210,6 +63319,7 @@
         },
         "type": "M-60",
         "displayName": "MBT M60A3 Patton",
+        "shape": "m-60",
         "countries": [
             "USA",
             "Turkey",
@@ -63265,6 +63375,7 @@
         "paintSchemes": {},
         "type": "M1128 Stryker MGS",
         "displayName": "SPG Stryker MGS",
+        "shape": "M1128",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -63917,6 +64028,7 @@
         },
         "type": "M-1 Abrams",
         "displayName": "MBT M1A2 Abrams",
+        "shape": "m-1",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -64937,6 +65049,7 @@
         },
         "type": "T-55",
         "displayName": "MBT T-55",
+        "shape": "T-55",
         "countries": [
             "Russia",
             "Ukraine",
@@ -65311,6 +65424,7 @@
         },
         "type": "T-72B",
         "displayName": "MBT T-72B",
+        "shape": "t-72",
         "countries": [
             "Russia",
             "Ukraine",
@@ -66543,6 +66657,7 @@
         },
         "type": "T-80UD",
         "displayName": "MBT T-80U",
+        "shape": "t-80ud",
         "countries": [
             "Russia",
             "Ukraine",
@@ -67567,6 +67682,7 @@
         },
         "type": "T-90",
         "displayName": "MBT T-90",
+        "shape": "T-90",
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -68589,6 +68705,7 @@
         },
         "type": "Leopard1A3",
         "displayName": "MBT Leopard 1A3",
+        "shape": "LEOPARD-1A3",
         "countries": [
             "Turkey",
             "Germany",
@@ -68634,6 +68751,7 @@
         "paintSchemes": {},
         "type": "Merkava_Mk4",
         "displayName": "MBT Merkava IV",
+        "shape": "Merkava_Mk_IV",
         "countries": [
             "USAF Aggressors",
             "Israel",
@@ -68926,6 +69044,7 @@
         },
         "type": "Ural-4320 APA-5D",
         "displayName": "GPU APA-5D on Ural 4320",
+        "shape": "ural-apa",
         "countries": [
             "Russia",
             "Ukraine",
@@ -69244,6 +69363,7 @@
         },
         "type": "ATMZ-5",
         "displayName": "Refueler ATMZ-5",
+        "shape": "Ural_ATMZ-5",
         "countries": [
             "Russia",
             "Ukraine",
@@ -69568,6 +69688,7 @@
         },
         "type": "ATZ-10",
         "displayName": "Refueler ATZ-10",
+        "shape": "Ural_ATZ-10",
         "countries": [
             "Russia",
             "Ukraine",
@@ -69617,6 +69738,7 @@
         "paintSchemes": {},
         "type": "GAZ-3307",
         "displayName": "Truck GAZ-3307",
+        "shape": "GAZ-3307",
         "countries": [
             "Russia",
             "Ukraine",
@@ -69927,6 +70049,7 @@
         },
         "type": "GAZ-3308",
         "displayName": "Truck GAZ-3308",
+        "shape": "GAZ-3308",
         "countries": [
             "Russia",
             "Ukraine",
@@ -70957,6 +71080,7 @@
         },
         "type": "GAZ-66",
         "displayName": "Truck GAZ-66",
+        "shape": "Gaz-66",
         "countries": [
             "Russia",
             "Ukraine",
@@ -71631,6 +71755,7 @@
         },
         "type": "M978 HEMTT Tanker",
         "displayName": "Refueler M978 HEMTT",
+        "shape": "HEMTT",
         "countries": [
             "USA",
             "Turkey",
@@ -71959,6 +72084,7 @@
         },
         "type": "HEMTT TFFT",
         "displayName": "Firefighter HEMMT TFFT",
+        "shape": "hemtt_fire",
         "countries": [
             "USA",
             "Turkey",
@@ -72016,6 +72142,7 @@
         "paintSchemes": {},
         "type": "IKARUS Bus",
         "displayName": "Bus IKARUS-280",
+        "shape": "ikarus",
         "countries": [
             "Russia",
             "Ukraine",
@@ -73064,6 +73191,7 @@
         },
         "type": "KAMAZ Truck",
         "displayName": "Truck KAMAZ 43101",
+        "shape": "KAMAZ-TENT",
         "countries": [
             "Russia",
             "Ukraine",
@@ -73129,6 +73257,7 @@
         "paintSchemes": {},
         "type": "LAZ Bus",
         "displayName": "Bus LAZ-695",
+        "shape": "laz-695",
         "countries": [
             "Russia",
             "Ukraine",
@@ -73168,6 +73297,7 @@
         "paintSchemes": {},
         "type": "LiAZ Bus",
         "displayName": "Bus LiAZ-677",
+        "shape": "liaz-677",
         "countries": [
             "Russia",
             "Ukraine",
@@ -74196,6 +74326,7 @@
         },
         "type": "Hummer",
         "displayName": "LUV HMMWV Jeep",
+        "shape": "HMMWV_M1025",
         "countries": [
             "Ukraine",
             "USA",
@@ -74852,6 +74983,7 @@
         },
         "type": "M 818",
         "displayName": "Truck M939 Heavy",
+        "shape": "m-818",
         "countries": [
             "USA",
             "Turkey",
@@ -74963,6 +75095,7 @@
         "paintSchemes": {},
         "type": "MAZ-6303",
         "displayName": "Truck MAZ-6303",
+        "shape": "MAZ-6303",
         "countries": [
             "Russia",
             "Ukraine",
@@ -75016,6 +75149,7 @@
         "paintSchemes": {},
         "type": "Predator GCS",
         "displayName": "MCC Predator UAV CP & GCS",
+        "shape": "GCS",
         "countries": [
             "USA",
             "Turkey",
@@ -75055,6 +75189,7 @@
         "paintSchemes": {},
         "type": "Predator TrojanSpirit",
         "displayName": "MCC-COMM Predator UAV CL",
+        "shape": "TrojanSpirit",
         "countries": [
             "USA",
             "Turkey",
@@ -75094,6 +75229,7 @@
         "paintSchemes": {},
         "type": "Suidae",
         "displayName": "Suidae",
+        "shape": "Suidae",
         "countries": [],
         "countriesWorldID": []
     },
@@ -75374,6 +75510,7 @@
         },
         "type": "Tigr_233036",
         "displayName": "LUV Tigr",
+        "shape": "Tigr_233036",
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -75409,6 +75546,7 @@
         "paintSchemes": {},
         "type": "Trolley bus",
         "displayName": "Bus ZIU-9 Trolley",
+        "shape": "trolebus",
         "countries": [
             "Russia",
             "Ukraine",
@@ -75466,6 +75604,7 @@
         "paintSchemes": {},
         "type": "UAZ-469",
         "displayName": "LUV UAZ-469 Jeep",
+        "shape": "uaz-469",
         "countries": [
             "Russia",
             "Ukraine",
@@ -75525,6 +75664,7 @@
         "paintSchemes": {},
         "type": "Ural ATsP-6",
         "displayName": "Firefighter Ural ATsP-6",
+        "shape": "Ural_ACP6",
         "countries": [
             "Russia",
             "Ukraine",
@@ -75841,6 +75981,7 @@
         },
         "type": "Ural-4320-31",
         "displayName": "Truck Ural-4320-31 Arm'd",
+        "shape": "Ural_4320-31",
         "countries": [
             "Russia",
             "Ukraine",
@@ -76147,6 +76288,7 @@
         },
         "type": "Ural-4320T",
         "displayName": "Truck Ural-4320T",
+        "shape": "Ural_4320_T",
         "countries": [
             "Russia",
             "Ukraine",
@@ -76459,6 +76601,7 @@
         },
         "type": "Ural-375 PBU",
         "displayName": "Truck Ural-375 Mobile C2",
+        "shape": "Ural_4320_K",
         "countries": [
             "Russia",
             "Ukraine",
@@ -76773,6 +76916,7 @@
         },
         "type": "Ural-375",
         "displayName": "Truck Ural-375",
+        "shape": "Ural_4320_B",
         "countries": [
             "Russia",
             "Ukraine",
@@ -76868,6 +77012,7 @@
         "paintSchemes": {},
         "type": "VAZ Car",
         "displayName": "Car VAZ-2109",
+        "shape": "vaz",
         "countries": [
             "Russia",
             "Ukraine",
@@ -77198,6 +77343,7 @@
         },
         "type": "ZiL-131 APA-80",
         "displayName": "GPU APA-80 on ZIL-131",
+        "shape": "Zil_APA-80",
         "countries": [
             "Russia",
             "Ukraine",
@@ -77520,6 +77666,7 @@
         },
         "type": "SKP-11",
         "displayName": "Truck SKP-11 Mobile ATC",
+        "shape": "ZIL_SKP-11",
         "countries": [
             "Russia",
             "Ukraine",
@@ -78552,6 +78699,7 @@
         },
         "type": "ZIL-131 KUNG",
         "displayName": "Truck ZIL-131 (C2)",
+        "shape": "zil_p19_kung",
         "countries": [
             "Russia",
             "Ukraine",
@@ -78601,6 +78749,7 @@
         "paintSchemes": {},
         "type": "ZIL-4331",
         "displayName": "Truck ZIL-4331",
+        "shape": "zil-4334",
         "countries": [
             "Russia",
             "Ukraine",
@@ -79721,6 +79870,7 @@
         },
         "type": "KrAZ6322",
         "displayName": "Truck KrAZ-6322 6x6",
+        "shape": "Kraz-6322",
         "countries": [
             "Ukraine",
             "USAF Aggressors",
@@ -79762,6 +79912,7 @@
         "paintSchemes": {},
         "type": "JTAC",
         "displayName": "JTAC",
+        "shape": "Stinger_com2",
         "countries": [
             "USA",
             "UK",
@@ -79789,6 +79940,7 @@
         "paintSchemes": {},
         "type": "Infantry Animated",
         "displayName": "Infantry",
+        "shape": "unit_infantry_rus",
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -79811,6 +79963,7 @@
         "type": "Electric locomotive",
         "displayName": "Loco VL80 Electric",
         "module": "RailwayObjectsPack",
+        "shape": "elektrowoz",
         "countries": [
             "Russia",
             "Ukraine",
@@ -79831,6 +79984,7 @@
         "type": "Locomotive",
         "displayName": "Loco CHME3T",
         "module": "RailwayObjectsPack",
+        "shape": "teplowoz",
         "countries": [
             "Russia",
             "Ukraine",
@@ -79855,6 +80009,7 @@
         "type": "Coach cargo",
         "displayName": "Freight Van",
         "module": "RailwayObjectsPack",
+        "shape": "wagon-gruz",
         "countries": [
             "Russia",
             "Ukraine",
@@ -79879,6 +80034,7 @@
         "type": "Coach cargo open",
         "displayName": "Open Wagon",
         "module": "RailwayObjectsPack",
+        "shape": "wagon-gruz-otkr",
         "countries": [
             "Russia",
             "Ukraine",
@@ -79903,6 +80059,7 @@
         "type": "Coach a tank blue",
         "displayName": "Tank Car blue",
         "module": "RailwayObjectsPack",
+        "shape": "wagon-cisterna_blue",
         "countries": [
             "Russia",
             "Ukraine",
@@ -79927,6 +80084,7 @@
         "type": "Coach a tank yellow",
         "displayName": "Tank Car yellow",
         "module": "RailwayObjectsPack",
+        "shape": "wagon-cisterna_yellow",
         "countries": [
             "Russia",
             "Ukraine",
@@ -79951,6 +80109,7 @@
         "type": "Coach a passenger",
         "displayName": "Passenger Car",
         "module": "RailwayObjectsPack",
+        "shape": "wagon-pass",
         "countries": [
             "Russia",
             "Ukraine",
@@ -79975,6 +80134,7 @@
         "type": "Coach a platform",
         "displayName": "Coach Platform",
         "module": "RailwayObjectsPack",
+        "shape": "wagon-platforma",
         "countries": [
             "Russia",
             "Ukraine",
@@ -79999,6 +80159,7 @@
         "type": "tacr2a",
         "displayName": "RAF Rescue",
         "module": "South_Atlantic_Assets",
+        "shape": "tacr2a",
         "countries": [],
         "countriesWorldID": []
     },
@@ -80009,6 +80170,7 @@
         "type": "LARC-V",
         "displayName": "LARC-V",
         "module": "South_Atlantic_Assets",
+        "shape": "LARC-V",
         "countries": [],
         "countriesWorldID": []
     },
@@ -80560,6 +80722,7 @@
         "type": "KS-19",
         "displayName": "AAA KS-19 100mm",
         "module": "TechWeaponPack",
+        "shape": "KS-19",
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -81165,6 +81328,7 @@
         "type": "SON_9",
         "displayName": "AAA Fire Can SON-9",
         "module": "TechWeaponPack",
+        "shape": "son-9.EDM",
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -81254,6 +81418,7 @@
         "type": "Scud_B",
         "displayName": "SSM SS-1C Scud-B",
         "module": "TechWeaponPack",
+        "shape": "Scud_B",
         "countries": [
             "Russia",
             "Ukraine",
@@ -81865,6 +82030,7 @@
         "type": "HL_DSHK",
         "displayName": "Scout HL with DSHK 12.7mm",
         "module": "TechWeaponPack",
+        "shape": "ttHL-dshk",
         "countries": [
             "Russia",
             "Ukraine",
@@ -82582,6 +82748,7 @@
         "type": "HL_KORD",
         "displayName": "Scout HL with KORD 12.7mm",
         "module": "TechWeaponPack",
+        "shape": "ttHL-kord",
         "countries": [
             "Russia",
             "Ukraine",
@@ -83299,6 +83466,7 @@
         "type": "tt_DSHK",
         "displayName": "Scout LC with DSHK 12.7mm",
         "module": "TechWeaponPack",
+        "shape": "tt70-dshk",
         "countries": [
             "Russia",
             "Ukraine",
@@ -84018,6 +84186,7 @@
         "type": "tt_KORD",
         "displayName": "Scout LC with KORD 12.7mm",
         "module": "TechWeaponPack",
+        "shape": "tt70-kord",
         "countries": [
             "Russia",
             "Ukraine",
@@ -84737,6 +84906,7 @@
         "type": "HL_ZU-23",
         "displayName": "SPAAA HL with ZU-23",
         "module": "TechWeaponPack",
+        "shape": "ttHL-zu23",
         "countries": [
             "Russia",
             "Ukraine",
@@ -85454,6 +85624,7 @@
         "type": "tt_ZU-23",
         "displayName": "SPAAA LC with ZU-23",
         "module": "TechWeaponPack",
+        "shape": "tt70-zu23",
         "countries": [
             "Russia",
             "Ukraine",
@@ -86173,6 +86344,7 @@
         "type": "HL_B8M1",
         "displayName": "MLRS HL with B8M1 80mm",
         "module": "TechWeaponPack",
+        "shape": "ttHL-B8M1",
         "countries": [
             "Russia",
             "Ukraine",
@@ -86890,6 +87062,7 @@
         "type": "tt_B8M1",
         "displayName": "MLRS LC with B8M1 80mm",
         "module": "TechWeaponPack",
+        "shape": "tt70-B8M1",
         "countries": [
             "Russia",
             "Ukraine",
@@ -87609,6 +87782,7 @@
         "type": "NASAMS_Radar_MPQ64F1",
         "displayName": "SAM NASAMS SR MPQ64F1",
         "module": "TechWeaponPack",
+        "shape": "NASAMS_Radar_MPQ64F1",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -88186,6 +88360,7 @@
         "type": "NASAMS_Command_Post",
         "displayName": "SAM NASAMS C2",
         "module": "TechWeaponPack",
+        "shape": "NASAMS_Command_Post",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -88763,6 +88938,7 @@
         "type": "NASAMS_LN_B",
         "displayName": "SAM NASAMS LN AIM-120B",
         "module": "TechWeaponPack",
+        "shape": "NASAMS_Missile_Launcher",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -89340,6 +89516,7 @@
         "type": "NASAMS_LN_C",
         "displayName": "SAM NASAMS LN AIM-120C",
         "module": "TechWeaponPack",
+        "shape": "NASAMS_Missile_Launcher",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -89917,6 +90094,7 @@
         "type": "M4_Sherman",
         "displayName": "Tk M4 Sherman",
         "module": "TechWeaponPack",
+        "shape": "M4_Sherman",
         "countries": [
             "USAF Aggressors",
             "Combined Joint Task Forces Blue",
@@ -90478,6 +90656,7 @@
         "type": "M2A1_halftrack",
         "displayName": "APC M2A1 Halftrack",
         "module": "TechWeaponPack",
+        "shape": "M2A1_halftrack",
         "countries": [
             "USA",
             "UK",
@@ -91077,6 +91256,7 @@
         "type": "FPS-117 Dome",
         "displayName": "EWR AN/FPS-117 Radar (domed)",
         "module": "TechWeaponPack",
+        "shape": "ewr_fps117radar_dome",
         "countries": [
             "USA",
             "Turkey",
@@ -91684,6 +91864,7 @@
         "type": "FPS-117 ECS",
         "displayName": "EWR AN/FPS-117 ECS",
         "module": "TechWeaponPack",
+        "shape": "ewr_fps117radar_shelter",
         "countries": [
             "USA",
             "Turkey",
@@ -92291,6 +92472,7 @@
         "type": "FPS-117",
         "displayName": "EWR AN/FPS-117 Radar",
         "module": "TechWeaponPack",
+        "shape": "ewr_fps117",
         "countries": [
             "USA",
             "Turkey",
@@ -94068,6 +94250,7 @@
         "type": "BTR-80",
         "displayName": "APC BTR-80",
         "module": "TechWeaponPack",
+        "shape": "BTR-80",
         "countries": [
             "Russia",
             "Ukraine",
@@ -94677,6 +94860,7 @@
         "type": "RD_75",
         "displayName": "SAM SA-2 S-75 RD-75 Amazonka RF",
         "module": "TechWeaponPack",
+        "shape": "RD_75.EDM",
         "countries": [
             "USAF Aggressors",
             "Combined Joint Task Forces Blue",
@@ -95328,6 +95512,7 @@
         "type": "S_75M_Volhov",
         "displayName": "SAM SA-2 S-75 \"Guideline\" LN",
         "module": "TechWeaponPack",
+        "shape": "S_75_Launcher",
         "countries": [
             "Russia",
             "Germany",
@@ -96033,6 +96218,7 @@
         "type": "SNR_75V",
         "displayName": "SAM SA-2 S-75 \"Fan Song\" TR",
         "module": "TechWeaponPack",
+        "shape": "SNR_75",
         "countries": [
             "Russia",
             "Germany",
@@ -96648,6 +96834,7 @@
         "type": "RLS_19J6",
         "displayName": "SAM SA-5 S-200 ST-68U \"Tin Shield\" SR",
         "module": "TechWeaponPack",
+        "shape": "rls_19j6",
         "countries": [
             "Russia",
             "Ukraine",
@@ -98315,6 +98502,7 @@
         "type": "RPC_5N62V",
         "displayName": "SAM SA-5 S-200 \"Square Pair\" TR",
         "module": "TechWeaponPack",
+        "shape": "S-200_Radar",
         "countries": [
             "Russia",
             "Ukraine",
@@ -99990,6 +100178,7 @@
         "type": "S-200_Launcher",
         "displayName": "SAM SA-5 S-200 \"Gammon\" LN",
         "module": "TechWeaponPack",
+        "shape": "S-200_Launcher",
         "countries": [
             "Russia",
             "Ukraine",
@@ -100675,6 +100864,7 @@
         "type": "ZSU_57_2",
         "displayName": "SPAAA ZSU-57-2",
         "module": "TechWeaponPack",
+        "shape": "ZSU_57_2",
         "countries": [
             "USAF Aggressors",
             "GDR",
@@ -100969,6 +101159,7 @@
         "type": "S-60_Type59_Artillery",
         "displayName": "AAA S-60 57mm",
         "module": "TechWeaponPack",
+        "shape": "S-60_Type59_Artillery",
         "countries": [
             "Russia",
             "Ukraine",
@@ -101590,6 +101781,7 @@
         "type": "generator_5i57",
         "displayName": "Diesel Power Station 5I57A",
         "module": "TechWeaponPack",
+        "shape": "generator_5i57",
         "countries": [
             "Russia",
             "Ukraine",
@@ -102181,6 +102373,7 @@
         "type": "T-72B3",
         "displayName": "MBT T-72B3",
         "module": "TechWeaponPack",
+        "shape": "T-72B3",
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -102207,6 +102400,7 @@
         "type": "PT_76",
         "displayName": "LT PT-76",
         "module": "TechWeaponPack",
+        "shape": "pt-76",
         "countries": [
             "Russia",
             "Ukraine",
@@ -104062,6 +104256,7 @@
         "type": "BTR-82A",
         "displayName": "IFV BTR-82A",
         "module": "TechWeaponPack",
+        "shape": "BTR-82A",
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -104629,6 +104824,7 @@
         "type": "ATZ-5",
         "displayName": "Refueler ATZ-5",
         "module": "TechWeaponPack",
+        "shape": "atz5",
         "countries": [
             "Russia",
             "Ukraine",
@@ -105214,6 +105410,7 @@
         "type": "AA8",
         "displayName": "Firefighter Vehicle AA-7.2/60",
         "module": "TechWeaponPack",
+        "shape": "aa8",
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -105777,6 +105974,7 @@
         "type": "TZ-22_KrAZ",
         "displayName": "Refueler TZ-22 Tractor (KrAZ-258B1)",
         "module": "TechWeaponPack",
+        "shape": "tz_22_truck",
         "countries": [
             "Russia",
             "Ukraine",
@@ -106710,6 +106908,7 @@
         "type": "ATZ-60_Maz",
         "displayName": "Refueler ATZ-60 Tractor (MAZ-7410)",
         "module": "TechWeaponPack",
+        "shape": "atz60_maz",
         "countries": [
             "Russia",
             "Ukraine",
@@ -107745,6 +107944,7 @@
         "type": "ZIL-135",
         "displayName": "Truck ZIL-135",
         "module": "TechWeaponPack",
+        "shape": "Zil_135l",
         "countries": [
             "Russia",
             "Ukraine",
@@ -108344,6 +108544,7 @@
         "type": "S_75_ZIL",
         "displayName": "S-75 Tractor (ZIL-131)",
         "module": "TechWeaponPack",
+        "shape": "S_75_Zil_Truck",
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -109003,6 +109204,7 @@
         "type": "rapier_fsa_launcher",
         "displayName": "SAM Rapier LN",
         "module": "TechWeaponPack",
+        "shape": "rapier_fsa_launcher",
         "countries": [
             "USA",
             "Turkey",
@@ -109682,6 +109884,7 @@
         "type": "rapier_fsa_optical_tracker_unit",
         "displayName": "SAM Rapier Tracker",
         "module": "TechWeaponPack",
+        "shape": "rapier_fsa_optical_tracker_unit",
         "countries": [
             "USA",
             "Turkey",
@@ -110361,6 +110564,7 @@
         "type": "rapier_fsa_blindfire_radar",
         "displayName": "SAM Rapier Blindfire TR",
         "module": "TechWeaponPack",
+        "shape": "rapier_fsa_blindfire_radar",
         "countries": [
             "USA",
             "Turkey",
@@ -110950,6 +111154,7 @@
         "type": "bofors40",
         "displayName": "AAA Bofors 40mm",
         "module": "TechWeaponPack",
+        "shape": "bofors40",
         "countries": [
             "USA",
             "Turkey",
@@ -111983,6 +112188,7 @@
         "type": "Chieftain_mk3",
         "displayName": "MBT Chieftain Mk.3",
         "module": "TechWeaponPack",
+        "shape": "Chieftain_mk3",
         "countries": [
             "UK",
             "USAF Aggressors",
@@ -112736,6 +112942,7 @@
         "type": "Bedford_MWD",
         "displayName": "Truck Bedford",
         "module": "TechWeaponPack",
+        "shape": "Bedford_MWD",
         "countries": [
             "UK",
             "USAF Aggressors",
@@ -113299,6 +113506,7 @@
         "type": "Land_Rover_101_FC",
         "displayName": "Truck Land Rover 101 FC",
         "module": "TechWeaponPack",
+        "shape": "land_rover_101_fc",
         "countries": [
             "UK",
             "USAF Aggressors",
@@ -113868,6 +114076,7 @@
         "type": "Land_Rover_109_S3",
         "displayName": "LUV Land Rover 109",
         "module": "TechWeaponPack",
+        "shape": "land_rover_109_s3",
         "countries": [
             "UK",
             "USAF Aggressors",
@@ -114349,6 +114558,7 @@
         "type": "hy_launcher",
         "displayName": "AShM SS-N-2 Silkworm",
         "module": "TechWeaponPack",
+        "shape": "hy_launcher",
         "countries": [
             "USAF Aggressors",
             "China",
@@ -114652,6 +114862,7 @@
         "type": "Silkworm_SR",
         "displayName": "AShM Silkworm SR",
         "module": "TechWeaponPack",
+        "shape": "mys-m1",
         "countries": [
             "USAF Aggressors",
             "China",
@@ -115765,6 +115976,7 @@
         "type": "ES44AH",
         "displayName": "Loco ES44AH",
         "module": "TechWeaponPack",
+        "shape": "es44ah",
         "countries": [
             "USA",
             "Australia",
@@ -116332,6 +116544,7 @@
         "type": "Boxcartrinity",
         "displayName": "Flatcar",
         "module": "TechWeaponPack",
+        "shape": "boxcartrinity",
         "countries": [
             "USA",
             "Australia",
@@ -116899,6 +117112,7 @@
         "type": "Tankcartrinity",
         "displayName": "Tank Cartrinity",
         "module": "TechWeaponPack",
+        "shape": "tankcartrinity",
         "countries": [
             "USA",
             "Australia",
@@ -117646,6 +117860,7 @@
         "type": "Wellcarnsc",
         "displayName": "Well Car",
         "module": "TechWeaponPack",
+        "shape": "wellcarnsc",
         "countries": [
             "USA",
             "Australia",
@@ -118213,6 +118428,7 @@
         "type": "flak18",
         "displayName": "AAA 8,8cm Flak 18",
         "module": "TechWeaponPack",
+        "shape": "flak18",
         "countries": [
             "USAF Aggressors",
             "Combined Joint Task Forces Blue",
@@ -118774,6 +118990,7 @@
         "type": "Pz_IV_H",
         "displayName": "Tk PzIV H",
         "module": "TechWeaponPack",
+        "shape": "Pz_IV_H",
         "countries": [
             "USAF Aggressors",
             "Combined Joint Task Forces Blue",
@@ -120055,6 +120272,7 @@
         "type": "Leopard-2A5",
         "displayName": "MBT Leopard-2A5",
         "module": "TechWeaponPack",
+        "shape": "leopard-2a5",
         "countries": [
             "Germany",
             "USAF Aggressors",
@@ -123598,6 +123816,7 @@
         "type": "Leopard-2",
         "displayName": "MBT Leopard-2A6M",
         "module": "TechWeaponPack",
+        "shape": "leopard-2",
         "countries": [
             "Turkey",
             "Germany",
@@ -125625,6 +125844,7 @@
         "type": "leopard-2A4",
         "displayName": "MBT Leopard-2A4",
         "module": "TechWeaponPack",
+        "shape": "leopard-2a4",
         "countries": [
             "Germany",
             "USAF Aggressors",
@@ -126222,6 +126442,7 @@
         "type": "leopard-2A4_trs",
         "displayName": "MBT Leopard-2A4 Trs",
         "module": "TechWeaponPack",
+        "shape": "leopard-2a4_trs",
         "countries": [
             "Turkey",
             "USAF Aggressors",
@@ -126785,6 +127006,7 @@
         "type": "Sd_Kfz_251",
         "displayName": "APC Sd.Kfz.251 Halftrack",
         "module": "TechWeaponPack",
+        "shape": "Sd_Kfz_251",
         "countries": [
             "USAF Aggressors",
             "Italian Social Republic",
@@ -127528,6 +127750,7 @@
         "type": "Blitz_36-6700A",
         "displayName": "Truck Opel Blitz",
         "module": "TechWeaponPack",
+        "shape": "Blitz_36-6700A",
         "countries": [
             "Germany",
             "USAF Aggressors",
@@ -128451,6 +128674,7 @@
         "type": "T155_Firtina",
         "displayName": "SPH T155 Firtina 155mm",
         "module": "TechWeaponPack",
+        "shape": "Firtina_T155_trs",
         "countries": [
             "Turkey",
             "USAF Aggressors",
@@ -129374,6 +129598,7 @@
         "type": "VAB_Mephisto",
         "displayName": "ATGM VAB Mephisto",
         "module": "TechWeaponPack",
+        "shape": "VAB_Mephisto",
         "countries": [
             "France",
             "USAF Aggressors",
@@ -129677,6 +129902,7 @@
         "type": "ZTZ96B",
         "displayName": "ZTZ-96B",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shape": "ztz96b",
         "countries": [
             "USAF Aggressors",
             "China",
@@ -129725,6 +129951,7 @@
         "type": "ZBD04A",
         "displayName": "ZBD-04A",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shape": "zbd04a",
         "countries": [
             "USAF Aggressors",
             "China",
@@ -130018,6 +130245,7 @@
         "type": "HQ-7_LN_SP",
         "displayName": "HQ-7 Self-Propelled LN",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shape": "hq7_ln",
         "countries": [
             "USAF Aggressors",
             "China",
@@ -130315,6 +130543,7 @@
         "type": "HQ-7_LN_EO",
         "displayName": "HQ-7 LN Electro-Optics",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shape": "hq7_ln",
         "countries": [
             "USAF Aggressors",
             "Combined Joint Task Forces Blue",
@@ -130606,6 +130835,7 @@
         "type": "HQ-7_STR_SP",
         "displayName": "HQ-7 Self-Propelled STR",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shape": "hq7_str",
         "countries": [
             "USAF Aggressors",
             "China",
@@ -130655,6 +130885,7 @@
         "type": "PLZ05",
         "displayName": "PLZ-05",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shape": "plz05",
         "countries": [
             "USAF Aggressors",
             "China",
@@ -130681,6 +130912,7 @@
         "type": "TYPE-59",
         "displayName": "MT Type 59",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shape": "ztz59",
         "countries": [
             "USAF Aggressors",
             "Combined Joint Task Forces Blue",
@@ -131422,6 +131654,7 @@
         "type": "Kubelwagen_82",
         "displayName": "LUV Kubelwagen Jeep",
         "module": "WWII Armour and Technics",
+        "shape": "Kubelwagen_82",
         "countries": [],
         "countriesWorldID": []
     },
@@ -131432,6 +131665,7 @@
         "type": "Sd_Kfz_2",
         "displayName": "LUV Kettenrad",
         "module": "WWII Armour and Technics",
+        "shape": "Sd_Kfz_2_Kettenkrad",
         "countries": [],
         "countriesWorldID": []
     },
@@ -131983,6 +132217,7 @@
         "type": "Sd_Kfz_7",
         "displayName": "Tractor Sd.Kfz.7 Art'y Tractor",
         "module": "WWII Armour and Technics",
+        "shape": "sd_kfz_7",
         "countries": [],
         "countriesWorldID": []
     },
@@ -132534,6 +132769,7 @@
         "type": "Horch_901_typ_40_kfz_21",
         "displayName": "LUV Horch 901 Staff Car",
         "module": "WWII Armour and Technics",
+        "shape": "horch_901_typ_40_kfz_21",
         "countries": [
             "Germany",
             "USAF Aggressors",
@@ -133097,6 +133333,7 @@
         "type": "Tiger_I",
         "displayName": "Tk Tiger 1",
         "module": "WWII Armour and Technics",
+        "shape": "Tiger_I",
         "countries": [],
         "countriesWorldID": []
     },
@@ -133107,6 +133344,7 @@
         "type": "Tiger_II_H",
         "displayName": "Tk Tiger II",
         "module": "WWII Armour and Technics",
+        "shape": "Tiger_II",
         "countries": [],
         "countriesWorldID": []
     },
@@ -133117,6 +133355,7 @@
         "type": "Pz_V_Panther_G",
         "displayName": "Tk Panther G (Pz V)",
         "module": "WWII Armour and Technics",
+        "shape": "Pz_V_G",
         "countries": [],
         "countriesWorldID": []
     },
@@ -133668,6 +133907,7 @@
         "type": "Jagdpanther_G1",
         "displayName": "SPG Jagdpanther TD",
         "module": "WWII Armour and Technics",
+        "shape": "Jagdpanther_G1",
         "countries": [],
         "countriesWorldID": []
     },
@@ -133678,6 +133918,7 @@
         "type": "JagdPz_IV",
         "displayName": "SPG Jagdpanzer IV TD",
         "module": "WWII Armour and Technics",
+        "shape": "Jagdpanzer_IV",
         "countries": [],
         "countriesWorldID": []
     },
@@ -134229,6 +134470,7 @@
         "type": "Stug_IV",
         "displayName": "SPG StuG IV AG",
         "module": "WWII Armour and Technics",
+        "shape": "Stug_IV",
         "countries": [],
         "countriesWorldID": []
     },
@@ -134239,6 +134481,7 @@
         "type": "SturmPzIV",
         "displayName": "SPG Brummbaer AG",
         "module": "WWII Armour and Technics",
+        "shape": "Brummbar_Late",
         "countries": [],
         "countriesWorldID": []
     },
@@ -134790,6 +135033,7 @@
         "type": "Wespe124",
         "displayName": "SPH Sd.Kfz.124 Wespe 105mm",
         "module": "WWII Armour and Technics",
+        "shape": "Wespe124",
         "countries": [],
         "countriesWorldID": []
     },
@@ -135341,6 +135585,7 @@
         "type": "Sd_Kfz_234_2_Puma",
         "displayName": "Scout Puma AC",
         "module": "WWII Armour and Technics",
+        "shape": "Sd_Kfz_234_2_Puma",
         "countries": [],
         "countriesWorldID": []
     },
@@ -135892,6 +136137,7 @@
         "type": "flak30",
         "displayName": "AAA Flak 38 20mm",
         "module": "WWII Armour and Technics",
+        "shape": "flak30",
         "countries": [],
         "countriesWorldID": []
     },
@@ -136443,6 +136689,7 @@
         "type": "flak36",
         "displayName": "AAA 8,8cm Flak 36",
         "module": "WWII Armour and Technics",
+        "shape": "flak36",
         "countries": [],
         "countriesWorldID": []
     },
@@ -136994,6 +137241,7 @@
         "type": "flak37",
         "displayName": "AAA 8,8cm Flak 37",
         "module": "WWII Armour and Technics",
+        "shape": "flak37",
         "countries": [],
         "countriesWorldID": []
     },
@@ -137545,6 +137793,7 @@
         "type": "flak38",
         "displayName": "AAA Flak-Vierling 38 Quad 20mm",
         "module": "WWII Armour and Technics",
+        "shape": "flak38",
         "countries": [],
         "countriesWorldID": []
     },
@@ -138096,6 +138345,7 @@
         "type": "KDO_Mod40",
         "displayName": "AAA Kdo.G.40",
         "module": "WWII Armour and Technics",
+        "shape": "KDO_Mod40",
         "countries": [],
         "countriesWorldID": []
     },
@@ -138647,6 +138897,7 @@
         "type": "Flakscheinwerfer_37",
         "displayName": "SL Flakscheinwerfer 37",
         "module": "WWII Armour and Technics",
+        "shape": "Flakscheinwerfer_37",
         "countries": [],
         "countriesWorldID": []
     },
@@ -139198,6 +139449,7 @@
         "type": "Maschinensatz_33",
         "displayName": "Maschinensatz 33 Gen",
         "module": "WWII Armour and Technics",
+        "shape": "Maschinensatz_33",
         "countries": [],
         "countriesWorldID": []
     },
@@ -139208,6 +139460,7 @@
         "type": "soldier_mauser98",
         "displayName": "Infantry Mauser 98",
         "module": "WWII Armour and Technics",
+        "shape": "soldier_wwii_de_01",
         "countries": [
             "Germany",
             "USAF Aggressors",
@@ -139230,6 +139483,7 @@
         "type": "SK_C_28_naval_gun",
         "displayName": "Gun 15cm SK C/28 Naval in Bunker",
         "module": "WWII Armour and Technics",
+        "shape": "pillbox",
         "countries": [
             "France",
             "USAF Aggressors",
@@ -139262,6 +139516,7 @@
         "type": "fire_control",
         "displayName": "Bunker with Fire Control Center",
         "module": "WWII Armour and Technics",
+        "shape": "fire_control",
         "countries": [
             "France",
             "USAF Aggressors",
@@ -139835,6 +140090,7 @@
         "type": "Stug_III",
         "displayName": "SPG StuG III G AG",
         "module": "WWII Armour and Technics",
+        "shape": "Stug_III",
         "countries": [
             "USAF Aggressors",
             "Italian Social Republic",
@@ -140398,6 +140654,7 @@
         "type": "Elefant_SdKfz_184",
         "displayName": "SPG Elefant TD",
         "module": "WWII Armour and Technics",
+        "shape": "Elefant_SdKfz_184",
         "countries": [],
         "countriesWorldID": []
     },
@@ -140949,6 +141206,7 @@
         "type": "flak41",
         "displayName": "AAA 8,8cm Flak 41",
         "module": "WWII Armour and Technics",
+        "shape": "flak41",
         "countries": [],
         "countriesWorldID": []
     },
@@ -140959,6 +141217,7 @@
         "type": "v1_launcher",
         "displayName": "V-1 Launch Ramp",
         "module": "WWII Armour and Technics",
+        "shape": "v1_ramp",
         "countries": [],
         "countriesWorldID": []
     },
@@ -141510,6 +141769,7 @@
         "type": "FuMG-401",
         "displayName": "EWR FuMG-401 Freya LZ",
         "module": "WWII Armour and Technics",
+        "shape": "FuMG-401",
         "countries": [],
         "countriesWorldID": []
     },
@@ -142061,6 +142321,7 @@
         "type": "FuSe-65",
         "displayName": "EWR FuSe-65 Würzburg-Riese",
         "module": "WWII Armour and Technics",
+        "shape": "FuSe-65",
         "countries": [],
         "countriesWorldID": []
     },
@@ -142342,6 +142603,7 @@
         "type": "Pak40",
         "displayName": "FH Pak 40 75mm",
         "module": "WWII Armour and Technics",
+        "shape": "Pak40",
         "countries": [],
         "countriesWorldID": []
     },
@@ -142893,6 +143155,7 @@
         "type": "LeFH_18-40-105",
         "displayName": "FH LeFH-18 105mm",
         "module": "WWII Armour and Technics",
+        "shape": "LeFH_18-40-105mm",
         "countries": [],
         "countriesWorldID": []
     },
@@ -143444,6 +143707,7 @@
         "type": "Cromwell_IV",
         "displayName": "Tk Cromwell IV",
         "module": "WWII Armour and Technics",
+        "shape": "Cromwell_IV",
         "countries": [
             "UK",
             "USAF Aggressors",
@@ -144021,6 +144285,7 @@
         "type": "M4A4_Sherman_FF",
         "displayName": "Tk M4A4 Sherman Firefly",
         "module": "WWII Armour and Technics",
+        "shape": "M4A4_Sherman_FF",
         "countries": [],
         "countriesWorldID": []
     },
@@ -144031,6 +144296,7 @@
         "type": "soldier_wwii_br_01",
         "displayName": "Infantry SMLE No.4 Mk-1",
         "module": "WWII Armour and Technics",
+        "shape": "soldier_wwii_br_01",
         "countries": [],
         "countriesWorldID": []
     },
@@ -144582,6 +144848,7 @@
         "type": "Centaur_IV",
         "displayName": "Tk Centaur IV CS",
         "module": "WWII Armour and Technics",
+        "shape": "Centaur_IV",
         "countries": [
             "UK",
             "USAF Aggressors",
@@ -145159,6 +145426,7 @@
         "type": "Churchill_VII",
         "displayName": "Tk Churchill VII",
         "module": "WWII Armour and Technics",
+        "shape": "churchill_vii",
         "countries": [],
         "countriesWorldID": []
     },
@@ -145710,6 +145978,7 @@
         "type": "Daimler_AC",
         "displayName": "Car Daimler Armored",
         "module": "WWII Armour and Technics",
+        "shape": "Daimler_AC",
         "countries": [
             "UK",
             "USAF Aggressors",
@@ -146289,6 +146558,7 @@
         "type": "Tetrarch",
         "displayName": "Tk Tetrach",
         "module": "WWII Armour and Technics",
+        "shape": "Tetrarch",
         "countries": [
             "UK",
             "USAF Aggressors",
@@ -146854,6 +147124,7 @@
         "type": "QF_37_AA",
         "displayName": "AAA QF 3.7\"",
         "module": "WWII Armour and Technics",
+        "shape": "QF_37_AA",
         "countries": [
             "UK",
             "USAF Aggressors",
@@ -146890,6 +147161,7 @@
         "type": "Allies_Director",
         "displayName": "Allies Rangefinder (DRT)",
         "module": "WWII Armour and Technics",
+        "shape": "Bedford_MWD",
         "countries": [],
         "countriesWorldID": []
     },
@@ -147441,6 +147713,7 @@
         "type": "CCKW_353",
         "displayName": "Truck GMC \"Jimmy\" 6x6",
         "module": "WWII Armour and Technics",
+        "shape": "CCKW_353",
         "countries": [
             "USA",
             "France",
@@ -148366,6 +148639,7 @@
         "type": "Willys_MB",
         "displayName": "Car Willys Jeep",
         "module": "WWII Armour and Technics",
+        "shape": "Willys_MB",
         "countries": [
             "USA",
             "UK",
@@ -148933,6 +149207,7 @@
         "type": "M12_GMC",
         "displayName": "SPH M12 GMC 155mm",
         "module": "WWII Armour and Technics",
+        "shape": "m12",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -149496,6 +149771,7 @@
         "type": "M30_CC",
         "displayName": "Ammo M30 Cargo Carrier",
         "module": "WWII Armour and Technics",
+        "shape": "m30",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -149518,6 +149794,7 @@
         "type": "soldier_wwii_us",
         "displayName": "Infantry M1 Garand",
         "module": "WWII Armour and Technics",
+        "shape": "soldier_wwii_us_01",
         "countries": [],
         "countriesWorldID": []
     },
@@ -150069,6 +150346,7 @@
         "type": "M10_GMC",
         "displayName": "SPG M10 GMC TD",
         "module": "WWII Armour and Technics",
+        "shape": "M10",
         "countries": [
             "USA",
             "UK",
@@ -150642,6 +150920,7 @@
         "type": "M8_Greyhound",
         "displayName": "Scout M8 Greyhound AC",
         "module": "WWII Armour and Technics",
+        "shape": "m8_greyhound",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -151211,6 +151490,7 @@
         "type": "M2A1-105",
         "displayName": "FH M2A1 105mm",
         "module": "WWII Armour and Technics",
+        "shape": "M2A1-105mm",
         "countries": [],
         "countriesWorldID": []
     },
@@ -151762,6 +152042,7 @@
         "type": "M4_Tractor",
         "displayName": "Tractor M4 High Speed",
         "module": "WWII Armour and Technics",
+        "shape": "M4_Tractor",
         "countries": [
             "USA",
             "Turkey",
@@ -152355,6 +152636,7 @@
         "type": "M45_Quadmount",
         "displayName": "AAA M45 Quadmount HB 12.7mm",
         "module": "WWII Armour and Technics",
+        "shape": "M45_Quadmount",
         "countries": [
             "USA",
             "UK",
@@ -152926,6 +153208,7 @@
         "type": "M1_37mm",
         "displayName": "AAA M1 37mm",
         "module": "WWII Armour and Technics",
+        "shape": "M1_37mm",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -153309,6 +153592,7 @@
         "type": "DR_50Ton_Flat_Wagon",
         "displayName": "DR 50-ton flat wagon",
         "module": "WWII Armour and Technics",
+        "shape": "DR_50Ton_Flat_Wagon",
         "countries": [
             "Germany",
             "USAF Aggressors",
@@ -153700,6 +153984,7 @@
         "type": "DRG_Class_86",
         "displayName": "Loco DRG Class 86",
         "module": "WWII Armour and Technics",
+        "shape": "DRG_Class_86",
         "countries": [
             "Germany",
             "USAF Aggressors",
@@ -154091,6 +154376,7 @@
         "type": "German_covered_wagon_G10",
         "displayName": "Wagon G10 (Germany)",
         "module": "WWII Armour and Technics",
+        "shape": "German_covered_wagon_G10",
         "countries": [
             "Germany",
             "USAF Aggressors",
@@ -154482,6 +154768,7 @@
         "type": "German_tank_wagon",
         "displayName": "Tank Car (Germany)",
         "module": "WWII Armour and Technics",
+        "shape": "German_tank_wagon",
         "countries": [
             "Germany",
             "USAF Aggressors",

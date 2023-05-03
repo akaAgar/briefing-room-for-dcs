@@ -22,7 +22,7 @@ namespace BriefingRoom4DCS.Generator
 
         internal DBEntryJSONUnit UnitDB { get; }
 
-        internal DCSGroup DCSGroup { get {return DCSGroups.First();} }
+        internal DCSGroup DCSGroup { get { return DCSGroups.First(); } }
         internal List<DCSGroup> DCSGroups { get; }
 
         internal UnitMakerGroupInfo(ref DCSGroup dCSGroup, DBEntryJSONUnit unitDB = null)
@@ -145,7 +145,7 @@ namespace BriefingRoom4DCS.Generator
             if (unitCount <= 0) throw new BriefingRoomException("Asking for a zero units");
             if (families.Count <= 0) throw new BriefingRoomException("No Unit Families Provided");
             DBEntryCoalition unitsCoalitionDB = CoalitionsDB[(int)((side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy())];
-            var (country, units) = unitsCoalitionDB.GetRandomUnits(families, Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowLowPoly"), countMinMax: unitCountMinMax,  lowUnitVariation: unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.LowUnitVariation));
+            var (country, units) = unitsCoalitionDB.GetRandomUnits(families, Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowLowPoly"), countMinMax: unitCountMinMax, lowUnitVariation: unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.LowUnitVariation));
             if (side == Side.Neutral)
             {
                 (country, units) = GeneratorTools.GetNeutralRandomUnits(families, CoalitionsDB.SelectMany(x => x.Countries).ToList(), Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowLowPoly"), countMinMax: unitCountMinMax);
@@ -162,6 +162,12 @@ namespace BriefingRoom4DCS.Generator
 
             return AddUnitGroup(Toolbox.ShuffleArray(units.ToArray()), side, families.First(), groupLua, unitLua, coordinates, unitMakerGroupFlags, extraSettings);
         }
+
+        // SPAWN TEMPLATE
+        // Load units from template
+        // Spawn units/statics as normal
+        // Pass positions array that sets positions/headings of each unit.
+        // THINK ABOUT: How we add templates into the unit selection process & default units.
 
         internal UnitMakerGroupInfo? AddUnitGroup(
             string[] units, Side side, UnitFamily unitFamily,
@@ -203,7 +209,7 @@ namespace BriefingRoom4DCS.Generator
                 if (extraSettings.ContainsKey("PlayerStartingType") && extraSettings.GetValueOrDefault("PlayerStartingType").ToString() == "TakeOffParking")
                     groupName += "(C)";
                 var aircraftUnitDB = (DBEntryAircraft)firstUnitDB;
-                extraSettings["Pylons"] = extraSettings.ContainsKey("Payload")? aircraftUnitDB.GetPylonsObject(extraSettings.GetValueOrDefault("Payload", "").ToString()) : aircraftUnitDB.GetPylonsObject((DCSTask)extraSettings.GetValueOrDefault("DCSTask", DCSTask.Nothing));
+                extraSettings["Pylons"] = extraSettings.ContainsKey("Payload") ? aircraftUnitDB.GetPylonsObject(extraSettings.GetValueOrDefault("Payload", "").ToString()) : aircraftUnitDB.GetPylonsObject((DCSTask)extraSettings.GetValueOrDefault("DCSTask", DCSTask.Nothing));
             }
 
             GetLivery(firstUnitDB, country, ref extraSettings);
@@ -352,26 +358,26 @@ namespace BriefingRoom4DCS.Generator
                 int unitSetIndex = 0;
                 // foreach (string DCSID in unitDB.DCSIDs)
                 // {
-                    dCSUnits.Add(AddUnit(
-                       unitDB.DCSID,
-                       groupName,
-                       callsign,
-                       unitLuaIndex,
-                       unitSetIndex,
-                       unitDB,
-                       unitTypeLua,
-                       coordinates,
-                       unitMakerGroupFlags,
-                       country,
-                       side,
-                       extraSettings,
-                       unitSets.Count() == 1
-                       ));
+                dCSUnits.Add(AddUnit(
+                   unitDB.DCSID,
+                   groupName,
+                   callsign,
+                   unitLuaIndex,
+                   unitSetIndex,
+                   unitDB,
+                   unitTypeLua,
+                   coordinates,
+                   unitMakerGroupFlags,
+                   country,
+                   side,
+                   extraSettings,
+                   unitSets.Count() == 1
+                   ));
 
-                    unitsIDList.Add(UnitID);
-                    unitSetIndex++;
-                    unitLuaIndex++;
-                    UnitID++;
+                unitsIDList.Add(UnitID);
+                unitSetIndex++;
+                unitLuaIndex++;
+                UnitID++;
                 // }
             }
             return (dCSUnits, unitsIDList);
@@ -392,96 +398,92 @@ namespace BriefingRoom4DCS.Generator
             Dictionary<string, object> extraSettings
         )
         {
-            throw new NotImplementedException();
-            // List<int> unitsIDList = new List<int>();
-            // var initalGroupId = GroupID;
-            // var DCSGroups = new List<DCSGroup>();
-            // foreach (var unitSet in unitSets)
-            // {
-            //     var unitDB = Database.Instance.GetEntry<DBEntryJSONUnit>(unitSet);
-            //     if (unitDB == null)
-            //     {
-            //         BriefingRoom.PrintToLog($"Unit \"{unitSet}\" not found.", LogMessageErrorLevel.Warning);
-            //         continue;
-            //     }
-            //     int unitSetIndex = 0;
-            //     foreach (var DCSID in unitDB.DCSIDs)
-            //     {
-            //         var groupHeading = GetGroupHeading(coordinates, extraSettings);
-            //         var (unitCoordinates, unitHeading) = SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading);
-            //         var firstUnitID = UnitID;
-            //         var dCSGroup = CreateGroup(
-            //             groupTypeLua,
-            //             unitCoordinates,
-            //             groupName,
-            //             unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.AlwaysHidden),
-            //             UnitFamily.StaticStructureMilitary,
-            //             unitDB,
-            //             extraSettings
-            //         );
-            //         var dCSUnit = AddUnit(
-            //             DCSID,
-            //             groupName,
-            //             callsign,
-            //             1,
-            //             unitSetIndex,
-            //             unitDB,
-            //             unitTypeLua,
-            //             coordinates,
-            //             unitMakerGroupFlags,
-            //             country,
-            //             side,
-            //             extraSettings
-            //             );
+            List<int> unitsIDList = new List<int>();
+            var initalGroupId = GroupID;
+            var DCSGroups = new List<DCSGroup>();
+            foreach (var unitSet in unitSets)
+            {
+                var unitDB = Database.Instance.GetEntry<DBEntryJSONUnit>(unitSet);
+                if (unitDB == null)
+                {
+                    BriefingRoom.PrintToLog($"Unit \"{unitSet}\" not found.", LogMessageErrorLevel.Warning);
+                    continue;
+                }
+                int unitSetIndex = 0;
+                var groupHeading = GetGroupHeading(coordinates, extraSettings);
+                var (unitCoordinates, unitHeading) = SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading);
+                var firstUnitID = UnitID;
+                var dCSGroup = CreateGroup(
+                    groupTypeLua,
+                    unitCoordinates,
+                    groupName,
+                    unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.AlwaysHidden),
+                    UnitFamily.StaticStructureMilitary,
+                    unitDB,
+                    extraSettings
+                );
+                var dCSUnit = AddUnit(
+                    unitDB.DCSID,
+                    groupName,
+                    callsign,
+                    1,
+                    unitSetIndex,
+                    unitDB,
+                    unitTypeLua,
+                    coordinates,
+                    unitMakerGroupFlags,
+                    country,
+                    side,
+                    extraSettings
+                    );
 
-            //         unitsIDList.Add(UnitID);
-            //         unitSetIndex++;
-            //         UnitID++;
+                unitsIDList.Add(UnitID);
+                unitSetIndex++;
+                UnitID++;
 
-            //         dCSGroup.Units = new List<DCSUnit> { dCSUnit };
+                dCSGroup.Units = new List<DCSUnit> { dCSUnit };
 
-            //         DCSGroups.Add(dCSGroup);
-            //         AddUnitGroupToTable(country, DCSUnitCategory.Static, dCSGroup);
+                DCSGroups.Add(dCSGroup);
+                AddUnitGroupToTable(country, DCSUnitCategory.Static, dCSGroup);
 
-            //         BriefingRoom.PrintToLog($"Added group of {DCSID} {coalition} {unitFamily} at {coordinates}");
+                BriefingRoom.PrintToLog($"Added group of {unitDB.DCSID} {coalition} {unitFamily} at {coordinates}");
 
-            //         GroupID++;
-            //     }
-            // }
+                GroupID++;
+            }
 
-            // if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.EmbeddedAirDefense) && unitFamily != UnitFamily.StaticStructureOffshore)
-            // {
-            //     var firstUnitID = UnitID;
-            //     string[] airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(Template, side, unitFamily.GetUnitCategory());
-            //     var dCSGroup = CreateGroup(
-            //             "Vehicle",
-            //             coordinates,
-            //             groupName,
-            //             unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.AlwaysHidden),
-            //             UnitFamily.VehicleAAA,
-            //             null,
-            //             extraSettings
-            //         );
-            //     var (unitsLuaTable, embeddedunitsIDList) = AddUnits(
-            //         airDefenseUnits,
-            //         groupName,
-            //         callsign,
-            //         "Vehicle",
-            //         coordinates,
-            //         unitMakerGroupFlags,
-            //         country,
-            //         side,
-            //         extraSettings
-            //     );
-            //     dCSGroup.Units = unitsLuaTable;
-            //     GroupID++;
-            //     unitsIDList.AddRange(embeddedunitsIDList);
-            //     AddUnitGroupToTable(country, DCSUnitCategory.Vehicle, dCSGroup);
-            //     BriefingRoom.PrintToLog($"Added group of Embedded Air Defense for Static {coalition} {unitFamily} at {coordinates}");
-            // }
+            if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.EmbeddedAirDefense) && unitFamily != UnitFamily.StaticStructureOffshore)
+            {
+                var firstUnitID = UnitID;
+                string[] airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(Template, side, unitFamily.GetUnitCategory());
+                var dCSGroup = CreateGroup(
+                        "Vehicle",
+                        coordinates,
+                        groupName,
+                        unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.AlwaysHidden),
+                        UnitFamily.VehicleAAA,
+                        null,
+                        extraSettings
+                    );
+                var (unitsLuaTable, embeddedunitsIDList) = AddUnits(
+                    airDefenseUnits,
+                    groupName,
+                    callsign,
+                    "Vehicle",
+                    coordinates,
+                    unitMakerGroupFlags,
+                    country,
+                    side,
+                    extraSettings
+                );
+                dCSGroup.Units = unitsLuaTable;
+                GroupID++;
+                unitsIDList.AddRange(embeddedunitsIDList);
+                AddUnitGroupToTable(country, DCSUnitCategory.Vehicle, dCSGroup);
+                BriefingRoom.PrintToLog($"Added group of Embedded Air Defense for Static {coalition} {unitFamily} at {coordinates}");
+            }
 
-            // var firstUnitDB = Database.Instance.GetEntry<DBEntryUnit>(unitSets.First());
-            // return new UnitMakerGroupInfo(ref DCSGroups, firstUnitDB);
+            var firstUnitDB = Database.Instance.GetEntry<DBEntryJSONUnit>(unitSets.First());
+            return new UnitMakerGroupInfo(ref DCSGroups, firstUnitDB);
         }
 
 
@@ -529,6 +531,7 @@ namespace BriefingRoom4DCS.Generator
                 unit.Skill = extraSettings.GetValueOrDefault("Skill", GeneratorTools.GetDefaultSkillLevel(Template, side)).ToString(); ;
 
             unit.LiveryId = extraSettings.GetValueOrDefault("Livery", "default").ToString();
+            unit.ShapeName = unitDB.Shape;
 
             if (Toolbox.IsAircraft(unitDB.Category))
             {
@@ -544,18 +547,11 @@ namespace BriefingRoom4DCS.Generator
                     (int?)extraSettings.GetValueOrDefault("AirbaseRadioModulation", null)
                     )).ToList();
                 unit.PayloadCommon = aircraftUnitDB.PayloadCommon;
-                unit.Pylons = (Dictionary<int, Dictionary<string, string>>)extraSettings.GetValueOrDefault("Pylons", new Dictionary<int, Dictionary<string, string>>()); 
+                unit.Pylons = (Dictionary<int, Dictionary<string, string>>)extraSettings.GetValueOrDefault("Pylons", new Dictionary<int, Dictionary<string, string>>());
                 unit.Parking = ((List<int>)extraSettings.GetValueOrDefault("ParkingID", new List<int>())).ElementAtOrDefault(unitLuaIndex - 1);
-            }
-            else if (unitDB.Category == UnitCategory.Static || unitDB.Category == UnitCategory.Cargo)
-            {
-                // if (unitDB.Shape.Length - 1 > unitSetIndex)
-                //     unit.ShapeName = unitDB.Shape[unitSetIndex];
-                unit.Name = $"{groupName} {unitLuaIndex}";
             }
             else
                 unit.Name = $"{groupName} {unitLuaIndex}";
-
 
             return unit;
         }
@@ -565,22 +561,24 @@ namespace BriefingRoom4DCS.Generator
             var LiveryId = extraSettings.GetValueOrDefault("Livery", "default").ToString();
             if (LiveryId != "default")
                 return;
-            var options = unitDB.Liveries.GetValueOrDefault(country, new List<string>{"default"});
-            if(DBEntryTheater.DESERT_MAPS.Contains(Mission.TheaterID))
+            var options = unitDB.Liveries.GetValueOrDefault(country, new List<string> { "default" });
+            if (DBEntryTheater.DESERT_MAPS.Contains(Mission.TheaterID))
             {
                 var subset = options.Where(x => x.ToLower().Contains("desert")).ToList();
-                if(subset.Count() > 0)
+                if (subset.Count() > 0)
                     options = subset;
-            } else {
+            }
+            else
+            {
                 var subset = options.Where(x => !x.ToLower().Contains("desert")).ToList();
-                if(subset.Count() > 0)
+                if (subset.Count() > 0)
                     options = subset;
             }
 
             var season = Toolbox.GetSeasonFromMonth(int.Parse(Mission.GetValue("DateMonth")));
             var seasonSubset = options.Where(x => x.ToLower().Contains(season.ToString().ToLower())).ToList();
-            if(seasonSubset.Count() > 0)
-                    options = seasonSubset;
+            if (seasonSubset.Count() > 0)
+                options = seasonSubset;
             extraSettings["Livery"] = Toolbox.RandomFrom(options);
         }
 
@@ -665,36 +663,38 @@ namespace BriefingRoom4DCS.Generator
 
             if (unitDB.IsAircraft)
                 unitCoordinates = groupCoordinates + new Coordinates(AIRCRAFT_UNIT_SPACING, AIRCRAFT_UNIT_SPACING) * unitIndex;
-            // else
-            // {
-            //     if (unitDB.OffsetCoordinates.Length > unitIndex) // Unit has a fixed set of coordinates (for SAM sites, etc.)
-            //     {
-            //         Coordinates offsetCoordinates = unitDB.OffsetCoordinates[unitIndex];
-            //         unitCoordinates = TransformFromOffset(unitHeading, groupCoordinates, offsetCoordinates);
-            //     }
-            //     else if (!singleUnit || unitDB.DCSIDs.Count() != 1) // No fixed coordinates, generate random coordinates
-            //     {
-            //         switch (unitDB.Category)
-            //         {
-            //             case UnitCategory.Ship:
-            //                 if (unitIndex > 0)
-            //                     unitCoordinates = groupCoordinates.CreateNearRandom(SHIP_UNIT_SPACING, SHIP_UNIT_SPACING * 10);
-            //                 break;
-            //             case UnitCategory.Cargo:
-            //             case UnitCategory.Static:
-            //                 // Static units are spawned exactly on the group location (and there's only a single unit per group)
-            //                 break;
-            //             default:
-            //                 unitCoordinates = groupCoordinates.CreateNearRandom(VEHICLE_UNIT_SPACING, VEHICLE_UNIT_SPACING * 10);
-            //                 break;
-            //         }
-            //     }
+            else
+            {
+                // if (unitDB.OffsetCoordinates.Length > unitIndex) // Unit has a fixed set of coordinates (for SAM sites, etc.)
+                // {
+                //     Coordinates offsetCoordinates = unitDB.OffsetCoordinates[unitIndex];
+                //     unitCoordinates = TransformFromOffset(unitHeading, groupCoordinates, offsetCoordinates);
+                // }
+                // else
+                if (!singleUnit) // No fixed coordinates, generate random coordinates
+                {
+                    switch (unitDB.Category)
+                    {
+                        case UnitCategory.Ship:
+                            if (unitIndex > 0)
+                                unitCoordinates = groupCoordinates.CreateNearRandom(SHIP_UNIT_SPACING, SHIP_UNIT_SPACING * 10);
+                            break;
+                        case UnitCategory.Cargo:
+                        case UnitCategory.Static:
+                            // Static units are spawned exactly on the group location (and there's only a single unit per group)
+                            break;
+                        default:
+                            unitCoordinates = groupCoordinates.CreateNearRandom(VEHICLE_UNIT_SPACING, VEHICLE_UNIT_SPACING * 10);
+                            break;
+                    }
+                }
 
-            //     if (unitDB.OffsetHeading.Length > unitIndex) // Unit has a fixed heading (for SAM sites, etc.)
-            //         unitHeading = Toolbox.ClampAngle(unitHeading + unitDB.OffsetHeading[unitIndex]);
-            //     else if (unitDB.Category != UnitCategory.Ship)
-            //         unitHeading = Toolbox.RandomDouble(Toolbox.TWO_PI);
-            // }
+                // if (unitDB.OffsetHeading.Length > unitIndex) // Unit has a fixed heading (for SAM sites, etc.)
+                //     unitHeading = Toolbox.ClampAngle(unitHeading + unitDB.OffsetHeading[unitIndex]);
+                //else 
+                if (unitDB.Category != UnitCategory.Ship)
+                    unitHeading = Toolbox.RandomDouble(Toolbox.TWO_PI);
+            }
             return (unitCoordinates, unitHeading);
         }
 

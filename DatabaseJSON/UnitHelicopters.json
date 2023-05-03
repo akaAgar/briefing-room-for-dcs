@@ -831,6 +831,7 @@
         },
         "maxAlt": 2200,
         "cruiseSpeed": 270,
+        "shape": "MI-24W",
         "countries": [
             "Russia",
             "Ukraine",
@@ -1466,6 +1467,7 @@
         },
         "maxAlt": 1850,
         "cruiseSpeed": 225,
+        "shape": "MI-8MT",
         "countries": [
             "Russia",
             "Ukraine",
@@ -1870,6 +1872,7 @@
         },
         "maxAlt": 1000,
         "cruiseSpeed": 255,
+        "shape": "MI-26",
         "countries": [
             "Russia",
             "Ukraine",
@@ -1941,6 +1944,7 @@
         },
         "maxAlt": 2500,
         "cruiseSpeed": 230,
+        "shape": "KA-27",
         "countries": [
             "Russia",
             "Ukraine",
@@ -2058,6 +2062,7 @@
         },
         "maxAlt": 3170,
         "cruiseSpeed": 237,
+        "shape": "UH-60A",
         "countries": [
             "USA",
             "Turkey",
@@ -2138,6 +2143,7 @@
         },
         "maxAlt": 2895,
         "cruiseSpeed": 278,
+        "shape": "CH-53E",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -2195,6 +2201,7 @@
         },
         "maxAlt": 1675,
         "cruiseSpeed": 260,
+        "shape": "CH-47D",
         "countries": [
             "USA",
             "Turkey",
@@ -2536,6 +2543,7 @@
         },
         "maxAlt": 2500,
         "cruiseSpeed": 222,
+        "shape": "SH-3",
         "countries": [],
         "countriesWorldID": []
     },
@@ -2762,6 +2770,7 @@
         },
         "maxAlt": 3505,
         "cruiseSpeed": 296,
+        "shape": "AH-64A",
         "countries": [
             "USA",
             "UK",
@@ -3013,6 +3022,7 @@
         },
         "maxAlt": 3505,
         "cruiseSpeed": 296,
+        "shape": "AH-64D",
         "countries": [
             "USA",
             "UK",
@@ -3478,6 +3488,7 @@
         },
         "maxAlt": 915,
         "cruiseSpeed": 278,
+        "shape": "AH-1W",
         "countries": [
             "USA",
             "Turkey",
@@ -3550,6 +3561,7 @@
         },
         "maxAlt": 4510,
         "cruiseSpeed": 250,
+        "shape": "SH-60B",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -3891,6 +3903,7 @@
         },
         "maxAlt": 1850,
         "cruiseSpeed": 204,
+        "shape": "AB-212",
         "countries": [
             "Russia",
             "Ukraine",
@@ -4685,6 +4698,7 @@
         },
         "maxAlt": 2990,
         "cruiseSpeed": 261,
+        "shape": "Mi-28",
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -4876,6 +4890,7 @@
         },
         "maxAlt": 6000,
         "cruiseSpeed": 195,
+        "shape": "OH-58D",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -5610,6 +5625,7 @@
         },
         "maxAlt": 3505,
         "cruiseSpeed": 296,
+        "shape": "AH-64D_bl2",
         "countries": [
             "USA",
             "UK",
@@ -6827,6 +6843,7 @@
         },
         "maxAlt": 4000,
         "cruiseSpeed": 310,
+        "shape": "KA-50",
         "countries": [
             "Russia",
             "Ukraine",
@@ -8033,6 +8050,7 @@
         },
         "maxAlt": 4000,
         "cruiseSpeed": 310,
+        "shape": "Ka-50_3",
         "countries": [
             "Algeria"
         ],
@@ -8959,6 +8977,7 @@
         "ammoType": 1,
         "maxAlt": 2200,
         "cruiseSpeed": 270,
+        "shape": "Mi-24P",
         "countries": [
             "Russia",
             "Ukraine",
@@ -9283,6 +9302,7 @@
         },
         "maxAlt": 3040,
         "cruiseSpeed": 200,
+        "shape": "SA342M",
         "countries": [
             "UK",
             "France",
@@ -9525,6 +9545,7 @@
         "ammoType": 1,
         "maxAlt": 3040,
         "cruiseSpeed": 200,
+        "shape": "SA342L",
         "countries": [
             "UK",
             "France",
@@ -9788,6 +9809,7 @@
         },
         "maxAlt": 3040,
         "cruiseSpeed": 200,
+        "shape": "SA342Mistral",
         "countries": [
             "UK",
             "France",
@@ -10004,6 +10026,7 @@
         },
         "maxAlt": 3040,
         "cruiseSpeed": 200,
+        "shape": "SA342Minigun",
         "countries": [
             "UK",
             "France",

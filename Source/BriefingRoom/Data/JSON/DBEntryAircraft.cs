@@ -110,6 +110,7 @@ namespace BriefingRoom4DCS.Data
                     CallSigns = new List<string> { "1:Enfield", "2:Springfield", "3:Uzi", "4:Colt", "5:Dodge", "6:Ford", "7:Chevy", "8:Pontiac" },
                     SpecificCallNames = aircraft.specificCallnames,
                     Payloads = aircraft.payloadPresets,
+                    Shape = aircraft.shape,
 
                     // Look to replace/simplify
                     PlayerControllable = iniUnit.AircraftData.PlayerControllable,
@@ -135,7 +136,7 @@ namespace BriefingRoom4DCS.Data
         internal Dictionary<int, Dictionary<string, string>> GetPylonsObject(DCSTask task)
         {
             if (Payloads.Count() == 0)
-                return null;
+                return new Dictionary<int, Dictionary<string, string>>();
             var payload = Toolbox.RandomFrom(Payloads.Where(x => x.tasks.Contains((int)task)).ToList());
             if (payload == null)
                 payload = Toolbox.RandomFrom(Payloads);

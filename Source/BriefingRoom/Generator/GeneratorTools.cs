@@ -91,8 +91,7 @@ namespace BriefingRoom4DCS.Generator
             // At least one unit found, return it
             if (validUnits.Count == 0)
             {
-                validUnits = new Dictionary<Country, List<string>> { { Country.ALL, Database.Instance.GetEntry<DBEntryDefaultUnitList>("FirstWorld").DefaultUnits[(int)families.First(), (int)decade].ToList() } };
-
+                validUnits = new Dictionary<Country, List<string>> { { Country.ALL, Database.Instance.GetEntry<DBEntryDefaultUnitList>("FirstWorld").DefaultUnits[families.First()][decade].ToList() } };
             }
 
             switch (category)

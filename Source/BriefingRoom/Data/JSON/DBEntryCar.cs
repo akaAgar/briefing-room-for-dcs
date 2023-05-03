@@ -59,6 +59,7 @@ namespace BriefingRoom4DCS.Data
                     Countries = car.countries.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)).ToList(),
                     DCSCategory = car.category,
                     Module = car.module,
+                    Shape = car.shape,
 
                     // Look to replace/simplify
                     Families = iniUnit.Families,
