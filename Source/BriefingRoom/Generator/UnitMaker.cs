@@ -164,10 +164,19 @@ namespace BriefingRoom4DCS.Generator
         }
 
         // SPAWN TEMPLATE
-        // Load units from template
-        // Spawn units/statics as normal
-        // Pass positions array that sets positions/headings of each unit.
         // THINK ABOUT: How we add templates into the unit selection process & default units.
+        internal UnitMakerGroupInfo? AddUnitGroup(
+            DBEntryTemplate unitTemplate,
+            Side side,
+            string groupTypeLua,
+            string unitTypeLua,
+            Coordinates coordinates,
+            UnitMakerGroupFlags unitMakerGroupFlags,
+            Dictionary<string, object> extraSettings)
+        {
+            extraSettings.Add("TemplatePositionMap", unitTemplate.Units);
+            return AddUnitGroup(unitTemplate.Units.Select(x => x.DCSID).ToArray(), side, unitTemplate.Family, groupTypeLua, unitTypeLua, coordinates, unitMakerGroupFlags, extraSettings);
+        }
 
         internal UnitMakerGroupInfo? AddUnitGroup(
             string[] units, Side side, UnitFamily unitFamily,
@@ -201,7 +210,9 @@ namespace BriefingRoom4DCS.Generator
                 );
 
             var firstUnitID = UnitID;
-            var firstUnitDB = units.Select(x => Database.Instance.GetEntry<DBEntryJSONUnit>(x)).First(x => x != null);
+            var firstUnitDB = units.Select(x => Database.Instance.GetEntry<DBEntryJSONUnit>(x)).FirstOrDefault(x => x != null, null);
+            if(firstUnitDB == null)
+                throw new BriefingRoomException($"Cant Find unit {units[0]}");
             if (unitFamily.GetUnitCategory().IsAircraft())
             {
                 callsign = CallsignGenerator.GetCallsign((DBEntryAircraft)firstUnitDB, country, side, isUsingSkynet, extraSettings.GetValueOrDefault("OverrideCallsignName", "").ToString(), (int)extraSettings.GetValueOrDefault("OverrideCallsignNumber", 1));
@@ -356,8 +367,6 @@ namespace BriefingRoom4DCS.Generator
                     continue;
                 }
                 int unitSetIndex = 0;
-                // foreach (string DCSID in unitDB.DCSIDs)
-                // {
                 dCSUnits.Add(AddUnit(
                    unitDB.DCSID,
                    groupName,
@@ -378,7 +387,6 @@ namespace BriefingRoom4DCS.Generator
                 unitSetIndex++;
                 unitLuaIndex++;
                 UnitID++;
-                // }
             }
             return (dCSUnits, unitsIDList);
         }
@@ -411,7 +419,7 @@ namespace BriefingRoom4DCS.Generator
                 }
                 int unitSetIndex = 0;
                 var groupHeading = GetGroupHeading(coordinates, extraSettings);
-                var (unitCoordinates, unitHeading) = SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading);
+                var (unitCoordinates, unitHeading) = SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading, (List<DBEntryTemplateUnit>)extraSettings.GetValueOrDefault("TemplatePositionMap", new List<DBEntryTemplateUnit>()));
                 var firstUnitID = UnitID;
                 var dCSGroup = CreateGroup(
                     groupTypeLua,
@@ -511,7 +519,7 @@ namespace BriefingRoom4DCS.Generator
             var unit = new DCSUnit(unitType);
 
             var groupHeading = GetGroupHeading(coordinates, extraSettings);
-            var (unitCoordinates, unitHeading) = SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading, singleUnit);
+            var (unitCoordinates, unitHeading) = SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading,  (List<DBEntryTemplateUnit>)extraSettings.GetValueOrDefault("TemplatePositionMap", new List<DBEntryTemplateUnit>()), singleUnit);
 
             foreach (KeyValuePair<string, object> extraSetting in extraSettings.Where(x => !IGNORE_PROPS.Contains(x.Key)).ToDictionary(x => x.Key, x => x.Value))
             {
@@ -656,7 +664,12 @@ namespace BriefingRoom4DCS.Generator
         }
 
         private (Coordinates unitCoordinates, double unitHeading) SetUnitCoordinatesAndHeading(
-            DBEntryJSONUnit unitDB, int unitIndex, Coordinates groupCoordinates, double groupHeading, bool singleUnit = false)
+            DBEntryJSONUnit unitDB,
+            int unitIndex,
+            Coordinates groupCoordinates,
+            double groupHeading,
+            List<DBEntryTemplateUnit> templatePositionMap,
+            bool singleUnit = false)
         {
             var unitCoordinates = groupCoordinates;
             var unitHeading = groupHeading;
@@ -665,13 +678,13 @@ namespace BriefingRoom4DCS.Generator
                 unitCoordinates = groupCoordinates + new Coordinates(AIRCRAFT_UNIT_SPACING, AIRCRAFT_UNIT_SPACING) * unitIndex;
             else
             {
-                // if (unitDB.OffsetCoordinates.Length > unitIndex) // Unit has a fixed set of coordinates (for SAM sites, etc.)
-                // {
-                //     Coordinates offsetCoordinates = unitDB.OffsetCoordinates[unitIndex];
-                //     unitCoordinates = TransformFromOffset(unitHeading, groupCoordinates, offsetCoordinates);
-                // }
-                // else
-                if (!singleUnit) // No fixed coordinates, generate random coordinates
+                var hasTemplatePosition = templatePositionMap.Count > unitIndex;
+                if (hasTemplatePosition) // Unit has a fixed set of coordinates (for SAM sites, etc.)
+                {
+                    Coordinates offsetCoordinates = templatePositionMap[unitIndex].DCoordinates;
+                    unitCoordinates = TransformFromOffset(unitHeading, groupCoordinates, offsetCoordinates);
+                }
+                else if (!singleUnit) // No fixed coordinates, generate random coordinates
                 {
                     switch (unitDB.Category)
                     {
@@ -689,10 +702,9 @@ namespace BriefingRoom4DCS.Generator
                     }
                 }
 
-                // if (unitDB.OffsetHeading.Length > unitIndex) // Unit has a fixed heading (for SAM sites, etc.)
-                //     unitHeading = Toolbox.ClampAngle(unitHeading + unitDB.OffsetHeading[unitIndex]);
-                //else 
-                if (unitDB.Category != UnitCategory.Ship)
+                if (hasTemplatePosition) // Unit has a fixed heading (for SAM sites, etc.)
+                    unitHeading = Toolbox.ClampAngle(unitHeading + templatePositionMap[unitIndex].Heading);
+                else if (unitDB.Category != UnitCategory.Ship)
                     unitHeading = Toolbox.RandomDouble(Toolbox.TWO_PI);
             }
             return (unitCoordinates, unitHeading);
