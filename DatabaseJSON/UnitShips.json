@@ -8,6 +8,7 @@
                 "name": "Armed Ship"
             }
         ],
+        "shape": "Patrol_Boat",
         "countries": [
             "Russia",
             "Ukraine",
@@ -209,6 +210,7 @@
                 "name": "AircraftCarrier With Arresting Gear"
             }
         ],
+        "shape": "vinson",
         "countries": [],
         "countriesWorldID": []
     },
@@ -224,6 +226,7 @@
                 "name": "HelicopterCarrier"
             }
         ],
+        "shape": "perry",
         "countries": [
             "USA",
             "Turkey",
@@ -265,6 +268,7 @@
                 "name": "HelicopterCarrier"
             }
         ],
+        "shape": "ticonderoga",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -289,6 +293,7 @@
                 "name": "Armed Ship"
             }
         ],
+        "shape": "albatros",
         "countries": [
             "Russia",
             "Ukraine",
@@ -332,6 +337,7 @@
                 "name": "AircraftCarrier With Arresting Gear"
             }
         ],
+        "shape": "kuznecow",
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -358,6 +364,7 @@
                 "name": "Armed Ship"
             }
         ],
+        "shape": "molniya",
         "countries": [
             "Russia",
             "Ukraine",
@@ -413,6 +420,7 @@
                 "name": "HelicopterCarrier"
             }
         ],
+        "shape": "moscow",
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -442,6 +450,7 @@
                 "name": "HelicopterCarrier"
             }
         ],
+        "shape": "neustrash",
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -471,6 +480,7 @@
                 "name": "HelicopterCarrier"
             }
         ],
+        "shape": "Piotr_Velikiy",
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -495,6 +505,7 @@
                 "name": "Armed Ship"
             }
         ],
+        "shape": "rezky",
         "countries": [
             "Russia",
             "Ukraine",
@@ -520,6 +531,7 @@
         "_id": "bc343895b77220f599e64e810be41646dc373396",
         "type": "ELNYA",
         "displayName": "Tanker Elnya 160",
+        "shape": "elnya",
         "countries": [
             "Russia",
             "Ukraine",
@@ -553,6 +565,7 @@
         "_id": "20bd347ab578e1c0bd13571f8f9f2f0e72b57393",
         "type": "Dry-cargo ship-2",
         "displayName": "Cargo Ivanov",
+        "shape": "barge-1",
         "countries": [
             "Russia",
             "Ukraine",
@@ -588,6 +601,7 @@
         "_id": "002acd747b7f3244319af4294f7a109c9805b3a5",
         "type": "Dry-cargo ship-1",
         "displayName": "Bulker Yakushev",
+        "shape": "barge-2",
         "countries": [
             "Russia",
             "Ukraine",
@@ -623,6 +637,7 @@
         "_id": "ec2a07b738692ab2a1350e0467f96f8aab0e6e11",
         "type": "ZWEZDNY",
         "displayName": "Boat Zvezdny type",
+        "shape": "zwezdny",
         "countries": [
             "Russia",
             "Ukraine",
@@ -656,6 +671,7 @@
         "_id": "52ccdc01a86dc2c6ea9337a8a430c7d4ed6faa26",
         "type": "KILO",
         "displayName": "SSK 877V Kilo",
+        "shape": "kilo",
         "countries": [
             "Russia",
             "Ukraine",
@@ -691,6 +707,7 @@
         "_id": "1673b240a6f5db79b3c960c6b1252e90d223ee31",
         "type": "IMPROVED_KILO",
         "displayName": "SSK 636 Improved Kilo",
+        "shape": "kilo_636",
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -712,6 +729,7 @@
         "_id": "d7017120d94cd98afed0cba95edab6d2d1b0d843",
         "type": "SOM",
         "displayName": "SSK 641B Tango",
+        "shape": "som",
         "countries": [],
         "countriesWorldID": []
     },
@@ -734,6 +752,7 @@
             }
         ],
         "module": "TAVKR 1143 High Detail",
+        "shape": "CV_1143_5",
         "countries": [
             "USAF Aggressors",
             "Combined Joint Task Forces Blue",
@@ -760,6 +779,7 @@
             }
         ],
         "module": "South_Atlantic_Assets",
+        "shape": "CastleClass_01",
         "countries": [
             "USAF Aggressors",
             "Combined Joint Task Forces Blue",
@@ -778,6 +798,7 @@
         "type": "HarborTug",
         "displayName": "Harbor Tug",
         "module": "South_Atlantic_Assets",
+        "shape": "HarborTug",
         "countries": [],
         "countriesWorldID": []
     },
@@ -797,6 +818,7 @@
             }
         ],
         "module": "South_Atlantic_Assets",
+        "shape": "hms_invincible",
         "countries": [
             "USAF Aggressors",
             "Combined Joint Task Forces Blue",
@@ -823,6 +845,7 @@
             }
         ],
         "module": "South_Atlantic_Assets",
+        "shape": "leander-gun-achilles",
         "countries": [
             "USAF Aggressors",
             "Combined Joint Task Forces Blue",
@@ -849,6 +872,7 @@
             }
         ],
         "module": "South_Atlantic_Assets",
+        "shape": "leander-gun-andromeda",
         "countries": [
             "USAF Aggressors",
             "Combined Joint Task Forces Blue",
@@ -875,6 +899,7 @@
             }
         ],
         "module": "South_Atlantic_Assets",
+        "shape": "leander-gun-ariadne",
         "countries": [
             "USAF Aggressors",
             "Combined Joint Task Forces Blue",
@@ -901,6 +926,7 @@
             }
         ],
         "module": "South_Atlantic_Assets",
+        "shape": "leander-gun-condell",
         "countries": [
             "USAF Aggressors",
             "Combined Joint Task Forces Blue",
@@ -927,6 +953,7 @@
             }
         ],
         "module": "South_Atlantic_Assets",
+        "shape": "leander-gun-lynch",
         "countries": [
             "USAF Aggressors",
             "Combined Joint Task Forces Blue",
@@ -950,6 +977,7 @@
             }
         ],
         "module": "South_Atlantic_Assets",
+        "shape": "Ship_Tilde_Supply",
         "countries": [],
         "countriesWorldID": []
     },
@@ -958,6 +986,7 @@
         "type": "santafe",
         "displayName": "ARA Santa Fe S-21",
         "module": "South_Atlantic_Assets",
+        "shape": "santafe",
         "countries": [
             "USAF Aggressors",
             "Combined Joint Task Forces Blue",
@@ -981,6 +1010,7 @@
             }
         ],
         "module": "TechWeaponPack",
+        "shape": "Ship_Handy_Wind",
         "countries": [
             "Russia",
             "USA",
@@ -1074,6 +1104,7 @@
             }
         ],
         "module": "TechWeaponPack",
+        "shape": "seawise_giant",
         "countries": [
             "Russia",
             "USA",
@@ -1161,6 +1192,7 @@
             }
         ],
         "module": "TechWeaponPack",
+        "shape": "La_Combattante_II",
         "countries": [
             "Germany",
             "USAF Aggressors",
@@ -1198,6 +1230,7 @@
             }
         ],
         "module": "TechWeaponPack",
+        "shape": "BDK_775",
         "countries": [
             "Russia",
             "Ukraine",
@@ -1238,6 +1271,7 @@
             }
         ],
         "module": "USS_Nimitz",
+        "shape": "Nimitz_CVN_71",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -1272,6 +1306,7 @@
             }
         ],
         "module": "USS_Nimitz",
+        "shape": "Nimitz_CVN_72",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -1306,6 +1341,7 @@
             }
         ],
         "module": "USS_Nimitz",
+        "shape": "Nimitz_CVN_73",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -1340,6 +1376,7 @@
             }
         ],
         "module": "USS_Nimitz",
+        "shape": "nimitz_cvn_74",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -1374,6 +1411,7 @@
             }
         ],
         "module": "USS_Nimitz",
+        "shape": "Nimitz_CVN_75",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -1402,6 +1440,7 @@
             }
         ],
         "module": "USS_Nimitz",
+        "shape": "Arleigh_Burke_IIa",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -1433,6 +1472,7 @@
             }
         ],
         "module": "AV-8B N/A AI by RAZBAM Sims",
+        "shape": "LHA_Tarawa",
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -1461,6 +1501,7 @@
             }
         ],
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shape": "052b",
         "countries": [
             "USAF Aggressors",
             "China",
@@ -1489,6 +1530,7 @@
             }
         ],
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shape": "054a",
         "countries": [
             "USAF Aggressors",
             "China",
@@ -1517,6 +1559,7 @@
             }
         ],
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shape": "052c",
         "countries": [
             "USAF Aggressors",
             "China",
@@ -1542,6 +1585,7 @@
             }
         ],
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shape": "093",
         "countries": [
             "USAF Aggressors",
             "China",
@@ -1576,6 +1620,7 @@
             }
         ],
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
+        "shape": "071",
         "countries": [
             "USAF Aggressors",
             "China",
@@ -1610,6 +1655,7 @@
             }
         ],
         "module": "F-14B AI by Heatblur Simulations",
+        "shape": "CV-59-Forrestal_LOD0",
         "countries": [
             "USAF Aggressors",
             "Combined Joint Task Forces Blue",

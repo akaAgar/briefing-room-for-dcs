@@ -1,0 +1,504 @@
+[
+    {
+        "type": "BRITISH BOFORS AA BATTERY",
+        "family": "VehicleAAAStatic",
+        "extraOperators": [
+            "Algeria",
+            "Argentina",
+            "Australia",
+            "Austria",
+            "Bahrain",
+            "Belgium",
+            "Brazil",
+            "Canada",
+            "Chile",
+            "China",
+            "Croatia",
+            "Cyprus",
+            "CzechRepublic",
+            "Denmark",
+            "Egypt",
+            "Finland",
+            "France",
+            "Germany",
+            "Greece",
+            "India",
+            "Indonesia",
+            "Iraq",
+            "Israel",
+            "Italy",
+            "Japan",
+            "Jordan",
+            "Lebanon",
+            "Libya",
+            "Malaysia",
+            "Mexico",
+            "Norway",
+            "Oman",
+            "Pakistan",
+            "Philippines",
+            "Poland",
+            "Portugal",
+            "Qatar",
+            "Russia",
+            "SaudiArabia",
+            "Serbia",
+            "SouthAfrica",
+            "SouthKorea",
+            "Spain",
+            "Sudan",
+            "Sweden",
+            "Sweden",
+            "Switzerland",
+            "Thailand",
+            "TheNetherlands",
+            "Turkey",
+            "UK",
+            "USA",
+            "UnitedArabEmirates",
+            "Venezuela",
+            "Vietnam",
+            "Yemen"
+        ],
+        "operational": [
+            1940,
+            1950
+        ]
+    },
+    {
+        "type": "FLAK18 BATTERY",
+        "family": "VehicleAAAStatic",
+        "extraOperators": [
+            "China",
+            "Greece",
+            "Spain"
+        ],
+        "operational": [
+            1940,
+            1950
+        ]
+    },
+    {
+        "type": "Hawk SAM Battery Iran",
+        "family": "VehicleSAMMedium",
+        "extraOperators": [],
+        "operational": [
+            1960,
+            2020
+        ]
+    },
+    {
+        "type": "Hawk SAM Battery reinforced",
+        "family": "VehicleSAMMedium",
+        "extraOperators": [
+            "Bahrain",
+            "Belgium",
+            "Denmark",
+            "Egypt",
+            "France",
+            "Germany",
+            "Greece",
+            "Iran",
+            "Israel",
+            "Italy",
+            "Japan",
+            "Jordan",
+            "Kuwait",
+            "Norway",
+            "SaudiArabia",
+            "SouthKorea",
+            "Spain",
+            "Sweden",
+            "TheNetherlands",
+            "Turkey",
+            "USA",
+            "UnitedArabEmirates"
+        ],
+        "operational": [
+            1960,
+            2020
+        ]
+    },
+    {
+        "type": "Hawk SAM Battery",
+        "family": "VehicleSAMMedium",
+        "extraOperators": [
+            "Bahrain",
+            "Belgium",
+            "Denmark",
+            "Egypt",
+            "France",
+            "Germany",
+            "Greece",
+            "Iran",
+            "Israel",
+            "Italy",
+            "Japan",
+            "Jordan",
+            "Kuwait",
+            "Norway",
+            "SaudiArabia",
+            "SouthKorea",
+            "Spain",
+            "Sweden",
+            "TheNetherlands",
+            "Turkey",
+            "USA",
+            "UnitedArabEmirates"
+        ],
+        "operational": [
+            1960,
+            2020
+        ]
+    },
+    {
+        "type": "NASAMS Bty CJTF Blue",
+        "family": "VehicleSAMMedium",
+        "extraOperators": [
+            "Australia",
+            "Chile",
+            "Hungary",
+            "Indonesia",
+            "Oman",
+            "Qatar",
+            "Spain",
+            "TheNetherlands"
+        ],
+        "operational": [
+            2000,
+            2020
+        ]
+    },
+    {
+        "type": "NASAMS Bty CJTF Red",
+        "family": "VehicleSAMMedium",
+        "extraOperators": [
+            "Australia",
+            "Chile",
+            "Hungary",
+            "Indonesia",
+            "Oman",
+            "Qatar",
+            "Spain",
+            "TheNetherlands"
+        ],
+        "operational": [
+            2000,
+            2020
+        ]
+    },
+    {
+        "type": "NASAMS Bty FIN",
+        "family": "VehicleSAMMedium",
+        "extraOperators": [],
+        "operational": [
+            2000,
+            2020
+        ]
+    },
+    {
+        "type": "NASAMS Bty NOR",
+        "family": "VehicleSAMMedium",
+        "extraOperators": [],
+        "operational": [
+            2000,
+            2020
+        ]
+    },
+    {
+        "type": "NASAMS Bty USA",
+        "family": "VehicleSAMMedium",
+        "extraOperators": [],
+        "operational": [
+            2000,
+            2020
+        ]
+    },
+    {
+        "type": "Patriot site Germany",
+        "family": "VehicleSAMLong",
+        "extraOperators": [],
+        "operational": [
+            1980,
+            2020
+        ]
+    },
+    {
+        "type": "Patriot site Israel",
+        "family": "VehicleSAMLong",
+        "extraOperators": [],
+        "operational": [
+            1980,
+            2020
+        ]
+    },
+    {
+        "type": "Patriot site Netherlands",
+        "family": "VehicleSAMLong",
+        "extraOperators": [],
+        "operational": [
+            1980,
+            2020
+        ]
+    },
+    {
+        "type": "Patriot site",
+        "family": "VehicleSAMLong",
+        "extraOperators": [
+            "Greece",
+            "Japan",
+            "Kuwait",
+            "SaudiArabia",
+            "SouthKorea",
+            "Spain",
+            "USA"
+        ],
+        "operational": [
+            1980,
+            2020
+        ]
+    },
+    {
+        "type": "Rapier SAM Battery Iran",
+        "family": "VehicleSAMMedium",
+        "extraOperators": [],
+        "operational": [
+            1970,
+            2020
+        ]
+    },
+    {
+        "type": "Rapier SAM Battery Oman",
+        "family": "VehicleSAMMedium",
+        "extraOperators": [],
+        "operational": [
+            1970,
+            2020
+        ]
+    },
+    {
+        "type": "Rapier SAM Battery UAE",
+        "family": "VehicleSAMMedium",
+        "extraOperators": [],
+        "operational": [
+            1970,
+            2020
+        ]
+    },
+    {
+        "type": "Rapier SAM Battery UK",
+        "family": "VehicleSAMMedium",
+        "extraOperators": [
+            "Australia",
+            "Indonesia",
+            "Iraq",
+            "Malaysia",
+            "Qatar",
+            "Switzerland",
+            "TheNetherlands",
+            "Turkey",
+            "USA"
+        ],
+        "operational": [
+            1970,
+            2020
+        ]
+    },
+    {
+        "type": "SA-10 SAM Battery Iran",
+        "family": "VehicleSAMLong",
+        "extraOperators": [],
+        "operational": [
+            1970,
+            2020
+        ]
+    },
+    {
+        "type": "SA-10 SAM Battery Ukr",
+        "family": "VehicleSAMLong",
+        "extraOperators": [],
+        "operational": [
+            1970,
+            2020
+        ]
+    },
+    {
+        "type": "SA-10 SAM Battery",
+        "family": "VehicleSAMLong",
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "operational": [
+            1970,
+            2020
+        ]
+    },
+    {
+        "type": "SA-11 SAM Battery Iran",
+        "family": "VehicleSAMMedium",
+        "extraOperators": [],
+        "operational": [
+            1980,
+            2020
+        ]
+    },
+    {
+        "type": "SA-11 SAM Battery",
+        "family": "VehicleSAMMedium",
+        "extraOperators": [
+            "Belarus",
+            "Egypt",
+            "Finland",
+            "Georgia",
+            "Russia",
+            "Syria",
+            "Ukraine"
+        ],
+        "operational": [
+            1980,
+            2020
+        ]
+    },
+    {
+        "type": "SA-2 SAM Battery Iran",
+        "family": "VehicleSAMMedium",
+        "extraOperators": [],
+        "operational": [
+            1960,
+            2020
+        ]
+    },
+    {
+        "type": "SA-2 SAM Battery",
+        "family": "VehicleSAMMedium",
+        "extraOperators": [
+            "Algeria",
+            "Bulgaria",
+            "China",
+            "Cuba",
+            "GDR",
+            "Egypt",
+            "Ethiopia",
+            "Georgia",
+            "Hungary",
+            "India",
+            "Indonesia",
+            "Iran",
+            "Iraq",
+            "Libya",
+            "NorthKorea",
+            "Pakistan",
+            "Poland",
+            "Romania",
+            "Russia",
+            "Slovakia",
+            "Sudan",
+            "Syria",
+            "Vietnam",
+            "Yemen",
+            "Yugoslavia"
+        ],
+        "operational": [
+            1960,
+            2020
+        ]
+    },
+    {
+        "type": "SA-3 SAM Battery",
+        "family": "VehicleSAMMedium",
+        "extraOperators": [
+            "Algeria",
+            "Bulgaria",
+            "Cuba",
+            "CzechRepublic",
+            "GDR",
+            "Egypt",
+            "Ethiopia",
+            "Finland",
+            "Georgia",
+            "Germany",
+            "Hungary",
+            "India",
+            "Iraq",
+            "Kazakhstan",
+            "Libya",
+            "NorthKorea",
+            "Poland",
+            "Romania",
+            "Russia",
+            "Serbia",
+            "Slovakia",
+            "Syria",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam",
+            "Yemen",
+            "Yugoslavia"
+        ],
+        "operational": [
+            1970,
+            2020
+        ]
+    },
+    {
+        "type": "SA-6 SAM Battery Iran",
+        "family": "VehicleSAMMedium",
+        "extraOperators": [],
+        "operational": [
+            1960,
+            2020
+        ]
+    },
+    {
+        "type": "SA-6 SAM Battery",
+        "family": "VehicleSAMMedium",
+        "extraOperators": [
+            "Algeria",
+            "Bulgaria",
+            "Cuba",
+            "CzechRepublic",
+            "Egypt",
+            "Ethiopia",
+            "GDR",
+            "Hungary",
+            "India",
+            "Iraq",
+            "Kazakhstan",
+            "Libya",
+            "Poland",
+            "Romania",
+            "Russia",
+            "Serbia",
+            "Slovakia",
+            "Syria",
+            "Ukraine",
+            "Vietnam",
+            "Yemen",
+            "Yugoslavia"
+        ],
+        "operational": [
+            1960,
+            2020
+        ]
+    },
+    {
+        "type": "insurgents mortar crew with car",
+        "family": "VehicleArtillery",
+        "extraOperators": [],
+        "operational": [
+            1980,
+            2020
+        ]
+    }
+]

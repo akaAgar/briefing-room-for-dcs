@@ -191,7 +191,7 @@ namespace BriefingRoom4DCS.Data
                 return validUnits;
 
             BriefingRoom.PrintToLog($"No Units of types {string.Join(", ", families)} found in coalition of {string.Join(", ", Countries.Where(x => x != Country.ALL))} forced to use defaults", LogMessageErrorLevel.Info);
-            return new Dictionary<Country, List<string>> { { Country.ALL, Database.GetEntry<DBEntryDefaultUnitList>(DefaultUnitList).DefaultUnits[(int)families.First(), (int)decade].ToList() } };
+            return new Dictionary<Country, List<string>> { { Country.ALL, Database.GetEntry<DBEntryDefaultUnitList>(DefaultUnitList).DefaultUnits[families.First()][decade].ToList() } };
         }
 
         internal void Merge(DBEntryCoalition entry)

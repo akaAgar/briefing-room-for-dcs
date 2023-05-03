@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCS.Template;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,44 +27,37 @@ namespace BriefingRoom4DCS.Data
 {
     internal class DBEntryDefaultUnitList : DBEntry
     {
-        internal string[,][] DefaultUnits { get; private set; }
+        internal Dictionary<UnitFamily, Dictionary<Decade, List<string>>> DefaultUnits { get; private set; }
 
         protected override bool OnLoad(string iniFilePath)
         {
-            int i, j;
-
-            DefaultUnits = new string[Toolbox.EnumCount<UnitFamily>(), Toolbox.EnumCount<Decade>()][];
-            for (i = 0; i < Toolbox.EnumCount<UnitFamily>(); i++)
-                for (j = 0; j < Toolbox.EnumCount<Decade>(); j++)
-                    DefaultUnits[i, j] = new string[0];
-
             var ini = new INIFile(iniFilePath);
-            var jsonUnsupported = new List<UnitCategory>{UnitCategory.Ship, UnitCategory.Static, UnitCategory.Cargo};
-            foreach (UnitFamily family in Toolbox.GetEnumValues<UnitFamily>())
-                foreach (Decade decade in Toolbox.GetEnumValues<Decade>())
+            var jsonUnsupported = new List<UnitCategory> { UnitCategory.Static, UnitCategory.Cargo };
+            DefaultUnits = new Dictionary<UnitFamily, Dictionary<Decade, List<string>>>();
+            foreach (UnitFamily fam in Enum.GetValues(typeof(UnitFamily)))
+            {
+                var subDict = new Dictionary<Decade, List<string>>();
+                var prevDecade = Decade.Decade1940;
+                foreach (Decade decade in Enum.GetValues(typeof(Decade)))
                 {
-                    var valArray = ini.GetValueArray<string>($"{decade}", $"{family}");
+                    var unitList = ini.GetValueList<string>($"{decade}", $"{fam}");
                     string[] invalidUnits;
-                    string[] units = jsonUnsupported.Contains(family.GetUnitCategory()) ?  GetValidDBEntryIDs<DBEntryUnit>(valArray, out invalidUnits) : GetValidDBEntryIDs<DBEntryJSONUnit>(valArray, out invalidUnits);
-
+                    string[] units = jsonUnsupported.Contains(fam.GetUnitCategory()) ? GetValidDBEntryIDs<DBEntryUnit>(unitList, out invalidUnits) : GetValidDBEntryIDs<DBEntryJSONUnit>(unitList, out invalidUnits);
                     foreach (string u in invalidUnits)
                         BriefingRoom.PrintToLog($"Unit \"{u}\" not found in default unit list \"{ID}\".", LogMessageErrorLevel.Warning);
 
-                    if (units.Length == 0) continue;
+                    if (units.Length == 0)
+                    {
+                        if (decade == Decade.Decade1940 || subDict[prevDecade].Count() == 0)
+                            throw new BriefingRoomException($"Default unit list \"{ID}\" has no unit of family \"{(UnitFamily)fam}\" during {(Decade)decade}, unit list was ignored.");
+                        units = subDict[prevDecade].ToArray();
+                    };
 
-                    for (i = (int)decade; i <= (int)Decade.Decade2020; i++)
-                        DefaultUnits[(int)family, i] = units.ToArray();
+                    subDict.Add(decade, units.ToList());
+                    prevDecade = decade;
                 }
-
-            // for (i = 0; i < Toolbox.EnumCount<UnitFamily>(); i++)
-            //     for (j = 0; j < Toolbox.EnumCount<Decade>(); j++)
-            //         if (DefaultUnits[i, j].Length == 0)
-            //         {
-            //             BriefingRoom.PrintToLog($"Default unit list \"{ID}\" has no unit of family \"{(UnitFamily)i}\" during {(Decade)j}, unit list was ignored.", LogMessageErrorLevel.Warning);
-            //             return false;
-            //         }
-
-
+                DefaultUnits.Add(fam, subDict);
+            }
             return true;
         }
     }

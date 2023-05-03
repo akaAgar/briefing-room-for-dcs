@@ -27,8 +27,10 @@ using Newtonsoft.Json;
 
 namespace BriefingRoom4DCS.Data
 {
-    internal class DBEntryShip : DBEntryJSONUnit
+    internal class DBEntryStatic : DBEntryJSONUnit
     {
+        
+        internal string ShapeName { get; init; }
 
         protected override bool OnLoad(string o)
         {
@@ -38,24 +40,23 @@ namespace BriefingRoom4DCS.Data
         internal static Dictionary<string, DBEntry> LoadJSON(string filepath, Dictionary<string, DBEntryUnit> unitDict)
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
-            var data = JsonConvert.DeserializeObject<List<Ship>>(File.ReadAllText(filepath));
-            foreach (var ship in data)
+            var data = JsonConvert.DeserializeObject<List<Static>>(File.ReadAllText(filepath));
+            foreach (var @static in data)
             {
-                var id = ship.type;
+                var id = @static.type;
                 if (!unitDict.ContainsKey(id))
                 {
                     BriefingRoom.PrintToLog($"Ini unit missing {id}", LogMessageErrorLevel.Warning);
                     continue;
                 }
                 var iniUnit = unitDict[id];
-                itemMap.Add(id, new DBEntryShip
+                itemMap.Add(id, new DBEntryStatic
                 {
                     ID = id,
-                    UIDisplayName = new LanguageString(ship.displayName),
-                    DCSID = ship.type,
-                    Countries = ship.countries.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)).ToList(),
-                    Module = ship.module,
-                    Shape = ship.shape,
+                    UIDisplayName = new LanguageString(@static.displayName),
+                    DCSID = @static.type,
+                    Countries = new List<Country>{Country.ALL},
+                    ShapeName = @static.shapeName,
 
                     // Look to replace/simplify
                     Families = iniUnit.Families,
@@ -67,6 +68,6 @@ namespace BriefingRoom4DCS.Data
             return itemMap;
         }
 
-        public DBEntryShip(){}
+        public DBEntryStatic(){}
     }
 }
