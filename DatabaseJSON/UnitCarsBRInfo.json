@@ -1,0 +1,3446 @@
+[
+    {
+        "type": "2B11 mortar",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SAU Gvozdika",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SAU Msta",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SAU Akatsia",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SAU 2-C9",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M-109",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SpGH_Dana",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "AAV7",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "BMD-1",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "BMP-1",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "BMP-2",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "BMP-3",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "BRDM-2",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1960,
+            1990
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "BTR_D",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Cobra",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "LAV-25",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M1043 HMMWV Armament",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M1045 HMMWV TOW",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M1126 Stryker ICV",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M-113",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M1134 Stryker ATGM",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M-2 Bradley",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "MCV-80",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "MTLB",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1960,
+            2010
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Marder",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "TPZ",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Grad_FDDM",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Bunker",
+        "families": [
+            "StaticStructureMilitary"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Paratrooper RPG-16",
+        "families": [
+            "Infantry"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Paratrooper AKS-74",
+        "families": [
+            "Infantry"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Infantry AK Ins",
+        "families": [
+            "Infantry"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Sandbox",
+        "families": [
+            "StaticStructureMilitary"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Soldier AK",
+        "families": [
+            "Infantry"
+        ],
+        "operational": [
+            1950,
+            1990
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Infantry AK",
+        "families": [
+            "Infantry"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Soldier M249",
+        "families": [
+            "Infantry"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Soldier M4",
+        "families": [
+            "Infantry"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Soldier M4 GRG",
+        "families": [
+            "Infantry"
+        ],
+        "operational": [
+            2010,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Soldier RPG",
+        "families": [
+            "Infantry"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "MLRS FDDM",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Infantry AK ver2",
+        "families": [
+            "Infantry"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Infantry AK ver3",
+        "families": [
+            "Infantry"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Grad-URAL",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Uragan_BM-27",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Smerch",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Smerch_HE",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "MLRS",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "2S6 Tunguska",
+        "families": [
+            "VehicleSAMShort"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Kub 2P25 ln",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "5p73 s-125 ln",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "S-300PS 5P85C ln",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "S-300PS 5P85D ln",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "SA-11 Buk LN 9A310M1",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Osa 9A33 ln",
+        "families": [
+            "VehicleSAMShort"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Tor 9A331",
+        "families": [
+            "VehicleSAMShort"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Strela-10M3",
+        "families": [
+            "VehicleSAMShortIR"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Strela-1 9P31",
+        "families": [
+            "VehicleSAMShortIR"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SA-11 Buk CC 9S470M1",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Patriot AMG",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Patriot ECS",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Gepard",
+        "families": [
+            "VehicleAAA"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Hawk pcp",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Vulcan",
+        "families": [
+            "VehicleAAA"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Hawk ln",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "M48 Chaparral",
+        "families": [
+            "VehicleSAMShortIR"
+        ],
+        "operational": [
+            1970,
+            2000
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M6 Linebacker",
+        "families": [
+            "VehicleSAMShortIR"
+        ],
+        "operational": [
+            1990,
+            2000
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Patriot ln",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "M1097 Avenger",
+        "families": [
+            "VehicleSAMShortIR"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Patriot EPP",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Patriot cp",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Roland ADS",
+        "families": [
+            "VehicleSAMShort"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PS 54K6 cp",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Soldier stinger",
+        "families": [
+            "InfantryMANPADS"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Stinger comm dsr",
+        "families": [
+            "InfantryMANPADS"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Stinger comm",
+        "families": [
+            "InfantryMANPADS"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "ZSU-23-4 Shilka",
+        "families": [
+            "VehicleAAA"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "ZU-23 Emplacement Closed",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "ZU-23 Emplacement",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Ural-375 ZU-23",
+        "families": [
+            "VehicleAAA"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "ZU-23 Closed Insurgent",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Ural-375 ZU-23 Insurgent",
+        "families": [
+            "VehicleAAA"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "ZU-23 Insurgent",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "SA-18 Igla manpad",
+        "families": [
+            "InfantryMANPADS"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SA-18 Igla comm",
+        "families": [
+            "InfantryMANPADS"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SA-18 Igla-S manpad",
+        "families": [
+            "InfantryMANPADS"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SA-18 Igla-S comm",
+        "families": [
+            "InfantryMANPADS"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Igla manpad INS",
+        "families": [
+            "InfantryMANPADS"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "1L13 EWR",
+        "families": [
+            "VehicleEWR"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Kub 1S91 str",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "S-300PS 40B6M tr",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "S-300PS 40B6MD sr",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "55G6 EWR",
+        "families": [
+            "VehicleEWR"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PS 64H6E sr",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "SA-11 Buk SR 9S18M1",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Dog Ear radar",
+        "families": [
+            "VehicleEWR"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Hawk tr",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Hawk sr",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Patriot str",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Hawk cwar",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "p-19 s-125 sr",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Roland Radar",
+        "families": [
+            "VehicleEWR"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "snr s-125 tr",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "house1arm",
+        "families": [
+            "StaticStructureMilitary"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "house2arm",
+        "families": [
+            "StaticStructureMilitary"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "outpost_road",
+        "families": [
+            "StaticStructureMilitary"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "outpost",
+        "families": [
+            "StaticStructureMilitary"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "houseA_arm",
+        "families": [
+            "StaticStructureMilitary"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "TACAN_beacon",
+        "families": [
+            "VehicleTACAN"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Challenger2",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Leclerc",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M-60",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1960,
+            2000
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M1128 Stryker MGS",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M-1 Abrams",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "T-55",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "T-72B",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "T-80UD",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "T-90",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Leopard1A3",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Merkava_Mk4",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Ural-4320 APA-5D",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "ATMZ-5",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "ATZ-10",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "GAZ-3307",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "GAZ-3308",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "GAZ-66",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M978 HEMTT Tanker",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "HEMTT TFFT",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "IKARUS Bus",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "KAMAZ Truck",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "LAZ Bus",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "LiAZ Bus",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Hummer",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M 818",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "MAZ-6303",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Predator GCS",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Predator TrojanSpirit",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Suidae",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            2020,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Tigr_233036",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Trolley bus",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1950,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "UAZ-469",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Ural ATsP-6",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Ural-4320-31",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Ural-4320T",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Ural-375 PBU",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Ural-375",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "VAZ Car",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "ZiL-131 APA-80",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SKP-11",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "ZIL-131 KUNG",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "ZIL-4331",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "KrAZ6322",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "JTAC",
+        "families": [
+            "Infantry"
+        ],
+        "operational": [
+            1950,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Infantry Animated",
+        "families": [
+            "Infantry"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Electric locomotive",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1950,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Locomotive",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Coach cargo",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Coach cargo open",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Coach a tank blue",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Coach a tank yellow",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Coach a passenger",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Coach a platform",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "tacr2a",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "LARC-V",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "KS-19",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "operational": [
+            1940,
+            1980
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "SON_9",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Scud_B",
+        "families": [
+            "VehicleMissile"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "HL_DSHK",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "HL_KORD",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "tt_DSHK",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "tt_KORD",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "HL_ZU-23",
+        "families": [
+            "VehicleAAA"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "tt_ZU-23",
+        "families": [
+            "VehicleAAA"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "HL_B8M1",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "tt_B8M1",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "NASAMS_Radar_MPQ64F1",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "NASAMS_Command_Post",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "NASAMS_LN_B",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "NASAMS_LN_C",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "M4_Sherman",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1940,
+            1960
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M2A1_halftrack",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1940,
+            1950
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "FPS-117 Dome",
+        "families": [
+            "VehicleEWR"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "FPS-117 ECS",
+        "families": [
+            "VehicleEWR"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "FPS-117",
+        "families": [
+            "VehicleEWR"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "BTR-80",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "RD_75",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1950,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "S_75M_Volhov",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1950,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "SNR_75V",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1950,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "RLS_19J6",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "RPC_5N62V",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1950,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "S-200_Launcher",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1950,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "ZSU_57_2",
+        "families": [
+            "VehicleAAA"
+        ],
+        "operational": [
+            1950,
+            1990
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-60_Type59_Artillery",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "operational": [
+            1950,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "generator_5i57",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "T-72B3",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            2010,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "PT_76",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1950,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "BTR-82A",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            2010,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "ATZ-5",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "AA8",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "TZ-22_KrAZ",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "ATZ-60_Maz",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "ZIL-135",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1950,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S_75_ZIL",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "rapier_fsa_launcher",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "rapier_fsa_optical_tracker_unit",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "rapier_fsa_blindfire_radar",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "bofors40",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "operational": [
+            1940,
+            1990
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Chieftain_mk3",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1960,
+            1990
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Bedford_MWD",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1940,
+            1960
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Land_Rover_101_FC",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1970,
+            2000
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Land_Rover_109_S3",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "hy_launcher",
+        "families": [
+            "VehicleMissile"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Silkworm_SR",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "ES44AH",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Boxcartrinity",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Tankcartrinity",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Wellcarnsc",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "flak18",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Pz_IV_H",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1940,
+            1950
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Leopard-2A5",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Leopard-2",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "leopard-2A4",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "leopard-2A4_trs",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Sd_Kfz_251",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Blitz_36-6700A",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1940,
+            1950
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "T155_Firtina",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "VAB_Mephisto",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "ZTZ96B",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "ZBD04A",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "HQ-7_LN_SP",
+        "families": [
+            "VehicleSAMShort"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "HQ-7_LN_EO",
+        "families": [
+            "VehicleSAMShortIR"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "HQ-7_STR_SP",
+        "families": [
+            "VehicleEWR"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "PLZ05",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "TYPE-59",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1950,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Kubelwagen_82",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Sd_Kfz_2",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Sd_Kfz_7",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Horch_901_typ_40_kfz_21",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Tiger_I",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Tiger_II_H",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Pz_V_Panther_G",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Jagdpanther_G1",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "JagdPz_IV",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Stug_IV",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SturmPzIV",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Wespe124",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Sd_Kfz_234_2_Puma",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "flak30",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "flak36",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "flak37",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "flak38",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "KDO_Mod40",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Flakscheinwerfer_37",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Maschinensatz_33",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "soldier_mauser98",
+        "families": [
+            "Infantry"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SK_C_28_naval_gun",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "fire_control",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Stug_III",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1940,
+            1950
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Elefant_SdKfz_184",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "flak41",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "v1_launcher",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "FuMG-401",
+        "families": [
+            "VehicleEWR"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "FuSe-65",
+        "families": [
+            "VehicleEWR"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Pak40",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "LeFH_18-40-105",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Cromwell_IV",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1940,
+            1950
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M4A4_Sherman_FF",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1940,
+            1950
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "soldier_wwii_br_01",
+        "families": [
+            "Infantry"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Centaur_IV",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1940,
+            1950
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Churchill_VII",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1940,
+            1950
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Daimler_AC",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Tetrarch",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1940,
+            1960
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "QF_37_AA",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "Allies_Director",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "CCKW_353",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1940,
+            1960
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Willys_MB",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M12_GMC",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M30_CC",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "soldier_wwii_us",
+        "families": [
+            "Infantry"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M10_GMC",
+        "families": [
+            "VehicleMBT"
+        ],
+        "operational": [
+            1940,
+            1950
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M8_Greyhound",
+        "families": [
+            "VehicleAPC"
+        ],
+        "operational": [
+            1940,
+            1980
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M2A1-105",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M4_Tractor",
+        "families": [
+            "VehicleTransport"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M45_Quadmount",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "M1_37mm",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "DR_50Ton_Flat_Wagon",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "DRG_Class_86",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "German_covered_wagon_G10",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "German_tank_wagon",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "lowPolly": false,
+        "immovable": true
+    }
+]

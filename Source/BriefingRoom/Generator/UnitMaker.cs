@@ -366,13 +366,11 @@ namespace BriefingRoom4DCS.Generator
                     BriefingRoom.PrintToLog($"Unit \"{unitSet}\" not found.", LogMessageErrorLevel.Warning);
                     continue;
                 }
-                int unitSetIndex = 0;
                 dCSUnits.Add(AddUnit(
                    unitDB.DCSID,
                    groupName,
                    callsign,
                    unitLuaIndex,
-                   unitSetIndex,
                    unitDB,
                    unitTypeLua,
                    coordinates,
@@ -384,7 +382,6 @@ namespace BriefingRoom4DCS.Generator
                    ));
 
                 unitsIDList.Add(UnitID);
-                unitSetIndex++;
                 unitLuaIndex++;
                 UnitID++;
             }
@@ -409,6 +406,7 @@ namespace BriefingRoom4DCS.Generator
             List<int> unitsIDList = new List<int>();
             var initalGroupId = GroupID;
             var DCSGroups = new List<DCSGroup>();
+            int unitIndex = 0;
             foreach (var unitSet in unitSets)
             {
                 var unitDB = Database.Instance.GetEntry<DBEntryJSONUnit>(unitSet);
@@ -417,9 +415,8 @@ namespace BriefingRoom4DCS.Generator
                     BriefingRoom.PrintToLog($"Unit \"{unitSet}\" not found.", LogMessageErrorLevel.Warning);
                     continue;
                 }
-                int unitSetIndex = 0;
                 var groupHeading = GetGroupHeading(coordinates, extraSettings);
-                var (unitCoordinates, unitHeading) = SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading, (List<DBEntryTemplateUnit>)extraSettings.GetValueOrDefault("TemplatePositionMap", new List<DBEntryTemplateUnit>()));
+                var (unitCoordinates, unitHeading) = SetUnitCoordinatesAndHeading(unitDB, unitIndex, coordinates, groupHeading, (List<DBEntryTemplateUnit>)extraSettings.GetValueOrDefault("TemplatePositionMap", new List<DBEntryTemplateUnit>()));
                 var firstUnitID = UnitID;
                 var dCSGroup = CreateGroup(
                     groupTypeLua,
@@ -434,8 +431,7 @@ namespace BriefingRoom4DCS.Generator
                     unitDB.DCSID,
                     groupName,
                     callsign,
-                    1,
-                    unitSetIndex,
+                    unitIndex,
                     unitDB,
                     unitTypeLua,
                     coordinates,
@@ -446,7 +442,7 @@ namespace BriefingRoom4DCS.Generator
                     );
 
                 unitsIDList.Add(UnitID);
-                unitSetIndex++;
+                unitIndex++;
                 UnitID++;
 
                 dCSGroup.Units = new List<DCSUnit> { dCSUnit };
@@ -500,7 +496,6 @@ namespace BriefingRoom4DCS.Generator
             string groupName,
             UnitCallsign? callsign,
             int unitLuaIndex,
-            int unitSetIndex,
             DBEntryJSONUnit unitDB,
             string unitType,
             Coordinates coordinates,
@@ -519,7 +514,7 @@ namespace BriefingRoom4DCS.Generator
             var unit = new DCSUnit(unitType);
 
             var groupHeading = GetGroupHeading(coordinates, extraSettings);
-            var (unitCoordinates, unitHeading) = SetUnitCoordinatesAndHeading(unitDB, unitSetIndex, coordinates, groupHeading,  (List<DBEntryTemplateUnit>)extraSettings.GetValueOrDefault("TemplatePositionMap", new List<DBEntryTemplateUnit>()), singleUnit);
+            var (unitCoordinates, unitHeading) = SetUnitCoordinatesAndHeading(unitDB, unitLuaIndex, coordinates, groupHeading,  (List<DBEntryTemplateUnit>)extraSettings.GetValueOrDefault("TemplatePositionMap", new List<DBEntryTemplateUnit>()), singleUnit);
 
             foreach (KeyValuePair<string, object> extraSetting in extraSettings.Where(x => !IGNORE_PROPS.Contains(x.Key)).ToDictionary(x => x.Key, x => x.Value))
             {
@@ -681,8 +676,7 @@ namespace BriefingRoom4DCS.Generator
                 var hasTemplatePosition = templatePositionMap.Count > unitIndex;
                 if (hasTemplatePosition) // Unit has a fixed set of coordinates (for SAM sites, etc.)
                 {
-                    Coordinates offsetCoordinates = templatePositionMap[unitIndex].DCoordinates;
-                    unitCoordinates = TransformFromOffset(unitHeading, groupCoordinates, offsetCoordinates);
+                    unitCoordinates = TransformFromOffset(unitHeading, groupCoordinates, templatePositionMap[unitIndex].DCoordinates);
                 }
                 else if (!singleUnit) // No fixed coordinates, generate random coordinates
                 {
