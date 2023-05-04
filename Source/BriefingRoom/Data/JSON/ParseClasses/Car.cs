@@ -15,4 +15,13 @@ namespace BriefingRoom4DCS.Data.JSON
         public string module { get; set; }
         public string shape { get; set; }
     }
+
+    public class CarBRInfo
+    {
+        public string type { get; set; }
+        public List<string> families { get; set; }
+        public List<int> operational { get; set; }
+        public bool lowPolly { get; set; }
+        public bool immovable { get; set; }
+    }
 }

@@ -41,15 +41,26 @@ namespace BriefingRoom4DCS.Data
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Car>>(File.ReadAllText(filepath));
+            var infoDataDict = JsonConvert.DeserializeObject<List<CarBRInfo>>(File.ReadAllText(filepath.Replace(".json", "BRInfo.json"))).ToDictionary(x => x.type, x => x); 
             foreach (var car in data)
             {
                 var id = car.type;
-                if (!unitDict.ContainsKey(id))
+                if (!infoDataDict.ContainsKey(id))
                 {
-                    BriefingRoom.PrintToLog($"Ini unit missing {id}", LogMessageErrorLevel.Warning);
+                    BriefingRoom.PrintToLog($"Unit missing {id} in info data", LogMessageErrorLevel.Warning);
                     continue;
                 }
-                var iniUnit = unitDict[id];
+                var infoData = infoDataDict[id];
+                if(infoData.families.Count() == 0)
+                {
+                    BriefingRoom.PrintToLog($"Unit missing {id} 'families' info data", LogMessageErrorLevel.Warning);
+                    continue;
+                }
+                if(infoData.operational.Count() == 0)
+                {
+                    BriefingRoom.PrintToLog($"Unit missing {id} 'operational' info data", LogMessageErrorLevel.Warning);
+                    continue;
+                }
                 itemMap.Add(id, new DBEntryCar
                 {
                     ID = id,
@@ -62,12 +73,12 @@ namespace BriefingRoom4DCS.Data
                     Shape = car.shape,
 
                     // Look to replace/simplify
-                    Families = iniUnit.Families,
-                    Operational = GetOperationalPeriod(iniUnit.Operators),
-                    LowPoly = iniUnit.Flags.HasFlag(DBEntryUnitFlags.LowPolly)
+                    Families = infoData.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
+                    Operational = infoData.operational.Select(x => (Template.Decade)x).ToList(),
+                    LowPoly = infoData.lowPolly,
+                    Immovable = infoData.immovable
                 });
             }
-
             return itemMap;
         }
 

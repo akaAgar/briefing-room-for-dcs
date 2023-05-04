@@ -35,7 +35,9 @@ namespace BriefingRoom4DCS.Data
         internal UnitFamily[] Families { get; init; }
         internal List<Decade> Operational { get; init; }
         internal bool LowPoly { get; init; } = false;
+        internal bool Immovable { get; init; } = false;
         internal string Shape { get; init; }
+
 
 
         protected override bool OnLoad(string o)
