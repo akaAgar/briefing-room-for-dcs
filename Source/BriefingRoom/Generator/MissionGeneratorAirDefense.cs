@@ -100,9 +100,8 @@ namespace BriefingRoom4DCS.Generator
                 UnitMakerGroupInfo? groupInfo;
                 if(unitFamilies.Contains(UnitFamily.VehicleSAMMedium) || unitFamilies.Contains(UnitFamily.VehicleSAMLong))
                 {
-                    var options = Database.Instance.GetAllEntries<DBEntryTemplate>().Where(x => unitFamilies.Contains(x.Family) ).ToList();
-                    groupInfo = unitMaker.AddUnitGroup(
-                    Toolbox.RandomFrom(options), side,
+                    groupInfo = unitMaker.AddUnitGroupTemplate(
+                    unitFamilies, side,
                     "Vehicle", "Vehicle",
                     spawnPoint.Value,
                     0,

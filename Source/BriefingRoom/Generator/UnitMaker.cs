@@ -163,9 +163,22 @@ namespace BriefingRoom4DCS.Generator
             return AddUnitGroup(Toolbox.ShuffleArray(units.ToArray()), side, families.First(), groupLua, unitLua, coordinates, unitMakerGroupFlags, extraSettings);
         }
 
-        // SPAWN TEMPLATE
-        // THINK ABOUT: How we add templates into the unit selection process & default units.
-        internal UnitMakerGroupInfo? AddUnitGroup(
+         internal UnitMakerGroupInfo? AddUnitGroupTemplate(
+            List<UnitFamily> families,
+            Side side,
+            string groupTypeLua,
+            string unitTypeLua,
+            Coordinates coordinates,
+            UnitMakerGroupFlags unitMakerGroupFlags,
+            Dictionary<string, object> extraSettings)
+        {
+            DBEntryCoalition unitsCoalitionDB = CoalitionsDB[(int)((side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy())];
+            var (country, unitTemplate) = unitsCoalitionDB.GetRandomTemplate(families, Template.ContextDecade, Template.Mods);
+            if (country != Country.ALL)
+                extraSettings["Country"] = country;
+            return AddUnitGroup(unitTemplate.Units.Select(x => x.DCSID).ToArray(), side, unitTemplate.Family, groupTypeLua, unitTypeLua, coordinates, unitMakerGroupFlags, extraSettings);
+        }
+        internal UnitMakerGroupInfo? AddUnitGroupTemplate(
             DBEntryTemplate unitTemplate,
             Side side,
             string groupTypeLua,
