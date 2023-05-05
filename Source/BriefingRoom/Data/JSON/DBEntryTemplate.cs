@@ -47,16 +47,17 @@ namespace BriefingRoom4DCS.Data
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<BriefingRoom4DCS.Data.JSON.Template>>(File.ReadAllText(filepath));
-            var supportData = JsonConvert.DeserializeObject<List<BriefingRoom4DCS.Data.JSON.TemplateBRInfo>>(File.ReadAllText($"{filepath.Replace(".json","")}BRInfo.json"));
+            var supportData = JsonConvert.DeserializeObject<List<BriefingRoom4DCS.Data.JSON.TemplateBRInfo>>(File.ReadAllText($"{filepath.Replace(".json","")}BRInfo.json"))
+                .ToDictionary(x => x.type, x => x);
             foreach (var template in data)
             {   
                 var id = template.name;
-                var supportInfo = supportData.Find(x => x.type == id);
-                if(supportInfo == null)
+                if(!supportData.ContainsKey(id))
                 {
                     BriefingRoom.PrintToLog($"Template {id} missing support data.", LogMessageErrorLevel.Warning);
                     continue;
                 }
+                var supportInfo = supportData[id];
                 var countryList = new List<Country>{(Country)template.country};
                 countryList.AddRange(supportInfo.extraOperators.Select(x => (Country)Enum.Parse(typeof(Country), x, true)));
                 itemMap.Add(id, new DBEntryTemplate

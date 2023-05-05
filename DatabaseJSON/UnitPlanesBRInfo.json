@@ -1,0 +1,1349 @@
+[
+    {
+        "type": "Tornado GR4",
+        "families": [
+            "PlaneStrike",
+            "PlaneSEAD"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Tornado IDS",
+        "families": [
+            "PlaneStrike",
+            "PlaneSEAD"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "F/A-18A",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike",
+            "PlaneCATOBAR"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": true,
+        "playerControllable": false
+    },
+    {
+        "type": "F/A-18C",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike",
+            "PlaneCATOBAR"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "F-14A",
+        "families": [
+            "PlaneFighter",
+            "PlaneInterceptor",
+            "PlaneStrike",
+            "PlaneCATOBAR"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": true,
+        "playerControllable": false
+    },
+    {
+        "type": "Tu-22M3",
+        "families": [
+            "PlaneBomber"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "F-4E",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1960,
+            2010
+        ],
+        "extraOperators": [],
+        "lowPoly": true,
+        "playerControllable": false
+    },
+    {
+        "type": "B-52H",
+        "families": [
+            "PlaneBomber"
+        ],
+        "operational": [
+            1950,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": true,
+        "playerControllable": false
+    },
+    {
+        "type": "MiG-27K",
+        "families": [
+            "PlaneAttack",
+            "PlaneStrike",
+            "PlaneSEAD"
+        ],
+        "operational": [
+            1980,
+            1990
+        ],
+        "extraOperators": [],
+        "lowPoly": true,
+        "playerControllable": false
+    },
+    {
+        "type": "Su-27",
+        "families": [
+            "PlaneFighter"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "MiG-23MLD",
+        "families": [
+            "PlaneFighter"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": true,
+        "playerControllable": true
+    },
+    {
+        "type": "Su-25",
+        "families": [
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Su-25TM",
+        "families": [
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Su-25T",
+        "families": [
+            "PlaneAttack",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Su-33",
+        "families": [
+            "PlaneFighter",
+            "PlaneSTOBAR"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "MiG-25PD",
+        "families": [
+            "PlaneInterceptor"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": true,
+        "playerControllable": false
+    },
+    {
+        "type": "MiG-25RBT",
+        "families": [
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": true,
+        "playerControllable": false
+    },
+    {
+        "type": "Su-30",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": true,
+        "playerControllable": false
+    },
+    {
+        "type": "Su-17M4",
+        "families": [
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": true,
+        "playerControllable": false
+    },
+    {
+        "type": "MiG-31",
+        "families": [
+            "PlaneInterceptor"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Tu-95MS",
+        "families": [
+            "PlaneBomber"
+        ],
+        "operational": [
+            1950,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": true,
+        "playerControllable": false
+    },
+    {
+        "type": "Su-24M",
+        "families": [
+            "PlaneStrike",
+            "PlaneSEAD"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Su-24MR",
+        "families": [
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Tu-160",
+        "families": [
+            "PlaneBomber"
+        ],
+        "operational": [
+            1950,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": true,
+        "playerControllable": false
+    },
+    {
+        "type": "F-117A",
+        "families": [
+            "PlaneBomber"
+        ],
+        "operational": [
+            1980,
+            2010
+        ],
+        "extraOperators": [],
+        "lowPoly": true,
+        "playerControllable": false
+    },
+    {
+        "type": "B-1B",
+        "families": [
+            "PlaneBomber"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "S-3B",
+        "families": [
+            "PlaneCATOBAR",
+            "PlaneTransport"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": true,
+        "playerControllable": false
+    },
+    {
+        "type": "S-3B Tanker",
+        "families": [
+            "PlaneTankerBasket",
+            "PlaneCATOBAR"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": true,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage 2000-5",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": true,
+        "playerControllable": false
+    },
+    {
+        "type": "F-15C",
+        "families": [
+            "PlaneFighter"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "F-15E",
+        "families": [
+            "PlaneStrike",
+            "PlaneFighter"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "MiG-29A",
+        "families": [
+            "PlaneFighter"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "MiG-29G",
+        "families": [
+            "PlaneFighter"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Tu-142",
+        "families": [
+            "PlaneBomber"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": true,
+        "playerControllable": false
+    },
+    {
+        "type": "C-130",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            1950,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "An-26B",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "An-30M",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "C-17A",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": true,
+        "playerControllable": false
+    },
+    {
+        "type": "A-50",
+        "families": [
+            "PlaneAWACS"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "E-3A",
+        "families": [
+            "PlaneAWACS"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "IL-78M",
+        "families": [
+            "PlaneTankerBoom"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "E-2C",
+        "families": [
+            "PlaneAWACS",
+            "PlaneCATOBAR"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "IL-76MD",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "F-16C bl.50",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "F-16C bl.52d",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "F-16A",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": true,
+        "playerControllable": false
+    },
+    {
+        "type": "F-16A MLU",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": true,
+        "playerControllable": false
+    },
+    {
+        "type": "RQ-1A Predator",
+        "families": [
+            "PlaneDrone"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Yak-40",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "KC-135",
+        "families": [
+            "PlaneTankerBoom"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "FW-190D9",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "FW-190A8",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Bf-109K-4",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "SpitfireLFMkIX",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "SpitfireLFMkIXCW",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "P-51D",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1940,
+            1950
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "P-51D-30-NA",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1940,
+            1950
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "P-47D-30",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1940,
+            1950
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "P-47D-30bl1",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1940,
+            1950
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "P-47D-40",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1940,
+            1950
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "MosquitoFBMkVI",
+        "families": [
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "A-20G",
+        "families": [
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1940,
+            1950
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "A-10A",
+        "families": [
+            "PlaneAttack"
+        ],
+        "operational": [
+            1970,
+            2000
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "A-10C",
+        "families": [
+            "PlaneAttack"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "A-10C_2",
+        "families": [
+            "PlaneAttack"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "AJS37",
+        "families": [
+            "PlaneStrike",
+            "PlaneAttack",
+            "PlaneFighter"
+        ],
+        "operational": [
+            1970,
+            2000
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "AV8BNA",
+        "families": [
+            "PlaneAttack",
+            "PlaneSTOVL",
+            "PlaneFighter",
+            "PlaneSEAD"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "KC130",
+        "families": [
+            "PlaneTankerBasket"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "KC135MPRS",
+        "families": [
+            "PlaneTankerBasket"
+        ],
+        "operational": [
+            1950,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "C-101EB",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "C-101CC",
+        "families": [
+            "PlaneAttack"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "J-11A",
+        "families": [
+            "PlaneFighter"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "JF-17",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "KJ-2000",
+        "families": [
+            "PlaneAWACS"
+        ],
+        "operational": [
+            2010,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "WingLoong-I",
+        "families": [
+            "PlaneDrone"
+        ],
+        "operational": [
+            2010,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "H-6J",
+        "families": [
+            "PlaneBomber"
+        ],
+        "operational": [
+            1980,
+            1990
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Christen Eagle II",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "F-16C_50",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "F-5E",
+        "families": [
+            "PlaneFighter"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "F-5E-3",
+        "families": [
+            "PlaneFighter"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "F-86F Sabre",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1950,
+            1970
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "F-14B",
+        "families": [
+            "PlaneFighter",
+            "PlaneInterceptor",
+            "PlaneStrike",
+            "PlaneCATOBAR"
+        ],
+        "operational": [
+            1980,
+            2000
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "F-14A-135-GR",
+        "families": [
+            "PlaneFighter",
+            "PlaneInterceptor",
+            "PlaneStrike",
+            "PlaneCATOBAR"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "FA-18C_hornet",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike",
+            "PlaneCATOBAR"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Hawk",
+        "families": [
+            "VehicleSAMMedium"
+        ],
+        "operational": [
+            1960,
+            1990
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "I-16",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1940,
+            1950
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "L-39C",
+        "families": [
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "L-39ZA",
+        "families": [
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "M-2000C",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "MB-339A",
+        "families": [
+            "PlaneAttack"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "MB-339APAN",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "MQ-9 Reaper",
+        "families": [
+            "PlaneDrone",
+            "PlaneStrike"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "MiG-15bis",
+        "families": [
+            "PlaneFighter"
+        ],
+        "operational": [
+            1950,
+            1970
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "MiG-19P",
+        "families": [
+            "PlaneFighter"
+        ],
+        "operational": [
+            1950,
+            1970
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "MiG-21Bis",
+        "families": [
+            "PlaneFighter"
+        ],
+        "operational": [
+            1970,
+            1990
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Su-34",
+        "families": [
+            "PlaneStrike",
+            "PlaneSEAD"
+        ],
+        "operational": [
+            2010,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "TF-51D",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            1940,
+            1940
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    }
+]

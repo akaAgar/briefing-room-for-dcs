@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using BriefingRoom4DCS.Data.JSON;
+using BriefingRoom4DCS.Template;
 using Newtonsoft.Json;
 
 namespace BriefingRoom4DCS.Data
@@ -66,26 +67,32 @@ namespace BriefingRoom4DCS.Data
             throw new NotImplementedException();
         }
 
-        internal static Dictionary<string, DBEntry> LoadJSON(string filepath, Dictionary<string, DBEntryUnit> unitDict)
+        internal static Dictionary<string, DBEntry> LoadJSON(string filepath)
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Aircraft>>(File.ReadAllText(filepath));
+            var supportData = JsonConvert.DeserializeObject<List<AircraftBRInfo>>(File.ReadAllText($"{filepath.Replace(".json", "")}BRInfo.json")).ToDictionary(x => x.type, x => x);
+
             foreach (var aircraft in data)
             {
                 var id = aircraft.type;
-                if (!unitDict.ContainsKey(id))
+                if (!supportData.ContainsKey(id))
                 {
-                    BriefingRoom.PrintToLog($"Ini unit missing {id}", LogMessageErrorLevel.Warning);
+                    BriefingRoom.PrintToLog($"Aircraft {id} missing support data.", LogMessageErrorLevel.Warning);
                     continue;
                 }
-                var iniUnit = unitDict[id];
+                var supportInfo = supportData[id];
+
+                var countryList = aircraft.countries.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)).ToList();
+                countryList.AddRange(supportInfo.extraOperators.Select(x => (Country)Enum.Parse(typeof(Country), x, true)));
+
                 itemMap.Add(id, new DBEntryAircraft
                 {
                     ID = id,
                     UIDisplayName = new LanguageString(aircraft.displayName),
                     DCSID = aircraft.type,
                     Liveries = aircraft.paintSchemes.ToDictionary(pair => (Country)Enum.Parse(typeof(Country), pair.Key.Replace(" ", ""), true), pair => pair.Value),
-                    Countries = aircraft.countries.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)).ToList(),
+                    Countries = countryList,
                     Module = aircraft.module,
                     Tasks = aircraft.tasks.Where(x => x is not null).Select(x => (DCSTask)x.WorldID).ToList(),
                     Fuel = aircraft.fuel,
@@ -111,13 +118,12 @@ namespace BriefingRoom4DCS.Data
                     SpecificCallNames = aircraft.specificCallnames,
                     Payloads = aircraft.payloadPresets,
                     Shape = aircraft.shape,
-
-                    // Look to replace/simplify
-                    PlayerControllable = iniUnit.AircraftData.PlayerControllable,
-                    Families = iniUnit.Families,
-                    Operational = GetOperationalPeriod(iniUnit.Operators),
-                    LowPoly = iniUnit.Flags.HasFlag(DBEntryUnitFlags.LowPolly)
+                    PlayerControllable = supportInfo.playerControllable,
+                    Families = supportInfo.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
+                    Operational = supportInfo.operational.Select(x => (Decade)x).ToList(),
+                    LowPoly = supportInfo.lowPoly
                 });
+
             }
 
             return itemMap;

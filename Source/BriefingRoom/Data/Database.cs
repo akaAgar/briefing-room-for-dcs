@@ -168,7 +168,7 @@ namespace BriefingRoom4DCS.Data
                     entries = DBEntries[dbType].Concat(DBEntryCar.LoadJSON(filePath, GetAllEntriesDict<DBEntryUnit>())).ToDictionary(pair => pair.Key, pair => pair.Value);
                     break;
                 case DBEntryAircraft a:
-                    entries = DBEntries[dbType].Concat(DBEntryAircraft.LoadJSON(filePath, GetAllEntriesDict<DBEntryUnit>())).ToDictionary(pair => pair.Key, pair => pair.Value);
+                    entries = DBEntries[dbType].Concat(DBEntryAircraft.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
                     break;
                 case DBEntryShip a:
                     entries = DBEntries[dbType].Concat(DBEntryShip.LoadJSON(filePath, GetAllEntriesDict<DBEntryUnit>())).ToDictionary(pair => pair.Key, pair => pair.Value);
