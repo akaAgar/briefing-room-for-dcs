@@ -1,0 +1,562 @@
+[
+    {
+        "type": "speedboat",
+        "families": [
+            "ShipSpeedboat"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "VINSON",
+        "families": [
+            "ShipCarrierCATOBAR"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "PERRY",
+        "families": [
+            "ShipFrigate",
+            "ShipCarrierSTOVL"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "TICONDEROG",
+        "families": [
+            "ShipCruiser",
+            "ShipCarrierSTOVL"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "ALBATROS",
+        "families": [
+            "ShipFrigate"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "KUZNECOW",
+        "families": [
+            "ShipCarrierSTOBAR"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "MOLNIYA",
+        "families": [
+            "ShipFrigate"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "MOSCOW",
+        "families": [
+            "ShipCruiser",
+            "ShipCarrierSTOVL"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "NEUSTRASH",
+        "families": [
+            "ShipFrigate",
+            "ShipCarrierSTOVL"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "PIOTR",
+        "families": [
+            "ShipCruiser",
+            "ShipCarrierSTOVL"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "REZKY",
+        "families": [
+            "ShipFrigate"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "ELNYA",
+        "families": [
+            "ShipTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Dry-cargo ship-2",
+        "families": [
+            "ShipTransport"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Dry-cargo ship-1",
+        "families": [
+            "ShipTransport"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "ZWEZDNY",
+        "families": ["ShipTransport"],
+        "operational": [1960, 2020],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "KILO",
+        "families": [
+            "ShipSubmarine"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "IMPROVED_KILO",
+        "families": [
+            "ShipSubmarine"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SOM",
+        "families": [
+            "ShipSubmarine"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CV_1143_5",
+        "families": [
+            "ShipCarrierSTOBAR"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CastleClass_01",
+        "families": [
+            "ShipFrigate",
+            "ShipCarrierSTOVL"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "HarborTug",
+        "families": [
+            "ShipTransport"
+        ],
+        "operational": [
+            1950,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "hms_invincible",
+        "families": [
+            "ShipCarrierSTOVL"
+        ],
+        "operational": [
+            1970,
+            2010
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "leander-gun-achilles",
+        "families": [
+            "ShipFrigate",
+            "ShipCarrierSTOVL"
+        ],
+        "operational": [
+            1970,
+            1990
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "leander-gun-andromeda",
+        "families": [
+            "ShipFrigate",
+            "ShipCarrierSTOVL"
+        ],
+        "operational": [
+            1970,
+            1990
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "leander-gun-ariadne",
+        "families": [
+            "ShipFrigate",
+            "ShipCarrierSTOVL"
+        ],
+        "operational": [
+            1970,
+            1990
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "leander-gun-condell",
+        "families": [
+            "ShipFrigate",
+            "ShipCarrierSTOVL"
+        ],
+        "operational": [
+            1970,
+            2010
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "leander-gun-lynch",
+        "families": [
+            "ShipFrigate",
+            "ShipCarrierSTOVL"
+        ],
+        "operational": [
+            1970,
+            1990
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Ship_Tilde_Supply",
+        "families": [
+            "ShipTransport"
+        ],
+        "operational": [2000, 2020],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "santafe",
+        "families": [
+            "ShipSubmarine"
+        ],
+        "operational": [
+            1940,
+            1970
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "HandyWind",
+        "families": [
+            "ShipTransport",
+            "ShipCarrierSTOVL"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Seawise_Giant",
+        "families": [
+            "ShipTransport",
+            "ShipCarrierSTOVL"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "La_Combattante_II",
+        "families": [
+            "ShipFrigate"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "BDK-775",
+        "families": [
+            "ShipFrigate"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CVN_71",
+        "families": [
+            "ShipCarrierCATOBAR"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CVN_72",
+        "families": [
+            "ShipCarrierCATOBAR"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CVN_73",
+        "families": [
+            "ShipCarrierCATOBAR"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Stennis",
+        "families": [
+            "ShipCarrierCATOBAR"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CVN_75",
+        "families": [
+            "ShipCarrierCATOBAR"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "USS_Arleigh_Burke_IIa",
+        "families": [
+            "ShipCruiser",
+            "ShipCarrierSTOVL"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "LHA_Tarawa",
+        "families": [
+            "ShipCarrierSTOVL"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Type_052B",
+        "families": [
+            "ShipFrigate",
+            "ShipCarrierSTOVL"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Type_054A",
+        "families": [
+            "ShipFrigate",
+            "ShipCarrierSTOVL"
+        ],
+        "operational": [
+            2010,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Type_052C",
+        "families": [
+            "ShipFrigate"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Type_093",
+        "families": [
+            "ShipSubmarine"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Type_071",
+        "families": [
+            "ShipCarrierSTOVL"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Forrestal",
+        "families": [
+            "ShipCarrierCATOBAR"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    }
+]

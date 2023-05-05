@@ -39,15 +39,17 @@ namespace BriefingRoom4DCS.Data
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Ship>>(File.ReadAllText(filepath));
+            var infoDataDict = JsonConvert.DeserializeObject<List<CarBRInfo>>(File.ReadAllText(filepath.Replace(".json", "BRInfo.json"))).ToDictionary(x => x.type, x => x); 
             foreach (var ship in data)
             {
                 var id = ship.type;
-                if (!unitDict.ContainsKey(id))
+                if (!infoDataDict.ContainsKey(id))
                 {
-                    BriefingRoom.PrintToLog($"Ini unit missing {id}", LogMessageErrorLevel.Warning);
+                    BriefingRoom.PrintToLog($"Unit missing {id} in info data", LogMessageErrorLevel.Warning);
                     continue;
                 }
-                var iniUnit = unitDict[id];
+                var infoData = infoDataDict[id];
+
                 itemMap.Add(id, new DBEntryShip
                 {
                     ID = id,
@@ -56,12 +58,11 @@ namespace BriefingRoom4DCS.Data
                     Countries = ship.countries.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)).ToList(),
                     Module = ship.module,
                     Shape = ship.shape,
-
-                    // Look to replace/simplify
-                    Families = iniUnit.Families,
-                    Operational = GetOperationalPeriod(iniUnit.Operators),
-                    LowPoly = iniUnit.Flags.HasFlag(DBEntryUnitFlags.LowPolly)
+                    Families = infoData.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
+                    Operational = infoData.operational.Select(x => (Template.Decade)x).ToList(),
+                    LowPoly = infoData.lowPolly,
                 });
+
             }
 
             return itemMap;

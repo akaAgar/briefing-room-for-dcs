@@ -37,7 +37,7 @@ namespace BriefingRoom4DCS.Data
             throw new NotImplementedException();
         }
 
-        internal static Dictionary<string, DBEntry> LoadJSON(string filepath, Dictionary<string, DBEntryUnit> unitDict)
+        internal static Dictionary<string, DBEntry> LoadJSON(string filepath)
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Car>>(File.ReadAllText(filepath));
@@ -51,16 +51,7 @@ namespace BriefingRoom4DCS.Data
                     continue;
                 }
                 var infoData = infoDataDict[id];
-                if(infoData.families.Count() == 0)
-                {
-                    BriefingRoom.PrintToLog($"Unit missing {id} 'families' info data", LogMessageErrorLevel.Warning);
-                    continue;
-                }
-                if(infoData.operational.Count() == 0)
-                {
-                    BriefingRoom.PrintToLog($"Unit missing {id} 'operational' info data", LogMessageErrorLevel.Warning);
-                    continue;
-                }
+
                 itemMap.Add(id, new DBEntryCar
                 {
                     ID = id,
@@ -72,7 +63,6 @@ namespace BriefingRoom4DCS.Data
                     Module = car.module,
                     Shape = car.shape,
 
-                    // Look to replace/simplify
                     Families = infoData.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
                     Operational = infoData.operational.Select(x => (Template.Decade)x).ToList(),
                     LowPoly = infoData.lowPolly,
