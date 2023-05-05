@@ -61,12 +61,16 @@ namespace BriefingRoom4DCS.Generator
             SpawnPointType[] validSpawnPoints;
             switch (airDefenseRange)
             {
-                case AirDefenseRange.MediumRange:
-                    unitFamilies = new List<UnitFamily> { UnitFamily.VehicleSAMMedium };
-                    validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandLarge };
+                case AirDefenseRange.EWR:
+                    unitFamilies = new List<UnitFamily> { UnitFamily.VehicleEWR };
+                    validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandSmall, SpawnPointType.LandMedium };
                     break;
                 case AirDefenseRange.LongRange:
                     unitFamilies = new List<UnitFamily> { UnitFamily.VehicleSAMLong };
+                    validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandLarge };
+                    break;
+                case AirDefenseRange.MediumRange:
+                    unitFamilies = new List<UnitFamily> { UnitFamily.VehicleSAMMedium };
                     validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandLarge };
                     break;
                 default: // case AirDefenseRange.ShortRange:
@@ -93,7 +97,7 @@ namespace BriefingRoom4DCS.Generator
                     BriefingRoom.PrintToLog($"No spawn point found for {airDefenseRange} air defense unit groups", LogMessageErrorLevel.Warning);
                     return;
                 }
-                 UnitMakerGroupInfo? groupInfo;
+                UnitMakerGroupInfo? groupInfo;
                 if(unitFamilies.Contains(UnitFamily.VehicleSAMMedium) || unitFamilies.Contains(UnitFamily.VehicleSAMLong))
                 {
                     var options = Database.Instance.GetAllEntries<DBEntryTemplate>().Where(x => unitFamilies.Contains(x.Family) ).ToList();
