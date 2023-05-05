@@ -24,6 +24,7 @@ namespace BriefingRoom4DCS
     {
         ShortRange,
         MediumRange,
-        LongRange
+        LongRange,
+        EWR,
     }
 }
