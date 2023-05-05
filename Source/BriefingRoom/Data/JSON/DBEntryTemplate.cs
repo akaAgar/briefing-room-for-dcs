@@ -32,7 +32,7 @@ namespace BriefingRoom4DCS.Data
         
         internal string DCSCategory { get; init; }
         internal string Type { get; init; }
-        internal List<Country> Country { get; init; }
+        internal List<Country> Countries { get; init; }
         internal List<DBEntryTemplateUnit> Units { get; init; }
         internal UnitFamily Family {get; init;}
 
@@ -65,7 +65,7 @@ namespace BriefingRoom4DCS.Data
                     ID = id,
                     UIDisplayName = new LanguageString(template.name),
                     Type = template.type,
-                    Country = countryList.Distinct().ToList(),
+                    Countries = countryList.Distinct().ToList(),
                     Family = (UnitFamily)Enum.Parse(typeof(UnitFamily), supportInfo.family, true),
                     Operational = supportInfo.operational.Select(x => (Decade)x).ToList(),
                     Units = template.units.Select(x => new DBEntryTemplateUnit {

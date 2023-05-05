@@ -61,6 +61,31 @@ namespace BriefingRoom4DCS.Data
             return true;
         }
 
+        internal Tuple<Country, DBEntryTemplate> GetRandomTemplate(List<UnitFamily> families, Decade decade, List<string> unitMods)
+        {
+            
+            var validTemplates = new Dictionary<Country, List<DBEntryTemplate>>();
+            foreach (var country in Countries)
+            {
+                validTemplates[country] = (
+                        from template in Database.GetAllEntries<DBEntryTemplate>()
+                        where families.Contains(template.Family) && template.Countries.Contains(country)
+                            && (template.Operational[0] <= decade) && (template.Operational[1] >= decade)
+                        select template
+                    ).Distinct().ToList();
+            }
+
+            validTemplates = validTemplates.Where(x => x.Value.Count > 0).ToDictionary(x => x.Key, x => x.Value);
+
+            if (validTemplates.Count() == 0)
+                throw new  BriefingRoomException($"No Units of types {string.Join(", ", families)} found in coalition of {string.Join(", ", Countries.Where(x => x != Country.ALL))} defaults not yet implemented.");
+
+            var selectedCountry = Toolbox.RandomFrom(validTemplates.Keys.ToList());
+            return new(selectedCountry, Toolbox.RandomFrom(validTemplates[selectedCountry]));
+        }
+
+
+
         internal Tuple<Country, List<string>> GetRandomUnits(List<UnitFamily> families, Decade decade, int count, List<string> unitMods, bool allowLowPolly, Country? requiredCountry = null, MinMaxI? countMinMax = null, bool lowUnitVariation = false)
         {
             // Count is zero, return an empty array.
