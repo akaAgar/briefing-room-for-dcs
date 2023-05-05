@@ -1,0 +1,306 @@
+[
+    {
+        "type": "Mi-24V",
+        "families": [
+            "HelicopterAttack",
+            "HelicopterTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mi-8MT",
+        "families": [
+            "HelicopterTransport",
+            "HelicopterUtility",
+            "HelicopterAttack"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Mi-26",
+        "families": [
+            "HelicopterTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Ka-27",
+        "families": [
+            "HelicopterTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "UH-60A",
+        "families": [
+            "HelicopterTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "CH-53E",
+        "families": [
+            "HelicopterTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "CH-47D",
+        "families": [
+            "HelicopterTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "SH-3W",
+        "families": [
+            "HelicopterTransport"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "AH-64A",
+        "families": [
+            "HelicopterAttack"
+        ],
+        "operational": [
+            1980,
+            2010
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "AH-64D",
+        "families": [
+            "HelicopterAttack"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "AH-1W",
+        "families": [
+            "HelicopterAttack"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "SH-60B",
+        "families": [
+            "HelicopterUtility"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "UH-1H",
+        "families": [
+            "HelicopterUtility",
+            "HelicopterAttack"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Mi-28N",
+        "families": [
+            "HelicopterAttack"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "OH-58D",
+        "families": [
+            "HelicopterAttack"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "AH-64D_BLK_II",
+        "families": [
+            "HelicopterAttack"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Ka-50",
+        "families": [
+            "HelicopterAttack"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Ka-50_3",
+        "families": [
+            "HelicopterAttack"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Mi-24P",
+        "families": [
+            "HelicopterAttack",
+            "HelicopterTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "SA342M",
+        "families": [
+            "HelicopterAttack"
+        ],
+        "operational": [
+            1970,
+            1990
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "SA342L",
+        "families": [
+            "HelicopterAttack"
+        ],
+        "operational": [
+            1970,
+            1990
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "SA342Mistral",
+        "families": [
+            "HelicopterAttack"
+        ],
+        "operational": [
+            1970,
+            1990
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "SA342Minigun",
+        "families": [
+            "HelicopterAttack"
+        ],
+        "operational": [
+            1970,
+            1990
+        ],
+        "extraOperators": [],
+        "lowPoly": false,
+        "playerControllable": true
+    }
+]

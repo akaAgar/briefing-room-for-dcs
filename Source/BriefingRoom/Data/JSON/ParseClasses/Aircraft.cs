@@ -77,4 +77,14 @@ namespace BriefingRoom4DCS.Data.JSON
         public string CLSID { get; set; }
         public int num { get; set; }
     }
+
+    public class AircraftBRInfo
+    {
+        public string type { get; set; }
+        public List<string> families { get; set; } = new List<string>();
+        public List<int> operational { get; set; } = new List<int>();
+        public List<string> extraOperators { get; set; } = new List<string>();
+        public bool lowPoly { get; set; }
+        public bool playerControllable { get; set; }
+    }
 }
