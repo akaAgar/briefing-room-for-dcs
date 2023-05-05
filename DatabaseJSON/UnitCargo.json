@@ -1,0 +1,99 @@
+[
+    {
+        "_id": "4b89a066f3f7eecb37be9d17fadd7dc419c6d9f0",
+        "type": "uh1h_cargo",
+        "displayName": "UH-1H cargo",
+        "shapeName": "ab-212_cargo"
+    },
+    {
+        "_id": "5cb03c498ce836b2dfe4a45d7edbbae0b13eb7d6",
+        "type": "ammo_cargo",
+        "displayName": "Ammo",
+        "shapeName": "ammo_box_cargo"
+    },
+    {
+        "_id": "aa3394d3b5205d2154415e8b8e40de71b4cddd5d",
+        "type": "f_bar_cargo",
+        "displayName": "F-shape barrier",
+        "shapeName": "f_bar_cargo"
+    },
+    {
+        "_id": "6d4e2f0c2d0fafd2756327144ecff20e8f6dc009",
+        "type": "m117_cargo",
+        "displayName": "M117 bombs",
+        "shapeName": "m117_cargo"
+    },
+    {
+        "_id": "b5bdff2946d08db7137246a21d81e5b4b27bb0b8",
+        "type": "iso_container",
+        "displayName": "ISO container",
+        "shapeName": "iso_container_cargo"
+    },
+    {
+        "_id": "8e756791dd4dd024db0ecae6fbbe2e59e015c42d",
+        "type": "iso_container_small",
+        "displayName": "ISO container small",
+        "shapeName": "iso_container_small_cargo"
+    },
+    {
+        "_id": "8914f1187a5ef6e6a6a8a48fddab44de3a6e6204",
+        "type": "barrels_cargo",
+        "displayName": "Barrels",
+        "shapeName": "barrels_cargo"
+    },
+    {
+        "_id": "58b0440f1cd8b08c3c2396966bec824fc1f579e0",
+        "type": "container_cargo",
+        "displayName": "Container",
+        "shapeName": "bw_container_cargo"
+    },
+    {
+        "_id": "8c579940f2c309e2574d962c529295f1b4dc198e",
+        "type": "tetrapod_cargo",
+        "displayName": "Tetrapod",
+        "shapeName": "tetrapod_cargo"
+    },
+    {
+        "_id": "920df8d77dc70728c49d518500451881193ff8b1",
+        "type": "fueltank_cargo",
+        "displayName": "Fueltank",
+        "shapeName": "fueltank_cargo"
+    },
+    {
+        "_id": "8c7f0971e6fe7f880b151b263353541c5a8ef117",
+        "type": "oiltank_cargo",
+        "displayName": "Oiltank",
+        "shapeName": "oiltank_cargo"
+    },
+    {
+        "_id": "23db6901925cc034494c75a5fe353be4e42343a3",
+        "type": "pipes_big_cargo",
+        "displayName": "Pipes big",
+        "shapeName": "pipes_big_cargo"
+    },
+    {
+        "_id": "6cbdc21921a001a8615413f76b6f74554dc0b8b1",
+        "type": "pipes_small_cargo",
+        "displayName": "Pipes small",
+        "shapeName": "pipes_small_cargo"
+    },
+    {
+        "_id": "21c495b56e3e7b1aba5383507123808419ca0e59",
+        "type": "trunks_small_cargo",
+        "displayName": "Trunks short",
+        "shapeName": "trunks_small_cargo"
+    },
+    {
+        "_id": "aa8e4c19ffc0703474546c0bcbc28abddda545f1",
+        "type": "trunks_long_cargo",
+        "displayName": "Trunks long",
+        "shapeName": "trunks_long_cargo"
+    },
+    {
+        "_id": "b5de821bdb91f96bffbce45728dd0d4b459a3fb0",
+        "type": "L118",
+        "displayName": "L118 Light Artillery Gun",
+        "module": "South_Atlantic_Assets",
+        "shapeName": "L118"
+    }
+]
