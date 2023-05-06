@@ -382,7 +382,7 @@ function AddZone(key, data, map, mapName) {
 
 function GetGroup(id) {
     switch (true) {
-        case id.includes("SAM"):
+        case id.includes("SAM") || id.includes("EWR"):
             return "SAMs";
         default:
             return "GroundForces";
@@ -391,6 +391,8 @@ function GetGroup(id) {
 
 function GetRange(id) {
     switch (true) {
+        case id.includes("EWR"):
+            return 60 * 1852;
         case id.includes("Long"):
             return 40 * 1852;
         case id.includes("Medium"):
@@ -414,6 +416,8 @@ function GetTitle(id) {
             return 'Carrier'
         case id.includes("SUPPLY"):
             return 'Supply Base'
+        case id.includes("EWR"):
+            return 'Early Warning Radar'
         case id.includes("SAM"):
             switch (true) {
                 case id.includes("Long"):
@@ -521,6 +525,8 @@ function GetNatoIcon(id, invert = false) {
             return prefix + 'CARRIER'
         case id.includes("SUPPLY"):
             return prefix + 'SUPPLY'
+        case id.includes("EWR"):
+            return prefix + 'EWR'
         case id.includes("SAM"):
             switch (true) {
                 case id.includes("Long"):
