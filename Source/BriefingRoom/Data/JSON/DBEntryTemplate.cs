@@ -37,6 +37,7 @@ namespace BriefingRoom4DCS.Data
         internal UnitFamily Family {get; init;}
 
         internal List<Decade> Operational { get; init; }
+        internal string Module { get; init; }
 
         protected override bool OnLoad(string o)
         {
@@ -72,7 +73,8 @@ namespace BriefingRoom4DCS.Data
                         DCoordinates = new Coordinates(x.dx, x.dy),
                         DCSID = x.name,
                         Heading = x.heading
-                    }).ToList()
+                    }).ToList(),
+                    Module = supportInfo.module
                 });
             }
 
