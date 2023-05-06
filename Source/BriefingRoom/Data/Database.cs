@@ -92,6 +92,7 @@ namespace BriefingRoom4DCS.Data
             LoadJSONEntries<DBEntryStatic>("UnitHeliports", true);
             LoadJSONEntries<DBEntryTemplate>("Templates");
             LoadJSONEntries<DBEntryTemplate>("TemplatesCustom");
+            LoadJSONEntries<DBEntryLayout>("Layouts");
             LoadEntries<DBEntryDefaultUnitList>("DefaultUnitLists"); // Must be loaded after Units, as it depends on it
             LoadEntries<DBEntryCoalition>("Coalitions"); // Must be loaded after Unit and DBEntryDefaultUnitList, as it depends on them
             LoadCustomUnitEntries<DBEntryCoalition>("Coalitions");
@@ -182,6 +183,9 @@ namespace BriefingRoom4DCS.Data
                     break;
                 case DBEntryTemplate a:
                     entries = DBEntries[dbType].Concat(DBEntryTemplate.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
+                    break;
+                case DBEntryLayout a:
+                    entries = DBEntries[dbType].Concat(DBEntryLayout.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
                     break;
                 default:
                     throw new BriefingRoomException($"JSON type {dbType} not implemented.");
