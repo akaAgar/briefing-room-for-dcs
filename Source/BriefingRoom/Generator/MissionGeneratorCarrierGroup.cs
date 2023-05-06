@@ -65,13 +65,7 @@ namespace BriefingRoom4DCS.Generator
                 double radioFrequency = 127.5 + unitMaker.carrierDictionary.Count;
                 string tacanCallsign = $"CVN{cvnID}";
                 int tacanChannel = 74 + unitMaker.carrierDictionary.Count;
-
-                UnitMakerGroupInfo? groupInfo =
-                    unitMaker.AddUnitGroup(
-                        new string[] { unitDB.ID }, Side.Ally, unitDB.Families[0],
-                        "ShipCarrier", "Ship",
-                        shipCoordinates, 0,
-                        new Dictionary<string, object>{
+                var extraSettings = new Dictionary<string, object>{
                         {"GroupX2", shipDestination.X},
                         {"GroupY2", shipDestination.Y},
                         {"ILS", ilsChannel},
@@ -84,7 +78,15 @@ namespace BriefingRoom4DCS.Generator
                         {"Link4Frequency", GeneratorTools.GetRadioFrequency(link4Frequency)},
                         {"TACANMode"," X"},
                         {"playerCanDrive", false},
-                        {"NoCM", true}});
+                        {"NoCM", true}};
+                var templateOps = Database.Instance.GetAllEntries<DBEntryTemplate>().Where(x => x.Units.Any(y => y.DCSID == unitDB.DCSID)).ToList();
+                UnitMakerGroupInfo? groupInfo;
+                var groupLua = "ShipCarrier";
+                var unitLua = "Ship";
+                if (templateOps.Count() > 0)
+                    groupInfo = unitMaker.AddUnitGroupTemplate(Toolbox.RandomFrom(templateOps), Side.Ally, groupLua, unitLua, shipCoordinates, 0, extraSettings);
+                else
+                    groupInfo = unitMaker.AddUnitGroup(new string[] { unitDB.DCSID }, Side.Ally, unitDB.Families[0], groupLua, unitLua, shipCoordinates, 0, extraSettings);
 
                 if (!groupInfo.HasValue || (groupInfo.Value.UnitNames.Length == 0)) continue; // Couldn't generate group
 
@@ -189,9 +191,9 @@ namespace BriefingRoom4DCS.Generator
                 "FOB_Berlin"
             };
             var radioFrequencyValue = GeneratorTools.GetRadioFrequency(radioFrequency);
-            var groupInfo = 
-                unitMaker.AddUnitGroup(
-                    new string[]{flightGroup.Carrier}, Side.Ally, unitDB.Families[0],
+            var groupInfo =
+                unitMaker.AddUnitGroupTemplate(
+                    new List<UnitFamily> { UnitFamily.FOB }, Side.Ally,
                     "Static", "StaticFOB",
                     spawnPoint.Value, 0,
                     new Dictionary<string, object>{
