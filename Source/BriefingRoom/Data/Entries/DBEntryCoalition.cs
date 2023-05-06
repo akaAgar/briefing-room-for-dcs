@@ -153,11 +153,11 @@ namespace BriefingRoom4DCS.Data
             Dictionary<Country, List<string>> validUnits)
         {
             var validUnitsGroupSizeBetweenMinAndMax = new Dictionary<Country, List<string>>();
-            var validUnitsDCSIDsLengths = new Dictionary<Country, List<DBEntryUnit>>();
+            var validUnitsDCSIDsLengths = new Dictionary<Country, List<DBEntryJSONUnit>>();
 
             foreach (Country country in validUnits.Keys)
             {
-                validUnitsDCSIDsLengths[country] = Database.GetEntries<DBEntryUnit>(validUnits[country].ToArray()).ToList();
+                validUnitsDCSIDsLengths[country] = Database.GetEntries<DBEntryJSONUnit>(validUnits[country].ToArray()).ToList();
 
                 // check if the list of units can satisfy the min/max requirement
                 int countMinTemp = countMinMax.Min;
@@ -190,10 +190,10 @@ namespace BriefingRoom4DCS.Data
             return validUnitsGroupSizeBetweenMinAndMax;
         }
 
-        private bool LimitValidUnitsByMinMax(string unitID, List<DBEntryUnit> potentiallyValidUnits, int minUnitCount, int maxUnitCount)
+        private bool LimitValidUnitsByMinMax(string unitID, List<DBEntryJSONUnit> potentiallyValidUnits, int minUnitCount, int maxUnitCount)
         {
             var potentiallyValidUnit = potentiallyValidUnits.Where(unit => unit.ID == unitID).First();
-            return potentiallyValidUnit.DCSIDs.Length >= minUnitCount && potentiallyValidUnit.DCSIDs.Length <= maxUnitCount;
+            return 1 >= minUnitCount && 1 <= maxUnitCount; //TODO: Fix this is silly!
         }
 
         private Dictionary<Country, List<string>> SelectValidUnits(List<UnitFamily> families, Decade decade, List<string> unitMods, bool allowLowPoly)

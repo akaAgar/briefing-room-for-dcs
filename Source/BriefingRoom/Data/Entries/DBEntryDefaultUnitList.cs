@@ -32,7 +32,6 @@ namespace BriefingRoom4DCS.Data
         protected override bool OnLoad(string iniFilePath)
         {
             var ini = new INIFile(iniFilePath);
-            var jsonUnsupported = new List<UnitCategory> { UnitCategory.Static, UnitCategory.Cargo };
             DefaultUnits = new Dictionary<UnitFamily, Dictionary<Decade, List<string>>>();
             foreach (UnitFamily fam in Enum.GetValues(typeof(UnitFamily)))
             {
@@ -42,7 +41,7 @@ namespace BriefingRoom4DCS.Data
                 {
                     var unitList = ini.GetValueList<string>($"{decade}", $"{fam}");
                     string[] invalidUnits;
-                    string[] units = jsonUnsupported.Contains(fam.GetUnitCategory()) ? GetValidDBEntryIDs<DBEntryUnit>(unitList, out invalidUnits) : GetValidDBEntryIDs<DBEntryJSONUnit>(unitList, out invalidUnits);
+                    string[] units = GetValidDBEntryIDs<DBEntryJSONUnit>(unitList, out invalidUnits);
                     foreach (string u in invalidUnits)
                         BriefingRoom.PrintToLog($"Unit \"{u}\" not found in default unit list \"{ID}\".", LogMessageErrorLevel.Warning);
 

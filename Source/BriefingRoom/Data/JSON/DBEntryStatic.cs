@@ -31,25 +31,28 @@ namespace BriefingRoom4DCS.Data
     {
         
         internal string ShapeName { get; init; }
+        internal int ParkingSpots { get; init; }
 
         protected override bool OnLoad(string o)
         {
             throw new NotImplementedException();
         }
 
-        internal static Dictionary<string, DBEntry> LoadJSON(string filepath, Dictionary<string, DBEntryUnit> unitDict)
+        internal static Dictionary<string, DBEntry> LoadJSON(string filepath)
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Static>>(File.ReadAllText(filepath));
+            var supportData = JsonConvert.DeserializeObject<List<CarBRInfo>>(File.ReadAllText($"{filepath.Replace(".json", "")}BRInfo.json")).ToDictionary(x => x.type, x => x);
+
             foreach (var @static in data)
             {
                 var id = @static.type;
-                if (!unitDict.ContainsKey(id))
+                if (!supportData.ContainsKey(id))
                 {
-                    BriefingRoom.PrintToLog($"Ini unit missing {id}", LogMessageErrorLevel.Warning);
+                    BriefingRoom.PrintToLog($"Unit missing {id} in info data", LogMessageErrorLevel.Warning);
                     continue;
                 }
-                var iniUnit = unitDict[id];
+                var supportInfo = supportData[id];
                 itemMap.Add(id, new DBEntryStatic
                 {
                     ID = id,
@@ -58,10 +61,10 @@ namespace BriefingRoom4DCS.Data
                     Countries = new List<Country>{Country.ALL},
                     ShapeName = @static.shapeName,
 
-                    // Look to replace/simplify
-                    Families = iniUnit.Families,
-                    Operational = GetOperationalPeriod(iniUnit.Operators),
-                    LowPoly = iniUnit.Flags.HasFlag(DBEntryUnitFlags.LowPolly)
+                    Families = supportInfo.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
+                    Operational = supportInfo.operational.Select(x => (Template.Decade)x).ToList(),
+                    LowPoly = supportInfo.lowPolly,
+                    ParkingSpots = @static.numParking
                 });
             }
 

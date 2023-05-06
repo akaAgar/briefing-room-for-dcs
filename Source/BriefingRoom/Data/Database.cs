@@ -82,7 +82,6 @@ namespace BriefingRoom4DCS.Data
             LoadJSONEntries<DBEntryAirbase>("TheatersAirbases");
             LoadEntries<DBEntrySituation>("TheaterSituations"); // Must be loaded after DBEntryTheater, as it depends on it
             LoadEntries<DBEntryDCSMod>("DCSMods");
-            LoadEntries<DBEntryUnit>("Units"); // Must be loaded after DBEntryDCSMod, as it depends on it
             LoadJSONEntries<DBEntryCar>("UnitCars", true);
             LoadJSONEntries<DBEntryAircraft>("UnitPlanes", true);
             LoadJSONEntries<DBEntryAircraft>("UnitHelicopters", true);
@@ -90,6 +89,7 @@ namespace BriefingRoom4DCS.Data
             LoadJSONEntries<DBEntryStatic>("UnitWarehouses", true);
             LoadJSONEntries<DBEntryStatic>("UnitFortifications", true);
             LoadJSONEntries<DBEntryStatic>("UnitCargo", true);
+            LoadJSONEntries<DBEntryStatic>("UnitHeliports", true);
             LoadJSONEntries<DBEntryTemplate>("Templates");
             LoadJSONEntries<DBEntryTemplate>("TemplatesCustom");
             LoadEntries<DBEntryDefaultUnitList>("DefaultUnitLists"); // Must be loaded after Units, as it depends on it
@@ -172,10 +172,10 @@ namespace BriefingRoom4DCS.Data
                     entries = DBEntries[dbType].Concat(DBEntryAircraft.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
                     break;
                 case DBEntryShip a:
-                    entries = DBEntries[dbType].Concat(DBEntryShip.LoadJSON(filePath, GetAllEntriesDict<DBEntryUnit>())).ToDictionary(pair => pair.Key, pair => pair.Value);
+                    entries = DBEntries[dbType].Concat(DBEntryShip.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
                     break;
                 case DBEntryStatic a:
-                    entries = DBEntries[dbType].Concat(DBEntryStatic.LoadJSON(filePath, GetAllEntriesDict<DBEntryUnit>())).ToDictionary(pair => pair.Key, pair => pair.Value);
+                    entries = DBEntries[dbType].Concat(DBEntryStatic.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
                     break;
                 case DBEntryCargo a:
                     entries = DBEntries[dbType].Concat(DBEntryCargo.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);

@@ -29,13 +29,14 @@ namespace BriefingRoom4DCS.Data
 {
     internal class DBEntryShip : DBEntryJSONUnit
     {
+        internal int ParkingSpots { get; init; }
 
         protected override bool OnLoad(string o)
         {
             throw new NotImplementedException();
         }
 
-        internal static Dictionary<string, DBEntry> LoadJSON(string filepath, Dictionary<string, DBEntryUnit> unitDict)
+        internal static Dictionary<string, DBEntry> LoadJSON(string filepath)
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Ship>>(File.ReadAllText(filepath));
@@ -61,6 +62,7 @@ namespace BriefingRoom4DCS.Data
                     Families = infoData.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
                     Operational = infoData.operational.Select(x => (Template.Decade)x).ToList(),
                     LowPoly = infoData.lowPolly,
+                    ParkingSpots = ship.numParking
                 });
 
             }

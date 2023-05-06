@@ -18,5 +18,6 @@ namespace BriefingRoom4DCS.Data.JSON
         public List<int> countriesWorldID { get; set; }
         public string module { get; set; }
         public string shape { get; set; }
+        public int numParking { get; set; }
     }
 }

@@ -395,6 +395,7 @@ namespace BriefingRoom4DCS
                 case UnitFamily.StaticStructureProduction:
                 case UnitFamily.FOB:
                 case UnitFamily.StaticStructureOffshore:
+                case UnitFamily.StaticStructureCivilian:
                     return UnitCategory.Static;
                 case UnitFamily.Cargo:
                     return UnitCategory.Cargo;
@@ -442,6 +443,7 @@ namespace BriefingRoom4DCS
                 case UnitFamily.StaticStructureProduction:
                 case UnitFamily.FOB:
                 case UnitFamily.StaticStructureOffshore:
+                case UnitFamily.StaticStructureCivilian:
                     return DCSUnitCategory.Static;
                 case UnitFamily.Cargo:
                     return DCSUnitCategory.Cargo;

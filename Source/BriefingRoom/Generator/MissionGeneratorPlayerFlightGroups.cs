@@ -54,13 +54,13 @@ namespace BriefingRoom4DCS.Generator
                 airbase = missionPackage.Airbase;
                 groupStartingCoords = missionPackage.Airbase.Coordinates;
             }
-            DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(flightGroup.Aircraft);
+            var unitDB = (DBEntryAircraft)Database.Instance.GetEntry<DBEntryJSONUnit>(flightGroup.Aircraft);
 
             // Not an unit, or not a player-controllable unit, abort.
-            if ((unitDB == null) || !unitDB.AircraftData.PlayerControllable)
+            if ((unitDB == null) || !unitDB.PlayerControllable)
                 throw new BriefingRoomException($"Player flight group unit {flightGroup.Aircraft} does not exist or is not player-controllable.");
-            if (unitDB.AircraftData.MinimumRunwayLengthFt > 0 && airbase.RunwayLengthFt < unitDB.AircraftData.MinimumRunwayLengthFt)
-                BriefingRoom.PrintToLog($"Runway at {airbase.Name}({airbase.RunwayLengthFt}ft) is shorter than {unitDB.UIDisplayName}({unitDB.AircraftData.MinimumRunwayLengthFt}ft) required runway length.", LogMessageErrorLevel.Warning);
+            if (unitDB.MinimumRunwayLengthFt > 0 && airbase.RunwayLengthFt < unitDB.MinimumRunwayLengthFt)
+                BriefingRoom.PrintToLog($"Runway at {airbase.Name}({airbase.RunwayLengthFt}ft) is shorter than {unitDB.UIDisplayName}({unitDB.MinimumRunwayLengthFt}ft) required runway length.", LogMessageErrorLevel.Warning);
 
             List<int> parkingSpotIDsList = new List<int>();
             List<Coordinates> parkingSpotCoordinatesList = new List<Coordinates>();
@@ -169,7 +169,7 @@ namespace BriefingRoom4DCS.Generator
                 return;
             }
 
-            groupInfo.Value.DCSGroup.Waypoints.InsertRange(1, flightWaypoints.Select(x => x.ToDCSWaypoint(unitDB.AircraftData)).ToList());
+            groupInfo.Value.DCSGroup.Waypoints.InsertRange(1, flightWaypoints.Select(x => x.ToDCSWaypoint(unitDB)).ToList());
 
 
             SaveFlightGroup(mission, groupInfo, flightGroup, unitDB, carrierName ?? airbase.Name);
@@ -188,7 +188,7 @@ namespace BriefingRoom4DCS.Generator
             mission.MapData.Add($"ROUTE_{groupInfo.Value.DCSGroup.GroupId}", mapWaypoints);
         }
 
-        private static void SaveFlightGroup(DCSMission mission, UnitMakerGroupInfo? groupInfo, MissionTemplateFlightGroupRecord flightGroup, DBEntryUnit unitDB, string homeBase)
+        private static void SaveFlightGroup(DCSMission mission, UnitMakerGroupInfo? groupInfo, MissionTemplateFlightGroupRecord flightGroup, DBEntryJSONUnit unitDB, string homeBase)
         {
             mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
                 $"{groupInfo.Value.Name}(P)\t" +
