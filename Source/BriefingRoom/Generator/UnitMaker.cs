@@ -222,6 +222,7 @@ namespace BriefingRoom4DCS.Generator
             var isUsingSkynet = Template.MissionFeatures.Contains("SkynetIADS");
             var groupName = GeneratorTools.GetGroupName(GroupID, unitFamily, side, isUsingSkynet);
             UnitCallsign? callsign = null;
+            GetLayout(units.Length, unitFamily, extraSettings);
 
             if (unitFamily.GetUnitCategory() == UnitCategory.Static || unitFamily.GetUnitCategory() == UnitCategory.Cargo && unitFamily != UnitFamily.FOB)
                 return AddStaticGroup(
@@ -745,6 +746,20 @@ namespace BriefingRoom4DCS.Generator
             return groupCoordinates + new Coordinates(
                 (offsetCoordinates.X * cosTheta) + (offsetCoordinates.Y * sinTheta),
                 (-offsetCoordinates.X * sinTheta) + (offsetCoordinates.Y * cosTheta));
+        }
+
+        private void GetLayout(int unitCount, UnitFamily family, Dictionary<string, object> extraSettings)
+        {
+           if(extraSettings.ContainsKey("TemplatePositionMap"))
+            return;
+
+            var options = Database.Instance.GetAllEntries<DBEntryLayout>().Where(x => (x.Categories.Contains(family.GetUnitCategory())) && unitCount > x.MinUnits && unitCount < x.Units.Count()).ToList();
+            if(options.Count == 0 && Toolbox.RandomChance(2)) // Random added until we have a decent count of layouts
+                return;
+            var selected = Toolbox.RandomFrom(options);
+            BriefingRoom.PrintToLog($"Using Layout {selected.UIDisplayName.Get()}");
+            extraSettings["TemplatePositionMap"] = selected.Units;
+
         }
     }
 }
