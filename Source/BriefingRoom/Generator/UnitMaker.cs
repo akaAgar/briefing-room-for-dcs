@@ -754,7 +754,7 @@ namespace BriefingRoom4DCS.Generator
             return;
 
             var options = Database.Instance.GetAllEntries<DBEntryLayout>().Where(x => (x.Categories.Contains(family.GetUnitCategory())) && unitCount > x.MinUnits && unitCount < x.Units.Count()).ToList();
-            if(options.Count == 0 && Toolbox.RandomChance(2)) // Random added until we have a decent count of layouts
+            if(options.Count == 0 || Toolbox.RandomChance(2)) // Random added until we have a decent count of layouts
                 return;
             var selected = Toolbox.RandomFrom(options);
             BriefingRoom.PrintToLog($"Using Layout {selected.UIDisplayName.Get()}");
