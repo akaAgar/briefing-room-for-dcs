@@ -57,6 +57,12 @@ namespace BriefingRoom4DCS.Generator
 
     internal class UnitMaker
     {
+        private static readonly List<UnitFamily> TEMPLATE_PREFERENCE_FAMILIES = new List<UnitFamily>{
+            UnitFamily.StaticStructureMilitary,
+            UnitFamily.StaticStructureProduction,
+            UnitFamily.VehicleSAMLong,
+            UnitFamily.VehicleSAMMedium
+        };
         private const double AIRCRAFT_UNIT_SPACING = 50.0;
         private const double SHIP_UNIT_SPACING = 100.0;
         private const double VEHICLE_UNIT_SPACING = 10.0;
@@ -144,6 +150,17 @@ namespace BriefingRoom4DCS.Generator
         {
             if (unitCount <= 0) throw new BriefingRoomException("Asking for a zero units");
             if (families.Count <= 0) throw new BriefingRoomException("No Unit Families Provided");
+            if (families.All(x => TEMPLATE_PREFERENCE_FAMILIES.Contains(x)))
+            {
+                try
+                {
+                    return AddUnitGroupTemplate(families, side,groupLua, unitLua, coordinates,unitMakerGroupFlags, extraSettings);
+                }
+                catch (BriefingRoomException)
+                {
+                    BriefingRoom.PrintToLog($"No template found for {string.Join(", ", families)} {side}. Resorting to random units");
+                }
+            }
             DBEntryCoalition unitsCoalitionDB = CoalitionsDB[(int)((side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy())];
             var (country, units) = unitsCoalitionDB.GetRandomUnits(families, Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowLowPoly"), countMinMax: unitCountMinMax, lowUnitVariation: unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.LowUnitVariation));
             if (side == Side.Neutral)
@@ -176,7 +193,7 @@ namespace BriefingRoom4DCS.Generator
             var (country, unitTemplate) = unitsCoalitionDB.GetRandomTemplate(families, Template.ContextDecade, Template.Mods);
             if (country != Country.ALL)
                 extraSettings["Country"] = country;
-            return AddUnitGroup(unitTemplate.Units.Select(x => x.DCSID).ToArray(), side, unitTemplate.Family, groupTypeLua, unitTypeLua, coordinates, unitMakerGroupFlags, extraSettings);
+            return AddUnitGroupTemplate(unitTemplate, side, groupTypeLua, unitTypeLua, coordinates, unitMakerGroupFlags, extraSettings);
         }
         internal UnitMakerGroupInfo? AddUnitGroupTemplate(
             DBEntryTemplate unitTemplate,
@@ -187,7 +204,7 @@ namespace BriefingRoom4DCS.Generator
             UnitMakerGroupFlags unitMakerGroupFlags,
             Dictionary<string, object> extraSettings)
         {
-            extraSettings.Add("TemplatePositionMap", unitTemplate.Units);
+            extraSettings["TemplatePositionMap"] = unitTemplate.Units;
             return AddUnitGroup(unitTemplate.Units.Select(x => x.DCSID).ToArray(), side, unitTemplate.Family, groupTypeLua, unitTypeLua, coordinates, unitMakerGroupFlags, extraSettings);
         }
 
