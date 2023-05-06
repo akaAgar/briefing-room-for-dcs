@@ -566,6 +566,7 @@
     {
         "type": "Kub 2P25 ln",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -578,6 +579,7 @@
     {
         "type": "5p73 s-125 ln",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -590,6 +592,7 @@
     {
         "type": "S-300PS 5P85C ln",
         "families": [
+            "VehicleSAMLong",
             "VehicleStatic"
         ],
         "operational": [
@@ -602,6 +605,7 @@
     {
         "type": "S-300PS 5P85D ln",
         "families": [
+            "VehicleSAMLong",
             "VehicleStatic"
         ],
         "operational": [
@@ -614,6 +618,7 @@
     {
         "type": "SA-11 Buk LN 9A310M1",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -674,6 +679,7 @@
     {
         "type": "SA-11 Buk CC 9S470M1",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -686,6 +692,7 @@
     {
         "type": "Patriot AMG",
         "families": [
+            "VehicleSAMLong",
             "VehicleStatic"
         ],
         "operational": [
@@ -698,6 +705,7 @@
     {
         "type": "Patriot ECS",
         "families": [
+            "VehicleSAMLong",
             "VehicleStatic"
         ],
         "operational": [
@@ -722,7 +730,8 @@
     {
         "type": "Hawk pcp",
         "families": [
-            "VehicleStatic"
+            "VehicleSAMMedium",
+            "VehicleSAMMedium"
         ],
         "operational": [
             1960,
@@ -746,6 +755,7 @@
     {
         "type": "Hawk ln",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -782,6 +792,7 @@
     {
         "type": "Patriot ln",
         "families": [
+            "VehicleSAMLong",
             "VehicleStatic"
         ],
         "operational": [
@@ -806,6 +817,7 @@
     {
         "type": "Patriot EPP",
         "families": [
+            "VehicleSAMLong",
             "VehicleStatic"
         ],
         "operational": [
@@ -818,6 +830,7 @@
     {
         "type": "Patriot cp",
         "families": [
+            "VehicleSAMLong",
             "VehicleStatic"
         ],
         "operational": [
@@ -842,6 +855,7 @@
     {
         "type": "S-300PS 54K6 cp",
         "families": [
+            "VehicleSAMLong",
             "VehicleStatic"
         ],
         "operational": [
@@ -1046,6 +1060,7 @@
     {
         "type": "Kub 1S91 str",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -1058,6 +1073,7 @@
     {
         "type": "S-300PS 40B6M tr",
         "families": [
+            "VehicleSAMLong",
             "VehicleStatic"
         ],
         "operational": [
@@ -1070,6 +1086,7 @@
     {
         "type": "S-300PS 40B6MD sr",
         "families": [
+            "VehicleSAMLong",
             "VehicleStatic"
         ],
         "operational": [
@@ -1094,6 +1111,7 @@
     {
         "type": "S-300PS 64H6E sr",
         "families": [
+            "VehicleSAMLong",
             "VehicleStatic"
         ],
         "operational": [
@@ -1106,6 +1124,7 @@
     {
         "type": "SA-11 Buk SR 9S18M1",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -1130,6 +1149,7 @@
     {
         "type": "Hawk tr",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -1142,6 +1162,7 @@
     {
         "type": "Hawk sr",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -1154,6 +1175,7 @@
     {
         "type": "Patriot str",
         "families": [
+            "VehicleSAMLong",
             "VehicleStatic"
         ],
         "operational": [
@@ -1166,6 +1188,7 @@
     {
         "type": "Hawk cwar",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -1178,6 +1201,7 @@
     {
         "type": "p-19 s-125 sr",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -1202,6 +1226,7 @@
     {
         "type": "snr s-125 tr",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -2078,6 +2103,7 @@
     {
         "type": "NASAMS_Radar_MPQ64F1",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -2090,6 +2116,7 @@
     {
         "type": "NASAMS_Command_Post",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -2102,6 +2129,7 @@
     {
         "type": "NASAMS_LN_B",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -2114,6 +2142,7 @@
     {
         "type": "NASAMS_LN_C",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -2198,6 +2227,7 @@
     {
         "type": "RD_75",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -2210,6 +2240,7 @@
     {
         "type": "S_75M_Volhov",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -2222,6 +2253,7 @@
     {
         "type": "SNR_75V",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -2234,6 +2266,7 @@
     {
         "type": "RLS_19J6",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -2246,6 +2279,7 @@
     {
         "type": "RPC_5N62V",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -2258,6 +2292,7 @@
     {
         "type": "S-200_Launcher",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -2414,6 +2449,7 @@
     {
         "type": "rapier_fsa_launcher",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -2426,6 +2462,7 @@
     {
         "type": "rapier_fsa_optical_tracker_unit",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
@@ -2438,6 +2475,7 @@
     {
         "type": "rapier_fsa_blindfire_radar",
         "families": [
+            "VehicleSAMMedium",
             "VehicleStatic"
         ],
         "operational": [
