@@ -436,7 +436,7 @@ namespace BriefingRoom4DCS.Generator
             List<int> unitsIDList = new List<int>();
             var initalGroupId = GroupID;
             var DCSGroups = new List<DCSGroup>();
-            int unitIndex = 0;
+            int unitIndex = 1;
             foreach (var unitSet in unitSets)
             {
                 var unitDB = Database.Instance.GetEntry<DBEntryJSONUnit>(unitSet);
@@ -703,17 +703,18 @@ namespace BriefingRoom4DCS.Generator
                 unitCoordinates = groupCoordinates + new Coordinates(AIRCRAFT_UNIT_SPACING, AIRCRAFT_UNIT_SPACING) * unitIndex;
             else
             {
-                var hasTemplatePosition = templatePositionMap.Count > unitIndex;
+                var posIndex = unitIndex - 1;
+                var hasTemplatePosition = templatePositionMap.Count > posIndex;
                 if (hasTemplatePosition) // Unit has a fixed set of coordinates (for SAM sites, etc.)
                 {
-                    unitCoordinates = TransformFromOffset(unitHeading, groupCoordinates, templatePositionMap[unitIndex].DCoordinates);
+                    unitCoordinates = TransformFromOffset(unitHeading, groupCoordinates, templatePositionMap[posIndex].DCoordinates);
                 }
                 else if (!singleUnit) // No fixed coordinates, generate random coordinates
                 {
                     switch (unitDB.Category)
                     {
                         case UnitCategory.Ship:
-                            if (unitIndex > 0)
+                            if (posIndex > 0)
                                 unitCoordinates = groupCoordinates.CreateNearRandom(SHIP_UNIT_SPACING, SHIP_UNIT_SPACING * 10);
                             break;
                         case UnitCategory.Cargo:
@@ -727,7 +728,7 @@ namespace BriefingRoom4DCS.Generator
                 }
 
                 if (hasTemplatePosition) // Unit has a fixed heading (for SAM sites, etc.)
-                    unitHeading = Toolbox.ClampAngle(unitHeading + templatePositionMap[unitIndex].Heading);
+                    unitHeading = Toolbox.ClampAngle(unitHeading + templatePositionMap[posIndex].Heading);
                 else if (unitDB.Category != UnitCategory.Ship)
                     unitHeading = Toolbox.RandomDouble(Toolbox.TWO_PI);
             }
