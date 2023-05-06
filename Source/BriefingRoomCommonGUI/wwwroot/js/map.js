@@ -440,6 +440,7 @@ function GetTitle(id) {
                 case id.includes("Transport"):
                     return "Transport"
                 default:
+                    console.warn(`Vehicle Type Unknown - ${id}`)
                     return `Vehicle Type Unknown - ${id}`
             }
         case id.includes("Ship"):
