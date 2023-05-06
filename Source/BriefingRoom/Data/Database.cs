@@ -91,6 +91,7 @@ namespace BriefingRoom4DCS.Data
             LoadJSONEntries<DBEntryStatic>("UnitFortifications", true);
             LoadJSONEntries<DBEntryStatic>("UnitCargo", true);
             LoadJSONEntries<DBEntryTemplate>("Templates");
+            LoadJSONEntries<DBEntryTemplate>("TemplatesCustom");
             LoadEntries<DBEntryDefaultUnitList>("DefaultUnitLists"); // Must be loaded after Units, as it depends on it
             LoadEntries<DBEntryCoalition>("Coalitions"); // Must be loaded after Unit and DBEntryDefaultUnitList, as it depends on them
             LoadCustomUnitEntries<DBEntryCoalition>("Coalitions");

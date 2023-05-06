@@ -70,6 +70,7 @@ namespace BriefingRoom4DCS.Data
                 validTemplates[country] = (
                         from template in Database.GetAllEntries<DBEntryTemplate>()
                         where families.Contains(template.Family) && template.Countries.Contains(country)
+                            && (string.IsNullOrEmpty(template.Module) || unitMods.Contains(template.Module, StringComparer.InvariantCultureIgnoreCase) || DBEntryDCSMod.coreMods.Contains(template.Module, StringComparer.InvariantCultureIgnoreCase))
                             && (template.Operational[0] <= decade) && (template.Operational[1] >= decade)
                         select template
                     ).Distinct().ToList();

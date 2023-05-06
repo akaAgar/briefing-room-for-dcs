@@ -1,0 +1,1166 @@
+[
+    {
+        "type": "FOB_Berlin",
+        "family": "FOB",
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Germany"
+        ]
+    },
+    {
+        "type": "FOB_Dallas",
+        "family": "FOB",
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "USA"
+        ]
+    },
+    {
+        "type": "FOB_London",
+        "family": "FOB",
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "UK"
+        ]
+    },
+    {
+        "type": "FOB_Moscow",
+        "family": "FOB",
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Russia"
+        ]
+    },
+    {
+        "type": "FOB_Paris",
+        "family": "FOB",
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "France"
+        ]
+    },
+    {
+        "type": "CVN_71",
+        "family": "ShipCarrierCATOBAR",
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "USA"
+        ]
+    },
+    {
+        "type": "CVN_72",
+        "family": "ShipCarrierCATOBAR",
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [
+            "USA"
+        ]
+    },
+    {
+        "type": "CVN_73",
+        "family": "ShipCarrierCATOBAR",
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [
+            "USA"
+        ]
+    },
+    {
+        "type": "CVN_75",
+        "family": "ShipCarrierCATOBAR",
+        "operational": [
+            2000,
+            2020
+        ],
+        "extraOperators": [
+            "USA"
+        ]
+    },
+    {
+        "type": "CV_1143_5",
+        "family": "ShipCarrierSTOBAR",
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [
+            "Russia"
+        ]
+    },
+    {
+        "type": "Forrestal",
+        "family": "ShipCarrierCATOBAR",
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [
+            "USA"
+        ]
+    },
+    {
+        "type": "hms_invincible",
+        "family": "ShipCarrierSTOVL",
+        "operational": [
+            1970,
+            2010
+        ],
+        "extraOperators": [
+            "UK"
+        ]
+    },
+    {
+        "type": "KUZNECOW",
+        "family": "ShipCarrierSTOBAR",
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [
+            "Russia"
+        ]
+    },
+    {
+        "type": "LHA_Tarawa",
+        "family": "ShipCarrierSTOVL",
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [
+            "USA"
+        ]
+    },
+    {
+        "type": "Stennis",
+        "family": "ShipCarrierCATOBAR",
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [
+            "USA"
+        ]
+    },
+    {
+        "type": "VINSON",
+        "family": "ShipCarrierCATOBAR",
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "USA"
+        ]
+    },
+    {
+        "type": "Ammo Depos",
+        "family": "StaticStructureMilitary",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Ammo Storage Facility",
+        "family": "StaticStructureMilitary",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Ammo Storage",
+        "family": "StaticStructureMilitary",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Antenna Array",
+        "family": "StaticStructureMilitary",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Barracks Buildings",
+        "family": "StaticStructureMilitary",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Barracks Camp",
+        "family": "StaticStructureMilitary",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Big TV Tower",
+        "family": "StaticStructureMilitary",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Camp",
+        "family": "StaticStructureMilitary",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Command Outpost",
+        "family": "StaticStructureMilitary",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "FARP",
+        "family": "StaticStructureMilitary",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Large Bunker Facility",
+        "family": "StaticStructureMilitary",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Large Command Post",
+        "family": "StaticStructureMilitary",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Radio Field",
+        "family": "StaticStructureMilitary",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Small Barracks",
+        "family": "StaticStructureMilitary",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Supply Outpost",
+        "family": "StaticStructureMilitary",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Gas Field",
+        "family": "StaticStructureOffshore",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Large Gas Field",
+        "family": "StaticStructureOffshore",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Large Offshore Field",
+        "family": "StaticStructureOffshore",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Large Oil Field",
+        "family": "StaticStructureOffshore",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Massive Gas Field",
+        "family": "StaticStructureOffshore",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Massive Offshore Field",
+        "family": "StaticStructureOffshore",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Massive Oil Field",
+        "family": "StaticStructureOffshore",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Offshore Field",
+        "family": "StaticStructureOffshore",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Oil Field",
+        "family": "StaticStructureOffshore",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Small Gas Field",
+        "family": "StaticStructureOffshore",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Small Offshore Field",
+        "family": "StaticStructureOffshore",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Small Oil Field",
+        "family": "StaticStructureOffshore",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Factory Complex",
+        "family": "StaticStructureProduction",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Fuel Refinery",
+        "family": "StaticStructureProduction",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Large Factory",
+        "family": "StaticStructureProduction",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Large Tank 2 Facility",
+        "family": "StaticStructureProduction",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Large Tank 3 Facility",
+        "family": "StaticStructureProduction",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Large Tank Facility",
+        "family": "StaticStructureProduction",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Power Facility",
+        "family": "StaticStructureProduction",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Power Station 2",
+        "family": "StaticStructureProduction",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Power Station",
+        "family": "StaticStructureProduction",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Small Power Station",
+        "family": "StaticStructureProduction",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Supply Depos",
+        "family": "StaticStructureProduction",
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "ALL"
+        ]
+    },
+    {
+        "type": "Patriot",
+        "family": "VehicleSAMLong",
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Germany",
+            "Greece",
+            "Israel",
+            "Japan",
+            "Kuwait",
+            "SaudiArabia",
+            "SouthKorea",
+            "Spain",
+            "TheNetherlands",
+            "USA"
+        ]
+    },
+    {
+        "type": "S-300PS",
+        "family": "VehicleSAMLong",
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ]
+    },
+    {
+        "type": "Hawk",
+        "family": "VehicleSAMMedium",
+        "operational": [
+            1960,
+            1990
+        ],
+        "extraOperators": [
+            "Bahrain",
+            "Belgium",
+            "Denmark",
+            "Egypt",
+            "France",
+            "Germany",
+            "Greece",
+            "Iran",
+            "Israel",
+            "Italy",
+            "Japan",
+            "Jordan",
+            "Kuwait",
+            "Norway",
+            "SaudiArabia",
+            "SouthKorea",
+            "Spain",
+            "Sweden",
+            "TheNetherlands",
+            "Turkey",
+            "UnitedArabEmirates",
+            "USA"
+        ]
+    },
+    {
+        "type": "Kub",
+        "family": "VehicleSAMMedium",
+        "operational": [
+            1960,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Bulgaria",
+            "Cuba",
+            "CzechRepublic",
+            "Egypt",
+            "Ethiopia",
+            "GDR",
+            "Hungary",
+            "India",
+            "Iran",
+            "Iraq",
+            "Kazakhstan",
+            "Libya",
+            "Poland",
+            "Romania",
+            "Russia",
+            "Serbia",
+            "Slovakia",
+            "Syria",
+            "Ukraine",
+            "Vietnam",
+            "Yemen",
+            "Yugoslavia"
+        ]
+    },
+    {
+        "type": "NASAMS (AIM-120C)",
+        "family": "VehicleSAMMedium",
+        "operational": [
+            2000,
+            2020
+        ],
+        "extraOperators": [
+            "Australia",
+            "Chile",
+            "Finland",
+            "Hungary",
+            "Indonesia",
+            "Norway",
+            "Oman",
+            "Qatar",
+            "Spain",
+            "TheNetherlands",
+            "USA"
+        ]
+    },
+    {
+        "type": "rapier_fsa",
+        "family": "VehicleSAMMedium",
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [
+            "Australia",
+            "Indonesia",
+            "Iran",
+            "Iraq",
+            "Malaysia",
+            "Oman",
+            "Qatar",
+            "Switzerland",
+            "TheNetherlands",
+            "Turkey",
+            "UK",
+            "UnitedArabEmirates",
+            "USA"
+        ]
+    },
+    {
+        "type": "s-125",
+        "family": "VehicleSAMMedium",
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Bulgaria",
+            "Cuba",
+            "CzechRepublic",
+            "Egypt",
+            "Ethiopia",
+            "Finland",
+            "GDR",
+            "Georgia",
+            "Germany",
+            "Hungary",
+            "India",
+            "Iraq",
+            "Kazakhstan",
+            "Libya",
+            "NorthKorea",
+            "Poland",
+            "Romania",
+            "Russia",
+            "Serbia",
+            "Slovakia",
+            "Syria",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam",
+            "Yemen",
+            "Yugoslavia"
+        ]
+    },
+    {
+        "type": "SA-11 Buk",
+        "family": "VehicleSAMMedium",
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Belarus",
+            "Egypt",
+            "Finland",
+            "Georgia",
+            "Russia",
+            "Syria",
+            "Ukraine"
+        ]
+    },
+    {
+        "type": "SA-5",
+        "family": "VehicleSAMMedium",
+        "operational": [
+            1960,
+            2020
+        ],
+        "extraOperators": [
+            "Belarus",
+            "Egypt",
+            "Finland",
+            "Georgia",
+            "Russia",
+            "Syria",
+            "Ukraine"
+        ]
+    },
+    {
+        "type": "S_75M",
+        "family": "VehicleSAMMedium",
+        "operational": [
+            1960,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Bulgaria",
+            "China",
+            "Cuba",
+            "Egypt",
+            "Ethiopia",
+            "GDR",
+            "Georgia",
+            "Hungary",
+            "India",
+            "Indonesia",
+            "Iran",
+            "Iraq",
+            "Libya",
+            "NorthKorea",
+            "Pakistan",
+            "Poland",
+            "Romania",
+            "Russia",
+            "Slovakia",
+            "Sudan",
+            "Syria",
+            "Vietnam",
+            "Yemen",
+            "Yugoslavia"
+        ]
+    },
+    {
+        "type": "SA-10b (5v5rud)",
+        "module": "HighDigitSAMs",
+        "family": "VehicleSAMLong",
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ]
+    },
+    {
+        "type": "SA-10b",
+        "family": "VehicleSAMLong",
+        "module": "HighDigitSAMs",
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ]
+    },
+    {
+        "type": "SA-12 Anti Ballistic",
+        "module": "HighDigitSAMs",
+        "family": "VehicleSAMLong",
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ]
+    },
+    {
+        "type": "SA-12 Anti Plane",
+        "family": "VehicleSAMLong",
+        "module": "HighDigitSAMs",
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ]
+    },
+    {
+        "type": "SA-17",
+        "family": "VehicleSAMMedium",
+        "module": "HighDigitSAMs",
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Belarus",
+            "Egypt",
+            "Finland",
+            "Georgia",
+            "Russia",
+            "Syria",
+            "Ukraine"
+        ]
+    },
+    {
+        "type": "SA-2 5V759 Missile",
+        "family": "VehicleSAMMedium",
+        "module": "HighDigitSAMs",
+        "operational": [
+            1960,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Bulgaria",
+            "China",
+            "Cuba",
+            "Egypt",
+            "Ethiopia",
+            "GDR",
+            "Georgia",
+            "Hungary",
+            "India",
+            "Indonesia",
+            "Iran",
+            "Iraq",
+            "Libya",
+            "NorthKorea",
+            "Pakistan",
+            "Poland",
+            "Romania",
+            "Russia",
+            "Slovakia",
+            "Sudan",
+            "Syria",
+            "Vietnam",
+            "Yemen",
+            "Yugoslavia"
+        ]
+    },
+    {
+        "type": "SA-2 HQ-2 Missile",
+        "family": "VehicleSAMMedium",
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "China",
+            "Pakistan"
+        ]
+    },
+    {
+        "type": "SA-20A",
+        "module": "HighDigitSAMs",
+        "family": "VehicleSAMLong",
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ]
+    },
+    {
+        "type": "SA-20B",
+        "family": "VehicleSAMLong",
+        "module": "HighDigitSAMs",
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ]
+    },
+    {
+        "type": "SA-23 Anti Ballistic",
+        "family": "VehicleSAMLong",
+        "module": "HighDigitSAMs",
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ]
+    },
+    {
+        "type": "SA-23 Anti Plane",
+        "module": "HighDigitSAMs",
+        "family": "VehicleSAMLong",
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ]
+    },
+    {
+        "type": "flak36",
+        "family": "VehicleAAAStatic",
+        "operational": [
+            1940,
+            1940
+        ],
+        "extraOperators": [
+            "Germany",
+            "Thirdreich"
+        ]
+    },
+    {
+        "type": "flak37",
+        "family": "VehicleAAAStatic",
+        "operational": [
+            1940,
+            1940
+        ],
+        "extraOperators": [
+            "Germany",
+            "Thirdreich"
+        ]
+    },
+    {
+        "type": "flak41",
+        "family": "VehicleAAAStatic",
+        "operational": [
+            1940,
+            1940
+        ],
+        "extraOperators": [
+            "Germany",
+            "Thirdreich"
+        ]
+    },
+    {
+        "type": "QF_37_AA",
+        "family": "VehicleAAAStatic",
+        "operational": [
+            1940,
+            1940
+        ],
+        "extraOperators": [
+            "UK",
+            "USA"
+        ]
+    }
+]
