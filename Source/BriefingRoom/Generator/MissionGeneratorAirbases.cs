@@ -51,7 +51,7 @@ namespace BriefingRoom4DCS.Generator
                 }
                 var flights = _template.PlayerFlightGroups.Where((v, i) => package.FlightGroupIndexes.Contains(i));
                 var requiredSpots = flights.Sum(x => x.Count);
-                var requiredRunway = flights.Select(x => Database.Instance.GetEntry<DBEntryUnit>(x.Aircraft).AircraftData.MinimumRunwayLengthFt).Max();
+                var requiredRunway = flights.Select(x => ((DBEntryAircraft)Database.Instance.GetEntry<DBEntryJSONUnit>(x.Aircraft)).MinimumRunwayLengthFt).Max();
                 var airbase = SelectStartingAirbase(mission, package.StartingAirbase, theaterDB, requiredSpots, requiredRunway);
 
                 if (missionPackages.Any(x => x.Airbase == airbase))

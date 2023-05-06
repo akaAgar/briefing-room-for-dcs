@@ -1,0 +1,62 @@
+[
+    {
+        "type": "Warehouse",
+        "families": [
+            "StaticStructureProduction"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Tank",
+        "families": [
+            "StaticStructureProduction"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": ".Ammunition depot",
+        "families": [
+            "StaticStructureMilitary"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Tank 2",
+        "families": [
+            "StaticStructureProduction"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Tank 3",
+        "families": [
+            "StaticStructureProduction"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    }
+]

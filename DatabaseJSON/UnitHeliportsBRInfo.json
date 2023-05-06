@@ -1,0 +1,74 @@
+[
+    {
+        "type": "FARP",
+        "families": [
+            "FOB"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SINGLE_HELIPAD",
+        "families": [
+            "FOB"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "FARP_SINGLE_01",
+        "families": [
+            "FOB"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Oil rig",
+        "families": [
+            "StaticStructureOffshore"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Gas platform",
+        "families": [
+            "StaticStructureOffshore"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Invisible FARP",
+        "families": [
+            "FOB"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    }
+]

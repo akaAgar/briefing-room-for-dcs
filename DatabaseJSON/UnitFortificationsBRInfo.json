@@ -1,0 +1,948 @@
+[
+    {
+        "type": ".Command Center",
+        "families": [
+            "StaticStructureMilitary"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Hangar A",
+        "families": [
+            "StaticStructureMilitary"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Tech hangar A",
+        "families": [
+            "StaticStructureProduction"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Farm A",
+        "families": [
+            "StaticStructureCivilian"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Farm B",
+        "families": [
+            "StaticStructureCivilian"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Garage A",
+        "families": [
+            "StaticStructureCivilian"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Boiler-house A",
+        "families": [
+            "StaticStructureProduction"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Restaurant 1",
+        "families": [
+            "StaticStructureCivilian"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Comms tower M",
+        "families": [
+            "StaticStructureMilitary"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Cafe",
+        "families": [
+            "StaticStructureCivilian"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Workshop A",
+        "families": [
+            "StaticStructureProduction"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Electric power box",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Supermarket A",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Water tower A",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "TV tower",
+        "families": [
+            "StaticStructureMilitary"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Shelter",
+        "families": ["StaticStructureMilitary"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Repair workshop",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Railway station",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Railway crossing A",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Railway crossing B",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "WC",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Small house 1A area",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Small house 1A",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Small house 1B area",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Small house 1B",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Small house 1C area",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Small house 2C",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Shop",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Tech combine",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Chemical tank A",
+        "families": [
+            "StaticStructureProduction"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Small werehouse 1",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Small werehouse 2",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Small werehouse 3",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Small werehouse 4",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Garage B",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Garage small A",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Garage small B",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Pump station",
+        "families": [
+            "StaticStructureProduction"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Oil derrick",
+        "families": [
+            "StaticStructureProduction"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Container red 1",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Container red 2",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Container red 3",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Container white",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Container brown",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Barracks 2",
+        "families": ["StaticStructureMilitary"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Military staff",
+        "families": ["StaticStructureMilitary"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Hangar B",
+        "families": ["StaticStructureMilitary"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Fuel tank",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Shelter B",
+        "families": ["StaticStructureMilitary"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": true,
+        "immovable": false
+    },
+    {
+        "type": "Oil platform",
+        "families": ["StaticStructureOffshore"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Subsidiary structure 1",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Subsidiary structure 2",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Subsidiary structure 3",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Subsidiary structure A",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Subsidiary structure B",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Subsidiary structure C",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Subsidiary structure D",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Subsidiary structure E",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Subsidiary structure F",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Subsidiary structure G",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Landmine",
+        "families": [
+            "StaticStructureCivilian"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "FARP Ammo Dump Coating",
+        "families": [
+            "StaticStructureMilitary"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "FARP Tent",
+        "families": ["StaticStructureMilitary"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "FARP CP Blindage",
+        "families": ["StaticStructureMilitary"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "FARP Fuel Depot",
+        "families": [
+            "StaticStructureMilitary"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "GeneratorF",
+        "families": ["StaticStructureMilitary"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Airshow_Cone",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Airshow_Crowd",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Red_Flag",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "White_Flag",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Black_Tyre",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "White_Tyre",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Black_Tyre_RF",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Black_Tyre_WF",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Windsock",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Beer Bomb",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Orca",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "WindTurbine",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "WindTurbine_11",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "billboard_motorized",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Stanley_LightHouse",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "345 Excavator",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Tower Crane",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Small_LightHouse",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Nodding_Donkey_Pump",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "offshore WindTurbine",
+        "families": ["StaticStructureOffshore"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "offshore WindTurbine2",
+        "families": ["StaticStructureOffshore"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "container_40ft",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "container_20ft",
+        "families": ["StaticStructureProduction"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "warning_board_a",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "warning_board_b",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": false
+    }
+]

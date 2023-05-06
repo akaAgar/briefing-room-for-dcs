@@ -78,7 +78,7 @@ namespace BriefingRoom4DCS.Generator
 
             foreach (Country country in Enum.GetValues(typeof(Country)).Cast<Country>().Where(x => !IgnoreCountries.Contains(x)).ToList())
                 validUnits[country] = (
-                        from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryUnit>()
+                        from DBEntryUnit unit in Database.Instance.GetAllEntries<DBEntryJSONUnit>()
                         where unit.Families.Intersect(families).ToList().Count > 0 && unit.Operators.ContainsKey(country) &&
                             (string.IsNullOrEmpty(unit.RequiredMod) || unitMods.Contains(unit.RequiredMod, StringComparer.InvariantCultureIgnoreCase)) &&
                             (unit.Operators[country][0] <= decade) && (unit.Operators[country][1] >= decade) &&

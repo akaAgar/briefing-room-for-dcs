@@ -47,13 +47,14 @@ namespace BriefingRoom4DCS.Generator
             foreach (MissionTemplateFlightGroupRecord flightGroup in template.PlayerFlightGroups)
             {
                 if (string.IsNullOrEmpty(flightGroup.Carrier) || unitMaker.carrierDictionary.ContainsKey(flightGroup.Carrier)) continue;
-                if (flightGroup.Carrier.StartsWith("FOB"))
+                var initalUnitDB = Database.Instance.GetEntry<DBEntryJSONUnit>(flightGroup.Carrier);
+                if (initalUnitDB.Families.Contains(UnitFamily.FOB))
                 {
                     //It Carries therefore carrier not because I can't think of a name to rename this lot
                     GenerateFOB(unitMaker, zoneMaker, flightGroup, mission, template, landbaseCoordinates, objectivesCenter);
                     continue;
                 }
-                DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(flightGroup.Carrier);
+                var unitDB = (DBEntryShip)initalUnitDB;
                 if ((unitDB == null) || !unitDB.Families.Any(x => x.IsCarrier())) continue; // Unit doesn't exist or is not a carrier
 
                 var (shipCoordinates, shipDestination) = GetSpawnAndDestination(unitMaker, template, theaterDB, usedCoordinates, landbaseCoordinates, objectivesCenter, carrierPathDeg, flightGroup);
@@ -176,7 +177,7 @@ namespace BriefingRoom4DCS.Generator
                 return;
             }
 
-            DBEntryUnit unitDB = Database.Instance.GetEntry<DBEntryUnit>(flightGroup.Carrier);
+            var unitDB = (DBEntryStatic)Database.Instance.GetEntry<DBEntryJSONUnit>(flightGroup.Carrier);
             if (unitDB == null) return; // Unit doesn't exist or is not a carrier
 
             double radioFrequency = 127.5 + unitMaker.carrierDictionary.Count;

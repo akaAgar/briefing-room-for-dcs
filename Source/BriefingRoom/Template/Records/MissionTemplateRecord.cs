@@ -135,7 +135,7 @@ namespace BriefingRoom4DCS.Template
         private void AppendPlayerAircraftMods(ref MissionTemplate template)
         {
             var playerMods = template.PlayerFlightGroups
-             .Select(x => Database.Instance.GetEntry<DBEntryUnit>(x.Aircraft).RequiredMod)
+             .Select(x => Database.Instance.GetEntry<DBEntryJSONUnit>(x.Aircraft).Module)
              .Where(x => !string.IsNullOrEmpty(x)).ToList();
             template.Mods.AddRange(playerMods);
         }

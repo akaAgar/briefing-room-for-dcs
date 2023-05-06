@@ -124,7 +124,7 @@ namespace BriefingRoom4DCS
                     return (from DBEntryJSONUnit unit in Database.Instance.GetAllEntries<DBEntryJSONUnit>() select unit.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
 
                 case DatabaseEntryType.UnitCarrier:
-                    return (from DBEntryUnit unitCarrier in Database.Instance.GetAllEntries<DBEntryUnit>() where Toolbox.CARRIER_FAMILIES.Intersect(unitCarrier.Families).Count() > 0 select unitCarrier.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
+                    return (from DBEntryJSONUnit unitCarrier in Database.Instance.GetAllEntries<DBEntryJSONUnit>() where Toolbox.CARRIER_FAMILIES.Intersect(unitCarrier.Families).Count() > 0 select unitCarrier.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
 
                 case DatabaseEntryType.UnitFlyableAircraft:
                     return (from DBEntryAircraft unitFlyable in Database.Instance.GetAllEntries<DBEntryJSONUnit, DBEntryAircraft>() where unitFlyable.PlayerControllable select unitFlyable.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();

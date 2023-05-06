@@ -42,11 +42,11 @@ namespace BriefingRoom4DCS.Generator
             ScriptIgnore = scriptIgnore;
         }
 
-        internal DCSWaypoint ToDCSWaypoint(Data.DBEntryUnitAircraftData aircraftData)
+        internal DCSWaypoint ToDCSWaypoint(Data.DBEntryAircraft aircraftData)
         {
             return new DCSWaypoint
             {
-                Alt = OnGround ? 0 : aircraftData.CruiseAltitude,
+                Alt = OnGround ? 0 : aircraftData.CruiseAlt,
                 AltType = OnGround ? "RADIO" : "BARO",
                 Action = "Turning Point",
                 Speed = aircraftData.CruiseSpeed,

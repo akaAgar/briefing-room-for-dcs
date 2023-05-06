@@ -36,6 +36,7 @@ namespace BriefingRoom4DCS.Data
         internal int Chaff { get; init; }
         internal int? AmmoType { get; init; }
         internal int MaxAlt { get; init; }
+        internal int CruiseAlt { get { return (int)Math.Floor(MaxAlt * 0.6);}}
         internal double CruiseSpeed { get; init; }
         internal bool PlayerControllable { get; init; }
         internal RadioChannel Radio { get; init; }
@@ -45,6 +46,7 @@ namespace BriefingRoom4DCS.Data
         internal Dictionary<string, List<List<string>>> SpecificCallNames { get; init; }
         internal List<string> CallSigns { get; init; }
         internal List<Payload> Payloads { get; init; }
+        internal int MinimumRunwayLengthFt { get; init; }
 
         internal Dictionary<string, object> PayloadCommon
         {

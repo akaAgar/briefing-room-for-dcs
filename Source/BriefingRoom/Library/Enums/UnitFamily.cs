@@ -54,6 +54,7 @@ namespace BriefingRoom4DCS
         StaticStructureProduction,
 
         StaticStructureOffshore,
+        StaticStructureCivilian,
 
         VehicleAAA,
         VehicleAAAStatic,
