@@ -102,7 +102,7 @@ namespace BriefingRoom4DCS.Data
                     Chaff = aircraft.chaff,
                     AmmoType = aircraft.ammoType,
                     MaxAlt = aircraft.maxAlt,
-                    CruiseSpeed = aircraft.maxAlt,
+                    CruiseSpeed = aircraft.cruiseSpeed,
                     Radio = new RadioChannel(aircraft.radio.frequency, (RadioModulation)aircraft.radio.modulation),
                     PanelRadios = (aircraft.panelRadio ?? new List<PanelRadio>()).Select(radio =>
                     {
