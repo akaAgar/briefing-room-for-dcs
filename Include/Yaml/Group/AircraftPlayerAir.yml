@@ -3,7 +3,7 @@ task: CAS
 radioSet: true
 uncontrolled: false
 waypoints:
-  - alt: 13
+  - alt: $ALTITUDE$
     action: $PLAYERSTARTINGACTION$
     speed: $SPEED$
     tasks:
@@ -18,7 +18,6 @@ waypoints:
     y: $GROUPY$
     x: $GROUPX$
     name: $INITIALWPNAME$
-    airdromeId: $MISSIONAIRBASEID$
   - alt: 13
     action: Landing
     speed: $SPEED$

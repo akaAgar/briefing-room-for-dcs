@@ -250,6 +250,8 @@ namespace BriefingRoom4DCS.Generator
                 groupName = callsign.Value.GroupName;
                 if (extraSettings.ContainsKey("PlayerStartingType") && extraSettings.GetValueOrDefault("PlayerStartingType").ToString() == "TakeOffParking")
                     groupName += "(C)";
+                if (extraSettings.ContainsKey("PlayerStartingType") && extraSettings.GetValueOrDefault("PlayerStartingType").ToString() == "Turning Point")
+                    groupName += "(A)";
                 var aircraftUnitDB = (DBEntryAircraft)firstUnitDB;
                 extraSettings["Pylons"] = extraSettings.ContainsKey("Payload") ? aircraftUnitDB.GetPylonsObject(extraSettings.GetValueOrDefault("Payload", "").ToString()) : aircraftUnitDB.GetPylonsObject((DCSTask)extraSettings.GetValueOrDefault("DCSTask", DCSTask.Nothing));
             }

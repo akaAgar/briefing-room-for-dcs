@@ -91,14 +91,17 @@ namespace BriefingRoom4DCS.Generator
                 groupLuaFile = "AircraftPlayerCarrier";
                 carrierUnitID = carrier.UnitMakerGroupInfo.DCSGroup.Units[0].UnitId;
                 carrierName = carrier.UnitMakerGroupInfo.UnitDB.UIDisplayName.Get();
-                var spotOffset = carrier.TotalSpotCount - carrier.RemainingSpotCount;
-                for (int i = spotOffset; i < flightGroup.Count + spotOffset; i++)
+                if(flightGroup.StartLocation != PlayerStartLocation.Air)
                 {
-                    parkingSpotIDsList.Add(i + 1);
-                    parkingSpotCoordinatesList.Add(carrier.UnitMakerGroupInfo.Coordinates);
+                    var spotOffset = carrier.TotalSpotCount - carrier.RemainingSpotCount;
+                    for (int i = spotOffset; i < flightGroup.Count + spotOffset; i++)
+                    {
+                        parkingSpotIDsList.Add(i + 1);
+                        parkingSpotCoordinatesList.Add(carrier.UnitMakerGroupInfo.Coordinates);
+                    }
+                    carrier.RemainingSpotCount = carrier.RemainingSpotCount - flightGroup.Count;
                 }
                 groupStartingCoords = carrier.UnitMakerGroupInfo.Coordinates;
-                carrier.RemainingSpotCount = carrier.RemainingSpotCount - flightGroup.Count;
                 atcRadioFrequency = carrier.UnitMakerGroupInfo.Frequency / 1000000.0;
             }
             else if (flightGroup.Hostile)
@@ -145,9 +148,7 @@ namespace BriefingRoom4DCS.Generator
             extraSettings.AddIfKeyUnused("Country", country);
             extraSettings.AddIfKeyUnused("InitialWPName", Database.Instance.Common.Names.WPInitialName.Get());
             extraSettings.AddIfKeyUnused("FinalWPName", Database.Instance.Common.Names.WPFinalName.Get());
-            extraSettings.AddIfKeyUnused("ParkingID", parkingSpotIDsList);
             extraSettings.AddIfKeyUnused("LinkUnit", carrierUnitID);
-            extraSettings.AddIfKeyUnused("UnitCoords", parkingSpotCoordinatesList);
             extraSettings.AddIfKeyUnused("MissionAirbaseX", groupStartingCoords.X);
             extraSettings.AddIfKeyUnused("MissionAirbaseY", groupStartingCoords.Y);
             extraSettings.AddIfKeyUnused("MissionAirbaseID", airbase.DCSID);
@@ -155,6 +156,15 @@ namespace BriefingRoom4DCS.Generator
             if (atcRadioFrequency > 0)
                 extraSettings.AddIfKeyUnused("AirbaseRadioFrequency", atcRadioFrequency);
             extraSettings.AddIfKeyUnused("AirbaseRadioModulation", 0);
+
+            if(flightGroup.StartLocation == PlayerStartLocation.Air)
+            {
+                groupLuaFile = "AircraftPlayerAir";
+                groupStartingCoords = groupStartingCoords.CreateNearRandom(50, 200);
+            } else {
+                extraSettings.AddIfKeyUnused("ParkingID", parkingSpotIDsList);
+                extraSettings.AddIfKeyUnused("UnitCoords", parkingSpotCoordinatesList);
+            }
 
             UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(
                 Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), side, unitDB.Families[0],

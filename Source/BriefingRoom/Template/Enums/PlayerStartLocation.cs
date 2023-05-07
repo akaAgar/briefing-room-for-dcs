@@ -28,6 +28,7 @@ namespace BriefingRoom4DCS.Template
 
         ParkingHot,
 
-        Runway
+        Runway,
+        Air
     }
 }
