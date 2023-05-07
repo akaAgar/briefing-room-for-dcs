@@ -166,6 +166,8 @@ namespace BriefingRoom4DCS.Generator
                 extraSettings.AddIfKeyUnused("UnitCoords", parkingSpotCoordinatesList);
             }
 
+            GetTaskType(template.Objectives, extraSettings, package);
+
             UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(
                 Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), side, unitDB.Families[0],
                 groupLuaFile, "Aircraft", groupStartingCoords,
@@ -245,6 +247,30 @@ namespace BriefingRoom4DCS.Generator
                 Type = groupInfo.Value.UnitDB.DCSID,
                 Waypoints = waypointTextRows
             });
+        }
+
+        private static void GetTaskType(List<MissionTemplateObjectiveRecord> objectives, Dictionary<string, object> extraSettings, MissionTemplatePackageRecord package)
+        {
+            var objs = objectives;
+            if (package != null)
+                objs = objs.Where((x, i) => package.ObjectiveIndexes.Contains(i)).ToList();
+            var task = objectives.Select(x => new List<DCSTask>{AssignTask(x)}.Concat(x.SubTasks.Select(y => AssignTask(y)).ToList())).SelectMany(x => x).ToList().GroupBy(x => x).MaxBy(g => g.Count()).ToList().First();
+            extraSettings.AddIfKeyUnused("Task", task.ToString());
+        }
+
+        private static DCSTask AssignTask(MissionTemplateSubTaskRecord objective)
+        {
+            if(objective.Task.StartsWith("Transport") || objective.Task.StartsWith("LandNear") || objective.Task.StartsWith("Extract"))
+                return DCSTask.Transport;
+            if(objective.Task.StartsWith("FlyNear"))
+                return DCSTask.Reconnaissance;
+            if(objective.Target.StartsWith("Ship"))
+                return DCSTask.AntishipStrike;
+            if(objective.Target.StartsWith("Helicopter") || objective.Target.StartsWith("Plane"))
+                return DCSTask.CAP;
+            if(objective.Target.StartsWith("Air"))
+                return DCSTask.SEAD;
+            return DCSTask.CAS;
         }
     }
 }
