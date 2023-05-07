@@ -880,7 +880,7 @@
     {
         "type": "Stinger comm dsr",
         "families": [
-            "InfantryMANPADS"
+            "Infantry"
         ],
         "operational": [
             1980,
@@ -892,7 +892,7 @@
     {
         "type": "Stinger comm",
         "families": [
-            "InfantryMANPADS"
+            "Infantry"
         ],
         "operational": [
             1980,
@@ -1000,7 +1000,7 @@
     {
         "type": "SA-18 Igla comm",
         "families": [
-            "InfantryMANPADS"
+            "Infantry"
         ],
         "operational": [
             1980,
@@ -1024,7 +1024,7 @@
     {
         "type": "SA-18 Igla-S comm",
         "families": [
-            "InfantryMANPADS"
+            "Infantry"
         ],
         "operational": [
             1980,
