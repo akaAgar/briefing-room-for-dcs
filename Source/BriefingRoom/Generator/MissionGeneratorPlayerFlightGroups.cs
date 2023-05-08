@@ -107,7 +107,7 @@ namespace BriefingRoom4DCS.Generator
             else if (flightGroup.Hostile)
             {
                 var coalition = GeneratorTools.GetSpawnPointCoalition(template, side, true);
-                var (hostileAirbase, hostileParkingSpotIDsList, hostileParkingSpotCoordinatesList) = unitMaker.SpawnPointSelector.GetAirbaseAndParking(template, objectivesCenter, flightGroup.Count, coalition.Value, unitDB.Families.First());
+                var (hostileAirbase, hostileParkingSpotIDsList, hostileParkingSpotCoordinatesList) = unitMaker.SpawnPointSelector.GetAirbaseAndParking(template, objectivesCenter, flightGroup.Count, coalition.Value, unitDB);
                 parkingSpotIDsList = hostileParkingSpotIDsList;
                 parkingSpotCoordinatesList = hostileParkingSpotCoordinatesList;
                 groupStartingCoords = hostileParkingSpotCoordinatesList.First();
@@ -121,7 +121,7 @@ namespace BriefingRoom4DCS.Generator
             }
             else // Land airbase take off
             {
-                var parkingSpots = unitMaker.SpawnPointSelector.GetFreeParkingSpots(airbase.DCSID, flightGroup.Count, unitDB.Families[0]);
+                var parkingSpots = unitMaker.SpawnPointSelector.GetFreeParkingSpots(airbase.DCSID, flightGroup.Count, unitDB);
                 parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
                 parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
                 groupStartingCoords = parkingSpotCoordinatesList.First();
@@ -169,7 +169,7 @@ namespace BriefingRoom4DCS.Generator
             GetTaskType(template.Objectives, extraSettings, package);
 
             UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(
-                Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToArray(), side, unitDB.Families[0],
+                Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToList(), side, unitDB.Families[0],
                 groupLuaFile, "Aircraft", groupStartingCoords,
                 unitMakerGroupFlags,
                 extraSettings

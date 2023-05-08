@@ -34,18 +34,18 @@ namespace BriefingRoom4DCS.Generator
     {
         private static readonly int[] DAYS_PER_MONTH = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-        internal static string[] GetEmbeddedAirDefenseUnits(MissionTemplateRecord template, Side side, UnitCategory unitCategory, Country? country = null)
+        internal static List<string> GetEmbeddedAirDefenseUnits(MissionTemplateRecord template, Side side, UnitCategory unitCategory, Country? country = null)
         {
             DBCommonAirDefenseLevel airDefenseInfo = (side == Side.Ally) ?
                  Database.Instance.Common.AirDefense.AirDefenseLevels[(int)template.SituationFriendlyAirDefense.Get()] :
                   Database.Instance.Common.AirDefense.AirDefenseLevels[(int)template.SituationEnemyAirDefense.Get()];
 
             DBEntryCoalition unitsCoalitionDB = Database.Instance.GetEntry<DBEntryCoalition>(template.GetCoalitionID(side));
-            if (unitsCoalitionDB == null) return new string[0];
+            if (unitsCoalitionDB == null) return new List<string>();
 
             List<string> units = new List<string>();
 
-            if (Toolbox.RandomDouble() >= airDefenseInfo.EmbeddedChance) return new string[0];
+            if (Toolbox.RandomDouble() >= airDefenseInfo.EmbeddedChance) return new List<string>();
 
             int airDefenseUnitsCount = airDefenseInfo.EmbeddedUnitCount.GetValue();
 
@@ -57,12 +57,12 @@ namespace BriefingRoom4DCS.Generator
             };
 
             if(families.Count == 0)
-                return units.ToArray();
+                return units.ToList();
 
             for (int i = 0; i < airDefenseUnitsCount; i++)
                 units.AddRange(unitsCoalitionDB.GetRandomUnits(families, template.ContextDecade, 1, template.Mods, template.OptionsMission.Contains("AllowLowPoly"), country).Item2);
 
-            return units.ToArray();
+            return units.ToList();
         }
 
         internal static Tuple<Country, List<string>> GetNeutralRandomUnits(List<UnitFamily> families, List<Country> IgnoreCountries, Decade decade, int count, List<string> unitMods, bool allowLowPolly, Country? requiredCountry = null, MinMaxI? countMinMax = null)

@@ -310,5 +310,10 @@ namespace BriefingRoom4DCS.Data
         {
             return (from T entry in GetAllEntries<T>() where ids.Distinct().OrderBy(x => x).Contains(entry.ID) select entry).ToArray();
         }
+
+        internal List<T> GetEntries<T>(List<string> ids) where T : DBEntry
+        {
+            return (from T entry in GetAllEntries<T>() where ids.Distinct().OrderBy(x => x).Contains(entry.ID) select entry).ToList();
+        }
     }
 }

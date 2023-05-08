@@ -188,9 +188,10 @@ namespace BriefingRoom4DCS.Generator
             var extraSettings = new Dictionary<string, object>();
             var (luaUnit, unitCount, unitCountMinMax, objectiveTargetUnitFamily, groupFlags) = GetUnitData(task, targetDB, targetBehaviorDB, objectiveOptions);
             var isInverseTransportWayPoint = false;
-
+            var (units, unitDBs) = UnitMaker.GetUnits(objectiveTargetUnitFamily, unitCount, taskDB.TargetSide, groupFlags, extraSettings);
+            var unitDB = unitDBs.First();
             if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location) && targetDB.UnitCategory.IsAircraft())
-                objectiveCoordinates = PlaceInAirbase(template, situationDB, playerAirbase, extraSettings, targetDB, targetBehaviorDB, ref luaUnit, objectiveCoordinates, unitCount, objectiveTargetUnitFamily);
+                objectiveCoordinates = PlaceInAirbase(template, situationDB, playerAirbase, extraSettings, targetDB, targetBehaviorDB, ref luaUnit, objectiveCoordinates, unitCount, unitDB);
 
             // Set destination point for moving unit groups
             Coordinates destinationPoint = objectiveCoordinates +
@@ -274,11 +275,11 @@ namespace BriefingRoom4DCS.Generator
                 groupFlags |= UnitMakerGroupFlags.ImmediateAircraftSpawn;
 
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
-                objectiveTargetUnitFamily, unitCount,
+                units,
                 taskDB.TargetSide,
+                objectiveTargetUnitFamily,
                 groupLua, luaUnit,
                 unitCoordinates,
-                unitCountMinMax,
                 groupFlags,
                 extraSettings);
 
@@ -357,7 +358,7 @@ namespace BriefingRoom4DCS.Generator
             );
         }
 
-        private Coordinates PlaceInAirbase(MissionTemplateRecord template, DBEntrySituation situationDB, DBEntryAirbase playerAirbase, Dictionary<string, object> extraSettings, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, ref string luaUnit, Coordinates objectiveCoordinates, int unitCount, UnitFamily objectiveTargetUnitFamily)
+        private Coordinates PlaceInAirbase(MissionTemplateRecord template, DBEntrySituation situationDB, DBEntryAirbase playerAirbase, Dictionary<string, object> extraSettings, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, ref string luaUnit, Coordinates objectiveCoordinates, int unitCount, DBEntryJSONUnit unitDB)
         {
             int airbaseID = 0;
             var parkingSpotIDsList = new List<int>();
@@ -372,7 +373,7 @@ namespace BriefingRoom4DCS.Generator
 
             var parkingSpots = UnitMaker.SpawnPointSelector.GetFreeParkingSpots(
                 targetAirbase.DCSID,
-                unitCount, objectiveTargetUnitFamily,
+                unitCount, (DBEntryAircraft) unitDB,
                 targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter);
 
             parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
@@ -447,9 +448,9 @@ namespace BriefingRoom4DCS.Generator
         private void AddEmbeddedAirDefenseUnits(MissionTemplateRecord template, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB, ObjectiveOption[] objectiveOptions, Coordinates objectiveCoordinates, UnitMakerGroupFlags groupFlags, Dictionary<string, object> extraSettings)
         {
             // Static targets (aka buildings) need to have their "embedded" air defenses spawned in another group
-            string[] airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(template, taskDB.TargetSide, UnitCategory.Static);
+            var airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(template, taskDB.TargetSide, UnitCategory.Static);
 
-            if (airDefenseUnits.Length > 0)
+            if (airDefenseUnits.Count > 0)
                 UnitMaker.AddUnitGroup(
                     airDefenseUnits,
                     taskDB.TargetSide, UnitFamily.VehicleAAA,

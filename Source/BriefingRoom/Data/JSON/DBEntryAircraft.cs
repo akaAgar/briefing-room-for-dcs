@@ -36,7 +36,7 @@ namespace BriefingRoom4DCS.Data
         internal int Chaff { get; init; }
         internal int? AmmoType { get; init; }
         internal int MaxAlt { get; init; }
-        internal int CruiseAlt { get { return (int)Math.Floor(MaxAlt * 0.6);}}
+        internal int CruiseAlt { get { return (int)Math.Floor(MaxAlt * 0.6); } }
         internal double CruiseSpeed { get; init; }
         internal bool PlayerControllable { get; init; }
         internal RadioChannel Radio { get; init; }
@@ -63,6 +63,10 @@ namespace BriefingRoom4DCS.Data
                 return dict;
             }
         }
+
+        internal double Height { get; init; }
+        internal double Width { get; init; }
+        internal double Length { get; init; }
 
         protected override bool OnLoad(string o)
         {
@@ -120,6 +124,9 @@ namespace BriefingRoom4DCS.Data
                     SpecificCallNames = aircraft.specificCallnames,
                     Payloads = aircraft.payloadPresets,
                     Shape = aircraft.shape,
+                    Height = aircraft.height,
+                    Width = aircraft.width,
+                    Length = aircraft.length,
                     PlayerControllable = supportInfo.playerControllable,
                     Families = supportInfo.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
                     Operational = supportInfo.operational.Select(x => (Decade)x).ToList(),

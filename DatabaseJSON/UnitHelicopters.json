@@ -1,6 +1,8 @@
 [
     {
         "_id": "372a458a3ded0eb588fc4d3c6b53fe381059c0c7",
+        "height": 4.354,
+        "length": 20.953,
         "paintSchemes": {
             "0": [
                 "Russia Army Aviation",
@@ -832,6 +834,7 @@
         "maxAlt": 2200,
         "cruiseSpeed": 270,
         "shape": "MI-24W",
+        "width": 17.3,
         "countries": [
             "Russia",
             "Ukraine",
@@ -891,6 +894,8 @@
     },
     {
         "_id": "b303658055030ad8f011c7158147ae7ea75bb645",
+        "height": 4.908,
+        "length": 25.942,
         "paintSchemes": {
             "0": [
                 " RF Army Standard",
@@ -1468,6 +1473,7 @@
         "maxAlt": 1850,
         "cruiseSpeed": 225,
         "shape": "MI-8MT",
+        "width": 21.33,
         "countries": [
             "Russia",
             "Ukraine",
@@ -1573,6 +1579,8 @@
     },
     {
         "_id": "e0c9b92aa25b3a97fc117e02a21af84ffaf231b1",
+        "height": 12.9,
+        "length": 40.854,
         "paintSchemes": {
             "0": [
                 "RF Air Force",
@@ -1873,6 +1881,7 @@
         "maxAlt": 1000,
         "cruiseSpeed": 255,
         "shape": "MI-26",
+        "width": 32,
         "countries": [
             "Russia",
             "Ukraine",
@@ -1912,6 +1921,8 @@
     },
     {
         "_id": "d8ebcdef57c28b8cd33ecdeef0622930becd60b4",
+        "height": 5.2,
+        "length": 15.92,
         "paintSchemes": {
             "0": [
                 "standard"
@@ -1945,6 +1956,7 @@
         "maxAlt": 2500,
         "cruiseSpeed": 230,
         "shape": "KA-27",
+        "width": 15.9,
         "countries": [
             "Russia",
             "Ukraine",
@@ -1982,6 +1994,8 @@
     },
     {
         "_id": "592425d23b43c9ccfb1f6cffd9c7faebf88d5feb",
+        "height": 4.893,
+        "length": 18.654,
         "paintSchemes": {
             "0": [
                 "standard"
@@ -2063,6 +2077,7 @@
         "maxAlt": 3170,
         "cruiseSpeed": 237,
         "shape": "UH-60A",
+        "width": 16.4,
         "countries": [
             "USA",
             "Turkey",
@@ -2118,6 +2133,8 @@
     },
     {
         "_id": "2e02563382c3d64de6f75f7624e50ab75cf284e3",
+        "height": 7.83,
+        "length": 30.18,
         "paintSchemes": {
             "2": [
                 "standard"
@@ -2144,6 +2161,7 @@
         "maxAlt": 2895,
         "cruiseSpeed": 278,
         "shape": "CH-53E",
+        "width": 24.08,
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -2161,6 +2179,8 @@
     },
     {
         "_id": "a768b0ad281078e459b463cff31dd60d361ca09f",
+        "height": 5.998,
+        "length": 28.3,
         "paintSchemes": {
             "2": [
                 "standard"
@@ -2202,6 +2222,7 @@
         "maxAlt": 1675,
         "cruiseSpeed": 260,
         "shape": "CH-47D",
+        "width": 18.3,
         "countries": [
             "USA",
             "Turkey",
@@ -2251,6 +2272,8 @@
     },
     {
         "_id": "30d7c9f073138a14b3af2acf2cf623458bd871ad",
+        "height": 6.807,
+        "length": 30.207,
         "paintSchemes": {
             "0": [
                 "standard"
@@ -2544,11 +2567,14 @@
         "maxAlt": 2500,
         "cruiseSpeed": 222,
         "shape": "SH-3",
+        "width": 18.91,
         "countries": [],
         "countriesWorldID": []
     },
     {
         "_id": "7e0e83296341d1b92d841911ccbe9cc040792f71",
+        "height": 4.15,
+        "length": 17.87,
         "paintSchemes": {
             "2": [
                 "standard",
@@ -2771,6 +2797,7 @@
         "maxAlt": 3505,
         "cruiseSpeed": 296,
         "shape": "AH-64A",
+        "width": 14.63,
         "countries": [
             "USA",
             "UK",
@@ -2802,6 +2829,8 @@
     },
     {
         "_id": "0571c5345706a6d9e05b4feaef9638e8a6e546c0",
+        "height": 4.15,
+        "length": 17.87,
         "paintSchemes": {
             "2": [
                 "standard"
@@ -3023,6 +3052,7 @@
         "maxAlt": 3505,
         "cruiseSpeed": 296,
         "shape": "AH-64D",
+        "width": 14.63,
         "countries": [
             "USA",
             "UK",
@@ -3060,6 +3090,8 @@
     },
     {
         "_id": "8b323613272831593d99dba4a826d29710398251",
+        "height": 3.9,
+        "length": 17.27,
         "paintSchemes": {
             "2": [
                 "Black",
@@ -3489,6 +3521,7 @@
         "maxAlt": 915,
         "cruiseSpeed": 278,
         "shape": "AH-1W",
+        "width": 14.64,
         "countries": [
             "USA",
             "Turkey",
@@ -3514,6 +3547,8 @@
     },
     {
         "_id": "37354479fd39ef7f222d98c2332b6b63f7b1d020",
+        "height": 4.893,
+        "length": 18.654,
         "paintSchemes": {
             "2": [
                 "standard"
@@ -3562,6 +3597,7 @@
         "maxAlt": 4510,
         "cruiseSpeed": 250,
         "shape": "SH-60B",
+        "width": 16.4,
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -3583,6 +3619,8 @@
     },
     {
         "_id": "fe8510cc6ed6c3dec968eda8309d2f5ec9692f20",
+        "height": 4.41,
+        "length": 17.62,
         "paintSchemes": {
             "0": [
                 "RF Air Force Broken",
@@ -3904,6 +3942,7 @@
         "maxAlt": 1850,
         "cruiseSpeed": 204,
         "shape": "AB-212",
+        "width": 14.7,
         "countries": [
             "Russia",
             "Ukraine",
@@ -4011,6 +4050,8 @@
     },
     {
         "_id": "e2829fc3371124366b350620c8ccffddcb42ca9c",
+        "height": 5.087,
+        "length": 17.87,
         "paintSchemes": {
             "0": [
                 "Night",
@@ -4699,6 +4740,7 @@
         "maxAlt": 2990,
         "cruiseSpeed": 261,
         "shape": "Mi-28",
+        "width": 17.2,
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -4720,6 +4762,8 @@
     },
     {
         "_id": "ad8be1142ef1f767b5ac9e61c15fe0a740dff561",
+        "height": 2.29,
+        "length": 10.48,
         "paintSchemes": {},
         "payloadPresets": [
             {
@@ -4891,6 +4935,7 @@
         "maxAlt": 6000,
         "cruiseSpeed": 195,
         "shape": "OH-58D",
+        "width": 10.53,
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -4915,6 +4960,8 @@
     {
         "_id": "60335de5c0317a3767c2286bb9538d61b756371b",
         "EPLRS": true,
+        "height": 4.15,
+        "length": 17.87,
         "paintSchemes": {
             "2": [
                 "default livery",
@@ -5626,6 +5673,7 @@
         "maxAlt": 3505,
         "cruiseSpeed": 296,
         "shape": "AH-64D_bl2",
+        "width": 14.63,
         "countries": [
             "USA",
             "UK",
@@ -5655,6 +5703,8 @@
     },
     {
         "_id": "a508fd3eab111a4265d14db2c420a1a8a6186da1",
+        "height": 5.6,
+        "length": 15.84,
         "paintSchemes": {
             "0": [
                 "Army Standard",
@@ -6844,6 +6894,7 @@
         "maxAlt": 4000,
         "cruiseSpeed": 310,
         "shape": "KA-50",
+        "width": 14.4,
         "countries": [
             "Russia",
             "Ukraine",
@@ -7029,6 +7080,8 @@
     },
     {
         "_id": "4a67be2af3ab087fa4cffcea13e2a11562192f90",
+        "height": 5.6,
+        "length": 15.84,
         "paintSchemes": {
             "0": [
                 "Standart camo Russian Air Force",
@@ -8051,6 +8104,7 @@
         "maxAlt": 4000,
         "cruiseSpeed": 310,
         "shape": "Ka-50_3",
+        "width": 14.4,
         "countries": [
             "Algeria"
         ],
@@ -8060,6 +8114,8 @@
     },
     {
         "_id": "f0f0485ea8103a6fe22ac824980c4a7e0335e7a2",
+        "height": 4.354,
+        "length": 20.953,
         "paintSchemes": {
             "0": [
                 "RF Air Force Standard",
@@ -8978,6 +9034,7 @@
         "maxAlt": 2200,
         "cruiseSpeed": 270,
         "shape": "Mi-24P",
+        "width": 17.3,
         "countries": [
             "Russia",
             "Ukraine",
@@ -9018,6 +9075,8 @@
     {
         "_id": "afc44d9cbd8391c5eb5b34101a93dc9ab77ab25e",
         "EPLRS": true,
+        "height": 3.192,
+        "length": 11.97,
         "paintSchemes": {
             "0": [
                 "russia fictional"
@@ -9303,6 +9362,7 @@
         "maxAlt": 3040,
         "cruiseSpeed": 200,
         "shape": "SA342M",
+        "width": 10.5,
         "countries": [
             "UK",
             "France",
@@ -9343,6 +9403,8 @@
     {
         "_id": "aa6ccdfe0fd7dbf87d63d47171d55faae7ca974a",
         "EPLRS": true,
+        "height": 3.192,
+        "length": 11.97,
         "paintSchemes": {
             "0": [
                 "russia fictional"
@@ -9546,6 +9608,7 @@
         "maxAlt": 3040,
         "cruiseSpeed": 200,
         "shape": "SA342L",
+        "width": 10.5,
         "countries": [
             "UK",
             "France",
@@ -9586,6 +9649,8 @@
     {
         "_id": "210d5a03945dd55bf12da3c1ff3a8a355e32c39b",
         "EPLRS": true,
+        "height": 3.192,
+        "length": 11.97,
         "paintSchemes": {
             "0": [
                 "russia fictional"
@@ -9810,6 +9875,7 @@
         "maxAlt": 3040,
         "cruiseSpeed": 200,
         "shape": "SA342Mistral",
+        "width": 10.5,
         "countries": [
             "UK",
             "France",
@@ -9850,6 +9916,8 @@
     {
         "_id": "9be2900e03a4f2b55522e6243fdaf1ae792b380b",
         "EPLRS": true,
+        "height": 3.192,
+        "length": 11.97,
         "paintSchemes": {
             "0": [
                 "russia fictional"
@@ -10027,6 +10095,7 @@
         "maxAlt": 3040,
         "cruiseSpeed": 200,
         "shape": "SA342Minigun",
+        "width": 10.5,
         "countries": [
             "UK",
             "France",

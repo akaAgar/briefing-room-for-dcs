@@ -29,19 +29,14 @@ namespace BriefingRoom4DCS.Data
     internal struct DBEntryAirbaseParkingSpot
     {
         internal int DCSID { get; private set; }
-
         internal Coordinates Coordinates { get; private set; }
-
         internal ParkingSpotType ParkingType { get; private set; }
+        internal double Height { get; private set; }
+        internal double Length { get; private set; }
+        internal double Width { get; private set; }
 
         public DBEntryAirbaseParkingSpot() { }
-        internal DBEntryAirbaseParkingSpot(INIFile ini, string section, string parkingKey)
-        {
-            DCSID = ini.GetValue<int>(section, $"{parkingKey}.DCSID");
-            Coordinates = ini.GetValue<Coordinates>(section, $"{parkingKey}.Coordinates");
 
-            ParkingType = ini.GetValue<ParkingSpotType>(section, $"{parkingKey}.Type");
-        }
 
         internal static DBEntryAirbaseParkingSpot[] LoadJSON(List<Parking> data, string airbaseId)
         {
@@ -64,5 +59,40 @@ namespace BriefingRoom4DCS.Data
                 };
             }).ToArray();
         }
+
+        internal static DBEntryAirbaseParkingSpot[] LoadJSON(List<Stand> data, string airbaseId)
+        {
+            return data.Select(stand =>
+            {
+                var parkingSpotType = ParkingSpotType.Unknown;
+                try
+                {
+                    if(stand.@params.SHELTER == "1")
+                        parkingSpotType = ParkingSpotType.HardenedAirShelter;
+                    else if (stand.@params.FOR_HELICOPTERS == "1" && stand.@params.FOR_AIRPLANES == "1")
+                        parkingSpotType = ParkingSpotType.OpenAirSpawn;
+                    else if (stand.@params.FOR_HELICOPTERS == "1")
+                        parkingSpotType = ParkingSpotType.HelicopterOnly;
+                    else if (stand.@params.FOR_AIRPLANES == "1")
+                        parkingSpotType = ParkingSpotType.AirplaneOnly;
+
+                }
+                catch (System.Exception)
+                {
+                    BriefingRoom.PrintToLog($"Failed to parse parking type: {stand.name} (airbase: {airbaseId}, id: {stand.crossroad_index})", LogMessageErrorLevel.Warning);
+                }
+                return new DBEntryAirbaseParkingSpot
+                {
+                    DCSID = stand.crossroad_index,
+                    Coordinates = new Coordinates(stand.x, stand.y),
+                    ParkingType = parkingSpotType,
+                    Height = string.IsNullOrEmpty(stand.@params.HEIGHT) ? 500 : Double.Parse(stand.@params.HEIGHT),
+                    Length = Double.Parse(stand.@params.LENGTH),
+                    Width = Double.Parse(stand.@params.WIDTH)
+                };
+            }).ToArray();
+        }
     }
+
+    
 }

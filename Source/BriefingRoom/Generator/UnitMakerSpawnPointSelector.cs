@@ -70,7 +70,8 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        internal List<DBEntryAirbaseParkingSpot> GetFreeParkingSpots(int airbaseID, int unitCount, UnitFamily unitFamily, bool requiresOpenAirParking = false)
+
+        internal List<DBEntryAirbaseParkingSpot> GetFreeParkingSpots(int airbaseID, int unitCount, DBEntryAircraft aircraftDB, bool requiresOpenAirParking = false)
         {
 
             if (!AirbaseParkingSpots.ContainsKey(airbaseID))
@@ -82,7 +83,7 @@ namespace BriefingRoom4DCS.Generator
             DBEntryAirbaseParkingSpot? lastSpot = null;
             for (int i = 0; i < unitCount; i++)
             {
-                var viableSpots = FilterAndSortSuitableSpots(AirbaseParkingSpots[airbaseID].ToArray(), unitFamily, requiresOpenAirParking);
+                var viableSpots = FilterAndSortSuitableSpots(AirbaseParkingSpots[airbaseID].ToArray(), aircraftDB, requiresOpenAirParking);
                 if (viableSpots.Count == 0) throw new BriefingRoomException("Airbase didn't have enough suitable parking spots.");
                 var parkingSpot = viableSpots.First();
                 if (lastSpot.HasValue) //find nearest spot distance wise in attempt to cluster
@@ -216,28 +217,52 @@ namespace BriefingRoom4DCS.Generator
 
         internal Tuple<DBEntryAirbase, List<int>, List<Coordinates>> GetAirbaseAndParking(
             MissionTemplateRecord template, Coordinates coordinates,
-            int unitCount, Coalition coalition, UnitFamily unitFamily)
+            int unitCount, Coalition coalition, DBEntryAircraft aircraftDB)
         {
             var targetAirbaseOptions =
                         (from DBEntryAirbase airbaseDB in SituationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"))
-                         where (coalition == Coalition.Neutral || airbaseDB.Coalition == coalition) && ValidateAirfieldParking(AirbaseParkingSpots[airbaseDB.DCSID], unitFamily, unitCount) && ValidateAirfieldRunway(airbaseDB, unitFamily)
+                         where (coalition == Coalition.Neutral || airbaseDB.Coalition == coalition) && ValidateAirfieldParking(AirbaseParkingSpots[airbaseDB.DCSID], aircraftDB.Families.First(), unitCount) && ValidateAirfieldRunway(airbaseDB, aircraftDB.Families.First())
                          select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(coordinates));
 
             if (targetAirbaseOptions.Count() == 0) throw new BriefingRoomException("No airbase found for aircraft.");
+            
+            List<DBEntryAirbaseParkingSpot> parkingSpots;
+            foreach (var airbase in targetAirbaseOptions)
+            {
+                try
+                {
+                    parkingSpots = GetFreeParkingSpots(airbase.DCSID, unitCount, aircraftDB);
+                }
+                catch (System.Exception)
+                {
+                    continue;
+                }
 
-            var targetAirbase = targetAirbaseOptions.First();
-            var objectiveCoordinates = targetAirbase.Coordinates;
-            var airbaseID = targetAirbase.DCSID;
-            var parkingSpotIDsList = new List<int>();
-            var parkingSpotCoordinatesList = new List<Coordinates>();
-            var parkingSpots = GetFreeParkingSpots(airbaseID, unitCount, unitFamily);
-
-            parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
-            parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
-            return Tuple.Create(targetAirbase, parkingSpotIDsList, parkingSpotCoordinatesList);
+                return Tuple.Create(airbase, parkingSpots.Select(x => x.DCSID).ToList(), parkingSpots.Select(x => x.Coordinates).ToList());  
+            }
+            throw new BriefingRoomException("No airbase found with sufficient parking spots.");
         }
 
-        private List<DBEntryAirbaseParkingSpot> FilterAndSortSuitableSpots(DBEntryAirbaseParkingSpot[] parkingspots, UnitFamily unitFamily, bool requiresOpenAirParking)
+        private List<DBEntryAirbaseParkingSpot> FilterAndSortSuitableSpots(DBEntryAirbaseParkingSpot[] parkingspots, DBEntryAircraft aircraftDB, bool requiresOpenAirParking)
+        {
+            if(parkingspots.Any(x => x.Height == 0))
+            {
+                BriefingRoom.PrintToLog("Using Simplified parking logic units may overlap", LogMessageErrorLevel.Warning);
+                return FilterAndSortSuitableSpotsSimple(parkingspots, aircraftDB.Families.First(), requiresOpenAirParking);
+            }
+            var category = aircraftDB.Families.First().GetUnitCategory();
+            var opts =  parkingspots.Where(x =>
+                aircraftDB.Height < x.Height 
+                && aircraftDB.Length < x.Length
+                && aircraftDB.Width < x.Width
+                && (!requiresOpenAirParking || x.ParkingType != ParkingSpotType.HardenedAirShelter)
+             );
+             if(category == UnitCategory.Helicopter)
+                return opts.Where(x => x.ParkingType != ParkingSpotType.AirplaneOnly || x.ParkingType != ParkingSpotType.HardenedAirShelter).ToList();
+            return opts.Where(x => x.ParkingType != ParkingSpotType.HelicopterOnly).ToList();
+        }
+
+        private List<DBEntryAirbaseParkingSpot> FilterAndSortSuitableSpotsSimple(DBEntryAirbaseParkingSpot[] parkingspots, UnitFamily unitFamily, bool requiresOpenAirParking)
         {
             var validTypes = new List<ParkingSpotType>{
                 ParkingSpotType.OpenAirSpawn,

@@ -2,6 +2,8 @@
     {
         "_id": "cc2682ff9e0fb113cea9db4958ecb14ef08e3643",
         "EPLRS": true,
+        "height": 5.7,
+        "length": 16.7,
         "paintSchemes": {
             "4": [
                 "bb of 14 squadron raf lossiemouth",
@@ -283,6 +285,7 @@
         "maxAlt": 15200,
         "cruiseSpeed": 120,
         "shape": "TORNADO",
+        "width": 13.91,
         "countries": [
             "UK",
             "USAF Aggressors",
@@ -301,6 +304,8 @@
     {
         "_id": "b41a275858b64568fee95f187c573bb71d7fa6bb",
         "EPLRS": true,
+        "height": 5.7,
+        "length": 16.7,
         "paintSchemes": {
             "6": [
                 "aufklarungsgeschwader 51 `immelmann` jagel ab luftwaffe",
@@ -684,6 +689,7 @@
         "maxAlt": 15200,
         "cruiseSpeed": 120,
         "shape": "TORNADO_IDS",
+        "width": 13.91,
         "countries": [
             "Germany",
             "USAF Aggressors",
@@ -705,6 +711,8 @@
     },
     {
         "_id": "c3c291540f1c6c5cb2d13b87f403cb8930f493dd",
+        "height": 4.66,
+        "length": 17.07,
         "paintSchemes": {
             "2": [
                 "vfa-125 `rough riders` MC (Lemoore)",
@@ -1633,6 +1641,7 @@
         "maxAlt": 15240,
         "cruiseSpeed": 180,
         "shape": "f-18a",
+        "width": 11.43,
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -1653,6 +1662,8 @@
     {
         "_id": "732305fdc052a72ed73c0ac12da533dbd8582b3e",
         "EPLRS": true,
+        "height": 4.66,
+        "length": 17.07,
         "paintSchemes": {
             "2": [
                 "NSAWC_25",
@@ -3170,6 +3181,7 @@
         "maxAlt": 15240,
         "cruiseSpeed": 180,
         "shape": "f-18c",
+        "width": 11.43,
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -3199,6 +3211,8 @@
     },
     {
         "_id": "d44a3820b6e03da8d99786d3375d5b56255dcdac",
+        "height": 4.88,
+        "length": 19.1,
         "paintSchemes": {
             "2": [
                 "black demo scheme",
@@ -3366,6 +3380,7 @@
         "maxAlt": 16150,
         "cruiseSpeed": 220,
         "shape": "F-14a",
+        "width": 19.54,
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -3385,6 +3400,8 @@
     },
     {
         "_id": "33062dedaef3d79cd38e2b6d48c2d4173ecdd8c8",
+        "height": 11.05,
+        "length": 46.12,
         "paintSchemes": {
             "0": [
                 "af standard"
@@ -3544,6 +3561,7 @@
         "maxAlt": 13500,
         "cruiseSpeed": 250,
         "shape": "tu-22",
+        "width": 34.28,
         "countries": [
             "Russia",
             "Ukraine",
@@ -3565,6 +3583,8 @@
     },
     {
         "_id": "db570ee78ce9973add8b1a61029e8ac2ac3039fc",
+        "height": 5,
+        "length": 19.2,
         "paintSchemes": {
             "6": [
                 "af standard"
@@ -4195,6 +4215,7 @@
         "maxAlt": 17907,
         "cruiseSpeed": 256,
         "shape": "F-4E",
+        "width": 11.68,
         "countries": [
             "USA",
             "Turkey",
@@ -4231,6 +4252,8 @@
     {
         "_id": "02714d8bf30375620f2938de76958c40c27b6f6c",
         "EPLRS": true,
+        "height": 12.4,
+        "length": 49.05,
         "paintSchemes": {
             "2": [
                 "usaf standard"
@@ -4387,6 +4410,7 @@
         "maxAlt": 16764,
         "cruiseSpeed": 227,
         "shape": "b-52",
+        "width": 56.4,
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -4404,6 +4428,8 @@
     },
     {
         "_id": "a383724f629428f0bb858eeb8f896d3e5be45d30",
+        "height": 5.64,
+        "length": 16.7,
         "paintSchemes": {
             "0": [
                 "af standard"
@@ -4889,6 +4915,7 @@
         "maxAlt": 17000,
         "cruiseSpeed": 210,
         "shape": "MiG-27",
+        "width": 14,
         "countries": [
             "Russia",
             "Ukraine",
@@ -4912,6 +4939,8 @@
     },
     {
         "_id": "0ab80fa3abec3c1ba45d29d51087b051b9c6bf08",
+        "height": 5.932,
+        "length": 21.935,
         "paintSchemes": {
             "0": [
                 "Air Force Standard",
@@ -6311,6 +6340,7 @@
         "maxAlt": 18500,
         "cruiseSpeed": 170,
         "shape": "Su-27",
+        "width": 14.7,
         "countries": [
             "Russia",
             "Ukraine",
@@ -6346,6 +6376,8 @@
     },
     {
         "_id": "d97a0f3cc83d35f9faeca6311e807d7b13aff896",
+        "height": 5.772,
+        "length": 15.7,
         "paintSchemes": {
             "0": [
                 "af standard",
@@ -6742,6 +6774,7 @@
         "maxAlt": 18500,
         "cruiseSpeed": 210,
         "shape": "mig-23",
+        "width": 14,
         "countries": [
             "Russia",
             "Ukraine",
@@ -6771,6 +6804,8 @@
     },
     {
         "_id": "1a66070b9438064ad36ffd4517bb72754bb22383",
+        "height": 4.8,
+        "length": 15.36,
         "paintSchemes": {
             "0": [
                 "field camo scheme #1 (native)",
@@ -8269,6 +8304,7 @@
         "maxAlt": 10000,
         "cruiseSpeed": 180,
         "shape": "Su-25",
+        "width": 14.35,
         "countries": [
             "Russia",
             "Ukraine",
@@ -8316,6 +8352,8 @@
     },
     {
         "_id": "ead966362c28302d7c8c67c083141951ed0ecf60",
+        "height": 5.2,
+        "length": 15.35,
         "paintSchemes": {
             "0": [
                 "Flight Research Institute  VVS"
@@ -9908,6 +9946,7 @@
         "maxAlt": 10000,
         "cruiseSpeed": 180,
         "shape": "Su-39",
+        "width": 14.36,
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -9925,6 +9964,8 @@
     },
     {
         "_id": "53517a2e6261890cb406e17e919295b76a7914e9",
+        "height": 5.2,
+        "length": 15.35,
         "paintSchemes": {
             "0": [
                 "af standard 1",
@@ -11685,6 +11726,7 @@
         "maxAlt": 10000,
         "cruiseSpeed": 180,
         "shape": "Su-25T",
+        "width": 14.36,
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -11712,6 +11754,8 @@
     },
     {
         "_id": "e72ce8c9924dc302d47d442736f46c4a5838b978",
+        "height": 5.72,
+        "length": 21.18,
         "paintSchemes": {
             "0": [
                 "Navy, 279th kiap, 1st squad",
@@ -13253,6 +13297,7 @@
         "maxAlt": 18500,
         "cruiseSpeed": 170,
         "shape": "Su-33",
+        "width": 14.7,
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -13270,6 +13315,8 @@
     },
     {
         "_id": "b9b288c1c194f545a11bba6cdcd22a69a757c109",
+        "height": 6.1,
+        "length": 23.82,
         "paintSchemes": {
             "0": [
                 "af standard"
@@ -13408,6 +13455,7 @@
         "maxAlt": 24200,
         "cruiseSpeed": 280,
         "shape": "MIG-25P",
+        "width": 14,
         "countries": [
             "Russia",
             "Ukraine",
@@ -13435,6 +13483,8 @@
     },
     {
         "_id": "9323f00c3eb79d36ec28a4e9e155b3e453761d3b",
+        "height": 6.1,
+        "length": 23.82,
         "paintSchemes": {
             "0": [
                 "af standard"
@@ -13519,6 +13569,7 @@
         "maxAlt": 24200,
         "cruiseSpeed": 280,
         "shape": "mig-25",
+        "width": 14,
         "countries": [
             "Russia",
             "Ukraine",
@@ -13544,6 +13595,8 @@
     },
     {
         "_id": "926b18271fe8efa67f1dd930e76807272461d260",
+        "height": 6.36,
+        "length": 21.9,
         "paintSchemes": {
             "0": [
                 "`desert` test paint scheme",
@@ -15097,6 +15150,7 @@
         "maxAlt": 17250,
         "cruiseSpeed": 170,
         "shape": "Su-30",
+        "width": 14.7,
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -15132,6 +15186,8 @@
     },
     {
         "_id": "21d17f4fa034d827b50f1032ba28ca2d6f927937",
+        "height": 5.129,
+        "length": 19.26,
         "paintSchemes": {
             "0": [
                 "af standard",
@@ -15939,6 +15995,7 @@
         "maxAlt": 15200,
         "cruiseSpeed": 174,
         "shape": "SU-17",
+        "width": 13.68,
         "countries": [
             "Russia",
             "Ukraine",
@@ -15974,6 +16031,8 @@
     },
     {
         "_id": "d1f0b14012baa496c6feec3c4b84608f6c2e3bbd",
+        "height": 6.15,
+        "length": 22.7,
         "paintSchemes": {
             "0": [
                 "174 GvIAP Boris Safonov",
@@ -16169,6 +16228,7 @@
         "maxAlt": 21000,
         "cruiseSpeed": 280,
         "shape": "MiG-31",
+        "width": 13.46,
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -16190,6 +16250,8 @@
     },
     {
         "_id": "bd7a584492132ed7cafe87d058d3647446c305c5",
+        "height": 13.3,
+        "length": 49.13,
         "paintSchemes": {
             "0": [
                 "af standard"
@@ -16234,6 +16296,7 @@
         "maxAlt": 12000,
         "cruiseSpeed": 208,
         "shape": "Tu-95MS",
+        "width": 50.04,
         "countries": [
             "Russia",
             "Ukraine",
@@ -16255,6 +16318,8 @@
     },
     {
         "_id": "4b5427e2414a25af13bdbb64513ca71f1ae2dac3",
+        "height": 4.97,
+        "length": 24.53,
         "paintSchemes": {
             "0": [
                 "af standard"
@@ -17305,6 +17370,7 @@
         "maxAlt": 17500,
         "cruiseSpeed": 210,
         "shape": "su-24",
+        "width": 17.64,
         "countries": [
             "Russia",
             "Ukraine",
@@ -17342,6 +17408,8 @@
     },
     {
         "_id": "7cc297c6a08da6be3ce2316f2d8c741badce2df4",
+        "height": 4.97,
+        "length": 24.53,
         "paintSchemes": {
             "0": [
                 "af standard"
@@ -17498,6 +17566,7 @@
         "maxAlt": 17500,
         "cruiseSpeed": 210,
         "shape": "su-24MR",
+        "width": 17.64,
         "countries": [
             "Russia",
             "Ukraine",
@@ -17525,6 +17594,8 @@
     },
     {
         "_id": "6841bf353291fedf9a16719fc5af1f9b7c4d8bb4",
+        "height": 13.25,
+        "length": 54.1,
         "paintSchemes": {
             "0": [
                 "af standard"
@@ -17570,6 +17641,7 @@
         "maxAlt": 15000,
         "cruiseSpeed": 236,
         "shape": "Tu-160",
+        "width": 55.7,
         "countries": [
             "Russia",
             "Ukraine",
@@ -17591,6 +17663,8 @@
     },
     {
         "_id": "2bdbbbafdd173b1d212173936067da78a5c50b07",
+        "height": 3.78,
+        "length": 20.08,
         "paintSchemes": {
             "2": [
                 "usaf standard"
@@ -17668,6 +17742,7 @@
         "maxAlt": 10000,
         "cruiseSpeed": 270,
         "shape": "f-117",
+        "width": 13.2,
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -17686,6 +17761,8 @@
     {
         "_id": "41b3b9c41edf275c26fd9731fbff67244972bf3a",
         "EPLRS": true,
+        "height": 10.36,
+        "length": 44.81,
         "paintSchemes": {
             "2": [
                 "usaf standard"
@@ -17962,6 +18039,7 @@
         "maxAlt": 15240,
         "cruiseSpeed": 217,
         "shape": "B-1B",
+        "width": 41.67,
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -17979,6 +18057,8 @@
     },
     {
         "_id": "b0483e74d874225d02c32c107bc51b9b2eaedb11",
+        "height": 6.93,
+        "length": 16.26,
         "paintSchemes": {
             "2": [
                 "NAVY Standard"
@@ -18229,6 +18309,7 @@
         "maxAlt": 7500,
         "cruiseSpeed": 82.2,
         "shape": "S-3A",
+        "width": 20.93,
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -18246,6 +18327,8 @@
     },
     {
         "_id": "7155a9ceb730fa5986dbcb2b2d073ab6106c41bc",
+        "height": 6.93,
+        "length": 16.26,
         "paintSchemes": {
             "2": [
                 "NAVY Standard"
@@ -18278,6 +18361,7 @@
         "maxAlt": 7500,
         "cruiseSpeed": 82.2,
         "shape": "S-3R",
+        "width": 20.93,
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -18296,6 +18380,8 @@
     {
         "_id": "f340ea29d99ea4df2b0b98342dd5297e38ca5028",
         "EPLRS": true,
+        "height": 5.2,
+        "length": 14.36,
         "paintSchemes": {
             "5": [
                 "ec1_2  spa103 `cigogne de fonck`",
@@ -18647,6 +18733,7 @@
         "maxAlt": 16460,
         "cruiseSpeed": 170,
         "shape": "M2000",
+        "width": 9.13,
         "countries": [
             "France",
             "USAF Aggressors",
@@ -18675,6 +18762,8 @@
     {
         "_id": "83d92c5a9fbef89726d7675c7269770cff5cb613",
         "EPLRS": true,
+        "height": 5.63,
+        "length": 19.43,
         "paintSchemes": {
             "2": [
                 "12th Fighter SQN (AK)",
@@ -19282,6 +19371,7 @@
         "maxAlt": 18300,
         "cruiseSpeed": 220,
         "shape": "f-15",
+        "width": 13.05,
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -19306,6 +19396,8 @@
     {
         "_id": "ce4d786187cfd0d57ec125afb182c8e0d3cb07c3",
         "EPLRS": true,
+        "height": 5.63,
+        "length": 19.43,
         "paintSchemes": {
             "2": [
                 "335th Fighter SQN (SJ)",
@@ -21422,6 +21514,7 @@
         "maxAlt": 18300,
         "cruiseSpeed": 220,
         "shape": "f-15e",
+        "width": 13.05,
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -21445,6 +21538,8 @@
     },
     {
         "_id": "866b748ecf3f0d7ac5593504372f6b69e7243baf",
+        "height": 4.73,
+        "length": 20.32,
         "paintSchemes": {
             "0": [
                 "Air Force (Standard)",
@@ -22221,6 +22316,7 @@
         "maxAlt": 18000,
         "cruiseSpeed": 222,
         "shape": "MiG-29",
+        "width": 11.36,
         "countries": [
             "Russia",
             "Ukraine",
@@ -22278,6 +22374,8 @@
     },
     {
         "_id": "e71a744c9c9ab6b585640da395e535c604a27da4",
+        "height": 4.73,
+        "length": 20.32,
         "paintSchemes": {
             "6": [
                 "Luftwaffe JG73 gray late"
@@ -22732,6 +22830,7 @@
         "maxAlt": 18000,
         "cruiseSpeed": 222,
         "shape": "MiG-29G",
+        "width": 11.36,
         "countries": [
             "Germany",
             "USAF Aggressors",
@@ -22751,6 +22850,8 @@
     },
     {
         "_id": "d8002a2c50efb9ddd392c1493c69da2cefe4d904",
+        "height": 13.3,
+        "length": 49.13,
         "paintSchemes": {
             "0": [
                 "af standard"
@@ -22797,6 +22898,7 @@
         "maxAlt": 12000,
         "cruiseSpeed": 208,
         "shape": "Tu-142",
+        "width": 50.04,
         "countries": [
             "Russia",
             "Ukraine",
@@ -22820,6 +22922,8 @@
     },
     {
         "_id": "567e3e527cc5291f91ffd2d93a4a14fb3a570cd1",
+        "height": 11.66,
+        "length": 29.79,
         "paintSchemes": {
             "2": [
                 "US Air Force"
@@ -22889,6 +22993,7 @@
         "maxAlt": 9315,
         "cruiseSpeed": 174,
         "shape": "c-130",
+        "width": 40.4,
         "countries": [
             "USA",
             "Turkey",
@@ -23014,6 +23119,8 @@
     },
     {
         "_id": "ca0cf259308f0228dd3e19db8c944f942476e916",
+        "height": 8.575,
+        "length": 23.8,
         "paintSchemes": {
             "0": [
                 "Aeroflot",
@@ -23058,6 +23165,7 @@
         "maxAlt": 7500,
         "cruiseSpeed": 120.8,
         "shape": "An-26B",
+        "width": 29.2,
         "countries": [
             "Russia",
             "Ukraine",
@@ -23125,6 +23233,8 @@
     },
     {
         "_id": "13bd264609d96f4cd53bb12992e7c19a787b10ba",
+        "height": 8.575,
+        "length": 23.8,
         "paintSchemes": {
             "0": [
                 "RF Air Force"
@@ -23163,6 +23273,7 @@
         "maxAlt": 7500,
         "cruiseSpeed": 120.8,
         "shape": "An-30M",
+        "width": 29.2,
         "countries": [
             "Russia",
             "Ukraine",
@@ -23190,6 +23301,8 @@
     },
     {
         "_id": "2d8517c9519092ab1e71b4b3bbb2b4acb167df2f",
+        "height": 16.79,
+        "length": 53.04,
         "paintSchemes": {
             "2": [
                 "usaf standard"
@@ -23217,6 +23330,7 @@
         "maxAlt": 13715,
         "cruiseSpeed": 147.2,
         "shape": "C-17A",
+        "width": 51.76,
         "countries": [
             "USA",
             "Turkey",
@@ -23286,6 +23400,8 @@
     },
     {
         "_id": "1ce6fb23e771c0d72b12046884fc77e0b9d0c7e7",
+        "height": 14.76,
+        "length": 46.59,
         "paintSchemes": {
             "0": [
                 "RF Air Force",
@@ -23319,6 +23435,7 @@
         "maxAlt": 12247,
         "cruiseSpeed": 220,
         "shape": "a50",
+        "width": 50.5,
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -23343,6 +23460,8 @@
     {
         "_id": "91b07130b8b904b00d2d4f3d9f19a7c2bcc214c5",
         "EPLRS": true,
+        "height": 12.93,
+        "length": 46.61,
         "paintSchemes": {
             "2": [
                 "nato",
@@ -23382,6 +23501,7 @@
         "maxAlt": 12000,
         "cruiseSpeed": 220,
         "shape": "e-3",
+        "width": 44.4,
         "countries": [
             "USA",
             "Turkey",
@@ -23421,6 +23541,8 @@
     },
     {
         "_id": "89d2c52ac843c7e40fd99c8e0b19602d094e6aac",
+        "height": 14.76,
+        "length": 46.59,
         "paintSchemes": {
             "0": [
                 "RF Air Force",
@@ -23465,6 +23587,7 @@
         "maxAlt": 12000,
         "cruiseSpeed": 208,
         "shape": "IL-78M",
+        "width": 50.5,
         "countries": [
             "Russia",
             "Ukraine",
@@ -23497,6 +23620,8 @@
     {
         "_id": "9d2b2b5bb7f66ad5a8de164cb2c10d7d4e5a2b89",
         "EPLRS": true,
+        "height": 5.59,
+        "length": 17.55,
         "paintSchemes": {
             "2": [
                 "E-2D Demo",
@@ -23530,6 +23655,7 @@
         "maxAlt": 11275,
         "cruiseSpeed": 133.3,
         "shape": "E-2C",
+        "width": 24.56,
         "countries": [
             "USA",
             "France",
@@ -23557,6 +23683,8 @@
     },
     {
         "_id": "59f63f8fbe697a43aeea5da281c18dc71c4bca07",
+        "height": 14.76,
+        "length": 46.59,
         "paintSchemes": {
             "0": [
                 "FSB aeroflot",
@@ -23597,6 +23725,7 @@
         "maxAlt": 12000,
         "cruiseSpeed": 208,
         "shape": "IL-76MD",
+        "width": 50.5,
         "countries": [
             "Russia",
             "Ukraine",
@@ -23633,6 +23762,8 @@
     {
         "_id": "6ebd7061f3103b5f9c630eafaad5b6492fb797a4",
         "EPLRS": true,
+        "height": 5.02,
+        "length": 14.52,
         "paintSchemes": {
             "3": [
                 "af f16 standard"
@@ -24496,6 +24627,7 @@
         "maxAlt": 15240,
         "cruiseSpeed": 220,
         "shape": "f-16",
+        "width": 9.45,
         "countries": [
             "USA",
             "Turkey",
@@ -24538,6 +24670,8 @@
     {
         "_id": "82a7bdb83e16778cf35b2cbe539e48c4c03c6ab0",
         "EPLRS": true,
+        "height": 5.02,
+        "length": 14.52,
         "paintSchemes": {
             "2": [
                 "pacaf 14th fs (mj) misawa afb",
@@ -25743,6 +25877,7 @@
         "maxAlt": 15240,
         "cruiseSpeed": 220,
         "shape": "f-16",
+        "width": 9.45,
         "countries": [
             "USA",
             "Turkey",
@@ -25784,6 +25919,8 @@
     },
     {
         "_id": "92e2a90f3e327acf32707478241604242791e54d",
+        "height": 5.02,
+        "length": 14.52,
         "paintSchemes": {
             "2": [
                 "usaf f16 standard-1"
@@ -26676,6 +26813,7 @@
         "maxAlt": 15240,
         "cruiseSpeed": 220,
         "shape": "f-16A",
+        "width": 9.45,
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -26720,6 +26858,8 @@
     {
         "_id": "849706455787a428e3f578bce3661137f7e4df65",
         "EPLRS": true,
+        "height": 5.02,
+        "length": 14.52,
         "paintSchemes": {
             "0": [
                 "Z CMD Extended Skins"
@@ -28021,6 +28161,7 @@
         "maxAlt": 15240,
         "cruiseSpeed": 220,
         "shape": "F-16A",
+        "width": 9.45,
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -28063,6 +28204,8 @@
     {
         "_id": "6a08745d8d1bb02a851e27ce2bb704e9e7b12d9a",
         "EPLRS": true,
+        "height": 2.21,
+        "length": 8.13,
         "paintSchemes": {
             "2": [
                 "USAF Standard"
@@ -28121,6 +28264,7 @@
         "maxAlt": 7620,
         "cruiseSpeed": 33.333333333333,
         "shape": "Predator",
+        "width": 14.8,
         "countries": [
             "USA",
             "Turkey",
@@ -28146,6 +28290,8 @@
     },
     {
         "_id": "e559b9d8c4835adfb1a9ef4be04996498f916870",
+        "height": 6.5,
+        "length": 20.36,
         "paintSchemes": {
             "0": [
                 "Aeroflot"
@@ -28186,6 +28332,7 @@
         "maxAlt": 11000,
         "cruiseSpeed": 145,
         "shape": "Yak-40",
+        "width": 25,
         "countries": [
             "Russia",
             "Ukraine",
@@ -28246,6 +28393,8 @@
     {
         "_id": "786b8952d894995dbb45307637d6435da8cb1fe9",
         "EPLRS": true,
+        "height": 12.93,
+        "length": 46.61,
         "paintSchemes": {
             "2": [
                 "USAF Standard"
@@ -28279,6 +28428,7 @@
         "maxAlt": 12000,
         "cruiseSpeed": 220,
         "shape": "KC-135",
+        "width": 40,
         "countries": [
             "USA",
             "Turkey",
@@ -28304,6 +28454,8 @@
     },
     {
         "_id": "dbea9db113f041ac5df86ee2e89350fddc5464d1",
+        "height": 4.77,
+        "length": 12.13,
         "paintSchemes": {
             "0": [
                 "FW-190 WNr 210251 USSR (Captured. 1943)"
@@ -28515,6 +28667,7 @@
         "maxAlt": 13000,
         "cruiseSpeed": 125,
         "shape": "FW-190",
+        "width": 10.5,
         "countries": [
             "USAF Aggressors",
             "USSR",
@@ -28532,6 +28685,8 @@
     },
     {
         "_id": "145b4932eb02dcd78107c2ecab03ed6ee923a78a",
+        "height": 4.77,
+        "length": 12.13,
         "paintSchemes": {
             "0": [
                 "FW190A8"
@@ -29126,6 +29281,7 @@
         "maxAlt": 11000,
         "cruiseSpeed": 125,
         "shape": "FW190a-8",
+        "width": 10.5,
         "countries": [
             "Spain"
         ],
@@ -29135,6 +29291,8 @@
     },
     {
         "_id": "e4a04e01c3ff3c3933b33e85cdadb6db9ee5ca05",
+        "height": 4.77,
+        "length": 12.13,
         "paintSchemes": {
             "0": [
                 "BLUE",
@@ -29791,6 +29949,7 @@
         "maxAlt": 13000,
         "cruiseSpeed": 125,
         "shape": "Bf-109K-4",
+        "width": 10.5,
         "countries": [
             "Italian Social Republic"
         ],
@@ -29800,6 +29959,8 @@
     },
     {
         "_id": "042b714072cedc99e67837c8239f527d6cda2a73",
+        "height": 4.77,
+        "length": 12.13,
         "paintSchemes": {
             "0": [
                 "USSR 26th GvIAP, PVO",
@@ -29932,6 +30093,7 @@
         "maxAlt": 13000,
         "cruiseSpeed": 125,
         "shape": "SpitfireIXc",
+        "width": 11.25,
         "countries": [
             "USA",
             "UK",
@@ -29953,6 +30115,8 @@
     },
     {
         "_id": "4eab90d04d4f0fad5907afe21a177cae9966f800",
+        "height": 4.77,
+        "length": 12.13,
         "paintSchemes": {
             "0": [
                 "USSR 26th GvIAP, PVO",
@@ -30083,6 +30247,7 @@
         "maxAlt": 13000,
         "cruiseSpeed": 125,
         "shape": "SpitfireIXc_CW",
+        "width": 11.25,
         "countries": [
             "USA",
             "UK",
@@ -30104,6 +30269,8 @@
     },
     {
         "_id": "b929af1d32d59a08807d9235c7a8058031e23457",
+        "height": 4.77,
+        "length": 12.13,
         "paintSchemes": {
             "0": [
                 "Bare Metal",
@@ -30938,6 +31105,7 @@
         "maxAlt": 13000,
         "cruiseSpeed": 125,
         "shape": "P-51D-25-NA",
+        "width": 9.12,
         "countries": [
             "Russia",
             "Ukraine",
@@ -31019,6 +31187,8 @@
     },
     {
         "_id": "dfe4d292604ebb256c01fdcaec993d6fa84ae985",
+        "height": 4.77,
+        "length": 12.13,
         "paintSchemes": {},
         "panelRadio": [
             {
@@ -31358,6 +31528,7 @@
         "maxAlt": 13000,
         "cruiseSpeed": 125,
         "shape": "P-51D-30-NA",
+        "width": 9.12,
         "countries": [
             "USA",
             "UK",
@@ -31407,6 +31578,8 @@
     },
     {
         "_id": "88cff746b6184f1507982ff8f0435f6d525ce8c3",
+        "height": 4.77,
+        "length": 11,
         "paintSchemes": {
             "0": [
                 "1st Brazilian Ftr Sq-Jambock A1-Menezes",
@@ -32166,6 +32339,7 @@
         "maxAlt": 13500,
         "cruiseSpeed": 125,
         "shape": "P-47D",
+        "width": 12.42,
         "countries": [
             "USA",
             "Ecuador"
@@ -32177,6 +32351,8 @@
     },
     {
         "_id": "c4f2c9c55cc5a88ff2c161fdbdf0f6f638ef26d4",
+        "height": 4.77,
+        "length": 11,
         "paintSchemes": {},
         "panelRadio": [
             {
@@ -32335,6 +32511,7 @@
         "maxAlt": 13500,
         "cruiseSpeed": 125,
         "shape": "P-47D-30(Early)",
+        "width": 12.42,
         "countries": [
             "USA",
             "Ecuador"
@@ -32346,6 +32523,8 @@
     },
     {
         "_id": "78cb96a27569b3584701ba1d19f62ba09a1d0124",
+        "height": 4.77,
+        "length": 11,
         "paintSchemes": {},
         "panelRadio": [
             {
@@ -32598,6 +32777,7 @@
         "maxAlt": 13500,
         "cruiseSpeed": 125,
         "shape": "P-47D",
+        "width": 12.42,
         "countries": [
             "USA",
             "Ecuador"
@@ -32609,6 +32789,8 @@
     },
     {
         "_id": "3cfc275c976c76807f27af382b98909716660f6f",
+        "height": 3.81,
+        "length": 12.34,
         "paintSchemes": {
             "0": [
                 "L-3 PZ474 1945",
@@ -33580,6 +33762,7 @@
         "maxAlt": 11500,
         "cruiseSpeed": 115,
         "shape": "MosquitoFBMkVI",
+        "width": 16.3,
         "countries": [
             "USA",
             "Turkey",
@@ -33619,6 +33802,8 @@
     },
     {
         "_id": "986ae55d0fa39db880e88b5e4fd4833d8d474579",
+        "height": 4.83,
+        "length": 14.63,
         "paintSchemes": {
             "0": [
                 "1st GMTAP",
@@ -33692,11 +33877,14 @@
         "maxAlt": 10000,
         "cruiseSpeed": 125,
         "shape": "A-20G",
+        "width": 18.69,
         "countries": [],
         "countriesWorldID": []
     },
     {
         "_id": "15e26815a98faa7eb8225f88ef9b265303180bae",
+        "height": 4.47,
+        "length": 16.26,
         "paintSchemes": {
             "0": [
                 "fictional russian air force 1",
@@ -34392,6 +34580,7 @@
         "maxAlt": 10000,
         "cruiseSpeed": 125,
         "shape": "a-10a",
+        "width": 17.53,
         "countries": [
             "USA"
         ],
@@ -34402,6 +34591,8 @@
     {
         "_id": "bd4077728921789f9b9317bf145de8570568dd49",
         "EPLRS": true,
+        "height": 4.47,
+        "length": 16.26,
         "paintSchemes": {
             "0": [
                 "fictional russian air force 1",
@@ -37519,6 +37710,7 @@
         "maxAlt": 10000,
         "cruiseSpeed": 125,
         "shape": "a-10",
+        "width": 17.53,
         "countries": [
             "Russia",
             "Ukraine",
@@ -37701,6 +37893,8 @@
     {
         "_id": "9f0d6bce0a1bbd0758b0af900df6e36898fd0da8",
         "EPLRS": true,
+        "height": 4.47,
+        "length": 16.26,
         "paintSchemes": {},
         "panelRadio": [
             {
@@ -41568,6 +41762,7 @@
         "maxAlt": 10000,
         "cruiseSpeed": 125,
         "shape": "A-10CII",
+        "width": 17.53,
         "countries": [
             "USA"
         ],
@@ -41577,13 +41772,14 @@
     },
     {
         "_id": "e2176c1f7fe86199d8d684e1d9a6b89b4c71a476",
+        "height": 5.81,
+        "length": 16.3,
         "paintSchemes": {
             "0": [
                 "#1 Splinter F21 Norrbottens Flygflottilj",
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41594,7 +41790,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41605,7 +41800,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41616,7 +41810,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41627,7 +41820,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41638,7 +41830,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41649,7 +41840,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41660,7 +41850,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41671,7 +41860,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41682,7 +41870,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41693,7 +41880,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41704,7 +41890,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41715,7 +41900,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41726,7 +41910,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41737,7 +41920,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41748,7 +41930,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41759,7 +41940,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41770,7 +41950,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41781,7 +41960,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41792,7 +41970,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41803,7 +41980,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41814,7 +41990,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41825,7 +42000,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41836,7 +42010,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41847,7 +42020,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41858,7 +42030,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41869,7 +42040,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41880,7 +42050,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41891,7 +42060,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41902,7 +42070,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41913,7 +42080,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41924,7 +42090,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41935,7 +42100,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41946,7 +42110,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41957,7 +42120,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41968,7 +42130,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41979,7 +42140,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -41990,7 +42150,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42001,7 +42160,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42012,7 +42170,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42023,7 +42180,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42034,7 +42190,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42045,7 +42200,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42056,7 +42210,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42067,7 +42220,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42078,7 +42230,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42089,7 +42240,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42100,7 +42250,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42111,7 +42260,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42122,7 +42270,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42133,7 +42280,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42144,7 +42290,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42155,7 +42300,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42166,7 +42310,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42177,7 +42320,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42188,7 +42330,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42199,7 +42340,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42210,7 +42350,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42221,7 +42360,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42232,7 +42370,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42243,7 +42380,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42254,7 +42390,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42265,7 +42400,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42276,7 +42410,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42287,7 +42420,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42298,7 +42430,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42309,7 +42440,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42320,7 +42450,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42331,7 +42460,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42342,7 +42470,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42353,7 +42480,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42364,7 +42490,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42375,7 +42500,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42386,7 +42510,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42397,7 +42520,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42408,7 +42530,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42419,7 +42540,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42430,7 +42550,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42441,7 +42560,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42452,7 +42570,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42463,7 +42580,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42474,7 +42590,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42485,7 +42600,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42496,7 +42610,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42507,7 +42620,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42518,7 +42630,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42529,7 +42640,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42540,7 +42650,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42551,7 +42660,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -42562,7 +42670,6 @@
                 "#2 Bare Metal F7 Skaraborgs Flygflottilj",
                 "#3 JA-37 F21 Akktu Stakki",
                 "#4 Splinter F7 Skaraborgs Flygflottilj 76",
-                "IronFists",
                 "SE-DXN by Mach3DS",
                 "SE-DXN v3 by 000rick000",
                 "SF-37 Akktu Stakki - F21",
@@ -43857,6 +43964,7 @@
         "maxAlt": 21000,
         "cruiseSpeed": 152,
         "shape": "AJS37",
+        "width": 10.6,
         "countries": [
             "Sweden"
         ],
@@ -43866,10 +43974,11 @@
     },
     {
         "_id": "22cd68700fdd0b5ed59d163fddce8d481d26c448",
+        "height": 3.55,
+        "length": 14.12,
         "paintSchemes": {
             "0": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -43888,7 +43997,6 @@
             ],
             "1": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -43907,7 +44015,6 @@
             ],
             "2": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -43926,7 +44033,6 @@
             ],
             "3": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -43945,7 +44051,6 @@
             ],
             "4": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -43964,7 +44069,6 @@
             ],
             "5": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -43983,7 +44087,6 @@
             ],
             "6": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44002,7 +44105,6 @@
             ],
             "7": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44021,7 +44123,6 @@
             ],
             "8": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44040,7 +44141,6 @@
             ],
             "9": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44059,7 +44159,6 @@
             ],
             "10": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44078,7 +44177,6 @@
             ],
             "11": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44097,7 +44195,6 @@
             ],
             "12": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44116,7 +44213,6 @@
             ],
             "13": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44135,7 +44231,6 @@
             ],
             "15": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44154,7 +44249,6 @@
             ],
             "16": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44173,7 +44267,6 @@
             ],
             "17": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44192,7 +44285,6 @@
             ],
             "18": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44211,7 +44303,6 @@
             ],
             "19": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44230,7 +44321,6 @@
             ],
             "20": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44249,7 +44339,6 @@
             ],
             "21": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44268,7 +44357,6 @@
             ],
             "22": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44287,7 +44375,6 @@
             ],
             "23": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44306,7 +44393,6 @@
             ],
             "24": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44325,7 +44411,6 @@
             ],
             "25": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44344,7 +44429,6 @@
             ],
             "26": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44363,7 +44447,6 @@
             ],
             "27": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44382,7 +44465,6 @@
             ],
             "28": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44401,7 +44483,6 @@
             ],
             "29": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44420,7 +44501,6 @@
             ],
             "30": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44439,7 +44519,6 @@
             ],
             "31": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44458,7 +44537,6 @@
             ],
             "32": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44477,7 +44555,6 @@
             ],
             "33": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44496,7 +44573,6 @@
             ],
             "34": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44515,7 +44591,6 @@
             ],
             "35": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44534,7 +44609,6 @@
             ],
             "36": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44553,7 +44627,6 @@
             ],
             "37": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44572,7 +44645,6 @@
             ],
             "38": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44591,7 +44663,6 @@
             ],
             "39": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44610,7 +44681,6 @@
             ],
             "40": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44629,7 +44699,6 @@
             ],
             "41": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44648,7 +44717,6 @@
             ],
             "42": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44667,7 +44735,6 @@
             ],
             "43": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44686,7 +44753,6 @@
             ],
             "44": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44705,7 +44771,6 @@
             ],
             "45": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44724,7 +44789,6 @@
             ],
             "46": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44743,7 +44807,6 @@
             ],
             "47": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44762,7 +44825,6 @@
             ],
             "48": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44781,7 +44843,6 @@
             ],
             "49": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44800,7 +44861,6 @@
             ],
             "50": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44819,7 +44879,6 @@
             ],
             "51": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44838,7 +44897,6 @@
             ],
             "52": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44857,7 +44915,6 @@
             ],
             "53": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44876,7 +44933,6 @@
             ],
             "54": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44895,7 +44951,6 @@
             ],
             "55": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44914,7 +44969,6 @@
             ],
             "56": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44933,7 +44987,6 @@
             ],
             "57": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44952,7 +45005,6 @@
             ],
             "58": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44971,7 +45023,6 @@
             ],
             "59": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -44990,7 +45041,6 @@
             ],
             "60": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45009,7 +45059,6 @@
             ],
             "61": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45028,7 +45077,6 @@
             ],
             "62": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45047,7 +45095,6 @@
             ],
             "63": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45066,7 +45113,6 @@
             ],
             "64": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45085,7 +45131,6 @@
             ],
             "65": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45104,7 +45149,6 @@
             ],
             "66": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45123,7 +45167,6 @@
             ],
             "67": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45142,7 +45185,6 @@
             ],
             "68": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45161,7 +45203,6 @@
             ],
             "69": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45180,7 +45221,6 @@
             ],
             "70": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45199,7 +45239,6 @@
             ],
             "71": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45218,7 +45257,6 @@
             ],
             "72": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45237,7 +45275,6 @@
             ],
             "73": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45256,7 +45293,6 @@
             ],
             "74": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45275,7 +45311,6 @@
             ],
             "75": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45294,7 +45329,6 @@
             ],
             "76": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45313,7 +45347,6 @@
             ],
             "77": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45332,7 +45365,6 @@
             ],
             "78": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45351,7 +45383,6 @@
             ],
             "79": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45370,7 +45401,6 @@
             ],
             "80": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45389,7 +45419,6 @@
             ],
             "81": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45408,7 +45437,6 @@
             ],
             "82": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45427,7 +45455,6 @@
             ],
             "83": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45446,7 +45473,6 @@
             ],
             "84": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45465,7 +45491,6 @@
             ],
             "85": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45484,7 +45509,6 @@
             ],
             "86": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45503,7 +45527,6 @@
             ],
             "87": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45522,7 +45545,6 @@
             ],
             "88": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45541,7 +45563,6 @@
             ],
             "89": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -45560,7 +45581,6 @@
             ],
             "90": [
                 "default",
-                "IronFists",
                 "VMA-211",
                 "VMA-211D",
                 "VMA-214",
@@ -47457,6 +47477,7 @@
         "maxAlt": 13716,
         "cruiseSpeed": 225,
         "shape": "AV8BNA",
+        "width": 9.24,
         "countries": [
             "USA",
             "UK",
@@ -47472,6 +47493,8 @@
     },
     {
         "_id": "a93fd657ae090fc4b0652e2595e2124bff3065ed",
+        "height": 11.66,
+        "length": 29.79,
         "paintSchemes": {
             "2": [
                 "Default"
@@ -47503,6 +47526,7 @@
         "maxAlt": 9315,
         "cruiseSpeed": 174,
         "shape": "kc-130",
+        "width": 40.4,
         "countries": [
             "USA",
             "France",
@@ -47545,6 +47569,8 @@
     {
         "_id": "3c77e0d24f64aa14d8de3cd420adfec2ed437347",
         "EPLRS": true,
+        "height": 12.93,
+        "length": 46.61,
         "paintSchemes": {
             "2": [
                 "100th ARW",
@@ -47577,6 +47603,7 @@
         "maxAlt": 12000,
         "cruiseSpeed": 220,
         "shape": "KC-135MPRS",
+        "width": 40,
         "countries": [
             "USA",
             "Turkey",
@@ -47592,6 +47619,8 @@
     },
     {
         "_id": "57d5cdee7e85d91c3a0133f8792e5046f0f01385",
+        "height": 4.25,
+        "length": 12.25,
         "paintSchemes": {
             "0": [
                 "Aviojet Skin",
@@ -48099,6 +48128,7 @@
         "maxAlt": 12500,
         "cruiseSpeed": 125,
         "shape": "C-101EB",
+        "width": 14,
         "countries": [
             "Spain",
             "Jordan",
@@ -48114,6 +48144,8 @@
     },
     {
         "_id": "6de2d1a2ec8fad72f259fe0e5948c2b9bc094df4",
+        "height": 4.25,
+        "length": 12.25,
         "paintSchemes": {
             "0": [
                 "Aviodev Skin",
@@ -49278,6 +49310,7 @@
         "maxAlt": 11000,
         "cruiseSpeed": 125,
         "shape": "C-101CC",
+        "width": 14,
         "countries": [
             "Spain",
             "Jordan",
@@ -49293,6 +49326,8 @@
     },
     {
         "_id": "7cb4455c8b6a68548d1b8a3ba960e0cf0682f6e8",
+        "height": 5.932,
+        "length": 21.935,
         "paintSchemes": {
             "7": [
                 "65th Aggressor SQN 'Desert' (Fictional)",
@@ -50545,6 +50580,7 @@
         "maxAlt": 18500,
         "cruiseSpeed": 170,
         "shape": "J-11A",
+        "width": 14.7,
         "countries": [
             "China",
             "Combined Joint Task Forces Blue",
@@ -50561,6 +50597,8 @@
     {
         "_id": "f87677158c0ac312b1d0bc622360b12109e25bdc",
         "EPLRS": true,
+        "height": 4.7,
+        "length": 14.25,
         "paintSchemes": {
             "0": [
                 "Myanmar Air Force Blue Sea Camo",
@@ -53564,6 +53602,7 @@
         "maxAlt": 16920,
         "cruiseSpeed": 220,
         "shape": "JF-17",
+        "width": 8.5,
         "countries": [
             "Pakistan",
             "Nigeria"
@@ -53575,6 +53614,8 @@
     },
     {
         "_id": "ab2c39fac4f353c2596d5cb56241a9ec1ead8e42",
+        "height": 14.76,
+        "length": 46.59,
         "paintSchemes": {
             "27": [
                 "China Air Force KJ-2000 (Parade 93)",
@@ -53607,6 +53648,7 @@
         "maxAlt": 12247,
         "cruiseSpeed": 220,
         "shape": "kj2000",
+        "width": 50.5,
         "countries": [
             "USAF Aggressors",
             "China",
@@ -53625,6 +53667,8 @@
     {
         "_id": "52aae387c512a61e276d231dd1de261c5a824ec5",
         "EPLRS": true,
+        "height": 2.77,
+        "length": 9.05,
         "paintSchemes": {
             "27": [
                 "PLAAF"
@@ -53705,6 +53749,7 @@
         "maxAlt": 7500,
         "cruiseSpeed": 60,
         "shape": "wingloong-1",
+        "width": 14,
         "countries": [
             "USAF Aggressors",
             "Egypt",
@@ -53733,6 +53778,8 @@
     {
         "_id": "36cfd3efa15a5e59adbc65e7112a5fc8600d7a0c",
         "EPLRS": true,
+        "height": 10.36,
+        "length": 34.8,
         "paintSchemes": {
             "27": [
                 "PLANAF Standard"
@@ -54075,6 +54122,7 @@
         "maxAlt": 13100,
         "cruiseSpeed": 213.33,
         "shape": "H-6J",
+        "width": 33,
         "countries": [
             "USAF Aggressors",
             "Combined Joint Task Forces Blue",
@@ -54090,6 +54138,8 @@
     },
     {
         "_id": "773faa931c307397e8c398cac0c619aa6ea57a4a",
+        "height": 1.9812,
+        "length": 5.6388,
         "paintSchemes": {
             "0": [
                 "C-FTIJ",
@@ -56875,6 +56925,7 @@
         "specificCallnames": {},
         "maxAlt": 6000,
         "cruiseSpeed": 67,
+        "width": 11.594846,
         "countries": [
             "USA"
         ],
@@ -56885,6 +56936,8 @@
     {
         "_id": "527ce8bf75283aedd8c262559a5292a2163c2ac7",
         "EPLRS": true,
+        "height": 5.02,
+        "length": 14.52,
         "paintSchemes": {
             "0": [
                 "Iron Fists"
@@ -60120,6 +60173,7 @@
         },
         "maxAlt": 15240,
         "cruiseSpeed": 220,
+        "width": 9.45,
         "countries": [
             "USA",
             "Turkey",
@@ -60153,6 +60207,8 @@
     },
     {
         "_id": "feca38d172f7c096e59bea7a6cfd85d680be520d",
+        "height": 4.06,
+        "length": 14.68,
         "paintSchemes": {
             "0": [
                 "Standard Gray"
@@ -61421,6 +61477,7 @@
         "maxAlt": 16154,
         "cruiseSpeed": 174,
         "shape": "f-5e",
+        "width": 8.53,
         "countries": [
             "USA",
             "Austria",
@@ -61470,6 +61527,8 @@
     },
     {
         "_id": "bca8c248b7ff3d143bdea2bd2a42a717a2f84da1",
+        "height": 4.06,
+        "length": 14.68,
         "paintSchemes": {
             "0": [
                 "Standard Gray"
@@ -63005,6 +63064,7 @@
         "maxAlt": 16154,
         "cruiseSpeed": 174,
         "shape": "f-5e3",
+        "width": 8.53,
         "countries": [
             "USA",
             "Switzerland",
@@ -63056,6 +63116,8 @@
     },
     {
         "_id": "68b65cae01a49b8e60fc1a7940759e8c9f08c4ac",
+        "height": 4.496,
+        "length": 11.43,
         "paintSchemes": {
             "0": [
                 "default livery"
@@ -63703,6 +63765,7 @@
         "maxAlt": 15100,
         "cruiseSpeed": 237,
         "shape": "f-86f",
+        "width": 11.9,
         "countries": [
             "USA",
             "Turkey",
@@ -63754,6 +63817,8 @@
     },
     {
         "_id": "3812e5fc9aa802c55890dc2656b10426605e697e",
+        "height": 4.8,
+        "length": 16.6,
         "paintSchemes": {
             "0": [
                 "01 - VF-102 Diamondbacks 1996",
@@ -68889,6 +68954,7 @@
         "maxAlt": 17000,
         "cruiseSpeed": 223,
         "shape": "F-14B",
+        "width": 10.15,
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -68906,6 +68972,8 @@
     },
     {
         "_id": "7253b998f5ed3d37b04308765a976671313fd989",
+        "height": 4.8,
+        "length": 16.6,
         "paintSchemes": {
             "0": [
                 "00 - VF-154 Black Knights 101",
@@ -73783,6 +73851,7 @@
         "maxAlt": 17000,
         "cruiseSpeed": 223,
         "shape": "F-14A-135-GR",
+        "width": 10.15,
         "countries": [
             "USA",
             "USAF Aggressors",
@@ -73801,20 +73870,19 @@
     {
         "_id": "f0bf3a5a900f30426f0fba028898d0e319c1b4fc",
         "EPLRS": true,
+        "height": 4.66,
+        "length": 17.07,
         "paintSchemes": {
             "0": [
                 "Fictional Russia Air Force",
-                "IronFists",
                 "default livery"
             ],
             "1": [
                 "Fictional Ukraine Air Force",
-                "IronFists",
                 "default livery"
             ],
             "2": [
                 "VFA-37",
-                "IronFists",
                 "VFA-106",
                 "VFA-106 high visibility",
                 "VFA-113",
@@ -73858,25 +73926,20 @@
             ],
             "3": [
                 "162nd Sqn Harpoon",
-                "IronFists",
                 "default livery"
             ],
             "4": [
                 "Fictional UK Air Force",
-                "IronFists",
                 "default livery"
             ],
             "5": [
-                "IronFists",
                 "default livery"
             ],
             "6": [
-                "IronFists",
                 "default livery"
             ],
             "7": [
                 "Fictional Russia Air Force",
-                "IronFists",
                 "VFC-12",
                 "Iceman",
                 "NAWDC blue",
@@ -73891,11 +73954,9 @@
                 "Canada 409th Squadron",
                 "Canada 425th Squadron",
                 "Canada NORAD 60 Demo Jet",
-                "IronFists",
                 "default livery"
             ],
             "9": [
-                "IronFists",
                 "Spain 111 Escuadron C.15-73",
                 "Spain 111 Escuadron C.15-88",
                 "Spain 121 Escuadron C.15-45",
@@ -73914,318 +73975,252 @@
                 "default livery"
             ],
             "10": [
-                "IronFists",
                 "default livery"
             ],
             "11": [
-                "IronFists",
                 "default livery"
             ],
             "12": [
-                "IronFists",
                 "default livery"
             ],
             "13": [
-                "IronFists",
                 "default livery"
             ],
             "15": [
                 "Fictional Israel Air Force",
-                "IronFists",
                 "default livery"
             ],
             "16": [
-                "IronFists",
                 "default livery"
             ],
             "17": [
-                "IronFists",
                 "default livery"
             ],
             "18": [
-                "IronFists",
                 "default livery"
             ],
             "19": [
-                "IronFists",
                 "default livery"
             ],
             "20": [
-                "IronFists",
                 "default livery"
             ],
             "21": [
                 "Australian sqn 75",
                 "Australian sqn 77",
-                "IronFists",
                 "default livery"
             ],
             "22": [
-                "IronFists",
                 "Switzerland",
                 "default livery"
             ],
             "23": [
-                "IronFists",
                 "default livery"
             ],
             "24": [
-                "IronFists",
                 "default livery"
             ],
             "25": [
-                "IronFists",
                 "default livery"
             ],
             "26": [
-                "IronFists",
                 "default livery"
             ],
             "27": [
-                "IronFists",
                 "default livery"
             ],
             "28": [
-                "IronFists",
                 "default livery"
             ],
             "29": [
-                "IronFists",
                 "default livery"
             ],
             "30": [
                 "Finland",
                 "Finland",
-                "IronFists",
                 "default livery"
             ],
             "31": [
-                "IronFists",
                 "default livery"
             ],
             "32": [
-                "IronFists",
                 "default livery"
             ],
             "33": [
-                "IronFists",
                 "default livery"
             ],
             "34": [
-                "IronFists",
                 "default livery"
             ],
             "35": [
-                "IronFists",
                 "default livery"
             ],
             "36": [
-                "IronFists",
                 "default livery"
             ],
             "37": [
-                "IronFists",
                 "default livery"
             ],
             "38": [
-                "IronFists",
                 "default livery"
             ],
             "39": [
-                "IronFists",
                 "default livery"
             ],
             "40": [
-                "IronFists",
                 "default livery"
             ],
             "41": [
-                "IronFists",
                 "default livery"
             ],
             "42": [
-                "IronFists",
                 "default livery"
             ],
             "43": [
-                "IronFists",
                 "default livery"
             ],
             "44": [
-                "IronFists",
                 "default livery"
             ],
             "45": [
-                "IronFists",
                 "default livery"
             ],
             "46": [
-                "IronFists",
                 "default livery"
             ],
             "47": [
-                "IronFists",
                 "default livery"
             ],
             "48": [
-                "IronFists",
                 "default livery"
             ],
             "49": [
-                "IronFists",
                 "default livery"
             ],
             "50": [
-                "IronFists",
                 "default livery"
             ],
             "51": [
-                "IronFists",
                 "default livery"
             ],
             "52": [
-                "IronFists",
                 "default livery"
             ],
             "53": [
-                "IronFists",
                 "default livery"
             ],
             "54": [
-                "IronFists",
                 "default livery"
             ],
             "55": [
-                "IronFists",
                 "default livery"
             ],
             "56": [
-                "IronFists",
                 "default livery"
             ],
             "57": [
-                "IronFists",
                 "default livery"
             ],
             "58": [
-                "IronFists",
                 "default livery"
             ],
             "59": [
-                "IronFists",
                 "default livery"
             ],
             "60": [
-                "IronFists",
                 "default livery"
             ],
             "61": [
-                "IronFists",
                 "default livery"
             ],
             "62": [
-                "IronFists",
                 "default livery"
             ],
             "63": [
-                "IronFists",
                 "default livery"
             ],
             "64": [
-                "IronFists",
                 "default livery"
             ],
             "65": [
-                "IronFists",
                 "default livery"
             ],
             "66": [
-                "IronFists",
                 "default livery"
             ],
             "67": [
-                "IronFists",
                 "default livery"
             ],
             "68": [
-                "IronFists",
                 "default livery"
             ],
             "69": [
-                "IronFists",
                 "default livery"
             ],
             "70": [
-                "IronFists",
                 "default livery"
             ],
             "71": [
                 "9th Squadron",
                 "9th Squadron",
-                "IronFists",
                 "default livery"
             ],
             "72": [
-                "IronFists",
                 "default livery"
             ],
             "73": [
-                "IronFists",
                 "default livery"
             ],
             "74": [
-                "IronFists",
                 "default livery"
             ],
             "75": [
-                "IronFists",
                 "default livery"
             ],
             "76": [
-                "IronFists",
                 "default livery"
             ],
             "77": [
-                "IronFists"
+                
             ],
             "78": [
-                "IronFists"
+                
             ],
             "79": [
-                "IronFists"
+                
             ],
             "80": [
-                "IronFists"
+                
             ],
             "81": [
-                "IronFists"
+                
             ],
             "82": [
-                "IronFists"
+                
             ],
             "83": [
-                "IronFists"
+                
             ],
             "84": [
-                "IronFists"
+                
             ],
             "85": [
-                "IronFists"
+                
             ],
             "86": [
-                "IronFists"
+                
             ],
             "87": [
-                "IronFists"
+                
             ],
             "88": [
-                "IronFists"
+                
             ],
             "89": [
-                "IronFists"
+                
             ],
             "90": [
-                "IronFists"
+                
             ]
         },
         "panelRadio": [
@@ -75545,6 +75540,7 @@
         },
         "maxAlt": 18200,
         "cruiseSpeed": 180,
+        "width": 11.43,
         "countries": [
             "USA"
         ],
@@ -75554,6 +75550,8 @@
     },
     {
         "_id": "2eb337bbc5859ca8352d53dc8d719aa0ad0c21e5",
+        "height": 4.02,
+        "length": 11.98,
         "paintSchemes": {
             "0": [
                 "100Sqn XX189",
@@ -75915,6 +75913,7 @@
         "maxAlt": 14630,
         "cruiseSpeed": 231,
         "shape": "Hawk",
+        "width": 9.418,
         "countries": [
             "USA",
             "UK",
@@ -75956,6 +75955,8 @@
     },
     {
         "_id": "744b6d6f00cb09a714681d45680ae2292524ddf5",
+        "height": 3.25,
+        "length": 6.13,
         "paintSchemes": {
             "0": [
                 "1 Red Army Air Force Standard",
@@ -76496,6 +76497,7 @@
         "maxAlt": 9700,
         "cruiseSpeed": 97,
         "shape": "I-16",
+        "width": 9.004,
         "countries": [
             "Spain",
             "China",
@@ -76515,6 +76517,8 @@
     },
     {
         "_id": "12923854f2592997b2ec6212fca018de329a1756",
+        "height": 4.77,
+        "length": 12.13,
         "paintSchemes": {
             "0": [
                 "1 Russian Air Force",
@@ -76857,6 +76861,7 @@
         "maxAlt": 11000,
         "cruiseSpeed": 125,
         "shape": "L-39_C",
+        "width": 9.12,
         "countries": [
             "Russia",
             "Ukraine",
@@ -76900,6 +76905,8 @@
     },
     {
         "_id": "549b7c4fb289f447964496ebea8ae037cbbd8c1c",
+        "height": 4.77,
+        "length": 12.13,
         "paintSchemes": {
             "0": [
                 "1 Russian Air Force",
@@ -77889,6 +77896,7 @@
         "maxAlt": 11000,
         "cruiseSpeed": 125,
         "shape": "L-39_ZA",
+        "width": 9.12,
         "countries": [
             "Russia",
             "Ukraine",
@@ -77936,26 +77944,28 @@
     },
     {
         "_id": "a1fcba681a0ed490ce411289ffdea9d2fa5c4808",
+        "height": 5.2,
+        "length": 14.36,
         "paintSchemes": {
             "0": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "1": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "2": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "3": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "4": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "5": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
@@ -77965,7 +77975,6 @@
                 "Forca Aerea Brasileira (Brazilian Air Force)",
                 "Fuerza Aerea Peruana 052",
                 "Fuerza Aerea Peruana 064",
-                "IronFists",
                 "NATO Tigermeet 2003",
                 "NATO Tigermeet 2004",
                 "NATO Tigermeet 2010",
@@ -77974,344 +77983,342 @@
             ],
             "6": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "7": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "8": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "9": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "10": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "11": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "12": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "13": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "15": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "16": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "17": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "18": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "19": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "20": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "21": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "22": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "23": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "24": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "25": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "26": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "27": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "28": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "29": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "30": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "31": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists",
                 "Polemikh Aeroporia (Greek Air Force)"
             ],
             "32": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "33": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "34": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "35": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "36": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "37": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "38": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "39": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "40": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "41": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "42": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "43": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "44": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "45": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "46": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "47": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "48": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "49": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "50": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "51": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "52": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "53": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "54": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "55": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "56": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "57": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "58": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "59": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "60": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "61": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "62": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "63": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "64": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
                 "Forca Aerea Brasileira (Brazilian Air Force)",
-                "IronFists"
+                
             ],
             "65": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "66": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "67": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "68": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "69": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "70": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "71": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "72": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "73": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "74": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists",
                 "UAE Air Defense Air Force"
             ],
             "75": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "76": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "77": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "78": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "79": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "80": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "81": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "82": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "83": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "84": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "85": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "86": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "87": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "88": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ],
             "89": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
                 "Fuerza Aerea Peruana 052",
                 "Fuerza Aerea Peruana 064",
-                "IronFists"
+                
             ],
             "90": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                "IronFists"
+                
             ]
         },
         "panelRadio": [
@@ -79181,6 +79188,7 @@
         "maxAlt": 17526,
         "cruiseSpeed": 250,
         "shape": "m-2000c",
+        "width": 9.13,
         "countries": [
             "France",
             "Egypt",
@@ -79206,6 +79214,8 @@
     },
     {
         "_id": "ae3b10a2dc87b57bf57d4270aa01014ae37c38d1",
+        "height": 4.77,
+        "length": 12.13,
         "paintSchemes": {
             "0": [
                 "Aermacchi Factory Scheme | S-001 I-NEUF"
@@ -80561,6 +80571,7 @@
         "maxAlt": 11000,
         "cruiseSpeed": 125,
         "shape": "MB-339A",
+        "width": 10.5,
         "countries": [
             "Italy",
             "Malaysia",
@@ -80582,6 +80593,8 @@
     },
     {
         "_id": "bed4c2cbb663996f38ec69b3a6fe69e26b4cf4d2",
+        "height": 4.77,
+        "length": 12.13,
         "paintSchemes": {
             "2": [
                 "Italian Acrobatic Team"
@@ -81271,12 +81284,15 @@
         "maxAlt": 11000,
         "cruiseSpeed": 125,
         "shape": "MB-339APAN",
+        "width": 10.5,
         "countries": [],
         "countriesWorldID": []
     },
     {
         "_id": "844c7a8ecc8da22c59e2107c97e11b800209af6e",
         "EPLRS": true,
+        "height": 4.77,
+        "length": 11,
         "paintSchemes": {
             "2": [
                 "'camo' scheme",
@@ -81432,6 +81448,7 @@
         "maxAlt": 15000,
         "cruiseSpeed": 80,
         "shape": "mq-9_reaper",
+        "width": 20,
         "countries": [
             "USA",
             "UK",
@@ -81463,6 +81480,8 @@
     },
     {
         "_id": "ccd79eaf6090783752a13df41047d8c0820f75c7",
+        "height": 3.7,
+        "length": 10.11,
         "paintSchemes": {
             "0": [
                 "USSR Old",
@@ -81887,6 +81906,7 @@
         "maxAlt": 15100,
         "cruiseSpeed": 236.11111111111,
         "shape": "MiG_15bis",
+        "width": 10.08,
         "countries": [
             "Germany",
             "Bulgaria",
@@ -81918,6 +81938,8 @@
     },
     {
         "_id": "03226d771a0afb1fe1b8755603f7e7d08fc09a2a",
+        "height": 3.8885,
+        "length": 13.025,
         "paintSchemes": {
             "0": [
                 "default",
@@ -82850,6 +82872,7 @@
         "maxAlt": 17500,
         "cruiseSpeed": 236.11111111111,
         "shape": "MiG_19P",
+        "width": 9,
         "countries": [
             "Bulgaria",
             "China",
@@ -82869,6 +82892,8 @@
     },
     {
         "_id": "b1d4ff1a4529001ccde1f97a2d384e3612929d5b",
+        "height": 4.125,
+        "length": 14.5,
         "paintSchemes": {
             "0": [
                 "Afghanistan (1)",
@@ -90820,6 +90845,7 @@
         "maxAlt": 20000,
         "cruiseSpeed": 223,
         "shape": "MiG-21Bis",
+        "width": 7.154,
         "countries": [
             "Germany",
             "Israel",
@@ -90869,6 +90895,8 @@
     },
     {
         "_id": "e16a6e02056f23d8da676ea236eef7f594dc16ff",
+        "height": 6,
+        "length": 23.3,
         "paintSchemes": {
             "0": [
                 "1 Russian Air Force",
@@ -91936,6 +91964,7 @@
         "maxAlt": 15000,
         "cruiseSpeed": 170,
         "shape": "Su-34",
+        "width": 14.7,
         "countries": [
             "Russia",
             "USAF Aggressors",
@@ -91953,6 +91982,8 @@
     },
     {
         "_id": "15a6754192ab249dc8e1087d8dfc96ddff073af0",
+        "height": 4.77,
+        "length": 12.13,
         "paintSchemes": {
             "0": [
                 "Bare Metal"
@@ -92301,6 +92332,7 @@
         "maxAlt": 13000,
         "cruiseSpeed": 125,
         "shape": "TF-51D",
+        "width": 9.12,
         "countries": [
             "USA",
             "UK",

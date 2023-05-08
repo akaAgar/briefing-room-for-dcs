@@ -104,21 +104,8 @@ namespace BriefingRoom4DCS.Generator
                     {"GroupY2", groupDestination.Y}
                 };
 
-                var luaUnit = commonCAPDB.LuaUnit;
-                var luaGroup = commonCAPDB.LuaGroup;
                 var spawnpointCoordinates = spawnPoint.Value;
-                var unitFamilies = commonCAPDB.UnitFamilies.ToList();
-                if (template.MissionFeatures.Contains("ContextGroundStartAircraft"))
-                {
-                    var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = unitMaker.SpawnPointSelector.GetAirbaseAndParking(template, spawnPoint.Value, groupSize, coalition, unitFamilies.First());
-                    spawnpointCoordinates = airbase.Coordinates;
-                    extraSettings.AddIfKeyUnused("ParkingID", parkingSpotIDsList);
-                    extraSettings.AddIfKeyUnused("GroupAirbaseID", airbase.DCSID);
-                    mission.PopulatedAirbaseIds[coalition].Add(airbase.DCSID);
-                    extraSettings.AddIfKeyUnused("UnitCoords", parkingSpotCoordinatesList);
-                    mission.MapData.AddIfKeyUnused($"AIRBASE_AI_{side}_${airbase.Name}", new List<double[]> { airbase.Coordinates.ToArray() });
-                }
-
+            
                 UnitMakerGroupFlags groupFlags = 0;
 
                 if (Toolbox.RandomChance(4))
@@ -127,12 +114,22 @@ namespace BriefingRoom4DCS.Generator
                 if (template.MissionFeatures.Contains("ContextScrambleStart"))
                     groupFlags |= UnitMakerGroupFlags.ScrambleStart;
 
-                UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(
-                    unitFamilies, groupSize, side,
-                    luaGroup, luaUnit,
-                    spawnpointCoordinates,
-                    groupFlags,
-                    extraSettings);
+                var (units, unitDBs) = unitMaker.GetUnits(commonCAPDB.UnitFamilies.ToList(), groupSize, side, groupFlags, extraSettings);
+                var unitDB = (DBEntryAircraft)unitDBs.First();
+                if (template.MissionFeatures.Contains("ContextGroundStartAircraft"))
+                {
+                    var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = unitMaker.SpawnPointSelector.GetAirbaseAndParking(template, spawnPoint.Value, groupSize, coalition, unitDB);
+                    spawnpointCoordinates = airbase.Coordinates;
+                    extraSettings.AddIfKeyUnused("ParkingID", parkingSpotIDsList);
+                    extraSettings.AddIfKeyUnused("GroupAirbaseID", airbase.DCSID);
+                    mission.PopulatedAirbaseIds[coalition].Add(airbase.DCSID);
+                    extraSettings.AddIfKeyUnused("UnitCoords", parkingSpotCoordinatesList);
+                    mission.MapData.AddIfKeyUnused($"AIRBASE_AI_{side}_${airbase.Name}", new List<double[]> { airbase.Coordinates.ToArray() });
+                }
+
+
+                UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(units, side, unitDB.Families.First(), commonCAPDB.LuaGroup, commonCAPDB.LuaUnit, spawnpointCoordinates, groupFlags, extraSettings);
+    
                 if (!groupInfo.HasValue) // Failed to generate a group
                     BriefingRoom.PrintToLog($"Failed to find units for {coalition} air defense unit group.", LogMessageErrorLevel.Warning);
 

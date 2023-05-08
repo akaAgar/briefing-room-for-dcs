@@ -189,6 +189,11 @@ namespace BriefingRoom4DCS
             return array.OrderBy(x => Rnd.Next()).ToArray();
         }
 
+        internal static List<T> ShuffleList<T>(List<T> array)
+        {
+            return array.OrderBy(x => Rnd.Next()).ToList();
+        }
+
         internal static KeyValuePair<string, object> ToKeyValuePair(this string key, object value)
         {
             return new KeyValuePair<string, object>(key, value);

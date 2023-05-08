@@ -44,6 +44,7 @@ namespace BriefingRoom4DCS.Data.JSON
         public string theatre { get; set; }
         public string typeName { get; set; }
         public AirdromeData airdromeData { get; set; }
+        public List<Stand> stands { get; set; } = new List<Stand>();
     }
 
     public class Runway
@@ -61,6 +62,26 @@ namespace BriefingRoom4DCS.Data.JSON
         public double y { get; set; }
         public double x { get; set; }
         public double z { get; set; }
+    }
+
+    public class StandParams
+    {
+        public string SHELTER { get; set; }
+        public string FOR_HELICOPTERS { get; set; }
+        public string LENGTH { get; set; }
+        public string HEIGHT { get; set; }
+        public string WIDTH { get; set; }
+        public string FOR_AIRPLANES { get; set; }
+    }
+
+    public class Stand
+    {
+        public double y { get; set; }
+        public double x { get; set; }
+        public string name { get; set; }
+        public int flag { get; set; }
+        public int crossroad_index { get; set; }
+        public StandParams @params { get; set; }
     }
 
 

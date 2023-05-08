@@ -97,11 +97,14 @@ namespace BriefingRoom4DCS.Generator
                 var unitCount = featureDB.UnitGroupSize.GetValue();
                 var unitFamily = Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
                 var luaUnit = featureDB.UnitGroupLuaUnit;
-                SetAirbase(featureDB, ref mission, unitFamily, ref groupLua, ref luaUnit, groupSide, ref coordinatesValue, coordinates2.Value, unitCount, ref extraSettings);
+                var (units, unitDBs) = _unitMaker.GetUnits(unitFamily, unitCount, groupSide, groupFlags, extraSettings);
+                var unitDB = unitDBs.First();
+                SetAirbase(featureDB, ref mission, unitDB, ref groupLua, ref luaUnit, groupSide, ref coordinatesValue, coordinates2.Value, unitCount, ref extraSettings);
 
                 groupInfo = _unitMaker.AddUnitGroup(
-                    unitFamily, unitCount,
+                    units,
                     groupSide,
+                    unitFamily,
                     groupLua, luaUnit,
                     coordinatesValue, groupFlags,
                     extraSettings);
@@ -244,14 +247,17 @@ namespace BriefingRoom4DCS.Generator
                     continue;
 
 
-                SetAirbase(featureDB, ref mission, unitFamily, ref groupLua, ref luaUnit, groupSide, ref coordinates, coordinates2, unitCount, ref extraSettings);
+                var (units, unitDBs) = _unitMaker.GetUnits(unitFamily, unitCount, groupSide, groupFlags, extraSettings);
+                var unitDB = unitDBs.First();
+                SetAirbase(featureDB, ref mission, unitDB, ref groupLua, ref luaUnit, groupSide, ref coordinates, coordinates2, unitCount, ref extraSettings);
 
                 var groupInfo = _unitMaker.AddUnitGroup(
-                   unitFamily, unitCount,
-                   groupSide,
-                   groupLua, luaUnit,
-                   spawnCoords.Value, groupFlags,
-                   extraSettings);
+                    units,
+                    groupSide,
+                    unitFamily,
+                    groupLua, luaUnit,
+                    spawnCoords.Value, groupFlags,
+                    extraSettings);
 
                 SetCarrier(featureDB, groupSide, ref groupInfo);
                 SetSupportingTargetGroupName(ref groupInfo, flags, extraSettings);
@@ -273,15 +279,15 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        private void SetAirbase(T featureDB, ref DCSMission mission, UnitFamily unitFamily, ref string groupLua, ref string luaUnit, Side groupSide, ref Coordinates coordinates, Coordinates coordinates2, int unitCount, ref Dictionary<string, object> extraSettings)
+        private void SetAirbase(T featureDB, ref DCSMission mission, DBEntryJSONUnit unitDB, ref string groupLua, ref string luaUnit, Side groupSide, ref Coordinates coordinates, Coordinates coordinates2, int unitCount, ref Dictionary<string, object> extraSettings)
         {
-            if ((_template.MissionFeatures.Contains("ContextGroundStartAircraft") || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.GroundStart)) && Toolbox.IsAircraft(unitFamily.GetUnitCategory()))
+            if ((_template.MissionFeatures.Contains("ContextGroundStartAircraft") || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.GroundStart)) && unitDB.IsAircraft)
             {
                 var coalition = GeneratorTools.GetSpawnPointCoalition(_template, groupSide, true).Value;
                 var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = _unitMaker.SpawnPointSelector.GetAirbaseAndParking(
                     _template, coordinates, unitCount,
                     coalition,
-                    unitFamily);
+                    (DBEntryAircraft)unitDB);
                 coordinates = airbase.Coordinates;
                 extraSettings["ParkingID"] = parkingSpotIDsList;
                 extraSettings["GroupAirbaseID"] = airbase.DCSID;

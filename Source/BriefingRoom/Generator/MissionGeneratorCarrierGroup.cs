@@ -86,7 +86,7 @@ namespace BriefingRoom4DCS.Generator
                 if (templateOps.Count() > 0)
                     groupInfo = unitMaker.AddUnitGroupTemplate(Toolbox.RandomFrom(templateOps), Side.Ally, groupLua, unitLua, shipCoordinates, 0, extraSettings);
                 else
-                    groupInfo = unitMaker.AddUnitGroup(new string[] { unitDB.DCSID }, Side.Ally, unitDB.Families[0], groupLua, unitLua, shipCoordinates, 0, extraSettings);
+                    groupInfo = unitMaker.AddUnitGroup(unitDB.DCSID, Side.Ally, unitDB.Families[0], groupLua, unitLua, shipCoordinates, 0, extraSettings);
 
                 if (!groupInfo.HasValue || (groupInfo.Value.UnitNames.Length == 0)) continue; // Couldn't generate group
 

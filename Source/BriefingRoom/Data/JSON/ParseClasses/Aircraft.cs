@@ -55,6 +55,9 @@ namespace BriefingRoom4DCS.Data.JSON
         public bool? inheriteCommonCallnames { get; set; }
         public Dictionary<string, List<List<string>>> specificCallnames { get; set; }
         public string shape { get; set; }
+        public double height { get; set; }
+        public double width { get; set; }
+        public double length { get; set; }
     }
 
     public class Task
