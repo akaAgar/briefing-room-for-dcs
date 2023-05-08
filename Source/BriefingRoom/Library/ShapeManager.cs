@@ -160,6 +160,23 @@ namespace BriefingRoom4DCS
             return outcome;
         }
 
+        internal static bool IsLineClear(Coordinates coords1, Coordinates coords2, List<List<Coordinates>> exclusionShapes)
+        {
+            foreach (var polygon in exclusionShapes)
+            {
+                int i = 0;
+                do
+                {
+                    int next = (i + 1) % polygon.Count;
+
+                    if (doIntersect(polygon[i], polygon[next], coords1, coords2))
+                        return false;
+                    i = next;
+                } while (i != 0);
+            }
+            return true;
+        }
+
         internal static double GetDistanceFromShape(Coordinates coords, List<Coordinates> InclusionShape)
         {
             if (isInside(InclusionShape, coords))

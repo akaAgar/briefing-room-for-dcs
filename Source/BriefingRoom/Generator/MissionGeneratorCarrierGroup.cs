@@ -149,6 +149,8 @@ namespace BriefingRoom4DCS.Generator
                 throw new BriefingRoomException($"Carrier destination could not be found.");
             if (!ShapeManager.IsPosValid(destinationPath.Value, theaterDB.WaterCoordinates, theaterDB.WaterExclusionCoordinates))
                 throw new BriefingRoomException($"Carrier waypoint is on shore");
+            if (!ShapeManager.IsLineClear(carrierGroupCoordinates.Value, destinationPath.Value, theaterDB.WaterExclusionCoordinates))
+                throw new BriefingRoomException($"Carrier Route passes though land");
 
             return new(carrierGroupCoordinates.Value, destinationPath.Value);
         }
