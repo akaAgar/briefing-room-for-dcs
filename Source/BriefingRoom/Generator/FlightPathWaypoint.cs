@@ -26,6 +26,7 @@ namespace BriefingRoom4DCS.Generator
 {
     internal struct Waypoint
     {
+        private readonly List<DCSTask> ATTACK_GROUP_TASKS = new List<DCSTask> { DCSTask.AntishipStrike, DCSTask.SEAD, DCSTask.CAS };
         internal string Name { get; }
 
         internal Coordinates Coordinates { get; }
@@ -34,16 +35,56 @@ namespace BriefingRoom4DCS.Generator
 
         internal bool ScriptIgnore { get; }
 
-        internal Waypoint(string name, Coordinates coordinates, bool onGround = false, bool scriptIgnore = false)
+        internal int TargetGroupID { get; }
+
+        internal Waypoint(string name, Coordinates coordinates, bool onGround = false, int targetGroupID = 0, bool scriptIgnore = false)
         {
             Name = name;
             Coordinates = coordinates;
             OnGround = onGround;
             ScriptIgnore = scriptIgnore;
+            TargetGroupID = targetGroupID;
         }
 
-        internal DCSWaypoint ToDCSWaypoint(Data.DBEntryAircraft aircraftData)
+        internal DCSWaypoint ToDCSWaypoint(Data.DBEntryAircraft aircraftData, DCSTask task)
         {
+            var tasks = new List<DCSWaypointTask>();
+            if (TargetGroupID > 0)
+            {
+                if (ATTACK_GROUP_TASKS.Contains(task))
+                    tasks.Add(new DCSWaypointTask
+                    {
+                        Enabled = true,
+                        Auto = false,
+                        Id = "AttackGroup",
+                        parameters = new Dictionary<string, object>{
+                            {"altitudeEnabled", false},
+                            {"groupId", TargetGroupID},
+                            {"attackQtyLimit", false},
+                            {"attackQty", 1},
+                            {"expend", "Auto"},
+                            {"altitude", 2000},
+                            {"directionEnabled", false},
+                            {"groupAttack", false},
+                            {"weaponType", 9663676414},
+                            {"direction", 0},
+                        }
+                    });
+                else if (task == DCSTask.CAP)
+                    tasks.Add(new DCSWaypointTask
+                    {
+                        Enabled = true,
+                        Auto = false,
+                        Id = "EngageGroup",
+                        parameters = new Dictionary<string, object>{
+                            {"visible", false},
+                            {"groupId", TargetGroupID},
+                            {"priority", 1},
+                            {"weaponType", 9659482112},
+                        }
+                    }
+            );
+            }
             return new DCSWaypoint
             {
                 Alt = OnGround ? 0 : aircraftData.CruiseAlt,
@@ -56,6 +97,7 @@ namespace BriefingRoom4DCS.Generator
                 X = Coordinates.X,
                 Y = Coordinates.Y,
                 Name = Name,
+                Tasks = tasks
             };
         }
     }

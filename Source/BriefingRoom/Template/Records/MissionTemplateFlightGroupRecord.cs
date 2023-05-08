@@ -36,7 +36,7 @@ namespace BriefingRoom4DCS.Template
         internal PlayerStartLocation StartLocation { get; init; }
         internal string StartingAirbase { get; init; } = "home";
         internal List<int> ObjectiveIndexes { get; init; }
-        internal string Livery { get; init; }
+        internal string Livery { get; init; } = "default"
         internal string OverrideRadioFrequency { get; init; } = "";
         internal RadioModulation OverrideRadioBand { get; init; } = RadioModulation.AM;
         internal string OverrideCallsignName { get; set; } = "";

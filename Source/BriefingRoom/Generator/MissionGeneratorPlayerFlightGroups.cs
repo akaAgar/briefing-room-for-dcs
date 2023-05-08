@@ -91,7 +91,7 @@ namespace BriefingRoom4DCS.Generator
                 groupLuaFile = "AircraftPlayerCarrier";
                 carrierUnitID = carrier.UnitMakerGroupInfo.DCSGroup.Units[0].UnitId;
                 carrierName = carrier.UnitMakerGroupInfo.UnitDB.UIDisplayName.Get();
-                if(flightGroup.StartLocation != PlayerStartLocation.Air)
+                if (flightGroup.StartLocation != PlayerStartLocation.Air)
                 {
                     var spotOffset = carrier.TotalSpotCount - carrier.RemainingSpotCount;
                     for (int i = spotOffset; i < flightGroup.Count + spotOffset; i++)
@@ -157,16 +157,18 @@ namespace BriefingRoom4DCS.Generator
                 extraSettings.AddIfKeyUnused("AirbaseRadioFrequency", atcRadioFrequency);
             extraSettings.AddIfKeyUnused("AirbaseRadioModulation", 0);
 
-            if(flightGroup.StartLocation == PlayerStartLocation.Air)
+            if (flightGroup.StartLocation == PlayerStartLocation.Air)
             {
                 groupLuaFile = "AircraftPlayerAir";
                 groupStartingCoords = groupStartingCoords.CreateNearRandom(50, 200);
-            } else {
+            }
+            else
+            {
                 extraSettings.AddIfKeyUnused("ParkingID", parkingSpotIDsList);
                 extraSettings.AddIfKeyUnused("UnitCoords", parkingSpotCoordinatesList);
             }
 
-            GetTaskType(template.Objectives, extraSettings, package);
+            var task = GetTaskType(template.Objectives, extraSettings, package);
 
             UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(
                 Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToList(), side, unitDB.Families[0],
@@ -181,7 +183,7 @@ namespace BriefingRoom4DCS.Generator
                 return;
             }
 
-            groupInfo.Value.DCSGroup.Waypoints.InsertRange(1, flightWaypoints.Select(x => x.ToDCSWaypoint(unitDB)).ToList());
+            groupInfo.Value.DCSGroup.Waypoints.InsertRange(1, flightWaypoints.Select(x => x.ToDCSWaypoint(unitDB, task)).ToList());
 
 
             SaveFlightGroup(mission, groupInfo, flightGroup, unitDB, carrierName ?? airbase.Name);
@@ -196,7 +198,7 @@ namespace BriefingRoom4DCS.Generator
             var mapWaypoints = flightWaypoints.Select(x => x.Coordinates.ToArray()).ToList();
             mapWaypoints = mapWaypoints.Prepend(groupStartingCoords.ToArray()).ToList();
             mapWaypoints.Add(groupStartingCoords.ToArray());
-            mission.MapData.Add($"UNIT_{side}_PLAYER_{groupInfo.Value.DCSGroup.GroupId}", new List<double[]>{mapWaypoints.First()});
+            mission.MapData.Add($"UNIT_{side}_PLAYER_{groupInfo.Value.DCSGroup.GroupId}", new List<double[]> { mapWaypoints.First() });
             mission.MapData.Add($"ROUTE_{groupInfo.Value.DCSGroup.GroupId}", mapWaypoints);
         }
 
@@ -249,26 +251,27 @@ namespace BriefingRoom4DCS.Generator
             });
         }
 
-        private static void GetTaskType(List<MissionTemplateObjectiveRecord> objectives, Dictionary<string, object> extraSettings, MissionTemplatePackageRecord package)
+        private static DCSTask GetTaskType(List<MissionTemplateObjectiveRecord> objectives, Dictionary<string, object> extraSettings, MissionTemplatePackageRecord package)
         {
             var objs = objectives;
             if (package != null)
                 objs = objs.Where((x, i) => package.ObjectiveIndexes.Contains(i)).ToList();
-            var task = objectives.Select(x => new List<DCSTask>{AssignTask(x)}.Concat(x.SubTasks.Select(y => AssignTask(y)).ToList())).SelectMany(x => x).ToList().GroupBy(x => x).MaxBy(g => g.Count()).ToList().First();
+            var task = objectives.Select(x => new List<DCSTask> { AssignTask(x) }.Concat(x.SubTasks.Select(y => AssignTask(y)).ToList())).SelectMany(x => x).ToList().GroupBy(x => x).MaxBy(g => g.Count()).ToList().First();
             extraSettings.AddIfKeyUnused("Task", task.ToString());
+            return task;
         }
 
         private static DCSTask AssignTask(MissionTemplateSubTaskRecord objective)
         {
-            if(objective.Task.StartsWith("Transport") || objective.Task.StartsWith("LandNear") || objective.Task.StartsWith("Extract"))
+            if (objective.Task.StartsWith("Transport") || objective.Task.StartsWith("LandNear") || objective.Task.StartsWith("Extract"))
                 return DCSTask.Transport;
-            if(objective.Task.StartsWith("FlyNear"))
+            if (objective.Task.StartsWith("FlyNear"))
                 return DCSTask.Reconnaissance;
-            if(objective.Target.StartsWith("Ship"))
+            if (objective.Target.StartsWith("Ship"))
                 return DCSTask.AntishipStrike;
-            if(objective.Target.StartsWith("Helicopter") || objective.Target.StartsWith("Plane"))
+            if (objective.Target.StartsWith("Helicopter") || objective.Target.StartsWith("Plane"))
                 return DCSTask.CAP;
-            if(objective.Target.StartsWith("Air"))
+            if (objective.Target.StartsWith("Air"))
                 return DCSTask.SEAD;
             return DCSTask.CAS;
         }
