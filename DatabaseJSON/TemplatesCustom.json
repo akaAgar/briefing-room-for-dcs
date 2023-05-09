@@ -6257,5 +6257,313 @@
                 "heading": 3.7873644768277
             }
         ]
-    }
+    },
+    {
+        "units": [
+          {
+            "dx": 0,
+            "dy": 0,
+            "name": "SA-18 Igla-S manpad",
+            "skill": "Average",
+            "heading": 0
+          },
+          {
+            "dx": -16.691432350024,
+            "dy": 0.3287609500112,
+            "name": "SA-18 Igla-S comm",
+            "skill": "Average",
+            "heading": 0
+          },
+          {
+            "dx": -29.325703150011,
+            "dy": -14.379793120082,
+            "name": "SA-18 Igla-S manpad",
+            "skill": "Average",
+            "heading": 0
+          },
+          {
+            "dx": -30.457130389987,
+            "dy": 15.225886240019,
+            "name": "SA-18 Igla-S manpad",
+            "skill": "Average",
+            "heading": 0
+          }
+        ],
+        "type": "InfantryMANPADS",
+        "name": "Igla-s Squad",
+        "country": 81
+      },
+    {
+        "units": [
+          {
+            "dx": 0,
+            "dy": 0,
+            "name": "Soldier stinger",
+            "skill": "Average",
+            "heading": 0
+          },
+          {
+            "dx": -16.691432350024,
+            "dy": 0.3287609500112,
+            "name": "Stinger comm",
+            "skill": "Average",
+            "heading": 0
+          },
+          {
+            "dx": -29.325703160022,
+            "dy": -14.379793119966,
+            "name": "Soldier stinger",
+            "skill": "Average",
+            "heading": 0
+          },
+          {
+            "dx": -30.457130399998,
+            "dy": 15.225886230008,
+            "name": "Soldier stinger",
+            "skill": "Average",
+            "heading": 0
+          }
+        ],
+        "type": "InfantryMANPADS",
+        "name": "Stringer Squad",
+        "country": 81
+      },
+      {
+        "units": [
+          {
+            "dx": 0,
+            "dy": 0,
+            "name": "SA-18 Igla manpad",
+            "skill": "Average",
+            "heading": 0
+          },
+          {
+            "dx": -16.691432350024,
+            "dy": 0.32876096002292,
+            "name": "SA-18 Igla comm",
+            "skill": "Average",
+            "heading": 0
+          },
+          {
+            "dx": -29.325703160022,
+            "dy": -14.379793119966,
+            "name": "SA-18 Igla manpad",
+            "skill": "Average",
+            "heading": 0
+          },
+          {
+            "dx": -30.457130399998,
+            "dy": 15.225886240019,
+            "name": "SA-18 Igla manpad",
+            "skill": "Average",
+            "heading": 0
+          }
+        ],
+        "type": "InfantryMANPADS",
+        "name": "Igla Squad",
+        "country": 81
+      },
+      {
+        "_id": "6459ed683eaa30299313bd4a",
+        "country": 80,
+        "name": "ZU-23",
+        "@created": "2023-05-09T06:51:20.637Z",
+        "@dcsversion": "2.8.4.39731",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "ZU-23 Emplacement",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": 0.57527454331284,
+                "dy": 55.801630700938,
+                "name": "ZU-23 Emplacement",
+                "skill": "Average",
+                "heading": 0
+            }
+        ]
+    },
+    {
+        "_id": "6459ed683eaa30299313bd4c",
+        "country": 80,
+        "name": "S-60 Battery",
+        "@created": "2023-05-09T06:51:20.639Z",
+        "@dcsversion": "2.8.4.39731",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "S-60_Type59_Artillery",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": 28.371925066167,
+                "dy": 32.68560804578,
+                "name": "S-60_Type59_Artillery",
+                "skill": "Average",
+                "heading": 3.3547675228555
+            },
+            {
+                "dx": 27.138895471464,
+                "dy": -34.918525458546,
+                "name": "S-60_Type59_Artillery",
+                "skill": "Average",
+                "heading": 3.3547675228555
+            },
+            {
+                "dx": -43.593710084504,
+                "dy": -0.26495627593249,
+                "name": "S-60_Type59_Artillery",
+                "skill": "Average",
+                "heading": 3.3547675228555
+            }
+        ]
+    },
+    {
+        "_id": "6459ed683eaa30299313bd40",
+        "country": 80,
+        "name": "K-19 Battery",
+        "@created": "2023-05-09T06:51:20.620Z",
+        "@dcsversion": "2.8.4.39731",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "KS-19",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": 41.336550131149,
+                "dy": -59.555238050525,
+                "name": "KS-19",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -37.592478887818,
+                "dy": 69.022696319036,
+                "name": "KS-19",
+                "skill": "Average",
+                "heading": 0
+            }
+        ]
+    },
+    {
+        "_id": "6459ed683eaa30299313bd3c",
+        "country": 80,
+        "name": "Bofors Quad",
+        "@created": "2023-05-09T06:51:20.616Z",
+        "@dcsversion": "2.8.4.39731",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "bofors40",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -27.613785033347,
+                "dy": 62.332868103753,
+                "name": "bofors40",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -24.470454526832,
+                "dy": -64.186184784048,
+                "name": "bofors40",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -48.659728788713,
+                "dy": 0.28546260669827,
+                "name": "bofors40",
+                "skill": "Average",
+                "heading": 0
+            }
+        ]
+    },
+    {
+        "_id": "6459ed683eaa30299313bd24",
+        "country": 80,
+        "name": "ZU-23 insurgent",
+        "@created": "2023-05-09T06:51:20.560Z",
+        "@dcsversion": "2.8.4.39731",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "ZU-23 Insurgent",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": 0.57527454331284,
+                "dy": 55.801630700938,
+                "name": "ZU-23 Insurgent",
+                "skill": "Average",
+                "heading": 0
+            }
+        ]
+    },
+    {
+        "_id": "6459ed683eaa30299313bd2d",
+        "country": 80,
+        "name": "ZU-23 Closed Insurgent",
+        "@created": "2023-05-09T06:51:20.585Z",
+        "@dcsversion": "2.8.4.39731",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "ZU-23 Closed Insurgent",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -0.18569178698817,
+                "dy": 55.362838423578,
+                "name": "ZU-23 Closed Insurgent",
+                "skill": "Average",
+                "heading": 0
+            }
+        ]
+    },
+    {
+        "_id": "6459ed683eaa30299313bd35",
+        "country": 80,
+        "name": "ZU-23 closed",
+        "@created": "2023-05-09T06:51:20.603Z",
+        "@dcsversion": "2.8.4.39731",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "ZU-23 Emplacement Closed",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -0.18569178698817,
+                "dy": 55.362838423578,
+                "name": "ZU-23 Emplacement Closed",
+                "skill": "Average",
+                "heading": 0
+            }
+        ]
+    },
 ]
