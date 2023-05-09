@@ -93,7 +93,6 @@ namespace BriefingRoom4DCS.Generator
             if (featureID == "EnemyCAP" && objectiveTarget.UnitDB.Category == UnitCategory.Plane)
             {
                 featureDB.UnitGroupLuaGroup = "AircraftEscort";
-                extraSettings.AddIfKeyUnused("LastWaypointIndex", objectiveTarget.DCSGroup.Waypoints.Count);
             }
 
             UnitMakerGroupInfo? groupInfo = AddMissionFeature(

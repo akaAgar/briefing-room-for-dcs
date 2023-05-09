@@ -61,6 +61,15 @@ waypoints:
             - "AA Missiles"
             - "AG Missiles"
             - "SA Missiles"
+    type: Turning Point
+    etaLocked: true
+    speedLocked: true
+    y: $GROUPY$
+    x: $GROUPX$
+  - alt: $ALTITUDE$
+    action: Turning Point
+    speed: $SPEED$
+    tasks:
       - id: Escort
         auto: false
         parameters:
@@ -72,14 +81,14 @@ waypoints:
           engagementDistMax: 60000
           lastWptIndexFlagChangedManually: false
           value: "Air;"
-          lastWptIndexFlag: true
-          lastWptIndex: $LASTWAYPOINTINDEX$
+          lastWptIndexFlag: false
+          lastWptIndex: 1
           pos:
             x: 500
             y: 0
             z: 200
     type: Turning Point
-    etaLocked: true
+    etaLocked: false
     speedLocked: true
     y: $GROUPY$
     x: $GROUPX$

@@ -116,7 +116,11 @@ namespace BriefingRoom4DCS
         }
 
         internal static object DeterminType(object value)
-        {
+        {   
+            if (value is IDictionary<object,object>)
+            {
+                return ((Dictionary<object,object>)value).ToDictionary(x => x.Key.ToString(), x => DeterminType(x.Value));
+            }
             if (!(value is string))
                 return value;
             var strVal = value as string;
