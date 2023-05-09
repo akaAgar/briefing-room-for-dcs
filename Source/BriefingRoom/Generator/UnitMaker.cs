@@ -165,7 +165,7 @@ namespace BriefingRoom4DCS.Generator
             string groupLua, string unitLua,
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags,
-            Dictionary<string, object> extraSettings, MinMaxI? unitCountMinMax = null) => AddUnitGroup(new List<UnitFamily> { family }, unitCount, side, groupLua, unitLua, coordinates, unitMakerGroupFlags, extraSettings);
+            Dictionary<string, object> extraSettings, MinMaxI? unitCountMinMax = null, bool forceTryTemplate = false) => AddUnitGroup(new List<UnitFamily> { family }, unitCount, side, groupLua, unitLua, coordinates, unitMakerGroupFlags, extraSettings, unitCountMinMax, forceTryTemplate);
 
         internal UnitMakerGroupInfo? AddUnitGroup(
             List<UnitFamily> families, int unitCount, Side side,
@@ -173,11 +173,11 @@ namespace BriefingRoom4DCS.Generator
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags,
             Dictionary<string, object> extraSettings,
-            MinMaxI? unitCountMinMax = null)
+            MinMaxI? unitCountMinMax = null, bool forceTryTemplate = false)
         {
             if (unitCount <= 0) throw new BriefingRoomException("Asking for a zero units");
             if (families.Count <= 0) throw new BriefingRoomException("No Unit Families Provided");
-            if (families.All(x => TEMPLATE_PREFERENCE_FAMILIES.Contains(x)))
+            if (families.All(x => TEMPLATE_PREFERENCE_FAMILIES.Contains(x) || forceTryTemplate))
             {
                 try
                 {

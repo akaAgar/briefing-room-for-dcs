@@ -51,8 +51,9 @@ namespace BriefingRoom4DCS.Generator
             AmountNR airDefenseAmount, AirDefenseRange airDefenseRange,
             Coordinates centerPoint, Coordinates opposingPoint)
         {
+            var airDefenseInt = (int)airDefenseAmount;
             var commonAirDefenseDB = Database.Instance.Common.AirDefense;
-            DBCommonAirDefenseLevel airDefenseLevelDB = commonAirDefenseDB.AirDefenseLevels[(int)airDefenseAmount];
+            DBCommonAirDefenseLevel airDefenseLevelDB = commonAirDefenseDB.AirDefenseLevels[airDefenseInt];
 
             int groupCount = airDefenseLevelDB.GroupsInArea[(int)airDefenseRange].GetValue();
             if (groupCount < 1) return;  // No groups to add, no need to go any further
@@ -72,6 +73,10 @@ namespace BriefingRoom4DCS.Generator
                 case AirDefenseRange.MediumRange:
                     unitFamilies = new List<UnitFamily> { UnitFamily.VehicleSAMMedium };
                     validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandLarge };
+                    break;
+                case AirDefenseRange.ShortRangeBattery:
+                    unitFamilies = new List<UnitFamily> { UnitFamily.VehicleAAA, UnitFamily.VehicleAAAStatic, UnitFamily.InfantryMANPADS };
+                    validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandLarge,  SpawnPointType.LandMedium };
                     break;
                 default: // case AirDefenseRange.ShortRange:
                     unitFamilies = new List<UnitFamily> { UnitFamily.VehicleAAA, UnitFamily.VehicleAAAStatic, UnitFamily.InfantryMANPADS, UnitFamily.VehicleSAMShort, UnitFamily.VehicleSAMShort, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShortIR };
@@ -97,24 +102,20 @@ namespace BriefingRoom4DCS.Generator
                     BriefingRoom.PrintToLog($"No spawn point found for {airDefenseRange} air defense unit groups", LogMessageErrorLevel.Warning);
                     return;
                 }
-                UnitMakerGroupInfo? groupInfo;
-                if(unitFamilies.Contains(UnitFamily.VehicleSAMMedium) || unitFamilies.Contains(UnitFamily.VehicleSAMLong))
+                var unitCount = 1;
+                var forceTryTemplate = false;
+                if(airDefenseRange == AirDefenseRange.ShortRangeBattery)
                 {
-                    groupInfo = unitMaker.AddUnitGroupTemplate(
-                    unitFamilies, side,
-                    "Vehicle", "Vehicle",
-                    spawnPoint.Value,
-                    0,
-                    new Dictionary<string, object>());
-
-                } else {
-                    groupInfo = unitMaker.AddUnitGroup(
-                        unitFamilies, 1, side,
+                    unitCount = Toolbox.RandomMinMax(2,5);
+                    forceTryTemplate = Toolbox.RandomChance(2);
+                }
+                
+                UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(
+                        unitFamilies, unitCount, side,
                         "Vehicle", "Vehicle",
                         spawnPoint.Value,
                         0,
-                        new Dictionary<string, object>());
-                }
+                        new Dictionary<string, object>(), forceTryTemplate: forceTryTemplate);
 
                 if (!groupInfo.HasValue) // Failed to generate a group
                     BriefingRoom.PrintToLog(

@@ -23,6 +23,7 @@ namespace BriefingRoom4DCS
     public enum AirDefenseRange
     {
         ShortRange,
+        ShortRangeBattery,
         MediumRange,
         LongRange,
         EWR,
