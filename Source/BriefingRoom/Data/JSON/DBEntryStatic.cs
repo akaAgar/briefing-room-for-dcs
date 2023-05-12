@@ -42,7 +42,7 @@ namespace BriefingRoom4DCS.Data
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Static>>(File.ReadAllText(filepath));
-            var supportData = JsonConvert.DeserializeObject<List<CarBRInfo>>(File.ReadAllText($"{filepath.Replace(".json", "")}BRInfo.json")).ToDictionary(x => x.type, x => x);
+            var supportData = JsonConvert.DeserializeObject<List<BRInfo>>(File.ReadAllText($"{filepath.Replace(".json", "")}BRInfo.json")).ToDictionary(x => x.type, x => x);
 
             foreach (var @static in data)
             {
@@ -63,7 +63,7 @@ namespace BriefingRoom4DCS.Data
 
                     Families = supportInfo.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
                     Operational = supportInfo.operational.Select(x => (Template.Decade)x).ToList(),
-                    LowPoly = supportInfo.lowPolly,
+                    lowPolly = supportInfo.lowPolly,
                     ParkingSpots = @static.numParking
                 });
             }

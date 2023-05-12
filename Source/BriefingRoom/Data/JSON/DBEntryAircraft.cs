@@ -77,7 +77,7 @@ namespace BriefingRoom4DCS.Data
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Aircraft>>(File.ReadAllText(filepath));
-            var supportData = JsonConvert.DeserializeObject<List<AircraftBRInfo>>(File.ReadAllText($"{filepath.Replace(".json", "")}BRInfo.json")).ToDictionary(x => x.type, x => x);
+            var supportData = JsonConvert.DeserializeObject<List<BRInfo>>(File.ReadAllText($"{filepath.Replace(".json", "")}BRInfo.json")).ToDictionary(x => x.type, x => x);
 
             foreach (var aircraft in data)
             {
@@ -90,7 +90,7 @@ namespace BriefingRoom4DCS.Data
                 var supportInfo = supportData[id];
 
                 var countryList = aircraft.countries.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)).ToList();
-                countryList.AddRange(supportInfo.extraOperators.Select(x => (Country)Enum.Parse(typeof(Country), x, true)));
+                countryList.AddRange(supportInfo.extraOperators.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)));
 
                 itemMap.Add(id, new DBEntryAircraft
                 {
@@ -105,7 +105,7 @@ namespace BriefingRoom4DCS.Data
                     Flares = aircraft.flares,
                     Chaff = aircraft.chaff,
                     AmmoType = aircraft.ammoType,
-                    MaxAlt = aircraft.maxAlt,
+                    MaxAlt =  (int)aircraft.maxAlt,
                     CruiseSpeed = aircraft.cruiseSpeed,
                     Radio = new RadioChannel(aircraft.radio.frequency, (RadioModulation)aircraft.radio.modulation),
                     PanelRadios = (aircraft.panelRadio ?? new List<PanelRadio>()).Select(radio =>
@@ -130,7 +130,7 @@ namespace BriefingRoom4DCS.Data
                     PlayerControllable = supportInfo.playerControllable,
                     Families = supportInfo.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
                     Operational = supportInfo.operational.Select(x => (Decade)x).ToList(),
-                    LowPoly = supportInfo.lowPoly
+                    lowPolly = supportInfo.lowPolly
                 });
 
             }

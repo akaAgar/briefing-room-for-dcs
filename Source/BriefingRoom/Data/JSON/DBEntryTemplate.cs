@@ -60,7 +60,7 @@ namespace BriefingRoom4DCS.Data
                 }
                 var supportInfo = supportData[id];
                 var countryList = new List<Country>{(Country)template.country};
-                countryList.AddRange(supportInfo.extraOperators.Select(x => (Country)Enum.Parse(typeof(Country), x, true)));
+                countryList.AddRange(supportInfo.extraOperators.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)));
                 itemMap.Add(id, new DBEntryTemplate
                 {
                     ID = id,

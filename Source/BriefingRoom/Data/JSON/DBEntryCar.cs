@@ -41,7 +41,7 @@ namespace BriefingRoom4DCS.Data
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Car>>(File.ReadAllText(filepath));
-            var infoDataDict = JsonConvert.DeserializeObject<List<CarBRInfo>>(File.ReadAllText(filepath.Replace(".json", "BRInfo.json"))).ToDictionary(x => x.type, x => x); 
+            var infoDataDict = JsonConvert.DeserializeObject<List<BRInfo>>(File.ReadAllText(filepath.Replace(".json", "BRInfo.json"))).ToDictionary(x => x.type, x => x); 
             foreach (var car in data)
             {
                 var id = car.type;
@@ -51,6 +51,8 @@ namespace BriefingRoom4DCS.Data
                     continue;
                 }
                 var infoData = infoDataDict[id];
+                var countryList = car.countries.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)).ToList();
+                countryList.AddRange(infoData.extraOperators.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)));
 
                 itemMap.Add(id, new DBEntryCar
                 {
@@ -58,14 +60,14 @@ namespace BriefingRoom4DCS.Data
                     UIDisplayName = new LanguageString(car.displayName),
                     DCSID = car.type,
                     Liveries = car.paintSchemes.ToDictionary(pair => (Country)Enum.Parse(typeof(Country), pair.Key.Replace(" ", ""), true), pair => pair.Value),
-                    Countries = car.countries.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)).ToList(),
+                    Countries = countryList,
                     DCSCategory = car.category,
                     Module = car.module,
                     Shape = car.shape,
 
                     Families = infoData.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
                     Operational = infoData.operational.Select(x => (Template.Decade)x).ToList(),
-                    LowPoly = infoData.lowPolly,
+                    lowPolly = infoData.lowPolly,
                     Immovable = infoData.immovable
                 });
             }

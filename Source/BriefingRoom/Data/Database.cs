@@ -83,9 +83,13 @@ namespace BriefingRoom4DCS.Data
             LoadEntries<DBEntrySituation>("TheaterSituations"); // Must be loaded after DBEntryTheater, as it depends on it
             LoadEntries<DBEntryDCSMod>("DCSMods");
             LoadJSONEntries<DBEntryCar>("UnitCars", true);
+            LoadJSONEntries<DBEntryCar>("UnitCarsMod", true);
+            LoadJSONEntries<DBEntryAircraft>("UnitPlanesMod", true);
             LoadJSONEntries<DBEntryAircraft>("UnitPlanes", true);
             LoadJSONEntries<DBEntryAircraft>("UnitHelicopters", true);
+            LoadJSONEntries<DBEntryAircraft>("UnitHelicoptersMod", true);
             LoadJSONEntries<DBEntryShip>("UnitShips", true);
+            LoadJSONEntries<DBEntryShip>("UnitShipsMod", true);
             LoadJSONEntries<DBEntryStatic>("UnitWarehouses", true);
             LoadJSONEntries<DBEntryStatic>("UnitFortifications", true);
             LoadJSONEntries<DBEntryStatic>("UnitCargo", true);

@@ -196,7 +196,7 @@ namespace BriefingRoom4DCS.Data
             return 1 >= minUnitCount && 1 <= maxUnitCount; //TODO: Fix this is silly!
         }
 
-        private Dictionary<Country, List<string>> SelectValidUnits(List<UnitFamily> families, Decade decade, List<string> unitMods, bool allowLowPoly)
+        private Dictionary<Country, List<string>> SelectValidUnits(List<UnitFamily> families, Decade decade, List<string> unitMods, bool allowLowPolly)
         {
             var validUnits = new Dictionary<Country, List<string>>();
 
@@ -206,7 +206,7 @@ namespace BriefingRoom4DCS.Data
                         where unit.Families.Intersect(families).ToList().Count > 0 && unit.Countries.Contains(country)
                             && (string.IsNullOrEmpty(unit.Module) || unitMods.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase) || DBEntryDCSMod.coreMods.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase))
                             && (unit.Operational[0] <= decade) && (unit.Operational[1] >= decade)
-                            && (!unit.LowPoly || allowLowPoly)
+                            && (!unit.lowPolly || allowLowPolly)
                         select unit.ID
                     ).Distinct().ToList();
 
