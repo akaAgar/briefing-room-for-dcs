@@ -40,16 +40,19 @@ namespace BriefingRoom4DCS.Data
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Ship>>(File.ReadAllText(filepath));
-            var infoDataDict = JsonConvert.DeserializeObject<List<CarBRInfo>>(File.ReadAllText(filepath.Replace(".json", "BRInfo.json"))).ToDictionary(x => x.type, x => x); 
+            var infoDataDict = JsonConvert.DeserializeObject<List<BRInfo>>(File.ReadAllText(filepath.Replace(".json", "BRInfo.json"))).ToDictionary(x => x.type, x => x); 
             foreach (var ship in data)
             {
                 var id = ship.type;
                 if (!infoDataDict.ContainsKey(id))
                 {
-                    BriefingRoom.PrintToLog($"Unit missing {id} in info data", LogMessageErrorLevel.Warning);
+                    BriefingRoom.PrintToLog($"Ship missing {id} in info data", LogMessageErrorLevel.Warning);
                     continue;
                 }
                 var infoData = infoDataDict[id];
+
+                var countryList = ship.countries.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)).ToList();
+                countryList.AddRange(infoData.extraOperators.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)));
 
                 itemMap.Add(id, new DBEntryShip
                 {
@@ -61,7 +64,7 @@ namespace BriefingRoom4DCS.Data
                     Shape = ship.shape,
                     Families = infoData.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
                     Operational = infoData.operational.Select(x => (Template.Decade)x).ToList(),
-                    LowPoly = infoData.lowPolly,
+                    lowPolly = infoData.lowPolly,
                     ParkingSpots = ship.numParking
                 });
 

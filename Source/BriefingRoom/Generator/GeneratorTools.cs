@@ -60,7 +60,7 @@ namespace BriefingRoom4DCS.Generator
                 return units.ToList();
 
             for (int i = 0; i < airDefenseUnitsCount; i++)
-                units.AddRange(unitsCoalitionDB.GetRandomUnits(families, template.ContextDecade, 1, template.Mods, template.OptionsMission.Contains("AllowLowPoly"), country).Item2);
+                units.AddRange(unitsCoalitionDB.GetRandomUnits(families, template.ContextDecade, 1, template.Mods, template.OptionsMission.Contains("AllowlowPolly"), country).Item2);
 
             return units.ToList();
         }
@@ -82,7 +82,7 @@ namespace BriefingRoom4DCS.Generator
                         where unit.Families.Intersect(families).ToList().Count > 0 && unit.Countries.Contains(country) &&
                             (string.IsNullOrEmpty(unit.Module) || unitMods.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase)) &&
                             (unit.Operational[0] <= decade) && (unit.Operational[1] >= decade) &&
-                            (!unit.LowPoly || allowLowPolly)
+                            (!unit.lowPolly || allowLowPolly)
                         select unit.ID
                     ).Distinct().ToList();
 

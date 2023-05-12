@@ -43,7 +43,7 @@ namespace BriefingRoom4DCS.Data.JSON
         public int flares { get; set; }
         public int chaff { get; set; }
         public Radio radio { get; set; }
-        public int maxAlt { get; set; }
+        public double maxAlt { get; set; }
         public double cruiseSpeed { get; set; }
         public List<string> countries { get; set; }
         public List<int> countriesWorldID { get; set; }
@@ -79,15 +79,5 @@ namespace BriefingRoom4DCS.Data.JSON
     {
         public string CLSID { get; set; }
         public int num { get; set; }
-    }
-
-    public class AircraftBRInfo
-    {
-        public string type { get; set; }
-        public List<string> families { get; set; } = new List<string>();
-        public List<int> operational { get; set; } = new List<int>();
-        public List<string> extraOperators { get; set; } = new List<string>();
-        public bool lowPoly { get; set; }
-        public bool playerControllable { get; set; }
     }
 }

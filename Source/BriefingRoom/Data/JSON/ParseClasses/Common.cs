@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace BriefingRoom4DCS.Data.JSON
@@ -33,5 +34,16 @@ namespace BriefingRoom4DCS.Data.JSON
         public double y { get; set; }
         public double x { get; set; }
         public double z { get; set; }
+    }
+
+    public class BRInfo
+    {
+        public string type { get; set; }
+        public List<string> families { get; set; } = new List<string>();
+        public List<int> operational { get; set; } = new List<int>();
+        public List<string> extraOperators { get; set; } = new List<string>();
+        public bool lowPolly { get; set; }
+        public bool immovable { get; set; }
+        public bool playerControllable { get; set; }
     }
 }
