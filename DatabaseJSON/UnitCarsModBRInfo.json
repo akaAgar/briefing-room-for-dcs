@@ -1,0 +1,1162 @@
+[
+    {
+        "type": "Fire Can radar",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "Russia",
+            "USAFAggressors",
+            "Georgia",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "Hungary",
+            "Iran",
+            "Iraq",
+            "Kazakhstan",
+            "NorthKorea",
+            "Poland",
+            "Romania",
+            "Syria",
+            "Yemen",
+            "Vietnam",
+            "Sudan",
+            "Morocco",
+            "Libya",
+            "USSR",
+            "Algeria",
+            "Cuba",
+            "GDR",
+            "UnitedNationsPeacekeepers"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "KS19",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "operational": [
+            1940,
+            2020
+        ],
+        "extraOperators": [
+            "Russia",
+            "USAFAggressors",
+            "Georgia",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "Hungary",
+            "Iran",
+            "Iraq",
+            "Kazakhstan",
+            "NorthKorea",
+            "Poland",
+            "Romania",
+            "Syria",
+            "Yemen",
+            "Vietnam",
+            "Sudan",
+            "Morocco",
+            "Libya",
+            "USSR",
+            "Algeria",
+            "Cuba",
+            "GDR",
+            "UnitedNationsPeacekeepers"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PS SA-10B 54K6 cp",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PS 5P85SE_mod ln",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PS 5P85SU_mod ln",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PS 5P85CE ln",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PS 5P85DE ln",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PS 30N6 TRAILER tr",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PS SA-10B 40B6M MAST tr",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PS SA-10B 40B6MD MAST sr",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PS 64H6E TRAILER sr",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PMU1 54K6 cp",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PMU1 40B6M tr",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PMU1 30N6E tr",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PMU1 40B6MD sr",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PMU1 64N6E sr",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PMU1 5P85CE ln",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PMU1 5P85DE ln",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PMU2 54K6E2 cp",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PMU2 92H6E tr",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PMU2 64H6E2 sr",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300PMU2 5P85SE2 ln",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300V 9S457 cp",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300V 9A82 ln",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300V 9A83 ln",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300V 9S15 sr",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300V 9S19 sr",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300V 9S32 tr",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300VM 9S457ME cp",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            2010,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300VM 9S15M2 sr",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            2010,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300VM 9S19M2 sr",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            2010,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300VM 9S32ME tr",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            2010,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300VM 9A83ME ln",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            2010,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S-300VM 9A82ME ln",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "operational": [
+            2010,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Belarus",
+            "Bulgaria",
+            "China",
+            "Egypt",
+            "GDR",
+            "Greece",
+            "Iran",
+            "Kazakhstan",
+            "Russia",
+            "Slovakia",
+            "Ukraine",
+            "Venezuela",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SA-17 Buk M1-2 LN 9A310M1-2",
+        "families": [
+            "VehicleSAMMedium"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [
+            "Belarus",
+            "Egypt",
+            "Finland",
+            "Georgia",
+            "Russia",
+            "Syria",
+            "Ukraine"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "S_75M_Volhov_V759",
+        "families": [
+            "VehicleSAMMedium"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "Bulgaria",
+            "China",
+            "Cuba",
+            "GDR",
+            "Egypt",
+            "Ethiopia",
+            "Georgia",
+            "Hungary",
+            "India",
+            "Indonesia",
+            "Iran",
+            "Iraq",
+            "Libya",
+            "NorthKorea",
+            "Pakistan",
+            "Poland",
+            "Romania",
+            "Russia",
+            "Slovakia",
+            "Sudan",
+            "Syria",
+            "Vietnam",
+            "Yemen",
+            "Yugoslavia"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "HQ_2_Guideline_LN",
+        "families": [
+            "VehicleSAMMedium"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [
+            "China",
+            "Pakistan"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "5p73 V-601P ln",
+        "families": [
+            "VehicleSAMMedium"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SA-24 Igla-S manpad",
+        "families": [
+            "InfantryMANPADS"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Abkhazia",
+            "Belarus",
+            "Brazil",
+            "Bulgaria",
+            "Cuba",
+            "Egypt",
+            "Finland",
+            "Georgia",
+            "Hungary",
+            "India",
+            "Indonesia",
+            "Iran",
+            "Jordan",
+            "Kazakhstan",
+            "Malaysia",
+            "Mexico",
+            "Morocco",
+            "NorthKorea",
+            "Russia",
+            "Serbia",
+            "Slovakia",
+            "Slovenia",
+            "SouthKorea",
+            "SouthOssetia",
+            "Syria",
+            "Thailand",
+            "Turkey",
+            "Ukraine",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SA-14 Strela-3 manpad",
+        "families": [
+            "InfantryMANPADS"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Abkhazia",
+            "Belarus",
+            "Brazil",
+            "Bulgaria",
+            "Cuba",
+            "Egypt",
+            "Finland",
+            "Georgia",
+            "Hungary",
+            "India",
+            "Indonesia",
+            "Iran",
+            "Jordan",
+            "Kazakhstan",
+            "Malaysia",
+            "Mexico",
+            "Morocco",
+            "NorthKorea",
+            "Russia",
+            "Serbia",
+            "Slovakia",
+            "Slovenia",
+            "SouthKorea",
+            "SouthOssetia",
+            "Syria",
+            "Thailand",
+            "Turkey",
+            "Ukraine",
+            "Vietnam"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "polyana-d4m1 cp",
+        "families": [
+            "VehicleSAMLong",
+            "VehicleStatic"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "34Ya6E Gazetchik E decoy",
+        "families": [
+            "VehicleStatic"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPolly": false,
+        "immovable": false
+    },
+]
