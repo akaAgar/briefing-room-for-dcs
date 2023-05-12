@@ -1,0 +1,784 @@
+[
+    {
+        "_id": "645caae428f1201645674798",
+        "type": "Fire Can radar",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "AAA SON-9 Fire Can TR",
+        "module": "HighDigitSAMs",
+        "shape": "mys-m1",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f120164567479a",
+        "type": "KS19",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "AAA 100mm KS-19",
+        "module": "HighDigitSAMs",
+        "shape": "flak18",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f120164567479c",
+        "type": "S-300PS SA-10B 54K6 cp",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-10B S-300PS \"Grumble\" C2",
+        "module": "HighDigitSAMs",
+        "shape": "54k6cp",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f120164567479e",
+        "type": "S-300PS 5P85SE_mod ln",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-10B S-300PS \"Grumble\" TEL S",
+        "module": "HighDigitSAMs",
+        "shape": "5p85se",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747a0",
+        "type": "S-300PS 5P85SU_mod ln",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-10B S-300PS \"Grumble\" TEL U",
+        "module": "HighDigitSAMs",
+        "shape": "5p85su",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747a2",
+        "type": "S-300PS 5P85CE ln",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-10 (5V55RUD) S-300 TEL C",
+        "module": "HighDigitSAMs",
+        "shape": "5p85se",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747a4",
+        "type": "S-300PS 5P85DE ln",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-10 (5V55RUD) S-300 TEL D",
+        "module": "HighDigitSAMs",
+        "shape": "5p85su",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747a6",
+        "type": "S-300PS 30N6 TRAILER tr",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-10B S-300PS Flap Lid(truck) TR",
+        "module": "HighDigitSAMs",
+        "shape": "30h6_truck",
+        "countries": [],
+        "countriesWorldID": []
+    },
+    {
+        "_id": "645caae428f12016456747a8",
+        "type": "S-300PS SA-10B 40B6M MAST tr",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-10B S-300PS Flap Lid(mast) TR",
+        "module": "HighDigitSAMs",
+        "shape": "40b6m_mast",
+        "countries": [],
+        "countriesWorldID": []
+    },
+    {
+        "_id": "645caae428f12016456747aa",
+        "type": "S-300PS SA-10B 40B6MD MAST sr",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-10B S-300PS Clam Shell SR",
+        "module": "HighDigitSAMs",
+        "shape": "40b6md_mast",
+        "countries": [],
+        "countriesWorldID": []
+    },
+    {
+        "_id": "645caae428f12016456747ac",
+        "type": "S-300PS 64H6E TRAILER sr",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-10B S-300PS Big Bird SR",
+        "module": "HighDigitSAMs",
+        "shape": "64n6",
+        "countries": [],
+        "countriesWorldID": []
+    },
+    {
+        "_id": "645caae428f12016456747ae",
+        "type": "S-300PMU1 54K6 cp",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-20A S-300PMU-1 \"Gargoyle\" C2",
+        "module": "HighDigitSAMs",
+        "shape": "54k6cp",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747b0",
+        "type": "S-300PMU1 40B6M tr",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SA-20A TR",
+        "module": "HighDigitSAMs",
+        "shape": "40b6m_mast",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747b2",
+        "type": "S-300PMU1 30N6E tr",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-20A S-300PMU-1 Tomb Stone(truck) TR",
+        "module": "HighDigitSAMs",
+        "shape": "30h6_truck",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747b4",
+        "type": "S-300PMU1 40B6MD sr",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-20A S-300PMU-1 Clam Shell SR",
+        "module": "HighDigitSAMs",
+        "shape": "40b6md_mast",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747b6",
+        "type": "S-300PMU1 64N6E sr",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-20A S-300PMU-1 Big Bird SR",
+        "module": "HighDigitSAMs",
+        "shape": "64n6",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747b8",
+        "type": "S-300PMU1 5P85CE ln",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-20A S-300PMU-1 \"Gargoyle\" TEL C",
+        "module": "HighDigitSAMs",
+        "shape": "5p85se",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747ba",
+        "type": "S-300PMU1 5P85DE ln",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-20A S-300PMU-1 \"Gargoyle\" TEL D",
+        "module": "HighDigitSAMs",
+        "shape": "5p85su",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747bc",
+        "type": "S-300PMU2 54K6E2 cp",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-20B S-300PMU-2 \"Favorit\" C2",
+        "module": "HighDigitSAMs",
+        "shape": "54k6cp",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747be",
+        "type": "S-300PMU2 92H6E tr",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-20B S-300PMU2 Grave Stone(truck) TR",
+        "module": "HighDigitSAMs",
+        "shape": "92n6_truck",
+        "countries": [],
+        "countriesWorldID": []
+    },
+    {
+        "_id": "645caae428f12016456747c0",
+        "type": "S-300PMU2 64H6E2 sr",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-20B S-300PMU-2 Big Bird SR",
+        "module": "HighDigitSAMs",
+        "shape": "64n6",
+        "countries": [],
+        "countriesWorldID": []
+    },
+    {
+        "_id": "645caae428f12016456747c2",
+        "type": "S-300PMU2 5P85SE2 ln",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-20B S-300PMU-2 \"Favorit\" TEL S",
+        "module": "HighDigitSAMs",
+        "shape": "5p85se",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747c4",
+        "type": "S-300V 9S457 cp",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-12 S-300V \"Gladiator/Giant\" C2",
+        "module": "HighDigitSAMs",
+        "shape": "9s457me",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747c6",
+        "type": "S-300V 9A82 ln",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-12 S-300V \"Giant\" TEL B",
+        "module": "HighDigitSAMs",
+        "shape": "9a82me",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747c8",
+        "type": "S-300V 9A83 ln",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-12 S-300V \"Gladiator\" TEL A",
+        "module": "HighDigitSAMs",
+        "shape": "9a83me",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747ca",
+        "type": "S-300V 9S15 sr",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-12 S-300V Bill Board SR",
+        "module": "HighDigitSAMs",
+        "shape": "9s15m2",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747cc",
+        "type": "S-300V 9S19 sr",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-12 S-300V High Screen SR",
+        "module": "HighDigitSAMs",
+        "shape": "9s19m2",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747ce",
+        "type": "S-300V 9S32 tr",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-12 S-300V Grill Pan TR",
+        "module": "HighDigitSAMs",
+        "shape": "9s32",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747d0",
+        "type": "S-300VM 9S457ME cp",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-23 S-300VM \"Gladiator/Giant\" C2",
+        "module": "HighDigitSAMs",
+        "shape": "9s457me",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747d2",
+        "type": "S-300VM 9S15M2 sr",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-23 S-300VM Bill Board SR",
+        "module": "HighDigitSAMs",
+        "shape": "9s15m2",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747d4",
+        "type": "S-300VM 9S19M2 sr",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-23 S-300VM High Screen SR",
+        "module": "HighDigitSAMs",
+        "shape": "9s19m2",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747d6",
+        "type": "S-300VM 9S32ME tr",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-23 S-300VM Grill Pan TR",
+        "module": "HighDigitSAMs",
+        "shape": "9s32me",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747d8",
+        "type": "S-300VM 9A83ME ln",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-23 S-300VM \"Gladiator\" TEL A",
+        "module": "HighDigitSAMs",
+        "shape": "9a83me",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747da",
+        "type": "S-300VM 9A82ME ln",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-23 S-300VM \"Giant\" TEL B",
+        "module": "HighDigitSAMs",
+        "shape": "9a82me",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747dc",
+        "type": "SA-17 Buk M1-2 LN 9A310M1-2",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-17 Buk-M1-2 \"Grizzly\" TEL",
+        "module": "HighDigitSAMs",
+        "shape": "9a310m1",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747de",
+        "type": "S_75M_Volhov_V759",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-2 (V759) \"Guideline\" LN",
+        "module": "HighDigitSAMs",
+        "shape": "S_75_Launcher",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747e0",
+        "type": "HQ_2_Guideline_LN",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM HQ-2 \"Guideline\" LN",
+        "module": "HighDigitSAMs",
+        "shape": "S_75_Launcher",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747e2",
+        "type": "5p73 V-601P ln",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "SAM SA-3 (V-601P) S-125 LN",
+        "module": "HighDigitSAMs",
+        "shape": "5P73_LAUNCH",
+        "countries": [],
+        "countriesWorldID": []
+    },
+    {
+        "_id": "645caae428f12016456747e4",
+        "type": "SA-24 Igla-S manpad",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "MANPADS SA-24 Igla-S \"Grinch\"",
+        "module": "HighDigitSAMs",
+        "shape": "soldier_ru_03",
+        "countries": [],
+        "countriesWorldID": []
+    },
+    {
+        "_id": "645caae428f12016456747e6",
+        "type": "SA-14 Strela-3 manpad",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "MANPADS SA-14 Strela-3 \"Gremlin\"",
+        "module": "HighDigitSAMs",
+        "shape": "soldier_ru_03",
+        "countries": [],
+        "countriesWorldID": []
+    },
+    {
+        "_id": "645caae428f12016456747e8",
+        "type": "polyana-d4m1 cp",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "Polyana-D4M1 C2 node",
+        "module": "HighDigitSAMs",
+        "shape": "Polyana",
+        "countries": [
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "645caae428f12016456747ea",
+        "type": "34Ya6E Gazetchik E decoy",
+        "category": "Air Defence",
+        "paintSchemes": {},
+        "displayName": "34Ya6E Gazetchik E decoy",
+        "module": "HighDigitSAMs",
+        "shape": "Gazetchik",
+        "countries": [],
+        "countriesWorldID": []
+    }
+]
