@@ -1,0 +1,271 @@
+[
+    {
+        "type": "JAS39Gripen",
+        "families": [
+            "PlaneAttack",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Brazil",
+           "CzechRepublic",
+           "Hungary",
+           "SouthAfrica",
+           "Sweden",
+           "Thailand"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "JAS39Gripen_AG",
+        "families": [
+            "PlaneAttack",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Brazil",
+           "CzechRepublic",
+           "Hungary",
+           "SouthAfrica",
+           "Sweden",
+           "Thailand"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "A-4E-C",
+        "families": [
+            "PlaneAttack",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Argentina",
+            "Israel",
+            "USA"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Bronco-OV-10A",
+        "families": [
+            "PlaneAttack"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "extraOperators": [
+            "USA",
+            "Philippines",
+            "Indonesia",
+            "Thailand",
+            "Germany"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "A_320",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Russia",
+            "Germany",
+            "France",
+            "Italy",
+            "UK",
+            "USA",
+            "UnitedArabEmirates",
+            "Georgia",
+            "Iran",
+            "Spain",
+            "Kuwait",
+            "Canada",
+            "Qatar",
+            "Switzerland",
+            "SaudiArabia",
+            "Turkey",
+            "Vietnam",
+            "Bahrain"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "A_330",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [
+            "Russia",
+            "Canada",
+            "China",
+            "Egypt",
+            "UnitedArabEmirates",
+            "Finland",
+            "Spain",
+            "Bahrain",
+            "Germany",
+            "Oman",
+            "Greece",
+            "Australia",
+            "UK",
+            "Switzerland",
+            "Turkey",
+            "USA"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "A_380",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            2000,
+            2020
+        ],
+        "extraOperators": [
+            "France",
+            "UK",
+            "China",
+            "UnitedArabEmirates",
+            "Australia",
+            "Qatar"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "B_727",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            1960,
+            2020
+        ],
+        "extraOperators": [
+            "Russia",
+            "France",
+            "USA",
+            "Italy",
+            "Germany"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "B_737",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [
+            "Algeria",
+            "France",
+            "USA",
+            "UK",
+            "Finland",
+            "Germany",
+            "Oman",
+            "Australia",
+            "Ukraine"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "B_747",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [
+            "USA",
+            "UK",
+            "Switzerland"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "B_757",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "USA"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Cessna_210N",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [
+            "USA",
+            "Greece"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "DC_10",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [
+            "Switzerland"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    }
+]

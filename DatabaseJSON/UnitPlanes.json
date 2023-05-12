@@ -56939,18 +56939,13 @@
         "height": 5.02,
         "length": 14.52,
         "paintSchemes": {
-            "0": [
-                "Iron Fists"
-            ],
-            "1": [
-                "Iron Fists"
-            ],
+            "0": [],
+            "1": [],
             "2": [
                 "default livery",
                 "18th AGRS Arсtic Splinter",
                 "18th AGRS BDU Splinter",
                 "18th AGRS Blue Splinter",
-                "Iron Fists",
                 "USAF 64th Aggressor SQN - Shark",
                 "USAF 64th Aggressor SQN-Splinter",
                 "132nd Wing Iowa ANG, Des Moines AFB",
@@ -56972,100 +56967,49 @@
                 "F-16C Dark Viper"
             ],
             "3": [
-                "Iron Fists",
                 "Türk Hava Kuvvetleri, 191 Filo"
             ],
-            "4": [
-                "Iron Fists"
-            ],
-            "5": [
-                "Iron Fists"
-            ],
-            "6": [
-                "Iron Fists"
-            ],
+            "4": [],
+            "5": [],
+            "6": [],
             "7": [
                 "18th AGRS Arсtic Splinter",
                 "18th AGRS BDU Splinter",
                 "18th AGRS Blue Splinter",
-                "Iron Fists",
                 "USAF 64th Aggressor SQN - Shark",
                 "USAF 64th Aggressor SQN-Splinter",
                 "64th Aggressor Squadron “Ghost"
             ],
-            "8": [
-                "Iron Fists"
-            ],
-            "9": [
-                "Iron Fists"
-            ],
-            "10": [
-                "Iron Fists"
-            ],
-            "11": [
-                "Iron Fists"
-            ],
-            "12": [
-                "Iron Fists"
-            ],
-            "13": [
-                "Iron Fists"
-            ],
+            "8": [],
+            "9": [],
+            "10": [],
+            "11": [],
+            "12": [],
+            "13": [],
             "15": [
-                "Iron Fists",
                 "IAF 101st squadron",
                 "IAF 110th squadron",
                 "IAF 115th aggressors squadron",
                 "IAF 117th squadron"
             ],
-            "16": [
-                "Iron Fists"
-            ],
-            "17": [
-                "Iron Fists"
-            ],
-            "18": [
-                "Iron Fists"
-            ],
-            "19": [
-                "Iron Fists"
-            ],
+            "16": [],
+            "17": [],
+            "18": [],
+            "19": [],
             "20": [
-                "Iron Fists",
                 "Italian Air Force, 5° Stormo, 23 Gruppo"
             ],
-            "21": [
-                "Iron Fists"
-            ],
-            "22": [
-                "Iron Fists"
-            ],
-            "23": [
-                "Iron Fists"
-            ],
-            "24": [
-                "Iron Fists"
-            ],
-            "25": [
-                "Iron Fists"
-            ],
-            "26": [
-                "Iron Fists"
-            ],
-            "27": [
-                "Iron Fists"
-            ],
-            "28": [
-                "Iron Fists"
-            ],
-            "29": [
-                "Iron Fists"
-            ],
-            "30": [
-                "Iron Fists"
-            ],
+            "21": [],
+            "22": [],
+            "23": [],
+            "24": [],
+            "25": [],
+            "26": [],
+            "27": [],
+            "28": [],
+            "29": [],
+            "30": [],
             "31": [
-                "Iron Fists",
                 "HAF 330 Thunder Squadron",
                 "HAF 335 Tiger Squadron",
                 "HAF 336 Olympus Squadron",
@@ -57076,31 +57020,17 @@
                 "HAF 346 Jason Squadron",
                 "HAF 347S Perseus Squadron"
             ],
-            "32": [
-                "Iron Fists"
-            ],
-            "33": [
-                "Iron Fists"
-            ],
-            "34": [
-                "Iron Fists"
-            ],
-            "35": [
-                "Iron Fists"
-            ],
+            "32": [],
+            "33": [],
+            "34": [],
+            "35": [],
             "36": [
-                "Iron Fists",
                 "JASDF 8th TFS",
                 "JASDF 8th TFS"
             ],
-            "37": [
-                "Iron Fists"
-            ],
-            "38": [
-                "Iron Fists"
-            ],
+            "37": [],
+            "38": [],
             "39": [
-                "Iron Fists",
                 "PAF No.11 Arrows",
                 "PAF No.19 Sherdils",
                 "PAF No.29 Aggressor",
@@ -57109,163 +57039,63 @@
                 "PAF No.9 Griffins (TRIBUTE TO WC NAUMAN)"
             ],
             "40": [
-                "Iron Fists",
                 "Polish AF standard",
                 "Polish AF 31.Blt 6th Tactical Sqn (Poznań-Krzesiny AB) - Tiger Meet"
             ],
-            "41": [
-                "Iron Fists"
-            ],
-            "42": [
-                "Iron Fists"
-            ],
-            "43": [
-                "Iron Fists"
-            ],
-            "44": [
-                "Iron Fists"
-            ],
-            "45": [
-                "Iron Fists"
-            ],
-            "46": [
-                "Iron Fists"
-            ],
-            "47": [
-                "Iron Fists"
-            ],
-            "48": [
-                "Iron Fists"
-            ],
-            "49": [
-                "Iron Fists"
-            ],
-            "50": [
-                "Iron Fists"
-            ],
-            "51": [
-                "Iron Fists"
-            ],
-            "52": [
-                "Iron Fists"
-            ],
-            "53": [
-                "Iron Fists"
-            ],
-            "54": [
-                "Iron Fists"
-            ],
-            "55": [
-                "Iron Fists"
-            ],
-            "56": [
-                "Iron Fists"
-            ],
-            "57": [
-                "Iron Fists"
-            ],
-            "58": [
-                "Iron Fists"
-            ],
-            "59": [
-                "Iron Fists"
-            ],
-            "60": [
-                "Iron Fists"
-            ],
-            "61": [
-                "Iron Fists"
-            ],
-            "62": [
-                "Iron Fists"
-            ],
+            "41": [],
+            "42": [],
+            "43": [],
+            "44": [],
+            "45": [],
+            "46": [],
+            "47": [],
+            "48": [],
+            "49": [],
+            "50": [],
+            "51": [],
+            "52": [],
+            "53": [],
+            "54": [],
+            "55": [],
+            "56": [],
+            "57": [],
+            "58": [],
+            "59": [],
+            "60": [],
+            "61": [],
+            "62": [],
             "63": [
-                "Iron Fists",
                 "Chile Air Force 732",
                 "Chile Air Force 746",
                 "Chile Air Force 851"
             ],
-            "64": [
-                "Iron Fists"
-            ],
-            "65": [
-                "Iron Fists"
-            ],
-            "66": [
-                "Iron Fists"
-            ],
-            "67": [
-                "Iron Fists"
-            ],
-            "68": [
-                "Iron Fists"
-            ],
-            "69": [
-                "Iron Fists"
-            ],
-            "70": [
-                "Iron Fists"
-            ],
-            "71": [
-                "Iron Fists"
-            ],
-            "72": [
-                "Iron Fists"
-            ],
-            "73": [
-                "Iron Fists"
-            ],
-            "74": [
-                "Iron Fists"
-            ],
-            "75": [
-                "Iron Fists"
-            ],
-            "76": [
-                "Iron Fists"
-            ],
-            "77": [
-                "Iron Fists"
-            ],
-            "78": [
-                "Iron Fists"
-            ],
-            "79": [
-                "Iron Fists"
-            ],
-            "80": [
-                "Iron Fists"
-            ],
-            "81": [
-                "Iron Fists"
-            ],
-            "82": [
-                "Iron Fists"
-            ],
-            "83": [
-                "Iron Fists"
-            ],
-            "84": [
-                "Iron Fists"
-            ],
-            "85": [
-                "Iron Fists"
-            ],
-            "86": [
-                "Iron Fists"
-            ],
-            "87": [
-                "Iron Fists"
-            ],
-            "88": [
-                "Iron Fists"
-            ],
-            "89": [
-                "Iron Fists"
-            ],
-            "90": [
-                "Iron Fists"
-            ]
+            "64": [],
+            "65": [],
+            "66": [],
+            "67": [],
+            "68": [],
+            "69": [],
+            "70": [],
+            "71": [],
+            "72": [],
+            "73": [],
+            "74": [],
+            "75": [],
+            "76": [],
+            "77": [],
+            "78": [],
+            "79": [],
+            "80": [],
+            "81": [],
+            "82": [],
+            "83": [],
+            "84": [],
+            "85": [],
+            "86": [],
+            "87": [],
+            "88": [],
+            "89": [],
+            "90": []
         },
         "panelRadio": [
             {
@@ -74180,48 +74010,20 @@
             "76": [
                 "default livery"
             ],
-            "77": [
-                
-            ],
-            "78": [
-                
-            ],
-            "79": [
-                
-            ],
-            "80": [
-                
-            ],
-            "81": [
-                
-            ],
-            "82": [
-                
-            ],
-            "83": [
-                
-            ],
-            "84": [
-                
-            ],
-            "85": [
-                
-            ],
-            "86": [
-                
-            ],
-            "87": [
-                
-            ],
-            "88": [
-                
-            ],
-            "89": [
-                
-            ],
-            "90": [
-                
-            ]
+            "77": [],
+            "78": [],
+            "79": [],
+            "80": [],
+            "81": [],
+            "82": [],
+            "83": [],
+            "84": [],
+            "85": [],
+            "86": [],
+            "87": [],
+            "88": [],
+            "89": [],
+            "90": []
         },
         "panelRadio": [
             {
@@ -77949,23 +77751,18 @@
         "paintSchemes": {
             "0": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "1": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "2": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "3": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "4": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "5": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
@@ -77983,99 +77780,75 @@
             ],
             "6": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "7": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "8": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "9": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "10": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "11": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "12": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "13": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "15": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "16": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "17": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "18": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "19": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "20": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "21": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "22": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "23": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "24": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "25": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "26": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "27": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "28": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "29": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "30": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "31": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
@@ -78083,172 +77856,130 @@
             ],
             "32": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "33": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "34": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "35": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "36": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "37": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "38": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "39": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "40": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "41": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "42": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "43": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "44": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "45": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "46": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "47": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "48": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "49": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "50": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "51": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "52": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "53": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "54": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "55": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "56": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "57": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "58": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "59": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "60": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "61": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "62": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "63": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "64": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
                 "Forca Aerea Brasileira (Brazilian Air Force)",
-                
             ],
             "65": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "66": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "67": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "68": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "69": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "70": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "71": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "72": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "73": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "74": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
@@ -78256,69 +77987,53 @@
             ],
             "75": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "76": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "77": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "78": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "79": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "80": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "81": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "82": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "83": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "84": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "85": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "86": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "87": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "88": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ],
             "89": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
                 "Fuerza Aerea Peruana 052",
                 "Fuerza Aerea Peruana 064",
-                
             ],
             "90": [
                 "2022 MISSION ACCOMPLIE by MALBAK",
-                
             ]
         },
         "panelRadio": [
