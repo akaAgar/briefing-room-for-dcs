@@ -58,7 +58,7 @@
 
   private IBrowserFile file;
 
-  private Regex GetRegex(string target) => new Regex($@"\[""{target}""\] = ""(.|\n)*?"",\n", RegexOptions.IgnoreCase);
+  private Regex GetRegex(string target) => new Regex($@"\[""{target}""\] = ""(.|\n|\r)*?"",\r?\n", RegexOptions.IgnoreCase);
   private async Task LoadTemplate(InputFileChangeEventArgs e)
   {
     errorMessage = "";
@@ -125,6 +125,7 @@
     return regex.Match(data).Value
     .Replace($"[\"{target}\"] = \"", "")
     .Replace("\\", "")
+    .TrimEnd()
     .TrimEnd('\n')
     .TrimEnd(',')
     .TrimEnd('"');
@@ -167,24 +168,24 @@
           var replacedMission = mission;
           var replacedDict = dictionary;
           if (string.IsNullOrEmpty(situationDictKey))
-            replacedMission = replaceValue(dictionary, "descriptionText", situation);
+            replacedMission = replaceValue(replacedMission, "descriptionText", situation);
           else
-            replacedDict = replaceValue(dictionary, situationDictKey, situation);
+            replacedDict = replaceValue(replacedDict, situationDictKey, situation);
 
           if (string.IsNullOrEmpty(blueTaskDictKey))
-            replacedMission = replaceValue(dictionary, "descriptionBlueTask", situation);
+            replacedMission = replaceValue(replacedMission, "descriptionBlueTask", situation);
           else
-            replacedDict = replaceValue(dictionary, blueTaskDictKey, blueTask);
+            replacedDict = replaceValue(replacedDict, blueTaskDictKey, blueTask);
 
           if (string.IsNullOrEmpty(redTaskDictKey))
-            replacedMission = replaceValue(dictionary, "descriptionRedTask", situation);
+            replacedMission = replaceValue(replacedMission, "descriptionRedTask", situation);
           else
-            replacedDict = replaceValue(dictionary, redTaskDictKey, redTask);
+            replacedDict = replaceValue(replacedDict, redTaskDictKey, redTask);
 
           if (string.IsNullOrEmpty(neutralTaskDictKey))
-            replacedMission = replaceValue(dictionary, "descriptionNeutralsTask", situation);
+            replacedMission = replaceValue(replacedMission, "descriptionNeutralsTask", situation);
           else
-            replacedDict = replaceValue(dictionary, neutralTaskDictKey, neutralTask);
+            replacedDict = replaceValue(replacedDict, neutralTaskDictKey, neutralTask);
 
           var newMissionEntry = zip.CreateEntry("mission");
           using (var newStream = newMissionEntry.Open())
