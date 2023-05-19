@@ -79941,20 +79941,8 @@
         "type": "Infantry Animated",
         "displayName": "Infantry",
         "shape": "unit_infantry_rus",
-        "countries": [
-            "Russia",
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            0,
-            7,
-            80,
-            81,
-            82
-        ]
+        "countries": [],
+        "countriesWorldID": []
     },
     {
         "_id": "e7c661c272ca1e208e0099a60ec848e088c2ddf7",
