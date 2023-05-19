@@ -267,5 +267,215 @@
         ],
         "lowPolly": false,
         "playerControllable": false
-    }
+    },
+    {
+        "type": "F-117",
+        "families": [
+            "PlaneBomber"
+        ],
+        "operational": [
+            1980,
+            2010
+        ],
+        "extraOperators": [
+            "USA"
+        ],
+        "lowPolly": true,
+        "playerControllable": true
+    },
+    {
+        "type": "F-22A",
+        "families": [
+            "PlaneFighter"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [
+            "USA"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Hercules",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            1950,
+            2020
+        ],
+        "extraOperators": [
+            "USA",
+            "Turkey",
+            "UK",
+            "France",
+            "USAF Aggressors",
+            "Canada",
+            "Spain",
+            "The Netherlands",
+            "Belgium",
+            "Norway",
+            "Denmark",
+            "Israel",
+            "Italy",
+            "Australia",
+            "Austria",
+            "Egypt",
+            "Greece",
+            "India",
+            "Iran",
+            "Iraq",
+            "Japan",
+            "Pakistan",
+            "Poland",
+            "Romania",
+            "Saudi Arabia",
+            "South Korea",
+            "Sweden",
+            "Yemen",
+            "Vietnam",
+            "Venezuela",
+            "Tunisia",
+            "Thailand",
+            "Sudan",
+            "Philippines",
+            "Morocco",
+            "Mexico",
+            "Malaysia",
+            "Libya",
+            "Jordan",
+            "Indonesia",
+            "Honduras",
+            "Ethiopia",
+            "Chile",
+            "Brazil",
+            "Algeria",
+            "Kuwait",
+            "Oman",
+            "United Arab Emirates",
+            "South Africa",
+            "Portugal",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers",
+            "Argentina",
+            "Cyprus",
+            "Bolivia",
+            "Nigeria",
+            "Peru",
+            "Ecuador"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Rafale_A_S",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [
+            "Egypt",
+            "France",
+            "Greece",
+            "India",
+            "Qatar"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Rafale_M",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [
+            "Egypt",
+            "France",
+            "Greece",
+            "India",
+            "Qatar"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Rafale_C",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [
+            "Egypt",
+            "France",
+            "Greece",
+            "India",
+            "Qatar"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Rafale_B",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1990,
+            2020
+        ],
+        "extraOperators": [
+            "Egypt",
+            "France",
+            "Greece",
+            "India",
+            "Qatar"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "A-29B",
+        "families": [
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "operational": [
+            2000,
+            2010
+        ],
+        "extraOperators": [
+            "Brazil",
+            "Chile",
+            "Ecuador",
+            "Honduras",
+            "Indonesia",
+            "Nigeria",
+            "Philippines",
+            "USA"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
 ]
