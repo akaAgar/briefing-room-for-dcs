@@ -944,5 +944,15 @@
         ],
         "lowPolly": false,
         "immovable": false
+    },
+    {
+        "type": "FlagPole",
+        "families": ["StaticStructureCivilian"],
+        "operational": [
+            1940,
+            2020
+        ],
+        "lowPolly": false,
+        "immovable": true
     }
 ]

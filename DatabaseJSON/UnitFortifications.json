@@ -560,5 +560,12 @@
         "displayName": "Warning Board: Catch Spy!",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shapeName": "biaoyu-2"
+    },
+    {
+        "_id": "646676094719c14d5651136f",
+        "type": "FlagPole",
+        "displayName": "Flag Pole",
+        "module": "TechWeaponPack",
+        "shapeName": "FlagPole"
     }
 ]
