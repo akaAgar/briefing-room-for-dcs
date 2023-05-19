@@ -1345,5 +1345,417 @@
         "extraOperators": [],
         "lowPolly": false,
         "playerControllable": false
+    },
+    {
+        "type": "Yak-52",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [
+            1970,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1C",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1CE",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "France",
+            "Spain",
+            "Iran",
+            "Iraq",
+            "Jordan",
+            "Kuwait",
+            "Libya",
+            "USAFAggressors"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Mirage-F1EE",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Spain"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Mirage-F1M-EE",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Spain"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1M-CE",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Spain"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1C-200",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "France"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1EH",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Morocco"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1CH",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Morocco"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1JA",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "France"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1CG",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Argentina"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1CZ",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "SouthAfrica"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1CJ",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Jordan"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1CK",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Kuwait"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1EQ",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Iraq",
+            "Iraq"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1ED",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Libya"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1EDA",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Qatar"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1CR",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "France"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1CT",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "France"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1B",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "France"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1BE",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Spain"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1BQ",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Iran",
+            "Iraq"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1BD",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Libya"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Mirage-F1DDA",
+        "families": [
+            "PlaneFighter",
+            "PlaneAttack",
+            "PlaneStrike"
+        ],
+        "operational": [
+            1980,
+            2020
+        ],
+        "extraOperators": [
+            "Qatar",
+            "Jordan"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
     }
 ]
