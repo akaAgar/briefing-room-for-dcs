@@ -5231,10 +5231,6 @@
                 "pylons": [
                     {
                         "CLSID": "{EFT_230GAL}",
-                        "num": 4
-                    },
-                    {
-                        "CLSID": "{EFT_230GAL}",
                         "num": 3
                     },
                     {
@@ -5242,8 +5238,8 @@
                         "num": 2
                     },
                     {
-                        "CLSID": "{EFT_230GAL}",
-                        "num": 1
+                        "CLSID": "{IAFS_ComboPak_100}",
+                        "num": 5
                     }
                 ],
                 "tasks": [
@@ -5253,8 +5249,8 @@
                     18,
                     32
                 ],
-                "name": "4 * Fuel Tank 230 gal",
-                "displayName": "4 * Fuel Tank 230 gal"
+                "name": "2 * Fuel Tank 230 gal",
+                "displayName": "2 * Fuel Tank 230 gal"
             },
             {
                 "pylons": [
@@ -5273,6 +5269,10 @@
                     {
                         "CLSID": "M261_MK151",
                         "num": 1
+                    },
+                    {
+                        "CLSID": "{IAFS_ComboPak_100}",
+                        "num": 5
                     }
                 ],
                 "tasks": [
@@ -5302,6 +5302,10 @@
                     {
                         "CLSID": "{88D18A5E-99C8-4B04-B40B-1C02F2018B6E}",
                         "num": 1
+                    },
+                    {
+                        "CLSID": "{IAFS_ComboPak_100}",
+                        "num": 5
                     }
                 ],
                 "tasks": [
@@ -5331,6 +5335,10 @@
                     {
                         "CLSID": "M261_MK151",
                         "num": 1
+                    },
+                    {
+                        "CLSID": "{IAFS_ComboPak_100}",
+                        "num": 5
                     }
                 ],
                 "tasks": [
@@ -5360,6 +5368,10 @@
                     {
                         "CLSID": "M261_MK151",
                         "num": 1
+                    },
+                    {
+                        "CLSID": "{IAFS_ComboPak_100}",
+                        "num": 5
                     }
                 ],
                 "tasks": [
@@ -5375,20 +5387,24 @@
             {
                 "pylons": [
                     {
-                        "CLSID": "{EFT_230GAL}",
+                        "CLSID": "{88D18A5E-99C8-4B04-B40B-1C02F2018B6E}",
                         "num": 4
                     },
                     {
-                        "CLSID": "{88D18A5E-99C8-4B04-B40B-1C02F2018B6E}",
+                        "CLSID": "{EFT_230GAL}",
                         "num": 3
                     },
                     {
-                        "CLSID": "{88D18A5E-99C8-4B04-B40B-1C02F2018B6E}",
+                        "CLSID": "{EFT_230GAL}",
                         "num": 2
                     },
                     {
-                        "CLSID": "{EFT_230GAL}",
+                        "CLSID": "{88D18A5E-99C8-4B04-B40B-1C02F2018B6E}",
                         "num": 1
+                    },
+                    {
+                        "CLSID": "{IAFS_ComboPak_100}",
+                        "num": 5
                     }
                 ],
                 "tasks": [
@@ -5418,6 +5434,10 @@
                     {
                         "CLSID": "{M261_OUTBOARD_AB_M151_E_M274}",
                         "num": 1
+                    },
+                    {
+                        "CLSID": "{IAFS_ComboPak_100}",
+                        "num": 5
                     }
                 ],
                 "tasks": [
@@ -5447,6 +5467,10 @@
                     {
                         "CLSID": "{M261_OUTBOARD_AB_M151_E_M257}",
                         "num": 1
+                    },
+                    {
+                        "CLSID": "{IAFS_ComboPak_100}",
+                        "num": 5
                     }
                 ],
                 "tasks": [
@@ -5476,6 +5500,10 @@
                     {
                         "CLSID": "{88D18A5E-99C8-4B04-B40B-1C02F2018B6E}",
                         "num": 1
+                    },
+                    {
+                        "CLSID": "{IAFS_ComboPak_100}",
+                        "num": 5
                     }
                 ],
                 "tasks": [
@@ -5505,6 +5533,10 @@
                     {
                         "CLSID": "{88D18A5E-99C8-4B04-B40B-1C02F2018B6E}",
                         "num": 1
+                    },
+                    {
+                        "CLSID": "{IAFS_ComboPak_100}",
+                        "num": 5
                     }
                 ],
                 "tasks": [
@@ -5516,6 +5548,237 @@
                 ],
                 "name": "2 * M261: C - M274 (6SK), D/E - M151 (6PD), 2 * Hellfire station: 4*AGM-114K",
                 "displayName": "2 * M261: C - M274 (6SK), D/E - M151 (6PD), 2 * Hellfire station: 4*AGM-114K"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "M261_MK151",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{M299_4xAGM_114L}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{M299_4xAGM_114L}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "M261_MK151",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{IAFS_ComboPak_100}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    16,
+                    30,
+                    31,
+                    18,
+                    32
+                ],
+                "name": "2 * M261: M151 (6PD), 2 * Hellfire station: 4*AGM-114L",
+                "displayName": "2 * M261: M151 (6PD), 2 * Hellfire station: 4*AGM-114L"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{M299_4xAGM_114L}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{M299_4xAGM_114L}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{M299_4xAGM_114L}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{M299_4xAGM_114L}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{IAFS_ComboPak_100}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    16,
+                    30,
+                    31,
+                    18,
+                    32
+                ],
+                "name": "4 * Hellfire station: 4*AGM-114L",
+                "displayName": "4 * Hellfire station: 4*AGM-114L"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{M299_4xAGM_114L}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{EFT_230GAL}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{EFT_230GAL}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{M299_4xAGM_114L}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{IAFS_ComboPak_100}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    16,
+                    30,
+                    31,
+                    18,
+                    32
+                ],
+                "name": "2 * Fuel Tank 230 gal, 2 * Hellfire station: 4*AGM-114L",
+                "displayName": "2 * Fuel Tank 230 gal, 2 * Hellfire station: 4*AGM-114L"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{M261_OUTBOARD_AB_M151_E_M274}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{M299_4xAGM_114L}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{M299_4xAGM_114L}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{M261_OUTBOARD_AB_M151_E_M274}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{IAFS_ComboPak_100}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    16,
+                    30,
+                    31,
+                    18,
+                    32
+                ],
+                "name": "2 * M261: A/B - M151 (6PD), E - M274 (6SK), 2 * Hellfire station: 4*AGM-114L",
+                "displayName": "2 * M261: A/B - M151 (6PD), E - M274 (6SK), 2 * Hellfire station: 4*AGM-114L"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{M261_OUTBOARD_AB_M151_E_M257}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{M299_4xAGM_114L}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{M299_4xAGM_114L}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{M261_OUTBOARD_AB_M151_E_M257}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{IAFS_ComboPak_100}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    16,
+                    30,
+                    31,
+                    18,
+                    32
+                ],
+                "name": "2 * M261: A/B - M151 (6PD), E - M257 (6IL), 2 * Hellfire station: 4*AGM-114L",
+                "displayName": "2 * M261: A/B - M151 (6PD), E - M257 (6IL), 2 * Hellfire station: 4*AGM-114L"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{M299_4xAGM_114L}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{M261_INBOARD_DE_M151_C_M257}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{M261_INBOARD_DE_M151_C_M257}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{M299_4xAGM_114L}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{IAFS_ComboPak_100}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    16,
+                    30,
+                    31,
+                    18,
+                    32
+                ],
+                "name": "2 * M261: C - M257 (6IL), D/E - M151 (6PD), 2 * Hellfire station: 4*AGM-114L",
+                "displayName": "2 * M261: C - M257 (6IL), D/E - M151 (6PD), 2 * Hellfire station: 4*AGM-114L"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{M299_4xAGM_114L}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{M261_INBOARD_DE_M151_C_M274}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{M261_INBOARD_DE_M151_C_M274}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{M299_4xAGM_114L}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{IAFS_ComboPak_100}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    16,
+                    30,
+                    31,
+                    18,
+                    32
+                ],
+                "name": "2 * M261: C - M274 (6SK), D/E - M151 (6PD), 2 * Hellfire station: 4*AGM-114L",
+                "displayName": "2 * M261: C - M274 (6SK), D/E - M151 (6PD), 2 * Hellfire station: 4*AGM-114L"
             }
         ],
         "type": "AH-64D_BLK_II",
@@ -5549,7 +5812,7 @@
                 "WorldID": 30
             }
         ],
-        "fuel": 1438,
+        "fuel": 1140,
         "flares": 60,
         "chaff": 30,
         "extraProps": [
@@ -5613,7 +5876,7 @@
             }
         ],
         "radio": {
-            "frequency": 127.5,
+            "frequency": 225,
             "modulation": 0
         },
         "ammoType": 1,
