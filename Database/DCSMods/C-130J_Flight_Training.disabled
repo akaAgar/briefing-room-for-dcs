@@ -1,7 +1,0 @@
-[GUI]
-DisplayName=C-130J Flight training
-Category=Flyable aircraft
-Description=digitalcombatsimulator.com/en/files/3309569/
-
-[Module]
-RequiredID=C130J
