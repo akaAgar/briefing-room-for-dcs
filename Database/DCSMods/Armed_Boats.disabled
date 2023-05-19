@@ -1,7 +1,0 @@
-[GUI]
-DisplayName=Armed boats
-Category=AI units
-Description=digitalcombatsimulator.com/en/files/3310537/
-
-[Module]
-RequiredID=Armed Boat
