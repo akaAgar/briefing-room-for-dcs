@@ -4,36 +4,36 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
-        "extraOperators": [
-            "Russia",
-            "USAFAggressors",
-            "Georgia",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "Hungary",
-            "Iran",
-            "Iraq",
-            "Kazakhstan",
-            "NorthKorea",
-            "Poland",
-            "Romania",
-            "Syria",
-            "Yemen",
-            "Vietnam",
-            "Sudan",
-            "Morocco",
-            "Libya",
-            "USSR",
-            "Algeria",
-            "Cuba",
-            "GDR",
-            "UnitedNationsPeacekeepers"
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Russia": [],
+            "USAFAggressors": [],
+            "Georgia": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "Hungary": [],
+            "Iran": [],
+            "Iraq": [],
+            "Kazakhstan": [],
+            "NorthKorea": [],
+            "Poland": [],
+            "Romania": [],
+            "Syria": [],
+            "Yemen": [],
+            "Vietnam": [],
+            "Sudan": [],
+            "Morocco": [],
+            "Libya": [],
+            "USSR": [],
+            "Algeria": [],
+            "Cuba": [],
+            "GDR": [],
+            "UnitedNationsPeacekeepers": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -42,36 +42,36 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
-        "extraOperators": [
-            "Russia",
-            "USAFAggressors",
-            "Georgia",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "Hungary",
-            "Iran",
-            "Iraq",
-            "Kazakhstan",
-            "NorthKorea",
-            "Poland",
-            "Romania",
-            "Syria",
-            "Yemen",
-            "Vietnam",
-            "Sudan",
-            "Morocco",
-            "Libya",
-            "USSR",
-            "Algeria",
-            "Cuba",
-            "GDR",
-            "UnitedNationsPeacekeepers"
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Russia": [],
+            "USAFAggressors": [],
+            "Georgia": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "Hungary": [],
+            "Iran": [],
+            "Iraq": [],
+            "Kazakhstan": [],
+            "NorthKorea": [],
+            "Poland": [],
+            "Romania": [],
+            "Syria": [],
+            "Yemen": [],
+            "Vietnam": [],
+            "Sudan": [],
+            "Morocco": [],
+            "Libya": [],
+            "USSR": [],
+            "Algeria": [],
+            "Cuba": [],
+            "GDR": [],
+            "UnitedNationsPeacekeepers": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -80,26 +80,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -108,26 +108,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -136,26 +136,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -164,26 +164,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -192,26 +192,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -220,26 +220,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -248,11 +248,11 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "immovable": false
     },
@@ -261,26 +261,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -289,26 +289,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -317,26 +317,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -345,26 +345,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -373,26 +373,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -401,26 +401,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -429,26 +429,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -457,26 +457,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -485,26 +485,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -513,26 +513,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -541,26 +541,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -569,26 +569,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -597,26 +597,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -625,26 +625,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -653,26 +653,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -681,26 +681,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -709,26 +709,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -737,26 +737,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -765,26 +765,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -793,26 +793,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            2010,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 2010,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -821,26 +821,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            2010,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 2010,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -849,26 +849,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            2010,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 2010,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -877,26 +877,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            2010,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 2010,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -905,26 +905,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            2010,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 2010,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -933,26 +933,26 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": [
-            2010,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Belarus",
-            "Bulgaria",
-            "China",
-            "Egypt",
-            "GDR",
-            "Greece",
-            "Iran",
-            "Kazakhstan",
-            "Russia",
-            "Slovakia",
-            "Ukraine",
-            "Venezuela",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 2010,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Iran": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Ukraine": [],
+            "Venezuela": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -961,19 +961,19 @@
         "families": [
             "VehicleSAMMedium"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [
-            "Belarus",
-            "Egypt",
-            "Finland",
-            "Georgia",
-            "Russia",
-            "Syria",
-            "Ukraine"
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Belarus": [],
+            "Egypt": [],
+            "Finland": [],
+            "Georgia": [],
+            "Russia": [],
+            "Syria": [],
+            "Ukraine": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -982,37 +982,37 @@
         "families": [
             "VehicleSAMMedium"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [
-            "Algeria",
-            "Bulgaria",
-            "China",
-            "Cuba",
-            "GDR",
-            "Egypt",
-            "Ethiopia",
-            "Georgia",
-            "Hungary",
-            "India",
-            "Indonesia",
-            "Iran",
-            "Iraq",
-            "Libya",
-            "NorthKorea",
-            "Pakistan",
-            "Poland",
-            "Romania",
-            "Russia",
-            "Slovakia",
-            "Sudan",
-            "Syria",
-            "Vietnam",
-            "Yemen",
-            "Yugoslavia"
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Algeria": [],
+            "Bulgaria": [],
+            "China": [],
+            "Cuba": [],
+            "GDR": [],
+            "Egypt": [],
+            "Ethiopia": [],
+            "Georgia": [],
+            "Hungary": [],
+            "India": [],
+            "Indonesia": [],
+            "Iran": [],
+            "Iraq": [],
+            "Libya": [],
+            "NorthKorea": [],
+            "Pakistan": [],
+            "Poland": [],
+            "Romania": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Sudan": [],
+            "Syria": [],
+            "Vietnam": [],
+            "Yemen": [],
+            "Yugoslavia": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1021,14 +1021,14 @@
         "families": [
             "VehicleSAMMedium"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [
-            "China",
-            "Pakistan"
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {
+            "China": [],
+            "Pakistan": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1037,11 +1037,11 @@
         "families": [
             "VehicleSAMMedium"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "immovable": false
     },
@@ -1050,41 +1050,41 @@
         "families": [
             "InfantryMANPADS"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Abkhazia",
-            "Belarus",
-            "Brazil",
-            "Bulgaria",
-            "Cuba",
-            "Egypt",
-            "Finland",
-            "Georgia",
-            "Hungary",
-            "India",
-            "Indonesia",
-            "Iran",
-            "Jordan",
-            "Kazakhstan",
-            "Malaysia",
-            "Mexico",
-            "Morocco",
-            "NorthKorea",
-            "Russia",
-            "Serbia",
-            "Slovakia",
-            "Slovenia",
-            "SouthKorea",
-            "SouthOssetia",
-            "Syria",
-            "Thailand",
-            "Turkey",
-            "Ukraine",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Abkhazia": [],
+            "Belarus": [],
+            "Brazil": [],
+            "Bulgaria": [],
+            "Cuba": [],
+            "Egypt": [],
+            "Finland": [],
+            "Georgia": [],
+            "Hungary": [],
+            "India": [],
+            "Indonesia": [],
+            "Iran": [],
+            "Jordan": [],
+            "Kazakhstan": [],
+            "Malaysia": [],
+            "Mexico": [],
+            "Morocco": [],
+            "NorthKorea": [],
+            "Russia": [],
+            "Serbia": [],
+            "Slovakia": [],
+            "Slovenia": [],
+            "SouthKorea": [],
+            "SouthOssetia": [],
+            "Syria": [],
+            "Thailand": [],
+            "Turkey": [],
+            "Ukraine": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1093,41 +1093,41 @@
         "families": [
             "InfantryMANPADS"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Abkhazia",
-            "Belarus",
-            "Brazil",
-            "Bulgaria",
-            "Cuba",
-            "Egypt",
-            "Finland",
-            "Georgia",
-            "Hungary",
-            "India",
-            "Indonesia",
-            "Iran",
-            "Jordan",
-            "Kazakhstan",
-            "Malaysia",
-            "Mexico",
-            "Morocco",
-            "NorthKorea",
-            "Russia",
-            "Serbia",
-            "Slovakia",
-            "Slovenia",
-            "SouthKorea",
-            "SouthOssetia",
-            "Syria",
-            "Thailand",
-            "Turkey",
-            "Ukraine",
-            "Vietnam"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Abkhazia": [],
+            "Belarus": [],
+            "Brazil": [],
+            "Bulgaria": [],
+            "Cuba": [],
+            "Egypt": [],
+            "Finland": [],
+            "Georgia": [],
+            "Hungary": [],
+            "India": [],
+            "Indonesia": [],
+            "Iran": [],
+            "Jordan": [],
+            "Kazakhstan": [],
+            "Malaysia": [],
+            "Mexico": [],
+            "Morocco": [],
+            "NorthKorea": [],
+            "Russia": [],
+            "Serbia": [],
+            "Slovakia": [],
+            "Slovenia": [],
+            "SouthKorea": [],
+            "SouthOssetia": [],
+            "Syria": [],
+            "Thailand": [],
+            "Turkey": [],
+            "Ukraine": [],
+            "Vietnam": []
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1137,12 +1137,11 @@
             "VehicleSAMLong",
             "VehicleStatic"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "immovable": false
     },
@@ -1151,12 +1150,12 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "immovable": false
-    },
+    }
 ]

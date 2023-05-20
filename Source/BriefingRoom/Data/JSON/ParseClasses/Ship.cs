@@ -8,16 +8,9 @@ namespace BriefingRoom4DCS.Data.JSON
         public string name { get; set; }
     }
 
-    public class Ship
+    public class Ship: Unit
     {
-        public string _id { get; set; }
-        public string type { get; set; }
-        public string displayName { get; set; }
         public List<Category> categories { get; set; }
-        public List<string> countries { get; set; }
-        public List<int> countriesWorldID { get; set; }
-        public string module { get; set; }
-        public string shape { get; set; }
         public int numParking { get; set; }
     }
 }

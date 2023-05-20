@@ -49,10 +49,9 @@ namespace BriefingRoom4DCS.Data
                     ID = id,
                     UIDisplayName = new LanguageString(@static.displayName),
                     DCSID = @static.type,
-                    Countries = new List<Country>{Country.ALL},
+                    Countries = new Dictionary<Country, (Template.Decade start, Template.Decade end)>{{Country.ALL, (Template.Decade.Decade1940, Template.Decade.Decade2020)}},
                     ShapeName = @static.shapeName,
-                    Families = new UnitFamily[]{UnitFamily.Cargo},
-                    Operational = new List<Template.Decade>{Template.Decade.Decade1940, Template.Decade.Decade2020},
+                    Families = new UnitFamily[]{UnitFamily.Cargo}
                 });
             }
 

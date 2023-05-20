@@ -5,11 +5,11 @@
             "HelicopterAttack",
             "HelicopterTransport"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -20,11 +20,11 @@
             "HelicopterUtility",
             "HelicopterAttack"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -33,11 +33,11 @@
         "families": [
             "HelicopterTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -46,11 +46,11 @@
         "families": [
             "HelicopterTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -59,11 +59,11 @@
         "families": [
             "HelicopterTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -72,11 +72,11 @@
         "families": [
             "HelicopterTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -85,11 +85,11 @@
         "families": [
             "HelicopterTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -98,11 +98,11 @@
         "families": [
             "HelicopterTransport"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -111,11 +111,11 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": [
-            1980,
-            2010
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2010
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -124,11 +124,11 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -137,11 +137,11 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -150,11 +150,11 @@
         "families": [
             "HelicopterUtility"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -164,11 +164,11 @@
             "HelicopterUtility",
             "HelicopterAttack"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -177,11 +177,11 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -190,11 +190,11 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -203,11 +203,11 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -216,11 +216,11 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -229,11 +229,11 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -243,11 +243,11 @@
             "HelicopterAttack",
             "HelicopterTransport"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -256,11 +256,11 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": [
-            1970,
-            1990
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 1990
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -269,11 +269,11 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": [
-            1970,
-            1990
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 1990
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -282,11 +282,11 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": [
-            1970,
-            1990
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 1990
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -295,11 +295,11 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": [
-            1970,
-            1990
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 1990
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     }

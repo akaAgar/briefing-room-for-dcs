@@ -4,10 +4,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -16,10 +16,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -28,10 +28,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -40,10 +40,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -52,10 +52,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -64,10 +64,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -76,10 +76,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -88,10 +88,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -100,10 +100,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -112,10 +112,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -124,10 +124,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -136,10 +136,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -148,10 +148,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1960,
-            1990
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 1990
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -160,10 +160,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -172,10 +172,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -184,10 +184,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -196,10 +196,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -208,10 +208,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -220,10 +220,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -232,10 +232,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -244,10 +244,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -256,10 +256,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -268,10 +268,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -280,10 +280,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1960,
-            2010
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2010
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -292,10 +292,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -304,10 +304,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -316,10 +316,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -328,10 +328,10 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -340,10 +340,10 @@
         "families": [
             "Infantry"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -352,10 +352,10 @@
         "families": [
             "Infantry"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -364,10 +364,10 @@
         "families": [
             "Infantry"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -376,10 +376,10 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -388,10 +388,10 @@
         "families": [
             "Infantry"
         ],
-        "operational": [
-            1950,
-            1990
-        ],
+        "operational": {
+            "start": 1950,
+            "end": 1990
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -400,10 +400,10 @@
         "families": [
             "Infantry"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -412,10 +412,10 @@
         "families": [
             "Infantry"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -424,10 +424,10 @@
         "families": [
             "Infantry"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -436,10 +436,10 @@
         "families": [
             "Infantry"
         ],
-        "operational": [
-            2010,
-            2020
-        ],
+        "operational": {
+            "start": 2010,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -448,10 +448,10 @@
         "families": [
             "Infantry"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -460,10 +460,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -472,10 +472,10 @@
         "families": [
             "Infantry"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -484,10 +484,10 @@
         "families": [
             "Infantry"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -496,10 +496,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -508,10 +508,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -520,10 +520,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -532,10 +532,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -544,10 +544,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -556,10 +556,10 @@
         "families": [
             "VehicleSAMShort"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -569,10 +569,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -582,10 +582,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -595,10 +595,10 @@
             "VehicleSAMLong",
             "VehicleStatic"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -608,10 +608,10 @@
             "VehicleSAMLong",
             "VehicleStatic"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -621,10 +621,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -633,10 +633,10 @@
         "families": [
             "VehicleSAMShort"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -645,10 +645,10 @@
         "families": [
             "VehicleSAMShort"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -657,10 +657,10 @@
         "families": [
             "VehicleSAMShortIR"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -669,10 +669,10 @@
         "families": [
             "VehicleSAMShortIR"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -682,10 +682,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -695,10 +695,10 @@
             "VehicleSAMLong",
             "VehicleStatic"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -708,10 +708,10 @@
             "VehicleSAMLong",
             "VehicleStatic"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -720,10 +720,10 @@
         "families": [
             "VehicleAAA"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -733,10 +733,10 @@
             "VehicleSAMMedium",
             "VehicleSAMMedium"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -745,10 +745,10 @@
         "families": [
             "VehicleAAA"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -758,10 +758,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -770,10 +770,10 @@
         "families": [
             "VehicleSAMShortIR"
         ],
-        "operational": [
-            1970,
-            2000
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2000
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -782,10 +782,10 @@
         "families": [
             "VehicleSAMShortIR"
         ],
-        "operational": [
-            1990,
-            2000
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2000
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -795,10 +795,10 @@
             "VehicleSAMLong",
             "VehicleStatic"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -807,10 +807,10 @@
         "families": [
             "VehicleSAMShortIR"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -820,10 +820,10 @@
             "VehicleSAMLong",
             "VehicleStatic"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -833,10 +833,10 @@
             "VehicleSAMLong",
             "VehicleStatic"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -845,10 +845,10 @@
         "families": [
             "VehicleSAMShort"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -858,10 +858,10 @@
             "VehicleSAMLong",
             "VehicleStatic"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -870,10 +870,10 @@
         "families": [
             "InfantryMANPADS"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -882,10 +882,10 @@
         "families": [
             "Infantry"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -894,10 +894,10 @@
         "families": [
             "Infantry"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -906,10 +906,10 @@
         "families": [
             "VehicleAAA"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -918,10 +918,10 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -930,10 +930,10 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -942,10 +942,10 @@
         "families": [
             "VehicleAAA"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -954,10 +954,10 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -966,10 +966,10 @@
         "families": [
             "VehicleAAA"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -978,10 +978,10 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -990,10 +990,10 @@
         "families": [
             "InfantryMANPADS"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1002,10 +1002,10 @@
         "families": [
             "Infantry"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1014,10 +1014,10 @@
         "families": [
             "InfantryMANPADS"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1026,10 +1026,10 @@
         "families": [
             "Infantry"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1038,10 +1038,10 @@
         "families": [
             "InfantryMANPADS"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1050,10 +1050,10 @@
         "families": [
             "VehicleEWR"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1063,10 +1063,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1076,10 +1076,10 @@
             "VehicleSAMLong",
             "VehicleStatic"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1089,10 +1089,10 @@
             "VehicleSAMLong",
             "VehicleStatic"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1101,10 +1101,10 @@
         "families": [
             "VehicleEWR"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1114,10 +1114,10 @@
             "VehicleSAMLong",
             "VehicleStatic"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1127,10 +1127,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1139,10 +1139,10 @@
         "families": [
             "VehicleEWR"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1152,10 +1152,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1165,10 +1165,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1178,10 +1178,10 @@
             "VehicleSAMLong",
             "VehicleStatic"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1191,10 +1191,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1204,10 +1204,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1216,10 +1216,10 @@
         "families": [
             "VehicleEWR"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1229,10 +1229,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1241,10 +1241,10 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1253,10 +1253,10 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1265,10 +1265,10 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1277,10 +1277,10 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1289,10 +1289,10 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1301,10 +1301,10 @@
         "families": [
             "VehicleTACAN"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1313,10 +1313,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1325,10 +1325,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1337,10 +1337,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1960,
-            2000
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2000
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1349,10 +1349,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1361,10 +1361,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1373,10 +1373,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1385,10 +1385,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1397,10 +1397,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1409,10 +1409,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1421,10 +1421,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1433,10 +1433,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1445,10 +1445,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1457,10 +1457,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1469,10 +1469,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1481,10 +1481,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1493,10 +1493,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1505,10 +1505,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1517,10 +1517,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1529,10 +1529,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1541,10 +1541,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1553,10 +1553,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1565,10 +1565,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1577,10 +1577,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1589,10 +1589,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1601,10 +1601,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1613,10 +1613,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1625,10 +1625,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1637,10 +1637,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1649,10 +1649,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            2020,
-            2020
-        ],
+        "operational": {
+            "start": 2020,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1661,10 +1661,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1673,10 +1673,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1950,
-            2020
-        ],
+        "operational": {
+            "start": 1950,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1685,10 +1685,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1697,10 +1697,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1709,10 +1709,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1721,10 +1721,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1733,10 +1733,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1745,10 +1745,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1757,10 +1757,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1769,10 +1769,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1781,10 +1781,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1793,10 +1793,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1805,10 +1805,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1817,10 +1817,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1829,10 +1829,10 @@
         "families": [
             "Infantry"
         ],
-        "operational": [
-            1950,
-            2020
-        ],
+        "operational": {
+            "start": 1950,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1841,10 +1841,10 @@
         "families": [
             "Infantry"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1853,10 +1853,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1950,
-            2020
-        ],
+        "operational": {
+            "start": 1950,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1865,10 +1865,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1877,10 +1877,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1889,10 +1889,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1901,10 +1901,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1913,10 +1913,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1925,10 +1925,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1937,10 +1937,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1949,10 +1949,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1961,10 +1961,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -1973,10 +1973,10 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1985,10 +1985,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -1997,10 +1997,10 @@
         "families": [
             "VehicleMissile"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2009,10 +2009,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2021,10 +2021,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2033,10 +2033,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2045,10 +2045,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2057,10 +2057,10 @@
         "families": [
             "VehicleAAA"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2069,10 +2069,10 @@
         "families": [
             "VehicleAAA"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2081,10 +2081,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2093,10 +2093,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2106,10 +2106,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2119,10 +2119,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2132,10 +2132,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2145,10 +2145,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2157,10 +2157,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1940,
-            1960
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1960
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2169,10 +2169,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1940,
-            1950
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1950
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2181,10 +2181,10 @@
         "families": [
             "VehicleEWR"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2193,10 +2193,10 @@
         "families": [
             "VehicleEWR"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2205,10 +2205,10 @@
         "families": [
             "VehicleEWR"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2217,10 +2217,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2230,10 +2230,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1950,
-            2020
-        ],
+        "operational": {
+            "start": 1950,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2243,10 +2243,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1950,
-            2020
-        ],
+        "operational": {
+            "start": 1950,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2256,10 +2256,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1950,
-            2020
-        ],
+        "operational": {
+            "start": 1950,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2269,10 +2269,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2282,10 +2282,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1950,
-            2020
-        ],
+        "operational": {
+            "start": 1950,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2295,10 +2295,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1950,
-            2020
-        ],
+        "operational": {
+            "start": 1950,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2307,10 +2307,10 @@
         "families": [
             "VehicleAAA"
         ],
-        "operational": [
-            1950,
-            1990
-        ],
+        "operational": {
+            "start": 1950,
+            "end": 1990
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2319,10 +2319,10 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": [
-            1950,
-            2020
-        ],
+        "operational": {
+            "start": 1950,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2331,10 +2331,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2343,10 +2343,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            2010,
-            2020
-        ],
+        "operational": {
+            "start": 2010,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2355,10 +2355,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1950,
-            2020
-        ],
+        "operational": {
+            "start": 1950,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2367,10 +2367,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            2010,
-            2020
-        ],
+        "operational": {
+            "start": 2010,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2379,10 +2379,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2391,10 +2391,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2403,10 +2403,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2415,10 +2415,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2427,10 +2427,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1950,
-            2020
-        ],
+        "operational": {
+            "start": 1950,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2439,10 +2439,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2452,10 +2452,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2465,10 +2465,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2478,10 +2478,10 @@
             "VehicleSAMMedium",
             "VehicleStatic"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2490,10 +2490,10 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2502,10 +2502,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1960,
-            1990
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 1990
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2514,10 +2514,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1940,
-            1960
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1960
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2526,10 +2526,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1970,
-            2000
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2000
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2538,10 +2538,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2550,10 +2550,10 @@
         "families": [
             "VehicleMissile"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2562,10 +2562,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2574,10 +2574,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2586,10 +2586,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2598,10 +2598,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2610,10 +2610,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2622,10 +2622,10 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2634,10 +2634,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1940,
-            1950
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1950
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2646,10 +2646,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2658,10 +2658,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2670,10 +2670,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2682,10 +2682,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2694,10 +2694,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2706,10 +2706,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1940,
-            1950
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1950
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2718,10 +2718,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2730,10 +2730,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2742,10 +2742,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2754,10 +2754,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2766,10 +2766,10 @@
         "families": [
             "VehicleSAMShort"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2778,10 +2778,10 @@
         "families": [
             "VehicleSAMShortIR"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2790,10 +2790,10 @@
         "families": [
             "VehicleEWR"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2802,10 +2802,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2814,10 +2814,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1950,
-            2020
-        ],
+        "operational": {
+            "start": 1950,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2826,10 +2826,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2838,10 +2838,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2850,10 +2850,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2862,10 +2862,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2874,10 +2874,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2886,10 +2886,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2898,10 +2898,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2910,10 +2910,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2922,10 +2922,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2934,10 +2934,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2946,10 +2946,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2958,10 +2958,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2970,10 +2970,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -2982,10 +2982,10 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -2994,10 +2994,10 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -3006,10 +3006,10 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -3018,10 +3018,10 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -3030,10 +3030,10 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -3042,10 +3042,10 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -3054,10 +3054,10 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -3066,10 +3066,10 @@
         "families": [
             "Infantry"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3078,10 +3078,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -3090,10 +3090,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -3102,10 +3102,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1940,
-            1950
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1950
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3114,10 +3114,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3126,10 +3126,10 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -3138,10 +3138,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -3150,10 +3150,10 @@
         "families": [
             "VehicleEWR"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3162,10 +3162,10 @@
         "families": [
             "VehicleEWR"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3174,10 +3174,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3186,10 +3186,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3198,10 +3198,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1940,
-            1950
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1950
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3210,10 +3210,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1940,
-            1950
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1950
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3222,10 +3222,10 @@
         "families": [
             "Infantry"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3234,10 +3234,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1940,
-            1950
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1950
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3246,10 +3246,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1940,
-            1950
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1950
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3258,10 +3258,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3270,10 +3270,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1940,
-            1960
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1960
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3282,10 +3282,10 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -3294,10 +3294,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -3306,10 +3306,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1940,
-            1960
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1960
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3318,10 +3318,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3330,10 +3330,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3342,10 +3342,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3354,10 +3354,10 @@
         "families": [
             "Infantry"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3366,10 +3366,10 @@
         "families": [
             "VehicleMBT"
         ],
-        "operational": [
-            1940,
-            1950
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1950
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3378,10 +3378,10 @@
         "families": [
             "VehicleAPC"
         ],
-        "operational": [
-            1940,
-            1980
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1980
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3390,10 +3390,10 @@
         "families": [
             "VehicleArtillery"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3402,10 +3402,10 @@
         "families": [
             "VehicleTransport"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -3414,10 +3414,10 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -3426,10 +3426,10 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -3438,10 +3438,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -3450,10 +3450,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -3462,10 +3462,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": true
     },
@@ -3474,10 +3474,10 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
         "lowPolly": false,
         "immovable": true
     }

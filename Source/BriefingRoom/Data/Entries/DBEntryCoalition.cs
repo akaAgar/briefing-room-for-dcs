@@ -69,9 +69,9 @@ namespace BriefingRoom4DCS.Data
             {
                 validTemplates[country] = (
                         from template in Database.GetAllEntries<DBEntryTemplate>()
-                        where families.Contains(template.Family) && template.Countries.Contains(country)
+                        where families.Contains(template.Family) && template.Countries.ContainsKey(country)
                             && (string.IsNullOrEmpty(template.Module) || unitMods.Contains(template.Module, StringComparer.InvariantCultureIgnoreCase) || DBEntryDCSMod.coreMods.Contains(template.Module, StringComparer.InvariantCultureIgnoreCase))
-                            && (template.Operational[0] <= decade) && (template.Operational[1] >= decade)
+                            && (template.Countries[country].start <= decade) && (template.Countries[country].end >= decade)
                         select template
                     ).Distinct().ToList();
             }
@@ -203,9 +203,9 @@ namespace BriefingRoom4DCS.Data
             foreach (Country country in Countries)
                 validUnits[country] = (
                         from unit in Database.GetAllEntries<DBEntryJSONUnit>()
-                        where unit.Families.Intersect(families).ToList().Count > 0 && unit.Countries.Contains(country)
+                        where unit.Families.Intersect(families).ToList().Count > 0 && unit.Countries.ContainsKey(country)
                             && (string.IsNullOrEmpty(unit.Module) || unitMods.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase) || DBEntryDCSMod.coreMods.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase))
-                            && (unit.Operational[0] <= decade) && (unit.Operational[1] >= decade)
+                            && (unit.Countries[country].start <= decade) && (unit.Countries[country].end >= decade)
                             && (!unit.lowPolly || allowLowPolly)
                         select unit.ID
                     ).Distinct().ToList();

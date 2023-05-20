@@ -51,19 +51,15 @@ namespace BriefingRoom4DCS.Data
                 }
                 var infoData = infoDataDict[id];
 
-                var countryList = ship.countries.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)).ToList();
-                countryList.AddRange(infoData.extraOperators.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)));
-
                 itemMap.Add(id, new DBEntryShip
                 {
                     ID = id,
                     UIDisplayName = new LanguageString(ship.displayName),
                     DCSID = ship.type,
-                    Countries = ship.countries.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)).ToList(),
+                    Countries = GetOperationalCountries(ship, infoData),
                     Module = ship.module,
                     Shape = ship.shape,
                     Families = infoData.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
-                    Operational = infoData.operational.Select(x => (Template.Decade)x).ToList(),
                     lowPolly = infoData.lowPolly,
                     ParkingSpots = ship.numParking
                 });

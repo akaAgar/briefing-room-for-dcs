@@ -4,10 +4,10 @@
         "families": [
             "Cargo"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -16,10 +16,10 @@
         "families": [
             "Cargo"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -28,10 +28,10 @@
         "families": [
             "Cargo"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -40,10 +40,10 @@
         "families": [
             "Cargo"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -52,10 +52,10 @@
         "families": [
             "Cargo"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -64,10 +64,10 @@
         "families": [
             "Cargo"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -76,10 +76,10 @@
         "families": [
             "Cargo"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -88,10 +88,10 @@
         "families": [
             "Cargo"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -100,10 +100,10 @@
         "families": [
             "Cargo"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -112,10 +112,10 @@
         "families": [
             "Cargo"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -124,10 +124,10 @@
         "families": [
             "Cargo"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -136,10 +136,10 @@
         "families": [
             "Cargo"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -148,10 +148,10 @@
         "families": [
             "Cargo"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -160,10 +160,10 @@
         "families": [
             "Cargo"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -172,10 +172,10 @@
         "families": [
             "Cargo"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -184,10 +184,10 @@
         "families": [
             "Cargo"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     }

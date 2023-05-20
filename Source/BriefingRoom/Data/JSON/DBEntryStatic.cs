@@ -58,11 +58,9 @@ namespace BriefingRoom4DCS.Data
                     ID = id,
                     UIDisplayName = new LanguageString(@static.displayName),
                     DCSID = @static.type,
-                    Countries = new List<Country>{Country.ALL},
+                    Countries = new Dictionary<Country, (Template.Decade start, Template.Decade end)>{{Country.ALL, ((Template.Decade)supportInfo.operational.start, (Template.Decade)supportInfo.operational.end)}},
                     ShapeName = @static.shapeName,
-
                     Families = supportInfo.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
-                    Operational = supportInfo.operational.Select(x => (Template.Decade)x).ToList(),
                     lowPolly = supportInfo.lowPolly,
                     ParkingSpots = @static.numParking
                 });

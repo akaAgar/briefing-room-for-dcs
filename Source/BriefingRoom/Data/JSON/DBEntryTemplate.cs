@@ -32,11 +32,9 @@ namespace BriefingRoom4DCS.Data
         
         internal string DCSCategory { get; init; }
         internal string Type { get; init; }
-        internal List<Country> Countries { get; init; }
+        internal Dictionary<Country, (Decade start, Decade end)> Countries { get; init; }
         internal List<DBEntryTemplateUnit> Units { get; init; }
         internal UnitFamily Family {get; init;}
-
-        internal List<Decade> Operational { get; init; }
         internal string Module { get; init; }
 
         protected override bool OnLoad(string o)
@@ -59,16 +57,15 @@ namespace BriefingRoom4DCS.Data
                     continue;
                 }
                 var supportInfo = supportData[id];
-                var countryList = new List<Country>{(Country)template.country};
-                countryList.AddRange(supportInfo.extraOperators.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)));
+                var defaultOperational = (start: (Decade)supportInfo.operational.Item1, end: (Decade)supportInfo.operational.Item2);
+                var extraCountries = supportInfo.extraOperators.ToDictionary(x => (Country)Enum.Parse(typeof(Country), x.Key.Replace(" ", ""), true), x => x.Value.Count > 0 ? (start: (Decade)x.Value[0], end: (Decade)x.Value[1]) : defaultOperational);
                 itemMap.Add(id, new DBEntryTemplate
                 {
                     ID = id,
                     UIDisplayName = new LanguageString(template.name),
                     Type = template.type,
-                    Countries = countryList.Distinct().ToList(),
+                    Countries = extraCountries,
                     Family = (UnitFamily)Enum.Parse(typeof(UnitFamily), supportInfo.family, true),
-                    Operational = supportInfo.operational.Select(x => (Decade)x).ToList(),
                     Units = template.units.Select(x => new DBEntryTemplateUnit {
                         DCoordinates = new Coordinates(x.dx, x.dy),
                         DCSID = x.name,

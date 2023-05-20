@@ -40,10 +40,20 @@ namespace BriefingRoom4DCS.Data.JSON
     {
         public string type { get; set; }
         public List<string> families { get; set; } = new List<string>();
-        public List<int> operational { get; set; } = new List<int>();
-        public List<string> extraOperators { get; set; } = new List<string>();
+        public (int start, int end) operational { get; set; } = (start: 1940, end: 2020);
+        public Dictionary<string, List<int>> extraOperators { get; set; } = new Dictionary<string, List<int>>();
         public bool lowPolly { get; set; }
         public bool immovable { get; set; }
         public bool playerControllable { get; set; }
+    }
+
+    public class Unit: MongoBase
+    {
+        public string type { get; set; }
+        public List<string> countries { get; set; }
+        public List<int> countriesWorldID { get; set; }
+        public string displayName { get; set; }
+        public string module { get; set; }
+        public string shape { get; set; }
     }
 }

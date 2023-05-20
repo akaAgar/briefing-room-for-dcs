@@ -31,13 +31,10 @@ namespace BriefingRoom4DCS.Data.JSON
         public int modulation { get; set; }
     }
 
-    public class Aircraft
+    public class Aircraft: Unit
     {
-        public string _id { get; set; }
         public Dictionary<string, List<string>> paintSchemes { get; set; }
         public List<Payload> payloadPresets { get; set; }
-        public string type { get; set; }
-        public string displayName { get; set; }
         public List<Task> tasks { get; set; }
         public double fuel { get; set; }
         public int flares { get; set; }
@@ -45,16 +42,12 @@ namespace BriefingRoom4DCS.Data.JSON
         public Radio radio { get; set; }
         public double maxAlt { get; set; }
         public double cruiseSpeed { get; set; }
-        public List<string> countries { get; set; }
-        public List<int> countriesWorldID { get; set; }
         public List<PanelRadio> panelRadio { get; set; }
         public List<ExtraProp> extraProps { get; set; }
         public bool? EPLRS { get; set; }
-        public string module { get; set; }
         public int? ammoType { get; set; }
         public bool? inheriteCommonCallnames { get; set; }
         public Dictionary<string, List<List<string>>> specificCallnames { get; set; }
-        public string shape { get; set; }
         public double height { get; set; }
         public double width { get; set; }
         public double length { get; set; }

@@ -89,8 +89,7 @@ namespace BriefingRoom4DCS.Data
                 }
                 var supportInfo = supportData[id];
 
-                var countryList = aircraft.countries.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)).ToList();
-                countryList.AddRange(supportInfo.extraOperators.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)));
+
 
                 itemMap.Add(id, new DBEntryAircraft
                 {
@@ -98,7 +97,7 @@ namespace BriefingRoom4DCS.Data
                     UIDisplayName = new LanguageString(aircraft.displayName),
                     DCSID = aircraft.type,
                     Liveries = aircraft.paintSchemes.ToDictionary(pair => (Country)Enum.Parse(typeof(Country), pair.Key.Replace(" ", ""), true), pair => pair.Value),
-                    Countries = countryList,
+                    Countries = GetOperationalCountries(aircraft, supportInfo),
                     Module = aircraft.module,
                     Tasks = aircraft.tasks.Where(x => x is not null).Select(x => (DCSTask)x.WorldID).ToList(),
                     Fuel = aircraft.fuel,
@@ -129,7 +128,6 @@ namespace BriefingRoom4DCS.Data
                     Length = aircraft.length,
                     PlayerControllable = supportInfo.playerControllable,
                     Families = supportInfo.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
-                    Operational = supportInfo.operational.Select(x => (Decade)x).ToList(),
                     lowPolly = supportInfo.lowPolly
                 });
 

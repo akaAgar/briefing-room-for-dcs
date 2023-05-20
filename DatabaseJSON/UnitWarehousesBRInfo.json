@@ -4,10 +4,10 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -16,10 +16,10 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -28,10 +28,10 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -40,10 +40,10 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -52,10 +52,10 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     }

@@ -4,10 +4,10 @@
         "families": [
             "ShipSpeedboat"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -16,10 +16,10 @@
         "families": [
             "ShipCarrierCATOBAR"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -29,10 +29,10 @@
             "ShipFrigate",
             "ShipCarrierSTOVL"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -42,10 +42,10 @@
             "ShipCruiser",
             "ShipCarrierSTOVL"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -54,10 +54,10 @@
         "families": [
             "ShipFrigate"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -66,10 +66,10 @@
         "families": [
             "ShipCarrierSTOBAR"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -78,10 +78,10 @@
         "families": [
             "ShipFrigate"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -91,10 +91,10 @@
             "ShipCruiser",
             "ShipCarrierSTOVL"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -104,10 +104,10 @@
             "ShipFrigate",
             "ShipCarrierSTOVL"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -117,10 +117,10 @@
             "ShipCruiser",
             "ShipCarrierSTOVL"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -129,10 +129,10 @@
         "families": [
             "ShipFrigate"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -141,10 +141,10 @@
         "families": [
             "ShipTransport"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -153,10 +153,10 @@
         "families": [
             "ShipTransport"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -165,17 +165,22 @@
         "families": [
             "ShipTransport"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
     {
         "type": "ZWEZDNY",
-        "families": ["ShipTransport"],
-        "operational": [1960, 2020],
+        "families": [
+            "ShipTransport"
+        ],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
         "lowPolly": true,
         "immovable": false
     },
@@ -184,10 +189,10 @@
         "families": [
             "ShipSubmarine"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -196,10 +201,10 @@
         "families": [
             "ShipSubmarine"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -208,10 +213,10 @@
         "families": [
             "ShipSubmarine"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -220,10 +225,10 @@
         "families": [
             "ShipCarrierSTOBAR"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -233,10 +238,10 @@
             "ShipFrigate",
             "ShipCarrierSTOVL"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -245,10 +250,10 @@
         "families": [
             "ShipTransport"
         ],
-        "operational": [
-            1950,
-            2020
-        ],
+        "operational": {
+            "start": 1950,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -257,10 +262,10 @@
         "families": [
             "ShipCarrierSTOVL"
         ],
-        "operational": [
-            1970,
-            2010
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2010
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -270,10 +275,10 @@
             "ShipFrigate",
             "ShipCarrierSTOVL"
         ],
-        "operational": [
-            1970,
-            1990
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 1990
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -283,10 +288,10 @@
             "ShipFrigate",
             "ShipCarrierSTOVL"
         ],
-        "operational": [
-            1970,
-            1990
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 1990
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -296,10 +301,10 @@
             "ShipFrigate",
             "ShipCarrierSTOVL"
         ],
-        "operational": [
-            1970,
-            1990
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 1990
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -309,10 +314,10 @@
             "ShipFrigate",
             "ShipCarrierSTOVL"
         ],
-        "operational": [
-            1970,
-            2010
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2010
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -322,10 +327,10 @@
             "ShipFrigate",
             "ShipCarrierSTOVL"
         ],
-        "operational": [
-            1970,
-            1990
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 1990
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -334,7 +339,10 @@
         "families": [
             "ShipTransport"
         ],
-        "operational": [2000, 2020],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -343,10 +351,10 @@
         "families": [
             "ShipSubmarine"
         ],
-        "operational": [
-            1940,
-            1970
-        ],
+        "operational": {
+            "start": 1940,
+            "end": 1970
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -356,10 +364,10 @@
             "ShipTransport",
             "ShipCarrierSTOVL"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -369,10 +377,10 @@
             "ShipTransport",
             "ShipCarrierSTOVL"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -381,10 +389,10 @@
         "families": [
             "ShipFrigate"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -393,10 +401,10 @@
         "families": [
             "ShipFrigate"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -405,10 +413,10 @@
         "families": [
             "ShipCarrierCATOBAR"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -417,10 +425,10 @@
         "families": [
             "ShipCarrierCATOBAR"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -429,10 +437,10 @@
         "families": [
             "ShipCarrierCATOBAR"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -441,10 +449,10 @@
         "families": [
             "ShipCarrierCATOBAR"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -453,10 +461,10 @@
         "families": [
             "ShipCarrierCATOBAR"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -466,10 +474,10 @@
             "ShipCruiser",
             "ShipCarrierSTOVL"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -478,10 +486,10 @@
         "families": [
             "ShipCarrierSTOVL"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -491,10 +499,10 @@
             "ShipFrigate",
             "ShipCarrierSTOVL"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -504,10 +512,10 @@
             "ShipFrigate",
             "ShipCarrierSTOVL"
         ],
-        "operational": [
-            2010,
-            2020
-        ],
+        "operational": {
+            "start": 2010,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -516,10 +524,10 @@
         "families": [
             "ShipFrigate"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -528,10 +536,10 @@
         "families": [
             "ShipSubmarine"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -540,10 +548,10 @@
         "families": [
             "ShipCarrierSTOVL"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     },
@@ -552,10 +560,10 @@
         "families": [
             "ShipCarrierCATOBAR"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
         "lowPolly": false,
         "immovable": false
     }

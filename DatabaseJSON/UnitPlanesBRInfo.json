@@ -5,11 +5,11 @@
             "PlaneStrike",
             "PlaneSEAD"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -19,11 +19,11 @@
             "PlaneStrike",
             "PlaneSEAD"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -35,11 +35,11 @@
             "PlaneStrike",
             "PlaneCATOBAR"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -51,11 +51,11 @@
             "PlaneStrike",
             "PlaneCATOBAR"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -67,11 +67,11 @@
             "PlaneStrike",
             "PlaneCATOBAR"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -80,11 +80,11 @@
         "families": [
             "PlaneBomber"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -95,11 +95,11 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": [
-            1960,
-            2010
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1960,
+            "end": 2010
+        },
+        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -108,11 +108,11 @@
         "families": [
             "PlaneBomber"
         ],
-        "operational": [
-            1950,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1950,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -123,11 +123,11 @@
             "PlaneStrike",
             "PlaneSEAD"
         ],
-        "operational": [
-            1980,
-            1990
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 1990
+        },
+        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -136,11 +136,11 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -149,11 +149,11 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": true
     },
@@ -163,11 +163,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -177,11 +177,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -192,11 +192,11 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -206,11 +206,11 @@
             "PlaneFighter",
             "PlaneSTOBAR"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -219,11 +219,11 @@
         "families": [
             "PlaneInterceptor"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -232,11 +232,11 @@
         "families": [
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -246,11 +246,11 @@
             "PlaneFighter",
             "PlaneSEAD"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -259,11 +259,11 @@
         "families": [
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -272,11 +272,11 @@
         "families": [
             "PlaneInterceptor"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -285,11 +285,11 @@
         "families": [
             "PlaneBomber"
         ],
-        "operational": [
-            1950,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1950,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -299,11 +299,11 @@
             "PlaneStrike",
             "PlaneSEAD"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -312,11 +312,11 @@
         "families": [
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -325,11 +325,11 @@
         "families": [
             "PlaneBomber"
         ],
-        "operational": [
-            1950,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1950,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -338,11 +338,11 @@
         "families": [
             "PlaneBomber"
         ],
-        "operational": [
-            1980,
-            2010
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2010
+        },
+        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -351,11 +351,11 @@
         "families": [
             "PlaneBomber"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -365,11 +365,11 @@
             "PlaneCATOBAR",
             "PlaneTransport"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -379,11 +379,11 @@
             "PlaneTankerBasket",
             "PlaneCATOBAR"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -394,11 +394,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -407,11 +407,11 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -421,11 +421,11 @@
             "PlaneStrike",
             "PlaneFighter"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -434,11 +434,11 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -447,11 +447,11 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -460,11 +460,11 @@
         "families": [
             "PlaneBomber"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -473,11 +473,11 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [
-            1950,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1950,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -486,11 +486,11 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -499,11 +499,11 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -512,11 +512,11 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -525,11 +525,11 @@
         "families": [
             "PlaneAWACS"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -538,11 +538,11 @@
         "families": [
             "PlaneAWACS"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -551,11 +551,11 @@
         "families": [
             "PlaneTankerBoom"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -565,11 +565,11 @@
             "PlaneAWACS",
             "PlaneCATOBAR"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -578,11 +578,11 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -593,11 +593,11 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -608,11 +608,11 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -623,11 +623,11 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -638,11 +638,11 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -651,11 +651,11 @@
         "families": [
             "PlaneDrone"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -664,11 +664,11 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -677,11 +677,11 @@
         "families": [
             "PlaneTankerBoom"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -692,11 +692,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -707,11 +707,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -722,11 +722,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -737,11 +737,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -752,11 +752,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -767,11 +767,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1940,
-            1950
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1940,
+            "end": 1950
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -782,11 +782,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1940,
-            1950
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1940,
+            "end": 1950
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -797,11 +797,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1940,
-            1950
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1940,
+            "end": 1950
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -812,11 +812,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1940,
-            1950
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1940,
+            "end": 1950
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -827,11 +827,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1940,
-            1950
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1940,
+            "end": 1950
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -841,11 +841,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -855,11 +855,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1940,
-            1950
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1940,
+            "end": 1950
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -868,11 +868,11 @@
         "families": [
             "PlaneAttack"
         ],
-        "operational": [
-            1970,
-            2000
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 2000
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -881,11 +881,11 @@
         "families": [
             "PlaneAttack"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -894,11 +894,11 @@
         "families": [
             "PlaneAttack"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -909,11 +909,11 @@
             "PlaneAttack",
             "PlaneFighter"
         ],
-        "operational": [
-            1970,
-            2000
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 2000
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -925,11 +925,11 @@
             "PlaneFighter",
             "PlaneSEAD"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -938,11 +938,11 @@
         "families": [
             "PlaneTankerBasket"
         ],
-        "operational": [
-            1960,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1960,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -951,11 +951,11 @@
         "families": [
             "PlaneTankerBasket"
         ],
-        "operational": [
-            1950,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1950,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -964,11 +964,11 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -977,11 +977,11 @@
         "families": [
             "PlaneAttack"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -990,11 +990,11 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1005,11 +1005,11 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1018,11 +1018,11 @@
         "families": [
             "PlaneAWACS"
         ],
-        "operational": [
-            2010,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 2010,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1031,11 +1031,11 @@
         "families": [
             "PlaneDrone"
         ],
-        "operational": [
-            2010,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 2010,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1044,11 +1044,11 @@
         "families": [
             "PlaneBomber"
         ],
-        "operational": [
-            1980,
-            1990
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 1990
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1057,11 +1057,11 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1072,11 +1072,11 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": [
-            1990,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1990,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1085,11 +1085,11 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [
-            1940,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1940,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1098,11 +1098,11 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1113,11 +1113,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1950,
-            1970
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1950,
+            "end": 1970
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1129,11 +1129,11 @@
             "PlaneStrike",
             "PlaneCATOBAR"
         ],
-        "operational": [
-            1980,
-            2000
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2000
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1145,11 +1145,11 @@
             "PlaneStrike",
             "PlaneCATOBAR"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1161,11 +1161,11 @@
             "PlaneStrike",
             "PlaneCATOBAR"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1174,11 +1174,11 @@
         "families": [
             "VehicleSAMMedium"
         ],
-        "operational": [
-            1960,
-            1990
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1960,
+            "end": 1990
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1189,11 +1189,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1940,
-            1950
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1940,
+            "end": 1950
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1203,11 +1203,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1217,11 +1217,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1232,11 +1232,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1245,11 +1245,11 @@
         "families": [
             "PlaneAttack"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1258,11 +1258,11 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1272,11 +1272,11 @@
             "PlaneDrone",
             "PlaneStrike"
         ],
-        "operational": [
-            2000,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 2000,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1285,11 +1285,11 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [
-            1950,
-            1970
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1950,
+            "end": 1970
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1298,11 +1298,11 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [
-            1950,
-            1970
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1950,
+            "end": 1970
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1311,11 +1311,11 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [
-            1970,
-            1990
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 1990
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1325,11 +1325,11 @@
             "PlaneStrike",
             "PlaneSEAD"
         ],
-        "operational": [
-            2010,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 2010,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1338,11 +1338,11 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [
-            1940,
-            1940
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1940,
+            "end": 1940
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1351,11 +1351,11 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1970,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1366,11 +1366,11 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1381,20 +1381,20 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "France",
-            "Spain",
-            "Iran",
-            "Iraq",
-            "Jordan",
-            "Kuwait",
-            "Libya",
-            "USAFAggressors"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "France": [],
+            "Spain": [],
+            "Iran": [],
+            "Iraq": [],
+            "Jordan": [],
+            "Kuwait": [],
+            "Libya": [],
+            "USAFAggressors": []
+        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1405,13 +1405,13 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Spain"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Spain": []
+        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1422,13 +1422,13 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Spain"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Spain": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1439,13 +1439,13 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Spain"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Spain": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1456,13 +1456,13 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "France"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "France": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1473,13 +1473,13 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Morocco"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Morocco": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1490,13 +1490,13 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Morocco"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Morocco": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1507,13 +1507,13 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "France"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "France": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1524,13 +1524,13 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Argentina"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Argentina": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1541,13 +1541,13 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "SouthAfrica"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "SouthAfrica": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1558,13 +1558,13 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Jordan"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Jordan": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1575,13 +1575,13 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Kuwait"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Kuwait": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1592,14 +1592,14 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Iraq",
-            "Iraq"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Iraq": [],
+            "Iraq": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1610,13 +1610,13 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Libya"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Libya": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1627,13 +1627,13 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Qatar"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Qatar": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1644,13 +1644,13 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "France"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "France": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1661,13 +1661,13 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "France"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "France": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1678,13 +1678,13 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "France"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "France": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1695,13 +1695,13 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Spain"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Spain": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1712,14 +1712,14 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Iran",
-            "Iraq"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Iran": [],
+            "Iraq": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1730,13 +1730,13 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Libya"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Libya": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1747,14 +1747,14 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [
-            1980,
-            2020
-        ],
-        "extraOperators": [
-            "Qatar",
-            "Jordan"
-        ],
+        "operational": {
+            "start": 1980,
+            "end": 2020
+        },
+        "extraOperators": {
+            "Qatar": [],
+            "Jordan": []
+        },
         "lowPolly": false,
         "playerControllable": false
     }
