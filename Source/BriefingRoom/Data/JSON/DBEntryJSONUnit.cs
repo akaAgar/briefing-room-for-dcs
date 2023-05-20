@@ -65,7 +65,7 @@ namespace BriefingRoom4DCS.Data
 
         internal static Dictionary<Country, (Decade start, Decade end)> GetOperationalCountries(Unit unit, BRInfo supportInfo)
         {
-            var defaultOperational = (start: (Decade)supportInfo.operational.Item1, end: (Decade)supportInfo.operational.Item2);
+            var defaultOperational = (start: (Decade)supportInfo.operational[0], end: (Decade)supportInfo.operational[1]);
             var countryList = unit.countries.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)).ToDictionary(x => x, x => defaultOperational);
             var extraCountries = supportInfo.extraOperators.ToDictionary(x => (Country)Enum.Parse(typeof(Country), x.Key.Replace(" ", ""), true), x => x.Value.Count > 0 ? (start: (Decade)x.Value[0], end: (Decade)x.Value[1]) : defaultOperational);
             return countryList.Concat(extraCountries).GroupBy(d => d.Key).ToDictionary(x => x.Key, x => x.Last().Value);

@@ -4,10 +4,7 @@
         "families": [
             "FOB"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -16,10 +13,7 @@
         "families": [
             "FOB"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -28,10 +22,7 @@
         "families": [
             "FOB"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -40,10 +31,7 @@
         "families": [
             "StaticStructureOffshore"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -52,10 +40,7 @@
         "families": [
             "StaticStructureOffshore"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -64,10 +49,7 @@
         "families": [
             "FOB"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     }

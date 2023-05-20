@@ -4,10 +4,7 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -16,10 +13,7 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -28,10 +22,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -40,10 +31,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -52,10 +40,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -64,10 +49,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -76,10 +58,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -88,10 +67,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -100,10 +76,7 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -112,10 +85,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -124,10 +94,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -136,10 +103,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -148,10 +112,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -160,10 +121,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -172,10 +130,7 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -184,10 +139,7 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -196,10 +148,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -208,10 +157,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -220,10 +166,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -232,10 +175,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -244,10 +184,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -256,10 +193,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -268,10 +202,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -280,10 +211,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -292,10 +220,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -304,10 +229,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -316,10 +238,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -328,10 +247,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -340,10 +256,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -352,10 +265,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -364,10 +274,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -376,10 +283,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -388,10 +292,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -400,10 +301,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -412,10 +310,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -424,10 +319,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -436,10 +328,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -448,10 +337,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -460,10 +346,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -472,10 +355,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -484,10 +364,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -496,10 +373,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -508,10 +382,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -520,10 +391,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -532,10 +400,7 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -544,10 +409,7 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -556,10 +418,7 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -568,10 +427,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -580,10 +436,7 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -592,10 +445,7 @@
         "families": [
             "StaticStructureOffshore"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -604,10 +454,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -616,10 +463,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -628,10 +472,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -640,10 +481,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -652,10 +490,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -664,10 +499,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -676,10 +508,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -688,10 +517,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -700,10 +526,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -712,10 +535,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -724,10 +544,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -736,10 +553,7 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -748,10 +562,7 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -760,10 +571,7 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -772,10 +580,7 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -784,10 +589,7 @@
         "families": [
             "StaticStructureMilitary"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -796,10 +598,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -808,10 +607,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -820,10 +616,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -832,10 +625,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -844,10 +634,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -856,10 +643,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -868,10 +652,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -880,10 +661,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -892,10 +670,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -904,10 +679,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -916,10 +688,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -928,10 +697,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -940,10 +706,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -952,10 +715,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -964,10 +724,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -976,10 +733,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -988,10 +742,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -1000,10 +751,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -1012,10 +760,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -1024,10 +769,7 @@
         "families": [
             "StaticStructureOffshore"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -1036,10 +778,7 @@
         "families": [
             "StaticStructureOffshore"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -1048,10 +787,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -1060,10 +796,7 @@
         "families": [
             "StaticStructureProduction"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -1072,10 +805,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -1084,10 +814,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -1096,10 +823,7 @@
         "families": [
             "StaticStructureCivilian"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": true
     }

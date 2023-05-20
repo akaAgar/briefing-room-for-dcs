@@ -5,11 +5,65 @@
             "HelicopterAttack",
             "HelicopterTransport"
         ],
-        "operational": {
-            "start": 1970,
-            "end": 2020
+        "operational": [1970, 2020],
+        "extraOperators": {
+            "Georgia": [
+                1990,
+                2020
+            ],
+            "Abkhazia": [
+                2000,
+                2020
+            ],
+            "Bulgaria": [
+                1980,
+                2020
+            ],
+            "CzechRepublic": [
+                1970,
+                1990
+            ],
+            "Croatia": [
+                1990,
+                2010
+            ],
+            "Hungary": [
+                1980,
+                2020
+            ],
+            "India": [
+                1990,
+                2020
+            ],
+            "Slovakia": [
+                1990,
+                2010
+            ],
+            "Syria": [
+                1990,
+                2020
+            ],
+            "Yemen": [
+                2000,
+                2020
+            ],
+            "Sudan": [
+                1990,
+                2020
+            ],
+            "Ethiopia": [
+                1990,
+                2020
+            ],
+            "Algeria": [
+                2000,
+                2000
+            ],
+            "Cuba": [
+                1980,
+                2020
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -20,11 +74,37 @@
             "HelicopterUtility",
             "HelicopterAttack"
         ],
-        "operational": {
-            "start": 1960,
-            "end": 2020
+        "operational": [1960, 2020],
+        "extraOperators": {
+            "Georgia": [
+                2010,
+                2020
+            ],
+            "Insurgents": [
+                2010,
+                2020
+            ],
+            "China": [
+                1970,
+                2020
+            ],
+            "India": [
+                2010,
+                2020
+            ],
+            "Iran": [
+                2010,
+                2020
+            ],
+            "Poland": [
+                2010,
+                2020
+            ],
+            "Mexico": [
+                1990,
+                2020
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -33,11 +113,29 @@
         "families": [
             "HelicopterTransport"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
+        "operational": [1980, 2020],
+        "extraOperators": {
+            "Ukraine": [
+                1990,
+                2020
+            ],
+            "Venezuela": [
+                2010,
+                2020
+            ],
+            "Mexico": [
+                2000,
+                2020
+            ],
+            "Jordan": [
+                2020,
+                2020
+            ],
+            "Algeria": [
+                2010,
+                2020
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -46,11 +144,33 @@
         "families": [
             "HelicopterTransport"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
+        "operational": [1980, 2020],
+        "extraOperators": {
+            "China": [
+                2000,
+                2020
+            ],
+            "SouthKorea": [
+                1990,
+                2020
+            ],
+            "Syria": [
+                1990,
+                2020
+            ],
+            "Yemen": [
+                2000,
+                2020
+            ],
+            "Vietnam": [
+                2010,
+                2020
+            ],
+            "Algeria": [
+                1990,
+                2020
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -59,11 +179,73 @@
         "families": [
             "HelicopterTransport"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
+        "operational": [1980, 2020],
+        "extraOperators": {
+            "Turkey": [
+                1990,
+                2020
+            ],
+            "Israel": [
+                1990,
+                2020
+            ],
+            "Austria": [
+                2000,
+                2020
+            ],
+            "Egypt": [
+                1990,
+                2020
+            ],
+            "Japan": [
+                1990,
+                2020
+            ],
+            "SaudiArabia": [
+                2010,
+                2020
+            ],
+            "SouthKorea": [
+                1990,
+                2020
+            ],
+            "Thailand": [
+                1990,
+                2020
+            ],
+            "Morocco": [
+                1990,
+                2020
+            ],
+            "Mexico": [
+                1990,
+                2020
+            ],
+            "Malaysia": [
+                1990,
+                2020
+            ],
+            "Jordan": [
+                2000,
+                2020
+            ],
+            "Chile": [
+                2020,
+                2020
+            ],
+            "Brazil": [
+                2000,
+                2020
+            ],
+            "Bahrain": [
+                1990,
+                2020
+            ],
+            "UnitedArabEmirates": [
+                2010,
+                2020
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -72,10 +254,7 @@
         "families": [
             "HelicopterTransport"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
@@ -85,11 +264,45 @@
         "families": [
             "HelicopterTransport"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
+        "operational": [1980, 2020],
+        "extraOperators": {
+            "Turkey": [
+                2010,
+                2020
+            ],
+            "TheNetherlands": [
+                2000,
+                2020
+            ],
+            "Australia": [
+                1990,
+                2020
+            ],
+            "Japan": [
+                1990,
+                2020
+            ],
+            "SaudiArabia": [
+                2010,
+                2020
+            ],
+            "Thailand": [
+                1990,
+                2020
+            ],
+            "Morocco": [
+                1990,
+                2020
+            ],
+            "UnitedArabEmirates": [
+                2000,
+                2020
+            ],
+            "Argentina": [
+                1980,
+                2000
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -98,10 +311,7 @@
         "families": [
             "HelicopterTransport"
         ],
-        "operational": {
-            "start": 1960,
-            "end": 2020
-        },
+        "operational": [1960, 2020],
         "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
@@ -111,11 +321,41 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2010
+        "operational": [1980, 2010],
+        "extraOperators": {
+            "USA": [
+                1980,
+                2010
+            ],
+            "UK": [
+                1980,
+                2010
+            ],
+            "TheNetherlands": [
+                1990,
+                2010
+            ],
+            "Israel": [
+                1990,
+                2020
+            ],
+            "Egypt": [
+                1990,
+                2010
+            ],
+            "Greece": [
+                1990,
+                2020
+            ],
+            "SaudiArabia": [
+                1990,
+                2010
+            ],
+            "UnitedArabEmirates": [
+                1990,
+                2010
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -124,11 +364,45 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
+        "operational": [1990, 2020],
+        "extraOperators": {
+            "UK": [
+                2000,
+                2020
+            ],
+            "TheNetherlands": [
+                2000,
+                2020
+            ],
+            "Israel": [
+                2000,
+                2020
+            ],
+            "Egypt": [
+                2010,
+                2020
+            ],
+            "Greece": [
+                2000,
+                2020
+            ],
+            "Japan": [
+                2000,
+                2020
+            ],
+            "SaudiArabia": [
+                2010,
+                2020
+            ],
+            "Kuwait": [
+                2000,
+                2020
+            ],
+            "UnitedArabEmirates": [
+                2010,
+                2020
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -137,11 +411,21 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": {
-            "start": 1970,
-            "end": 2020
+        "operational": [1970, 2020],
+        "extraOperators": {
+            "USA": [
+                1980,
+                2020
+            ],
+            "Turkey": [
+                1990,
+                2020
+            ],
+            "Iran": [
+                1970,
+                2020
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -150,11 +434,17 @@
         "families": [
             "HelicopterUtility"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
+        "operational": [1980, 2020],
+        "extraOperators": {
+            "Australia": [
+                1990,
+                2020
+            ],
+            "Greece": [
+                1990,
+                2020
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -164,11 +454,93 @@
             "HelicopterUtility",
             "HelicopterAttack"
         ],
-        "operational": {
-            "start": 1960,
-            "end": 2020
+        "operational": [1960, 2020],
+        "extraOperators": {
+            "Turkey": [
+                1970,
+                2020
+            ],
+            "Germany": [
+                1970,
+                2020
+            ],
+            "Canada": [
+                1970,
+                2020
+            ],
+            "Israel": [
+                1960,
+                2000
+            ],
+            "Georgia": [
+                2000,
+                2020
+            ],
+            "Italy": [
+                1970,
+                2020
+            ],
+            "Australia": [
+                1970,
+                2000
+            ],
+            "Greece": [
+                1970,
+                2020
+            ],
+            "Japan": [
+                1970,
+                2020
+            ],
+            "SaudiArabia": [
+                1970,
+                2020
+            ],
+            "Yemen": [
+                2010,
+                2020
+            ],
+            "Vietnam": [
+                1970,
+                2020
+            ],
+            "Venezuela": [
+                1970,
+                2020
+            ],
+            "Thailand": [
+                1970,
+                2020
+            ],
+            "Jordan": [
+                1990,
+                2020
+            ],
+            "Honduras": [
+                1970,
+                2020
+            ],
+            "Chile": [
+                1970,
+                2020
+            ],
+            "Brazil": [
+                1970,
+                2020
+            ],
+            "Oman": [
+                1970,
+                2020
+            ],
+            "Lebanon": [
+                1970,
+                2020
+            ],
+            "Argentina": [
+                1970,
+                2020
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -177,11 +549,13 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": {
-            "start": 2000,
-            "end": 2020
+        "operational": [2000, 2020],
+        "extraOperators": {
+            "Iraq": [
+                2010,
+                2020
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -190,11 +564,17 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": {
-            "start": 1990,
-            "end": 2020
+        "operational": [1990, 2020],
+        "extraOperators": {
+            "Croatia": [
+                2000,
+                2020
+            ],
+            "SaudiArabia": [
+                2000,
+                2020
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -203,11 +583,45 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
+        "operational": [1990, 2020],
+        "extraOperators": {
+            "UK": [
+                2000,
+                2020
+            ],
+            "TheNetherlands": [
+                2000,
+                2020
+            ],
+            "Israel": [
+                2000,
+                2020
+            ],
+            "Egypt": [
+                2010,
+                2020
+            ],
+            "Greece": [
+                2000,
+                2020
+            ],
+            "Japan": [
+                2000,
+                2020
+            ],
+            "SaudiArabia": [
+                2010,
+                2020
+            ],
+            "Kuwait": [
+                2000,
+                2020
+            ],
+            "UnitedArabEmirates": [
+                2010,
+                2020
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -216,11 +630,13 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": {
-            "start": 1990,
-            "end": 2020
+        "operational": [1990, 2020],
+        "extraOperators": {
+            "Egypt": [
+                2010,
+                2020
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -229,11 +645,13 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": {
-            "start": 1990,
-            "end": 2020
+        "operational": [1990, 2020],
+        "extraOperators": {
+            "Egypt": [
+                2010,
+                2020
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -243,11 +661,41 @@
             "HelicopterAttack",
             "HelicopterTransport"
         ],
-        "operational": {
-            "start": 1970,
-            "end": 2020
+        "operational": [1970, 2020],
+        "extraOperators": {
+            "Germany": [
+                1990,
+                2020
+            ],
+            "Georgia": [
+                1990,
+                2020
+            ],
+            "Abkhazia": [
+                2000,
+                2020
+            ],
+            "Hungary": [
+                1980,
+                2020
+            ],
+            "Sudan": [
+                1990,
+                2020
+            ],
+            "Indonesia": [
+                2000,
+                2020
+            ],
+            "Ethiopia": [
+                1990,
+                2020
+            ],
+            "Cyprus": [
+                2000,
+                2020
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -256,11 +704,65 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": {
-            "start": 1970,
-            "end": 1990
+        "operational": [1970, 1990],
+        "extraOperators": {
+            "UK": [
+                1970,
+                2020
+            ],
+            "France": [
+                1970,
+                2020
+            ],
+            "Egypt": [
+                1970,
+                2020
+            ],
+            "Iraq": [
+                1970,
+                2020
+            ],
+            "Serbia": [
+                1970,
+                2020
+            ],
+            "Syria": [
+                1970,
+                2020
+            ],
+            "Tunisia": [
+                1990,
+                2020
+            ],
+            "Morocco": [
+                1970,
+                2020
+            ],
+            "Yugoslavia": [
+                1980,
+                1990
+            ],
+            "Kuwait": [
+                1970,
+                2020
+            ],
+            "Qatar": [
+                1980,
+                2020
+            ],
+            "UnitedArabEmirates": [
+                1980,
+                2020
+            ],
+            "Lebanon": [
+                1980,
+                2020
+            ],
+            "Cyprus": [
+                1990,
+                2020
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -269,11 +771,65 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": {
-            "start": 1970,
-            "end": 1990
+        "operational": [1970, 1990],
+        "extraOperators": {
+            "UK": [
+                1970,
+                2020
+            ],
+            "France": [
+                1970,
+                2020
+            ],
+            "Egypt": [
+                1970,
+                2020
+            ],
+            "Iraq": [
+                1970,
+                2020
+            ],
+            "Serbia": [
+                1970,
+                2020
+            ],
+            "Syria": [
+                1970,
+                2020
+            ],
+            "Tunisia": [
+                1990,
+                2020
+            ],
+            "Morocco": [
+                1970,
+                2020
+            ],
+            "Yugoslavia": [
+                1980,
+                1990
+            ],
+            "Kuwait": [
+                1970,
+                2020
+            ],
+            "Qatar": [
+                1980,
+                2020
+            ],
+            "UnitedArabEmirates": [
+                1980,
+                2020
+            ],
+            "Lebanon": [
+                1980,
+                2020
+            ],
+            "Cyprus": [
+                1990,
+                2020
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -282,11 +838,65 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": {
-            "start": 1970,
-            "end": 1990
+        "operational": [1970, 1990],
+        "extraOperators": {
+            "UK": [
+                1970,
+                2020
+            ],
+            "France": [
+                1970,
+                2020
+            ],
+            "Egypt": [
+                1970,
+                2020
+            ],
+            "Iraq": [
+                1970,
+                2020
+            ],
+            "Serbia": [
+                1970,
+                2020
+            ],
+            "Syria": [
+                1970,
+                2020
+            ],
+            "Tunisia": [
+                1990,
+                2020
+            ],
+            "Morocco": [
+                1970,
+                2020
+            ],
+            "Yugoslavia": [
+                1980,
+                1990
+            ],
+            "Kuwait": [
+                1970,
+                2020
+            ],
+            "Qatar": [
+                1980,
+                2020
+            ],
+            "UnitedArabEmirates": [
+                1980,
+                2020
+            ],
+            "Lebanon": [
+                1980,
+                2020
+            ],
+            "Cyprus": [
+                1990,
+                2020
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -295,11 +905,65 @@
         "families": [
             "HelicopterAttack"
         ],
-        "operational": {
-            "start": 1970,
-            "end": 1990
+        "operational": [1970, 1990],
+        "extraOperators": {
+            "UK": [
+                1970,
+                2020
+            ],
+            "France": [
+                1970,
+                2020
+            ],
+            "Egypt": [
+                1970,
+                2020
+            ],
+            "Iraq": [
+                1970,
+                2020
+            ],
+            "Serbia": [
+                1970,
+                2020
+            ],
+            "Syria": [
+                1970,
+                2020
+            ],
+            "Tunisia": [
+                1990,
+                2020
+            ],
+            "Morocco": [
+                1970,
+                2020
+            ],
+            "Yugoslavia": [
+                1980,
+                1990
+            ],
+            "Kuwait": [
+                1970,
+                2020
+            ],
+            "Qatar": [
+                1980,
+                2020
+            ],
+            "UnitedArabEmirates": [
+                1980,
+                2020
+            ],
+            "Lebanon": [
+                1980,
+                2020
+            ],
+            "Cyprus": [
+                1990,
+                2020
+            ]
         },
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     }

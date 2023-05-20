@@ -4,10 +4,7 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "extraOperators": {
             "Russia": [],
             "USAFAggressors": [],
@@ -42,32 +39,62 @@
         "families": [
             "VehicleAAAStatic"
         ],
-        "operational": {
-            "start": 1940,
-            "end": 2020
-        },
+        "operational": [1940, 2020],
         "extraOperators": {
-            "Russia": [],
+            "Russia": [
+                1940,
+                1980
+            ],
+            "Georgia": [
+                1940,
+                1980
+            ],
+            "Bulgaria": [
+                1940,
+                1980
+            ],
+            "China": [
+                1940,
+                1980
+            ],
+            "Egypt": [
+                1940,
+                1980
+            ],
+            "Iraq": [
+                1940,
+                2000
+            ],
+            "Poland": [
+                1940,
+                1960
+            ],
+            "Yemen": [
+                1940,
+                1980
+            ],
+            "Sudan": [
+                1940,
+                1980
+            ],
+            "Morocco": [
+                1940,
+                1980
+            ],
+            "Algeria": [
+                1940,
+                1980
+            ],
             "USAFAggressors": [],
-            "Georgia": [],
-            "Bulgaria": [],
-            "China": [],
-            "Egypt": [],
             "Hungary": [],
             "Iran": [],
-            "Iraq": [],
             "Kazakhstan": [],
             "NorthKorea": [],
-            "Poland": [],
             "Romania": [],
             "Syria": [],
-            "Yemen": [],
             "Vietnam": [],
-            "Sudan": [],
-            "Morocco": [],
             "Libya": [],
             "USSR": [],
-            "Algeria": [],
             "Cuba": [],
             "GDR": [],
             "UnitedNationsPeacekeepers": []
@@ -80,10 +107,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -108,10 +132,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -136,10 +157,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -164,10 +182,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -192,10 +207,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -220,10 +232,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -248,10 +257,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {},
         "lowPolly": false,
         "immovable": false
@@ -261,10 +267,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -289,10 +292,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -317,10 +317,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1990,
-            "end": 2020
-        },
+        "operational": [1990, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -345,10 +342,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1990,
-            "end": 2020
-        },
+        "operational": [1990, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -373,10 +367,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1990,
-            "end": 2020
-        },
+        "operational": [1990, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -401,10 +392,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1990,
-            "end": 2020
-        },
+        "operational": [1990, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -429,10 +417,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1990,
-            "end": 2020
-        },
+        "operational": [1990, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -457,10 +442,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1990,
-            "end": 2020
-        },
+        "operational": [1990, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -485,10 +467,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 2000,
-            "end": 2020
-        },
+        "operational": [2000, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -513,10 +492,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 2000,
-            "end": 2020
-        },
+        "operational": [2000, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -541,10 +517,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 2000,
-            "end": 2020
-        },
+        "operational": [2000, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -569,10 +542,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 2000,
-            "end": 2020
-        },
+        "operational": [2000, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -597,10 +567,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 2000,
-            "end": 2020
-        },
+        "operational": [2000, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -625,10 +592,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -653,10 +617,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -681,10 +642,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -709,10 +667,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -737,10 +692,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -765,10 +717,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -793,10 +742,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 2010,
-            "end": 2020
-        },
+        "operational": [2010, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -821,10 +767,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 2010,
-            "end": 2020
-        },
+        "operational": [2010, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -849,10 +792,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 2010,
-            "end": 2020
-        },
+        "operational": [2010, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -877,10 +817,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 2010,
-            "end": 2020
-        },
+        "operational": [2010, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -905,10 +842,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 2010,
-            "end": 2020
-        },
+        "operational": [2010, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -933,10 +867,7 @@
         "families": [
             "VehicleSAMLong"
         ],
-        "operational": {
-            "start": 2010,
-            "end": 2020
-        },
+        "operational": [2010, 2020],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -961,10 +892,7 @@
         "families": [
             "VehicleSAMMedium"
         ],
-        "operational": {
-            "start": 1970,
-            "end": 2020
-        },
+        "operational": [1970, 2020],
         "extraOperators": {
             "Belarus": [],
             "Egypt": [],
@@ -982,10 +910,7 @@
         "families": [
             "VehicleSAMMedium"
         ],
-        "operational": {
-            "start": 1970,
-            "end": 2020
-        },
+        "operational": [1970, 2020],
         "extraOperators": {
             "Algeria": [],
             "Bulgaria": [],
@@ -1021,10 +946,7 @@
         "families": [
             "VehicleSAMMedium"
         ],
-        "operational": {
-            "start": 1970,
-            "end": 2020
-        },
+        "operational": [1970, 2020],
         "extraOperators": {
             "China": [],
             "Pakistan": []
@@ -1037,10 +959,7 @@
         "families": [
             "VehicleSAMMedium"
         ],
-        "operational": {
-            "start": 1970,
-            "end": 2020
-        },
+        "operational": [1970, 2020],
         "extraOperators": {},
         "lowPolly": false,
         "immovable": false
@@ -1050,10 +969,7 @@
         "families": [
             "InfantryMANPADS"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "Abkhazia": [],
             "Belarus": [],
@@ -1093,10 +1009,7 @@
         "families": [
             "InfantryMANPADS"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "Abkhazia": [],
             "Belarus": [],
@@ -1137,10 +1050,7 @@
             "VehicleSAMLong",
             "VehicleStatic"
         ],
-        "operational": {
-            "start": 1970,
-            "end": 2020
-        },
+        "operational": [1970, 2020],
         "extraOperators": {},
         "lowPolly": false,
         "immovable": false
@@ -1150,10 +1060,7 @@
         "families": [
             "VehicleStatic"
         ],
-        "operational": {
-            "start": 1970,
-            "end": 2020
-        },
+        "operational": [1970, 2020],
         "extraOperators": {},
         "lowPolly": false,
         "immovable": false

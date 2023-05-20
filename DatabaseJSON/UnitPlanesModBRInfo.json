@@ -6,10 +6,7 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "Brazil": [],
             "CzechRepublic": [],
@@ -28,10 +25,7 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "Brazil": [],
             "CzechRepublic": [],
@@ -50,10 +44,7 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "Argentina": [],
             "Israel": [],
@@ -67,10 +58,7 @@
         "families": [
             "PlaneAttack"
         ],
-        "operational": {
-            "start": 1960,
-            "end": 2020
-        },
+        "operational": [1960, 2020],
         "extraOperators": {
             "USA": [],
             "Philippines": [],
@@ -86,10 +74,7 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "Russia": [],
             "Germany": [],
@@ -118,10 +103,7 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": {
-            "start": 1990,
-            "end": 2020
-        },
+        "operational": [1990, 2020],
         "extraOperators": {
             "Russia": [],
             "Canada": [],
@@ -148,10 +130,7 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": {
-            "start": 2000,
-            "end": 2020
-        },
+        "operational": [2000, 2020],
         "extraOperators": {
             "France": [],
             "UK": [],
@@ -168,10 +147,7 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": {
-            "start": 1960,
-            "end": 2020
-        },
+        "operational": [1960, 2020],
         "extraOperators": {
             "Russia": [],
             "France": [],
@@ -187,10 +163,7 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": {
-            "start": 1970,
-            "end": 2020
-        },
+        "operational": [1970, 2020],
         "extraOperators": {
             "Algeria": [],
             "France": [],
@@ -210,10 +183,7 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": {
-            "start": 1970,
-            "end": 2020
-        },
+        "operational": [1970, 2020],
         "extraOperators": {
             "USA": [],
             "UK": [],
@@ -227,10 +197,7 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2020
-        },
+        "operational": [1980, 2020],
         "extraOperators": {
             "USA": []
         },
@@ -242,10 +209,7 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": {
-            "start": 1970,
-            "end": 2020
-        },
+        "operational": [1970, 2020],
         "extraOperators": {
             "USA": [],
             "Greece": []
@@ -258,10 +222,7 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": {
-            "start": 1970,
-            "end": 2020
-        },
+        "operational": [1970, 2020],
         "extraOperators": {
             "Switzerland": []
         },
@@ -273,10 +234,7 @@
         "families": [
             "PlaneBomber"
         ],
-        "operational": {
-            "start": 1980,
-            "end": 2010
-        },
+        "operational": [1980, 2010],
         "extraOperators": {
             "USA": []
         },
@@ -288,10 +246,7 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": {
-            "start": 1990,
-            "end": 2020
-        },
+        "operational": [1990, 2020],
         "extraOperators": {
             "USA": []
         },
@@ -303,10 +258,7 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": {
-            "start": 1950,
-            "end": 2020
-        },
+        "operational": [1950, 2020],
         "extraOperators": {
             "USA": [],
             "Turkey": [],
@@ -378,10 +330,7 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": {
-            "start": 1990,
-            "end": 2020
-        },
+        "operational": [1990, 2020],
         "extraOperators": {
             "Egypt": [],
             "France": [],
@@ -399,10 +348,7 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": {
-            "start": 1990,
-            "end": 2020
-        },
+        "operational": [1990, 2020],
         "extraOperators": {
             "Egypt": [],
             "France": [],
@@ -420,10 +366,7 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": {
-            "start": 1990,
-            "end": 2020
-        },
+        "operational": [1990, 2020],
         "extraOperators": {
             "Egypt": [],
             "France": [],
@@ -441,10 +384,7 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": {
-            "start": 1990,
-            "end": 2020
-        },
+        "operational": [1990, 2020],
         "extraOperators": {
             "Egypt": [],
             "France": [],
@@ -461,10 +401,7 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": {
-            "start": 2000,
-            "end": 2010
-        },
+        "operational": [2000, 2010],
         "extraOperators": {
             "Brazil": [],
             "Chile": [],

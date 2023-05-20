@@ -57,7 +57,7 @@ namespace BriefingRoom4DCS.Data
                     continue;
                 }
                 var supportInfo = supportData[id];
-                var defaultOperational = (start: (Decade)supportInfo.operational.Item1, end: (Decade)supportInfo.operational.Item2);
+                var defaultOperational = (start: (Decade)supportInfo.operational[0], end: (Decade)supportInfo.operational[1]);
                 var extraCountries = supportInfo.extraOperators.ToDictionary(x => (Country)Enum.Parse(typeof(Country), x.Key.Replace(" ", ""), true), x => x.Value.Count > 0 ? (start: (Decade)x.Value[0], end: (Decade)x.Value[1]) : defaultOperational);
                 itemMap.Add(id, new DBEntryTemplate
                 {
