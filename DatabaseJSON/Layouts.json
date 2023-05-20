@@ -55,7 +55,10 @@
             }
         ],
         "minUnits": 3,
-        "categories": ["Vehicle", "Infantry"]
+        "categories": [
+            "Vehicle",
+            "Infantry"
+        ]
     },
     {
         "_id": "f8983ae6f22c160df366cdb341373f2479406296",
@@ -108,7 +111,10 @@
             }
         ],
         "minUnits": 5,
-        "categories": ["Vehicle", "Infantry"]
+        "categories": [
+            "Vehicle",
+            "Infantry"
+        ]
     },
     {
         "_id": "96c91662fd4ad200b1e90a6ed63ca976ef9c9fb4",
@@ -166,7 +172,10 @@
             }
         ],
         "minUnits": 0,
-        "categories": ["Vehicle", "Infantry"]
+        "categories": [
+            "Vehicle",
+            "Infantry"
+        ]
     },
     {
         "_id": "05c9d021bbc0b23599e1c10411c91a6204d3822f",
@@ -274,7 +283,10 @@
             }
         ],
         "minUnits": 3,
-        "categories": ["Vehicle", "Infantry"]
+        "categories": [
+            "Vehicle",
+            "Infantry"
+        ]
     },
     {
         "_id": "c90582504461aa89a41d3126c69af708f7c9ee6e",
@@ -327,7 +339,9 @@
             }
         ],
         "minUnits": 4,
-        "categories": ["Infantry"]
+        "categories": [
+            "Infantry"
+        ]
     },
     {
         "_id": "6459ed683eaa30299313bd52",
@@ -355,7 +369,12 @@
             }
         ],
         "minUnits": 4,
-        "categories": ["Static", "Vehicle", "Infantry", "Cargo"]
+        "categories": [
+            "Static",
+            "Vehicle",
+            "Infantry",
+            "Cargo"
+        ]
     },
     {
         "_id": "6459ed683eaa30299313bd55",
@@ -403,7 +422,12 @@
             }
         ],
         "minUnits": 3,
-        "categories": ["Static", "Vehicle", "Infantry", "Cargo"]
+        "categories": [
+            "Static",
+            "Vehicle",
+            "Infantry",
+            "Cargo"
+        ]
     },
     {
         "_id": "6459ed683eaa30299313bd57",
@@ -431,6 +455,11 @@
             }
         ],
         "minUnits": 4,
-        "categories": ["Static", "Vehicle", "Infantry", "Cargo"]
+        "categories": [
+            "Static",
+            "Vehicle",
+            "Infantry",
+            "Cargo"
+        ]
     }
 ]

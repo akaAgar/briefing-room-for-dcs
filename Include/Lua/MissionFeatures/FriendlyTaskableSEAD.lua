@@ -14,190 +14,191 @@ briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.disableCooRemovedRadio
 function briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.launchBombingRun()
   briefingRoom.taskables.launchCurry(briefingRoom.mission.missionFeatures.friendlyTaskableSEAD,
     briefingRoom.mission.missionFeatures.groupNames.friendlyTaskableSEAD, function(group, mark)
-    local currPos = mist.getLeadPos(group)
-    return {
-      id = 'Mission',
-      airborne = true,
-      params = {
-        route = {
-          points = {
-            [1] = {
-              speed = 200,
-              x = dcsExtensions.lerp(currPos.x, mark.pos.x, 0.1),
-              y = dcsExtensions.lerp(currPos.z, mark.pos.z, 0.1),
-              type = 'Turning Point',
-              ETA_locked = false,
-              ETA = 100,
-              alt = 6400,
-              alt_type = "BARO",
-              speed_locked = false,
-              action = "Turning Point",
-              name = " ",
-              task = {
-                id = "ComboTask",
-                params = {
-                  tasks = {
-                  },
-                },
-              },
-            },
-            [2] = {
-              speed = 250,
-              x = dcsExtensions.lerp(currPos.x, mark.pos.x, 0.6),
-              y = dcsExtensions.lerp(currPos.z, mark.pos.z, 0.6),
-              type = 'Turning Point',
-              ETA_locked = false,
-              ETA = 100,
-              alt = 6400,
-              alt_type = "BARO",
-              speed_locked = false,
-              action = "Turning Point",
-              name = "INGRESS",
-              task = {
-                id = "ComboTask",
-                params = {
-                  tasks = {
-                    [1] = {
-                      enabled = true,
-                      auto = false,
-                      id = "WrappedAction",
-                      number = 1,
-                      params = {
-                        action =
-                        {
-                          id = "Option",
-                          params =
-                          {
-                            value = 2,
-                            name = 13,
-                          }, -- end of ["params"]
-                        }, -- end of ["action"]
-                      },
-                    },
-                    [2] = {
-                      enabled = true,
-                      auto = false,
-                      id = "WrappedAction",
-                      number = 2,
-                      params = {
-                        action =
-                        {
-                          id = "Option",
-                          params =
-                          {
-                            value = 2,
-                            name = 1,
-                          }, -- end of ["params"]
-                        }, -- end of ["action"]
-                      },
-                    },
-                    [3] = {
-                      enabled = true,
-                      auto = false,
-                      id = "WrappedAction",
-                      number = 3,
-                      params = {
-                        action =
-                        {
-                          id = "Option",
-                          params =
-                          {
-                            value = 1,
-                            name = 4,
-                          }, -- end of ["params"]
-                        }, -- end of ["action"]
-                      },
+      local currPos = mist.getLeadPos(group)
+      return {
+        id = 'Mission',
+        airborne = true,
+        params = {
+          route = {
+            points = {
+              [1] = {
+                speed = 200,
+                x = dcsExtensions.lerp(currPos.x, mark.pos.x, 0.1),
+                y = dcsExtensions.lerp(currPos.z, mark.pos.z, 0.1),
+                type = 'Turning Point',
+                ETA_locked = false,
+                ETA = 100,
+                alt = 6400,
+                alt_type = "BARO",
+                speed_locked = false,
+                action = "Turning Point",
+                name = " ",
+                task = {
+                  id = "ComboTask",
+                  params = {
+                    tasks = {
                     },
                   },
                 },
               },
-            },
-            [3] = {
-              speed = 250,
-              x = dcsExtensions.lerp(currPos.x, mark.pos.x, 0.65),
-              y = dcsExtensions.lerp(currPos.z, mark.pos.z, 0.65),
-              type = 'Turning Point',
-              ETA_locked = false,
-              ETA = 100,
-              alt = 6400,
-              alt_type = "BARO",
-              speed_locked = false,
-              action = "Turning Point",
-              name = "SEAD",
-              task = {
-                id = "ComboTask",
-                params = {
-                  tasks = {
-                    [1] =
-                    {
-                      ["enabled"] = true,
-                      ["key"] = "SEAD",
-                      ["id"] = "EngageTargets",
-                      ["number"] = 1,
-                      ["auto"] = true,
-                      ["params"] =
+              [2] = {
+                speed = 250,
+                x = dcsExtensions.lerp(currPos.x, mark.pos.x, 0.6),
+                y = dcsExtensions.lerp(currPos.z, mark.pos.z, 0.6),
+                type = 'Turning Point',
+                ETA_locked = false,
+                ETA = 100,
+                alt = 6400,
+                alt_type = "BARO",
+                speed_locked = false,
+                action = "Turning Point",
+                name = "INGRESS",
+                task = {
+                  id = "ComboTask",
+                  params = {
+                    tasks = {
+                      [1] = {
+                        enabled = true,
+                        auto = false,
+                        id = "WrappedAction",
+                        number = 1,
+                        params = {
+                          action =
+                          {
+                            id = "Option",
+                            params =
+                            {
+                              value = 2,
+                              name = 13,
+                            }, -- end of ["params"]
+                          }, -- end of ["action"]
+                        },
+                      },
+                      [2] = {
+                        enabled = true,
+                        auto = false,
+                        id = "WrappedAction",
+                        number = 2,
+                        params = {
+                          action =
+                          {
+                            id = "Option",
+                            params =
+                            {
+                              value = 2,
+                              name = 1,
+                            }, -- end of ["params"]
+                          }, -- end of ["action"]
+                        },
+                      },
+                      [3] = {
+                        enabled = true,
+                        auto = false,
+                        id = "WrappedAction",
+                        number = 3,
+                        params = {
+                          action =
+                          {
+                            id = "Option",
+                            params =
+                            {
+                              value = 1,
+                              name = 4,
+                            }, -- end of ["params"]
+                          }, -- end of ["action"]
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+              [3] = {
+                speed = 250,
+                x = dcsExtensions.lerp(currPos.x, mark.pos.x, 0.65),
+                y = dcsExtensions.lerp(currPos.z, mark.pos.z, 0.65),
+                type = 'Turning Point',
+                ETA_locked = false,
+                ETA = 100,
+                alt = 6400,
+                alt_type = "BARO",
+                speed_locked = false,
+                action = "Turning Point",
+                name = "SEAD",
+                task = {
+                  id = "ComboTask",
+                  params = {
+                    tasks = {
+                      [1] =
                       {
-                        ["targetTypes"] =
+                        ["enabled"] = true,
+                        ["key"] = "SEAD",
+                        ["id"] = "EngageTargets",
+                        ["number"] = 1,
+                        ["auto"] = true,
+                        ["params"] =
                         {
-                          [1] = "Air Defence",
-                        }, -- end of ["targetTypes"]
-                        ["priority"] = 0,
-                      }, -- end of ["params"]
-                    }, -- end of [1]
-                    [2] = {
-                      enabled = true,
-                      auto = false,
-                      id = "EngageTargetsInZone",
-                      number = 2,
-                      params = {
-                        y = mark.pos.z,
-                        x = mark.pos.x,
-                        targetTypes = {
-                          [1] = "Air Defence",
+                          ["targetTypes"] =
+                          {
+                            [1] = "Air Defence",
+                          }, -- end of ["targetTypes"]
+                          ["priority"] = 0,
+                        }, -- end of ["params"]
+                      },   -- end of [1]
+                      [2] = {
+                        enabled = true,
+                        auto = false,
+                        id = "EngageTargetsInZone",
+                        number = 2,
+                        params = {
+                          y = mark.pos.z,
+                          x = mark.pos.x,
+                          targetTypes = {
+                            [1] = "Air Defence",
+                          },
+                          value = "All;",
+                          noTargetTypes = {
+                            [1] = "Helicopters",
+                            [2] = "Infantry",
+                            [3] = "Fortifications",
+                            [4] = "Tanks",
+                            [5] = "IFV",
+                            [6] = "APC",
+                            [7] = "Artillery",
+                            [8] = "Unarmed vehicles",
+                            [9] = "Light armed ships",
+                          },
+                          priority = 0,
+                          zoneRadius = 5000,
                         },
-                        value = "All;",
-                        noTargetTypes = {
-                          [1] = "Helicopters",
-                          [2] = "Infantry",
-                          [3] = "Fortifications",
-                          [4] = "Tanks",
-                          [5] = "IFV",
-                          [6] = "APC",
-                          [7] = "Artillery",
-                          [8] = "Unarmed vehicles",
-                          [9] = "Light armed ships",
-                        },
-                        priority = 0,
-                        zoneRadius = 5000,
                       },
                     },
                   },
                 },
               },
-            },
-            [4] = {
-              speed = 200,
-              x = dcsExtensions.lerp(currPos.x, mark.pos.x, 0.5),
-              y = dcsExtensions.lerp(currPos.z, mark.pos.z, 0.5),
-              type = 'Turning Point',
-              ETA_locked = false,
-              ETA = 100,
-              alt = 6400,
-              alt_type = "BARO",
-              speed_locked = false,
-              action = "Turning Point",
-              name = "ORBIT",
-              task = {
-                id = "ComboTask",
-                params = {
-                  tasks = {
-                    [1] = {
-                      enabled = true,
-                      auto = false,
-                      id = "Orbit",
-                      number = 1,
-                      params = {
-                        pattern = "Circle",
+              [4] = {
+                speed = 200,
+                x = dcsExtensions.lerp(currPos.x, mark.pos.x, 0.5),
+                y = dcsExtensions.lerp(currPos.z, mark.pos.z, 0.5),
+                type = 'Turning Point',
+                ETA_locked = false,
+                ETA = 100,
+                alt = 6400,
+                alt_type = "BARO",
+                speed_locked = false,
+                action = "Turning Point",
+                name = "ORBIT",
+                task = {
+                  id = "ComboTask",
+                  params = {
+                    tasks = {
+                      [1] = {
+                        enabled = true,
+                        auto = false,
+                        id = "Orbit",
+                        number = 1,
+                        params = {
+                          pattern = "Circle",
+                        },
                       },
                     },
                   },
@@ -206,14 +207,13 @@ function briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.launchBombing
             },
           },
         },
-      },
-    }
-  end)
+      }
+    end)
 end
 
 -- Add F10 menu command
 missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_SEADMENU$", briefingRoom.f10Menu.missionMenu
-  , briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.launchBombingRun, nil)
+, briefingRoom.mission.missionFeatures.friendlyTaskableSEAD.launchBombingRun, nil)
 
 -- Enable event handler
 world.addEventHandler(briefingRoom.taskables.markerManager(briefingRoom.mission.missionFeatures.friendlyTaskableSEAD))

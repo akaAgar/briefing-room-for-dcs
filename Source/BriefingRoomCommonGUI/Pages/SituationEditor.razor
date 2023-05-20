@@ -22,7 +22,7 @@
         <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Theater") @bind-Value="ContextTheater"
           DataBaseType="DatabaseEntryType.Theater" />
         <button class="btn btn-primary form-control"
-          @onclick="() => GetMapAsync()">@BriefingRoom.Translate("SetMap")</button>
+        @onclick="() => GetMapAsync()">@BriefingRoom.Translate("SetMap")</button>
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="sideRadio" value="BLUE" id="RadioBLUFOR" checked>
           <label class="form-check-label" for="RadioBLUFOR">
@@ -46,7 +46,7 @@
     <div>
       <div id="situationMap"></div>
       <button class="btn btn-primary form-control"
-        @onclick="() => GenerateSituation()">@BriefingRoom.Translate("GenerateSituation")</button>
+      @onclick="() => GenerateSituation()">@BriefingRoom.Translate("GenerateSituation")</button>
       @if (!String.IsNullOrEmpty(GeneratedSituation))
       {
         <div>

@@ -46,7 +46,7 @@ namespace BriefingRoom4DCS.Data
             foreach (var layout in data)
             {
                 var id = layout.name;
-        
+
                 itemMap.Add(id, new DBEntryLayout
                 {
                     ID = id,

@@ -67,7 +67,7 @@ namespace BriefingRoom4DCS.Data
                 var parkingSpotType = ParkingSpotType.Unknown;
                 try
                 {
-                    if(stand.@params.SHELTER == "1")
+                    if (stand.@params.SHELTER == "1")
                         parkingSpotType = ParkingSpotType.HardenedAirShelter;
                     else if (stand.@params.FOR_HELICOPTERS == "1" && stand.@params.FOR_AIRPLANES == "1")
                         parkingSpotType = ParkingSpotType.OpenAirSpawn;
@@ -94,5 +94,5 @@ namespace BriefingRoom4DCS.Data
         }
     }
 
-    
+
 }

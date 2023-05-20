@@ -40,7 +40,7 @@ namespace BriefingRoom4DCS.Mission
         {
             Mission = mission;
 
-            Items = new Dictionary<DCSMissionBriefingItemType, List<string>>{};
+            Items = new Dictionary<DCSMissionBriefingItemType, List<string>> { };
             var enumList = Enum.GetValues(typeof(DCSMissionBriefingItemType));
             foreach (DCSMissionBriefingItemType enumItem in enumList)
             {

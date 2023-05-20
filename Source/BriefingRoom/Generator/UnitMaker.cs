@@ -556,7 +556,7 @@ namespace BriefingRoom4DCS.Generator
                 unit.Skill = SinglePlayerMission ? "Player" : "Client";
             else
                 unit.Skill = extraSettings.GetValueOrDefault("Skill", GeneratorTools.GetDefaultSkillLevel(Template, side)).ToString(); ;
-            
+
             unit.LiveryId = extraSettings.GetValueOrDefault("Livery", "default").ToString();
             unit.ShapeName = unitDB.Shape;
 

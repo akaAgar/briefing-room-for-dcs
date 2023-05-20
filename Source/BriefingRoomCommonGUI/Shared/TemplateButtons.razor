@@ -1,5 +1,5 @@
 <div class="template-box">
-    <p>@(string.IsNullOrEmpty(Title)? "Template": @Title)</p>
+    <p>@(string.IsNullOrEmpty(Title) ? "Template" : @Title)</p>
     <div class="btn-group" role="group">
         <label class="btn btn-primary hidden-input-file">
             <InputFile OnChange="@LoadTemplate" accept="@AcceptString" />

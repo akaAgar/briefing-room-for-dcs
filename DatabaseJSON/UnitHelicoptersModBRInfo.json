@@ -26,10 +26,11 @@
             "Jordan": [],
             "Chile": [],
             "Brazil": [],
-"Bahrain": [],
+            "Bahrain": [],
             "UnitedArabEmirates": [],
             "UnitedNationsPeacekeepers": [],
-            "Argentina": []},
+            "Argentina": []
+        },
         "lowPolly": false,
         "playerControllable": true
     }

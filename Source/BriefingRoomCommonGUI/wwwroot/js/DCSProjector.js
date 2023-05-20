@@ -68,7 +68,7 @@ function latLongToDCS(pos, projector) {
 }
 
 function CheckConversion() {
-    const projector =  GetDCSMapProjector("Caucasus")
+    const projector = GetDCSMapProjector("Caucasus")
     const InputIrl = [41.64597937610111, 41.64779663085938] //BATUMI
     const dcs = latLongToDCS(InputIrl, projector)
     const irl = DCStoLatLong(dcs, projector)

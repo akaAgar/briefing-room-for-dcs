@@ -111,7 +111,7 @@ namespace BriefingRoom4DCS.Generator
                 UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, spawnPoint.Value, spawnPoint.Value, ref extraSettings);
 
                 AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
-                if(featureID == "TacanAirbases")
+                if (featureID == "TacanAirbases")
                     AppendTacanToBriefing(mission, airbase.Name, extraSettings);
 
             }
@@ -149,20 +149,20 @@ namespace BriefingRoom4DCS.Generator
                 UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, coordinates, coordinates, ref extraSettings);
 
                 AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
-                if(featureID == "TacanFOBs")
+                if (featureID == "TacanFOBs")
                     AppendTacanToBriefing(mission, fob.UnitMakerGroupInfo.Name, extraSettings);
             }
         }
 
         private void AppendTacanToBriefing(DCSMission mission, string name, Dictionary<string, object> extraSettings)
         {
-              var airbaseBriefingItems = mission.Briefing.GetItems(DCSMissionBriefingItemType.Airbase);
-                var airbaseIdx = airbaseBriefingItems.FindIndex(x => x.StartsWith(name));
-                if(airbaseIdx == -1)
-                    return;
-                var airbaseStr = airbaseBriefingItems[airbaseIdx];
-                airbaseStr += $"{(!airbaseStr.EndsWith("\t")? "/" : "")}{extraSettings.GetValueOrDefault("TACANChannel", "")}X";
-                mission.Briefing.UpdateItem(DCSMissionBriefingItemType.Airbase, airbaseIdx, airbaseStr);
+            var airbaseBriefingItems = mission.Briefing.GetItems(DCSMissionBriefingItemType.Airbase);
+            var airbaseIdx = airbaseBriefingItems.FindIndex(x => x.StartsWith(name));
+            if (airbaseIdx == -1)
+                return;
+            var airbaseStr = airbaseBriefingItems[airbaseIdx];
+            airbaseStr += $"{(!airbaseStr.EndsWith("\t") ? "/" : "")}{extraSettings.GetValueOrDefault("TACANChannel", "")}X";
+            mission.Briefing.UpdateItem(DCSMissionBriefingItemType.Airbase, airbaseIdx, airbaseStr);
         }
     }
 

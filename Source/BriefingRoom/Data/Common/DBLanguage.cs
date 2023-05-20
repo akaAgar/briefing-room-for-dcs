@@ -82,7 +82,7 @@ namespace BriefingRoom4DCS.Data
         public string Translate(string key)
         {
             var searchKey = key.ToUpper();
-            if(!LangMap.ContainsKey(searchKey))
+            if (!LangMap.ContainsKey(searchKey))
             {
                 Console.WriteLine($"ERR_Missing_Translation_key:{key} (map size: {LangMap.Keys.Count})");
                 return $"ERR_Missing_Translation_key:{key}";

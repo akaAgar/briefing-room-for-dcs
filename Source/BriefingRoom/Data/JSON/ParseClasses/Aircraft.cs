@@ -31,7 +31,7 @@ namespace BriefingRoom4DCS.Data.JSON
         public int modulation { get; set; }
     }
 
-    public class Aircraft: Unit
+    public class Aircraft : Unit
     {
         public Dictionary<string, List<string>> paintSchemes { get; set; }
         public List<Payload> payloadPresets { get; set; }

@@ -8,7 +8,7 @@ namespace BriefingRoom4DCS.Data.JSON
         public string name { get; set; }
     }
 
-    public class Ship: Unit
+    public class Ship : Unit
     {
         public List<Category> categories { get; set; }
         public int numParking { get; set; }

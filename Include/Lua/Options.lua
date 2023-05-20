@@ -231,7 +231,7 @@ options = {
         {
             ["CPLocalList"] = "default",
         }, -- end of ["A-10C"]
-    }, -- end of ["plugins"]
+    },     -- end of ["plugins"]
     ["format"] = 1,
     ["sound"] =
     {
@@ -265,5 +265,5 @@ options = {
             ["reflections"] = false,
             ["avionics"] = 3,
         }, -- end of ["cockpit"]
-    }, -- end of ["views"]
-} -- end of options
+    },     -- end of ["views"]
+}          -- end of options

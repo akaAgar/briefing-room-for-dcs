@@ -76,7 +76,7 @@ namespace BriefingRoom4DCS.Generator
                     break;
                 case AirDefenseRange.ShortRangeBattery:
                     unitFamilies = new List<UnitFamily> { UnitFamily.VehicleAAA, UnitFamily.VehicleAAAStatic, UnitFamily.InfantryMANPADS };
-                    validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandLarge,  SpawnPointType.LandMedium };
+                    validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandLarge, SpawnPointType.LandMedium };
                     break;
                 default: // case AirDefenseRange.ShortRange:
                     unitFamilies = new List<UnitFamily> { UnitFamily.VehicleAAA, UnitFamily.VehicleAAAStatic, UnitFamily.InfantryMANPADS, UnitFamily.VehicleSAMShort, UnitFamily.VehicleSAMShort, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShortIR };
@@ -104,12 +104,12 @@ namespace BriefingRoom4DCS.Generator
                 }
                 var unitCount = 1;
                 var forceTryTemplate = false;
-                if(airDefenseRange == AirDefenseRange.ShortRangeBattery)
+                if (airDefenseRange == AirDefenseRange.ShortRangeBattery)
                 {
-                    unitCount = Toolbox.RandomMinMax(2,5);
+                    unitCount = Toolbox.RandomMinMax(2, 5);
                     forceTryTemplate = Toolbox.RandomChance(2);
                 }
-                
+
                 UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(
                         unitFamilies, unitCount, side,
                         "Vehicle", "Vehicle",

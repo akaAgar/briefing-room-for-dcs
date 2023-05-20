@@ -116,10 +116,10 @@ namespace BriefingRoom4DCS
         }
 
         internal static object DeterminType(object value)
-        {   
-            if (value is IDictionary<object,object>)
+        {
+            if (value is IDictionary<object, object>)
             {
-                return ((Dictionary<object,object>)value).ToDictionary(x => x.Key.ToString(), x => DeterminType(x.Value));
+                return ((Dictionary<object, object>)value).ToDictionary(x => x.Key.ToString(), x => DeterminType(x.Value));
             }
             if (!(value is string))
                 return value;
@@ -205,7 +205,7 @@ namespace BriefingRoom4DCS
 
         internal static void AddIfKeyUnused<T1, T2>(this Dictionary<T1, T2> dictionary, T1 key, T2 value)
         {
-            if (dictionary.ContainsKey(key)) 
+            if (dictionary.ContainsKey(key))
                 return;
             dictionary.Add(key, value);
         }
@@ -280,7 +280,8 @@ namespace BriefingRoom4DCS
         internal static Season GetSeasonFromMonth(int monthInt)
         {
             var month = (Month)(monthInt - 1);
-            return month switch {
+            return month switch
+            {
                 Month.January => Season.Winter,
                 Month.February => Season.Winter,
                 Month.March => Season.Spring,

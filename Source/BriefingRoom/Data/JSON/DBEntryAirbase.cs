@@ -56,7 +56,7 @@ namespace BriefingRoom4DCS.Data
 
         protected override bool OnLoad(string o)
         {
-           throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
 
@@ -67,10 +67,11 @@ namespace BriefingRoom4DCS.Data
             foreach (var airbase in data)
             {
                 var id = $"{airbase.theatre}{airbase.typeName}";
-                itemMap.Add(id, new DBEntryAirbase{
+                itemMap.Add(id, new DBEntryAirbase
+                {
                     ID = id,
-                    UIDisplayName =  new LanguageString(airbase.displayName),
-                    ATC = String.Join("/", airbase.airdromeData.ATC.Select(x =>GeneratorTools.FormatRadioFrequency(x))),
+                    UIDisplayName = new LanguageString(airbase.displayName),
+                    ATC = String.Join("/", airbase.airdromeData.ATC.Select(x => GeneratorTools.FormatRadioFrequency(x))),
                     Coordinates = new Coordinates(airbase.pos.DCS.x, airbase.pos.DCS.z),
                     DCSID = airbase.ID,
                     Elevation = airbase.pos.World.alt,
@@ -80,7 +81,7 @@ namespace BriefingRoom4DCS.Data
                     RunwayLengthFt = (int)(airbase.runways.Select(x => x.length).DefaultIfEmpty().Max() * Toolbox.METERS_TO_FEET),
                     TACAN = String.Join("/", airbase.airdromeData.TACAN.Select(x => $"{x}X")),
                     Theater = airbase.theatre.ToLower(),
-                    ParkingSpots = airbase.stands.Count() > 0 ? DBEntryAirbaseParkingSpot.LoadJSON(airbase.stands, id)  : DBEntryAirbaseParkingSpot.LoadJSON(airbase.parking, id)
+                    ParkingSpots = airbase.stands.Count() > 0 ? DBEntryAirbaseParkingSpot.LoadJSON(airbase.stands, id) : DBEntryAirbaseParkingSpot.LoadJSON(airbase.parking, id)
                 });
             }
 

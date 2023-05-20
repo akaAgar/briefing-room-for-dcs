@@ -110,7 +110,7 @@ namespace BriefingRoom4DCS.Generator
 
             BriefingRoom.PrintToLog("Setting up airbases...");
             var airbasesGenerator = new MissionGeneratorAirbases(template, situationDB);
-            var requiredRunway = template.PlayerFlightGroups.Select(x =>((DBEntryAircraft)Database.Instance.GetEntry<DBEntryJSONUnit>(x.Aircraft)).MinimumRunwayLengthFt).Max();
+            var requiredRunway = template.PlayerFlightGroups.Select(x => ((DBEntryAircraft)Database.Instance.GetEntry<DBEntryJSONUnit>(x.Aircraft)).MinimumRunwayLengthFt).Max();
             var playerAirbase = airbasesGenerator.SelectStartingAirbase(mission, template.FlightPlanTheaterStartingAirbase, theaterDB, requiredRunway: requiredRunway);
             mission.PopulatedAirbaseIds[template.ContextPlayerCoalition].Add(playerAirbase.DCSID);
             if (playerAirbase.DCSID > 0)

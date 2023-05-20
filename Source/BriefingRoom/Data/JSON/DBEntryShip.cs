@@ -40,7 +40,7 @@ namespace BriefingRoom4DCS.Data
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Ship>>(File.ReadAllText(filepath));
-            var infoDataDict = JsonConvert.DeserializeObject<List<BRInfo>>(File.ReadAllText(filepath.Replace(".json", "BRInfo.json"))).ToDictionary(x => x.type, x => x); 
+            var infoDataDict = JsonConvert.DeserializeObject<List<BRInfo>>(File.ReadAllText(filepath.Replace(".json", "BRInfo.json"))).ToDictionary(x => x.type, x => x);
             foreach (var ship in data)
             {
                 var id = ship.type;
@@ -69,6 +69,6 @@ namespace BriefingRoom4DCS.Data
             return itemMap;
         }
 
-        public DBEntryShip(){}
+        public DBEntryShip() { }
     }
 }

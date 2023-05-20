@@ -47,7 +47,7 @@ namespace BriefingRoom4DCS.Data.JSON
         public bool playerControllable { get; set; }
     }
 
-    public class Unit: MongoBase
+    public class Unit : MongoBase
     {
         public string type { get; set; }
         public List<string> countries { get; set; }

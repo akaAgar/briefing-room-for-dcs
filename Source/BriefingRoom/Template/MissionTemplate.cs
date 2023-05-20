@@ -80,7 +80,7 @@ namespace BriefingRoom4DCS.Template
             CarrierHints = new Dictionary<string, double[]>();
 
             AssignAliases();
- 
+
             // if (File.Exists(DEFAULT_TEMPLATE_FILEPATH))
             // {
             //     LoadFromFile(DEFAULT_TEMPLATE_FILEPATH);

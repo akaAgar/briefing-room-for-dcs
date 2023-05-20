@@ -29,17 +29,17 @@ namespace BriefingRoom4DCS
     {
         internal static string ROOT { get; } = FindRoot();
 
-        internal static string DATABASE { get; } =  Path.Combine(ROOT, "Database");
+        internal static string DATABASE { get; } = Path.Combine(ROOT, "Database");
 
-        internal static string DATABASEJSON { get; } =  Path.Combine(ROOT, "DatabaseJSON");
+        internal static string DATABASEJSON { get; } = Path.Combine(ROOT, "DatabaseJSON");
 
-        internal static string CUSTOMDATABASE { get; } =  Path.Combine(ROOT, "CustomConfigs");
+        internal static string CUSTOMDATABASE { get; } = Path.Combine(ROOT, "CustomConfigs");
 
 #if DEBUG
-        internal static string DEBUGOUTPUT { get; } =  Path.Combine(ROOT, "DebugOutput");
+        internal static string DEBUGOUTPUT { get; } = Path.Combine(ROOT, "DebugOutput");
 #endif
 
-        internal static string INCLUDE { get; } =  Path.Combine(ROOT, "Include");
+        internal static string INCLUDE { get; } = Path.Combine(ROOT, "Include");
 
         internal static string INCLUDE_HTML { get; } = Path.Combine(INCLUDE, "Html");
 
@@ -52,17 +52,17 @@ namespace BriefingRoom4DCS
         internal static string INCLUDE_YAML { get; } = Path.Combine(INCLUDE, "Yaml");
 
 
-        internal static string INCLUDE_LUA_MISSIONFEATURES { get; } = Path.Combine(INCLUDE_LUA,"MissionFeatures");
+        internal static string INCLUDE_LUA_MISSIONFEATURES { get; } = Path.Combine(INCLUDE_LUA, "MissionFeatures");
 
-        internal static string INCLUDE_LUA_OPTIONSMISSION { get; } = Path.Combine(INCLUDE_LUA,"OptionsMission");
+        internal static string INCLUDE_LUA_OPTIONSMISSION { get; } = Path.Combine(INCLUDE_LUA, "OptionsMission");
 
-        internal static string INCLUDE_LUA_OBJECTIVEFEATURES { get; } = Path.Combine(INCLUDE_LUA,"ObjectiveFeatures");
+        internal static string INCLUDE_LUA_OBJECTIVEFEATURES { get; } = Path.Combine(INCLUDE_LUA, "ObjectiveFeatures");
 
-        internal static string INCLUDE_LUA_OBJECTIVETRIGGERS { get; } = Path.Combine(INCLUDE_LUA,"ObjectiveTriggers");
+        internal static string INCLUDE_LUA_OBJECTIVETRIGGERS { get; } = Path.Combine(INCLUDE_LUA, "ObjectiveTriggers");
 
-        internal static string INCLUDE_LUA_MISSION { get; } = Path.Combine(INCLUDE_LUA,"Mission");
+        internal static string INCLUDE_LUA_MISSION { get; } = Path.Combine(INCLUDE_LUA, "Mission");
 
-        internal static string INCLUDE_LUA_UNITS { get; } = Path.Combine(INCLUDE_LUA,"Units");
+        internal static string INCLUDE_LUA_UNITS { get; } = Path.Combine(INCLUDE_LUA, "Units");
 
         internal static string INCLUDE_YAML_UNIT { get; } = Path.Combine(INCLUDE_YAML, "Unit");
 

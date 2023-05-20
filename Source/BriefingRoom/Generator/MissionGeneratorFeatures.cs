@@ -79,7 +79,7 @@ namespace BriefingRoom4DCS.Generator
 
                 if (flags.HasFlag(FeatureUnitGroupFlags.RadioAircraftActivation))
                     groupFlags |= UnitMakerGroupFlags.RadioAircraftSpawn;
-                
+
                 if (flags.HasFlag(FeatureUnitGroupFlags.LowUnitVariation))
                     groupFlags |= UnitMakerGroupFlags.LowUnitVariation;
 
@@ -161,7 +161,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Add feature ogg files
             foreach (string oggFile in featureDB.IncludeOgg)
-                mission.AddMediaFile($"l10n/DEFAULT/{oggFile}",Path.Combine(BRPaths.INCLUDE_OGG, oggFile));
+                mission.AddMediaFile($"l10n/DEFAULT/{oggFile}", Path.Combine(BRPaths.INCLUDE_OGG, oggFile));
 
             if (!String.IsNullOrEmpty(featureDB.IncludeOggFolder))
                 mission.AddMediaFolder(featureDB.IncludeOggFolder, Path.Combine(BRPaths.INCLUDE_OGG, featureDB.IncludeOggFolder));
@@ -335,11 +335,11 @@ namespace BriefingRoom4DCS.Generator
             groupInfo.Value.DCSGroup.Name = groupInfo.Value.DCSGroup.Name.Replace("-STATIC-", ""); // Remove Static code if on carrier as we can't replace it automatically
             carrier.RemainingSpotCount = carrier.RemainingSpotCount - unitCount;
         }
-    
-        private void SetSupportingTargetGroupName(ref UnitMakerGroupInfo? groupInfo,FeatureUnitGroupFlags flags, Dictionary<string, object> extraSettings)
+
+        private void SetSupportingTargetGroupName(ref UnitMakerGroupInfo? groupInfo, FeatureUnitGroupFlags flags, Dictionary<string, object> extraSettings)
         {
-            if(flags.HasFlag(FeatureUnitGroupFlags.SupportingTarget))
-                groupInfo.Value.DCSGroups.ForEach(x =>x.Name += $"-STGT-{extraSettings["ObjectiveName"].ToString()}");
+            if (flags.HasFlag(FeatureUnitGroupFlags.SupportingTarget))
+                groupInfo.Value.DCSGroups.ForEach(x => x.Name += $"-STGT-{extraSettings["ObjectiveName"].ToString()}");
         }
 
     }

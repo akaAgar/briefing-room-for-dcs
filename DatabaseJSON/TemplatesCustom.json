@@ -6260,110 +6260,110 @@
     },
     {
         "units": [
-          {
-            "dx": 0,
-            "dy": 0,
-            "name": "SA-18 Igla-S manpad",
-            "skill": "Average",
-            "heading": 0
-          },
-          {
-            "dx": -16.691432350024,
-            "dy": 0.3287609500112,
-            "name": "SA-18 Igla-S comm",
-            "skill": "Average",
-            "heading": 0
-          },
-          {
-            "dx": -29.325703150011,
-            "dy": -14.379793120082,
-            "name": "SA-18 Igla-S manpad",
-            "skill": "Average",
-            "heading": 0
-          },
-          {
-            "dx": -30.457130389987,
-            "dy": 15.225886240019,
-            "name": "SA-18 Igla-S manpad",
-            "skill": "Average",
-            "heading": 0
-          }
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "SA-18 Igla-S manpad",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -16.691432350024,
+                "dy": 0.3287609500112,
+                "name": "SA-18 Igla-S comm",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -29.325703150011,
+                "dy": -14.379793120082,
+                "name": "SA-18 Igla-S manpad",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -30.457130389987,
+                "dy": 15.225886240019,
+                "name": "SA-18 Igla-S manpad",
+                "skill": "Average",
+                "heading": 0
+            }
         ],
         "type": "InfantryMANPADS",
         "name": "Igla-s Squad",
         "country": 81
-      },
+    },
     {
         "units": [
-          {
-            "dx": 0,
-            "dy": 0,
-            "name": "Soldier stinger",
-            "skill": "Average",
-            "heading": 0
-          },
-          {
-            "dx": -16.691432350024,
-            "dy": 0.3287609500112,
-            "name": "Stinger comm",
-            "skill": "Average",
-            "heading": 0
-          },
-          {
-            "dx": -29.325703160022,
-            "dy": -14.379793119966,
-            "name": "Soldier stinger",
-            "skill": "Average",
-            "heading": 0
-          },
-          {
-            "dx": -30.457130399998,
-            "dy": 15.225886230008,
-            "name": "Soldier stinger",
-            "skill": "Average",
-            "heading": 0
-          }
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "Soldier stinger",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -16.691432350024,
+                "dy": 0.3287609500112,
+                "name": "Stinger comm",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -29.325703160022,
+                "dy": -14.379793119966,
+                "name": "Soldier stinger",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -30.457130399998,
+                "dy": 15.225886230008,
+                "name": "Soldier stinger",
+                "skill": "Average",
+                "heading": 0
+            }
         ],
         "type": "InfantryMANPADS",
         "name": "Stringer Squad",
         "country": 81
-      },
-      {
+    },
+    {
         "units": [
-          {
-            "dx": 0,
-            "dy": 0,
-            "name": "SA-18 Igla manpad",
-            "skill": "Average",
-            "heading": 0
-          },
-          {
-            "dx": -16.691432350024,
-            "dy": 0.32876096002292,
-            "name": "SA-18 Igla comm",
-            "skill": "Average",
-            "heading": 0
-          },
-          {
-            "dx": -29.325703160022,
-            "dy": -14.379793119966,
-            "name": "SA-18 Igla manpad",
-            "skill": "Average",
-            "heading": 0
-          },
-          {
-            "dx": -30.457130399998,
-            "dy": 15.225886240019,
-            "name": "SA-18 Igla manpad",
-            "skill": "Average",
-            "heading": 0
-          }
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "SA-18 Igla manpad",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -16.691432350024,
+                "dy": 0.32876096002292,
+                "name": "SA-18 Igla comm",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -29.325703160022,
+                "dy": -14.379793119966,
+                "name": "SA-18 Igla manpad",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -30.457130399998,
+                "dy": 15.225886240019,
+                "name": "SA-18 Igla manpad",
+                "skill": "Average",
+                "heading": 0
+            }
         ],
         "type": "InfantryMANPADS",
         "name": "Igla Squad",
         "country": 81
-      },
-      {
+    },
+    {
         "_id": "6459ed683eaa30299313bd4a",
         "country": 80,
         "name": "ZU-23",

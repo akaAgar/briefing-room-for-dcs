@@ -16,7 +16,8 @@
             "Hungary": [],
             "SouthAfrica": [],
             "Sweden": [],
-            "Thailand": []},
+            "Thailand": []
+        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -37,7 +38,8 @@
             "Hungary": [],
             "SouthAfrica": [],
             "Sweden": [],
-            "Thailand": []},
+            "Thailand": []
+        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -55,7 +57,8 @@
         "extraOperators": {
             "Argentina": [],
             "Israel": [],
-            "USA": []},
+            "USA": []
+        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -73,7 +76,8 @@
             "Philippines": [],
             "Indonesia": [],
             "Thailand": [],
-            "Germany": []},
+            "Germany": []
+        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -126,7 +130,7 @@
             "UnitedArabEmirates": [],
             "Finland": [],
             "Spain": [],
-"Bahrain": [],
+            "Bahrain": [],
             "Germany": [],
             "Oman": [],
             "Greece": [],
@@ -134,7 +138,8 @@
             "UK": [],
             "Switzerland": [],
             "Turkey": [],
-            "USA": []},
+            "USA": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -153,7 +158,8 @@
             "China": [],
             "UnitedArabEmirates": [],
             "Australia": [],
-            "Qatar": []},
+            "Qatar": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -171,7 +177,8 @@
             "France": [],
             "USA": [],
             "Italy": [],
-            "Germany": []},
+            "Germany": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -193,7 +200,8 @@
             "Germany": [],
             "Oman": [],
             "Australia": [],
-            "Ukraine": []},
+            "Ukraine": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -209,7 +217,8 @@
         "extraOperators": {
             "USA": [],
             "UK": [],
-            "Switzerland": []},
+            "Switzerland": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -223,7 +232,8 @@
             "end": 2020
         },
         "extraOperators": {
-            "USA": []},
+            "USA": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -253,7 +263,8 @@
             "end": 2020
         },
         "extraOperators": {
-            "Switzerland": []},
+            "Switzerland": []
+        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -267,7 +278,8 @@
             "end": 2010
         },
         "extraOperators": {
-            "USA": []},
+            "USA": []
+        },
         "lowPolly": true,
         "playerControllable": true
     },
@@ -281,7 +293,8 @@
             "end": 2020
         },
         "extraOperators": {
-            "USA": []},
+            "USA": []
+        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -353,7 +366,8 @@
             "Bolivia": [],
             "Nigeria": [],
             "Peru": [],
-            "Ecuador": []},
+            "Ecuador": []
+        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -373,7 +387,8 @@
             "France": [],
             "Greece": [],
             "India": [],
-            "Qatar": []},
+            "Qatar": []
+        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -393,7 +408,8 @@
             "France": [],
             "Greece": [],
             "India": [],
-            "Qatar": []},
+            "Qatar": []
+        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -413,7 +429,8 @@
             "France": [],
             "Greece": [],
             "India": [],
-            "Qatar": []},
+            "Qatar": []
+        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -433,7 +450,8 @@
             "France": [],
             "Greece": [],
             "India": [],
-            "Qatar": []},
+            "Qatar": []
+        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -455,7 +473,8 @@
             "Indonesia": [],
             "Nigeria": [],
             "Philippines": [],
-            "USA": []},
+            "USA": []
+        },
         "lowPolly": false,
         "playerControllable": true
     }

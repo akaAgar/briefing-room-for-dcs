@@ -109,9 +109,9 @@ namespace BriefingRoom4DCS
         Argentina = 83,
         Cyprus = 84,
         Slovenia = 85,
-        Bolivia=86,
-        Ghana=87,
-        Nigeria=88,
+        Bolivia = 86,
+        Ghana = 87,
+        Nigeria = 88,
         Peru = 89,
         Ecuador = 90,
     }

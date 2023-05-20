@@ -33,7 +33,7 @@ namespace BriefingRoom4DCS.Generator
         private int prevLaserCode { get; set; } = 1687;
         internal MissionGeneratorFeaturesObjectives(UnitMaker unitMaker, MissionTemplateRecord template) : base(unitMaker, template) { }
 
-        internal void GenerateMissionFeature(DCSMission mission, string featureID, string objectiveName, int objectiveIndex, UnitMakerGroupInfo objectiveTarget,  Side objectiveTargetSide, bool hideEnemy = false)
+        internal void GenerateMissionFeature(DCSMission mission, string featureID, string objectiveName, int objectiveIndex, UnitMakerGroupInfo objectiveTarget, Side objectiveTargetSide, bool hideEnemy = false)
         {
             DBEntryFeatureObjective featureDB = Database.Instance.GetEntry<DBEntryFeatureObjective>(featureID);
             if (featureDB == null) // Feature doesn't exist

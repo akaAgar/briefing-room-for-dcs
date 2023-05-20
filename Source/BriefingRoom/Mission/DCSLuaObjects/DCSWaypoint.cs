@@ -87,16 +87,16 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             {
                 var tempWaypointCoords = waypointCoords;
                 if (new Random().NextDouble() <= 0.5)
-                    continue; 
-                
-                if(unitFamily.GetUnitCategory() == UnitCategory.Vehicle || unitFamily.GetUnitCategory() == UnitCategory.Infantry)
+                    continue;
+
+                if (unitFamily.GetUnitCategory() == UnitCategory.Vehicle || unitFamily.GetUnitCategory() == UnitCategory.Infantry)
                 {
                     var waypointCoordsSpawn = spawnPointSelector.GetNearestSpawnPoint(new SpawnPointType[] { SpawnPointType.LandLarge, SpawnPointType.LandMedium, SpawnPointType.LandSmall }, tempWaypointCoords, false);
-                    if(!waypointCoordsSpawn.HasValue)
+                    if (!waypointCoordsSpawn.HasValue)
                         continue;
                     tempWaypointCoords = waypointCoordsSpawn.Value;
                 }
-            
+
                 extraWaypoints.Add(new DCSWaypoint
                 {
                     Alt = lastWaypoint.Alt,
@@ -129,13 +129,13 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             {
                 UnitCategory.Plane => new MinMaxD(-30, 30),
                 UnitCategory.Helicopter => new MinMaxD(-20, 20),
-                _ => unitFamily == UnitFamily.InfantryMANPADS || unitFamily == UnitFamily.Infantry ? new MinMaxD(-5, 5) :  new MinMaxD(-8, 8)
+                _ => unitFamily == UnitFamily.InfantryMANPADS || unitFamily == UnitFamily.Infantry ? new MinMaxD(-5, 5) : new MinMaxD(-8, 8)
             };
             var randomRange = unitFamily.GetUnitCategory() switch
             {
                 UnitCategory.Plane => 20,
                 UnitCategory.Helicopter => 10,
-                _ => unitFamily == UnitFamily.InfantryMANPADS || unitFamily == UnitFamily.Infantry ? 1 :  3
+                _ => unitFamily == UnitFamily.InfantryMANPADS || unitFamily == UnitFamily.Infantry ? 1 : 3
             };
 
             var offsetPixels = offsetRange.GetValue() * Toolbox.NM_TO_METERS;

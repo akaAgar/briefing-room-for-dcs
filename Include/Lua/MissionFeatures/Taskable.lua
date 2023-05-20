@@ -51,13 +51,13 @@ function briefingRoom.taskables.launchCurry(dataObj, groupName, newTaskFunc)
 
     if dataObj.markID == nil then
         briefingRoom.radioManager.play(dataObj.LANG_UNIT .. ": " .. dataObj.LANG_NO_COORDS, "RadioArtilleryNoCoordinates"
-            , briefingRoom.radioManager.getAnswerDelay())
+        , briefingRoom.radioManager.getAnswerDelay())
         return
     end
     local mark = table.find(world.getMarkPanels(), function(o, k, i) return o.idx == dataObj.markID end)
     if mark == nil then
         briefingRoom.radioManager.play(dataObj.LANG_UNIT .. ": " .. dataObj.LANG_NO_COORDS, "RadioArtilleryNoCoordinates"
-            , briefingRoom.radioManager.getAnswerDelay())
+        , briefingRoom.radioManager.getAnswerDelay())
         return
     end
 

@@ -29,7 +29,7 @@ namespace BriefingRoom4DCS.Data
 {
     internal class DBEntryStatic : DBEntryJSONUnit
     {
-        
+
         internal string ShapeName { get; init; }
         internal int ParkingSpots { get; init; }
 
@@ -58,7 +58,7 @@ namespace BriefingRoom4DCS.Data
                     ID = id,
                     UIDisplayName = new LanguageString(@static.displayName),
                     DCSID = @static.type,
-                    Countries = new Dictionary<Country, (Template.Decade start, Template.Decade end)>{{Country.ALL, ((Template.Decade)supportInfo.operational.start, (Template.Decade)supportInfo.operational.end)}},
+                    Countries = new Dictionary<Country, (Template.Decade start, Template.Decade end)> { { Country.ALL, ((Template.Decade)supportInfo.operational.start, (Template.Decade)supportInfo.operational.end) } },
                     ShapeName = @static.shapeName,
                     Families = supportInfo.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
                     lowPolly = supportInfo.lowPolly,
@@ -69,6 +69,6 @@ namespace BriefingRoom4DCS.Data
             return itemMap;
         }
 
-        public DBEntryStatic(){}
+        public DBEntryStatic() { }
     }
 }

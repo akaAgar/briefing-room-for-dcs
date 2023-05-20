@@ -105,7 +105,7 @@ namespace BriefingRoom4DCS.Generator
             if (validTypes.Contains(SpawnPointType.Air) || validTypes.Contains(SpawnPointType.Sea))
                 return Coordinates.CreateRandom(origin, new MinMaxD(1 * Toolbox.NM_TO_METERS, 3 * Toolbox.NM_TO_METERS));
             var sp = SpawnPoints.Where(x => validTypes.Contains(x.PointType)).Aggregate((acc, x) => origin.GetDistanceFrom(x.Coordinates) < origin.GetDistanceFrom(acc.Coordinates) ? x : acc);
-            if(remove)
+            if (remove)
                 SpawnPoints.Remove(sp);
             return sp.Coordinates;
         }
@@ -139,7 +139,7 @@ namespace BriefingRoom4DCS.Generator
                 if (validSP.Count() == 0) return null;
                 if (!distanceFrom[i].HasValue || !distanceOrigin[i].HasValue) continue;
 
-                var borderLimit = (double) MinBorderLimit;
+                var borderLimit = (double)MinBorderLimit;
                 var searchRange = distanceFrom[i].Value * Toolbox.NM_TO_METERS; // convert distance to meters
 
                 IEnumerable<DBEntryTheaterSpawnPoint> validSPInRange = (from DBEntryTheaterSpawnPoint s in validSP select s);
@@ -158,7 +158,7 @@ namespace BriefingRoom4DCS.Generator
                                       select s);
                     searchRange = new MinMaxD(searchRange.Min * 0.9, Math.Max(100, searchRange.Max * 1.1));
                     validSP = (from DBEntryTheaterSpawnPoint s in validSPInRange select s);
-                    if(iterationsLeft < 22)
+                    if (iterationsLeft < 22)
                         borderLimit = borderLimit * 1.1;
                     iterationsLeft--;
                 } while ((validSPInRange.Count() == 0) && (iterationsLeft > 0));
@@ -190,10 +190,10 @@ namespace BriefingRoom4DCS.Generator
                 var coordOptionsLinq = Enumerable.Range(0, 5000)
                     .Select(x => Coordinates.CreateRandom(distanceOrigin1, searchRange))
                     .Where(x => CheckNotInHostileCoords(x, coalition) && CheckNotInNoSpawnCoords(x) && CheckNotFarFromBorders(x, borderLimit, coalition));
-                
+
                 if (secondSearchRange.HasValue)
                     coordOptionsLinq = coordOptionsLinq.Where(x => secondSearchRange.Value.Contains(distanceOrigin2.Value.GetDistanceFrom(x)));
-                
+
                 if (validTypes.First() == SpawnPointType.Sea) //sea position
                     coordOptionsLinq = coordOptionsLinq.Where(x => CheckInSea(x));
 
@@ -206,7 +206,7 @@ namespace BriefingRoom4DCS.Generator
                 if (secondSearchRange.HasValue)
                     secondSearchRange = new MinMaxD(secondSearchRange.Value.Min * 0.9, secondSearchRange.Value.Max * 1.1);
 
-                if(iterations > 10)
+                if (iterations > 10)
                     borderLimit = borderLimit * 1.1;
 
                 iterations++;
@@ -225,7 +225,7 @@ namespace BriefingRoom4DCS.Generator
                          select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(coordinates));
 
             if (targetAirbaseOptions.Count() == 0) throw new BriefingRoomException("No airbase found for aircraft.");
-            
+
             List<DBEntryAirbaseParkingSpot> parkingSpots;
             foreach (var airbase in targetAirbaseOptions)
             {
@@ -238,26 +238,26 @@ namespace BriefingRoom4DCS.Generator
                     continue;
                 }
 
-                return Tuple.Create(airbase, parkingSpots.Select(x => x.DCSID).ToList(), parkingSpots.Select(x => x.Coordinates).ToList());  
+                return Tuple.Create(airbase, parkingSpots.Select(x => x.DCSID).ToList(), parkingSpots.Select(x => x.Coordinates).ToList());
             }
             throw new BriefingRoomException("No airbase found with sufficient parking spots.");
         }
 
         private List<DBEntryAirbaseParkingSpot> FilterAndSortSuitableSpots(DBEntryAirbaseParkingSpot[] parkingspots, DBEntryAircraft aircraftDB, bool requiresOpenAirParking)
         {
-            if(parkingspots.Any(x => x.Height == 0))
+            if (parkingspots.Any(x => x.Height == 0))
             {
                 BriefingRoom.PrintToLog("Using Simplified parking logic units may overlap", LogMessageErrorLevel.Warning);
                 return FilterAndSortSuitableSpotsSimple(parkingspots, aircraftDB.Families.First(), requiresOpenAirParking);
             }
             var category = aircraftDB.Families.First().GetUnitCategory();
-            var opts =  parkingspots.Where(x =>
-                aircraftDB.Height < x.Height 
+            var opts = parkingspots.Where(x =>
+                aircraftDB.Height < x.Height
                 && aircraftDB.Length < x.Length
                 && aircraftDB.Width < x.Width
                 && (!requiresOpenAirParking || x.ParkingType != ParkingSpotType.HardenedAirShelter)
              );
-             if(category == UnitCategory.Helicopter)
+            if (category == UnitCategory.Helicopter)
                 return opts.Where(x => x.ParkingType != ParkingSpotType.AirplaneOnly || x.ParkingType != ParkingSpotType.HardenedAirShelter).ToList();
             return opts.Where(x => x.ParkingType != ParkingSpotType.HelicopterOnly).ToList();
         }

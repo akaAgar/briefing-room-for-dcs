@@ -300,8 +300,8 @@ namespace BriefingRoom4DCS.Data
             if (!DBEntries[typeof(T)].ContainsKey(id)) return null;
             return (T)DBEntries[typeof(T)][id];
         }
-    
-        internal ST GetEntry<T,ST>(string id)
+
+        internal ST GetEntry<T, ST>(string id)
             where T : DBEntry
             where ST : DBEntry
         {

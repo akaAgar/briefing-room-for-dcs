@@ -38,7 +38,7 @@ namespace BriefingRoom4DCS
 
             AddStringValueToEntries(MizFileEntries, "l10n/DEFAULT/briefing.html", mission.Briefing.GetBriefingAsHTML(true));
             mission.AppendValue("MapResourcesFiles", $"[\"ResKey_Snd_briefing_html\"] = \"briefing.html\",\n");
-    
+
             AddStringValueToEntries(MizFileEntries, "l10n/DEFAULT/credits.txt", $"Generated with BriefingRoom for DCS World (https://akaagar.itch.io/briefing-room-for-dcs) {BriefingRoom.VERSION} ({BriefingRoom.BUILD_VERSION})");
             mission.AppendValue("MapResourcesFiles", $"[\"ResKey_Snd_credits_txt\"] = \"credits.txt\",\n");
 

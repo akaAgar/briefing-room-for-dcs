@@ -84,7 +84,7 @@ namespace BriefingRoom4DCS.Generator
                     x.ParkingSpots.Length >= requiredParkingSpots &&
                     (x.Coalition == _template.ContextPlayerCoalition || _template.SpawnAnywhere) &&
                     x.RunwayLengthFt > requiredRunway &&
-                    (MissionPrefersShoreAirbase() ? IsNearWater(x.Coordinates, theaterDB): true)
+                    (MissionPrefersShoreAirbase() ? IsNearWater(x.Coordinates, theaterDB) : true)
                     ).ToList();
 
             if (opts.Count == 0)
@@ -123,8 +123,9 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        private bool IsNearWater(Coordinates coords, DBEntryTheater theaterDB){
-            return ShapeManager.GetDistanceFromShape(coords, theaterDB.WaterCoordinates) * Toolbox.METERS_TO_NM  < 50;
+        private bool IsNearWater(Coordinates coords, DBEntryTheater theaterDB)
+        {
+            return ShapeManager.GetDistanceFromShape(coords, theaterDB.WaterCoordinates) * Toolbox.METERS_TO_NM < 50;
         }
     }
 }

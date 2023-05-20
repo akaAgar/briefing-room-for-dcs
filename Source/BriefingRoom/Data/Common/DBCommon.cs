@@ -67,7 +67,7 @@ namespace BriefingRoom4DCS.Data
             MinCampaignMissions = commonIni.GetValue<int>("Limits", "MinCampaignMissions");
             MaxCampaignMissions = commonIni.GetValue<int>("Limits", "MaxCampaignMissions");
             foreach (string f in CommonOGG)
-                if (!File.Exists(Path.Combine(BRPaths.INCLUDE_OGG,$"{f}.ogg")))
+                if (!File.Exists(Path.Combine(BRPaths.INCLUDE_OGG, $"{f}.ogg")))
                     BriefingRoom.PrintToLog($"File \"Include\\Ogg\\{f}.ogg\" doesn't exist.", LogMessageErrorLevel.Warning);
 
 

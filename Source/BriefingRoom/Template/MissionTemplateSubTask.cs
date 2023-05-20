@@ -40,7 +40,7 @@ namespace BriefingRoom4DCS.Template
 
         public string Preset { get { return Preset_; } set { Preset_ = Database.Instance.CheckID<DBEntryObjectivePreset>(value); } }
         private string Preset_ = "Custom";
-        public bool HasPreset { get { return Preset_ != "Custom"; }}
+        public bool HasPreset { get { return Preset_ != "Custom"; } }
 
         public MissionTemplateSubTask()
         {
@@ -59,7 +59,7 @@ namespace BriefingRoom4DCS.Template
             TargetBehavior = targetBehavior;
             TargetCount = targetCount;
             Task = task;
-             Preset = "Custom";
+            Preset = "Custom";
         }
 
         internal MissionTemplateSubTask(INIFile ini, string section, string key)

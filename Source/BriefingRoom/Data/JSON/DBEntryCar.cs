@@ -29,7 +29,7 @@ namespace BriefingRoom4DCS.Data
 {
     internal class DBEntryCar : DBEntryJSONUnit
     {
-        
+
         internal string DCSCategory { get; init; }
 
         protected override bool OnLoad(string o)
@@ -41,7 +41,7 @@ namespace BriefingRoom4DCS.Data
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Car>>(File.ReadAllText(filepath));
-            var infoDataDict = JsonConvert.DeserializeObject<List<BRInfo>>(File.ReadAllText(filepath.Replace(".json", "BRInfo.json"))).ToDictionary(x => x.type, x => x); 
+            var infoDataDict = JsonConvert.DeserializeObject<List<BRInfo>>(File.ReadAllText(filepath.Replace(".json", "BRInfo.json"))).ToDictionary(x => x.type, x => x);
             foreach (var car in data)
             {
                 var id = car.type;
@@ -70,6 +70,6 @@ namespace BriefingRoom4DCS.Data
             return itemMap;
         }
 
-        public DBEntryCar(){}
+        public DBEntryCar() { }
     }
 }

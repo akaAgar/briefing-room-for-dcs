@@ -29,12 +29,12 @@ namespace BriefingRoom4DCS.Data
 {
     internal class DBEntryTemplate : DBEntry
     {
-        
+
         internal string DCSCategory { get; init; }
         internal string Type { get; init; }
         internal Dictionary<Country, (Decade start, Decade end)> Countries { get; init; }
         internal List<DBEntryTemplateUnit> Units { get; init; }
-        internal UnitFamily Family {get; init;}
+        internal UnitFamily Family { get; init; }
         internal string Module { get; init; }
 
         protected override bool OnLoad(string o)
@@ -46,12 +46,12 @@ namespace BriefingRoom4DCS.Data
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<BriefingRoom4DCS.Data.JSON.Template>>(File.ReadAllText(filepath));
-            var supportData = JsonConvert.DeserializeObject<List<BriefingRoom4DCS.Data.JSON.TemplateBRInfo>>(File.ReadAllText($"{filepath.Replace(".json","")}BRInfo.json"))
+            var supportData = JsonConvert.DeserializeObject<List<BriefingRoom4DCS.Data.JSON.TemplateBRInfo>>(File.ReadAllText($"{filepath.Replace(".json", "")}BRInfo.json"))
                 .ToDictionary(x => x.type, x => x);
             foreach (var template in data)
-            {   
+            {
                 var id = template.name;
-                if(!supportData.ContainsKey(id))
+                if (!supportData.ContainsKey(id))
                 {
                     BriefingRoom.PrintToLog($"Template {id} missing support data.", LogMessageErrorLevel.Warning);
                     continue;
@@ -66,7 +66,8 @@ namespace BriefingRoom4DCS.Data
                     Type = template.type,
                     Countries = extraCountries,
                     Family = (UnitFamily)Enum.Parse(typeof(UnitFamily), supportInfo.family, true),
-                    Units = template.units.Select(x => new DBEntryTemplateUnit {
+                    Units = template.units.Select(x => new DBEntryTemplateUnit
+                    {
                         DCoordinates = new Coordinates(x.dx, x.dy),
                         DCSID = x.name,
                         Heading = x.heading
@@ -78,12 +79,12 @@ namespace BriefingRoom4DCS.Data
             return itemMap;
         }
 
-        public DBEntryTemplate(){}
+        public DBEntryTemplate() { }
     }
 
     internal class DBEntryTemplateUnit
     {
-        public DBEntryTemplateUnit(){}
+        public DBEntryTemplateUnit() { }
         internal Coordinates DCoordinates { get; init; }
         internal double Heading { get; init; }
         internal string DCSID { get; init; }

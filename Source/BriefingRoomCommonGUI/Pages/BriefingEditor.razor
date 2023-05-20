@@ -58,7 +58,8 @@
 
   private IBrowserFile file;
 
-  private Regex GetRegex(string target) => new Regex($@"\[""{target}""\] = ""(.|\n|\r)*?"",\r?\n", RegexOptions.IgnoreCase);
+  private Regex GetRegex(string target) => new Regex($@"\[""{target}""\] = ""(.|\n|\r)*?"",\r?\n",
+  RegexOptions.IgnoreCase);
   private async Task LoadTemplate(InputFileChangeEventArgs e)
   {
     errorMessage = "";

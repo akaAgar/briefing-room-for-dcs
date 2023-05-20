@@ -23,7 +23,7 @@
   {
     @if (DocTab == key)
     {
-      @((MarkupString) @Documents[key])
+      @((MarkupString)@Documents[key])
     }
   }
 </div>
@@ -42,7 +42,8 @@
     var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
     var sourcePath = Path.Combine(BriefingRoom.GetBriefingRoomMarkdownPath(), "Manuals");
     var files = Directory.GetFiles(sourcePath, "*.md");
-    Documents = files.ToDictionary(x => x.Replace(sourcePath, "").Replace(".md", "").Replace("_", " ").Replace("\\", "").Replace("/", ""), x =>
+    Documents = files.ToDictionary(x => x.Replace(sourcePath, "").Replace(".md", "").Replace("_", " ").Replace("\\",
+    "").Replace("/", ""), x =>
     Markdown.ToHtml(File.ReadAllText(x).Replace("Media/SplashScreen.png",
     "_content/BriefingRoomCommonGUI/img/br-logo-white.png"), pipeline));
   }

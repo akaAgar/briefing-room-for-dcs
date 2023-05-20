@@ -48,8 +48,7 @@ function GetSquareBounds(map) {
     return [[Math.min(...xArr), Math.min(...yArr)], [Math.max(...xArr), Math.max(...yArr)]]
 }
 
-function PullPosWithinBounds(pos, map)
-{
+function PullPosWithinBounds(pos, map) {
     const bounds = GetSquareBounds(map)
     return [Math.max(Math.min(pos[0], bounds[1][0]), bounds[0][0]), Math.max(Math.min(pos[1], bounds[1][1]), bounds[0][1])]
 }
@@ -113,7 +112,7 @@ async function RenderHintMap(map, hintKey) {
 function PrepClickHint(hintKey, map) {
     leafHintMap.once('click', function (e) {
         hintMarkerMap = map
-        boundedPos = PullPosWithinBounds([e.latlng.lat, e.latlng.lng],map)
+        boundedPos = PullPosWithinBounds([e.latlng.lat, e.latlng.lng], map)
         hintPositions[hintKey] = { x: boundedPos[0], y: boundedPos[1] }
         if (hintKey in hintMarkers) {
             hintMarkers[hintKey].setLatLng([hintPositions[hintKey].x, hintPositions[hintKey].y])
@@ -139,7 +138,7 @@ function createHintMarker(key, map) {
     hintMarkers[key].on('dragend', async function (event) {
         var marker = event.target;
         var position = marker.getLatLng();
-        boundedPos = PullPosWithinBounds([position.lat, position.lng],map)
+        boundedPos = PullPosWithinBounds([position.lat, position.lng], map)
         hintPositions[key] = { x: boundedPos[0], y: boundedPos[1] }
         marker.setLatLng([hintPositions[key].x, hintPositions[key].y])
     });
@@ -152,8 +151,7 @@ function createHintMarker(key, map) {
     });
 }
 
-function RemoveAllHintMarkers()
-{
+function RemoveAllHintMarkers() {
     Object.values(hintMarkers).forEach(x => x.remove())
     hintPositions = {}
     hintMarkers = {}
@@ -244,7 +242,7 @@ function CreateCoordsString(layer, map) {
     const projector = GetDCSMapProjector(map)
     const adjustedCoords = layer.editing.latlngs[0][0].map(x => {
         const pos2 = PullPosWithinBounds([x.lat, x.lng], map)
-        return {lat: pos2[0], lng: pos2[1]}
+        return { lat: pos2[0], lng: pos2[1] }
     })
     layer.setLatLngs(adjustedCoords)
 

@@ -154,8 +154,8 @@ namespace BriefingRoom4DCS
             .Aggregate(new List<string>(), (acc, x) => { acc.AddRange(x); return acc; })
             .Distinct().Order().ToList();
 
-        public static List<string> GetAircraftCallsigns(string aircraftID) => new List<string>{};
-            // Database.Instance.GetEntry<DBEntryJSONUnit, DBEntryAircraft>(aircraftID).AircraftData.Callsigns;
+        public static List<string> GetAircraftCallsigns(string aircraftID) => new List<string> { };
+        // Database.Instance.GetEntry<DBEntryJSONUnit, DBEntryAircraft>(aircraftID).AircraftData.Callsigns;
 
         public static List<string> GetAircraftPayloads(string aircraftID) =>
             Database.Instance.GetEntry<DBEntryJSONUnit, DBEntryAircraft>(aircraftID).Payloads.Select(x => x.name).Distinct().Order().ToList();

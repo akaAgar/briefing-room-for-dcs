@@ -57,10 +57,10 @@ namespace BriefingRoom4DCS.GUI.Web
             CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
             CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InstalledUICulture;
 
-            if(BriefingRoom.RUNNING_IN_DOCKER)
+            if (BriefingRoom.RUNNING_IN_DOCKER)
             {
                 IronPdf.Installation.LinuxAndDockerDependenciesAutoConfig = false;
-                IronPdf.Installation.ChromeGpuMode=IronPdf.Engines.Chrome.ChromeGpuModes.Disabled;
+                IronPdf.Installation.ChromeGpuMode = IronPdf.Engines.Chrome.ChromeGpuModes.Disabled;
                 IronPdf.Installation.Initialize();
             }
 

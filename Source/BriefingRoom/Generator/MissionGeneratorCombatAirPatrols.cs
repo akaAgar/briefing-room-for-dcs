@@ -105,7 +105,7 @@ namespace BriefingRoom4DCS.Generator
                 };
 
                 var spawnpointCoordinates = spawnPoint.Value;
-            
+
                 UnitMakerGroupFlags groupFlags = 0;
 
                 if (Toolbox.RandomChance(4))
@@ -129,13 +129,13 @@ namespace BriefingRoom4DCS.Generator
 
 
                 UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(units, side, unitDB.Families.First(), commonCAPDB.LuaGroup, commonCAPDB.LuaUnit, spawnpointCoordinates, groupFlags, extraSettings);
-    
+
                 if (!groupInfo.HasValue) // Failed to generate a group
                     BriefingRoom.PrintToLog($"Failed to find units for {coalition} air defense unit group.", LogMessageErrorLevel.Warning);
 
                 SetCarrier(template, unitMaker, side, ref groupInfo);
 
-                groupInfo.Value.DCSGroup.Waypoints = DCSWaypoint.CreateExtraWaypoints(groupInfo.Value.DCSGroup.Waypoints,  groupInfo.Value.UnitDB.Families.First(),  unitMaker.SpawnPointSelector);
+                groupInfo.Value.DCSGroup.Waypoints = DCSWaypoint.CreateExtraWaypoints(groupInfo.Value.DCSGroup.Waypoints, groupInfo.Value.UnitDB.Families.First(), unitMaker.SpawnPointSelector);
 
             } while (unitsLeftToSpawn > 0);
         }

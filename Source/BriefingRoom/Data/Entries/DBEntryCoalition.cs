@@ -63,7 +63,7 @@ namespace BriefingRoom4DCS.Data
 
         internal Tuple<Country, DBEntryTemplate> GetRandomTemplate(List<UnitFamily> families, Decade decade, List<string> unitMods)
         {
-            
+
             var validTemplates = new Dictionary<Country, List<DBEntryTemplate>>();
             foreach (var country in Countries)
             {
@@ -79,7 +79,7 @@ namespace BriefingRoom4DCS.Data
             validTemplates = validTemplates.Where(x => x.Value.Count > 0).ToDictionary(x => x.Key, x => x.Value);
 
             if (validTemplates.Count() == 0)
-                throw new  BriefingRoomException($"No Units of types {string.Join(", ", families)} found in coalition of {string.Join(", ", Countries.Where(x => x != Country.ALL))} defaults not yet implemented.");
+                throw new BriefingRoomException($"No Units of types {string.Join(", ", families)} found in coalition of {string.Join(", ", Countries.Where(x => x != Country.ALL))} defaults not yet implemented.");
 
             var selectedCountry = Toolbox.RandomFrom(validTemplates.Keys.ToList());
             return new(selectedCountry, Toolbox.RandomFrom(validTemplates[selectedCountry]));

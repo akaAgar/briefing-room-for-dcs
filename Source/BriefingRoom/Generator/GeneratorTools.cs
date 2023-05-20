@@ -49,14 +49,15 @@ namespace BriefingRoom4DCS.Generator
 
             int airDefenseUnitsCount = airDefenseInfo.EmbeddedUnitCount.GetValue();
 
-            var families = unitCategory switch {
+            var families = unitCategory switch
+            {
                 UnitCategory.Infantry => new List<UnitFamily> { UnitFamily.InfantryMANPADS },
                 UnitCategory.Static => new List<UnitFamily> { UnitFamily.InfantryMANPADS, UnitFamily.VehicleAAA, UnitFamily.VehicleAAAStatic, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShort },
                 UnitCategory.Vehicle => new List<UnitFamily> { UnitFamily.VehicleAAA, UnitFamily.VehicleAAA, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShortIR, UnitFamily.VehicleSAMShort },
                 _ => new List<UnitFamily>()
             };
 
-            if(families.Count == 0)
+            if (families.Count == 0)
                 return units.ToList();
 
             for (int i = 0; i < airDefenseUnitsCount; i++)
@@ -250,7 +251,7 @@ namespace BriefingRoom4DCS.Generator
 
         internal static string FormatRadioFrequency(double radioFrequency)
         {
-            return (radioFrequency > 10000 ? radioFrequency/1000000.0 : radioFrequency).ToString("F1", NumberFormatInfo.InvariantInfo);
+            return (radioFrequency > 10000 ? radioFrequency / 1000000.0 : radioFrequency).ToString("F1", NumberFormatInfo.InvariantInfo);
         }
 
         internal static void ReplaceKey(ref string lua, string key, object value)

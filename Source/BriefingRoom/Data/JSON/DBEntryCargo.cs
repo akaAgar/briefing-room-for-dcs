@@ -29,7 +29,7 @@ namespace BriefingRoom4DCS.Data
 {
     internal class DBEntryCargo : DBEntryJSONUnit
     {
-        
+
         internal string ShapeName { get; init; }
 
         protected override bool OnLoad(string o)
@@ -49,15 +49,15 @@ namespace BriefingRoom4DCS.Data
                     ID = id,
                     UIDisplayName = new LanguageString(@static.displayName),
                     DCSID = @static.type,
-                    Countries = new Dictionary<Country, (Template.Decade start, Template.Decade end)>{{Country.ALL, (Template.Decade.Decade1940, Template.Decade.Decade2020)}},
+                    Countries = new Dictionary<Country, (Template.Decade start, Template.Decade end)> { { Country.ALL, (Template.Decade.Decade1940, Template.Decade.Decade2020) } },
                     ShapeName = @static.shapeName,
-                    Families = new UnitFamily[]{UnitFamily.Cargo}
+                    Families = new UnitFamily[] { UnitFamily.Cargo }
                 });
             }
 
             return itemMap;
         }
 
-        public DBEntryCargo(){}
+        public DBEntryCargo() { }
     }
 }

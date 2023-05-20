@@ -92,7 +92,7 @@ const MapBoundaries = {
         // top right
         {
             lat: 49.676368638092,
-            lon:  0.028407005734647
+            lon: 0.028407005734647
         },
     ],
 
