@@ -147,7 +147,16 @@ function createHintMarker(key, map) {
         var marker = event.target;
         marker.remove()
         delete hintPositions[key]
+        delete hintMarkers[key]
+        PrepClickHint(key, map)
     });
+}
+
+function RemoveAllHintMarkers()
+{
+    Object.values(hintMarkers).forEach(x => x.remove())
+    hintPositions = {}
+    hintMarkers = {}
 }
 
 function GetHintPoints(map) {

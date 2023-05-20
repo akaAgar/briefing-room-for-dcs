@@ -554,6 +554,10 @@
                 <div class="offcanvas-body">
                     <p>@BriefingRoom.Translate("HintUsageP1")&nbsp;<span class="oi oi-globe"></span>&nbsp;@BriefingRoom.Translate("HintUsageP2")</p>
                     <p class="custom-warning"><span class="oi oi-info"></span>&nbsp;@BriefingRoom.Translate("HintNote")</p>
+                    <button class="btn btn-warning float-right" aria-hidden="true" @onclick='async() => await JSRuntime.InvokeVoidAsync("RemoveAllHintMarkers")'>
+                        <span class="oi oi-reload"></span>
+                        <span class="template-box-button-text">@BriefingRoom.Translate("Reset")</span>
+                    </button>
                     <div id="hintMap"></div>
                 </div>
             </div>
@@ -730,7 +734,6 @@
     private async Task RenderHintMap(string hintKey)
     {
         await JSRuntime.InvokeVoidAsync("RenderHintMap", Template.ContextTheater, hintKey);
-
     }
 
     private string tab = "context-&-enviroment";
