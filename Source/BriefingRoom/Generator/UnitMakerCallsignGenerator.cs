@@ -54,17 +54,17 @@ namespace BriefingRoom4DCS.Generator
             if (!string.IsNullOrEmpty(overrideName))
                 return GetOverriddenCallsign(overrideName, overrideNumber);
 
-            return GetNATOCallsign(unitDB, side, isUsingSkynet);
+            return GetNATOCallsign(unitDB, country, side, isUsingSkynet);
         }
 
-        private UnitCallsign GetNATOCallsign(DBEntryAircraft unitDB, Side side, bool isUsingSkynet)
+        private UnitCallsign GetNATOCallsign(DBEntryAircraft unitDB, Country country, Side side, bool isUsingSkynet)
         {
             string groupName;
             int randomNumber;
             string[] callSignEnum;
             do
             {
-                callSignEnum = Toolbox.RandomFrom<string>(unitDB.CallSigns).Split(":");
+                callSignEnum = Toolbox.RandomFrom<string>(unitDB.CallSigns[country]).Split(":");
                 randomNumber = Toolbox.RandomMinMax(1, 9);
                 groupName = $"{callSignEnum[1]} {randomNumber}";
             } while (NATOCallsigns.Contains(groupName));

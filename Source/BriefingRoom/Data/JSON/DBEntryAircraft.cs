@@ -43,8 +43,7 @@ namespace BriefingRoom4DCS.Data
         internal List<DBEntryUnitRadioPreset> PanelRadios { get; init; }
         internal Dictionary<string, object> ExtraProps { get; init; }
         internal bool EPLRS { get; init; }
-        internal Dictionary<string, List<List<string>>> SpecificCallNames { get; init; }
-        internal List<string> CallSigns { get; init; }
+        internal Dictionary<Country, List<string>> CallSigns { get; init; }
         internal List<Payload> Payloads { get; init; }
         internal int MinimumRunwayLengthFt { get; init; }
 
@@ -119,8 +118,7 @@ namespace BriefingRoom4DCS.Data
                     }).ToList(),
                     ExtraProps = (aircraft.extraProps ?? new List<ExtraProp>()).Where(x => x.defValue is not null).ToDictionary(x => x.id, x => x.defValue),
                     EPLRS = (bool)(aircraft.EPLRS ?? false),
-                    CallSigns = new List<string> { "1:Enfield", "2:Springfield", "3:Uzi", "4:Colt", "5:Dodge", "6:Ford", "7:Chevy", "8:Pontiac" },
-                    SpecificCallNames = aircraft.specificCallnames,
+                    CallSigns = aircraft.callsigns.ToDictionary(x => (Country)Enum.Parse(typeof(Country), x.Key, true), x => x.Value.Select(v => $"{v.WorldID}:{v.Name}").ToList()),
                     Payloads = aircraft.payloadPresets,
                     Shape = aircraft.shape,
                     Height = aircraft.height,

@@ -46,11 +46,10 @@ namespace BriefingRoom4DCS.Data.JSON
         public List<ExtraProp> extraProps { get; set; }
         public bool? EPLRS { get; set; }
         public int? ammoType { get; set; }
-        public bool? inheriteCommonCallnames { get; set; }
-        public Dictionary<string, List<List<string>>> specificCallnames { get; set; }
         public double height { get; set; }
         public double width { get; set; }
         public double length { get; set; }
+        public Dictionary<string, List<CallSign>> callsigns { get; set; }
     }
 
     public class Task
@@ -72,5 +71,11 @@ namespace BriefingRoom4DCS.Data.JSON
     {
         public string CLSID { get; set; }
         public int num { get; set; }
+    }
+
+    public class CallSign
+    {
+        public string Name { get; set; }
+        public int WorldID { get; set; }
     }
 }
