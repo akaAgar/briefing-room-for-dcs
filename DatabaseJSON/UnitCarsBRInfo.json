@@ -2824,7 +2824,7 @@
     {
         "type": "Stinger comm dsr",
         "families": [
-            "Infantry"
+            "VehicleStatic"
         ],
         "operational": [1980, 2020],
         "extraOperators": {},
@@ -2834,7 +2834,7 @@
     {
         "type": "Stinger comm",
         "families": [
-            "Infantry"
+            "VehicleStatic"
         ],
         "operational": [1980, 2020],
         "extraOperators": {},
@@ -3069,7 +3069,7 @@
     {
         "type": "SA-18 Igla comm",
         "families": [
-            "Infantry"
+            "VehicleStatic"
         ],
         "operational": [1980, 2020],
         "extraOperators": {},
@@ -3089,7 +3089,7 @@
     {
         "type": "SA-18 Igla-S comm",
         "families": [
-            "Infantry"
+            "VehicleStatic"
         ],
         "operational": [1980, 2020],
         "extraOperators": {},
