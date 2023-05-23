@@ -40,7 +40,7 @@ namespace BriefingRoom4DCS.Data.JSON
     {
         public string type { get; set; }
         public List<string> families { get; set; } = new List<string>();
-        public List<int> operational { get; set; } = new List<int>{1940,2020};
+        public List<int> operational { get; set; } = new List<int>{};
         public Dictionary<string, List<int>> extraOperators { get; set; } = new Dictionary<string, List<int>>();
         public bool lowPolly { get; set; }
         public bool immovable { get; set; }
