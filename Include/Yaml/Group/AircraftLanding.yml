@@ -35,7 +35,7 @@ waypoints:
     speedLocked: true
     y: $GROUPY$
     x: $GROUPX$
-  - alt: 13
+  - alt: $ALTITUDE$
     action: Landing
     speed: $SPEED$
     type: Land
