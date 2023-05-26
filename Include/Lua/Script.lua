@@ -1075,3 +1075,7 @@ $SCRIPTMISSIONFEATURES$
 
 -- All done, enable event handler so the mission can begin
 world.addEventHandler(briefingRoom.eventHandler)
+
+if $INSTANTSTART$ then
+  briefingRoom.mission.coreFunctions.beginMission()
+end
