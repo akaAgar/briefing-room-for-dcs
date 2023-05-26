@@ -1,0 +1,53 @@
+lateActivation: true
+modulation: $RADIOBAND$
+task: Nothing
+radioSet: true
+taskSelected: true
+uncontrolled: false
+routeRelativeTOT: true
+waypoints:
+  - alt: $ALTITUDE$
+    action: Turning Point
+    speed: $SPEED$
+    tasks:
+      - id: Option
+        parameters:
+          wrapped: true
+          value: 4
+          name: 18
+      - id: Option
+        parameters:
+          wrapped: true
+          value: 3
+          name: 0
+      - id: Option
+        parameters:
+          wrapped: true
+          value: 5
+          name: 1
+      - id: Option
+        parameters:
+          wrapped: true
+          value: 3
+          name: 1
+    type: Turning Point
+    etaLocked: true
+    speedLocked: true
+    y: $GROUPY$
+    x: $GROUPX$
+  - alt: 13
+    action: Landing
+    speed: $SPEED$
+    type: Land
+    etaLocked: false
+    speedLocked: true
+    y: $GROUPY2$
+    x: $GROUPX2$
+    name: Landing
+    airdromeId: $ENDAIRBASEID$
+groupId: $GROUPID$
+hidden: $HIDDEN$
+y: $GROUPY$
+x: $GROUPX$
+name: $NAME$
+frequency: $RADIOFREQUENCY$

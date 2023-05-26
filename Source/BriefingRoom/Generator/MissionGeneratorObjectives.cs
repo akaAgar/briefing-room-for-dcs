@@ -206,6 +206,7 @@ namespace BriefingRoom4DCS.Generator
             if (targetDB.DCSUnitCategory == DCSUnitCategory.Vehicle)
                 destinationPoint = GetNearestSpawnCoordinates(template, destinationPoint, targetDB, false);
 
+
             var groupLua = targetBehaviorDB.GroupLua[(int)targetDB.DCSUnitCategory];
             if (targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.GoToPlayerAirbase)
             {
@@ -223,6 +224,13 @@ namespace BriefingRoom4DCS.Generator
                         _ => groupLua
                     };
                 }
+            } else if(targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.GoToAirbase)
+            {
+                var targetCoalition = GeneratorTools.GetSpawnPointCoalition(template, taskDB.TargetSide);
+                var destinationAirbase = situationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions")).Where(x => x.Coalition == targetCoalition.Value).OrderBy(x => destinationPoint.GetDistanceFrom(x.Coordinates)).First();
+                destinationPoint = destinationAirbase.Coordinates;
+                extraSettings.Add("EndAirbaseId", destinationAirbase.DCSID);
+                mission.PopulatedAirbaseIds[targetCoalition.Value].Add(destinationAirbase.DCSID);
             }
 
             extraSettings.Add("GroupX2", destinationPoint.X);
