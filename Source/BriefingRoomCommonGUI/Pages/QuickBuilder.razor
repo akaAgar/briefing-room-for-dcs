@@ -379,7 +379,7 @@
         catch (Exception ex)
         {
             Console.WriteLine(ex);
-            errorMessage = ex.Message;
+            errorMessage = $"Failed to Load Template (Template may no longer be compatable): {ex.Message}";
         }
     }
 
