@@ -33,7 +33,7 @@ namespace BriefingRoom4DCS.Generator
         internal static void GenerateMissionBriefingDescription(DCSMission mission, MissionTemplateRecord template, List<UnitFamily> objectiveTargetUnitFamilies, DBEntrySituation situationDB)
         {
             // Try to get the provided custom mission description.
-            string briefingDescription = (template.BriefingMissionDescription ?? "").Replace("\r\n", "\n").Replace("\n", " ").Trim();
+            string briefingDescription = (template.BriefingMissionDescription ?? "").Replace("\r\n", "\n").Trim();
 
             // No custom description found, generate one from the most frequent objective task/target combination.
             if (string.IsNullOrEmpty(briefingDescription))
@@ -56,10 +56,10 @@ namespace BriefingRoom4DCS.Generator
 
                     briefingDescription = ConstructTaskDescriptions(descriptionsMap, mission);
                 }
+                if (situationDB.BriefingDescriptions != null && situationDB.BriefingDescriptions.Count > 0)
+                    briefingDescription = GeneratorTools.ParseRandomString(string.Join(" ", Toolbox.RandomFrom(situationDB.BriefingDescriptions).Get(), briefingDescription), mission);
             }
 
-            if (situationDB.BriefingDescriptions != null && situationDB.BriefingDescriptions.Count > 0)
-                briefingDescription = GeneratorTools.ParseRandomString(string.Join(" ", Toolbox.RandomFrom(situationDB.BriefingDescriptions).Get(), briefingDescription), mission);
 
             mission.Briefing.Description = briefingDescription;
             mission.SetValue("BRIEFINGDESCRIPTION", briefingDescription);

@@ -294,6 +294,15 @@
                         </div>
                     </div>
                     break;
+                case "briefing":
+                    <div id="options" class="generator-block">
+                        <h3>@BriefingRoom.Translate("Briefing")</h3>
+                    <label>@BriefingRoom.Translate("OverrideMissionName")</label>
+                    <input class="form-control" type="text" @bind="Template.BriefingMissionName" placeholder=@BriefingRoom.Translate("Generated") />
+                    <label>@BriefingRoom.Translate("OverrideMissionDescription")</label>
+                    <textarea @bind="Template.BriefingMissionDescription" class="form-control long" spellcheck="true" placeholder=@BriefingRoom.Translate("Generated")></textarea>
+                    </div>
+                    break;
                 case "situation":
                     <div id="situation" class="generator-block">
                         <h3>@BriefingRoom.Translate("Situation")</h3>
@@ -744,6 +753,7 @@
         { "situation", "Situation" },
         { "combined-arms", "CombinedArms" },
         { "options", "Options" },
+        { "briefing", "Briefing" },
     };
     private void SetTab(string var)
     {

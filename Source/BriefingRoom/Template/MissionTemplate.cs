@@ -81,12 +81,6 @@ namespace BriefingRoom4DCS.Template
 
             AssignAliases();
 
-            // if (File.Exists(DEFAULT_TEMPLATE_FILEPATH))
-            // {
-            //     LoadFromFile(DEFAULT_TEMPLATE_FILEPATH);
-            //     return;
-            // }
-
         }
 
         public bool LoadFromFile(string filePath)
@@ -105,7 +99,7 @@ namespace BriefingRoom4DCS.Template
         {
             base.Load(ini);
             BriefingMissionName = ini.GetValue("Briefing", "MissionName", BriefingMissionName);
-            BriefingMissionDescription = ini.GetValue("Briefing", "MissionDescription", BriefingMissionDescription);
+            BriefingMissionDescription = ini.GetValue("Briefing", "MissionDescription", BriefingMissionDescription).Replace("\\n", "\n");
 
             EnvironmentSeason = ini.GetValue("Environment", "Season", EnvironmentSeason);
             EnvironmentTimeOfDay = ini.GetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);
@@ -152,7 +146,7 @@ namespace BriefingRoom4DCS.Template
             var ini = base.GetAsIni();
 
             ini.SetValue("Briefing", "MissionName", BriefingMissionName);
-            ini.SetValue("Briefing", "MissionDescription", BriefingMissionDescription);
+            ini.SetValue("Briefing", "MissionDescription", BriefingMissionDescription.Replace("\n", "\\n"));
 
             ini.SetValue("Environment", "Season", EnvironmentSeason);
             ini.SetValue("Environment", "TimeOfDay", EnvironmentTimeOfDay);

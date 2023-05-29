@@ -72,7 +72,7 @@ namespace BriefingRoom4DCS.Mission
             if (htmlHeaderAndFooter)
                 html = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "BriefingHeader.html")) + html + Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "BriefingFooter.html"));
             html = BriefingRoom.LanguageDB.ReplaceValues(html);
-            html = Mission.ReplaceValues(html);
+            html = Mission.ReplaceValues(html, true);
 
             GeneratorTools.ReplaceKey(ref html, "BriefingAirbases", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.Airbase)));
             GeneratorTools.ReplaceKey(ref html, "BriefingFlightGroups", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.FlightGroup)));
@@ -91,7 +91,7 @@ namespace BriefingRoom4DCS.Mission
                 Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "BriefingFooter.html"));
 
             html = BriefingRoom.LanguageDB.ReplaceValues(html);
-            html = Mission.ReplaceValues(html);
+            html = Mission.ReplaceValues(html, true);
 
             GeneratorTools.ReplaceKey(ref html, "BriefingRemarks", GeneratorTools.MakeHTMLList(GetItems(DCSMissionBriefingItemType.Remark)));
             GeneratorTools.ReplaceKey(ref html, "BriefingTasks", GeneratorTools.MakeHTMLList(GetItems(DCSMissionBriefingItemType.Task)));
@@ -106,7 +106,7 @@ namespace BriefingRoom4DCS.Mission
                 Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "BriefingFooter.html"));
 
             html = BriefingRoom.LanguageDB.ReplaceValues(html);
-            html = Mission.ReplaceValues(html);
+            html = Mission.ReplaceValues(html, true);
 
             GeneratorTools.ReplaceKey(ref html, "BriefingFlightGroups", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.FlightGroup)));
 

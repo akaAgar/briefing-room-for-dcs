@@ -52,18 +52,18 @@ namespace BriefingRoom4DCS.Mission
         internal List<DCSMissionPackage> MissionPackages { get; }
 
 
-        internal string ReplaceValues(string rawText)
+        internal string ReplaceValues(string rawText, bool useHTMLBreaks = false)
         {
             if (rawText == null) return null;
 
             foreach (KeyValuePair<string, string> keyPair in Values) // Replace included scripts first so later replacements (objective count, player coalition, etc) will be applied to them too
             {
                 if (!keyPair.Key.ToLower().StartsWith("script")) continue;
-                rawText = rawText.Replace($"${keyPair.Key.ToUpper()}$", keyPair.Value);
+                rawText = rawText.Replace($"${keyPair.Key.ToUpper()}$", useHTMLBreaks ? keyPair.Value.Replace("\n", "<br/>") : keyPair.Value);
             }
 
             foreach (KeyValuePair<string, string> keyPair in Values) // Replace other values
-                rawText = rawText.Replace($"${keyPair.Key.ToUpper()}$", keyPair.Value);
+                rawText = rawText.Replace($"${keyPair.Key.ToUpper()}$", useHTMLBreaks ? keyPair.Value.Replace("\n", "<br/>") : keyPair.Value);
 
             return rawText;
         }
