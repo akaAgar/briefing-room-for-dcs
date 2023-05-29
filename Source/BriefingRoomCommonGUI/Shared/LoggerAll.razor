@@ -13,10 +13,12 @@
                 <button class="btn btn-secondary" @onclick="() => ReloadDatabase()">
                     <span class="oi oi-reload"></span>@BriefingRoom.Translate("ReloadDatabase")</button>
             </div>
+            <p>
             @foreach (var log in logs)
             {
-                <p>@log.Item1: @log.Item2</p>
+                <span>@log.Item1: @log.Item2<br/></span>
             }
+            </p>
         </div>
     </div>
 }
