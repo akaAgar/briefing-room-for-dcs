@@ -19,11 +19,13 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using BriefingRoom4DCS.Data.JSON;
 using BriefingRoom4DCS.Template;
+using LuaTableSerializer;
 using Newtonsoft.Json;
 
 namespace BriefingRoom4DCS.Data
@@ -90,7 +92,7 @@ namespace BriefingRoom4DCS.Data
 
 
 
-                itemMap.Add(id, new DBEntryAircraft
+                var DBaircraft = new DBEntryAircraft
                 {
                     ID = id,
                     UIDisplayName = new LanguageString(aircraft.displayName),
@@ -127,14 +129,17 @@ namespace BriefingRoom4DCS.Data
                     PlayerControllable = supportInfo.playerControllable,
                     Families = supportInfo.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
                     lowPolly = supportInfo.lowPolly
-                });
+                };
+                DBaircraft.GetDCSPayloads();
+                DBaircraft.GetDCSLiveries();
+                itemMap.Add(id, DBaircraft);
 
             }
 
             return itemMap;
         }
 
-        public DBEntryAircraft() { }
+        public DBEntryAircraft() {}
 
         internal Dictionary<int, Dictionary<string, string>> GetPylonsObject(string aircraftPayload)
         {
@@ -156,5 +161,89 @@ namespace BriefingRoom4DCS.Data
 
         }
 
+        internal void GetDCSPayloads()
+        {
+            var userPath = Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile);
+            string folderPath = "";
+            if (Directory.Exists(Path.Join(userPath, "Saved Games", "DCS.openbeta")))
+            {
+                folderPath = Path.Join(userPath, "Saved Games", "DCS.openbeta", "MissionEditor", "UnitPayloads");
+            }
+            else
+            {
+                folderPath = Path.Join(userPath, "Saved Games", "DCS", "MissionEditor", "UnitPayloads");
+            }
+            if (!File.Exists(Path.Join(folderPath, $"{DCSID}.lua")))
+                return;
+
+            var fileText = File.ReadAllText(Path.Join(folderPath, $"{DCSID}.lua"))
+                .Replace("local unitPayloads = ", "")
+                .Replace("return unitPayloads", "");
+            try
+            {
+                var obj = LuaSerializer.Deserialize(fileText);
+                foreach (var item in (IDictionary)obj["payloads"])
+                {
+                    var itemEntry = (IDictionary)((DictionaryEntry)item).Value;
+
+                    var tasks = new List<int>();
+                    foreach (var taskItem in ((IDictionary)itemEntry["tasks"]).Values)
+                        tasks.Add((int)(long)taskItem);
+
+                    var pylons = new List<Pylon>();
+                    foreach (var pylonItem in ((IDictionary)itemEntry["pylons"]).Values)
+                    {
+                        var pylonItemEntry = (IDictionary)pylonItem;
+                        pylons.Add(new Pylon{
+                            CLSID = (string)pylonItemEntry["CLSID"],
+                            num = (int)(long)pylonItemEntry["num"],
+                        });
+                    }
+            
+                    var payload = new Payload {
+                        name = (string)itemEntry["name"],
+                        displayName = (string)(itemEntry.Contains("displayName") ? itemEntry["displayName"] : itemEntry["name"]),
+                        tasks = tasks 
+                    };
+                    
+                    BriefingRoom.PrintToLog($"Imported payload {payload.displayName} for {DCSID}");
+                }
+
+            }
+            catch (System.Exception e)
+            {
+                Console.WriteLine(e);
+                BriefingRoom.PrintToLog($"Cannot parse player payloads for {DCSID}. Likely as a payload name isn't happy with our parser, Reccomend you remove any of these characters {{}}/\\: from your custom payload names.", LogMessageErrorLevel.Warning);
+            }
+
+        }
+
+        internal void GetDCSLiveries()
+        {
+            var userPath = Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile);
+            string folderPath = "";
+            if (Directory.Exists(Path.Join(userPath, "Saved Games", "DCS.openbeta")))
+            {
+                folderPath = Path.Join(userPath, "Saved Games", "DCS.openbeta", "Liveries");
+            }
+            else
+            {
+                folderPath = Path.Join(userPath, "Saved Games", "DCS", "Liveries");
+            }
+            if (!Directory.Exists(Path.Join(folderPath, $"{DCSID}")))
+                return;
+
+            foreach (var item in Directory.GetFiles(Path.Join(folderPath, $"{DCSID}"), "*.*", SearchOption.TopDirectoryOnly))
+            {
+                var rawFileName = item.Replace(".zip", "").Split("\\").Last();
+                Liveries.AddIfKeyUnused(Country.ALL, new List<string>());
+                if (!Liveries[Country.ALL].Contains(rawFileName))
+                {
+                    Liveries[Country.ALL].Add(rawFileName);
+                    BriefingRoom.PrintToLog($"Imported Livery {rawFileName} for {DCSID}");
+                }
+            }
+
+        }
     }
 }
