@@ -84,7 +84,7 @@ namespace BriefingRoom4DCS.Generator
             for (int i = 0; i < unitCount; i++)
             {
                 var viableSpots = FilterAndSortSuitableSpots(AirbaseParkingSpots[airbaseID].ToArray(), aircraftDB, requiresOpenAirParking);
-                if (viableSpots.Count == 0) throw new BriefingRoomException("Airbase didn't have enough suitable parking spots.");
+                if (viableSpots.Count == 0) throw new BriefingRoomException($"Airbase {airbaseDB.UIDisplayName.Get()} didn't have enough suitable parking spots.");
                 var parkingSpot = viableSpots.First();
                 if (lastSpot.HasValue) //find nearest spot distance wise in attempt to cluster
                     parkingSpot = viableSpots
