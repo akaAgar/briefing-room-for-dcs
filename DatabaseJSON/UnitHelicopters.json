@@ -4292,6 +4292,7 @@
             "Bulgaria",
             "Czech Republic",
             "Croatia",
+            "Egypt",
             "Hungary",
             "India",
             "Kazakhstan",
@@ -4320,6 +4321,7 @@
             25,
             26,
             28,
+            29,
             32,
             33,
             37,
@@ -8392,6 +8394,7 @@
             "Czech Republic",
             "China",
             "Croatia",
+            "Egypt",
             "Greece",
             "Hungary",
             "India",
@@ -8443,6 +8446,7 @@
             26,
             27,
             28,
+            29,
             31,
             32,
             33,
@@ -79779,140 +79783,69 @@
             {
                 "pylons": [
                     {
-                        "CLSID": "{HOT3D}",
+                        "CLSID": "{HOT3_R2_M}",
                         "num": 1
                     },
                     {
-                        "CLSID": "{HOT3G}",
+                        "CLSID": "{HOT3_L2_M}",
                         "num": 2
                     },
                     {
-                        "CLSID": "{HOT3D}",
+                        "CLSID": "FAS}",
                         "num": 3
                     },
                     {
-                        "CLSID": "{HOT3G}",
+                        "CLSID": "{IR_Deflector}",
                         "num": 4
                     }
                 ],
                 "tasks": [
                     31
                 ],
-                "name": "HOT3x4",
-                "displayName": "HOT3x4"
+                "name": "4x HOT3, IR Deflector, Sand Filter",
+                "displayName": "4x HOT3, IR Deflector, Sand Filter"
             },
             {
                 "pylons": [
                     {
-                        "CLSID": "{IR_Deflector}",
-                        "num": 6
-                    }
-                ],
-                "tasks": [
-                    31
-                ],
-                "name": "IR Deflector",
-                "displayName": "IR Deflector"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{HOT3D}",
+                        "CLSID": "{HOT3_R1_M}",
                         "num": 1
                     },
                     {
-                        "CLSID": "{HOT3G}",
+                        "CLSID": "{HOT3_L1_M}",
                         "num": 2
                     },
                     {
-                        "CLSID": "{HOT3D}",
+                        "CLSID": "FAS}",
                         "num": 3
                     },
                     {
-                        "CLSID": "{HOT3G}",
+                        "CLSID": "{IR_Deflector}",
                         "num": 4
-                    },
-                    {
-                        "CLSID": "{FAS}",
-                        "num": 5
-                    },
-                    {
-                        "CLSID": "{IR_Deflector}",
-                        "num": 6
                     }
                 ],
                 "tasks": [
                     31
                 ],
-                "name": "Hot3x4, FAS, IR Deflector",
-                "displayName": "Hot3x4, FAS, IR Deflector"
+                "name": "2x HOT3, IR Deflector, Sand Filter",
+                "displayName": "2x HOT3, IR Deflector, Sand Filter"
             },
             {
                 "pylons": [
                     {
-                        "CLSID": "{HOT3D}",
-                        "num": 1
-                    },
-                    {
-                        "CLSID": "{HOT3G}",
-                        "num": 2
-                    }
-                ],
-                "tasks": [
-                    31
-                ],
-                "name": "HOT3x2",
-                "displayName": "HOT3x2"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{HOT3D}",
-                        "num": 1
-                    },
-                    {
-                        "CLSID": "{HOT3G}",
-                        "num": 2
-                    },
-                    {
-                        "CLSID": "{HOT3D}",
-                        "num": 3
-                    },
-                    {
-                        "CLSID": "{HOT3G}",
-                        "num": 4
-                    },
-                    {
-                        "CLSID": "{IR_Deflector}",
+                        "CLSID": "{INV-SMOKE-RED}",
                         "num": 6
+                    },
+                    {
+                        "CLSID": "{INV-SMOKE-BLUE}",
+                        "num": 7
                     }
                 ],
                 "tasks": [
                     31
                 ],
-                "name": "Hot3x4, IR Deflector",
-                "displayName": "Hot3x4, IR Deflector"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{HOT3D}",
-                        "num": 1
-                    },
-                    {
-                        "CLSID": "{HOT3G}",
-                        "num": 2
-                    },
-                    {
-                        "CLSID": "{IR_Deflector}",
-                        "num": 6
-                    }
-                ],
-                "tasks": [
-                    31
-                ],
-                "name": "Hot3x2, IR Deflector",
-                "displayName": "Hot3x2, IR Deflector"
+                "name": "Display Team Smoke, Red & Blue",
+                "displayName": "Display Team Smoke, Red & Blue"
             }
         ],
         "type": "SA342M",
@@ -83399,6 +83332,10 @@
             {
                 "defValue": true,
                 "id": "NS430allow"
+            },
+            {
+                "defValue": false,
+                "id": "RemoveTablet"
             }
         ],
         "radio": {
@@ -83453,12 +83390,21 @@
         "length": 11.97,
         "paintSchemes": {
             "0": [
+                "lebanon",
                 "russia fictional"
             ],
+            "1": [
+                "lebanon"
+            ],
             "2": [
+                "lebanon",
                 "us marines fictional"
             ],
+            "3": [
+                "lebanon"
+            ],
             "4": [
+                "lebanon",
                 "uk fictional"
             ],
             "5": [
@@ -83466,34 +83412,271 @@
                 "Portuguese modern Fictional",
                 "Training EALAT",
                 "combat",
+                "lebanon",
                 "tiger meet",
                 "tiger meet 2",
                 "training"
             ],
             "6": [
-                "germany fictional"
+                "germany fictional",
+                "lebanon"
+            ],
+            "7": [
+                "lebanon"
+            ],
+            "8": [
+                "lebanon"
+            ],
+            "9": [
+                "lebanon"
             ],
             "10": [
-                "RNLAF fictional"
+                "RNLAF fictional",
+                "lebanon"
+            ],
+            "11": [
+                "lebanon"
+            ],
+            "12": [
+                "lebanon"
+            ],
+            "13": [
+                "lebanon"
             ],
             "15": [
-                "israel fictional"
+                "israel fictional",
+                "lebanon"
+            ],
+            "16": [
+                "lebanon"
+            ],
+            "17": [
+                "lebanon"
+            ],
+            "18": [
+                "lebanon"
+            ],
+            "19": [
+                "lebanon"
+            ],
+            "20": [
+                "lebanon"
+            ],
+            "21": [
+                "lebanon"
+            ],
+            "22": [
+                "lebanon"
+            ],
+            "23": [
+                "lebanon"
+            ],
+            "24": [
+                "lebanon"
+            ],
+            "25": [
+                "lebanon"
+            ],
+            "26": [
+                "lebanon"
+            ],
+            "27": [
+                "lebanon"
+            ],
+            "28": [
+                "lebanon"
+            ],
+            "29": [
+                "lebanon"
+            ],
+            "30": [
+                "lebanon"
             ],
             "31": [
-                "greece cyprus fictional desert"
+                "greece cyprus fictional desert",
+                "lebanon"
+            ],
+            "32": [
+                "lebanon"
+            ],
+            "33": [
+                "lebanon"
+            ],
+            "34": [
+                "lebanon"
+            ],
+            "35": [
+                "lebanon"
+            ],
+            "36": [
+                "lebanon"
+            ],
+            "37": [
+                "lebanon"
+            ],
+            "38": [
+                "lebanon"
+            ],
+            "39": [
+                "lebanon"
+            ],
+            "40": [
+                "lebanon"
+            ],
+            "41": [
+                "lebanon"
+            ],
+            "42": [
+                "lebanon"
             ],
             "43": [
+                "lebanon",
                 "serbia fictional",
                 "yugoslav fictional"
             ],
+            "44": [
+                "lebanon"
+            ],
+            "45": [
+                "lebanon"
+            ],
+            "46": [
+                "lebanon"
+            ],
             "47": [
+                "lebanon",
                 "syria fictional"
             ],
+            "48": [
+                "lebanon"
+            ],
+            "49": [
+                "lebanon"
+            ],
+            "50": [
+                "lebanon"
+            ],
+            "51": [
+                "lebanon"
+            ],
+            "52": [
+                "lebanon"
+            ],
+            "53": [
+                "lebanon"
+            ],
+            "54": [
+                "lebanon"
+            ],
+            "55": [
+                "lebanon"
+            ],
+            "56": [
+                "lebanon"
+            ],
+            "57": [
+                "lebanon"
+            ],
+            "58": [
+                "lebanon"
+            ],
+            "59": [
+                "lebanon"
+            ],
+            "60": [
+                "lebanon"
+            ],
+            "61": [
+                "lebanon"
+            ],
+            "62": [
+                "lebanon"
+            ],
+            "63": [
+                "lebanon"
+            ],
+            "64": [
+                "lebanon"
+            ],
+            "65": [
+                "lebanon"
+            ],
+            "66": [
+                "lebanon"
+            ],
+            "67": [
+                "lebanon"
+            ],
+            "68": [
+                "lebanon"
+            ],
+            "69": [
+                "lebanon"
+            ],
+            "70": [
+                "lebanon"
+            ],
+            "71": [
+                "lebanon"
+            ],
+            "72": [
+                "lebanon"
+            ],
+            "73": [
+                "lebanon"
+            ],
+            "74": [
+                "lebanon"
+            ],
+            "75": [
+                "lebanon"
+            ],
+            "76": [
+                "lebanon"
+            ],
             "77": [
-                "Portuguese modern Fictional"
+                "Portuguese modern Fictional",
+                "lebanon"
+            ],
+            "78": [
+                "lebanon"
+            ],
+            "79": [
+                "lebanon"
+            ],
+            "80": [
+                "lebanon"
+            ],
+            "81": [
+                "lebanon"
+            ],
+            "82": [
+                "lebanon"
+            ],
+            "83": [
+                "lebanon"
             ],
             "84": [
-                "Cyprus air force"
+                "Cyprus air force",
+                "lebanon"
+            ],
+            "85": [
+                "lebanon"
+            ],
+            "86": [
+                "lebanon"
+            ],
+            "87": [
+                "lebanon"
+            ],
+            "88": [
+                "lebanon"
+            ],
+            "89": [
+                "lebanon"
+            ],
+            "90": [
+                "lebanon"
             ]
         },
         "panelRadio": [
@@ -83553,53 +83736,144 @@
             {
                 "pylons": [
                     {
-                        "CLSID": "{TELSON8_SNEBT251}",
-                        "num": 2
-                    }
-                ],
-                "tasks": [
-                    31
-                ],
-                "name": "M621, 8xSNEB68 EAP",
-                "displayName": "M621, 8xSNEB68 EAP"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{TELSON8_SNEBT251}",
-                        "num": 2
+                        "CLSID": "{GIAT_M621_APHE}",
+                        "num": 1
                     },
                     {
-                        "CLSID": "{IR_Deflector}",
-                        "num": 6
-                    }
-                ],
-                "tasks": [
-                    31
-                ],
-                "name": "M621, 8xSNEB68 EAP, IR Deflector",
-                "displayName": "M621, 8xSNEB68 EAP, IR Deflector"
-            },
-            {
-                "pylons": [
-                    {
                         "CLSID": "{TELSON8_SNEBT251}",
                         "num": 2
-                    },
-                    {
-                        "CLSID": "{IR_Deflector}",
-                        "num": 6
                     },
                     {
                         "CLSID": "{FAS}",
-                        "num": 5
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{IR_Deflector}",
+                        "num": 4
                     }
                 ],
                 "tasks": [
                     31
                 ],
-                "name": "M621, 8xSNEB68 EAP, IR Deflector, Sand Filter",
-                "displayName": "M621, 8xSNEB68 EAP, IR Deflector, Sand Filter"
+                "name": "M621, 8x SNEB68 EAP, IR Deflector, Sand Filter",
+                "displayName": "M621, 8x SNEB68 EAP, IR Deflector, Sand Filter"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{FN_HMP400}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{FN_HMP400}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{FAS}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{IR_Deflector}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    31
+                ],
+                "name": "2x HMP400, IR Deflector, Sand Filter",
+                "displayName": "2x HMP400, IR Deflector, Sand Filter"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{HOT3_R2}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{HOT3_L2}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{FAS}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{IR_Deflector}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    31
+                ],
+                "name": "4x HOT3, IR Deflector, Sand Filter",
+                "displayName": "4x HOT3, IR Deflector, Sand Filter"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{SA342_Mistral_R2}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{SA342_Mistral_L2}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{FAS}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{IR_Deflector}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    31
+                ],
+                "name": "4x Mistral, IR Deflector, Sand Filter",
+                "displayName": "4x Mistral, IR Deflector, Sand Filter"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{SA342_Mistral_R1}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{SA342_Mistral_L1}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{FAS}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{IR_Deflector}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    31
+                ],
+                "name": "2x Mistral, IR Deflector, Sand Filter",
+                "displayName": "2x Mistral, IR Deflector, Sand Filter"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{INV-SMOKE-RED}",
+                        "num": 6
+                    },
+                    {
+                        "CLSID": "{INV-SMOKE-BLUE}",
+                        "num": 7
+                    }
+                ],
+                "tasks": [
+                    31
+                ],
+                "name": "Display Team Smoke, Red & Blue",
+                "displayName": "Display Team Smoke, Red & Blue"
             }
         ],
         "type": "SA342L",
@@ -87090,6 +87364,10 @@
             {
                 "defValue": false,
                 "id": "SA342RemoveDoors"
+            },
+            {
+                "defValue": false,
+                "id": "RemoveTablet"
             }
         ],
         "radio": {
@@ -90804,6 +91082,10 @@
             {
                 "defValue": true,
                 "id": "NS430allow"
+            },
+            {
+                "defValue": false,
+                "id": "RemoveTablet"
             }
         ],
         "radio": {
@@ -90958,25 +91240,12 @@
             {
                 "pylons": [
                     {
-                        "CLSID": "{IR_Deflector}",
-                        "num": 6
-                    }
-                ],
-                "tasks": [
-                    31
-                ],
-                "name": "IR Deflector",
-                "displayName": "IR Deflector"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{IR_Deflector}",
-                        "num": 6
+                        "CLSID": "{FAS}",
+                        "num": 3
                     },
                     {
-                        "CLSID": "{FAS}",
-                        "num": 5
+                        "CLSID": "{IR_Deflector}",
+                        "num": 4
                     }
                 ],
                 "tasks": [
@@ -90984,6 +91253,23 @@
                 ],
                 "name": "IR Deflector, Sand Filter",
                 "displayName": "IR Deflector, Sand Filter"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{INV-SMOKE-RED}",
+                        "num": 6
+                    },
+                    {
+                        "CLSID": "{INV-SMOKE-BLUE}",
+                        "num": 7
+                    }
+                ],
+                "tasks": [
+                    31
+                ],
+                "name": "Display Team Smoke, Red & Blue",
+                "displayName": "Display Team Smoke, Red & Blue"
             }
         ],
         "type": "SA342Minigun",
@@ -94470,6 +94756,10 @@
             {
                 "defValue": true,
                 "id": "NS430allow"
+            },
+            {
+                "defValue": false,
+                "id": "RemoveTablet"
             }
         ],
         "radio": {
