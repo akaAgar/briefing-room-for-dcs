@@ -8,6 +8,12 @@ const config = {
         false_northing: -3879865.9999999935,
         scale_factor: 0.9996,
     },
+    SinaiMap: { // TODO CORRECT THIS
+        central_meridian: 39,
+        false_easting: 282801.00000003993,
+        false_northing: -3879865.9999999935,
+        scale_factor: 0.9996,
+    },
     Caucasus: {
         central_meridian: 33,
         false_easting: -99516.9999999732,
