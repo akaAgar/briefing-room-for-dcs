@@ -621,6 +621,26 @@
         "playerControllable": false
     },
     {
+        "type": "F-15ESE",
+        "families": [
+            "PlaneStrike",
+            "PlaneFighter"
+        ],
+        "operational": [1990, 2020],
+        "extraOperators": {
+            "SaudiArabia": [
+                2010,
+                2020
+            ],
+            "SouthKorea": [
+                2000,
+                2020
+            ]
+        },
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
         "type": "MiG-29A",
         "families": [
             "PlaneFighter"

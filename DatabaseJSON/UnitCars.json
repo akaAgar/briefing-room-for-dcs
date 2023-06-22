@@ -100867,6 +100867,7 @@
         "shape": "ZSU_57_2",
         "countries": [
             "USAF Aggressors",
+            "Egypt",
             "GDR",
             "Combined Joint Task Forces Blue",
             "Combined Joint Task Forces Red",
@@ -100874,6 +100875,7 @@
         ],
         "countriesWorldID": [
             7,
+            29,
             78,
             80,
             81,
