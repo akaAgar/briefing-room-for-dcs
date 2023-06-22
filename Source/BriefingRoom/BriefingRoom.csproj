@@ -9,8 +9,8 @@
     <PackageReference Include="Microsoft.Maui.Graphics" Version="7.0.86" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="FluentRandomPicker" Version="3.4.0" />
-    <PackageReference Include="Polly" Version="7.2.3" />
+    <PackageReference Include="Polly" Version="7.2.4" />
     <PackageReference Include="System.Drawing.Common" Version="5.0.3" />
-    <PackageReference Include="YamlDotNet" Version="13.1.0" />
+    <PackageReference Include="YamlDotNet" Version="13.1.1" />
   </ItemGroup>
 </Project>
