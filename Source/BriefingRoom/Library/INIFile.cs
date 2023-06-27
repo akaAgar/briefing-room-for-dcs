@@ -27,7 +27,7 @@ using System.Text;
 
 namespace BriefingRoom4DCS
 {
-    internal class INIFile
+    public class INIFile
     {
         private readonly Dictionary<string, INIFileSection> Sections = new Dictionary<string, INIFileSection>(StringComparer.InvariantCultureIgnoreCase);
 
@@ -43,7 +43,7 @@ namespace BriefingRoom4DCS
         }
 
 
-        internal static INIFile CreateFromRawINIString(string iniString)
+        public static INIFile CreateFromRawINIString(string iniString)
         {
             INIFile ini = new INIFile();
             ini.Clear();
@@ -104,7 +104,7 @@ namespace BriefingRoom4DCS
             return (from string s in Sections.Keys where !Sections[s].Abstract select s).OrderBy(x => x).ToArray();
         }
 
-        internal T GetValue<T>(string section, string key, T defaultValue = default)
+        public T GetValue<T>(string section, string key, T defaultValue = default)
         {
             if (!ValueExists(section, key))
             {

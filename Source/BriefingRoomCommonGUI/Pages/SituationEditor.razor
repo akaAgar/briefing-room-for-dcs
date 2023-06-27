@@ -3,11 +3,14 @@
 @using BriefingRoom4DCS
 @using BriefingRoom4DCS.Data.JSON
 @using Newtonsoft.Json
+@using System.IO
 @using Polly
 
 
 <div class="title-bar">
   <h1>@BriefingRoom.Translate("SituationEditor")</h1>
+  <SituationButtons Title="Situation" LoadSituationFile="LoadSituationFile" SaveSituation="SaveSituation"
+    ClearSituation="ClearSituation" />
 </div>
 <div class="generator-group">
   <div class="generator-form">
@@ -54,7 +57,6 @@
         <div>
           <h3>@BriefingRoom.Translate("GeneratedSituation")</h3>
           <p>@BriefingRoom.Translate("GeneratedSituationInstructions")</p>
-          <button class="btn btn-primary form-control" @onclick="() => SaveSituation()">@BriefingRoom.Translate("Save")</button>
           <textarea @bind="GeneratedSituationInI" class="form-control long" spellcheck="true"></textarea>
           <p>@BriefingRoom.Translate("GeneratedSituationJsonNote")</p>
           <textarea @bind="GeneratedSituationJSON" class="form-control long" spellcheck="true"></textarea>
@@ -82,7 +84,9 @@
     try
     {
       var result = await JSRuntime.InvokeAsync<SituationZones>("GetSituationCoordinates", ContextTheater);
-      GeneratedSituationInI = $@"[GUI]
+      if (String.IsNullOrEmpty(GeneratedSituationInI))
+      {
+        GeneratedSituationInI = $@"[GUI]
 DisplayName=<NAME HERE>
 
 [BriefingDescription]
@@ -94,7 +98,8 @@ briefing001=<ALTERNATE BRIEFING DESCRIPTION>
 Theater={ContextTheater}
 ; RelatedSituations=<FILE NAMES OF LINKED SITUATIONS FOR CAMPAIGNS>
 ";
-    GeneratedSituationJSON = JsonConvert.SerializeObject(result, Formatting.Indented);
+      }
+      GeneratedSituationJSON = JsonConvert.SerializeObject(result, Formatting.Indented);
     }
     catch (System.Exception e)
     {
@@ -104,14 +109,55 @@ Theater={ContextTheater}
 
   }
 
-  private async System.Threading.Tasks.Task SaveSituation()
+  private async System.Threading.Tasks.Task ClearSituation()
+  {
+    GeneratedSituationJSON = "";
+    GeneratedSituationInI = "";
+    await JSRuntime.InvokeVoidAsync("ClearMap");
+    StateHasChanged();
+  }
+
+  private async System.Threading.Tasks.Task LoadSituationFile(InputFileChangeEventArgs e)
+  {
+    try
     {
-        try {
-            await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{ContextTheater}CustomSituation.ini", "application/octet-stream", GeneratedSituationInI);
-            await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{ContextTheater}CustomSituation.json", "application/octet-stream", GeneratedSituationInI);
-        } catch (Exception ex) {
-             Console.WriteLine(ex);
-             return;
-        }
+      var targetFile = e.File.OpenReadStream(BriefingRoom.MAXFILESIZE);
+      using var reader = new StreamReader(targetFile);
+      var data = await reader.ReadToEndAsync();
+      if(e.File.Name.EndsWith(".ini")){
+        GeneratedSituationInI = data;
+        var ini = INIFile.CreateFromRawINIString(data);
+        ContextTheater = ini.GetValue<string>("Situation", "Theater");
+      }
+
+      await GetMapAsync();
+
+      if(e.File.Name.EndsWith(".json"))
+      {
+        GeneratedSituationJSON = data;
+        await JSRuntime.InvokeVoidAsync("SetSituationZones", data, ContextTheater);
+      }
     }
+    catch (Exception ex)
+    {
+      Console.WriteLine(ex);
+      errorMessage = $"Failed to Load Template (Template may no longer be compatable): {ex.Message}";
+    }
+  }
+
+  private async System.Threading.Tasks.Task SaveSituation()
+  {
+    try
+    {
+      await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{ContextTheater}CustomSituation.ini",
+      "application/octet-stream", GeneratedSituationInI);
+      await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{ContextTheater}CustomSituation.json",
+      "application/octet-stream", GeneratedSituationJSON);
+    }
+    catch (Exception ex)
+    {
+      Console.WriteLine(ex);
+      return;
+    }
+  }
 }
