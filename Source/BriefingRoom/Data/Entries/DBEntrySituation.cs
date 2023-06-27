@@ -55,7 +55,7 @@ namespace BriefingRoom4DCS.Data
             var zoneData = JsonConvert.DeserializeObject<SituationZones>(File.ReadAllText(zonesJsonFilePath));
             RedZones = zoneData.redZones.Select(x => x.Select(y => new Coordinates(y)).ToList()).ToList();
             BlueZones = zoneData.blueZones.Select(x => x.Select(y => new Coordinates(y)).ToList()).ToList();
-            NoSpawnZones = zoneData.noSpawnCoordinates.Select(x => x.Select(y => new Coordinates(y)).ToList()).ToList();
+            NoSpawnZones = zoneData.noSpawnZones.Select(x => x.Select(y => new Coordinates(y)).ToList()).ToList();
             return true;
         }
 
