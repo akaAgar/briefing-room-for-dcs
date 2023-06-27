@@ -146,6 +146,12 @@ namespace BriefingRoom4DCS
             return (count % 2 == 1); // Same as (count%2 == 1)
         }
 
+        internal static bool IsPosValid(Coordinates coords, List<List<Coordinates>> InclusionShape, List<List<Coordinates>> exclusionShapes = null)
+        {
+            return InclusionShape.Any(x => IsPosValid(coords, x, exclusionShapes));
+        }
+
+
         internal static bool IsPosValid(Coordinates coords, List<Coordinates> InclusionShape, List<List<Coordinates>> exclusionShapes = null)
         {
             var outcome = isInside(InclusionShape, coords);

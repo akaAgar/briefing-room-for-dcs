@@ -20,18 +20,21 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using BriefingRoom4DCS.Data.JSON;
+using Newtonsoft.Json;
 
 namespace BriefingRoom4DCS.Data
 {
     internal class DBEntrySituation : DBEntry
     {
 
-        internal List<Coordinates> RedCoordinates { get; set; }
+        internal List<List<Coordinates>> RedZones { get; set; }
 
-        internal List<Coordinates> BlueCoordinates { get; set; }
+        internal List<List<Coordinates>> BlueZones { get; set; }
 
-        internal List<Coordinates> NoSpawnCoordinates { get; set; }
+        internal List<List<Coordinates>> NoSpawnZones { get; set; }
 
         internal string Theater { get; private set; }
 
@@ -45,36 +48,19 @@ namespace BriefingRoom4DCS.Data
             Theater = ini.GetValue<string>("Situation", "Theater").ToLower();
             RelatedSituations = ini.GetValueList<string>("Situation", "RelatedSituations");
 
-            RedCoordinates = new List<Coordinates>();
-            foreach (string key in ini.GetKeysInSection("RedCoordinates"))
-                RedCoordinates.Add(ini.GetValue<Coordinates>("RedCoordinates", key));
-
-            BlueCoordinates = new List<Coordinates>();
-            foreach (string key in ini.GetKeysInSection("BlueCoordinates"))
-                BlueCoordinates.Add(ini.GetValue<Coordinates>("BlueCoordinates", key));
-
-            if (ini.GetSections().Contains("nospawncoordinates"))
-            {
-                NoSpawnCoordinates = new List<Coordinates>();
-                foreach (string key in ini.GetKeysInSection("NoSpawnCoordinates"))
-                    NoSpawnCoordinates.Add(ini.GetValue<Coordinates>("NoSpawnCoordinates", key));
-            }
-
-            if (ini.GetSections().Contains("briefingdescription"))
-            {
-                BriefingDescriptions = new List<LanguageString>();
-                foreach (string key in ini.GetKeysInSection("BriefingDescription", true))
-                    BriefingDescriptions.Add(ini.GetLangStrings("BriefingDescription", key));
-            }
-
-            if (!Database.Instance.EntryExists<DBEntryTheater>(Theater))
-                throw new Exception($"Situation \"{ID}\" located on non-existing theater \"{Theater}\".");
-
+            var zonesJsonFilePath = Path.Combine(BRPaths.DATABASEJSON, "SituationZones", $"{ID}.json");
+            if(!File.Exists(zonesJsonFilePath)) 
+                throw new BriefingRoomException($"Situation {ID} Missing Zone Data. File not found: {zonesJsonFilePath}");
+            
+            var zoneData = JsonConvert.DeserializeObject<SituationZones>(File.ReadAllText(zonesJsonFilePath));
+            RedZones = zoneData.redZones.Select(x => x.Select(y => new Coordinates(y)).ToList()).ToList();
+            BlueZones = zoneData.blueZones.Select(x => x.Select(y => new Coordinates(y)).ToList()).ToList();
+            NoSpawnZones = zoneData.noSpawnCoordinates.Select(x => x.Select(y => new Coordinates(y)).ToList()).ToList();
             return true;
         }
 
-        internal List<Coordinates> GetRedZone(bool invertCoalition) => !invertCoalition ? RedCoordinates : BlueCoordinates;
-        internal List<Coordinates> GetBlueZone(bool invertCoalition) => !invertCoalition ? BlueCoordinates : RedCoordinates;
+        internal List<List<Coordinates>> GetRedZones(bool invertCoalition) => !invertCoalition ? RedZones : BlueZones;
+        internal List<List<Coordinates>> GetBlueZones(bool invertCoalition) => !invertCoalition ? BlueZones : RedZones;
 
         internal DBEntryAirbase[] GetAirbases(bool invertCoalition)
         {
@@ -83,9 +69,9 @@ namespace BriefingRoom4DCS.Data
                             select airbase).ToArray();
             foreach (var airbase in airbases)
             {
-                if (ShapeManager.IsPosValid(airbase.Coordinates, GetBlueZone(invertCoalition)))
+                if (ShapeManager.IsPosValid(airbase.Coordinates, GetBlueZones(invertCoalition)))
                     airbase.Coalition = Coalition.Blue;
-                if (ShapeManager.IsPosValid(airbase.Coordinates, GetRedZone(invertCoalition)))
+                if (ShapeManager.IsPosValid(airbase.Coordinates, GetRedZones(invertCoalition)))
                     airbase.Coalition = Coalition.Red;
             }
             return airbases;

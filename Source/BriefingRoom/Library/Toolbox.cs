@@ -644,9 +644,12 @@ namespace BriefingRoom4DCS
                     .ToList();
             foreach (var situation in situations)
             {
-                foreach (var coord in situation.RedCoordinates.Concat(situation.BlueCoordinates).Concat(situation.NoSpawnCoordinates ?? new List<Coordinates>()))
+                foreach (var zones in situation.RedZones.Concat(situation.BlueZones).Concat(situation.NoSpawnZones))
                 {
-                    GetMinMaxCoords(coord, ref minX, ref minY, ref maxX, ref maxY);
+                    foreach (var coord in zones)
+                    {  
+                        GetMinMaxCoords(coord, ref minX, ref minY, ref maxX, ref maxY);
+                    }
                 }
             }
             mission.SetValue("TheaterMinX", Math.Floor(minX / 1000) * 1000);

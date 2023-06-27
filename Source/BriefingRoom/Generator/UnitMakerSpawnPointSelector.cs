@@ -316,17 +316,17 @@ namespace BriefingRoom4DCS.Generator
             if (!coalition.HasValue)
                 return true;
 
-            var red = SituationDB.GetRedZone(InvertCoalition);
-            var blue = SituationDB.GetBlueZone(InvertCoalition);
+            var red = SituationDB.GetRedZones(InvertCoalition);
+            var blue = SituationDB.GetBlueZones(InvertCoalition);
 
             return !ShapeManager.IsPosValid(coordinates, (coalition.Value == Coalition.Blue ? red : blue));
         }
 
         private bool CheckNotInNoSpawnCoords(Coordinates coordinates)
         {
-            if (SituationDB.NoSpawnCoordinates is null)
+            if (SituationDB.NoSpawnZones.Count == 0)
                 return true;
-            return !ShapeManager.IsPosValid(coordinates, SituationDB.NoSpawnCoordinates);
+            return !ShapeManager.IsPosValid(coordinates, SituationDB.NoSpawnZones);
         }
 
         private bool CheckNotFarFromBorders(Coordinates coordinates, double borderLimit, Coalition? coalition = null)
@@ -334,11 +334,12 @@ namespace BriefingRoom4DCS.Generator
             if (!coalition.HasValue)
                 return true;
 
-            var red = SituationDB.GetRedZone(InvertCoalition);
-            var blue = SituationDB.GetBlueZone(InvertCoalition);
+            var red = SituationDB.GetRedZones(InvertCoalition);
+            var blue = SituationDB.GetBlueZones(InvertCoalition);
 
             var distanceLimit = Toolbox.NM_TO_METERS * borderLimit;
-            var distance = ShapeManager.GetDistanceFromShape(coordinates, (coalition.Value == Coalition.Blue ? blue : red));
+            var selectedZones = coalition.Value == Coalition.Blue ? blue : red;
+            var distance = selectedZones.Min(x => ShapeManager.GetDistanceFromShape(coordinates, x));
             return distance < distanceLimit;
 
         }

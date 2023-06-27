@@ -114,37 +114,47 @@ namespace BriefingRoom4DCS.Generator
                 return;
             var invertCoalition = Template.OptionsMission.Contains("InvertCountriesCoalitions");
             var hideBorders = Template.OptionsMission.Contains("HideBorders");
-            var red = SituationDB.GetRedZone(invertCoalition);
+            var red = SituationDB.GetRedZones(invertCoalition);
             var redColour = hideBorders ? DrawingColour.Clear : DrawingColour.RedFill;
 
-            var blue = SituationDB.GetBlueZone(invertCoalition);
+            var blue = SituationDB.GetBlueZones(invertCoalition);
             var blueColour = hideBorders ? DrawingColour.Clear : DrawingColour.BlueFill;
-            AddFree(
-                "Red Control",
-                red.First(),
-                "Points".ToKeyValuePair(red.Select(coord => coord - red.First()).ToList()),
-                "Colour".ToKeyValuePair(redColour),
-                "FillColour".ToKeyValuePair(redColour));
-            AddFree(
-                "Blue Control",
-                blue.First(),
-                "Points".ToKeyValuePair(blue.Select(coord => coord - blue.First()).ToList()),
-                "Colour".ToKeyValuePair(blueColour),
-                "FillColour".ToKeyValuePair(blueColour));
-
-            Mission.MapData.Add("RED", red.Select(x => x.ToArray()).ToList());
-            Mission.MapData.Add("BLUE", blue.Select(x => x.ToArray()).ToList());
-            if (SituationDB.NoSpawnCoordinates != null)
+            foreach (var zone in red)
             {
-                var noSpawn = SituationDB.NoSpawnCoordinates;
-                var noSpawnColour = hideBorders ? DrawingColour.Clear : DrawingColour.GreenFill;
                 AddFree(
-                    "Neutural (NoSpawning)",
-                    noSpawn.First(),
-                    "Points".ToKeyValuePair(noSpawn.Select(coord => coord - noSpawn.First()).ToList()),
-                    "Colour".ToKeyValuePair(noSpawnColour),
-                    "FillColour".ToKeyValuePair(noSpawnColour));
-                Mission.MapData.Add("NOSPAWN", noSpawn.Select(x => x.ToArray()).ToList());
+                    "Red Control",
+                    zone.First(),
+                    "Points".ToKeyValuePair(zone.Select(coord => coord - zone.First()).ToList()),
+                    "Colour".ToKeyValuePair(redColour),
+                    "FillColour".ToKeyValuePair(redColour));
+                Mission.MapData.Add("RED", zone.Select(x => x.ToArray()).ToList());
+            }
+            foreach (var zone in blue)
+            {
+
+                AddFree(
+                    "Blue Control",
+                    zone.First(),
+                    "Points".ToKeyValuePair(zone.Select(coord => coord - zone.First()).ToList()),
+                    "Colour".ToKeyValuePair(blueColour),
+                    "FillColour".ToKeyValuePair(blueColour));
+                Mission.MapData.Add("BLUE", zone.Select(x => x.ToArray()).ToList());
+            }
+
+            if (SituationDB.NoSpawnZones.Count > 0)
+            {
+                var noSpawn = SituationDB.NoSpawnZones;
+                var noSpawnColour = hideBorders ? DrawingColour.Clear : DrawingColour.GreenFill;
+                foreach (var zone in blue)
+                {
+                    AddFree(
+                        "Neutural (NoSpawning)",
+                        zone.First(),
+                        "Points".ToKeyValuePair(zone.Select(coord => coord - zone.First()).ToList()),
+                        "Colour".ToKeyValuePair(noSpawnColour),
+                        "FillColour".ToKeyValuePair(noSpawnColour));
+                    Mission.MapData.Add("NOSPAWN", zone.Select(x => x.ToArray()).ToList());
+                }
             }
 
         }
@@ -153,7 +163,8 @@ namespace BriefingRoom4DCS.Generator
         {
             // DEBUG water
             var i = 0;
-            foreach (var item in TheaterDB.WaterCoordinates){
+            foreach (var item in TheaterDB.WaterCoordinates)
+            {
                 AddFree(
                     "Water",
                     item.First(),
