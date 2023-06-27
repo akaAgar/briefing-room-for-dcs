@@ -70,7 +70,7 @@ namespace BriefingRoom4DCS.Data
                 validTemplates[country] = (
                         from template in Database.GetAllEntries<DBEntryTemplate>()
                         where families.Contains(template.Family) && template.Countries.ContainsKey(country)
-                            && (string.IsNullOrEmpty(template.Module) || unitMods.Contains(template.Module, StringComparer.InvariantCultureIgnoreCase) || DBEntryDCSMod.coreMods.Contains(template.Module, StringComparer.InvariantCultureIgnoreCase))
+                            && (string.IsNullOrEmpty(template.Module) || unitMods.Contains(template.Module, StringComparer.InvariantCultureIgnoreCase) || DBEntryDCSMod.CORE_MODS.Contains(template.Module, StringComparer.InvariantCultureIgnoreCase))
                             && (template.Countries[country].start <= decade) && (template.Countries[country].end >= decade)
                         select template
                     ).Distinct().ToList();
@@ -204,7 +204,7 @@ namespace BriefingRoom4DCS.Data
                 validUnits[country] = (
                         from unit in Database.GetAllEntries<DBEntryJSONUnit>()
                         where unit.Families.Intersect(families).ToList().Count > 0 && unit.Countries.ContainsKey(country)
-                            && (string.IsNullOrEmpty(unit.Module) || unitMods.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase) || DBEntryDCSMod.coreMods.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase))
+                            && (string.IsNullOrEmpty(unit.Module) || unitMods.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase) || DBEntryDCSMod.CORE_MODS.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase))
                             && (unit.Countries[country].start <= decade) && (unit.Countries[country].end >= decade)
                             && (!unit.lowPolly || allowLowPolly)
                         select unit.ID

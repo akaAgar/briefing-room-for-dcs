@@ -24,7 +24,7 @@ namespace BriefingRoom4DCS.Data
 {
     internal class DBEntryDCSMod : DBEntry
     {
-        internal static List<string> coreMods = new List<string>{
+        internal static List<string> CORE_MODS = new List<string>{
             "World War II AI Units by Eagle Dynamics",
             "Characters",
             "Animals",
@@ -65,7 +65,8 @@ namespace BriefingRoom4DCS.Data
             "LeapMotionSupport",
             "SensoryxVRFreeSupport",
             "VoiceChat",
-            "jsAvionics"
+            "jsAvionics",
+            "F-15E AI by RAZBAM"
         };
 
         internal string RequiredID { get; private set; }

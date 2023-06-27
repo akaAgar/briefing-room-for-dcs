@@ -529,7 +529,7 @@ namespace BriefingRoom4DCS.Generator
             Dictionary<string, object> extraSettings,
             bool singleUnit = false)
         {
-            if (!string.IsNullOrEmpty(unitDB.Module) && DBEntryDCSMod.coreMods.Contains(unitDB.Module, StringComparer.InvariantCultureIgnoreCase))
+            if (!string.IsNullOrEmpty(unitDB.Module) && DBEntryDCSMod.CORE_MODS.Contains(unitDB.Module, StringComparer.InvariantCultureIgnoreCase))
             {
                 DBEntryDCSMod mod = Database.Instance.GetEntry<DBEntryDCSMod>(unitDB.Module);
                 if (mod != null && !string.IsNullOrEmpty(mod.RequiredID))

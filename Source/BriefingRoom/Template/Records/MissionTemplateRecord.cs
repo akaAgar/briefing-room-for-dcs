@@ -136,7 +136,7 @@ namespace BriefingRoom4DCS.Template
         {
             var playerMods = template.PlayerFlightGroups
              .Select(x => Database.Instance.GetEntry<DBEntryJSONUnit>(x.Aircraft).Module)
-             .Where(x => !string.IsNullOrEmpty(x) && !DBEntryDCSMod.coreMods.Contains(x)).ToList();
+             .Where(x => !string.IsNullOrEmpty(x) && !DBEntryDCSMod.CORE_MODS.Contains(x)).ToList();
             template.Mods.AddRange(playerMods);
         }
     }
