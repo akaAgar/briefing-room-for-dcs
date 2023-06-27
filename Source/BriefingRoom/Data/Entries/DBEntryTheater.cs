@@ -27,7 +27,7 @@ namespace BriefingRoom4DCS.Data
 {
     internal class DBEntryTheater : DBEntry
     {
-        internal static readonly List<string> DESERT_MAPS = new List<string> { "Nevada", "PersianGulf", "Syria" };
+        internal static readonly List<string> DESERT_MAPS = new List<string> { "Nevada", "PersianGulf", "Syria", "SinaiMap" };
         private static readonly MinMaxI DEFAULT_DAYTIME = new MinMaxI(8 * 60, 19 * 60);
 
         internal Coordinates DefaultMapCenter { get; private set; }
