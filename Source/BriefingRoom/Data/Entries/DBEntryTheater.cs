@@ -21,7 +21,10 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using BriefingRoom4DCS.Data.JSON;
+using Newtonsoft.Json;
 
 namespace BriefingRoom4DCS.Data
 {
@@ -38,7 +41,7 @@ namespace BriefingRoom4DCS.Data
 
         internal MinMaxI[] DayTime { get; private set; }
 
-        internal List<Coordinates> WaterCoordinates { get; private set; }
+        internal List<List<Coordinates>> WaterCoordinates { get; private set; }
 
         internal List<List<Coordinates>> WaterExclusionCoordinates { get; private set; }
 
@@ -70,12 +73,14 @@ namespace BriefingRoom4DCS.Data
 
                 DayTime[i] = dayTimeValue ?? DEFAULT_DAYTIME;
             }
-
-
             // Water Coordinates
-            WaterCoordinates = new List<Coordinates>();
-            foreach (string key in ini.GetKeysInSection("WaterCoordinates"))
-                WaterCoordinates.Add(ini.GetValue<Coordinates>("WaterCoordinates", key));
+            var boundsJsonFilePath = Path.Combine(BRPaths.DATABASEJSON, "TheaterTerrainBounds", $"{DCSID}.json");
+            if(!File.Exists(boundsJsonFilePath)) 
+                throw new BriefingRoomException($"{DCSID} Missing Terrain Data. File not found: {boundsJsonFilePath}");
+            
+            var terrainData = JsonConvert.DeserializeObject<TerrainBounds>(File.ReadAllText(boundsJsonFilePath));
+            WaterCoordinates = terrainData.waters.Select(x => x.Select(y => new Coordinates(y)).ToList()).ToList();
+            WaterExclusionCoordinates = terrainData.landMasses.Select(x => x.Select(y => new Coordinates(y)).ToList()).ToList();
 
 
             List<DBEntryTheaterSpawnPoint> spawnPointsList = new List<DBEntryTheaterSpawnPoint>();
@@ -86,26 +91,6 @@ namespace BriefingRoom4DCS.Data
                     spawnPointsList.Add(sp);
             }
             SpawnPoints = spawnPointsList.ToArray();
-
-            WaterExclusionCoordinates = new List<List<Coordinates>>();
-            if (ini.GetSections().Contains("waterexclusioncoordinates"))
-            {
-                // Water Exclusion Coordinates
-                var tempList = new List<Coordinates>();
-                var groupID = ini.GetKeysInSection("WaterExclusionCoordinates").First().Split(".")[0];
-                foreach (string key in ini.GetKeysInSection("WaterExclusionCoordinates"))
-                {
-                    var newGroupId = key.Split(".")[0];
-                    if (groupID != newGroupId)
-                    {
-                        groupID = newGroupId;
-                        WaterExclusionCoordinates.Add(tempList);
-                        tempList = new List<Coordinates>();
-                    }
-                    tempList.Add(ini.GetValue<Coordinates>("WaterExclusionCoordinates", key));
-                }
-                WaterExclusionCoordinates.Add(tempList);
-            }
 
             // [Temperature] section
             Temperature = new MinMaxI[12];

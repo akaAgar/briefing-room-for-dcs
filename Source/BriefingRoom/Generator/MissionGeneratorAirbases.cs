@@ -125,7 +125,7 @@ namespace BriefingRoom4DCS.Generator
 
         private bool IsNearWater(Coordinates coords, DBEntryTheater theaterDB)
         {
-            return ShapeManager.GetDistanceFromShape(coords, theaterDB.WaterCoordinates) * Toolbox.METERS_TO_NM < 50;
+            return theaterDB.WaterCoordinates.Any(x => ShapeManager.GetDistanceFromShape(coords, x) * Toolbox.METERS_TO_NM < 50);
         }
     }
 }

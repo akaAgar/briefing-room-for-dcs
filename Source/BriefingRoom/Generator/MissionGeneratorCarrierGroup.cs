@@ -106,7 +106,7 @@ namespace BriefingRoom4DCS.Generator
         {
             var travelMinMax = new MinMaxD(Database.Instance.Common.CarrierGroup.CourseLength, Database.Instance.Common.CarrierGroup.CourseLength * 2);
             Coordinates? carrierGroupCoordinates = null;
-            Coordinates? destinationPath = null;
+            Coordinates? destinationPoint = null;
             var iteration = 0;
             var maxDistance = 25;
             var usingHint = template.CarrierHints.ContainsKey(flightGroup.Carrier);
@@ -114,7 +114,7 @@ namespace BriefingRoom4DCS.Generator
             if (usingHint)
             {
                 location = new Coordinates(template.CarrierHints[flightGroup.Carrier]);
-                if (!ShapeManager.IsPosValid(location, theaterDB.WaterCoordinates, theaterDB.WaterExclusionCoordinates))
+                if (!unitMaker.SpawnPointSelector.CheckInSea(location))
                     throw new BriefingRoomException($"Carrier Hint location is on shore");
             }
             while (iteration < 100)
@@ -135,8 +135,8 @@ namespace BriefingRoom4DCS.Generator
                 if (minDist < Database.Instance.Common.CarrierGroup.ShipSpacing)
                     continue;
 
-                destinationPath = Coordinates.FromAngleAndDistance(carrierGroupCoordinates.Value, travelMinMax, carrierPathDeg);
-                if (ShapeManager.IsPosValid(destinationPath.Value, theaterDB.WaterCoordinates, theaterDB.WaterExclusionCoordinates))
+                destinationPoint = Coordinates.FromAngleAndDistance(carrierGroupCoordinates.Value, travelMinMax, carrierPathDeg);
+                if (unitMaker.SpawnPointSelector.CheckInSea(destinationPoint.Value))
                     break;
                 iteration++;
                 if (iteration > 10)
@@ -145,14 +145,14 @@ namespace BriefingRoom4DCS.Generator
 
             if (!carrierGroupCoordinates.HasValue)
                 throw new BriefingRoomException($"Carrier spawnpoint could not be found.");
-            if (!destinationPath.HasValue)
+            if (!destinationPoint.HasValue)
                 throw new BriefingRoomException($"Carrier destination could not be found.");
-            if (!ShapeManager.IsPosValid(destinationPath.Value, theaterDB.WaterCoordinates, theaterDB.WaterExclusionCoordinates))
+            if (!unitMaker.SpawnPointSelector.CheckInSea(destinationPoint.Value))
                 throw new BriefingRoomException($"Carrier waypoint is on shore");
-            if (!ShapeManager.IsLineClear(carrierGroupCoordinates.Value, destinationPath.Value, theaterDB.WaterExclusionCoordinates))
+            if (!ShapeManager.IsLineClear(carrierGroupCoordinates.Value, destinationPoint.Value, theaterDB.WaterExclusionCoordinates))
                 throw new BriefingRoomException($"Carrier Route passes though land");
 
-            return new(carrierGroupCoordinates.Value, destinationPath.Value);
+            return new(carrierGroupCoordinates.Value, destinationPoint.Value);
         }
 
         private static void GenerateFOB(

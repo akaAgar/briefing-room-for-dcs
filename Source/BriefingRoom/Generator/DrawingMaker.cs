@@ -152,14 +152,18 @@ namespace BriefingRoom4DCS.Generator
         private void DrawWaterAndIslands()
         {
             // DEBUG water
-            AddFree(
-                "Water",
-                TheaterDB.WaterCoordinates.First(),
-                "Points".ToKeyValuePair(TheaterDB.WaterCoordinates.Select(coord => coord - TheaterDB.WaterCoordinates.First()).ToList()),
-                "Colour".ToKeyValuePair(DrawingColour.Clear),
-                "FillColour".ToKeyValuePair(DrawingColour.Clear));
-            Mission.MapData.Add("WATER", TheaterDB.WaterCoordinates.Select(x => x.ToArray()).ToList());
             var i = 0;
+            foreach (var item in TheaterDB.WaterCoordinates){
+                AddFree(
+                    "Water",
+                    item.First(),
+                    "Points".ToKeyValuePair(item.Select(coord => coord - item.First()).ToList()),
+                    "Colour".ToKeyValuePair(DrawingColour.Clear),
+                    "FillColour".ToKeyValuePair(DrawingColour.Clear));
+                Mission.MapData.Add($"WATER_{i}", item.Select(x => x.ToArray()).ToList());
+                i++;
+            }
+            i = 0;
             foreach (var item in TheaterDB.WaterExclusionCoordinates)
             {
                 AddFree(

@@ -621,9 +621,12 @@ namespace BriefingRoom4DCS
             double maxX = 123;
             double maxY = 123;
 
-            foreach (var coord in theater.WaterCoordinates)
+            foreach (var area in theater.WaterCoordinates)
             {
-                GetMinMaxCoords(coord, ref minX, ref minY, ref maxX, ref maxY);
+                foreach (var coord in area)
+                {
+                    GetMinMaxCoords(coord, ref minX, ref minY, ref maxX, ref maxY);
+                }
             }
             foreach (var area in theater.WaterExclusionCoordinates)
             {
