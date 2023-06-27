@@ -54,7 +54,7 @@
         <div>
           <h3>@BriefingRoom.Translate("GeneratedSituation")</h3>
           <p>@BriefingRoom.Translate("GeneratedSituationInstructions")</p>
-          @* <button class="btn btn-primary form-control" @onclick="() => GenerateSituation()">@BriefingRoom.Translate("Save")</button> *@
+          <button class="btn btn-primary form-control" @onclick="() => SaveSituation()">@BriefingRoom.Translate("Save")</button>
           <textarea @bind="GeneratedSituationInI" class="form-control long" spellcheck="true"></textarea>
           <p>@BriefingRoom.Translate("GeneratedSituationJsonNote")</p>
           <textarea @bind="GeneratedSituationJSON" class="form-control long" spellcheck="true"></textarea>
@@ -103,4 +103,15 @@ Theater={ContextTheater}
     }
 
   }
+
+  private async System.Threading.Tasks.Task SaveSituation()
+    {
+        try {
+            await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{ContextTheater}CustomSituation.ini", "application/octet-stream", GeneratedSituationInI);
+            await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{ContextTheater}CustomSituation.json", "application/octet-stream", GeneratedSituationInI);
+        } catch (Exception ex) {
+             Console.WriteLine(ex);
+             return;
+        }
+    }
 }
