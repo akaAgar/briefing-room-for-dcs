@@ -1,6 +1,8 @@
 @page "/SituationEditor"
 @inject IJSRuntime JSRuntime
 @using BriefingRoom4DCS
+@using BriefingRoom4DCS.Data.JSON
+@using Newtonsoft.Json
 @using Polly
 
 
@@ -47,12 +49,15 @@
       <div id="situationMap"></div>
       <button class="btn btn-primary form-control"
       @onclick="() => GenerateSituation()">@BriefingRoom.Translate("GenerateSituation")</button>
-      @if (!String.IsNullOrEmpty(GeneratedSituation))
+      @if (!String.IsNullOrEmpty(GeneratedSituationInI))
       {
         <div>
           <h3>@BriefingRoom.Translate("GeneratedSituation")</h3>
           <p>@BriefingRoom.Translate("GeneratedSituationInstructions")</p>
-          <textarea @bind="GeneratedSituation" class="form-control long" spellcheck="true"></textarea>
+          @* <button class="btn btn-primary form-control" @onclick="() => GenerateSituation()">@BriefingRoom.Translate("Save")</button> *@
+          <textarea @bind="GeneratedSituationInI" class="form-control long" spellcheck="true"></textarea>
+          <p>@BriefingRoom.Translate("GeneratedSituationJsonNote")</p>
+          <textarea @bind="GeneratedSituationJSON" class="form-control long" spellcheck="true"></textarea>
         </div>
       }
     </div>
@@ -62,25 +67,22 @@
 @code {
   private string errorMessage;
   private string ContextTheater = "Caucasus";
-  private string GeneratedSituation = "";
+  private string GeneratedSituationInI = "";
+  private string GeneratedSituationJSON = "";
 
-  private async Task GetMapAsync()
+  private async System.Threading.Tasks.Task GetMapAsync()
   {
     await Policy.Handle<Exception>().RetryAsync(3).ExecuteAsync(async () => await
     JSRuntime.InvokeVoidAsync("RenderEditorMap", ContextTheater));
   }
 
-  private async Task GenerateSituation()
+  private async System.Threading.Tasks.Task GenerateSituation()
   {
     errorMessage = "";
     try
     {
-      var result = await JSRuntime.InvokeAsync<string[]>("GetSituationCoordinates", ContextTheater);
-      var RedCoordString = result[0];
-      var BlueCoordString = result[1];
-      var NeuturalCoordsString = result[2];
-      var NeuturalCoordsTitle = !String.IsNullOrEmpty(NeuturalCoordsString) ? "[NoSpawnCoordinates]" : "";
-      GeneratedSituation = $@"[GUI]
+      var result = await JSRuntime.InvokeAsync<SituationZones>("GetSituationCoordinates", ContextTheater);
+      GeneratedSituationInI = $@"[GUI]
 DisplayName=<NAME HERE>
 
 [BriefingDescription]
@@ -91,16 +93,8 @@ briefing001=<ALTERNATE BRIEFING DESCRIPTION>
 [Situation]
 Theater={ContextTheater}
 ; RelatedSituations=<FILE NAMES OF LINKED SITUATIONS FOR CAMPAIGNS>
-
-[RedCoordinates]
-{RedCoordString}
-
-[BlueCoordinates]
-{BlueCoordString}
-
-{NeuturalCoordsTitle}
-{NeuturalCoordsString}
 ";
+    GeneratedSituationJSON = JsonConvert.SerializeObject(result, Formatting.Indented);
     }
     catch (System.Exception e)
     {

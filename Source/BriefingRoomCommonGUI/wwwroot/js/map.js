@@ -1,9 +1,9 @@
 const waypointColors = ["Cyan", "orange", "Chartreuse", "Magenta", "DeepPink", "Gold"]
 let mapGroups = {}
 const situationMapLayers = {
-    "BLUE": null,
-    "RED": null,
-    "NEUTRAL": null,
+    "BLUE": [],
+    "RED": [],
+    "NEUTRAL": [],
 }
 let leafMap, leafHintMap, leafSituationMap, hintMarkerMap, hintTarget
 
@@ -229,35 +229,38 @@ async function RenderEditorMap(map) {
             default:
                 break;
         }
-        if (situationMapLayers[areaType]) {
-            situationMapLayers[areaType].remove()
-        }
-        situationMapLayers[areaType] = layer
+        situationMapLayers[areaType].push(layer)
         drawnItems.addLayer(layer);
+    });
+    leafSituationMap.on('draw:deleted', function (e) {
+        e.layers.eachLayer(x => {
+            situationMapLayers.RED = situationMapLayers.RED.filter(y => y !== x)
+            situationMapLayers.BLUE = situationMapLayers.BLUE.filter(y => y !== x)
+            situationMapLayers.NEUTRAL = situationMapLayers.NEUTRAL.filter(y => y !== x)
+        })
     });
 }
 
 
-function CreateCoordsString(layer, map) {
+function CreateCoordsList(layer, map) {
     const projector = GetDCSMapProjector(map)
-    const adjustedCoords = layer.editing.latlngs[0][0].map(x => {
+    const adjustedCoords = layer.map(shape => shape.editing.latlngs[0][0].map(x => {
         const pos2 = PullPosWithinBounds([x.lat, x.lng], map)
         return { lat: pos2[0], lng: pos2[1] }
-    })
-    layer.setLatLngs(adjustedCoords)
+    }))
 
-    return adjustedCoords.map(x => [x.lat, x.lng]).map((x, i) => `Waypoint${i.toString().padStart(4, "0")}=${latLongToDCS(x, projector)}`).join("\n")
+    layer.forEach((x, i) => x.setLatLngs(adjustedCoords[i]))
+
+    return adjustedCoords.map(shape => shape.map(x => latLongToDCS([x.lat, x.lng], projector)))
 }
 
 function GetSituationCoordinates(map) {
-    let redCoordsString, blueCoordsString, neutralCoordString;
 
-    blueCoordsString = CreateCoordsString(situationMapLayers.BLUE, map)
-    redCoordsString = CreateCoordsString(situationMapLayers.RED, map)
-    if (situationMapLayers.NEUTRAL) {
-        neutralCoordString = CreateCoordsString(situationMapLayers.NEUTRAL, map)
+    return {
+       redZones: CreateCoordsList(situationMapLayers.RED, map),
+       blueZones: CreateCoordsList(situationMapLayers.BLUE, map),
+       noSpawnZones: CreateCoordsList(situationMapLayers.NEUTRAL, map) 
     }
-    return [redCoordsString, blueCoordsString, neutralCoordString]
 }
 
 async function RenderMap(mapData, map, inverted) {
