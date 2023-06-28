@@ -117,10 +117,12 @@ namespace BriefingRoom4DCS.Generator
                         0,
                         new Dictionary<string, object>(), forceTryTemplate: forceTryTemplate);
 
-                if (!groupInfo.HasValue) // Failed to generate a group
+                if (!groupInfo.HasValue){
                     BriefingRoom.PrintToLog(
                         $"Failed to add {airDefenseRange} air defense unit group for {coalition} coalition.",
                         LogMessageErrorLevel.Warning);
+                    return;
+                }
                 mission.MapData.Add($"UNIT-{groupInfo.Value.UnitDB.Families[0]}-{side}-{groupInfo.Value.GroupID}", new List<double[]> { groupInfo.Value.Coordinates.ToArray() });
             }
         }

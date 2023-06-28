@@ -47,9 +47,10 @@ namespace BriefingRoom4DCS.Data
 
                     if (units.Length == 0)
                     {
-                        if (decade == Decade.Decade1940 || subDict[prevDecade].Count() == 0)
-                            throw new BriefingRoomException($"Default unit list \"{ID}\" has no unit of family \"{(UnitFamily)fam}\" during {(Decade)decade}, unit list was ignored.");
-                        units = subDict[prevDecade].ToArray();
+                        if (decade == Decade.Decade2020 && subDict[prevDecade].Count() == 0)
+                            throw new BriefingRoomException($"Default unit list \"{ID}\" has no unit for family \"{fam}\"");
+                        if(decade != Decade.Decade1940)
+                            units = subDict[prevDecade].ToArray();
                     };
 
                     subDict.Add(decade, units.ToList());

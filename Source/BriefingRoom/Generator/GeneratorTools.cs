@@ -65,7 +65,7 @@ namespace BriefingRoom4DCS.Generator
 
             return units.ToList();
         }
-
+        
         internal static Tuple<Country, List<string>> GetNeutralRandomUnits(List<UnitFamily> families, List<Country> IgnoreCountries, Decade decade, int count, List<string> unitMods, bool allowLowPolly, Country? requiredCountry = null, MinMaxI? countMinMax = null)
         {
             // Count is zero, return an empty array.
@@ -92,7 +92,7 @@ namespace BriefingRoom4DCS.Generator
             // At least one unit found, return it
             if (validUnits.Count == 0)
             {
-                validUnits = new Dictionary<Country, List<string>> { { Country.ALL, Database.Instance.GetEntry<DBEntryDefaultUnitList>("FirstWorld").DefaultUnits[families.First()][decade].ToList() } };
+                validUnits = DBEntryCoalition.GetDefaultUnits(Database.Instance, "FirstWorld", families, decade, unitMods);
             }
 
             switch (category)

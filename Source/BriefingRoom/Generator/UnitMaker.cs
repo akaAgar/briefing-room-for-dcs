@@ -120,7 +120,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 (country, units) = GeneratorTools.GetNeutralRandomUnits(families, CoalitionsDB.SelectMany(x => x.Countries).ToList(), Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowlowPolly"), countMinMax: unitCountMinMax);
             }
-            if (units.Where(x => x != null).Count() == 0) throw new BriefingRoomException($"Found no units for {string.Join(", ", families)} {country}");
+            if (units.Where(x => x != null).Count() == 0) return  new (new List<string>(), new List<DBEntryJSONUnit>());
             if (country != Country.ALL)
                 extraSettings["Country"] = country;
             if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.EmbeddedAirDefense))

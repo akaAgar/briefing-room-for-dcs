@@ -217,12 +217,33 @@ namespace BriefingRoom4DCS.Data
                 return validUnits;
 
             BriefingRoom.PrintToLog($"No Units of types {string.Join(", ", families)} found in coalition of {string.Join(", ", Countries.Where(x => x != Country.ALL))} forced to use defaults", LogMessageErrorLevel.Info);
-            return new Dictionary<Country, List<string>> { { Country.ALL, Database.GetEntry<DBEntryDefaultUnitList>(DefaultUnitList).DefaultUnits[families.First()][decade].ToList() } };
+            
+            return GetDefaultUnits(Database, DefaultUnitList, families, decade, unitMods);
         }
 
         internal void Merge(DBEntryCoalition entry)
         {
             Countries = entry.Countries.Append(Country.ALL).ToArray();
+        }
+
+        internal static Dictionary<Country, List<string>> GetDefaultUnits(Database database, string defaultUnitList,  List<UnitFamily> families, Decade decade, List<string> unitMods)
+        {
+            var defaultDict = database.GetEntry<DBEntryDefaultUnitList>(defaultUnitList).DefaultUnits;
+            var validUnits = new List<string>();
+            foreach (var family in families)
+            {
+                if(!defaultDict[family].ContainsKey(decade))
+                    continue;
+                var options = defaultDict[family][decade].Where(id => 
+                {
+                    var unit = database.GetEntry<DBEntryJSONUnit>(id);
+                    return string.IsNullOrEmpty(unit.Module) || unitMods.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase) || DBEntryDCSMod.CORE_MODS.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase);
+                });
+                validUnits.AddRange(options);
+            }
+            if(validUnits.Count == 0)
+                BriefingRoom.PrintToLog($"No operational units found in {decade} for types {String.Join(", ", families)}", LogMessageErrorLevel.Warning);
+            return new Dictionary<Country, List<string>> { { Country.ALL, validUnits } };
         }
     }
 }
