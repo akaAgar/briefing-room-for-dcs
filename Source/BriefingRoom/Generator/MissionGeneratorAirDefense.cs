@@ -41,22 +41,23 @@ namespace BriefingRoom4DCS.Generator
                 Coordinates centerPoint = ally ? averageInitialPosition : objectivesCenter;
                 Coordinates opposingPoint = ally ? objectivesCenter : averageInitialPosition;
 
-                foreach (AirDefenseRange airDefenseRange in Toolbox.GetEnumValues<AirDefenseRange>())
-                    CreateAirDefenseGroups(template, mission, unitMaker, side, coalition, airDefenseAmount, airDefenseRange, centerPoint, opposingPoint);
+                var knockDownCount = 0; // If failed to spawn unit at higher level air defense then we should add the count of groups to the next level down.
+                foreach (AirDefenseRange airDefenseRange in Toolbox.GetEnumValues<AirDefenseRange>().Reverse())
+                    knockDownCount = CreateAirDefenseGroups(template, mission, unitMaker, side, coalition, airDefenseAmount, knockDownCount, airDefenseRange, centerPoint, opposingPoint);
             }
         }
 
-        private static void CreateAirDefenseGroups(
+        private static int CreateAirDefenseGroups(
             MissionTemplateRecord template, DCSMission mission, UnitMaker unitMaker, Side side, Coalition coalition,
-            AmountNR airDefenseAmount, AirDefenseRange airDefenseRange,
+            AmountNR airDefenseAmount, int knockDownCount, AirDefenseRange airDefenseRange,
             Coordinates centerPoint, Coordinates opposingPoint)
         {
             var airDefenseInt = (int)airDefenseAmount;
             var commonAirDefenseDB = Database.Instance.Common.AirDefense;
             DBCommonAirDefenseLevel airDefenseLevelDB = commonAirDefenseDB.AirDefenseLevels[airDefenseInt];
 
-            int groupCount = airDefenseLevelDB.GroupsInArea[(int)airDefenseRange].GetValue();
-            if (groupCount < 1) return;  // No groups to add, no need to go any further
+            int groupCount = airDefenseLevelDB.GroupsInArea[(int)airDefenseRange].GetValue() + knockDownCount;
+            if (groupCount < 1) return 0;  // No groups to add, no need to go any further
 
             List<UnitFamily> unitFamilies;
             SpawnPointType[] validSpawnPoints;
@@ -100,7 +101,7 @@ namespace BriefingRoom4DCS.Generator
                 if (!spawnPoint.HasValue)
                 {
                     BriefingRoom.PrintToLog($"No spawn point found for {airDefenseRange} air defense unit groups", LogMessageErrorLevel.Warning);
-                    return;
+                    return groupCount -i;
                 }
                 var unitCount = 1;
                 var forceTryTemplate = false;
@@ -121,10 +122,11 @@ namespace BriefingRoom4DCS.Generator
                     BriefingRoom.PrintToLog(
                         $"Failed to add {airDefenseRange} air defense unit group for {coalition} coalition.",
                         LogMessageErrorLevel.Warning);
-                    return;
+                    return groupCount -i;
                 }
                 mission.MapData.Add($"UNIT-{groupInfo.Value.UnitDB.Families[0]}-{side}-{groupInfo.Value.GroupID}", new List<double[]> { groupInfo.Value.Coordinates.ToArray() });
             }
+            return 0;
         }
     }
 }
