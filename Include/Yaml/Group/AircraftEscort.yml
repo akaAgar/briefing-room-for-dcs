@@ -73,7 +73,6 @@ waypoints:
       - id: Escort
         auto: false
         parameters:
-          wrapped: false
           groupId: $OBJECTIVEGROUPID$
           noTargetTypes: []
           targetTypes:
