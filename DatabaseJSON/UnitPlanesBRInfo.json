@@ -1778,7 +1778,8 @@
     {
         "type": "KC135MPRS",
         "families": [
-            "PlaneTankerBasket"
+            "PlaneTankerBasket",
+            "PlaneTankerBoom"
         ],
         "operational": [1950, 2020],
         "extraOperators": {
