@@ -38,6 +38,7 @@ namespace BriefingRoom4DCS.Data
         internal string DCSID { get; private set; }
 
         internal double MagneticDeclination { get; private set; }
+        internal bool SouthernHemisphere { get; private set; }
 
         internal MinMaxI[] DayTime { get; private set; }
 
@@ -59,6 +60,7 @@ namespace BriefingRoom4DCS.Data
             DCSID = ini.GetValue<string>("Theater", "DCSID");
             DefaultMapCenter = ini.GetValue<Coordinates>("Theater", "DefaultMapCenter");
             MagneticDeclination = ini.GetValue<double>("Theater", "MagneticDeclination");
+            SouthernHemisphere = ini.GetValue<bool>("Theater", "SouthernHemisphere", false);
 
             // [Daytime] section
             DayTime = new MinMaxI[12];

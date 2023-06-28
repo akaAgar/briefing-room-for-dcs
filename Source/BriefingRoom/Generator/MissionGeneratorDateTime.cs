@@ -28,7 +28,7 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGeneratorDateTime
     {
 
-        internal static Month GenerateMissionDate(DCSMission mission, MissionTemplateRecord template)
+        internal static Month GenerateMissionDate(DCSMission mission, MissionTemplateRecord template,  DBEntryTheater theaterDB)
         {
             int day;
             Month month;
@@ -45,7 +45,7 @@ namespace BriefingRoom4DCS.Generator
             }
             else // Pick a date according to the desired season
             {
-                Month[] seasonMonths = GetMonthsForSeason(template.EnvironmentSeason);
+                Month[] seasonMonths = GetMonthsForSeason(template.EnvironmentSeason,  theaterDB);
 
                 int monthIndex = Toolbox.RandomInt(4);
                 month = seasonMonths[monthIndex];
@@ -110,8 +110,20 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("StartTime", hour * 3600 + minute * 60); // DCS World time is stored in seconds since midnight
         }
 
-        private static Month[] GetMonthsForSeason(Season season)
+        private static Month[] GetMonthsForSeason(Season season, DBEntryTheater theaterDB)
         {
+            if(theaterDB.SouthernHemisphere)
+            {
+                switch (season)
+                {
+                    default: return new Month[] { Month.September, Month.October, Month.November, Month.December }; // case Season.Spring or Season.Random
+                    case Season.Summer: return new Month[] { Month.December, Month.January, Month.February, Month.March };
+                    case Season.Fall: return new Month[] { Month.March, Month.April, Month.May, Month.June };
+                    case Season.Winter: return new Month[] { Month.June, Month.July, Month.August, Month.September }; 
+                }
+
+            }
+
             switch (season)
             {
                 default: return new Month[] { Month.March, Month.April, Month.May, Month.June }; // case Season.Spring or Season.Random

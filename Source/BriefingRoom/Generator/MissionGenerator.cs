@@ -104,7 +104,7 @@ namespace BriefingRoom4DCS.Generator
 
 
             BriefingRoom.PrintToLog("Generating mission date and time...");
-            var month = MissionGeneratorDateTime.GenerateMissionDate(mission, template);
+            var month = MissionGeneratorDateTime.GenerateMissionDate(mission, template, theaterDB);
             MissionGeneratorDateTime.GenerateMissionTime(mission, template, theaterDB, month);
 
 
