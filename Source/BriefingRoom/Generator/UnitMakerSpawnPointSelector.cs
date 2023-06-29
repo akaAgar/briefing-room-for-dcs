@@ -29,6 +29,7 @@ namespace BriefingRoom4DCS.Generator
     internal class UnitMakerSpawnPointSelector
     {
         private const int MAX_RADIUS_SEARCH_ITERATIONS = 32;
+        private readonly List<UnitCategory> NEAR_FRONT_LINE_CATEGORIES = new List<UnitCategory>{UnitCategory.Static, UnitCategory.Vehicle, UnitCategory.Infantry};
 
         private readonly Dictionary<int, List<DBEntryAirbaseParkingSpot>> AirbaseParkingSpots;
 
@@ -49,6 +50,11 @@ namespace BriefingRoom4DCS.Generator
                 UnitFamily.PlaneTransport,
                 UnitFamily.PlaneBomber,
             };
+
+        private List<Coordinates> FrontLine = new List<Coordinates>(); 
+        private bool PlayerSideOfFrontLine;
+
+        private Coalition PlayerCoalition;
 
         internal UnitMakerSpawnPointSelector(DBEntryTheater theaterDB, DBEntrySituation situationDB, bool invertCoalition, int minBorderLimit)
         {
@@ -114,24 +120,27 @@ namespace BriefingRoom4DCS.Generator
             SpawnPointType[] validTypes,
             Coordinates distanceOrigin1, MinMaxD distanceFrom1,
             Coordinates? distanceOrigin2 = null, MinMaxD? distanceFrom2 = null,
-            Coalition? coalition = null)
+            Coalition? coalition = null,
+            UnitFamily? nearFrontLineFamily = null)
         {
             if (validTypes.Contains(SpawnPointType.Air) || validTypes.Contains(SpawnPointType.Sea))
                 return GetAirOrSeaCoordinates(validTypes, distanceOrigin1, distanceFrom1, distanceOrigin2, distanceFrom2, coalition);
-            return GetLandCoordinates(validTypes, distanceOrigin1, distanceFrom1, distanceOrigin2, distanceFrom2, coalition);
+            return GetLandCoordinates(validTypes, distanceOrigin1, distanceFrom1, distanceOrigin2, distanceFrom2, coalition, nearFrontLineFamily);
         }
 
         private Coordinates? GetLandCoordinates(
             SpawnPointType[] validTypes,
             Coordinates distanceOrigin1, MinMaxD distanceFrom1,
             Coordinates? distanceOrigin2 = null, MinMaxD? distanceFrom2 = null,
-            Coalition? coalition = null
+            Coalition? coalition = null,
+            UnitFamily? nearFrontLineFamily = null
         )
         {
             var validSP = (from DBEntryTheaterSpawnPoint pt in SpawnPoints where validTypes.Contains(pt.PointType) select pt);
             Coordinates?[] distanceOrigin = new Coordinates?[] { distanceOrigin1, distanceOrigin2 };
             MinMaxD?[] distanceFrom = new MinMaxD?[] { distanceFrom1, distanceFrom2 };
             var brokenSP = validSP.Where(x => CheckInSea(x.Coordinates)).Select(x => $"{x.UniqueID}={x.Coordinates.X},{x.Coordinates.Y},{x.PointType}").ToList();
+            var useFrontLine = nearFrontLineFamily.HasValue && FrontLine.Count  > 0 && NEAR_FRONT_LINE_CATEGORIES.Contains(nearFrontLineFamily.Value.GetUnitCategory());
             if (brokenSP.Count > 0)
                 throw new BriefingRoomException($"Spawn Points in the sea!: {string.Join("\n", brokenSP)}");
             for (int i = 0; i < 2; i++) // Remove spawn points too far or too close from distanceOrigin1 and distanceOrigin2
@@ -154,7 +163,7 @@ namespace BriefingRoom4DCS.Generator
                                       where
                                           searchRange.Contains(origin.GetDistanceFrom(s.Coordinates)) &&
                                           CheckNotInHostileCoords(s.Coordinates, coalition) &&
-                                          CheckNotFarFromBorders(s.Coordinates, borderLimit, coalition)
+                                          (useFrontLine ? CheckNotFarFromFrontLine(s.Coordinates, nearFrontLineFamily.Value, coalition) : CheckNotFarFromBorders(s.Coordinates, borderLimit, coalition))
                                       select s);
                     searchRange = new MinMaxD(searchRange.Min * 0.9, Math.Max(100, searchRange.Max * 1.1));
                     validSP = (from DBEntryTheaterSpawnPoint s in validSPInRange select s);
@@ -344,9 +353,56 @@ namespace BriefingRoom4DCS.Generator
 
         }
 
+        private bool CheckNotFarFromFrontLine(Coordinates coordinates, UnitFamily unitFamily, Coalition? coalition = null)
+        {
+            if (!coalition.HasValue)
+                return true;
+            var red = SituationDB.GetRedZones(InvertCoalition);
+            var blue = SituationDB.GetBlueZones(InvertCoalition);
+            var distance = ShapeManager.GetDistanceFromShape(coordinates, FrontLine);
+            var side = ShapeManager.GetSideOfLine(coordinates, FrontLine);
+
+            var onPlayerCoalition = coalition == PlayerCoalition;
+            var onFriendlySideOfLine = (onPlayerCoalition && side == PlayerSideOfFrontLine) || (!onPlayerCoalition && side != PlayerSideOfFrontLine);
+
+            var distanceLimit = unitFamily switch {
+                UnitFamily.StaticStructureMilitary => onFriendlySideOfLine ? 100: -1,
+                UnitFamily.StaticStructureProduction => onFriendlySideOfLine ? 100: -1,
+
+                UnitFamily.StaticStructureOffshore => onFriendlySideOfLine ? 100: -1,
+                UnitFamily.StaticStructureCivilian => onFriendlySideOfLine ? 100: -1,
+
+                UnitFamily.VehicleAAA => onFriendlySideOfLine ? 30: 2,
+                UnitFamily.VehicleAAAStatic => onFriendlySideOfLine ? 30: -1,
+                UnitFamily.VehicleAPC => onFriendlySideOfLine ? 15: 2.5,
+                UnitFamily.VehicleArtillery => onFriendlySideOfLine ? 20 : -1,
+                UnitFamily.Infantry => onFriendlySideOfLine ? 10 : 5,
+                UnitFamily.InfantryMANPADS => onFriendlySideOfLine ? 100 : 5,
+                UnitFamily.VehicleMBT => onFriendlySideOfLine ? 10 : 2,
+                UnitFamily.VehicleMissile => onFriendlySideOfLine ? 100 : -1,
+                UnitFamily.VehicleEWR => onFriendlySideOfLine ? 100 : -1,
+                UnitFamily.VehicleSAMLong => onFriendlySideOfLine ? 100 : -1,
+                UnitFamily.VehicleSAMMedium => onFriendlySideOfLine ? 70 : -1,
+                UnitFamily.VehicleSAMShort => onFriendlySideOfLine ? 30 : 2,
+                UnitFamily.VehicleSAMShortIR => onFriendlySideOfLine ? 30 : 2,
+                UnitFamily.VehicleTransport => onFriendlySideOfLine ? 30 : 3,
+                UnitFamily.VehicleStatic => onFriendlySideOfLine ? 50 : -1,
+                _ => onFriendlySideOfLine ? 5 : -1
+            };
+            return (distance * Toolbox.METERS_TO_NM) < distanceLimit;
+
+        }
+
         internal bool CheckInSea(Coordinates coordinates)
         {
             return TheaterDB.WaterCoordinates.Any(x => ShapeManager.IsPosValid(coordinates, x, TheaterDB.WaterExclusionCoordinates));
+        }
+
+        internal void SetFrontLine(List<Coordinates> frontLine, Coordinates playerAirbase, Coalition playerCoalition)
+        {
+            FrontLine = frontLine;
+            PlayerSideOfFrontLine = ShapeManager.GetSideOfLine(playerAirbase, FrontLine);
+            PlayerCoalition = playerCoalition;
         }
     }
 }

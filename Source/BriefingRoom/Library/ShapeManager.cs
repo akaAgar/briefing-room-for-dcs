@@ -183,6 +183,24 @@ namespace BriefingRoom4DCS
             return true;
         }
 
+        internal static Tuple<double, Coordinates> GetNearestPointBorder(Coordinates coords, List<Coordinates> InclusionShape)
+        {
+            var lastCoords = InclusionShape[0];
+            Coordinates closestPoint = coords;
+            var minDistance = Double.MaxValue;
+            InclusionShape.ForEach(x =>
+            {
+                var result = FindDistanceToSegment(coords, lastCoords, x);
+                if(result.Item1 < minDistance)
+                {
+                    minDistance = result.Item1;
+                    closestPoint = result.Item2;
+                } 
+                lastCoords = x;
+            });
+            return new(minDistance, closestPoint);
+        }
+
         internal static double GetDistanceFromShape(Coordinates coords, List<Coordinates> InclusionShape)
         {
             if (isInside(InclusionShape, coords))
@@ -190,27 +208,40 @@ namespace BriefingRoom4DCS
             var lastCoords = InclusionShape[0];
             return InclusionShape.Min(x =>
             {
-                var dist = FindDistanceToSegment(coords, lastCoords, x);
+                var dist = FindDistanceToSegment(coords, lastCoords, x).Item1;
                 lastCoords = x;
                 return dist;
             });
         }
 
+        internal static bool GetSideOfLine(Coordinates coords, List<Coordinates> line)
+        {
+            var segStart = line.First();
+            var sideAverage = line.Average(segEnd => {
+                var pos = (segEnd.X - segStart.X)*(coords.Y - segStart.Y) - (segEnd.Y - segStart.Y)*(coords.X - segStart.X);
+                segStart = segEnd;
+                return pos;
+            });
+
+            return sideAverage > 0; // We don't care What side we will just compare to other results
+        }
+
 
         // Calculate the distance between
         // point pt and the segment p1 --> p2.
-        private static double FindDistanceToSegment(
+        private static Tuple<double, Coordinates> FindDistanceToSegment(
             Coordinates pt, Coordinates segStart, Coordinates segEnd)
         {
+            var closest = segStart;
             var dx = segEnd.X - segStart.X;
             var dy = segEnd.Y - segStart.Y;
             if ((dx == 0) && (dy == 0))
             {
                 // It's a point not a line segment.
-                var closest = segStart;
+                closest = segStart;
                 dx = pt.X - segStart.X;
                 dy = pt.Y - segStart.Y;
-                return Math.Sqrt(dx * dx + dy * dy);
+                return new (Math.Sqrt(dx * dx + dy * dy), closest);
             }
 
             // Calculate the t that minimizes the distance.
@@ -221,24 +252,24 @@ namespace BriefingRoom4DCS
             // end points or a point in the middle.
             if (t < 0)
             {
-                var closest = new Coordinates(segStart.X, segStart.Y);
+                closest = new Coordinates(segStart.X, segStart.Y);
                 dx = pt.X - segStart.X;
                 dy = pt.Y - segStart.Y;
             }
             else if (t > 1)
             {
-                var closest = new Coordinates(segEnd.X, segEnd.Y);
+                closest = new Coordinates(segEnd.X, segEnd.Y);
                 dx = pt.X - segEnd.X;
                 dy = pt.Y - segEnd.Y;
             }
             else
             {
-                var closest = new Coordinates(segStart.X + t * dx, segStart.Y + t * dy);
+                closest = new Coordinates(segStart.X + t * dx, segStart.Y + t * dy);
                 dx = pt.X - closest.X;
                 dy = pt.Y - closest.Y;
             }
 
-            return Math.Sqrt(dx * dx + dy * dy);
+            return new (Math.Sqrt(dx * dx + dy * dy), closest);
         }
     }
 }

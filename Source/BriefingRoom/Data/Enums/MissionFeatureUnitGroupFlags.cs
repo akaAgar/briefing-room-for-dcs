@@ -64,5 +64,6 @@ namespace BriefingRoom4DCS.Data
         AttackTargetUnits = 33554432,
         LowUnitVariation = 67108864,
         SupportingTarget = 134217728,
+        UseFrontLine = 268435456,
     }
 }

@@ -168,6 +168,7 @@ namespace BriefingRoom4DCS.Generator
             MissionGeneratorFlightPlan.GenerateObjectiveWPCoordinatesLua(template, mission, waypoints, drawingMaker);
             MissionGeneratorFlightPlan.GenerateAircraftPackageWaypoints(template, mission, objectiveGroupedWaypoints, averageInitialPosition, objectivesCenter, waypointNameGenerator);
             MissionGeneratorFlightPlan.GenerateIngressAndEgressWaypoints(template, waypoints, averageInitialPosition, objectivesCenter, waypointNameGenerator);
+            MissionGeneratorFrontLine.GenerateFrontLine(mission,template,playerAirbase.Coordinates, objectivesCenter, template.ContextPlayerCoalition, situationDB, ref unitMaker);
 
             foreach (var waypoint in waypoints)
             {

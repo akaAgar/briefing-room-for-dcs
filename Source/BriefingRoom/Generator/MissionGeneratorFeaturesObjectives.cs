@@ -61,7 +61,8 @@ namespace BriefingRoom4DCS.Generator
                 Coordinates? spawnPoint =
                     _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         featureDB.UnitGroupValidSpawnPoints, objectiveTarget.Coordinates,
-                        new MinMaxD(featureDB.UnitGroupSpawnDistance * .75, featureDB.UnitGroupSpawnDistance * 1.5));
+                        new MinMaxD(featureDB.UnitGroupSpawnDistance * .75, featureDB.UnitGroupSpawnDistance * 1.5),
+                        nearFrontLineFamily: flags.HasFlag(FeatureUnitGroupFlags.UseFrontLine) ? featureDB.UnitGroupFamilies.First() : null);
 
                 if (!spawnPoint.HasValue) // No spawn point found
                 {

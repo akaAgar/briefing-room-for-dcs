@@ -60,14 +60,17 @@ namespace BriefingRoom4DCS.Generator
             }
             Coordinates? spawnPoint = null;
             Coordinates? coordinates2 = null;
+            UnitFamily? unitFamily = null;
             if (FeatureHasUnitGroup(featureDB))
             {
+                unitFamily = Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
                 Coordinates pointSearchCenter = Coordinates.Lerp(initialCoordinates, objectivesCenter, featureDB.UnitGroupSpawnDistance);
                 spawnPoint =
                     _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         featureDB.UnitGroupValidSpawnPoints, pointSearchCenter,
                         featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.AwayFromMissionArea) ? new MinMaxD(50, 100) : new MinMaxD(0, 10),
-                        coalition: (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.IgnoreBorders) || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Neutral)) ? null : coalition
+                        coalition: (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.IgnoreBorders) || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Neutral)) ? null : coalition,
+                        nearFrontLineFamily: (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.UseFrontLine) ? unitFamily : null)
                         );
                 if (!spawnPoint.HasValue) // No spawn point found
                 {
@@ -88,7 +91,7 @@ namespace BriefingRoom4DCS.Generator
                 coordinates2 = goPoint + Coordinates.CreateRandom(5, 20) * Toolbox.NM_TO_METERS;
             }
             Dictionary<string, object> extraSettings = new Dictionary<string, object>();
-            UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, spawnPoint, coordinates2, ref extraSettings);
+            UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, spawnPoint, coordinates2, ref extraSettings, preSelectedUnitFamily: unitFamily);
 
             AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
         }

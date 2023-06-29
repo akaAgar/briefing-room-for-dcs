@@ -43,7 +43,7 @@ namespace BriefingRoom4DCS.Generator
             _template = template;
         }
 
-        protected UnitMakerGroupInfo? AddMissionFeature(T featureDB, DCSMission mission, Coordinates? coordinates, Coordinates? coordinates2, ref Dictionary<string, object> extraSettings, Side? objectiveTargetSide = null, bool hideEnemy = false)
+        protected UnitMakerGroupInfo? AddMissionFeature(T featureDB, DCSMission mission, Coordinates? coordinates, Coordinates? coordinates2, ref Dictionary<string, object> extraSettings, Side? objectiveTargetSide = null, bool hideEnemy = false, UnitFamily? preSelectedUnitFamily = null)
         {
             // Add secondary coordinates (destination point) to the extra settings
 
@@ -95,7 +95,7 @@ namespace BriefingRoom4DCS.Generator
 
                 var groupLua = featureDB.UnitGroupLuaGroup;
                 var unitCount = featureDB.UnitGroupSize.GetValue();
-                var unitFamily = Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
+                var unitFamily = preSelectedUnitFamily.HasValue ? preSelectedUnitFamily.Value : Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
                 var luaUnit = featureDB.UnitGroupLuaUnit;
                 var (units, unitDBs) = _unitMaker.GetUnits(unitFamily, unitCount, groupSide, groupFlags, extraSettings);
                 if(units.Count == 0) return groupInfo;
@@ -241,7 +241,8 @@ namespace BriefingRoom4DCS.Generator
                     spawnCoords = _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                         featureDB.UnitGroupValidSpawnPoints, coordinates,
                         new MinMaxD(0, 5),
-                        coalition: GeneratorTools.GetSpawnPointCoalition(_template, groupSide)
+                        coalition: GeneratorTools.GetSpawnPointCoalition(_template, groupSide),
+                        nearFrontLineFamily: (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.UseFrontLine) ? unitFamily : null)
                         );
 
                 if (!spawnCoords.HasValue)

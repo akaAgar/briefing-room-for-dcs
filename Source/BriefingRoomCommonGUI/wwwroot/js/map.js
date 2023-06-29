@@ -190,6 +190,8 @@ async function RenderMap(mapData, map, inverted) {
             AddIcon(key, data, leafMap, map, inverted)
         } else if (key.includes("ROUTE_")) {
             AddWaypoints(data, leafMap, map)
+        } else if (key.includes("FRONTLINE")) {
+            AddLine(key, data, leafMap, map)
         } else {
             AddZone(key, data, leafMap, map)
         }
@@ -287,6 +289,17 @@ function AddZone(key, data, map, mapName) {
         fillColor: GetColour(key),
         fillOpacity: 0.2,
     }).addTo(map);
+}
+
+function AddLine(key, data, map, mapName) {
+    let coords = data.map(x => GetFromMapCoordData(x, mapName))
+    group = mapGroups["GroundForces"]
+    group.addLayer(L.polyline(coords, {
+        color: GetColour(key),
+        weight: 5,    
+        dashArray: '8, 8', 
+        dashOffset: '0'
+    }))
 }
 
 function GetGroup(id) {
@@ -397,6 +410,8 @@ function GetColour(id, inverted) {
             return '#50eb5d55'
         case id.includes('ISLAND'):
             return '#d4eb5088'
+        case id.includes('FRONTLINE'):
+            return '#BF40BFDD'
         case id.includes("AIRBASE"):
             return '#ffffff'
         case id.includes("OBJECTIVE"):

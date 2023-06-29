@@ -76,7 +76,7 @@ namespace BriefingRoom4DCS.Generator
                     validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandLarge };
                     break;
                 case AirDefenseRange.ShortRangeBattery:
-                    unitFamilies = new List<UnitFamily> { UnitFamily.VehicleAAA, UnitFamily.VehicleAAAStatic, UnitFamily.InfantryMANPADS };
+                    unitFamilies = new List<UnitFamily> { UnitFamily.VehicleAAAStatic, UnitFamily.VehicleAAA, UnitFamily.InfantryMANPADS };
                     validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandLarge, SpawnPointType.LandMedium };
                     break;
                 default: // case AirDefenseRange.ShortRange:
@@ -87,6 +87,7 @@ namespace BriefingRoom4DCS.Generator
 
             for (int i = 0; i < groupCount; i++)
             {
+                var unitFamily = Toolbox.RandomFrom(unitFamilies);
                 // Find spawn point at the proper distance
                 Coordinates? spawnPoint =
                     unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
@@ -95,7 +96,8 @@ namespace BriefingRoom4DCS.Generator
                         commonAirDefenseDB.DistanceFromCenter[(int)side, (int)airDefenseRange],
                         opposingPoint,
                         new MinMaxD(commonAirDefenseDB.MinDistanceFromOpposingPoint[(int)side, (int)airDefenseRange], 99999),
-                        GeneratorTools.GetSpawnPointCoalition(template, side));
+                        GeneratorTools.GetSpawnPointCoalition(template, side),
+                        unitFamily);
 
                 // No spawn point found, stop here.
                 if (!spawnPoint.HasValue)
@@ -112,7 +114,7 @@ namespace BriefingRoom4DCS.Generator
                 }
 
                 UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(
-                        unitFamilies, unitCount, side,
+                        unitFamily, unitCount, side,
                         "Vehicle", "Vehicle",
                         spawnPoint.Value,
                         0,
