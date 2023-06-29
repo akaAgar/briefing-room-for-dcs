@@ -147,7 +147,7 @@ namespace BriefingRoom4DCS.Generator
             foreach (var fob in fobs)
             {
 
-                var coordinates = fob.UnitMakerGroupInfo.Coordinates + Coordinates.CreateRandom(30, 100);
+                var coordinates = fob.UnitMakerGroupInfo.Coordinates + Coordinates.CreateRandom(150, 400);
                 Dictionary<string, object> extraSettings = new Dictionary<string, object> { { "TACAN_NAME", fob.UnitMakerGroupInfo.Name.Replace("FOB ", "") } };
                 UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, coordinates, coordinates, ref extraSettings);
 
