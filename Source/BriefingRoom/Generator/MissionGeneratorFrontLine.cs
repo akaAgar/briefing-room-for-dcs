@@ -33,8 +33,8 @@ namespace BriefingRoom4DCS.Generator
         {
             if (template.OptionsMission.Contains("SpawnAnywhere") || template.ContextSituation == "None" || template.OptionsMission.Contains("NoFrontLine"))
                 return;
-
-            var frontLineCenter = Coordinates.Lerp(playerAirbase, objectiveCenter, Toolbox.RandomDouble(0.2, 1.2)); // TODO Influence this with what kind of objectives you have
+    
+            var frontLineCenter = Coordinates.Lerp(playerAirbase, objectiveCenter, GetLerpDistance(template));
 
             var objectiveHeading = playerAirbase.GetHeadingFrom(objectiveCenter);
             var angleVariance = new MinMaxD(objectiveHeading + 45, objectiveHeading + 135);
@@ -67,6 +67,27 @@ namespace BriefingRoom4DCS.Generator
                 point = Coordinates.Lerp(point, nearest, Toolbox.RandomDouble(0, 0.25));
             }
             return point;
+        }
+
+        private static double GetLerpDistance(MissionTemplateRecord template) {
+            var friendlySideObjectivesCount = 0;
+            var enemySideObjectivesCount = 0;
+
+            template.Objectives.ForEach(x => {
+                if(MissionGeneratorObjectives.GetObjectiveData(x).taskDB.TargetSide == Side.Ally)
+                    friendlySideObjectivesCount++;
+                else
+                    enemySideObjectivesCount++;
+                });
+
+            var lerpDistance = Toolbox.RandomDouble(0.2, 1.1);
+            var bias = friendlySideObjectivesCount - enemySideObjectivesCount;
+            if(bias < 1)
+                lerpDistance += bias * 0.05;
+            else
+                lerpDistance += bias * 0.1;
+
+            return double.Min(double.Max(lerpDistance, 0.2), 1.3);
         }
 
     }

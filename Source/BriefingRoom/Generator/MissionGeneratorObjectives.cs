@@ -411,7 +411,7 @@ namespace BriefingRoom4DCS.Generator
             return objectiveCoordinates;
         }
 
-        private static (string[] featuresID, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB, ObjectiveOption[] objectiveOptions) GetObjectiveData(MissionTemplateObjectiveRecord objectiveTemplate)
+        internal static (string[] featuresID, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB, ObjectiveOption[] objectiveOptions) GetObjectiveData(MissionTemplateObjectiveRecord objectiveTemplate)
         {
             var (targetDB, targetBehaviorDB, taskDB, objectiveOptions, presetDB) = GetCustomObjectiveData(objectiveTemplate);
             var featuresID = objectiveTemplate.HasPreset ? presetDB.Features.ToArray() : objectiveTemplate.Features.ToArray();
