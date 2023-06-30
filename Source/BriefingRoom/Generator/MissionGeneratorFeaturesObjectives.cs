@@ -91,7 +91,7 @@ namespace BriefingRoom4DCS.Generator
                 mission.Briefing.AddItem(DCSMissionBriefingItemType.JTAC, $"{objectiveName}\t{laserCode}");
             }
 
-            if (featureID == "EnemyCAP" && objectiveTarget.UnitDB.Category == UnitCategory.Plane)
+            if (featureID == "EnemyCAP" && objectiveTarget.UnitDB.Category == UnitCategory.Plane && !objectiveTarget.DCSGroup.Uncontrolled)
             {
                 featureDB.UnitGroupLuaGroup = "AircraftEscort";
             }
