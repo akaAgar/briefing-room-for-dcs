@@ -63,7 +63,7 @@ namespace BriefingRoom4DCS.Data
             return true;
         }
 
-        internal Tuple<Country, DBEntryTemplate> GetRandomTemplate(List<UnitFamily> families, Decade decade, List<string> unitMods)
+        internal Tuple<Country, DBEntryTemplate> GetRandomTemplate(List<UnitFamily> families, Decade decade, List<string> unitMods, MinMaxI? countMinMax = null)
         {
 
             var validTemplates = new Dictionary<Country, List<DBEntryTemplate>>();
@@ -74,6 +74,7 @@ namespace BriefingRoom4DCS.Data
                         where families.Contains(template.Family) && template.Countries.ContainsKey(country)
                             && (string.IsNullOrEmpty(template.Module) || unitMods.Contains(template.Module, StringComparer.InvariantCultureIgnoreCase) || DBEntryDCSMod.CORE_MODS.Contains(template.Module, StringComparer.InvariantCultureIgnoreCase))
                             && (template.Countries[country].start <= decade) && (template.Countries[country].end >= decade)
+                            && (!countMinMax.HasValue || countMinMax.Value.Contains(template.Units.Count()))
                         select template
                     ).Distinct().ToList();
             }
@@ -92,7 +93,7 @@ namespace BriefingRoom4DCS.Data
 
 
 
-        internal Tuple<Country, List<string>> GetRandomUnits(List<UnitFamily> families, Decade decade, int count, List<string> unitMods, bool allowLowPolly, Country? requiredCountry = null, MinMaxI? countMinMax = null, bool lowUnitVariation = false)
+        internal Tuple<Country, List<string>> GetRandomUnits(List<UnitFamily> families, Decade decade, int count, List<string> unitMods, bool allowLowPolly, Country? requiredCountry = null, bool lowUnitVariation = false)
         {
             // Count is zero, return an empty array.
             if (count < 1) throw new BriefingRoomException("Asking for a zero unit list");
@@ -115,7 +116,6 @@ namespace BriefingRoom4DCS.Data
                     count = 1;
                     break;
                 case DCSUnitCategory.Static:
-                    validUnits = countMinMax.HasValue ? LimitValidUnitsByRequestedUnitCount(countMinMax.Value, validUnits) : validUnits;
                     count = 1;
                     break;
                 // Units are ground vehicles, allow multiple unit types in the group
@@ -153,54 +153,6 @@ namespace BriefingRoom4DCS.Data
             return new(country, Enumerable.Repeat(unit, count).ToList());
         }
 
-        private Dictionary<Country, List<string>> LimitValidUnitsByRequestedUnitCount(
-            MinMaxI countMinMax,
-            Dictionary<Country, List<string>> validUnits)
-        {
-            var validUnitsGroupSizeBetweenMinAndMax = new Dictionary<Country, List<string>>();
-            var validUnitsDCSIDsLengths = new Dictionary<Country, List<DBEntryJSONUnit>>();
-
-            foreach (Country country in validUnits.Keys)
-            {
-                validUnitsDCSIDsLengths[country] = Database.GetEntries<DBEntryJSONUnit>(validUnits[country].ToArray()).ToList();
-
-                // check if the list of units can satisfy the min/max requirement
-                int countMinTemp = countMinMax.Min;
-                bool logged = false;
-                do
-                {
-                    validUnitsGroupSizeBetweenMinAndMax[country] = validUnits[country]
-                        .Where(
-                            unitID => LimitValidUnitsByMinMax(
-                                unitID,
-                                validUnitsDCSIDsLengths[country],
-                                countMinTemp,
-                                countMinMax.Max))
-                        .ToList();
-                    if (countMinTemp < 1) break; // if min units is now 0 and we still have no units, then an error is needed
-                    if (countMinTemp < countMinMax.Min && !logged)
-                    {
-                        logged = true;
-                        BriefingRoom.PrintToLog("Minimum Target Count is lower than requested!", LogMessageErrorLevel.Warning);
-                    }
-                    countMinTemp -= 1;
-                }
-                while (!(validUnitsGroupSizeBetweenMinAndMax[country].Count > 0));
-
-            }
-
-            if (validUnitsGroupSizeBetweenMinAndMax.Count < 1)
-                throw new BriefingRoomException("Requested Minimum Target Count greater than Maximum Configured Target Count");
-
-            return validUnitsGroupSizeBetweenMinAndMax;
-        }
-
-        private bool LimitValidUnitsByMinMax(string unitID, List<DBEntryJSONUnit> potentiallyValidUnits, int minUnitCount, int maxUnitCount)
-        {
-            var potentiallyValidUnit = potentiallyValidUnits.Where(unit => unit.ID == unitID).First();
-            return 1 >= minUnitCount && 1 <= maxUnitCount; //TODO: Fix this is silly!
-        }
-
         private Dictionary<Country, List<string>> SelectValidUnits(List<UnitFamily> families, Decade decade, List<string> unitMods, bool allowLowPolly)
         {
             var validUnits = new Dictionary<Country, List<string>>();
@@ -224,11 +176,6 @@ namespace BriefingRoom4DCS.Data
             BriefingRoom.PrintToLog($"No Units of types {string.Join(", ", families)} found in coalition of {string.Join(", ", Countries.Where(x => x != Country.ALL))} forced to use defaults", LogMessageErrorLevel.Info);
             
             return GetDefaultUnits(Database, DefaultUnitList, families, decade, unitMods);
-        }
-
-        internal void Merge(DBEntryCoalition entry)
-        {
-            Countries = entry.Countries.Append(Country.ALL).ToArray();
         }
 
         internal static Dictionary<Country, List<string>> GetDefaultUnits(Database database, string defaultUnitList,  List<UnitFamily> families, Decade decade, List<string> unitMods)

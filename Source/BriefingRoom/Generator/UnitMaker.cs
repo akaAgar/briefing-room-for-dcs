@@ -107,15 +107,14 @@ namespace BriefingRoom4DCS.Generator
             GroupID = 1;
             UnitID = 1;
         }
-        internal Tuple<List<string>, List<DBEntryJSONUnit>> GetUnits(UnitFamily family, int unitCount, Side side, UnitMakerGroupFlags unitMakerGroupFlags, ref Dictionary<string, object> extraSettings, MinMaxI? unitCountMinMax = null) =>
-            GetUnits(new List<UnitFamily> { family }, unitCount, side, unitMakerGroupFlags, ref extraSettings, unitCountMinMax);
+        internal Tuple<List<string>, List<DBEntryJSONUnit>> GetUnits(UnitFamily family, int unitCount, Side side, UnitMakerGroupFlags unitMakerGroupFlags, ref Dictionary<string, object> extraSettings) =>
+            GetUnits(new List<UnitFamily> { family }, unitCount, side, unitMakerGroupFlags, ref extraSettings);
 
         internal Tuple<List<string>, List<DBEntryJSONUnit>> GetUnits(
             List<UnitFamily> families,
             int unitCount, Side side,
             UnitMakerGroupFlags unitMakerGroupFlags,
             ref Dictionary<string, object> extraSettings,
-            MinMaxI? unitCountMinMax = null,
             bool forceTryTemplate = false)
         {
             if (unitCount <= 0) throw new BriefingRoomException("Asking for a zero units");
@@ -126,7 +125,7 @@ namespace BriefingRoom4DCS.Generator
 
             if (side == Side.Neutral)
             {
-                (country, units) = GeneratorTools.GetNeutralRandomUnits(families, CoalitionsDB.SelectMany(x => x.Countries).ToList(), Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowlowPolly"), countMinMax: unitCountMinMax);
+                (country, units) = GeneratorTools.GetNeutralRandomUnits(families, CoalitionsDB.SelectMany(x => x.Countries).ToList(), Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowlowPolly"));
                 if (units.Where(x => x != null).Count() == 0) return new(new List<string>(), new List<DBEntryJSONUnit>());
             }
             else if (forceTryTemplate|| families.All(x => TEMPLATE_PREFERENCE_FAMILIES.Contains(x)))
@@ -140,7 +139,7 @@ namespace BriefingRoom4DCS.Generator
                 }
             }
             if (units.Where(x => x != null).Count() == 0)
-                (country, units) = unitsCoalitionDB.GetRandomUnits(families, Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowlowPolly"), countMinMax: unitCountMinMax, lowUnitVariation: unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.LowUnitVariation));
+                (country, units) = unitsCoalitionDB.GetRandomUnits(families, Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowlowPolly"), lowUnitVariation: unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.LowUnitVariation));
 
 
             if (country != Country.ALL)
@@ -173,7 +172,7 @@ namespace BriefingRoom4DCS.Generator
             string groupLua, string unitLua,
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags,
-            Dictionary<string, object> extraSettings, MinMaxI? unitCountMinMax = null, bool forceTryTemplate = false) => AddUnitGroup(new List<UnitFamily> { family }, unitCount, side, groupLua, unitLua, coordinates, unitMakerGroupFlags, extraSettings, unitCountMinMax, forceTryTemplate);
+            Dictionary<string, object> extraSettings, bool forceTryTemplate = false) => AddUnitGroup(new List<UnitFamily> { family }, unitCount, side, groupLua, unitLua, coordinates, unitMakerGroupFlags, extraSettings, forceTryTemplate);
 
         internal UnitMakerGroupInfo? AddUnitGroup(
             List<UnitFamily> families, int unitCount, Side side,
@@ -181,11 +180,11 @@ namespace BriefingRoom4DCS.Generator
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags,
             Dictionary<string, object> extraSettings,
-            MinMaxI? unitCountMinMax = null, bool forceTryTemplate = false)
+            bool forceTryTemplate = false)
         {
             if (unitCount <= 0) throw new BriefingRoomException("Asking for a zero units");
             if (families.Count <= 0) throw new BriefingRoomException("No Unit Families Provided");
-            var (units, _) = GetUnits(families, unitCount, side, unitMakerGroupFlags, ref extraSettings, unitCountMinMax, forceTryTemplate);
+            var (units, _) = GetUnits(families, unitCount, side, unitMakerGroupFlags, ref extraSettings, forceTryTemplate);
             return AddUnitGroup(units, side, families.First(), groupLua, unitLua, coordinates, unitMakerGroupFlags, extraSettings);
         }
 
