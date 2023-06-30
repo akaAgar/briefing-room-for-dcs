@@ -107,22 +107,45 @@ namespace BriefingRoom4DCS.Generator
             GroupID = 1;
             UnitID = 1;
         }
-        internal Tuple<List<string>, List<DBEntryJSONUnit>> GetUnits(UnitFamily family, int unitCount, Side side, UnitMakerGroupFlags unitMakerGroupFlags, Dictionary<string, object> extraSettings, MinMaxI? unitCountMinMax = null) =>
-            GetUnits(new List<UnitFamily> { family }, unitCount, side, unitMakerGroupFlags, extraSettings, unitCountMinMax);
+        internal Tuple<List<string>, List<DBEntryJSONUnit>> GetUnits(UnitFamily family, int unitCount, Side side, UnitMakerGroupFlags unitMakerGroupFlags, ref Dictionary<string, object> extraSettings, MinMaxI? unitCountMinMax = null) =>
+            GetUnits(new List<UnitFamily> { family }, unitCount, side, unitMakerGroupFlags, ref extraSettings, unitCountMinMax);
 
-        internal Tuple<List<string>, List<DBEntryJSONUnit>> GetUnits(List<UnitFamily> families, int unitCount, Side side, UnitMakerGroupFlags unitMakerGroupFlags, Dictionary<string, object> extraSettings, MinMaxI? unitCountMinMax = null)
+        internal Tuple<List<string>, List<DBEntryJSONUnit>> GetUnits(
+            List<UnitFamily> families,
+            int unitCount, Side side,
+            UnitMakerGroupFlags unitMakerGroupFlags,
+            ref Dictionary<string, object> extraSettings,
+            MinMaxI? unitCountMinMax = null,
+            bool forceTryTemplate = false)
         {
             if (unitCount <= 0) throw new BriefingRoomException("Asking for a zero units");
             if (families.Count <= 0) throw new BriefingRoomException("No Unit Families Provided");
             DBEntryCoalition unitsCoalitionDB = CoalitionsDB[(int)((side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy())];
-            var (country, units) = unitsCoalitionDB.GetRandomUnits(families, Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowlowPolly"), countMinMax: unitCountMinMax, lowUnitVariation: unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.LowUnitVariation));
+            List<string> units = new List<string>();
+            Country country = Country.ALL;
+
             if (side == Side.Neutral)
             {
                 (country, units) = GeneratorTools.GetNeutralRandomUnits(families, CoalitionsDB.SelectMany(x => x.Countries).ToList(), Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowlowPolly"), countMinMax: unitCountMinMax);
+                if (units.Where(x => x != null).Count() == 0) return new(new List<string>(), new List<DBEntryJSONUnit>());
             }
-            if (units.Where(x => x != null).Count() == 0) return  new (new List<string>(), new List<DBEntryJSONUnit>());
+            else if (forceTryTemplate|| families.All(x => TEMPLATE_PREFERENCE_FAMILIES.Contains(x)))
+            {
+                var response = unitsCoalitionDB.GetRandomTemplate(families, Template.ContextDecade, Template.Mods);
+                if (response != null)
+                {
+                    (country, var unitTemplate) = response;
+                    extraSettings["TemplatePositionMap"] = unitTemplate.Units;
+                    units = unitTemplate.Units.Select(x => x.DCSID).ToList();
+                }
+            }
+            if (units.Where(x => x != null).Count() == 0)
+                (country, units) = unitsCoalitionDB.GetRandomUnits(families, Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowlowPolly"), countMinMax: unitCountMinMax, lowUnitVariation: unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.LowUnitVariation));
+
+
             if (country != Country.ALL)
                 extraSettings["Country"] = country;
+
             if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.EmbeddedAirDefense))
             {
                 var airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(Template, side, families.First().GetUnitCategory(), country != Country.ALL ? country : null);
@@ -132,21 +155,6 @@ namespace BriefingRoom4DCS.Generator
             return new(units, Database.Instance.GetEntries<DBEntryJSONUnit>(units));
         }
 
-        internal UnitMakerGroupInfo? AddUnitGroupTemplate(
-           List<UnitFamily> families,
-           Side side,
-           string groupTypeLua,
-           string unitTypeLua,
-           Coordinates coordinates,
-           UnitMakerGroupFlags unitMakerGroupFlags,
-           Dictionary<string, object> extraSettings)
-        {
-            DBEntryCoalition unitsCoalitionDB = CoalitionsDB[(int)((side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy())];
-            var (country, unitTemplate) = unitsCoalitionDB.GetRandomTemplate(families, Template.ContextDecade, Template.Mods);
-            if (country != Country.ALL)
-                extraSettings["Country"] = country;
-            return AddUnitGroupTemplate(unitTemplate, side, groupTypeLua, unitTypeLua, coordinates, unitMakerGroupFlags, extraSettings);
-        }
         internal UnitMakerGroupInfo? AddUnitGroupTemplate(
             DBEntryTemplate unitTemplate,
             Side side,
@@ -177,18 +185,7 @@ namespace BriefingRoom4DCS.Generator
         {
             if (unitCount <= 0) throw new BriefingRoomException("Asking for a zero units");
             if (families.Count <= 0) throw new BriefingRoomException("No Unit Families Provided");
-            if (families.All(x => TEMPLATE_PREFERENCE_FAMILIES.Contains(x) || forceTryTemplate))
-            {
-                try
-                {
-                    return AddUnitGroupTemplate(families, side, groupLua, unitLua, coordinates, unitMakerGroupFlags, extraSettings);
-                }
-                catch (BriefingRoomException)
-                {
-                    BriefingRoom.PrintToLog($"No template found for {string.Join(", ", families)} {side}. Resorting to random units");
-                }
-            }
-            var (units, _) = GetUnits(families, unitCount, side, unitMakerGroupFlags, extraSettings, unitCountMinMax);
+            var (units, _) = GetUnits(families, unitCount, side, unitMakerGroupFlags, ref extraSettings, unitCountMinMax, forceTryTemplate);
             return AddUnitGroup(units, side, families.First(), groupLua, unitLua, coordinates, unitMakerGroupFlags, extraSettings);
         }
 

@@ -97,7 +97,7 @@ namespace BriefingRoom4DCS.Generator
                 var unitCount = featureDB.UnitGroupSize.GetValue();
                 var unitFamily = preSelectedUnitFamily.HasValue ? preSelectedUnitFamily.Value : Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
                 var luaUnit = featureDB.UnitGroupLuaUnit;
-                var (units, unitDBs) = _unitMaker.GetUnits(unitFamily, unitCount, groupSide, groupFlags, extraSettings);
+                var (units, unitDBs) = _unitMaker.GetUnits(unitFamily, unitCount, groupSide, groupFlags, ref extraSettings);
                 if(units.Count == 0) return groupInfo;
                 var unitDB = unitDBs.First();
                 SetAirbase(featureDB, ref mission, unitDB, ref groupLua, ref luaUnit, groupSide, ref coordinatesValue, coordinates2.Value, unitCount, ref extraSettings);
@@ -249,7 +249,7 @@ namespace BriefingRoom4DCS.Generator
                     continue;
 
 
-                var (units, unitDBs) = _unitMaker.GetUnits(unitFamily, unitCount, groupSide, groupFlags, extraSettings);
+                var (units, unitDBs) = _unitMaker.GetUnits(unitFamily, unitCount, groupSide, groupFlags, ref extraSettings);
                 var unitDB = unitDBs.First();
                 SetAirbase(featureDB, ref mission, unitDB, ref groupLua, ref luaUnit, groupSide, ref coordinates, coordinates2, unitCount, ref extraSettings);
 

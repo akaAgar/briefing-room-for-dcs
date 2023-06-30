@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -81,7 +81,10 @@ namespace BriefingRoom4DCS.Data
             validTemplates = validTemplates.Where(x => x.Value.Count > 0).ToDictionary(x => x.Key, x => x.Value);
 
             if (validTemplates.Count() == 0)
-                throw new BriefingRoomException($"No Units of types {string.Join(", ", families)} found in coalition of {string.Join(", ", Countries.Where(x => x != Country.ALL))} defaults not yet implemented.");
+            {
+                 BriefingRoom.PrintToLog($"No Units of types {string.Join(", ", families)} found in coalition of {string.Join(", ", Countries.Where(x => x != Country.ALL))}");
+                 return null;
+            }
 
             var selectedCountry = Toolbox.RandomFrom(validTemplates.Keys.ToList());
             return new(selectedCountry, Toolbox.RandomFrom(validTemplates[selectedCountry]));

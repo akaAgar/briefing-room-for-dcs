@@ -193,9 +193,10 @@ namespace BriefingRoom4DCS.Generator
                 "FOB_Berlin"
             };
             var radioFrequencyValue = GeneratorTools.GetRadioFrequency(radioFrequency);
+            var fobTemplate = Toolbox.RandomFrom(Database.Instance.GetAllEntries<DBEntryTemplate>().Where(x => x.Type == "FOB").ToList());
             var groupInfo =
                 unitMaker.AddUnitGroupTemplate(
-                    new List<UnitFamily> { UnitFamily.FOB }, Side.Ally,
+                    fobTemplate, Side.Ally,
                     "Static", "StaticFOB",
                     spawnPoint.Value, 0,
                     new Dictionary<string, object>{
