@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
-
+using System.Linq;
 using System.Collections.Generic;
 
 namespace BriefingRoom4DCS.Generator
@@ -56,7 +56,7 @@ namespace BriefingRoom4DCS.Generator
                 LuaObj.Add(3, unitIndex);
             else
                 LuaObj[3] = unitIndex;
-            return LuaObj;
+            return LuaObj.ToDictionary(x => x.Key, x => x.Value);
         }
 
         internal string GetUnitName(int unitIndex)
