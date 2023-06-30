@@ -567,5 +567,186 @@
         "displayName": "Flag Pole",
         "module": "TechWeaponPack",
         "shapeName": "FlagPole"
+    },
+    {
+        "_id": "646676094719c14d56511373",
+        "type": "Hercules_Container_Parachute_Static",
+        "displayName": "Hercules container with parachute",
+        "module": "Hercules"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a64",
+        "type": "Belgian gate",
+        "displayName": "Belgian gate",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Belgian_gate"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a66",
+        "type": "Concertina wire",
+        "displayName": "Concertina wire",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Concertina_wire"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a68",
+        "type": "Tetrahydra",
+        "displayName": "Tetrahydra",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Concrete_tetra"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a6a",
+        "type": "Hemmkurvenhindernis",
+        "displayName": "Hemmkurvenhindernis",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Curved_rail"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a6c",
+        "type": "Czech hedgehogs 1",
+        "displayName": "Czech hedgehogs 1",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Czech_hedgehogs_01"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a6e",
+        "type": "Czech hedgehogs 2",
+        "displayName": "Czech hedgehogs 2",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Czech_hedgehogs_02"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a70",
+        "type": "Dragonteeth 1",
+        "displayName": "Dragonteeth 1",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Dragonsteeth"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a72",
+        "type": "Dragonteeth 2",
+        "displayName": "Dragonteeth 2",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Dragonsteeth_01"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a74",
+        "type": "Dragonteeth 3",
+        "displayName": "Dragonteeth 3",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Dragonsteeth_02"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a76",
+        "type": "Dragonteeth 4",
+        "displayName": "Dragonteeth 4",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Dragonsteeth_03"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a78",
+        "type": "Dragonteeth 5",
+        "displayName": "Dragonteeth 5",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Dragonsteeth_04"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a7a",
+        "type": "Fire Control Bunker",
+        "displayName": "Fire control bunker",
+        "module": "WWII Armour and Technics",
+        "shapeName": "fire_control"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a7c",
+        "type": "Haystack 1",
+        "displayName": "Haystack 1",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Haystack_1"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a7e",
+        "type": "Haystack 2",
+        "displayName": "Haystack 2",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Haystack_2"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a80",
+        "type": "Haystack 3",
+        "displayName": "Haystack 3",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Haystack_3"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a82",
+        "type": "Haystack 4",
+        "displayName": "Haystack 4",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Haystack_4"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a84",
+        "type": "Log posts 1",
+        "displayName": "Log posts 1",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Log_posts"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a86",
+        "type": "Log posts 2",
+        "displayName": "Log posts 2",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Log_posts_01"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a88",
+        "type": "Log posts 3",
+        "displayName": "Log posts 3",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Log_posts_02"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a8a",
+        "type": "Log ramps 1",
+        "displayName": "Log ramps 1",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Log_ramps"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a8c",
+        "type": "Log ramps 2",
+        "displayName": "Log ramps 2",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Log_ramps_01"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a8e",
+        "type": "Log ramps 3",
+        "displayName": "Log ramps 3",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Log_ramps_02"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a90",
+        "type": "Siegfried Line",
+        "displayName": "Siegfried line",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Siegfried_Line"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a92",
+        "type": "Freya_Shelter_Brick",
+        "displayName": "Freya Shelter Brick",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Freya_Shelter_Brick"
+    },
+    {
+        "_id": "649f2f9d305a1be577a92a94",
+        "type": "Freya_Shelter_Concrete",
+        "displayName": "Freya Shelter Concrete",
+        "module": "WWII Armour and Technics",
+        "shapeName": "Freya_Shelter_Concrete"
     }
 ]

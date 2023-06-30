@@ -1698,5 +1698,127 @@
             81,
             82
         ]
+    },
+    {
+        "_id": "649f2f9e305a1be577a92b42",
+        "type": "LST_Mk2",
+        "displayName": "LST Mk.II",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            }
+        ],
+        "module": "WWII Armour and Technics",
+        "shape": "LST_Mk2",
+        "countries": [
+            "USA",
+            "UK",
+            "USAF Aggressors",
+            "Canada",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            2,
+            4,
+            7,
+            8,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "649f2f9e305a1be577a92b44",
+        "type": "USS_Samuel_Chase",
+        "displayName": "LS Samuel Chase",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            }
+        ],
+        "module": "WWII Armour and Technics",
+        "shape": "uss_samuel_chase",
+        "countries": [
+            "USA",
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            2,
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "649f2f9e305a1be577a92b46",
+        "type": "Higgins_boat",
+        "displayName": "Boat LCVP Higgins",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            }
+        ],
+        "module": "WWII Armour and Technics",
+        "shape": "Higgins_boat",
+        "countries": [
+            "USA",
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            2,
+            7,
+            80,
+            81,
+            82
+        ]
+    },
+    {
+        "_id": "649f2f9e305a1be577a92b48",
+        "type": "Uboat_VIIC",
+        "displayName": "U-boat VIIC U-flak",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            }
+        ],
+        "module": "WWII Armour and Technics",
+        "shape": "Uboat_typeVIIC",
+        "countries": [],
+        "countriesWorldID": []
+    },
+    {
+        "_id": "649f2f9e305a1be577a92b4a",
+        "type": "Schnellboot_type_S130",
+        "displayName": "Boat Schnellboot type S130",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            }
+        ],
+        "module": "WWII Armour and Technics",
+        "shape": "Schnellboot_type_S130",
+        "countries": [
+            "UK",
+            "USAF Aggressors",
+            "Combined Joint Task Forces Blue",
+            "Combined Joint Task Forces Red",
+            "United Nations Peacekeepers"
+        ],
+        "countriesWorldID": [
+            4,
+            7,
+            80,
+            81,
+            82
+        ]
     }
 ]
