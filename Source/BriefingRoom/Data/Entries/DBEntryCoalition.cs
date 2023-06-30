@@ -1,4 +1,4 @@
-﻿/*
+/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -32,6 +32,8 @@ namespace BriefingRoom4DCS.Data
         internal Country[] Countries { get; private set; }
 
         internal string DefaultUnitList { get; private set; }
+
+       private static readonly List<UnitFamily> SINGLE_TYPE_FAMILIES = new List<UnitFamily>{UnitFamily.VehicleMissile, UnitFamily.VehicleArtillery};
 
 
         protected override bool OnLoad(string iniFilePath)
@@ -115,7 +117,7 @@ namespace BriefingRoom4DCS.Data
                     break;
                 // Units are ground vehicles, allow multiple unit types in the group
                 case DCSUnitCategory.Vehicle:
-                    allowDifferentUnitTypes = true;
+                    allowDifferentUnitTypes = families.Count > 1 || !SINGLE_TYPE_FAMILIES.Contains(families.First());
                     break;
             }
 
