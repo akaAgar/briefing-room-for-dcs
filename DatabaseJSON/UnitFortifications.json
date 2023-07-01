@@ -569,12 +569,6 @@
         "shapeName": "FlagPole"
     },
     {
-        "_id": "646676094719c14d56511373",
-        "type": "Hercules_Container_Parachute_Static",
-        "displayName": "Hercules container with parachute",
-        "module": "Hercules"
-    },
-    {
         "_id": "649f2f9d305a1be577a92a64",
         "type": "Belgian gate",
         "displayName": "Belgian gate",
