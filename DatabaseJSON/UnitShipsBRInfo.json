@@ -511,5 +511,60 @@
         "operational": [1990, 2020],
         "lowPolly": false,
         "immovable": false
+    },
+    {
+        "type": "LST_Mk2",
+        "families": [
+            "ShipTransport"
+        ],
+        "operational": [1940, 1970],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "USS_Samuel_Chase",
+        "families": [
+            "ShipTransport"
+        ],
+        "operational": [1940, 1950],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Higgins_boat",
+        "families": [
+            "ShipSpeedboat"
+        ],
+        "operational": [1940, 1950],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Uboat_VIIC",
+        "families": [
+            "ShipSubmarine"
+        ],
+        "extraOperators": {
+            "ThirdReich": [],
+            "Italy": [],
+            "Germany": []
+        },
+        "operational": [1940, 1950],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Schnellboot_type_S130",
+        "families": [
+            "ShipSpeedboat"
+        ],
+        "extraOperators": {
+            "ThirdReich": [],
+            "Italy": [],
+            "Germany": []
+        },
+        "operational": [1940, 1950],
+        "lowPolly": false,
+        "immovable": false
     }
 ]
