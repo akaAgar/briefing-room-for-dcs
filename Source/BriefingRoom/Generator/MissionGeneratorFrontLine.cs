@@ -33,43 +33,43 @@ namespace BriefingRoom4DCS.Generator
         {
             if (template.OptionsMission.Contains("SpawnAnywhere") || template.ContextSituation == "None" || template.OptionsMission.Contains("NoFrontLine"))
                 return;
-    
-            var frontLineCenter = Coordinates.Lerp(playerAirbase, objectiveCenter, GetLerpDistance(template));
+            var frontLineDB = Database.Instance.Common.FrontLine;
+            var frontLineCenter = Coordinates.Lerp(playerAirbase, objectiveCenter, GetObjectiveLerpBias(template, frontLineDB));
 
             var objectiveHeading = playerAirbase.GetHeadingFrom(objectiveCenter);
-            var angleVariance = new MinMaxD(objectiveHeading + 45, objectiveHeading + 135);
+            var angleVariance = frontLineDB.AngleVarianceRange + objectiveHeading;
             var frontLineList = new List<Coordinates> { frontLineCenter };
 
             var blueZones = situationDB.GetBlueZones(false);
             var redZones = situationDB.GetRedZones(false);
             var biasZones = ShapeManager.IsPosValid(frontLineCenter, blueZones) ? blueZones : (ShapeManager.IsPosValid(frontLineCenter, redZones) ? redZones : Toolbox.RandomFrom(blueZones, redZones));
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < frontLineDB.SegmentsPerSide; i++)
             {
-                frontLineList.Insert(0, CreatePoint(frontLineList, angleVariance, biasZones, true));
-                frontLineList.Add(CreatePoint(frontLineList, angleVariance, biasZones, false));
+                frontLineList.Insert(0, CreatePoint(frontLineDB, frontLineList, angleVariance, biasZones, true));
+                frontLineList.Add(CreatePoint(frontLineDB, frontLineList, angleVariance, biasZones, false));
             }
 
             mission.MapData.Add("FRONTLINE", frontLineList.Select(x => x.ToArray()).ToList());
             unitMaker.SpawnPointSelector.SetFrontLine(frontLineList, playerAirbase, playerCoalition);
         }
 
-        private static Coordinates CreatePoint(List<Coordinates> frontLineList, MinMaxD angleVariance, List<List<Coordinates>> biasPoints, bool preCenter)
+        private static Coordinates CreatePoint(DBCommonFrontLine frontLineDB, List<Coordinates> frontLineList, MinMaxD angleVariance, List<List<Coordinates>> biasPoints, bool preCenter)
         {
             var angle = angleVariance.GetValue();
             if (preCenter)
                 angle = angle - 180;
             var refPoint = preCenter ? frontLineList.First() : frontLineList.Last();
-            var point = Coordinates.FromAngleAndDistance(refPoint, new MinMaxD(2.5 * Toolbox.NM_TO_METERS, 5 * Toolbox.NM_TO_METERS), angle);
+            var point = Coordinates.FromAngleAndDistance(refPoint, frontLineDB.LinePointSeparationRange * Toolbox.NM_TO_METERS, angle);
             if (biasPoints.Count > 0)
             {
                 var nearest = biasPoints.Select(x => ShapeManager.GetNearestPointBorder(point, x)).MinBy(x => x.Item1).Item2;
-                point = Coordinates.Lerp(point, nearest, Toolbox.RandomDouble(0, 0.25));
+                point = Coordinates.Lerp(point, nearest, frontLineDB.BorderBiasRange.GetValue());
             }
             return point;
         }
 
-        private static double GetLerpDistance(MissionTemplateRecord template) {
+        private static double GetObjectiveLerpBias(MissionTemplateRecord template, DBCommonFrontLine frontLineDB) {
             var friendlySideObjectivesCount = 0;
             var enemySideObjectivesCount = 0;
 
@@ -80,14 +80,14 @@ namespace BriefingRoom4DCS.Generator
                     enemySideObjectivesCount++;
                 });
 
-            var lerpDistance = Toolbox.RandomDouble(0.2, 1.1);
+            var lerpDistance = frontLineDB.BaseObjectiveBiasRange.GetValue();
             var bias = friendlySideObjectivesCount - enemySideObjectivesCount;
             if(bias < 1)
-                lerpDistance += bias * 0.05;
+                lerpDistance += bias * frontLineDB.EnemyObjectiveBias;
             else
-                lerpDistance += bias * 0.1;
+                lerpDistance += bias * frontLineDB.FriendlyObjectiveBias;
 
-            return double.Min(double.Max(lerpDistance, 0.2), 1.3);
+            return double.Min(double.Max(lerpDistance, frontLineDB.ObjectiveBiasLimits.Min), frontLineDB.ObjectiveBiasLimits.Max);
         }
 
     }

@@ -29,6 +29,7 @@ namespace BriefingRoom4DCS
         internal readonly double Max;
 
         internal MinMaxD(double min, double max) { Min = Math.Min(min, max); Max = Math.Max(min, max); }
+        internal MinMaxD(double[] arr) { Min = Math.Min(arr[0], arr[1]); Max = Math.Max(arr[0], arr[1]); }
 
         internal MinMaxD(string minMaxString)
         {
@@ -55,6 +56,8 @@ namespace BriefingRoom4DCS
         internal string ToString(string stringFormat)
         { return Toolbox.ValToString(Min, stringFormat) + "," + Toolbox.ValToString(Max, stringFormat); }
 
+        public static MinMaxD operator +(MinMaxD mm, double add) { return new MinMaxD(mm.Min + add, mm.Max + add); }
+        public static MinMaxD operator -(MinMaxD mm, double sub) { return new MinMaxD(mm.Min - sub, mm.Max - sub); }
         public static MinMaxD operator *(MinMaxD mm, double mult) { return new MinMaxD(mm.Min * mult, mm.Max * mult); }
         public static MinMaxD operator /(MinMaxD mm, double mult) { return new MinMaxD(mm.Min / mult, mm.Max / mult); }
 

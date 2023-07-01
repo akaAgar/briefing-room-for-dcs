@@ -20,6 +20,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Template;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace BriefingRoom4DCS.Data
@@ -37,16 +38,12 @@ namespace BriefingRoom4DCS.Data
         public int MinCampaignMissions { get; private set; }
         public int MaxCampaignMissions { get; private set; }
         internal DBCommonAirDefense AirDefense { get; private set; }
-
         internal DBCommonCAP CAP { get; private set; }
-
         internal DBCommonCarrierGroup CarrierGroup { get; private set; }
-
         internal DBCommonNames Names { get; private set; }
-
         internal DBCommonWind[] Wind { get; private set; }
-
         internal DBCommonBriefing Briefing { get; private set; }
+        internal DBCommonFrontLine FrontLine { get; private set;}
 
         internal DatabaseCommon() { }
 
@@ -66,10 +63,15 @@ namespace BriefingRoom4DCS.Data
             MaxBorderLimit = commonIni.GetValue<int>("Limits", "MaxBorderLimit");
             MinCampaignMissions = commonIni.GetValue<int>("Limits", "MinCampaignMissions");
             MaxCampaignMissions = commonIni.GetValue<int>("Limits", "MaxCampaignMissions");
+
+           
+
             foreach (string f in CommonOGG)
                 if (!File.Exists(Path.Combine(BRPaths.INCLUDE_OGG, $"{f}.ogg")))
                     BriefingRoom.PrintToLog($"File \"Include\\Ogg\\{f}.ogg\" doesn't exist.", LogMessageErrorLevel.Warning);
 
+            BriefingRoom.PrintToLog("Loading common front line settings...");
+            FrontLine = new DBCommonFrontLine();
 
             BriefingRoom.PrintToLog("Loading common air defense settings...");
             AirDefense = new DBCommonAirDefense();

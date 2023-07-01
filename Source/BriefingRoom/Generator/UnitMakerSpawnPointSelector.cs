@@ -365,30 +365,13 @@ namespace BriefingRoom4DCS.Generator
             var onPlayerCoalition = coalition == PlayerCoalition;
             var onFriendlySideOfLine = (onPlayerCoalition && side == PlayerSideOfFrontLine) || (!onPlayerCoalition && side != PlayerSideOfFrontLine);
 
-            var distanceLimit = unitFamily switch {
-                UnitFamily.StaticStructureMilitary => onFriendlySideOfLine ? 100: -1,
-                UnitFamily.StaticStructureProduction => onFriendlySideOfLine ? 100: -1,
+            var frontLineDB = Database.Instance.Common.FrontLine;
 
-                UnitFamily.StaticStructureOffshore => onFriendlySideOfLine ? 100: -1,
-                UnitFamily.StaticStructureCivilian => onFriendlySideOfLine ? 100: -1,
+            var onFriendlySideOfLineIndex = onFriendlySideOfLine ? 0 : 1;
+            var distanceLimit = frontLineDB.DefaultUnitLimits[onFriendlySideOfLineIndex];
+            if(frontLineDB.UnitLimits.ContainsKey(unitFamily))
+                distanceLimit = frontLineDB.UnitLimits[unitFamily][onFriendlySideOfLineIndex];
 
-                UnitFamily.VehicleAAA => onFriendlySideOfLine ? 30: 2,
-                UnitFamily.VehicleAAAStatic => onFriendlySideOfLine ? 30: -1,
-                UnitFamily.VehicleAPC => onFriendlySideOfLine ? 15: 2.5,
-                UnitFamily.VehicleArtillery => onFriendlySideOfLine ? 20 : -1,
-                UnitFamily.Infantry => onFriendlySideOfLine ? 10 : 5,
-                UnitFamily.InfantryMANPADS => onFriendlySideOfLine ? 100 : 5,
-                UnitFamily.VehicleMBT => onFriendlySideOfLine ? 10 : 2,
-                UnitFamily.VehicleMissile => onFriendlySideOfLine ? 100 : -1,
-                UnitFamily.VehicleEWR => onFriendlySideOfLine ? 100 : -1,
-                UnitFamily.VehicleSAMLong => onFriendlySideOfLine ? 100 : -1,
-                UnitFamily.VehicleSAMMedium => onFriendlySideOfLine ? 70 : -1,
-                UnitFamily.VehicleSAMShort => onFriendlySideOfLine ? 30 : 2,
-                UnitFamily.VehicleSAMShortIR => onFriendlySideOfLine ? 30 : 2,
-                UnitFamily.VehicleTransport => onFriendlySideOfLine ? 30 : 3,
-                UnitFamily.VehicleStatic => onFriendlySideOfLine ? 50 : -1,
-                _ => onFriendlySideOfLine ? 5 : -1
-            };
             return (distance * Toolbox.METERS_TO_NM) < distanceLimit;
 
         }
