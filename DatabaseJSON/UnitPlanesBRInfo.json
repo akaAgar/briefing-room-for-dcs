@@ -2883,5 +2883,63 @@
         },
         "lowPolly": false,
         "playerControllable": false
+    },
+    {
+        "type": "B-17G",
+        "families": [
+            "PlaneBomber"
+        ],
+        "operational": [1940, 1950],
+        "extraOperators": {
+            "Argentina": [],
+            "Australia": [],
+            "Brazil": [1940, 1960],
+            "Canada": [],
+            "Denmark": [],
+            "France": [],
+            "Iran": [],
+            "Israel": [],
+            "Mexico": [],
+            "Portugal": [],
+            "SouthAfrica": [],
+            "China": [],
+            "Sweden": [],
+            "Switzerland": [],
+            "UK": [],
+            "USA": []
+
+        },
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Ju-88A4",
+        "families": [
+            "PlaneBomber"
+        ],
+        "operational": [1940, 1950],
+        "extraOperators": {
+            "Finland": [],
+            "Germany": [],
+            "Hungary": [],
+            "Italy": [],
+            "Romania": [],
+            "USSR": [],
+            "Spain": [],
+            "Thirdreich": []
+        },
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "C-47",
+        "families": [
+            "PlaneTransport"
+        ],
+        "operational": [1940, 1970],
+        "extraOperators": {
+        },
+        "lowPolly": false,
+        "playerControllable": false
     }
 ]
