@@ -22,12 +22,14 @@ using System;
 
 namespace BriefingRoom4DCS.Data
 {
-    internal struct DBEntryTheaterSpawnPoint
+    public struct DBEntryTheaterSpawnPoint
     {
 
         public Coordinates Coordinates { get; init; }
 
         public SpawnPointType PointType { get; init; }
+
+        public string Pt { get { return PointType.ToString();}}
 
         public DBEntryTheaterSpawnPoint() {}
     }
