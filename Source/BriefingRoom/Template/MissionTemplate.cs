@@ -20,6 +20,7 @@ If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
 
+using BriefingRoom4DCS.Data;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -35,7 +36,8 @@ namespace BriefingRoom4DCS.Template
         public string BriefingMissionDescription { get; set; }
         public Season EnvironmentSeason { get; set; }
         public TimeOfDay EnvironmentTimeOfDay { get; set; }
-        public string EnvironmentWeatherPreset { get; set; }
+        public string EnvironmentWeatherPreset { get { return EnvironmentWeatherPreset_; } set { EnvironmentWeatherPreset_ = Database.Instance.CheckID<DBEntryWeatherPreset>(value, allowEmptyStr: true); } }
+        private string EnvironmentWeatherPreset_;
         public Wind EnvironmentWind { get; set; }
         public int FlightPlanObjectiveSeparationMax { get { return FlightPlanObjectiveSeparationMax_; } set { FlightPlanObjectiveSeparationMax_ = Toolbox.Clamp(value, 0, MAX_OBJECTIVE_SEPARATION); } }
         private int FlightPlanObjectiveSeparationMax_;

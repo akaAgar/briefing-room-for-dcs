@@ -36,17 +36,22 @@ namespace BriefingRoom4DCS.Template
         public static readonly int MAX_BORDER_LIMIT = Database.Instance.Common.MaxBorderLimit;
         public static readonly int MIN_BORDER_LIMIT = Database.Instance.Common.MinBorderLimit;
         public static readonly int MAX_COMBINED_ARMS_SLOTS = Database.Instance.Common.MaxCombinedArmsSlots;
-        public string ContextCoalitionBlue { get; set; }
-        public string ContextCoalitionRed { get; set; }
+        public string ContextCoalitionBlue { get { return ContextCoalitionBlue_; } set { ContextCoalitionBlue_ = Database.Instance.CheckID<DBEntryCoalition>(value); } }
+        private string ContextCoalitionBlue_;
+        public string ContextCoalitionRed { get { return ContextCoalitionRed_; } set { ContextCoalitionRed_ = Database.Instance.CheckID<DBEntryCoalition>(value); } }
+        private string ContextCoalitionRed_;
         public Decade ContextDecade { get; set; }
         public Coalition ContextPlayerCoalition { get; set; }
-        public string ContextTheater { get; set; }
-        public string ContextSituation { get; set; }
+        public string ContextTheater { get { return ContextTheater_; } set { ContextTheater_ = Database.Instance.CheckID<DBEntryTheater>(value); } }
+        private string ContextTheater_;
+        public string ContextSituation { get { return ContextSituation_; } set { ContextSituation_ = Database.Instance.CheckID<DBEntrySituation>(value, allowEmptyStr: true, allowedValues: new List<string>{"None"}); } }
+        private string ContextSituation_;
         public int FlightPlanObjectiveDistanceMax { get { return FlightPlanObjectiveDistanceMax_; } set { FlightPlanObjectiveDistanceMax_ = Toolbox.Clamp(value, 0, MAX_OBJECTIVE_DISTANCE); } }
         private int FlightPlanObjectiveDistanceMax_;
         public int FlightPlanObjectiveDistanceMin { get { return FlightPlanObjectiveDistanceMin_; } set { FlightPlanObjectiveDistanceMin_ = Toolbox.Clamp(value, 0, MAX_OBJECTIVE_DISTANCE); } }
         private int FlightPlanObjectiveDistanceMin_;
-        public string FlightPlanTheaterStartingAirbase { get; set; }
+        public string FlightPlanTheaterStartingAirbase { get { return FlightPlanTheaterStartingAirbase_; } set { FlightPlanTheaterStartingAirbase_ = Database.Instance.CheckID<DBEntryAirbase>(value, allowEmptyStr: true); } }
+        private string FlightPlanTheaterStartingAirbase_;
         public List<string> MissionFeatures { get { return MissionFeatures_; } set { MissionFeatures_ = Database.Instance.CheckIDs<DBEntryFeatureMission>(value.ToArray()).ToList(); } }
         private List<string> MissionFeatures_ = new List<string>();
         public List<string> Mods { get { return Mods_; } set { Mods_ = Database.Instance.CheckIDs<DBEntryDCSMod>(value.ToArray()).ToList(); } }

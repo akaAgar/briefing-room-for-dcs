@@ -20,14 +20,18 @@ If not, see https://www.gnu.org/licenses/
 ==========================================================================
 */
 
+using BriefingRoom4DCS.Data;
+
 namespace BriefingRoom4DCS.Template
 {
     public sealed class MissionTemplateFlightGroup : MissionTemplateGroup
     {
-        public string Aircraft { get; set; }
+        public string Aircraft { get { return Aircraft_; } set { Aircraft_ = Database.Instance.CheckID<DBEntryJSONUnit>(value, "Su-25T"); } }
+        private string Aircraft_;
         public bool AIWingmen { get; set; }
         public bool Hostile { get; set; }
-        public string Carrier { get; set; }
+        public string Carrier { get { return Carrier_; } set { Carrier_ = Database.Instance.CheckID<DBEntryJSONUnit>(value, allowEmptyStr: true); } }
+        private string Carrier_;
         public int Count { get { return _Count; } set { _Count = Toolbox.Clamp(value, 1, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE); } }
         private int _Count = 1;
         public Country Country { get; set; }

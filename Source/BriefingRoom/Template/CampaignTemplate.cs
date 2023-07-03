@@ -39,7 +39,7 @@ namespace BriefingRoom4DCS.Template
         public int MissionsCount { get { return MissionsCount_; } set { MissionsCount_ = Toolbox.Clamp(value, MIN_CAMPAIGN_MISSIONS, MAX_CAMPAIGN_MISSIONS); } }
         private int MissionsCount_ = MIN_CAMPAIGN_MISSIONS;
         public CampaignDifficultyVariation MissionsDifficultyVariation { get; set; }
-        public List<string> MissionsObjectives { get { return MissionObjectives_; } set { MissionObjectives_ = value.Distinct().ToList(); } }
+        public List<string> MissionsObjectives { get { return MissionObjectives_; } set { MissionObjectives_ = Database.Instance.CheckIDs<DBEntryObjectivePreset>(value.ToArray()).Distinct().ToList(); } }
         private List<string> MissionObjectives_ = new List<string>();
         public Amount MissionsObjectiveCount { get; set; }
         public Amount MissionsObjectiveVariationDistance { get; set; }

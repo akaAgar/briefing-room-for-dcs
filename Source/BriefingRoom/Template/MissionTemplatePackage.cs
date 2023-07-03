@@ -32,7 +32,8 @@ namespace BriefingRoom4DCS.Template
     {
         public List<int> FlightGroupIndexes { get; set; }
         public List<int> ObjectiveIndexes { get; set; }
-        public string StartingAirbase { get; set; }
+        public string StartingAirbase { get { return StartingAirbase_; } set { StartingAirbase_ = Database.Instance.CheckID<DBEntryAirbase>(value, allowEmptyStr: true, allowedValues: new List<string>{"home"}); } }
+        private string StartingAirbase_;
 
         public MissionTemplatePackage()
         {
