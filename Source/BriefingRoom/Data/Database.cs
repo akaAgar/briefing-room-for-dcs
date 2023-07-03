@@ -255,7 +255,6 @@ namespace BriefingRoom4DCS.Data
 
         internal string CheckID<T>(string id, string defaultID = null, bool allowEmptyStr = false, List<string> allowedValues = null) where T : DBEntry
         {
-            Console.WriteLine($"Checking {id} in {(typeof(T))}");
             if (string.IsNullOrEmpty(id) && allowEmptyStr) return "";
             if (allowedValues != null && allowedValues.Contains(id)) return id;
             if (EntryExists<T>(id)) return id;
