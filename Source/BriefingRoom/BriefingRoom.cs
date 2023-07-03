@@ -162,6 +162,9 @@ namespace BriefingRoom4DCS
         public static List<string> GetAircraftPayloads(string aircraftID) =>
             Database.Instance.GetEntry<DBEntryJSONUnit, DBEntryAircraft>(aircraftID).Payloads.Select(x => x.name).Distinct().Order().ToList();
 
+         public static List<BriefingRoom4DCS.Data.DBEntryTheaterSpawnPoint> GetTheaterSpawnPoints(string theaterID) =>
+            Database.Instance.GetEntry<DBEntryTheater>(theaterID).SpawnPoints.ToList();
+
 
         public static string GetAlias(int index) => Toolbox.GetAlias(index);
 

@@ -363,6 +363,14 @@ th {
     left: -15px;
 }
 
+.map_point_icon_small {
+    width: 10px !important;
+    height: 10px;
+    position: relative;
+    top: -15px;
+    left: -15px;
+}
+
 .map_point_icon_text {
     white-space: nowrap;
 }

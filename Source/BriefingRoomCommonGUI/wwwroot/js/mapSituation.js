@@ -6,7 +6,8 @@ const situationMapLayers = {
 
 let leafSituationMap, drawnItems;
 
-async function RenderEditorMap(map) {
+async function RenderEditorMap(map, spawnPoints) {
+    console.log(spawnPoints)
     if (leafSituationMap) {
         leafSituationMap.off();
         leafSituationMap.remove();
@@ -78,6 +79,26 @@ async function RenderEditorMap(map) {
             situationMapLayers.BLUE = situationMapLayers.BLUE.filter(y => y !== x)
             situationMapLayers.NEUTRAL = situationMapLayers.NEUTRAL.filter(y => y !== x)
         })
+    });
+
+    spawnPoints.forEach(sp => {
+        let iconType = "GREEN_AIRBASE"
+        switch (sp.pt) {
+            case "LandSmall":
+                iconType = "RED_AIRBASE"
+                break;
+            case "LandLarge":
+                iconType = "BLUE_AIRBASE"
+                break;
+            default:
+                break;
+        }
+        new L.Marker(GetFromMapCoordData(sp.coords, map), {
+            title: sp.pt,
+            icon: new L.DivIcon({
+                html: `<img class="map_point_icon_small" src="_content/BriefingRoomCommonGUI/img/nato-icons/${iconType}.svg" alt="${sp.pt}"/>`
+            }),
+        }).addTo(leafSituationMap)
     });
 }
 
