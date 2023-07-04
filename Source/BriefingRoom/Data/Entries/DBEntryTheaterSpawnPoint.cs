@@ -25,29 +25,10 @@ namespace BriefingRoom4DCS.Data
     internal struct DBEntryTheaterSpawnPoint
     {
 
-        public Coordinates Coordinates { get; internal set; }
+        public Coordinates Coordinates { get; init; }
 
-        public SpawnPointType PointType { get; internal set; }
+        public SpawnPointType PointType { get; init; }
 
         public DBEntryTheaterSpawnPoint() {}
-
-        internal bool Load(INIFile ini, string key)
-        {
-            string[] vals = ini.GetValueArray<string>("SpawnPoints", key, ',');
-
-            if (vals.Length < 3) return false;
-
-            try
-            {
-                Coordinates = new Coordinates(Toolbox.StringToDouble(vals[0]), Toolbox.StringToDouble(vals[1]));
-                PointType = (SpawnPointType)Enum.Parse(typeof(SpawnPointType), vals[2], true);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            return true;
-        }
     }
 }
