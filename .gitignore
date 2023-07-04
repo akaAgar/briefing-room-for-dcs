@@ -23,3 +23,7 @@
 /*.txt
 
 CustomConfigs/**/*.ini
+
+node_modules
+dataExtractors\GenSpawnPoints\out
+mission.lua

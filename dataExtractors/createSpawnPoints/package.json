@@ -1,0 +1,16 @@
+{
+  "name": "genspawnpoints",
+  "version": "1.0.0",
+  "description": "",
+  "main": "genSpawnPoints.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@turf/clusters-kmeans": "^6.5.0",
+    "@turf/helpers": "^6.5.0"
+  }
+}
