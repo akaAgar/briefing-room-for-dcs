@@ -84,15 +84,26 @@ namespace BriefingRoom4DCS.Data
             WaterCoordinates = terrainData.waters.Select(x => x.Select(y => new Coordinates(y)).ToList()).ToList();
             WaterExclusionCoordinates = terrainData.landMasses.Select(x => x.Select(y => new Coordinates(y)).ToList()).ToList();
 
-
-            List<DBEntryTheaterSpawnPoint> spawnPointsList = new List<DBEntryTheaterSpawnPoint>();
-            foreach (string key in ini.GetKeysInSection("SpawnPoints"))
+            var spawnPointsJsonFilePath = Path.Combine(BRPaths.DATABASEJSON, "TheaterSpawnPoints", $"{DCSID}.json");
+            if(!File.Exists(spawnPointsJsonFilePath)) 
             {
-                DBEntryTheaterSpawnPoint sp = new DBEntryTheaterSpawnPoint();
-                if (sp.Load(ini, key))
-                    spawnPointsList.Add(sp);
+                BriefingRoom.PrintToLog($"{DCSID} Missing SpawnPoint JSON Data. File not found: {spawnPointsJsonFilePath}", LogMessageErrorLevel.Warning);
+                List<DBEntryTheaterSpawnPoint> spawnPointsList = new List<DBEntryTheaterSpawnPoint>();
+                foreach (string key in ini.GetKeysInSection("SpawnPoints"))
+                {
+                    DBEntryTheaterSpawnPoint sp = new DBEntryTheaterSpawnPoint();
+                    if (sp.Load(ini, key))
+                        spawnPointsList.Add(sp);
+                }
+                SpawnPoints = spawnPointsList.ToArray();
+            } else {
+                SpawnPoints = JsonConvert.DeserializeObject<List<SpawnPoint>>(File.ReadAllText(spawnPointsJsonFilePath)).Select(x =>
+                    new DBEntryTheaterSpawnPoint{
+                        Coordinates = new Coordinates(x.coords),
+                        PointType = (SpawnPointType)Enum.Parse(typeof(SpawnPointType), x.BRtype, true)
+                    }
+                ).ToArray();
             }
-            SpawnPoints = spawnPointsList.ToArray();
 
             // [Temperature] section
             Temperature = new MinMaxI[12];

@@ -24,16 +24,16 @@ namespace BriefingRoom4DCS.Data
 {
     internal struct DBEntryTheaterSpawnPoint
     {
-        internal string UniqueID { get; private set; }
 
-        internal Coordinates Coordinates { get; private set; }
+        public Coordinates Coordinates { get; internal set; }
 
-        internal SpawnPointType PointType { get; private set; }
+        public SpawnPointType PointType { get; internal set; }
+
+        public DBEntryTheaterSpawnPoint() {}
 
         internal bool Load(INIFile ini, string key)
         {
             string[] vals = ini.GetValueArray<string>("SpawnPoints", key, ',');
-            UniqueID = key;
 
             if (vals.Length < 3) return false;
 
