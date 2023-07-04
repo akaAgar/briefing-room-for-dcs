@@ -1,4 +1,6 @@
 require "mission" -- Mission lua file
+json = require "json"
+
 
 function __genOrderedIndex( t )
     local orderedIndex = {}
@@ -45,27 +47,35 @@ function orderedPairs(t)
 end
 
 
-file = io.open ("SpawnPoints.out", "w")
+file = io.open ("SpawnPoints.json", "w")
 io.output(file)
 
 -- Waypoints
-io.write("\n[SpawnPoints]\n")
-local index = 0
-for _,value in orderedPairs(mission.coalition.red.country[1].vehicle.group[1].route.points) do --actualcode
-    io.write("Point"..string.format("%04d", index).."="..value.x..","..value.y..",LandSmall\n")
-    index = index + 1
+
+local index = 1
+local ouput = {}
+for _,group in orderedPairs(mission.coalition.red.country[1].vehicle.group) do --actualcode
+    for _,point in orderedPairs(group.route.points) do --actualcode
+        ouput[index] = {coords = {point.x,point.y}, BRtype ="LandSmall"}
+        index = index + 1
+    end
 end
 
-for _,value in orderedPairs(mission.coalition.neutrals.country[1].vehicle.group[1].route.points) do --actualcode
-    io.write("Point"..string.format("%04d", index).."="..value.x..","..value.y..",LandMedium\n")
-    index = index + 1
+for _,group in orderedPairs(mission.coalition.neutrals.country[1].vehicle.group) do --actualcode
+    for _,point in orderedPairs(group.route.points) do --actualcode
+        ouput[index] = {coords = {point.x,point.y}, BRtype ="LandMedium"}
+        index = index + 1
+    end
 end
 
-for _,value in orderedPairs(mission.coalition.blue.country[1].vehicle.group[1].route.points) do --actualcode
-    io.write("Point"..string.format("%04d", index).."="..value.x..","..value.y..",LandLarge\n")
-    index = index + 1
+for _,group in orderedPairs(mission.coalition.blue.country[1].vehicle.group) do --actualcode
+    for _,point in orderedPairs(group.route.points) do --actualcode
+        ouput[index] = {coords = {point.x,point.y}, BRtype ="LandLarge"}
+        index = index + 1
+    end
 end
 
+io.write(json.encode(ouput))
 
 io.close(file)
 
