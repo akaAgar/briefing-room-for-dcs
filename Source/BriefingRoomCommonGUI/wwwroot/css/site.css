@@ -177,7 +177,9 @@ h4 {
 }
 
 
-
+.ver {
+    color: white;
+}
 
 .min-width {
     width: initial;
