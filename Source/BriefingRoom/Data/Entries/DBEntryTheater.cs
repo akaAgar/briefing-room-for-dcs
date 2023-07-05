@@ -94,6 +94,7 @@ namespace BriefingRoom4DCS.Data
                     PointType = (SpawnPointType)Enum.Parse(typeof(SpawnPointType), x.BRtype, true)
                 }
             ).ToArray();
+            BriefingRoom.PrintToLog($"{DCSID} loaded {SpawnPoints.Count()} spawn points");
     
 
             // [Temperature] section

@@ -1,17 +1,21 @@
 const fs = require('fs');
 const clustersKmeans = require("@turf/clusters-kmeans").default
 const { point, featureCollection } = require('@turf/helpers')
-const mission = fs.readFileSync('./emptyMission.lua', 'utf8');
-const unit = fs.readFileSync('./unit.lua', 'utf8');
-const pointLua = fs.readFileSync('./point.lua', 'utf8');
-const spawnPoints = JSON.parse(fs.readFileSync('../../DatabaseJSON/TheaterSpawnPoints/Caucasus.json', 'utf8'))
-let modmission = mission.replaceAll("$THEATER$", "Caucasus")
+
+const mission = fs.readFileSync('./emptyMission.lua', 'utf8')
+const unit = fs.readFileSync('./unit.lua', 'utf8')
+const pointLua = fs.readFileSync('./point.lua', 'utf8')
+
+const map = process.argv[2];
+const spawnPoints = JSON.parse(fs.readFileSync(`../../DatabaseJSON/TheaterSpawnPoints/${map}.json`, 'utf8'))
 
 const spots = {
     "LandSmall": [],
     "LandMedium": [],
     "LandLarge": []
 }
+
+let modmission = mission.replaceAll("$THEATER$", map)
 
 
 spawnPoints.forEach(spot => {
@@ -57,4 +61,4 @@ Object.keys(spots).forEach(spType => {
 
 
 fs.writeFileSync('./out/mission.lua', modmission)
-
+console.log("Mission lua file complete: './out/mission.lua'")

@@ -2,7 +2,6 @@ mission =
 {
     ["requiredModules"] = 
     {
-        ["WWII Armour and Technics"] = "WWII Armour and Technics",
     }, -- end of ["requiredModules"]
     ["date"] = 
     {
