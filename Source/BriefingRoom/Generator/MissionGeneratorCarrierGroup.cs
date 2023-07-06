@@ -44,16 +44,17 @@ namespace BriefingRoom4DCS.Generator
                 windDirectionAtSeaLevel = Toolbox.RandomDouble(Toolbox.TWO_PI);
             var carrierPathDeg = ((windDirectionAtSeaLevel + Math.PI) % Toolbox.TWO_PI) * Toolbox.RADIANS_TO_DEGREES;
             var usedCoordinates = new List<Coordinates>();
+            var templatesDB = Database.Instance.GetAllEntries<DBEntryTemplate>();
             foreach (MissionTemplateFlightGroupRecord flightGroup in template.PlayerFlightGroups)
             {
                 if (string.IsNullOrEmpty(flightGroup.Carrier) || unitMaker.carrierDictionary.ContainsKey(flightGroup.Carrier)) continue;
-                var initalUnitDB = Database.Instance.GetEntry<DBEntryJSONUnit>(flightGroup.Carrier);
-                if (initalUnitDB.Families.Contains(UnitFamily.FOB))
+                if (templatesDB.Where(x => x.Type == "FOB").Any(x => x.ID == flightGroup.Carrier))
                 {
                     //It Carries therefore carrier not because I can't think of a name to rename this lot
                     GenerateFOB(unitMaker, zoneMaker, flightGroup, mission, template, landbaseCoordinates, objectivesCenter);
                     continue;
                 }
+                var initalUnitDB = Database.Instance.GetEntry<DBEntryJSONUnit>(flightGroup.Carrier);
                 var unitDB = (DBEntryShip)initalUnitDB;
                 if ((unitDB == null) || !unitDB.Families.Any(x => x.IsCarrier())) continue; // Unit doesn't exist or is not a carrier
 
@@ -79,7 +80,7 @@ namespace BriefingRoom4DCS.Generator
                         {"TACANMode"," X"},
                         {"playerCanDrive", false},
                         {"NoCM", true}};
-                var templateOps = Database.Instance.GetAllEntries<DBEntryTemplate>().Where(x => x.Units.Any(y => y.DCSID == unitDB.DCSID)).ToList();
+                var templateOps = templatesDB.Where(x => x.Units.First().DCSID == unitDB.DCSID).ToList();
                 UnitMakerGroupInfo? groupInfo;
                 var groupLua = "ShipCarrier";
                 var unitLua = "Ship";
@@ -181,8 +182,8 @@ namespace BriefingRoom4DCS.Generator
                 return;
             }
 
-            var unitDB = (DBEntryStatic)Database.Instance.GetEntry<DBEntryJSONUnit>(flightGroup.Carrier);
-            if (unitDB == null) return; // Unit doesn't exist or is not a carrier
+            var fobTemplate = Database.Instance.GetEntry<DBEntryTemplate>(flightGroup.Carrier);
+            if (fobTemplate == null) return; // Unit doesn't exist or is not a carrier
 
             double radioFrequency = 127.5 + unitMaker.carrierDictionary.Count;
             var FOBNames = new List<string>{
@@ -193,7 +194,6 @@ namespace BriefingRoom4DCS.Generator
                 "FOB_Berlin"
             };
             var radioFrequencyValue = GeneratorTools.GetRadioFrequency(radioFrequency);
-            var fobTemplate = Toolbox.RandomFrom(Database.Instance.GetAllEntries<DBEntryTemplate>().Where(x => x.Type == "FOB").ToList());
             var groupInfo =
                 unitMaker.AddUnitGroupTemplate(
                     fobTemplate, Side.Ally,
@@ -208,6 +208,7 @@ namespace BriefingRoom4DCS.Generator
                     {"playerCanDrive", false},
                     {"NoCM", true}});
             if (!groupInfo.HasValue || (groupInfo.Value.UnitNames.Length == 0)) return; // Couldn't generate group
+            var unitDB = (DBEntryStatic)Database.Instance.GetEntry<DBEntryJSONUnit>(fobTemplate.Units.First().DCSID);
             groupInfo.Value.DCSGroup.Name = unitDB.UIDisplayName.Get();
             groupInfo.Value.DCSGroup.Units.First().Name = unitDB.UIDisplayName.Get();
             zoneMaker.AddCTLDPickupZone(spawnPoint.Value, true);

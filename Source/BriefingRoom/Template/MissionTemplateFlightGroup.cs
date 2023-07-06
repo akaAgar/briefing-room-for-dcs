@@ -30,7 +30,16 @@ namespace BriefingRoom4DCS.Template
         private string Aircraft_;
         public bool AIWingmen { get; set; }
         public bool Hostile { get; set; }
-        public string Carrier { get { return Carrier_; } set { Carrier_ = Database.Instance.CheckID<DBEntryJSONUnit>(value, allowEmptyStr: true); } }
+        public string Carrier
+        {
+            get { return Carrier_; }
+            set
+            {
+                Carrier_ = Database.Instance.CheckID<DBEntryJSONUnit>(value, allowEmptyStr: true);
+                if (string.IsNullOrEmpty(Carrier_) && !string.IsNullOrEmpty(value))
+                    Carrier_ = Database.Instance.CheckID<DBEntryTemplate>(value, allowEmptyStr: true);
+            }
+        }
         private string Carrier_;
         public int Count { get { return _Count; } set { _Count = Toolbox.Clamp(value, 1, Toolbox.MAXIMUM_FLIGHT_GROUP_SIZE); } }
         private int _Count = 1;
