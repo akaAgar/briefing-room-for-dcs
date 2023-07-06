@@ -11,7 +11,7 @@ table.insert(briefingRoom.mission.objectiveTriggers,  function(event)
         local life = event.target:getLife() / event.target:getLife0()
         if life > .9 then return end -- not damaged enough
         unitName = event.target:getName()
-    elseif event.id == world.event.S_EVENT_DEAD or event.id == world.event.S_EVENT_CRASH then -- unit destroyed
+    elseif event.id == world.event.S_EVENT_DEAD or event.id == world.event.S_EVENT_CRASH or event.id == world.event.S_EVENT_AI_ABORT_MISSION then -- unit destroyed
         if event.initiator == nil then return end -- no target (should never happen)
         if event.initiator:getCategory() ~= Object.Category.UNIT then return end -- target was not a unit
         unitName = event.initiator:getName()
