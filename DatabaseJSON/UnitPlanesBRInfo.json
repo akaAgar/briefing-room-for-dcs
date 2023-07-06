@@ -450,7 +450,8 @@
         "type": "Su-24M",
         "families": [
             "PlaneStrike",
-            "PlaneSEAD"
+            "PlaneSEAD",
+            "PlaneBomber"
         ],
         "operational": [1980, 2020],
         "extraOperators": {
