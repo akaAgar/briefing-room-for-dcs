@@ -4,30 +4,6 @@
         "families": [
             "HelicopterTransport"
         ],
-        "operational": [1990, 2020],
-        "extraOperators": {
-            "USA": [1970, 2010],
-        "Israel": [1970, 2010],
-        "Argentina": [1970, 2010],
-            "Turkey": [],
-            "USAFAggressors": [],
-            "Australia": [],
-            "Austria": [],
-            "Egypt": [],
-            "Japan": [],
-            "SaudiArabia": [],
-            "SouthKorea": [],
-            "Thailand": [],
-            "Morocco": [],
-            "Mexico": [],
-            "Malaysia": [],
-            "Jordan": [],
-            "Chile": [],
-            "Brazil": [],
-            "Bahrain": [],
-            "UnitedArabEmirates": [],
-            "UnitedNationsPeacekeepers": []
-        },
         "lowPolly": false,
         "playerControllable": true
     }

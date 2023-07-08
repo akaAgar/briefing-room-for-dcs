@@ -56,7 +56,7 @@ namespace BriefingRoom4DCS.Data
                     ID = id,
                     UIDisplayName = new LanguageString(ship.displayName),
                     DCSID = ship.type,
-                    Countries = GetOperationalCountries(ship, infoData),
+                    Operators = GetOperationalCountries(ship, infoData),
                     Module = ship.module,
                     Shape = ship.shape,
                     Families = infoData.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),

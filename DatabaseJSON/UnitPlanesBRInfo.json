@@ -5,8 +5,6 @@
             "PlaneStrike",
             "PlaneSEAD"
         ],
-        "operational": [1970, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -16,8 +14,6 @@
             "PlaneStrike",
             "PlaneSEAD"
         ],
-        "operational": [1970, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -29,8 +25,6 @@
             "PlaneStrike",
             "PlaneCATOBAR"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -42,8 +36,6 @@
             "PlaneStrike",
             "PlaneCATOBAR"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -55,13 +47,6 @@
             "PlaneStrike",
             "PlaneCATOBAR"
         ],
-        "operational": [1970, 2020],
-        "extraOperators": {
-            "USA": [
-                1970,
-                1970
-            ]
-        },
         "lowPolly": true,
         "playerControllable": false
     },
@@ -70,13 +55,6 @@
         "families": [
             "PlaneBomber"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Ukraine": [
-                1980,
-                2000
-            ]
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -87,53 +65,6 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": [1960, 2010],
-        "extraOperators": {
-            "USA": [
-                1970,
-                2010
-            ],
-            "Turkey": [
-                1970,
-                2020
-            ],
-            "Germany": [
-                1970,
-                1990
-            ],
-            "USAFAggressors": [
-                1970,
-                2010
-            ],
-            "Spain": [
-                1970,
-                2000
-            ],
-            "Israel": [
-                1970,
-                2000
-            ],
-            "Australia": [
-                1970,
-                1980
-            ],
-            "Egypt": [
-                1970,
-                2020
-            ],
-            "Greece": [
-                1960,
-                2020
-            ],
-            "Iran": [
-                1970,
-                2020
-            ],
-            "SouthKorea": [
-                1970,
-                2020
-            ]
-        },
         "lowPolly": true,
         "playerControllable": false
     },
@@ -142,8 +73,6 @@
         "families": [
             "PlaneBomber"
         ],
-        "operational": [1950, 2020],
-        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -154,8 +83,6 @@
             "PlaneStrike",
             "PlaneSEAD"
         ],
-        "operational": [1980, 1990],
-        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -164,37 +91,6 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "China": [
-                1990,
-                1990
-            ],
-            "Kazakhstan": [
-                2000,
-                2020
-            ],
-            "Vietnam": [
-                1990,
-                2020
-            ],
-            "Indonesia": [
-                2000,
-                2020
-            ],
-            "Ethiopia": [
-                2000,
-                2020
-            ],
-            "USSR": [
-                2000,
-                2020
-            ],
-            "Algeria": [
-                2000,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -203,29 +99,6 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Russia": [
-                1980,
-                2000
-            ],
-            "Ukraine": [
-                1980,
-                2000
-            ],
-            "Bulgaria": [
-                1990,
-                2000
-            ],
-            "Syria": [
-                2010,
-                2020
-            ],
-            "USSR": [
-                1990,
-                2020
-            ]
-        },
         "lowPolly": true,
         "playerControllable": true
     },
@@ -235,25 +108,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "CzechRepublic": [
-                1990,
-                2000
-            ],
-            "Iran": [
-                1990,
-                2020
-            ],
-            "Slovakia": [
-                1990,
-                2000
-            ],
-            "Sudan": [
-                2010,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -263,8 +117,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -275,13 +127,6 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Iran": [
-                1990,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -291,8 +136,6 @@
             "PlaneFighter",
             "PlaneSTOBAR"
         ],
-        "operational": [2000, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -301,25 +144,6 @@
         "families": [
             "PlaneInterceptor"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Russia": [
-                1980,
-                1990
-            ],
-            "Ukraine": [
-                1990,
-                1990
-            ],
-            "Belarus": [
-                1990,
-                1990
-            ],
-            "Iraq": [
-                1980,
-                2000
-            ]
-        },
         "lowPolly": true,
         "playerControllable": false
     },
@@ -328,21 +152,6 @@
         "families": [
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Russia": [
-                1980,
-                1990
-            ],
-            "Ukraine": [
-                1990,
-                1990
-            ],
-            "Bulgaria": [
-                1980,
-                2000
-            ]
-        },
         "lowPolly": true,
         "playerControllable": false
     },
@@ -352,45 +161,6 @@
             "PlaneFighter",
             "PlaneSEAD"
         ],
-        "operational": [1990, 2020],
-        "extraOperators": {
-            "Belarus": [
-                2020,
-                2020
-            ],
-            "China": [
-                2000,
-                2020
-            ],
-            "India": [
-                2000,
-                2020
-            ],
-            "Kazakhstan": [
-                2010,
-                2020
-            ],
-            "Vietnam": [
-                2000,
-                2020
-            ],
-            "Venezuela": [
-                2000,
-                2020
-            ],
-            "Malaysia": [
-                2000,
-                2020
-            ],
-            "Indonesia": [
-                2000,
-                2020
-            ],
-            "Algeria": [
-                2000,
-                2020
-            ]
-        },
         "lowPolly": true,
         "playerControllable": false
     },
@@ -399,25 +169,6 @@
         "families": [
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Russia": [
-                1980,
-                2000
-            ],
-            "Bulgaria": [
-                1990,
-                2000
-            ],
-            "CzechRepublic": [
-                1990,
-                2000
-            ],
-            "Vietnam": [
-                1990,
-                2020
-            ]
-        },
         "lowPolly": true,
         "playerControllable": false
     },
@@ -426,8 +177,6 @@
         "families": [
             "PlaneInterceptor"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -436,13 +185,6 @@
         "families": [
             "PlaneBomber"
         ],
-        "operational": [1950, 2020],
-        "extraOperators": {
-            "Ukraine": [
-                1950,
-                2000
-            ]
-        },
         "lowPolly": true,
         "playerControllable": false
     },
@@ -453,45 +195,6 @@
             "PlaneSEAD",
             "PlaneBomber"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Ukraine": [
-                1990,
-                2020
-            ],
-            "Belarus": [
-                1990,
-                2010
-            ],
-            "Iran": [
-                1990,
-                2020
-            ],
-            "Iraq": [
-                1980,
-                2000
-            ],
-            "Kazakhstan": [
-                1990,
-                2010
-            ],
-            "Syria": [
-                1990,
-                2020
-            ],
-            "Sudan": [
-                2010,
-                2020
-            ],
-            "Libya": [
-                1990,
-                2010
-            ],
-            "Algeria": [
-                1990,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -500,25 +203,6 @@
         "families": [
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Ukraine": [
-                1990,
-                2020
-            ],
-            "Belarus": [
-                1990,
-                2010
-            ],
-            "Kazakhstan": [
-                1990,
-                2010
-            ],
-            "Algeria": [
-                1990,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -527,13 +211,6 @@
         "families": [
             "PlaneBomber"
         ],
-        "operational": [1950, 2020],
-        "extraOperators": {
-            "Ukraine": [
-                1950,
-                2000
-            ]
-        },
         "lowPolly": true,
         "playerControllable": false
     },
@@ -542,8 +219,6 @@
         "families": [
             "PlaneBomber"
         ],
-        "operational": [1980, 2010],
-        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -552,8 +227,6 @@
         "families": [
             "PlaneBomber"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -563,8 +236,6 @@
             "PlaneCATOBAR",
             "PlaneTransport"
         ],
-        "operational": [1960, 2020],
-        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -574,8 +245,6 @@
             "PlaneTankerBasket",
             "PlaneCATOBAR"
         ],
-        "operational": [1960, 2020],
-        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -586,8 +255,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -596,8 +263,6 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -607,17 +272,6 @@
             "PlaneStrike",
             "PlaneFighter"
         ],
-        "operational": [1990, 2020],
-        "extraOperators": {
-            "SaudiArabia": [
-                2010,
-                2020
-            ],
-            "SouthKorea": [
-                2000,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -627,17 +281,6 @@
             "PlaneStrike",
             "PlaneFighter"
         ],
-        "operational": [1990, 2020],
-        "extraOperators": {
-            "SaudiArabia": [
-                2010,
-                2020
-            ],
-            "SouthKorea": [
-                2000,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -646,57 +289,6 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Belarus": [
-                1990,
-                2000
-            ],
-            "Bulgaria": [
-                1990,
-                2020
-            ],
-            "CzechRepublic": [
-                1990,
-                2020
-            ],
-            "Hungary": [
-                1990,
-                2010
-            ],
-            "Iran": [
-                1990,
-                2020
-            ],
-            "Iraq": [
-                1980,
-                2000
-            ],
-            "NorthKorea": [
-                1990,
-                2020
-            ],
-            "Poland": [
-                1990,
-                2020
-            ],
-            "Romania": [
-                1990,
-                2000
-            ],
-            "Serbia": [
-                2010,
-                2020
-            ],
-            "Slovakia": [
-                1990,
-                2020
-            ],
-            "Cuba": [
-                1990,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -705,8 +297,6 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -715,8 +305,6 @@
         "families": [
             "PlaneBomber"
         ],
-        "operational": [1960, 2020],
-        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -725,205 +313,6 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [1950, 2020],
-        "extraOperators": {
-            "Turkey": [
-                1970,
-                2020
-            ],
-            "UK": [
-                1960,
-                2020
-            ],
-            "France": [
-                1980,
-                2020
-            ],
-            "Canada": [
-                1960,
-                2020
-            ],
-            "Spain": [
-                1970,
-                2020
-            ],
-            "TheNetherlands": [
-                1990,
-                2020
-            ],
-            "Belgium": [
-                1990,
-                2020
-            ],
-            "Norway": [
-                1970,
-                2020
-            ],
-            "Denmark": [
-                1970,
-                2020
-            ],
-            "Israel": [
-                1970,
-                2020
-            ],
-            "Italy": [
-                1970,
-                2020
-            ],
-            "Australia": [
-                1960,
-                2020
-            ],
-            "Austria": [
-                2000,
-                2020
-            ],
-            "Egypt": [
-                1970,
-                2020
-            ],
-            "Greece": [
-                1970,
-                2020
-            ],
-            "India": [
-                2010,
-                2020
-            ],
-            "Iran": [
-                1960,
-                2020
-            ],
-            "Iraq": [
-                2000,
-                2020
-            ],
-            "Japan": [
-                1980,
-                2020
-            ],
-            "Pakistan": [
-                1960,
-                2020
-            ],
-            "Poland": [
-                2010,
-                2020
-            ],
-            "Romania": [
-                1990,
-                2020
-            ],
-            "SaudiArabia": [
-                1960,
-                2020
-            ],
-            "SouthKorea": [
-                2000,
-                2020
-            ],
-            "Sweden": [
-                1960,
-                2020
-            ],
-            "Yemen": [
-                1980,
-                2020
-            ],
-            "Vietnam": [
-                1970,
-                2020
-            ],
-            "Venezuela": [
-                1970,
-                2020
-            ],
-            "Tunisia": [
-                1980,
-                2020
-            ],
-            "Thailand": [
-                1980,
-                2020
-            ],
-            "Sudan": [
-                1980,
-                2020
-            ],
-            "Philippines": [
-                1970,
-                2020
-            ],
-            "Morocco": [
-                1970,
-                2020
-            ],
-            "Mexico": [
-                1980,
-                2020
-            ],
-            "Malaysia": [
-                1970,
-                2020
-            ],
-            "Libya": [
-                1970,
-                2020
-            ],
-            "Jordan": [
-                1970,
-                2020
-            ],
-            "Indonesia": [
-                1960,
-                2020
-            ],
-            "Honduras": [
-                1980,
-                2020
-            ],
-            "Ethiopia": [
-                2000,
-                2020
-            ],
-            "Chile": [
-                1990,
-                2020
-            ],
-            "Brazil": [
-                1960,
-                2020
-            ],
-            "Algeria": [
-                1980,
-                2020
-            ],
-            "Kuwait": [
-                1970,
-                2020
-            ],
-            "Oman": [
-                1980,
-                2020
-            ],
-            "UnitedArabEmirates": [
-                1980,
-                2020
-            ],
-            "SouthAfrica": [
-                1990,
-                2020
-            ],
-            "Portugal": [
-                1970,
-                2020
-            ],
-            "Argentina": [
-                1970,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -932,25 +321,6 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Abkhazia": [
-                1980,
-                2010
-            ],
-            "Poland": [
-                1980,
-                2010
-            ],
-            "Serbia": [
-                2000,
-                2020
-            ],
-            "Slovakia": [
-                1980,
-                2010
-            ]
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -959,8 +329,6 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -969,113 +337,6 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [1990, 2020],
-        "extraOperators": {
-            "Turkey": [
-                2010,
-                2020
-            ],
-            "UK": [
-                2000,
-                2020
-            ],
-            "France": [
-                2010,
-                2020
-            ],
-            "Germany": [
-                2010,
-                2020
-            ],
-            "Canada": [
-                2000,
-                2020
-            ],
-            "Spain": [
-                2010,
-                2020
-            ],
-            "TheNetherlands": [
-                2010,
-                2020
-            ],
-            "Belgium": [
-                2010,
-                2020
-            ],
-            "Norway": [
-                2010,
-                2020
-            ],
-            "Denmark": [
-                2010,
-                2020
-            ],
-            "Italy": [
-                2010,
-                2020
-            ],
-            "Australia": [
-                2000,
-                2020
-            ],
-            "Bulgaria": [
-                2010,
-                2020
-            ],
-            "CzechRepublic": [
-                2010,
-                2020
-            ],
-            "Croatia": [
-                2010,
-                2020
-            ],
-            "Greece": [
-                2010,
-                2020
-            ],
-            "Hungary": [
-                2010,
-                2020
-            ],
-            "India": [
-                2010,
-                2020
-            ],
-            "Poland": [
-                2010,
-                2020
-            ],
-            "Romania": [
-                2010,
-                2020
-            ],
-            "Slovakia": [
-                2010,
-                2020
-            ],
-            "Kuwait": [
-                2010,
-                2020
-            ],
-            "Qatar": [
-                2010,
-                2020
-            ],
-            "UnitedArabEmirates": [
-                2010,
-                2020
-            ],
-            "Portugal": [
-                2010,
-                2020
-            ],
-            "Slovenia": [
-                2010,
-                2020
-            ]
-        },
         "lowPolly": true,
         "playerControllable": false
     },
@@ -1084,13 +345,6 @@
         "families": [
             "PlaneAWACS"
         ],
-        "operational": [1990, 2020],
-        "extraOperators": {
-            "India": [
-                2010,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1099,53 +353,6 @@
         "families": [
             "PlaneAWACS"
         ],
-        "operational": [1970, 2020],
-        "extraOperators": {
-            "Turkey": [
-                1980,
-                2020
-            ],
-            "UK": [
-                1980,
-                2020
-            ],
-            "France": [
-                1990,
-                2020
-            ],
-            "Germany": [
-                1980,
-                2020
-            ],
-            "Canada": [
-                1980,
-                2020
-            ],
-            "Spain": [
-                1980,
-                2020
-            ],
-            "TheNetherlands": [
-                1980,
-                2020
-            ],
-            "Belgium": [
-                1980,
-                2020
-            ],
-            "Norway": [
-                1980,
-                2020
-            ],
-            "Italy": [
-                1980,
-                2020
-            ],
-            "SaudiArabia": [
-                1980,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1154,41 +361,6 @@
         "families": [
             "PlaneTankerBoom"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Russia": [
-                1990,
-                2020
-            ],
-            "Ukraine": [
-                1980,
-                2010
-            ],
-            "China": [
-                2010,
-                2020
-            ],
-            "India": [
-                2000,
-                2020
-            ],
-            "Pakistan": [
-                2010,
-                2020
-            ],
-            "Libya": [
-                1990,
-                2020
-            ],
-            "USSR": [
-                1990,
-                2020
-            ],
-            "Algeria": [
-                2000,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1198,25 +370,6 @@
             "PlaneAWACS",
             "PlaneCATOBAR"
         ],
-        "operational": [1970, 2020],
-        "extraOperators": {
-            "France": [
-                2000,
-                2020
-            ],
-            "Israel": [
-                1980,
-                2000
-            ],
-            "Egypt": [
-                1980,
-                2020
-            ],
-            "Mexico": [
-                2000,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1225,25 +378,6 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "China": [
-                1990,
-                2020
-            ],
-            "Iran": [
-                1990,
-                2020
-            ],
-            "USSR": [
-                1990,
-                2020
-            ],
-            "Algeria": [
-                1990,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1254,8 +388,6 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": [1990, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1266,8 +398,6 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": [1990, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1278,45 +408,6 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "USA": [
-                1980,
-                1980
-            ],
-            "TheNetherlands": [
-                1980,
-                1990
-            ],
-            "Israel": [
-                1980,
-                1980
-            ],
-            "Italy": [
-                2000,
-                2010
-            ],
-            "Pakistan": [
-                1980,
-                2000
-            ],
-            "Thailand": [
-                1990,
-                2020
-            ],
-            "Jordan": [
-                1990,
-                2020
-            ],
-            "Indonesia": [
-                1990,
-                2020
-            ],
-            "Portugal": [
-                1990,
-                2020
-            ]
-        },
         "lowPolly": true,
         "playerControllable": false
     },
@@ -1327,8 +418,6 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {},
         "lowPolly": true,
         "playerControllable": false
     },
@@ -1337,21 +426,6 @@
         "families": [
             "PlaneDrone"
         ],
-        "operational": [1990, 2020],
-        "extraOperators": {
-            "Turkey": [
-                2010,
-                2020
-            ],
-            "Italy": [
-                2000,
-                2010
-            ],
-            "UnitedArabEmirates": [
-                2010,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1360,21 +434,6 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [1970, 2020],
-        "extraOperators": {
-            "Kazakhstan": [
-                1990,
-                2020
-            ],
-            "Serbia": [
-                2000,
-                2020
-            ],
-            "Algeria": [
-                1980,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1383,21 +442,6 @@
         "families": [
             "PlaneTankerBoom"
         ],
-        "operational": [1960, 2020],
-        "extraOperators": {
-            "France": [
-                2020,
-                2020
-            ],
-            "SaudiArabia": [
-                1970,
-                2020
-            ],
-            "Chile": [
-                2010,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1408,8 +452,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1940, 1940],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1420,8 +462,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1940, 1940],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1432,8 +472,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1940, 1940],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1444,8 +482,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1940, 1940],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1456,8 +492,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1940, 1940],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1468,61 +502,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1940, 1950],
-        "extraOperators": {
-            "UK": [
-                1940,
-                1940
-            ],
-            "Germany": [
-                1940,
-                1940
-            ],
-            "Canada": [
-                1940,
-                1960
-            ],
-            "Israel": [
-                1940,
-                1960
-            ],
-            "Italy": [
-                1940,
-                1960
-            ],
-            "Australia": [
-                1940,
-                1960
-            ],
-            "Switzerland": [
-                1940,
-                1960
-            ],
-            "China": [
-                1940,
-                1940
-            ],
-            "Poland": [
-                1940,
-                1940
-            ],
-            "SouthKorea": [
-                1950,
-                1950
-            ],
-            "Philippines": [
-                1940,
-                1980
-            ],
-            "Indonesia": [
-                1940,
-                1970
-            ],
-            "Cuba": [
-                1960,
-                1960
-            ]
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1533,57 +512,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1940, 1950],
-        "extraOperators": {
-            "UK": [
-                1940,
-                1940
-            ],
-            "Canada": [
-                1940,
-                1960
-            ],
-            "Israel": [
-                1940,
-                1960
-            ],
-            "Italy": [
-                1940,
-                1960
-            ],
-            "Australia": [
-                1940,
-                1960
-            ],
-            "Switzerland": [
-                1940,
-                1960
-            ],
-            "China": [
-                1940,
-                1940
-            ],
-            "Poland": [
-                1940,
-                1940
-            ],
-            "SouthKorea": [
-                1950,
-                1950
-            ],
-            "Philippines": [
-                1940,
-                1980
-            ],
-            "Indonesia": [
-                1940,
-                1970
-            ],
-            "Cuba": [
-                1960,
-                1960
-            ]
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1594,8 +522,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1940, 1950],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1606,8 +532,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1940, 1950],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1618,8 +542,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1940, 1950],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1629,8 +551,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1940, 1940],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1640,8 +560,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1940, 1950],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1650,8 +568,6 @@
         "families": [
             "PlaneAttack"
         ],
-        "operational": [1970, 2000],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1660,8 +576,6 @@
         "families": [
             "PlaneAttack"
         ],
-        "operational": [2000, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1670,8 +584,6 @@
         "families": [
             "PlaneAttack"
         ],
-        "operational": [2000, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1682,8 +594,6 @@
             "PlaneAttack",
             "PlaneFighter"
         ],
-        "operational": [1970, 2000],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1695,17 +605,6 @@
             "PlaneFighter",
             "PlaneSEAD"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "UK": [
-                1990,
-                2010
-            ],
-            "Italy": [
-                1990,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1714,65 +613,6 @@
         "families": [
             "PlaneTankerBasket"
         ],
-        "operational": [1960, 2020],
-        "extraOperators": {
-            "France": [
-                2020,
-                2020
-            ],
-            "Spain": [
-                1970,
-                2020
-            ],
-            "Israel": [
-                1970,
-                2020
-            ],
-            "Italy": [
-                2000,
-                2020
-            ],
-            "Japan": [
-                2010,
-                2020
-            ],
-            "SaudiArabia": [
-                1970,
-                2020
-            ],
-            "Sweden": [
-                1970,
-                2020
-            ],
-            "Morocco": [
-                1980,
-                2020
-            ],
-            "Malaysia": [
-                1970,
-                2020
-            ],
-            "Libya": [
-                1970,
-                2020
-            ],
-            "Indonesia": [
-                1980,
-                2020
-            ],
-            "Brazil": [
-                1980,
-                2020
-            ],
-            "Kuwait": [
-                2010,
-                2020
-            ],
-            "Argentina": [
-                1980,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1782,21 +622,6 @@
             "PlaneTankerBasket",
             "PlaneTankerBoom"
         ],
-        "operational": [1950, 2020],
-        "extraOperators": {
-            "Turkey": [
-                1990,
-                2020
-            ],
-            "France": [
-                1960,
-                2020
-            ],
-            "Chile": [
-                2010,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1805,8 +630,6 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1815,8 +638,6 @@
         "families": [
             "PlaneAttack"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1825,8 +646,6 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [2000, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1837,8 +656,6 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": [2000, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1847,8 +664,6 @@
         "families": [
             "PlaneAWACS"
         ],
-        "operational": [2010, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1857,17 +672,6 @@
         "families": [
             "PlaneDrone"
         ],
-        "operational": [2010, 2020],
-        "extraOperators": {
-            "Pakistan": [
-                2020,
-                2020
-            ],
-            "Algeria": [
-                2020,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1876,8 +680,6 @@
         "families": [
             "PlaneBomber"
         ],
-        "operational": [1980, 1990],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1886,8 +688,6 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [1970, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -1898,37 +698,6 @@
             "PlaneSEAD",
             "PlaneStrike"
         ],
-        "operational": [1990, 2020],
-        "extraOperators": {
-            "TheNetherlands": [
-                2000,
-                2020
-            ],
-            "Iraq": [
-                2010,
-                2020
-            ],
-            "Pakistan": [
-                2010,
-                2020
-            ],
-            "Poland": [
-                2000,
-                2020
-            ],
-            "Morocco": [
-                2010,
-                2020
-            ],
-            "Chile": [
-                2000,
-                2020
-            ],
-            "Oman": [
-                2000,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -1937,93 +706,6 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [1940, 2020],
-        "extraOperators": {
-            "USA": [
-                1970,
-                1980
-            ],
-            "Austria": [
-                2000,
-                2010
-            ],
-            "Iran": [
-                1970,
-                2020
-            ],
-            "SaudiArabia": [
-                1970,
-                2020
-            ],
-            "SouthKorea": [
-                1970,
-                2020
-            ],
-            "Yemen": [
-                1980,
-                2020
-            ],
-            "Vietnam": [
-                1970,
-                2020
-            ],
-            "Tunisia": [
-                1980,
-                2020
-            ],
-            "Thailand": [
-                1970,
-                2020
-            ],
-            "Sudan": [
-                1980,
-                2010
-            ],
-            "Philippines": [
-                1970,
-                2000
-            ],
-            "Morocco": [
-                1980,
-                2020
-            ],
-            "Mexico": [
-                1980,
-                2010
-            ],
-            "Malaysia": [
-                1970,
-                2010
-            ],
-            "Jordan": [
-                1970,
-                2010
-            ],
-            "Indonesia": [
-                1980,
-                2000
-            ],
-            "Honduras": [
-                1980,
-                2020
-            ],
-            "Ethiopia": [
-                1970,
-                2000
-            ],
-            "Chile": [
-                1970,
-                2020
-            ],
-            "Brazil": [
-                1970,
-                2020
-            ],
-            "Bahrain": [
-                1980,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2032,69 +714,6 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [1970, 2020],
-        "extraOperators": {
-            "USA": [
-                1970,
-                1980
-            ],
-            "Switzerland": [
-                1980,
-                2020
-            ],
-            "Austria": [
-                2000,
-                2010
-            ],
-            "Yemen": [
-                1980,
-                2020
-            ],
-            "Tunisia": [
-                1980,
-                2020
-            ],
-            "Sudan": [
-                1980,
-                2010
-            ],
-            "Philippines": [
-                1970,
-                2000
-            ],
-            "Morocco": [
-                1980,
-                2020
-            ],
-            "Mexico": [
-                1980,
-                2010
-            ],
-            "Malaysia": [
-                1970,
-                2010
-            ],
-            "Jordan": [
-                1970,
-                2010
-            ],
-            "Indonesia": [
-                1980,
-                2000
-            ],
-            "Honduras": [
-                1980,
-                2020
-            ],
-            "Ethiopia": [
-                1970,
-                2000
-            ],
-            "Bahrain": [
-                1980,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -2105,69 +724,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1950, 1970],
-        "extraOperators": {
-            "Norway": [
-                1950,
-                1960
-            ],
-            "Denmark": [
-                1960,
-                1960
-            ],
-            "Iran": [
-                1960,
-                1970
-            ],
-            "Iraq": [
-                1960,
-                1980
-            ],
-            "Japan": [
-                1950,
-                1980
-            ],
-            "Pakistan": [
-                1950,
-                1980
-            ],
-            "SaudiArabia": [
-                1960,
-                1970
-            ],
-            "SouthKorea": [
-                1950,
-                1990
-            ],
-            "Tunisia": [
-                1970,
-                1980
-            ],
-            "Thailand": [
-                1960,
-                1960
-            ],
-            "Philippines": [
-                1950,
-                1980
-            ],
-            "Ethiopia": [
-                1960,
-                1970
-            ],
-            "SouthAfrica": [
-                1950,
-                1950
-            ],
-            "Portugal": [
-                1960,
-                1980
-            ],
-            "Argentina": [
-                1960,
-                1980
-            ]
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -2179,8 +735,6 @@
             "PlaneStrike",
             "PlaneCATOBAR"
         ],
-        "operational": [1980, 2000],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -2192,13 +746,6 @@
             "PlaneStrike",
             "PlaneCATOBAR"
         ],
-        "operational": [1970, 2020],
-        "extraOperators": {
-            "USA": [
-                1970,
-                1970
-            ]
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -2210,8 +757,6 @@
             "PlaneStrike",
             "PlaneCATOBAR"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": true
     },
@@ -2220,8 +765,6 @@
         "families": [
             "VehicleSAMMedium"
         ],
-        "operational": [1960, 1990],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2232,29 +775,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1940, 1950],
-        "extraOperators": {
-            "China": [
-                1940,
-                1940
-            ],
-            "Finland": [
-                1940,
-                1940
-            ],
-            "Poland": [
-                1940,
-                1940
-            ],
-            "Romania": [
-                1940,
-                1940
-            ],
-            "USSR": [
-                1940,
-                1940
-            ]
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -2264,21 +784,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "CzechRepublic": [
-                1990,
-                2020
-            ],
-            "Slovakia": [
-                1990,
-                2020
-            ],
-            "Algeria": [
-                2000,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -2288,25 +793,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "CzechRepublic": [
-                1990,
-                2020
-            ],
-            "Slovakia": [
-                1990,
-                2020
-            ],
-            "Thailand": [
-                1990,
-                2020
-            ],
-            "Algeria": [
-                2000,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -2317,21 +803,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Greece": [
-                1990,
-                2020
-            ],
-            "Brazil": [
-                2000,
-                2010
-            ],
-            "UnitedArabEmirates": [
-                1990,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -2340,13 +811,6 @@
         "families": [
             "PlaneAttack"
         ],
-        "operational": [1970, 2020],
-        "extraOperators": {
-            "Argentina": [
-                1970,
-                2000
-            ]
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -2355,8 +819,6 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [1970, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2366,8 +828,6 @@
             "PlaneDrone",
             "PlaneStrike"
         ],
-        "operational": [2000, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2376,37 +836,6 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [1950, 1970],
-        "extraOperators": {
-            "China": [
-                1950,
-                1980
-            ],
-            "Egypt": [
-                1950,
-                1980
-            ],
-            "Poland": [
-                1950,
-                1990
-            ],
-            "Romania": [
-                1950,
-                1990
-            ],
-            "Algeria": [
-                1960,
-                1990
-            ],
-            "Cuba": [
-                1960,
-                1980
-            ],
-            "GDR": [
-                1950,
-                1980
-            ]
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -2415,33 +844,6 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [1950, 1970],
-        "extraOperators": {
-            "Bulgaria": [
-                1960,
-                1970
-            ],
-            "China": [
-                1960,
-                1970
-            ],
-            "Poland": [
-                1960,
-                1960
-            ],
-            "Romania": [
-                1960,
-                1970
-            ],
-            "USSR": [
-                1960,
-                1970
-            ],
-            "Cuba": [
-                1960,
-                1960
-            ]
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -2450,77 +852,6 @@
         "families": [
             "PlaneFighter"
         ],
-        "operational": [1970, 1990],
-        "extraOperators": {
-            "Israel": [
-                1980,
-                1990
-            ],
-            "Bulgaria": [
-                1980,
-                2010
-            ],
-            "Croatia": [
-                1990,
-                2020
-            ],
-            "Finland": [
-                1970,
-                2000
-            ],
-            "Hungary": [
-                1970,
-                2000
-            ],
-            "India": [
-                1970,
-                2000
-            ],
-            "Iraq": [
-                1980,
-                1990
-            ],
-            "NorthKorea": [
-                2000,
-                2020
-            ],
-            "Poland": [
-                1980,
-                2000
-            ],
-            "Serbia": [
-                2000,
-                2020
-            ],
-            "Syria": [
-                1980,
-                2020
-            ],
-            "Vietnam": [
-                1980,
-                2020
-            ],
-            "Libya": [
-                1980,
-                2020
-            ],
-            "Ethiopia": [
-                1980,
-                2020
-            ],
-            "USSR": [
-                1990,
-                2020
-            ],
-            "Algeria": [
-                1980,
-                2000
-            ],
-            "Cuba": [
-                1980,
-                2020
-            ]
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -2530,8 +861,6 @@
             "PlaneStrike",
             "PlaneSEAD"
         ],
-        "operational": [2010, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2540,8 +869,6 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [1940, 1940],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2550,8 +877,6 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [1970, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2562,8 +887,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {},
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2574,17 +897,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "France": [],
-            "Spain": [],
-            "Iran": [],
-            "Iraq": [],
-            "Jordan": [],
-            "Kuwait": [],
-            "Libya": [],
-            "USAFAggressors": []
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -2595,10 +907,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Spain": []
-        },
         "lowPolly": false,
         "playerControllable": true
     },
@@ -2609,10 +917,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Spain": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2623,10 +927,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Spain": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2637,10 +937,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "France": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2651,10 +947,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Morocco": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2665,10 +957,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Morocco": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2679,10 +967,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "France": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2693,10 +977,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Argentina": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2707,10 +987,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "SouthAfrica": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2721,10 +997,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Jordan": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2735,10 +1007,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Kuwait": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2749,11 +1017,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Iraq": [],
-            "Iraq": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2764,10 +1027,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Libya": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2778,10 +1037,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Qatar": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2792,10 +1047,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "France": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2806,10 +1057,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "France": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2820,10 +1067,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "France": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2834,10 +1077,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Spain": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2848,11 +1087,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Iran": [],
-            "Iraq": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2863,10 +1097,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Libya": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2877,11 +1107,6 @@
             "PlaneAttack",
             "PlaneStrike"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Qatar": [],
-            "Jordan": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2890,26 +1115,6 @@
         "families": [
             "PlaneBomber"
         ],
-        "operational": [1940, 1950],
-        "extraOperators": {
-            "Argentina": [],
-            "Australia": [],
-            "Brazil": [1940, 1960],
-            "Canada": [],
-            "Denmark": [],
-            "France": [],
-            "Iran": [],
-            "Israel": [],
-            "Mexico": [],
-            "Portugal": [],
-            "SouthAfrica": [],
-            "China": [],
-            "Sweden": [],
-            "Switzerland": [],
-            "UK": [],
-            "USA": []
-
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2918,17 +1123,6 @@
         "families": [
             "PlaneBomber"
         ],
-        "operational": [1940, 1950],
-        "extraOperators": {
-            "Finland": [],
-            "Germany": [],
-            "Hungary": [],
-            "Italy": [],
-            "Romania": [],
-            "USSR": [],
-            "Spain": [],
-            "Thirdreich": []
-        },
         "lowPolly": false,
         "playerControllable": false
     },
@@ -2937,9 +1131,6 @@
         "families": [
             "PlaneTransport"
         ],
-        "operational": [1940, 1970],
-        "extraOperators": {
-        },
         "lowPolly": false,
         "playerControllable": false
     }

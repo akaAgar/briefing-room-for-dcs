@@ -160,9 +160,9 @@ namespace BriefingRoom4DCS.Data
             foreach (Country country in Countries)
                 validUnits[country] = (
                         from unit in Database.GetAllEntries<DBEntryJSONUnit>()
-                        where unit.Families.Intersect(families).ToList().Count > 0 && unit.Countries.ContainsKey(country)
+                        where unit.Families.Intersect(families).ToList().Count > 0 && unit.Operators.ContainsKey(country)
                             && (string.IsNullOrEmpty(unit.Module) || unitMods.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase) || DBEntryDCSMod.CORE_MODS.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase))
-                            && (unit.Countries[country].start <= decade) && (unit.Countries[country].end >= decade)
+                            && (unit.Operators[country].start <= decade) && (unit.Operators[country].end >= decade)
                             && (!unit.lowPolly || allowLowPolly)
                         select unit.ID
                     ).Distinct().ToList();

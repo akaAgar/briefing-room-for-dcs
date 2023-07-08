@@ -7,18 +7,104 @@
         "displayName": "AAA SON-9 Fire Can TR",
         "module": "HighDigitSAMs",
         "shape": "mys-m1",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1940,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1940,
+                2020
+            ],
+            "Russia": [
+                1940,
+                2020
+            ],
+            "Georgia": [
+                1940,
+                2020
+            ],
+            "Bulgaria": [
+                1940,
+                2020
+            ],
+            "China": [
+                1940,
+                2020
+            ],
+            "Egypt": [
+                1940,
+                2020
+            ],
+            "Hungary": [
+                1940,
+                2020
+            ],
+            "Iran": [
+                1940,
+                2020
+            ],
+            "Iraq": [
+                1940,
+                2020
+            ],
+            "Kazakhstan": [
+                1940,
+                2020
+            ],
+            "NorthKorea": [
+                1940,
+                2020
+            ],
+            "Poland": [
+                1940,
+                2020
+            ],
+            "Romania": [
+                1940,
+                2020
+            ],
+            "Syria": [
+                1940,
+                2020
+            ],
+            "Yemen": [
+                1940,
+                2020
+            ],
+            "Vietnam": [
+                1940,
+                2020
+            ],
+            "Sudan": [
+                1940,
+                2020
+            ],
+            "Morocco": [
+                1940,
+                2020
+            ],
+            "Libya": [
+                1940,
+                2020
+            ],
+            "USSR": [
+                1940,
+                2020
+            ],
+            "Algeria": [
+                1940,
+                2020
+            ],
+            "Cuba": [
+                1940,
+                2020
+            ],
+            "GDR": [
+                1940,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f120164567479a",
@@ -28,18 +114,104 @@
         "displayName": "AAA 100mm KS-19",
         "module": "HighDigitSAMs",
         "shape": "flak18",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1940,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1940,
+                2020
+            ],
+            "Russia": [
+                1940,
+                1980
+            ],
+            "Georgia": [
+                1940,
+                1980
+            ],
+            "Bulgaria": [
+                1940,
+                1980
+            ],
+            "China": [
+                1940,
+                1980
+            ],
+            "Egypt": [
+                1940,
+                1980
+            ],
+            "Iraq": [
+                1940,
+                2000
+            ],
+            "Poland": [
+                1940,
+                1960
+            ],
+            "Yemen": [
+                1940,
+                1980
+            ],
+            "Sudan": [
+                1940,
+                1980
+            ],
+            "Morocco": [
+                1940,
+                1980
+            ],
+            "Algeria": [
+                1940,
+                1980
+            ],
+            "Hungary": [
+                1940,
+                2020
+            ],
+            "Iran": [
+                1940,
+                2020
+            ],
+            "Kazakhstan": [
+                1940,
+                2020
+            ],
+            "NorthKorea": [
+                1940,
+                2020
+            ],
+            "Romania": [
+                1940,
+                2020
+            ],
+            "Syria": [
+                1940,
+                2020
+            ],
+            "Vietnam": [
+                1940,
+                2020
+            ],
+            "Libya": [
+                1940,
+                2020
+            ],
+            "USSR": [
+                1940,
+                2020
+            ],
+            "Cuba": [
+                1940,
+                2020
+            ],
+            "GDR": [
+                1940,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f120164567479c",
@@ -49,18 +221,72 @@
         "displayName": "SAM SA-10B S-300PS \"Grumble\" C2",
         "module": "HighDigitSAMs",
         "shape": "54k6cp",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ],
+            "Algeria": [
+                1980,
+                2020
+            ],
+            "Belarus": [
+                1980,
+                2020
+            ],
+            "Bulgaria": [
+                1980,
+                2020
+            ],
+            "China": [
+                1980,
+                2020
+            ],
+            "Egypt": [
+                1980,
+                2020
+            ],
+            "GDR": [
+                1980,
+                2020
+            ],
+            "Greece": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1980,
+                2020
+            ],
+            "Kazakhstan": [
+                1980,
+                2020
+            ],
+            "Russia": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ],
+            "Slovakia": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                1980,
+                2020
+            ],
+            "Venezuela": [
+                1980,
+                2020
+            ],
+            "Vietnam": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f120164567479e",
@@ -70,18 +296,72 @@
         "displayName": "SAM SA-10B S-300PS \"Grumble\" TEL S",
         "module": "HighDigitSAMs",
         "shape": "5p85se",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ],
+            "Algeria": [
+                1980,
+                2020
+            ],
+            "Belarus": [
+                1980,
+                2020
+            ],
+            "Bulgaria": [
+                1980,
+                2020
+            ],
+            "China": [
+                1980,
+                2020
+            ],
+            "Egypt": [
+                1980,
+                2020
+            ],
+            "GDR": [
+                1980,
+                2020
+            ],
+            "Greece": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1980,
+                2020
+            ],
+            "Kazakhstan": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ],
+            "Russia": [
+                1980,
+                2020
+            ],
+            "Slovakia": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                1980,
+                2020
+            ],
+            "Venezuela": [
+                1980,
+                2020
+            ],
+            "Vietnam": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747a0",
@@ -91,18 +371,72 @@
         "displayName": "SAM SA-10B S-300PS \"Grumble\" TEL U",
         "module": "HighDigitSAMs",
         "shape": "5p85su",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ],
+            "Algeria": [
+                1980,
+                2020
+            ],
+            "Belarus": [
+                1980,
+                2020
+            ],
+            "Bulgaria": [
+                1980,
+                2020
+            ],
+            "China": [
+                1980,
+                2020
+            ],
+            "Egypt": [
+                1980,
+                2020
+            ],
+            "GDR": [
+                1980,
+                2020
+            ],
+            "Greece": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1980,
+                2020
+            ],
+            "Kazakhstan": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ],
+            "Russia": [
+                1980,
+                2020
+            ],
+            "Slovakia": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                1980,
+                2020
+            ],
+            "Venezuela": [
+                1980,
+                2020
+            ],
+            "Vietnam": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747a2",
@@ -112,18 +446,72 @@
         "displayName": "SAM SA-10 (5V55RUD) S-300 TEL C",
         "module": "HighDigitSAMs",
         "shape": "5p85se",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ],
+            "Algeria": [
+                1980,
+                2020
+            ],
+            "Belarus": [
+                1980,
+                2020
+            ],
+            "Bulgaria": [
+                1980,
+                2020
+            ],
+            "China": [
+                1980,
+                2020
+            ],
+            "Egypt": [
+                1980,
+                2020
+            ],
+            "GDR": [
+                1980,
+                2020
+            ],
+            "Greece": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1980,
+                2020
+            ],
+            "Kazakhstan": [
+                1980,
+                2020
+            ],
+            "Russia": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ],
+            "Slovakia": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                1980,
+                2020
+            ],
+            "Venezuela": [
+                1980,
+                2020
+            ],
+            "Vietnam": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747a4",
@@ -133,18 +521,76 @@
         "displayName": "SAM SA-10 (5V55RUD) S-300 TEL D",
         "module": "HighDigitSAMs",
         "shape": "5p85su",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1980,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ],
+            "Algeria": [
+                1980,
+                2020
+            ],
+            "Belarus": [
+                1980,
+                2020
+            ],
+            "Bulgaria": [
+                1980,
+                2020
+            ],
+            "China": [
+                1980,
+                2020
+            ],
+            "Egypt": [
+                1980,
+                2020
+            ],
+            "GDR": [
+                1980,
+                2020
+            ],
+            "Greece": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1980,
+                2020
+            ],
+            "Kazakhstan": [
+                1980,
+                2020
+            ],
+            "Russia": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ],
+            "Slovakia": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                1980,
+                2020
+            ],
+            "Venezuela": [
+                1980,
+                2020
+            ],
+            "Vietnam": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747a6",
@@ -154,8 +600,68 @@
         "displayName": "SAM SA-10B S-300PS Flap Lid(truck) TR",
         "module": "HighDigitSAMs",
         "shape": "30h6_truck",
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Algeria": [
+                1980,
+                2020
+            ],
+            "Belarus": [
+                1980,
+                2020
+            ],
+            "Bulgaria": [
+                1980,
+                2020
+            ],
+            "China": [
+                1980,
+                2020
+            ],
+            "Egypt": [
+                1980,
+                2020
+            ],
+            "GDR": [
+                1980,
+                2020
+            ],
+            "Greece": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1980,
+                2020
+            ],
+            "Kazakhstan": [
+                1980,
+                2020
+            ],
+            "Russia": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ],
+            "Slovakia": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                1980,
+                2020
+            ],
+            "Venezuela": [
+                1980,
+                2020
+            ],
+            "Vietnam": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747a8",
@@ -165,8 +671,7 @@
         "displayName": "SAM SA-10B S-300PS Flap Lid(mast) TR",
         "module": "HighDigitSAMs",
         "shape": "40b6m_mast",
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {}
     },
     {
         "_id": "645caae428f12016456747aa",
@@ -176,8 +681,68 @@
         "displayName": "SAM SA-10B S-300PS Clam Shell SR",
         "module": "HighDigitSAMs",
         "shape": "40b6md_mast",
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Algeria": [
+                1980,
+                2020
+            ],
+            "Belarus": [
+                1980,
+                2020
+            ],
+            "Bulgaria": [
+                1980,
+                2020
+            ],
+            "China": [
+                1980,
+                2020
+            ],
+            "Egypt": [
+                1980,
+                2020
+            ],
+            "GDR": [
+                1980,
+                2020
+            ],
+            "Greece": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1980,
+                2020
+            ],
+            "Kazakhstan": [
+                1980,
+                2020
+            ],
+            "Russia": [
+                1980,
+                2020
+            ],
+            "Slovakia": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                1980,
+                2020
+            ],
+            "Venezuela": [
+                1980,
+                2020
+            ],
+            "Vietnam": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747ac",
@@ -187,8 +752,68 @@
         "displayName": "SAM SA-10B S-300PS Big Bird SR",
         "module": "HighDigitSAMs",
         "shape": "64n6",
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Algeria": [
+                1980,
+                2020
+            ],
+            "Belarus": [
+                1980,
+                2020
+            ],
+            "Bulgaria": [
+                1980,
+                2020
+            ],
+            "China": [
+                1980,
+                2020
+            ],
+            "Egypt": [
+                1980,
+                2020
+            ],
+            "GDR": [
+                1980,
+                2020
+            ],
+            "Greece": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1980,
+                2020
+            ],
+            "Kazakhstan": [
+                1980,
+                2020
+            ],
+            "Russia": [
+                1980,
+                2020
+            ],
+            "Slovakia": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                1980,
+                2020
+            ],
+            "Venezuela": [
+                1980,
+                2020
+            ],
+            "Vietnam": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747ae",
@@ -198,18 +823,76 @@
         "displayName": "SAM SA-20A S-300PMU-1 \"Gargoyle\" C2",
         "module": "HighDigitSAMs",
         "shape": "54k6cp",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1990,
+                2020
+            ],
+            "Algeria": [
+                1990,
+                2020
+            ],
+            "Belarus": [
+                1990,
+                2020
+            ],
+            "Bulgaria": [
+                1990,
+                2020
+            ],
+            "China": [
+                1990,
+                2020
+            ],
+            "Egypt": [
+                1990,
+                2020
+            ],
+            "GDR": [
+                1990,
+                2020
+            ],
+            "Greece": [
+                1990,
+                2020
+            ],
+            "Iran": [
+                1990,
+                2020
+            ],
+            "Kazakhstan": [
+                1990,
+                2020
+            ],
+            "Russia": [
+                1990,
+                2020
+            ],
+            "Slovakia": [
+                1990,
+                2020
+            ],
+            "Ukraine": [
+                1990,
+                2020
+            ],
+            "Venezuela": [
+                1990,
+                2020
+            ],
+            "Vietnam": [
+                1990,
+                2020
+            ],
+            "USSR": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747b0",
@@ -219,18 +902,76 @@
         "displayName": "SA-20A TR",
         "module": "HighDigitSAMs",
         "shape": "40b6m_mast",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1990,
+                2020
+            ],
+            "Algeria": [
+                1990,
+                2020
+            ],
+            "Belarus": [
+                1990,
+                2020
+            ],
+            "Bulgaria": [
+                1990,
+                2020
+            ],
+            "China": [
+                1990,
+                2020
+            ],
+            "Egypt": [
+                1990,
+                2020
+            ],
+            "GDR": [
+                1990,
+                2020
+            ],
+            "Greece": [
+                1990,
+                2020
+            ],
+            "Iran": [
+                1990,
+                2020
+            ],
+            "Kazakhstan": [
+                1990,
+                2020
+            ],
+            "Russia": [
+                1990,
+                2020
+            ],
+            "Slovakia": [
+                1990,
+                2020
+            ],
+            "Ukraine": [
+                1990,
+                2020
+            ],
+            "Venezuela": [
+                1990,
+                2020
+            ],
+            "Vietnam": [
+                1990,
+                2020
+            ],
+            "USSR": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747b2",
@@ -240,18 +981,76 @@
         "displayName": "SAM SA-20A S-300PMU-1 Tomb Stone(truck) TR",
         "module": "HighDigitSAMs",
         "shape": "30h6_truck",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1990,
+                2020
+            ],
+            "Algeria": [
+                1990,
+                2020
+            ],
+            "Belarus": [
+                1990,
+                2020
+            ],
+            "Bulgaria": [
+                1990,
+                2020
+            ],
+            "China": [
+                1990,
+                2020
+            ],
+            "Egypt": [
+                1990,
+                2020
+            ],
+            "GDR": [
+                1990,
+                2020
+            ],
+            "Greece": [
+                1990,
+                2020
+            ],
+            "Iran": [
+                1990,
+                2020
+            ],
+            "Kazakhstan": [
+                1990,
+                2020
+            ],
+            "Russia": [
+                1990,
+                2020
+            ],
+            "Slovakia": [
+                1990,
+                2020
+            ],
+            "Ukraine": [
+                1990,
+                2020
+            ],
+            "Venezuela": [
+                1990,
+                2020
+            ],
+            "Vietnam": [
+                1990,
+                2020
+            ],
+            "USSR": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747b4",
@@ -261,18 +1060,76 @@
         "displayName": "SAM SA-20A S-300PMU-1 Clam Shell SR",
         "module": "HighDigitSAMs",
         "shape": "40b6md_mast",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1990,
+                2020
+            ],
+            "Algeria": [
+                1990,
+                2020
+            ],
+            "Belarus": [
+                1990,
+                2020
+            ],
+            "Bulgaria": [
+                1990,
+                2020
+            ],
+            "China": [
+                1990,
+                2020
+            ],
+            "Egypt": [
+                1990,
+                2020
+            ],
+            "GDR": [
+                1990,
+                2020
+            ],
+            "Greece": [
+                1990,
+                2020
+            ],
+            "Iran": [
+                1990,
+                2020
+            ],
+            "Kazakhstan": [
+                1990,
+                2020
+            ],
+            "Russia": [
+                1990,
+                2020
+            ],
+            "Slovakia": [
+                1990,
+                2020
+            ],
+            "Ukraine": [
+                1990,
+                2020
+            ],
+            "Venezuela": [
+                1990,
+                2020
+            ],
+            "Vietnam": [
+                1990,
+                2020
+            ],
+            "USSR": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747b6",
@@ -282,18 +1139,76 @@
         "displayName": "SAM SA-20A S-300PMU-1 Big Bird SR",
         "module": "HighDigitSAMs",
         "shape": "64n6",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1990,
+                2020
+            ],
+            "Algeria": [
+                1990,
+                2020
+            ],
+            "Belarus": [
+                1990,
+                2020
+            ],
+            "Bulgaria": [
+                1990,
+                2020
+            ],
+            "China": [
+                1990,
+                2020
+            ],
+            "Egypt": [
+                1990,
+                2020
+            ],
+            "GDR": [
+                1990,
+                2020
+            ],
+            "Greece": [
+                1990,
+                2020
+            ],
+            "Iran": [
+                1990,
+                2020
+            ],
+            "Kazakhstan": [
+                1990,
+                2020
+            ],
+            "Russia": [
+                1990,
+                2020
+            ],
+            "Slovakia": [
+                1990,
+                2020
+            ],
+            "Ukraine": [
+                1990,
+                2020
+            ],
+            "Venezuela": [
+                1990,
+                2020
+            ],
+            "Vietnam": [
+                1990,
+                2020
+            ],
+            "USSR": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747b8",
@@ -303,18 +1218,76 @@
         "displayName": "SAM SA-20A S-300PMU-1 \"Gargoyle\" TEL C",
         "module": "HighDigitSAMs",
         "shape": "5p85se",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1990,
+                2020
+            ],
+            "Algeria": [
+                1990,
+                2020
+            ],
+            "Belarus": [
+                1990,
+                2020
+            ],
+            "Bulgaria": [
+                1990,
+                2020
+            ],
+            "China": [
+                1990,
+                2020
+            ],
+            "Egypt": [
+                1990,
+                2020
+            ],
+            "GDR": [
+                1990,
+                2020
+            ],
+            "Greece": [
+                1990,
+                2020
+            ],
+            "Iran": [
+                1990,
+                2020
+            ],
+            "Kazakhstan": [
+                1990,
+                2020
+            ],
+            "Russia": [
+                1990,
+                2020
+            ],
+            "Slovakia": [
+                1990,
+                2020
+            ],
+            "Ukraine": [
+                1990,
+                2020
+            ],
+            "Venezuela": [
+                1990,
+                2020
+            ],
+            "Vietnam": [
+                1990,
+                2020
+            ],
+            "USSR": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747ba",
@@ -324,18 +1297,72 @@
         "displayName": "SAM SA-20A S-300PMU-1 \"Gargoyle\" TEL D",
         "module": "HighDigitSAMs",
         "shape": "5p85su",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                2000,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2000,
+                2020
+            ],
+            "Algeria": [
+                2000,
+                2020
+            ],
+            "Belarus": [
+                2000,
+                2020
+            ],
+            "Bulgaria": [
+                2000,
+                2020
+            ],
+            "China": [
+                2000,
+                2020
+            ],
+            "Egypt": [
+                2000,
+                2020
+            ],
+            "GDR": [
+                2000,
+                2020
+            ],
+            "Greece": [
+                2000,
+                2020
+            ],
+            "Iran": [
+                2000,
+                2020
+            ],
+            "Kazakhstan": [
+                2000,
+                2020
+            ],
+            "Russia": [
+                2000,
+                2020
+            ],
+            "Slovakia": [
+                2000,
+                2020
+            ],
+            "Ukraine": [
+                2000,
+                2020
+            ],
+            "Venezuela": [
+                2000,
+                2020
+            ],
+            "Vietnam": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747bc",
@@ -345,18 +1372,72 @@
         "displayName": "SAM SA-20B S-300PMU-2 \"Favorit\" C2",
         "module": "HighDigitSAMs",
         "shape": "54k6cp",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                2000,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2000,
+                2020
+            ],
+            "Algeria": [
+                2000,
+                2020
+            ],
+            "Belarus": [
+                2000,
+                2020
+            ],
+            "Bulgaria": [
+                2000,
+                2020
+            ],
+            "China": [
+                2000,
+                2020
+            ],
+            "Egypt": [
+                2000,
+                2020
+            ],
+            "GDR": [
+                2000,
+                2020
+            ],
+            "Greece": [
+                2000,
+                2020
+            ],
+            "Iran": [
+                2000,
+                2020
+            ],
+            "Kazakhstan": [
+                2000,
+                2020
+            ],
+            "Russia": [
+                2000,
+                2020
+            ],
+            "Slovakia": [
+                2000,
+                2020
+            ],
+            "Ukraine": [
+                2000,
+                2020
+            ],
+            "Venezuela": [
+                2000,
+                2020
+            ],
+            "Vietnam": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747be",
@@ -366,8 +1447,64 @@
         "displayName": "SAM SA-20B S-300PMU2 Grave Stone(truck) TR",
         "module": "HighDigitSAMs",
         "shape": "92n6_truck",
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Algeria": [
+                2000,
+                2020
+            ],
+            "Belarus": [
+                2000,
+                2020
+            ],
+            "Bulgaria": [
+                2000,
+                2020
+            ],
+            "China": [
+                2000,
+                2020
+            ],
+            "Egypt": [
+                2000,
+                2020
+            ],
+            "GDR": [
+                2000,
+                2020
+            ],
+            "Greece": [
+                2000,
+                2020
+            ],
+            "Iran": [
+                2000,
+                2020
+            ],
+            "Kazakhstan": [
+                2000,
+                2020
+            ],
+            "Russia": [
+                2000,
+                2020
+            ],
+            "Slovakia": [
+                2000,
+                2020
+            ],
+            "Ukraine": [
+                2000,
+                2020
+            ],
+            "Venezuela": [
+                2000,
+                2020
+            ],
+            "Vietnam": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747c0",
@@ -377,8 +1514,64 @@
         "displayName": "SAM SA-20B S-300PMU-2 Big Bird SR",
         "module": "HighDigitSAMs",
         "shape": "64n6",
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Algeria": [
+                2000,
+                2020
+            ],
+            "Belarus": [
+                2000,
+                2020
+            ],
+            "Bulgaria": [
+                2000,
+                2020
+            ],
+            "China": [
+                2000,
+                2020
+            ],
+            "Egypt": [
+                2000,
+                2020
+            ],
+            "GDR": [
+                2000,
+                2020
+            ],
+            "Greece": [
+                2000,
+                2020
+            ],
+            "Iran": [
+                2000,
+                2020
+            ],
+            "Kazakhstan": [
+                2000,
+                2020
+            ],
+            "Russia": [
+                2000,
+                2020
+            ],
+            "Slovakia": [
+                2000,
+                2020
+            ],
+            "Ukraine": [
+                2000,
+                2020
+            ],
+            "Venezuela": [
+                2000,
+                2020
+            ],
+            "Vietnam": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747c2",
@@ -388,18 +1581,72 @@
         "displayName": "SAM SA-20B S-300PMU-2 \"Favorit\" TEL S",
         "module": "HighDigitSAMs",
         "shape": "5p85se",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                2000,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2000,
+                2020
+            ],
+            "Algeria": [
+                2000,
+                2020
+            ],
+            "Belarus": [
+                2000,
+                2020
+            ],
+            "Bulgaria": [
+                2000,
+                2020
+            ],
+            "China": [
+                2000,
+                2020
+            ],
+            "Egypt": [
+                2000,
+                2020
+            ],
+            "GDR": [
+                2000,
+                2020
+            ],
+            "Greece": [
+                2000,
+                2020
+            ],
+            "Iran": [
+                2000,
+                2020
+            ],
+            "Kazakhstan": [
+                2000,
+                2020
+            ],
+            "Russia": [
+                2000,
+                2020
+            ],
+            "Slovakia": [
+                2000,
+                2020
+            ],
+            "Ukraine": [
+                2000,
+                2020
+            ],
+            "Venezuela": [
+                2000,
+                2020
+            ],
+            "Vietnam": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747c4",
@@ -409,18 +1656,76 @@
         "displayName": "SAM SA-12 S-300V \"Gladiator/Giant\" C2",
         "module": "HighDigitSAMs",
         "shape": "9s457me",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1980,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ],
+            "Algeria": [
+                1980,
+                2020
+            ],
+            "Belarus": [
+                1980,
+                2020
+            ],
+            "Bulgaria": [
+                1980,
+                2020
+            ],
+            "China": [
+                1980,
+                2020
+            ],
+            "Egypt": [
+                1980,
+                2020
+            ],
+            "GDR": [
+                1980,
+                2020
+            ],
+            "Greece": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1980,
+                2020
+            ],
+            "Kazakhstan": [
+                1980,
+                2020
+            ],
+            "Russia": [
+                1980,
+                2020
+            ],
+            "Slovakia": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                1980,
+                2020
+            ],
+            "Venezuela": [
+                1980,
+                2020
+            ],
+            "Vietnam": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747c6",
@@ -430,18 +1735,76 @@
         "displayName": "SAM SA-12 S-300V \"Giant\" TEL B",
         "module": "HighDigitSAMs",
         "shape": "9a82me",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1980,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ],
+            "Algeria": [
+                1980,
+                2020
+            ],
+            "Belarus": [
+                1980,
+                2020
+            ],
+            "Bulgaria": [
+                1980,
+                2020
+            ],
+            "China": [
+                1980,
+                2020
+            ],
+            "Egypt": [
+                1980,
+                2020
+            ],
+            "GDR": [
+                1980,
+                2020
+            ],
+            "Greece": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1980,
+                2020
+            ],
+            "Kazakhstan": [
+                1980,
+                2020
+            ],
+            "Russia": [
+                1980,
+                2020
+            ],
+            "Slovakia": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                1980,
+                2020
+            ],
+            "Venezuela": [
+                1980,
+                2020
+            ],
+            "Vietnam": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747c8",
@@ -451,18 +1814,76 @@
         "displayName": "SAM SA-12 S-300V \"Gladiator\" TEL A",
         "module": "HighDigitSAMs",
         "shape": "9a83me",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1980,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ],
+            "Algeria": [
+                1980,
+                2020
+            ],
+            "Belarus": [
+                1980,
+                2020
+            ],
+            "Bulgaria": [
+                1980,
+                2020
+            ],
+            "China": [
+                1980,
+                2020
+            ],
+            "Egypt": [
+                1980,
+                2020
+            ],
+            "GDR": [
+                1980,
+                2020
+            ],
+            "Greece": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1980,
+                2020
+            ],
+            "Kazakhstan": [
+                1980,
+                2020
+            ],
+            "Russia": [
+                1980,
+                2020
+            ],
+            "Slovakia": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                1980,
+                2020
+            ],
+            "Venezuela": [
+                1980,
+                2020
+            ],
+            "Vietnam": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747ca",
@@ -472,18 +1893,76 @@
         "displayName": "SAM SA-12 S-300V Bill Board SR",
         "module": "HighDigitSAMs",
         "shape": "9s15m2",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1980,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ],
+            "Algeria": [
+                1980,
+                2020
+            ],
+            "Belarus": [
+                1980,
+                2020
+            ],
+            "Bulgaria": [
+                1980,
+                2020
+            ],
+            "China": [
+                1980,
+                2020
+            ],
+            "Egypt": [
+                1980,
+                2020
+            ],
+            "GDR": [
+                1980,
+                2020
+            ],
+            "Greece": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1980,
+                2020
+            ],
+            "Kazakhstan": [
+                1980,
+                2020
+            ],
+            "Russia": [
+                1980,
+                2020
+            ],
+            "Slovakia": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                1980,
+                2020
+            ],
+            "Venezuela": [
+                1980,
+                2020
+            ],
+            "Vietnam": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747cc",
@@ -493,18 +1972,76 @@
         "displayName": "SAM SA-12 S-300V High Screen SR",
         "module": "HighDigitSAMs",
         "shape": "9s19m2",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1980,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ],
+            "Algeria": [
+                1980,
+                2020
+            ],
+            "Belarus": [
+                1980,
+                2020
+            ],
+            "Bulgaria": [
+                1980,
+                2020
+            ],
+            "China": [
+                1980,
+                2020
+            ],
+            "Egypt": [
+                1980,
+                2020
+            ],
+            "GDR": [
+                1980,
+                2020
+            ],
+            "Greece": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1980,
+                2020
+            ],
+            "Kazakhstan": [
+                1980,
+                2020
+            ],
+            "Russia": [
+                1980,
+                2020
+            ],
+            "Slovakia": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                1980,
+                2020
+            ],
+            "Venezuela": [
+                1980,
+                2020
+            ],
+            "Vietnam": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747ce",
@@ -514,18 +2051,76 @@
         "displayName": "SAM SA-12 S-300V Grill Pan TR",
         "module": "HighDigitSAMs",
         "shape": "9s32",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1980,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ],
+            "Algeria": [
+                1980,
+                2020
+            ],
+            "Belarus": [
+                1980,
+                2020
+            ],
+            "Bulgaria": [
+                1980,
+                2020
+            ],
+            "China": [
+                1980,
+                2020
+            ],
+            "Egypt": [
+                1980,
+                2020
+            ],
+            "GDR": [
+                1980,
+                2020
+            ],
+            "Greece": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1980,
+                2020
+            ],
+            "Kazakhstan": [
+                1980,
+                2020
+            ],
+            "Russia": [
+                1980,
+                2020
+            ],
+            "Slovakia": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                1980,
+                2020
+            ],
+            "Venezuela": [
+                1980,
+                2020
+            ],
+            "Vietnam": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747d0",
@@ -535,18 +2130,72 @@
         "displayName": "SAM SA-23 S-300VM \"Gladiator/Giant\" C2",
         "module": "HighDigitSAMs",
         "shape": "9s457me",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                2010,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2010,
+                2020
+            ],
+            "Algeria": [
+                2010,
+                2020
+            ],
+            "Belarus": [
+                2010,
+                2020
+            ],
+            "Bulgaria": [
+                2010,
+                2020
+            ],
+            "China": [
+                2010,
+                2020
+            ],
+            "Egypt": [
+                2010,
+                2020
+            ],
+            "GDR": [
+                2010,
+                2020
+            ],
+            "Greece": [
+                2010,
+                2020
+            ],
+            "Iran": [
+                2010,
+                2020
+            ],
+            "Kazakhstan": [
+                2010,
+                2020
+            ],
+            "Russia": [
+                2010,
+                2020
+            ],
+            "Slovakia": [
+                2010,
+                2020
+            ],
+            "Ukraine": [
+                2010,
+                2020
+            ],
+            "Venezuela": [
+                2010,
+                2020
+            ],
+            "Vietnam": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747d2",
@@ -556,18 +2205,72 @@
         "displayName": "SAM SA-23 S-300VM Bill Board SR",
         "module": "HighDigitSAMs",
         "shape": "9s15m2",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                2010,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2010,
+                2020
+            ],
+            "Algeria": [
+                2010,
+                2020
+            ],
+            "Belarus": [
+                2010,
+                2020
+            ],
+            "Bulgaria": [
+                2010,
+                2020
+            ],
+            "China": [
+                2010,
+                2020
+            ],
+            "Egypt": [
+                2010,
+                2020
+            ],
+            "GDR": [
+                2010,
+                2020
+            ],
+            "Greece": [
+                2010,
+                2020
+            ],
+            "Iran": [
+                2010,
+                2020
+            ],
+            "Kazakhstan": [
+                2010,
+                2020
+            ],
+            "Russia": [
+                2010,
+                2020
+            ],
+            "Slovakia": [
+                2010,
+                2020
+            ],
+            "Ukraine": [
+                2010,
+                2020
+            ],
+            "Venezuela": [
+                2010,
+                2020
+            ],
+            "Vietnam": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747d4",
@@ -577,18 +2280,72 @@
         "displayName": "SAM SA-23 S-300VM High Screen SR",
         "module": "HighDigitSAMs",
         "shape": "9s19m2",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                2010,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2010,
+                2020
+            ],
+            "Algeria": [
+                2010,
+                2020
+            ],
+            "Belarus": [
+                2010,
+                2020
+            ],
+            "Bulgaria": [
+                2010,
+                2020
+            ],
+            "China": [
+                2010,
+                2020
+            ],
+            "Egypt": [
+                2010,
+                2020
+            ],
+            "GDR": [
+                2010,
+                2020
+            ],
+            "Greece": [
+                2010,
+                2020
+            ],
+            "Iran": [
+                2010,
+                2020
+            ],
+            "Kazakhstan": [
+                2010,
+                2020
+            ],
+            "Russia": [
+                2010,
+                2020
+            ],
+            "Slovakia": [
+                2010,
+                2020
+            ],
+            "Ukraine": [
+                2010,
+                2020
+            ],
+            "Venezuela": [
+                2010,
+                2020
+            ],
+            "Vietnam": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747d6",
@@ -598,18 +2355,72 @@
         "displayName": "SAM SA-23 S-300VM Grill Pan TR",
         "module": "HighDigitSAMs",
         "shape": "9s32me",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                2010,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2010,
+                2020
+            ],
+            "Algeria": [
+                2010,
+                2020
+            ],
+            "Belarus": [
+                2010,
+                2020
+            ],
+            "Bulgaria": [
+                2010,
+                2020
+            ],
+            "China": [
+                2010,
+                2020
+            ],
+            "Egypt": [
+                2010,
+                2020
+            ],
+            "GDR": [
+                2010,
+                2020
+            ],
+            "Greece": [
+                2010,
+                2020
+            ],
+            "Iran": [
+                2010,
+                2020
+            ],
+            "Kazakhstan": [
+                2010,
+                2020
+            ],
+            "Russia": [
+                2010,
+                2020
+            ],
+            "Slovakia": [
+                2010,
+                2020
+            ],
+            "Ukraine": [
+                2010,
+                2020
+            ],
+            "Venezuela": [
+                2010,
+                2020
+            ],
+            "Vietnam": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747d8",
@@ -619,18 +2430,72 @@
         "displayName": "SAM SA-23 S-300VM \"Gladiator\" TEL A",
         "module": "HighDigitSAMs",
         "shape": "9a83me",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                2010,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2010,
+                2020
+            ],
+            "Algeria": [
+                2010,
+                2020
+            ],
+            "Belarus": [
+                2010,
+                2020
+            ],
+            "Bulgaria": [
+                2010,
+                2020
+            ],
+            "China": [
+                2010,
+                2020
+            ],
+            "Egypt": [
+                2010,
+                2020
+            ],
+            "GDR": [
+                2010,
+                2020
+            ],
+            "Greece": [
+                2010,
+                2020
+            ],
+            "Iran": [
+                2010,
+                2020
+            ],
+            "Kazakhstan": [
+                2010,
+                2020
+            ],
+            "Russia": [
+                2010,
+                2020
+            ],
+            "Slovakia": [
+                2010,
+                2020
+            ],
+            "Ukraine": [
+                2010,
+                2020
+            ],
+            "Venezuela": [
+                2010,
+                2020
+            ],
+            "Vietnam": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747da",
@@ -640,18 +2505,72 @@
         "displayName": "SAM SA-23 S-300VM \"Giant\" TEL B",
         "module": "HighDigitSAMs",
         "shape": "9a82me",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                2010,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2010,
+                2020
+            ],
+            "Algeria": [
+                2010,
+                2020
+            ],
+            "Belarus": [
+                2010,
+                2020
+            ],
+            "Bulgaria": [
+                2010,
+                2020
+            ],
+            "China": [
+                2010,
+                2020
+            ],
+            "Egypt": [
+                2010,
+                2020
+            ],
+            "GDR": [
+                2010,
+                2020
+            ],
+            "Greece": [
+                2010,
+                2020
+            ],
+            "Iran": [
+                2010,
+                2020
+            ],
+            "Kazakhstan": [
+                2010,
+                2020
+            ],
+            "Russia": [
+                2010,
+                2020
+            ],
+            "Slovakia": [
+                2010,
+                2020
+            ],
+            "Ukraine": [
+                2010,
+                2020
+            ],
+            "Venezuela": [
+                2010,
+                2020
+            ],
+            "Vietnam": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747dc",
@@ -661,18 +2580,48 @@
         "displayName": "SAM SA-17 Buk-M1-2 \"Grizzly\" TEL",
         "module": "HighDigitSAMs",
         "shape": "9a310m1",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1970,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1970,
+                2020
+            ],
+            "Belarus": [
+                1970,
+                2020
+            ],
+            "Egypt": [
+                1970,
+                2020
+            ],
+            "Finland": [
+                1970,
+                2020
+            ],
+            "Georgia": [
+                1970,
+                2020
+            ],
+            "Russia": [
+                1970,
+                2020
+            ],
+            "Syria": [
+                1970,
+                2020
+            ],
+            "Ukraine": [
+                1970,
+                2020
+            ],
+            "USSR": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747de",
@@ -682,18 +2631,120 @@
         "displayName": "SAM SA-2 (V759) \"Guideline\" LN",
         "module": "HighDigitSAMs",
         "shape": "S_75_Launcher",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1970,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1970,
+                2020
+            ],
+            "Algeria": [
+                1970,
+                2020
+            ],
+            "Bulgaria": [
+                1970,
+                2020
+            ],
+            "China": [
+                1970,
+                2020
+            ],
+            "Cuba": [
+                1970,
+                2020
+            ],
+            "GDR": [
+                1970,
+                2020
+            ],
+            "Egypt": [
+                1970,
+                2020
+            ],
+            "Ethiopia": [
+                1970,
+                2020
+            ],
+            "Georgia": [
+                1970,
+                2020
+            ],
+            "Hungary": [
+                1970,
+                2020
+            ],
+            "India": [
+                1970,
+                2020
+            ],
+            "Indonesia": [
+                1970,
+                2020
+            ],
+            "Iran": [
+                1970,
+                2020
+            ],
+            "Iraq": [
+                1970,
+                2020
+            ],
+            "Libya": [
+                1970,
+                2020
+            ],
+            "NorthKorea": [
+                1970,
+                2020
+            ],
+            "Pakistan": [
+                1970,
+                2020
+            ],
+            "Poland": [
+                1970,
+                2020
+            ],
+            "Romania": [
+                1970,
+                2020
+            ],
+            "Russia": [
+                1970,
+                2020
+            ],
+            "Slovakia": [
+                1970,
+                2020
+            ],
+            "Sudan": [
+                1970,
+                2020
+            ],
+            "Syria": [
+                1970,
+                2020
+            ],
+            "Vietnam": [
+                1970,
+                2020
+            ],
+            "Yemen": [
+                1970,
+                2020
+            ],
+            "Yugoslavia": [
+                1970,
+                2020
+            ],
+            "USSR": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747e0",
@@ -703,18 +2754,24 @@
         "displayName": "SAM HQ-2 \"Guideline\" LN",
         "module": "HighDigitSAMs",
         "shape": "S_75_Launcher",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1970,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1970,
+                2020
+            ],
+            "China": [
+                1970,
+                2020
+            ],
+            "Pakistan": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747e2",
@@ -724,8 +2781,7 @@
         "displayName": "SAM SA-3 (V-601P) S-125 LN",
         "module": "HighDigitSAMs",
         "shape": "5P73_LAUNCH",
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {}
     },
     {
         "_id": "645caae428f12016456747e4",
@@ -735,8 +2791,132 @@
         "displayName": "MANPADS SA-24 Igla-S \"Grinch\"",
         "module": "HighDigitSAMs",
         "shape": "soldier_ru_03",
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Abkhazia": [
+                1980,
+                2020
+            ],
+            "Belarus": [
+                1980,
+                2020
+            ],
+            "Brazil": [
+                1980,
+                2020
+            ],
+            "Bulgaria": [
+                1980,
+                2020
+            ],
+            "Cuba": [
+                1980,
+                2020
+            ],
+            "Egypt": [
+                1980,
+                2020
+            ],
+            "Finland": [
+                1980,
+                2020
+            ],
+            "Georgia": [
+                1980,
+                2020
+            ],
+            "Hungary": [
+                1980,
+                2020
+            ],
+            "India": [
+                1980,
+                2020
+            ],
+            "Indonesia": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1980,
+                2020
+            ],
+            "Jordan": [
+                1980,
+                2020
+            ],
+            "Kazakhstan": [
+                1980,
+                2020
+            ],
+            "Malaysia": [
+                1980,
+                2020
+            ],
+            "Mexico": [
+                1980,
+                2020
+            ],
+            "Morocco": [
+                1980,
+                2020
+            ],
+            "NorthKorea": [
+                1980,
+                2020
+            ],
+            "Russia": [
+                1980,
+                2020
+            ],
+            "Serbia": [
+                1980,
+                2020
+            ],
+            "Slovakia": [
+                1980,
+                2020
+            ],
+            "Slovenia": [
+                1980,
+                2020
+            ],
+            "SouthKorea": [
+                1980,
+                2020
+            ],
+            "SouthOssetia": [
+                1980,
+                2020
+            ],
+            "Syria": [
+                1980,
+                2020
+            ],
+            "Thailand": [
+                1980,
+                2020
+            ],
+            "Turkey": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                1980,
+                2020
+            ],
+            "Vietnam": [
+                1980,
+                2020
+            ],
+            "SouthOssetia": [
+                2010,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747e6",
@@ -746,8 +2926,132 @@
         "displayName": "MANPADS SA-14 Strela-3 \"Gremlin\"",
         "module": "HighDigitSAMs",
         "shape": "soldier_ru_03",
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Abkhazia": [
+                1980,
+                2020
+            ],
+            "Belarus": [
+                1980,
+                2020
+            ],
+            "Brazil": [
+                1980,
+                2020
+            ],
+            "Bulgaria": [
+                1980,
+                2020
+            ],
+            "Cuba": [
+                1980,
+                2020
+            ],
+            "Egypt": [
+                1980,
+                2020
+            ],
+            "Finland": [
+                1980,
+                2020
+            ],
+            "Georgia": [
+                1980,
+                2020
+            ],
+            "Hungary": [
+                1980,
+                2020
+            ],
+            "India": [
+                1980,
+                2020
+            ],
+            "Indonesia": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1980,
+                2020
+            ],
+            "Jordan": [
+                1980,
+                2020
+            ],
+            "Kazakhstan": [
+                1980,
+                2020
+            ],
+            "Malaysia": [
+                1980,
+                2020
+            ],
+            "Mexico": [
+                1980,
+                2020
+            ],
+            "Morocco": [
+                1980,
+                2020
+            ],
+            "NorthKorea": [
+                1980,
+                2020
+            ],
+            "Russia": [
+                1980,
+                2020
+            ],
+            "Serbia": [
+                1980,
+                2020
+            ],
+            "Slovakia": [
+                1980,
+                2020
+            ],
+            "Slovenia": [
+                1980,
+                2020
+            ],
+            "SouthKorea": [
+                1980,
+                2020
+            ],
+            "SouthOssetia": [
+                1980,
+                2020
+            ],
+            "Syria": [
+                1980,
+                2020
+            ],
+            "Thailand": [
+                1980,
+                2020
+            ],
+            "Turkey": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                1980,
+                2020
+            ],
+            "Vietnam": [
+                1980,
+                2020
+            ],
+            "SouthOssetia": [
+                2010,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747e8",
@@ -757,18 +3061,16 @@
         "displayName": "Polyana-D4M1 C2 node",
         "module": "HighDigitSAMs",
         "shape": "Polyana",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1970,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f12016456747ea",
@@ -778,7 +3080,6 @@
         "displayName": "34Ya6E Gazetchik E decoy",
         "module": "HighDigitSAMs",
         "shape": "Gazetchik",
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {}
     }
 ]

@@ -5605,16 +5605,24 @@
         "cruiseSpeed": 200,
         "shape": "A-4E",
         "width": 8.38,
-        "countries": [
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ],
+            "Argentina": [
+                1980,
+                2020
+            ],
+            "Israel": [
+                1980,
+                2020
+            ],
+            "USA": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f120164567467f",
@@ -11616,8 +11624,28 @@
         "cruiseSpeed": 110,
         "shape": "OV-10A",
         "width": 12.9,
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "USA": [
+                1960,
+                2000
+            ],
+            "Philippines": [
+                1960,
+                2020
+            ],
+            "Indonesia": [
+                1960,
+                2020
+            ],
+            "Thailand": [
+                1960,
+                2020
+            ],
+            "Germany": [
+                1960,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f1201645674681",
@@ -22762,8 +22790,84 @@
         "cruiseSpeed": 230,
         "shape": "A_320",
         "width": 35.8,
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Russia": [
+                1980,
+                2020
+            ],
+            "France": [
+                1980,
+                2020
+            ],
+            "Italy": [
+                1980,
+                2020
+            ],
+            "UK": [
+                1980,
+                2020
+            ],
+            "USA": [
+                1980,
+                2020
+            ],
+            "UnitedArabEmirates": [
+                1980,
+                2020
+            ],
+            "Georgia": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1980,
+                2020
+            ],
+            "Spain": [
+                1980,
+                2020
+            ],
+            "Kuwait": [
+                1980,
+                2020
+            ],
+            "Canada": [
+                1980,
+                2020
+            ],
+            "Qatar": [
+                1980,
+                2020
+            ],
+            "Switzerland": [
+                1980,
+                2020
+            ],
+            "SaudiArabia": [
+                1980,
+                2020
+            ],
+            "Turkey": [
+                1980,
+                2020
+            ],
+            "Vietnam": [
+                1980,
+                2020
+            ],
+            "Bahrain": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ],
+            "GDR": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f1201645674683",
@@ -32738,8 +32842,80 @@
         "cruiseSpeed": 230,
         "shape": "A_330",
         "width": 60.3,
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Russia": [
+                1990,
+                2020
+            ],
+            "Canada": [
+                1990,
+                2020
+            ],
+            "China": [
+                1990,
+                2020
+            ],
+            "Egypt": [
+                1990,
+                2020
+            ],
+            "UnitedArabEmirates": [
+                1990,
+                2020
+            ],
+            "Finland": [
+                1990,
+                2020
+            ],
+            "Spain": [
+                1990,
+                2020
+            ],
+            "Bahrain": [
+                1990,
+                2020
+            ],
+            "Germany": [
+                1990,
+                2020
+            ],
+            "Oman": [
+                1990,
+                2020
+            ],
+            "Greece": [
+                1990,
+                2020
+            ],
+            "Australia": [
+                1990,
+                2020
+            ],
+            "UK": [
+                1990,
+                2020
+            ],
+            "Switzerland": [
+                1990,
+                2020
+            ],
+            "Turkey": [
+                1990,
+                2020
+            ],
+            "USA": [
+                1990,
+                2020
+            ],
+            "USSR": [
+                1990,
+                2020
+            ],
+            "GDR": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f1201645674685",
@@ -39114,8 +39290,32 @@
         "cruiseSpeed": 230.833,
         "shape": "A_380",
         "width": 56.4,
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "France": [
+                2000,
+                2020
+            ],
+            "UK": [
+                2000,
+                2020
+            ],
+            "China": [
+                2000,
+                2020
+            ],
+            "UnitedArabEmirates": [
+                2000,
+                2020
+            ],
+            "Australia": [
+                2000,
+                2020
+            ],
+            "Qatar": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f1201645674687",
@@ -46120,8 +46320,36 @@
         "cruiseSpeed": 264.722,
         "shape": "B_727",
         "width": 28.88,
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Russia": [
+                1960,
+                2020
+            ],
+            "France": [
+                1960,
+                2020
+            ],
+            "USA": [
+                1960,
+                2020
+            ],
+            "Italy": [
+                1960,
+                2020
+            ],
+            "Germany": [
+                1960,
+                2020
+            ],
+            "USSR": [
+                1960,
+                2020
+            ],
+            "GDR": [
+                1960,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f1201645674689",
@@ -54476,8 +54704,44 @@
         "cruiseSpeed": 216.81,
         "shape": "B_737",
         "width": 28.88,
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Algeria": [
+                1970,
+                2020
+            ],
+            "France": [
+                1970,
+                2020
+            ],
+            "USA": [
+                1970,
+                2020
+            ],
+            "UK": [
+                1970,
+                2020
+            ],
+            "Finland": [
+                1970,
+                2020
+            ],
+            "Germany": [
+                1970,
+                2020
+            ],
+            "Oman": [
+                1970,
+                2020
+            ],
+            "Australia": [
+                1970,
+                2020
+            ],
+            "Ukraine": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f120164567468b",
@@ -60762,8 +61026,20 @@
         "cruiseSpeed": 259,
         "shape": "B_747",
         "width": 56.4,
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "USA": [
+                1970,
+                2020
+            ],
+            "UK": [
+                1970,
+                2020
+            ],
+            "Switzerland": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f120164567468d",
@@ -66778,8 +67054,12 @@
         "cruiseSpeed": 237.222,
         "shape": "B_757",
         "width": 38,
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "USA": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f120164567468f",
@@ -72974,8 +73254,16 @@
         "cruiseSpeed": 99.167,
         "shape": "Cessna_210N",
         "width": 11.2,
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "USA": [
+                1970,
+                2020
+            ],
+            "Greece": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f1201645674691",
@@ -78540,8 +78828,12 @@
         "cruiseSpeed": 243.33,
         "shape": "DC_10",
         "width": 50.39,
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Switzerland": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f1201645674693",
@@ -85912,8 +86204,32 @@
         "cruiseSpeed": 220,
         "shape": "JAS39Gripen",
         "width": 8.4,
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Brazil": [
+                1980,
+                2020
+            ],
+            "CzechRepublic": [
+                1980,
+                2020
+            ],
+            "Hungary": [
+                1980,
+                2020
+            ],
+            "SouthAfrica": [
+                1980,
+                2020
+            ],
+            "Sweden": [
+                1980,
+                2020
+            ],
+            "Thailand": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "645caae428f1201645674695",
@@ -93838,8 +94154,32 @@
         "cruiseSpeed": 220,
         "shape": "JAS39Gripen_AG",
         "width": 8.4,
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Brazil": [
+                1980,
+                2020
+            ],
+            "CzechRepublic": [
+                1980,
+                2020
+            ],
+            "Hungary": [
+                1980,
+                2020
+            ],
+            "SouthAfrica": [
+                1980,
+                2020
+            ],
+            "Sweden": [
+                1980,
+                2020
+            ],
+            "Thailand": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "646676094719c14d565112cf",
@@ -98347,8 +98687,12 @@
         "cruiseSpeed": 270,
         "shape": "F-117",
         "width": 43.4,
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "USA": [
+                1980,
+                2010
+            ]
+        }
     },
     {
         "_id": "646676094719c14d565112d1",
@@ -103794,16 +104138,12 @@
         "cruiseSpeed": 220,
         "shape": "F-22A",
         "width": 13.05,
-        "countries": [
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USA": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "646676094719c14d565112d3",
@@ -109404,16 +109744,236 @@
         "cruiseSpeed": 179,
         "shape": "Hercules",
         "width": 40.41,
-        "countries": [
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                1950,
+                2020
+            ],
+            "USA": [
+                1950,
+                2020
+            ],
+            "Turkey": [
+                1950,
+                2020
+            ],
+            "UK": [
+                1950,
+                2020
+            ],
+            "France": [
+                1950,
+                2020
+            ],
+            "USAFAggressors": [
+                1950,
+                2020
+            ],
+            "Canada": [
+                1950,
+                2020
+            ],
+            "Spain": [
+                1950,
+                2020
+            ],
+            "TheNetherlands": [
+                1950,
+                2020
+            ],
+            "Belgium": [
+                1950,
+                2020
+            ],
+            "Norway": [
+                1950,
+                2020
+            ],
+            "Denmark": [
+                1950,
+                2020
+            ],
+            "Israel": [
+                1950,
+                2020
+            ],
+            "Italy": [
+                1950,
+                2020
+            ],
+            "Australia": [
+                1950,
+                2020
+            ],
+            "Austria": [
+                1950,
+                2020
+            ],
+            "Egypt": [
+                1950,
+                2020
+            ],
+            "Greece": [
+                1950,
+                2020
+            ],
+            "India": [
+                1950,
+                2020
+            ],
+            "Iran": [
+                1950,
+                2020
+            ],
+            "Iraq": [
+                1950,
+                2020
+            ],
+            "Japan": [
+                1950,
+                2020
+            ],
+            "Pakistan": [
+                1950,
+                2020
+            ],
+            "Poland": [
+                1950,
+                2020
+            ],
+            "Romania": [
+                1950,
+                2020
+            ],
+            "SaudiArabia": [
+                1950,
+                2020
+            ],
+            "SouthKorea": [
+                1950,
+                2020
+            ],
+            "Sweden": [
+                1950,
+                2020
+            ],
+            "Yemen": [
+                1950,
+                2020
+            ],
+            "Vietnam": [
+                1950,
+                2020
+            ],
+            "Venezuela": [
+                1950,
+                2020
+            ],
+            "Tunisia": [
+                1950,
+                2020
+            ],
+            "Thailand": [
+                1950,
+                2020
+            ],
+            "Sudan": [
+                1950,
+                2020
+            ],
+            "Philippines": [
+                1950,
+                2020
+            ],
+            "Morocco": [
+                1950,
+                2020
+            ],
+            "Mexico": [
+                1950,
+                2020
+            ],
+            "Malaysia": [
+                1950,
+                2020
+            ],
+            "Libya": [
+                1950,
+                2020
+            ],
+            "Jordan": [
+                1950,
+                2020
+            ],
+            "Indonesia": [
+                1950,
+                2020
+            ],
+            "Honduras": [
+                1950,
+                2020
+            ],
+            "Ethiopia": [
+                1950,
+                2020
+            ],
+            "Chile": [
+                1950,
+                2020
+            ],
+            "Brazil": [
+                1950,
+                2020
+            ],
+            "Algeria": [
+                1950,
+                2020
+            ],
+            "Kuwait": [
+                1950,
+                2020
+            ],
+            "Oman": [
+                1950,
+                2020
+            ],
+            "UnitedArabEmirates": [
+                1950,
+                2020
+            ],
+            "SouthAfrica": [
+                1950,
+                2020
+            ],
+            "Portugal": [
+                1950,
+                2020
+            ],
+            "Argentina": [
+                1950,
+                2020
+            ],
+            "Cyprus": [
+                1950,
+                2020
+            ],
+            "Bolivia": [
+                1950,
+                2020
+            ],
+            "Nigeria": [
+                1950,
+                2020
+            ],
+            "Peru": [
+                1950,
+                2020
+            ],
+            "Ecuador": [
+                1950,
+                2020
+            ]
+        }
     },
     {
         "_id": "646676094719c14d565112d7",
@@ -114288,8 +114848,28 @@
         "cruiseSpeed": 250,
         "shape": "Rafale_A_S",
         "width": 10.86,
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Egypt": [
+                1990,
+                2020
+            ],
+            "France": [
+                1990,
+                2020
+            ],
+            "Greece": [
+                1990,
+                2020
+            ],
+            "India": [
+                1990,
+                2020
+            ],
+            "Qatar": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "646676094719c14d565112d9",
@@ -119164,8 +119744,28 @@
         "cruiseSpeed": 250,
         "shape": " Rafale_M",
         "width": 10.86,
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Egypt": [
+                1990,
+                2020
+            ],
+            "France": [
+                1990,
+                2020
+            ],
+            "Greece": [
+                1990,
+                2020
+            ],
+            "India": [
+                1990,
+                2020
+            ],
+            "Qatar": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "646676094719c14d565112db",
@@ -124400,8 +125000,28 @@
         "cruiseSpeed": 250,
         "shape": "Rafale_C",
         "width": 10.86,
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Egypt": [
+                1990,
+                2020
+            ],
+            "France": [
+                1990,
+                2020
+            ],
+            "Greece": [
+                1990,
+                2020
+            ],
+            "India": [
+                1990,
+                2020
+            ],
+            "Qatar": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "646676094719c14d565112dd",
@@ -129186,8 +129806,28 @@
         "cruiseSpeed": 250,
         "shape": "Rafale_B",
         "width": 10.86,
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Egypt": [
+                1990,
+                2020
+            ],
+            "France": [
+                1990,
+                2020
+            ],
+            "Greece": [
+                1990,
+                2020
+            ],
+            "India": [
+                1990,
+                2020
+            ],
+            "Qatar": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "646676094719c14d565112df",
@@ -133426,7 +134066,43 @@
         "cruiseSpeed": 123.45679012346,
         "shape": "A-29B",
         "width": 11.135,
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Brazil": [
+                2000,
+                2010
+            ],
+            "Chile": [
+                2000,
+                2010
+            ],
+            "Ecuador": [
+                2000,
+                2010
+            ],
+            "Honduras": [
+                2000,
+                2010
+            ],
+            "Indonesia": [
+                2000,
+                2010
+            ],
+            "Nigeria": [
+                2000,
+                2010
+            ],
+            "Philippines": [
+                2000,
+                2010
+            ],
+            "USA": [
+                2000,
+                2010
+            ],
+            "Lebanon": [
+                2020,
+                2020
+            ]
+        }
     }
 ]

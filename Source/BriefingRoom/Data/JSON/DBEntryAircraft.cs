@@ -98,7 +98,7 @@ namespace BriefingRoom4DCS.Data
                     UIDisplayName = new LanguageString(aircraft.displayName),
                     DCSID = aircraft.type,
                     Liveries = aircraft.paintSchemes.ToDictionary(pair => (Country)Enum.Parse(typeof(Country), pair.Key.Replace(" ", ""), true), pair => pair.Value),
-                    Countries = GetOperationalCountries(aircraft, supportInfo),
+                    Operators = GetOperationalCountries(aircraft, supportInfo),
                     Module = aircraft.module,
                     Tasks = aircraft.tasks.Where(x => x is not null).Select(x => (DCSTask)x.WorldID).ToList(),
                     Fuel = aircraft.fuel,

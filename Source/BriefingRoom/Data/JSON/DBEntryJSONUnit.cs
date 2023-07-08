@@ -30,7 +30,7 @@ namespace BriefingRoom4DCS.Data
     {
         internal string DCSID { get; init; }
         internal Dictionary<Country, List<string>> Liveries { get; init; } = new Dictionary<Country, List<string>> { };
-        internal Dictionary<Country, (Decade start, Decade end)> Countries { get; init; }
+        internal Dictionary<Country, (Decade start, Decade end)> Operators { get; init; }
         internal string Module { get; init; }
         internal UnitCategory Category { get { return Families[0].GetUnitCategory(); } }
         internal bool IsAircraft { get { return Category.IsAircraft(); } }
@@ -65,10 +65,7 @@ namespace BriefingRoom4DCS.Data
 
         internal static Dictionary<Country, (Decade start, Decade end)> GetOperationalCountries(Unit unit, BRInfo supportInfo)
         {
-            var defaultOperational = (start: (Decade)supportInfo.operational[0], end: (Decade)supportInfo.operational[1]);
-            var countryList = unit.countries.Select(x => (Country)Enum.Parse(typeof(Country), x.Replace(" ", ""), true)).ToDictionary(x => x, x => defaultOperational);
-            var extraCountries = supportInfo.extraOperators.ToDictionary(x => (Country)Enum.Parse(typeof(Country), x.Key.Replace(" ", ""), true), x => x.Value.Count > 0 ? (start: (Decade)x.Value[0], end: (Decade)x.Value[1]) : defaultOperational);
-            return countryList.Concat(extraCountries).GroupBy(d => d.Key).ToDictionary(x => x.Key, x => x.Last().Value);
+            return unit.Operators.ToDictionary(x => (Country)Enum.Parse(typeof(Country), x.Key.Replace(" ", ""), true), x =>(start: (Decade)x.Value[0], end: (Decade)x.Value[1]));
         }
     }
 }

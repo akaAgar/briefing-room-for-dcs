@@ -5544,15 +5544,91 @@
         "maxAlt": 3170,
         "cruiseSpeed": 296.32,
         "width": 16.4,
-        "countries": [
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                1990,
+                2020
+            ],
+            "USA": [
+                1970,
+                2010
+            ],
+            "Israel": [
+                1970,
+                2010
+            ],
+            "Argentina": [
+                1970,
+                2010
+            ],
+            "Turkey": [
+                1990,
+                2020
+            ],
+            "USAFAggressors": [
+                1990,
+                2020
+            ],
+            "Australia": [
+                1990,
+                2020
+            ],
+            "Austria": [
+                1990,
+                2020
+            ],
+            "Egypt": [
+                1990,
+                2020
+            ],
+            "Japan": [
+                1990,
+                2020
+            ],
+            "SaudiArabia": [
+                1990,
+                2020
+            ],
+            "SouthKorea": [
+                1990,
+                2020
+            ],
+            "Thailand": [
+                1990,
+                2020
+            ],
+            "Morocco": [
+                1990,
+                2020
+            ],
+            "Mexico": [
+                1990,
+                2020
+            ],
+            "Malaysia": [
+                1990,
+                2020
+            ],
+            "Jordan": [
+                1990,
+                2020
+            ],
+            "Chile": [
+                1990,
+                2020
+            ],
+            "Brazil": [
+                1990,
+                2020
+            ],
+            "Bahrain": [
+                1990,
+                2020
+            ],
+            "UnitedArabEmirates": [
+                1990,
+                2020
+            ]
+        }
     }
 ]

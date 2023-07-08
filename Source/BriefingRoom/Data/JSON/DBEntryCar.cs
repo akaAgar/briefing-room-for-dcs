@@ -58,7 +58,7 @@ namespace BriefingRoom4DCS.Data
                     UIDisplayName = new LanguageString(car.displayName),
                     DCSID = car.type,
                     Liveries = car.paintSchemes.ToDictionary(pair => (Country)Enum.Parse(typeof(Country), pair.Key.Replace(" ", ""), true), pair => pair.Value),
-                    Countries = GetOperationalCountries(car, infoData),
+                    Operators = GetOperationalCountries(car, infoData),
                     DCSCategory = car.category,
                     Module = car.module,
                     Shape = car.shape,

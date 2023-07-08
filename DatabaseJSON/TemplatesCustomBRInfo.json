@@ -2,7 +2,10 @@
     {
         "type": "FOB_Berlin",
         "family": "FOB",
-        "operational": [1980, 2020],
+        "operational": [
+            1980,
+            2020
+        ],
         "extraOperators": {
             "Germany": []
         }
@@ -10,7 +13,10 @@
     {
         "type": "FOB_Dallas",
         "family": "FOB",
-        "operational": [1980, 2020],
+        "operational": [
+            1980,
+            2020
+        ],
         "extraOperators": {
             "USA": []
         }
@@ -18,7 +24,10 @@
     {
         "type": "FOB_London",
         "family": "FOB",
-        "operational": [1980, 2020],
+        "operational": [
+            1980,
+            2020
+        ],
         "extraOperators": {
             "UK": []
         }
@@ -26,7 +35,10 @@
     {
         "type": "FOB_Moscow",
         "family": "FOB",
-        "operational": [1980, 2020],
+        "operational": [
+            1980,
+            2020
+        ],
         "extraOperators": {
             "Russia": []
         }
@@ -34,7 +46,10 @@
     {
         "type": "FOB_Paris",
         "family": "FOB",
-        "operational": [1980, 2020],
+        "operational": [
+            1980,
+            2020
+        ],
         "extraOperators": {
             "France": []
         }
@@ -42,7 +57,10 @@
     {
         "type": "CVN_71",
         "family": "ShipCarrierCATOBAR",
-        "operational": [1980, 2020],
+        "operational": [
+            1980,
+            2020
+        ],
         "extraOperators": {
             "USA": []
         }
@@ -50,7 +68,10 @@
     {
         "type": "CVN_72",
         "family": "ShipCarrierCATOBAR",
-        "operational": [1990, 2020],
+        "operational": [
+            1990,
+            2020
+        ],
         "extraOperators": {
             "USA": []
         }
@@ -58,7 +79,10 @@
     {
         "type": "CVN_73",
         "family": "ShipCarrierCATOBAR",
-        "operational": [1990, 2020],
+        "operational": [
+            1990,
+            2020
+        ],
         "extraOperators": {
             "USA": []
         }
@@ -66,7 +90,10 @@
     {
         "type": "CVN_75",
         "family": "ShipCarrierCATOBAR",
-        "operational": [2000, 2020],
+        "operational": [
+            2000,
+            2020
+        ],
         "extraOperators": {
             "USA": []
         }
@@ -74,7 +101,10 @@
     {
         "type": "CV_1143_5",
         "family": "ShipCarrierSTOBAR",
-        "operational": [1990, 2020],
+        "operational": [
+            1990,
+            2020
+        ],
         "extraOperators": {
             "Russia": []
         }
@@ -82,7 +112,10 @@
     {
         "type": "Forrestal",
         "family": "ShipCarrierCATOBAR",
-        "operational": [1990, 2020],
+        "operational": [
+            1990,
+            2020
+        ],
         "extraOperators": {
             "USA": []
         }
@@ -90,7 +123,10 @@
     {
         "type": "hms_invincible",
         "family": "ShipCarrierSTOVL",
-        "operational": [1970, 2010],
+        "operational": [
+            1970,
+            2010
+        ],
         "extraOperators": {
             "UK": []
         }
@@ -98,7 +134,10 @@
     {
         "type": "KUZNECOW",
         "family": "ShipCarrierSTOBAR",
-        "operational": [1990, 2020],
+        "operational": [
+            1990,
+            2020
+        ],
         "extraOperators": {
             "Russia": []
         }
@@ -106,7 +145,10 @@
     {
         "type": "LHA_Tarawa",
         "family": "ShipCarrierSTOVL",
-        "operational": [1970, 2020],
+        "operational": [
+            1970,
+            2020
+        ],
         "extraOperators": {
             "USA": []
         }
@@ -114,7 +156,10 @@
     {
         "type": "Stennis",
         "family": "ShipCarrierCATOBAR",
-        "operational": [1990, 2020],
+        "operational": [
+            1990,
+            2020
+        ],
         "extraOperators": {
             "USA": []
         }
@@ -122,7 +167,10 @@
     {
         "type": "VINSON",
         "family": "ShipCarrierCATOBAR",
-        "operational": [1980, 2020],
+        "operational": [
+            1980,
+            2020
+        ],
         "extraOperators": {
             "USA": []
         }
@@ -130,7 +178,10 @@
     {
         "type": "Ammo Depos",
         "family": "StaticStructureMilitary",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -138,7 +189,10 @@
     {
         "type": "Ammo Storage Facility",
         "family": "StaticStructureMilitary",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -146,7 +200,10 @@
     {
         "type": "Ammo Storage",
         "family": "StaticStructureMilitary",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -154,7 +211,10 @@
     {
         "type": "Antenna Array",
         "family": "StaticStructureMilitary",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -162,7 +222,10 @@
     {
         "type": "Barracks Buildings",
         "family": "StaticStructureMilitary",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -170,7 +233,10 @@
     {
         "type": "Barracks Camp",
         "family": "StaticStructureMilitary",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -178,7 +244,10 @@
     {
         "type": "Big TV Tower",
         "family": "StaticStructureMilitary",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -186,7 +255,10 @@
     {
         "type": "Camp",
         "family": "StaticStructureMilitary",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -194,7 +266,10 @@
     {
         "type": "Command Outpost",
         "family": "StaticStructureMilitary",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -202,7 +277,10 @@
     {
         "type": "FARP",
         "family": "StaticStructureMilitary",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -210,7 +288,10 @@
     {
         "type": "Large Bunker Facility",
         "family": "StaticStructureMilitary",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -218,7 +299,10 @@
     {
         "type": "Large Command Post",
         "family": "StaticStructureMilitary",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -226,7 +310,10 @@
     {
         "type": "Radio Field",
         "family": "StaticStructureMilitary",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -234,7 +321,10 @@
     {
         "type": "Small Barracks",
         "family": "StaticStructureMilitary",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -242,7 +332,10 @@
     {
         "type": "Supply Outpost",
         "family": "StaticStructureMilitary",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -250,7 +343,10 @@
     {
         "type": "Gas Field",
         "family": "StaticStructureOffshore",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -258,7 +354,10 @@
     {
         "type": "Large Gas Field",
         "family": "StaticStructureOffshore",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -266,7 +365,10 @@
     {
         "type": "Large Offshore Field",
         "family": "StaticStructureOffshore",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -274,7 +376,10 @@
     {
         "type": "Large Oil Field",
         "family": "StaticStructureOffshore",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -282,7 +387,10 @@
     {
         "type": "Massive Gas Field",
         "family": "StaticStructureOffshore",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -290,7 +398,10 @@
     {
         "type": "Massive Offshore Field",
         "family": "StaticStructureOffshore",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -298,7 +409,10 @@
     {
         "type": "Massive Oil Field",
         "family": "StaticStructureOffshore",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -306,7 +420,10 @@
     {
         "type": "Offshore Field",
         "family": "StaticStructureOffshore",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -314,7 +431,10 @@
     {
         "type": "Oil Field",
         "family": "StaticStructureOffshore",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -322,7 +442,10 @@
     {
         "type": "Small Gas Field",
         "family": "StaticStructureOffshore",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -330,7 +453,10 @@
     {
         "type": "Small Offshore Field",
         "family": "StaticStructureOffshore",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -338,7 +464,10 @@
     {
         "type": "Small Oil Field",
         "family": "StaticStructureOffshore",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -346,7 +475,10 @@
     {
         "type": "Factory Complex",
         "family": "StaticStructureProduction",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -354,7 +486,10 @@
     {
         "type": "Fuel Refinery",
         "family": "StaticStructureProduction",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -362,7 +497,10 @@
     {
         "type": "Large Factory",
         "family": "StaticStructureProduction",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -370,7 +508,10 @@
     {
         "type": "Large Tank 2 Facility",
         "family": "StaticStructureProduction",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -378,7 +519,10 @@
     {
         "type": "Large Tank 3 Facility",
         "family": "StaticStructureProduction",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -386,7 +530,10 @@
     {
         "type": "Large Tank Facility",
         "family": "StaticStructureProduction",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -394,7 +541,10 @@
     {
         "type": "Power Facility",
         "family": "StaticStructureProduction",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -402,7 +552,10 @@
     {
         "type": "Power Station 2",
         "family": "StaticStructureProduction",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -410,7 +563,10 @@
     {
         "type": "Power Station",
         "family": "StaticStructureProduction",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -418,7 +574,10 @@
     {
         "type": "Small Power Station",
         "family": "StaticStructureProduction",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -426,7 +585,10 @@
     {
         "type": "Supply Depos",
         "family": "StaticStructureProduction",
-        "operational": [1940, 2020],
+        "operational": [
+            1940,
+            2020
+        ],
         "extraOperators": {
             "ALL": []
         }
@@ -434,7 +596,10 @@
     {
         "type": "Patriot",
         "family": "VehicleSAMLong",
-        "operational": [1980, 2020],
+        "operational": [
+            1980,
+            2020
+        ],
         "extraOperators": {
             "Germany": [],
             "Greece": [],
@@ -451,7 +616,10 @@
     {
         "type": "S-300PS",
         "family": "VehicleSAMLong",
-        "operational": [1970, 2020],
+        "operational": [
+            1970,
+            2020
+        ],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -472,7 +640,10 @@
     {
         "type": "Hawk",
         "family": "VehicleSAMMedium",
-        "operational": [1960, 1990],
+        "operational": [
+            1960,
+            1990
+        ],
         "extraOperators": {
             "Bahrain": [],
             "Belgium": [],
@@ -501,7 +672,10 @@
     {
         "type": "Kub",
         "family": "VehicleSAMMedium",
-        "operational": [1960, 2020],
+        "operational": [
+            1960,
+            2020
+        ],
         "extraOperators": {
             "Algeria": [],
             "Bulgaria": [],
@@ -531,7 +705,10 @@
     {
         "type": "NASAMS (AIM-120C)",
         "family": "VehicleSAMMedium",
-        "operational": [2000, 2020],
+        "operational": [
+            2000,
+            2020
+        ],
         "extraOperators": {
             "Australia": [],
             "Chile": [],
@@ -549,7 +726,10 @@
     {
         "type": "rapier_fsa",
         "family": "VehicleSAMMedium",
-        "operational": [1970, 2020],
+        "operational": [
+            1970,
+            2020
+        ],
         "extraOperators": {
             "Australia": [],
             "Indonesia": [],
@@ -569,7 +749,10 @@
     {
         "type": "s-125",
         "family": "VehicleSAMMedium",
-        "operational": [1970, 2020],
+        "operational": [
+            1970,
+            2020
+        ],
         "extraOperators": {
             "Algeria": [],
             "Bulgaria": [],
@@ -603,7 +786,10 @@
     {
         "type": "SA-11 Buk",
         "family": "VehicleSAMMedium",
-        "operational": [1980, 2020],
+        "operational": [
+            1980,
+            2020
+        ],
         "extraOperators": {
             "Belarus": [],
             "Egypt": [],
@@ -617,7 +803,10 @@
     {
         "type": "SA-5",
         "family": "VehicleSAMMedium",
-        "operational": [1960, 2020],
+        "operational": [
+            1960,
+            2020
+        ],
         "extraOperators": {
             "Belarus": [],
             "Egypt": [],
@@ -631,7 +820,10 @@
     {
         "type": "S_75M",
         "family": "VehicleSAMMedium",
-        "operational": [1960, 2020],
+        "operational": [
+            1960,
+            2020
+        ],
         "extraOperators": {
             "Algeria": [],
             "Bulgaria": [],
@@ -664,7 +856,10 @@
         "type": "SA-10b (5v5rud)",
         "module": "HighDigitSAMs",
         "family": "VehicleSAMLong",
-        "operational": [1970, 2020],
+        "operational": [
+            1970,
+            2020
+        ],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -686,7 +881,10 @@
         "type": "SA-10b",
         "family": "VehicleSAMLong",
         "module": "HighDigitSAMs",
-        "operational": [1970, 2020],
+        "operational": [
+            1970,
+            2020
+        ],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -708,7 +906,10 @@
         "type": "SA-12 Anti Ballistic",
         "module": "HighDigitSAMs",
         "family": "VehicleSAMLong",
-        "operational": [1970, 2020],
+        "operational": [
+            1970,
+            2020
+        ],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -727,7 +928,10 @@
         "type": "SA-12 Anti Plane",
         "family": "VehicleSAMLong",
         "module": "HighDigitSAMs",
-        "operational": [1970, 2020],
+        "operational": [
+            1970,
+            2020
+        ],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -749,7 +953,10 @@
         "type": "SA-17",
         "family": "VehicleSAMMedium",
         "module": "HighDigitSAMs",
-        "operational": [1980, 2020],
+        "operational": [
+            1980,
+            2020
+        ],
         "extraOperators": {
             "Belarus": [],
             "Egypt": [],
@@ -764,7 +971,10 @@
         "type": "SA-2 5V759 Missile",
         "family": "VehicleSAMMedium",
         "module": "HighDigitSAMs",
-        "operational": [1960, 2020],
+        "operational": [
+            1960,
+            2020
+        ],
         "extraOperators": {
             "Algeria": [],
             "Bulgaria": [],
@@ -796,7 +1006,10 @@
     {
         "type": "SA-2 HQ-2 Missile",
         "family": "VehicleSAMMedium",
-        "operational": [1980, 2020],
+        "operational": [
+            1980,
+            2020
+        ],
         "extraOperators": {
             "China": [],
             "Pakistan": []
@@ -806,7 +1019,10 @@
         "type": "SA-20A",
         "module": "HighDigitSAMs",
         "family": "VehicleSAMLong",
-        "operational": [1970, 2020],
+        "operational": [
+            1970,
+            2020
+        ],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -828,7 +1044,10 @@
         "type": "SA-20B",
         "family": "VehicleSAMLong",
         "module": "HighDigitSAMs",
-        "operational": [1970, 2020],
+        "operational": [
+            1970,
+            2020
+        ],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -850,7 +1069,10 @@
         "type": "SA-23 Anti Ballistic",
         "family": "VehicleSAMLong",
         "module": "HighDigitSAMs",
-        "operational": [1970, 2020],
+        "operational": [
+            1970,
+            2020
+        ],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -872,7 +1094,10 @@
         "type": "SA-23 Anti Plane",
         "module": "HighDigitSAMs",
         "family": "VehicleSAMLong",
-        "operational": [1970, 2020],
+        "operational": [
+            1970,
+            2020
+        ],
         "extraOperators": {
             "Algeria": [],
             "Belarus": [],
@@ -893,7 +1118,10 @@
     {
         "type": "flak36",
         "family": "VehicleAAAStatic",
-        "operational": [1940, 1940],
+        "operational": [
+            1940,
+            1940
+        ],
         "extraOperators": {
             "Germany": [],
             "Thirdreich": []
@@ -902,7 +1130,10 @@
     {
         "type": "flak37",
         "family": "VehicleAAAStatic",
-        "operational": [1940, 1940],
+        "operational": [
+            1940,
+            1940
+        ],
         "extraOperators": {
             "Germany": [],
             "Thirdreich": []
@@ -911,7 +1142,10 @@
     {
         "type": "flak41",
         "family": "VehicleAAAStatic",
-        "operational": [1940, 1940],
+        "operational": [
+            1940,
+            1940
+        ],
         "extraOperators": {
             "Germany": [],
             "Thirdreich": []
@@ -920,7 +1154,10 @@
     {
         "type": "QF_37_AA",
         "family": "VehicleAAAStatic",
-        "operational": [1940, 1940],
+        "operational": [
+            1940,
+            1940
+        ],
         "extraOperators": {
             "UK": [],
             "USA": []
@@ -929,7 +1166,10 @@
     {
         "type": "Igla-s Squad",
         "family": "InfantryMANPADS",
-        "operational": [1980, 2020],
+        "operational": [
+            1980,
+            2020
+        ],
         "extraOperators": {
             "Russia": [],
             "Ukraine": [],
@@ -955,7 +1195,10 @@
     {
         "type": "Stringer Squad",
         "family": "InfantryMANPADS",
-        "operational": [1980, 2020],
+        "operational": [
+            1980,
+            2020
+        ],
         "extraOperators": {
             "USA": [],
             "Turkey": [],
@@ -995,7 +1238,10 @@
     {
         "type": "Igla Squad",
         "family": "InfantryMANPADS",
-        "operational": [1980, 2020],
+        "operational": [
+            1980,
+            2020
+        ],
         "extraOperators": {
             "Russia": [],
             "Ukraine": [],
@@ -1080,7 +1326,10 @@
             "Vietnam": [],
             "Yemen": []
         },
-        "operational": [1940, 2020]
+        "operational": [
+            1940,
+            2020
+        ]
     },
     {
         "type": "S-60 Battery",
@@ -1119,7 +1368,10 @@
             "Cuba": [],
             "UnitedNationsPeacekeepers": []
         },
-        "operational": [1950, 2020]
+        "operational": [
+            1950,
+            2020
+        ]
     },
     {
         "type": "K-19 Battery",
@@ -1150,7 +1402,10 @@
             "GDR": [],
             "UnitedNationsPeacekeepers": []
         },
-        "operational": [1940, 2020]
+        "operational": [
+            1940,
+            2020
+        ]
     },
     {
         "type": "ZU-23 closed",
@@ -1198,7 +1453,10 @@
             "Peru": [],
             "Ecuador": []
         },
-        "operational": [1960, 2020]
+        "operational": [
+            1960,
+            2020
+        ]
     },
     {
         "type": "ZU-23",
@@ -1246,7 +1504,10 @@
             "Peru": [],
             "Ecuador": []
         },
-        "operational": [1960, 2020]
+        "operational": [
+            1960,
+            2020
+        ]
     },
     {
         "type": "ZU-23 Closed Insurgent",
@@ -1258,7 +1519,10 @@
             "Iraq": [],
             "UnitedNationsPeacekeepers": []
         },
-        "operational": [1960, 2020]
+        "operational": [
+            1960,
+            2020
+        ]
     },
     {
         "type": "ZU-23 insurgent",
@@ -1270,6 +1534,9 @@
             "Iraq": [],
             "UnitedNationsPeacekeepers": []
         },
-        "operational": [1960, 2020]
+        "operational": [
+            1960,
+            2020
+        ]
     }
 ]

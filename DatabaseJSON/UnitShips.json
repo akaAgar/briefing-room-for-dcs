@@ -9,188 +9,12 @@
             }
         ],
         "shape": "Patrol_Boat",
-        "countries": [
-            "Russia",
-            "Ukraine",
-            "USA",
-            "Turkey",
-            "UK",
-            "France",
-            "Germany",
-            "USAF Aggressors",
-            "Canada",
-            "Spain",
-            "The Netherlands",
-            "Belgium",
-            "Norway",
-            "Denmark",
-            "Israel",
-            "Georgia",
-            "Insurgents",
-            "Abkhazia",
-            "Italy",
-            "Australia",
-            "Switzerland",
-            "Austria",
-            "Belarus",
-            "Bulgaria",
-            "Czech Republic",
-            "China",
-            "Croatia",
-            "Egypt",
-            "Finland",
-            "Greece",
-            "Hungary",
-            "India",
-            "Iran",
-            "Iraq",
-            "Japan",
-            "Kazakhstan",
-            "North Korea",
-            "Pakistan",
-            "Poland",
-            "Romania",
-            "Saudi Arabia",
-            "Serbia",
-            "Slovakia",
-            "South Korea",
-            "Sweden",
-            "Syria",
-            "Yemen",
-            "Vietnam",
-            "Venezuela",
-            "Tunisia",
-            "Thailand",
-            "Sudan",
-            "Philippines",
-            "Morocco",
-            "Mexico",
-            "Malaysia",
-            "Libya",
-            "Jordan",
-            "Indonesia",
-            "Honduras",
-            "Ethiopia",
-            "Chile",
-            "Brazil",
-            "Bahrain",
-            "Third Reich",
-            "Yugoslavia",
-            "USSR",
-            "Italian Social Republic",
-            "Algeria",
-            "Kuwait",
-            "Qatar",
-            "Oman",
-            "United Arab Emirates",
-            "South Africa",
-            "Cuba",
-            "Portugal",
-            "GDR",
-            "Lebanon",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers",
-            "Argentina",
-            "Cyprus",
-            "Slovenia",
-            "Bolivia",
-            "Ghana",
-            "Nigeria",
-            "Peru",
-            "Ecuador"
-        ],
-        "countriesWorldID": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            15,
-            16,
-            17,
-            18,
-            20,
-            21,
-            22,
-            23,
-            24,
-            25,
-            26,
-            27,
-            28,
-            29,
-            30,
-            31,
-            32,
-            33,
-            34,
-            35,
-            36,
-            37,
-            38,
-            39,
-            40,
-            41,
-            42,
-            43,
-            44,
-            45,
-            46,
-            47,
-            48,
-            49,
-            50,
-            51,
-            52,
-            53,
-            54,
-            55,
-            56,
-            57,
-            58,
-            59,
-            60,
-            61,
-            62,
-            63,
-            64,
-            65,
-            66,
-            67,
-            68,
-            69,
-            70,
-            71,
-            72,
-            73,
-            74,
-            75,
-            76,
-            77,
-            78,
-            79,
-            80,
-            81,
-            82,
-            83,
-            84,
-            85,
-            86,
-            87,
-            88,
-            89,
-            90
-        ]
+        "operators": {
+            "ALL": [
+                1940,
+                2020
+            ]
+        }
     },
     {
         "_id": "d310141c0f75d26a774e5c235cfb4eab239278e2",
@@ -212,8 +36,11 @@
             }
         ],
         "shape": "vinson",
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "USA": [
+                1980, 2020
+            ]
+        }
     },
     {
         "_id": "9c79eac5babe04b3f077c52c0bb3cc00b9be0117",
@@ -229,34 +56,44 @@
             }
         ],
         "shape": "perry",
-        "countries": [
-            "USA",
-            "Turkey",
-            "USAF Aggressors",
-            "Spain",
-            "Australia",
-            "Egypt",
-            "Pakistan",
-            "Poland",
-            "Bahrain",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            2,
-            3,
-            7,
-            9,
-            21,
-            29,
-            39,
-            40,
-            65,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USA": [
+                1970,
+                2020
+            ],
+            "Turkey": [
+                1990,
+                2020
+            ],
+            "Spain": [
+                1980,
+                2020
+            ],
+            "Australia": [
+                1980,
+                2020
+            ],
+            "Egypt": [
+                1990,
+                2020
+            ],
+            "Pakistan": [
+                2010,
+                2020
+            ],
+            "Poland": [
+                2000,
+                2020
+            ],
+            "Bahrain": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "4bbfadd7a0321f2c44da454dccfedbef5c10588d",
@@ -272,20 +109,16 @@
             }
         ],
         "shape": "ticonderoga",
-        "countries": [
-            "USA",
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            2,
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USA": [
+                1970,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "49b4c369eb6b183e7e1d31b876abf47850432e53",
@@ -297,30 +130,36 @@
             }
         ],
         "shape": "albatros",
-        "countries": [
-            "Russia",
-            "Ukraine",
-            "USAF Aggressors",
-            "Georgia",
-            "USSR",
-            "Algeria",
-            "Cuba",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            0,
-            1,
-            7,
-            16,
-            68,
-            70,
-            76,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "Russia": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                2000,
+                2020
+            ],
+            "Georgia": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ],
+            "Algeria": [
+                1980,
+                2020
+            ],
+            "Cuba": [
+                1980,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "ff06d275ac2ad59afad65640f9161b446a9e4c3d",
@@ -342,22 +181,20 @@
             }
         ],
         "shape": "kuznecow",
-        "countries": [
-            "Russia",
-            "USAF Aggressors",
-            "USSR",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            0,
-            7,
-            68,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "Russia": [
+                1990,
+                2020
+            ],
+            "USSR": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "1604b433ce6d49a5286b6af0242c1e6cf5b71181",
@@ -369,48 +206,72 @@
             }
         ],
         "shape": "molniya",
-        "countries": [
-            "Russia",
-            "Ukraine",
-            "USAF Aggressors",
-            "Georgia",
-            "Insurgents",
-            "Abkhazia",
-            "Egypt",
-            "India",
-            "Poland",
-            "Romania",
-            "Yemen",
-            "Vietnam",
-            "USSR",
-            "Algeria",
-            "Cuba",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers",
-            "Slovenia"
-        ],
-        "countriesWorldID": [
-            0,
-            1,
-            7,
-            16,
-            17,
-            18,
-            29,
-            33,
-            40,
-            41,
-            48,
-            49,
-            68,
-            70,
-            76,
-            80,
-            81,
-            82,
-            85
-        ]
+        "operators": {
+            "Russia": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                2000,
+                2010
+            ],
+            "Georgia": [
+                1980,
+                2020
+            ],
+            "Insurgents": [
+                1980,
+                2020
+            ],
+            "Abkhazia": [
+                1980,
+                2020
+            ],
+            "Egypt": [
+                2010,
+                2020
+            ],
+            "India": [
+                1990,
+                2020
+            ],
+            "Poland": [
+                1990,
+                2010
+            ],
+            "Romania": [
+                1990,
+                2020
+            ],
+            "Yemen": [
+                1990,
+                2020
+            ],
+            "Vietnam": [
+                1990,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ],
+            "Algeria": [
+                1980,
+                2020
+            ],
+            "Cuba": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ],
+            "Slovenia": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "410365812bf80a347b6c9eeda75662c0d6cf8686",
@@ -426,22 +287,20 @@
             }
         ],
         "shape": "moscow",
-        "countries": [
-            "Russia",
-            "USAF Aggressors",
-            "USSR",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            0,
-            7,
-            68,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "Russia": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "a8a33f20f950da2013c3fa9a48990bc747cb5529",
@@ -457,22 +316,20 @@
             }
         ],
         "shape": "neustrash",
-        "countries": [
-            "Russia",
-            "USAF Aggressors",
-            "USSR",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            0,
-            7,
-            68,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "Russia": [
+                1990,
+                2020
+            ],
+            "USSR": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "9e0e3f8c95f469175b30824fa83a7d883a560553",
@@ -488,20 +345,16 @@
             }
         ],
         "shape": "Piotr_Velikiy",
-        "countries": [
-            "Russia",
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            0,
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "Russia": [
+                2000,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "649f0177f92c61cc030dfd0205baacc89be2deed",
@@ -513,232 +366,232 @@
             }
         ],
         "shape": "rezky",
-        "countries": [
-            "Russia",
-            "Ukraine",
-            "USAF Aggressors",
-            "USSR",
-            "Algeria",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            0,
-            1,
-            7,
-            68,
-            70,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "Russia": [
+                1970,
+                2020
+            ],
+            "Ukraine": [
+                1970,
+                2020
+            ],
+            "USSR": [
+                1970,
+                2020
+            ],
+            "Algeria": [
+                1970,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "bc343895b77220f599e64e810be41646dc373396",
         "type": "ELNYA",
         "displayName": "Tanker Elnya 160",
         "shape": "elnya",
-        "countries": [
-            "Russia",
-            "Ukraine",
-            "USAF Aggressors",
-            "Georgia",
-            "Insurgents",
-            "Abkhazia",
-            "USSR",
-            "Algeria",
-            "Cuba",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            0,
-            1,
-            7,
-            16,
-            17,
-            18,
-            68,
-            70,
-            76,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "Russia": [
+                1970,
+                2020
+            ],
+            "Ukraine": [
+                1970,
+                2020
+            ],
+            "Georgia": [
+                1970,
+                2020
+            ],
+            "Insurgents": [
+                1970,
+                2020
+            ],
+            "Abkhazia": [
+                1970,
+                2020
+            ],
+            "USSR": [
+                1970,
+                2020
+            ],
+            "Algeria": [
+                1970,
+                2020
+            ],
+            "Cuba": [
+                1970,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "20bd347ab578e1c0bd13571f8f9f2f0e72b57393",
         "type": "Dry-cargo ship-2",
         "displayName": "Cargo Ivanov",
         "shape": "barge-1",
-        "countries": [
-            "Russia",
-            "Ukraine",
-            "USAF Aggressors",
-            "Georgia",
-            "Insurgents",
-            "Abkhazia",
-            "Iran",
-            "USSR",
-            "Algeria",
-            "Cuba",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            0,
-            1,
-            7,
-            16,
-            17,
-            18,
-            34,
-            68,
-            70,
-            76,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "ALL": [
+                1940,
+                2020
+            ]
+        }
     },
     {
         "_id": "002acd747b7f3244319af4294f7a109c9805b3a5",
         "type": "Dry-cargo ship-1",
         "displayName": "Bulker Yakushev",
         "shape": "barge-2",
-        "countries": [
-            "Russia",
-            "Ukraine",
-            "USAF Aggressors",
-            "Georgia",
-            "Insurgents",
-            "Abkhazia",
-            "Iran",
-            "USSR",
-            "Algeria",
-            "Cuba",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            0,
-            1,
-            7,
-            16,
-            17,
-            18,
-            34,
-            68,
-            70,
-            76,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "ALL": [
+                1940,
+                2020
+            ]
+        }
     },
     {
         "_id": "ec2a07b738692ab2a1350e0467f96f8aab0e6e11",
         "type": "ZWEZDNY",
         "displayName": "Boat Zvezdny type",
         "shape": "zwezdny",
-        "countries": [
-            "Russia",
-            "Ukraine",
-            "USAF Aggressors",
-            "Georgia",
-            "Insurgents",
-            "Abkhazia",
-            "USSR",
-            "Algeria",
-            "Cuba",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            0,
-            1,
-            7,
-            16,
-            17,
-            18,
-            68,
-            70,
-            76,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "Russia": [
+                1960,
+                2020
+            ],
+            "Ukraine": [
+                1960,
+                2020
+            ],
+            "USAFAggressors": [
+                1960,
+                2020
+            ],
+            "Georgia": [
+                1960,
+                2020
+            ],
+            "Insurgents": [
+                1960,
+                2020
+            ],
+            "Abkhazia": [
+                1960,
+                2020
+            ],
+            "USSR": [
+                1960,
+                2020
+            ],
+            "Algeria": [
+                1960,
+                2020
+            ],
+            "Cuba": [
+                1960,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1960,
+                2020
+            ]
+        }
     },
     {
         "_id": "52ccdc01a86dc2c6ea9337a8a430c7d4ed6faa26",
         "type": "KILO",
         "displayName": "SSK 877V Kilo",
         "shape": "kilo",
-        "countries": [
-            "Russia",
-            "Ukraine",
-            "USAF Aggressors",
-            "China",
-            "India",
-            "Iran",
-            "Poland",
-            "Romania",
-            "USSR",
-            "Algeria",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            0,
-            1,
-            7,
-            27,
-            33,
-            34,
-            40,
-            41,
-            68,
-            70,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "Russia": [
+                1980,
+                2020
+            ],
+            "Ukraine": [
+                1980,
+                2020
+            ],
+            "China": [
+                1990,
+                2020
+            ],
+            "India": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1990,
+                2020
+            ],
+            "Poland": [
+                1980,
+                2020
+            ],
+            "Romania": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ],
+            "Algeria": [
+                1980,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "1673b240a6f5db79b3c960c6b1252e90d223ee31",
         "type": "IMPROVED_KILO",
         "displayName": "SSK 636 Improved Kilo",
         "shape": "kilo_636",
-        "countries": [
-            "Russia",
-            "USAF Aggressors",
-            "USSR",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            0,
-            7,
-            68,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "Russia": [
+                1980,
+                2020
+            ],
+            "USAFAggressors": [
+                1980,
+                2020
+            ],
+            "USSR": [
+                1980,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "d7017120d94cd98afed0cba95edab6d2d1b0d843",
         "type": "SOM",
         "displayName": "SSK 641B Tango",
         "shape": "som",
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Russia": [
+                1970,
+                2020
+            ],
+            "USSR": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "1097e8cbbc275cc65170a24dc15c7920bf4cb4d0",
@@ -761,18 +614,16 @@
         ],
         "module": "TAVKR 1143 High Detail",
         "shape": "CV_1143_5",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "1af4ecdb22227fcf9a60e170a91f6a93ba62ef23",
@@ -789,18 +640,16 @@
         ],
         "module": "South_Atlantic_Assets",
         "shape": "CastleClass_01",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1970,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "023ff6b8eba57e0dcb65d4f01ca0fd0f96e253e2",
@@ -808,8 +657,12 @@
         "displayName": "Harbor Tug",
         "module": "South_Atlantic_Assets",
         "shape": "HarborTug",
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "ALL": [
+                1950,
+                2020
+            ]
+        }
     },
     {
         "_id": "e8d568cfae2ae13d99676a16d64c16567c37170b",
@@ -829,18 +682,16 @@
         ],
         "module": "South_Atlantic_Assets",
         "shape": "hms_invincible",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1970,
+                2010
+            ],
+            "UnitedNationsPeacekeepers": [
+                1970,
+                2010
+            ]
+        }
     },
     {
         "_id": "f1e118bbff9bf2e6329354c7655726da7f97e268",
@@ -857,18 +708,16 @@
         ],
         "module": "South_Atlantic_Assets",
         "shape": "leander-gun-achilles",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                1970,
+                1990
+            ],
+            "UK": [
+                1970,
+                1990
+            ]
+        }
     },
     {
         "_id": "6f34aa72f17e522a3e2543fd28eb2eac002fe12f",
@@ -885,18 +734,16 @@
         ],
         "module": "South_Atlantic_Assets",
         "shape": "leander-gun-andromeda",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                1970,
+                1990
+            ],
+            "UK": [
+                1970,
+                1990
+            ]
+        }
     },
     {
         "_id": "884e780043762f57d306567bb79daaea02810f72",
@@ -913,18 +760,16 @@
         ],
         "module": "South_Atlantic_Assets",
         "shape": "leander-gun-ariadne",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                1970,
+                1990
+            ],
+            "Chile": [
+                1970,
+                1990
+            ]
+        }
     },
     {
         "_id": "fb88fe7c16dc681b866d4225e39653caba8eba60",
@@ -941,18 +786,20 @@
         ],
         "module": "South_Atlantic_Assets",
         "shape": "leander-gun-condell",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                1970,
+                2010
+            ],
+            "Chile": [
+                2010,
+                2020
+            ],
+            "UK": [
+                1970,
+                2010
+            ]
+        }
     },
     {
         "_id": "6503e62e74447954a93b28935a1eb915bbc54daf",
@@ -969,18 +816,12 @@
         ],
         "module": "South_Atlantic_Assets",
         "shape": "leander-gun-lynch",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                1970,
+                1990
+            ]
+        }
     },
     {
         "_id": "dcf02bb3805782c0de82b997435426e96abc41b3",
@@ -994,8 +835,7 @@
         ],
         "module": "South_Atlantic_Assets",
         "shape": "Ship_Tilde_Supply",
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {}
     },
     {
         "_id": "e186a29200bb3eff272b0de37070245ae6418e07",
@@ -1003,18 +843,20 @@
         "displayName": "ARA Santa Fe S-21",
         "module": "South_Atlantic_Assets",
         "shape": "santafe",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                1940,
+                1970
+            ],
+            "Argentina": [
+                1970,
+                1980
+            ],
+            "USA": [
+                1940,
+                1970
+            ]
+        }
     },
     {
         "_id": "bcc595c48b919578b3eab96f6dc02bb8f59ecd72",
@@ -1028,88 +870,12 @@
         ],
         "module": "TechWeaponPack",
         "shape": "Ship_Handy_Wind",
-        "countries": [
-            "Russia",
-            "USA",
-            "Turkey",
-            "UK",
-            "France",
-            "Germany",
-            "USAF Aggressors",
-            "Canada",
-            "Spain",
-            "The Netherlands",
-            "Belgium",
-            "Norway",
-            "Israel",
-            "Italy",
-            "Australia",
-            "China",
-            "Egypt",
-            "India",
-            "Iran",
-            "Japan",
-            "Pakistan",
-            "Poland",
-            "Romania",
-            "Saudi Arabia",
-            "South Korea",
-            "Vietnam",
-            "Thailand",
-            "Mexico",
-            "Malaysia",
-            "Indonesia",
-            "Chile",
-            "Brazil",
-            "Oman",
-            "United Arab Emirates",
-            "South Africa",
-            "Lebanon",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            0,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            15,
-            20,
-            21,
-            27,
-            29,
-            33,
-            34,
-            36,
-            39,
-            40,
-            41,
-            42,
-            45,
-            49,
-            52,
-            56,
-            57,
-            60,
-            63,
-            64,
-            73,
-            74,
-            75,
-            79,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "ALL": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "e25c531f6ca25ec295bb559c53fa22bb63c0ed83",
@@ -1123,82 +889,12 @@
         ],
         "module": "TechWeaponPack",
         "shape": "seawise_giant",
-        "countries": [
-            "Russia",
-            "USA",
-            "Turkey",
-            "UK",
-            "France",
-            "Germany",
-            "USAF Aggressors",
-            "Spain",
-            "The Netherlands",
-            "Norway",
-            "Israel",
-            "Italy",
-            "Australia",
-            "China",
-            "Egypt",
-            "India",
-            "Iran",
-            "Japan",
-            "Pakistan",
-            "Poland",
-            "Romania",
-            "Saudi Arabia",
-            "South Korea",
-            "Thailand",
-            "Mexico",
-            "Malaysia",
-            "Indonesia",
-            "Chile",
-            "Brazil",
-            "Oman",
-            "United Arab Emirates",
-            "South Africa",
-            "Lebanon",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            0,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            9,
-            10,
-            12,
-            15,
-            20,
-            21,
-            27,
-            29,
-            33,
-            34,
-            36,
-            39,
-            40,
-            41,
-            42,
-            45,
-            52,
-            56,
-            57,
-            60,
-            63,
-            64,
-            73,
-            74,
-            75,
-            79,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "ALL": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "b1398a957ac44d98465a45439dd5bf7347379d1c",
@@ -1211,32 +907,44 @@
         ],
         "module": "TechWeaponPack",
         "shape": "La_Combattante_II",
-        "countries": [
-            "Germany",
-            "USAF Aggressors",
-            "Georgia",
-            "Greece",
-            "Iran",
-            "Malaysia",
-            "Indonesia",
-            "Chile",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            6,
-            7,
-            16,
-            31,
-            34,
-            57,
-            60,
-            63,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "Germany": [
+                1970,
+                2020
+            ],
+            "Georgia": [
+                1970,
+                2020
+            ],
+            "Greece": [
+                1970,
+                2020
+            ],
+            "Iran": [
+                1970,
+                2020
+            ],
+            "Malaysia": [
+                1970,
+                2020
+            ],
+            "Indonesia": [
+                1970,
+                2020
+            ],
+            "Chile": [
+                1970,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1970,
+                2020
+            ],
+            "Libya": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "be70b1271a52199ca71f4696efb5938b2e0efc20",
@@ -1249,26 +957,28 @@
         ],
         "module": "TechWeaponPack",
         "shape": "BDK_775",
-        "countries": [
-            "Russia",
-            "Ukraine",
-            "USAF Aggressors",
-            "Yemen",
-            "USSR",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            0,
-            1,
-            7,
-            48,
-            68,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "Russia": [
+                1970,
+                2020
+            ],
+            "Ukraine": [
+                1970,
+                2020
+            ],
+            "Yemen": [
+                1970,
+                2020
+            ],
+            "USSR": [
+                1970,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "f6440b97cda2d9676a00f3c20b77d0dd829a7caa",
@@ -1291,20 +1001,20 @@
         ],
         "module": "USS_Nimitz",
         "shape": "Nimitz_CVN_71",
-        "countries": [
-            "USA",
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            2,
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USA": [
+                1980,
+                2020
+            ],
+            "USAFAggressors": [
+                1980,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "9988821dab93272386d4e40147f6773b667ceb23",
@@ -1327,20 +1037,20 @@
         ],
         "module": "USS_Nimitz",
         "shape": "Nimitz_CVN_72",
-        "countries": [
-            "USA",
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            2,
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USA": [
+                1990,
+                2020
+            ],
+            "USAFAggressors": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "cf21a8caf02e547b6ef3e64d20dee8c8000e9e02",
@@ -1363,20 +1073,20 @@
         ],
         "module": "USS_Nimitz",
         "shape": "Nimitz_CVN_73",
-        "countries": [
-            "USA",
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            2,
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USA": [
+                1990,
+                2020
+            ],
+            "USAFAggressors": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "84e5e06c0308fc9a3f0fb454eb4679f33b65a228",
@@ -1399,20 +1109,20 @@
         ],
         "module": "USS_Nimitz",
         "shape": "nimitz_cvn_74",
-        "countries": [
-            "USA",
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            2,
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USA": [
+                1990,
+                2020
+            ],
+            "USAFAggressors": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "f02284352f4d1cb4bdd94405a76e0802f9ee7d58",
@@ -1435,20 +1145,20 @@
         ],
         "module": "USS_Nimitz",
         "shape": "Nimitz_CVN_75",
-        "countries": [
-            "USA",
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            2,
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USA": [
+                2000,
+                2020
+            ],
+            "USAFAggressors": [
+                2000,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "9fd6eb3208efa7f9c67b519716a0b32cfb6a927b",
@@ -1465,20 +1175,16 @@
         ],
         "module": "USS_Nimitz",
         "shape": "Arleigh_Burke_IIa",
-        "countries": [
-            "USA",
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            2,
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USA": [
+                1980,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "760846e385c5f27aa5b2e99f5b4cc268c318ddf4",
@@ -1498,20 +1204,16 @@
         ],
         "module": "AV-8B N/A AI by RAZBAM Sims",
         "shape": "LHA_Tarawa",
-        "countries": [
-            "USA",
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            2,
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USA": [
+                1970,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "e78e0cf955f73f9a920e144dec57aeafc834c1a8",
@@ -1528,20 +1230,16 @@
         ],
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "052b",
-        "countries": [
-            "USAF Aggressors",
-            "China",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            27,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "China": [
+                2000,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "a991067d6ae7c943529ddf9a78174b45f828f835",
@@ -1558,20 +1256,16 @@
         ],
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "054a",
-        "countries": [
-            "USAF Aggressors",
-            "China",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            27,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "China": [
+                2010,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "1f0409929d382ee96e7a82a7169b88654322cc6a",
@@ -1588,20 +1282,16 @@
         ],
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "052c",
-        "countries": [
-            "USAF Aggressors",
-            "China",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            27,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "China": [
+                2000,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "092f5dae96f3576e2507db64247d3c303969efc8",
@@ -1614,20 +1304,16 @@
         ],
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "093",
-        "countries": [
-            "USAF Aggressors",
-            "China",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            27,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "China": [
+                2000,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "a29aea1d7264fdff00a371f903c84857d75487a6",
@@ -1650,20 +1336,16 @@
         ],
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "071",
-        "countries": [
-            "USAF Aggressors",
-            "China",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            27,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "China": [
+                2000,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "8d27ff35e4a68b73dc897556eea9fdc210ad69dd",
@@ -1686,18 +1368,16 @@
         ],
         "module": "F-14B AI by Heatblur Simulations",
         "shape": "CV-59-Forrestal_LOD0",
-        "countries": [
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USAFAggressors": [
+                1990,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "649f2f9e305a1be577a92b42",
@@ -1710,24 +1390,24 @@
         ],
         "module": "WWII Armour and Technics",
         "shape": "LST_Mk2",
-        "countries": [
-            "USA",
-            "UK",
-            "USAF Aggressors",
-            "Canada",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            2,
-            4,
-            7,
-            8,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USA": [
+                1940,
+                1970
+            ],
+            "UK": [
+                1940,
+                1970
+            ],
+            "Canada": [
+                1940,
+                1970
+            ],
+            "UnitedNationsPeacekeepers": [
+                1940,
+                1970
+            ]
+        }
     },
     {
         "_id": "649f2f9e305a1be577a92b44",
@@ -1740,20 +1420,16 @@
         ],
         "module": "WWII Armour and Technics",
         "shape": "uss_samuel_chase",
-        "countries": [
-            "USA",
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            2,
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USA": [
+                1940,
+                1950
+            ],
+            "UnitedNationsPeacekeepers": [
+                1940,
+                1950
+            ]
+        }
     },
     {
         "_id": "649f2f9e305a1be577a92b46",
@@ -1766,20 +1442,16 @@
         ],
         "module": "WWII Armour and Technics",
         "shape": "Higgins_boat",
-        "countries": [
-            "USA",
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            2,
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "USA": [
+                1940,
+                1950
+            ],
+            "UnitedNationsPeacekeepers": [
+                1940,
+                1950
+            ]
+        }
     },
     {
         "_id": "649f2f9e305a1be577a92b48",
@@ -1792,8 +1464,20 @@
         ],
         "module": "WWII Armour and Technics",
         "shape": "Uboat_typeVIIC",
-        "countries": [],
-        "countriesWorldID": []
+        "operators": {
+            "Thirdreich": [
+                1940,
+                1950
+            ],
+            "Italy": [
+                1940,
+                1950
+            ],
+            "Germany": [
+                1940,
+                1950
+            ]
+        }
     },
     {
         "_id": "649f2f9e305a1be577a92b4a",
@@ -1806,19 +1490,23 @@
         ],
         "module": "WWII Armour and Technics",
         "shape": "Schnellboot_type_S130",
-        "countries": [
-            "UK",
-            "USAF Aggressors",
-            "Combined Joint Task Forces Blue",
-            "Combined Joint Task Forces Red",
-            "United Nations Peacekeepers"
-        ],
-        "countriesWorldID": [
-            4,
-            7,
-            80,
-            81,
-            82
-        ]
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                1940,
+                1950
+            ],
+            "Thirdreich": [
+                1940,
+                1950
+            ],
+            "Italy": [
+                1940,
+                1950
+            ],
+            "Germany": [
+                1940,
+                1950
+            ]
+        }
     }
 ]

@@ -4,7 +4,6 @@
         "families": [
             "ShipSpeedboat"
         ],
-        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -13,7 +12,6 @@
         "families": [
             "ShipCarrierCATOBAR"
         ],
-        "operational": [1980, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -23,37 +21,6 @@
             "ShipFrigate",
             "ShipCarrierSTOVL"
         ],
-        "operational": [1970, 2020],
-        "extraOperators": {
-            "Turkey": [
-                1990,
-                2020
-            ],
-            "Spain": [
-                1980,
-                2020
-            ],
-            "Australia": [
-                1980,
-                2020
-            ],
-            "Egypt": [
-                1990,
-                2020
-            ],
-            "Pakistan": [
-                2010,
-                2020
-            ],
-            "Poland": [
-                2000,
-                2020
-            ],
-            "Bahrain": [
-                1990,
-                2020
-            ]
-        },
         "lowPolly": false,
         "immovable": false
     },
@@ -63,10 +30,6 @@
             "ShipCruiser",
             "ShipCarrierSTOVL"
         ],
-        "operational": [1990, 2020],
-        "extraOperators": {
-            "USA": [1970, 2020]
-        },
         "lowPolly": false,
         "immovable": false
     },
@@ -75,13 +38,6 @@
         "families": [
             "ShipFrigate"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Ukraine": [
-                2000,
-                2020
-            ]
-        },
         "lowPolly": false,
         "immovable": false
     },
@@ -90,7 +46,6 @@
         "families": [
             "ShipCarrierSTOBAR"
         ],
-        "operational": [1990, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -99,41 +54,6 @@
         "families": [
             "ShipFrigate"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "Ukraine": [
-                2000,
-                2010
-            ],
-            "Egypt": [
-                2010,
-                2020
-            ],
-            "India": [
-                1990,
-                2020
-            ],
-            "Poland": [
-                1990,
-                2010
-            ],
-            "Romania": [
-                1990,
-                2020
-            ],
-            "Yemen": [
-                1990,
-                2020
-            ],
-            "Vietnam": [
-                1990,
-                2020
-            ],
-            "Cuba": [
-                1990,
-                2020
-            ]
-        },
         "lowPolly": false,
         "immovable": false
     },
@@ -143,7 +63,6 @@
             "ShipCruiser",
             "ShipCarrierSTOVL"
         ],
-        "operational": [1980, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -153,7 +72,6 @@
             "ShipFrigate",
             "ShipCarrierSTOVL"
         ],
-        "operational": [1990, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -163,7 +81,6 @@
             "ShipCruiser",
             "ShipCarrierSTOVL"
         ],
-        "operational": [2000, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -172,7 +89,6 @@
         "families": [
             "ShipFrigate"
         ],
-        "operational": [1970, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -181,7 +97,6 @@
         "families": [
             "ShipTransport"
         ],
-        "operational": [1970, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -190,7 +105,6 @@
         "families": [
             "ShipTransport"
         ],
-        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -199,7 +113,6 @@
         "families": [
             "ShipTransport"
         ],
-        "operational": [1940, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -208,7 +121,6 @@
         "families": [
             "ShipTransport"
         ],
-        "operational": [1960, 2020],
         "lowPolly": true,
         "immovable": false
     },
@@ -217,17 +129,6 @@
         "families": [
             "ShipSubmarine"
         ],
-        "operational": [1980, 2020],
-        "extraOperators": {
-            "China": [
-                1990,
-                2020
-            ],
-            "Iran": [
-                1990,
-                2020
-            ]
-        },
         "lowPolly": false,
         "immovable": false
     },
@@ -236,7 +137,6 @@
         "families": [
             "ShipSubmarine"
         ],
-        "operational": [1980, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -245,7 +145,6 @@
         "families": [
             "ShipSubmarine"
         ],
-        "operational": [1970, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -254,7 +153,6 @@
         "families": [
             "ShipCarrierSTOBAR"
         ],
-        "operational": [1990, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -264,7 +162,6 @@
             "ShipFrigate",
             "ShipCarrierSTOVL"
         ],
-        "operational": [1970, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -273,7 +170,6 @@
         "families": [
             "ShipTransport"
         ],
-        "operational": [1950, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -282,7 +178,6 @@
         "families": [
             "ShipCarrierSTOVL"
         ],
-        "operational": [1970, 2010],
         "lowPolly": false,
         "immovable": false
     },
@@ -292,7 +187,6 @@
             "ShipFrigate",
             "ShipCarrierSTOVL"
         ],
-        "operational": [1970, 1990],
         "lowPolly": false,
         "immovable": false
     },
@@ -302,7 +196,6 @@
             "ShipFrigate",
             "ShipCarrierSTOVL"
         ],
-        "operational": [1970, 1990],
         "lowPolly": false,
         "immovable": false
     },
@@ -312,7 +205,6 @@
             "ShipFrigate",
             "ShipCarrierSTOVL"
         ],
-        "operational": [1970, 1990],
         "lowPolly": false,
         "immovable": false
     },
@@ -322,7 +214,6 @@
             "ShipFrigate",
             "ShipCarrierSTOVL"
         ],
-        "operational": [1970, 2010],
         "lowPolly": false,
         "immovable": false
     },
@@ -332,7 +223,6 @@
             "ShipFrigate",
             "ShipCarrierSTOVL"
         ],
-        "operational": [1970, 1990],
         "lowPolly": false,
         "immovable": false
     },
@@ -341,7 +231,6 @@
         "families": [
             "ShipTransport"
         ],
-        "operational": [2000, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -350,7 +239,6 @@
         "families": [
             "ShipSubmarine"
         ],
-        "operational": [1940, 1970],
         "lowPolly": false,
         "immovable": false
     },
@@ -360,7 +248,6 @@
             "ShipTransport",
             "ShipCarrierSTOVL"
         ],
-        "operational": [1970, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -370,7 +257,6 @@
             "ShipTransport",
             "ShipCarrierSTOVL"
         ],
-        "operational": [1980, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -379,7 +265,6 @@
         "families": [
             "ShipFrigate"
         ],
-        "operational": [1970, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -388,7 +273,6 @@
         "families": [
             "ShipFrigate"
         ],
-        "operational": [1970, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -397,7 +281,6 @@
         "families": [
             "ShipCarrierCATOBAR"
         ],
-        "operational": [1980, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -406,7 +289,6 @@
         "families": [
             "ShipCarrierCATOBAR"
         ],
-        "operational": [1990, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -415,7 +297,6 @@
         "families": [
             "ShipCarrierCATOBAR"
         ],
-        "operational": [1990, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -424,7 +305,6 @@
         "families": [
             "ShipCarrierCATOBAR"
         ],
-        "operational": [1990, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -433,7 +313,6 @@
         "families": [
             "ShipCarrierCATOBAR"
         ],
-        "operational": [2000, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -443,7 +322,6 @@
             "ShipCruiser",
             "ShipCarrierSTOVL"
         ],
-        "operational": [1980, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -452,7 +330,6 @@
         "families": [
             "ShipCarrierSTOVL"
         ],
-        "operational": [1970, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -462,7 +339,6 @@
             "ShipFrigate",
             "ShipCarrierSTOVL"
         ],
-        "operational": [2000, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -472,7 +348,6 @@
             "ShipFrigate",
             "ShipCarrierSTOVL"
         ],
-        "operational": [2010, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -481,7 +356,6 @@
         "families": [
             "ShipFrigate"
         ],
-        "operational": [2000, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -490,7 +364,6 @@
         "families": [
             "ShipSubmarine"
         ],
-        "operational": [2000, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -499,7 +372,6 @@
         "families": [
             "ShipCarrierSTOVL"
         ],
-        "operational": [2000, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -508,7 +380,6 @@
         "families": [
             "ShipCarrierCATOBAR"
         ],
-        "operational": [1990, 2020],
         "lowPolly": false,
         "immovable": false
     },
@@ -517,7 +388,6 @@
         "families": [
             "ShipTransport"
         ],
-        "operational": [1940, 1970],
         "lowPolly": false,
         "immovable": false
     },
@@ -526,7 +396,6 @@
         "families": [
             "ShipTransport"
         ],
-        "operational": [1940, 1950],
         "lowPolly": false,
         "immovable": false
     },
@@ -535,7 +404,6 @@
         "families": [
             "ShipSpeedboat"
         ],
-        "operational": [1940, 1950],
         "lowPolly": false,
         "immovable": false
     },
@@ -544,12 +412,6 @@
         "families": [
             "ShipSubmarine"
         ],
-        "extraOperators": {
-            "ThirdReich": [],
-            "Italy": [],
-            "Germany": []
-        },
-        "operational": [1940, 1950],
         "lowPolly": false,
         "immovable": false
     },
@@ -558,12 +420,6 @@
         "families": [
             "ShipSpeedboat"
         ],
-        "extraOperators": {
-            "ThirdReich": [],
-            "Italy": [],
-            "Germany": []
-        },
-        "operational": [1940, 1950],
         "lowPolly": false,
         "immovable": false
     }
