@@ -1,8 +1,10 @@
 async function BlazorDownloadFile(filename, contentType, data) {
 
   if (window.self !== window.top) {
-    postMessage(filename, "*")
-    postMessage(data, "*")
+    window.top.postMessage({
+      filename,
+      data
+    }, "*")
     return
   }
 
