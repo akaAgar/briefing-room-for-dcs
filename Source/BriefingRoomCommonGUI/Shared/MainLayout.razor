@@ -71,9 +71,7 @@
                 darkmode = await localStorage.GetItemAsync<bool>("DCSUseDarkMode");
             }
             catch (System.Exception e)
-            {
-                
-                Console.WriteLine("Can't load Darkmode state could be In IFRAME", e);
+            { 
             }
             StateHasChanged();
         }
@@ -90,7 +88,6 @@
         }
         catch (System.Exception e)
         {
-            Console.WriteLine("Can't save Darkmode state could be In IFRAME", e);
         }
     }
 }
