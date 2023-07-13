@@ -1,17 +1,18 @@
 async function BlazorDownloadFile(filename, contentType, data) {
 
-  if (window.self !== window.top) {
-    window.top.postMessage({
-      filename,
-      data
-    }, "*")
-    return
-  }
-
-
+  
+  
   // Create the URL
   const fileType = filename.split(".").at(-1)
   const file = new File([data], filename, { type: contentType });
+  if (window.self !== window.top) {
+    window.top.postMessage({
+      filename,
+      contentType,
+      file
+    }, "*")
+    return
+  }
   if (self.showSaveFilePicker) {
     const fileHandle = await self.showSaveFilePicker({
       suggestedName: filename,

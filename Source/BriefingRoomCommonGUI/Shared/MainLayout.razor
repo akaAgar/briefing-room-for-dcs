@@ -65,7 +65,16 @@
     {
         if (firstRender)
         {
-            darkmode = await localStorage.GetItemAsync<bool>("DCSUseDarkMode");
+            darkmode = true;
+            try
+            {
+                darkmode = await localStorage.GetItemAsync<bool>("DCSUseDarkMode");
+            }
+            catch (System.Exception e)
+            {
+                
+                Console.WriteLine("Can't load Darkmode state could be In IFRAME", e);
+            }
             StateHasChanged();
         }
     }
@@ -75,6 +84,13 @@
     {
         darkmode = darkModeOn;
         StateHasChanged();
-        await localStorage.SetItemAsync("DCSUseDarkMode", darkModeOn);
+        try
+        {
+            await localStorage.SetItemAsync("DCSUseDarkMode", darkModeOn);
+        }
+        catch (System.Exception e)
+        {
+            Console.WriteLine("Can't save Darkmode state could be In IFRAME", e);
+        }
     }
 }
