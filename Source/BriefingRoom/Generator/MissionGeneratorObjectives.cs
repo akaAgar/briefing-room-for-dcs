@@ -414,7 +414,7 @@ namespace BriefingRoom4DCS.Generator
         internal static (string[] featuresID, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB, ObjectiveOption[] objectiveOptions) GetObjectiveData(MissionTemplateObjectiveRecord objectiveTemplate)
         {
             var (targetDB, targetBehaviorDB, taskDB, objectiveOptions, presetDB) = GetCustomObjectiveData(objectiveTemplate);
-            var featuresID = objectiveTemplate.HasPreset ? presetDB.Features.ToArray() : objectiveTemplate.Features.ToArray();
+            var featuresID = (objectiveTemplate.HasPreset ? presetDB.Features.Concat(objectiveTemplate.Features.ToArray()) : objectiveTemplate.Features).Distinct().ToArray();
 
             ObjectiveNullCheck(targetDB, targetBehaviorDB, taskDB);
             return (featuresID, targetDB, targetBehaviorDB, taskDB, objectiveOptions);
