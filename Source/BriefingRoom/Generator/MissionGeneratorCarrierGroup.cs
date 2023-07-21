@@ -207,7 +207,11 @@ namespace BriefingRoom4DCS.Generator
                     {"RadioFrequency", radioFrequencyValue},
                     {"playerCanDrive", false},
                     {"NoCM", true}});
-            if (!groupInfo.HasValue || (groupInfo.Value.UnitNames.Length == 0)) return; // Couldn't generate group
+            if (!groupInfo.HasValue || (groupInfo.Value.UnitNames.Length == 0)) 
+            {
+                unitMaker.SpawnPointSelector.RecoverSpawnPoint(spawnPoint.Value);
+                return;
+            }
             var unitDB = (DBEntryStatic)Database.Instance.GetEntry<DBEntryJSONUnit>(fobTemplate.Units.First().DCSID);
             groupInfo.Value.DCSGroup.Name = unitDB.UIDisplayName.Get();
             groupInfo.Value.DCSGroup.Units.First().Name = unitDB.UIDisplayName.Get();

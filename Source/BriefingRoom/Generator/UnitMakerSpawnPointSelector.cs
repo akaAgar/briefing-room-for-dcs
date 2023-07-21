@@ -34,6 +34,7 @@ namespace BriefingRoom4DCS.Generator
         private readonly Dictionary<int, List<DBEntryAirbaseParkingSpot>> AirbaseParkingSpots;
 
         private readonly List<DBEntryTheaterSpawnPoint> SpawnPoints;
+        private readonly List<DBEntryTheaterSpawnPoint> UsedSpawnPoints;
 
         private readonly DBEntryTheater TheaterDB;
 
@@ -62,6 +63,7 @@ namespace BriefingRoom4DCS.Generator
             SituationDB = situationDB;
             AirbaseParkingSpots = new Dictionary<int, List<DBEntryAirbaseParkingSpot>>();
             SpawnPoints = new List<DBEntryTheaterSpawnPoint>();
+            UsedSpawnPoints = new List<DBEntryTheaterSpawnPoint>();
             InvertCoalition = invertCoalition;
             MinBorderLimit = minBorderLimit;
 
@@ -112,7 +114,10 @@ namespace BriefingRoom4DCS.Generator
                 return Coordinates.CreateRandom(origin, new MinMaxD(1 * Toolbox.NM_TO_METERS, 3 * Toolbox.NM_TO_METERS));
             var sp = SpawnPoints.Where(x => validTypes.Contains(x.PointType)).Aggregate((acc, x) => origin.GetDistanceFrom(x.Coordinates) < origin.GetDistanceFrom(acc.Coordinates) ? x : acc);
             if (remove)
+            {
                 SpawnPoints.Remove(sp);
+                UsedSpawnPoints.Add(sp);
+            }
             return sp.Coordinates;
         }
 
@@ -175,7 +180,8 @@ namespace BriefingRoom4DCS.Generator
 
             if (validSP.Count() == 0) return null;
             DBEntryTheaterSpawnPoint selectedSpawnPoint = Toolbox.RandomFrom(validSP.ToArray());
-            SpawnPoints.Remove(selectedSpawnPoint); // Remove spawn point so it won't be used again
+            SpawnPoints.Remove(selectedSpawnPoint); // Remove spawn point so it won't be used again;
+            UsedSpawnPoints.Add(selectedSpawnPoint);
             return selectedSpawnPoint.Coordinates;
         }
 
@@ -250,6 +256,12 @@ namespace BriefingRoom4DCS.Generator
                 return Tuple.Create(airbase, parkingSpots.Select(x => x.DCSID).ToList(), parkingSpots.Select(x => x.Coordinates).ToList());
             }
             throw new BriefingRoomException("No airbase found with sufficient parking spots.");
+        }
+
+        internal void RecoverSpawnPoint(Coordinates coords)
+        {
+            var usedSP = UsedSpawnPoints.Find(x => x.Coordinates.X == coords.X && x.Coordinates.Y == x.Coordinates.Y);
+            SpawnPoints.Add(usedSP);
         }
 
         private List<DBEntryAirbaseParkingSpot> FilterAndSortSuitableSpots(DBEntryAirbaseParkingSpot[] parkingspots, DBEntryAircraft aircraftDB, bool requiresOpenAirParking)

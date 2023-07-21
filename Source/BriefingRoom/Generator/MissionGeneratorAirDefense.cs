@@ -124,6 +124,7 @@ namespace BriefingRoom4DCS.Generator
                     BriefingRoom.PrintToLog(
                         $"Failed to add {airDefenseRange} air defense unit group for {coalition} coalition.",
                         LogMessageErrorLevel.Warning);
+                    unitMaker.SpawnPointSelector.RecoverSpawnPoint(spawnPoint.Value);
                     return groupCount -i;
                 }
                 mission.MapData.Add($"UNIT-{groupInfo.Value.UnitDB.Families[0]}-{side}-{groupInfo.Value.GroupID}", new List<double[]> { groupInfo.Value.Coordinates.ToArray() });
