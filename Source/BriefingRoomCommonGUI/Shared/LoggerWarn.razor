@@ -9,6 +9,7 @@
                             class="oi oi-warning"></span>@GetLastRunLogs().Count(LogsIfAboveWarn)</button>
                     <button class="btn btn-warning" @onclick="() => ClearLogs()"><span
                             class="oi oi-reload"></span>@BriefingRoom.Translate("Clear")</button>
+                    <p><span class="oi oi-info"></span>&nbsp; @BriefingRoom.Translate("WarningNote")</p>
                 </div>
                 @foreach (var log in GetLastRunLogs().Where(LogsIfAboveWarn).ToList())
                 {

@@ -513,6 +513,11 @@ a.kofi-button:active {
     animation: kofi-wiggle 3s infinite;
 }
 
+.alert.alert-warning .btn-group  p {
+    margin-bottom: 0;
+    line-height: 50px;
+}
+
 @keyframes kofi-wiggle {
     0% {
         transform: rotate(0) scale(1)

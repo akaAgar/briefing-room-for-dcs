@@ -70,7 +70,7 @@
             {
                 darkmode = await localStorage.GetItemAsync<bool>("DCSUseDarkMode");
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             { 
             }
             StateHasChanged();
@@ -86,7 +86,7 @@
         {
             await localStorage.SetItemAsync("DCSUseDarkMode", darkModeOn);
         }
-        catch (System.Exception e)
+        catch (System.Exception)
         {
         }
     }
