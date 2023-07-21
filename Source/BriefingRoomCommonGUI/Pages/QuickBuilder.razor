@@ -437,7 +437,7 @@
 
         try
         {
-            await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{(Template.Mods.Contains("DSMC")? "DSMC_": "")}{Template.ContextTheater} - {mission.Briefing.Name}.miz",
+            await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{(Template.OptionsMission.Contains("DSMC")? "DSMC_": "")}{Template.ContextTheater} - {mission.Briefing.Name}.miz",
             "application/octet-stream", zipBytes);
         }
         catch (Exception) { }
