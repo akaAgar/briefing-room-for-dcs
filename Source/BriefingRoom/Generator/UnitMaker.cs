@@ -128,7 +128,7 @@ namespace BriefingRoom4DCS.Generator
                 (country, units) = GeneratorTools.GetNeutralRandomUnits(families, CoalitionsDB.SelectMany(x => x.Countries).ToList(), Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowlowPolly"));
                 if (units.Where(x => x != null).Count() == 0) return new(new List<string>(), new List<DBEntryJSONUnit>());
             }
-            else if (forceTryTemplate|| families.All(x => TEMPLATE_PREFERENCE_FAMILIES.Contains(x)))
+            else if (forceTryTemplate || families.All(x => TEMPLATE_PREFERENCE_FAMILIES.Contains(x)))
             {
                 var response = unitsCoalitionDB.GetRandomTemplate(families, Template.ContextDecade, Template.Mods);
                 if (response != null)

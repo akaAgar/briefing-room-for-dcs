@@ -89,11 +89,6 @@ namespace BriefingRoom4DCS.Generator
 
             // Ensures that only countries with units listed get returned
             validUnits = validUnits.Where(x => x.Value.Count > 0).ToDictionary(x => x.Key, x => x.Value);
-            // At least one unit found, return it
-            if (validUnits.Count == 0)
-            {
-                validUnits = DBEntryCoalition.GetDefaultUnits(Database.Instance, "FirstWorld", families, decade, unitMods);
-            }
 
             switch (category)
             {

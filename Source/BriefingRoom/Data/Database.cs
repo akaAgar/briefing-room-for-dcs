@@ -97,7 +97,7 @@ namespace BriefingRoom4DCS.Data
             LoadJSONEntries<DBEntryTemplate>("Templates");
             LoadJSONEntries<DBEntryTemplate>("TemplatesCustom");
             LoadJSONEntries<DBEntryLayout>("Layouts");
-            LoadEntries<DBEntryDefaultUnitList>("DefaultUnitLists"); // Must be loaded after Units, as it depends on it
+            // LoadEntries<DBEntryDefaultUnitList>("DefaultUnitLists"); // Must be loaded after Units, as it depends on it
             LoadEntries<DBEntryCoalition>("Coalitions"); // Must be loaded after Unit and DBEntryDefaultUnitList, as it depends on them
             LoadCustomUnitEntries<DBEntryCoalition>("Coalitions");
             LoadEntries<DBEntryWeatherPreset>("WeatherPresets");
@@ -138,8 +138,7 @@ namespace BriefingRoom4DCS.Data
             BriefingRoom.PrintToLog($"Found {DBEntries[dbType].Count} database entries of type \"{typeof(T).Name}\"");
 
             bool mustHaveAtLeastOneEntry = true;
-            if ((dbType == typeof(DBEntryDefaultUnitList)) ||
-                (dbType == typeof(DBEntryFeatureMission)) ||
+            if ((dbType == typeof(DBEntryFeatureMission)) ||
                 (dbType == typeof(DBEntryFeatureObjective)))
                 mustHaveAtLeastOneEntry = false;
 
@@ -200,8 +199,7 @@ namespace BriefingRoom4DCS.Data
 
 
             bool mustHaveAtLeastOneEntry = true;
-            if ((dbType == typeof(DBEntryDefaultUnitList)) ||
-                (dbType == typeof(DBEntryFeatureMission)) ||
+            if ((dbType == typeof(DBEntryFeatureMission)) ||
                 (dbType == typeof(DBEntryFeatureObjective)))
                 mustHaveAtLeastOneEntry = false;
 
@@ -242,8 +240,7 @@ namespace BriefingRoom4DCS.Data
             BriefingRoom.PrintToLog($"Found {DBEntries[dbType].Count} custom database entries of type \"{typeof(T).Name}\"");
 
             bool mustHaveAtLeastOneEntry = true;
-            if ((dbType == typeof(DBEntryDefaultUnitList)) ||
-                (dbType == typeof(DBEntryFeatureMission)) ||
+            if ((dbType == typeof(DBEntryFeatureMission)) ||
                 (dbType == typeof(DBEntryFeatureObjective)))
                 mustHaveAtLeastOneEntry = false;
 

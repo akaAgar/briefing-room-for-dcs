@@ -189,7 +189,8 @@ namespace BriefingRoom4DCS.Generator
             var (luaUnit, unitCount, unitCountMinMax, objectiveTargetUnitFamily, groupFlags) = GetUnitData(task, targetDB, targetBehaviorDB, objectiveOptions);
             var isInverseTransportWayPoint = false;
             var (units, unitDBs) = UnitMaker.GetUnits(objectiveTargetUnitFamily, unitCount, taskDB.TargetSide, groupFlags, ref extraSettings);
-            if(units.Count == 0) throw new BriefingRoomException($"No operational units in {objectiveTargetUnitFamily} for given time period.");
+            if(units.Count == 0 || unitDBs.Count() == 0)
+                throw new BriefingRoomException($"No operational units in {objectiveTargetUnitFamily} for given time period.");
             var unitDB = unitDBs.First();
             if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location) && targetDB.UnitCategory.IsAircraft())
                 objectiveCoordinates = PlaceInAirbase(template, situationDB, playerAirbase, extraSettings, targetDB, targetBehaviorDB, ref luaUnit, objectiveCoordinates, unitCount, unitDB);
