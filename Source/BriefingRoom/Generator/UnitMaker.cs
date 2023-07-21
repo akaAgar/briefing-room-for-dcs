@@ -528,8 +528,8 @@ namespace BriefingRoom4DCS.Generator
             if (!string.IsNullOrEmpty(unitDB.Module) && DBEntryDCSMod.CORE_MODS.Contains(unitDB.Module, StringComparer.InvariantCultureIgnoreCase))
             {
                 DBEntryDCSMod mod = Database.Instance.GetEntry<DBEntryDCSMod>(unitDB.Module);
-                if (mod != null && !string.IsNullOrEmpty(mod.RequiredID))
-                    ModUnits.Add(mod.RequiredID);
+                if (mod != null && !string.IsNullOrEmpty(mod.Module))
+                    ModUnits.Add(mod.Module);
             }
             var unit = new DCSUnit(unitType);
 

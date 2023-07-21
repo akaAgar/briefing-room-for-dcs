@@ -84,8 +84,7 @@ namespace BriefingRoom4DCS.Template
             FlightPlanObjectiveSeparation = new MinMaxD(template.FlightPlanObjectiveSeparationMin, template.FlightPlanObjectiveSeparationMax);
             BorderLimit = template.BorderLimit;
             FlightPlanTheaterStartingAirbase = template.FlightPlanTheaterStartingAirbase;
-            AppendPlayerAircraftMods(ref template);
-            Mods = template.Mods;
+            Mods = GetMods(template);
             MissionFeatures = template.MissionFeatures;
             Objectives = template.Objectives.Select(x => new MissionTemplateObjectiveRecord(x)).ToList();
             OptionsFogOfWar = template.OptionsFogOfWar;
@@ -132,12 +131,12 @@ namespace BriefingRoom4DCS.Template
             return PlayerFlightGroups.Aggregate(0, (acc, x) => acc + (x.AIWingmen ? 1 : x.Count));
         }
 
-        private void AppendPlayerAircraftMods(ref MissionTemplate template)
-        {
-            var playerMods = template.PlayerFlightGroups
+        private List<string> GetMods(MissionTemplate template)
+        {   
+            var selectedMods = template.Mods.Select(x => Database.Instance.GetEntry<DBEntryDCSMod>(x).Module);
+            return template.PlayerFlightGroups
              .Select(x => Database.Instance.GetEntry<DBEntryJSONUnit>(x.Aircraft).Module)
-             .Where(x => !string.IsNullOrEmpty(x) && !DBEntryDCSMod.CORE_MODS.Contains(x)).ToList();
-            template.Mods.AddRange(playerMods);
+             .Where(x => !string.IsNullOrEmpty(x) && !DBEntryDCSMod.CORE_MODS.Contains(x)).Concat(selectedMods).Distinct().ToList();
         }
     }
 }

@@ -215,7 +215,7 @@ Configuration of Cloud Weather Presets (As per Inital Cloud Presets)
 ### Database/DCSMods directory
 Configuration of unit mods
 * GUI
-* RequiredID (DCS id of the mod - create mission in ME using units from the mod and check the requiredModules section in the saved mission file. If missing unit DCSID will be used)
+* Module (DCS id of the mod - create mission in ME using units from the mod and check the requiredModules section in the saved mission file. If missing unit DCSID will be used)
 
 
 ### Database/Units directory

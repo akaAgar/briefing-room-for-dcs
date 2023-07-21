@@ -74,14 +74,13 @@ namespace BriefingRoom4DCS.Generator
 
             var category = families.First().GetDCSUnitCategory();
             bool allowDifferentUnitTypes = false;
-
             var validUnits = new Dictionary<Country, List<string>>();
-
+            
             foreach (Country country in Enum.GetValues(typeof(Country)).Cast<Country>().Where(x => !IgnoreCountries.Contains(x)).ToList())
                 validUnits[country] = (
                         from DBEntryJSONUnit unit in Database.Instance.GetAllEntries<DBEntryJSONUnit>()
                         where unit.Families.Intersect(families).ToList().Count > 0 && unit.Operators.ContainsKey(country) &&
-                            (string.IsNullOrEmpty(unit.Module) || unitMods.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase)) &&
+                            (string.IsNullOrEmpty(unit.Module) || unitMods.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase) || DBEntryDCSMod.CORE_MODS.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase)) &&
                             (unit.Operators[country].start <= decade) && (unit.Operators[country].end >= decade) &&
                             (!unit.lowPolly || allowLowPolly)
                         select unit.ID

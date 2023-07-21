@@ -69,11 +69,11 @@ namespace BriefingRoom4DCS.Data
             "F-15E AI by RAZBAM"
         };
 
-        internal string RequiredID { get; private set; }
+        internal string Module { get; private set; }
         protected override bool OnLoad(string iniFilePath)
         {
             var ini = new INIFile(iniFilePath);
-            RequiredID = ini.GetValue<string>("Module", "RequiredID");
+            Module = ini.GetValue<string>("Module", "Module");
             return true;
         }
     }
