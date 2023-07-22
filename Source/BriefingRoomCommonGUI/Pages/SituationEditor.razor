@@ -83,7 +83,7 @@
     errorMessage = "";
     try
     {
-      var result = await JSRuntime.InvokeAsync<SituationZones>("GetSituationCoordinates", ContextTheater);
+      var result = await JSRuntime.InvokeAsync<Situation>("GetSituationCoordinates", ContextTheater);
       if (String.IsNullOrEmpty(GeneratedSituationInI))
       {
         GeneratedSituationInI = $@"[GUI]

@@ -42,21 +42,26 @@ namespace BriefingRoom4DCS.Data
 
         internal List<string> RelatedSituations { get; private set; }
 
-        protected override bool OnLoad(string iniFilePath)
+        protected override bool OnLoad(string o)
         {
-            var ini = new INIFile(iniFilePath);
-            Theater = ini.GetValue<string>("Situation", "Theater").ToLower();
-            RelatedSituations = ini.GetValueList<string>("Situation", "RelatedSituations");
-
-            var zonesJsonFilePath = Path.Combine(BRPaths.DATABASEJSON, "SituationZones", $"{ID}.json");
-            if(!File.Exists(zonesJsonFilePath)) 
-                throw new BriefingRoomException($"Situation {ID} Missing Zone Data. File not found: {zonesJsonFilePath}");
-            
-            var zoneData = JsonConvert.DeserializeObject<SituationZones>(File.ReadAllText(zonesJsonFilePath));
-            RedZones = zoneData.redZones.Select(x => x.Select(y => new Coordinates(y)).ToList()).ToList();
-            BlueZones = zoneData.blueZones.Select(x => x.Select(y => new Coordinates(y)).ToList()).ToList();
-            NoSpawnZones = zoneData.noSpawnZones.Select(x => x.Select(y => new Coordinates(y)).ToList()).ToList();
-            return true;
+            throw new NotImplementedException();
+        }
+        internal static Dictionary<string, DBEntry> LoadJSON(string filepath)
+        {
+            var situation = JsonConvert.DeserializeObject<Situation>(File.ReadAllText(filepath));
+            var id = Path.GetFileNameWithoutExtension(filepath);
+            return new Dictionary<string, DBEntry>{
+                {id, new DBEntrySituation{
+                    ID = id,
+                    UIDisplayName = new LanguageString(situation.DisplayName),
+                    BriefingDescriptions = situation.BriefingDescriptions.Select(x => new LanguageString(x)).ToList(),
+                    Theater = situation.Theater.ToLower(),
+                    RelatedSituations = situation.RelatedSituations,
+                    RedZones = situation.redZones.Select(x => x.Select(y => new Coordinates(y)).ToList()).ToList(),
+                    BlueZones = situation.blueZones.Select(x => x.Select(y => new Coordinates(y)).ToList()).ToList(),
+                    NoSpawnZones = situation.noSpawnZones.Select(x => x.Select(y => new Coordinates(y)).ToList()).ToList(),
+                }}
+            };
         }
 
         internal List<List<Coordinates>> GetRedZones(bool invertCoalition) => !invertCoalition ? RedZones : BlueZones;

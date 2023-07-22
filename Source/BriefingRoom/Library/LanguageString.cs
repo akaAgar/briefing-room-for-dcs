@@ -27,6 +27,13 @@ namespace BriefingRoom4DCS
     public class LanguageString : Dictionary<string, string>
     {
         public LanguageString() { }
+
+        public LanguageString(Dictionary<string, string> dict) {
+            foreach (var item in dict)
+            {
+                this.Add(item.Key, item.Value);
+            }
+        }
         public LanguageString(string value)
         {
             this.Add("EN", value);
@@ -37,6 +44,11 @@ namespace BriefingRoom4DCS
             if (this.ContainsKey(key)) return this[key];
             if (this.ContainsKey("EN")) return this["EN"];
             return $"";
+        }
+
+        public Dictionary<string, string> ToDictionary()
+        {
+            return this;
         }
     }
 }

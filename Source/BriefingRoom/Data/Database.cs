@@ -80,7 +80,8 @@ namespace BriefingRoom4DCS.Data
             LoadEntries<DBEntryObjectivePreset>("ObjectivePresets"); // Must be loaded after other DBEntryObjective*, as it depends on them
             LoadEntries<DBEntryTheater>("Theaters");
             LoadJSONEntries<DBEntryAirbase>("TheatersAirbases");
-            LoadEntries<DBEntrySituation>("TheaterSituations"); // Must be loaded after DBEntryTheater, as it depends on it
+            LoadJSONFolderEntries<DBEntrySituation>("Situations");
+            // LoadEntries<DBEntrySituation>("TheaterSituations"); // Must be loaded after DBEntryTheater, as it depends on it
             LoadEntries<DBEntryDCSMod>("DCSMods");
             LoadJSONEntries<DBEntryCar>("UnitCars", true);
             LoadJSONEntries<DBEntryCar>("UnitCarsMod", true);
@@ -151,7 +152,7 @@ namespace BriefingRoom4DCS.Data
         {
             BriefingRoom.PrintToLog($"Loading {subDirectory.ToLower()}...");
 
-            string filePath = Path.Combine(BRPaths.DATABASEJSON, subDirectory + ".json");
+            string filePath = Path.Combine(BRPaths.DATABASEJSON, subDirectory + (Path.HasExtension(subDirectory) ? "" : ".json"));
             if (!File.Exists(filePath))
                 throw new Exception($"File {filePath} not found.");
 
@@ -190,6 +191,9 @@ namespace BriefingRoom4DCS.Data
                 case DBEntryLayout a:
                     entries = DBEntries[dbType].Concat(DBEntryLayout.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
                     break;
+                case DBEntrySituation a:
+                    entries = DBEntries[dbType].Concat(DBEntrySituation.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
+                    break;
                 default:
                     throw new BriefingRoomException($"JSON type {dbType} not implemented.");
             }
@@ -206,6 +210,20 @@ namespace BriefingRoom4DCS.Data
             // If a required database type has no entries, raise an error.
             if ((DBEntries[dbType].Count == 0) && mustHaveAtLeastOneEntry)
                 throw new BriefingRoomException($"No valid database entries found in the \"{subDirectory}\" directory");
+        }
+
+        private void LoadJSONFolderEntries<T>(string subDirectory) where T : DBEntry, new()
+        {
+            BriefingRoom.PrintToLog($"Loading {subDirectory.ToLower()}...");
+
+            string folderPath = Path.Combine(BRPaths.DATABASEJSON, subDirectory);
+            if (!Directory.Exists(folderPath))
+                throw new Exception($"Folder {folderPath} not found.");
+
+            foreach (var filePath in Directory.GetFiles(folderPath))
+            {
+                LoadJSONEntries<T>(filePath);
+            }
         }
 
         private void LoadCustomUnitEntries<T>(string subDirectory) where T : DBEntry, new()
