@@ -144,10 +144,10 @@ namespace BriefingRoom4DCS.Generator
             var validSP = (from DBEntryTheaterSpawnPoint pt in SpawnPoints where validTypes.Contains(pt.PointType) select pt);
             Coordinates?[] distanceOrigin = new Coordinates?[] { distanceOrigin1, distanceOrigin2 };
             MinMaxD?[] distanceFrom = new MinMaxD?[] { distanceFrom1, distanceFrom2 };
-            var brokenSP = validSP.Where(x => CheckInSea(x.Coordinates)).Select(x => $"[{x.Coordinates.X},{x.Coordinates.Y}],{x.PointType}").ToList();
+            var brokenSP = validSP.Where(x => CheckInSea(x.Coordinates)).ToList();
             var useFrontLine = nearFrontLineFamily.HasValue && FrontLine.Count  > 0 && NEAR_FRONT_LINE_CATEGORIES.Contains(nearFrontLineFamily.Value.GetUnitCategory());
             if (brokenSP.Count > 0)
-                throw new BriefingRoomException($"Spawn Points in the sea!: {string.Join("\n", brokenSP)}");
+                throw new BriefingRoomException($"Spawn Points in the sea!: {string.Join("\n", brokenSP.Select(x => $"[{x.Coordinates.X},{x.Coordinates.Y}],{x.PointType}").ToList())}");
             for (int i = 0; i < 2; i++) // Remove spawn points too far or too close from distanceOrigin1 and distanceOrigin2
             {
                 if (validSP.Count() == 0) return null;
@@ -261,6 +261,8 @@ namespace BriefingRoom4DCS.Generator
         internal void RecoverSpawnPoint(Coordinates coords)
         {
             var usedSP = UsedSpawnPoints.Find(x => x.Coordinates.X == coords.X && x.Coordinates.Y == x.Coordinates.Y);
+            if(usedSP.Coordinates.ToString() == Coordinates.Zero.ToString())
+                return;
             SpawnPoints.Add(usedSP);
         }
 
