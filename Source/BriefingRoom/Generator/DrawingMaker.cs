@@ -127,7 +127,7 @@ namespace BriefingRoom4DCS.Generator
                     "Points".ToKeyValuePair(zone.Select(coord => coord - zone.First()).ToList()),
                     "Colour".ToKeyValuePair(redColour),
                     "FillColour".ToKeyValuePair(redColour));
-                Mission.MapData.Add("RED", zone.Select(x => x.ToArray()).ToList());
+                Mission.MapData.Add($"RED_{red.IndexOf(zone)}", zone.Select(x => x.ToArray()).ToList());
             }
             foreach (var zone in blue)
             {
