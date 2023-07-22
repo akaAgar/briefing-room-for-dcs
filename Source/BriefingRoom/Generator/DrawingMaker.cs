@@ -138,14 +138,14 @@ namespace BriefingRoom4DCS.Generator
                     "Points".ToKeyValuePair(zone.Select(coord => coord - zone.First()).ToList()),
                     "Colour".ToKeyValuePair(blueColour),
                     "FillColour".ToKeyValuePair(blueColour));
-                Mission.MapData.Add("BLUE", zone.Select(x => x.ToArray()).ToList());
+                Mission.MapData.Add($"BLUE_{blue.IndexOf(zone)}", zone.Select(x => x.ToArray()).ToList());
             }
 
             if (SituationDB.NoSpawnZones.Count > 0)
             {
                 var noSpawn = SituationDB.NoSpawnZones;
                 var noSpawnColour = hideBorders ? DrawingColour.Clear : DrawingColour.GreenFill;
-                foreach (var zone in blue)
+                foreach (var zone in noSpawn)
                 {
                     AddFree(
                         "Neutural (NoSpawning)",
@@ -153,7 +153,7 @@ namespace BriefingRoom4DCS.Generator
                         "Points".ToKeyValuePair(zone.Select(coord => coord - zone.First()).ToList()),
                         "Colour".ToKeyValuePair(noSpawnColour),
                         "FillColour".ToKeyValuePair(noSpawnColour));
-                    Mission.MapData.Add("NOSPAWN", zone.Select(x => x.ToArray()).ToList());
+                    Mission.MapData.Add($"NOSPAWN_{noSpawn.IndexOf(zone)}", zone.Select(x => x.ToArray()).ToList());
                 }
             }
 
