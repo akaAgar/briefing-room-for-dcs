@@ -27,8 +27,13 @@ let globIndex = 1;
 
 Object.keys(spots).forEach(spType => {
     var tempunits = []
-    var options = { numberOfClusters: Math.ceil(spots[spType].length / 50) };
-    var clustered = clustersKmeans(featureCollection(spots[spType]), options);
+    var sps = spots[spType]
+    if(sps.length === 0)
+    {
+        sps = [spots['LandLarge'][0]]
+    }
+    var options = { numberOfClusters: Math.ceil(sps.length / 50) };
+    var clustered = clustersKmeans(featureCollection(sps), options);
     var cluserObj = {};
     clustered.features.forEach((feat, gi) => {
         if(!cluserObj[feat.properties.cluster])
