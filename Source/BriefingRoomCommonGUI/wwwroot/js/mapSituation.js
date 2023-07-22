@@ -127,7 +127,7 @@ function SetSituationZones(dataString, map)
 
 function SetSituationZone(zone, projector, color)
 {
-    zone = zone.map(x => DCStoLatLong(x, projector))
+    zone = zone.map(x => DCStoLatLong(x, projector).reverse())
     var layer = L.polygon(zone, {
         color: color,
         fillColor: color,
