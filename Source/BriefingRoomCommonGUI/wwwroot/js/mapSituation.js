@@ -4,10 +4,9 @@ const situationMapLayers = {
     "NEUTRAL": [],
 }
 
-let leafSituationMap, drawnItems;
+let leafSituationMap, drawnItems,SPGroup;
 
 async function RenderEditorMap(map, spawnPoints) {
-    console.log(spawnPoints)
     if (leafSituationMap) {
         leafSituationMap.off();
         leafSituationMap.remove();
@@ -17,6 +16,10 @@ async function RenderEditorMap(map, spawnPoints) {
         leafSituationMap = L.map('situationMap')
         L.esri.basemapLayer("Imagery").addTo(leafSituationMap);
         L.esri.basemapLayer("ImageryLabels").addTo(leafSituationMap);
+        SPGroup = new L.layerGroup()
+        L.easyButton('oi oi-dial', function (btn, map) {
+            ToggleSPLayer()
+        }).addTo(leafSituationMap);
     } catch (error) {
         console.warn(error)
     }
@@ -83,7 +86,7 @@ async function RenderEditorMap(map, spawnPoints) {
 
     spawnPoints.forEach(sp => {
         let iconType = "GREEN_AIRBASE"
-        switch (sp.pt) {
+        switch (sp.bRtype) {
             case "LandSmall":
                 iconType = "RED_AIRBASE"
                 break;
@@ -93,13 +96,24 @@ async function RenderEditorMap(map, spawnPoints) {
             default:
                 break;
         }
-        new L.Marker(GetFromMapCoordData(sp.coords, map), {
+        SPGroup.addLayer(new L.Marker(GetFromMapCoordData(sp.coords, map), {
             title: sp.pt,
             icon: new L.DivIcon({
-                html: `<img class="map_point_icon_small" src="_content/BriefingRoomCommonGUI/img/nato-icons/${iconType}.svg" alt="${sp.pt}"/>`
+                html: `<img class="map_point_icon_small" src="_content/BriefingRoomCommonGUI/img/nato-icons/${iconType}.svg" alt="${sp.bRtype}"/>`
             }),
-        }).addTo(leafSituationMap)
+        }))
     });
+
+
+}
+
+function ToggleSPLayer() {
+
+    if (SPGroup._map) {
+        SPGroup.remove()
+        return
+    }
+    SPGroup.addTo(leafSituationMap)
 }
 
 function SetSituationZones(dataString, map)
