@@ -24,6 +24,8 @@ spawnPoints.forEach(spot => {
 
 let globIndex = 1;
 
+modmission = modmission.replaceAll(`$MAPX$`, spots['LandLarge'][0].geometry.coordinates[0])
+modmission = modmission.replaceAll(`$MAPY$`, spots['LandLarge'][0].geometry.coordinates[1])
 
 Object.keys(spots).forEach(spType => {
     var tempunits = []
