@@ -1,6 +1,7 @@
 [
     {
-        "_id": "539e50b15eec2fd29c1fe5a769c96df0562a32c7",
+        "_id": "64bfb2e817951d43e5d9eaaa",
+        "type": "2B11 mortar",
         "category": "Artillery",
         "paintSchemes": {
             "0": [
@@ -634,7 +635,6 @@
                 "Winter"
             ]
         },
-        "type": "2B11 mortar",
         "displayName": "Mortar 2B11 120mm",
         "shape": "2B11",
         "operators": {
@@ -745,7 +745,8 @@
         }
     },
     {
-        "_id": "bdf4d3c80efc1bef9ce6e536a315a520892d7fef",
+        "_id": "64bfb2e817951d43e5d9eaac",
+        "type": "SAU Gvozdika",
         "category": "Artillery",
         "paintSchemes": {
             "0": [
@@ -1739,7 +1740,6 @@
                 "Winter"
             ]
         },
-        "type": "SAU Gvozdika",
         "displayName": "SPH 2S1 Gvozdika 122mm",
         "shape": "2c1",
         "operators": {
@@ -1870,15 +1870,12 @@
             "Slovenia": [
                 1990,
                 2020
-            ],
-            "SouthOssetia": [
-                2010,
-                2010
             ]
         }
     },
     {
-        "_id": "9efbb82de00367cb365ede9d5aa85cebb3e7ab6d",
+        "_id": "64bfb2e817951d43e5d9eaae",
+        "type": "SAU Msta",
         "category": "Artillery",
         "paintSchemes": {
             "0": [
@@ -2872,7 +2869,6 @@
                 "Winter"
             ]
         },
-        "type": "SAU Msta",
         "displayName": "SPH 2S19 Msta 152mm",
         "shape": "2-c19",
         "operators": {
@@ -2919,7 +2915,8 @@
         }
     },
     {
-        "_id": "2b9c6428c1bff636ae381bd2fc21e18c16c684b8",
+        "_id": "64bfb2e817951d43e5d9eab0",
+        "type": "SAU Akatsia",
         "category": "Artillery",
         "paintSchemes": {
             "0": [
@@ -3913,7 +3910,6 @@
                 "Winter"
             ]
         },
-        "type": "SAU Akatsia",
         "displayName": "SPH 2S3 Akatsia 152mm",
         "shape": "2-c3",
         "operators": {
@@ -4004,15 +4000,12 @@
             "UnitedNationsPeacekeepers": [
                 1970,
                 2020
-            ],
-            "SouthOssetia": [
-                2010,
-                2020
             ]
         }
     },
     {
-        "_id": "f736dfdcdb3ea9a3dabbe5d30ed719c844907e1e",
+        "_id": "64bfb2e817951d43e5d9eab2",
+        "type": "SAU 2-C9",
         "category": "Artillery",
         "paintSchemes": {
             "0": [
@@ -5006,7 +4999,6 @@
                 "Winter"
             ]
         },
-        "type": "SAU 2-C9",
         "displayName": "SPM 2S9 Nona 120mm M",
         "shape": "2-c9",
         "operators": {
@@ -5057,7 +5049,8 @@
         }
     },
     {
-        "_id": "1b06530900f7508b8258c0c5f39897a7b2bf8dcd",
+        "_id": "64bfb2e817951d43e5d9eab4",
+        "type": "M-109",
         "category": "Artillery",
         "paintSchemes": {
             "0": [
@@ -6051,7 +6044,6 @@
                 "Winter"
             ]
         },
-        "type": "M-109",
         "displayName": "SPH M109 Paladin 155mm",
         "shape": "m-109",
         "operators": {
@@ -6166,7 +6158,8 @@
         }
     },
     {
-        "_id": "c701e4fc8eb45d9156e94b157be933c293713f89",
+        "_id": "64bfb2e817951d43e5d9eab6",
+        "type": "SpGH_Dana",
         "category": "Artillery",
         "paintSchemes": {
             "0": [
@@ -6440,7 +6433,6 @@
                 "Desert"
             ]
         },
-        "type": "SpGH_Dana",
         "displayName": "SPH Dana vz77 152mm",
         "shape": "SpGH_Dana",
         "operators": {
@@ -6483,7 +6475,8 @@
         }
     },
     {
-        "_id": "60370b82d930fad0aef89346d3b28c898dfe2a46",
+        "_id": "64bfb2e817951d43e5d9eab8",
+        "type": "AAV7",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -7117,7 +7110,6 @@
                 "Winter"
             ]
         },
-        "type": "AAV7",
         "displayName": "APC AAV-7 Amphibious",
         "shape": "AAV-7",
         "operators": {
@@ -7168,7 +7160,8 @@
         }
     },
     {
-        "_id": "c48d353471d211ea50d9c0f9ce9408c9c2022655",
+        "_id": "64bfb2e817951d43e5d9eaba",
+        "type": "BMD-1",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -8252,7 +8245,6 @@
                 "Winter"
             ]
         },
-        "type": "BMD-1",
         "displayName": "IFV BMD-1",
         "shape": "bmd-1",
         "operators": {
@@ -8319,7 +8311,8 @@
         }
     },
     {
-        "_id": "d1bf2ef5e501bb59c24cf164319dcc3d0f8eccac",
+        "_id": "64bfb2e817951d43e5d9eabc",
+        "type": "BMP-1",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -10393,12 +10386,11 @@
                 "Winter"
             ]
         },
-        "type": "BMP-1",
         "displayName": "IFV BMP-1",
         "shape": "bmp-1",
         "operators": {
             "SouthOssetia": [
-                1970,
+                2010,
                 2020
             ],
             "Russia": [
@@ -10419,10 +10411,6 @@
             ],
             "Abkhazia": [
                 1970,
-                2020
-            ],
-            "SouthOssetia": [
-                2010,
                 2020
             ],
             "Belarus": [
@@ -10548,7 +10536,8 @@
         }
     },
     {
-        "_id": "ae91fbe39798b443e77a5f8bca555e15b390cdd3",
+        "_id": "64bfb2e817951d43e5d9eabe",
+        "type": "BMP-2",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -12262,12 +12251,11 @@
                 "Winter"
             ]
         },
-        "type": "BMP-2",
         "displayName": "IFV BMP-2",
         "shape": "bmp-2",
         "operators": {
             "SouthOssetia": [
-                1980,
+                2010,
                 2020
             ],
             "Russia": [
@@ -12288,10 +12276,6 @@
             ],
             "Abkhazia": [
                 1980,
-                2020
-            ],
-            "SouthOssetia": [
-                2010,
                 2020
             ],
             "Belarus": [
@@ -12385,7 +12369,8 @@
         }
     },
     {
-        "_id": "a834a41e5f94a926d4ad6375b267934221cfecb7",
+        "_id": "64bfb2e817951d43e5d9eac0",
+        "type": "BMP-3",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -13379,7 +13364,6 @@
                 "Winter"
             ]
         },
-        "type": "BMP-3",
         "displayName": "IFV BMP-3",
         "shape": "BMP-3",
         "operators": {
@@ -13438,7 +13422,8 @@
         }
     },
     {
-        "_id": "6b5c7c12438a4c9bca16a69d60b8cd0123a9a7b0",
+        "_id": "64bfb2e817951d43e5d9eac2",
+        "type": "BRDM-2",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -14432,7 +14417,6 @@
                 "Winter"
             ]
         },
-        "type": "BRDM-2",
         "displayName": "Scout BRDM-2",
         "shape": "brdm-2",
         "operators": {
@@ -14583,7 +14567,8 @@
         }
     },
     {
-        "_id": "102f90bdb49682e550a63f45113edb1ef0a23558",
+        "_id": "64bfb2e817951d43e5d9eac4",
+        "type": "BTR_D",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -15577,7 +15562,6 @@
                 "Winter"
             ]
         },
-        "type": "BTR_D",
         "displayName": "APC BTR-RD",
         "shape": "btr-d",
         "operators": {
@@ -15616,10 +15600,10 @@
         }
     },
     {
-        "_id": "2cccae82d0ed0953c50ae972beb031fdc3c01f6e",
+        "_id": "64bfb2e817951d43e5d9eac6",
+        "type": "Cobra",
         "category": "Armor",
         "paintSchemes": {},
-        "type": "Cobra",
         "displayName": "Scout Cobra",
         "shape": "Otokar_Cobra",
         "operators": {
@@ -15674,7 +15658,8 @@
         }
     },
     {
-        "_id": "2bb82eda217bd9786cd59493a4d6ca241726d83c",
+        "_id": "64bfb2e817951d43e5d9eac8",
+        "type": "LAV-25",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -16668,7 +16653,6 @@
                 "sand"
             ]
         },
-        "type": "LAV-25",
         "displayName": "IFV LAV-25",
         "shape": "lav-25",
         "operators": {
@@ -16699,7 +16683,8 @@
         }
     },
     {
-        "_id": "7f94c70454837a823812e8ca3810e2e74a306f60",
+        "_id": "64bfb2e817951d43e5d9eaca",
+        "type": "M1043 HMMWV Armament",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -17693,7 +17678,6 @@
                 "Winter"
             ]
         },
-        "type": "M1043 HMMWV Armament",
         "displayName": "Scout HMMWV",
         "shape": "HMMWV_M1043",
         "operators": {
@@ -17892,7 +17876,8 @@
         }
     },
     {
-        "_id": "030f62fcef8b962abe21f7578517b12c64204c3f",
+        "_id": "64bfb2e817951d43e5d9eacc",
+        "type": "M1045 HMMWV TOW",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -18886,7 +18871,6 @@
                 "Winter"
             ]
         },
-        "type": "M1045 HMMWV TOW",
         "displayName": "ATGM HMMWV",
         "shape": "HMMWV_M1045",
         "operators": {
@@ -19045,10 +19029,10 @@
         }
     },
     {
-        "_id": "2cb5fc43a9230129de8897d5b1f4ec1c2534194f",
+        "_id": "64bfb2e817951d43e5d9eace",
+        "type": "M1126 Stryker ICV",
         "category": "Armor",
         "paintSchemes": {},
-        "type": "M1126 Stryker ICV",
         "displayName": "IFV M1126 Stryker ICV",
         "shape": "M1126",
         "operators": {
@@ -19067,7 +19051,8 @@
         }
     },
     {
-        "_id": "b123554a7b62a9ad7040208a426871cd04c9b58f",
+        "_id": "64bfb2e817951d43e5d9ead0",
+        "type": "M-113",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -21051,7 +21036,6 @@
                 "winter"
             ]
         },
-        "type": "M-113",
         "displayName": "APC M113",
         "shape": "m-113",
         "operators": {
@@ -21234,10 +21218,10 @@
         }
     },
     {
-        "_id": "e19136b1d048bab6faa240d3ede1462fd5a70c57",
+        "_id": "64bfb2e817951d43e5d9ead2",
+        "type": "M1134 Stryker ATGM",
         "category": "Armor",
         "paintSchemes": {},
-        "type": "M1134 Stryker ATGM",
         "displayName": "ATGM Stryker",
         "shape": "M1134",
         "operators": {
@@ -21256,7 +21240,8 @@
         }
     },
     {
-        "_id": "1d741c4ba998c1f769a9dd027c6a2339f8551825",
+        "_id": "64bfb2e817951d43e5d9ead4",
+        "type": "M-2 Bradley",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -21890,7 +21875,6 @@
                 "Winter"
             ]
         },
-        "type": "M-2 Bradley",
         "displayName": "IFV M2A2 Bradley",
         "shape": "m-2",
         "operators": {
@@ -21921,7 +21905,8 @@
         }
     },
     {
-        "_id": "c6a9c72e8d5601f122cb133a03349a9f55bc0518",
+        "_id": "64bfb2e817951d43e5d9ead6",
+        "type": "MCV-80",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -22555,7 +22540,6 @@
                 "Winter"
             ]
         },
-        "type": "MCV-80",
         "displayName": "IFV Warrior ",
         "shape": "mcv-80",
         "operators": {
@@ -22578,7 +22562,8 @@
         }
     },
     {
-        "_id": "2504d62c4eb3912dd8fbc8c6e0457887d878ccba",
+        "_id": "64bfb2e817951d43e5d9ead8",
+        "type": "MTLB",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -23572,7 +23557,6 @@
                 "Winter"
             ]
         },
-        "type": "MTLB",
         "displayName": "APC MTLB",
         "shape": "MTLB",
         "operators": {
@@ -23671,7 +23655,8 @@
         }
     },
     {
-        "_id": "50b68fcbde5251183ffaaad8403f86cd0ed9065a",
+        "_id": "64bfb2e817951d43e5d9eada",
+        "type": "Marder",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -24305,7 +24290,6 @@
                 "Winter"
             ]
         },
-        "type": "Marder",
         "displayName": "IFV Marder",
         "shape": "marder",
         "operators": {
@@ -24332,10 +24316,10 @@
         }
     },
     {
-        "_id": "7f9556d1b850e0239a09a4bff67952a1b300716a",
+        "_id": "64bfb2e817951d43e5d9eadc",
+        "type": "TPZ",
         "category": "Armor",
         "paintSchemes": {},
-        "type": "TPZ",
         "displayName": "APC TPz Fuchs ",
         "shape": "tpz",
         "operators": {
@@ -24402,10 +24386,10 @@
         }
     },
     {
-        "_id": "26a1b466f2e4f5966f18f2dfb584a76116b02e18",
+        "_id": "64bfb2e817951d43e5d9eade",
+        "type": "Grad_FDDM",
         "category": "Artillery",
         "paintSchemes": {},
-        "type": "Grad_FDDM",
         "displayName": "Grad MRL FDDM (FC)",
         "shape": "BOMAN",
         "operators": {
@@ -24524,10 +24508,10 @@
         }
     },
     {
-        "_id": "aa0579caec31abd857f1199ac3b86b522d40a3d3",
+        "_id": "64bfb2e817951d43e5d9eae0",
+        "type": "Bunker",
         "category": "Fortification",
         "paintSchemes": {},
-        "type": "Bunker",
         "displayName": "Bunker 2",
         "shape": "dot2",
         "operators": {
@@ -24890,10 +24874,10 @@
         }
     },
     {
-        "_id": "82a20228c49210617931f0d952f67e8ecb9977b2",
+        "_id": "64bfb2e817951d43e5d9eae2",
+        "type": "Paratrooper RPG-16",
         "category": "Infantry",
         "paintSchemes": {},
-        "type": "Paratrooper RPG-16",
         "displayName": "Paratrooper RPG-16",
         "shape": "Infantry_typeD_RPG-16",
         "operators": {
@@ -24940,10 +24924,10 @@
         }
     },
     {
-        "_id": "eab04f0631ff8cb2b2bc48f488d9dffe159c508d",
+        "_id": "64bfb2e817951d43e5d9eae4",
+        "type": "Paratrooper AKS-74",
         "category": "Infantry",
         "paintSchemes": {},
-        "type": "Paratrooper AKS-74",
         "displayName": "Paratrooper AKS",
         "shape": "Infantry_typeD_AKS-74",
         "operators": {
@@ -24990,10 +24974,10 @@
         }
     },
     {
-        "_id": "aafeb3fdbeb8b5f4a84cad1e20e9e7fb04d01d1c",
+        "_id": "64bfb2e817951d43e5d9eae6",
+        "type": "Infantry AK Ins",
         "category": "Infantry",
         "paintSchemes": {},
-        "type": "Infantry AK Ins",
         "displayName": "Insurgent AK-74",
         "shape": "soldier_ins_00",
         "operators": {
@@ -25028,10 +25012,10 @@
         }
     },
     {
-        "_id": "ff50c62ad42824787956a3d018968f373a2d9109",
+        "_id": "64bfb2e817951d43e5d9eae8",
+        "type": "Sandbox",
         "category": "Fortification",
         "paintSchemes": {},
-        "type": "Sandbox",
         "displayName": "Bunker 1",
         "shape": "dot",
         "operators": {
@@ -25042,10 +25026,10 @@
         }
     },
     {
-        "_id": "7a5d048efb745728f70b0ef3f5c77b98556778b6",
+        "_id": "64bfb2e817951d43e5d9eaea",
+        "type": "Soldier AK",
         "category": "Infantry",
         "paintSchemes": {},
-        "type": "Soldier AK",
         "displayName": "Infantry AK-74",
         "shape": "Soldier_AK",
         "operators": {
@@ -25080,10 +25064,10 @@
         }
     },
     {
-        "_id": "806fdd45c82f9cbf00d40007debeca96eb4615a4",
+        "_id": "64bfb2e817951d43e5d9eaec",
+        "type": "Infantry AK",
         "category": "Infantry",
         "paintSchemes": {},
-        "type": "Infantry AK",
         "displayName": "Infantry AK-74 Rus ver1",
         "shape": "soldier_ru_00",
         "operators": {
@@ -25142,7 +25126,8 @@
         }
     },
     {
-        "_id": "b275bf30a07cd4d2a11c3e70cf855976efb46ada",
+        "_id": "64bfb2e817951d43e5d9eaee",
+        "type": "Soldier M249",
         "category": "Infantry",
         "paintSchemes": {
             "0": [
@@ -26046,7 +26031,6 @@
                 "Winter"
             ]
         },
-        "type": "Soldier M249",
         "displayName": "Infantry M249",
         "shape": "Soldier_M249",
         "operators": {
@@ -26089,7 +26073,8 @@
         }
     },
     {
-        "_id": "99dc508e931729beab23b26cd43134cecd582fc3",
+        "_id": "64bfb2e817951d43e5d9eaf0",
+        "type": "Soldier M4",
         "category": "Infantry",
         "paintSchemes": {
             "0": [
@@ -26993,7 +26978,6 @@
                 "Winter"
             ]
         },
-        "type": "Soldier M4",
         "displayName": "Infantry M4",
         "shape": "Soldier_M4",
         "operators": {
@@ -27044,10 +27028,10 @@
         }
     },
     {
-        "_id": "7f4f9ba3015e4cf29263918772781f7461054bb3",
+        "_id": "64bfb2e817951d43e5d9eaf2",
+        "type": "Soldier M4 GRG",
         "category": "Infantry",
         "paintSchemes": {},
-        "type": "Soldier M4 GRG",
         "displayName": "Infantry M4 Georgia",
         "shape": "soldier_ge_00",
         "operators": {
@@ -27062,10 +27046,10 @@
         }
     },
     {
-        "_id": "5cd9f24477f91aa489dd606725b31d1f98f94942",
+        "_id": "64bfb2e817951d43e5d9eaf4",
+        "type": "Soldier RPG",
         "category": "Infantry",
         "paintSchemes": {},
-        "type": "Soldier RPG",
         "displayName": "Infantry RPG",
         "shape": "Soldier_RPG",
         "operators": {
@@ -27100,10 +27084,10 @@
         }
     },
     {
-        "_id": "b048788fa04da797bca637fa0d969af799127c37",
+        "_id": "64bfb2e817951d43e5d9eaf6",
+        "type": "MLRS FDDM",
         "category": "Artillery",
         "paintSchemes": {},
-        "type": "MLRS FDDM",
         "displayName": "MRLS FDDM (FC)",
         "shape": "HMMWV_M1043",
         "operators": {
@@ -27230,10 +27214,10 @@
         }
     },
     {
-        "_id": "138e776242d6196cf087d4901e4f3896064c545b",
+        "_id": "64bfb2e817951d43e5d9eaf8",
+        "type": "Infantry AK ver2",
         "category": "Infantry",
         "paintSchemes": {},
-        "type": "Infantry AK ver2",
         "displayName": "Infantry AK-74 Rus ver2",
         "shape": "soldier_ru_01",
         "operators": {
@@ -27292,10 +27276,10 @@
         }
     },
     {
-        "_id": "34752b0602e12d69edc9dcb3931a8d5926ea77f4",
+        "_id": "64bfb2e817951d43e5d9eafa",
+        "type": "Infantry AK ver3",
         "category": "Infantry",
         "paintSchemes": {},
-        "type": "Infantry AK ver3",
         "displayName": "Infantry AK-74 Rus ver3",
         "shape": "soldier_ru_02",
         "operators": {
@@ -27354,10 +27338,10 @@
         }
     },
     {
-        "_id": "3d7074eb8d86cf8f2af9521e4475f6f5162d8215",
+        "_id": "64bfb2e817951d43e5d9eafc",
+        "type": "Grad-URAL",
         "category": "Artillery",
         "paintSchemes": {},
-        "type": "Grad-URAL",
         "displayName": "MLRS BM-21 Grad 122mm",
         "shape": "bm-21-40",
         "operators": {
@@ -27544,18 +27528,14 @@
             "Ecuador": [
                 1960,
                 2020
-            ],
-            "SouthOssetia": [
-                2010,
-                2020
             ]
         }
     },
     {
-        "_id": "e895d66e7d216c06d7131f95d15cc2a1ca332953",
+        "_id": "64bfb2e817951d43e5d9eafe",
+        "type": "Uragan_BM-27",
         "category": "Artillery",
         "paintSchemes": {},
-        "type": "Uragan_BM-27",
         "displayName": "MLRS 9K57 Uragan BM-27 220mm",
         "shape": "Uragan_9k57",
         "operators": {
@@ -27598,10 +27578,10 @@
         }
     },
     {
-        "_id": "2a584fafb9f000ecf5716bbe30ff1a1cbdc507fd",
+        "_id": "64bfb2e817951d43e5d9eb00",
+        "type": "Smerch",
         "category": "Artillery",
         "paintSchemes": {},
-        "type": "Smerch",
         "displayName": "MLRS 9A52 Smerch CM 300mm",
         "shape": "smerch",
         "operators": {
@@ -27668,10 +27648,10 @@
         }
     },
     {
-        "_id": "1f526ec6ea912627a921c7b5bb66ee37f160bf68",
+        "_id": "64bfb2e817951d43e5d9eb02",
+        "type": "Smerch_HE",
         "category": "Artillery",
         "paintSchemes": {},
-        "type": "Smerch_HE",
         "displayName": "MLRS 9A52 Smerch HE 300mm",
         "shape": "smerch",
         "operators": {
@@ -27738,7 +27718,8 @@
         }
     },
     {
-        "_id": "d54a360ae3ee5c4b0c85ffb6b87fe1f8fc48f59f",
+        "_id": "64bfb2e817951d43e5d9eb04",
+        "type": "MLRS",
         "category": "Artillery",
         "paintSchemes": {
             "0": [
@@ -28732,7 +28713,6 @@
                 "Winter"
             ]
         },
-        "type": "MLRS",
         "displayName": "MLRS M270 227mm",
         "shape": "MLRS",
         "operators": {
@@ -28815,7 +28795,8 @@
         }
     },
     {
-        "_id": "aa310e1025e52c737f011b7422cc1df135b0b76e",
+        "_id": "64bfb2e817951d43e5d9eb06",
+        "type": "2S6 Tunguska",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -29809,7 +29790,6 @@
                 "Winter"
             ]
         },
-        "type": "2S6 Tunguska",
         "displayName": "SAM SA-19 Tunguska \"Grison\" ",
         "shape": "2c6m",
         "operators": {
@@ -29852,15 +29832,12 @@
             "UnitedNationsPeacekeepers": [
                 1980,
                 2020
-            ],
-            "SouthOssetia": [
-                1990,
-                2020
             ]
         }
     },
     {
-        "_id": "c7207d34802bd48e64451b3dce748f5308a55313",
+        "_id": "64bfb2e817951d43e5d9eb08",
+        "type": "Kub 2P25 ln",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -30494,7 +30471,6 @@
                 "Winter"
             ]
         },
-        "type": "Kub 2P25 ln",
         "displayName": "SAM SA-6 Kub \"Gainful\" TEL",
         "shape": "2p25",
         "operators": {
@@ -30609,7 +30585,8 @@
         }
     },
     {
-        "_id": "585483afb4091873b5d6f2a5c133ec3875b7ee94",
+        "_id": "64bfb2e817951d43e5d9eb0a",
+        "type": "5p73 s-125 ln",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -31603,7 +31580,6 @@
                 "Winter"
             ]
         },
-        "type": "5p73 s-125 ln",
         "displayName": "SAM SA-3 S-125 \"Goa\" LN",
         "shape": "5P73_LAUNCH",
         "operators": {
@@ -31730,7 +31706,8 @@
         }
     },
     {
-        "_id": "5e8695eaa949e44c06119f768eb0d066ae41cca4",
+        "_id": "64bfb2e817951d43e5d9eb0c",
+        "type": "S-300PS 5P85C ln",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -32364,7 +32341,6 @@
                 "GRC_Winter"
             ]
         },
-        "type": "S-300PS 5P85C ln",
         "displayName": "SAM SA-10 S-300 \"Grumble\" TEL D",
         "shape": "5p85c",
         "operators": {
@@ -32443,7 +32419,8 @@
         }
     },
     {
-        "_id": "87d8273971e8d322f8dc29f7fe2472b8c734e2e2",
+        "_id": "64bfb2e817951d43e5d9eb0e",
+        "type": "S-300PS 5P85D ln",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -33077,7 +33054,6 @@
                 "GRC_Winter"
             ]
         },
-        "type": "S-300PS 5P85D ln",
         "displayName": "SAM SA-10 S-300 \"Grumble\" TEL C",
         "shape": "5p85d",
         "operators": {
@@ -33156,7 +33132,8 @@
         }
     },
     {
-        "_id": "b323c46e279855061432120205b4e16bf3b38c4c",
+        "_id": "64bfb2e817951d43e5d9eb10",
+        "type": "SA-11 Buk LN 9A310M1",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -33430,7 +33407,6 @@
                 "Desert"
             ]
         },
-        "type": "SA-11 Buk LN 9A310M1",
         "displayName": "SAM SA-11 Buk \"Gadfly\" Fire Dome TEL",
         "shape": "9a310m1",
         "operators": {
@@ -33497,7 +33473,8 @@
         }
     },
     {
-        "_id": "0a7a22a66370963fabf5bcc486788adcd8d64ca6",
+        "_id": "64bfb2e817951d43e5d9eb12",
+        "type": "Osa 9A33 ln",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -34131,7 +34108,6 @@
                 "GRC_Winter"
             ]
         },
-        "type": "Osa 9A33 ln",
         "displayName": "SAM SA-8 Osa \"Gecko\" TEL",
         "shape": "9A33",
         "operators": {
@@ -34230,15 +34206,12 @@
             "Ecuador": [
                 1970,
                 2020
-            ],
-            "SouthOssetia": [
-                2010,
-                2020
             ]
         }
     },
     {
-        "_id": "f04c1d1cbe54e85c83654b46053031cf5894d171",
+        "_id": "64bfb2e817951d43e5d9eb14",
+        "type": "Tor 9A331",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -35592,7 +35565,6 @@
                 "Winter"
             ]
         },
-        "type": "Tor 9A331",
         "displayName": "SAM SA-15 Tor \"Gauntlet\"",
         "shape": "9a331",
         "operators": {
@@ -35647,7 +35619,8 @@
         }
     },
     {
-        "_id": "f03634741465ce57f676ac99c4d4a32d659c0d1b",
+        "_id": "64bfb2e817951d43e5d9eb16",
+        "type": "Strela-10M3",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -36641,7 +36614,6 @@
                 "Winter"
             ]
         },
-        "type": "Strela-10M3",
         "displayName": "SAM SA-13 Strela 10M3 \"Gopher\" TEL",
         "shape": "9a35",
         "operators": {
@@ -36708,7 +36680,8 @@
         }
     },
     {
-        "_id": "5f8bb33bc8ec8d33fa3556e72f9aaee547a6ec98",
+        "_id": "64bfb2e817951d43e5d9eb18",
+        "type": "Strela-1 9P31",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -37702,7 +37675,6 @@
                 "Winter"
             ]
         },
-        "type": "Strela-1 9P31",
         "displayName": "SAM SA-9 Strela 1 \"Gaskin\" TEL",
         "shape": "9p31",
         "operators": {
@@ -37829,15 +37801,12 @@
             "SouthAfrica": [
                 1980,
                 2020
-            ],
-            "SouthOssetia": [
-                2010,
-                2020
             ]
         }
     },
     {
-        "_id": "484922642e8c9602f33c6e9ea11b922fa14e016e",
+        "_id": "64bfb2e817951d43e5d9eb1a",
+        "type": "SA-11 Buk CC 9S470M1",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -39191,7 +39160,6 @@
                 "Winter"
             ]
         },
-        "type": "SA-11 Buk CC 9S470M1",
         "displayName": "SAM SA-11 Buk \"Gadfly\" C2 ",
         "shape": "9S470M1",
         "operators": {
@@ -39262,7 +39230,8 @@
         }
     },
     {
-        "_id": "1e09be45c455e9edb6d1e134b621a5fda1cd552a",
+        "_id": "64bfb2e817951d43e5d9eb1c",
+        "type": "Patriot AMG",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -39896,7 +39865,6 @@
                 "GRC_Winter"
             ]
         },
-        "type": "Patriot AMG",
         "displayName": "SAM Patriot CR (AMG AN/MRC-137)",
         "shape": "patriot-ag",
         "operators": {
@@ -39963,7 +39931,8 @@
         }
     },
     {
-        "_id": "9ab2ec5be02ec6e7d21d011a964f2e529762b901",
+        "_id": "64bfb2e817951d43e5d9eb1e",
+        "type": "Patriot ECS",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -40597,7 +40566,6 @@
                 "GRC_Winter"
             ]
         },
-        "type": "Patriot ECS",
         "displayName": "SAM Patriot ECS",
         "shape": "patriot-ECS",
         "operators": {
@@ -40664,7 +40632,8 @@
         }
     },
     {
-        "_id": "b4b80ab70d76c9fb501ce588b8f92f8f186c3abb",
+        "_id": "64bfb2e817951d43e5d9eb20",
+        "type": "Gepard",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -41298,7 +41267,6 @@
                 "Winter"
             ]
         },
-        "type": "Gepard",
         "displayName": "SPAAA Gepard",
         "shape": "gepard",
         "operators": {
@@ -41337,10 +41305,10 @@
         }
     },
     {
-        "_id": "be7144e65e38cb58a230eab0382dd8884336ebad",
+        "_id": "64bfb2e817951d43e5d9eb22",
+        "type": "Hawk pcp",
         "category": "Air Defence",
         "paintSchemes": {},
-        "type": "Hawk pcp",
         "displayName": "SAM Hawk Platoon Command Post (PCP)",
         "shape": "hawk-cv",
         "operators": {
@@ -41447,7 +41415,8 @@
         }
     },
     {
-        "_id": "f40190e349688de2bb760d5f6c00d7efba0e5ab9",
+        "_id": "64bfb2e817951d43e5d9eb24",
+        "type": "Vulcan",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -42801,7 +42770,6 @@
                 "Winter"
             ]
         },
-        "type": "Vulcan",
         "displayName": "SPAAA Vulcan M163",
         "shape": "VULCAN",
         "operators": {
@@ -42872,10 +42840,10 @@
         }
     },
     {
-        "_id": "29b01bb77f8c30798f9f313ab4bd501529815be5",
+        "_id": "64bfb2e817951d43e5d9eb26",
+        "type": "Hawk ln",
         "category": "Air Defence",
         "paintSchemes": {},
-        "type": "Hawk ln",
         "displayName": "SAM Hawk LN M192",
         "shape": "hawk-pu",
         "operators": {
@@ -42982,7 +42950,8 @@
         }
     },
     {
-        "_id": "cde2df5cad2b8f23fbd2d8c8c4ea97641da75b4c",
+        "_id": "64bfb2e817951d43e5d9eb28",
+        "type": "M48 Chaparral",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -44336,7 +44305,6 @@
                 "Winter"
             ]
         },
-        "type": "M48 Chaparral",
         "displayName": "SAM Chaparral M48",
         "shape": "M48",
         "operators": {
@@ -44383,7 +44351,8 @@
         }
     },
     {
-        "_id": "982332f0a728db26406c1c484375fcf494264f60",
+        "_id": "64bfb2e817951d43e5d9eb2a",
+        "type": "M6 Linebacker",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -45017,7 +44986,6 @@
                 "Winter"
             ]
         },
-        "type": "M6 Linebacker",
         "displayName": "SAM Linebacker - Bradley M6",
         "shape": "M6",
         "operators": {
@@ -45036,7 +45004,8 @@
         }
     },
     {
-        "_id": "7fa710b10f306826089b58bf7dd0dcd21669c415",
+        "_id": "64bfb2e817951d43e5d9eb2c",
+        "type": "Patriot ln",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -45670,7 +45639,6 @@
                 "GRC_Winter"
             ]
         },
-        "type": "Patriot ln",
         "displayName": "SAM Patriot LN",
         "shape": "patriot-pu",
         "operators": {
@@ -45737,10 +45705,10 @@
         }
     },
     {
-        "_id": "56fad70f3ce6a4652a186c50332edad5e8029be4",
+        "_id": "64bfb2e817951d43e5d9eb2e",
+        "type": "M1097 Avenger",
         "category": "Air Defence",
         "paintSchemes": {},
-        "type": "M1097 Avenger",
         "displayName": "SAM Avenger (Stinger)",
         "shape": "HMMWV_M973",
         "operators": {
@@ -45791,7 +45759,8 @@
         }
     },
     {
-        "_id": "50ee7d718db15c96794dfd8ae8d048fadf80d71a",
+        "_id": "64bfb2e817951d43e5d9eb30",
+        "type": "Patriot EPP",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -46425,7 +46394,6 @@
                 "GRC_Winter"
             ]
         },
-        "type": "Patriot EPP",
         "displayName": "SAM Patriot EPP-III",
         "shape": "patriot-epp",
         "operators": {
@@ -46492,7 +46460,8 @@
         }
     },
     {
-        "_id": "2c61a87b83e6e26eaa58c1c51cb2784dfe70867c",
+        "_id": "64bfb2e817951d43e5d9eb32",
+        "type": "Patriot cp",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -47126,7 +47095,6 @@
                 "GRC_Winter"
             ]
         },
-        "type": "Patriot cp",
         "displayName": "SAM Patriot C2 ICC",
         "shape": "patriot-kp",
         "operators": {
@@ -47193,7 +47161,8 @@
         }
     },
     {
-        "_id": "4a88384785627e109a8e622ab963783096136ce5",
+        "_id": "64bfb2e817951d43e5d9eb34",
+        "type": "Roland ADS",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -47467,7 +47436,6 @@
                 "Desert"
             ]
         },
-        "type": "Roland ADS",
         "displayName": "SAM Roland ADS",
         "shape": "roland",
         "operators": {
@@ -47526,7 +47494,8 @@
         }
     },
     {
-        "_id": "6ead7cdc3ee6b919fe66613ab7e84c2862cbdba4",
+        "_id": "64bfb2e817951d43e5d9eb36",
+        "type": "S-300PS 54K6 cp",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -48160,7 +48129,6 @@
                 "GRC_Winter"
             ]
         },
-        "type": "S-300PS 54K6 cp",
         "displayName": "SAM SA-10 S-300 \"Grumble\" C2 ",
         "shape": "54k6",
         "operators": {
@@ -48243,7 +48211,8 @@
         }
     },
     {
-        "_id": "624bb202b63599bc83fc0e4eac7f3cf28e636364",
+        "_id": "64bfb2e817951d43e5d9eb38",
+        "type": "Soldier stinger",
         "category": "Air Defence",
         "paintSchemes": {
             "2": [
@@ -48264,7 +48233,6 @@
                 "Digital grey"
             ]
         },
-        "type": "Soldier stinger",
         "displayName": "MANPADS Stinger",
         "shape": "soldier_stinger",
         "operators": {
@@ -48403,10 +48371,10 @@
         }
     },
     {
-        "_id": "5f1daef1091142a5251663e2bddb648bf3038ff2",
+        "_id": "64bfb2e817951d43e5d9eb3a",
+        "type": "Stinger comm dsr",
         "category": "Air Defence",
         "paintSchemes": {},
-        "type": "Stinger comm dsr",
         "displayName": "MANPADS Stinger C2 Desert",
         "shape": "Stinger_com2",
         "operators": {
@@ -48449,7 +48417,8 @@
         }
     },
     {
-        "_id": "732eb5015a94ecba400657c2f09dbb95895f1fab",
+        "_id": "64bfb2e817951d43e5d9eb3c",
+        "type": "Stinger comm",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -49083,7 +49052,6 @@
                 "multicam"
             ]
         },
-        "type": "Stinger comm",
         "displayName": "MANPADS Stinger C2",
         "shape": "Stinger_com",
         "operators": {
@@ -49214,7 +49182,8 @@
         }
     },
     {
-        "_id": "ca515659c05a46e034dfe8930089e47d7d436fb3",
+        "_id": "64bfb2e817951d43e5d9eb3e",
+        "type": "ZSU-23-4 Shilka",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -50928,7 +50897,6 @@
                 "Winter"
             ]
         },
-        "type": "ZSU-23-4 Shilka",
         "displayName": "SPAAA ZSU-23-4 Shilka \"Gun Dish\"",
         "shape": "zsu-23-4",
         "operators": {
@@ -51075,15 +51043,12 @@
             "Ecuador": [
                 1960,
                 2020
-            ],
-            "SouthOssetia": [
-                2010,
-                2020
             ]
         }
     },
     {
-        "_id": "667f256c09d2e3ca4fd910b54118cf8c34863282",
+        "_id": "64bfb2e817951d43e5d9eb40",
+        "type": "ZU-23 Emplacement Closed",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -51717,7 +51682,6 @@
                 "GRC_Winter"
             ]
         },
-        "type": "ZU-23 Emplacement Closed",
         "displayName": "AAA ZU-23 Closed Emplacement",
         "shape": "ZU-23",
         "operators": {
@@ -51884,15 +51848,12 @@
             "Iraq": [
                 1960,
                 2020
-            ],
-            "SouthOssetia": [
-                2010,
-                2020
             ]
         }
     },
     {
-        "_id": "7568cf8136ae86f219731872fb884caf30cdc489",
+        "_id": "64bfb2e817951d43e5d9eb42",
+        "type": "ZU-23 Emplacement",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -52526,7 +52487,6 @@
                 "GRC_Winter"
             ]
         },
-        "type": "ZU-23 Emplacement",
         "displayName": "AAA ZU-23 Emplacement",
         "shape": "ZU-23_S",
         "operators": {
@@ -52693,15 +52653,12 @@
             "Iraq": [
                 1960,
                 2020
-            ],
-            "SouthOssetia": [
-                2010,
-                2020
             ]
         }
     },
     {
-        "_id": "0274057ae1c5f6c7b6d9ccabbe26c4d01a8bf9a6",
+        "_id": "64bfb2e817951d43e5d9eb44",
+        "type": "Ural-375 ZU-23",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -52975,7 +52932,6 @@
                 "Desert"
             ]
         },
-        "type": "Ural-375 ZU-23",
         "displayName": "SPAAA ZU-23-2 Mounted Ural 375",
         "shape": "Ural_ZU-23",
         "operators": {
@@ -53110,18 +53066,14 @@
             "SouthAfrica": [
                 1960,
                 2020
-            ],
-            "SouthOssetia": [
-                2010,
-                2020
             ]
         }
     },
     {
-        "_id": "064d6a08af75929909e604affe5f448b917184c1",
+        "_id": "64bfb2e817951d43e5d9eb46",
+        "type": "ZU-23 Closed Insurgent",
         "category": "Air Defence",
         "paintSchemes": {},
-        "type": "ZU-23 Closed Insurgent",
         "displayName": "AAA ZU-23 Insurgent Closed Emplacement",
         "shape": "ZU-23_CHECH",
         "operators": {
@@ -53140,7 +53092,8 @@
         }
     },
     {
-        "_id": "164e0f18d31fd0065fa25bc23c7491b9fe2b14c1",
+        "_id": "64bfb2e817951d43e5d9eb48",
+        "type": "Ural-375 ZU-23 Insurgent",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -53414,7 +53367,6 @@
                 "Desert"
             ]
         },
-        "type": "Ural-375 ZU-23 Insurgent",
         "displayName": "SPAAA ZU-23-2 Insurgent Mounted Ural-375",
         "shape": "Ural_ZU-23_CHECH",
         "operators": {
@@ -53433,10 +53385,10 @@
         }
     },
     {
-        "_id": "e09fc2e7f2bec316e6142b62faf7c84586247ded",
+        "_id": "64bfb2e817951d43e5d9eb4a",
+        "type": "ZU-23 Insurgent",
         "category": "Air Defence",
         "paintSchemes": {},
-        "type": "ZU-23 Insurgent",
         "displayName": "AAA ZU-23 Insurgent Emplacement",
         "shape": "ZU-23_S_CHECH",
         "operators": {
@@ -53451,10 +53403,10 @@
         }
     },
     {
-        "_id": "b74b27b3c766fdec72ff8c00ffee9d38b08a6a80",
+        "_id": "64bfb2e817951d43e5d9eb4c",
+        "type": "SA-18 Igla manpad",
         "category": "Air Defence",
         "paintSchemes": {},
-        "type": "SA-18 Igla manpad",
         "displayName": "MANPADS SA-18 Igla \"Grouse\"",
         "shape": "SA18_manpad2",
         "operators": {
@@ -53573,10 +53525,10 @@
         }
     },
     {
-        "_id": "87ad0664b8ec02e3d726e17b7187165948ad2bf7",
+        "_id": "64bfb2e817951d43e5d9eb4e",
+        "type": "SA-18 Igla comm",
         "category": "Air Defence",
         "paintSchemes": {},
-        "type": "SA-18 Igla comm",
         "displayName": "MANPADS SA-18 Igla \"Grouse\" C2",
         "shape": "SA18_com2",
         "operators": {
@@ -53707,10 +53659,10 @@
         }
     },
     {
-        "_id": "c24d27e9379553053c0f216d458d031c29611e70",
+        "_id": "64bfb2e817951d43e5d9eb50",
+        "type": "SA-18 Igla-S manpad",
         "category": "Air Defence",
         "paintSchemes": {},
-        "type": "SA-18 Igla-S manpad",
         "displayName": "MANPADS SA-18 Igla-S \"Grouse\"",
         "shape": "soldier_ru_03",
         "operators": {
@@ -53805,10 +53757,10 @@
         }
     },
     {
-        "_id": "6cd80dd4e4294c49a06691f7a3f00af4e2a34a09",
+        "_id": "64bfb2e817951d43e5d9eb52",
+        "type": "SA-18 Igla-S comm",
         "category": "Air Defence",
         "paintSchemes": {},
-        "type": "SA-18 Igla-S comm",
         "displayName": "MANPADS SA-18 Igla-S \"Grouse\" C2",
         "shape": "SA18_com1",
         "operators": {
@@ -53899,10 +53851,10 @@
         }
     },
     {
-        "_id": "68fb5910b7b5c67bf3582b880f8c88403f3895ee",
+        "_id": "64bfb2e817951d43e5d9eb54",
+        "type": "Igla manpad INS",
         "category": "Air Defence",
         "paintSchemes": {},
-        "type": "Igla manpad INS",
         "displayName": "MANPADS SA-18 Igla \"Grouse\" Ins",
         "shape": "soldier_INS_03",
         "operators": {
@@ -53945,7 +53897,8 @@
         }
     },
     {
-        "_id": "8373a5c5df53aebc0bdeb5aed4e0504e24ccf674",
+        "_id": "64bfb2e817951d43e5d9eb56",
+        "type": "1L13 EWR",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -54219,7 +54172,6 @@
                 "Desert"
             ]
         },
-        "type": "1L13 EWR",
         "displayName": "EWR 1L13",
         "shape": "1l13",
         "operators": {
@@ -54266,7 +54218,8 @@
         }
     },
     {
-        "_id": "e7ab3886ee82d3da69ace90b3bcb94e11dd2b194",
+        "_id": "64bfb2e817951d43e5d9eb58",
+        "type": "Kub 1S91 str",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -54900,7 +54853,6 @@
                 "Winter"
             ]
         },
-        "type": "Kub 1S91 str",
         "displayName": "SAM SA-6 Kub \"Straight Flush\" STR",
         "shape": "1s91",
         "operators": {
@@ -55019,7 +54971,8 @@
         }
     },
     {
-        "_id": "92a14a29d09d408fe5248af0d751e8145bb0baca",
+        "_id": "64bfb2e817951d43e5d9eb5a",
+        "type": "S-300PS 40B6M tr",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -55653,7 +55606,6 @@
                 "GRC_Winter"
             ]
         },
-        "type": "S-300PS 40B6M tr",
         "displayName": "SAM SA-10 S-300 \"Grumble\" Flap Lid TR ",
         "shape": "40b6m",
         "operators": {
@@ -55736,7 +55688,8 @@
         }
     },
     {
-        "_id": "36bbd60a8361b0c6ca7664ac1ea7ade44f0f83c5",
+        "_id": "64bfb2e817951d43e5d9eb5c",
+        "type": "S-300PS 40B6MD sr",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -56370,7 +56323,6 @@
                 "GRC_Winter"
             ]
         },
-        "type": "S-300PS 40B6MD sr",
         "displayName": "SAM SA-10 S-300PS Low Alt SR 5N66M",
         "shape": "s-300_40v6md_5n66m_nvo",
         "operators": {
@@ -56453,7 +56405,8 @@
         }
     },
     {
-        "_id": "1e7f3d4881f382f2a33fc59113eb8805f8a60d35",
+        "_id": "64bfb2e817951d43e5d9eb5e",
+        "type": "55G6 EWR",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -56727,7 +56680,6 @@
                 "Desert"
             ]
         },
-        "type": "55G6 EWR",
         "displayName": "EWR 55G6",
         "shape": "55g6",
         "operators": {
@@ -56766,7 +56718,8 @@
         }
     },
     {
-        "_id": "ce226d6392d76765545429e2b13d759c9739e966",
+        "_id": "64bfb2e817951d43e5d9eb60",
+        "type": "S-300PS 64H6E sr",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -57400,7 +57353,6 @@
                 "GRC_Winter"
             ]
         },
-        "type": "S-300PS 64H6E sr",
         "displayName": "SAM SA-10 S-300 \"Grumble\" Big Bird SR ",
         "shape": "64H6E",
         "operators": {
@@ -57483,7 +57435,8 @@
         }
     },
     {
-        "_id": "d774d31daf1aee0b83dec24fd7eb7f812a2289d5",
+        "_id": "64bfb2e817951d43e5d9eb62",
+        "type": "SA-11 Buk SR 9S18M1",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -58837,7 +58790,6 @@
                 "Winter"
             ]
         },
-        "type": "SA-11 Buk SR 9S18M1",
         "displayName": "SAM SA-11 Buk \"Gadfly\" Snow Drift SR",
         "shape": "9S18M1",
         "operators": {
@@ -58908,7 +58860,8 @@
         }
     },
     {
-        "_id": "c03f0e48e0b2c5b33b91f7b1320588956e04ee9d",
+        "_id": "64bfb2e817951d43e5d9eb64",
+        "type": "Dog Ear radar",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -60262,7 +60215,6 @@
                 "Winter"
             ]
         },
-        "type": "Dog Ear radar",
         "displayName": "MCC-SR Sborka \"Dog Ear\" SR",
         "shape": "Sborka",
         "operators": {
@@ -60309,10 +60261,10 @@
         }
     },
     {
-        "_id": "348ecdb7dc9d3ceaee9f2faa82c5c383d4d38b6e",
+        "_id": "64bfb2e817951d43e5d9eb66",
+        "type": "Hawk tr",
         "category": "Air Defence",
         "paintSchemes": {},
-        "type": "Hawk tr",
         "displayName": "SAM Hawk TR (AN/MPQ-46)",
         "shape": "hawk-upr",
         "operators": {
@@ -60419,10 +60371,10 @@
         }
     },
     {
-        "_id": "cedcdca7c61dd8ee2b398600f1e1389756ed15a1",
+        "_id": "64bfb2e817951d43e5d9eb68",
+        "type": "Hawk sr",
         "category": "Air Defence",
         "paintSchemes": {},
-        "type": "Hawk sr",
         "displayName": "SAM Hawk SR (AN/MPQ-50)",
         "shape": "hawk-rls",
         "operators": {
@@ -60529,7 +60481,8 @@
         }
     },
     {
-        "_id": "c0fd67ae1f24e58c86ae81fbef1387b0206420bd",
+        "_id": "64bfb2e817951d43e5d9eb6a",
+        "type": "Patriot str",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -61163,7 +61116,6 @@
                 "GRC_Winter"
             ]
         },
-        "type": "Patriot str",
         "displayName": "SAM Patriot STR",
         "shape": "patriot-rls",
         "operators": {
@@ -61230,10 +61182,10 @@
         }
     },
     {
-        "_id": "17199a1552efa5544c63970c96f6c7febd076e29",
+        "_id": "64bfb2e817951d43e5d9eb6c",
+        "type": "Hawk cwar",
         "category": "Air Defence",
         "paintSchemes": {},
-        "type": "Hawk cwar",
         "displayName": "SAM Hawk CWAR AN/MPQ-55",
         "shape": "hawk-cwar",
         "operators": {
@@ -61340,7 +61292,8 @@
         }
     },
     {
-        "_id": "fc28f2edf80c7a77399800b3fd07843eb551c436",
+        "_id": "64bfb2e817951d43e5d9eb6e",
+        "type": "p-19 s-125 sr",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -62334,7 +62287,6 @@
                 "Winter"
             ]
         },
-        "type": "p-19 s-125 sr",
         "displayName": "SAM SA-2/3/5 P19 \"Flat Face\" SR ",
         "shape": "Zil_p19_Radar",
         "operators": {
@@ -62485,7 +62437,8 @@
         }
     },
     {
-        "_id": "e0f1ca1914f7034e07bac228419f9e5b56dc123a",
+        "_id": "64bfb2e817951d43e5d9eb70",
+        "type": "Roland Radar",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -62759,7 +62712,6 @@
                 "Desert"
             ]
         },
-        "type": "Roland Radar",
         "displayName": "SAM Roland EWR",
         "shape": "roland-rls",
         "operators": {
@@ -62814,7 +62766,8 @@
         }
     },
     {
-        "_id": "21dd8aea33184f40fc18cd0bb5bf5a378db990bf",
+        "_id": "64bfb2e817951d43e5d9eb72",
+        "type": "snr s-125 tr",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -63808,7 +63761,6 @@
                 "Winter"
             ]
         },
-        "type": "snr s-125 tr",
         "displayName": "SAM SA-3 S-125 \"Low Blow\" TR",
         "shape": "snr-125",
         "operators": {
@@ -63939,10 +63891,10 @@
         }
     },
     {
-        "_id": "acadf7cec80e27623c08f09c2e4f955bcc8e306d",
+        "_id": "64bfb2e817951d43e5d9eb74",
+        "type": "house1arm",
         "category": "Fortification",
         "paintSchemes": {},
-        "type": "house1arm",
         "displayName": "Barracks armed",
         "shape": "kazarma1",
         "operators": {
@@ -64301,10 +64253,10 @@
         }
     },
     {
-        "_id": "03957acf0d87b0232c61fdaee159bac4415aa169",
+        "_id": "64bfb2e817951d43e5d9eb76",
+        "type": "house2arm",
         "category": "Fortification",
         "paintSchemes": {},
-        "type": "house2arm",
         "displayName": "Watch tower armed",
         "shape": "ohr-vyshka",
         "operators": {
@@ -64663,10 +64615,10 @@
         }
     },
     {
-        "_id": "0f5701c937b2fe19dfe0fb9a58c2ee1580e8d44f",
+        "_id": "64bfb2e817951d43e5d9eb78",
+        "type": "outpost_road",
         "category": "Fortification",
         "paintSchemes": {},
-        "type": "outpost_road",
         "displayName": "Road outpost",
         "shape": "block-onroad",
         "operators": {
@@ -65025,10 +64977,10 @@
         }
     },
     {
-        "_id": "a0f85221ecc60828297cca80d57ece92276518f8",
+        "_id": "64bfb2e817951d43e5d9eb7a",
+        "type": "outpost",
         "category": "Fortification",
         "paintSchemes": {},
-        "type": "outpost",
         "displayName": "Outpost",
         "shape": "block",
         "operators": {
@@ -65039,10 +64991,10 @@
         }
     },
     {
-        "_id": "e9fa454661987e1a6985a0e4f3f51eae5dc4ed78",
+        "_id": "64bfb2e817951d43e5d9eb7c",
+        "type": "houseA_arm",
         "category": "Fortification",
         "paintSchemes": {},
-        "type": "houseA_arm",
         "displayName": "Building armed",
         "shape": "home1_a",
         "operators": {
@@ -65401,10 +65353,10 @@
         }
     },
     {
-        "_id": "81085a60260b97b07b029ae953d3170f7fb323f2",
+        "_id": "64bfb2e817951d43e5d9eb7e",
+        "type": "TACAN_beacon",
         "category": "Fortification",
         "paintSchemes": {},
-        "type": "TACAN_beacon",
         "displayName": "Beacon TACAN Portable TTS 3030",
         "shape": "tacan_b",
         "operators": {
@@ -65415,7 +65367,8 @@
         }
     },
     {
-        "_id": "b7a5016d61f7e714e31f8317d371ea8c5200d764",
+        "_id": "64bfb2e817951d43e5d9eb80",
+        "type": "Challenger2",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -65779,7 +65732,6 @@
                 "Winter"
             ]
         },
-        "type": "Challenger2",
         "displayName": "MBT Challenger II",
         "shape": "CHALLENGER-2",
         "operators": {
@@ -65798,7 +65750,8 @@
         }
     },
     {
-        "_id": "95fa27045e6e9df726a14f982a24cc838cf1f613",
+        "_id": "64bfb2e817951d43e5d9eb82",
+        "type": "Leclerc",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -66072,7 +66025,6 @@
                 "Desert"
             ]
         },
-        "type": "Leclerc",
         "displayName": "MBT Leclerc",
         "shape": "Leclerc",
         "operators": {
@@ -66091,7 +66043,8 @@
         }
     },
     {
-        "_id": "a1c3be3fa48a311ab7193903cba83c575400949e",
+        "_id": "64bfb2e817951d43e5d9eb84",
+        "type": "M-60",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -66725,7 +66678,6 @@
                 "winter"
             ]
         },
-        "type": "M-60",
         "displayName": "MBT M60A3 Patton",
         "shape": "m-60",
         "operators": {
@@ -66812,10 +66764,10 @@
         }
     },
     {
-        "_id": "5ab94c06b73ff3d60331a23f815d5ef2446c1206",
+        "_id": "64bfb2e817951d43e5d9eb86",
+        "type": "M1128 Stryker MGS",
         "category": "Armor",
         "paintSchemes": {},
-        "type": "M1128 Stryker MGS",
         "displayName": "SPG Stryker MGS",
         "shape": "M1128",
         "operators": {
@@ -66834,7 +66786,8 @@
         }
     },
     {
-        "_id": "0753d79d55ea6fd9f76df6e2c654d9760427de74",
+        "_id": "64bfb2e817951d43e5d9eb88",
+        "type": "M-1 Abrams",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -67468,7 +67421,6 @@
                 "Winter"
             ]
         },
-        "type": "M-1 Abrams",
         "displayName": "MBT M1A2 Abrams",
         "shape": "m-1",
         "operators": {
@@ -67503,7 +67455,8 @@
         }
     },
     {
-        "_id": "1835f71cc9c961457649ac016855dff81767c922",
+        "_id": "64bfb2e817951d43e5d9eb8a",
+        "type": "T-55",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -68497,7 +68450,6 @@
                 "Winter"
             ]
         },
-        "type": "T-55",
         "displayName": "MBT T-55",
         "shape": "T-55",
         "operators": {
@@ -68668,15 +68620,12 @@
             "Ecuador": [
                 1960,
                 2020
-            ],
-            "SouthOssetia": [
-                2010,
-                2010
             ]
         }
     },
     {
-        "_id": "db465f88e277277aa7b6d27e8c4596fc48bcf68a",
+        "_id": "64bfb2e817951d43e5d9eb8c",
+        "type": "T-72B",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -68950,7 +68899,6 @@
                 "Desert"
             ]
         },
-        "type": "T-72B",
         "displayName": "MBT T-72B",
         "shape": "t-72",
         "operators": {
@@ -69041,15 +68989,12 @@
             "Nigeria": [
                 1980,
                 2020
-            ],
-            "SouthOssetia": [
-                2010,
-                2020
             ]
         }
     },
     {
-        "_id": "f95c735d35cb28cf7ae169392a7e97506085ca88",
+        "_id": "64bfb2e817951d43e5d9eb8e",
+        "type": "T-80UD",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -70223,7 +70168,6 @@
                 "Winter"
             ]
         },
-        "type": "T-80UD",
         "displayName": "MBT T-80U",
         "shape": "t-80ud",
         "operators": {
@@ -70266,7 +70210,8 @@
         }
     },
     {
-        "_id": "163251f20071e9425aa68da854fee7f858dbeec8",
+        "_id": "64bfb2e817951d43e5d9eb90",
+        "type": "T-90",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -71260,7 +71205,6 @@
                 "Winter"
             ]
         },
-        "type": "T-90",
         "displayName": "MBT T-90",
         "shape": "T-90",
         "operators": {
@@ -71299,7 +71243,8 @@
         }
     },
     {
-        "_id": "6f6023873258f34763c5323def5e2c24a64122b6",
+        "_id": "64bfb2e817951d43e5d9eb92",
+        "type": "Leopard1A3",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -72293,7 +72238,6 @@
                 "Winter"
             ]
         },
-        "type": "Leopard1A3",
         "displayName": "MBT Leopard 1A3",
         "shape": "LEOPARD-1A3",
         "operators": {
@@ -72356,10 +72300,10 @@
         }
     },
     {
-        "_id": "6bbe8c3383c3eb59415ebceb406ae3be4acd97e1",
+        "_id": "64bfb2e817951d43e5d9eb94",
+        "type": "Merkava_Mk4",
         "category": "Armor",
         "paintSchemes": {},
-        "type": "Merkava_Mk4",
         "displayName": "MBT Merkava IV",
         "shape": "Merkava_Mk_IV",
         "operators": {
@@ -72374,7 +72318,8 @@
         }
     },
     {
-        "_id": "fe4805b5e5ff199cb7140d2528fdda9ff8bf9972",
+        "_id": "64bfb2e817951d43e5d9eb96",
+        "type": "Ural-4320 APA-5D",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -72648,7 +72593,6 @@
                 "Desert"
             ]
         },
-        "type": "Ural-4320 APA-5D",
         "displayName": "GPU APA-5D on Ural 4320",
         "shape": "ural-apa",
         "operators": {
@@ -72711,7 +72655,8 @@
         }
     },
     {
-        "_id": "c3a20c70fd2057075e097080616305eda9954556",
+        "_id": "64bfb2e817951d43e5d9eb98",
+        "type": "ATMZ-5",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -72985,7 +72930,6 @@
                 "Desert"
             ]
         },
-        "type": "ATMZ-5",
         "displayName": "Refueler ATMZ-5",
         "shape": "Ural_ATMZ-5",
         "operators": {
@@ -73060,7 +73004,8 @@
         }
     },
     {
-        "_id": "94be3e57140e916c7170fa7c7caae5de1dfb0319",
+        "_id": "64bfb2e817951d43e5d9eb9a",
+        "type": "ATZ-10",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -73334,7 +73279,6 @@
                 "Desert"
             ]
         },
-        "type": "ATZ-10",
         "displayName": "Refueler ATZ-10",
         "shape": "Ural_ATZ-10",
         "operators": {
@@ -73405,10 +73349,10 @@
         }
     },
     {
-        "_id": "198d967c19b74caa369014881af1efe84fc11422",
+        "_id": "64bfb2e817951d43e5d9eb9c",
+        "type": "GAZ-3307",
         "category": "Unarmed",
         "paintSchemes": {},
-        "type": "GAZ-3307",
         "displayName": "Truck GAZ-3307",
         "shape": "GAZ-3307",
         "operators": {
@@ -73463,7 +73407,8 @@
         }
     },
     {
-        "_id": "793d43060283c50bf5b206ddafc7747ec30ce0df",
+        "_id": "64bfb2e817951d43e5d9eb9e",
+        "type": "GAZ-3308",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -73737,7 +73682,6 @@
                 "Desert"
             ]
         },
-        "type": "GAZ-3308",
         "displayName": "Truck GAZ-3308",
         "shape": "GAZ-3308",
         "operators": {
@@ -73796,7 +73740,8 @@
         }
     },
     {
-        "_id": "7e1d9538985469faae548a219849c8055eea5133",
+        "_id": "64bfb2e817951d43e5d9eba0",
+        "type": "GAZ-66",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -74790,7 +74735,6 @@
                 "Winter"
             ]
         },
-        "type": "GAZ-66",
         "displayName": "Truck GAZ-66",
         "shape": "Gaz-66",
         "operators": {
@@ -74849,7 +74793,8 @@
         }
     },
     {
-        "_id": "6b44624ae76a2998678d33692ccb27c094233a8c",
+        "_id": "64bfb2e817951d43e5d9eba2",
+        "type": "M978 HEMTT Tanker",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -75483,7 +75428,6 @@
                 "Winter"
             ]
         },
-        "type": "M978 HEMTT Tanker",
         "displayName": "Refueler M978 HEMTT",
         "shape": "HEMTT",
         "operators": {
@@ -75578,7 +75522,8 @@
         }
     },
     {
-        "_id": "c90932def1b1ba945a33b162f99b1e76887a66d9",
+        "_id": "64bfb2e817951d43e5d9eba4",
+        "type": "HEMTT TFFT",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -75852,7 +75797,6 @@
                 "Desert"
             ]
         },
-        "type": "HEMTT TFFT",
         "displayName": "Firefighter HEMMT TFFT",
         "shape": "hemtt_fire",
         "operators": {
@@ -75943,10 +75887,10 @@
         }
     },
     {
-        "_id": "9010b7c383d40cc6dac4dd0c3979ba60c219d872",
+        "_id": "64bfb2e817951d43e5d9eba6",
+        "type": "IKARUS Bus",
         "category": "Unarmed",
         "paintSchemes": {},
-        "type": "IKARUS Bus",
         "displayName": "Bus IKARUS-280",
         "shape": "ikarus",
         "operators": {
@@ -76037,7 +75981,8 @@
         }
     },
     {
-        "_id": "c31aec161ce7c993ca7a701f69520447faddd953",
+        "_id": "64bfb2e817951d43e5d9eba8",
+        "type": "KAMAZ Truck",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -77031,7 +76976,6 @@
                 "Winter"
             ]
         },
-        "type": "KAMAZ Truck",
         "displayName": "Truck KAMAZ 43101",
         "shape": "KAMAZ-TENT",
         "operators": {
@@ -77134,10 +77078,10 @@
         }
     },
     {
-        "_id": "199dbf5cf8598dcebb13268f0fea02a54495ffb1",
+        "_id": "64bfb2e817951d43e5d9ebaa",
+        "type": "LAZ Bus",
         "category": "Unarmed",
         "paintSchemes": {},
-        "type": "LAZ Bus",
         "displayName": "Bus LAZ-695",
         "shape": "laz-695",
         "operators": {
@@ -77192,10 +77136,10 @@
         }
     },
     {
-        "_id": "a84e4d6837abadd52ea0765b6d39c105cd73553b",
+        "_id": "64bfb2e817951d43e5d9ebac",
+        "type": "LiAZ Bus",
         "category": "Unarmed",
         "paintSchemes": {},
-        "type": "LiAZ Bus",
         "displayName": "Bus LiAZ-677",
         "shape": "liaz-677",
         "operators": {
@@ -77246,7 +77190,8 @@
         }
     },
     {
-        "_id": "fb80b914929a5317a31a5b7a9bbe04c59e636265",
+        "_id": "64bfb2e817951d43e5d9ebae",
+        "type": "Hummer",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -78240,7 +78185,6 @@
                 "Winter"
             ]
         },
-        "type": "Hummer",
         "displayName": "LUV HMMWV Jeep",
         "shape": "HMMWV_M1025",
         "operators": {
@@ -78447,7 +78391,8 @@
         }
     },
     {
-        "_id": "28f5ec987d7add249f5edac774727d20fb7df324",
+        "_id": "64bfb2e817951d43e5d9ebb0",
+        "type": "M 818",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -78991,7 +78936,6 @@
                 "winter"
             ]
         },
-        "type": "M 818",
         "displayName": "Truck M939 Heavy",
         "shape": "m-818",
         "operators": {
@@ -79190,10 +79134,10 @@
         }
     },
     {
-        "_id": "52ef52eb21f504e7b3cbf65fac08714db7d41822",
+        "_id": "64bfb2e817951d43e5d9ebb2",
+        "type": "MAZ-6303",
         "category": "Unarmed",
         "paintSchemes": {},
-        "type": "MAZ-6303",
         "displayName": "Truck MAZ-6303",
         "shape": "MAZ-6303",
         "operators": {
@@ -79280,10 +79224,10 @@
         }
     },
     {
-        "_id": "dec411f314d2cb2e09c69e285458a41aa9363a95",
+        "_id": "64bfb2e817951d43e5d9ebb4",
+        "type": "Predator GCS",
         "category": "Unarmed",
         "paintSchemes": {},
-        "type": "Predator GCS",
         "displayName": "MCC Predator UAV CP & GCS",
         "shape": "GCS",
         "operators": {
@@ -79338,10 +79282,10 @@
         }
     },
     {
-        "_id": "81e9850a5dfbe9fad6d7b633a8ee75b9875a117c",
+        "_id": "64bfb2e817951d43e5d9ebb6",
+        "type": "Predator TrojanSpirit",
         "category": "Unarmed",
         "paintSchemes": {},
-        "type": "Predator TrojanSpirit",
         "displayName": "MCC-COMM Predator UAV CL",
         "shape": "TrojanSpirit",
         "operators": {
@@ -79396,16 +79340,17 @@
         }
     },
     {
-        "_id": "a06a0a57aa410c9b678556d301e1c65c0c4a066f",
+        "_id": "64bfb2e817951d43e5d9ebb8",
+        "type": "Suidae",
         "category": "Unarmed",
         "paintSchemes": {},
-        "type": "Suidae",
         "displayName": "Suidae",
         "shape": "Suidae",
         "operators": {}
     },
     {
-        "_id": "646ed14bf26fb250ebe90808f250826b04a18b36",
+        "_id": "64bfb2e817951d43e5d9ebba",
+        "type": "Tigr_233036",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -79679,7 +79624,6 @@
                 "Desert"
             ]
         },
-        "type": "Tigr_233036",
         "displayName": "LUV Tigr",
         "shape": "Tigr_233036",
         "operators": {
@@ -79722,10 +79666,10 @@
         }
     },
     {
-        "_id": "ea5f59ae4275a1eae4a7d4d80d5c249250cd5642",
+        "_id": "64bfb2e817951d43e5d9ebbc",
+        "type": "Trolley bus",
         "category": "Unarmed",
         "paintSchemes": {},
-        "type": "Trolley bus",
         "displayName": "Bus ZIU-9 Trolley",
         "shape": "trolebus",
         "operators": {
@@ -79816,10 +79760,10 @@
         }
     },
     {
-        "_id": "c382cd2dacf7d93294593533ef02fdfbab1887e2",
+        "_id": "64bfb2e817951d43e5d9ebbe",
+        "type": "UAZ-469",
         "category": "Unarmed",
         "paintSchemes": {},
-        "type": "UAZ-469",
         "displayName": "LUV UAZ-469 Jeep",
         "shape": "uaz-469",
         "operators": {
@@ -79910,10 +79854,10 @@
         }
     },
     {
-        "_id": "af556f0fac3168323f82428d1747aba3e9169eed",
+        "_id": "64bfb2e817951d43e5d9ebc0",
+        "type": "Ural ATsP-6",
         "category": "Unarmed",
         "paintSchemes": {},
-        "type": "Ural ATsP-6",
         "displayName": "Firefighter Ural ATsP-6",
         "shape": "Ural_ACP6",
         "operators": {
@@ -79976,7 +79920,8 @@
         }
     },
     {
-        "_id": "46d20ada8566fb5590843c3642ae533441553b43",
+        "_id": "64bfb2e817951d43e5d9ebc2",
+        "type": "Ural-4320-31",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -80250,7 +80195,6 @@
                 "Desert"
             ]
         },
-        "type": "Ural-4320-31",
         "displayName": "Truck Ural-4320-31 Arm'd",
         "shape": "Ural_4320-31",
         "operators": {
@@ -80293,7 +80237,8 @@
         }
     },
     {
-        "_id": "44aac661ae6e6ffa2abf2cf75beabf3cb9b70af3",
+        "_id": "64bfb2e817951d43e5d9ebc4",
+        "type": "Ural-4320T",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -80567,7 +80512,6 @@
                 "Desert"
             ]
         },
-        "type": "Ural-4320T",
         "displayName": "Truck Ural-4320T",
         "shape": "Ural_4320_T",
         "operators": {
@@ -80618,7 +80562,8 @@
         }
     },
     {
-        "_id": "66cd641b785a3e9a44242b3a0fc707cfa4934fe6",
+        "_id": "64bfb2e817951d43e5d9ebc6",
+        "type": "Ural-375 PBU",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -80892,7 +80837,6 @@
                 "desert"
             ]
         },
-        "type": "Ural-375 PBU",
         "displayName": "Truck Ural-375 Mobile C2",
         "shape": "Ural_4320_K",
         "operators": {
@@ -80951,7 +80895,8 @@
         }
     },
     {
-        "_id": "c2b633e8d7234bb9f493e5a0509630ca3c51810e",
+        "_id": "64bfb2e817951d43e5d9ebc8",
+        "type": "Ural-375",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -81225,7 +81170,6 @@
                 "Desert"
             ]
         },
-        "type": "Ural-375",
         "displayName": "Truck Ural-375",
         "shape": "Ural_4320_B",
         "operators": {
@@ -81384,10 +81328,10 @@
         }
     },
     {
-        "_id": "e67ee5a73b96def03468f524e224642b89ac3feb",
+        "_id": "64bfb2e817951d43e5d9ebca",
+        "type": "VAZ Car",
         "category": "Unarmed",
         "paintSchemes": {},
-        "type": "VAZ Car",
         "displayName": "Car VAZ-2109",
         "shape": "vaz",
         "operators": {
@@ -81482,7 +81426,8 @@
         }
     },
     {
-        "_id": "7070542ad73f0bfd9ab6e19141c99d5f7dbbbbbd",
+        "_id": "64bfb2e817951d43e5d9ebcc",
+        "type": "ZiL-131 APA-80",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -81756,7 +81701,6 @@
                 "Desert"
             ]
         },
-        "type": "ZiL-131 APA-80",
         "displayName": "GPU APA-80 on ZIL-131",
         "shape": "Zil_APA-80",
         "operators": {
@@ -81831,7 +81775,8 @@
         }
     },
     {
-        "_id": "d6ef11980a7f2d65f23f703abf70f3531f5e2baa",
+        "_id": "64bfb2e817951d43e5d9ebce",
+        "type": "SKP-11",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -82105,7 +82050,6 @@
                 "Desert"
             ]
         },
-        "type": "SKP-11",
         "displayName": "Truck SKP-11 Mobile ATC",
         "shape": "ZIL_SKP-11",
         "operators": {
@@ -82160,7 +82104,8 @@
         }
     },
     {
-        "_id": "d169585cb7785da213e53965db8af7977cfd2057",
+        "_id": "64bfb2e817951d43e5d9ebd0",
+        "type": "ZIL-131 KUNG",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -83154,7 +83099,6 @@
                 "Winter"
             ]
         },
-        "type": "ZIL-131 KUNG",
         "displayName": "Truck ZIL-131 (C2)",
         "shape": "zil_p19_kung",
         "operators": {
@@ -83225,10 +83169,10 @@
         }
     },
     {
-        "_id": "f8494c04787c6e37b8b29a737744f6b2bc076455",
+        "_id": "64bfb2e817951d43e5d9ebd2",
+        "type": "ZIL-4331",
         "category": "Unarmed",
         "paintSchemes": {},
-        "type": "ZIL-4331",
         "displayName": "Truck ZIL-4331",
         "shape": "zil-4334",
         "operators": {
@@ -83283,7 +83227,8 @@
         }
     },
     {
-        "_id": "936cd29905ceb1effd8e323eeceefe40eed0a7fd",
+        "_id": "64bfb2e817951d43e5d9ebd4",
+        "type": "KrAZ6322",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -84367,7 +84312,6 @@
                 "Winter"
             ]
         },
-        "type": "KrAZ6322",
         "displayName": "Truck KrAZ-6322 6x6",
         "shape": "Kraz-6322",
         "operators": {
@@ -84426,10 +84370,10 @@
         }
     },
     {
-        "_id": "37dc2c4f95f553558b8e8a25d0abb00820d7b8e2",
+        "_id": "64bfb2e817951d43e5d9ebd6",
+        "type": "JTAC",
         "category": "Infantry",
         "paintSchemes": {},
-        "type": "JTAC",
         "displayName": "JTAC",
         "shape": "Stinger_com2",
         "operators": {
@@ -84460,19 +84404,19 @@
         }
     },
     {
-        "_id": "7c278944d8eb7831ca5faf887c3636841bb2c530",
+        "_id": "64bfb2e817951d43e5d9ebd8",
+        "type": "Infantry Animated",
         "category": "Infantry",
         "paintSchemes": {},
-        "type": "Infantry Animated",
         "displayName": "Infantry",
         "shape": "unit_infantry_rus",
         "operators": {}
     },
     {
-        "_id": "e7c661c272ca1e208e0099a60ec848e088c2ddf7",
+        "_id": "64bfb2e817951d43e5d9ebda",
+        "type": "Electric locomotive",
         "category": "Locomotive",
         "paintSchemes": {},
-        "type": "Electric locomotive",
         "displayName": "Loco VL80 Electric",
         "module": "RailwayObjectsPack",
         "shape": "elektrowoz",
@@ -84496,10 +84440,10 @@
         }
     },
     {
-        "_id": "70f50fff1b91a52259a4e9a4fdd5237cf7a2636d",
+        "_id": "64bfb2e817951d43e5d9ebdc",
+        "type": "Locomotive",
         "category": "Locomotive",
         "paintSchemes": {},
-        "type": "Locomotive",
         "displayName": "Loco CHME3T",
         "module": "RailwayObjectsPack",
         "shape": "teplowoz",
@@ -84531,10 +84475,10 @@
         }
     },
     {
-        "_id": "1ad47b3f36a4deb800929ebc6af8f74603a92ef8",
+        "_id": "64bfb2e817951d43e5d9ebde",
+        "type": "Coach cargo",
         "category": "Carriage",
         "paintSchemes": {},
-        "type": "Coach cargo",
         "displayName": "Freight Van",
         "module": "RailwayObjectsPack",
         "shape": "wagon-gruz",
@@ -84566,10 +84510,10 @@
         }
     },
     {
-        "_id": "790d3e053fcaa8650584aef686fd6d26aad16fbf",
+        "_id": "64bfb2e817951d43e5d9ebe0",
+        "type": "Coach cargo open",
         "category": "Carriage",
         "paintSchemes": {},
-        "type": "Coach cargo open",
         "displayName": "Open Wagon",
         "module": "RailwayObjectsPack",
         "shape": "wagon-gruz-otkr",
@@ -84601,10 +84545,10 @@
         }
     },
     {
-        "_id": "cbe5302cdb91da695476f566b9c2664487a9dae0",
+        "_id": "64bfb2e817951d43e5d9ebe2",
+        "type": "Coach a tank blue",
         "category": "Carriage",
         "paintSchemes": {},
-        "type": "Coach a tank blue",
         "displayName": "Tank Car blue",
         "module": "RailwayObjectsPack",
         "shape": "wagon-cisterna_blue",
@@ -84636,10 +84580,10 @@
         }
     },
     {
-        "_id": "eac04845e735497b9a83898db9163fb200b9c12c",
+        "_id": "64bfb2e817951d43e5d9ebe4",
+        "type": "Coach a tank yellow",
         "category": "Carriage",
         "paintSchemes": {},
-        "type": "Coach a tank yellow",
         "displayName": "Tank Car yellow",
         "module": "RailwayObjectsPack",
         "shape": "wagon-cisterna_yellow",
@@ -84671,10 +84615,10 @@
         }
     },
     {
-        "_id": "c92b6589cbae356d945b5c37016c35a2d182ea0b",
+        "_id": "64bfb2e817951d43e5d9ebe6",
+        "type": "Coach a passenger",
         "category": "Carriage",
         "paintSchemes": {},
-        "type": "Coach a passenger",
         "displayName": "Passenger Car",
         "module": "RailwayObjectsPack",
         "shape": "wagon-pass",
@@ -84706,10 +84650,10 @@
         }
     },
     {
-        "_id": "eb4456ad19cfcdac679743cf5b98179eb1341359",
+        "_id": "64bfb2e817951d43e5d9ebe8",
+        "type": "Coach a platform",
         "category": "Carriage",
         "paintSchemes": {},
-        "type": "Coach a platform",
         "displayName": "Coach Platform",
         "module": "RailwayObjectsPack",
         "shape": "wagon-platforma",
@@ -84741,10 +84685,10 @@
         }
     },
     {
-        "_id": "fa286500c1c829bd40c1a2a801d4331f422085e0",
+        "_id": "64bfb2e817951d43e5d9ebea",
+        "type": "tacr2a",
         "category": "Unarmed",
         "paintSchemes": {},
-        "type": "tacr2a",
         "displayName": "RAF Rescue",
         "module": "South_Atlantic_Assets",
         "shape": "tacr2a",
@@ -84756,10 +84700,10 @@
         }
     },
     {
-        "_id": "b870500dadd6d1fdf8abfe476c10c71c9b1d78c1",
+        "_id": "64bfb2e817951d43e5d9ebec",
+        "type": "LARC-V",
         "category": "Unarmed",
         "paintSchemes": {},
-        "type": "LARC-V",
         "displayName": "LARC-V",
         "module": "South_Atlantic_Assets",
         "shape": "LARC-V",
@@ -84787,7 +84731,8 @@
         }
     },
     {
-        "_id": "cfb0efff0bbee9305efa95e01f7ef4805c4e1436",
+        "_id": "64bfb2e817951d43e5d9ebee",
+        "type": "KS-19",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -85331,7 +85276,6 @@
                 "Winter"
             ]
         },
-        "type": "KS-19",
         "displayName": "AAA KS-19 100mm",
         "module": "TechWeaponPack",
         "shape": "KS-19",
@@ -85435,7 +85379,8 @@
         }
     },
     {
-        "_id": "1e1277ce5d2792e7f6b2d2bf4915cdd5b38c55ac",
+        "_id": "64bfb2e817951d43e5d9ebf0",
+        "type": "SON_9",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -85979,7 +85924,6 @@
                 "winter"
             ]
         },
-        "type": "SON_9",
         "displayName": "AAA Fire Can SON-9",
         "module": "TechWeaponPack",
         "shape": "son-9.EDM",
@@ -86083,7 +86027,8 @@
         }
     },
     {
-        "_id": "e9b9e43246a0d8a8e66805c8e71a5f43111a3b5d",
+        "_id": "64bfb2e817951d43e5d9ebf2",
+        "type": "Scud_B",
         "category": "MissilesSS",
         "paintSchemes": {
             "0": [
@@ -86111,7 +86056,6 @@
                 "Winter"
             ]
         },
-        "type": "Scud_B",
         "displayName": "SSM SS-1C Scud-B",
         "module": "TechWeaponPack",
         "shape": "Scud_B",
@@ -86219,7 +86163,8 @@
         }
     },
     {
-        "_id": "d28716273ed2e74535ce5505697563bf4a65c50a",
+        "_id": "64bfb2e817951d43e5d9ebf4",
+        "type": "HL_DSHK",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -86763,7 +86708,6 @@
                 "winter"
             ]
         },
-        "type": "HL_DSHK",
         "displayName": "Scout HL with DSHK 12.7mm",
         "module": "TechWeaponPack",
         "shape": "ttHL-dshk",
@@ -86855,7 +86799,8 @@
         }
     },
     {
-        "_id": "d9524de455666a39429b635a0b6957b95ba223e5",
+        "_id": "64bfb2e817951d43e5d9ebf6",
+        "type": "HL_KORD",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -87399,7 +87344,6 @@
                 "winter"
             ]
         },
-        "type": "HL_KORD",
         "displayName": "Scout HL with KORD 12.7mm",
         "module": "TechWeaponPack",
         "shape": "ttHL-kord",
@@ -87491,7 +87435,8 @@
         }
     },
     {
-        "_id": "47b0459db83b8056d409ae770222d740e6afd764",
+        "_id": "64bfb2e817951d43e5d9ebf8",
+        "type": "tt_DSHK",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -88035,7 +87980,6 @@
                 "winter"
             ]
         },
-        "type": "tt_DSHK",
         "displayName": "Scout LC with DSHK 12.7mm",
         "module": "TechWeaponPack",
         "shape": "tt70-dshk",
@@ -88127,7 +88071,8 @@
         }
     },
     {
-        "_id": "d41bb99ce425a930e87c71eb5fc90f74b4d16bc5",
+        "_id": "64bfb2e817951d43e5d9ebfa",
+        "type": "tt_KORD",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -88671,7 +88616,6 @@
                 "winter"
             ]
         },
-        "type": "tt_KORD",
         "displayName": "Scout LC with KORD 12.7mm",
         "module": "TechWeaponPack",
         "shape": "tt70-kord",
@@ -88763,7 +88707,8 @@
         }
     },
     {
-        "_id": "a5ad0188c14f2b70bd9280a7d9ec642eff1f71d3",
+        "_id": "64bfb2e817951d43e5d9ebfc",
+        "type": "HL_ZU-23",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -89307,7 +89252,6 @@
                 "winter"
             ]
         },
-        "type": "HL_ZU-23",
         "displayName": "SPAAA HL with ZU-23",
         "module": "TechWeaponPack",
         "shape": "ttHL-zu23",
@@ -89399,7 +89343,8 @@
         }
     },
     {
-        "_id": "2bda8f959fa9911ddf918b065b8380c7a1290891",
+        "_id": "64bfb2e817951d43e5d9ebfe",
+        "type": "tt_ZU-23",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -89943,7 +89888,6 @@
                 "winter"
             ]
         },
-        "type": "tt_ZU-23",
         "displayName": "SPAAA LC with ZU-23",
         "module": "TechWeaponPack",
         "shape": "tt70-zu23",
@@ -90035,7 +89979,8 @@
         }
     },
     {
-        "_id": "287cda7e413f470ba25f2a68510555e094a37fe4",
+        "_id": "64bfb2e817951d43e5d9ec00",
+        "type": "HL_B8M1",
         "category": "Artillery",
         "paintSchemes": {
             "0": [
@@ -90579,7 +90524,6 @@
                 "winter"
             ]
         },
-        "type": "HL_B8M1",
         "displayName": "MLRS HL with B8M1 80mm",
         "module": "TechWeaponPack",
         "shape": "ttHL-B8M1",
@@ -90655,7 +90599,8 @@
         }
     },
     {
-        "_id": "41cacc032f1fa462d60728c32421a44b8435b806",
+        "_id": "64bfb2e817951d43e5d9ec02",
+        "type": "tt_B8M1",
         "category": "Artillery",
         "paintSchemes": {
             "0": [
@@ -91199,7 +91144,6 @@
                 "winter"
             ]
         },
-        "type": "tt_B8M1",
         "displayName": "MLRS LC with B8M1 80mm",
         "module": "TechWeaponPack",
         "shape": "tt70-B8M1",
@@ -91275,7 +91219,8 @@
         }
     },
     {
-        "_id": "ea7617772cdb48973633e32395c5ef92bb553643",
+        "_id": "64bfb2e817951d43e5d9ec04",
+        "type": "NASAMS_Radar_MPQ64F1",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -91819,7 +91764,6 @@
                 "winter"
             ]
         },
-        "type": "NASAMS_Radar_MPQ64F1",
         "displayName": "SAM NASAMS SR MPQ64F1",
         "module": "TechWeaponPack",
         "shape": "NASAMS_Radar_MPQ64F1",
@@ -91867,7 +91811,8 @@
         }
     },
     {
-        "_id": "78d7df83069204b8309f84eb61df0b0e9489a2bc",
+        "_id": "64bfb2e817951d43e5d9ec06",
+        "type": "NASAMS_Command_Post",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -92411,7 +92356,6 @@
                 "winter"
             ]
         },
-        "type": "NASAMS_Command_Post",
         "displayName": "SAM NASAMS C2",
         "module": "TechWeaponPack",
         "shape": "NASAMS_Command_Post",
@@ -92459,7 +92403,8 @@
         }
     },
     {
-        "_id": "320a0693100306d5ef3dff81d782f04c9ce06654",
+        "_id": "64bfb2e817951d43e5d9ec08",
+        "type": "NASAMS_LN_B",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -93003,7 +92948,6 @@
                 "winter"
             ]
         },
-        "type": "NASAMS_LN_B",
         "displayName": "SAM NASAMS LN AIM-120B",
         "module": "TechWeaponPack",
         "shape": "NASAMS_Missile_Launcher",
@@ -93075,7 +93019,8 @@
         }
     },
     {
-        "_id": "8eb0de26f71b05a13ae322e1f866a273ac1a920d",
+        "_id": "64bfb2e817951d43e5d9ec0a",
+        "type": "NASAMS_LN_C",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -93619,7 +93564,6 @@
                 "winter"
             ]
         },
-        "type": "NASAMS_LN_C",
         "displayName": "SAM NASAMS LN AIM-120C",
         "module": "TechWeaponPack",
         "shape": "NASAMS_Missile_Launcher",
@@ -93667,7 +93611,8 @@
         }
     },
     {
-        "_id": "a0688db91dcf5ff49b2401e9d71f4f9be21e74a4",
+        "_id": "64bfb2e817951d43e5d9ec0c",
+        "type": "M4_Sherman",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -94211,7 +94156,6 @@
                 "Winter"
             ]
         },
-        "type": "M4_Sherman",
         "displayName": "Tk M4 Sherman",
         "module": "TechWeaponPack",
         "shape": "M4_Sherman",
@@ -94347,7 +94291,8 @@
         }
     },
     {
-        "_id": "b317f8444be0c588058b7d00a37f5a8631e6e09f",
+        "_id": "64bfb2e817951d43e5d9ec0e",
+        "type": "M2A1_halftrack",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -94891,7 +94836,6 @@
                 "Winter"
             ]
         },
-        "type": "M2A1_halftrack",
         "displayName": "APC M2A1 Halftrack",
         "module": "TechWeaponPack",
         "shape": "M2A1_halftrack",
@@ -94991,7 +94935,8 @@
         }
     },
     {
-        "_id": "f3fa3ea3514e6084e5271f2ea12ba795881dbc60",
+        "_id": "64bfb2e817951d43e5d9ec10",
+        "type": "FPS-117 Dome",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -95535,7 +95480,6 @@
                 "winter"
             ]
         },
-        "type": "FPS-117 Dome",
         "displayName": "EWR AN/FPS-117 Radar (domed)",
         "module": "TechWeaponPack",
         "shape": "ewr_fps117radar_dome",
@@ -95643,7 +95587,8 @@
         }
     },
     {
-        "_id": "98fb252bf1375b4ab6a8aedb1edd845ffae6d3ff",
+        "_id": "64bfb2e817951d43e5d9ec12",
+        "type": "FPS-117 ECS",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -96187,7 +96132,6 @@
                 "winter"
             ]
         },
-        "type": "FPS-117 ECS",
         "displayName": "EWR AN/FPS-117 ECS",
         "module": "TechWeaponPack",
         "shape": "ewr_fps117radar_shelter",
@@ -96295,7 +96239,8 @@
         }
     },
     {
-        "_id": "552da92cdb41ac94131fc7c7a1da329618ea13a7",
+        "_id": "64bfb2e817951d43e5d9ec14",
+        "type": "FPS-117",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -96839,7 +96784,6 @@
                 "winter"
             ]
         },
-        "type": "FPS-117",
         "displayName": "EWR AN/FPS-117 Radar",
         "module": "TechWeaponPack",
         "shape": "ewr_fps117",
@@ -96947,7 +96891,8 @@
         }
     },
     {
-        "_id": "97f1e15004d8ad2f925c8b808c662383f3be9b07",
+        "_id": "64bfb2e817951d43e5d9ec16",
+        "type": "BTR-80",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -98661,7 +98606,6 @@
                 "Winter"
             ]
         },
-        "type": "BTR-80",
         "displayName": "APC BTR-80",
         "module": "TechWeaponPack",
         "shape": "BTR-80",
@@ -98765,15 +98709,12 @@
             "Nigeria": [
                 1980,
                 2020
-            ],
-            "SouthOssetia": [
-                2010,
-                2020
             ]
         }
     },
     {
-        "_id": "8f140284fd58a200045fcde4e77b96ea12524c5d",
+        "_id": "64bfb2e817951d43e5d9ec18",
+        "type": "RD_75",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -99317,7 +99258,6 @@
                 "Winter"
             ]
         },
-        "type": "RD_75",
         "displayName": "SAM SA-2 S-75 RD-75 Amazonka RF",
         "module": "TechWeaponPack",
         "shape": "RD_75.EDM",
@@ -99333,7 +99273,8 @@
         }
     },
     {
-        "_id": "5b6e9f6bb2f93c87416ad54ed3b95f2e13e3ce59",
+        "_id": "64bfb2e817951d43e5d9ec1a",
+        "type": "S_75M_Volhov",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -99967,7 +99908,6 @@
                 "Winter"
             ]
         },
-        "type": "S_75M_Volhov",
         "displayName": "SAM SA-2 S-75 \"Guideline\" LN",
         "module": "TechWeaponPack",
         "shape": "S_75_Launcher",
@@ -100087,7 +100027,8 @@
         }
     },
     {
-        "_id": "6764ecdf3a3c126ab5912a6b10aeacbf1f79a8a7",
+        "_id": "64bfb2e817951d43e5d9ec1c",
+        "type": "SNR_75V",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -100721,7 +100662,6 @@
                 "Winter"
             ]
         },
-        "type": "SNR_75V",
         "displayName": "SAM SA-2 S-75 \"Fan Song\" TR",
         "module": "TechWeaponPack",
         "shape": "SNR_75",
@@ -100841,7 +100781,8 @@
         }
     },
     {
-        "_id": "00bfeef1370b0ce9c4cdcff07b1fc1e0f6a80b3b",
+        "_id": "64bfb2e817951d43e5d9ec1e",
+        "type": "RLS_19J6",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -101385,7 +101326,6 @@
                 "winter"
             ]
         },
-        "type": "RLS_19J6",
         "displayName": "SAM SA-5 S-200 ST-68U \"Tin Shield\" SR",
         "module": "TechWeaponPack",
         "shape": "rls_19j6",
@@ -101453,7 +101393,8 @@
         }
     },
     {
-        "_id": "993dc627f947686903f2c6c7038ec8a7dcec5fcc",
+        "_id": "64bfb2e817951d43e5d9ec20",
+        "type": "RPC_5N62V",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -103077,7 +103018,6 @@
                 "S-200_Radar_Syria_Winter"
             ]
         },
-        "type": "RPC_5N62V",
         "displayName": "SAM SA-5 S-200 \"Square Pair\" TR",
         "module": "TechWeaponPack",
         "shape": "S-200_Radar",
@@ -103161,7 +103101,8 @@
         }
     },
     {
-        "_id": "4318ed2bd5756aa7101918a94c87421816a54187",
+        "_id": "64bfb2e817951d43e5d9ec22",
+        "type": "S-200_Launcher",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -104785,7 +104726,6 @@
                 "S-200_Launcher_Syria_Winter"
             ]
         },
-        "type": "S-200_Launcher",
         "displayName": "SAM SA-5 S-200 \"Gammon\" LN",
         "module": "TechWeaponPack",
         "shape": "S-200_Launcher",
@@ -104869,7 +104809,8 @@
         }
     },
     {
-        "_id": "22877b3fc49dc7a14eafcc2276b5db61e5946f8b",
+        "_id": "64bfb2e817951d43e5d9ec24",
+        "type": "ZSU_57_2",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -105503,7 +105444,6 @@
                 "Winter"
             ]
         },
-        "type": "ZSU_57_2",
         "displayName": "SPAAA ZSU-57-2",
         "module": "TechWeaponPack",
         "shape": "ZSU_57_2",
@@ -105591,7 +105531,8 @@
         }
     },
     {
-        "_id": "cfa5ab0cc47891450fc8386514d51d26f3a46835",
+        "_id": "64bfb2e817951d43e5d9ec26",
+        "type": "S-60_Type59_Artillery",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -105866,7 +105807,6 @@
                 "Green"
             ]
         },
-        "type": "S-60_Type59_Artillery",
         "displayName": "AAA S-60 57mm",
         "module": "TechWeaponPack",
         "shape": "S-60_Type59_Artillery",
@@ -106002,7 +105942,8 @@
         }
     },
     {
-        "_id": "8a2a552181a90d4053f07dce2047e3458f12cf06",
+        "_id": "64bfb2e817951d43e5d9ec28",
+        "type": "generator_5i57",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -106546,7 +106487,6 @@
                 "winter"
             ]
         },
-        "type": "generator_5i57",
         "displayName": "Diesel Power Station 5I57A",
         "module": "TechWeaponPack",
         "shape": "generator_5i57",
@@ -106622,7 +106562,8 @@
         }
     },
     {
-        "_id": "a67fd0fbae539b88fa7ccf65f669f16d829f4355",
+        "_id": "64bfb2e817951d43e5d9ec2a",
+        "type": "T-72B3",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -107166,7 +107107,6 @@
                 "Winter"
             ]
         },
-        "type": "T-72B3",
         "displayName": "MBT T-72B3",
         "module": "TechWeaponPack",
         "shape": "T-72B3",
@@ -107194,10 +107134,10 @@
         }
     },
     {
-        "_id": "4cef08fb2a22c8fb2af79c200b96b981713943a2",
+        "_id": "64bfb2e817951d43e5d9ec2c",
+        "type": "PT_76",
         "category": "Armor",
         "paintSchemes": {},
-        "type": "PT_76",
         "displayName": "LT PT-76",
         "module": "TechWeaponPack",
         "shape": "pt-76",
@@ -107281,7 +107221,8 @@
         }
     },
     {
-        "_id": "8dec206b48029564042b8f2f819e64633490834b",
+        "_id": "64bfb2e817951d43e5d9ec2e",
+        "type": "BTR-82A",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -109085,7 +109026,6 @@
                 "Winter"
             ]
         },
-        "type": "BTR-82A",
         "displayName": "IFV BTR-82A",
         "module": "TechWeaponPack",
         "shape": "BTR-82A",
@@ -109109,7 +109049,8 @@
         }
     },
     {
-        "_id": "ba5d17cca68b82a1f4aa26232f9bf4bdf3070fa9",
+        "_id": "64bfb2e817951d43e5d9ec30",
+        "type": "ATZ-5",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -109653,7 +109594,6 @@
                 "winter"
             ]
         },
-        "type": "ATZ-5",
         "displayName": "Refueler ATZ-5",
         "module": "TechWeaponPack",
         "shape": "atz5",
@@ -109713,7 +109653,8 @@
         }
     },
     {
-        "_id": "796452d11c756b9cd8d5540ad0e3a6af1b7d4c1c",
+        "_id": "64bfb2e817951d43e5d9ec32",
+        "type": "AA8",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -110257,7 +110198,6 @@
                 "winter"
             ]
         },
-        "type": "AA8",
         "displayName": "Firefighter Vehicle AA-7.2/60",
         "module": "TechWeaponPack",
         "shape": "aa8",
@@ -110277,7 +110217,8 @@
         }
     },
     {
-        "_id": "4c122d461089b2bfd9263f6ccad613fcf98f8b9b",
+        "_id": "64bfb2e817951d43e5d9ec34",
+        "type": "TZ-22_KrAZ",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -110821,7 +110762,6 @@
                 "winter"
             ]
         },
-        "type": "TZ-22_KrAZ",
         "displayName": "Refueler TZ-22 Tractor (KrAZ-258B1)",
         "module": "TechWeaponPack",
         "shape": "tz_22_truck",
@@ -110861,7 +110801,8 @@
         }
     },
     {
-        "_id": "9451b253ffe34a3b453ffc738f5bf49e8d7017ca",
+        "_id": "64bfb2e817951d43e5d9ec36",
+        "type": "ATZ-60_Maz",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -111765,7 +111706,6 @@
                 "winter"
             ]
         },
-        "type": "ATZ-60_Maz",
         "displayName": "Refueler ATZ-60 Tractor (MAZ-7410)",
         "module": "TechWeaponPack",
         "shape": "atz60_maz",
@@ -111829,7 +111769,8 @@
         }
     },
     {
-        "_id": "5bbff7d8b6afdf94acc6834755d7caf69c4ce476",
+        "_id": "64bfb2e817951d43e5d9ec38",
+        "type": "ZIL-135",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -112823,7 +112764,6 @@
                 "RUS_Winter"
             ]
         },
-        "type": "ZIL-135",
         "displayName": "Truck ZIL-135",
         "module": "TechWeaponPack",
         "shape": "Zil_135l",
@@ -112915,7 +112855,8 @@
         }
     },
     {
-        "_id": "c47487dc9e2b95b625f2587858ccbead0cc9b79c",
+        "_id": "64bfb2e817951d43e5d9ec3a",
+        "type": "S_75_ZIL",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -113459,7 +113400,6 @@
                 "Winter"
             ]
         },
-        "type": "S_75_ZIL",
         "displayName": "S-75 Tractor (ZIL-131)",
         "module": "TechWeaponPack",
         "shape": "S_75_Zil_Truck",
@@ -113491,7 +113431,8 @@
         }
     },
     {
-        "_id": "14779d2069593f85fbe4e3e44c884099d05be77d",
+        "_id": "64bfb2e817951d43e5d9ec3c",
+        "type": "rapier_fsa_launcher",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -114125,7 +114066,6 @@
                 "Winter"
             ]
         },
-        "type": "rapier_fsa_launcher",
         "displayName": "SAM Rapier LN",
         "module": "TechWeaponPack",
         "shape": "rapier_fsa_launcher",
@@ -114197,7 +114137,8 @@
         }
     },
     {
-        "_id": "6a3ca907a27eb779bcff0f32c189aed5d8436101",
+        "_id": "64bfb2e817951d43e5d9ec3e",
+        "type": "rapier_fsa_optical_tracker_unit",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -114831,7 +114772,6 @@
                 "Winter"
             ]
         },
-        "type": "rapier_fsa_optical_tracker_unit",
         "displayName": "SAM Rapier Tracker",
         "module": "TechWeaponPack",
         "shape": "rapier_fsa_optical_tracker_unit",
@@ -114903,7 +114843,8 @@
         }
     },
     {
-        "_id": "163b8c9e6591b2d1a3faa752ee6ad96ce03e7006",
+        "_id": "64bfb2e817951d43e5d9ec40",
+        "type": "rapier_fsa_blindfire_radar",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -115537,7 +115478,6 @@
                 "Winter"
             ]
         },
-        "type": "rapier_fsa_blindfire_radar",
         "displayName": "SAM Rapier Blindfire TR",
         "module": "TechWeaponPack",
         "shape": "rapier_fsa_blindfire_radar",
@@ -115609,7 +115549,8 @@
         }
     },
     {
-        "_id": "009b3e678f5fc36e41632c69c88648040d4ce3f9",
+        "_id": "64bfb2e817951d43e5d9ec42",
+        "type": "bofors40",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -116153,7 +116094,6 @@
                 "Winter"
             ]
         },
-        "type": "bofors40",
         "displayName": "AAA Bofors 40mm",
         "module": "TechWeaponPack",
         "shape": "bofors40",
@@ -116401,7 +116341,8 @@
         }
     },
     {
-        "_id": "4821291c47c24a94e6614a239474700600f98c26",
+        "_id": "64bfb2e817951d43e5d9ec44",
+        "type": "Chieftain_mk3",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -117305,7 +117246,6 @@
                 "desert winter"
             ]
         },
-        "type": "Chieftain_mk3",
         "displayName": "MBT Chieftain Mk.3",
         "module": "TechWeaponPack",
         "shape": "Chieftain_mk3",
@@ -117345,7 +117285,8 @@
         }
     },
     {
-        "_id": "d86503d0f2cba72598e9489f819c0009f2d31ca5",
+        "_id": "64bfb2e817951d43e5d9ec46",
+        "type": "Bedford_MWD",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -118069,7 +118010,6 @@
                 "Winter"
             ]
         },
-        "type": "Bedford_MWD",
         "displayName": "Truck Bedford",
         "module": "TechWeaponPack",
         "shape": "Bedford_MWD",
@@ -118085,7 +118025,8 @@
         }
     },
     {
-        "_id": "42d0ae32e83db38c66b6aadfb6b0e7677d669f99",
+        "_id": "64bfb2e817951d43e5d9ec48",
+        "type": "Land_Rover_101_FC",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -118629,7 +118570,6 @@
                 "Winter"
             ]
         },
-        "type": "Land_Rover_101_FC",
         "displayName": "Truck Land Rover 101 FC",
         "module": "TechWeaponPack",
         "shape": "land_rover_101_fc",
@@ -118657,7 +118597,8 @@
         }
     },
     {
-        "_id": "879e26cf2a97059785d74fb8eec8a36343fd12a6",
+        "_id": "64bfb2e817951d43e5d9ec4a",
+        "type": "Land_Rover_109_S3",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -119201,7 +119142,6 @@
                 "Winter"
             ]
         },
-        "type": "Land_Rover_109_S3",
         "displayName": "LUV Land Rover 109",
         "module": "TechWeaponPack",
         "shape": "land_rover_109_s3",
@@ -119233,7 +119173,8 @@
         }
     },
     {
-        "_id": "79e836c418df3b9ea31940adfbd34591d5811e67",
+        "_id": "64bfb2e817951d43e5d9ec4c",
+        "type": "hy_launcher",
         "category": "MissilesSS",
         "paintSchemes": {
             "0": [
@@ -119687,7 +119628,6 @@
                 "IRQ_Yellow"
             ]
         },
-        "type": "hy_launcher",
         "displayName": "AShM SS-N-2 Silkworm",
         "module": "TechWeaponPack",
         "shape": "hy_launcher",
@@ -119723,7 +119663,8 @@
         }
     },
     {
-        "_id": "425d7a6fd24ac5ea2d01ce0d620b84e6a4d029d4",
+        "_id": "64bfb2e817951d43e5d9ec4e",
+        "type": "Silkworm_SR",
         "category": "MissilesSS",
         "paintSchemes": {
             "0": [
@@ -119997,7 +119938,6 @@
                 "Default"
             ]
         },
-        "type": "Silkworm_SR",
         "displayName": "AShM Silkworm SR",
         "module": "TechWeaponPack",
         "shape": "mys-m1",
@@ -120037,7 +119977,8 @@
         }
     },
     {
-        "_id": "def0938ae261f172eb8044dd63ee434bbf125e4d",
+        "_id": "64bfb2e817951d43e5d9ec50",
+        "type": "ES44AH",
         "category": "Locomotive",
         "paintSchemes": {
             "0": [
@@ -121121,7 +121062,6 @@
                 "Winter_orange"
             ]
         },
-        "type": "ES44AH",
         "displayName": "Loco ES44AH",
         "module": "TechWeaponPack",
         "shape": "es44ah",
@@ -121157,7 +121097,8 @@
         }
     },
     {
-        "_id": "63315b511dcb1f8ff6ce6ec173dc0a238ecd9104",
+        "_id": "64bfb2e817951d43e5d9ec52",
+        "type": "Boxcartrinity",
         "category": "Carriage",
         "paintSchemes": {
             "0": [
@@ -121701,7 +121642,6 @@
                 "Winter"
             ]
         },
-        "type": "Boxcartrinity",
         "displayName": "Flatcar",
         "module": "TechWeaponPack",
         "shape": "boxcartrinity",
@@ -121737,7 +121677,8 @@
         }
     },
     {
-        "_id": "2477d1a0d00e20960ab46fde987395076004e056",
+        "_id": "64bfb2e817951d43e5d9ec54",
+        "type": "Tankcartrinity",
         "category": "Carriage",
         "paintSchemes": {
             "0": [
@@ -122281,7 +122222,6 @@
                 "Winter"
             ]
         },
-        "type": "Tankcartrinity",
         "displayName": "Tank Cartrinity",
         "module": "TechWeaponPack",
         "shape": "tankcartrinity",
@@ -122317,7 +122257,8 @@
         }
     },
     {
-        "_id": "f90212cbddda774bb588ef25b5c9f44b2a631acf",
+        "_id": "64bfb2e817951d43e5d9ec56",
+        "type": "Wellcarnsc",
         "category": "Carriage",
         "paintSchemes": {
             "0": [
@@ -123041,7 +122982,6 @@
                 "Winter_nobrand"
             ]
         },
-        "type": "Wellcarnsc",
         "displayName": "Well Car",
         "module": "TechWeaponPack",
         "shape": "wellcarnsc",
@@ -123077,7 +123017,8 @@
         }
     },
     {
-        "_id": "0f8fa6c4b0f33747ec4a776b1e2379bb8c1e4ea7",
+        "_id": "64bfb2e817951d43e5d9ec58",
+        "type": "flak18",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -123621,7 +123562,6 @@
                 "Winter"
             ]
         },
-        "type": "flak18",
         "displayName": "AAA 8,8cm Flak 18",
         "module": "TechWeaponPack",
         "shape": "flak18",
@@ -123637,7 +123577,8 @@
         }
     },
     {
-        "_id": "2a5dc78beaebbaf799408d415b4236b23590b1ac",
+        "_id": "64bfb2e817951d43e5d9ec5a",
+        "type": "Pz_IV_H",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -124181,7 +124122,6 @@
                 "Winter"
             ]
         },
-        "type": "Pz_IV_H",
         "displayName": "Tk PzIV H",
         "module": "TechWeaponPack",
         "shape": "Pz_IV_H",
@@ -124197,7 +124137,8 @@
         }
     },
     {
-        "_id": "b236dfa0b640d8365316601e5b15c94f8090fdc6",
+        "_id": "64bfb2e817951d43e5d9ec5c",
+        "type": "Leopard-2A5",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -125461,7 +125402,6 @@
                 "summer"
             ]
         },
-        "type": "Leopard-2A5",
         "displayName": "MBT Leopard-2A5",
         "module": "TechWeaponPack",
         "shape": "leopard-2a5",
@@ -125505,7 +125445,8 @@
         }
     },
     {
-        "_id": "7719cedb726b65959f956cf0008107f40da055a2",
+        "_id": "64bfb2e817951d43e5d9ec5e",
+        "type": "Leopard-2",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -129019,7 +128960,6 @@
                 "winter"
             ]
         },
-        "type": "Leopard-2",
         "displayName": "MBT Leopard-2A6M",
         "module": "TechWeaponPack",
         "shape": "leopard-2",
@@ -129087,7 +129027,8 @@
         }
     },
     {
-        "_id": "2b27877334b7563ea122a85910b5f16acf707b03",
+        "_id": "64bfb2e817951d43e5d9ec60",
+        "type": "leopard-2A4",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -131071,7 +131012,6 @@
                 "woodland_summer"
             ]
         },
-        "type": "leopard-2A4",
         "displayName": "MBT Leopard-2A4",
         "module": "TechWeaponPack",
         "shape": "leopard-2a4",
@@ -131143,7 +131083,8 @@
         }
     },
     {
-        "_id": "367a47e00a7a79e3786a280aa2c2aa54df7c2b81",
+        "_id": "64bfb2e817951d43e5d9ec62",
+        "type": "leopard-2A4_trs",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -131695,7 +131636,6 @@
                 "Winter_Woodland"
             ]
         },
-        "type": "leopard-2A4_trs",
         "displayName": "MBT Leopard-2A4 Trs",
         "module": "TechWeaponPack",
         "shape": "leopard-2a4_trs",
@@ -131735,7 +131675,8 @@
         }
     },
     {
-        "_id": "2a565de1fa059ef9422b8f27ff9f5699f09f4e42",
+        "_id": "64bfb2e817951d43e5d9ec64",
+        "type": "Sd_Kfz_251",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -132279,7 +132220,6 @@
                 "Winter"
             ]
         },
-        "type": "Sd_Kfz_251",
         "displayName": "APC Sd.Kfz.251 Halftrack",
         "module": "TechWeaponPack",
         "shape": "Sd_Kfz_251",
@@ -132307,7 +132247,8 @@
         }
     },
     {
-        "_id": "87cfc22a338c410bb1cb1391939671051858e95a",
+        "_id": "64bfb2e817951d43e5d9ec66",
+        "type": "Blitz_36-6700A",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -133031,7 +132972,6 @@
                 "Winter"
             ]
         },
-        "type": "Blitz_36-6700A",
         "displayName": "Truck Opel Blitz",
         "module": "TechWeaponPack",
         "shape": "Blitz_36-6700A",
@@ -133047,7 +132987,8 @@
         }
     },
     {
-        "_id": "aa3812fdf4ef56b27660c349ec442104411f86a8",
+        "_id": "64bfb2e817951d43e5d9ec68",
+        "type": "T155_Firtina",
         "category": "Artillery",
         "paintSchemes": {
             "0": [
@@ -133951,7 +133892,6 @@
                 "winter"
             ]
         },
-        "type": "T155_Firtina",
         "displayName": "SPH T155 Firtina 155mm",
         "module": "TechWeaponPack",
         "shape": "Firtina_T155_trs",
@@ -133963,7 +133903,8 @@
         }
     },
     {
-        "_id": "474f90d0b0de9613b847ca9ad7bfcd186c5269d5",
+        "_id": "64bfb2e817951d43e5d9ec6a",
+        "type": "VAB_Mephisto",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -134867,7 +134808,6 @@
                 "Woodland Winter"
             ]
         },
-        "type": "VAB_Mephisto",
         "displayName": "ATGM VAB Mephisto",
         "module": "TechWeaponPack",
         "shape": "VAB_Mephisto",
@@ -134907,7 +134847,8 @@
         }
     },
     {
-        "_id": "815b647e7bd42aac11dc883e3dab9d1bb8400f5c",
+        "_id": "64bfb2e817951d43e5d9ec6c",
+        "type": "ZTZ96B",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -135181,7 +135122,6 @@
                 "Jungle Camo"
             ]
         },
-        "type": "ZTZ96B",
         "displayName": "ZTZ-96B",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "ztz96b",
@@ -135197,7 +135137,8 @@
         }
     },
     {
-        "_id": "83b4885c5926ad142ee1a1d4157b06fa23a6cc94",
+        "_id": "64bfb2e817951d43e5d9ec6e",
+        "type": "ZBD04A",
         "category": "Armor",
         "paintSchemes": {
             "27": [
@@ -135226,7 +135167,6 @@
                 "IRGC"
             ]
         },
-        "type": "ZBD04A",
         "displayName": "ZBD-04A",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "zbd04a",
@@ -135242,7 +135182,8 @@
         }
     },
     {
-        "_id": "d3af6cbdf3f5c1e6d92e911a8e8a805837217570",
+        "_id": "64bfb2e817951d43e5d9ec70",
+        "type": "HQ-7_LN_SP",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -135516,7 +135457,6 @@
                 "Desert"
             ]
         },
-        "type": "HQ-7_LN_SP",
         "displayName": "HQ-7 Self-Propelled LN",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "hq7_ln",
@@ -135540,7 +135480,8 @@
         }
     },
     {
-        "_id": "9da6ff4b55837089d5ce48ff020ba2a8ade5d8dc",
+        "_id": "64bfb2e817951d43e5d9ec72",
+        "type": "HQ-7_LN_EO",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -135814,7 +135755,6 @@
                 "Desert"
             ]
         },
-        "type": "HQ-7_LN_EO",
         "displayName": "HQ-7 LN Electro-Optics",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "hq7_ln",
@@ -135830,7 +135770,8 @@
         }
     },
     {
-        "_id": "79400a9c7a09fc50880270ed1d5d65525fdb8b5c",
+        "_id": "64bfb2e817951d43e5d9ec74",
+        "type": "HQ-7_STR_SP",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -136104,7 +136045,6 @@
                 "Desert"
             ]
         },
-        "type": "HQ-7_STR_SP",
         "displayName": "HQ-7 Self-Propelled STR",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "hq7_str",
@@ -136132,7 +136072,8 @@
         }
     },
     {
-        "_id": "5dab0537301c380af060eea670ad739a608ffd16",
+        "_id": "64bfb2e817951d43e5d9ec76",
+        "type": "PLZ05",
         "category": "Artillery",
         "paintSchemes": {
             "27": [
@@ -136158,7 +136099,6 @@
                 "IRGC"
             ]
         },
-        "type": "PLZ05",
         "displayName": "PLZ-05",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "plz05",
@@ -136174,14 +136114,14 @@
         }
     },
     {
-        "_id": "15fb78efaaf80b10a0d38242be537ac15083d916",
+        "_id": "64bfb2e817951d43e5d9ec78",
+        "type": "TYPE-59",
         "category": "Armor",
         "paintSchemes": {
             "27": [
                 "PLA Army"
             ]
         },
-        "type": "TYPE-59",
         "displayName": "MT Type 59",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "ztz59",
@@ -136221,7 +136161,8 @@
         }
     },
     {
-        "_id": "1c58e9198a20689ce89d977a5985b329da6c62de",
+        "_id": "64bfb2e817951d43e5d9ec7a",
+        "type": "Kubelwagen_82",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -136945,7 +136886,6 @@
                 "Winter"
             ]
         },
-        "type": "Kubelwagen_82",
         "displayName": "LUV Kubelwagen Jeep",
         "module": "WWII Armour and Technics",
         "shape": "Kubelwagen_82",
@@ -136957,10 +136897,10 @@
         }
     },
     {
-        "_id": "c5c6bf7b5b846a78e8960b7b934799957fbf751c",
+        "_id": "64bfb2e817951d43e5d9ec7c",
+        "type": "Sd_Kfz_2",
         "category": "Unarmed",
         "paintSchemes": {},
-        "type": "Sd_Kfz_2",
         "displayName": "LUV Kettenrad",
         "module": "WWII Armour and Technics",
         "shape": "Sd_Kfz_2_Kettenkrad",
@@ -136976,7 +136916,8 @@
         }
     },
     {
-        "_id": "1dc6ecb73e679eb45684e7b9ca1cf4bd5f86e2c6",
+        "_id": "64bfb2e817951d43e5d9ec7e",
+        "type": "Sd_Kfz_7",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -137520,7 +137461,6 @@
                 "Winter"
             ]
         },
-        "type": "Sd_Kfz_7",
         "displayName": "Tractor Sd.Kfz.7 Art'y Tractor",
         "module": "WWII Armour and Technics",
         "shape": "sd_kfz_7",
@@ -137536,7 +137476,8 @@
         }
     },
     {
-        "_id": "95e3ae16deed3d6852cf77a037088ec07a29c460",
+        "_id": "64bfb2e817951d43e5d9ec80",
+        "type": "Horch_901_typ_40_kfz_21",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -138080,7 +138021,6 @@
                 "Winter"
             ]
         },
-        "type": "Horch_901_typ_40_kfz_21",
         "displayName": "LUV Horch 901 Staff Car",
         "module": "WWII Armour and Technics",
         "shape": "horch_901_typ_40_kfz_21",
@@ -138104,7 +138044,8 @@
         }
     },
     {
-        "_id": "96f860da2aafa8df3531c2d329e4a7f5641a7518",
+        "_id": "64bfb2e817951d43e5d9ec82",
+        "type": "Tiger_I",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -138648,7 +138589,6 @@
                 "Winter"
             ]
         },
-        "type": "Tiger_I",
         "displayName": "Tk Tiger 1",
         "module": "WWII Armour and Technics",
         "shape": "Tiger_I",
@@ -138664,10 +138604,10 @@
         }
     },
     {
-        "_id": "a6561b16f50d0580b6cf3a2fe16130ddb1dfc030",
+        "_id": "64bfb2e817951d43e5d9ec84",
+        "type": "Tiger_II_H",
         "category": "Armor",
         "paintSchemes": {},
-        "type": "Tiger_II_H",
         "displayName": "Tk Tiger II",
         "module": "WWII Armour and Technics",
         "shape": "Tiger_II",
@@ -138683,10 +138623,10 @@
         }
     },
     {
-        "_id": "62eaf43696bed15f16b0b441e9cc1cd193304158",
+        "_id": "64bfb2e817951d43e5d9ec86",
+        "type": "Pz_V_Panther_G",
         "category": "Armor",
         "paintSchemes": {},
-        "type": "Pz_V_Panther_G",
         "displayName": "Tk Panther G (Pz V)",
         "module": "WWII Armour and Technics",
         "shape": "Pz_V_G",
@@ -138702,7 +138642,8 @@
         }
     },
     {
-        "_id": "80fb9bd1b074398aa36b34333c307077e79150d2",
+        "_id": "64bfb2e817951d43e5d9ec88",
+        "type": "Jagdpanther_G1",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -139246,7 +139187,6 @@
                 "Winter"
             ]
         },
-        "type": "Jagdpanther_G1",
         "displayName": "SPG Jagdpanther TD",
         "module": "WWII Armour and Technics",
         "shape": "Jagdpanther_G1",
@@ -139262,10 +139202,10 @@
         }
     },
     {
-        "_id": "976bc660f7a7fcbcc9b38af360e1bebc6803dd17",
+        "_id": "64bfb2e817951d43e5d9ec8a",
+        "type": "JagdPz_IV",
         "category": "Armor",
         "paintSchemes": {},
-        "type": "JagdPz_IV",
         "displayName": "SPG Jagdpanzer IV TD",
         "module": "WWII Armour and Technics",
         "shape": "Jagdpanzer_IV",
@@ -139281,7 +139221,8 @@
         }
     },
     {
-        "_id": "1fa93f9bd0443626927523f074868f8382fc283c",
+        "_id": "64bfb2e817951d43e5d9ec8c",
+        "type": "Stug_IV",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -139825,7 +139766,6 @@
                 "Winter"
             ]
         },
-        "type": "Stug_IV",
         "displayName": "SPG StuG IV AG",
         "module": "WWII Armour and Technics",
         "shape": "Stug_IV",
@@ -139841,10 +139781,10 @@
         }
     },
     {
-        "_id": "39667ad492f1513263979d6bd682078adf0eab01",
+        "_id": "64bfb2e817951d43e5d9ec8e",
+        "type": "SturmPzIV",
         "category": "Armor",
         "paintSchemes": {},
-        "type": "SturmPzIV",
         "displayName": "SPG Brummbaer AG",
         "module": "WWII Armour and Technics",
         "shape": "Brummbar_Late",
@@ -139860,7 +139800,8 @@
         }
     },
     {
-        "_id": "605e29aa8b2f148ed005dc100ba07387d24534e6",
+        "_id": "64bfb2e817951d43e5d9ec90",
+        "type": "Wespe124",
         "category": "Artillery",
         "paintSchemes": {
             "0": [
@@ -140404,7 +140345,6 @@
                 "winter"
             ]
         },
-        "type": "Wespe124",
         "displayName": "SPH Sd.Kfz.124 Wespe 105mm",
         "module": "WWII Armour and Technics",
         "shape": "Wespe124",
@@ -140420,7 +140360,8 @@
         }
     },
     {
-        "_id": "f2bc90f0a456c4cbf8cb5a156d9426a6b7d937a1",
+        "_id": "64bfb2e817951d43e5d9ec92",
+        "type": "Sd_Kfz_234_2_Puma",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -140964,7 +140905,6 @@
                 "Winter"
             ]
         },
-        "type": "Sd_Kfz_234_2_Puma",
         "displayName": "Scout Puma AC",
         "module": "WWII Armour and Technics",
         "shape": "Sd_Kfz_234_2_Puma",
@@ -140980,7 +140920,8 @@
         }
     },
     {
-        "_id": "542b8120b92f14cc0f14fac0d28eaf17467c89d2",
+        "_id": "64bfb2e817951d43e5d9ec94",
+        "type": "flak30",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -141524,7 +141465,6 @@
                 "Winter"
             ]
         },
-        "type": "flak30",
         "displayName": "AAA Flak 38 20mm",
         "module": "WWII Armour and Technics",
         "shape": "flak30",
@@ -141540,7 +141480,8 @@
         }
     },
     {
-        "_id": "ac2226e0908b39be6cec3b26dec3376cd56992a5",
+        "_id": "64bfb2e817951d43e5d9ec96",
+        "type": "flak36",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -142084,7 +142025,6 @@
                 "Winter"
             ]
         },
-        "type": "flak36",
         "displayName": "AAA 8,8cm Flak 36",
         "module": "WWII Armour and Technics",
         "shape": "flak36",
@@ -142100,7 +142040,8 @@
         }
     },
     {
-        "_id": "a7ed61cdb17eff6b0e2825d57ca6d56135045138",
+        "_id": "64bfb2e817951d43e5d9ec98",
+        "type": "flak37",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -142644,7 +142585,6 @@
                 "Winter"
             ]
         },
-        "type": "flak37",
         "displayName": "AAA 8,8cm Flak 37",
         "module": "WWII Armour and Technics",
         "shape": "flak37",
@@ -142660,7 +142600,8 @@
         }
     },
     {
-        "_id": "97401fc1bd63897771a5dd24d4d48bffcfcc9e43",
+        "_id": "64bfb2e817951d43e5d9ec9a",
+        "type": "flak38",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -143204,7 +143145,6 @@
                 "Winter"
             ]
         },
-        "type": "flak38",
         "displayName": "AAA Flak-Vierling 38 Quad 20mm",
         "module": "WWII Armour and Technics",
         "shape": "flak38",
@@ -143220,7 +143160,8 @@
         }
     },
     {
-        "_id": "5292a00978eaa96b7365b77f9e4d1dfd8151510e",
+        "_id": "64bfb2e817951d43e5d9ec9c",
+        "type": "KDO_Mod40",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -143764,7 +143705,6 @@
                 "Winter"
             ]
         },
-        "type": "KDO_Mod40",
         "displayName": "AAA Kdo.G.40",
         "module": "WWII Armour and Technics",
         "shape": "KDO_Mod40",
@@ -143780,7 +143720,8 @@
         }
     },
     {
-        "_id": "dbc28ee20e4d27bfd43ea9a9982df19963fb5377",
+        "_id": "64bfb2e817951d43e5d9ec9e",
+        "type": "Flakscheinwerfer_37",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -144324,7 +144265,6 @@
                 "Winter"
             ]
         },
-        "type": "Flakscheinwerfer_37",
         "displayName": "SL Flakscheinwerfer 37",
         "module": "WWII Armour and Technics",
         "shape": "Flakscheinwerfer_37",
@@ -144340,7 +144280,8 @@
         }
     },
     {
-        "_id": "363bc3b55ff9a145722ea9dcef63f0e673e3b672",
+        "_id": "64bfb2e817951d43e5d9eca0",
+        "type": "Maschinensatz_33",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -144884,7 +144825,6 @@
                 "Winter"
             ]
         },
-        "type": "Maschinensatz_33",
         "displayName": "Maschinensatz 33 Gen",
         "module": "WWII Armour and Technics",
         "shape": "Maschinensatz_33",
@@ -144900,10 +144840,10 @@
         }
     },
     {
-        "_id": "536b378c7a8aeb0d8f992ae731ac0762600af695",
+        "_id": "64bfb2e817951d43e5d9eca2",
+        "type": "soldier_mauser98",
         "category": "Infantry",
         "paintSchemes": {},
-        "type": "soldier_mauser98",
         "displayName": "Infantry Mauser 98",
         "module": "WWII Armour and Technics",
         "shape": "soldier_wwii_de_01",
@@ -144919,10 +144859,10 @@
         }
     },
     {
-        "_id": "56e0cc1d9e1fc1069044cf09eecf9859a84c21b0",
+        "_id": "64bfb2e817951d43e5d9eca4",
+        "type": "SK_C_28_naval_gun",
         "category": "Fortification",
         "paintSchemes": {},
-        "type": "SK_C_28_naval_gun",
         "displayName": "Gun 15cm SK C/28 Naval in Bunker",
         "module": "WWII Armour and Technics",
         "shape": "pillbox",
@@ -144962,10 +144902,10 @@
         }
     },
     {
-        "_id": "a622155f649d026962846d48aa1cf67e90d10bb0",
+        "_id": "64bfb2e817951d43e5d9eca6",
+        "type": "fire_control",
         "category": "Fortification",
         "paintSchemes": {},
-        "type": "fire_control",
         "displayName": "Bunker with Fire Control Center",
         "module": "WWII Armour and Technics",
         "shape": "fire_control",
@@ -145005,7 +144945,8 @@
         }
     },
     {
-        "_id": "17f05449320dbdfd3512bff6aed472d1e9ed0a0b",
+        "_id": "64bfb2e817951d43e5d9eca8",
+        "type": "Stug_III",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -145549,7 +145490,6 @@
                 "Winter"
             ]
         },
-        "type": "Stug_III",
         "displayName": "SPG StuG III G AG",
         "module": "WWII Armour and Technics",
         "shape": "Stug_III",
@@ -145573,7 +145513,8 @@
         }
     },
     {
-        "_id": "0b2f35e07021600e1197eb238617940a965760a4",
+        "_id": "64bfb2e817951d43e5d9ecaa",
+        "type": "Elefant_SdKfz_184",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -146117,7 +146058,6 @@
                 "Winter"
             ]
         },
-        "type": "Elefant_SdKfz_184",
         "displayName": "SPG Elefant TD",
         "module": "WWII Armour and Technics",
         "shape": "Elefant_SdKfz_184",
@@ -146133,7 +146073,8 @@
         }
     },
     {
-        "_id": "6623141c30aa1b9adcee84afd8984712ae9b2e26",
+        "_id": "64bfb2e817951d43e5d9ecac",
+        "type": "flak41",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -146677,7 +146618,6 @@
                 "Winter"
             ]
         },
-        "type": "flak41",
         "displayName": "AAA 8,8cm Flak 41",
         "module": "WWII Armour and Technics",
         "shape": "flak41",
@@ -146693,10 +146633,10 @@
         }
     },
     {
-        "_id": "b2d14a09ba5f7bd5fee0c07298e1bf334783c58a",
+        "_id": "64bfb2e817951d43e5d9ecae",
+        "type": "v1_launcher",
         "category": "MissilesSS",
         "paintSchemes": {},
-        "type": "v1_launcher",
         "displayName": "V-1 Launch Ramp",
         "module": "WWII Armour and Technics",
         "shape": "v1_ramp",
@@ -146712,7 +146652,8 @@
         }
     },
     {
-        "_id": "3819b83ac419d0ee06785120de058e7b3df70207",
+        "_id": "64bfb2e817951d43e5d9ecb0",
+        "type": "FuMG-401",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -147256,7 +147197,6 @@
                 "Grey_Winter"
             ]
         },
-        "type": "FuMG-401",
         "displayName": "EWR FuMG-401 Freya LZ",
         "module": "WWII Armour and Technics",
         "shape": "FuMG-401",
@@ -147272,7 +147212,8 @@
         }
     },
     {
-        "_id": "ed147088c4e2ddfe49594c99f2d5d67c7615322e",
+        "_id": "64bfb2e817951d43e5d9ecb2",
+        "type": "FuSe-65",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -147816,7 +147757,6 @@
                 "winter"
             ]
         },
-        "type": "FuSe-65",
         "displayName": "EWR FuSe-65 Würzburg-Riese",
         "module": "WWII Armour and Technics",
         "shape": "FuSe-65",
@@ -147832,7 +147772,8 @@
         }
     },
     {
-        "_id": "6182faecaf00c39d44cbe74524763401da8f3c72",
+        "_id": "64bfb2e817951d43e5d9ecb4",
+        "type": "Pak40",
         "category": "Artillery",
         "paintSchemes": {
             "0": [
@@ -148106,7 +148047,6 @@
                 "summer"
             ]
         },
-        "type": "Pak40",
         "displayName": "FH Pak 40 75mm",
         "module": "WWII Armour and Technics",
         "shape": "Pak40",
@@ -148122,7 +148062,8 @@
         }
     },
     {
-        "_id": "d457683ef202476c3b8187e5c824b1663015a6b0",
+        "_id": "64bfb2e817951d43e5d9ecb6",
+        "type": "LeFH_18-40-105",
         "category": "Artillery",
         "paintSchemes": {
             "0": [
@@ -148666,7 +148607,6 @@
                 "winter"
             ]
         },
-        "type": "LeFH_18-40-105",
         "displayName": "FH LeFH-18 105mm",
         "module": "WWII Armour and Technics",
         "shape": "LeFH_18-40-105mm",
@@ -148682,7 +148622,8 @@
         }
     },
     {
-        "_id": "95a6d168c96e18afa6c9e1442a57fa7538ee81bf",
+        "_id": "64bfb2e817951d43e5d9ecb8",
+        "type": "Cromwell_IV",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -149226,7 +149167,6 @@
                 "Winter"
             ]
         },
-        "type": "Cromwell_IV",
         "displayName": "Tk Cromwell IV",
         "module": "WWII Armour and Technics",
         "shape": "Cromwell_IV",
@@ -149274,7 +149214,8 @@
         }
     },
     {
-        "_id": "79ebbeed2909dfc879c59c35a6def1714ea6c82c",
+        "_id": "64bfb2e817951d43e5d9ecba",
+        "type": "M4A4_Sherman_FF",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -149818,7 +149759,6 @@
                 "Winter"
             ]
         },
-        "type": "M4A4_Sherman_FF",
         "displayName": "Tk M4A4 Sherman Firefly",
         "module": "WWII Armour and Technics",
         "shape": "M4A4_Sherman_FF",
@@ -149866,10 +149806,10 @@
         }
     },
     {
-        "_id": "2ef500c80ac92f6ce2272b323b570cf0f3b7da04",
+        "_id": "64bfb2e817951d43e5d9ecbc",
+        "type": "soldier_wwii_br_01",
         "category": "Infantry",
         "paintSchemes": {},
-        "type": "soldier_wwii_br_01",
         "displayName": "Infantry SMLE No.4 Mk-1",
         "module": "WWII Armour and Technics",
         "shape": "soldier_wwii_br_01",
@@ -149881,7 +149821,8 @@
         }
     },
     {
-        "_id": "020c9a2f54f8f6793163b34f98877638ce561ef1",
+        "_id": "64bfb2e817951d43e5d9ecbe",
+        "type": "Centaur_IV",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -150425,7 +150366,6 @@
                 "Winter"
             ]
         },
-        "type": "Centaur_IV",
         "displayName": "Tk Centaur IV CS",
         "module": "WWII Armour and Technics",
         "shape": "Centaur_IV",
@@ -150473,7 +150413,8 @@
         }
     },
     {
-        "_id": "48f738c71cdecbe954a80a55a341811ad486d2b3",
+        "_id": "64bfb2e817951d43e5d9ecc0",
+        "type": "Churchill_VII",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -151017,7 +150958,6 @@
                 "Winter"
             ]
         },
-        "type": "Churchill_VII",
         "displayName": "Tk Churchill VII",
         "module": "WWII Armour and Technics",
         "shape": "churchill_vii",
@@ -151029,7 +150969,8 @@
         }
     },
     {
-        "_id": "669d3efb76e81b382159d9cfa5967de9a5fb6a68",
+        "_id": "64bfb2e817951d43e5d9ecc2",
+        "type": "Daimler_AC",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -151573,7 +151514,6 @@
                 "winter"
             ]
         },
-        "type": "Daimler_AC",
         "displayName": "Car Daimler Armored",
         "module": "WWII Armour and Technics",
         "shape": "Daimler_AC",
@@ -151625,7 +151565,8 @@
         }
     },
     {
-        "_id": "258263961a91b57d20e4ef4679bdc7164302d844",
+        "_id": "64bfb2e817951d43e5d9ecc4",
+        "type": "Tetrarch",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -152169,7 +152110,6 @@
                 "winter"
             ]
         },
-        "type": "Tetrarch",
         "displayName": "Tk Tetrach",
         "module": "WWII Armour and Technics",
         "shape": "Tetrarch",
@@ -152197,7 +152137,8 @@
         }
     },
     {
-        "_id": "5421c1e2863a84df24780fa479938db5f10979a8",
+        "_id": "64bfb2e817951d43e5d9ecc6",
+        "type": "QF_37_AA",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -152741,7 +152682,6 @@
                 "winter"
             ]
         },
-        "type": "QF_37_AA",
         "displayName": "AAA QF 3.7\"",
         "module": "WWII Armour and Technics",
         "shape": "QF_37_AA",
@@ -152789,17 +152729,18 @@
         }
     },
     {
-        "_id": "dd9b8a27c61bb2e45f804fdb447a5f969e6541e8",
+        "_id": "64bfb2e817951d43e5d9ecc8",
+        "type": "Allies_Director",
         "category": "Air Defence",
         "paintSchemes": {},
-        "type": "Allies_Director",
         "displayName": "Allies Rangefinder (DRT)",
         "module": "WWII Armour and Technics",
         "shape": "Bedford_MWD",
         "operators": {}
     },
     {
-        "_id": "e4975ad4e13f8a9ea23db6f506acab5b2eae6653",
+        "_id": "64bfb2e817951d43e5d9ecca",
+        "type": "CCKW_353",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -153343,7 +153284,6 @@
                 "Winter"
             ]
         },
-        "type": "CCKW_353",
         "displayName": "Truck GMC \"Jimmy\" 6x6",
         "module": "WWII Armour and Technics",
         "shape": "CCKW_353",
@@ -153367,7 +153307,8 @@
         }
     },
     {
-        "_id": "c17a4430a0ab6ec6c81a17f4c0ed21eedc06a00c",
+        "_id": "64bfb2e817951d43e5d9eccc",
+        "type": "Willys_MB",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -154271,7 +154212,6 @@
                 "Winter"
             ]
         },
-        "type": "Willys_MB",
         "displayName": "Car Willys Jeep",
         "module": "WWII Armour and Technics",
         "shape": "Willys_MB",
@@ -154303,7 +154243,8 @@
         }
     },
     {
-        "_id": "0327fb83a580b7db7e66d329d71f6561a7f14fc1",
+        "_id": "64bfb2e817951d43e5d9ecce",
+        "type": "M12_GMC",
         "category": "Artillery",
         "paintSchemes": {
             "0": [
@@ -154847,7 +154788,6 @@
                 "Winter"
             ]
         },
-        "type": "M12_GMC",
         "displayName": "SPH M12 GMC 155mm",
         "module": "WWII Armour and Technics",
         "shape": "m12",
@@ -154867,7 +154807,8 @@
         }
     },
     {
-        "_id": "871be6c78718a75fc41381cd9f71ae9c4c3a4688",
+        "_id": "64bfb2e817951d43e5d9ecd0",
+        "type": "M30_CC",
         "category": "Unarmed",
         "paintSchemes": {
             "0": [
@@ -155411,7 +155352,6 @@
                 "Winter"
             ]
         },
-        "type": "M30_CC",
         "displayName": "Ammo M30 Cargo Carrier",
         "module": "WWII Armour and Technics",
         "shape": "m30",
@@ -155431,10 +155371,10 @@
         }
     },
     {
-        "_id": "9b6250844bf4881ce4cd654a524ffe2722b593c6",
+        "_id": "64bfb2e817951d43e5d9ecd2",
+        "type": "soldier_wwii_us",
         "category": "Infantry",
         "paintSchemes": {},
-        "type": "soldier_wwii_us",
         "displayName": "Infantry M1 Garand",
         "module": "WWII Armour and Technics",
         "shape": "soldier_wwii_us_01",
@@ -155446,7 +155386,8 @@
         }
     },
     {
-        "_id": "756664318bfc16a0ee5c6b62d6441cadf5f3c4e8",
+        "_id": "64bfb2e817951d43e5d9ecd4",
+        "type": "M10_GMC",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -155990,7 +155931,6 @@
                 "Winter"
             ]
         },
-        "type": "M10_GMC",
         "displayName": "SPG M10 GMC TD",
         "module": "WWII Armour and Technics",
         "shape": "M10",
@@ -156034,7 +155974,8 @@
         }
     },
     {
-        "_id": "1e978c47b25b3cf93a0f893e40b0af6b4614a0f9",
+        "_id": "64bfb2e817951d43e5d9ecd6",
+        "type": "M8_Greyhound",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -156578,7 +156519,6 @@
                 "winter"
             ]
         },
-        "type": "M8_Greyhound",
         "displayName": "Scout M8 Greyhound AC",
         "module": "WWII Armour and Technics",
         "shape": "m8_greyhound",
@@ -156626,7 +156566,8 @@
         }
     },
     {
-        "_id": "eda1f369657ade23c85e536fc8d908e708a56a88",
+        "_id": "64bfb2e817951d43e5d9ecd8",
+        "type": "M2A1-105",
         "category": "Artillery",
         "paintSchemes": {
             "0": [
@@ -157170,14 +157111,14 @@
                 "winter"
             ]
         },
-        "type": "M2A1-105",
         "displayName": "FH M2A1 105mm",
         "module": "WWII Armour and Technics",
         "shape": "M2A1-105mm",
         "operators": {}
     },
     {
-        "_id": "542e2fe9ea666cdd53224c10688549d1023da860",
+        "_id": "64bfb2e817951d43e5d9ecda",
+        "type": "M4_Tractor",
         "category": "Armor",
         "paintSchemes": {
             "0": [
@@ -157721,7 +157662,6 @@
                 "winter"
             ]
         },
-        "type": "M4_Tractor",
         "displayName": "Tractor M4 High Speed",
         "module": "WWII Armour and Technics",
         "shape": "M4_Tractor",
@@ -157801,7 +157741,8 @@
         }
     },
     {
-        "_id": "03ca69a7e57fccaab1ec4e18eb4f52c427713579",
+        "_id": "64bfb2e817951d43e5d9ecdc",
+        "type": "M45_Quadmount",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -158345,7 +158286,6 @@
                 "winter"
             ]
         },
-        "type": "M45_Quadmount",
         "displayName": "AAA M45 Quadmount HB 12.7mm",
         "module": "WWII Armour and Technics",
         "shape": "M45_Quadmount",
@@ -158381,7 +158321,8 @@
         }
     },
     {
-        "_id": "653c160f0ddedcb6fa72dabb8c035da4ab22c213",
+        "_id": "64bfb2e817951d43e5d9ecde",
+        "type": "M1_37mm",
         "category": "Air Defence",
         "paintSchemes": {
             "0": [
@@ -158925,7 +158866,6 @@
                 "winter"
             ]
         },
-        "type": "M1_37mm",
         "displayName": "AAA M1 37mm",
         "module": "WWII Armour and Technics",
         "shape": "M1_37mm",
@@ -158945,7 +158885,8 @@
         }
     },
     {
-        "_id": "f0fa403c3c4fd62c1b911c6f4445aadaa5aec72a",
+        "_id": "64bfb2e817951d43e5d9ece0",
+        "type": "DR_50Ton_Flat_Wagon",
         "category": "Carriage",
         "paintSchemes": {
             "0": [
@@ -159309,7 +159250,6 @@
                 "Winter"
             ]
         },
-        "type": "DR_50Ton_Flat_Wagon",
         "displayName": "DR 50-ton flat wagon",
         "module": "WWII Armour and Technics",
         "shape": "DR_50Ton_Flat_Wagon",
@@ -159353,7 +159293,8 @@
         }
     },
     {
-        "_id": "b0607bb9cc410da14accea1b5881521f04f1d53a",
+        "_id": "64bfb2e817951d43e5d9ece2",
+        "type": "DRG_Class_86",
         "category": "Locomotive",
         "paintSchemes": {
             "0": [
@@ -159717,7 +159658,6 @@
                 "Winter"
             ]
         },
-        "type": "DRG_Class_86",
         "displayName": "Loco DRG Class 86",
         "module": "WWII Armour and Technics",
         "shape": "DRG_Class_86",
@@ -159761,7 +159701,8 @@
         }
     },
     {
-        "_id": "a20f7dfc90e807aa445de8e5df812368b6d537b2",
+        "_id": "64bfb2e817951d43e5d9ece4",
+        "type": "German_covered_wagon_G10",
         "category": "Carriage",
         "paintSchemes": {
             "0": [
@@ -160125,7 +160066,6 @@
                 "Winter"
             ]
         },
-        "type": "German_covered_wagon_G10",
         "displayName": "Wagon G10 (Germany)",
         "module": "WWII Armour and Technics",
         "shape": "German_covered_wagon_G10",
@@ -160165,7 +160105,8 @@
         }
     },
     {
-        "_id": "baeccc68d23a00d51e0fdcf65e6b4f19cb9b09f8",
+        "_id": "64bfb2e817951d43e5d9ece6",
+        "type": "German_tank_wagon",
         "category": "Carriage",
         "paintSchemes": {
             "0": [
@@ -160529,7 +160470,6 @@
                 "Winter"
             ]
         },
-        "type": "German_tank_wagon",
         "displayName": "Tank Car (Germany)",
         "module": "WWII Armour and Technics",
         "shape": "German_tank_wagon",

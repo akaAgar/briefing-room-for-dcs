@@ -1,6 +1,6 @@
 [
     {
-        "_id": "4380994bb2cc0ee3fd0466e42753535a40e575e9",
+        "_id": "64bfb2e917951d43e5d9edd2",
         "type": "speedboat",
         "displayName": "Boat Armed Hi-speed",
         "categories": [
@@ -17,9 +17,9 @@
         }
     },
     {
-        "_id": "d310141c0f75d26a774e5c235cfb4eab239278e2",
-        "numParking": 4,
+        "_id": "64bfb2e917951d43e5d9edd4",
         "type": "VINSON",
+        "numParking": 4,
         "displayName": "CVN-70 Carl Vinson",
         "categories": [
             {
@@ -38,14 +38,15 @@
         "shape": "vinson",
         "operators": {
             "USA": [
-                1980, 2020
+                1980,
+                2020
             ]
         }
     },
     {
-        "_id": "9c79eac5babe04b3f077c52c0bb3cc00b9be0117",
-        "numParking": 1,
+        "_id": "64bfb2e917951d43e5d9edd6",
         "type": "PERRY",
+        "numParking": 1,
         "displayName": "FFG Oliver Hazard Perry",
         "categories": [
             {
@@ -96,9 +97,9 @@
         }
     },
     {
-        "_id": "4bbfadd7a0321f2c44da454dccfedbef5c10588d",
-        "numParking": 1,
+        "_id": "64bfb2e917951d43e5d9edd8",
         "type": "TICONDEROG",
+        "numParking": 1,
         "displayName": "CG Ticonderoga",
         "categories": [
             {
@@ -121,7 +122,7 @@
         }
     },
     {
-        "_id": "49b4c369eb6b183e7e1d31b876abf47850432e53",
+        "_id": "64bfb2e917951d43e5d9edda",
         "type": "ALBATROS",
         "displayName": "Corvette 1124.4 Grisha",
         "categories": [
@@ -162,9 +163,9 @@
         }
     },
     {
-        "_id": "ff06d275ac2ad59afad65640f9161b446a9e4c3d",
-        "numParking": 3,
+        "_id": "64bfb2e917951d43e5d9eddc",
         "type": "KUZNECOW",
+        "numParking": 3,
         "displayName": "CV 1143.5 Admiral Kuznetsov",
         "categories": [
             {
@@ -197,7 +198,7 @@
         }
     },
     {
-        "_id": "1604b433ce6d49a5286b6af0242c1e6cf5b71181",
+        "_id": "64bfb2e917951d43e5d9edde",
         "type": "MOLNIYA",
         "displayName": "Corvette 1241.1 Molniya",
         "categories": [
@@ -274,9 +275,9 @@
         }
     },
     {
-        "_id": "410365812bf80a347b6c9eeda75662c0d6cf8686",
-        "numParking": 1,
+        "_id": "64bfb2e917951d43e5d9ede0",
         "type": "MOSCOW",
+        "numParking": 1,
         "displayName": "Cruiser 1164 Moskva",
         "categories": [
             {
@@ -303,9 +304,9 @@
         }
     },
     {
-        "_id": "a8a33f20f950da2013c3fa9a48990bc747cb5529",
-        "numParking": 1,
+        "_id": "64bfb2e917951d43e5d9ede2",
         "type": "NEUSTRASH",
+        "numParking": 1,
         "displayName": "Frigate 11540 Neustrashimy",
         "categories": [
             {
@@ -332,9 +333,9 @@
         }
     },
     {
-        "_id": "9e0e3f8c95f469175b30824fa83a7d883a560553",
-        "numParking": 1,
+        "_id": "64bfb2e917951d43e5d9ede4",
         "type": "PIOTR",
+        "numParking": 1,
         "displayName": "Battlecruiser 1144.2 Pyotr Velikiy",
         "categories": [
             {
@@ -357,7 +358,7 @@
         }
     },
     {
-        "_id": "649f0177f92c61cc030dfd0205baacc89be2deed",
+        "_id": "64bfb2e917951d43e5d9ede6",
         "type": "REZKY",
         "displayName": "Frigate 1135M Rezky",
         "categories": [
@@ -390,7 +391,7 @@
         }
     },
     {
-        "_id": "bc343895b77220f599e64e810be41646dc373396",
+        "_id": "64bfb2e917951d43e5d9ede8",
         "type": "ELNYA",
         "displayName": "Tanker Elnya 160",
         "shape": "elnya",
@@ -434,7 +435,7 @@
         }
     },
     {
-        "_id": "20bd347ab578e1c0bd13571f8f9f2f0e72b57393",
+        "_id": "64bfb2e917951d43e5d9edea",
         "type": "Dry-cargo ship-2",
         "displayName": "Cargo Ivanov",
         "shape": "barge-1",
@@ -446,7 +447,7 @@
         }
     },
     {
-        "_id": "002acd747b7f3244319af4294f7a109c9805b3a5",
+        "_id": "64bfb2e917951d43e5d9edec",
         "type": "Dry-cargo ship-1",
         "displayName": "Bulker Yakushev",
         "shape": "barge-2",
@@ -458,7 +459,7 @@
         }
     },
     {
-        "_id": "ec2a07b738692ab2a1350e0467f96f8aab0e6e11",
+        "_id": "64bfb2e917951d43e5d9edee",
         "type": "ZWEZDNY",
         "displayName": "Boat Zvezdny type",
         "shape": "zwezdny",
@@ -506,7 +507,7 @@
         }
     },
     {
-        "_id": "52ccdc01a86dc2c6ea9337a8a430c7d4ed6faa26",
+        "_id": "64bfb2e917951d43e5d9edf0",
         "type": "KILO",
         "displayName": "SSK 877V Kilo",
         "shape": "kilo",
@@ -554,7 +555,7 @@
         }
     },
     {
-        "_id": "1673b240a6f5db79b3c960c6b1252e90d223ee31",
+        "_id": "64bfb2e917951d43e5d9edf2",
         "type": "IMPROVED_KILO",
         "displayName": "SSK 636 Improved Kilo",
         "shape": "kilo_636",
@@ -578,7 +579,7 @@
         }
     },
     {
-        "_id": "d7017120d94cd98afed0cba95edab6d2d1b0d843",
+        "_id": "64bfb2e917951d43e5d9edf4",
         "type": "SOM",
         "displayName": "SSK 641B Tango",
         "shape": "som",
@@ -594,9 +595,9 @@
         }
     },
     {
-        "_id": "1097e8cbbc275cc65170a24dc15c7920bf4cb4d0",
-        "numParking": 3,
+        "_id": "64bfb2e917951d43e5d9edf6",
         "type": "CV_1143_5",
+        "numParking": 3,
         "displayName": "CV 1143.5 Admiral Kuznetsov(2017)",
         "categories": [
             {
@@ -626,9 +627,9 @@
         }
     },
     {
-        "_id": "1af4ecdb22227fcf9a60e170a91f6a93ba62ef23",
-        "numParking": 1,
+        "_id": "64bfb2e917951d43e5d9edf8",
         "type": "CastleClass_01",
+        "numParking": 1,
         "displayName": "Castle Class",
         "categories": [
             {
@@ -652,7 +653,7 @@
         }
     },
     {
-        "_id": "023ff6b8eba57e0dcb65d4f01ca0fd0f96e253e2",
+        "_id": "64bfb2e917951d43e5d9edfa",
         "type": "HarborTug",
         "displayName": "Harbor Tug",
         "module": "South_Atlantic_Assets",
@@ -665,9 +666,9 @@
         }
     },
     {
-        "_id": "e8d568cfae2ae13d99676a16d64c16567c37170b",
-        "numParking": 4,
+        "_id": "64bfb2e917951d43e5d9edfc",
         "type": "hms_invincible",
+        "numParking": 4,
         "displayName": "HMS Invincible (R05)",
         "categories": [
             {
@@ -694,9 +695,9 @@
         }
     },
     {
-        "_id": "f1e118bbff9bf2e6329354c7655726da7f97e268",
-        "numParking": 1,
+        "_id": "64bfb2e917951d43e5d9edfe",
         "type": "leander-gun-achilles",
+        "numParking": 1,
         "displayName": "HMS Achilles (F12)",
         "categories": [
             {
@@ -720,9 +721,9 @@
         }
     },
     {
-        "_id": "6f34aa72f17e522a3e2543fd28eb2eac002fe12f",
-        "numParking": 1,
+        "_id": "64bfb2e917951d43e5d9ee00",
         "type": "leander-gun-andromeda",
+        "numParking": 1,
         "displayName": "HMS Andromeda (F57)",
         "categories": [
             {
@@ -746,9 +747,9 @@
         }
     },
     {
-        "_id": "884e780043762f57d306567bb79daaea02810f72",
-        "numParking": 1,
+        "_id": "64bfb2e917951d43e5d9ee02",
         "type": "leander-gun-ariadne",
+        "numParking": 1,
         "displayName": "HMS Ariadne (F72)",
         "categories": [
             {
@@ -772,9 +773,9 @@
         }
     },
     {
-        "_id": "fb88fe7c16dc681b866d4225e39653caba8eba60",
-        "numParking": 1,
+        "_id": "64bfb2e917951d43e5d9ee04",
         "type": "leander-gun-condell",
+        "numParking": 1,
         "displayName": "CNS Almirante Condell (PFG-06)",
         "categories": [
             {
@@ -802,9 +803,9 @@
         }
     },
     {
-        "_id": "6503e62e74447954a93b28935a1eb915bbc54daf",
-        "numParking": 1,
+        "_id": "64bfb2e917951d43e5d9ee06",
         "type": "leander-gun-lynch",
+        "numParking": 1,
         "displayName": "CNS Almirante Lynch (PFG-07)",
         "categories": [
             {
@@ -824,9 +825,9 @@
         }
     },
     {
-        "_id": "dcf02bb3805782c0de82b997435426e96abc41b3",
-        "numParking": 1,
+        "_id": "64bfb2e917951d43e5d9ee08",
         "type": "Ship_Tilde_Supply",
+        "numParking": 1,
         "displayName": "Supply Ship MV Tilde",
         "categories": [
             {
@@ -838,7 +839,7 @@
         "operators": {}
     },
     {
-        "_id": "e186a29200bb3eff272b0de37070245ae6418e07",
+        "_id": "64bfb2e917951d43e5d9ee0a",
         "type": "santafe",
         "displayName": "ARA Santa Fe S-21",
         "module": "South_Atlantic_Assets",
@@ -859,9 +860,9 @@
         }
     },
     {
-        "_id": "bcc595c48b919578b3eab96f6dc02bb8f59ecd72",
-        "numParking": 1,
+        "_id": "64bfb2e917951d43e5d9ee0e",
         "type": "HandyWind",
+        "numParking": 1,
         "displayName": "Bulker Handy Wind",
         "categories": [
             {
@@ -878,9 +879,9 @@
         }
     },
     {
-        "_id": "e25c531f6ca25ec295bb559c53fa22bb63c0ed83",
-        "numParking": 1,
+        "_id": "64bfb2e917951d43e5d9ee10",
         "type": "Seawise_Giant",
+        "numParking": 1,
         "displayName": "Tanker Seawise Giant",
         "categories": [
             {
@@ -897,7 +898,7 @@
         }
     },
     {
-        "_id": "b1398a957ac44d98465a45439dd5bf7347379d1c",
+        "_id": "64bfb2e917951d43e5d9ee12",
         "type": "La_Combattante_II",
         "displayName": "FAC La Combattante IIa",
         "categories": [
@@ -947,7 +948,7 @@
         }
     },
     {
-        "_id": "be70b1271a52199ca71f4696efb5938b2e0efc20",
+        "_id": "64bfb2e917951d43e5d9ee14",
         "type": "BDK-775",
         "displayName": "LS Ropucha",
         "categories": [
@@ -981,9 +982,9 @@
         }
     },
     {
-        "_id": "f6440b97cda2d9676a00f3c20b77d0dd829a7caa",
-        "numParking": 4,
+        "_id": "64bfb2e917951d43e5d9ee16",
         "type": "CVN_71",
+        "numParking": 4,
         "displayName": "CVN-71 Theodore Roosevelt",
         "categories": [
             {
@@ -1017,9 +1018,9 @@
         }
     },
     {
-        "_id": "9988821dab93272386d4e40147f6773b667ceb23",
-        "numParking": 4,
+        "_id": "64bfb2e917951d43e5d9ee18",
         "type": "CVN_72",
+        "numParking": 4,
         "displayName": "CVN-72 Abraham Lincoln",
         "categories": [
             {
@@ -1053,9 +1054,9 @@
         }
     },
     {
-        "_id": "cf21a8caf02e547b6ef3e64d20dee8c8000e9e02",
-        "numParking": 4,
+        "_id": "64bfb2e917951d43e5d9ee1a",
         "type": "CVN_73",
+        "numParking": 4,
         "displayName": "CVN-73 George Washington",
         "categories": [
             {
@@ -1089,9 +1090,9 @@
         }
     },
     {
-        "_id": "84e5e06c0308fc9a3f0fb454eb4679f33b65a228",
-        "numParking": 4,
+        "_id": "64bfb2e917951d43e5d9ee1d",
         "type": "Stennis",
+        "numParking": 4,
         "displayName": "CVN-74 John C. Stennis",
         "categories": [
             {
@@ -1125,9 +1126,9 @@
         }
     },
     {
-        "_id": "f02284352f4d1cb4bdd94405a76e0802f9ee7d58",
-        "numParking": 4,
+        "_id": "64bfb2e917951d43e5d9ee1f",
         "type": "CVN_75",
+        "numParking": 4,
         "displayName": "CVN-75 Harry S. Truman",
         "categories": [
             {
@@ -1161,9 +1162,9 @@
         }
     },
     {
-        "_id": "9fd6eb3208efa7f9c67b519716a0b32cfb6a927b",
-        "numParking": 1,
+        "_id": "64bfb2e917951d43e5d9ee21",
         "type": "USS_Arleigh_Burke_IIa",
+        "numParking": 1,
         "displayName": "DDG Arleigh Burke IIa",
         "categories": [
             {
@@ -1187,9 +1188,9 @@
         }
     },
     {
-        "_id": "760846e385c5f27aa5b2e99f5b4cc268c318ddf4",
-        "numParking": 4,
+        "_id": "64bfb2e917951d43e5d9ee23",
         "type": "LHA_Tarawa",
+        "numParking": 4,
         "displayName": "LHA-1 Tarawa",
         "categories": [
             {
@@ -1216,9 +1217,9 @@
         }
     },
     {
-        "_id": "e78e0cf955f73f9a920e144dec57aeafc834c1a8",
-        "numParking": 1,
+        "_id": "64bfb2e917951d43e5d9ee26",
         "type": "Type_052B",
+        "numParking": 1,
         "displayName": "Type 052B Destroyer",
         "categories": [
             {
@@ -1242,9 +1243,9 @@
         }
     },
     {
-        "_id": "a991067d6ae7c943529ddf9a78174b45f828f835",
-        "numParking": 1,
+        "_id": "64bfb2e917951d43e5d9ee28",
         "type": "Type_054A",
+        "numParking": 1,
         "displayName": "Type 054A Frigate",
         "categories": [
             {
@@ -1268,9 +1269,9 @@
         }
     },
     {
-        "_id": "1f0409929d382ee96e7a82a7169b88654322cc6a",
-        "numParking": 1,
+        "_id": "64bfb2e917951d43e5d9ee2a",
         "type": "Type_052C",
+        "numParking": 1,
         "displayName": "Type 052C Destroyer",
         "categories": [
             {
@@ -1294,7 +1295,7 @@
         }
     },
     {
-        "_id": "092f5dae96f3576e2507db64247d3c303969efc8",
+        "_id": "64bfb2e917951d43e5d9ee2c",
         "type": "Type_093",
         "displayName": "Type 093 Attack Submarine",
         "categories": [
@@ -1316,9 +1317,9 @@
         }
     },
     {
-        "_id": "a29aea1d7264fdff00a371f903c84857d75487a6",
-        "numParking": 2,
+        "_id": "64bfb2e917951d43e5d9ee2e",
         "type": "Type_071",
+        "numParking": 2,
         "displayName": "Type 071 Amphibious Transport Dock",
         "categories": [
             {
@@ -1348,9 +1349,9 @@
         }
     },
     {
-        "_id": "8d27ff35e4a68b73dc897556eea9fdc210ad69dd",
-        "numParking": 4,
+        "_id": "64bfb2e917951d43e5d9ee30",
         "type": "Forrestal",
+        "numParking": 4,
         "displayName": "CV-59 Forrestal",
         "categories": [
             {
@@ -1380,7 +1381,7 @@
         }
     },
     {
-        "_id": "649f2f9e305a1be577a92b42",
+        "_id": "64bfb2e917951d43e5d9ee32",
         "type": "LST_Mk2",
         "displayName": "LST Mk.II",
         "categories": [
@@ -1410,7 +1411,7 @@
         }
     },
     {
-        "_id": "649f2f9e305a1be577a92b44",
+        "_id": "64bfb2e917951d43e5d9ee34",
         "type": "USS_Samuel_Chase",
         "displayName": "LS Samuel Chase",
         "categories": [
@@ -1432,7 +1433,7 @@
         }
     },
     {
-        "_id": "649f2f9e305a1be577a92b46",
+        "_id": "64bfb2e917951d43e5d9ee36",
         "type": "Higgins_boat",
         "displayName": "Boat LCVP Higgins",
         "categories": [
@@ -1454,7 +1455,7 @@
         }
     },
     {
-        "_id": "649f2f9e305a1be577a92b48",
+        "_id": "64bfb2e917951d43e5d9ee38",
         "type": "Uboat_VIIC",
         "displayName": "U-boat VIIC U-flak",
         "categories": [
@@ -1480,7 +1481,7 @@
         }
     },
     {
-        "_id": "649f2f9e305a1be577a92b4a",
+        "_id": "64bfb2e917951d43e5d9ee3a",
         "type": "Schnellboot_type_S130",
         "displayName": "Boat Schnellboot type S130",
         "categories": [

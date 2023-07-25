@@ -1,6 +1,6 @@
 [
     {
-        "_id": "645caae428f1201645674798",
+        "_id": "64bfc06617951d43e5da433b",
         "type": "Fire Can radar",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -107,7 +107,7 @@
         }
     },
     {
-        "_id": "645caae428f120164567479a",
+        "_id": "64bfc06617951d43e5da433d",
         "type": "KS19",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -214,7 +214,7 @@
         }
     },
     {
-        "_id": "645caae428f120164567479c",
+        "_id": "64bfc06617951d43e5da433f",
         "type": "S-300PS SA-10B 54K6 cp",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -289,7 +289,7 @@
         }
     },
     {
-        "_id": "645caae428f120164567479e",
+        "_id": "64bfc06617951d43e5da4341",
         "type": "S-300PS 5P85SE_mod ln",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -364,7 +364,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747a0",
+        "_id": "64bfc06617951d43e5da4343",
         "type": "S-300PS 5P85SU_mod ln",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -439,7 +439,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747a2",
+        "_id": "64bfc06617951d43e5da4345",
         "type": "S-300PS 5P85CE ln",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -514,7 +514,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747a4",
+        "_id": "64bfc06617951d43e5da4347",
         "type": "S-300PS 5P85DE ln",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -593,7 +593,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747a6",
+        "_id": "64bfc06617951d43e5da4349",
         "type": "S-300PS 30N6 TRAILER tr",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -664,7 +664,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747a8",
+        "_id": "64bfc06617951d43e5da434b",
         "type": "S-300PS SA-10B 40B6M MAST tr",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -674,7 +674,7 @@
         "operators": {}
     },
     {
-        "_id": "645caae428f12016456747aa",
+        "_id": "64bfc06617951d43e5da434d",
         "type": "S-300PS SA-10B 40B6MD MAST sr",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -745,7 +745,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747ac",
+        "_id": "64bfc06617951d43e5da434f",
         "type": "S-300PS 64H6E TRAILER sr",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -816,7 +816,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747ae",
+        "_id": "64bfc06617951d43e5da4351",
         "type": "S-300PMU1 54K6 cp",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -895,7 +895,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747b0",
+        "_id": "64bfc06617951d43e5da4353",
         "type": "S-300PMU1 40B6M tr",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -974,7 +974,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747b2",
+        "_id": "64bfc06617951d43e5da4355",
         "type": "S-300PMU1 30N6E tr",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -1053,7 +1053,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747b4",
+        "_id": "64bfc06617951d43e5da4357",
         "type": "S-300PMU1 40B6MD sr",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -1132,7 +1132,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747b6",
+        "_id": "64bfc06617951d43e5da4359",
         "type": "S-300PMU1 64N6E sr",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -1211,7 +1211,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747b8",
+        "_id": "64bfc06617951d43e5da435b",
         "type": "S-300PMU1 5P85CE ln",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -1290,7 +1290,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747ba",
+        "_id": "64bfc06617951d43e5da435d",
         "type": "S-300PMU1 5P85DE ln",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -1365,7 +1365,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747bc",
+        "_id": "64bfc06617951d43e5da435f",
         "type": "S-300PMU2 54K6E2 cp",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -1440,7 +1440,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747be",
+        "_id": "64bfc06617951d43e5da4361",
         "type": "S-300PMU2 92H6E tr",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -1507,7 +1507,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747c0",
+        "_id": "64bfc06617951d43e5da4363",
         "type": "S-300PMU2 64H6E2 sr",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -1574,7 +1574,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747c2",
+        "_id": "64bfc06617951d43e5da4365",
         "type": "S-300PMU2 5P85SE2 ln",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -1649,7 +1649,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747c4",
+        "_id": "64bfc06617951d43e5da4367",
         "type": "S-300V 9S457 cp",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -1728,7 +1728,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747c6",
+        "_id": "64bfc06617951d43e5da4369",
         "type": "S-300V 9A82 ln",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -1807,7 +1807,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747c8",
+        "_id": "64bfc06617951d43e5da436b",
         "type": "S-300V 9A83 ln",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -1886,7 +1886,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747ca",
+        "_id": "64bfc06617951d43e5da436d",
         "type": "S-300V 9S15 sr",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -1965,7 +1965,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747cc",
+        "_id": "64bfc06617951d43e5da436f",
         "type": "S-300V 9S19 sr",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -2044,7 +2044,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747ce",
+        "_id": "64bfc06617951d43e5da4371",
         "type": "S-300V 9S32 tr",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -2123,7 +2123,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747d0",
+        "_id": "64bfc06617951d43e5da4373",
         "type": "S-300VM 9S457ME cp",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -2198,7 +2198,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747d2",
+        "_id": "64bfc06617951d43e5da4375",
         "type": "S-300VM 9S15M2 sr",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -2273,7 +2273,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747d4",
+        "_id": "64bfc06617951d43e5da4377",
         "type": "S-300VM 9S19M2 sr",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -2348,7 +2348,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747d6",
+        "_id": "64bfc06617951d43e5da4379",
         "type": "S-300VM 9S32ME tr",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -2423,7 +2423,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747d8",
+        "_id": "64bfc06617951d43e5da437b",
         "type": "S-300VM 9A83ME ln",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -2498,7 +2498,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747da",
+        "_id": "64bfc06617951d43e5da437d",
         "type": "S-300VM 9A82ME ln",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -2573,7 +2573,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747dc",
+        "_id": "64bfc06617951d43e5da437f",
         "type": "SA-17 Buk M1-2 LN 9A310M1-2",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -2624,7 +2624,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747de",
+        "_id": "64bfc06617951d43e5da4381",
         "type": "S_75M_Volhov_V759",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -2747,7 +2747,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747e0",
+        "_id": "64bfc06617951d43e5da4383",
         "type": "HQ_2_Guideline_LN",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -2774,7 +2774,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747e2",
+        "_id": "64bfc06617951d43e5da4385",
         "type": "5p73 V-601P ln",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -2784,7 +2784,7 @@
         "operators": {}
     },
     {
-        "_id": "645caae428f12016456747e4",
+        "_id": "64bfc06617951d43e5da4387",
         "type": "SA-24 Igla-S manpad",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -2885,7 +2885,7 @@
                 2020
             ],
             "SouthOssetia": [
-                1980,
+                2010,
                 2020
             ],
             "Syria": [
@@ -2908,10 +2908,6 @@
                 1980,
                 2020
             ],
-            "SouthOssetia": [
-                2010,
-                2020
-            ],
             "USSR": [
                 1980,
                 2020
@@ -2919,7 +2915,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747e6",
+        "_id": "64bfc06617951d43e5da4389",
         "type": "SA-14 Strela-3 manpad",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -3020,7 +3016,7 @@
                 2020
             ],
             "SouthOssetia": [
-                1980,
+                2010,
                 2020
             ],
             "Syria": [
@@ -3043,10 +3039,6 @@
                 1980,
                 2020
             ],
-            "SouthOssetia": [
-                2010,
-                2020
-            ],
             "USSR": [
                 1980,
                 2020
@@ -3054,7 +3046,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747e8",
+        "_id": "64bfc06617951d43e5da438b",
         "type": "polyana-d4m1 cp",
         "category": "Air Defence",
         "paintSchemes": {},
@@ -3073,7 +3065,7 @@
         }
     },
     {
-        "_id": "645caae428f12016456747ea",
+        "_id": "64bfc06617951d43e5da438d",
         "type": "34Ya6E Gazetchik E decoy",
         "category": "Air Defence",
         "paintSchemes": {},

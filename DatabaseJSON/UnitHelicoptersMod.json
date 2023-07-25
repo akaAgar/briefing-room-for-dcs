@@ -1,2068 +1,7 @@
 [
     {
-        "_id": "645caae428f12016456746ae",
+        "_id": "64bfc06517951d43e5da4142",
         "type": "UH-60L",
-        "height": 5.13,
-        "length": 19.76,
-        "paintSchemes": {
-            "0": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "1": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "2": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "3": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "4": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "5": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "6": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "7": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "8": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "9": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "10": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "11": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "12": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "13": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "15": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "16": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "17": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "18": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "19": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "20": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "21": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "22": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "23": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "24": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "25": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "26": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "27": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "28": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "29": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "30": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "31": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "32": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "33": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "34": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "35": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "36": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "37": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "38": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "39": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "40": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "41": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "42": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "43": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "44": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "45": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "46": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "47": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "48": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "49": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "50": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "51": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "52": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "53": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "54": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "55": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "56": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "57": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "58": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "59": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "60": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "61": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "62": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "63": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "64": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "65": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "66": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "67": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "68": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "69": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "70": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "71": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "72": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "73": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "74": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "75": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "76": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "77": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "78": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "79": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "80": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "81": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "82": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "83": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "84": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "85": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "86": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "87": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "88": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "89": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ],
-            "90": [
-                "default",
-                "FAB Generic",
-                "Israeli Air Force",
-                "JASDF SAR Yellow",
-                "SkywardFM",
-                "US Army Desert",
-                "US Army MEDEVAC",
-                "US Army SOAR",
-                "US Navy",
-                "USAF Rescue",
-                "USCG",
-                "X-51 Squadron"
-            ]
-        },
-        "panelRadio": [
-            {
-                "range": [
-                    {
-                        "min": 30,
-                        "max": 87.975
-                    }
-                ],
-                "name": "AN/ARC-201 (1)",
-                "channels": [
-                    {
-                        "name": "AN/ARC-201 Channel 1",
-                        "default": 30
-                    },
-                    {
-                        "name": "AN/ARC-201 Channel 2",
-                        "default": 31
-                    },
-                    {
-                        "name": "AN/ARC-201 Channel 3",
-                        "default": 32
-                    },
-                    {
-                        "name": "AN/ARC-201 Channel 4",
-                        "default": 33
-                    },
-                    {
-                        "name": "AN/ARC-201 Channel 5",
-                        "default": 40
-                    },
-                    {
-                        "name": "AN/ARC-201 Channel 6",
-                        "default": 41
-                    },
-                    {
-                        "name": "AN/ARC-201 Channel 0",
-                        "default": 42
-                    },
-                    {
-                        "name": "AN/ARC-201 Channel RG",
-                        "default": 50
-                    }
-                ]
-            },
-            {
-                "range": [
-                    {
-                        "min": 225,
-                        "max": 399.975
-                    }
-                ],
-                "name": "AN/ARC-164(V)",
-                "channels": [
-                    {
-                        "name": "AN/ARC-164 Channel 1",
-                        "default": 264
-                    },
-                    {
-                        "name": "AN/ARC-164 Channel 2",
-                        "default": 265
-                    },
-                    {
-                        "name": "AN/ARC-164 Channel 3",
-                        "default": 256
-                    },
-                    {
-                        "name": "AN/ARC-164 Channel 4",
-                        "default": 254
-                    },
-                    {
-                        "name": "AN/ARC-164 Channel 5",
-                        "default": 250
-                    },
-                    {
-                        "name": "AN/ARC-164 Channel 6",
-                        "default": 270
-                    },
-                    {
-                        "name": "AN/ARC-164 Channel 7",
-                        "default": 257
-                    },
-                    {
-                        "name": "AN/ARC-164 Channel 8",
-                        "default": 258
-                    },
-                    {
-                        "name": "AN/ARC-164 Channel 9",
-                        "default": 262
-                    },
-                    {
-                        "name": "AN/ARC-164 Channel 10",
-                        "default": 259
-                    },
-                    {
-                        "name": "AN/ARC-164 Channel 11",
-                        "default": 268
-                    },
-                    {
-                        "name": "AN/ARC-164 Channel 12",
-                        "default": 269
-                    },
-                    {
-                        "name": "AN/ARC-164 Channel 13",
-                        "default": 260
-                    },
-                    {
-                        "name": "AN/ARC-164 Channel 14",
-                        "default": 263
-                    },
-                    {
-                        "name": "AN/ARC-164 Channel 15",
-                        "default": 261
-                    },
-                    {
-                        "name": "AN/ARC-164 Channel 16",
-                        "default": 267
-                    },
-                    {
-                        "name": "AN/ARC-164 Channel 17",
-                        "default": 251
-                    },
-                    {
-                        "name": "AN/ARC-164 Channel 18",
-                        "default": 253
-                    },
-                    {
-                        "name": "AN/ARC-164 Channel 19",
-                        "default": 266
-                    },
-                    {
-                        "name": "AN/ARC-164 Channel 20",
-                        "default": 252
-                    }
-                ]
-            },
-            {
-                "range": [
-                    {
-                        "min": 30,
-                        "max": 151.975
-                    }
-                ],
-                "name": "AN/ARC-186(V)",
-                "channels": [
-                    {
-                        "name": "AN/ARC-186 Channel 1",
-                        "default": 124
-                    },
-                    {
-                        "name": "AN/ARC-186 Channel 2",
-                        "default": 127.5
-                    }
-                ]
-            },
-            {
-                "range": [
-                    {
-                        "min": 30,
-                        "max": 87.975
-                    }
-                ],
-                "name": "AN/ARC-201 (2)",
-                "channels": [
-                    {
-                        "name": "AN/ARC-201 Channel 1",
-                        "default": 30
-                    },
-                    {
-                        "name": "AN/ARC-201 Channel 2",
-                        "default": 31
-                    },
-                    {
-                        "name": "AN/ARC-201 Channel 3",
-                        "default": 32
-                    },
-                    {
-                        "name": "AN/ARC-201 Channel 4",
-                        "default": 33
-                    },
-                    {
-                        "name": "AN/ARC-201 Channel 5",
-                        "default": 40
-                    },
-                    {
-                        "name": "AN/ARC-201 Channel 6",
-                        "default": 41
-                    },
-                    {
-                        "name": "AN/ARC-201 Channel 0",
-                        "default": 42
-                    },
-                    {
-                        "name": "AN/ARC-201 Channel RG",
-                        "default": 50
-                    }
-                ]
-            },
-            {
-                "range": [
-                    {
-                        "min": 2,
-                        "max": 29.9999
-                    }
-                ],
-                "name": "AN/ARC-220",
-                "channels": [
-                    {
-                        "name": "AN/ARC-220 Channel 1",
-                        "default": 3
-                    },
-                    {
-                        "name": "AN/ARC-220 Channel 2",
-                        "default": 10
-                    }
-                ]
-            }
-        ],
-        "payloadPresets": [
-            {
-                "pylons": [
-                    {
-                        "CLSID": "<CLEAN>",
-                        "num": 1
-                    },
-                    {
-                        "CLSID": "<CLEAN>",
-                        "num": 2
-                    },
-                    {
-                        "CLSID": "<CLEAN>",
-                        "num": 6
-                    },
-                    {
-                        "CLSID": "<CLEAN>",
-                        "num": 7
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_R}",
-                        "num": 5
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_L}",
-                        "num": 3
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_CARGO_ALL}",
-                        "num": 4
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "Clean 14x Seats",
-                "displayName": "Clean 14x Seats"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 7
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 1
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_L}",
-                        "num": 3
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_CARGO_ALL}",
-                        "num": 4
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_R}",
-                        "num": 5
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "CEFS 2x 200 Gallon Tanks 14x Seats",
-                "displayName": "CEFS 2x 200 Gallon Tanks 14x Seats"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 7
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 1
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_R}",
-                        "num": 5
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_L}",
-                        "num": 3
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "CEFS 2x 200 Gallon Tanks 2x Seats",
-                "displayName": "CEFS 2x 200 Gallon Tanks 2x Seats"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 7
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 1
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 2
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 6
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_CARGO_ALL}",
-                        "num": 4
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "CEFS 4x 200 Gallon Tanks 12x Seats",
-                "displayName": "CEFS 4x 200 Gallon Tanks 12x Seats"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{UH60_SEAT_CARGO_ALL}",
-                        "num": 4
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "Empty 12x Seats",
-                "displayName": "Empty 12x Seats"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{UH60_SEAT_CARGO_ALL}",
-                        "num": 4
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_R}",
-                        "num": 5
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_L}",
-                        "num": 3
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "Empty 14x Seats",
-                "displayName": "Empty 14x Seats"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 7
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 1
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 2
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 6
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_R}",
-                        "num": 5
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_L}",
-                        "num": 3
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "CEFS 4x 200 Gallon Tanks 2x Seats",
-                "displayName": "CEFS 4x 200 Gallon Tanks 2x Seats"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_R}",
-                        "num": 5
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_L}",
-                        "num": 3
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "Empty 2x Seats",
-                "displayName": "Empty 2x Seats"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 7
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 1
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 2
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 6
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_CARGO_REAR}",
-                        "num": 4
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "CEFS 4x 200 Gallon Tanks 4x Seats",
-                "displayName": "CEFS 4x 200 Gallon Tanks 4x Seats"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 7
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 1
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 2
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 6
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_L}",
-                        "num": 3
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_CARGO_ALL}",
-                        "num": 4
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_R}",
-                        "num": 5
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "CEFS 4x 200 Gallon Tanks 14x Seats",
-                "displayName": "CEFS 4x 200 Gallon Tanks 14x Seats"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{UH60_SEAT_CARGO_REAR}",
-                        "num": 4
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "Empty 4x Seats",
-                "displayName": "Empty 4x Seats"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 7
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 1
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_CARGO_ALL}",
-                        "num": 4
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "CEFS 2x 200 Gallon Tanks 12x Seats",
-                "displayName": "CEFS 2x 200 Gallon Tanks 12x Seats"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "<CLEAN>",
-                        "num": 1
-                    },
-                    {
-                        "CLSID": "<CLEAN>",
-                        "num": 2
-                    },
-                    {
-                        "CLSID": "<CLEAN>",
-                        "num": 6
-                    },
-                    {
-                        "CLSID": "<CLEAN>",
-                        "num": 7
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_CARGO_REAR}",
-                        "num": 4
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "Clean 4x Seats",
-                "displayName": "Clean 4x Seats"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "<CLEAN>",
-                        "num": 1
-                    },
-                    {
-                        "CLSID": "<CLEAN>",
-                        "num": 2
-                    },
-                    {
-                        "CLSID": "<CLEAN>",
-                        "num": 6
-                    },
-                    {
-                        "CLSID": "<CLEAN>",
-                        "num": 7
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_R}",
-                        "num": 5
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_L}",
-                        "num": 3
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_CARGO_REAR}",
-                        "num": 4
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "Clean 6x Seats",
-                "displayName": "Clean 6x Seats"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "<CLEAN>",
-                        "num": 1
-                    },
-                    {
-                        "CLSID": "<CLEAN>",
-                        "num": 2
-                    },
-                    {
-                        "CLSID": "<CLEAN>",
-                        "num": 6
-                    },
-                    {
-                        "CLSID": "<CLEAN>",
-                        "num": 7
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_R}",
-                        "num": 5
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_L}",
-                        "num": 3
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "Clean 2x Seats",
-                "displayName": "Clean 2x Seats"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 7
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 1
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_CARGO_REAR}",
-                        "num": 4
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "CEFS 2x 200 Gallon Tanks 4x Seats",
-                "displayName": "CEFS 2x 200 Gallon Tanks 4x Seats"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "<CLEAN>",
-                        "num": 1
-                    },
-                    {
-                        "CLSID": "<CLEAN>",
-                        "num": 2
-                    },
-                    {
-                        "CLSID": "<CLEAN>",
-                        "num": 6
-                    },
-                    {
-                        "CLSID": "<CLEAN>",
-                        "num": 7
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_CARGO_ALL}",
-                        "num": 4
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "Clean 12x Seats",
-                "displayName": "Clean 12x Seats"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 7
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 1
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_CARGO_REAR}",
-                        "num": 4
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_L}",
-                        "num": 3
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_R}",
-                        "num": 5
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "CEFS 2x 200 Gallon Tanks 6x Seats",
-                "displayName": "CEFS 2x 200 Gallon Tanks 6x Seats"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_R}",
-                        "num": 5
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_L}",
-                        "num": 3
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_CARGO_REAR}",
-                        "num": 4
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "Empty 6x Seats",
-                "displayName": "Empty 6x Seats"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 7
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 1
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 2
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 6
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_R}",
-                        "num": 5
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_GUNNER_L}",
-                        "num": 3
-                    },
-                    {
-                        "CLSID": "{UH60_SEAT_CARGO_REAR}",
-                        "num": 4
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "CEFS 4x 200 Gallon Tanks 6x Seats",
-                "displayName": "CEFS 4x 200 Gallon Tanks 6x Seats"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 4
-                    },
-                    {
-                        "CLSID": "{UH60_FUEL_TANK_230}",
-                        "num": 1
-                    }
-                ],
-                "tasks": [
-                    35,
-                    17
-                ],
-                "name": "CEFS 2x 200 Gallon Tanks",
-                "displayName": "CEFS 2x 200 Gallon Tanks"
-            }
-        ],
         "callsigns": {
             "0": [
                 {
@@ -5509,6 +3448,2067 @@
                 }
             ]
         },
+        "height": 5.13,
+        "length": 19.76,
+        "paintSchemes": {
+            "0": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "1": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "2": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "3": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "4": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "5": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "6": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "7": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "8": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "9": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "10": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "11": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "12": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "13": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "15": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "16": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "17": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "18": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "19": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "20": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "21": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "22": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "23": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "24": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "25": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "26": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "27": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "28": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "29": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "30": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "31": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "32": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "33": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "34": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "35": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "36": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "37": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "38": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "39": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "40": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "41": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "42": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "43": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "44": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "45": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "46": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "47": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "48": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "49": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "50": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "51": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "52": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "53": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "54": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "55": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "56": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "57": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "58": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "59": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "60": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "61": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "62": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "63": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "64": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "65": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "66": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "67": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "68": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "69": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "70": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "71": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "72": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "73": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "74": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "75": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "76": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "77": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "78": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "79": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "80": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "81": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "82": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "83": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "84": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "85": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "86": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "87": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "88": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "89": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ],
+            "90": [
+                "default",
+                "FAB Generic",
+                "Israeli Air Force",
+                "JASDF SAR Yellow",
+                "SkywardFM",
+                "US Army Desert",
+                "US Army MEDEVAC",
+                "US Army SOAR",
+                "US Navy",
+                "USAF Rescue",
+                "USCG",
+                "X-51 Squadron"
+            ]
+        },
+        "panelRadio": [
+            {
+                "range": [
+                    {
+                        "min": 30,
+                        "max": 87.975
+                    }
+                ],
+                "name": "AN/ARC-201 (1)",
+                "channels": [
+                    {
+                        "name": "AN/ARC-201 Channel 1",
+                        "default": 30
+                    },
+                    {
+                        "name": "AN/ARC-201 Channel 2",
+                        "default": 31
+                    },
+                    {
+                        "name": "AN/ARC-201 Channel 3",
+                        "default": 32
+                    },
+                    {
+                        "name": "AN/ARC-201 Channel 4",
+                        "default": 33
+                    },
+                    {
+                        "name": "AN/ARC-201 Channel 5",
+                        "default": 40
+                    },
+                    {
+                        "name": "AN/ARC-201 Channel 6",
+                        "default": 41
+                    },
+                    {
+                        "name": "AN/ARC-201 Channel 0",
+                        "default": 42
+                    },
+                    {
+                        "name": "AN/ARC-201 Channel RG",
+                        "default": 50
+                    }
+                ]
+            },
+            {
+                "range": [
+                    {
+                        "min": 225,
+                        "max": 399.975
+                    }
+                ],
+                "name": "AN/ARC-164(V)",
+                "channels": [
+                    {
+                        "name": "AN/ARC-164 Channel 1",
+                        "default": 264
+                    },
+                    {
+                        "name": "AN/ARC-164 Channel 2",
+                        "default": 265
+                    },
+                    {
+                        "name": "AN/ARC-164 Channel 3",
+                        "default": 256
+                    },
+                    {
+                        "name": "AN/ARC-164 Channel 4",
+                        "default": 254
+                    },
+                    {
+                        "name": "AN/ARC-164 Channel 5",
+                        "default": 250
+                    },
+                    {
+                        "name": "AN/ARC-164 Channel 6",
+                        "default": 270
+                    },
+                    {
+                        "name": "AN/ARC-164 Channel 7",
+                        "default": 257
+                    },
+                    {
+                        "name": "AN/ARC-164 Channel 8",
+                        "default": 258
+                    },
+                    {
+                        "name": "AN/ARC-164 Channel 9",
+                        "default": 262
+                    },
+                    {
+                        "name": "AN/ARC-164 Channel 10",
+                        "default": 259
+                    },
+                    {
+                        "name": "AN/ARC-164 Channel 11",
+                        "default": 268
+                    },
+                    {
+                        "name": "AN/ARC-164 Channel 12",
+                        "default": 269
+                    },
+                    {
+                        "name": "AN/ARC-164 Channel 13",
+                        "default": 260
+                    },
+                    {
+                        "name": "AN/ARC-164 Channel 14",
+                        "default": 263
+                    },
+                    {
+                        "name": "AN/ARC-164 Channel 15",
+                        "default": 261
+                    },
+                    {
+                        "name": "AN/ARC-164 Channel 16",
+                        "default": 267
+                    },
+                    {
+                        "name": "AN/ARC-164 Channel 17",
+                        "default": 251
+                    },
+                    {
+                        "name": "AN/ARC-164 Channel 18",
+                        "default": 253
+                    },
+                    {
+                        "name": "AN/ARC-164 Channel 19",
+                        "default": 266
+                    },
+                    {
+                        "name": "AN/ARC-164 Channel 20",
+                        "default": 252
+                    }
+                ]
+            },
+            {
+                "range": [
+                    {
+                        "min": 30,
+                        "max": 151.975
+                    }
+                ],
+                "name": "AN/ARC-186(V)",
+                "channels": [
+                    {
+                        "name": "AN/ARC-186 Channel 1",
+                        "default": 124
+                    },
+                    {
+                        "name": "AN/ARC-186 Channel 2",
+                        "default": 127.5
+                    }
+                ]
+            },
+            {
+                "range": [
+                    {
+                        "min": 30,
+                        "max": 87.975
+                    }
+                ],
+                "name": "AN/ARC-201 (2)",
+                "channels": [
+                    {
+                        "name": "AN/ARC-201 Channel 1",
+                        "default": 30
+                    },
+                    {
+                        "name": "AN/ARC-201 Channel 2",
+                        "default": 31
+                    },
+                    {
+                        "name": "AN/ARC-201 Channel 3",
+                        "default": 32
+                    },
+                    {
+                        "name": "AN/ARC-201 Channel 4",
+                        "default": 33
+                    },
+                    {
+                        "name": "AN/ARC-201 Channel 5",
+                        "default": 40
+                    },
+                    {
+                        "name": "AN/ARC-201 Channel 6",
+                        "default": 41
+                    },
+                    {
+                        "name": "AN/ARC-201 Channel 0",
+                        "default": 42
+                    },
+                    {
+                        "name": "AN/ARC-201 Channel RG",
+                        "default": 50
+                    }
+                ]
+            },
+            {
+                "range": [
+                    {
+                        "min": 2,
+                        "max": 29.9999
+                    }
+                ],
+                "name": "AN/ARC-220",
+                "channels": [
+                    {
+                        "name": "AN/ARC-220 Channel 1",
+                        "default": 3
+                    },
+                    {
+                        "name": "AN/ARC-220 Channel 2",
+                        "default": 10
+                    }
+                ]
+            }
+        ],
+        "payloadPresets": [
+            {
+                "pylons": [
+                    {
+                        "CLSID": "<CLEAN>",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "<CLEAN>",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "<CLEAN>",
+                        "num": 6
+                    },
+                    {
+                        "CLSID": "<CLEAN>",
+                        "num": 7
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_R}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_L}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_CARGO_ALL}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "Clean 14x Seats",
+                "displayName": "Clean 14x Seats"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 7
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_L}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_CARGO_ALL}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_R}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "CEFS 2x 200 Gallon Tanks 14x Seats",
+                "displayName": "CEFS 2x 200 Gallon Tanks 14x Seats"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 7
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_R}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_L}",
+                        "num": 3
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "CEFS 2x 200 Gallon Tanks 2x Seats",
+                "displayName": "CEFS 2x 200 Gallon Tanks 2x Seats"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 7
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 6
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_CARGO_ALL}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "CEFS 4x 200 Gallon Tanks 12x Seats",
+                "displayName": "CEFS 4x 200 Gallon Tanks 12x Seats"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{UH60_SEAT_CARGO_ALL}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "Empty 12x Seats",
+                "displayName": "Empty 12x Seats"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{UH60_SEAT_CARGO_ALL}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_R}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_L}",
+                        "num": 3
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "Empty 14x Seats",
+                "displayName": "Empty 14x Seats"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 7
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 6
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_R}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_L}",
+                        "num": 3
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "CEFS 4x 200 Gallon Tanks 2x Seats",
+                "displayName": "CEFS 4x 200 Gallon Tanks 2x Seats"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_R}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_L}",
+                        "num": 3
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "Empty 2x Seats",
+                "displayName": "Empty 2x Seats"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 7
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 6
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_CARGO_REAR}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "CEFS 4x 200 Gallon Tanks 4x Seats",
+                "displayName": "CEFS 4x 200 Gallon Tanks 4x Seats"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 7
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 6
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_L}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_CARGO_ALL}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_R}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "CEFS 4x 200 Gallon Tanks 14x Seats",
+                "displayName": "CEFS 4x 200 Gallon Tanks 14x Seats"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{UH60_SEAT_CARGO_REAR}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "Empty 4x Seats",
+                "displayName": "Empty 4x Seats"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 7
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_CARGO_ALL}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "CEFS 2x 200 Gallon Tanks 12x Seats",
+                "displayName": "CEFS 2x 200 Gallon Tanks 12x Seats"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "<CLEAN>",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "<CLEAN>",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "<CLEAN>",
+                        "num": 6
+                    },
+                    {
+                        "CLSID": "<CLEAN>",
+                        "num": 7
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_CARGO_REAR}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "Clean 4x Seats",
+                "displayName": "Clean 4x Seats"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "<CLEAN>",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "<CLEAN>",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "<CLEAN>",
+                        "num": 6
+                    },
+                    {
+                        "CLSID": "<CLEAN>",
+                        "num": 7
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_R}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_L}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_CARGO_REAR}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "Clean 6x Seats",
+                "displayName": "Clean 6x Seats"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "<CLEAN>",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "<CLEAN>",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "<CLEAN>",
+                        "num": 6
+                    },
+                    {
+                        "CLSID": "<CLEAN>",
+                        "num": 7
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_R}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_L}",
+                        "num": 3
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "Clean 2x Seats",
+                "displayName": "Clean 2x Seats"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 7
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_CARGO_REAR}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "CEFS 2x 200 Gallon Tanks 4x Seats",
+                "displayName": "CEFS 2x 200 Gallon Tanks 4x Seats"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "<CLEAN>",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "<CLEAN>",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "<CLEAN>",
+                        "num": 6
+                    },
+                    {
+                        "CLSID": "<CLEAN>",
+                        "num": 7
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_CARGO_ALL}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "Clean 12x Seats",
+                "displayName": "Clean 12x Seats"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 7
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_CARGO_REAR}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_L}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_R}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "CEFS 2x 200 Gallon Tanks 6x Seats",
+                "displayName": "CEFS 2x 200 Gallon Tanks 6x Seats"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_R}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_L}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_CARGO_REAR}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "Empty 6x Seats",
+                "displayName": "Empty 6x Seats"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 7
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 6
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_R}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_GUNNER_L}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{UH60_SEAT_CARGO_REAR}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "CEFS 4x 200 Gallon Tanks 6x Seats",
+                "displayName": "CEFS 4x 200 Gallon Tanks 6x Seats"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{UH60_FUEL_TANK_230}",
+                        "num": 1
+                    }
+                ],
+                "tasks": [
+                    35,
+                    17
+                ],
+                "name": "CEFS 2x 200 Gallon Tanks",
+                "displayName": "CEFS 2x 200 Gallon Tanks"
+            }
+        ],
         "displayName": "UH-60L",
         "categories": [],
         "module": "UH-60L",

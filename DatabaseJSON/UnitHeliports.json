@@ -1,46 +1,46 @@
 [
     {
-        "_id": "915dc02a231e385680bc8cc41b54a3a77e53cd42",
-        "numParking": 4,
+        "_id": "64bfb89817951d43e5da283c",
         "type": "FARP",
+        "numParking": 4,
         "displayName": "FARP",
         "shapeName": "FARPS"
     },
     {
-        "_id": "d2cec9d8e5faed81b122f7eba9be80bd3b4d4468",
-        "numParking": 1,
+        "_id": "64bfb89817951d43e5da283e",
         "type": "SINGLE_HELIPAD",
+        "numParking": 1,
         "displayName": "Helipad Single",
         "shapeName": "FARP"
     },
     {
-        "_id": "f89aca3caefc0e42a93e217fcf65318baa1bdff2",
-        "numParking": 1,
+        "_id": "64bfb89817951d43e5da2840",
         "type": "FARP_SINGLE_01",
+        "numParking": 1,
         "displayName": "PAD Single",
         "module": "South_Atlantic_Assets",
         "shapeName": "FARP_SINGLE_01"
     },
     {
-        "_id": "4889c4ec53cae4d62f70fd17a0a7e3b7e44651a2",
-        "numParking": 1,
+        "_id": "64bfb89817951d43e5da2842",
         "type": "Oil rig",
+        "numParking": 1,
         "displayName": "Oil rig",
         "module": "TechWeaponPack",
         "shapeName": "oil_platform"
     },
     {
-        "_id": "117ee09743115825013cad456f8641bac3e8e41f",
-        "numParking": 1,
+        "_id": "64bfb89817951d43e5da2844",
         "type": "Gas platform",
+        "numParking": 1,
         "displayName": "Gas platform",
         "module": "TechWeaponPack",
         "shapeName": "gas_platform"
     },
     {
-        "_id": "1a8293a6e4830923bbfcb64d519132578e4a5284",
-        "numParking": 1,
+        "_id": "64bfb89817951d43e5da2846",
         "type": "Invisible FARP",
+        "numParking": 1,
         "displayName": "Invisible FARP",
         "module": "AJS37 AI by Heatblur Simulations",
         "shapeName": "invisiblefarp"
