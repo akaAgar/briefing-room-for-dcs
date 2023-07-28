@@ -373,26 +373,38 @@ namespace BriefingRoom4DCS.Generator
             int airbaseID = 0;
             var parkingSpotIDsList = new List<int>();
             var parkingSpotCoordinatesList = new List<Coordinates>();
+            var enemyCoalition = template.ContextPlayerCoalition.GetEnemy();
             var targetAirbaseOptions =
                 (from DBEntryAirbase airbaseDB in situationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"))
-                 where airbaseDB.DCSID != playerAirbase.DCSID
+                 where airbaseDB.DCSID != playerAirbase.DCSID && (template.SpawnAnywhere || airbaseDB.Coalition == enemyCoalition)
                  select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(objectiveCoordinates));
-            DBEntryAirbase targetAirbase = targetAirbaseOptions.FirstOrDefault(x => template.SpawnAnywhere ? true : x.Coalition == template.ContextPlayerCoalition.GetEnemy());
 
-            airbaseID = targetAirbase.DCSID;
+            BriefingRoomException exception = null;
+            foreach (var targetAirbase in targetAirbaseOptions)
+            {
+                try
+                {
+                    airbaseID = targetAirbase.DCSID;
+                    var parkingSpots = UnitMaker.SpawnPointSelector.GetFreeParkingSpots(
+                        targetAirbase.DCSID,
+                        unitCount, (DBEntryAircraft)unitDB,
+                        targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter);
 
-            var parkingSpots = UnitMaker.SpawnPointSelector.GetFreeParkingSpots(
-                targetAirbase.DCSID,
-                unitCount, (DBEntryAircraft)unitDB,
-                targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter);
+                    parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
+                    parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
 
-            parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
-            parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
-
-            extraSettings.Add("GroupAirbaseID", airbaseID);
-            extraSettings.Add("ParkingID", parkingSpotIDsList);
-            extraSettings.Add("UnitCoords", parkingSpotCoordinatesList);
-            return targetAirbase.Coordinates;
+                    extraSettings.Add("GroupAirbaseID", airbaseID);
+                    extraSettings.Add("ParkingID", parkingSpotIDsList);
+                    extraSettings.Add("UnitCoords", parkingSpotCoordinatesList);
+                    return targetAirbase.Coordinates;
+                }
+                catch (BriefingRoomException e)
+                {
+                    exception = e;
+                    throw;
+                }
+            }
+            throw exception;
         }
 
         private Coordinates GetSpawnCoordinates(MissionTemplateRecord template, Coordinates lastCoordinates, DBEntryAirbase playerAirbase, DBEntryObjectiveTarget targetDB, bool usingHint)
