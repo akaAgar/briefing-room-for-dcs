@@ -120,13 +120,19 @@ namespace BriefingRoom4DCS.Generator
                 var unitDB = (DBEntryAircraft)unitDBs.First();
                 if (template.MissionFeatures.Contains("ContextGroundStartAircraft"))
                 {
-                    var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = unitMaker.SpawnPointSelector.GetAirbaseAndParking(template, spawnPoint.Value, groupSize, coalition, unitDB);
-                    spawnpointCoordinates = airbase.Coordinates;
-                    extraSettings.AddIfKeyUnused("ParkingID", parkingSpotIDsList);
-                    extraSettings.AddIfKeyUnused("GroupAirbaseID", airbase.DCSID);
-                    mission.PopulatedAirbaseIds[coalition].Add(airbase.DCSID);
-                    extraSettings.AddIfKeyUnused("UnitCoords", parkingSpotCoordinatesList);
-                    mission.MapData.AddIfKeyUnused($"AIRBASE_AI_{side}_${airbase.Name}", new List<double[]> { airbase.Coordinates.ToArray() });
+                    try {
+                        var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = unitMaker.SpawnPointSelector.GetAirbaseAndParking(template, spawnPoint.Value, groupSize, coalition, unitDB);
+                        spawnpointCoordinates = airbase.Coordinates;
+                        extraSettings.AddIfKeyUnused("ParkingID", parkingSpotIDsList);
+                        extraSettings.AddIfKeyUnused("GroupAirbaseID", airbase.DCSID);
+                        mission.PopulatedAirbaseIds[coalition].Add(airbase.DCSID);
+                        extraSettings.AddIfKeyUnused("UnitCoords", parkingSpotCoordinatesList);
+                        mission.MapData.AddIfKeyUnused($"AIRBASE_AI_{side}_${airbase.Name}", new List<double[]> { airbase.Coordinates.ToArray() });
+                    } catch (BriefingRoomException e)
+                    {
+                        BriefingRoom.PrintToLog($"CAP flight could not be placed at airport due to ${e.Message}", LogMessageErrorLevel.Warning);
+                    }
+
                 }
 
 

@@ -248,7 +248,7 @@ namespace BriefingRoom4DCS.Generator
                 {
                     parkingSpots = GetFreeParkingSpots(airbase.DCSID, unitCount, aircraftDB);
                 }
-                catch (System.Exception)
+                catch (BriefingRoomException)
                 {
                     continue;
                 }
