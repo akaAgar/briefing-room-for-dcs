@@ -18,7 +18,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using BriefingRoom4DCS.Generator;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
@@ -93,7 +92,7 @@ namespace BriefingRoom4DCS.Data
 
 
 
-        internal Tuple<Country, List<string>> GetRandomUnits(List<UnitFamily> families, Decade decade, int count, List<string> unitMods, bool allowLowPolly, Country? requiredCountry = null, bool lowUnitVariation = false)
+        internal Tuple<Country, List<string>> GetRandomUnits(List<UnitFamily> families, Decade decade, int count, List<string> unitMods, bool allowLowPolly, bool blockSuppliers, Country? requiredCountry = null, bool lowUnitVariation = false)
         {
             // Count is zero, return an empty array.
             if (count < 1) throw new BriefingRoomException("Asking for a zero unit list");
@@ -102,7 +101,7 @@ namespace BriefingRoom4DCS.Data
             var category = families.First().GetDCSUnitCategory();
             bool allowDifferentUnitTypes = false;
 
-            var validUnits = SelectValidUnits(families, decade, unitMods, allowLowPolly);
+            var validUnits = SelectValidUnits(families, decade, unitMods, allowLowPolly, blockSuppliers);
 
             if(validUnits is null)
                 return new (Country.ALL, new List<string>());
@@ -156,7 +155,7 @@ namespace BriefingRoom4DCS.Data
             return new(country, Enumerable.Repeat(unit, count).ToList());
         }
 
-        private Dictionary<Country, List<string>> SelectValidUnits(List<UnitFamily> families, Decade decade, List<string> unitMods, bool allowLowPolly, Country[] allyCountries = null)
+        private Dictionary<Country, List<string>> SelectValidUnits(List<UnitFamily> families, Decade decade, List<string> unitMods, bool allowLowPolly, bool blockSuppliers, Country[] allyCountries = null)
         {
             var validUnits = new Dictionary<Country, List<string>>();
             var countryList = allyCountries is null ? Countries : allyCountries;
@@ -174,9 +173,9 @@ namespace BriefingRoom4DCS.Data
             validUnits = validUnits.Where(x => x.Value.Count > 0).ToDictionary(x => x.Key, x => x.Value);
             if (validUnits.Count == 0)
             {
-                if(allyCountries is null)
-                    return SelectValidUnits(families, decade, unitMods, allowLowPolly, GetAllyCountries(decade));
-                BriefingRoom.PrintToLog($"No Units of types {string.Join(", ", families)} found in coalition of {string.Join(", ", Countries.Where(x => x != Country.ALL))} including potential supplier allies {string.Join(", ", countryList.Where(x => x != Country.ALL))}", LogMessageErrorLevel.Warning);
+                if(allyCountries is null && !blockSuppliers)
+                    return SelectValidUnits(families, decade, unitMods, allowLowPolly, false, GetAllyCountries(decade));
+                BriefingRoom.PrintToLog($"No Units of types {string.Join(", ", families)} found in coalition of {string.Join(", ", Countries.Where(x => x != Country.ALL))} {(!blockSuppliers ? $"including potential supplier allies {string.Join(", ", countryList.Where(x => x != Country.ALL))}" : ". Block Supplier Option turned on consider turning off.")}", LogMessageErrorLevel.Warning);
                 return null;
             }
             if(allyCountries != null)

@@ -43,7 +43,7 @@ namespace BriefingRoom4DCS.Generator
             DBEntryCoalition unitsCoalitionDB = Database.Instance.GetEntry<DBEntryCoalition>(template.GetCoalitionID(side));
             if (unitsCoalitionDB == null) return new List<string>();
 
-            List<string> units = new List<string>();
+            List<string> units = new();
 
             if (Toolbox.RandomDouble() >= airDefenseInfo.EmbeddedChance) return new List<string>();
 
@@ -61,12 +61,12 @@ namespace BriefingRoom4DCS.Generator
                 return units.ToList();
 
             for (int i = 0; i < airDefenseUnitsCount; i++)
-                units.AddRange(unitsCoalitionDB.GetRandomUnits(families, template.ContextDecade, 1, template.Mods, template.OptionsMission.Contains("AllowlowPolly"), country).Item2);
+                units.AddRange(unitsCoalitionDB.GetRandomUnits(families, template.ContextDecade, 1, template.Mods, template.OptionsMission.Contains("AllowlowPolly"),  template.OptionsMission.Contains("BlockSuppliers"), country).Item2);
 
             return units.ToList();
         }
         
-        internal static Tuple<Country, List<string>> GetNeutralRandomUnits(List<UnitFamily> families, List<Country> IgnoreCountries, Decade decade, int count, List<string> unitMods, bool allowLowPolly, Country? requiredCountry = null, MinMaxI? countMinMax = null)
+        internal static Tuple<Country, List<string>> GetNeutralRandomUnits(List<UnitFamily> families, List<Country> IgnoreCountries, Decade decade, int count, List<string> unitMods, bool allowLowPolly, Country? requiredCountry = null)
         {
             // Count is zero, return an empty array.
             if (count < 1) throw new BriefingRoomException("Asking for a zero unit list");
@@ -119,7 +119,7 @@ namespace BriefingRoom4DCS.Generator
             // Different unit types allowed in the group, pick a random type for each unit.
             if (allowDifferentUnitTypes)
             {
-                List<string> selectedUnits = new List<string>();
+                List<string> selectedUnits = new();
                 for (int i = 0; i < count; i++)
                     selectedUnits.Add(Toolbox.RandomFrom(selectableUnits));
 
@@ -135,7 +135,7 @@ namespace BriefingRoom4DCS.Generator
         {
             if (string.IsNullOrEmpty(str)) return str;
             if (str.Length == 1) return str.ToLower();
-            return str.Substring(0, 1).ToLower() + str.Substring(1);
+            return string.Concat(str[..1].ToLower(), str.AsSpan(1));
         }
 
         internal static string MakeHTMLList(List<string> listEntries)
@@ -219,18 +219,12 @@ namespace BriefingRoom4DCS.Generator
 
         internal static object GetTACANCallsign(UnitFamily unitFamily)
         {
-            switch (unitFamily)
+            return unitFamily switch
             {
-                default:
-                    return "TCN";
-                case UnitFamily.ShipCarrierCATOBAR:
-                case UnitFamily.ShipCarrierSTOBAR:
-                case UnitFamily.ShipCarrierSTOVL:
-                    return "CVN";
-                case UnitFamily.PlaneTankerBasket:
-                case UnitFamily.PlaneTankerBoom:
-                    return "TKR";
-            }
+                UnitFamily.ShipCarrierCATOBAR or UnitFamily.ShipCarrierSTOBAR or UnitFamily.ShipCarrierSTOVL => "CVN",
+                UnitFamily.PlaneTankerBasket or UnitFamily.PlaneTankerBoom => "TKR",
+                _ => "TCN",
+            };
         }
 
         internal static DCSSkillLevel GetDefaultSkillLevel(MissionTemplateRecord template, Side side) => (Side.Ally == side ? template.SituationFriendlySkill : template.SituationEnemySkill) switch
@@ -312,11 +306,11 @@ namespace BriefingRoom4DCS.Generator
 
         internal static string ParseRandomString(string randomString, DCSMission mission = null)
         {
-            while (randomString.Contains("{") && randomString.Contains("{"))
+            while (randomString.Contains('{') && randomString.Contains('{'))
             {
                 int start = randomString.LastIndexOf("{");
-                string stringLeft = randomString.Substring(start);
-                if (!stringLeft.Contains("}")) break;
+                string stringLeft = randomString[start..];
+                if (!stringLeft.Contains('}')) break;
                 int end = stringLeft.IndexOf("}") + 1;
 
                 string segment = randomString.Substring(start, end);
@@ -375,32 +369,26 @@ namespace BriefingRoom4DCS.Generator
 
         internal static string GetPlayerStartingAction(PlayerStartLocation playerStartLocation)
         {
-            switch (playerStartLocation)
+            return playerStartLocation switch
             {
-                default: // case PlayerStartLocation.ParkingCold
-                    return "From Parking Area";
-                case PlayerStartLocation.ParkingHot:
-                    return "From Parking Area Hot";
-                case PlayerStartLocation.Runway:
-                    return "From Runway";
-                case PlayerStartLocation.Air:
-                    return "Turning Point";
-            }
+                PlayerStartLocation.ParkingHot => "From Parking Area Hot",
+                PlayerStartLocation.Runway => "From Runway",
+                PlayerStartLocation.Air => "Turning Point",
+                // case PlayerStartLocation.ParkingCold
+                _ => "From Parking Area",
+            };
         }
 
         internal static string GetPlayerStartingType(PlayerStartLocation playerStartLocation)
         {
-            switch (playerStartLocation)
+            return playerStartLocation switch
             {
-                default: // case PlayerStartLocation.ParkingCold
-                    return "TakeOffParking";
-                case PlayerStartLocation.ParkingHot:
-                    return "TakeOffParkingHot";
-                case PlayerStartLocation.Runway:
-                    return "TakeOff";
-                case PlayerStartLocation.Air:
-                    return "Turning Point";
-            }
+                PlayerStartLocation.ParkingHot => "TakeOffParkingHot",
+                PlayerStartLocation.Runway => "TakeOff",
+                PlayerStartLocation.Air => "Turning Point",
+                // case PlayerStartLocation.ParkingCold
+                _ => "TakeOffParking",
+            };
         }
     }
 }
