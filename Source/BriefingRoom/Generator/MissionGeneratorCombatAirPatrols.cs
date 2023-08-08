@@ -115,7 +115,7 @@ namespace BriefingRoom4DCS.Generator
                     groupFlags |= UnitMakerGroupFlags.ScrambleStart;
 
                 var (units, unitDBs) = unitMaker.GetUnits(commonCAPDB.UnitFamilies.ToList(), groupSize, side, groupFlags, ref extraSettings);
-                if(units.Count() == 0)
+                if(units.Count == 0)
                     return;
                 var unitDB = (DBEntryAircraft)unitDBs.First();
                 if (template.MissionFeatures.Contains("ContextGroundStartAircraft"))
@@ -153,7 +153,7 @@ namespace BriefingRoom4DCS.Generator
             if (
                 side == Side.Enemy ||
                 !template.MissionFeatures.Contains("ContextGroundStartAircraft") ||
-                 true //groupInfo.Value.UnitDB.AircraftData.CarrierTypes.Count() == 0
+                 true
             )
                 return;
 
@@ -163,7 +163,7 @@ namespace BriefingRoom4DCS.Generator
             if (groupInfo.Value.UnitDB.Families.Contains(UnitFamily.PlaneSTOBAR))
                 targetFamily = UnitFamily.ShipCarrierSTOBAR;
             var unitCount = groupInfo.Value.DCSGroup.Units.Count;
-            var carrierPool = unitMaker.carrierDictionary.Where(x =>
+            var carrierPool = unitMaker.CarrierDictionary.Where(x =>
                     x.Value.UnitMakerGroupInfo.UnitDB.Families.Contains(targetFamily) &&
                     x.Value.RemainingSpotCount >= unitCount
                 ).ToDictionary(x => x.Key, x => x.Value);
@@ -178,7 +178,7 @@ namespace BriefingRoom4DCS.Generator
             groupInfo.Value.DCSGroup.Waypoints[0].Y = (float)carrier.UnitMakerGroupInfo.Coordinates.Y;
             groupInfo.Value.DCSGroup.X = (float)carrier.UnitMakerGroupInfo.Coordinates.X;
             groupInfo.Value.DCSGroup.Y = (float)carrier.UnitMakerGroupInfo.Coordinates.Y;
-            carrier.RemainingSpotCount = carrier.RemainingSpotCount - unitCount;
+            carrier.RemainingSpotCount -= unitCount;
         }
     }
 }

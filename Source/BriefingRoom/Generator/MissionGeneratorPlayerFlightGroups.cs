@@ -77,9 +77,9 @@ namespace BriefingRoom4DCS.Generator
             if (airbase.ATC != null)
                 double.TryParse(airbase.ATC.Split("/")[0], out atcRadioFrequency);
 
-            if (!string.IsNullOrEmpty(flightGroup.Carrier) && unitMaker.carrierDictionary.ContainsKey(flightGroup.Carrier) && !flightGroup.Hostile) // Carrier take off
+            if (!string.IsNullOrEmpty(flightGroup.Carrier) && unitMaker.CarrierDictionary.ContainsKey(flightGroup.Carrier) && !flightGroup.Hostile) // Carrier take off
             {
-                var carrier = unitMaker.carrierDictionary[flightGroup.Carrier];
+                var carrier = unitMaker.CarrierDictionary[flightGroup.Carrier];
                 if (carrier.UnitMakerGroupInfo.UnitDB.Families.Contains(UnitFamily.ShipCarrierSTOVL) && flightGroup.Carrier != "LHA_Tarawa")
                 {
                     extraSettings.AddIfKeyUnused("Speed", 0);

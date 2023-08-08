@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -29,7 +29,7 @@ namespace BriefingRoom4DCS.Generator
     internal class UnitMakerSpawnPointSelector
     {
         private const int MAX_RADIUS_SEARCH_ITERATIONS = 32;
-        private readonly List<UnitCategory> NEAR_FRONT_LINE_CATEGORIES = new List<UnitCategory>{UnitCategory.Static, UnitCategory.Vehicle, UnitCategory.Infantry};
+        private readonly List<UnitCategory> NEAR_FRONT_LINE_CATEGORIES = new() { UnitCategory.Static, UnitCategory.Vehicle, UnitCategory.Infantry};
 
         private readonly Dictionary<int, List<DBEntryAirbaseParkingSpot>> AirbaseParkingSpots;
 
@@ -44,7 +44,8 @@ namespace BriefingRoom4DCS.Generator
 
         private readonly bool InvertCoalition;
 
-        private readonly List<UnitFamily> LARGE_AIRCRAFT = new List<UnitFamily>{
+        private readonly List<UnitFamily> LARGE_AIRCRAFT = new()
+        {
                 UnitFamily.PlaneAWACS,
                 UnitFamily.PlaneTankerBasket,
                 UnitFamily.PlaneTankerBoom,
@@ -52,7 +53,7 @@ namespace BriefingRoom4DCS.Generator
                 UnitFamily.PlaneBomber,
             };
 
-        private List<Coordinates> FrontLine = new List<Coordinates>(); 
+        private List<Coordinates> FrontLine = new(); 
         private bool PlayerSideOfFrontLine;
 
         private Coalition PlayerCoalition;
@@ -69,6 +70,10 @@ namespace BriefingRoom4DCS.Generator
 
             if (TheaterDB.SpawnPoints is not null)
                 SpawnPoints.AddRange(TheaterDB.SpawnPoints.Where(x => CheckNotInNoSpawnCoords(x.Coordinates)).ToList());
+            
+            var brokenSP = SpawnPoints.Where(x => CheckInSea(x.Coordinates)).ToList();
+            if (brokenSP.Count > 0)
+                throw new BriefingRoomException($"Spawn Points in the sea!: {string.Join("\n", brokenSP.Select(x => $"[{x.Coordinates.X},{x.Coordinates.Y}],{x.PointType}").ToList())}");
 
             foreach (DBEntryAirbase airbase in SituationDB.GetAirbases(InvertCoalition))
             {
@@ -144,10 +149,7 @@ namespace BriefingRoom4DCS.Generator
             var validSP = (from DBEntryTheaterSpawnPoint pt in SpawnPoints where validTypes.Contains(pt.PointType) select pt);
             Coordinates?[] distanceOrigin = new Coordinates?[] { distanceOrigin1, distanceOrigin2 };
             MinMaxD?[] distanceFrom = new MinMaxD?[] { distanceFrom1, distanceFrom2 };
-            var brokenSP = validSP.Where(x => CheckInSea(x.Coordinates)).ToList();
             var useFrontLine = nearFrontLineFamily.HasValue && FrontLine.Count  > 0 && NEAR_FRONT_LINE_CATEGORIES.Contains(nearFrontLineFamily.Value.GetUnitCategory());
-            if (brokenSP.Count > 0)
-                throw new BriefingRoomException($"Spawn Points in the sea!: {string.Join("\n", brokenSP.Select(x => $"[{x.Coordinates.X},{x.Coordinates.Y}],{x.PointType}").ToList())}");
             for (int i = 0; i < 2; i++) // Remove spawn points too far or too close from distanceOrigin1 and distanceOrigin2
             {
                 if (!validSP.Any()) break;
@@ -173,13 +175,13 @@ namespace BriefingRoom4DCS.Generator
                     searchRange = new MinMaxD(searchRange.Min * 0.9, Math.Max(100, searchRange.Max * 1.1));
                     validSP = (from DBEntryTheaterSpawnPoint s in validSPInRange select s);
                     if (iterationsLeft < 22)
-                        borderLimit = borderLimit * 1.1;
+                        borderLimit *= 1.1;
                     iterationsLeft--;
-                } while ((validSPInRange.Count() == 0) && (iterationsLeft > 0));
+                } while ((!validSPInRange.Any()) && (iterationsLeft > 0));
             }
 
             if (!validSP.Any())
-                return !coalition.HasValue ? null : GetLandCoordinates(validTypes, distanceOrigin1, distanceFrom1, distanceOrigin2, distanceFrom2, null, nearFrontLineFamily);
+                return !coalition.HasValue && useFrontLine ? null : GetLandCoordinates(validTypes, distanceOrigin1, distanceFrom1, distanceOrigin2, distanceFrom2, null, nearFrontLineFamily);
             DBEntryTheaterSpawnPoint selectedSpawnPoint = Toolbox.RandomFrom(validSP.ToArray());
             SpawnPoints.Remove(selectedSpawnPoint); // Remove spawn point so it won't be used again;
             UsedSpawnPoints.Add(selectedSpawnPoint);
@@ -223,7 +225,7 @@ namespace BriefingRoom4DCS.Generator
                     secondSearchRange = new MinMaxD(secondSearchRange.Value.Min * 0.9, secondSearchRange.Value.Max * 1.1);
 
                 if (iterations > 10)
-                    borderLimit = borderLimit * 1.1;
+                    borderLimit *= 1.1;
 
                 iterations++;
             } while (iterations < MAX_RADIUS_SEARCH_ITERATIONS);
@@ -240,7 +242,7 @@ namespace BriefingRoom4DCS.Generator
                          where (coalition == Coalition.Neutral || airbaseDB.Coalition == coalition) && AirbaseParkingSpots.ContainsKey(airbaseDB.DCSID) && ValidateAirfieldParking(AirbaseParkingSpots[airbaseDB.DCSID], aircraftDB.Families.First(), unitCount) && ValidateAirfieldRunway(airbaseDB, aircraftDB.Families.First())
                          select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(coordinates));
 
-            if (targetAirbaseOptions.Count() == 0) throw new BriefingRoomException("No airbase found for aircraft.");
+            if (!targetAirbaseOptions.Any()) throw new BriefingRoomException("No airbase found for aircraft.");
 
             List<DBEntryAirbaseParkingSpot> parkingSpots;
             foreach (var airbase in targetAirbaseOptions)
@@ -372,8 +374,6 @@ namespace BriefingRoom4DCS.Generator
         {
             if (!coalition.HasValue)
                 return true;
-            var red = SituationDB.GetRedZones(InvertCoalition);
-            var blue = SituationDB.GetBlueZones(InvertCoalition);
             var distance = ShapeManager.GetDistanceFromShape(coordinates, FrontLine);
             var side = ShapeManager.GetSideOfLine(coordinates, FrontLine);
 

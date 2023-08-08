@@ -44,24 +44,20 @@ namespace BriefingRoom4DCS.Template
             SubTasks = objective.SubTasks.Select(x => new MissionTemplateSubTaskRecord(x)).ToList();
         }
 
-        private string SelectPreset(string preset)
+        private static string SelectPreset(string preset)
         {
             if (string.IsNullOrEmpty(preset))
                 return "";
             var presets = Database.Instance.GetAllEntries<DBEntryObjectivePreset>().Where(x => !x.ID.Contains("Random")).ToList();
             var unsuitableFixedWingTasks = new List<string> { "TransportTroops", "TransportCargo", "LandNearAlly", "LandNearEnemy" };
             var unsuitableRotorTargets = new List<string> { "PlaneAny", "PlaneAttack", "PlaneBomber", "PlaneFighter", "PlaneTransport." };
-            switch (preset)
+            return preset switch
             {
-                case "RandomFixedWing":
-                    return Toolbox.RandomFrom(presets.Where(x => x.Tasks.Intersect(unsuitableFixedWingTasks).Count() == 0).Select(x => x.ID).ToList());
-                case "RandomRotor":
-                    return Toolbox.RandomFrom(presets.Where(x => x.Targets.Intersect(unsuitableRotorTargets).Count() == 0).Select(x => x.ID).ToList());
-                case "Random":
-                    return Toolbox.RandomFrom(presets.Select(x => x.ID).ToList());
-                default:
-                    return preset;
-            }
+                "RandomFixedWing" => Toolbox.RandomFrom(presets.Where(x => !x.Tasks.Intersect(unsuitableFixedWingTasks).Any()).Select(x => x.ID).ToList()),
+                "RandomRotor" => Toolbox.RandomFrom(presets.Where(x => !x.Targets.Intersect(unsuitableRotorTargets).Any()).Select(x => x.ID).ToList()),
+                "Random" => Toolbox.RandomFrom(presets.Select(x => x.ID).ToList()),
+                _ => preset,
+            };
         }
     }
 }

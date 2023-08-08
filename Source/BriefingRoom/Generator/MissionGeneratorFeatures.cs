@@ -95,7 +95,7 @@ namespace BriefingRoom4DCS.Generator
 
                 var groupLua = featureDB.UnitGroupLuaGroup;
                 var unitCount = featureDB.UnitGroupSize.GetValue();
-                var unitFamily = preSelectedUnitFamily.HasValue ? preSelectedUnitFamily.Value : Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
+                var unitFamily = preSelectedUnitFamily ?? Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
                 var luaUnit = featureDB.UnitGroupLuaUnit;
                 var (units, unitDBs) = _unitMaker.GetUnits(unitFamily, unitCount, groupSide, groupFlags, ref extraSettings);
                 if (units.Count == 0)
@@ -106,7 +106,7 @@ namespace BriefingRoom4DCS.Generator
                 var unitDB = unitDBs.First();
                 try
                 {
-                    SetAirbase(featureDB, ref mission, unitDB, ref groupLua, ref luaUnit, groupSide, ref coordinatesValue, coordinates2.Value, unitCount, ref extraSettings);
+                    SetAirbase(featureDB, ref mission, unitDB, groupSide, ref coordinatesValue, coordinates2.Value, unitCount, ref extraSettings);
                 }
                 catch (BriefingRoomException)
                 {
@@ -182,7 +182,7 @@ namespace BriefingRoom4DCS.Generator
             return groupInfo;
         }
 
-        protected void AddBriefingRemarkFromFeature(T featureDB, DCSMission mission, bool useEnemyRemarkIfAvailable, UnitMakerGroupInfo? groupInfo, Dictionary<string, object> stringReplacements)
+        protected static void AddBriefingRemarkFromFeature(T featureDB, DCSMission mission, bool useEnemyRemarkIfAvailable, UnitMakerGroupInfo? groupInfo, Dictionary<string, object> stringReplacements)
         {
             string remarkString;
             if (useEnemyRemarkIfAvailable && !string.IsNullOrEmpty(featureDB.BriefingRemarks[(int)Side.Enemy].Get()))
@@ -210,9 +210,9 @@ namespace BriefingRoom4DCS.Generator
         {
             if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.TACAN) && (featureDB.UnitGroupFamilies.Length > 0))
             {
-                var callsign = (GetType() == typeof(MissionGeneratorFeaturesObjectives) && extraSettings.ContainsKey("ObjectiveName")) ? extraSettings["ObjectiveName"].ToString().Substring(0, 3) : $"{GeneratorTools.GetTACANCallsign(featureDB.UnitGroupFamilies[0])}{TACANIndex}";
+                var callsign = (GetType() == typeof(MissionGeneratorFeaturesObjectives) && extraSettings.ContainsKey("ObjectiveName")) ? extraSettings["ObjectiveName"].ToString()[..3] : $"{GeneratorTools.GetTACANCallsign(featureDB.UnitGroupFamilies[0])}{TACANIndex}";
                 if (extraSettings.ContainsKey("TACAN_NAME"))
-                    callsign = extraSettings["TACAN_NAME"].ToString().Substring(0, 3);
+                    callsign = extraSettings["TACAN_NAME"].ToString()[..3];
                 var channel = ((GetType() == typeof(MissionGeneratorFeaturesObjectives)) ? 31 : 25) + TACANIndex;
                 extraSettings.AddIfKeyUnused("TACANFrequency", 1108000000);
                 extraSettings.AddIfKeyUnused("TACANCallsign", callsign);
@@ -223,7 +223,7 @@ namespace BriefingRoom4DCS.Generator
             return "";
         }
 
-        internal bool FeatureHasUnitGroup(T featureDB)
+        internal static bool FeatureHasUnitGroup(T featureDB)
         {
             return (featureDB.UnitGroupFamilies.Length > 0) &&
                  !string.IsNullOrEmpty(featureDB.UnitGroupLuaGroup) &&
@@ -262,7 +262,7 @@ namespace BriefingRoom4DCS.Generator
 
 
                 var (units, unitDBs) = _unitMaker.GetUnits(unitFamily, unitCount, groupSide, groupFlags, ref extraSettings);
-                if (units.Count() == 0)
+                if (units.Count == 0)
                 {
                     _unitMaker.SpawnPointSelector.RecoverSpawnPoint(spawnCoords.Value);
                     continue;
@@ -271,7 +271,7 @@ namespace BriefingRoom4DCS.Generator
 
                 try
                 {
-                    SetAirbase(featureDB, ref mission, unitDB, ref groupLua, ref luaUnit, groupSide, ref coordinates, coordinates2, unitCount, ref extraSettings);
+                    SetAirbase(featureDB, ref mission, unitDB, groupSide, ref coordinates, coordinates2, unitCount, ref extraSettings);
                 }
                 catch (BriefingRoomException)
                 {
@@ -307,7 +307,7 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        private void SetAirbase(T featureDB, ref DCSMission mission, DBEntryJSONUnit unitDB, ref string groupLua, ref string luaUnit, Side groupSide, ref Coordinates coordinates, Coordinates coordinates2, int unitCount, ref Dictionary<string, object> extraSettings)
+        private void SetAirbase(T featureDB, ref DCSMission mission, DBEntryJSONUnit unitDB, Side groupSide, ref Coordinates coordinates, Coordinates coordinates2, int unitCount, ref Dictionary<string, object> extraSettings)
         {
             if ((_template.MissionFeatures.Contains("ContextGroundStartAircraft") || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.GroundStart)) && unitDB.IsAircraft && featureDB.UnitGroupLuaGroup != "AircraftEscort")
             {
@@ -335,7 +335,7 @@ namespace BriefingRoom4DCS.Generator
             if (
                 side == Side.Enemy ||
                 (!_template.MissionFeatures.Contains("ContextGroundStartAircraft") && featureDB.ID != "FriendlyStaticAircraftCarrier") ||
-                true //groupInfo.Value.UnitDB.AircraftData.CarrierTypes.Count() == 0
+                true
             )
                 return;
 
@@ -345,7 +345,7 @@ namespace BriefingRoom4DCS.Generator
             if (groupInfo.Value.UnitDB.Families.Contains(UnitFamily.PlaneSTOBAR))
                 targetFamily = UnitFamily.ShipCarrierSTOBAR;
             var unitCount = groupInfo.Value.DCSGroup.Units.Count;
-            var carrierPool = _unitMaker.carrierDictionary.Where(x =>
+            var carrierPool = _unitMaker.CarrierDictionary.Where(x =>
                     x.Value.UnitMakerGroupInfo.UnitDB.Families.Contains(targetFamily) &&
                     x.Value.RemainingSpotCount >= unitCount
                 ).ToDictionary(x => x.Key, x => x.Value);
@@ -361,13 +361,13 @@ namespace BriefingRoom4DCS.Generator
             groupInfo.Value.DCSGroup.X = (float)carrier.UnitMakerGroupInfo.Coordinates.X;
             groupInfo.Value.DCSGroup.Y = (float)carrier.UnitMakerGroupInfo.Coordinates.Y;
             groupInfo.Value.DCSGroup.Name = groupInfo.Value.DCSGroup.Name.Replace("-STATIC-", ""); // Remove Static code if on carrier as we can't replace it automatically
-            carrier.RemainingSpotCount = carrier.RemainingSpotCount - unitCount;
+            carrier.RemainingSpotCount -=  unitCount;
         }
 
-        private void SetSupportingTargetGroupName(ref UnitMakerGroupInfo? groupInfo, FeatureUnitGroupFlags flags, Dictionary<string, object> extraSettings)
+        private static void SetSupportingTargetGroupName(ref UnitMakerGroupInfo? groupInfo, FeatureUnitGroupFlags flags, Dictionary<string, object> extraSettings)
         {
             if (flags.HasFlag(FeatureUnitGroupFlags.SupportingTarget))
-                groupInfo.Value.DCSGroups.ForEach(x => x.Name += $"-STGT-{extraSettings["ObjectiveName"].ToString()}");
+                groupInfo.Value.DCSGroups.ForEach(x => x.Name += $"-STGT-{extraSettings["ObjectiveName"]}");
         }
 
     }

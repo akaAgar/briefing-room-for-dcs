@@ -151,12 +151,9 @@ namespace BriefingRoom4DCS.Data
 
         internal Dictionary<int, Dictionary<string, string>> GetPylonsObject(DCSTask task)
         {
-            if (Payloads.Count() == 0)
+            if (Payloads.Count == 0)
                 return new Dictionary<int, Dictionary<string, string>>();
-            var payload = Toolbox.RandomFrom(Payloads.Where(x => x.tasks.Contains((int)task)).ToList());
-            if (payload == null)
-                payload = Toolbox.RandomFrom(Payloads);
-
+            var payload = Toolbox.RandomFrom(Payloads.Where(x => x.tasks.Contains((int)task)).ToList()) ?? Toolbox.RandomFrom(Payloads);
             return payload.pylons.Where(x => x != null).ToDictionary(x => x.num, x => new Dictionary<string, string> { { "CLSID", x.CLSID } });
 
         }
@@ -164,7 +161,7 @@ namespace BriefingRoom4DCS.Data
         internal void GetDCSPayloads()
         {
             var userPath = Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile);
-            string folderPath = "";
+            string folderPath;
             if (Directory.Exists(Path.Join(userPath, "Saved Games", "DCS.openbeta")))
             {
                 folderPath = Path.Join(userPath, "Saved Games", "DCS.openbeta", "MissionEditor", "UnitPayloads");
@@ -221,7 +218,7 @@ namespace BriefingRoom4DCS.Data
         internal void GetDCSLiveries()
         {
             var userPath = Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile);
-            string folderPath = "";
+            string folderPath;
             if (Directory.Exists(Path.Join(userPath, "Saved Games", "DCS.openbeta")))
             {
                 folderPath = Path.Join(userPath, "Saved Games", "DCS.openbeta", "Liveries");

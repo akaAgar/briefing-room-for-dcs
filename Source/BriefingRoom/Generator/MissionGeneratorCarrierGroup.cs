@@ -47,7 +47,7 @@ namespace BriefingRoom4DCS.Generator
             var templatesDB = Database.Instance.GetAllEntries<DBEntryTemplate>();
             foreach (MissionTemplateFlightGroupRecord flightGroup in template.PlayerFlightGroups)
             {
-                if (string.IsNullOrEmpty(flightGroup.Carrier) || unitMaker.carrierDictionary.ContainsKey(flightGroup.Carrier)) continue;
+                if (string.IsNullOrEmpty(flightGroup.Carrier) || unitMaker.CarrierDictionary.ContainsKey(flightGroup.Carrier)) continue;
                 if (templatesDB.Where(x => x.Type == "FOB").Any(x => x.ID == flightGroup.Carrier))
                 {
                     //It Carries therefore carrier not because I can't think of a name to rename this lot
@@ -60,12 +60,12 @@ namespace BriefingRoom4DCS.Generator
 
                 var (shipCoordinates, shipDestination) = GetSpawnAndDestination(unitMaker, template, theaterDB, usedCoordinates, landbaseCoordinates, objectivesCenter, carrierPathDeg, flightGroup);
                 usedCoordinates.Add(shipCoordinates);
-                string cvnID = unitMaker.carrierDictionary.Count > 0 ? (unitMaker.carrierDictionary.Count + 1).ToString() : "";
-                int ilsChannel = 11 + unitMaker.carrierDictionary.Count;
-                int link4Frequency = 336 + unitMaker.carrierDictionary.Count;
-                double radioFrequency = 127.5 + unitMaker.carrierDictionary.Count;
+                string cvnID = unitMaker.CarrierDictionary.Count > 0 ? (unitMaker.CarrierDictionary.Count + 1).ToString() : "";
+                int ilsChannel = 11 + unitMaker.CarrierDictionary.Count;
+                int link4Frequency = 336 + unitMaker.CarrierDictionary.Count;
+                double radioFrequency = 127.5 + unitMaker.CarrierDictionary.Count;
                 string tacanCallsign = $"CVN{cvnID}";
-                int tacanChannel = 74 + unitMaker.carrierDictionary.Count;
+                int tacanChannel = 74 + unitMaker.CarrierDictionary.Count;
                 var extraSettings = new Dictionary<string, object>{
                         {"GroupX2", shipDestination.X},
                         {"GroupY2", shipDestination.Y},
@@ -95,7 +95,7 @@ namespace BriefingRoom4DCS.Generator
                     DCSMissionBriefingItemType.Airbase,
                     $"{unitDB.UIDisplayName.Get()}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t{ilsChannel}\t{tacanCallsign}, {tacanChannel}X\t{link4Frequency}");
 
-                unitMaker.carrierDictionary.Add(flightGroup.Carrier, new CarrierUnitMakerGroupInfo(groupInfo.Value, unitDB.ParkingSpots, template.ContextPlayerCoalition));
+                unitMaker.CarrierDictionary.Add(flightGroup.Carrier, new CarrierUnitMakerGroupInfo(groupInfo.Value, unitDB.ParkingSpots, template.ContextPlayerCoalition));
                 mission.MapData.Add($"CARRIER_{flightGroup.Carrier}", new List<double[]> { groupInfo.Value.Coordinates.ToArray() });
             }
         }
@@ -185,7 +185,7 @@ namespace BriefingRoom4DCS.Generator
             var fobTemplate = Database.Instance.GetEntry<DBEntryTemplate>(flightGroup.Carrier);
             if (fobTemplate == null) return; // Unit doesn't exist or is not a carrier
 
-            double radioFrequency = 127.5 + unitMaker.carrierDictionary.Count;
+            double radioFrequency = 127.5 + unitMaker.CarrierDictionary.Count;
             var FOBNames = new List<string>{
                 "FOB_London",
                 "FOB_Dallas",
@@ -219,7 +219,7 @@ namespace BriefingRoom4DCS.Generator
             mission.Briefing.AddItem(
                      DCSMissionBriefingItemType.Airbase,
                      $"{groupInfo.Value.Name}\t\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t\t");
-            unitMaker.carrierDictionary.Add(flightGroup.Carrier, new CarrierUnitMakerGroupInfo(groupInfo.Value, unitDB.ParkingSpots, template.ContextPlayerCoalition));
+            unitMaker.CarrierDictionary.Add(flightGroup.Carrier, new CarrierUnitMakerGroupInfo(groupInfo.Value, unitDB.ParkingSpots, template.ContextPlayerCoalition));
             mission.MapData.Add($"FOB_{flightGroup.Carrier}", new List<double[]> { groupInfo.Value.Coordinates.ToArray() });
 
             foreach (var group in groupInfo.Value.DCSGroups)

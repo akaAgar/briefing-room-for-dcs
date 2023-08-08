@@ -31,18 +31,21 @@ namespace BriefingRoom4DCS.Generator
 {
     internal class MissionGeneratorObjectives
     {
-        private static readonly List<DBEntryObjectiveTargetBehaviorLocation> AIRBASE_LOCATIONS = new List<DBEntryObjectiveTargetBehaviorLocation>{
+        private static readonly List<DBEntryObjectiveTargetBehaviorLocation> AIRBASE_LOCATIONS = new()
+        {
             DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbase,
             DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking,
             DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter,
         };
 
-        private static readonly List<DBEntryObjectiveTargetBehaviorLocation> AIR_ON_GROUND_LOCATIONS = new List<DBEntryObjectiveTargetBehaviorLocation>{
+        private static readonly List<DBEntryObjectiveTargetBehaviorLocation> AIR_ON_GROUND_LOCATIONS = new()
+        {
             DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParking,
             DBEntryObjectiveTargetBehaviorLocation.SpawnOnAirbaseParkingNoHardenedShelter
         };
 
-        private static readonly List<SpawnPointType> LAND_SPAWNS = new List<SpawnPointType>{
+        private static readonly List<SpawnPointType> LAND_SPAWNS = new()
+        {
             SpawnPointType.LandSmall,
             SpawnPointType.LandMedium,
             SpawnPointType.LandLarge,
@@ -145,7 +148,7 @@ namespace BriefingRoom4DCS.Generator
                 throw new BriefingRoomException("Cannot Mix Land and Sea Objectives. Check Sub Objective targets");
             if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location) && !AIRBASE_LOCATIONS.Contains(mainObjLocation))
                 throw new BriefingRoomException("Spawning on airbase is not a valid Sub Objective unless main objective is also spawning on airbase.");
-            var objectiveCoords = GetNearestSpawnCoordinates(template, coreCoordinates, targetDB);
+            var objectiveCoords = GetNearestSpawnCoordinates(coreCoordinates, targetDB);
             CreateObjective(
                 task,
                 taskDB,
@@ -189,11 +192,11 @@ namespace BriefingRoom4DCS.Generator
             var (luaUnit, unitCount, unitCountMinMax, objectiveTargetUnitFamily, groupFlags) = GetUnitData(task, targetDB, targetBehaviorDB, objectiveOptions);
             var isInverseTransportWayPoint = false;
             var (units, unitDBs) = UnitMaker.GetUnits(objectiveTargetUnitFamily, unitCount, taskDB.TargetSide, groupFlags, ref extraSettings);
-            if(units.Count == 0 || unitDBs.Count() == 0)
+            if(units.Count == 0 || unitDBs.Count == 0)
                 throw new BriefingRoomException($"No operational units in {objectiveTargetUnitFamily} for given time period.");
             var unitDB = unitDBs.First();
             if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location) && targetDB.UnitCategory.IsAircraft())
-                objectiveCoordinates = PlaceInAirbase(template, situationDB, playerAirbase, extraSettings, targetDB, targetBehaviorDB, ref luaUnit, objectiveCoordinates, unitCount, unitDB);
+                objectiveCoordinates = PlaceInAirbase(template, situationDB, playerAirbase, extraSettings, targetBehaviorDB, objectiveCoordinates, unitCount, unitDB);
 
             // Set destination point for moving unit groups
             Coordinates destinationPoint = objectiveCoordinates +
@@ -206,13 +209,13 @@ namespace BriefingRoom4DCS.Generator
                     } * Toolbox.NM_TO_METERS
                 );
             if (targetDB.DCSUnitCategory == DCSUnitCategory.Vehicle)
-                destinationPoint = GetNearestSpawnCoordinates(template, destinationPoint, targetDB, false);
+                destinationPoint = GetNearestSpawnCoordinates(destinationPoint, targetDB, false);
 
 
             var groupLua = targetBehaviorDB.GroupLua[(int)targetDB.DCSUnitCategory];
             if (targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.GoToPlayerAirbase)
             {
-                destinationPoint = playerAirbase.ParkingSpots.Count() > 1 ? Toolbox.RandomFrom(playerAirbase.ParkingSpots).Coordinates : playerAirbase.Coordinates;
+                destinationPoint = playerAirbase.ParkingSpots.Length > 1 ? Toolbox.RandomFrom(playerAirbase.ParkingSpots).Coordinates : playerAirbase.Coordinates;
                 if (objectiveTargetUnitFamily.GetUnitCategory().IsAircraft())
                 {
                     groupLua = objectiveTargetUnitFamily switch
@@ -254,9 +257,7 @@ namespace BriefingRoom4DCS.Generator
                 unitCoordinates = spawnPoint.Value;
                 if (targetBehaviorDB.ID.StartsWith("GoToPlayerBase"))
                 {
-                    var spawnTempCoords = objectiveCoordinates;
-                    objectiveCoordinates = unitCoordinates;
-                    unitCoordinates = spawnTempCoords;
+                    (unitCoordinates, objectiveCoordinates) = (objectiveCoordinates, unitCoordinates);
                     isInverseTransportWayPoint = true;
                 }
                 var cargoWaypoint = GenerateObjectiveWaypoint(task, unitCoordinates, unitCoordinates, $"{objectiveName} Pickup", template, scriptIgnore: true);
@@ -300,7 +301,7 @@ namespace BriefingRoom4DCS.Generator
                 targetGroupInfo.Value.DCSGroup.LateActivation = false;
 
             if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense) && (targetDB.UnitCategory == UnitCategory.Static))
-                AddEmbeddedAirDefenseUnits(template, targetDB, targetBehaviorDB, taskDB, objectiveOptions, objectiveCoordinates, groupFlags, extraSettings);
+                AddEmbeddedAirDefenseUnits(template, targetDB, targetBehaviorDB, taskDB, objectiveCoordinates, groupFlags, extraSettings);
 
             targetGroupInfo.Value.DCSGroup.Waypoints = DCSWaypoint.CreateExtraWaypoints(targetGroupInfo.Value.DCSGroup.Waypoints, targetGroupInfo.Value.UnitDB.Families.First(), UnitMaker.SpawnPointSelector);
 
@@ -353,7 +354,7 @@ namespace BriefingRoom4DCS.Generator
                 mission.MapData.Add($"UNIT-{targetGroupInfo.Value.UnitDB.Families[0]}-{taskDB.TargetSide}-{targetGroupInfo.Value.GroupID}", new List<double[]> { targetGroupInfo.Value.Coordinates.ToArray() });
         }
 
-        private (string luaUnit, int unitCount, MinMaxI unitCountMinMax, UnitFamily objectiveTargetUnitFamily, UnitMakerGroupFlags groupFlags) GetUnitData(MissionTemplateSubTaskRecord task, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, ObjectiveOption[] objectiveOptions)
+        private static (string luaUnit, int unitCount, MinMaxI unitCountMinMax, UnitFamily objectiveTargetUnitFamily, UnitMakerGroupFlags groupFlags) GetUnitData(MissionTemplateSubTaskRecord task, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, ObjectiveOption[] objectiveOptions)
         {
             UnitMakerGroupFlags groupFlags = 0;
             if (objectiveOptions.Contains(ObjectiveOption.Invisible)) groupFlags |= UnitMakerGroupFlags.Invisible;
@@ -368,7 +369,7 @@ namespace BriefingRoom4DCS.Generator
             );
         }
 
-        private Coordinates PlaceInAirbase(MissionTemplateRecord template, DBEntrySituation situationDB, DBEntryAirbase playerAirbase, Dictionary<string, object> extraSettings, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, ref string luaUnit, Coordinates objectiveCoordinates, int unitCount, DBEntryJSONUnit unitDB)
+        private Coordinates PlaceInAirbase(MissionTemplateRecord template, DBEntrySituation situationDB, DBEntryAirbase playerAirbase, Dictionary<string, object> extraSettings, DBEntryObjectiveTargetBehavior targetBehaviorDB, Coordinates objectiveCoordinates, int unitCount, DBEntryJSONUnit unitDB)
         {
             int airbaseID = 0;
             var parkingSpotIDsList = new List<int>();
@@ -467,7 +468,7 @@ namespace BriefingRoom4DCS.Generator
         }
 
 
-        private void AddEmbeddedAirDefenseUnits(MissionTemplateRecord template, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB, ObjectiveOption[] objectiveOptions, Coordinates objectiveCoordinates, UnitMakerGroupFlags groupFlags, Dictionary<string, object> extraSettings)
+        private void AddEmbeddedAirDefenseUnits(MissionTemplateRecord template, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB, Coordinates objectiveCoordinates, UnitMakerGroupFlags groupFlags, Dictionary<string, object> extraSettings)
         {
             // Static targets (aka buildings) need to have their "embedded" air defenses spawned in another group
             var airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(template, taskDB.TargetSide, UnitCategory.Static);
@@ -545,7 +546,7 @@ namespace BriefingRoom4DCS.Generator
 
         //----------------SUB TASK SUPPORT FUNCTIONS-------------------------------
 
-        private Coordinates GetNearestSpawnCoordinates(MissionTemplateRecord template, Coordinates coreCoordinates, DBEntryObjectiveTarget targetDB, bool remove = true)
+        private Coordinates GetNearestSpawnCoordinates(Coordinates coreCoordinates, DBEntryObjectiveTarget targetDB, bool remove = true)
         {
             Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetNearestSpawnPoint(
                 targetDB.ValidSpawnPoints,

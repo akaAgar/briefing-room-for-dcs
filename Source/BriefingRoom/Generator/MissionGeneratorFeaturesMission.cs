@@ -49,7 +49,7 @@ namespace BriefingRoom4DCS.Generator
 
             if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ForEachCarrier))
             {
-                ForEachCarrier(mission, featureID, featureDB);
+                ForEachCarrier(mission, featureDB);
                 return;
             }
 
@@ -90,7 +90,7 @@ namespace BriefingRoom4DCS.Generator
 
                 coordinates2 = goPoint + Coordinates.CreateRandom(5, 20) * Toolbox.NM_TO_METERS;
             }
-            Dictionary<string, object> extraSettings = new Dictionary<string, object>();
+            Dictionary<string, object> extraSettings = new();
             UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, spawnPoint, coordinates2, ref extraSettings, preSelectedUnitFamily: unitFamily);
 
             AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
@@ -110,7 +110,7 @@ namespace BriefingRoom4DCS.Generator
                     return;
                 }
 
-                Dictionary<string, object> extraSettings = new Dictionary<string, object> { { "TACAN_NAME", airbase.Name } };
+                Dictionary<string, object> extraSettings = new() { { "TACAN_NAME", airbase.Name } };
                 UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, spawnPoint.Value, spawnPoint.Value, ref extraSettings);
 
                 AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
@@ -120,9 +120,9 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        private void ForEachCarrier(DCSMission mission, string featureID, DBEntryFeatureMission featureDB)
+        private void ForEachCarrier(DCSMission mission, DBEntryFeatureMission featureDB)
         {
-            var carriers = _unitMaker.carrierDictionary
+            var carriers = _unitMaker.CarrierDictionary
                 .Where(x => !x.Value.UnitMakerGroupInfo.UnitDB.Families.Contains(UnitFamily.FOB))
                 .Select(x => x.Value)
                 .ToList();
@@ -130,7 +130,7 @@ namespace BriefingRoom4DCS.Generator
             {
 
                 var coordinates = carrier.UnitMakerGroupInfo.Coordinates + Coordinates.CreateRandom(30, 100);
-                Dictionary<string, object> extraSettings = new Dictionary<string, object> { { "CarrierGroupId", carrier.UnitMakerGroupInfo.GroupID } };
+                Dictionary<string, object> extraSettings = new() { { "CarrierGroupId", carrier.UnitMakerGroupInfo.GroupID } };
                 UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, coordinates, coordinates, ref extraSettings);
 
                 AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
@@ -140,7 +140,7 @@ namespace BriefingRoom4DCS.Generator
 
         private void ForEachFob(DCSMission mission, string featureID, DBEntryFeatureMission featureDB)
         {
-            var fobs = _unitMaker.carrierDictionary
+            var fobs = _unitMaker.CarrierDictionary
                 .Where(x => x.Value.UnitMakerGroupInfo.UnitDB.Families.Contains(UnitFamily.FOB))
                 .Select(x => x.Value)
                 .ToList();
@@ -148,7 +148,7 @@ namespace BriefingRoom4DCS.Generator
             {
 
                 var coordinates = fob.UnitMakerGroupInfo.Coordinates + Coordinates.CreateRandom(150, 400);
-                Dictionary<string, object> extraSettings = new Dictionary<string, object> { { "TACAN_NAME", fob.UnitMakerGroupInfo.Name.Replace("FOB ", "") } };
+                Dictionary<string, object> extraSettings = new() { { "TACAN_NAME", fob.UnitMakerGroupInfo.Name.Replace("FOB ", "") } };
                 UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, coordinates, coordinates, ref extraSettings);
 
                 AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
@@ -157,7 +157,7 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        private void AppendTacanToBriefing(DCSMission mission, string name, Dictionary<string, object> extraSettings)
+        private static void AppendTacanToBriefing(DCSMission mission, string name, Dictionary<string, object> extraSettings)
         {
             var airbaseBriefingItems = mission.Briefing.GetItems(DCSMissionBriefingItemType.Airbase);
             var airbaseIdx = airbaseBriefingItems.FindIndex(x => x.StartsWith(name));

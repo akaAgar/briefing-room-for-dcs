@@ -33,7 +33,7 @@ namespace BriefingRoom4DCS.Data
 
          internal (Decade start, Decade end) Operational { get; private set; } = new (Decade.Decade1940, Decade.Decade2020);
 
-        private static readonly List<UnitFamily> SINGLE_TYPE_FAMILIES = new List<UnitFamily> { UnitFamily.VehicleMissile, UnitFamily.VehicleArtillery };
+        private static readonly List<UnitFamily> SINGLE_TYPE_FAMILIES = new() { UnitFamily.VehicleMissile, UnitFamily.VehicleArtillery };
 
 
         protected override bool OnLoad(string iniFilePath)
@@ -44,7 +44,7 @@ namespace BriefingRoom4DCS.Data
 
             string[] badCountries = (from country in ini.GetValueArray<string>("Coalition", "Countries").Distinct() where !Enum.TryParse<Country>(country, true, out _) select country).ToArray();
             if (badCountries.Length > 0)
-                BriefingRoom.PrintToLog($"Bad countr{(badCountries.Length == 1 ? "y" : "ies")} in coalition \"{ID}\": {string.Join(", ", badCountries)}", LogMessageErrorLevel.Warning);
+                BriefingRoom.PrintToLog($"Bad count {(badCountries.Length == 1 ? "y" : "ies")} in coalition \"{ID}\": {string.Join(", ", badCountries)}", LogMessageErrorLevel.Warning);
 
             Countries = ini.GetValueArray<Country>("Coalition", "Countries").Append(Country.ALL).Distinct().OrderBy(x => x).ToArray();
             if (Countries.Length == 0)
@@ -54,7 +54,7 @@ namespace BriefingRoom4DCS.Data
             }
 
             var tempOperational = ini.GetValueArray<Decade>("Coalition", "Operational");
-            if(tempOperational.Count() > 0)
+            if(tempOperational.Length > 0)
                 Operational = new (tempOperational[0], tempOperational[1]);
 
             return true;
@@ -72,14 +72,14 @@ namespace BriefingRoom4DCS.Data
                         where families.Contains(template.Family) && template.Countries.ContainsKey(country)
                             && (string.IsNullOrEmpty(template.Module) || unitMods.Contains(template.Module, StringComparer.InvariantCultureIgnoreCase) || DBEntryDCSMod.CORE_MODS.Contains(template.Module, StringComparer.InvariantCultureIgnoreCase))
                             && (template.Countries[country].start <= decade) && (template.Countries[country].end >= decade)
-                            && (!countMinMax.HasValue || countMinMax.Value.Contains(template.Units.Count()))
+                            && (!countMinMax.HasValue || countMinMax.Value.Contains(template.Units.Count))
                         select template
                     ).Distinct().ToList();
             }
 
             validTemplates = validTemplates.Where(x => x.Value.Count > 0).ToDictionary(x => x.Key, x => x.Value);
 
-            if (validTemplates.Count() == 0)
+            if (validTemplates.Count == 0)
             {
                 if(allyCountries is null)
                     return GetRandomTemplate(families, decade, unitMods, countMinMax,  GetAllyCountries(decade));
@@ -144,7 +144,7 @@ namespace BriefingRoom4DCS.Data
             {
                 if (lowUnitVariation)
                     selectableUnits = new List<string> { Toolbox.RandomFrom(selectableUnits), Toolbox.RandomFrom(selectableUnits) };
-                List<string> selectedUnits = new List<string>();
+                List<string> selectedUnits = new();
                 for (int i = 0; i < count; i++)
                     selectedUnits.Add(Toolbox.RandomFrom(selectableUnits));
 
@@ -172,7 +172,7 @@ namespace BriefingRoom4DCS.Data
 
 
             validUnits = validUnits.Where(x => x.Value.Count > 0).ToDictionary(x => x.Key, x => x.Value);
-            if (validUnits.Count() == 0)
+            if (validUnits.Count == 0)
             {
                 if(allyCountries is null)
                     return SelectValidUnits(families, decade, unitMods, allowLowPolly, GetAllyCountries(decade));
@@ -189,7 +189,7 @@ namespace BriefingRoom4DCS.Data
         {
             // Operates on the assumption that allies will supply them with arms. Most nations are in a coalition with the USA or Russia/USSR so is replacement for default unit lists.
             return Database.GetAllEntries<DBEntryCoalition>()
-                .Where(x => x.Countries.Where(x => x != Country.ALL).Intersect(Countries).Count() > 0 && (x.Operational.start <= decade) && (x.Operational.end >= decade))
+                .Where(x => x.Countries.Where(x => x != Country.ALL).Intersect(Countries).Any() && (x.Operational.start <= decade) && (x.Operational.end >= decade))
                 .SelectMany(x =>x.Countries)
                 .Where(x => !Countries.Contains(x))
                 .ToArray();

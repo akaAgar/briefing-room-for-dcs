@@ -11,7 +11,7 @@ using System.Reflection;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal struct UnitMakerGroupInfo
+    internal readonly struct UnitMakerGroupInfo
     {
         internal Coordinates Coordinates { get { return new Coordinates(DCSGroup.X, DCSGroup.Y); } }
         internal int GroupID { get { return DCSGroup.GroupId; } }
@@ -57,7 +57,8 @@ namespace BriefingRoom4DCS.Generator
 
     internal class UnitMaker
     {
-        private static readonly List<UnitFamily> TEMPLATE_PREFERENCE_FAMILIES = new List<UnitFamily>{
+        private static readonly List<UnitFamily> TEMPLATE_PREFERENCE_FAMILIES = new()
+        {
             UnitFamily.StaticStructureMilitary,
             UnitFamily.StaticStructureProduction,
             UnitFamily.VehicleSAMLong,
@@ -73,19 +74,19 @@ namespace BriefingRoom4DCS.Generator
         private readonly Coalition PlayerCoalition;
         private readonly Country[][] CoalitionsCountries;
 
-        private readonly List<string> ModUnits = new List<string>();
-        private readonly Dictionary<Country, Dictionary<DCSUnitCategory, List<DCSGroup>>> UnitLuaTables = new Dictionary<Country, Dictionary<DCSUnitCategory, List<DCSGroup>>>();
+        private readonly List<string> ModUnits = new();
+        private readonly Dictionary<Country, Dictionary<DCSUnitCategory, List<DCSGroup>>> UnitLuaTables = new();
 
         private int GroupID;
         private int UnitID;
-        private bool SinglePlayerMission;
+        private readonly bool SinglePlayerMission;
 
         internal UnitMakerSpawnPointSelector SpawnPointSelector { get; }
 
         internal UnitMakerCallsignGenerator CallsignGenerator { get; }
 
-        internal Dictionary<string, CarrierUnitMakerGroupInfo> carrierDictionary { get; } = new Dictionary<string, CarrierUnitMakerGroupInfo> { };
-        private readonly List<string> IGNORE_PROPS = new List<string> { "Skill" };
+        internal Dictionary<string, CarrierUnitMakerGroupInfo> CarrierDictionary { get; } = new Dictionary<string, CarrierUnitMakerGroupInfo> { };
+        private readonly List<string> IGNORE_PROPS = new() { "Skill" };
 
         internal UnitMaker(
             DCSMission mission, MissionTemplateRecord template,
@@ -120,13 +121,13 @@ namespace BriefingRoom4DCS.Generator
             if (unitCount <= 0) throw new BriefingRoomException("Asking for a zero units");
             if (families.Count <= 0) throw new BriefingRoomException("No Unit Families Provided");
             DBEntryCoalition unitsCoalitionDB = CoalitionsDB[(int)((side == Side.Ally) ? PlayerCoalition : PlayerCoalition.GetEnemy())];
-            List<string> units = new List<string>();
+            List<string> units = new();
             Country country = Country.ALL;
 
             if (side == Side.Neutral)
             {
                 (country, units) = GeneratorTools.GetNeutralRandomUnits(families, CoalitionsDB.SelectMany(x => x.Countries).ToList(), Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowlowPolly"));
-                if (units.Where(x => x != null).Count() == 0) return new(new List<string>(), new List<DBEntryJSONUnit>());
+                if (!units.Where(x => x != null).Any()) return new(new List<string>(), new List<DBEntryJSONUnit>());
             }
             else if (forceTryTemplate || families.All(x => TEMPLATE_PREFERENCE_FAMILIES.Contains(x)))
             {
@@ -138,7 +139,7 @@ namespace BriefingRoom4DCS.Generator
                     units = unitTemplate.Units.Select(x => x.DCSID).ToList();
                 }
             }
-            if (units.Where(x => x != null).Count() == 0)
+            if (!units.Where(x => x != null).Any())
                 (country, units) = unitsCoalitionDB.GetRandomUnits(families, Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowlowPolly"), lowUnitVariation: unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.LowUnitVariation));
 
 
@@ -228,9 +229,7 @@ namespace BriefingRoom4DCS.Generator
                 );
 
             var firstUnitID = UnitID;
-            var firstUnitDB = units.Select(x => Database.Instance.GetEntry<DBEntryJSONUnit>(x)).FirstOrDefault(x => x != null, null);
-            if (firstUnitDB == null)
-                throw new BriefingRoomException($"Cant Find unit {units[0]}");
+            var firstUnitDB = units.Select(x => Database.Instance.GetEntry<DBEntryJSONUnit>(x)).FirstOrDefault(x => x != null, null) ?? throw new BriefingRoomException($"Cant Find unit {units[0]}");
             if (unitFamily.GetUnitCategory().IsAircraft())
             {
                 callsign = CallsignGenerator.GetCallsign((DBEntryAircraft)firstUnitDB, country, side, isUsingSkynet, extraSettings.GetValueOrDefault("OverrideCallsignName", "").ToString(), (int)extraSettings.GetValueOrDefault("OverrideCallsignNumber", 1));
@@ -263,7 +262,6 @@ namespace BriefingRoom4DCS.Generator
                 unitTypeLua,
                 coordinates,
                 unitMakerGroupFlags,
-                country,
                 side,
                 extraSettings
             );
@@ -322,7 +320,7 @@ namespace BriefingRoom4DCS.Generator
         {
             string groupYml = File.ReadAllText(Path.Combine(BRPaths.INCLUDE_YAML_GROUP, Toolbox.AddMissingFileExtension(groupTypeLua, ".yml")));
             foreach (KeyValuePair<string, object> extraSetting in extraSettings) // Replace custom values first so they override other replacements
-                if (!(extraSetting.Value is Array)) // Array extra settings are treated on a per-unit basis
+                if (extraSetting.Value is not Array) // Array extra settings are treated on a per-unit basis
                     GeneratorTools.ReplaceKey(ref groupYml, extraSetting.Key, extraSetting.Value);
 
             GeneratorTools.ReplaceKey(ref groupYml, "GroupID", GroupID);
@@ -370,7 +368,6 @@ namespace BriefingRoom4DCS.Generator
             string unitTypeLua,
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags,
-            Country country,
             Side side,
             Dictionary<string, object> extraSettings
             )
@@ -395,10 +392,9 @@ namespace BriefingRoom4DCS.Generator
                    unitTypeLua,
                    coordinates,
                    unitMakerGroupFlags,
-                   country,
                    side,
                    extraSettings,
-                   unitSets.Count() == 1
+                   unitSets.Count == 1
                    ));
 
                 unitsIDList.Add(UnitID);
@@ -423,8 +419,7 @@ namespace BriefingRoom4DCS.Generator
             Dictionary<string, object> extraSettings
         )
         {
-            List<int> unitsIDList = new List<int>();
-            var initalGroupId = GroupID;
+            List<int> unitsIDList = new();
             var DCSGroups = new List<DCSGroup>();
             int unitIndex = 1;
             foreach (var unitSet in unitSets)
@@ -456,7 +451,6 @@ namespace BriefingRoom4DCS.Generator
                     unitTypeLua,
                     coordinates,
                     unitMakerGroupFlags,
-                    country,
                     side,
                     extraSettings
                     );
@@ -477,7 +471,6 @@ namespace BriefingRoom4DCS.Generator
 
             if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.EmbeddedAirDefense) && unitFamily != UnitFamily.StaticStructureOffshore)
             {
-                var firstUnitID = UnitID;
                 List<string> airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(Template, side, unitFamily.GetUnitCategory());
                 var dCSGroup = CreateGroup(
                         "Vehicle",
@@ -495,7 +488,6 @@ namespace BriefingRoom4DCS.Generator
                     "Vehicle",
                     coordinates,
                     unitMakerGroupFlags,
-                    country,
                     side,
                     extraSettings
                 );
@@ -520,7 +512,6 @@ namespace BriefingRoom4DCS.Generator
             string unitType,
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags,
-            Country country,
             Side side,
             Dictionary<string, object> extraSettings,
             bool singleUnit = false)
@@ -539,8 +530,7 @@ namespace BriefingRoom4DCS.Generator
             foreach (KeyValuePair<string, object> extraSetting in extraSettings.Where(x => !IGNORE_PROPS.Contains(x.Key)).ToDictionary(x => x.Key, x => x.Value))
             {
                 var prop = unit.GetType().GetProperty(extraSetting.Key, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
-                if (prop != null)
-                    prop.SetValue(unit, extraSetting.Value);
+                prop?.SetValue(unit, extraSetting.Value);
             }
             unit.Heading = unitHeading;
             unit.DCSID = DCSID;
@@ -588,19 +578,19 @@ namespace BriefingRoom4DCS.Generator
             if (DBEntryTheater.DESERT_MAPS.Contains(Mission.TheaterID))
             {
                 var subset = options.Where(x => x.ToLower().Contains("desert")).ToList();
-                if (subset.Count() > 0)
+                if (subset.Count > 0)
                     options = subset;
             }
             else
             {
                 var subset = options.Where(x => !x.ToLower().Contains("desert")).ToList();
-                if (subset.Count() > 0)
+                if (subset.Count > 0)
                     options = subset;
             }
 
             var season = Toolbox.GetSeasonFromMonth(int.Parse(Mission.GetValue("DateMonth")));
             var seasonSubset = options.Where(x => x.ToLower().Contains(season.ToString().ToLower())).ToList();
-            if (seasonSubset.Count() > 0)
+            if (seasonSubset.Count > 0)
                 options = seasonSubset;
             extraSettings["Livery"] = Toolbox.RandomFrom(options);
         }
@@ -670,7 +660,7 @@ namespace BriefingRoom4DCS.Generator
             return "<p><strong>Required Mods:</strong><br/>" + string.Join("<br/>", ModUnits.Distinct().ToList()) + "</p>";
         }
 
-        private double GetGroupHeading(Coordinates groupCoordinates, Dictionary<string, object> extraSettings)
+        private static double GetGroupHeading(Coordinates groupCoordinates, Dictionary<string, object> extraSettings)
         {
             if (!extraSettings.ContainsKey("GroupX2"))
                 return 0.0;
@@ -678,7 +668,7 @@ namespace BriefingRoom4DCS.Generator
             return Coordinates.ToAngleInRadians(groupCoordinates, waypointCoor);
         }
 
-        private (Coordinates unitCoordinates, double unitHeading) SetUnitCoordinatesAndHeading(
+        private static (Coordinates unitCoordinates, double unitHeading) SetUnitCoordinatesAndHeading(
             DBEntryJSONUnit unitDB,
             int unitIndex,
             Coordinates groupCoordinates,
@@ -725,7 +715,7 @@ namespace BriefingRoom4DCS.Generator
             return (unitCoordinates, unitHeading);
         }
 
-        private Coordinates TransformFromOffset(double groupHeading, Coordinates groupCoordinates, Coordinates offsetCoordinates)
+        private static Coordinates TransformFromOffset(double groupHeading, Coordinates groupCoordinates, Coordinates offsetCoordinates)
         {
             // it seems that for some reason X&Y are reversed when it comes to this stuff and needs to rotated backawards from heading.
             // Why don't know Maybe ED will announce its a bug and poof or soviet russia x is y and y is x
@@ -737,12 +727,12 @@ namespace BriefingRoom4DCS.Generator
                 (-offsetCoordinates.X * sinTheta) + (offsetCoordinates.Y * cosTheta));
         }
 
-        private void GetLayout(int unitCount, UnitFamily family, Dictionary<string, object> extraSettings)
+        private static void GetLayout(int unitCount, UnitFamily family, Dictionary<string, object> extraSettings)
         {
             if (extraSettings.ContainsKey("TemplatePositionMap"))
                 return;
 
-            var options = Database.Instance.GetAllEntries<DBEntryLayout>().Where(x => (x.Categories.Contains(family.GetUnitCategory())) && unitCount > x.MinUnits && unitCount < x.Units.Count()).ToList();
+            var options = Database.Instance.GetAllEntries<DBEntryLayout>().Where(x => (x.Categories.Contains(family.GetUnitCategory())) && unitCount > x.MinUnits && unitCount < x.Units.Count).ToList();
             if (options.Count == 0 || Toolbox.RandomChance(3)) // Random added until we have a decent count of layouts
                 return;
             var selected = Toolbox.RandomFrom(options);

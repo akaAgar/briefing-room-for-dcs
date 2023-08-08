@@ -161,7 +161,7 @@ namespace BriefingRoom4DCS.Generator
                 playerAirbase.Coordinates, objectivesCenter,
                 windSpeedAtSeaLevel, windDirectionAtSeaLevel);
             var averageInitialPosition = playerAirbase.Coordinates;
-            if (unitMaker.carrierDictionary.Count > 0) averageInitialPosition = (averageInitialPosition + unitMaker.carrierDictionary.First().Value.UnitMakerGroupInfo.Coordinates) / 2.0;
+            if (unitMaker.CarrierDictionary.Count > 0) averageInitialPosition = (averageInitialPosition + unitMaker.CarrierDictionary.First().Value.UnitMakerGroupInfo.Coordinates) / 2.0;
 
             // Generate extra flight plan info
             MissionGeneratorFlightPlan.GenerateBullseyes(mission, objectivesCenter);
@@ -227,7 +227,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Generate warehouses
             BriefingRoom.PrintToLog("Generating warehouses...");
-            MissionGeneratorWarehouses.GenerateWarehouses(mission, unitMaker.carrierDictionary);
+            MissionGeneratorWarehouses.GenerateWarehouses(mission, unitMaker.CarrierDictionary);
 
             // Generate image files
             BriefingRoom.PrintToLog("Generating images...");
