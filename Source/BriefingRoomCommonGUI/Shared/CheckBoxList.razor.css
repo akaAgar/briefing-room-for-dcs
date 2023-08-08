@@ -1,12 +1,19 @@
 .checkboxList {
-    display: flex;
-    flex-wrap: wrap;
-    text-align: center;
+    display: block;
 }
 
 .checkboxList-group {
+    display: flex;
+}
+
+.checkboxList-group-title {
     margin-top: .5em;
     margin-right: .1em;
+}
+
+.checkboxList-group-options {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .checkboxList-item>input {
@@ -45,6 +52,5 @@
 }
 
 .checkboxList-break {
-    flex-basis: 100%;
     height: 0;
 }

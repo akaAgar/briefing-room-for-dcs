@@ -108,6 +108,7 @@ h4 {
     flex-shrink: 1;
     flex-grow: 1;
     resize: horizontal;
+    min-width: 50%;
 }
 
 .delete-flight {
