@@ -30,8 +30,8 @@ namespace BriefingRoom4DCS.Data
 {
     internal class DBEntryTheater : DBEntry
     {
-        internal static readonly List<string> DESERT_MAPS = new List<string> { "Nevada", "PersianGulf", "Syria", "SinaiMap" };
-        private static readonly MinMaxI DEFAULT_DAYTIME = new MinMaxI(8 * 60, 19 * 60);
+        internal static readonly List<string> DESERT_MAPS = new() { "Nevada", "PersianGulf", "Syria", "SinaiMap" };
+        private static readonly MinMaxI DEFAULT_DAYTIME = new(8 * 60, 19 * 60);
 
         internal Coordinates DefaultMapCenter { get; private set; }
 
@@ -94,7 +94,7 @@ namespace BriefingRoom4DCS.Data
                     PointType = (SpawnPointType)Enum.Parse(typeof(SpawnPointType), x.BRtype, true)
                 }
             ).ToArray();
-            BriefingRoom.PrintToLog($"{DCSID} loaded {SpawnPoints.Count()} spawn points");
+            BriefingRoom.PrintToLog($"{DCSID} loaded {SpawnPoints.Length} spawn points");
     
 
             // [Temperature] section
@@ -114,7 +114,7 @@ namespace BriefingRoom4DCS.Data
             return tunedHeading;
         }
 
-        private MinMaxI? ParseMinMaxTime(string[] timeValues)
+        private static MinMaxI? ParseMinMaxTime(string[] timeValues)
         {
             if (timeValues.Length != 2) return null;
 

@@ -263,7 +263,7 @@ namespace BriefingRoom4DCS.Generator
                 var cargoWaypoint = GenerateObjectiveWaypoint(task, unitCoordinates, unitCoordinates, $"{objectiveName} Pickup", template, scriptIgnore: true);
                 waypoints.Add(cargoWaypoint);
                 waypointList.Add(cargoWaypoint);
-                if (taskDB.isEscort())
+                if (taskDB.IsEscort())
                 {
                     extraSettings["GroupX2"] = objectiveCoordinates.X;
                     extraSettings["GroupY2"] = objectiveCoordinates.Y;

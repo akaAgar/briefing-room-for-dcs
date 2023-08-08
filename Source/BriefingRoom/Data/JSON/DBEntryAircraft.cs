@@ -98,7 +98,7 @@ namespace BriefingRoom4DCS.Data
                     UIDisplayName = new LanguageString(aircraft.displayName),
                     DCSID = aircraft.type,
                     Liveries = aircraft.paintSchemes.ToDictionary(pair => (Country)Enum.Parse(typeof(Country), pair.Key.Replace(" ", ""), true), pair => pair.Value),
-                    Operators = GetOperationalCountries(aircraft, supportInfo),
+                    Operators = GetOperationalCountries(aircraft),
                     Module = aircraft.module,
                     Tasks = aircraft.tasks.Where(x => x is not null).Select(x => (DCSTask)x.WorldID).ToList(),
                     Fuel = aircraft.fuel,
@@ -128,7 +128,7 @@ namespace BriefingRoom4DCS.Data
                     Length = aircraft.length,
                     PlayerControllable = supportInfo.playerControllable,
                     Families = supportInfo.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
-                    lowPolly = supportInfo.lowPolly
+                    LowPolly = supportInfo.lowPolly
                 };
                 DBaircraft.GetDCSPayloads();
                 DBaircraft.GetDCSLiveries();

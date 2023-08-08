@@ -53,16 +53,16 @@ namespace BriefingRoom4DCS.Template
         public string FlightPlanTheaterStartingAirbase { get { return FlightPlanTheaterStartingAirbase_; } set { FlightPlanTheaterStartingAirbase_ = Database.Instance.CheckID<DBEntryAirbase>(value, allowEmptyStr: true); } }
         private string FlightPlanTheaterStartingAirbase_;
         public List<string> MissionFeatures { get { return MissionFeatures_; } set { MissionFeatures_ = Database.Instance.CheckIDs<DBEntryFeatureMission>(value.ToArray()).ToList(); } }
-        private List<string> MissionFeatures_ = new List<string>();
+        private List<string> MissionFeatures_ = new();
         public List<string> Mods { get { return Mods_; } set { Mods_ = Database.Instance.CheckIDs<DBEntryDCSMod>(value.ToArray()).ToList(); } }
-        private List<string> Mods_ = new List<string>();
+        private List<string> Mods_ = new();
         public FogOfWar OptionsFogOfWar { get; set; }
         public List<string> OptionsMission { get { return OptionsMission_; } set { OptionsMission_ = Database.Instance.CheckIDs<DBEntryOptionsMission>(value.ToArray()).ToList(); } }
-        private List<string> OptionsMission_ = new List<string>();
+        private List<string> OptionsMission_ = new();
         public List<RealismOption> OptionsRealism { get { return OptionsRealism_; } set { OptionsRealism_ = value.Distinct().ToList(); } }
-        private List<RealismOption> OptionsRealism_ = new List<RealismOption>();
+        private List<RealismOption> OptionsRealism_ = new();
         public List<MissionTemplateFlightGroup> PlayerFlightGroups { get { return PlayerFlightGroups_; } set { PlayerFlightGroups_ = value.Take(MAX_PLAYER_FLIGHT_GROUPS).ToList(); } }
-        private List<MissionTemplateFlightGroup> PlayerFlightGroups_ = new List<MissionTemplateFlightGroup>();
+        private List<MissionTemplateFlightGroup> PlayerFlightGroups_ = new();
         public AmountR SituationEnemySkill { get; set; }
         public AmountNR SituationEnemyAirDefense { get; set; }
         public AmountNR SituationEnemyAirForce { get; set; }

@@ -13,7 +13,7 @@ namespace BriefingRoom4DCS.Generator
         private readonly UnitMaker _unitMaker;
         private readonly DrawingMaker _drawingMaker;
         private readonly DCSMission _mission;
-        private readonly List<string> LuaZones = new List<string>();
+        private readonly List<string> LuaZones = new();
         private int CTLDZoneCount = 1;
 
         internal ZoneMaker(UnitMaker unitMaker, DrawingMaker drawingMaker, DCSMission mission)

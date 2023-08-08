@@ -99,45 +99,25 @@ namespace BriefingRoom4DCS.Generator
 
         private static string GetCardinalWindDirection(int angle)
         {
-            switch (angle)
+            return angle switch
             {
-                case > 348 or < 11:
-                    return "N";
-                case < 35:
-                    return "NNE";
-                case < 57:
-                    return "NE";
-                case < 79:
-                    return "ENE";
-                case < 102:
-                    return "E";
-                case < 124:
-                    return "ESE";
-                case < 147:
-                    return "SE";
-                case < 169:
-                    return "SSE";
-                case < 192:
-                    return "S";
-                case < 214:
-                    return "SSW";
-                case < 237:
-                    return "SW";
-                case < 259:
-                    return "WSW";
-                case < 282:
-                    return "W";
-                case < 303:
-                    return "WNW";
-                case < 326:
-                    return "NW";
-                case < 349:
-                    return "NNW";
-                default:
-                    throw new BriefingRoomException($"Angle {angle} out of cardinal range.");
-            }
-
-
+                > 348 or < 11 => "N",
+                < 35 => "NNE",
+                < 57 => "NE",
+                < 79 => "ENE",
+                < 102 => "E",
+                < 124 => "ESE",
+                < 147 => "SE",
+                < 169 => "SSE",
+                < 192 => "S",
+                < 214 => "SSW",
+                < 237 => "SW",
+                < 259 => "WSW",
+                < 282 => "W",
+                < 303 => "WNW",
+                < 326 => "NW",
+                < 349 => "NNW",
+            };
         }
     }
 }

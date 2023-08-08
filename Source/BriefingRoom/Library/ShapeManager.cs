@@ -18,12 +18,12 @@ namespace BriefingRoom4DCS
 
         // Define Infinite (Using INT_MAX
         // caused overflow problems)
-        private static double INF = 10000000;
+        private static readonly double INF = 10000000;
 
         // Given three collinear points p, q, r,
         // the function checks if point q lies
         // on line segment 'pr'
-        private static bool onSegment(Coordinates p, Coordinates q, Coordinates r)
+        private static bool OnSegment(Coordinates p, Coordinates q, Coordinates r)
         {
             if (q.X <= Math.Max(p.X, r.X) &&
                 q.X >= Math.Min(p.X, r.X) &&
@@ -40,7 +40,7 @@ namespace BriefingRoom4DCS
         // 0 --> p, q and r are collinear
         // 1 --> Clockwise
         // 2 --> Counterclockwise
-        private static double orientation(Coordinates p, Coordinates q, Coordinates r)
+        private static double Orientation(Coordinates p, Coordinates q, Coordinates r)
         {
             double val = (q.Y - p.Y) * (r.X - q.X) -
                     (q.X - p.X) * (r.Y - q.Y);
@@ -54,15 +54,15 @@ namespace BriefingRoom4DCS
 
         // The function that returns true if
         // line segment 'p1q1' and 'p2q2' intersect.
-        private static bool doIntersect(Coordinates p1, Coordinates q1,
+        private static bool DoIntersect(Coordinates p1, Coordinates q1,
                                 Coordinates p2, Coordinates q2)
         {
             // Find the four orientations needed for
             // general and special cases
-            double o1 = orientation(p1, q1, p2);
-            double o2 = orientation(p1, q1, q2);
-            double o3 = orientation(p2, q2, p1);
-            double o4 = orientation(p2, q2, q1);
+            double o1 = Orientation(p1, q1, p2);
+            double o2 = Orientation(p1, q1, q2);
+            double o3 = Orientation(p2, q2, p1);
+            double o4 = Orientation(p2, q2, q1);
 
             // General case
             if (o1 != o2 && o3 != o4)
@@ -73,28 +73,28 @@ namespace BriefingRoom4DCS
             // Special Cases
             // p1, q1 and p2 are collinear and
             // p2 lies on segment p1q1
-            if (o1 == 0 && onSegment(p1, p2, q1))
+            if (o1 == 0 && OnSegment(p1, p2, q1))
             {
                 return true;
             }
 
             // p1, q1 and p2 are collinear and
             // q2 lies on segment p1q1
-            if (o2 == 0 && onSegment(p1, q2, q1))
+            if (o2 == 0 && OnSegment(p1, q2, q1))
             {
                 return true;
             }
 
             // p2, q2 and p1 are collinear and
             // p1 lies on segment p2q2
-            if (o3 == 0 && onSegment(p2, p1, q2))
+            if (o3 == 0 && OnSegment(p2, p1, q2))
             {
                 return true;
             }
 
             // p2, q2 and q1 are collinear and
             // q1 lies on segment p2q2
-            if (o4 == 0 && onSegment(p2, q1, q2))
+            if (o4 == 0 && OnSegment(p2, q1, q2))
             {
                 return true;
             }
@@ -105,7 +105,7 @@ namespace BriefingRoom4DCS
 
         // Returns true if the Coordinates p lies
         // inside the polygon[] with n vertices
-        private static bool isInside(List<Coordinates> polygon, Coordinates p)
+        private static bool IsInside(List<Coordinates> polygon, Coordinates p)
         {
             // There must be at least 3 vertices in polygon[]
             if (polygon.Count < 3)
@@ -114,7 +114,7 @@ namespace BriefingRoom4DCS
             }
 
             // Create a Coordinates for line segment from p to infinite
-            Coordinates extreme = new Coordinates(INF, p.Y);
+            Coordinates extreme = new(INF, p.Y);
 
             // Count intersections of the above line
             // with sides of polygon
@@ -126,15 +126,15 @@ namespace BriefingRoom4DCS
                 // Check if the line segment from 'p' to
                 // 'extreme' intersects with the line
                 // segment from 'polygon[i]' to 'polygon[next]'
-                if (doIntersect(polygon[i],
+                if (DoIntersect(polygon[i],
                                 polygon[next], p, extreme))
                 {
                     // If the Coordinates 'p' is collinear with line
                     // segment 'i-next', then check if it lies
                     // on segment. If it lies, return true, otherwise false
-                    if (orientation(polygon[i], p, polygon[next]) == 0)
+                    if (Orientation(polygon[i], p, polygon[next]) == 0)
                     {
-                        return onSegment(polygon[i], p,
+                        return OnSegment(polygon[i], p,
                                         polygon[next]);
                     }
                     count++;
@@ -154,12 +154,12 @@ namespace BriefingRoom4DCS
 
         internal static bool IsPosValid(Coordinates coords, List<Coordinates> InclusionShape, List<List<Coordinates>> exclusionShapes = null)
         {
-            var outcome = isInside(InclusionShape, coords);
+            var outcome = IsInside(InclusionShape, coords);
             if (exclusionShapes is not null)
             {
                 foreach (var shape in exclusionShapes)
                 {
-                    if (isInside(shape, coords))
+                    if (IsInside(shape, coords))
                         return false;
                 }
             }
@@ -175,7 +175,7 @@ namespace BriefingRoom4DCS
                 {
                     int next = (i + 1) % polygon.Count;
 
-                    if (doIntersect(polygon[i], polygon[next], coords1, coords2))
+                    if (DoIntersect(polygon[i], polygon[next], coords1, coords2))
                         return false;
                     i = next;
                 } while (i != 0);
@@ -203,7 +203,7 @@ namespace BriefingRoom4DCS
 
         internal static double GetDistanceFromShape(Coordinates coords, List<Coordinates> InclusionShape)
         {
-            if (isInside(InclusionShape, coords))
+            if (IsInside(InclusionShape, coords))
                 return -1;
             var lastCoords = InclusionShape[0];
             return InclusionShape.Min(x =>
@@ -232,16 +232,16 @@ namespace BriefingRoom4DCS
         private static Tuple<double, Coordinates> FindDistanceToSegment(
             Coordinates pt, Coordinates segStart, Coordinates segEnd)
         {
-            var closest = segStart;
             var dx = segEnd.X - segStart.X;
             var dy = segEnd.Y - segStart.Y;
+            Coordinates closest;
             if ((dx == 0) && (dy == 0))
             {
                 // It's a point not a line segment.
                 closest = segStart;
                 dx = pt.X - segStart.X;
                 dy = pt.Y - segStart.Y;
-                return new (Math.Sqrt(dx * dx + dy * dy), closest);
+                return new(Math.Sqrt(dx * dx + dy * dy), closest);
             }
 
             // Calculate the t that minimizes the distance.

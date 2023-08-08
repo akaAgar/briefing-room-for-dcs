@@ -30,7 +30,7 @@ namespace BriefingRoom4DCS.Generator
 {
     internal class MissionGeneratorFeaturesObjectives : MissionGeneratorFeatures<DBEntryFeatureObjective>
     {
-        private int prevLaserCode { get; set; } = 1687;
+        private int PrevLaserCode { get; set; } = 1687;
         internal MissionGeneratorFeaturesObjectives(UnitMaker unitMaker, MissionTemplateRecord template) : base(unitMaker, template) { }
 
         internal void GenerateMissionFeature(DCSMission mission, string featureID, string objectiveName, int objectiveIndex, UnitMakerGroupInfo objectiveTarget, Side objectiveTargetSide, bool hideEnemy = false)
@@ -79,14 +79,14 @@ namespace BriefingRoom4DCS.Generator
             if (flags.HasFlag(FeatureUnitGroupFlags.MoveToObjective))
                 coordinates2 = objectiveTarget.Coordinates;
 
-            Dictionary<string, object> extraSettings = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
+            Dictionary<string, object> extraSettings = new(StringComparer.InvariantCultureIgnoreCase);
             extraSettings.AddIfKeyUnused("ObjectiveName", objectiveName);
             extraSettings.AddIfKeyUnused("ObjectiveIndex", objectiveIndex + 1);
             extraSettings.AddIfKeyUnused("ObjectiveGroupID", objectiveTarget.GroupID);
 
             if (featureID == "TargetDesignationLaser")
             {
-                var laserCode = _template.OptionsMission.Contains("SingleLaserCode") || _template.OptionsMission.Contains("FC3LaserCode") ? (_template.OptionsMission.Contains("FC3LaserCode") ? 1113 : 1688) : getNextLaserCode();
+                var laserCode = _template.OptionsMission.Contains("SingleLaserCode") || _template.OptionsMission.Contains("FC3LaserCode") ? (_template.OptionsMission.Contains("FC3LaserCode") ? 1113 : 1688) : GetNextLaserCode();
                 extraSettings.AddIfKeyUnused("LASERCODE", laserCode);
                 mission.Briefing.AddItem(DCSMissionBriefingItemType.JTAC, $"{objectiveName}\t{laserCode}");
             }
@@ -104,9 +104,9 @@ namespace BriefingRoom4DCS.Generator
             AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
         }
 
-        private int getNextLaserCode()
+        private int GetNextLaserCode()
         {
-            var code = prevLaserCode;
+            var code = PrevLaserCode;
             code++;
             var digits = GetDigits(code).ToList();
             if (digits.Last() == 9)
@@ -114,16 +114,15 @@ namespace BriefingRoom4DCS.Generator
             digits = GetDigits(code).ToList();
             if (digits[2] == 9)
                 code += 20;
-            digits = GetDigits(code).ToList();
             if (code >= 1788)
                 code = 1511;
-            prevLaserCode = code;
+            PrevLaserCode = code;
             return code;
         }
 
         private static IEnumerable<int> GetDigits(int source)
         {
-            Stack<int> digits = new Stack<int>();
+            Stack<int> digits = new();
             while (source > 0)
             {
                 var digit = source % 10;

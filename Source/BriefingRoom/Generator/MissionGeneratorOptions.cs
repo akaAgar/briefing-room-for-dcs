@@ -61,15 +61,14 @@ namespace BriefingRoom4DCS.Generator
             forcedOptionsLua += $"[\"civTraffic\"] = \"{(template.OptionsMission.Contains("EnableCivilianTraffic") ? "medium" : "false")}\",";
             forcedOptionsLua += $"[\"radio\"] = {(template.OptionsRealism.Contains(RealismOption.DisableDCSRadioAssists) ? "false" : "true")},";
 
-            switch (template.OptionsFogOfWar)
+            forcedOptionsLua += template.OptionsFogOfWar switch
             {
-                default: forcedOptionsLua += "[\"optionsView\"] = \"optview_all\","; break; // case FogOfWar.All
-                case FogOfWar.AlliesOnly: forcedOptionsLua += "[\"optionsView\"] = \"optview_onlyallies\","; break;
-                case FogOfWar.KnownUnitsOnly: forcedOptionsLua += "[\"optionsView\"] = \"optview_allies\","; break;
-                case FogOfWar.SelfOnly: forcedOptionsLua += "[\"optionsView\"] = \"optview_myaircraft\","; break;
-                case FogOfWar.None: forcedOptionsLua += "[\"optionsView\"] = \"optview_onlymap\","; break;
-            }
-
+                FogOfWar.AlliesOnly => "[\"optionsView\"] = \"optview_onlyallies\",",
+                FogOfWar.KnownUnitsOnly => "[\"optionsView\"] = \"optview_allies\",",
+                FogOfWar.SelfOnly => "[\"optionsView\"] = \"optview_myaircraft\",",
+                FogOfWar.None => "[\"optionsView\"] = \"optview_onlymap\",",
+                _ => "[\"optionsView\"] = \"optview_all\",",
+            };
             mission.SetValue("ForcedOptions", forcedOptionsLua);
         }
     }

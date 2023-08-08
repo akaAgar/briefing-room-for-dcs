@@ -52,7 +52,7 @@ namespace BriefingRoom4DCS.Template
             Preset = "Custom";
         }
 
-        public MissionTemplateSubTask(string target, string targetBehavior, string task, string[] features, Amount targetCount = Amount.Average, params ObjectiveOption[] options)
+        public MissionTemplateSubTask(string target, string targetBehavior, string task, Amount targetCount = Amount.Average, params ObjectiveOption[] options)
         {
             Options = new List<ObjectiveOption>(options);
             Target = target;

@@ -33,7 +33,7 @@ using BriefingRoom4DCS.Mission;
 
 namespace BriefingRoom4DCS
 {
-    internal static class Toolbox
+    internal static partial class Toolbox
     {
         internal const int MAXIMUM_FLIGHT_GROUP_SIZE = 4;
 
@@ -54,10 +54,11 @@ namespace BriefingRoom4DCS
 
         internal const double KNOTS_TO_METERS_PER_SECOND = 0.514444;
 
-        internal static readonly MinMaxD ANY_RANGE = new MinMaxD(1, 1000);
-        internal static readonly MinMaxD HINT_RANGE = new MinMaxD(0, 10);
+        internal static readonly MinMaxD ANY_RANGE = new(1, 1000);
+        internal static readonly MinMaxD HINT_RANGE = new(0, 10);
 
-        internal static List<string> ALIASES = new List<string>{
+        internal static List<string> ALIASES = new()
+        {
                 "Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliet", "Kilo",
                 "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Romeo", "Sierra", "Tango", "Uniform", "Victor",
                 "Whiskey", "X-Ray", "Yankee", "Zulu"};
@@ -85,11 +86,11 @@ namespace BriefingRoom4DCS
 
         internal static readonly UnitFamily[] CARRIER_FAMILIES = new UnitFamily[] { UnitFamily.ShipCarrierCATOBAR, UnitFamily.ShipCarrierSTOBAR, UnitFamily.ShipCarrierSTOVL };
 
-        private static readonly Random Rnd = new Random();
+        private static readonly Random Rnd = new();
 
         internal static bool StringICompare(string string1, string string2)
         {
-            if ((string1 == null) || (string2 == null)) return string1 == string2;
+            if (string1 == null || string2 == null) return string1 == string2;
 
             return string1.ToLower() == string2.ToLower();
         }
@@ -102,7 +103,7 @@ namespace BriefingRoom4DCS
         internal static Dictionary<string, object> ToDictionaryObject(string dataStr)
         {
             var dict = new Dictionary<string, object>();
-            var regex = new Regex("\\[\\\"(.*?)\\\"\\] ?= ?(.*)");
+            var regex = LuaDictRegex();
             if (string.IsNullOrEmpty(dataStr))
                 return dict;
             foreach (string str in dataStr.Split(","))
@@ -121,7 +122,7 @@ namespace BriefingRoom4DCS
             {
                 return ((Dictionary<object, object>)value).ToDictionary(x => x.Key.ToString(), x => DeterminType(x.Value));
             }
-            if (!(value is string))
+            if (value is not string)
                 return value;
             var strVal = value as string;
             if (bool.TryParse(strVal, out bool boolVal))
@@ -135,15 +136,14 @@ namespace BriefingRoom4DCS
 
         internal static string ToLuaName(this UnitCategory unitCategory)
         {
-            switch (unitCategory)
+            return unitCategory switch
             {
-                case UnitCategory.Helicopter: return "HELICOPTER";
-                case UnitCategory.Plane: return "AIRPLANE";
-                case UnitCategory.Ship: return "SHIP";
-                case UnitCategory.Cargo:
-                case UnitCategory.Static: return "STRUCTURE";
-                default: return "GROUND_UNIT"; // case UnitCategory.Vehicle
-            }
+                UnitCategory.Helicopter => "HELICOPTER",
+                UnitCategory.Plane => "AIRPLANE",
+                UnitCategory.Ship => "SHIP",
+                UnitCategory.Cargo or UnitCategory.Static => "STRUCTURE",
+                _ => "GROUND_UNIT",// case UnitCategory.Vehicle
+            };
         }
 
         internal static string RemoveInvalidPathCharacters(string fileName)
@@ -212,7 +212,7 @@ namespace BriefingRoom4DCS
 
         internal static string ReplaceAll(this string str, string replaceTo, params string[] replaceFrom)
         {
-            StringBuilder sb = new StringBuilder(str);
+            StringBuilder sb = new(str);
 
             foreach (string r in replaceFrom)
                 sb.Replace(r, replaceTo);
@@ -254,7 +254,7 @@ namespace BriefingRoom4DCS
 
         internal static UnitFamily[] SetSingleCategoryFamilies(UnitFamily[] unitFamilies)
         {
-            if ((unitFamilies == null) || (unitFamilies.Length == 0)) return new UnitFamily[0];
+            if (unitFamilies == null || unitFamilies.Length == 0) return Array.Empty<UnitFamily>();
 
             return (from UnitFamily unitFamily in unitFamilies
                     where unitFamily.GetUnitCategory() == unitFamilies[0].GetUnitCategory()
@@ -263,18 +263,18 @@ namespace BriefingRoom4DCS
 
         internal static int GetRandomYearFromDecade(Decade decade)
         {
-            switch (decade)
+            return decade switch
             {
-                case Decade.Decade1940: return RandomInt(1942, 1945); // WW2 only
-                case Decade.Decade1950: return RandomInt(1950, 1960);
-                case Decade.Decade1960: return RandomInt(1960, 1970);
-                case Decade.Decade1970: return RandomInt(1970, 1980);
-                case Decade.Decade1980: return RandomInt(1980, 1990);
-                case Decade.Decade1990: return RandomInt(1990, 2000);
-                default: return RandomInt(2000, 2010); // case Decade.Decade2000
-                case Decade.Decade2010: return RandomInt(2010, 2020);
-                case Decade.Decade2020: return RandomInt(2020, 2030);
-            }
+                Decade.Decade1940 => RandomInt(1942, 1945),// WW2 only
+                Decade.Decade1950 => RandomInt(1950, 1960),
+                Decade.Decade1960 => RandomInt(1960, 1970),
+                Decade.Decade1970 => RandomInt(1970, 1980),
+                Decade.Decade1980 => RandomInt(1980, 1990),
+                Decade.Decade1990 => RandomInt(1990, 2000),
+                Decade.Decade2010 => RandomInt(2010, 2020),
+                Decade.Decade2020 => RandomInt(2020, 2030),
+                _ => RandomInt(2000, 2010),// case Decade.Decade2000
+            };
         }
 
         internal static Season GetSeasonFromMonth(int monthInt)
@@ -337,16 +337,16 @@ namespace BriefingRoom4DCS
                     chance = 50;
                     break;
             }
-            return (RandomMinMax(1, 100) > chance);
+            return RandomMinMax(1, 100) > chance;
         }
 
         internal static T[] ParseEnumString<T>(string enumString, char separator = ',', string prefix = "") where T : struct
         {
-            if ((enumString == null) || (enumString.Length == 0)) return new T[0];
+            if (enumString == null || enumString.Length == 0) return Array.Empty<T>();
 
             string[] strParts = enumString.Split(separator);
 
-            List<T> enumValues = new List<T>();
+            List<T> enumValues = new();
             foreach (string s in strParts)
             {
                 if (Enum.TryParse(prefix + s, true, out T e))
@@ -371,141 +371,63 @@ namespace BriefingRoom4DCS
 
         internal static UnitCategory GetUnitCategory(this UnitFamily unitFamily)
         {
-            switch (unitFamily)
+            return unitFamily switch
             {
-                case UnitFamily.HelicopterAttack:
-                case UnitFamily.HelicopterTransport:
-                case UnitFamily.HelicopterUtility:
-                    return UnitCategory.Helicopter;
-                case UnitFamily.PlaneAttack:
-                case UnitFamily.PlaneAWACS:
-                case UnitFamily.PlaneBomber:
-                case UnitFamily.PlaneDrone:
-                case UnitFamily.PlaneFighter:
-                case UnitFamily.PlaneInterceptor:
-                case UnitFamily.PlaneSEAD:
-                case UnitFamily.PlaneStrike:
-                case UnitFamily.PlaneTankerBasket:
-                case UnitFamily.PlaneTankerBoom:
-                case UnitFamily.PlaneTransport:
-                case UnitFamily.PlaneCATOBAR:
-                case UnitFamily.PlaneSTOBAR:
-                case UnitFamily.PlaneSTOVL:
-                    return UnitCategory.Plane;
-                case UnitFamily.ShipCarrierCATOBAR:
-                case UnitFamily.ShipCarrierSTOBAR:
-                case UnitFamily.ShipCarrierSTOVL:
-                case UnitFamily.ShipCruiser:
-                case UnitFamily.ShipFrigate:
-                case UnitFamily.ShipSpeedboat:
-                case UnitFamily.ShipSubmarine:
-                case UnitFamily.ShipTransport:
-                    return UnitCategory.Ship;
-                case UnitFamily.StaticStructureMilitary:
-                case UnitFamily.StaticStructureProduction:
-                case UnitFamily.FOB:
-                case UnitFamily.StaticStructureOffshore:
-                case UnitFamily.StaticStructureCivilian:
-                    return UnitCategory.Static;
-                case UnitFamily.Cargo:
-                    return UnitCategory.Cargo;
-                case UnitFamily.Infantry:
-                case UnitFamily.InfantryMANPADS:
-                    return UnitCategory.Infantry;
-                default:
-                    return UnitCategory.Vehicle;
-            }
+                UnitFamily.HelicopterAttack or UnitFamily.HelicopterTransport or UnitFamily.HelicopterUtility => UnitCategory.Helicopter,
+                UnitFamily.PlaneAttack or UnitFamily.PlaneAWACS or UnitFamily.PlaneBomber or UnitFamily.PlaneDrone or UnitFamily.PlaneFighter or UnitFamily.PlaneInterceptor or UnitFamily.PlaneSEAD or UnitFamily.PlaneStrike or UnitFamily.PlaneTankerBasket or UnitFamily.PlaneTankerBoom or UnitFamily.PlaneTransport or UnitFamily.PlaneCATOBAR or UnitFamily.PlaneSTOBAR or UnitFamily.PlaneSTOVL => UnitCategory.Plane,
+                UnitFamily.ShipCarrierCATOBAR or UnitFamily.ShipCarrierSTOBAR or UnitFamily.ShipCarrierSTOVL or UnitFamily.ShipCruiser or UnitFamily.ShipFrigate or UnitFamily.ShipSpeedboat or UnitFamily.ShipSubmarine or UnitFamily.ShipTransport => UnitCategory.Ship,
+                UnitFamily.StaticStructureMilitary or UnitFamily.StaticStructureProduction or UnitFamily.FOB or UnitFamily.StaticStructureOffshore or UnitFamily.StaticStructureCivilian => UnitCategory.Static,
+                UnitFamily.Cargo => UnitCategory.Cargo,
+                UnitFamily.Infantry or UnitFamily.InfantryMANPADS => UnitCategory.Infantry,
+                _ => UnitCategory.Vehicle,
+            };
         }
 
         internal static DCSUnitCategory GetDCSUnitCategory(this UnitFamily unitFamily)
         {
-            switch (unitFamily)
+            return unitFamily switch
             {
-                case UnitFamily.HelicopterAttack:
-                case UnitFamily.HelicopterTransport:
-                case UnitFamily.HelicopterUtility:
-                    return DCSUnitCategory.Helicopter;
-                case UnitFamily.PlaneAttack:
-                case UnitFamily.PlaneAWACS:
-                case UnitFamily.PlaneBomber:
-                case UnitFamily.PlaneDrone:
-                case UnitFamily.PlaneFighter:
-                case UnitFamily.PlaneInterceptor:
-                case UnitFamily.PlaneSEAD:
-                case UnitFamily.PlaneStrike:
-                case UnitFamily.PlaneTankerBasket:
-                case UnitFamily.PlaneTankerBoom:
-                case UnitFamily.PlaneTransport:
-                case UnitFamily.PlaneCATOBAR:
-                case UnitFamily.PlaneSTOBAR:
-                case UnitFamily.PlaneSTOVL:
-                    return DCSUnitCategory.Plane;
-                case UnitFamily.ShipCarrierCATOBAR:
-                case UnitFamily.ShipCarrierSTOBAR:
-                case UnitFamily.ShipCarrierSTOVL:
-                case UnitFamily.ShipCruiser:
-                case UnitFamily.ShipFrigate:
-                case UnitFamily.ShipSpeedboat:
-                case UnitFamily.ShipSubmarine:
-                case UnitFamily.ShipTransport:
-                    return DCSUnitCategory.Ship;
-                case UnitFamily.StaticStructureMilitary:
-                case UnitFamily.StaticStructureProduction:
-                case UnitFamily.FOB:
-                case UnitFamily.StaticStructureOffshore:
-                case UnitFamily.StaticStructureCivilian:
-                    return DCSUnitCategory.Static;
-                case UnitFamily.Cargo:
-                    return DCSUnitCategory.Cargo;
-                default:
-                    return DCSUnitCategory.Vehicle;
-            }
+                UnitFamily.HelicopterAttack or UnitFamily.HelicopterTransport or UnitFamily.HelicopterUtility => DCSUnitCategory.Helicopter,
+                UnitFamily.PlaneAttack or UnitFamily.PlaneAWACS or UnitFamily.PlaneBomber or UnitFamily.PlaneDrone or UnitFamily.PlaneFighter or UnitFamily.PlaneInterceptor or UnitFamily.PlaneSEAD or UnitFamily.PlaneStrike or UnitFamily.PlaneTankerBasket or UnitFamily.PlaneTankerBoom or UnitFamily.PlaneTransport or UnitFamily.PlaneCATOBAR or UnitFamily.PlaneSTOBAR or UnitFamily.PlaneSTOVL => DCSUnitCategory.Plane,
+                UnitFamily.ShipCarrierCATOBAR or UnitFamily.ShipCarrierSTOBAR or UnitFamily.ShipCarrierSTOVL or UnitFamily.ShipCruiser or UnitFamily.ShipFrigate or UnitFamily.ShipSpeedboat or UnitFamily.ShipSubmarine or UnitFamily.ShipTransport => DCSUnitCategory.Ship,
+                UnitFamily.StaticStructureMilitary or UnitFamily.StaticStructureProduction or UnitFamily.FOB or UnitFamily.StaticStructureOffshore or UnitFamily.StaticStructureCivilian => DCSUnitCategory.Static,
+                UnitFamily.Cargo => DCSUnitCategory.Cargo,
+                _ => DCSUnitCategory.Vehicle,
+            };
         }
 
         internal static bool IsAircraft(this UnitCategory unitCategory)
         {
-            return (unitCategory == UnitCategory.Helicopter) || (unitCategory == UnitCategory.Plane);
+            return unitCategory == UnitCategory.Helicopter || unitCategory == UnitCategory.Plane;
         }
 
         internal static bool IsAirDefense(this UnitFamily unitFamily)
         {
-            switch (unitFamily)
+            return unitFamily switch
             {
-                case UnitFamily.VehicleAAA:
-                case UnitFamily.VehicleAAAStatic:
-                case UnitFamily.InfantryMANPADS:
-                case UnitFamily.VehicleSAMLong:
-                case UnitFamily.VehicleSAMMedium:
-                case UnitFamily.VehicleSAMShort:
-                case UnitFamily.VehicleSAMShortIR:
-                    return true;
-            }
-
-            return false;
+                UnitFamily.VehicleAAA or UnitFamily.VehicleAAAStatic or UnitFamily.InfantryMANPADS or UnitFamily.VehicleSAMLong or UnitFamily.VehicleSAMMedium or UnitFamily.VehicleSAMShort or UnitFamily.VehicleSAMShortIR => true,
+                _ => false,
+            };
         }
 
         internal static bool IsCarrier(this UnitFamily unitFamily)
         {
-            switch (unitFamily)
+            return unitFamily switch
             {
-                case UnitFamily.ShipCarrierCATOBAR:
-                case UnitFamily.ShipCarrierSTOBAR:
-                case UnitFamily.ShipCarrierSTOVL:
-                    return true;
-            }
-
-            return false;
+                UnitFamily.ShipCarrierCATOBAR or UnitFamily.ShipCarrierSTOBAR or UnitFamily.ShipCarrierSTOVL => true,
+                _ => false,
+            };
         }
 
         internal static string ValToString(object value, string stringFormat = "")
         {
             if (value == null) return "";
-            if (value is string) return (string)value;
-            if (value is bool) return ((bool)value).ToString(NumberFormatInfo.InvariantInfo);
-            if (value is int) return ((int)value).ToString(stringFormat, NumberFormatInfo.InvariantInfo);
-            if (value is float) return ((float)value).ToString(stringFormat, NumberFormatInfo.InvariantInfo);
-            if (value is double) return ((double)value).ToString(stringFormat, NumberFormatInfo.InvariantInfo);
-            if (value is LanguageString) return ((LanguageString)value).Get();
+            if (value is string v) return v;
+            if (value is bool v1) return v1.ToString(NumberFormatInfo.InvariantInfo);
+            if (value is int v2) return v2.ToString(stringFormat, NumberFormatInfo.InvariantInfo);
+            if (value is float v3) return v3.ToString(stringFormat, NumberFormatInfo.InvariantInfo);
+            if (value is double v4) return v4.ToString(stringFormat, NumberFormatInfo.InvariantInfo);
+            if (value is LanguageString @string) return @string.Get();
             return value.ToString();
         }
 
@@ -539,13 +461,13 @@ namespace BriefingRoom4DCS
 
         internal static T RandomFrom<T>(params T[] array)
         {
-            if ((array == null) || (array.Length == 0)) return default;
+            if (array == null || array.Length == 0) return default;
             return array[Rnd.Next(array.Length)];
         }
 
         internal static T RandomFrom<T>(List<T> list)
         {
-            if ((list == null) || (list.Count == 0)) return default;
+            if (list == null || list.Count == 0) return default;
             return list[Rnd.Next(list.Count)];
         }
 
@@ -571,7 +493,7 @@ namespace BriefingRoom4DCS
         { return Rnd.NextDouble() * max; }
 
         internal static double RandomDouble(double min, double max)
-        { return (Rnd.NextDouble() * (max - min)) + min; }
+        { return Rnd.NextDouble() * (max - min) + min; }
 
         internal static string GetOrdinalAdjective(int number)
         {
@@ -591,20 +513,18 @@ namespace BriefingRoom4DCS
 
             try
             {
-                using (MemoryStream ms = new MemoryStream())
+                using MemoryStream ms = new();
+                using (ZipArchive zip = new(ms, ZipArchiveMode.Update))
                 {
-                    using (ZipArchive zip = new ZipArchive(ms, ZipArchiveMode.Update))
+                    foreach (string entryKey in FileEntries.Keys)
                     {
-                        foreach (string entryKey in FileEntries.Keys)
-                        {
-                            ZipArchiveEntry entry = zip.CreateEntry(entryKey, CompressionLevel.Optimal);
-                            using (BinaryWriter writer = new BinaryWriter(entry.Open()))
-                                writer.Write(FileEntries[entryKey]);
-                        }
+                        ZipArchiveEntry entry = zip.CreateEntry(entryKey, CompressionLevel.Optimal);
+                        using BinaryWriter writer = new(entry.Open());
+                        writer.Write(FileEntries[entryKey]);
                     }
-
-                    mizBytes = ms.ToArray();
                 }
+
+                mizBytes = ms.ToArray();
             }
             catch (Exception ex)
             {
@@ -614,7 +534,7 @@ namespace BriefingRoom4DCS
             return mizBytes;
         }
 
-        internal static void setMinMaxTheaterCoords(DBEntryTheater theater, DCSMission mission)
+        internal static void SetMinMaxTheaterCoords(DBEntryTheater theater, DCSMission mission)
         {
             double minX = 123;
             double minY = 123;
@@ -676,5 +596,8 @@ namespace BriefingRoom4DCS
             if (coord.Y > maxY)
                 maxY = coord.Y;
         }
+
+        [GeneratedRegex("\\[\\\"(.*?)\\\"\\] ?= ?(.*)")]
+        private static partial Regex LuaDictRegex();
     }
 }

@@ -81,7 +81,7 @@ namespace BriefingRoom4DCS.Data
                     RunwayLengthFt = (int)(airbase.runways.Select(x => x.length).DefaultIfEmpty().Max() * Toolbox.METERS_TO_FEET),
                     TACAN = String.Join("/", airbase.airdromeData.TACAN.Select(x => $"{x}X")),
                     Theater = airbase.theatre.ToLower(),
-                    ParkingSpots = airbase.stands.Count() > 0 ? DBEntryAirbaseParkingSpot.LoadJSON(airbase.stands, id) : DBEntryAirbaseParkingSpot.LoadJSON(airbase.parking, id)
+                    ParkingSpots = airbase.stands.Count > 0 ? DBEntryAirbaseParkingSpot.LoadJSON(airbase.stands, id) : DBEntryAirbaseParkingSpot.LoadJSON(airbase.parking, id)
                 });
             }
 

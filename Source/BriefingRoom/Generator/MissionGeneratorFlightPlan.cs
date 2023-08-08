@@ -29,8 +29,6 @@ namespace BriefingRoom4DCS.Generator
 {
     internal class MissionGeneratorFlightPlan
     {
-        private static readonly int[] EXTRA_WAYPOINT_COUNT = new int[] { 1, 1, 2, 2, 2, 2, 3 };
-
         private const double BULLSEYE_DISTANCE_MIN = 20.0;
 
         private const double BULLSEYE_DISTANCE_MAX = 40.0;

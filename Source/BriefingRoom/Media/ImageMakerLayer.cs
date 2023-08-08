@@ -23,7 +23,7 @@ using System.IO;
 
 namespace BriefingRoom4DCS.Media
 {
-    internal struct ImageMakerLayer
+    internal readonly struct ImageMakerLayer
     {
         internal Image ImageData { get; }
 

@@ -78,13 +78,13 @@ namespace BriefingRoom4DCS
             {
                 case DatabaseEntryType.Airbase:
                     if (string.IsNullOrEmpty(parameter)) // No parameter, return none
-                        return new DatabaseEntryInfo[] { };
+                        return Array.Empty<DatabaseEntryInfo>();
                     else // A parameter was provided, return all airbases from specified theater
                         return (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>() where airbase.Theater == parameter.ToLower() select airbase.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
 
                 case DatabaseEntryType.Situation:
                     if (string.IsNullOrEmpty(parameter)) // No parameter, return none
-                        return new DatabaseEntryInfo[] { };
+                        return Array.Empty<DatabaseEntryInfo>();
                     else // A parameter was provided, return all airbases from specified theater
                         return (from DBEntrySituation situation in Database.Instance.GetAllEntries<DBEntrySituation>() where situation.Theater == parameter.ToLower() select situation.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
                 case DatabaseEntryType.ObjectiveTarget:
@@ -125,7 +125,7 @@ namespace BriefingRoom4DCS
                     return (from DBEntryJSONUnit unit in Database.Instance.GetAllEntries<DBEntryJSONUnit>() select unit.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
 
                 case DatabaseEntryType.UnitCarrier:
-                    return Database.Instance.GetAllEntries<DBEntryJSONUnit>().Where(unitCarrier => Toolbox.CARRIER_FAMILIES.Intersect(unitCarrier.Families).Count() > 0).Select(unitCarrier => unitCarrier.GetDBEntryInfo())
+                    return Database.Instance.GetAllEntries<DBEntryJSONUnit>().Where(unitCarrier => Toolbox.CARRIER_FAMILIES.Intersect(unitCarrier.Families).Any()).Select(unitCarrier => unitCarrier.GetDBEntryInfo())
                     .Concat(Database.Instance.GetAllEntries<DBEntryTemplate>().Where(template => template.Type == "FOB").Select(template => template.GetDBEntryInfo()))
                     .OrderBy(x => x.Name.Get()).ToArray();
 
@@ -157,8 +157,8 @@ namespace BriefingRoom4DCS
             .Aggregate(new List<string>(), (acc, x) => { acc.AddRange(x); return acc; })
             .Distinct().Order().ToList();
 
-        public static List<string> GetAircraftCallsigns(string aircraftID) => new List<string> { };
-        // Database.Instance.GetEntry<DBEntryJSONUnit, DBEntryAircraft>(aircraftID).AircraftData.Callsigns;
+        public static List<string> GetAircraftCallsigns(string aircraft) => new();
+
 
         public static List<string> GetAircraftPayloads(string aircraftID) =>
             Database.Instance.GetEntry<DBEntryJSONUnit, DBEntryAircraft>(aircraftID).Payloads.Select(x => x.name).Distinct().Order().ToList();
@@ -174,22 +174,22 @@ namespace BriefingRoom4DCS
             return (from DatabaseEntryInfo entryInfo in GetDatabaseEntriesInfo(entryType, parameter) select entryInfo.ID).ToArray();
         }
 
-        public async Task<DCSMission> GenerateMissionAsync(string templateFilePath, bool useObjectivePresets = false)
+        public static async Task<DCSMission> GenerateMissionAsync(string templateFilePath)
         {
-            return await MissionGenerator.GenerateRetryableAsync(new MissionTemplate(templateFilePath), useObjectivePresets);
+            return await MissionGenerator.GenerateRetryableAsync(new MissionTemplate(templateFilePath));
         }
 
-        public async Task<DCSMission> GenerateMissionAsync(MissionTemplate template, bool useObjectivePresets = false)
+        public static async Task<DCSMission> GenerateMissionAsync(MissionTemplate template)
         {
-            return await MissionGenerator.GenerateRetryableAsync(template, useObjectivePresets);
+            return await MissionGenerator.GenerateRetryableAsync(template);
         }
 
-        public async Task<DCSCampaign> GenerateCampaignAsync(string templateFilePath, bool useObjectivePresets = false)
+        public static async Task<DCSCampaign> GenerateCampaignAsync(string templateFilePath)
         {
             return await CampaignGenerator.GenerateAsync(new CampaignTemplate(templateFilePath));
         }
 
-        public async Task<DCSCampaign> GenerateCampaignAsync(CampaignTemplate template)
+        public static async Task<DCSCampaign> GenerateCampaignAsync(CampaignTemplate template)
         {
             return await CampaignGenerator.GenerateAsync(template);
         }

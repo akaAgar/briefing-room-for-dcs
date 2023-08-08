@@ -48,7 +48,7 @@ namespace BriefingRoom4DCS.Generator
             var waypoints = new List<Waypoint>();
 
             var theaterDB = Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater);
-            Toolbox.setMinMaxTheaterCoords(theaterDB, mission);
+            Toolbox.SetMinMaxTheaterCoords(theaterDB, mission);
             var situationDB = Toolbox.RandomFrom(
                 Database.Instance.GetAllEntries<DBEntrySituation>()
                     .Where(x => x.Theater == template.ContextTheater.ToLower())
@@ -111,7 +111,7 @@ namespace BriefingRoom4DCS.Generator
             BriefingRoom.PrintToLog("Setting up airbases...");
             var airbasesGenerator = new MissionGeneratorAirbases(template, situationDB);
             var requiredRunway = template.PlayerFlightGroups.Select(x => ((DBEntryAircraft)Database.Instance.GetEntry<DBEntryJSONUnit>(x.Aircraft)).MinimumRunwayLengthFt).Max();
-            var playerAirbase = airbasesGenerator.SelectStartingAirbase(mission, template.FlightPlanTheaterStartingAirbase, theaterDB, requiredRunway: requiredRunway);
+            var playerAirbase = airbasesGenerator.SelectStartingAirbase(template.FlightPlanTheaterStartingAirbase, theaterDB, requiredRunway: requiredRunway);
             mission.PopulatedAirbaseIds[template.ContextPlayerCoalition].Add(playerAirbase.DCSID);
             if (playerAirbase.DCSID > 0)
             {
@@ -184,7 +184,7 @@ namespace BriefingRoom4DCS.Generator
             // Generate player flight groups
             BriefingRoom.PrintToLog("Generating player flight groups...");
             foreach (var templateFlightGroup in template.PlayerFlightGroups)
-                MissionGeneratorPlayerFlightGroups.GeneratePlayerFlightGroup(unitMaker, mission, template, templateFlightGroup, playerAirbase, waypoints, averageInitialPosition, objectivesCenter, theaterDB);
+                MissionGeneratorPlayerFlightGroups.GeneratePlayerFlightGroup(unitMaker, mission, template, templateFlightGroup, playerAirbase, waypoints, objectivesCenter, theaterDB);
 
 
             // Generate mission features
@@ -238,7 +238,7 @@ namespace BriefingRoom4DCS.Generator
             return mission;
         }
 
-        internal static async Task<DCSMission> GenerateRetryableAsync(MissionTemplate template, bool useObjectivePresets)
+        internal static async Task<DCSMission> GenerateRetryableAsync(MissionTemplate template)
         {
             var templateRecord = new MissionTemplateRecord(template);
             var mission = await Policy

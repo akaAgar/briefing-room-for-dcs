@@ -14,7 +14,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         public string AltType { get; set; } = "BARO";
         public string Action { get; set; }
         public double Speed { get; set; }
-        private List<DCSWaypointTask> _tasks = new List<DCSWaypointTask>();
+        private List<DCSWaypointTask> _tasks = new();
         public List<DCSWaypointTask> Tasks
         {
             get { return _tasks; }
@@ -36,9 +36,9 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 
         internal Coordinates Coordinates { get { return new Coordinates(X, Y); } }
 
-        private List<DCSWaypointTask> SortTasks(List<DCSWaypointTask> tasks) => tasks.Select(x => x.parameters.ContainsKey("wrapped")  && (bool)x.parameters["wrapped"] == true ? new DCSWrappedWaypointTask(x) : x).ToList();
+        private static List<DCSWaypointTask> SortTasks(List<DCSWaypointTask> tasks) => tasks.Select(x => x.Parameters.ContainsKey("wrapped")  && (bool)x.Parameters["wrapped"] == true ? new DCSWrappedWaypointTask(x) : x).ToList();
 
-        public string ToLuaString(int number)
+        public string ToLuaString()
         {
             var obj = new Dictionary<string, object> {
                 {"alt", Alt},

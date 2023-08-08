@@ -23,7 +23,7 @@ using BriefingRoom4DCS.Data.JSON;
 
 namespace BriefingRoom4DCS.Data
 {
-    internal struct DBEntryTheaterSpawnPoint
+    internal readonly struct DBEntryTheaterSpawnPoint
     {
 
         public Coordinates Coordinates { get; init; }

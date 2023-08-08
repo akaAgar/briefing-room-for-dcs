@@ -29,7 +29,7 @@ namespace BriefingRoom4DCS.Template
     public class MissionTemplateObjective : MissionTemplateGroup
     {
         public List<string> Features { get { return Features_; } set { Features_ = Database.Instance.CheckIDs<DBEntryFeatureObjective>(value.ToArray()).ToList(); } }
-        private List<string> Features_ = new List<string>();
+        private List<string> Features_ = new();
         public List<ObjectiveOption> Options { get { return Options_; } set { Options_ = value.Distinct().ToList(); } }
         private List<ObjectiveOption> Options_;
         public string Preset { get { return Preset_; } set { Preset_ = Database.Instance.CheckID<DBEntryObjectivePreset>(value); } }

@@ -24,17 +24,18 @@ using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
 namespace BriefingRoom4DCS
 {
-    internal class MizMaker
+    internal partial class MizMaker
     {
 
         internal static byte[] ExportToMizBytes(DCSMission mission, MissionTemplate template)
         {
-            Dictionary<string, byte[]> MizFileEntries = new Dictionary<string, byte[]>();
+            Dictionary<string, byte[]> MizFileEntries = new();
 
             AddStringValueToEntries(MizFileEntries, "l10n/DEFAULT/briefing.html", mission.Briefing.GetBriefingAsHTML(true));
             mission.AppendValue("MapResourcesFiles", $"[\"ResKey_Snd_briefing_html\"] = \"briefing.html\",\n");
@@ -78,9 +79,9 @@ namespace BriefingRoom4DCS
                 luaContent = mission.ReplaceValues(luaContent);
             luaContent = BriefingRoom.LanguageDB.ReplaceValues(luaContent);
 
-            foreach (Match match in Regex.Matches(luaContent, "\\$.*?\\$"))
+            foreach (Match match in UnassignedRegex().Matches(luaContent).Cast<Match>())
                 BriefingRoom.PrintToLog($"Found a non-assigned value ({match.Value}) in Lua file \"{mizEntryKey}\".", LogMessageErrorLevel.Info);
-            luaContent = Regex.Replace(luaContent, "\\$.*?\\$", "0");
+            luaContent = UnassignedRegex().Replace(luaContent, "0");
 
             mizFileEntries.Add(mizEntryKey, Encoding.UTF8.GetBytes(luaContent));
             return true;
@@ -93,6 +94,7 @@ namespace BriefingRoom4DCS
             return true;
         }
 
-
+        [GeneratedRegex("\\$.*?\\$")]
+        private static partial Regex UnassignedRegex();
     }
 }

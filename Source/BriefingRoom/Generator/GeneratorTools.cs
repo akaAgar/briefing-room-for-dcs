@@ -82,7 +82,7 @@ namespace BriefingRoom4DCS.Generator
                         where unit.Families.Intersect(families).ToList().Count > 0 && unit.Operators.ContainsKey(country) &&
                             (string.IsNullOrEmpty(unit.Module) || unitMods.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase) || DBEntryDCSMod.CORE_MODS.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase)) &&
                             (unit.Operators[country].start <= decade) && (unit.Operators[country].end >= decade) &&
-                            (!unit.lowPolly || allowLowPolly)
+                            (!unit.LowPolly || allowLowPolly)
                         select unit.ID
                     ).Distinct().ToList();
 

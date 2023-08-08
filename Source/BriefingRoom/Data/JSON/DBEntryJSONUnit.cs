@@ -35,7 +35,7 @@ namespace BriefingRoom4DCS.Data
         internal UnitCategory Category { get { return Families[0].GetUnitCategory(); } }
         internal bool IsAircraft { get { return Category.IsAircraft(); } }
         internal UnitFamily[] Families { get; init; }
-        internal bool lowPolly { get; init; } = false;
+        internal bool LowPolly { get; init; } = false;
         internal bool Immovable { get; init; } = false;
         internal string Shape { get; init; }
 
@@ -63,7 +63,7 @@ namespace BriefingRoom4DCS.Data
             return new List<Decade> { min, max };
         }
 
-        internal static Dictionary<Country, (Decade start, Decade end)> GetOperationalCountries(Unit unit, BRInfo supportInfo)
+        internal static Dictionary<Country, (Decade start, Decade end)> GetOperationalCountries(Unit unit)
         {
             return unit.Operators.ToDictionary(x => (Country)Enum.Parse(typeof(Country), x.Key.Replace(" ", ""), true), x =>(start: (Decade)x.Value[0], end: (Decade)x.Value[1]));
         }

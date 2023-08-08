@@ -23,7 +23,7 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
-    internal struct DBCommonAirDefenseLevel
+    internal readonly struct DBCommonAirDefenseLevel
     {
         internal double EmbeddedChance { get; }
 

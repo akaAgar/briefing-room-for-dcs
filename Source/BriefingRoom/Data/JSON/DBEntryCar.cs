@@ -58,12 +58,12 @@ namespace BriefingRoom4DCS.Data
                     UIDisplayName = new LanguageString(car.displayName),
                     DCSID = car.type,
                     Liveries = car.paintSchemes.ToDictionary(pair => (Country)Enum.Parse(typeof(Country), pair.Key.Replace(" ", ""), true), pair => pair.Value),
-                    Operators = GetOperationalCountries(car, infoData),
+                    Operators = GetOperationalCountries(car),
                     DCSCategory = car.category,
                     Module = car.module,
                     Shape = car.shape,
                     Families = infoData.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
-                    lowPolly = infoData.lowPolly,
+                    LowPolly = infoData.lowPolly,
                     Immovable = infoData.immovable
                 });
             }

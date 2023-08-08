@@ -22,7 +22,7 @@ using System.Collections.Generic;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal struct UnitCallsign
+    internal readonly struct UnitCallsign
     {
         internal string GroupName { get; }
 

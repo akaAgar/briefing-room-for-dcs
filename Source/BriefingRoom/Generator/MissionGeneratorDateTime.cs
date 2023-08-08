@@ -49,15 +49,14 @@ namespace BriefingRoom4DCS.Generator
 
                 int monthIndex = Toolbox.RandomInt(4);
                 month = seasonMonths[monthIndex];
-                switch (monthIndex)
+                day = monthIndex switch
                 {
-                    case 0: // First month of the season, season begins on the 21st
-                        day = Toolbox.RandomMinMax(21, GeneratorTools.GetDaysPerMonth(month, year)); break;
-                    case 3: // Last month of the season, season ends on the 20th
-                        day = Toolbox.RandomMinMax(1, 20); break;
-                    default:
-                        day = Toolbox.RandomMinMax(1, GeneratorTools.GetDaysPerMonth(month, year)); break;
-                }
+                    // First month of the season, season begins on the 21st
+                    0 => Toolbox.RandomMinMax(21, GeneratorTools.GetDaysPerMonth(month, year)),
+                    // Last month of the season, season ends on the 20th
+                    3 => Toolbox.RandomMinMax(1, 20),
+                    _ => Toolbox.RandomMinMax(1, GeneratorTools.GetDaysPerMonth(month, year)),
+                };
             }
 
             mission.SetValue("DateDay", day);
@@ -71,38 +70,19 @@ namespace BriefingRoom4DCS.Generator
 
         internal static void GenerateMissionTime(DCSMission mission, MissionTemplateRecord template, DBEntryTheater theaterDB, Month month)
         {
-            double totalMinutes;
             int hour, minute;
-
-            switch (template.EnvironmentTimeOfDay)
+            var totalMinutes = template.EnvironmentTimeOfDay switch
             {
-                default: // case TimeOfDay.Random
-                    totalMinutes = Toolbox.RandomInt(Toolbox.MINUTES_PER_DAY);
-                    break;
-
-                case TimeOfDay.RandomDaytime:
-                    totalMinutes = Toolbox.RandomInt(theaterDB.DayTime[(int)month].Min, theaterDB.DayTime[(int)month].Max - 60);
-                    break;
-
-                case TimeOfDay.Dawn:
-                    totalMinutes = Toolbox.RandomInt(theaterDB.DayTime[(int)month].Min, theaterDB.DayTime[(int)month].Min + 120);
-                    break;
-
-                case TimeOfDay.Noon:
-                    totalMinutes = Toolbox.RandomInt(
-                        (theaterDB.DayTime[(int)month].Min + theaterDB.DayTime[(int)month].Max) / 2 - 90,
-                        (theaterDB.DayTime[(int)month].Min + theaterDB.DayTime[(int)month].Max) / 2 + 90);
-                    break;
-
-                case TimeOfDay.Twilight:
-                    totalMinutes = Toolbox.RandomInt(theaterDB.DayTime[(int)month].Max - 120, theaterDB.DayTime[(int)month].Max + 30);
-                    break;
-
-                case TimeOfDay.Night:
-                    totalMinutes = Toolbox.RandomInt(0, theaterDB.DayTime[(int)month].Min - 120);
-                    break;
-            }
-
+                TimeOfDay.RandomDaytime => Toolbox.RandomInt(theaterDB.DayTime[(int)month].Min, theaterDB.DayTime[(int)month].Max - 60),
+                TimeOfDay.Dawn => Toolbox.RandomInt(theaterDB.DayTime[(int)month].Min, theaterDB.DayTime[(int)month].Min + 120),
+                TimeOfDay.Noon => Toolbox.RandomInt(
+                                        (theaterDB.DayTime[(int)month].Min + theaterDB.DayTime[(int)month].Max) / 2 - 90,
+                                        (theaterDB.DayTime[(int)month].Min + theaterDB.DayTime[(int)month].Max) / 2 + 90),
+                TimeOfDay.Twilight => Toolbox.RandomInt(theaterDB.DayTime[(int)month].Max - 120, theaterDB.DayTime[(int)month].Max + 30),
+                TimeOfDay.Night => Toolbox.RandomInt(0, theaterDB.DayTime[(int)month].Min - 120),
+                // case TimeOfDay.Random
+                _ => (double)Toolbox.RandomInt(Toolbox.MINUTES_PER_DAY),
+            };
             hour = Toolbox.Clamp((int)Math.Floor(totalMinutes / 60), 0, 23);
             minute = Toolbox.Clamp((int)Math.Floor((totalMinutes - hour * 60) / 15) * 15, 0, 45);
 
@@ -114,23 +94,22 @@ namespace BriefingRoom4DCS.Generator
         {
             if(theaterDB.SouthernHemisphere)
             {
-                switch (season)
+                return season switch
                 {
-                    default: return new Month[] { Month.September, Month.October, Month.November, Month.December }; // case Season.Spring or Season.Random
-                    case Season.Summer: return new Month[] { Month.December, Month.January, Month.February, Month.March };
-                    case Season.Fall: return new Month[] { Month.March, Month.April, Month.May, Month.June };
-                    case Season.Winter: return new Month[] { Month.June, Month.July, Month.August, Month.September }; 
-                }
-
+                    Season.Summer => new Month[] { Month.December, Month.January, Month.February, Month.March },
+                    Season.Fall => new Month[] { Month.March, Month.April, Month.May, Month.June },
+                    Season.Winter => new Month[] { Month.June, Month.July, Month.August, Month.September },
+                    _ => new Month[] { Month.September, Month.October, Month.November, Month.December },// case Season.Spring or Season.Random
+                };
             }
 
-            switch (season)
+            return season switch
             {
-                default: return new Month[] { Month.March, Month.April, Month.May, Month.June }; // case Season.Spring or Season.Random
-                case Season.Summer: return new Month[] { Month.June, Month.July, Month.August, Month.September };
-                case Season.Fall: return new Month[] { Month.September, Month.October, Month.November, Month.December };
-                case Season.Winter: return new Month[] { Month.December, Month.January, Month.February, Month.March };
-            }
+                Season.Summer => new Month[] { Month.June, Month.July, Month.August, Month.September },
+                Season.Fall => new Month[] { Month.September, Month.October, Month.November, Month.December },
+                Season.Winter => new Month[] { Month.December, Month.January, Month.February, Month.March },
+                _ => new Month[] { Month.March, Month.April, Month.May, Month.June },// case Season.Spring or Season.Random
+            };
         }
     }
 }

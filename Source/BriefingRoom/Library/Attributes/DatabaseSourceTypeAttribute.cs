@@ -36,7 +36,7 @@ namespace BriefingRoom4DCS
         {
             EntryType = entryType;
 
-            List<string> allowableValuesList = new List<string>();
+            List<string> allowableValuesList = new();
             if (allowEmpty) allowableValuesList.Add("");
             allowableValuesList.AddRange(BriefingRoom.GetDatabaseEntriesIDs(entryType));
             AllowableValues = allowableValuesList.ToArray();

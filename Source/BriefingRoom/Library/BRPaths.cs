@@ -79,7 +79,7 @@ namespace BriefingRoom4DCS
             if (string.IsNullOrEmpty(path))
                 path = AppDomain.CurrentDomain.BaseDirectory;
             path = Path.GetFullPath(path);
-            DirectoryInfo di = new DirectoryInfo(path);
+            DirectoryInfo di = new(path);
             var directories = di.GetDirectories();
             if (directories.Any(x => x.Name == "Database"))
                 return Toolbox.NormalizeDirectoryPath(path);

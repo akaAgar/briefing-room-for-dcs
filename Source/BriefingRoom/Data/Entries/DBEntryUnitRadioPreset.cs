@@ -69,7 +69,7 @@ namespace BriefingRoom4DCS.Data
             Type = preset.Type;
         }
 
-        public string ToLuaString(int number)
+        public string ToLuaString()
         {
             return LuaSerializer.Serialize(new Dictionary<string, object>{
                 {"modulations", Modulations},

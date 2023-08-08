@@ -29,18 +29,14 @@ namespace BriefingRoom4DCS.Generator
     internal class UnitMakerCallsignGenerator
     {
 
-        private static readonly List<Country> NON_NATO_CALLSIGN_NATIONS = new List<Country> { Country.Russia, Country.Abkhazia, Country.Belarus, Country.China, Country.Insurgents, Country.SouthOssetia, Country.Ukraine, Country.USSR, Country.Yugoslavia };
+        private static readonly List<Country> NON_NATO_CALLSIGN_NATIONS = new() { Country.Russia, Country.Abkhazia, Country.Belarus, Country.China, Country.Insurgents, Country.SouthOssetia, Country.Ukraine, Country.USSR, Country.Yugoslavia };
 
-        private readonly DBEntryCoalition[] CoalitionsDB;
+        private readonly List<string> NATOCallsigns = new();
 
-        private readonly List<string> NATOCallsigns = new List<string>();
+        private readonly List<string> RussianCallsigns = new();
 
-        private readonly List<string> RussianCallsigns = new List<string>();
-
-        internal UnitMakerCallsignGenerator(DBEntryCoalition[] coalitionsDB)
+        internal UnitMakerCallsignGenerator()
         {
-            CoalitionsDB = coalitionsDB;
-
             NATOCallsigns.Clear();
             RussianCallsigns.Clear();
         }
@@ -111,7 +107,7 @@ namespace BriefingRoom4DCS.Generator
             return new UnitCallsign(groupName, unitName/*, onboardNum*/, new Dictionary<object, object> { { 1, int.Parse(splitOverrideName[0]) }, { 2, overrideNumber }, { "name", unitName.Replace(" ", "") } });
         }
 
-        private string SetSkyNetPrefix(string unitName, Side side)
+        private static string SetSkyNetPrefix(string unitName, Side side)
         {
             var prefix = side == Side.Ally ? "BLUE-" : "";
             return $"{prefix}EW-{unitName}";

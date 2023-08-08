@@ -84,7 +84,7 @@ namespace BriefingRoom4DCS.Generator
                 UnitMakerGroupInfo? groupInfo;
                 var groupLua = "ShipCarrier";
                 var unitLua = "Ship";
-                if (templateOps.Count() > 0)
+                if (templateOps.Count > 0)
                     groupInfo = unitMaker.AddUnitGroupTemplate(Toolbox.RandomFrom(templateOps), Side.Ally, groupLua, unitLua, shipCoordinates, 0, extraSettings);
                 else
                     groupInfo = unitMaker.AddUnitGroup(unitDB.DCSID, Side.Ally, unitDB.Families[0], groupLua, unitLua, shipCoordinates, 0, extraSettings);
@@ -226,7 +226,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 var unit = group.Units.First();
                 if (unit.DCSID != "FARP")
-                    unit.unitType = "StaticSupply";
+                    unit.UnitType = "StaticSupply";
             }
         }
     }

@@ -10,10 +10,10 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         internal DCSUnit() { }
         internal DCSUnit(string unitType)
         {
-            this.unitType = unitType;
+            this.UnitType = unitType;
         }
 
-        internal string unitType { get; set; }
+        internal string UnitType { get; set; }
         internal string DCSID { get; set; }
         internal int UnitId { get; set; }
         internal Coordinates Coordinates { get; set; }
@@ -47,20 +47,20 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         // Vehicle
         internal bool PlayerCanDrive { get; set; }
 
-        public string ToLuaString(int number) => unitType switch
+        public string ToLuaString() => UnitType switch
         {
-            "Aircraft" => ToLuaStringAircraft(number),
-            "Ship" => ToLuaStringShip(number),
-            "Cargo" => ToLuaStringCargo(number),
-            "StaticFOB" => ToLuaStringStaticFOB(number),
-            "StaticSupply" => ToLuaStringStaticSupply(number),
-            "Static" => ToLuaStringStatic(number),
-            "Vehicle" => ToLuaStringVehicle(number),
-            _ => throw new BriefingRoomException($"Unsupported unit type {unitType}"),
+            "Aircraft" => ToLuaStringAircraft(),
+            "Ship" => ToLuaStringShip(),
+            "Cargo" => ToLuaStringCargo(),
+            "StaticFOB" => ToLuaStringStaticFOB(),
+            "StaticSupply" => ToLuaStringStaticSupply(),
+            "Static" => ToLuaStringStatic(),
+            "Vehicle" => ToLuaStringVehicle(),
+            _ => throw new BriefingRoomException($"Unsupported unit type {UnitType}"),
         };
 
 
-        private string ToLuaStringAircraft(int number)
+        private string ToLuaStringAircraft()
         {
             var obj = new Dictionary<string, object>{
                 {"type", DCSID},
@@ -88,7 +88,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             return LuaSerializer.Serialize(obj);
         }
 
-        private string ToLuaStringShip(int number)
+        private string ToLuaStringShip()
         {
             var obj = new Dictionary<string, object>{
                 {"type", DCSID},
@@ -106,7 +106,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             return LuaSerializer.Serialize(obj);
         }
 
-        private string ToLuaStringCargo(int number)
+        private string ToLuaStringCargo()
         {
             var obj = new Dictionary<string, object>{
                 {"type", DCSID},
@@ -124,7 +124,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             return LuaSerializer.Serialize(obj);
         }
 
-        private string ToLuaStringStatic(int number)
+        private string ToLuaStringStatic()
         {
             var obj = new Dictionary<string, object>{
                 {"type", DCSID},
@@ -138,7 +138,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             return LuaSerializer.Serialize(obj);
         }
 
-        private string ToLuaStringStaticSupply(int number)
+        private string ToLuaStringStaticSupply()
         {
             var obj = new Dictionary<string, object>{
                 {"type", DCSID},
@@ -153,7 +153,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             return LuaSerializer.Serialize(obj);
         }
 
-        private string ToLuaStringStaticFOB(int number)
+        private string ToLuaStringStaticFOB()
         {
             var obj = new Dictionary<string, object>{
                 {"type", DCSID},
@@ -171,7 +171,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             return LuaSerializer.Serialize(obj);
         }
 
-        private string ToLuaStringVehicle(int number)
+        private string ToLuaStringVehicle()
         {
             var obj = new Dictionary<string, object>{
                 {"type", DCSID},

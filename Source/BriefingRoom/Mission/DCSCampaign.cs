@@ -69,10 +69,11 @@ namespace BriefingRoom4DCS.Mission
 
         public byte[] ExportToCompressedByteArray(CampaignTemplate template)
         {
-            Dictionary<string, byte[]> FileEntries = new Dictionary<string, byte[]>();
-
-            FileEntries.Add("Campaign.cmp", Encoding.UTF8.GetBytes(CMPFile));
-            FileEntries.Add("template.cbrt", template.GetIniBytes());
+            Dictionary<string, byte[]> FileEntries = new()
+            {
+                { "Campaign.cmp", Encoding.UTF8.GetBytes(CMPFile) },
+                { "template.cbrt", template.GetIniBytes() }
+            };
 
             foreach (string key in MediaFiles.Keys)
             {
@@ -85,9 +86,9 @@ namespace BriefingRoom4DCS.Mission
             return Toolbox.ZipData(FileEntries);
         }
 
-        public byte[] ExportBriefingsToCompressedByteArray(CampaignTemplate template)
+        public byte[] ExportBriefingsToCompressedByteArray()
         {
-            Dictionary<string, byte[]> FileEntries = new Dictionary<string, byte[]>();
+            Dictionary<string, byte[]> FileEntries = new();
 
             for (int i = 0; i < Missions.Count; i++)
                 FileEntries.Add($"{Name}{i + 1:00}.html", Encoding.UTF8.GetBytes(Missions[i].Briefing.GetBriefingAsHTML()));

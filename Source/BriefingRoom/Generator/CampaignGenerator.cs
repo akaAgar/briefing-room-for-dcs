@@ -39,15 +39,16 @@ namespace BriefingRoom4DCS.Generator
 
         internal static async Task<DCSCampaign> GenerateAsync(CampaignTemplate campaignTemplate)
         {
-            DCSCampaign campaign = new();
-
-            campaign.Name = GeneratorTools.GenerateMissionName(campaignTemplate.BriefingCampaignName);
+            DCSCampaign campaign = new()
+            {
+                Name = GeneratorTools.GenerateMissionName(campaignTemplate.BriefingCampaignName)
+            };
             string baseFileName = Toolbox.RemoveInvalidPathCharacters(campaign.Name);
 
             DateTime date = GenerateCampaignDate(campaignTemplate);
 
             string previousSituationId = "";
-            Coordinates previousObjectiveCenterCoords = new Coordinates();
+            Coordinates previousObjectiveCenterCoords = new();
             string previousPlayerAirbaseId = "";
 
             for (int i = 0; i < campaignTemplate.MissionsCount; i++)
@@ -56,7 +57,7 @@ namespace BriefingRoom4DCS.Generator
 
                 var template = CreateMissionTemplate(campaignTemplate, campaign.Name, i, (int)campaignTemplate.MissionsObjectiveCount, previousSituationId, previousObjectiveCenterCoords, previousPlayerAirbaseId);
 
-                var mission = await MissionGenerator.GenerateRetryableAsync(template, true);
+                var mission = await MissionGenerator.GenerateRetryableAsync(template);
 
                 if (mission == null)
                 {
@@ -93,7 +94,7 @@ namespace BriefingRoom4DCS.Generator
             Month month = Toolbox.RandomFrom(Toolbox.GetEnumValues<Month>());
             int day = Toolbox.RandomMinMax(1, GeneratorTools.GetDaysPerMonth(month, year));
 
-            DateTime date = new DateTime(year, (int)month + 1, day);
+            DateTime date = new(year, (int)month + 1, day);
             return date;
         }
 
@@ -157,7 +158,7 @@ namespace BriefingRoom4DCS.Generator
             string previousSituationId, Coordinates previousObjectiveCenterCoords, string previousPlayerAirbaseId)
         {
             string weatherPreset = GetWeatherForMission(campaignTemplate.EnvironmentBadWeatherChance);
-            MissionTemplate template = new MissionTemplate
+            MissionTemplate template = new()
             {
                 BriefingMissionName = $"{campaignName}, phase {missionIndex + 1}",
                 BriefingMissionDescription = "",
@@ -235,40 +236,39 @@ namespace BriefingRoom4DCS.Generator
 
         private static double GetObjectiveVariationDistance(Amount objectiveVariationDistance)
         {
-            switch (objectiveVariationDistance)
+            return objectiveVariationDistance switch
             {
-                case Amount.VeryLow: return 10;
-                case Amount.Low: return 25;
-                default: return 50; // case Amount.Average
-                case Amount.High: return 75;
-                case Amount.VeryHigh: return 100;
-            }
+                Amount.VeryLow => 10,
+                Amount.Low => 25,
+                Amount.High => 75,
+                Amount.VeryHigh => 100,
+                _ => (double)50,// case Amount.Average
+            };
         }
 
         private static double GetAirbaseVariationDistance(Amount airbaseVariationDistance)
         {
-            switch (airbaseVariationDistance)
+            return airbaseVariationDistance switch
             {
-                case Amount.VeryLow: return 10;
-                case Amount.Low: return 25;
-                default: return 50; // case Amount.Average
-                case Amount.High: return 75;
-                case Amount.VeryHigh: return 100;
-            }
+                Amount.VeryLow => 10,
+                Amount.Low => 25,
+                Amount.High => 75,
+                Amount.VeryHigh => 100,
+                _ => (double)50,// case Amount.Average
+            };
         }
 
         private static Wind GetWindForMission(Amount badWeatherChance, string weatherPreset)
         {
             // Pick a max wind force
-            Wind maxWind;
-            switch (badWeatherChance)
+            var maxWind = badWeatherChance switch
             {
-                case Amount.VeryLow: maxWind = Wind.Calm; break;
-                case Amount.Low: maxWind = Wind.LightBreeze; break;
-                default: maxWind = Wind.ModerateBreeze; break; // case Amount.Average
-                case Amount.High: maxWind = Wind.ModerateBreeze; break;
-                case Amount.VeryHigh: maxWind = Wind.StrongBreeze; break;
-            }
+                Amount.VeryLow => Wind.Calm,
+                Amount.Low => Wind.LightBreeze,
+                Amount.High => Wind.ModerateBreeze,
+                Amount.VeryHigh => Wind.StrongBreeze,
+                _ => Wind.ModerateBreeze,
+            };
 
             // Select a random wind force
             Wind wind = (Wind)Toolbox.RandomMinMax((int)Wind.Calm, (int)maxWind);
@@ -329,15 +329,14 @@ namespace BriefingRoom4DCS.Generator
         private static string GetWeatherForMission(Amount badWeatherChance)
         {
             // Chance to have bad weather
-            int chance;
-            switch (badWeatherChance)
+            var chance = badWeatherChance switch
             {
-                case Amount.VeryLow: chance = 0; break;
-                case Amount.Low: chance = 10; break;
-                default: chance = 25; break; // case Amount.Average
-                case Amount.High: chance = 40; break;
-                case Amount.VeryHigh: chance = 60; break;
-            }
+                Amount.VeryLow => 0,
+                Amount.Low => 10,
+                Amount.High => 40,
+                Amount.VeryHigh => 60,
+                _ => 25,
+            };
 
             // Pick a random weather preset matching the good/bad weather chance
             string weather =
@@ -355,16 +354,14 @@ namespace BriefingRoom4DCS.Generator
 
         private static TimeOfDay GetTimeOfDayForMission(Amount nightMissionChance)
         {
-            int chance;
-            switch (nightMissionChance)
+            var chance = nightMissionChance switch
             {
-                case Amount.VeryLow: chance = 0; break;
-                case Amount.Low: chance = 10; break;
-                default: chance = 25; break; // case Amount.Average
-                case Amount.High: chance = 50; break;
-                case Amount.VeryHigh: chance = 80; break;
-            }
-
+                Amount.VeryLow => 0,
+                Amount.Low => 10,
+                Amount.High => 50,
+                Amount.VeryHigh => 80,
+                _ => 25,
+            };
             if (Toolbox.RandomInt(100) < chance)
                 return TimeOfDay.Night;
             else
@@ -373,19 +370,15 @@ namespace BriefingRoom4DCS.Generator
 
         private static int GetObjectiveCountForMission(Amount amount)
         {
-            switch (amount)
+            return amount switch
             {
-                case Amount.VeryLow:
-                    return 1;
-                case Amount.Low:
-                    return Toolbox.RandomFrom(1, 1, 2);
-                default: // case Amount.Average:
-                    return Toolbox.RandomFrom(1, 2, 2, 2, 3);
-                case Amount.High:
-                    return Toolbox.RandomFrom(2, 3, 3, 4);
-                case Amount.VeryHigh:
-                    return Toolbox.RandomFrom(3, 4, 4, 4, 5);
-            }
+                Amount.VeryLow => 1,
+                Amount.Low => Toolbox.RandomFrom(1, 1, 2),
+                Amount.High => Toolbox.RandomFrom(2, 3, 3, 4),
+                Amount.VeryHigh => Toolbox.RandomFrom(3, 4, 4, 4, 5),
+                // case Amount.Average:
+                _ => Toolbox.RandomFrom(1, 2, 2, 2, 3),
+            };
         }
 
         private static DateTime IncrementDate(DateTime dateTime) => dateTime.AddDays(Toolbox.RandomMinMax(1, 3));

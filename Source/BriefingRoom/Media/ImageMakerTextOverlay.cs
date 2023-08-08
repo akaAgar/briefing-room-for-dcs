@@ -40,7 +40,7 @@ namespace BriefingRoom4DCS.Media
 
         internal bool Shadow { get; set; } = true;
 
-        private ImageMaker ImageMaker;
+        private readonly ImageMaker ImageMaker;
 
         internal ImageMakerTextOverlay(ImageMaker imageMaker)
         {
@@ -51,29 +51,27 @@ namespace BriefingRoom4DCS.Media
         {
             if (string.IsNullOrEmpty(Text)) return; // No text, nothing to draw
 
-            using (Font font = new Font(FontFamily, FontSize, FontStyle))
+            using Font font = new(FontFamily, FontSize, FontStyle);
+            Size textSize = graphics.MeasureString(Text, font).ToSize();
+            StringFormat stringFormat = GetStringFormat();
+
+            // Draw text black "shadow" first to make sure it is readable on any background
+            if (Shadow)
             {
-                Size textSize = graphics.MeasureString(Text, font).ToSize();
-                StringFormat stringFormat = GetStringFormat();
-
-                // Draw text black "shadow" first to make sure it is readable on any background
-                if (Shadow)
-                {
-                    for (int x = -1; x <= 1; x++)
-                        for (int y = -1; y <= 1; y++)
-                            graphics.DrawString(Text, font, Brushes.Black,
-                                new RectangleF(3 * x + 10, 3 * y + 10, ImageMaker.ImageSizeX - 10, ImageMaker.ImageSizeY - 10), stringFormat);
-                }
-
-                using (SolidBrush brush = new SolidBrush(Color))
-                    graphics.DrawString(Text, font, brush,
-                        new RectangleF(10, 10, ImageMaker.ImageSizeX - 10, ImageMaker.ImageSizeY - 10), stringFormat);
+                for (int x = -1; x <= 1; x++)
+                    for (int y = -1; y <= 1; y++)
+                        graphics.DrawString(Text, font, Brushes.Black,
+                            new RectangleF(3 * x + 10, 3 * y + 10, ImageMaker.ImageSizeX - 10, ImageMaker.ImageSizeY - 10), stringFormat);
             }
+
+            using SolidBrush brush = new(Color);
+            graphics.DrawString(Text, font, brush,
+                new RectangleF(10, 10, ImageMaker.ImageSizeX - 10, ImageMaker.ImageSizeY - 10), stringFormat);
         }
 
         private StringFormat GetStringFormat()
         {
-            StringFormat stringFormat = new StringFormat();
+            StringFormat stringFormat = new();
 
             if (Alignment.ToString().EndsWith("Left")) stringFormat.Alignment = StringAlignment.Near;
             else if (Alignment.ToString().EndsWith("Right")) stringFormat.Alignment = StringAlignment.Far;

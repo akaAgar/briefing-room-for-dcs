@@ -94,7 +94,7 @@ namespace BriefingRoom4DCS.Generator
             Coalition playerCoalition, Country[][] coalitionsCountries,
             bool singlePlayerMission)
         {
-            CallsignGenerator = new UnitMakerCallsignGenerator(coalitionsDB);
+            CallsignGenerator = new UnitMakerCallsignGenerator();
             SpawnPointSelector = new UnitMakerSpawnPointSelector(theaterDB, situationDB, template.OptionsMission.Contains("InvertCountriesCoalitions"), template.BorderLimit);
 
             Mission = mission;
@@ -630,7 +630,7 @@ namespace BriefingRoom4DCS.Generator
                         unitsLuaTable += "{\n";
                         for (int groupIndex = 0; groupIndex < UnitLuaTables[country][unitCategory].Count; groupIndex++)
                         {
-                            unitsLuaTable += $"[{groupIndex + 1}] = {UnitLuaTables[country][unitCategory][groupIndex].ToLuaString(0)},";
+                            unitsLuaTable += $"[{groupIndex + 1}] = {UnitLuaTables[country][unitCategory][groupIndex].ToLuaString()},";
                         }
 
                         unitsLuaTable += $"}}, -- end of [\"group\"]\n";

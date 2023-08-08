@@ -7,7 +7,7 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 {
-    public class DCSGroup
+    public partial class DCSGroup
     {
         public bool Static { get; set; }
         public bool LateActivation { get; set; }
@@ -32,13 +32,13 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 
         public bool RadioSet { get; set; } = false;
 
-        public string ToLuaString(int number)
+        public string ToLuaString()
         {
-            if (Static) return ToLuaStringStatic(number);
+            if (Static) return ToLuaStringStatic();
             var obj = new Dictionary<string, object> {
                 {"lateActivation", LateActivation},
                 {"modulation", Modulation},
-                {"tasks", new string []{}},
+                {"tasks", System.Array.Empty<string>()},
                 {"uncontrolled", Uncontrolled},
                 {"taskSelected", TaskSelected},
                 {"task", Task},
@@ -63,7 +63,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             return LuaSerializer.Serialize(obj.Where(x => x.Value != null).ToDictionary(x => x.Key, x => x.Value));
         }
 
-        private string ToLuaStringStatic(int number)
+        private string ToLuaStringStatic()
         {
             var obj = new Dictionary<string, object> {
                 {"heading", 0},
@@ -82,20 +82,24 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 
         public static DCSGroup YamlToGroup(string yaml)
         {
-            foreach (Match match in Regex.Matches(yaml, "\\$.*?\\$"))
+            foreach (Match match in YamlRegex().Matches(yaml).Cast<Match>())
                 BriefingRoom.PrintToLog($"Found a non-assigned value ({match.Value}) in Group Yaml \"{yaml}\".", LogMessageErrorLevel.Info);
-            yaml = Regex.Replace(yaml, "\\$.*?\\$", "0");
+            yaml = YamlRegex().Replace(yaml, "0");
             var deserializer = new DeserializerBuilder()
             .WithNamingConvention(CamelCaseNamingConvention.Instance)
             .Build();
             try
             {
-                return deserializer.Deserialize<Mission.DCSLuaObjects.DCSGroup>(yaml);
+                return deserializer.Deserialize<DCSGroup>(yaml);
             }
             catch (System.Exception e)
             {
                 throw new BriefingRoomException($"Failed Deserializing yaml: {e.InnerException.Message} - {yaml}", e);
             }
         }
+
+        [GeneratedRegex("\\$.*?\\$")]
+        private static partial Regex YamlRegex();
+
     }
 }

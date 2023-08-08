@@ -47,7 +47,7 @@ namespace BriefingRoom4DCS.Media
 
         internal byte[] GetImageBytes(params ImageMakerLayer[] imageLayers)
         {
-            Bitmap bitmap = new Bitmap(ImageSizeX, ImageSizeY);
+            Bitmap bitmap = new(ImageSizeX, ImageSizeY);
             using (Graphics graphics = Graphics.FromImage(bitmap))
             {
                 graphics.Clear(BackgroundColor);

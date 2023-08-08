@@ -15,7 +15,7 @@ namespace BriefingRoom4DCS.Generator
         private readonly MissionTemplateRecord Template;
         private readonly DBEntryTheater TheaterDB;
         private readonly DBEntrySituation SituationDB;
-        private readonly List<string> LuaDrawings = new List<string>();
+        private readonly List<string> LuaDrawings = new();
 
         internal DrawingMaker(
             DCSMission mission, MissionTemplateRecord template, DBEntryTheater theaterDB, DBEntrySituation situationDB)

@@ -60,9 +60,11 @@ namespace BriefingRoom4DCS.Data
         protected override bool OnLoad(string iniFilePath)
         {
             var ini = new INIFile(iniFilePath);
-            BriefingRemarks = new List<LanguageString>();
-            BriefingRemarks.Add(ini.GetLangStrings("Briefing", "Remarks"));
-            BriefingRemarks.Add(ini.GetLangStrings("Briefing", "Remarks.Enemy"));
+            BriefingRemarks = new List<LanguageString>
+            {
+                ini.GetLangStrings("Briefing", "Remarks"),
+                ini.GetLangStrings("Briefing", "Remarks.Enemy")
+            };
 
             // Included files
             IncludeLua = Toolbox.AddMissingFileExtensions(ini.GetValueArray<string>("Include", "Lua"), ".lua");

@@ -58,7 +58,7 @@ namespace BriefingRoom4DCS.Generator
         {
             var angle = angleVariance.GetValue();
             if (preCenter)
-                angle = angle - 180;
+                angle -= 180;
             var refPoint = preCenter ? frontLineList.First() : frontLineList.Last();
             var point = Coordinates.FromAngleAndDistance(refPoint, frontLineDB.LinePointSeparationRange * Toolbox.NM_TO_METERS, angle);
             if (biasPoints.Count > 0)

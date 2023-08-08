@@ -56,11 +56,11 @@ namespace BriefingRoom4DCS.Data
                     ID = id,
                     UIDisplayName = new LanguageString(ship.displayName),
                     DCSID = ship.type,
-                    Operators = GetOperationalCountries(ship, infoData),
+                    Operators = GetOperationalCountries(ship),
                     Module = ship.module,
                     Shape = ship.shape,
                     Families = infoData.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
-                    lowPolly = infoData.lowPolly,
+                    LowPolly = infoData.lowPolly,
                     ParkingSpots = ship.numParking
                 });
 

@@ -53,7 +53,7 @@ namespace BriefingRoom4DCS.Generator
             countries[(int)Coalition.Red].AddRange(Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionRed).Countries);
 
             // Add all non-aligned countries to the list of neutral countries
-            List<Country> neutralCountries = new List<Country>(Toolbox.GetEnumValues<Country>());
+            List<Country> neutralCountries = new(Toolbox.GetEnumValues<Country>());
             for (i = 0; i < 2; i++) neutralCountries = neutralCountries.Except(countries[i]).ToList();
             countries[(int)Coalition.Neutral].AddRange(neutralCountries);
 

@@ -134,11 +134,11 @@ namespace BriefingRoom4DCS.Mission
         {
             if (string.IsNullOrEmpty(key)) return;
             key = key.ToUpper();
-            value = value ?? "";
+            value ??= "";
             value = value.Replace("\r\n", "\n");
 
             string displayedValue = value.Replace("\n", " ");
-            if (displayedValue.Length > MAX_VALUE_LENGTH_DISPLAY) displayedValue = displayedValue.Substring(0, MAX_VALUE_LENGTH_DISPLAY) + "...";
+            if (displayedValue.Length > MAX_VALUE_LENGTH_DISPLAY) displayedValue = string.Concat(displayedValue.AsSpan(0, MAX_VALUE_LENGTH_DISPLAY), "...");
 
             BriefingRoom.PrintToLog($"Mission parameter \"{key.ToLower()}\" {(append ? "appended with" : "set to")} \"{displayedValue}\".");
 

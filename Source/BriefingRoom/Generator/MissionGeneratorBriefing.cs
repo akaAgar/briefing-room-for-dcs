@@ -43,7 +43,7 @@ namespace BriefingRoom4DCS.Generator
                 else
                 {
                     var familyCount = 0;
-                    Dictionary<string, List<string>> descriptionsMap = new Dictionary<string, List<string>>();
+                    Dictionary<string, List<string>> descriptionsMap = new();
                     foreach (var obj in template.Objectives)
                     {
                         DBEntryBriefingDescription descriptionDB =
@@ -118,7 +118,9 @@ namespace BriefingRoom4DCS.Generator
                 descriptionsMap.Add(task, new List<string> { description });
         }
 
-        private static string LowerFirstChar(string str) => char.ToLower(str[0]) + str.Substring(1);
-
+        private static string LowerFirstChar(string str)
+        {
+            return char.ToLower(str[0]) + str[1..];
+        }
     }
 }

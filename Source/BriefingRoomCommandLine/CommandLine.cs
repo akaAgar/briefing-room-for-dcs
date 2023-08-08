@@ -32,8 +32,6 @@ namespace BriefingRoom4DCS.CommandLineTool
 
         private readonly StreamWriter LogWriter;
 
-        private readonly BriefingRoom BriefingRoomGenerator;
-
         [STAThread]
         private static async Task Main(string[] args)
         {
@@ -56,7 +54,6 @@ namespace BriefingRoom4DCS.CommandLineTool
             if (File.Exists(LOG_FILE)) File.Delete(LOG_FILE);
             LogWriter = File.AppendText(LOG_FILE);
             LogWriter.Flush();
-            BriefingRoomGenerator = new BriefingRoom(WriteToDebugLog);
         }
 
         private void WriteToDebugLog(string message, LogMessageErrorLevel errorLevel = LogMessageErrorLevel.Info)
@@ -91,7 +88,7 @@ namespace BriefingRoom4DCS.CommandLineTool
             {
                 if (Path.GetExtension(t).ToLower() == ".cbrt") // Template file is a campaign template
                 {
-                    DCSCampaign campaign = await BriefingRoomGenerator.GenerateCampaignAsync(t);
+                    DCSCampaign campaign = await BriefingRoom.GenerateCampaignAsync(t);
                     if (campaign == null)
                     {
                         Console.WriteLine($"Failed to generate a campaign from template {Path.GetFileName(t)}");
@@ -110,7 +107,7 @@ namespace BriefingRoom4DCS.CommandLineTool
                 }
                 else // Template file is a mission template
                 {
-                    DCSMission mission = await BriefingRoomGenerator.GenerateMissionAsync(t);
+                    DCSMission mission = await BriefingRoom.GenerateMissionAsync(t);
                     if (mission == null)
                     {
                         Console.WriteLine($"Failed to generate a mission from template {Path.GetFileName(t)}");
@@ -137,13 +134,13 @@ namespace BriefingRoom4DCS.CommandLineTool
             return true;
         }
 
-        private string RemoveInvalidPathCharacters(string fileName)
+        private static string RemoveInvalidPathCharacters(string fileName)
         {
             if (string.IsNullOrEmpty(fileName)) return "_";
             return string.Join("_", fileName.Split(Path.GetInvalidFileNameChars()));
         }
 
-        private string GetUnusedFileName(string filePath)
+        private static string GetUnusedFileName(string filePath)
         {
             if (!File.Exists(filePath)) return filePath; // File doesn't exist, use the desired name
 

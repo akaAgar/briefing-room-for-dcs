@@ -61,7 +61,7 @@ namespace BriefingRoom4DCS.Data
 
         protected string[] GetValidDBEntryIDs<T>(string[] values, out string[] rejected) where T : DBEntry
         {
-            values = values ?? new string[0]; // Make sure values is not null
+            values ??= Array.Empty<string>(); // Make sure values is not null
 
             // Accepted values IDs are neither null nor empty AND exist in the database
             string[] accepted =

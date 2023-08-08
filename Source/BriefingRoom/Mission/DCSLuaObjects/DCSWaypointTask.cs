@@ -11,8 +11,8 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         public string Id { get; init; }
         public string Key { get; set; }
         public int Priority { get; set; } = 9;
-        private Dictionary<string, object> _parameters = new Dictionary<string, object>();
-        public Dictionary<string, object> parameters
+        private Dictionary<string, object> _parameters = new();
+        public Dictionary<string, object> Parameters
         {
             get { return _parameters; }
             set { _parameters = DeterminTypes(value); }
@@ -23,7 +23,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         public DCSWaypointTask(string _id, Dictionary<string, object> _parameters, bool _enabled = true, bool _auto = true, int _priority = 9)
         {
             Id = _id;
-            parameters = _parameters;
+            Parameters = _parameters;
             Enabled = _enabled;
             Auto = _auto;
             Priority = _priority;
@@ -36,14 +36,14 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"number", number},
                 {"enabled", Enabled},
                 {"auto", Auto},
-                {"params", parameters},
+                {"params", Parameters},
             };
             if (!string.IsNullOrEmpty(Key))
                 obj.Add("key", Key);
             return LuaSerializer.Serialize(obj);
         }
 
-        private Dictionary<string, object> DeterminTypes(Dictionary<string, object> values)
+        private static Dictionary<string, object> DeterminTypes(Dictionary<string, object> values)
         {
             foreach (var param in values)
             {

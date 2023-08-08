@@ -61,7 +61,7 @@ namespace BriefingRoom4DCS.Data
                     Operators = new Dictionary<Country, (Template.Decade start, Template.Decade end)> { { Country.ALL, (Template.Decade.Decade1940, Template.Decade.Decade2020) } },
                     ShapeName = @static.shapeName,
                     Families = supportInfo.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
-                    lowPolly = supportInfo.lowPolly,
+                    LowPolly = supportInfo.lowPolly,
                     ParkingSpots = @static.numParking
                 });
             }

@@ -131,7 +131,7 @@ namespace BriefingRoom4DCS.Template
             return PlayerFlightGroups.Aggregate(0, (acc, x) => acc + (x.AIWingmen ? 1 : x.Count));
         }
 
-        private List<string> GetMods(MissionTemplate template)
+        private static List<string> GetMods(MissionTemplate template)
         {   
             var selectedMods = template.Mods.Select(x => Database.Instance.GetEntry<DBEntryDCSMod>(x).Module);
             return template.PlayerFlightGroups

@@ -24,9 +24,9 @@ using System.Linq;
 
 namespace BriefingRoom4DCS
 {
-    internal struct Coordinates : ICloneable
+    internal readonly struct Coordinates : ICloneable
     {
-        internal static readonly Coordinates Zero = new Coordinates(0, 0);
+        internal static readonly Coordinates Zero = new(0, 0);
 
         internal readonly double X;
 
@@ -118,7 +118,7 @@ namespace BriefingRoom4DCS
         {
             if ((coordinates == null) || (coordinates.Length == 0)) return new Coordinates();
 
-            Coordinates center = new Coordinates();
+            Coordinates center = new();
             for (int i = 0; i < coordinates.Length; i++) center += coordinates[i];
 
             center /= coordinates.Length;

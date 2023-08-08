@@ -22,7 +22,7 @@ using System.Collections.Generic;
 
 namespace BriefingRoom4DCS
 {
-    public struct DatabaseEntryInfo
+    public readonly struct DatabaseEntryInfo
     {
         public LanguageString Category { get; }
 

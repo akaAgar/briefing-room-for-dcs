@@ -32,8 +32,7 @@ namespace BriefingRoom4DCS.Data
         {
             get
             {
-                if (_Instance == null)
-                    _Instance = new Database();
+                _Instance ??= new Database();
 
                 return _Instance;
             }
@@ -119,7 +118,7 @@ namespace BriefingRoom4DCS.Data
                 throw new Exception($"Directory {directory} not found.");
 
             Type dbType = typeof(T);
-            string shortTypeName = dbType.Name.Substring(7).ToLower();
+            string shortTypeName = dbType.Name[7..].ToLower();
 
             if (!DBEntries.ContainsKey(dbType))
                 DBEntries.Add(dbType, new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase));
@@ -131,7 +130,7 @@ namespace BriefingRoom4DCS.Data
                 string id = Path.GetFileNameWithoutExtension(filePath).Replace(",", "").Trim(); // No commas in file names, so we don't break comma-separated arrays
 
                 if (DBEntries[dbType].ContainsKey(id)) continue;
-                T entry = new T();
+                T entry = new();
                 if (!entry.Load(this, id, filePath)) continue;
                 DBEntries[dbType].Add(id, entry);
                 BriefingRoom.PrintToLog($"Loaded {shortTypeName} \"{id}\"");
@@ -163,40 +162,19 @@ namespace BriefingRoom4DCS.Data
 
             if (!DBEntries.ContainsKey(dbType))
                 DBEntries.Add(dbType, new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase));
-
-            Dictionary<string, DBEntry> entries;
-            switch (new T())
+            Dictionary<string, DBEntry> entries = new T() switch
             {
-                case DBEntryAirbase a:
-                    entries = DBEntries[dbType].Concat(DBEntryAirbase.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
-                    break;
-                case DBEntryCar a:
-                    entries = DBEntries[dbType].Concat(DBEntryCar.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
-                    break;
-                case DBEntryAircraft a:
-                    entries = DBEntries[dbType].Concat(DBEntryAircraft.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
-                    break;
-                case DBEntryShip a:
-                    entries = DBEntries[dbType].Concat(DBEntryShip.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
-                    break;
-                case DBEntryStatic a:
-                    entries = DBEntries[dbType].Concat(DBEntryStatic.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
-                    break;
-                case DBEntryCargo a:
-                    entries = DBEntries[dbType].Concat(DBEntryCargo.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
-                    break;
-                case DBEntryTemplate a:
-                    entries = DBEntries[dbType].Concat(DBEntryTemplate.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
-                    break;
-                case DBEntryLayout a:
-                    entries = DBEntries[dbType].Concat(DBEntryLayout.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
-                    break;
-                case DBEntrySituation a:
-                    entries = DBEntries[dbType].Concat(DBEntrySituation.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value);
-                    break;
-                default:
-                    throw new BriefingRoomException($"JSON type {dbType} not implemented.");
-            }
+                DBEntryAirbase a => DBEntries[dbType].Concat(DBEntryAirbase.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
+                DBEntryCar a => DBEntries[dbType].Concat(DBEntryCar.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
+                DBEntryAircraft a => DBEntries[dbType].Concat(DBEntryAircraft.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
+                DBEntryShip a => DBEntries[dbType].Concat(DBEntryShip.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
+                DBEntryStatic a => DBEntries[dbType].Concat(DBEntryStatic.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
+                DBEntryCargo a => DBEntries[dbType].Concat(DBEntryCargo.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
+                DBEntryTemplate a => DBEntries[dbType].Concat(DBEntryTemplate.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
+                DBEntryLayout a => DBEntries[dbType].Concat(DBEntryLayout.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
+                DBEntrySituation a => DBEntries[dbType].Concat(DBEntrySituation.LoadJSON(filePath)).ToDictionary(pair => pair.Key, pair => pair.Value),
+                _ => throw new BriefingRoomException($"JSON type {dbType} not implemented."),
+            };
             DBEntries[dbType] = entries;
             BriefingRoom.PrintToLog($"Found {DBEntries[dbType].Count} database entries of type \"{typeof(T).Name}\"");
 
@@ -235,7 +213,7 @@ namespace BriefingRoom4DCS.Data
                 return;
 
             Type dbType = typeof(T);
-            string shortTypeName = dbType.Name.Substring(7).ToLower();
+            string shortTypeName = dbType.Name[7..].ToLower();
 
             foreach (string filePath in Directory.EnumerateFiles(directory, "*.ini", SearchOption.AllDirectories))
             {
@@ -313,7 +291,7 @@ namespace BriefingRoom4DCS.Data
 
         internal T GetEntry<T>(string id) where T : DBEntry
         {
-            id = id ?? "";
+            id ??= "";
             if (!DBEntries[typeof(T)].ContainsKey(id)) return null;
             return (T)DBEntries[typeof(T)][id];
         }
@@ -322,7 +300,7 @@ namespace BriefingRoom4DCS.Data
             where T : DBEntry
             where ST : DBEntry
         {
-            id = id ?? "";
+            id ??= "";
             if (!DBEntries[typeof(T)].ContainsKey(id)) return null;
             return (ST)DBEntries[typeof(T)][id];
         }

@@ -38,7 +38,6 @@ namespace BriefingRoom4DCS.Generator
             MissionTemplateFlightGroupRecord flightGroup,
             DBEntryAirbase playerAirbase,
             List<Waypoint> waypoints,
-            Coordinates averageInitialLocation,
             Coordinates objectivesCenter,
             DBEntryTheater theaterDB)
         {
@@ -62,8 +61,8 @@ namespace BriefingRoom4DCS.Generator
             if (unitDB.MinimumRunwayLengthFt > 0 && airbase.RunwayLengthFt < unitDB.MinimumRunwayLengthFt)
                 BriefingRoom.PrintToLog($"Runway at {airbase.Name}({airbase.RunwayLengthFt}ft) is shorter than {unitDB.UIDisplayName}({unitDB.MinimumRunwayLengthFt}ft) required runway length.", LogMessageErrorLevel.Warning);
 
-            List<int> parkingSpotIDsList = new List<int>();
-            List<Coordinates> parkingSpotCoordinatesList = new List<Coordinates>();
+            List<int> parkingSpotIDsList = new();
+            List<Coordinates> parkingSpotCoordinatesList = new();
             var groupLuaFile = "AircraftPlayer";
             var carrierUnitID = 0;
             string carrierName = null;
@@ -75,7 +74,7 @@ namespace BriefingRoom4DCS.Generator
             DCSSkillLevel skillLevel = flightGroup.AIWingmen ? Toolbox.RandomFrom(DCSSkillLevel.High, DCSSkillLevel.Excellent) : DCSSkillLevel.Client;
             var atcRadioFrequency = 0d;
             if (airbase.ATC != null)
-                double.TryParse(airbase.ATC.Split("/")[0], out atcRadioFrequency);
+                _ = double.TryParse(airbase.ATC.Split("/")[0], out atcRadioFrequency);
 
             if (!string.IsNullOrEmpty(flightGroup.Carrier) && unitMaker.CarrierDictionary.ContainsKey(flightGroup.Carrier) && !flightGroup.Hostile) // Carrier take off
             {
@@ -99,7 +98,7 @@ namespace BriefingRoom4DCS.Generator
                         parkingSpotIDsList.Add(i + 1);
                         parkingSpotCoordinatesList.Add(carrier.UnitMakerGroupInfo.Coordinates);
                     }
-                    carrier.RemainingSpotCount = carrier.RemainingSpotCount - flightGroup.Count;
+                    carrier.RemainingSpotCount -= flightGroup.Count;
                 }
                 groupStartingCoords = carrier.UnitMakerGroupInfo.Coordinates;
                 atcRadioFrequency = carrier.UnitMakerGroupInfo.Frequency / 1000000.0;
@@ -113,7 +112,7 @@ namespace BriefingRoom4DCS.Generator
                 groupStartingCoords = hostileParkingSpotCoordinatesList.First();
                 airbase = hostileAirbase;
                 if (airbase.ATC != null)
-                    double.TryParse(airbase.ATC.Split("/")[0], out atcRadioFrequency);
+                    _ = double.TryParse(airbase.ATC.Split("/")[0], out atcRadioFrequency);
 
                 if (country == Country.CombinedJointTaskForcesBlue || country == Country.CombinedJointTaskForcesRed)
                     country = coalition == Coalition.Blue ? Country.CombinedJointTaskForcesBlue : Country.CombinedJointTaskForcesRed;
@@ -220,12 +219,12 @@ namespace BriefingRoom4DCS.Generator
             Coordinates lastWP = initialCoordinates;
 
             // Add first (takeoff) and last (landing) waypoints to get a complete list of all waypoints
-            List<Waypoint> allWaypoints = new List<Waypoint>(waypoints);
+            List<Waypoint> allWaypoints = new(waypoints);
             allWaypoints.Insert(0, new Waypoint(Database.Instance.Common.Names.WPInitialName.Get().ToUpper(), initialCoordinates));
             allWaypoints.Add(new Waypoint(Database.Instance.Common.Names.WPFinalName.Get().ToUpper(), initialCoordinates));
             mission.Briefing.AddItem(DCSMissionBriefingItemType.Waypoint, $"\t{groupInfo.Value.Name}\t");
 
-            List<string> waypointTextRows = new List<string>();
+            List<string> waypointTextRows = new();
             foreach (Waypoint waypoint in allWaypoints)
             {
                 double distanceFromLast = waypoint.Coordinates.GetDistanceFrom(lastWP);

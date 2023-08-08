@@ -31,7 +31,6 @@ namespace BriefingRoom4DCS.Template
 {
     public sealed class MissionTemplate : BaseTemplate, IBaseTemplate
     {
-        private static readonly string DEFAULT_TEMPLATE_FILEPATH = Path.Combine(BRPaths.ROOT, "Default.brt");
         public string BriefingMissionName { get; set; }
         public string BriefingMissionDescription { get; set; }
         public Season EnvironmentSeason { get; set; }
@@ -47,7 +46,7 @@ namespace BriefingRoom4DCS.Template
         private int BorderLimit_;
         public List<MissionTemplateObjective> Objectives { get; set; } = new List<MissionTemplateObjective>();
         public List<MissionTemplatePackage> AircraftPackages { get { return AircraftPackages_; } set { AircraftPackages_ = value.Take(MAX_PLAYER_FLIGHT_GROUPS).ToList(); } }
-        private List<MissionTemplatePackage> AircraftPackages_ = new List<MissionTemplatePackage>();
+        private List<MissionTemplatePackage> AircraftPackages_ = new();
         public Dictionary<string, double[]> CarrierHints { get; set; } = new Dictionary<string, double[]>();
 
 

@@ -9,9 +9,9 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         {
         }
 
-        internal DCSWrappedWaypointTask(DCSWaypointTask task) : base(task.Id, task.parameters, task.Enabled, task.Auto, task.Priority)
+        internal DCSWrappedWaypointTask(DCSWaypointTask task) : base(task.Id, task.Parameters, task.Enabled, task.Auto, task.Priority)
         {
-            parameters.Remove("wrapped");
+            Parameters.Remove("wrapped");
         }
 
         public new string ToLuaString(int number)
@@ -24,7 +24,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"params", new Dictionary<string, object>{
                     {"action", new Dictionary<string, object>{
                         {"id", Id},
-                        {"params", parameters}
+                        {"params", Parameters}
                     }}
                 }},
             });

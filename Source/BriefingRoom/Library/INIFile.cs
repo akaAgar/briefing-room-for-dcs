@@ -29,7 +29,7 @@ namespace BriefingRoom4DCS
 {
     public class INIFile
     {
-        private readonly Dictionary<string, INIFileSection> Sections = new Dictionary<string, INIFileSection>(StringComparer.InvariantCultureIgnoreCase);
+        private readonly Dictionary<string, INIFileSection> Sections = new(StringComparer.InvariantCultureIgnoreCase);
 
         internal INIFile() { Clear(); }
 
@@ -45,7 +45,7 @@ namespace BriefingRoom4DCS
 
         public static INIFile CreateFromRawINIString(string iniString)
         {
-            INIFile ini = new INIFile();
+            INIFile ini = new();
             ini.Clear();
             ini.ParseINIString(iniString);
             return ini;
@@ -140,7 +140,7 @@ namespace BriefingRoom4DCS
         }
         internal T[] GetValueArray<T>(string section, string key, char separator = ',')
         {
-            if (string.IsNullOrEmpty(GetValue<string>(section, key))) return new T[0];
+            if (string.IsNullOrEmpty(GetValue<string>(section, key))) return Array.Empty<T>();
 
             object val = ReadValue(section, key) ?? "";
 
@@ -193,7 +193,7 @@ namespace BriefingRoom4DCS
 
         internal void SetValueArray<T>(string section, string key, T[] value, char separator = ',')
         {
-            value = value ?? new T[0];
+            value ??= Array.Empty<T>();
             object oVal = value;
 
             if (typeof(T) == typeof(string))
@@ -218,12 +218,12 @@ namespace BriefingRoom4DCS
 
         internal string[] GetKeysInSection(string section, bool ignoreLangs = false)
         {
-            if (!Sections.ContainsKey(section)) return new string[0];
+            if (!Sections.ContainsKey(section)) return Array.Empty<string>();
 
-            List<string> keys = new List<string>();
+            List<string> keys = new();
             keys.AddRange(Sections[section].Keys);
 
-            List<string> checkedSections = new List<string>();
+            List<string> checkedSections = new();
 
             while (
                 !string.IsNullOrEmpty(Sections[section].ParentSection) &&
@@ -245,8 +245,8 @@ namespace BriefingRoom4DCS
 
             for (int i = 0; i < keys.Length; i++)
             {
-                if (keys[i].Contains("."))
-                    keys[i] = keys[i].Substring(0, keys[i].IndexOf("."));
+                if (keys[i].Contains('.'))
+                    keys[i] = keys[i][..keys[i].IndexOf(".")];
             }
 
             return keys.Distinct().ToArray();
@@ -261,7 +261,7 @@ namespace BriefingRoom4DCS
         {
             if (string.IsNullOrEmpty(section) || string.IsNullOrEmpty(key)) return null;
 
-            List<string> checkedSections = new List<string>();
+            List<string> checkedSections = new();
 
             while (Sections.ContainsKey(section))
             {
@@ -285,7 +285,7 @@ namespace BriefingRoom4DCS
         {
             section = (section ?? "").ToLower().Trim();
             key = (key ?? "").ToLower().Trim();
-            value = value ?? "";
+            value ??= "";
             if (string.IsNullOrEmpty(section) || string.IsNullOrEmpty(key)) return false;
 
             if (!Sections.ContainsKey(section))
@@ -354,7 +354,7 @@ namespace BriefingRoom4DCS
             }
         }
 
-        private bool CanConvertStringTo<T>()
+        private static bool CanConvertStringTo<T>()
         {
             Type type = typeof(T);
 
@@ -374,7 +374,7 @@ namespace BriefingRoom4DCS
             return false;
         }
 
-        private bool CanConvertStringFrom<T>()
+        private static bool CanConvertStringFrom<T>()
         {
             Type type = typeof(T);
 
@@ -392,7 +392,7 @@ namespace BriefingRoom4DCS
             return false;
         }
 
-        private T ConvertStringTo<T>(string value, T defaultValue = default)
+        private static T ConvertStringTo<T>(string value, T defaultValue = default)
         {
             Type type = typeof(T);
 
@@ -437,7 +437,7 @@ namespace BriefingRoom4DCS
             return (T)outObject;
         }
 
-        private string ConvertStringFrom<T>(T value)
+        private static string ConvertStringFrom<T>(T value)
         {
             Type type = typeof(T);
 

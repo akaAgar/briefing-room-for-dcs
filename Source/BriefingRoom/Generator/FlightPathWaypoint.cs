@@ -24,9 +24,9 @@ using BriefingRoom4DCS.Data;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal struct Waypoint
+    internal readonly struct Waypoint
     {
-        private readonly List<DCSTask> ATTACK_GROUP_TASKS = new List<DCSTask> { DCSTask.AntishipStrike, DCSTask.SEAD, DCSTask.CAS };
+        private readonly List<DCSTask> ATTACK_GROUP_TASKS = new() { DCSTask.AntishipStrike, DCSTask.SEAD, DCSTask.CAS };
         internal string Name { get; }
 
         internal Coordinates Coordinates { get; }
@@ -57,7 +57,7 @@ namespace BriefingRoom4DCS.Generator
                         Enabled = true,
                         Auto = false,
                         Id = "AttackGroup",
-                        parameters = new Dictionary<string, object>{
+                        Parameters = new Dictionary<string, object>{
                             {"altitudeEnabled", false},
                             {"groupId", TargetGroupID},
                             {"attackQtyLimit", false},
@@ -76,7 +76,7 @@ namespace BriefingRoom4DCS.Generator
                         Enabled = true,
                         Auto = false,
                         Id = "EngageGroup",
-                        parameters = new Dictionary<string, object>{
+                        Parameters = new Dictionary<string, object>{
                             {"visible", false},
                             {"groupId", TargetGroupID},
                             {"priority", 1},
@@ -104,7 +104,7 @@ namespace BriefingRoom4DCS.Generator
 
     internal class WaypointNameGenerator
     {
-        private readonly List<string> ObjectiveNames = new List<string>();
+        private readonly List<string> ObjectiveNames = new();
         internal WaypointNameGenerator()
         {
             ObjectiveNames = new List<string>(Database.Instance.Common.Names.WPObjectivesNames.Get().Split(","));

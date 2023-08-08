@@ -52,7 +52,7 @@ namespace BriefingRoom4DCS.Generator
                 var flights = _template.PlayerFlightGroups.Where((v, i) => package.FlightGroupIndexes.Contains(i));
                 var requiredSpots = flights.Sum(x => x.Count);
                 var requiredRunway = flights.Select(x => ((DBEntryAircraft)Database.Instance.GetEntry<DBEntryJSONUnit>(x.Aircraft)).MinimumRunwayLengthFt).Max();
-                var airbase = SelectStartingAirbase(mission, package.StartingAirbase, theaterDB, requiredSpots, requiredRunway);
+                var airbase = SelectStartingAirbase(package.StartingAirbase, theaterDB, requiredSpots, requiredRunway);
 
                 if (missionPackages.Any(x => x.Airbase == airbase))
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{airbase.Name}\t{airbase.Runways}\t{airbase.ATC}\t{airbase.ILS}\t{airbase.TACAN}");
@@ -63,7 +63,7 @@ namespace BriefingRoom4DCS.Generator
             mission.MissionPackages.AddRange(missionPackages);
         }
 
-        internal DBEntryAirbase SelectStartingAirbase(DCSMission mission, string selectedAirbaseID, DBEntryTheater theaterDB, int requiredParkingSpots = 0, int requiredRunway = 0)
+        internal DBEntryAirbase SelectStartingAirbase(string selectedAirbaseID, DBEntryTheater theaterDB, int requiredParkingSpots = 0, int requiredRunway = 0)
         {
             // Get total number of required parking spots for flight groups
             if (requiredParkingSpots == 0)
@@ -73,10 +73,7 @@ namespace BriefingRoom4DCS.Generator
             // If a particular airbase name has been specified and an airbase with this name exists, pick it
             if (!string.IsNullOrEmpty(selectedAirbaseID))
             {
-                var airbase = airbases.FirstOrDefault(x => x.ID == selectedAirbaseID);
-                if (airbase is null)
-                    throw new BriefingRoomException($"No airbase found with ID \"{selectedAirbaseID}\", cannot spawn player aircraft.");
-
+                var airbase = airbases.FirstOrDefault(x => x.ID == selectedAirbaseID) ?? throw new BriefingRoomException($"No airbase found with ID \"{selectedAirbaseID}\", cannot spawn player aircraft.");
                 return airbase;
             }
 
@@ -84,7 +81,7 @@ namespace BriefingRoom4DCS.Generator
                     x.ParkingSpots.Length >= requiredParkingSpots &&
                     (x.Coalition == _template.ContextPlayerCoalition || _template.SpawnAnywhere) &&
                     x.RunwayLengthFt > requiredRunway &&
-                    (MissionPrefersShoreAirbase() ? IsNearWater(x.Coordinates, theaterDB) : true)
+                    (!MissionPrefersShoreAirbase() || IsNearWater(x.Coordinates, theaterDB))
                     ).ToList();
 
             if (opts.Count == 0)
@@ -123,7 +120,7 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        private bool IsNearWater(Coordinates coords, DBEntryTheater theaterDB)
+        private static bool IsNearWater(Coordinates coords, DBEntryTheater theaterDB)
         {
             return theaterDB.WaterCoordinates.Any(x => ShapeManager.GetDistanceFromShape(coords, x) * Toolbox.METERS_TO_NM < 50);
         }

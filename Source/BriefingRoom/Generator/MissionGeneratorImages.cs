@@ -41,7 +41,7 @@ namespace BriefingRoom4DCS.Generator
             imageMaker.TextOverlay.Alignment = ContentAlignment.MiddleCenter;
             imageMaker.TextOverlay.Text = mission.Briefing.Name;
 
-            List<ImageMakerLayer> imageLayers = new List<ImageMakerLayer>();
+            List<ImageMakerLayer> imageLayers = new();
             string[] theaterImages = Directory.GetFiles(Path.Combine(BRPaths.INCLUDE_JPG, "Theaters"), $"{Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater).DCSID}*.jpg");
             if (theaterImages.Length == 0)
                 imageLayers.Add(new ImageMakerLayer("_default.jpg"));
@@ -77,7 +77,7 @@ namespace BriefingRoom4DCS.Generator
             try
             {
                 string tempRenderPath = Path.ChangeExtension(Path.GetTempFileName(), ".png").Replace(".png", "_*.png");
-                ChromePdfRenderer renderer = new ChromePdfRenderer();
+                ChromePdfRenderer renderer = new();
                 renderer.RenderingOptions.PaperSize = IronPdf.Rendering.PdfPaperSize.Custom;
                 renderer.RenderingOptions.SetCustomPaperSizeinPixelsOrPoints(1200, 1725);
                 PdfDocument pdf = await renderer.RenderHtmlAsPdfAsync(html);

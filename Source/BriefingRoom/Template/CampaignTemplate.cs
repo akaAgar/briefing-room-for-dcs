@@ -30,7 +30,6 @@ namespace BriefingRoom4DCS.Template
 {
     public sealed class CampaignTemplate : BaseTemplate, IBaseTemplate
     {
-        private static readonly string DEFAULT_TEMPLATE_FILEPATH = Path.Combine(BRPaths.ROOT, "Default.cbrt");
         private static readonly int MIN_CAMPAIGN_MISSIONS = Database.Instance.Common.MinCampaignMissions;
         private static readonly int MAX_CAMPAIGN_MISSIONS = Database.Instance.Common.MaxCampaignMissions;
         public string BriefingCampaignName { get; set; }
@@ -40,7 +39,7 @@ namespace BriefingRoom4DCS.Template
         private int MissionsCount_ = MIN_CAMPAIGN_MISSIONS;
         public CampaignDifficultyVariation MissionsDifficultyVariation { get; set; }
         public List<string> MissionsObjectives { get { return MissionObjectives_; } set { MissionObjectives_ = Database.Instance.CheckIDs<DBEntryObjectivePreset>(value.ToArray()).Distinct().ToList(); } }
-        private List<string> MissionObjectives_ = new List<string>();
+        private List<string> MissionObjectives_ = new();
         public Amount MissionsObjectiveCount { get; set; }
         public Amount MissionsObjectiveVariationDistance { get; set; }
         public Amount MissionsAirbaseVariationDistance { get; set; }

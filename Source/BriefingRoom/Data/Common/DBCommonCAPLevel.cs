@@ -23,7 +23,7 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
-    internal struct DBCommonCAPLevel
+    internal readonly struct DBCommonCAPLevel
     {
         internal DCSSkillLevel[] SkillLevel { get; }
 
