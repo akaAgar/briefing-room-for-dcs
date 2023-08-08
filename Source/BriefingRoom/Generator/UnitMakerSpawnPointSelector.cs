@@ -1,4 +1,4 @@
-﻿/*
+/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -150,7 +150,7 @@ namespace BriefingRoom4DCS.Generator
                 throw new BriefingRoomException($"Spawn Points in the sea!: {string.Join("\n", brokenSP.Select(x => $"[{x.Coordinates.X},{x.Coordinates.Y}],{x.PointType}").ToList())}");
             for (int i = 0; i < 2; i++) // Remove spawn points too far or too close from distanceOrigin1 and distanceOrigin2
             {
-                if (validSP.Count() == 0) return null;
+                if (!validSP.Any()) break;
                 if (!distanceFrom[i].HasValue || !distanceOrigin[i].HasValue) continue;
 
                 var borderLimit = (double)MinBorderLimit;
@@ -178,7 +178,8 @@ namespace BriefingRoom4DCS.Generator
                 } while ((validSPInRange.Count() == 0) && (iterationsLeft > 0));
             }
 
-            if (validSP.Count() == 0) return null;
+            if (!validSP.Any())
+                return !coalition.HasValue ? null : GetLandCoordinates(validTypes, distanceOrigin1, distanceFrom1, distanceOrigin2, distanceFrom2, null, nearFrontLineFamily);
             DBEntryTheaterSpawnPoint selectedSpawnPoint = Toolbox.RandomFrom(validSP.ToArray());
             SpawnPoints.Remove(selectedSpawnPoint); // Remove spawn point so it won't be used again;
             UsedSpawnPoints.Add(selectedSpawnPoint);
