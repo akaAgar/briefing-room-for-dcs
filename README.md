@@ -87,116 +87,271 @@ Run responding on port localhost:5000
 
 (Changelog for older versions can be found in Changelog.md)
 
-* Version 0.5.301.28(Jan, 28, 2023)
-    * Added:    
-        * Added: httpd script for DCS Fiddle
-        * Added: SA new Airbases
-        * Added: Ropucha-class landing ship & Mirage-F1EE (as playable)
-        * Added: End Mission on command option
-        * Added: Auto End mission after 10 mins option
-        * Added: Super Hornet Mod support
-        * Added: Custom transport helicopter calls
-        * Added: Taskable Transport Helicopter
-        * Added: Support attack started with radio command
-        * Added: Proximity for Complete defend & possible to fail if all die post completion
-        * Added: Extract troops task
-        * Added: Defend Attack Task
-        * Added: Support Attack Objective Task
-        * Added: Support for multiple event triggers per objective
-        * Added: lowUnitVariation support (for attacking groups)
-        * Added: Objective Patrol extra waypoints
-        * Added: MB-339
-        * Added: All aircraft have a clean payload option
-        * Added: FOB and Carrier Hint locations
-        * Added: Hint Saving and Better UI
-        * Added: hint per objective
-        * Added: SA Rio Chico
-        * Added: Ka-50 Hokum 3.0
-        * Added: True and Magnetic Heading to briefings
-        * Added: CAP random mid course route changes
-        * Added: Carrier Recovery Tankers
+* Version 0.5.308.10(Aug, 10, 2023)
+    * Added:
+        * Added: IADS Command Center Area Mark (Generated on mission start)
+        * Added: Block Supplier Logic as mission Option
+        * Added: Normandy Dday Situations (Campaign linked)
+        * Added: 2 More Sinai Situations
+        * Added: Spawn Point View option within situation viewer
+        * Added: Mission Feature Fires around objective and home base
+        * Added: Many large spawn points to Caucasus map (new total: 8632)
+        * Added: Support for JSON based spawn points
+        * Added: Stronger Template Validation
+        * Added: Missing WW2 Building BR data
+        * Added: Missing WW2 Ships BR data
+        * Added: Missing WW2 Aircraft BR data
+        * Added: FrontLine Config now in FrontLine.ini
+        * Added: Missing WWII Armour and Technics module units
+        * Added: Front Line bias based on task type
+        * Added: Front line positioning logic for optional Buildings and Ground units
+        * Added: Front line disable option
+        * Added: Support for front line positioning logic
+        * Added: Support for SouthernHemisphere maps reversing season selection
+        * Added: Windsock to FARPS
+        * Added: Air defense knock down logic (If you can't spawn SAMs add the number of SAMs you would of spawned to AAA spawn count)
+        * Added: F-15E to core mods list
+        * Added: Situation Loading
+        * Added: Situation Editor saving
+        * Added: Multi Zone support for the Situation Editor
+        * Added: Converted Existing Situation zone data to json
+        * Added: Support for Multiple Control Zones per side
+        * Added: Json Terrain data + Sinai south sea
+        * Added: Support for Multiple Water zones
+        * Added: F-15ESE
+        * Added: Sinai Map support (2 situations, 3k spawn points, more dense about Gaza and Suez Canal)
+        * Added: SinaiMap Airfields JSON data
+        * Added: Livery and Payload Loading fom local save game (Local run only ovo)
+        * Added: Briefing Name and Description overrides
+        * Added: Go To Airbase Behavior
+        * Added: Active Infantry near objective
+        * Added: Populate operational eras by country from old DB
+        * Added: Support for country specific operational eras
+        * Added: Rafales Mod
+        * Added: Flyable F-117A mod
+        * Added: F-22A mod
+        * Added: Super Hercules mod
+        * Added: A-29 Mod support
+        * Added: Mod aircraft data F-117, F-22A, Hercules, Rafale, A-29B
+        * Added: Yak-52 and Mirage-F1 (all variants)
+        * Added: Mod Plane extractor script for dcsfiddle
+        * Added: JAS39 Gripen,  A-4E-C, Bronco-OV-10A, Civ aircraft mod support
+        * Added: Ship mod support
+        * Added: HighDigitSAMs Mod support
+        * Added: UH-60L Mod support
+        * Added: Mod unit support
+        * Added: Enemy CAP objective feature (Escort if target is plane)
+        * Added: ShortRangeBattery (Manpads & AAA) air defense type
+        * Added: MANPADS and Static AAA templates
+        * Added: More Unit Layouts
+        * Added: AI tasks on player waypoints
+        * Added: Space based parking (Not supported on all maps)
+        * Added: assign correct task based on objectives
+        * Added: Air Start for player aircraft (marked (A))
+        * Added: More layouts
+        * Added: Layouts support
+        * Added: Use FARP and Carrier templates is available
+        * Added: BR templates and module support for templates
+        * Added: Internal template selector
+        * Added: EWR to standard air defense
+        * Added: BRInfo files for Ships
+        * Added: BRInfo files for Aircraft
+        * Added: Cargo support
+        * Added: Proper templates
+        * Added: start of Template spawning
+        * Added: Group Level payloads and Season and Location aware liveries at group level
+        * Added: Player loadouts and fixed lack of fuel setting
+        * Added: Operational and Low Poly filtering
+        * Added: Make Technically functional
+        * Added: UnitShips Data
+        * Added: Load Helicopters and Planes Json data
+        * Added: Helicopters and Planes Json data
+        * Added: Load JSON UnitCars data
+        * Added: Player exact position markers
+        * Added: FOB Feature TACAN on airbase table
+        * Added: Airbase Feature TACAN on airbase table
+        * Added: Docker compatible Kneeboard rendering
+        * Added: Target Count to Campaign Generator
+        * Added: Presets for Full Builder
+        * Added: DSMC file prefix when mod selected
+    * * Updated: 
+        * Updated: Fixes to spawning system
+        * Updated: Added 1000 Spawn points to PersianGulf Map - Thanks LawnDart
+        * Updated: Added 500 Spawn points to PersianGulf Map - Thanks LawnDart
+        * Updated: Added 500 Spawn points to Normandy Map - Thanks Eagle01
+        * Updated: F-15 Liveries Options
+        * Updated: Added 500 Spawn points to Mariana Islands Map
+        * Updated: Added 2k Spawn points to South Atlantic Map
+        * Updated: Added 3k Spawn points to Sinai
+        * Updated: Added 2k Spawn points to Syria Map
+        * Updated: Moose 2.7.21
+        * Updated: Database to latest patch
+        * Updated: Coalition Operational Eras
+        * Updated: Various Situations to have smaller control zones
+        * Updated: SituationEditor JSON usage
+        * Updated: Existing Situations
+        * Updated: Situations now entirely in JSON
+        * Updated: DSMC moved to Mission Options
+        * Updated: Spawn point recovery on failed spawn
+        * Updated: Unit selection now checks potential allies of coalition nations rather than using default unit lists.
+        * Updated: Iframe post message (for Web editor)
+        * Updated: Use Custom Unit Operators
+        * Updated: Set SU-24M as bombers
+        * Updated: All maps to JSON spawn point data
+        * Updated: Added More Spawn points the Caucasus
+        * Updated: Increased AAA at FARP distance
+        * Updated: No longer required to have a default unit for unit types that didn't exist yet (eg SAMs in the 1940s)
+        * Updated: KC135MPRS as boom tanker
+        * Updated: SinaiMap as desert map
+        * Updated: Data from Sinai update patch
+        * Updated: Apache Payloads
+        * Updated: Fortifications data
+        * Updated: Cars data
+        * Updated: Airbase data for all maps
+        * Updated: Disabled Mods that lost support (If you liked these mods consider helping return support)
+        * Updated: Adjust escort AI mode (still not entirely functional)
+        * Updated: Bofors 40mm to be in use in 2020 (represents the L70 gun still in use) & KS-19 still in use
+        * Updated: Removed auto spawn EWR unit from Skynet  feature
+        * Updated: Feature Aircraft payloads
+        * Updated: Unit file names in DB
+        * Updated: Ground unit destinations no longer takeup spawn points
+        * Updated: Patrol Circle now max distance from start.
+        * Updated: Use Area marker for patrols and shorten variation distances for vehicles
+        * Updated: Reduce search range for Patroling Vehicles
+        * Updated: UnitCars to use better IDs
+        * Updated: TheaterAirbases JSON for all maps
+        * Updated: WW2 Units In general
+        * Updated: WW2 Asset pack AAA (Many going to AAA sites)
+        * Updated: Moose to 2023-03-30
+        * Updated: Normandy & Channel Boundaries
+        * Updated: docker warning
+        * Updated: Skynet IADS: 3.1.0
+        * Updated: Some map boundaries
+        * Updated: Removed httpd as no longer used in DCS fiddle
+        * Updated: Moose 2.7.18
     * Fixed:
-        * Fix: Hide Landmass
-        * Fix: Get Taskable helos working from ground start
-        * Fix: Moose ATIS wasn't working
-        * Fix: Destroy Tracking radars causing script errors
-        * Fix: Taskable attack helicopters broken
-        * Fix: Taskable affirm sounds not working
-        * Fix: Remove Culture issue risk from changing cases
-        * Fix: broken Gamemaster_Functions script post formatting
-        * Fix: Cargo task not generating
-        * Fix: attempt mitigation of map point failure error
-        * Fix: Minor spelling
-        * Fix: Transport counts showing as 0
-        * Fix: Campaign gen crashed if can't find another airbase to move to.
-        * Fix: Objective Feature Unit positioning
-        * Fix: UH-1H Bad radio
-        * Fix: Combat Search and Rescue Preset
-        * Fix: Bad troop transport spelling
-        * Fix: Bad A-4E Radio
-        * Fix: Objective Scenery Fire not near objective units
-        * Fix: CTLD off by one meant first pilot didn't get CTLD options
-        * Fix: Cargo Objective scripting error
-        * Fix: double parsing not InvariantCulture
-        * Fix: CTLD logistic vehicles
-        * Fix: Bad F-86F Sabre radio frequency
-        * Fix: Mirage 2000C bad default radio
-        * Fix: Magnetic heading could go into negatives
-        * Fix: Significantly reduce bad position chance.
-        * Fix: Objective ground units cannot be directed into the sea
-        * Fix: Ka-50 3 Modification not set
-        * Fix: Minor Typo in Location Hints text.
-        * Fix: Support target units picked up by ActiveGround units
-        * Fix: Don't crash on missing translation
-        * Fix: UI map crash if AIRBASE_HOME doesn't exist in map data
-        * Fix: Friendly Taskable Bomber not bombing  - Thanks Eagle01
-        * Fix: remove odd lua code
-        * Fix: Destroy all but air defense script error  - Thanks Eagle01
-        * Fix: Missing Proj4 Import on desktop
-        * Fix: No longer default to UnitID for mods if required mod string isn't provided
-        * Fix: Mission not marking as complete
-    * Updated:
-        * Updated: Support Proj4Js projector for maps
-        * Updated: Removed Position Lookup Files
-        * Updated: Various fixes to Taskable Units - Thanks Eagle01
-        * Updated: PersianGulf radio frequencies
-        * Updated: Mitigate double troop pickups
-        * Updated: Transported Troops considered main characters and survive crashes.
-        * Updated: Embedded Air defense more suitable Infantry now only have infantry AAA Statics can now have static AAA (units not SAM sites)
-        * Updated: Scale patrol distances by unit type
-        * Updated: Core to dotnet7
-        * Updated: Refactored Page & Template code
-        * Updated: changed distance settings using hint and ignore borders
-        * Updated: Campaign generator now has specific min-max objective distance
-        * Updated: Troop Transport AI now move to aircraft
-        * Updated: MIST CSAR script added MI-24 & AH-64
-        * Updated: Default.cbrt and Default.brt
-        * Updated: CTLD Pickup zones marked on maps
-        * Updated: CTLD to Sept 2020 dev version
-        * Updated: Remove CTLD default spawned units
-        * Updated: CSAR script to Moose version
-        * Updated: escort, troop or cargo transport missions reverse direction with GoToPlayerBase
-        * Updated: South Atlantic Airfields
+        * Fix: Rename Flag file RSII
+        * Fix: Template positions
+        * Fix: Correct Airbase Strike to Attacking aircraft
+        * Fix: Fallback to ignore control areas if using front line logic but can't find spawn points
+        * Fix: Add more spawn points types for Enemy airbase AAA
+        * Fix: Stopped mission generations from failing when failed to place non critical aircraft at airbases (Failed cap spawn in air & features won't spawn)
+        * Fix: Now attempts all possible airbases to spawn objective aircraft at rather than nearest.
+        * Fix: Rendering no-spawn zones and multi blue zones on preview map
+        * Fix: Point recovery not rejecting Spawn points that aren't on the list
+        * Fix: Situation editor loading zones showed wrong
+        * Fix: Deal with empty spawn point lists when generating SP mission
+        * Fix: Mods not being selected correctly.
+        * Fix: Preset Objectives Ignoring Selected Objective features
+        * Fix: Docker build
+        * Fix: Iframe crash and default to dark mode
+        * FIx: improve Destroy lua triggers - Thanks Eagle01
+        * FIx: DIsable trigger not working - Thanks Eagle01
+        * Fix: Unable select specific FOB templates
+        * Fix: Removed spam console log
+        * Fix: Nato Callsigns same for each aircraft
+        * Fix: CAP cover for parked aircraft no longer given escort tasking
+        * Fix: Objective CAP ground starting when their task starts flying by default
+        * Fix: Objectives not using templates
+        * Fix: Artillery and Missile Launchers no longer varied units within group
+        * Fix: Prevent Yaml wrapped happening when set as false
+        * Fix: Escort AI Not spawning
+        * Fix: Auto mod append not filtering core mods out
+        * Fix: Bad parameter name
+        * Fix: Correct spelling of Realism
+        * Fix: Sinai Projection and bounds on UI map
+        * Fix: Throw errors if template loading fails due to parsing
+        * Fix: Air start unable to start mission scripts
+        * Fix: Landing aircraft altitude not set
+        * Fix: Error when airbase had no parking spots
+        * Fix: Mark MANPAD commanders VehicleStatic to avoid immovable infantry
+        * Fix: Bad default breaking unit selection
+        * Fix: Proper Callsign assignment using ME data
+        * Fix: Unreliable Hint Interactions
+        * Fix: Missing airbases from data
+        * Fix: Briefing Editor
+        * FIx: Default issues with Livery and Payload
+        * Fix: Instant spawn aircraft spawn quicker
+        * Fix: Yaml parsing issue
+        * Fix: complication error
+        * FIx: Carriers should no longer be routed though land
+        * Fix: Manpads commanders can't fire
+        * FIx: Cruise Speed using max altitude aircraft too speedy
+        * Fix: Bad if statement in layout chance
+        * Fix: SAM unit families
+        * Fix: Reg) => Reg
+        * Fix: Missing default unit warnings
+        * Fix: Another payload error
+        * Fix: Remove IronFists from Liveries
+        * Fix: More file names
+        * Fix: Liveries error
+        * Fix: Bugs with creating missions
+        * Fix: Malformed KC130 & KC135MPRS
+        * Fix: Get basic missions generating
+        * Fix:  Player controllable can't come from ED for now
+        * Fix: Taskable CAS scripting error
+        * Fix: Objective complete debug scripting error
+        * Fix: Correct Country spellings
+        * Fix: Radio Frequency formatting
+        * Fix: Bad parking parsing
+        * Fix: B-17G No longer German WW2
+        * Fix: Ju-88A4 not marked as bomber
+        * Fix: Missing DatabaseJSON files
+        * Fix: Close to sea logic
+        * Fix: bad parking space marker
+        * Fix: briefing.html & credits.txt file were lost after ME editing. Also added BR purity seal
+        * Fix: Fog of war setting shouldn't be force hiding units
+        * Fix: Use FOB call sign for start position
+        * Fix: Bad Pathing breaking feature scripting
+        * Fix: F-5E-3 Tiger II invalid default radio
+        * Fix: Map bounds lines not Geodesic
+        * Fix: Pre-load items in docker image
+        * Fix: Attempt beta build fix
+        * Fix: bad sln
+        * Fix: Nato AWACS comms broken when using Skynet
+        * Fix: Spinner not spinning in docker
+        * Fix: SA boundries
+        * Fix: Regional settings causing app to fail to load in Turkish
     * UI:
-        * UI: missing AAA icon
-        * UI: Hide purposely hidden objective features
-        * UI: Hints now show bounding box
-        * UI: Better hint info
-        * UI: Able to remove location hints in quick builder
-        * UI: Note Moose script is automatically loaded by other scripts and not mandatory
-        * UI: Rename Moose ATIS to ATIS (may break templates)
+        * UI: Preview Min width 50% of screen
+        * UI: Warning info added
+        * UI: Compact Logger logs
+        * UI: Added EWR Map markers
+        * UI: Add github and discord image links
+        * UI: Fix Flight Group and Mission Sub tabs not resetting
+        * UI: Show map borders on generated missions
+    * Upgraded:
+        * Upgrade: Bump IronPdf from 2023.6.9 to 2023.6.10 in /Source
+        * Upgrade: Bump Markdig from 0.31.0 to 0.32.0 in /Source
+        * Upgrade: Bump Microsoft.Maui.Graphics from 7.0.86 to 7.0.92 in /Source
+        * Upgrade: Bump Newtonsoft.Json from 13.0.2 to 13.0.3 in /Source
+        * Upgrade: Bump Polly from 7.2.3 to 7.2.4 in /Source
+        * Upgrade: Bump YamlDotNet from 13.1.0 to 13.1.1 in /Source
     * Misc:
-        * Misc: de-risk releases failing
-        * Misc: Added jboecker (httpd) credit
-        * Misc: Spelling
-        * Misc: Update credits
-        * Misc: revert branch CI net7 change
-        * Misc: Mass formatting
-    * Upgrades:
-        * Upgrade: Bump Microsoft.AspNetCore.Components.WebView.WindowsForms
-        * Upgrade: Bump Swashbuckle.AspNetCore from 6.4.0 to 6.5.0 in /Source
-        * Upgrade: Bump Microsoft.AspNetCore.Components.Web in /Source
-        * Upgrade: Bump YamlDotNet from 12.2.0 to 12.3.1 in /Source
-        * Upgrade: Bump Blazored.LocalStorage from 4.2.0 to 4.3.0 in /Source
-        * Upgrade: Bump Newtonsoft.Json from 13.0.1 to 13.0.2 in /Source
-        * Upgrade: Bump YamlDotNet from 12.0.2 to 12.2.0 in /Source
+        * Misc: Code cleanup
+        * Misc: Code cleanup
+        * MIsc: provide scale guides for spawn points
+        * Misc: Format JSON files
+        * Misc: Remove useless console log
+        * Misc: Add temp Operational list code
+        * Misc: Put build version in more places
+        * Misc: Remove old ini spawn point loading code
+        * Misc: Generate Mission file from JSON spawn points
+        * Misc: Spawnpoint extractor dumps to JSON
+        * Misc: Remove non functioning code
+        * Misc: Removed Redundant Zone data in .ini files
+        * Misc: Remove Old water data in Ini
+        * Misc: Improve SEO
+        * Misc: Identify which airbase didn't have enough parking
+        * Misc: Format all files
+        * Misc: Remove unused code
+        * Misc: Remove unsupported mod files
+        * Misc: Mark old units DB as deprecated
+        * Misc: Update github pages page
+        * Misc: Map unknown unit warning
+        * Misc: Templates, Fortifications and Warehouse json data
+        * Misc: Throw error on missing shore feature
+        * Misc: Removed redundant airbase files
+        * Misc: Add Ko-fi links for docker version
+        * Misc: Add debug for early mission complete
+        * Misc: Remove Console log
