@@ -1,0 +1,11 @@
+[
+    {
+        "type": "VSN_E2D",
+        "families": [
+            "PlaneAWACS",
+            "PlaneCATOBAR"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    }
+]

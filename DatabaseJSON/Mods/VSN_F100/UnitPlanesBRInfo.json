@@ -1,0 +1,12 @@
+[
+    {
+        "type": "VSN_F100",
+        "families": [
+            "PlaneFighter",
+            "PlaneInterceptor",
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    }
+]

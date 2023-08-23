@@ -1,0 +1,12 @@
+[
+    {
+        "type": "VSN_G91Y",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    }
+]

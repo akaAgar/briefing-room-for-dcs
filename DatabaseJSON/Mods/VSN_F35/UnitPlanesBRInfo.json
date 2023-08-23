@@ -1,0 +1,56 @@
+[
+    {
+        "type": "VSN_F35A",
+        "families": [
+            "PlaneFighter"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "VSN_F35A_AG",
+        "families": [
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "VSN_F35B",
+        "families": [
+            "PlaneFighter",
+            "PlaneSTOVL"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "VSN_F35B_AG",
+        "families": [
+            "PlaneSEAD",
+            "PlaneStrike",
+            "PlaneSTOVL"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "VSN_F35C",
+        "families": [
+            "PlaneFighter",
+            "PlaneInterceptor"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "VSN_F35C_AG",
+        "families": [
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    }
+]

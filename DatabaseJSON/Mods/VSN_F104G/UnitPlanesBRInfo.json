@@ -1,0 +1,46 @@
+[
+    {
+        "type": "VSN_F104C",
+        "families": [
+            "PlaneFighter",
+            "PlaneInterceptor"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "VSN_F104G",
+        "families": [
+            "PlaneFighter",
+            "PlaneInterceptor"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "VSN_F104S",
+        "families": [
+            "PlaneFighter",
+            "PlaneInterceptor"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "VSN_F104S_AG",
+        "families": [
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "VSN_NF104A",
+        "families": [
+            "PlaneTransport"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    }
+]

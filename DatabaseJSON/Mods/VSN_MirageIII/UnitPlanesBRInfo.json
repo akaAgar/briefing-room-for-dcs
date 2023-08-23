@@ -1,0 +1,29 @@
+[
+    {
+        "type": "VSN_MirageIIIC",
+        "families": [
+            "PlaneFighter",
+            "PlaneInterceptor"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "VSN_MirageIIIC_AG",
+        "families": [
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "VSN_MirageIIIS",
+        "families": [
+            "PlaneFighter",
+            "PlaneInterceptor",
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    }
+]

@@ -1,0 +1,13 @@
+[
+    {
+        "type": "VSN_A6A",
+        "families": [
+            "PlaneSEAD",
+            "PlaneStrike",
+            "PlaneBomber",
+            "PlaneCATOBAR"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    }
+]

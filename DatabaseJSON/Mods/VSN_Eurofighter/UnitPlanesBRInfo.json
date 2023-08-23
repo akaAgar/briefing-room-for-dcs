@@ -1,0 +1,20 @@
+[
+    {
+        "type": "VSN_Eurofighter",
+        "families": [
+            "PlaneFighter",
+            "PlaneInterceptor"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "VSN_Eurofighter_AG",
+        "families": [
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    }
+]

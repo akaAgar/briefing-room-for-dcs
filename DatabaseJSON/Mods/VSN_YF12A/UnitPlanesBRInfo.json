@@ -1,0 +1,10 @@
+[
+    {
+        "type": "VSN_YF12A",
+        "families": [
+            "PlaneTransport"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    }
+]

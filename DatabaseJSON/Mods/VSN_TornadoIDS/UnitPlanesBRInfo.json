@@ -1,0 +1,20 @@
+[
+    {
+        "type": "VSN_TornadoIDS",
+        "families": [
+            "PlaneStrike",
+            "PlaneSEAD"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "VSN_TornadoGR4",
+        "families": [
+            "PlaneStrike",
+            "PlaneSEAD"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    }
+]
