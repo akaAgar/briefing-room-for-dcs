@@ -1,1 +1,10 @@
-[]
+[
+    {
+        "type": "MAMPilot",
+        "families": [
+            "Infantry"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    }
+]

@@ -1,1 +1,67 @@
-[]
+[
+    {
+        "type": "A400M_Atlas",
+        "families": [
+            "PlaneTransport"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "B2_Spirit",
+        "families": [
+            "PlaneBomber"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "C2A_Greyhound",
+        "families": [
+            "PlaneTransport",
+            "PlaneCATOBAR"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "C5_Galaxy",
+        "families": [
+            "PlaneTransport"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "P3C_Orion",
+        "families": [
+            "PlaneTransport"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "KC_10_Extender",
+        "families": [
+            "PlaneTankerBoom"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "KC_10_Extender_D",
+        "families": [
+            "PlaneTankerBasket"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "V22_Osprey",
+        "families": [
+            "PlaneTransport"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    }
+]
