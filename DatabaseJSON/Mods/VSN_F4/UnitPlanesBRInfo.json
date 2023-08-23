@@ -1,3 +1,22 @@
 [
-    
+    {
+        "type": "VSN_F4B",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "VSN_F4C",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
 ]
