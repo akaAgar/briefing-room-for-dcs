@@ -16,6 +16,14 @@
         "immovable": false
     },
     {
+        "type": "ara_vdm",
+        "families": [
+            "ShipCarrierCATOBAR"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
         "type": "PERRY",
         "families": [
             "ShipFrigate",
