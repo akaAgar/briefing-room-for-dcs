@@ -1,0 +1,5627 @@
+[
+    {
+        "_id": "64bfc06417951d43e5da40d8",
+        "type": "A-4E-C",
+        "callsigns": {
+            "0": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "2": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "3": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "4": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "5": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "6": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "7": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "8": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "9": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "10": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "11": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "12": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "13": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "15": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "16": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "20": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "21": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "22": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "23": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "25": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "26": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "28": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "29": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "30": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "31": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "32": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "33": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "34": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "35": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "36": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "37": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "38": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "39": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "40": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "41": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "42": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "43": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "44": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "45": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "46": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "47": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "48": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "49": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "50": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "51": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "52": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "53": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "54": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "55": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "56": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "57": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "58": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "59": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "60": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "61": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "62": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "63": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "64": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "65": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "66": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "69": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "70": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "71": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "72": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "73": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "74": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "75": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "76": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "77": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "78": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "79": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "80": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "81": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "82": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "83": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "84": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "85": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "86": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "87": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "88": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "89": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ],
+            "90": [
+                {
+                    "soundFile": "Enfield",
+                    "Name": "Enfield",
+                    "WorldID": 1
+                },
+                {
+                    "soundFile": "Springfield",
+                    "Name": "Springfield",
+                    "WorldID": 2
+                },
+                {
+                    "soundFile": "Uzi",
+                    "Name": "Uzi",
+                    "WorldID": 3
+                },
+                {
+                    "soundFile": "Colt",
+                    "Name": "Colt",
+                    "WorldID": 4
+                },
+                {
+                    "soundFile": "Dodge",
+                    "Name": "Dodge",
+                    "WorldID": 5
+                },
+                {
+                    "soundFile": "Ford",
+                    "Name": "Ford",
+                    "WorldID": 6
+                },
+                {
+                    "soundFile": "Chevy",
+                    "Name": "Chevy",
+                    "WorldID": 7
+                },
+                {
+                    "soundFile": "Pontiac",
+                    "Name": "Pontiac",
+                    "WorldID": 8
+                }
+            ]
+        },
+        "height": 4.57,
+        "length": 12.22,
+        "paintSchemes": {
+            "0": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "1": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "2": [
+                "0 Unmarked",
+                "Argentina ARA 309, 1982",
+                "Argentina FAA Falklands Brigada IV, 1982",
+                "Argentina FAA Falklands Brigada V, 1982",
+                "Australian Navy Squadron 805, 1972",
+                "Australian Navy, 1972",
+                "BAE Systems, 2013",
+                "Blue Angels no. 1, 1986",
+                "Blue Angels no. 2, 1986",
+                "Blue Angels no. 3, 1986",
+                "Blue Angels no. 4, 1986",
+                "Blue Angels no. 5, 1986",
+                "Blue Angels no. 6, 1986",
+                "Brazil Marinha do Brasil VF-1 15 ANOS, 2013",
+                "Brazil Marinha do Brasil VF-1 Falcoes, 1998",
+                "Brazil Marinha do Brasil VF-1 LoViz, 2018",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)",
+                "Finland FiAF, 1984 (Fictional)",
+                "Israel IAF Knights of the North Squadron, 1973",
+                "Kuwait KAF Free Kuwait, 1991",
+                "Malaysia TUDM M32-29 No.9 Squadron, 2004",
+                "RAF Empire Pilots Test School Raspberry Ripple, 2021 (Fictional)",
+                "RNZAF Golden T-Bird No.2, Squadron Ohakea, 1986",
+                "RNZAF Kahu, 1988",
+                "RNZAF Kiwi Red, 2011",
+                "RNZAF Squadron 75, 1982",
+                "USMC Aggressor TOPGUN 56 (MiG-17), 1982",
+                "USMC Naval Weapons Evaluation Facility, 1974",
+                "USMC Pacific Missile Test Center, 1978",
+                "USMC VMA-121 Green Knights, 1968",
+                "USMC VMA-124 Memphis Marines, 1973",
+                "USMC VMA-131 Diamondbacks, 1976",
+                "USMC VMA-142 Flying Gators, 1973",
+                "USMC VMA-211 Avengers, 1972",
+                "USMC VMA-311 Tomcats, 1972",
+                "USMC VMA-322 Fighting Gamecocks, 1972",
+                "USMC VMAT-102, 1980",
+                "USN Aggressor TOPGUN, 1982",
+                "USN Aggressor VF-126 Bandits, 1976",
+                "USN Aggressor VF-127 Royal Blues, 1982",
+                "USN Aggressor VFA-127 Cyclons (Forest), 1986",
+                "USN Aggressor VFA-127 Cyclons (Sea), 1987",
+                "USN Bare Metal, 1956",
+                "USN Naval Fighter Weapons School (Gray), 1980",
+                "USN Naval Fighter Weapons School (Green), 1980",
+                "USN VA-106 Gladiators, 1967",
+                "USN VA-144 Roadrunners, 1970",
+                "USN VA-153 Blue Tail Flies, 1972",
+                "USN VA-163 Saints, 1969",
+                "USN VA-164 Ghostriders LADY JESSIE, 1988",
+                "USN VA-195 Dambusters, 1972",
+                "USN VA-212 Rampant Raiders, 1972",
+                "USN VA-45 Blackbirds, 1972",
+                "USN VA-46 Clansmen, 1967",
+                "USN VA-55 Warhorses, 1972",
+                "USN VA-64 Black Lancers, 1972",
+                "USN VA-83 Rampagers, 1966",
+                "USN VC-1 FLECOMPRON One, 1974",
+                "USN VC-10 Challengers, 1988",
+                "USN VC-5 Checkertails, 1991",
+                "USN VC-7 TallyHOers, 1972",
+                "USN VC-8 Redtails, 1985",
+                "USN VT-7 Eagles, 1972",
+                "USN VX-5 Vampires, 1986 (Fictional)"
+            ],
+            "3": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "4": [
+                "0 Unmarked",
+                "BAE Systems, 2013",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)",
+                "RAF Empire Pilots Test School Raspberry Ripple, 2021 (Fictional)"
+            ],
+            "5": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "6": [
+                "0 Unmarked",
+                "BAE Systems, 2013",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "7": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)",
+                "USMC Aggressor TOPGUN 56 (MiG-17), 1982",
+                "USN Aggressor TOPGUN, 1982",
+                "USN Aggressor VF-126 Bandits, 1976",
+                "USN Aggressor VF-127 Royal Blues, 1982",
+                "USN Aggressor VFA-127 Cyclons (Forest), 1986",
+                "USN Aggressor VFA-127 Cyclons (Sea), 1987"
+            ],
+            "8": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "9": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "10": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "11": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "12": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "13": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "15": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)",
+                "Israel IAF Knights of the North Squadron, 1973"
+            ],
+            "16": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "17": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "18": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "19": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "20": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "21": [
+                "0 Unmarked",
+                "Australian Navy Squadron 805, 1972",
+                "Australian Navy, 1972",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)",
+                "RNZAF Golden T-Bird No.2, Squadron Ohakea, 1986",
+                "RNZAF Kahu, 1988",
+                "RNZAF Kiwi Red, 2011",
+                "RNZAF Squadron 75, 1982"
+            ],
+            "22": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "23": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "24": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "25": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "26": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "27": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "28": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "29": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "30": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)",
+                "Finland FiAF, 1984 (Fictional)"
+            ],
+            "31": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "32": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "33": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "34": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "35": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "36": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "37": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "38": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "39": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "40": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "41": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "42": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "43": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "44": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "45": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "46": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "47": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "48": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "49": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "50": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "51": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "52": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "53": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "54": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "55": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "56": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "57": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)",
+                "Malaysia TUDM M32-29 No.9 Squadron, 2004"
+            ],
+            "58": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "59": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "60": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "61": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "63": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "64": [
+                "Brazil Marinha do Brasil VF-1 15 ANOS, 2013",
+                "Brazil Marinha do Brasil VF-1 Falcoes, 1998",
+                "Brazil Marinha do Brasil VF-1 LoViz, 2018"
+            ],
+            "70": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "71": [
+                "Kuwait KAF Free Kuwait, 1991"
+            ],
+            "72": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "73": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "74": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "75": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "76": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "79": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "82": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "83": [
+                "0 Unmarked",
+                "Argentina ARA 309, 1982",
+                "Argentina FAA Falklands Brigada IV, 1982",
+                "Argentina FAA Falklands Brigada V, 1982",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "84": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "85": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "88": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ],
+            "89": [
+                "0 Unmarked",
+                "Community A-4E I: Autumn Splinter, 2018 (Fictional)",
+                "Community A-4E II: Winter Splinter, 2019 (Fictional)",
+                "Community A-4E III: Forever Free, 2021 (Fictional)",
+                "Community A-4E IV: Sea Otter, 2021 (Fictional)",
+                "Community A-4E V: Blue Team, 2022 (Fictional)",
+                "Community A-4E V: Red Team, 2022 (Fictional)"
+            ]
+        },
+        "panelRadio": [
+            {
+                "range": [
+                    {
+                        "min": 225,
+                        "max": 399.9
+                    }
+                ],
+                "name": "AN/ARC-51A",
+                "channels": [
+                    {
+                        "default": 264,
+                        "modulation": "AM",
+                        "name": "Channel 1",
+                        "connect": true
+                    },
+                    {
+                        "modulation": "AM",
+                        "name": "Channel 2",
+                        "default": 265
+                    },
+                    {
+                        "modulation": "AM",
+                        "name": "Channel 3",
+                        "default": 256
+                    },
+                    {
+                        "modulation": "AM",
+                        "name": "Channel 4",
+                        "default": 254
+                    },
+                    {
+                        "modulation": "AM",
+                        "name": "Channel 5",
+                        "default": 250
+                    },
+                    {
+                        "modulation": "AM",
+                        "name": "Channel 6",
+                        "default": 270
+                    },
+                    {
+                        "modulation": "AM",
+                        "name": "Channel 7",
+                        "default": 257
+                    },
+                    {
+                        "modulation": "AM",
+                        "name": "Channel 8",
+                        "default": 258
+                    },
+                    {
+                        "modulation": "AM",
+                        "name": "Channel 9",
+                        "default": 262
+                    },
+                    {
+                        "modulation": "AM",
+                        "name": "Channel 10",
+                        "default": 259
+                    },
+                    {
+                        "modulation": "AM",
+                        "name": "Channel 11",
+                        "default": 268
+                    },
+                    {
+                        "modulation": "AM",
+                        "name": "Channel 12",
+                        "default": 269
+                    },
+                    {
+                        "modulation": "AM",
+                        "name": "Channel 13",
+                        "default": 260
+                    },
+                    {
+                        "modulation": "AM",
+                        "name": "Channel 14",
+                        "default": 263
+                    },
+                    {
+                        "modulation": "AM",
+                        "name": "Channel 15",
+                        "default": 261
+                    },
+                    {
+                        "modulation": "AM",
+                        "name": "Channel 16",
+                        "default": 267
+                    },
+                    {
+                        "modulation": "AM",
+                        "name": "Channel 17",
+                        "default": 251
+                    },
+                    {
+                        "modulation": "AM",
+                        "name": "Channel 18",
+                        "default": 253
+                    },
+                    {
+                        "modulation": "AM",
+                        "name": "Channel 19",
+                        "default": 266
+                    },
+                    {
+                        "modulation": "AM",
+                        "name": "Channel 20",
+                        "default": 252
+                    }
+                ]
+            }
+        ],
+        "payloadPresets": [
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{LAU3_FFAR_MK1HE}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{LAU3_FFAR_MK1HE}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{LAU3_FFAR_MK1HE}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{LAU3_FFAR_MK1HE}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{DFT-300gal}",
+                        "num": 3
+                    }
+                ],
+                "tasks": [
+                    31
+                ],
+                "name": "FFAR Mk1 HE *76, Fuel 300G",
+                "displayName": "FFAR Mk1 HE *76, Fuel 300G"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{Mk-82 Snakeye_MER_6_C}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{Mk-82 Snakeye_TER_2_L}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{Mk-82 Snakeye_TER_2_R}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{Mk82SNAKEYE}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{Mk82SNAKEYE}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    32
+                ],
+                "name": "Mk-82 SE *12",
+                "displayName": "Mk-82 SE *12"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{Mk-82_MER_6_C}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{DFT-150gal}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{DFT-150gal}",
+                        "num": 2
+                    }
+                ],
+                "tasks": [
+                    32,
+                    31
+                ],
+                "name": "Mk-82 *6, Fuel 150G *2",
+                "displayName": "Mk-82 *6, Fuel 150G *2"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{Mk-82 Snakeye_MER_6_C}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{DFT-150gal}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{DFT-150gal}",
+                        "num": 2
+                    }
+                ],
+                "tasks": [
+                    32,
+                    31
+                ],
+                "name": "Mk-82 SE *6, Fuel 150G *2",
+                "displayName": "Mk-82 SE *6, Fuel 150G *2"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{Mk-83_TER_3_C}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{DFT-300gal_LR}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{DFT-300gal_LR}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    32
+                ],
+                "name": "Mk-83 *3, Fuel 300G *2",
+                "displayName": "Mk-83 *3, Fuel 300G *2"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{AB8B8299-F1CC-4359-89B5-2172E0CF4A5A}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{AB8B8299-F1CC-4359-89B5-2172E0CF4A5A}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{AB8B8299-F1CC-4359-89B5-2172E0CF4A5A}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    32
+                ],
+                "name": "Mk-84 *3",
+                "displayName": "Mk-84 *3"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{Mk-83_TER_3_C}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{7A44FF09-527C-4B7E-B42B-3F111CFE50FB}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{7A44FF09-527C-4B7E-B42B-3F111CFE50FB}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    32
+                ],
+                "name": "Mk-83 *5",
+                "displayName": "Mk-83 *5"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{AB8B8299-F1CC-4359-89B5-2172E0CF4A5A}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{AB8B8299-F1CC-4359-89B5-2172E0CF4A5A}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{AB8B8299-F1CC-4359-89B5-2172E0CF4A5A}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{BCE4E030-38E9-423E-98ED-24BE3DA87C32}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{BCE4E030-38E9-423E-98ED-24BE3DA87C32}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    32
+                ],
+                "name": "Mk-84 *3, Mk-82 *2",
+                "displayName": "Mk-84 *3, Mk-82 *2"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{Mk-81SE_MER_5_R}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{Mk-81SE_MER_5_L}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{Mk-82 Snakeye_MER_6_C}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{Mk82SNAKEYE}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{Mk82SNAKEYE}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    32
+                ],
+                "name": "Mk-82 SE *8, Mk-81 SE *10",
+                "displayName": "Mk-82 SE *8, Mk-81 SE *10"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{Mk-81_MER_5_R}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{Mk-81_MER_5_L}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{Mk-81_MER_6_C}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{90321C8E-7ED1-47D4-A160-E074D5ABD902}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{90321C8E-7ED1-47D4-A160-E074D5ABD902}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    32
+                ],
+                "name": "Mk-81 *18",
+                "displayName": "Mk-81 *18"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{mk77mod1}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{mk77mod0}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{mk77mod0}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{mk77mod1}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{Mk-77 mod 1_TER_2_C}",
+                        "num": 3
+                    }
+                ],
+                "tasks": [
+                    32
+                ],
+                "name": "Mk-77 mod 0 *2, Mk-77 mod 1 *4",
+                "displayName": "Mk-77 mod 0 *2, Mk-77 mod 1 *4"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{Mk-82_MER_6_C}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{F3EFE0AB-E91A-42D8-9CA2-B63C91ED570A}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{F3EFE0AB-E91A-42D8-9CA2-B63C91ED570A}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{F3EFE0AB-E91A-42D8-9CA2-B63C91ED570A}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{F3EFE0AB-E91A-42D8-9CA2-B63C91ED570A}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    32,
+                    31
+                ],
+                "name": "Mk-82 *6, LAU-10 *4",
+                "displayName": "Mk-82 *6, LAU-10 *4"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{DFT-400gal}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{Mk4 HIPEG}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{Mk4 HIPEG}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    31
+                ],
+                "name": "Mk-4 HIPEG *2, Fuel 300G",
+                "displayName": "Mk-4 HIPEG *2, Fuel 300G"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{F3EFE0AB-E91A-42D8-9CA2-B63C91ED570A}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{LAU3_FFAR_MK1HE}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{LAU3_FFAR_MK1HE}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{F3EFE0AB-E91A-42D8-9CA2-B63C91ED570A}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{DFT-300gal}",
+                        "num": 3
+                    }
+                ],
+                "tasks": [
+                    31
+                ],
+                "name": "LAU-10 *2, FFAR Mk1 HE *38, Fuel 300G",
+                "displayName": "LAU-10 *2, FFAR Mk1 HE *38, Fuel 300G"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{LAU3_FFAR_MK5HEAT}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{LAU3_FFAR_MK5HEAT}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{LAU3_FFAR_MK5HEAT}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{LAU3_FFAR_MK5HEAT}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{DFT-300gal}",
+                        "num": 3
+                    }
+                ],
+                "tasks": [
+                    31,
+                    29
+                ],
+                "name": "FFAR Mk5 HEAT *76, Fuel 300G",
+                "displayName": "FFAR Mk5 HEAT *76, Fuel 300G"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{AGM_45A}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{AGM_45A}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{F3EFE0AB-E91A-42D8-9CA2-B63C91ED570A}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{F3EFE0AB-E91A-42D8-9CA2-B63C91ED570A}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{DFT-300gal}",
+                        "num": 3
+                    }
+                ],
+                "tasks": [
+                    29
+                ],
+                "name": "AGM-45B *2, LAU-10 *2, Fuel 300G",
+                "displayName": "AGM-45B *2, LAU-10 *2, Fuel 300G"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{AGM_45A}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{AGM_45A}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{AGM_45A}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{AGM_45A}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{DFT-300gal}",
+                        "num": 3
+                    }
+                ],
+                "tasks": [
+                    29
+                ],
+                "name": "AGM-45B *4, Fuel 300G",
+                "displayName": "AGM-45B *4, Fuel 300G"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{CBU-2/A}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{CBU-2/A}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{DFT-300gal}",
+                        "num": 3
+                    }
+                ],
+                "tasks": [
+                    32
+                ],
+                "name": "CBU-2/A *2, Fuel 300G",
+                "displayName": "CBU-2/A *2, Fuel 300G"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{Mk4 HIPEG}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{Mk4 HIPEG}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{Mk4 HIPEG}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{Mk82SNAKEYE}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{Mk82SNAKEYE}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    31
+                ],
+                "name": "Mk-4 HIPEG *3, Mk-82SE *2",
+                "displayName": "Mk-4 HIPEG *3, Mk-82SE *2"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{DFT-150gal}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{DFT-150gal}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{Mk-81SE_MER_6_C}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{F3EFE0AB-E91A-42D8-9CA2-B63C91ED570A}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{F3EFE0AB-E91A-42D8-9CA2-B63C91ED570A}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    31,
+                    29
+                ],
+                "name": "Mk-81 SE *6, LAU-10 *2, Fuel 150G *2",
+                "displayName": "Mk-81 SE *6, LAU-10 *2, Fuel 150G *2"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{AGM_45A}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{AGM_45A}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{AGM_45A}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{AGM_45A}",
+                        "num": 1
+                    }
+                ],
+                "tasks": [
+                    29
+                ],
+                "name": "AGM-45B *4",
+                "displayName": "AGM-45B *4"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{Mk-83_TER_3_C}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{7A44FF09-527C-4B7E-B42B-3F111CFE50FB}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{7A44FF09-527C-4B7E-B42B-3F111CFE50FB}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{BCE4E030-38E9-423E-98ED-24BE3DA87C32}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{BCE4E030-38E9-423E-98ED-24BE3DA87C32}",
+                        "num": 1
+                    }
+                ],
+                "tasks": [
+                    32
+                ],
+                "name": "Mk-83 *5, Mk-82 *2",
+                "displayName": "Mk-83 *5, Mk-82 *2"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{Mk-81SE_MER_5_R}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{Mk-81SE_MER_5_L}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{Mk-81SE_MER_6_C}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{MK-81SE}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{MK-81SE}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    32
+                ],
+                "name": "Mk-81 SE *18",
+                "displayName": "Mk-81 SE *18"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{DFT-300gal}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{Mk-81SE_MER_5_L}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{MK-81SE}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{Mk-81SE_MER_5_R}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{MK-81SE}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    32,
+                    31
+                ],
+                "name": "Mk-81 SE *12, Fuel 300G",
+                "displayName": "Mk-81 SE *12, Fuel 300G"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{DFT-300gal}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{AB8B8299-F1CC-4359-89B5-2172E0CF4A5A}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{AB8B8299-F1CC-4359-89B5-2172E0CF4A5A}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    32
+                ],
+                "name": "Mk-84 *2, Fuel 300G",
+                "displayName": "Mk-84 *2, Fuel 300G"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{CBU-2/A}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{CBU-2/A}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{DFT-300gal}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{Mk82SNAKEYE}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{Mk82SNAKEYE}",
+                        "num": 1
+                    }
+                ],
+                "tasks": [
+                    32
+                ],
+                "name": "CBU-2/A *2, Mk-82 SE *2, Fuel 300G",
+                "displayName": "CBU-2/A *2, Mk-82 SE *2, Fuel 300G"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{Mk4 HIPEG}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{Mk4 HIPEG}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{Mk4 HIPEG}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{F3EFE0AB-E91A-42D8-9CA2-B63C91ED570A}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{F3EFE0AB-E91A-42D8-9CA2-B63C91ED570A}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    31
+                ],
+                "name": "Mk-4 HIPEG *3, LAU-10 *2",
+                "displayName": "Mk-4 HIPEG *3, LAU-10 *2"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{Mk-81SE_MER_5_R}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{Mk-81SE_MER_5_L}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{DFT-300gal}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{F3EFE0AB-E91A-42D8-9CA2-B63C91ED570A}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{F3EFE0AB-E91A-42D8-9CA2-B63C91ED570A}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    31,
+                    29
+                ],
+                "name": "Mk-81 SE *10, LAU-10 *2, Fuel 300G",
+                "displayName": "Mk-81 SE *10, LAU-10 *2, Fuel 300G"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{AGM_45A}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{AGM_45A}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    29
+                ],
+                "name": "AGM-45B *2",
+                "displayName": "AGM-45B *2"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{GAR-8}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{GAR-8}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{DFT-150gal}",
+                        "num": 3
+                    }
+                ],
+                "tasks": [
+                    11
+                ],
+                "name": "GAR-8 *2, Fuel 150G",
+                "displayName": "GAR-8 *2, Fuel 150G"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{DFT-300gal_LR}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{DFT-300gal_LR}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{AGM_45A}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{AGM_45A}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    29
+                ],
+                "name": "AGM-45B *2, Fuel 300G *2",
+                "displayName": "AGM-45B *2, Fuel 300G *2"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{Mk-82_MER_6_C}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{Mk-82_TER_2_L}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{Mk-82_TER_2_R}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{BCE4E030-38E9-423E-98ED-24BE3DA87C32}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{BCE4E030-38E9-423E-98ED-24BE3DA87C32}",
+                        "num": 5
+                    }
+                ],
+                "tasks": [
+                    32
+                ],
+                "name": "Mk-82 *12",
+                "displayName": "Mk-82 *12"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{CBU-2/A}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{CBU-2/A}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{DFT-300gal}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{ADD3FAE1-EBF6-4EF9-8EFC-B36B5DDF1E6B}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{ADD3FAE1-EBF6-4EF9-8EFC-B36B5DDF1E6B}",
+                        "num": 1
+                    }
+                ],
+                "tasks": [
+                    32
+                ],
+                "name": "CBU-2/A *2, Mk-20 *2, Fuel 300G",
+                "displayName": "CBU-2/A *2, Mk-20 *2, Fuel 300G"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{Mk4 HIPEG}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{Mk4 HIPEG}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{Mk4 HIPEG}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    31
+                ],
+                "name": "Mk-4 HIPEG *3",
+                "displayName": "Mk-4 HIPEG *3"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{AGM_45A}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{AGM_45A}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{F3EFE0AB-E91A-42D8-9CA2-B63C91ED570A}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{F3EFE0AB-E91A-42D8-9CA2-B63C91ED570A}",
+                        "num": 1
+                    }
+                ],
+                "tasks": [
+                    29
+                ],
+                "name": "AGM-45B *2, LAU-10 *2",
+                "displayName": "AGM-45B *2, LAU-10 *2"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{LAU3_FFAR_WP156}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{DFT-300gal}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{LAU3_FFAR_WP156}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{647C5F26-BDD1-41e6-A371-8DE1E4CC0E94}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{647C5F26-BDD1-41e6-A371-8DE1E4CC0E94}",
+                        "num": 1
+                    }
+                ],
+                "tasks": [
+                    16
+                ],
+                "name": "FFAR M156 WP *38, M257 Illumination *14, Fuel 300G",
+                "displayName": "FFAR M156 WP *38, M257 Illumination *14, Fuel 300G"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{LAU3_FFAR_WP156}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{Mk-82 Snakeye_MER_6_C}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{LAU3_FFAR_WP156}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{647C5F26-BDD1-41e6-A371-8DE1E4CC0E94}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{647C5F26-BDD1-41e6-A371-8DE1E4CC0E94}",
+                        "num": 1
+                    }
+                ],
+                "tasks": [
+                    16
+                ],
+                "name": "FFAR M156 WP *38, M257 Illumination *14, Mk-82 SE *6",
+                "displayName": "FFAR M156 WP *38, M257 Illumination *14, Mk-82 SE *6"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{LAU3_FFAR_WP156}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{Mk4 HIPEG}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{LAU3_FFAR_WP156}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{Mk82SNAKEYE}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{Mk82SNAKEYE}",
+                        "num": 1
+                    }
+                ],
+                "tasks": [
+                    16
+                ],
+                "name": "FFAR M156 WP *38, Mk-82 SE *2, Mk-4 HIPEG",
+                "displayName": "FFAR M156 WP *38, Mk-82 SE *2, Mk-4 HIPEG"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{LAU3_FFAR_WP156}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{Mk4 HIPEG}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{Mk4 HIPEG}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{647C5F26-BDD1-41e6-A371-8DE1E4CC0E94}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{F3EFE0AB-E91A-42D8-9CA2-B63C91ED570A}",
+                        "num": 1
+                    }
+                ],
+                "tasks": [
+                    16
+                ],
+                "name": "Mk-4 HIPEG *2, FFAR M156 WP *19, LAU-10, M257 Illumination *7",
+                "displayName": "Mk-4 HIPEG *2, FFAR M156 WP *19, LAU-10, M257 Illumination *7"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{DFT-300gal_LR}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{DFT-300gal}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{DFT-300gal_LR}",
+                        "num": 2
+                    }
+                ],
+                "tasks": [],
+                "name": "Fuel 300G *3 (Ferry)",
+                "displayName": "Fuel 300G *3 (Ferry)"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{CBU-2/A}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{CBU-2/A}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{DFT-300gal}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{F3EFE0AB-E91A-42D8-9CA2-B63C91ED570A}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{F3EFE0AB-E91A-42D8-9CA2-B63C91ED570A}",
+                        "num": 1
+                    }
+                ],
+                "tasks": [
+                    32
+                ],
+                "name": "CBU-2/A *2, LAU-10 *2, Fuel 300G",
+                "displayName": "CBU-2/A *2, LAU-10 *2, Fuel 300G"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{Mk-82_MER_6_C}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{DFT-150gal}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{DFT-150gal}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{BCE4E030-38E9-423E-98ED-24BE3DA87C32}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{BCE4E030-38E9-423E-98ED-24BE3DA87C32}",
+                        "num": 1
+                    }
+                ],
+                "tasks": [
+                    32,
+                    31
+                ],
+                "name": "Mk-82 *8, Fuel 150G *2",
+                "displayName": "Mk-82 *8, Fuel 150G *2"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{Mk-82 Snakeye_MER_6_C}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{DFT-150gal}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{DFT-150gal}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{Mk82SNAKEYE}",
+                        "num": 5
+                    },
+                    {
+                        "CLSID": "{Mk82SNAKEYE}",
+                        "num": 1
+                    }
+                ],
+                "tasks": [
+                    32,
+                    31
+                ],
+                "name": "Mk-82 SE *8, Fuel 150G *2",
+                "displayName": "Mk-82 SE *8, Fuel 150G *2"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{GAR-8}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{GAR-8}",
+                        "num": 4
+                    },
+                    {
+                        "CLSID": "{DFT-300gal}",
+                        "num": 3
+                    }
+                ],
+                "tasks": [
+                    11
+                ],
+                "name": "GAR-8 *2, Fuel 300G",
+                "displayName": "GAR-8 *2, Fuel 300G"
+            }
+        ],
+        "displayName": "A-4E-C",
+        "categories": [
+            "{78EFB7A2-FD52-4b57-A6A6-3BF0E1D6555F}",
+            "Interceptor"
+        ],
+        "module": "A-4E-C",
+        "tasks": [
+            {
+                "OldID": "CAP",
+                "Name": "CAP",
+                "WorldID": 11
+            },
+            {
+                "OldID": "CAS",
+                "Name": "CAS",
+                "WorldID": 31
+            },
+            {
+                "OldID": "SEAD",
+                "Name": "SEAD",
+                "WorldID": 29
+            },
+            {
+                "OldID": "Reconnaissance",
+                "Name": "Reconnaissance",
+                "WorldID": 17
+            },
+            {
+                "OldID": "Ground Attack",
+                "Name": "Ground Attack",
+                "WorldID": 32
+            },
+            {
+                "OldID": "AFAC",
+                "Name": "AFAC",
+                "WorldID": 16
+            },
+            {
+                "OldID": "Runway Attack",
+                "Name": "Runway Attack",
+                "WorldID": 34
+            },
+            {
+                "OldID": "Antiship Strike",
+                "Name": "Anti-ship Strike",
+                "WorldID": 30
+            },
+            {
+                "OldID": "Refueling",
+                "Name": "Refueling",
+                "WorldID": 13
+            },
+            {
+                "OldID": "Escort",
+                "Name": "Escort",
+                "WorldID": 18
+            }
+        ],
+        "fuel": 2467.5454273299,
+        "flares": 30,
+        "chaff": 30,
+        "extraProps": [
+            {
+                "defValue": false,
+                "id": "HideECMPanel"
+            },
+            {
+                "defValue": false,
+                "id": "Auto_Catapult_Power"
+            },
+            {
+                "defValue": false,
+                "id": "Night_Vision"
+            },
+            {
+                "defValue": 0,
+                "id": "CBU2ATPP"
+            },
+            {
+                "defValue": 0,
+                "id": "CBU2BATPP"
+            },
+            {
+                "defValue": 1,
+                "id": "CMS_BURSTS"
+            },
+            {
+                "defValue": 1,
+                "id": "CMS_BURST_INTERVAL"
+            },
+            {
+                "defValue": 1,
+                "id": "CMS_SALVOS"
+            },
+            {
+                "defValue": 1,
+                "id": "CMS_SALVO_INTERVAL"
+            }
+        ],
+        "radio": {
+            "frequency": 254,
+            "modulation": 0
+        },
+        "ammoType": 1,
+        "maxAlt": 13380.72,
+        "cruiseSpeed": 200,
+        "shape": "A-4E",
+        "width": 8.38,
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ],
+            "Argentina": [
+                1980,
+                2020
+            ],
+            "Israel": [
+                1980,
+                2020
+            ],
+            "USA": [
+                1980,
+                2020
+            ]
+        }
+    }
+]

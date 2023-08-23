@@ -1,0 +1,10 @@
+[
+    {
+        "type": "Bronco-OV-10A",
+        "families": [
+            "PlaneAttack"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    }
+]

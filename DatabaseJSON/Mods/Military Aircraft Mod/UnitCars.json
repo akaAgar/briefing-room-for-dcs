@@ -1,0 +1,17 @@
+[
+    {
+        "_id": "64e5cfe14cfc9818a4fd2a21",
+        "type": "MAMPilot",
+        "category": "Infantry",
+        "paintSchemes": {},
+        "displayName": "MAM USAF Pilot",
+        "module": "Military Aircraft Mod",
+        "shape": "MAM_usaf_pilot",
+        "operators": {
+            "USA": [
+                1960,
+                2020
+            ]
+        }
+    }
+]

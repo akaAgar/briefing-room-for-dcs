@@ -1,0 +1,75 @@
+[
+    
+    {
+        "type": "A_320",
+        "families": [
+            "PlaneTransport"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "A_330",
+        "families": [
+            "PlaneTransport"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "A_380",
+        "families": [
+            "PlaneTransport"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "B_727",
+        "families": [
+            "PlaneTransport"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "B_737",
+        "families": [
+            "PlaneTransport"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "B_747",
+        "families": [
+            "PlaneTransport"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "B_757",
+        "families": [
+            "PlaneTransport"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Cessna_210N",
+        "families": [
+            "PlaneTransport"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "DC_10",
+        "families": [
+            "PlaneTransport"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    }
+]

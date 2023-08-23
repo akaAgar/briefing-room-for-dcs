@@ -80,25 +80,24 @@ namespace BriefingRoom4DCS.Data
             LoadEntries<DBEntryTheater>("Theaters");
             LoadJSONEntries<DBEntryAirbase>("TheatersAirbases");
             LoadJSONFolderEntries<DBEntrySituation>("Situations");
-            // LoadEntries<DBEntrySituation>("TheaterSituations"); // Must be loaded after DBEntryTheater, as it depends on it
             LoadEntries<DBEntryDCSMod>("DCSMods");
             LoadJSONEntries<DBEntryCar>("UnitCars", true);
-            LoadJSONEntries<DBEntryCar>("UnitCarsMod", true);
-            LoadJSONEntries<DBEntryAircraft>("UnitPlanesMod", true);
+            LoadJSONModEntries<DBEntryCar>("UnitCars", true);
             LoadJSONEntries<DBEntryAircraft>("UnitPlanes", true);
+            LoadJSONModEntries<DBEntryCar>("UnitPlanes", true);
             LoadJSONEntries<DBEntryAircraft>("UnitHelicopters", true);
-            LoadJSONEntries<DBEntryAircraft>("UnitHelicoptersMod", true);
+            LoadJSONModEntries<DBEntryCar>("UnitHelicopters", true);
             LoadJSONEntries<DBEntryShip>("UnitShips", true);
-            LoadJSONEntries<DBEntryShip>("UnitShipsMod", true);
+            LoadJSONModEntries<DBEntryCar>("UnitShips", true);
             LoadJSONEntries<DBEntryStatic>("UnitWarehouses", true);
             LoadJSONEntries<DBEntryStatic>("UnitFortifications", true);
             LoadJSONEntries<DBEntryStatic>("UnitCargo", true);
+            LoadJSONModEntries<DBEntryCar>("UnitCargo", true);
             LoadJSONEntries<DBEntryStatic>("UnitHeliports", true);
             LoadJSONEntries<DBEntryTemplate>("Templates");
             LoadJSONEntries<DBEntryTemplate>("TemplatesCustom");
             LoadJSONEntries<DBEntryLayout>("Layouts");
-            // LoadEntries<DBEntryDefaultUnitList>("DefaultUnitLists"); // Must be loaded after Units, as it depends on it
-            LoadEntries<DBEntryCoalition>("Coalitions"); // Must be loaded after Unit and DBEntryDefaultUnitList, as it depends on them
+            LoadEntries<DBEntryCoalition>("Coalitions");
             LoadCustomUnitEntries<DBEntryCoalition>("Coalitions");
             LoadEntries<DBEntryWeatherPreset>("WeatherPresets");
 
@@ -179,7 +178,6 @@ namespace BriefingRoom4DCS.Data
             BriefingRoom.PrintToLog($"Found {DBEntries[dbType].Count} database entries of type \"{typeof(T).Name}\"");
 
 
-
             bool mustHaveAtLeastOneEntry = true;
             if ((dbType == typeof(DBEntryFeatureMission)) ||
                 (dbType == typeof(DBEntryFeatureObjective)))
@@ -201,6 +199,25 @@ namespace BriefingRoom4DCS.Data
             foreach (var filePath in Directory.GetFiles(folderPath))
             {
                 LoadJSONEntries<T>(filePath);
+            }
+        }
+
+        private void LoadJSONModEntries<T>(string subDirectory, bool unitType) where T : DBEntry, new()
+        {
+            BriefingRoom.PrintToLog($"Loading {subDirectory.ToLower()} Mods...");
+
+            string modFolderPath = Path.Combine(BRPaths.DATABASEJSON, "Mods");
+            if (!Directory.Exists(modFolderPath))
+                throw new Exception($"Folder {modFolderPath} not found.");
+
+            foreach (var folderPath in Directory.GetDirectories(modFolderPath))
+            {
+                var filePath = Path.Combine(folderPath, subDirectory);
+                var searchPath = $"{filePath}.json";
+                if(!File.Exists(searchPath))
+                    continue;
+
+                LoadJSONEntries<T>(filePath, unitType);
             }
         }
 

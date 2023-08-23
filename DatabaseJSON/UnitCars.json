@@ -152736,7 +152736,16 @@
         "displayName": "Allies Rangefinder (DRT)",
         "module": "WWII Armour and Technics",
         "shape": "Bedford_MWD",
-        "operators": {}
+        "operators": {
+            "UK": [
+                1940,
+                1940
+            ],
+            "UnitedNationsPeacekeepers": [
+                1940,
+                1940
+            ]
+        }
     },
     {
         "_id": "64bfb2e817951d43e5d9ecca",
@@ -157114,7 +157123,172 @@
         "displayName": "FH M2A1 105mm",
         "module": "WWII Armour and Technics",
         "shape": "M2A1-105mm",
-        "operators": {}
+        "operators": {
+            "Argentina": [
+                1940,
+                2020
+            ],
+            "Australia": [
+                1940,
+                2020
+            ],
+            "Austria": [
+                1940,
+                2020
+            ],
+            "Bahrain": [
+                1940,
+                2020
+            ],
+            "Belgium": [
+                1940,
+                2020
+            ],
+            "Brazil": [
+                1940,
+                2020
+            ],
+            "Canada": [
+                1940,
+                2020
+            ],
+            "Chile": [
+                1940,
+                2020
+            ],
+            "Croatia": [
+                1940,
+                2020
+            ],
+            "Denmark": [
+                1940,
+                2020
+            ],
+            "Ecuador": [
+                1940,
+                2020
+            ],
+            "Ethiopia": [
+                1940,
+                2020
+            ],
+            "France": [
+                1940,
+                2020
+            ],
+            "Greece": [
+                1940,
+                2020
+            ],
+            "Honduras": [
+                1940,
+                2020
+            ],
+            "Indonesia": [
+                1940,
+                2020
+            ],
+            "Iran": [
+                1940,
+                2020
+            ],
+            "Iraq": [
+                1940,
+                2020
+            ],
+            "Japan": [
+                1940,
+                2020
+            ],
+            "Lebanon": [
+                1940,
+                2020
+            ],
+            "Malaysia": [
+                1940,
+                2020
+            ],
+            "Mexico": [
+                1940,
+                2020
+            ],
+            "Morocco": [
+                1940,
+                2020
+            ],
+            "TheNetherlands": [
+                1940,
+                2020
+            ],
+            "Norway": [
+                1940,
+                2020
+            ],
+            "Pakistan": [
+                1940,
+                2020
+            ],
+            "Philippines": [
+                1940,
+                2020
+            ],
+            "Peru": [
+                1940,
+                2020
+            ],
+            "Portugal": [
+                1940,
+                2020
+            ],
+            "SaudiArabia": [
+                1940,
+                2020
+            ],
+            "SouthAfrica": [
+                1940,
+                2020
+            ],
+            "Spain": [
+                1940,
+                2020
+            ],
+            "Sudan": [
+                1940,
+                2020
+            ],
+            "Switzerland": [
+                1940,
+                2020
+            ],
+            "Thailand": [
+                1940,
+                2020
+            ],
+            "Tunisia": [
+                1940,
+                2020
+            ],
+            "Turkey": [
+                1940,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ],
+            "USA": [
+                1940,
+                2020
+            ],
+            "Venezuela": [
+                1940,
+                2020
+            ],
+            "Vietnam": [
+                1940,
+                2020
+            ]
+        }
     },
     {
         "_id": "64bfb2e817951d43e5d9ecda",

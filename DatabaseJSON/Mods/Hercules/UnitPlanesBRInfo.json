@@ -1,0 +1,11 @@
+[
+    
+    {
+        "type": "Hercules",
+        "families": [
+            "PlaneTransport"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    }
+]

@@ -1,0 +1,11 @@
+[
+   
+    {
+        "type": "F-22A",
+        "families": [
+            "PlaneFighter"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    }
+]

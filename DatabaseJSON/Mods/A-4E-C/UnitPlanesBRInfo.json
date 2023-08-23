@@ -1,0 +1,12 @@
+[
+    {
+        "type": "A-4E-C",
+        "families": [
+            "PlaneAttack",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    }
+]

@@ -1,0 +1,10 @@
+[
+    {
+        "type": "F-117",
+        "families": [
+            "PlaneBomber"
+        ],
+        "lowPolly": true,
+        "playerControllable": true
+    }
+]

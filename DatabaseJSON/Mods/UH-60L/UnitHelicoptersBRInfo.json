@@ -1,0 +1,10 @@
+[
+    {
+        "type": "UH-60L",
+        "families": [
+            "HelicopterTransport"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    }
+]

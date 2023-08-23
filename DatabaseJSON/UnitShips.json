@@ -836,7 +836,12 @@
         ],
         "module": "South_Atlantic_Assets",
         "shape": "Ship_Tilde_Supply",
-        "operators": {}
+        "operators": {
+            "UnitedNationsPeacekeepers": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "64bfb2e917951d43e5d9ee0a",
@@ -856,6 +861,42 @@
             "USA": [
                 1940,
                 1970
+            ]
+        }
+    },
+    {
+        "_id": "64bfb2e917951d43e5d9ee0c",
+        "type": "ara_vdm",
+        "numParking": 6,
+        "displayName": "ARA Vienticinco de Mayo",
+        "categories": [
+            {
+                "name": "AircraftCarrier"
+            },
+            {
+                "name": "AircraftCarrier With Catapult"
+            },
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "AircraftCarrier With Arresting Gear"
+            }
+        ],
+        "module": "South_Atlantic_Assets",
+        "shape": "ara_vdm",
+        "operators": {
+            "UK": [
+                1940,
+                1940
+            ],
+            "TheNetherlands": [
+                1940,
+                1960
+            ],
+            "Argentina": [
+                1960,
+                1990
             ]
         }
     },

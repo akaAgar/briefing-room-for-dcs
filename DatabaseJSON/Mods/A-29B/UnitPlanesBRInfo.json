@@ -1,0 +1,11 @@
+[
+    {
+        "type": "A-29B",
+        "families": [
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    }
+]

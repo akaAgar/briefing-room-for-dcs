@@ -1,0 +1,22 @@
+[
+    {
+        "type": "JAS39Gripen",
+        "families": [
+            "PlaneAttack",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "JAS39Gripen_AG",
+        "families": [
+            "PlaneAttack",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    } 
+]

@@ -8432,8 +8432,12 @@
                 "id": "GunnersAISkill"
             },
             {
-                "defValue": 1,
+                "defValue": 0,
                 "id": "NetCrewControlPriority"
+            },
+            {
+                "defValue": false,
+                "id": "HumanOrchestra"
             },
             {
                 "id": "NS430allow",
@@ -30434,7 +30438,76 @@
         "cruiseSpeed": 222,
         "shape": "SH-3",
         "width": 18.91,
-        "operators": {}
+        "operators": {
+            "Argentina": [
+                1960,
+                2020
+            ],
+            "India": [
+                1960,
+                2020
+            ],
+            "Indonesia": [
+                1960,
+                2020
+            ],
+            "Iran": [
+                1960,
+                2020
+            ],
+            "Malaysia": [
+                1960,
+                2020
+            ],
+            "Peru": [
+                1960,
+                2020
+            ],
+            "Ukraine": [
+                1960,
+                2020
+            ],
+            "USA": [
+                1960,
+                2020
+            ],
+            "Venezuela": [
+                1960,
+                2020
+            ],
+            "Brazil": [
+                1960,
+                2010
+            ],
+            "Canada": [
+                1960,
+                2010
+            ],
+            "Denmark": [
+                1960,
+                2010
+            ],
+            "Iraq": [
+                1960,
+                2010
+            ],
+            "Italy": [
+                1960,
+                2010
+            ],
+            "Japan": [
+                1960,
+                2010
+            ],
+            "SaudiArabia": [
+                1960,
+                2010
+            ],
+            "Spain": [
+                1960,
+                2010
+            ]
+        }
     },
     {
         "_id": "64bfb2ea17951d43e5d9ef42",

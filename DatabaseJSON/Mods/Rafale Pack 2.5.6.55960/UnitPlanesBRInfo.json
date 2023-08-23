@@ -1,0 +1,42 @@
+[
+    {
+        "type": "Rafale_A_S",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Rafale_M",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Rafale_C",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Rafale_B",
+        "families": [
+            "PlaneFighter",
+            "PlaneSEAD",
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    }
+]
