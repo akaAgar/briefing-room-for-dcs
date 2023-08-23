@@ -1,3 +1,66 @@
 [
-    
+    {
+        "type": "Su-30SM",
+        "families": [
+            "PlaneFighter"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Su-30SM-AG",
+        "families": [
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Su-30MKA",
+        "families": [
+            "PlaneFighter"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Su-30MKA-AG",
+        "families": [
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Su-30MKM",
+        "families": [
+            "PlaneFighter"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Su-30MKM-AG",
+        "families": [
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Su-30MKI",
+        "families": [
+            "PlaneFighter"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    },
+    {
+        "type": "Su-30MKI-AG",
+        "families": [
+            "PlaneStrike"
+        ],
+        "lowPolly": false,
+        "playerControllable": true
+    }
 ]
