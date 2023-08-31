@@ -86,7 +86,7 @@ namespace BriefingRoom4DCS.Data
             LoadJSONEntries<DBEntryAircraft>("UnitPlanes", true);
             LoadJSONModEntries<DBEntryAircraft>("UnitPlanes", true);
             LoadJSONEntries<DBEntryAircraft>("UnitHelicopters", true);
-            LoadJSONModEntries<DBEntryCar>("UnitHelicopters", true);
+            LoadJSONModEntries<DBEntryAircraft>("UnitHelicopters", true);
             LoadJSONEntries<DBEntryShip>("UnitShips", true);
             LoadJSONModEntries<DBEntryShip>("UnitShips", true);
             LoadJSONEntries<DBEntryStatic>("UnitWarehouses", true);
