@@ -50,6 +50,7 @@ namespace BriefingRoom4DCS.Template
         internal FogOfWar OptionsFogOfWar { get; init; }
         internal List<string> OptionsMission { get; init; }
         internal List<RealismOption> OptionsRealism { get; init; }
+        internal List<string> OptionsUnitBanList { get; init; }
         internal List<MissionTemplateFlightGroupRecord> PlayerFlightGroups { get; init; }
         internal List<MissionTemplatePackageRecord> AircraftPackages { get; init; }
         internal AmountR SituationEnemySkill { get; init; }
@@ -90,6 +91,7 @@ namespace BriefingRoom4DCS.Template
             OptionsFogOfWar = template.OptionsFogOfWar;
             OptionsMission = template.OptionsMission;
             OptionsRealism = template.OptionsRealism;
+            OptionsUnitBanList = template.OptionsUnitBanList;
             PlayerFlightGroups = template.PlayerFlightGroups.Select((x, index) =>
             {
                 if (((ContextPlayerCoalition == Coalition.Red && !x.Hostile) || (ContextPlayerCoalition == Coalition.Blue && x.Hostile)) && x.Country == Country.CombinedJointTaskForcesBlue)

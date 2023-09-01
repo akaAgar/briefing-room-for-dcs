@@ -552,6 +552,20 @@
                     </div>
                     </div>
                     break;
+                    case "unitBanlist":
+                    <div id="flight-groups" class="generator-block">
+                        <h3>@BriefingRoom.Translate("unitBanlist")</h3>
+                         <CheckBoxList
+                                Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.Unit, string.Join(',', Template.Mods)).ToList()"
+                                TextField="@(item =>item.Name.Get())"
+                                ValueField="@(item =>item.ID)"
+                                GroupingField="@(item => item.Category.Get())"
+                                SelectedValues="Template.OptionsUnitBanList"
+                                TItem="DatabaseEntryInfo"
+                                TItemOutput="string">
+                            </CheckBoxList>
+                    </div>
+                    break;
             }
         </EditForm>
         <button id="hint-open-map-button" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" @onclick='() => RenderHintMap("")'><span class="oi oi-globe"></span> @BriefingRoom.Translate("ViewLocationHint")</button>
@@ -751,8 +765,9 @@
         { "flight-groups", "FlightGroups" },
         { "objectives", "Missions" },
         { "situation", "Situation" },
-        { "combined-arms", "CombinedArms" },
+        { "combined-arms", "CombinedArms"},
         { "options", "Options" },
+        { "unitBanlist", "UnitBanList"},
         { "briefing", "Briefing" },
     };
     private void SetTab(string var)

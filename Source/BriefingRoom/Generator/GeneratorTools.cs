@@ -61,12 +61,12 @@ namespace BriefingRoom4DCS.Generator
                 return units.ToList();
 
             for (int i = 0; i < airDefenseUnitsCount; i++)
-                units.AddRange(unitsCoalitionDB.GetRandomUnits(families, template.ContextDecade, 1, template.Mods, template.OptionsMission.Contains("AllowlowPolly"),  template.OptionsMission.Contains("BlockSuppliers"), country).Item2);
+                units.AddRange(unitsCoalitionDB.GetRandomUnits(families, template.ContextDecade, 1, template.Mods, template.OptionsUnitBanList, template.OptionsMission.Contains("AllowlowPolly"),  template.OptionsMission.Contains("BlockSuppliers"), country).Item2);
 
             return units.ToList();
         }
         
-        internal static Tuple<Country, List<string>> GetNeutralRandomUnits(List<UnitFamily> families, List<Country> IgnoreCountries, Decade decade, int count, List<string> unitMods, bool allowLowPolly, Country? requiredCountry = null)
+        internal static Tuple<Country, List<string>> GetNeutralRandomUnits(List<UnitFamily> families, List<Country> IgnoreCountries, Decade decade, int count, List<string> unitMods, bool allowLowPolly, List<string> unitBanList, Country? requiredCountry = null)
         {
             // Count is zero, return an empty array.
             if (count < 1) throw new BriefingRoomException("Asking for a zero unit list");
@@ -79,7 +79,7 @@ namespace BriefingRoom4DCS.Generator
             foreach (Country country in Enum.GetValues(typeof(Country)).Cast<Country>().Where(x => !IgnoreCountries.Contains(x)).ToList())
                 validUnits[country] = (
                         from DBEntryJSONUnit unit in Database.Instance.GetAllEntries<DBEntryJSONUnit>()
-                        where unit.Families.Intersect(families).ToList().Count > 0 && unit.Operators.ContainsKey(country) &&
+                        where !unitBanList.Contains(unit.ID) && unit.Families.Intersect(families).ToList().Count > 0 && unit.Operators.ContainsKey(country) &&
                             (string.IsNullOrEmpty(unit.Module) || unitMods.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase) || DBEntryDCSMod.CORE_MODS.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase)) &&
                             (unit.Operators[country].start <= decade) && (unit.Operators[country].end >= decade) &&
                             (!unit.LowPolly || allowLowPolly)

@@ -122,7 +122,8 @@ namespace BriefingRoom4DCS
                     return (from DBEntryTheater theater in Database.Instance.GetAllEntries<DBEntryTheater>() select theater.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
 
                 case DatabaseEntryType.Unit:
-                    return (from DBEntryJSONUnit unit in Database.Instance.GetAllEntries<DBEntryJSONUnit>() select unit.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
+                    var ModList = parameter.Split(',').Where(x => !string.IsNullOrEmpty(x)).Select(x => Database.Instance.GetEntry<DBEntryDCSMod>(x).Module).ToList();
+                    return Database.Instance.GetAllEntries<DBEntryJSONUnit>().Where(x => DBEntryDCSMod.CORE_MODS.Contains(x.Module) || string.IsNullOrEmpty(x.Module) || ModList.Contains(x.Module)).Select(x => x.GetDBEntryInfo()).OrderBy(x => x.Category.Get()).ThenBy(x => x.Name.Get()).ToArray();
 
                 case DatabaseEntryType.UnitCarrier:
                     return Database.Instance.GetAllEntries<DBEntryJSONUnit>().Where(unitCarrier => Toolbox.CARRIER_FAMILIES.Intersect(unitCarrier.Families).Any()).Select(unitCarrier => unitCarrier.GetDBEntryInfo())

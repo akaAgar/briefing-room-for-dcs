@@ -46,6 +46,7 @@ namespace BriefingRoom4DCS.Template
         public FogOfWar OptionsFogOfWar { get; set; }
         public List<string> OptionsMission { get; set; }
         public List<RealismOption> OptionsRealism { get; set; }
+        public List<string> OptionsUnitBanList { get; set; }
         public List<MissionTemplateFlightGroup> PlayerFlightGroups { get; set; }
         public AmountR SituationEnemySkill { get; set; }
         public AmountNR SituationEnemyAirDefense { get; set; }

@@ -286,6 +286,10 @@
                         {
                         <span><b>@BriefingRoom.Translate("Mods"):</b>&nbsp;@string.Join(", ",Template.Mods.Select(x => BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.DCSMod, x).Value.Name.Get())))</span>
                         }
+                        @if(Template.OptionsUnitBanList.Count > 0)
+                        {
+                        <span><b>@BriefingRoom.Translate("UnitBanList"):</b>&nbsp;@string.Join(", ",Template.OptionsUnitBanList.Select(x => BriefingRoom.GetSingleDatabaseEntryInfo(DatabaseEntryType.Unit, x).Value.Name.Get()))</span>
+                        }
                     </p> 
                 </div>
             </div>

@@ -126,12 +126,12 @@ namespace BriefingRoom4DCS.Generator
 
             if (side == Side.Neutral)
             {
-                (country, units) = GeneratorTools.GetNeutralRandomUnits(families, CoalitionsDB.SelectMany(x => x.Countries).ToList(), Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowlowPolly"));
+                (country, units) = GeneratorTools.GetNeutralRandomUnits(families, CoalitionsDB.SelectMany(x => x.Countries).ToList(), Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowlowPolly"), Template.OptionsUnitBanList);
                 if (!units.Where(x => x != null).Any()) return new(new List<string>(), new List<DBEntryJSONUnit>());
             }
             else if (forceTryTemplate || families.All(x => TEMPLATE_PREFERENCE_FAMILIES.Contains(x)))
             {
-                var response = unitsCoalitionDB.GetRandomTemplate(families, Template.ContextDecade, Template.Mods);
+                var response = unitsCoalitionDB.GetRandomTemplate(families, Template.ContextDecade, Template.Mods, Template.OptionsUnitBanList);
                 if (response != null)
                 {
                     (country, var unitTemplate) = response;
@@ -140,7 +140,7 @@ namespace BriefingRoom4DCS.Generator
                 }
             }
             if (!units.Where(x => x != null).Any())
-                (country, units) = unitsCoalitionDB.GetRandomUnits(families, Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowlowPolly"), Template.OptionsMission.Contains("BlockSuppliers"), lowUnitVariation: unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.LowUnitVariation));
+                (country, units) = unitsCoalitionDB.GetRandomUnits(families, Template.ContextDecade, unitCount, Template.Mods, Template.OptionsUnitBanList, Template.OptionsMission.Contains("AllowlowPolly"), Template.OptionsMission.Contains("BlockSuppliers"), lowUnitVariation: unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.LowUnitVariation));
 
 
             if (country != Country.ALL)

@@ -39,6 +39,11 @@ namespace BriefingRoom4DCS.Data
         internal bool Immovable { get; init; } = false;
         internal string Shape { get; init; }
 
+        override internal DatabaseEntryInfo GetDBEntryInfo()
+        {
+            var category = DBEntryDCSMod.CORE_MODS.Contains(Module) || string.IsNullOrEmpty(Module) ? new LanguageString(Category.ToString()) : new LanguageString($"{Category.ToString()} - {Module}");
+            return new DatabaseEntryInfo(ID, UIDisplayName, category, new LanguageString(Module));
+        }
 
 
         protected override bool OnLoad(string o)

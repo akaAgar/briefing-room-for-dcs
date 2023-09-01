@@ -61,6 +61,8 @@ namespace BriefingRoom4DCS.Template
         private List<string> OptionsMission_ = new();
         public List<RealismOption> OptionsRealism { get { return OptionsRealism_; } set { OptionsRealism_ = value.Distinct().ToList(); } }
         private List<RealismOption> OptionsRealism_ = new();
+        public List<string> OptionsUnitBanList { get { return OptionsUnitBanList_; } set { OptionsUnitBanList_ = value.Distinct().ToList(); } }
+        private List<string> OptionsUnitBanList_ = new();
         public List<MissionTemplateFlightGroup> PlayerFlightGroups { get { return PlayerFlightGroups_; } set { PlayerFlightGroups_ = value.Take(MAX_PLAYER_FLIGHT_GROUPS).ToList(); } }
         private List<MissionTemplateFlightGroup> PlayerFlightGroups_ = new();
         public AmountR SituationEnemySkill { get; set; }
@@ -102,6 +104,7 @@ namespace BriefingRoom4DCS.Template
             OptionsFogOfWar = FogOfWar.All;
             OptionsMission = new List<string> { "ImperialUnitsForBriefing", "MarkWaypoints" };
             OptionsRealism = new RealismOption[] { RealismOption.DisableDCSRadioAssists, RealismOption.NoBDA }.ToList();
+            OptionsUnitBanList = new List<string>();
 
             PlayerFlightGroups = new MissionTemplateFlightGroup[] { new MissionTemplateFlightGroup() }.ToList();
 
@@ -142,6 +145,7 @@ namespace BriefingRoom4DCS.Template
             OptionsFogOfWar = ini.GetValue("Options", "FogOfWar", OptionsFogOfWar);
             OptionsMission = ini.GetValueDistinctList<string>("Options", "Mission");
             OptionsRealism = ini.GetValueDistinctList<RealismOption>("Options", "Realism");
+            OptionsUnitBanList = ini.GetValueDistinctList<string>("Options", "UnitBanList");
 
             PlayerFlightGroups.Clear();
             foreach (string key in ini.GetTopLevelKeysInSection("PlayerFlightGroups"))
@@ -188,6 +192,8 @@ namespace BriefingRoom4DCS.Template
             ini.SetValue("Options", "FogOfWar", OptionsFogOfWar);
             ini.SetValueArray("Options", "Mission", OptionsMission.ToArray());
             ini.SetValueArray("Options", "Realism", OptionsRealism.ToArray());
+            ini.SetValueArray("Options", "UnitBanList", OptionsUnitBanList.ToArray());
+
 
             for (i = 0; i < PlayerFlightGroups.Count; i++)
                 PlayerFlightGroups[i].SaveToFile(ini, "PlayerFlightGroups", $"PlayerFlightGroup{i:000}");
