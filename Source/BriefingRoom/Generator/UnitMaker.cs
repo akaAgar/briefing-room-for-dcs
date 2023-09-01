@@ -1,4 +1,4 @@
-﻿using BriefingRoom4DCS.Data;
+using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Mission.DCSLuaObjects;
 using BriefingRoom4DCS.Template;
@@ -129,7 +129,7 @@ namespace BriefingRoom4DCS.Generator
                 (country, units) = GeneratorTools.GetNeutralRandomUnits(families, CoalitionsDB.SelectMany(x => x.Countries).ToList(), Template.ContextDecade, unitCount, Template.Mods, Template.OptionsMission.Contains("AllowlowPolly"), Template.OptionsUnitBanList);
                 if (!units.Where(x => x != null).Any()) return new(new List<string>(), new List<DBEntryJSONUnit>());
             }
-            else if (forceTryTemplate || families.All(x => TEMPLATE_PREFERENCE_FAMILIES.Contains(x)))
+            else if (forceTryTemplate || (families.All(x => TEMPLATE_PREFERENCE_FAMILIES.Contains(x)) && Toolbox.RandomChance(3)))
             {
                 var response = unitsCoalitionDB.GetRandomTemplate(families, Template.ContextDecade, Template.Mods, Template.OptionsUnitBanList);
                 if (response != null)
@@ -668,7 +668,7 @@ namespace BriefingRoom4DCS.Generator
             return Coordinates.ToAngleInRadians(groupCoordinates, waypointCoor);
         }
 
-        private static (Coordinates unitCoordinates, double unitHeading) SetUnitCoordinatesAndHeading(
+        private (Coordinates unitCoordinates, double unitHeading) SetUnitCoordinatesAndHeading(
             DBEntryJSONUnit unitDB,
             int unitIndex,
             Coordinates groupCoordinates,

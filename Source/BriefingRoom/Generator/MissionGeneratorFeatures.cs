@@ -260,7 +260,7 @@ namespace BriefingRoom4DCS.Generator
                 if (!spawnCoords.HasValue)
                     continue;
 
-
+                extraSettings.Remove("TemplatePositionMap");
                 var (units, unitDBs) = _unitMaker.GetUnits(unitFamily, unitCount, groupSide, groupFlags, ref extraSettings);
                 if (units.Count == 0)
                 {
