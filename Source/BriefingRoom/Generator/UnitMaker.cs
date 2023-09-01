@@ -1,4 +1,5 @@
-using BriefingRoom4DCS.Data;
+﻿using BriefingRoom4DCS.Data;
+using BriefingRoom4DCS.Data.JSON;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Mission.DCSLuaObjects;
 using BriefingRoom4DCS.Template;
@@ -699,10 +700,21 @@ namespace BriefingRoom4DCS.Generator
                             break;
                         case UnitCategory.Cargo:
                         case UnitCategory.Static:
-                            // Static units are spawned exactly on the group location (and there's only a single unit per group)
                             break;
                         default:
-                            unitCoordinates = groupCoordinates.CreateNearRandom(VEHICLE_UNIT_SPACING, VEHICLE_UNIT_SPACING * 10);
+                            var spType = SpawnPointSelector.UsedSpawnPoints.Find(x => x.Coordinates.Equals(groupCoordinates)).PointType;
+                            switch (spType)
+                            {
+                                case SpawnPointType.LandSmall:
+                                    unitCoordinates = groupCoordinates.CreateNearRandom(VEHICLE_UNIT_SPACING, VEHICLE_UNIT_SPACING * 1.5);
+                                    break;
+                                case SpawnPointType.LandMedium:
+                                    unitCoordinates = groupCoordinates.CreateNearRandom(VEHICLE_UNIT_SPACING, VEHICLE_UNIT_SPACING * 10);
+                                    break;
+                                default:
+                                    unitCoordinates = groupCoordinates.CreateNearRandom(VEHICLE_UNIT_SPACING, VEHICLE_UNIT_SPACING * 20);
+                                    break;
+                            }
                             break;
                     }
                 }

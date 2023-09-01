@@ -34,7 +34,7 @@ namespace BriefingRoom4DCS.Generator
         private readonly Dictionary<int, List<DBEntryAirbaseParkingSpot>> AirbaseParkingSpots;
 
         private readonly List<DBEntryTheaterSpawnPoint> SpawnPoints;
-        private readonly List<DBEntryTheaterSpawnPoint> UsedSpawnPoints;
+        internal readonly List<DBEntryTheaterSpawnPoint> UsedSpawnPoints;
 
         private readonly DBEntryTheater TheaterDB;
 
