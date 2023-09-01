@@ -26,12 +26,19 @@
           src="_content/BriefingRoomCommonGUI/img/discord-icon-svgrepo-com.svg"></a>
       <a href="@BriefingRoom.REPO_URL" target="_blank" class="col-1 img-link"><img alt="Github"
           src="_content/BriefingRoomCommonGUI/img/github-mark-white.svg"></a>
+      <a href="https://www.patreon.com/bePatron?u=99514930" target="_blank" class="col-1 img-link"><img
+          alt="Become a Patron!" src="_content/BriefingRoomCommonGUI/img/patreon-icon.png"></a>
       @if (BriefingRoom.RUNNING_IN_DOCKER)
       {
         <div class="col-1 btn-container"><a title="Support me on ko-fi.com" class="kofi-button"
             style="background-color:#29abe0;" href="https://ko-fi.com/V7V0IZI9N" target="_blank"> <span
               class="kofitext"><img src="https://storage.ko-fi.com/cdn/cup-border.png" alt="Ko-fi donations"
                 class="kofiimg">@BriefingRoom.Translate("KoFiContributeBeg")</span></a></div>
+      }
+      else
+      {
+        <a href="https://ko-fi.com/V7V0IZI9N" target="_blank" class="col-1 img-link"><img alt="Support us with Ko-fi"
+            src="_content/BriefingRoomCommonGUI/img/Kofi-icon.png"></a>
       }
     </div>
   </div>
