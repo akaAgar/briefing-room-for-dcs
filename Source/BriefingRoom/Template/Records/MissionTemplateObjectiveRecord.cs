@@ -53,7 +53,7 @@ namespace BriefingRoom4DCS.Template
             var unsuitableRotorTargets = new List<string> { "PlaneAny", "PlaneAttack", "PlaneBomber", "PlaneFighter", "PlaneTransport." };
             return preset switch
             {
-                "RandomFixedWing" => Toolbox.RandomFrom(presets.Where(x => !x.Tasks.Intersect(unsuitableFixedWingTasks).Any()).Select(x => x.ID).ToList()),
+                "RandomFixedWing" => Toolbox.RandomFrom(presets.Where(x => !unsuitableFixedWingTasks.Contains(x.Task)).Select(x => x.ID).ToList()),
                 "RandomRotor" => Toolbox.RandomFrom(presets.Where(x => !x.Targets.Intersect(unsuitableRotorTargets).Any()).Select(x => x.ID).ToList()),
                 "Random" => Toolbox.RandomFrom(presets.Select(x => x.ID).ToList()),
                 _ => preset,

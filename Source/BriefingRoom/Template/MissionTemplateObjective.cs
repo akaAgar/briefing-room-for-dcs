@@ -81,7 +81,7 @@ namespace BriefingRoom4DCS.Template
                 Target = Toolbox.RandomFrom(preset.Targets);
                 TargetBehavior = Toolbox.RandomFrom(preset.TargetsBehaviors);
                 TargetCount = targetCount;
-                Task = Toolbox.RandomFrom(preset.Tasks);
+                Task = preset.Task;
             }
         }
 

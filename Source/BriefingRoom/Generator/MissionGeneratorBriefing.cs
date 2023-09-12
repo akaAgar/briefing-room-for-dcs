@@ -45,11 +45,15 @@ namespace BriefingRoom4DCS.Generator
                     var familyCount = 0;
                     Dictionary<string, List<string>> descriptionsMap = new();
                     foreach (var obj in template.Objectives)
-                    {
+                    {   
+                        var task = obj.Task;
+                        if(obj.HasPreset)
+                            task = Database.Instance.GetEntry<DBEntryObjectivePreset>(obj.Preset).Task;
+ 
                         DBEntryBriefingDescription descriptionDB =
                             Database.Instance.GetEntry<DBEntryBriefingDescription>(
-                                Database.Instance.GetEntry<DBEntryObjectiveTask>(obj.Task).BriefingDescription);
-                        AppendDescription(obj.Task, descriptionDB.DescriptionText[(int)objectiveTargetUnitFamilies[familyCount]].Get(), ref descriptionsMap);
+                                Database.Instance.GetEntry<DBEntryObjectiveTask>(task).BriefingDescription);
+                        AppendDescription(task, descriptionDB.DescriptionText[(int)objectiveTargetUnitFamilies[familyCount]].Get(), ref descriptionsMap);
                         familyCount++;
                         AddSubTasks(obj, objectiveTargetUnitFamilies, ref descriptionsMap, ref familyCount);
                     }

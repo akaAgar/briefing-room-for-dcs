@@ -33,7 +33,7 @@ namespace BriefingRoom4DCS.Data
 
         internal string[] TargetsBehaviors { get; private set; }
 
-        internal string[] Tasks { get; private set; }
+        internal string Task { get; private set; }
 
         protected override bool OnLoad(string iniFilePath)
         {
@@ -44,8 +44,8 @@ namespace BriefingRoom4DCS.Data
             if (Targets.Length == 0) { BriefingRoom.PrintToLog($"No valid targets for objective preset \"{ID}\"", LogMessageErrorLevel.Warning); return false; }
             TargetsBehaviors = Database.CheckIDs<DBEntryObjectiveTargetBehavior>(ini.GetValueArray<string>("ObjectivePreset", "TargetsBehaviors"));
             if (TargetsBehaviors.Length == 0) { BriefingRoom.PrintToLog($"No valid target behaviors for objective preset \"{ID}\"", LogMessageErrorLevel.Warning); return false; }
-            Tasks = Database.CheckIDs<DBEntryObjectiveTask>(ini.GetValueArray<string>("ObjectivePreset", "Tasks"));
-            if (Tasks.Length == 0) { BriefingRoom.PrintToLog($"No valid tasks for objective preset \"{ID}\"", LogMessageErrorLevel.Warning); return false; }
+            Task = Database.CheckID<DBEntryObjectiveTask>(ini.GetValue<string>("ObjectivePreset", "Task"));
+            if (string.IsNullOrEmpty(Task)) { BriefingRoom.PrintToLog($"No valid task for objective preset \"{ID}\"", LogMessageErrorLevel.Warning); return false; }
 
             return true;
         }
