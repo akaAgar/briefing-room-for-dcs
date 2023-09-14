@@ -414,6 +414,24 @@
      "76MD", -- the il-76 mod doesnt use a normal - sign so il-76md wont match... !!!! GRR
      "Hercules",
  }
+
+-- ************** BR AUTO ADD UNITS ******************
+-- BR Generator add player units
+for i, o in ipairs(briefingRoom.playerPilotNames) do
+    table.insert(ctld.transportPilotNames, o)
+    env.info("CTLD BR added player pilot" .. o, false)
+end
+
+for i = 1, 2 do
+    for _, g in pairs(coalition.getGroups(i)) do
+        if g:getCategory() == Group.Category.SHIP then
+            for _, u in pairs(g:getUnits()) do
+                table.insert(ctld.pickupZones, { u:getName(), "none", -1, "yes", 0 })
+                env.info("CTLD BR added ship pickup" .. u:getID(), false)
+            end
+        end
+    end
+end
  
  
  -- ************** Maximum Units SETUP for UNITS ******************
