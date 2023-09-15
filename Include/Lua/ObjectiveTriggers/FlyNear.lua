@@ -11,7 +11,7 @@ briefingRoom.mission.objectiveTimers[$OBJECTIVEINDEX$] = function()
         local vec2u = dcsExtensions.toVec2(unit:getPoint())
         local distance = dcsExtensions.getDistance(vec2p, vec2u);
 
-        if distance < 9260 and math.abs(vec2p.y - vec2u.y) < 2438 then -- less than 5nm away on the X/Z axis, less than 8000 feet of altitude difference
+        if distance < 3704 and math.abs(vec2p.y - vec2u.y) < 609.6 and p:inAir() then -- less than 2nm away on the X/Z axis, less than 2000 feet of altitude difference
           if math.random(1, 2) == 1 then
             briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_FLYNEAR1$", "RadioPilotTargetReconned1")
           else
@@ -19,6 +19,7 @@ briefingRoom.mission.objectiveTimers[$OBJECTIVEINDEX$] = function()
           end
           briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames = { }
           briefingRoom.mission.coreFunctions.completeObjective($OBJECTIVEINDEX$)
+          return nil
         end
       end
     end
