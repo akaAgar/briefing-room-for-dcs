@@ -246,14 +246,15 @@ namespace BriefingRoom4DCS.Generator
             };
         }
 
-        private static double GetAirbaseVariationDistance(Amount airbaseVariationDistance)
+        private static double GetAirbaseVariationDistance(AmountN airbaseVariationDistance)
         {
             return airbaseVariationDistance switch
             {
-                Amount.VeryLow => 10,
-                Amount.Low => 25,
-                Amount.High => 75,
-                Amount.VeryHigh => 100,
+                AmountN.None => 0,
+                AmountN.VeryLow => 10,
+                AmountN.Low => 25,
+                AmountN.High => 75,
+                AmountN.VeryHigh => 100,
                 _ => (double)50,// case Amount.Average
             };
         }

@@ -42,7 +42,7 @@ namespace BriefingRoom4DCS.Template
         private List<string> MissionObjectives_ = new();
         public Amount MissionsObjectiveCount { get; set; }
         public Amount MissionsObjectiveVariationDistance { get; set; }
-        public Amount MissionsAirbaseVariationDistance { get; set; }
+        public AmountN MissionsAirbaseVariationDistance { get; set; }
         public Amount MissionTargetCount { get; set; }
 
         public CampaignTemplate()
@@ -70,7 +70,7 @@ namespace BriefingRoom4DCS.Template
             MissionsObjectives = BriefingRoom.GetDatabaseEntriesIDs(DatabaseEntryType.ObjectivePreset).ToList();
             MissionsObjectiveCount = Amount.Average;
             MissionsObjectiveVariationDistance = Amount.Average;
-            MissionsAirbaseVariationDistance = Amount.Average;
+            MissionsAirbaseVariationDistance = AmountN.Average;
             MissionTargetCount = Amount.Average;
 
             AssignAliases();
