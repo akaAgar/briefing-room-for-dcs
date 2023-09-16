@@ -192,12 +192,22 @@ h4 {
     flex: 1;
 }
 
+.flex-no-grow {
+    flex-grow: 0;
+    text-wrap: nowrap;
+}
+
 .flex-justify-spaced {
     justify-content: space-evenly;
 }
 
 .flex-margin-fix {
     margin: 0 -10px;
+}
+
+.flex-align-end {
+    display: flex;
+    align-items: flex-end;
 }
 
 .row-button {
@@ -525,6 +535,11 @@ a.kofi-button:active {
 .alert.alert-warning .btn-group  p {
     margin-bottom: 0;
     line-height: 50px;
+}
+
+
+.no-padding {
+    padding: 0;
 }
 
 @keyframes kofi-wiggle {

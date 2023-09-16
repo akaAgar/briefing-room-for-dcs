@@ -84,9 +84,22 @@
                         </div>
                         <div class="generator-group flex-justify-spaced flex-margin-fix">
                             <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Theater") @bind-Value="Template.ContextTheater" DataBaseType="DatabaseEntryType.Theater"/>
-                            <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Situation") @bind-Value="Template.ContextSituation" DataBaseType="DatabaseEntryType.Situation" Grouping="@Template.ContextTheater" EmptOpt=@BriefingRoom.Translate("Random")/>
+                            <div class="flex-block no-padding">
+                                <div class="flex-align-end">
+                                <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Situation") @bind-Value="Template.ContextSituation" DataBaseType="DatabaseEntryType.Situation" Grouping="@Template.ContextTheater" EmptOpt=@BriefingRoom.Translate("Random")/>
+                                <label class="flex-block flex-no-grow checkbox-wrapper">
+                                    <input type="checkbox" checked=@Template.StaticSituation
+                                        @onchange="eventArgs => { Template.StaticSituation = (bool)eventArgs.Value; StateHasChanged();}" />
+                                        <span>@BriefingRoom.Translate("StaticSituation")</span>
+                                
+                                </label>
+                                </div>
+                            </div>
                         </div>
-                        <InputDataBase Label=@BriefingRoom.Translate("HomeAirbase") @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt=@BriefingRoom.Translate("Random")/>
+                        <div class="generator-group flex-justify-spaced flex-margin-fix">
+                            <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("HomeAirbase") @bind-Value="Template.FlightPlanTheaterStartingAirbase" DataBaseType="DatabaseEntryType.Airbase" Grouping="@Template.ContextTheater" EmptOpt=@BriefingRoom.Translate("Random")/>
+                            <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("AirbaseVariationDistance") @bind-Value="Template.MissionsAirbaseVariationDistance" EnumType="AmountN"/>
+                        </div>
                         <InputEnum Label=@BriefingRoom.Translate("TimePeriod") @bind-Value="Template.ContextDecade" EnumType="Decade"/>
                         <InputEnum Label=@BriefingRoom.Translate("PlayerSide") @bind-Value="Template.ContextPlayerCoalition" EnumType="Coalition"/>
                     </div>
@@ -151,7 +164,6 @@
                             <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("ObjectivesCount") @bind-Value="Template.MissionsObjectiveCount" EnumType="Amount"/>
                             <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("TargetCount") @bind-Value="Template.MissionTargetCount" EnumType="Amount"/>
                             <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("ObjectiveVariationDistance") @bind-Value="Template.MissionsObjectiveVariationDistance" EnumType="Amount"/>
-                            <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("AirbaseVariationDistance") @bind-Value="Template.MissionsAirbaseVariationDistance" EnumType="AmountN"/>
                         </div>
                     </div>
                     break;

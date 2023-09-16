@@ -209,7 +209,8 @@ namespace BriefingRoom4DCS.Generator
             {
                 var situationOptions = new List<string> { previousSituationId };
                 var previousSituationDB = Database.Instance.GetEntry<DBEntrySituation>(previousSituationId);
-                situationOptions.AddRange(previousSituationDB.RelatedSituations);
+                if(!campaignTemplate.StaticSituation)
+                    situationOptions.AddRange(previousSituationDB.RelatedSituations);
                 template.ContextSituation = Toolbox.RandomFrom(situationOptions.ToArray());
                 var nextSituationDB = Database.Instance.GetEntry<DBEntrySituation>(template.ContextSituation);
 
