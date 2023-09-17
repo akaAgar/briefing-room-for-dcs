@@ -247,15 +247,24 @@ namespace BriefingRoom4DCS.Generator
             var objectiveName = waypointNameGenerator.GetWaypointName();
             if (taskDB.UICategory.ContainsValue("Transport"))
             {
-                Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                targetDB.ValidSpawnPoints,
-                playerAirbase.Coordinates,
-                new MinMaxD(1, 5),
-                coalition: GeneratorTools.GetSpawnPointCoalition(template, Side.Ally));
-                if (!spawnPoint.HasValue) // Failed to generate target group
-                    throw new BriefingRoomException($"Failed to find Cargo SpawnPoint");
-                unitCoordinates = spawnPoint.Value;
-                if (targetBehaviorDB.ID.StartsWith("GoToPlayerBase"))
+                if(targetBehaviorDB.ID == "RelocateToNewPosition")
+                {
+                    Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                    targetDB.ValidSpawnPoints,
+                    objectiveCoordinates,
+                    template.FlightPlanObjectiveSeparation,
+                    coalition: GeneratorTools.GetSpawnPointCoalition(template, Side.Ally));
+                    if (!spawnPoint.HasValue) // Failed to generate target group
+                        throw new BriefingRoomException($"Failed to find Cargo SpawnPoint");
+                    unitCoordinates = spawnPoint.Value;
+                }
+                else {
+                    var (_, _, spawnPoints) = UnitMaker.SpawnPointSelector.GetAirbaseAndParking(template, playerAirbase.Coordinates, 1, GeneratorTools.GetSpawnPointCoalition(template, Side.Ally).Value, (DBEntryAircraft)Database.Instance.GetEntry<DBEntryJSONUnit>("Mi-8MT"));
+                    if (spawnPoints.Count == 0) // Failed to generate target group
+                        throw new BriefingRoomException($"Failed to find Cargo SpawnPoint");
+                    unitCoordinates = spawnPoints.First();
+                }
+                if (targetBehaviorDB.ID.StartsWith("RecoverToBase"))
                 {
                     (unitCoordinates, objectiveCoordinates) = (objectiveCoordinates, unitCoordinates);
                     isInverseTransportWayPoint = true;

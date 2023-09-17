@@ -31,6 +31,7 @@ namespace BriefingRoom4DCS.Data
         internal string[] UnitLua { get; private set; }
 
         internal UnitCategory[] ValidUnitCategories { get; private set; }
+        internal string[] InvalidTasks { get; private set; }
 
 
         protected override bool OnLoad(string iniFilePath)
@@ -48,6 +49,8 @@ namespace BriefingRoom4DCS.Data
 
             ValidUnitCategories = ini.GetValueArray<UnitCategory>("Behavior", "ValidUnitCategories").Distinct().ToArray();
             if (ValidUnitCategories.Length == 0) ValidUnitCategories = Toolbox.GetEnumValues<UnitCategory>(); // No category means all categories
+
+            InvalidTasks = Database.Instance.CheckIDs<DBEntryObjectiveTask>(ini.GetValueArray<string>("Behavior", "InvalidTasks").Distinct().ToArray());
             return true;
         }
     }

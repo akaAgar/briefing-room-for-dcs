@@ -70,7 +70,8 @@
             litems = BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DataBaseType, Grouping);
         else
             litems = BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DataBaseType);
-
+        if(litems.Count() == 0)
+            return litems;
         if (!litems.Select(x => x.ID).Contains(Value) && Value != "" && (string.IsNullOrEmpty(CustomOpt) || Value !=
         CustomOpt.Split(",")[1]))
             if (!string.IsNullOrEmpty(CustomOpt))

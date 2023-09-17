@@ -96,7 +96,13 @@ namespace BriefingRoom4DCS
                     if (string.IsNullOrEmpty(parameter)) // No parameter, return none
                         return (from DBEntryObjectiveTargetBehavior objectiveTargetBehavior in Database.Instance.GetAllEntries<DBEntryObjectiveTargetBehavior>() select objectiveTargetBehavior.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
                     else
-                        return (from DBEntryObjectiveTargetBehavior objectiveTargetBehavior in Database.Instance.GetAllEntries<DBEntryObjectiveTargetBehavior>() where objectiveTargetBehavior.ValidUnitCategories.Contains(Database.Instance.GetEntry<DBEntryObjectiveTarget>(parameter).UnitCategory) select objectiveTargetBehavior.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
+                    {
+                        var paramList = parameter.Split(',');
+                        var taskId = paramList[0];
+                        var targetId = paramList[1];
+                        return (from DBEntryObjectiveTargetBehavior objectiveTargetBehavior in Database.Instance.GetAllEntries<DBEntryObjectiveTargetBehavior>() where objectiveTargetBehavior.ValidUnitCategories.Contains(Database.Instance.GetEntry<DBEntryObjectiveTarget>(targetId).UnitCategory) && !objectiveTargetBehavior.InvalidTasks.Contains(taskId) select objectiveTargetBehavior.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
+
+                    }
                 case DatabaseEntryType.Coalition:
                     return (from DBEntryCoalition coalition in Database.Instance.GetAllEntries<DBEntryCoalition>() select coalition.GetDBEntryInfo()).OrderBy(x => x.Name.Get()).ToArray();
 
