@@ -132,11 +132,19 @@ namespace BriefingRoom4DCS
             var resultMap = new LanguageString();
             foreach (var langKey in BriefingRoom.AvailableLanguagesMap.Keys)
             {
-                var value = GetValue<string>(section, $"{key}{(langKey != "EN" ? $".{langKey}" : "")}", "");
+                var value = GetValue<string>(section, $"{key}{(langKey != "en" ? $".{langKey}" : "")}", "");
                 if (!string.IsNullOrEmpty(value))
                     resultMap.AddIfKeyUnused(langKey, value);
             }
             return resultMap;
+        }
+
+        internal LanguageString AddLangStrings(string section, string key, LanguageString resultMap, string langKey)
+        {
+                var value = GetValue<string>(section, key, "");
+                if (!string.IsNullOrEmpty(value))
+                    resultMap.AddIfKeyUnused(langKey, value);
+                return resultMap;
         }
         internal T[] GetValueArray<T>(string section, string key, char separator = ',')
         {

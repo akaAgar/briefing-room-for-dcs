@@ -29,7 +29,7 @@ namespace BriefingRoom4DCS.Data
     {
         public Dictionary<string, LanguageString> LangMap { get; private set; }
 
-        public string Language { get; set; } = "EN";
+        public string Language { get; set; } = "en";
 
         public DatabaseLanguage() { }
 
@@ -54,6 +54,8 @@ namespace BriefingRoom4DCS.Data
         private void LoadValues(string filePath)
         {
             var ini = new INIFile(filePath);
+            var parts = Path.GetFileNameWithoutExtension(filePath).Split('.');
+            var lang = parts.Length > 1 ? parts[1].ToLower() : "en";
             foreach (var section in ini.GetSections())
             {
                 foreach (var key in ini.GetKeysInSection(section, true))
@@ -61,7 +63,7 @@ namespace BriefingRoom4DCS.Data
                     var upperKey = key.ToUpper();
                     if (LangMap.ContainsKey(upperKey))
                     {
-                        BriefingRoom.PrintToLog($"Duplicate Lang Key {key}", LogMessageErrorLevel.Warning);
+                         LangMap[upperKey] = ini.AddLangStrings(section, key, LangMap[upperKey], lang);
                         continue;
                     }
                     LangMap.Add(upperKey, ini.GetLangStrings(section, key));

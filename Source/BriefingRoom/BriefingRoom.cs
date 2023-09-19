@@ -62,7 +62,7 @@ namespace BriefingRoom4DCS
             INIFile ini = new(Path.Combine(BRPaths.DATABASE, "Common.ini"));
             TARGETED_DCS_WORLD_VERSION = ini.GetValue("Versions", "DCSVersion", "2.7");
 
-            AvailableLanguagesMap = new Dictionary<string, string> { { "EN", "English" } };
+            AvailableLanguagesMap = new Dictionary<string, string> { { "en", "English" } };
             foreach (var key in ini.GetKeysInSection("Languages"))
                 AvailableLanguagesMap.AddIfKeyUnused(key, ini.GetValue<string>("Languages", key));
 
