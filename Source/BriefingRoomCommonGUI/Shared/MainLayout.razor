@@ -11,7 +11,7 @@
             <div class="top-row px-4">
                 <div class="form-group language-selector">
                     <label>@BriefingRoom.Translate("Language")</label>
-                    <select class="form-control" @bind=@BriefingRoom.LanguageDB.Language>
+                    <select class="form-control" value=@BriefingRoom.LanguageDB.Language @onchange="eventArgs => SetLanguage((string)eventArgs.Value)">
                         @foreach (var key in BriefingRoom.AvailableLanguagesMap.Keys)
                         {
                             <option value="@key">@BriefingRoom.AvailableLanguagesMap[key]</option>
@@ -69,9 +69,13 @@
         if (firstRender)
         {
             darkmode = true;
+            BriefingRoom.LanguageDB.Language="en";
             try
             {
                 darkmode = await localStorage.GetItemAsync<bool>("DCSUseDarkMode");
+                BriefingRoom.LanguageDB.Language = await localStorage.GetItemAsync<string>("DCSLanguage");
+                if(string.IsNullOrEmpty(BriefingRoom.LanguageDB.Language))
+                    BriefingRoom.LanguageDB.Language = "en";
             }
             catch (System.Exception)
             { 
@@ -88,6 +92,19 @@
         try
         {
             await localStorage.SetItemAsync("DCSUseDarkMode", darkModeOn);
+        }
+        catch (System.Exception)
+        {
+        }
+    }
+
+    private async Task SetLanguage(string langKey)
+    {
+        BriefingRoom.LanguageDB.Language = langKey;
+        StateHasChanged();
+        try
+        {
+            await localStorage.SetItemAsync("DCSLanguage", langKey);
         }
         catch (System.Exception)
         {
