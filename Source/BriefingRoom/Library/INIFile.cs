@@ -127,6 +127,15 @@ namespace BriefingRoom4DCS
             }
         }
 
+        internal LanguageString GetLangStrings(string section, string key, string langKey)
+        {
+            var resultMap = new LanguageString();
+            var value = GetValue<string>(section, $"{key}", "");
+            if (!string.IsNullOrEmpty(value))
+                resultMap.AddIfKeyUnused(langKey, value);
+                    return resultMap;
+        }
+
         internal LanguageString GetLangStrings(string section, string key)
         {
             var resultMap = new LanguageString();

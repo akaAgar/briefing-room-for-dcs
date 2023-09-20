@@ -66,7 +66,7 @@ namespace BriefingRoom4DCS.Data
                          LangMap[upperKey] = ini.AddLangStrings(section, key, LangMap[upperKey], lang);
                         continue;
                     }
-                    LangMap.Add(upperKey, ini.GetLangStrings(section, key));
+                    LangMap.Add(upperKey, ini.GetLangStrings(section, key, lang));
                 }
             }
         }
