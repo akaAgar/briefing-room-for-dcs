@@ -1,4 +1,59 @@
 ## Changelog
+* Version 0.5.310.04(Oct, 04, 2023)
+    * Added:
+        * Added: Language selection persistance
+        * Added: Inital Turkish Translation Support
+        * Added: Inital Ukrainian and Russian Translation Support
+        * Added: Inital Italian Translation Support
+        * Added: Inital French Translation Support
+        * Added: Inital German Translation Support
+        * Added: Inital Spanish Translation Support
+        * Added: New Behaviors for Transport and Cargo missions (Recover to base, To Front Line, Relocate)
+        * Added: Campaign Static Situation Option and Moved Airbase variation distance option tab
+        * Added: Campaign None Airbase Variation Distance option
+        * Added: PG Campaign Securing the Straight
+        * Added: Sinai Six day war campaign
+        * Added: Second Russo Georgian War campaign situations
+        * Added: Vehicle unit spread now based on spawn point size
+        * Added: Unit Ban List (Campaign & Full Editor)
+        * Added: Support for a pile of VSN mods
+        * Added: FlankerEx by Codename Flanker Mod support
+        * Added: VSN F4 mod support
+        * Added: Military Aircraft Mod support
+        * Added: missing ship ARA Vienticinco de Mayo
+    *  Updated:
+        * Updated: Presets with new Behaviors
+        * Updated: Improve and add preset objectives
+        * Updated: FlyNear type objectives now require Flying, within 2nm within 2000ft of target units
+        * Updated: CTLD 20230414.01
+        * Updated: Rely on formation templates less
+        * Updated: New mod support structure
+        * Updated: Version and Changelog
+    * Fixed:
+        * Fix: Leading spaces
+        * Fix: Language file parsing
+        * Fix: Waypoints not following preset settings
+        * Fix: Duplicate remarks
+        * Fix: Search and Rescue preset
+        * Fix: Dupe situation name
+        * Fix: Re-implement BR CTLD custom code
+        * Fix: Briefing descriptions incorrect for presets
+        * Fix: Duplicate Situation name
+        * Fix: Bad mod loading of Mod Helicopters
+        * Fix: Mods not loaded to correct types
+        * Fix: AircraftTankerNoTACAN.yml on linux
+    * UI
+        * UI: Added Patreon Link & Non hosting ko-fi link
+    * Upgraded:  
+        * Upgrade: Bump YamlDotNet from 13.1.1 to 13.2.0 in /Source
+        * Upgrade: Bump Blazored.LocalStorage from 4.3.0 to 4.4.0 in /Source
+        * Upgrade: Bump Microsoft.AspNetCore.Components.Web in /Source
+        * Upgrade: Bump Markdig from 0.32.0 to 0.33.0 in /Source
+        * Upgrade: Bump Microsoft.AspNetCore.Components.Web in /Source
+        * Upgrade: Bump YamlDotNet from 13.2.0 to 13.4.0 in /Source
+    * Misc:
+        * Misc: Delete more redundant docs
+        * Misc: Improve docs
 * Version 0.5.308.10(Aug, 10, 2023)
     * Added:
         * Added: IADS Command Center Area Mark (Generated on mission start)
