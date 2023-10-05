@@ -1,11 +1,11 @@
 {
   "DisplayName": {
-    "EN": "Argentina West Falklands Control"
+    "en": "Argentina West Falklands Control"
   },
   "Theater": "Falklands",
   "BriefingDescriptions": [
     {
-      "EN": "Argentina has retreated to the west of the islands but refuse to give up ground."
+      "en": "Argentina has retreated to the west of the islands but refuse to give up ground."
     }
   ],
   "RelatedSituations": [],

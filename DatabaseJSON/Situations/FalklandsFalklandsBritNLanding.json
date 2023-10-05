@@ -1,11 +1,11 @@
 {
   "DisplayName": {
-    "EN": "Falklands British Beachhead North"
+    "en": "Falklands British Beachhead North"
   },
   "Theater": "Falklands",
   "BriefingDescriptions": [
     {
-      "EN": "The British have landed in the North of the East Falklands islands and taken their first airfield."
+      "en": "The British have landed in the North of the East Falklands islands and taken their first airfield."
     }
   ],
   "RelatedSituations": [],

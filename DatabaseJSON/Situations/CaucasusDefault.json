@@ -1,14 +1,14 @@
 {
   "DisplayName": {
-    "EN": "Peacetime National Control"
+    "en": "Peacetime National Control"
   },
   "Theater": "Caucasus",
   "BriefingDescriptions": [
     {
-      "EN": "With the support of $BRIEFINGALLYCOALITION$ we are about to attack $BRIEFINGENEMYCOALITION$ in response to the {atrocities happening under their watch|election that didn't go our way|military coup that has taken place}."
+      "en": "With the support of $BRIEFINGALLYCOALITION$ we are about to attack $BRIEFINGENEMYCOALITION$ in response to the {atrocities happening under their watch|election that didn't go our way|military coup that has taken place}."
     },
     {
-      "EN": "We are under threat of being attacked by $BRIEFINGENEMYCOALITION$ and therefore are taking control of this {conflict|flashpoint|situation} with a pre-emptive strike."
+      "en": "We are under threat of being attacked by $BRIEFINGENEMYCOALITION$ and therefore are taking control of this {conflict|flashpoint|situation} with a pre-emptive strike."
     }
   ],
   "RelatedSituations": [],

@@ -1,11 +1,11 @@
 {
   "DisplayName": {
-    "EN": "Second Russo Georgian War Batumi Costal Encirclement"
+    "en": "Second Russo Georgian War Batumi Costal Encirclement"
   },
   "Theater": "Caucasus",
   "BriefingDescriptions": [
     {
-      "EN": "The Georgian government is in shock. On top of that the Georgian military command has taken heavy losses due to missile attacks. Georgian forces are {close to being |have been} surrounded, they simply are {too few|not enough supplies} for them to break out."
+      "en": "The Georgian government is in shock. On top of that the Georgian military command has taken heavy losses due to missile attacks. Georgian forces are {close to being |have been} surrounded, they simply are {too few|not enough supplies} for them to break out."
     }
   ],
   "RelatedSituations": [

@@ -1,16 +1,16 @@
 {
     "DisplayName": {
-        "EN": "Argentina Full Falklands Control",
+        "en": "Argentina Full Falklands Control",
         "prt": "Jonny law take our port."
     },
     "Theater": "Falklands",
     "BriefingDescriptions": [
         {
-            "EN": "Argentina is now in full control of the Falklands. Its imperitive we act quickly.",
+            "en": "Argentina is now in full control of the Falklands. Its imperitive we act quickly.",
             "prt": "Jonny law has taken our port. We gotta take it back."
         },
         {
-            "EN": "Jonny law has taken our port. We gotta take it back."
+            "en": "Jonny law has taken our port. We gotta take it back."
         }
     ],
     "RelatedSituations": [],

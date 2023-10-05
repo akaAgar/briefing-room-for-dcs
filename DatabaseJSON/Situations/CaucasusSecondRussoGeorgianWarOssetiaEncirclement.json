@@ -1,11 +1,11 @@
 {
   "DisplayName": {
-    "EN": "Second Russo Georgian War Ossetia Encirclement"
+    "en": "Second Russo Georgian War Ossetia Encirclement"
   },
   "Theater": "Caucasus",
   "BriefingDescriptions": [
     {
-      "EN": "Ossetia is now {cut off|surrounded}. Its time to crush the {resistance|separatists}. The line between Russia and Ossetia is thin so we must act fast before a {Russian response|breakout}"
+      "en": "Ossetia is now {cut off|surrounded}. Its time to crush the {resistance|separatists}. The line between Russia and Ossetia is thin so we must act fast before a {Russian response|breakout}"
     }
   ],
   "RelatedSituations": [

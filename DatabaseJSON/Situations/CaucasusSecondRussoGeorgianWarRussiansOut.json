@@ -1,11 +1,11 @@
 {
   "DisplayName": {
-    "EN": "Second Russo Georgian War Russians Out"
+    "en": "Second Russo Georgian War Russians Out"
   },
   "Theater": "Caucasus",
   "BriefingDescriptions": [
     {
-      "EN": "Russia has finally retreated behind the original Georgian borders. The Georgian government is claiming victory but in reality it still needs to be secured."
+      "en": "Russia has finally retreated behind the original Georgian borders. The Georgian government is claiming victory but in reality it still needs to be secured."
     }
   ],
   "RelatedSituations": [

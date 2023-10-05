@@ -1,11 +1,11 @@
 {
   "DisplayName": {
-    "EN": "Second Russo Georgian War Ossetia Collapse"
+    "en": "Second Russo Georgian War Ossetia Collapse"
   },
   "Theater": "Caucasus",
   "BriefingDescriptions": [
     {
-      "EN": "Ossetia is now back in Georgian hands. Attacks have been made Gorgias on our western lost territories, its likely that these will significantly increase soon."
+      "en": "Ossetia is now back in Georgian hands. Attacks have been made Gorgias on our western lost territories, its likely that these will significantly increase soon."
     }
   ],
   "RelatedSituations": [

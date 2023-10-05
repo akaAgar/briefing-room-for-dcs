@@ -1,11 +1,11 @@
 {
   "DisplayName": {
-    "EN": "Second Russo Georgian War Start"
+    "en": "Second Russo Georgian War Start"
   },
   "Theater": "Caucasus",
   "BriefingDescriptions": [
     {
-      "EN": "Public support for {Ossetia Nationalists|Russia} has been collapsing in the {annexed regions|lost Georgian territory}. With the new Georgian government {in power|elected} they need to show that {Russia is weak|Georgia is strong}."
+      "en": "Public support for {Ossetia Nationalists|Russia} has been collapsing in the {annexed regions|lost Georgian territory}. With the new Georgian government {in power|elected} they need to show that {Russia is weak|Georgia is strong}."
     }
   ],
   "RelatedSituations": [

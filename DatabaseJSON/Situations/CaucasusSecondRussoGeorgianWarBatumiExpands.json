@@ -1,11 +1,11 @@
 {
   "DisplayName": {
-    "EN": "Second Russo Georgian War Batumi Expands"
+    "en": "Second Russo Georgian War Batumi Expands"
   },
   "Theater": "Caucasus",
   "BriefingDescriptions": [
     {
-      "EN": "Russian forces have been able to expand out of Batumi as Georgian forces retreat. The Georgian government is in shock."
+      "en": "Russian forces have been able to expand out of Batumi as Georgian forces retreat. The Georgian government is in shock."
     }
   ],
   "RelatedSituations": [
