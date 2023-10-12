@@ -84,6 +84,8 @@ namespace BriefingRoom4DCS.CommandLineTool
                 return false;
             }
 
+            new BriefingRoom();
+
             foreach (string t in templateFiles)
             {
                 if (Path.GetExtension(t).ToLower() == ".cbrt") // Template file is a campaign template
@@ -127,7 +129,7 @@ namespace BriefingRoom4DCS.CommandLineTool
                         continue;
                     }
                     else
-                        WriteToDebugLog($"Mission {Path.GetFileName(mizFileName)} exported to .miz file from template {Path.GetFileName(t)}");
+                        WriteToDebugLog($"Mission {Path.GetFileName(mizFileName)} exported to .miz file from template {Path.GetFileName(t)}. Found in {mizFileName}");
                 }
             }
 
