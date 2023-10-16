@@ -555,7 +555,7 @@ namespace BriefingRoom4DCS.Generator
                 unit.OnboardNum = Toolbox.RandomInt(1, 1000).ToString("000");
                 unit.PropsLua = aircraftUnitDB.ExtraProps;
                 unit.RadioPresets = aircraftUnitDB.PanelRadios.Select(x => x.SetOverrides(
-                    (double)extraSettings.GetValueOrDefault("RadioFrequency", aircraftUnitDB.Radio.Frequency),
+                    (double)extraSettings.GetValueOrDefault("RadioFrequencyDouble", aircraftUnitDB.Radio.Frequency),
                     (int)extraSettings.GetValueOrDefault("RadioBand", (int)aircraftUnitDB.Radio.Modulation),
                     (double?)extraSettings.GetValueOrDefault("AirbaseRadioFrequency", null),
                     (int?)extraSettings.GetValueOrDefault("AirbaseRadioModulation", null)

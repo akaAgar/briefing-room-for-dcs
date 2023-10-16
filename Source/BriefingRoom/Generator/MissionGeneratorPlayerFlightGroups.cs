@@ -132,6 +132,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 extraSettings.AddIfKeyUnused("RadioBand", (int)flightGroup.OverrideRadioBand);
                 extraSettings.AddIfKeyUnused("RadioFrequency", GeneratorTools.GetRadioFrequency(double.Parse(flightGroup.OverrideRadioFrequency, CultureInfo.InvariantCulture)));
+                extraSettings.AddIfKeyUnused("RadioFrequencyDouble", double.Parse(flightGroup.OverrideRadioFrequency, CultureInfo.InvariantCulture));
             }
 
             if (!string.IsNullOrEmpty(flightGroup.OverrideCallsignName))
