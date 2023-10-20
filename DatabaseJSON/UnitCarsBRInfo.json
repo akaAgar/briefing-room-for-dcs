@@ -2332,5 +2332,32 @@
         ],
         "lowPolly": false,
         "immovable": true
+    },
+    {
+        
+        "type": "HEMTT_C-RAM_Phalanx",
+        "families": [
+            "VehicleAAA"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        
+        "type": "S-300PS 40B6MD sr_19J6",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        
+        "type": "S-300PS 5H63C 30H6_tr",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "lowPolly": false,
+        "immovable": true
     }
 ]

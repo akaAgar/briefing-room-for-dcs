@@ -1,6 +1,6 @@
 [
     {
-        "_id": "64bfb2ea17951d43e5d9ef32",
+        "_id": "65328a6f4319326630cdeea3",
         "type": "Mi-24V",
         "callsigns": {
             "0": [
@@ -4421,7 +4421,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef34",
+        "_id": "65328a6f4319326630cdeea5",
         "type": "Mi-8MT",
         "callsigns": {
             "0": [
@@ -8632,7 +8632,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef36",
+        "_id": "65328a6f4319326630cdeea7",
         "type": "Mi-26",
         "callsigns": {
             "0": [
@@ -12442,7 +12442,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef38",
+        "_id": "65328a6f4319326630cdeea9",
         "type": "Ka-27",
         "callsigns": {
             "0": [
@@ -15981,7 +15981,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef3a",
+        "_id": "65328a6f4319326630cdeeab",
         "type": "UH-60A",
         "callsigns": {
             "0": [
@@ -19616,7 +19616,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef3c",
+        "_id": "65328a6f4319326630cdeead",
         "type": "CH-53E",
         "callsigns": {
             "0": [
@@ -23112,7 +23112,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef3e",
+        "_id": "65328a6f4319326630cdeeaf",
         "type": "CH-47D",
         "callsigns": {
             "0": [
@@ -26695,7 +26695,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef40",
+        "_id": "65328a6f4319326630cdeeb1",
         "type": "SH-3W",
         "callsigns": {
             "0": [
@@ -30510,7 +30510,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef42",
+        "_id": "65328a6f4319326630cdeeb3",
         "type": "AH-64A",
         "callsigns": {
             "0": [
@@ -34226,7 +34226,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef44",
+        "_id": "65328a6f4319326630cdeeb5",
         "type": "AH-64D",
         "callsigns": {
             "0": [
@@ -37805,33 +37805,6 @@
                 "pylons": [
                     {
                         "CLSID": "{88D18A5E-99C8-4B04-B40B-1C02F2018B6E}",
-                        "num": 1
-                    },
-                    {
-                        "CLSID": "{FD90A1DC-9147-49FA-BF56-CB83EF0BD32B}",
-                        "num": 2
-                    },
-                    {
-                        "CLSID": "{FD90A1DC-9147-49FA-BF56-CB83EF0BD32B}",
-                        "num": 3
-                    },
-                    {
-                        "CLSID": "{88D18A5E-99C8-4B04-B40B-1C02F2018B6E}",
-                        "num": 4
-                    }
-                ],
-                "tasks": [
-                    18,
-                    31,
-                    32
-                ],
-                "name": "8xAGM-114, 38xHYDRA-70",
-                "displayName": "8xAGM-114, 38xHYDRA-70"
-            },
-            {
-                "pylons": [
-                    {
-                        "CLSID": "{88D18A5E-99C8-4B04-B40B-1C02F2018B6E}",
                         "num": 4
                     },
                     {
@@ -37855,6 +37828,33 @@
                 ],
                 "name": "AGM-114K*16",
                 "displayName": "AGM-114K*16"
+            },
+            {
+                "pylons": [
+                    {
+                        "CLSID": "{88D18A5E-99C8-4B04-B40B-1C02F2018B6E}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{FD90A1DC-9147-49FA-BF56-CB83EF0BD32B}",
+                        "num": 2
+                    },
+                    {
+                        "CLSID": "{FD90A1DC-9147-49FA-BF56-CB83EF0BD32B}",
+                        "num": 3
+                    },
+                    {
+                        "CLSID": "{88D18A5E-99C8-4B04-B40B-1C02F2018B6E}",
+                        "num": 4
+                    }
+                ],
+                "tasks": [
+                    18,
+                    31,
+                    32
+                ],
+                "name": "8xAGM-114, 38xHYDRA-70",
+                "displayName": "8xAGM-114, 38xHYDRA-70"
             }
         ],
         "displayName": "AH-64D",
@@ -37961,7 +37961,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef46",
+        "_id": "65328a6f4319326630cdeeb7",
         "type": "AH-1W",
         "callsigns": {
             "0": [
@@ -41624,19 +41624,19 @@
             {
                 "pylons": [
                     {
-                        "CLSID": "{3EA17AB0-A805-4D9E-8732-4CE00CB00F17}",
+                        "CLSID": "{88D18A5E-99C8-4B04-B40B-1C02F2018B6E}",
                         "num": 1
                     },
                     {
-                        "CLSID": "{FD90A1DC-9147-49FA-BF56-CB83EF0BD32B}",
+                        "CLSID": "M260_HYDRA",
                         "num": 2
                     },
                     {
-                        "CLSID": "{FD90A1DC-9147-49FA-BF56-CB83EF0BD32B}",
+                        "CLSID": "M260_HYDRA",
                         "num": 3
                     },
                     {
-                        "CLSID": "{3EA17AB0-A805-4D9E-8732-4CE00CB00F17}",
+                        "CLSID": "{88D18A5E-99C8-4B04-B40B-1C02F2018B6E}",
                         "num": 4
                     }
                 ],
@@ -41645,8 +41645,8 @@
                     31,
                     32
                 ],
-                "name": "8xBGM-71, 38xHYDRA-70",
-                "displayName": "8xBGM-71, 38xHYDRA-70"
+                "name": "8xAGM-114, 14xHYDRA-70",
+                "displayName": "8xAGM-114, 14xHYDRA-70"
             },
             {
                 "pylons": [
@@ -41775,19 +41775,19 @@
             {
                 "pylons": [
                     {
-                        "CLSID": "{88D18A5E-99C8-4B04-B40B-1C02F2018B6E}",
+                        "CLSID": "{3EA17AB0-A805-4D9E-8732-4CE00CB00F17}",
                         "num": 1
                     },
                     {
-                        "CLSID": "M260_HYDRA",
+                        "CLSID": "{FD90A1DC-9147-49FA-BF56-CB83EF0BD32B}",
                         "num": 2
                     },
                     {
-                        "CLSID": "M260_HYDRA",
+                        "CLSID": "{FD90A1DC-9147-49FA-BF56-CB83EF0BD32B}",
                         "num": 3
                     },
                     {
-                        "CLSID": "{88D18A5E-99C8-4B04-B40B-1C02F2018B6E}",
+                        "CLSID": "{3EA17AB0-A805-4D9E-8732-4CE00CB00F17}",
                         "num": 4
                     }
                 ],
@@ -41796,8 +41796,8 @@
                     31,
                     32
                 ],
-                "name": "8xAGM-114, 14xHYDRA-70",
-                "displayName": "8xAGM-114, 14xHYDRA-70"
+                "name": "8xBGM-71, 38xHYDRA-70",
+                "displayName": "8xBGM-71, 38xHYDRA-70"
             }
         ],
         "displayName": "AH-1W",
@@ -41872,7 +41872,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef48",
+        "_id": "65328a6f4319326630cdeeb9",
         "type": "SH-60B",
         "callsigns": {
             "0": [
@@ -45434,7 +45434,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef4a",
+        "_id": "65328a6f4319326630cdeebb",
         "type": "UH-1H",
         "callsigns": {
             "0": [
@@ -49421,7 +49421,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef4c",
+        "_id": "65328a6f4319326630cdeebd",
         "type": "Mi-28N",
         "callsigns": {
             "0": [
@@ -53010,11 +53010,11 @@
                         "num": 1
                     },
                     {
-                        "CLSID": "{FC56DF80-9B09-44C5-8976-DCFAFF219062}",
+                        "CLSID": "{96A7F676-F956-404A-AD04-F33FB2C74881}",
                         "num": 2
                     },
                     {
-                        "CLSID": "{FC56DF80-9B09-44C5-8976-DCFAFF219062}",
+                        "CLSID": "{96A7F676-F956-404A-AD04-F33FB2C74881}",
                         "num": 3
                     },
                     {
@@ -53025,11 +53025,10 @@
                 "tasks": [
                     31,
                     32,
-                    18,
-                    30
+                    18
                 ],
-                "name": "16x9M114, 10xS-13",
-                "displayName": "16x9M114, 10xS-13"
+                "name": "16x9M114, 2xKMGU AT",
+                "displayName": "16x9M114, 2xKMGU AT"
             },
             {
                 "pylons": [
@@ -53498,11 +53497,11 @@
                         "num": 1
                     },
                     {
-                        "CLSID": "{96A7F676-F956-404A-AD04-F33FB2C74881}",
+                        "CLSID": "{FC56DF80-9B09-44C5-8976-DCFAFF219062}",
                         "num": 2
                     },
                     {
-                        "CLSID": "{96A7F676-F956-404A-AD04-F33FB2C74881}",
+                        "CLSID": "{FC56DF80-9B09-44C5-8976-DCFAFF219062}",
                         "num": 3
                     },
                     {
@@ -53513,10 +53512,11 @@
                 "tasks": [
                     31,
                     32,
-                    18
+                    18,
+                    30
                 ],
-                "name": "16x9M114, 2xKMGU AT",
-                "displayName": "16x9M114, 2xKMGU AT"
+                "name": "16x9M114, 10xS-13",
+                "displayName": "16x9M114, 10xS-13"
             }
         ],
         "displayName": "Mi-28N",
@@ -53579,7 +53579,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef4e",
+        "_id": "65328a6f4319326630cdeebf",
         "type": "OH-58D",
         "callsigns": {
             "0": [
@@ -57248,7 +57248,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef50",
+        "_id": "65328a6f4319326630cdeec1",
         "type": "AH-64D_BLK_II",
         "EPLRS": true,
         "callsigns": {
@@ -66529,6 +66529,15 @@
             {
                 "defValue": false,
                 "id": "HumanOrchestra"
+            },
+            {
+                "id": "dataluink_Label"
+            },
+            {
+                "id": "TN_IDM_LB"
+            },
+            {
+                "id": "OwnshipCallSign"
             }
         ],
         "radio": {
@@ -66596,7 +66605,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef52",
+        "_id": "65328a6f4319326630cdeec3",
         "type": "Ka-50",
         "callsigns": {
             "0": [
@@ -70396,7 +70405,6 @@
                     }
                 ],
                 "tasks": [
-                    31,
                     32,
                     18
                 ],
@@ -70495,7 +70503,6 @@
                     }
                 ],
                 "tasks": [
-                    31,
                     32,
                     18
                 ],
@@ -70523,7 +70530,6 @@
                     }
                 ],
                 "tasks": [
-                    31,
                     32,
                     18
                 ],
@@ -70765,7 +70771,6 @@
                     }
                 ],
                 "tasks": [
-                    31,
                     32,
                     18
                 ],
@@ -71025,31 +71030,22 @@
             {
                 "pylons": [
                     {
-                        "CLSID": "{A6FD14D3-6D30-4C85-88A7-8D17BEE120E2}",
-                        "num": 1
-                    },
-                    {
-                        "CLSID": "{FC56DF80-9B09-44C5-8976-DCFAFF219062}",
+                        "CLSID": "{05544F1A-C39C-466b-BC37-5BD1D52E57BB}",
                         "num": 2
                     },
                     {
-                        "CLSID": "{FC56DF80-9B09-44C5-8976-DCFAFF219062}",
+                        "CLSID": "{05544F1A-C39C-466b-BC37-5BD1D52E57BB}",
                         "num": 3
-                    },
-                    {
-                        "CLSID": "{A6FD14D3-6D30-4C85-88A7-8D17BEE120E2}",
-                        "num": 4
                     }
                 ],
                 "tasks": [
                     31,
                     32,
-                    18,
-                    30
+                    18
                 ],
-                "name": "12x9A4172, 10xS-13",
-                "category": "Anti Tank",
-                "displayName": "12x9A4172, 10xS-13"
+                "name": "2xUPK-23",
+                "category": "Weight-reduced",
+                "displayName": "2xUPK-23"
             },
             {
                 "pylons": [
@@ -71176,22 +71172,31 @@
             {
                 "pylons": [
                     {
-                        "CLSID": "{05544F1A-C39C-466b-BC37-5BD1D52E57BB}",
+                        "CLSID": "{A6FD14D3-6D30-4C85-88A7-8D17BEE120E2}",
+                        "num": 1
+                    },
+                    {
+                        "CLSID": "{FC56DF80-9B09-44C5-8976-DCFAFF219062}",
                         "num": 2
                     },
                     {
-                        "CLSID": "{05544F1A-C39C-466b-BC37-5BD1D52E57BB}",
+                        "CLSID": "{FC56DF80-9B09-44C5-8976-DCFAFF219062}",
                         "num": 3
+                    },
+                    {
+                        "CLSID": "{A6FD14D3-6D30-4C85-88A7-8D17BEE120E2}",
+                        "num": 4
                     }
                 ],
                 "tasks": [
                     31,
                     32,
-                    18
+                    18,
+                    30
                 ],
-                "name": "2xUPK-23",
-                "category": "Weight-reduced",
-                "displayName": "2xUPK-23"
+                "name": "12x9A4172, 10xS-13",
+                "category": "Anti Tank",
+                "displayName": "12x9A4172, 10xS-13"
             }
         ],
         "displayName": "Ka-50",
@@ -71247,7 +71252,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef54",
+        "_id": "65328a6f4319326630cdeec5",
         "type": "Ka-50_3",
         "callsigns": {
             "0": [
@@ -74707,307 +74712,515 @@
                 "Desert camo #018 Zhukovsky 1995 Werewolf",
                 "Desert camo #018 Zhukovsky 1997 Black Shark",
                 "Standart camo n/a 2000-2001 Chechnya",
-                "Standart black Russian Air Force"
+                "Standart black Russian Air Force",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "1": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "2": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "3": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "4": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "5": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "6": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "7": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "8": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "9": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "10": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "11": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "12": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "13": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "15": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "16": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "17": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "18": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "19": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "20": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "21": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "22": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "23": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "24": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "25": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "26": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "27": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "28": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "29": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "30": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "31": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "32": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "33": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "34": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "35": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "36": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "37": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "38": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "39": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "40": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "41": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "42": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "43": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "44": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "45": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "46": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "47": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "48": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "49": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "50": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "51": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "52": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "53": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "54": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "55": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "56": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "57": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "58": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "59": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "60": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "61": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "62": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "63": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "64": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "65": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "66": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "67": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "68": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "69": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "70": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "71": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "72": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "73": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "74": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "75": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ],
             "76": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya"
+                "Standart camo n/a 2000-2001 Chechnya",
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
+            ],
+            "77": [
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
+            ],
+            "78": [
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
+            ],
+            "79": [
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
+            ],
+            "80": [
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
+            ],
+            "81": [
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
+            ],
+            "82": [
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
+            ],
+            "83": [
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
+            ],
+            "84": [
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
+            ],
+            "85": [
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
+            ],
+            "86": [
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
+            ],
+            "87": [
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
+            ],
+            "88": [
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
+            ],
+            "89": [
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
+            ],
+            "90": [
+                "Ukrainian Army Aviation - Captured (Damaged)",
+                "Ukrainian Army Aviation - Captured (Undamaged)"
             ]
         },
         "panelRadio": [
@@ -75174,7 +75387,7 @@
                     }
                 ],
                 "tasks": [
-                    31
+                    32
                 ],
                 "name": "4xIgla",
                 "displayName": "4xIgla"
@@ -75207,7 +75420,8 @@
                     }
                 ],
                 "tasks": [
-                    30
+                    30,
+                    31
                 ],
                 "name": "2xKh-25ML, 10xS-13, 4xIgla",
                 "displayName": "2xKh-25ML, 10xS-13, 4xIgla"
@@ -75731,7 +75945,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef56",
+        "_id": "65328a6f4319326630cdeec7",
         "type": "Mi-24P",
         "callsigns": {
             "0": [
@@ -79982,7 +80196,7 @@
                     }
                 ],
                 "tasks": [
-                    31
+                    32
                 ],
                 "name": "4xPTB-450 Fuel tank",
                 "displayName": "4xPTB-450 Fuel tank"
@@ -80231,7 +80445,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef58",
+        "_id": "65328a6f4319326630cdeec9",
         "type": "SA342M",
         "EPLRS": true,
         "callsigns": {
@@ -83684,563 +83898,58 @@
         "length": 11.97,
         "paintSchemes": {
             "0": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "russia fictional"
             ],
-            "1": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
             "2": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
                 "US Army Olive Drab",
                 "us marines fictional"
             ],
-            "3": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
             "4": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
+                "UK Army Air Corps BATUS",
+                "UK Army Air Corps BATUS Orange",
+                "UK Army Air Corps Green/Black",
+                "UK Army Air Corps Green/Black UN",
+                "UK Army Air Corps Grey/Green",
+                "UK Army Air Corps Olive Drab",
+                "UK Royal Marines Green/Black",
+                "UK Royal Marines Grey/Green",
                 "uk fictional"
             ],
             "5": [
-                "Army Air Corps Olive Drab",
                 "Combat desert",
-                "Hellenic Airforce Olive Drab",
                 "Portuguese modern Fictional",
-                "RNLAF Olive Drab",
                 "Training EALAT",
-                "US Army Olive Drab",
                 "combat",
                 "tiger meet",
                 "tiger meet 2",
                 "training"
             ],
             "6": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "germany fictional"
             ],
-            "7": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "8": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "9": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
             "10": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
                 "RNLAF Olive Drab",
-                "RNLAF fictional",
-                "US Army Olive Drab"
-            ],
-            "11": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "12": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "13": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
+                "RNLAF fictional"
             ],
             "15": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "israel fictional"
             ],
-            "16": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "17": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "18": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "19": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "20": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "21": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "22": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "23": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "24": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "25": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "26": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "27": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "28": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "29": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "30": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
             "31": [
-                "Army Air Corps Olive Drab",
                 "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "greece cyprus fictional desert"
             ],
-            "32": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "33": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "34": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "35": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "36": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "37": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "38": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "39": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "40": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "41": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "42": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
             "43": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "serbia fictional",
                 "yugoslav fictional"
             ],
-            "44": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "45": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "46": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
             "47": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "syria fictional"
             ],
-            "48": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "49": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "50": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "51": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "52": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "53": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "54": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "55": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "56": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "57": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "58": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "59": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "60": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "61": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "62": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "63": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "64": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "65": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "66": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "67": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "68": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "69": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "70": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "71": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "72": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "73": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "74": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "75": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "76": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
             "77": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "Portuguese modern Fictional",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "78": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "79": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "80": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "81": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "82": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "83": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
+                "Portuguese modern Fictional"
             ],
             "84": [
-                "Army Air Corps Olive Drab",
-                "Cyprus air force",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "85": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "86": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "87": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "88": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "89": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "90": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
+                "Cyprus air force"
             ]
         },
         "panelRadio": [
@@ -84484,7 +84193,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef5a",
+        "_id": "65328a6f4319326630cdeecb",
         "type": "SA342L",
         "EPLRS": true,
         "callsigns": {
@@ -87937,53 +87646,38 @@
         "length": 11.97,
         "paintSchemes": {
             "0": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon",
                 "russia fictional"
             ],
             "1": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "2": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
                 "US Army Olive Drab",
                 "lebanon",
                 "us marines fictional"
             ],
             "3": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "4": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
+                "UK Army Air Corps BATUS",
+                "UK Army Air Corps BATUS Orange",
+                "UK Army Air Corps Green/Black",
+                "UK Army Air Corps Green/Black UN",
+                "UK Army Air Corps Grey/Green",
+                "UK Army Air Corps Olive Drab",
+                "UK Royal Marines Green/Black",
+                "UK Royal Marines Grey/Green",
                 "lebanon",
                 "uk fictional"
             ],
             "5": [
                 "Armee HRI",
                 "Armee HRI Daguet",
-                "Army Air Corps Olive Drab",
                 "Combat desert",
-                "Hellenic Airforce Olive Drab",
                 "Portuguese modern Fictional",
-                "RNLAF Olive Drab",
                 "Training EALAT",
-                "US Army Olive Drab",
                 "combat",
                 "lebanon",
                 "tiger meet",
@@ -87991,600 +87685,266 @@
                 "training"
             ],
             "6": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "germany fictional",
                 "lebanon"
             ],
             "7": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "8": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "9": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "10": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
                 "RNLAF Olive Drab",
                 "RNLAF fictional",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "11": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "12": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "13": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "15": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "israel fictional",
                 "lebanon"
             ],
             "16": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "17": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "18": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "19": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "20": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "21": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "22": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "23": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "24": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "25": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "26": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "27": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "28": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "29": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "30": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "31": [
-                "Army Air Corps Olive Drab",
                 "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "greece cyprus fictional desert",
                 "lebanon"
             ],
             "32": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "33": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "34": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "35": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "36": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "37": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "38": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "39": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "40": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "41": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "42": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "43": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon",
                 "serbia fictional",
                 "yugoslav fictional"
             ],
             "44": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "45": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "46": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "47": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon",
                 "syria fictional"
             ],
             "48": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "49": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "50": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "51": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "52": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "53": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "54": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "55": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "56": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "57": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "58": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "59": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "60": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "61": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "62": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "63": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "64": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "65": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "66": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "67": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "68": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "69": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "70": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "71": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "72": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "73": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "74": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "75": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "76": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "77": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
                 "Portuguese modern Fictional",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "78": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "79": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "80": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "81": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "82": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "83": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "84": [
-                "Army Air Corps Olive Drab",
                 "Cyprus air force",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "85": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "86": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "87": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "88": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "89": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ],
             "90": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "lebanon"
             ]
         },
@@ -88908,7 +88268,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef5c",
+        "_id": "65328a6f4319326630cdeecd",
         "type": "SA342Mistral",
         "EPLRS": true,
         "callsigns": {
@@ -92655,7 +92015,7 @@
         }
     },
     {
-        "_id": "64bfb2ea17951d43e5d9ef5e",
+        "_id": "65328a6f4319326630cdeecf",
         "type": "SA342Minigun",
         "EPLRS": true,
         "callsigns": {
@@ -96108,563 +95468,58 @@
         "length": 11.97,
         "paintSchemes": {
             "0": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "russia fictional"
             ],
-            "1": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
             "2": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
                 "US Army Olive Drab",
                 "us marines fictional"
             ],
-            "3": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
             "4": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
+                "UK Army Air Corps BATUS",
+                "UK Army Air Corps BATUS Orange",
+                "UK Army Air Corps Green/Black",
+                "UK Army Air Corps Green/Black UN",
+                "UK Army Air Corps Grey/Green",
+                "UK Army Air Corps Olive Drab",
+                "UK Royal Marines Green/Black",
+                "UK Royal Marines Grey/Green",
                 "uk fictional"
             ],
             "5": [
-                "Army Air Corps Olive Drab",
                 "Combat desert",
-                "Hellenic Airforce Olive Drab",
                 "Portuguese modern Fictional",
-                "RNLAF Olive Drab",
                 "Training EALAT",
-                "US Army Olive Drab",
                 "combat",
                 "tiger meet",
                 "tiger meet 2",
                 "training"
             ],
             "6": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "germany fictional"
             ],
-            "7": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "8": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "9": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
             "10": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
                 "RNLAF Olive Drab",
-                "RNLAF fictional",
-                "US Army Olive Drab"
-            ],
-            "11": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "12": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "13": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
+                "RNLAF fictional"
             ],
             "15": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "israel fictional"
             ],
-            "16": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "17": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "18": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "19": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "20": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "21": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "22": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "23": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "24": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "25": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "26": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "27": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "28": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "29": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "30": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
             "31": [
-                "Army Air Corps Olive Drab",
                 "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "greece cyprus fictional desert"
             ],
-            "32": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "33": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "34": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "35": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "36": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "37": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "38": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "39": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "40": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "41": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "42": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
             "43": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "serbia fictional",
                 "yugoslav fictional"
             ],
-            "44": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "45": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "46": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
             "47": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab",
                 "syria fictional"
             ],
-            "48": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "49": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "50": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "51": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "52": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "53": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "54": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "55": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "56": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "57": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "58": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "59": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "60": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "61": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "62": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "63": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "64": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "65": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "66": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "67": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "68": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "69": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "70": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "71": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "72": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "73": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "74": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "75": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "76": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
             "77": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "Portuguese modern Fictional",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "78": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "79": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "80": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "81": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "82": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "83": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
+                "Portuguese modern Fictional"
             ],
             "84": [
-                "Army Air Corps Olive Drab",
-                "Cyprus air force",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "85": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "86": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "87": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "88": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "89": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
-            ],
-            "90": [
-                "Army Air Corps Olive Drab",
-                "Hellenic Airforce Olive Drab",
-                "RNLAF Olive Drab",
-                "US Army Olive Drab"
+                "Cyprus air force"
             ]
         },
         "panelRadio": [

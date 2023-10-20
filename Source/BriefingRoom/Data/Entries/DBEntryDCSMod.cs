@@ -66,7 +66,8 @@ namespace BriefingRoom4DCS.Data
             "SensoryxVRFreeSupport",
             "VoiceChat",
             "jsAvionics",
-            "F-15E AI by RAZBAM"
+            "F-15E AI by RAZBAM",
+            "HeavyMetalCore"
         };
 
         internal string Module { get; private set; }

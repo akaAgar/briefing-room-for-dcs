@@ -73,7 +73,7 @@
         "families": [
             "PlaneBomber"
         ],
-        "lowPolly": true,
+        "lowPolly": false,
         "playerControllable": false
     },
     {
@@ -236,7 +236,7 @@
             "PlaneCATOBAR",
             "PlaneTransport"
         ],
-        "lowPolly": true,
+        "lowPolly": false,
         "playerControllable": false
     },
     {
@@ -1078,7 +1078,7 @@
             "PlaneStrike"
         ],
         "lowPolly": false,
-        "playerControllable": false
+        "playerControllable": true
     },
     {
         "type": "Mirage-F1BQ",
