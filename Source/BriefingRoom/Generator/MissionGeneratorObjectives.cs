@@ -406,7 +406,7 @@ namespace BriefingRoom4DCS.Generator
                     extraSettings.Add("GroupAirbaseID", airbaseID);
                     extraSettings.Add("ParkingID", parkingSpotIDsList);
                     extraSettings.Add("UnitCoords", parkingSpotCoordinatesList);
-                    return targetAirbase.Coordinates;
+                    return Toolbox.RandomFrom(parkingSpotCoordinatesList);
                 }
                 catch (BriefingRoomException e)
                 {
