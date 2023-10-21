@@ -33,8 +33,9 @@ namespace BriefingRoom4DCS.Generator
         private int PrevLaserCode { get; set; } = 1687;
         internal MissionGeneratorFeaturesObjectives(UnitMaker unitMaker, MissionTemplateRecord template) : base(unitMaker, template) { }
 
-        internal void GenerateMissionFeature(DCSMission mission, string featureID, string objectiveName, int objectiveIndex, UnitMakerGroupInfo objectiveTarget, Side objectiveTargetSide, bool hideEnemy = false)
-        {
+        internal void GenerateMissionFeature(DCSMission mission, string featureID, string objectiveName, int objectiveIndex, UnitMakerGroupInfo objectiveTarget, Side objectiveTargetSide, bool hideEnemy = false, Coordinates? overrideCoords = null)
+        {   
+            var objCoords = overrideCoords.HasValue ? overrideCoords.Value : objectiveTarget.Coordinates;
             DBEntryFeatureObjective featureDB = Database.Instance.GetEntry<DBEntryFeatureObjective>(featureID);
             if (featureDB == null) // Feature doesn't exist
             {
@@ -47,7 +48,7 @@ namespace BriefingRoom4DCS.Generator
             var flags = featureDB.UnitGroupFlags;
             if (flags.HasFlag(FeatureUnitGroupFlags.SpawnOnObjective))
             {
-                coordinates = objectiveTarget.Coordinates.CreateNearRandom(featureDB.UnitGroupSpawnDistance * .75, featureDB.UnitGroupSpawnDistance * 1.5); //UnitGroupSpawnDistance treated as Meters here rather than NM
+                coordinates = objCoords.CreateNearRandom(featureDB.UnitGroupSpawnDistance * .75, featureDB.UnitGroupSpawnDistance * 1.5); //UnitGroupSpawnDistance treated as Meters here rather than NM
                 if (
                     !(featureDB.UnitGroupValidSpawnPoints.Contains(SpawnPointType.Sea) || featureDB.UnitGroupValidSpawnPoints.Contains(SpawnPointType.Air)) &&
                     _unitMaker.SpawnPointSelector.CheckInSea(coordinates.Value))
@@ -60,7 +61,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 Coordinates? spawnPoint =
                     _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                        featureDB.UnitGroupValidSpawnPoints, objectiveTarget.Coordinates,
+                        featureDB.UnitGroupValidSpawnPoints, objCoords,
                         new MinMaxD(featureDB.UnitGroupSpawnDistance * .75, featureDB.UnitGroupSpawnDistance * 1.5),
                         nearFrontLineFamily: flags.HasFlag(FeatureUnitGroupFlags.UseFrontLine) ? featureDB.UnitGroupFamilies.First() : null);
 
@@ -77,7 +78,7 @@ namespace BriefingRoom4DCS.Generator
                 coordinates2 = coordinates.Value + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;
 
             if (flags.HasFlag(FeatureUnitGroupFlags.MoveToObjective))
-                coordinates2 = objectiveTarget.Coordinates;
+                coordinates2 = objCoords;
 
             Dictionary<string, object> extraSettings = new(StringComparer.InvariantCultureIgnoreCase);
             extraSettings.AddIfKeyUnused("ObjectiveName", objectiveName);
