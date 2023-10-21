@@ -309,6 +309,9 @@ namespace BriefingRoom4DCS.Generator
             if (template.MissionFeatures.Contains("ContextScrambleStart") && !taskDB.UICategory.ContainsValue("Transport"))
                 targetGroupInfo.Value.DCSGroup.LateActivation = false;
 
+            if(targetDB.UnitCategory.IsAircraft())
+                targetGroupInfo.Value.DCSGroup.Waypoints.First().Tasks.Insert(0,  new DCSWrappedWaypointTask("SetUnlimitedFuel", new Dictionary<string, object>{{"value", true}}));
+
             if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense) && (targetDB.UnitCategory == UnitCategory.Static))
                 AddEmbeddedAirDefenseUnits(template, targetDB, targetBehaviorDB, taskDB, objectiveCoordinates, groupFlags, extraSettings);
 
