@@ -214,7 +214,7 @@
                                         {
                                             <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Task") @bind-Value="subTask.Task" DataBaseType="DatabaseEntryType.ObjectiveTask"/>
                                             <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Target") @bind-Value="subTask.Target" DataBaseType="DatabaseEntryType.ObjectiveTarget" Grouping="@subTask.Task"/>
-                                            <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("TargetBehavior") @bind-Value="subTask.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior" Grouping="@string.Join(',', new List<string>{objective.Task, objective.Target})"/>
+                                            <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("TargetBehavior") @bind-Value="subTask.TargetBehavior" DataBaseType="DatabaseEntryType.ObjectiveTargetBehavior" Grouping="@string.Join(',', new List<string>{subTask.Task, subTask.Target})"/>
                                         }
                                             <InputEnum ClassString="flex-block" Label=@BriefingRoom.Translate("TargetCount") @bind-Value="subTask.TargetCount" EnumType="Amount"/>
                                             <button type="button" class="btn btn-secondary row-button" @onclick="() => objectiveUtil.CloneObjectiveSubTask(subTask, objective)"  title="Clone Task"><span class="oi oi-layers"></span></button>
