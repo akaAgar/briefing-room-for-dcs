@@ -27,7 +27,7 @@ waypoints:
       - id: Option
         parameters:
           wrapped: true
-          value: 1
+          value: 0
           name: 0
       - id: Option
         parameters:
