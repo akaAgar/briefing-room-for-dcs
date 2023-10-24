@@ -7,5 +7,6 @@ namespace BriefingRoom4DCS.Data.JSON
         public string displayName { get; set; }
         public string shapeName { get; set; }
         public int numParking { get; set; }
+        public string module { get; set; }
     }
 }

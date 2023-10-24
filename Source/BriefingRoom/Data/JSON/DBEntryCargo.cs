@@ -51,6 +51,7 @@ namespace BriefingRoom4DCS.Data
                     DCSID = @static.type,
                     Operators = new Dictionary<Country, (Template.Decade start, Template.Decade end)> { { Country.ALL, (Template.Decade.Decade1940, Template.Decade.Decade2020) } },
                     ShapeName = @static.shapeName,
+                    Module = @static.module,
                     Families = new UnitFamily[] { UnitFamily.Cargo }
                 });
             }

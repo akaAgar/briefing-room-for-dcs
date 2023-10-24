@@ -62,6 +62,7 @@ namespace BriefingRoom4DCS.Data
                     ShapeName = @static.shapeName,
                     Families = supportInfo.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
                     LowPolly = supportInfo.lowPolly,
+                    Module = @static.module,
                     ParkingSpots = @static.numParking
                 });
             }
