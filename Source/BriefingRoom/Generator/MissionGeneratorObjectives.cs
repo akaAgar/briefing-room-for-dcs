@@ -428,7 +428,7 @@ namespace BriefingRoom4DCS.Generator
                 usingHint ? Toolbox.ANY_RANGE : template.FlightPlanObjectiveDistance,
                 lastCoordinates,
                 usingHint ? Toolbox.HINT_RANGE : template.FlightPlanObjectiveSeparation,
-                usingHint ? null : GeneratorTools.GetSpawnPointCoalition(template, Side.Enemy));
+                GeneratorTools.GetSpawnPointCoalition(template, Side.Enemy));
 
             if (!spawnPoint.HasValue)
                 throw new BriefingRoomException($"Failed to spawn objective unit group. {String.Join(", ", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList())} Please try again (Consider Adusting Flight Plan)");
