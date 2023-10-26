@@ -234,7 +234,10 @@
         "type": "S-3B",
         "families": [
             "PlaneCATOBAR",
-            "PlaneTransport"
+            "PlaneTransport",
+            "PlaneStrike",
+            "PlaneAttack",
+            "PlaneBomber"
         ],
         "lowPolly": false,
         "playerControllable": false
@@ -245,7 +248,7 @@
             "PlaneTankerBasket",
             "PlaneCATOBAR"
         ],
-        "lowPolly": true,
+        "lowPolly": false,
         "playerControllable": false
     },
     {
