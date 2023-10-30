@@ -259,7 +259,7 @@ namespace BriefingRoom4DCS.Generator
                     unitCoordinates = spawnPoint.Value;
                 }
                 else {
-                    var (_, _, spawnPoints) = UnitMaker.SpawnPointSelector.GetAirbaseAndParking(template, playerAirbase.Coordinates, 1, GeneratorTools.GetSpawnPointCoalition(template, Side.Ally).Value, (DBEntryAircraft)Database.Instance.GetEntry<DBEntryJSONUnit>("Mi-8MT"));
+                    var (_, _, spawnPoints) = UnitMaker.SpawnPointSelector.GetAirbaseAndParking(template, playerAirbase.Coordinates, 1, GeneratorTools.GetSpawnPointCoalition(template, Side.Ally, true).Value, (DBEntryAircraft)Database.Instance.GetEntry<DBEntryJSONUnit>("Mi-8MT"));
                     if (spawnPoints.Count == 0) // Failed to generate target group
                         throw new BriefingRoomException($"Failed to find Cargo SpawnPoint");
                     unitCoordinates = spawnPoints.First();
