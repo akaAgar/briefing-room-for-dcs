@@ -282,6 +282,7 @@ function table.removeNils(t)
   return ans
 end
 
+-- THIS FUNCTION IS NOT SUITABLE for counting filtered output
 function table.filter(t, filterIter)
   local out = {}
 
@@ -800,9 +801,14 @@ function briefingRoom.transportManager.addTroopCargo(transportUnitName, unitName
       briefingRoom.radioManager.play("$LANG_TROOP$: $LANG_TRANSPORTFULL$ ($LANG_TOTALTROOPS$: "..briefingRoom.transportManager.maxTroops..")", "RadioTroopFull")
       return true
     end
-    local isUnitAlreadyInHelo = #table.filter(briefingRoom.transportManager.transportRoster, function(o, k, i)
-      return table.containsKey(o.troops, unitName)
-    end) > 0
+
+    local isUnitAlreadyInHelo = false
+    for k,v in pairs(briefingRoom.transportManager.transportRoster) do
+      if table.containsKey(v.troops, unitName) then
+        isUnitAlreadyInHelo = true
+      end
+    end
+
     local unit = Unit.getByName(unitName)
     if unit ~= nil and not isUnitAlreadyInHelo then
       briefingRoom.transportManager.transportRoster[transportUnitName].troops[unitName] = {
@@ -911,9 +917,14 @@ function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
   if missionOver then
     briefingRoom.debugPrint("Mission marked as complete")
     briefingRoom.mission.complete = true
-    local hasFailed = #table.filter(briefingRoom.mission.objectives, function(o, k, i)
-      return o.failed
-    end) > 0
+    local hasFailed = false
+
+    for k,v in pairs(briefingRoom.mission.objectives) do
+      if v.failed then
+        hasFailed = true
+      end
+    end
+
     briefingRoom.radioManager.play("$LANG_COMMAND$: "..(hasFailed and "$LANG_MISSIONCOMPLETEWITHFAILURES$" or "$LANG_MISSIONCOMPLETE$"), (hasFailed and  "RadioHQMissionFailed" or "RadioHQMissionComplete"), math.random(6, 8))
     trigger.action.setUserFlag("BR_MISSION_COMPLETE", true) -- Mark the mission complete internally, so campaigns can move to the next mission
     if briefingRoom.mission.autoEnd then
