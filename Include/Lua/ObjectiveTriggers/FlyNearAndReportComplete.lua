@@ -25,6 +25,7 @@ briefingRoom.mission.objectiveTimers[$OBJECTIVEINDEX$] = function()
             else
                 briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_FLYNEAR2$", "RadioPilotTargetReconned2")
             end
+            briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames = { }
             briefingRoom.mission.objectives[$OBJECTIVEINDEX$].completeCommand = missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_REPORTCOMPLETE$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectives[$OBJECTIVEINDEX$].reportComplete)
           end
         end
