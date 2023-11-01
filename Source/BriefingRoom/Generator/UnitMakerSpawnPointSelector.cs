@@ -143,7 +143,8 @@ namespace BriefingRoom4DCS.Generator
             Coordinates distanceOrigin1, MinMaxD distanceFrom1,
             Coordinates? distanceOrigin2 = null, MinMaxD? distanceFrom2 = null,
             Coalition? coalition = null,
-            UnitFamily? nearFrontLineFamily = null
+            UnitFamily? nearFrontLineFamily = null,
+            bool nested = false
         )
         {
             var validSP = (from DBEntryTheaterSpawnPoint pt in SpawnPoints where validTypes.Contains(pt.PointType) select pt);
@@ -181,7 +182,7 @@ namespace BriefingRoom4DCS.Generator
             }
 
             if (!validSP.Any())
-                return !coalition.HasValue && useFrontLine ? null : GetLandCoordinates(validTypes, distanceOrigin1, distanceFrom1, distanceOrigin2, distanceFrom2, null, nearFrontLineFamily);
+                return !coalition.HasValue && (useFrontLine || nested) ? null : GetLandCoordinates(validTypes, distanceOrigin1, distanceFrom1, distanceOrigin2, distanceFrom2, null, nearFrontLineFamily, true);
             DBEntryTheaterSpawnPoint selectedSpawnPoint = Toolbox.RandomFrom(validSP.ToArray());
             SpawnPoints.Remove(selectedSpawnPoint); // Remove spawn point so it won't be used again;
             UsedSpawnPoints.Add(selectedSpawnPoint);
