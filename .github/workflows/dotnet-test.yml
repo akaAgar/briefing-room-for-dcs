@@ -5,24 +5,27 @@ name: .NET
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 7.0.x
-    - name: Restore dependencies
-      run: dotnet restore Source/BriefingRoom.sln
-    - name: Build
-      run: dotnet build --no-restore Source/BriefingRoom.sln
-    - name: Test
-      run: dotnet test --no-build --verbosity normal Source/BriefingRoom.sln
+      - name: Set git to use LF
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol crlf
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+      - name: Restore dependencies
+        run: dotnet restore Source/BriefingRoom.sln
+      - name: Build
+        run: dotnet build --no-restore Source/BriefingRoom.sln
+      - name: Test
+        run: dotnet test --no-build --verbosity normal Source/BriefingRoom.sln
