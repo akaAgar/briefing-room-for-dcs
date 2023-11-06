@@ -1,7 +1,7 @@
 ![BriefingRoom logo](Media/SplashScreen.png)
 
-![Discord Banner 2](https://discordapp.com/api/guilds/809863694678491157/widget.png?style=banner2)
 ----
+**Try the <a href="https://dcs-briefingroom.com/">Web version</a> now!**
 ## Installation
  App is generally standalone .exe with caveats on desktop:
  1. Desktop version requires [WebView2 Runtime](https://go.microsoft.com/fwlink/p/?LinkId=) this may not be installed on windows by default. If Web Exe works and Desktop doesn't this is likely the issue.
@@ -18,7 +18,7 @@ While BriefingRoom is designed to be easy to use and to allow the creation of mi
 
 BriefingRoom is free and open source and will always remain so, but if you want to support its development, you can make a one-time or monthly donation.
 
-Hosting costs:[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/V7V0IZI9N)
+Hosting costs:[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/V7V0IZI9N) or <a href="https://www.patreon.com/bePatron?u=99514930" data-patreon-widget-type="become-patron-button">Become a member!</a><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
 
 Original Creator: [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VTLATJ7URMMWY)
 
