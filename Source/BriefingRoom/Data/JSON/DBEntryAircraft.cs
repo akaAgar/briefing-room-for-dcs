@@ -241,6 +241,17 @@ namespace BriefingRoom4DCS.Data
                 }
             }
 
+            foreach (var item in Directory.GetFiles(Path.Join(folderPath, $"{DCSID}"), "description.lua", SearchOption.AllDirectories))
+            {
+                var rawFileName = item.Replace("description.lua", "").Split("\\")[^2];
+                Liveries.AddIfKeyUnused(Country.ALL, new List<string>());
+                if (!Liveries[Country.ALL].Contains(rawFileName))
+                {
+                    Liveries[Country.ALL].Add(rawFileName);
+                    BriefingRoom.PrintToLog($"Imported Livery {rawFileName} for {DCSID}");
+                }
+            }
+
         }
     }
 }
