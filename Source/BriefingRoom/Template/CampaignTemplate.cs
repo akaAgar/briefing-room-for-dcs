@@ -77,17 +77,11 @@ namespace BriefingRoom4DCS.Template
 
             AssignAliases();
 
-            // if (File.Exists(DEFAULT_TEMPLATE_FILEPATH))
-            // {
-            //     LoadFromFile(DEFAULT_TEMPLATE_FILEPATH);
-            //     return;
-            // }
-
         }
 
         public bool LoadFromFile(string filePath)
         {
-            if (!File.Exists(filePath)) return false;
+            if (!File.Exists(filePath)) throw new FileNotFoundException(filePath);
 
             return Load(new INIFile(filePath));
         }

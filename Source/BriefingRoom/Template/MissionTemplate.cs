@@ -86,7 +86,7 @@ namespace BriefingRoom4DCS.Template
 
         public bool LoadFromFile(string filePath)
         {
-            if (!File.Exists(filePath)) return false;
+            if (!File.Exists(filePath)) throw new FileNotFoundException(filePath);
 
             return Load(new INIFile(filePath));
         }
