@@ -595,7 +595,7 @@
             "VehicleStatic"
         ],
         "lowPolly": false,
-        "immovable": false
+        "immovable": true
     },
     {
         "type": "Stinger comm",
@@ -1227,10 +1227,10 @@
     {
         "type": "JTAC",
         "families": [
-            "Infantry"
+            "VehicleStatic"
         ],
         "lowPolly": false,
-        "immovable": false
+        "immovable": true
     },
     {
         "type": "Infantry Animated",
