@@ -376,8 +376,8 @@
                 data = await reader.ReadToEndAsync();
             }
             Template.LoadFromString(data);
-            Template.BriefingMissionName = null;
-            Template.BriefingMissionDescription = null;
+            Template.BriefingMissionName = "";
+            Template.BriefingMissionDescription = "";
             tempateMessage = "Template Loaded";
             clearTemplateMessageDelay();
 
