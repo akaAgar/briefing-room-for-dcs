@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCS.Data;
+using BriefingRoom4DCS.Data.JSON;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Mission.DCSLuaObjects;
 using BriefingRoom4DCS.Template;
@@ -192,7 +193,7 @@ namespace BriefingRoom4DCS.Generator
             var (luaUnit, unitCount, unitCountMinMax, objectiveTargetUnitFamily, groupFlags) = GetUnitData(task, targetDB, targetBehaviorDB, objectiveOptions);
             var isInverseTransportWayPoint = false;
             var (units, unitDBs) = UnitMaker.GetUnits(objectiveTargetUnitFamily, unitCount, taskDB.TargetSide, groupFlags, ref extraSettings);
-            if(units.Count == 0 || unitDBs.Count == 0)
+            if (units.Count == 0 || unitDBs.Count == 0)
                 throw new BriefingRoomException($"No operational units in {objectiveTargetUnitFamily} for given time period.");
             var unitDB = unitDBs.First();
             if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location) && targetDB.UnitCategory.IsAircraft())
@@ -229,7 +230,8 @@ namespace BriefingRoom4DCS.Generator
                         _ => groupLua
                     };
                 }
-            } else if(targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.GoToAirbase)
+            }
+            else if (targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.GoToAirbase)
             {
                 var targetCoalition = GeneratorTools.GetSpawnPointCoalition(template, taskDB.TargetSide);
                 var destinationAirbase = situationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions")).Where(x => x.Coalition == targetCoalition.Value).OrderBy(x => destinationPoint.GetDistanceFrom(x.Coordinates)).First();
@@ -247,7 +249,7 @@ namespace BriefingRoom4DCS.Generator
             var objectiveName = waypointNameGenerator.GetWaypointName();
             if (taskDB.UICategory.ContainsValue("Transport"))
             {
-                if(targetBehaviorDB.ID == "RelocateToNewPosition")
+                if (targetBehaviorDB.ID == "RelocateToNewPosition")
                 {
                     Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                     targetDB.ValidSpawnPoints,
@@ -258,7 +260,8 @@ namespace BriefingRoom4DCS.Generator
                         throw new BriefingRoomException($"Failed to find Cargo SpawnPoint");
                     unitCoordinates = spawnPoint.Value;
                 }
-                else {
+                else
+                {
                     var (_, _, spawnPoints) = UnitMaker.SpawnPointSelector.GetAirbaseAndParking(template, playerAirbase.Coordinates, 1, GeneratorTools.GetSpawnPointCoalition(template, Side.Ally, true).Value, (DBEntryAircraft)Database.Instance.GetEntry<DBEntryJSONUnit>("Mi-8MT"));
                     if (spawnPoints.Count == 0) // Failed to generate target group
                         throw new BriefingRoomException($"Failed to find Cargo SpawnPoint");
@@ -309,8 +312,19 @@ namespace BriefingRoom4DCS.Generator
             if (template.MissionFeatures.Contains("ContextScrambleStart") && !taskDB.UICategory.ContainsValue("Transport"))
                 targetGroupInfo.Value.DCSGroup.LateActivation = false;
 
-            if(targetDB.UnitCategory.IsAircraft())
-                targetGroupInfo.Value.DCSGroup.Waypoints.First().Tasks.Insert(0,  new DCSWrappedWaypointTask("SetUnlimitedFuel", new Dictionary<string, object>{{"value", true}}));
+            if (targetDB.UnitCategory.IsAircraft())
+                targetGroupInfo.Value.DCSGroup.Waypoints.First().Tasks.Insert(0, new DCSWrappedWaypointTask("SetUnlimitedFuel", new Dictionary<string, object> { { "value", true } }));
+
+            if (targetDB.UnitCategory == UnitCategory.Infantry && taskDB.UICategory.ContainsValue("Transport"))
+            {
+                var pos = unitCoordinates.CreateNearRandom(new MinMaxD(5, 50));
+                targetGroupInfo.Value.DCSGroup.Waypoints.First().Tasks.Add(new DCSWaypointTask("EmbarkToTransport", new Dictionary<string, object>{
+                    {"x", pos.X},
+                    { "y", pos.Y},
+                    {"zoneRadius", 500}
+                    }, _auto: false));
+
+            }
 
             if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense) && (targetDB.UnitCategory == UnitCategory.Static))
                 AddEmbeddedAirDefenseUnits(template, targetDB, targetBehaviorDB, taskDB, objectiveCoordinates, groupFlags, extraSettings);
@@ -352,7 +366,7 @@ namespace BriefingRoom4DCS.Generator
             mission.AppendValue("ScriptObjectivesFeatures", ""); // Just in case there's no features
             var featureList = taskDB.RequiredFeatures.Concat(featuresID).ToHashSet();
             foreach (string featureID in featureList)
-                FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value, taskDB.TargetSide, objectiveOptions.Contains(ObjectiveOption.HideTarget), overrideCoords:(targetBehaviorDB.ID == "ToFrontLine" ? objectiveCoordinates : null));
+                FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value, taskDB.TargetSide, objectiveOptions.Contains(ObjectiveOption.HideTarget), overrideCoords: (targetBehaviorDB.ID == "ToFrontLine" ? objectiveCoordinates : null));
 
             objectiveCoordinatesList.Add(isInverseTransportWayPoint ? unitCoordinates : objectiveCoordinates);
             var objCoords = objectiveCoordinates;
@@ -535,7 +549,7 @@ namespace BriefingRoom4DCS.Generator
 
         private Waypoint GenerateObjectiveWaypoint(MissionTemplateSubTaskRecord objectiveTemplate, Coordinates objectiveCoordinates, Coordinates ObjectiveDestinationCoordinates, string objectiveName, MissionTemplateRecord template, int groupId = 0, bool scriptIgnore = false)
         {
-             var (targetDB, targetBehaviorDB, taskDB, objectiveOptions, presetDB) = GetCustomObjectiveData(objectiveTemplate);
+            var (targetDB, targetBehaviorDB, taskDB, objectiveOptions, presetDB) = GetCustomObjectiveData(objectiveTemplate);
             var targetBehaviorLocation = targetBehaviorDB.Location;
             if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective.");
 
