@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -217,7 +217,7 @@ namespace BriefingRoom4DCS.Generator
             if (targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.GoToPlayerAirbase)
             {
                 destinationPoint = playerAirbase.ParkingSpots.Length > 1 ? Toolbox.RandomFrom(playerAirbase.ParkingSpots).Coordinates : playerAirbase.Coordinates;
-                if (objectiveTargetUnitFamily.GetUnitCategory().IsAircraft())
+                if (objectiveTargetUnitFamily.GetUnitCategory().IsAircraft() && taskDB.TargetSide == Side.Enemy)
                 {
                     groupLua = objectiveTargetUnitFamily switch
                     {
@@ -268,7 +268,7 @@ namespace BriefingRoom4DCS.Generator
                         throw new BriefingRoomException($"Failed to find Cargo SpawnPoint");
                     unitCoordinates = spawnPoints.First();
                 }
-                if (targetBehaviorDB.ID.StartsWith("RecoverToBase"))
+                if (targetBehaviorDB.ID.StartsWith("RecoverToBase") || taskDB.IsEscort())
                 {
                     (unitCoordinates, objectiveCoordinates) = (objectiveCoordinates, unitCoordinates);
                     isInverseTransportWayPoint = true;
