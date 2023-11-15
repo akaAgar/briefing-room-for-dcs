@@ -889,7 +889,7 @@
             "PlaneTransport"
         ],
         "lowPolly": false,
-        "playerControllable": false
+        "playerControllable": true
     },
     {
         "type": "Mirage-F1C",
