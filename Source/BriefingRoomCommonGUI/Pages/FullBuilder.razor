@@ -553,8 +553,10 @@
                     </div>
                     break;
                     case "unitBanlist":
-                    <div id="flight-groups" class="generator-block">
+                    <div id="ban-list" class="generator-block">
                         <h3>@BriefingRoom.Translate("unitBanlist")</h3>
+                        <button id="ban-all" class="btn btn-primary" type="button" @onclick='() => BanEverything()'>@BriefingRoom.Translate("BanAll")</button>
+                        <button id="un-ban-all" class="btn btn-primary" type="button" @onclick='() => UnBanEverything()'>@BriefingRoom.Translate("UnBanAll")</button>
                          <CheckBoxList
                                 Data="BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.Unit, string.Join(',', Template.Mods)).ToList()"
                                 TextField="@(item =>item.Name.Get())"
@@ -802,5 +804,15 @@
     {
         var restOfPackages = Template.AircraftPackages.Where(x => x != package);
         return Template.PlayerFlightGroups.Where((v,i) => !v.Hostile && (package.FlightGroupIndexes.Contains(i) || !restOfPackages.Any(y => y.FlightGroupIndexes.Contains(i)))).ToList();
+    }
+
+    private void BanEverything()
+    {
+        Template.OptionsUnitBanList = BriefingRoom4DCS.BriefingRoom.GetDatabaseEntriesInfo(DatabaseEntryType.Unit, string.Join(',', Template.Mods)).Select(x => x.ID).ToList();
+    }
+
+    private void UnBanEverything()
+    {
+        Template.OptionsUnitBanList = new();
     }
 }
