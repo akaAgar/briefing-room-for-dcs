@@ -46,6 +46,9 @@ namespace BriefingRoom4DCS.Generator
             Coordinates? coordinates = null;
             Coordinates? coordinates2 = null;
             var flags = featureDB.UnitGroupFlags;
+            if (flags.HasFlag(FeatureUnitGroupFlags.Intercept) && objectiveTarget.DCSGroup.Waypoints.Count > 1)
+                objCoords = Coordinates.Lerp(objectiveTarget.DCSGroup.Waypoints.First().Coordinates, objectiveTarget.DCSGroup.Waypoints.Last().Coordinates, new MinMaxD(0,.8).GetValue());
+    
             if (flags.HasFlag(FeatureUnitGroupFlags.SpawnOnObjective))
             {
                 coordinates = objCoords.CreateNearRandom(featureDB.UnitGroupSpawnDistance * .75, featureDB.UnitGroupSpawnDistance * 1.5); //UnitGroupSpawnDistance treated as Meters here rather than NM
@@ -79,6 +82,7 @@ namespace BriefingRoom4DCS.Generator
 
             if (flags.HasFlag(FeatureUnitGroupFlags.MoveToObjective))
                 coordinates2 = objCoords;
+
 
             Dictionary<string, object> extraSettings = new(StringComparer.InvariantCultureIgnoreCase);
             extraSettings.AddIfKeyUnused("ObjectiveName", objectiveName);

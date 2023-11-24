@@ -248,7 +248,7 @@ namespace BriefingRoom4DCS.Generator
             var objectiveName = waypointNameGenerator.GetWaypointName();
             if (taskDB.UICategory.ContainsValue("Transport"))
             {
-                if (targetBehaviorDB.ID == "RelocateToNewPosition")
+                if (targetBehaviorDB.ID.StartsWith("RelocateToNewPosition"))
                 {
                     Coordinates? spawnPoint = UnitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                     targetDB.ValidSpawnPoints,
@@ -387,7 +387,7 @@ namespace BriefingRoom4DCS.Generator
                 }
             }
             foreach (string featureID in featureList)
-                FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value, taskDB.TargetSide, objectiveOptions.Contains(ObjectiveOption.HideTarget), overrideCoords: (targetBehaviorDB.ID == "ToFrontLine" ? objectiveCoordinates : null));
+                FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value, taskDB.TargetSide, objectiveOptions.Contains(ObjectiveOption.HideTarget), overrideCoords: (targetBehaviorDB.ID.StartsWith("ToFrontLine") ? objectiveCoordinates : null));
 
             objectiveCoordinatesList.Add(isInverseTransportWayPoint ? unitCoordinates : objectiveCoordinates);
             var objCoords = objectiveCoordinates;
