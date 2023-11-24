@@ -19,7 +19,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCS.Data;
-using BriefingRoom4DCS.Data.JSON;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Mission.DCSLuaObjects;
 using BriefingRoom4DCS.Template;
@@ -366,18 +365,24 @@ namespace BriefingRoom4DCS.Generator
             // Add objective features Lua for this objective
             mission.AppendValue("ScriptObjectivesFeatures", ""); // Just in case there's no features
             var featureList = taskDB.RequiredFeatures.Concat(featuresID).ToHashSet();
-            if(taskDB.IsEscort())
+            if (taskDB.IsEscort())
             {
-                
+                var playerHasPlanes = template.PlayerFlightGroups.Any(x => Database.Instance.GetEntry<DBEntryJSONUnit>(x.Aircraft).Category == UnitCategory.Plane);
                 switch (targetDB.UnitCategory)
                 {
                     case UnitCategory.Plane:
                     case UnitCategory.Helicopter:
-                       featureList.Add("HiddenEnemyCAPAttackingObj");
-                       break;
-                    
+                        featureList.Add("HiddenEnemyCAPAttackingObj");
+                        break;
+                    case UnitCategory.Ship:
+                        if (playerHasPlanes && Toolbox.RollChance(AmountNR.High)) { featureList.Add("HiddenEnemyCASAttackingObj"); }
+                        if (Toolbox.RollChance(AmountNR.Average)) { featureList.Add("HiddenEnemyHeloAttackingObj"); }
+                        if (Toolbox.RollChance(AmountNR.Low)) { featureList.Add("HiddenEnemyShipAttackingObj"); }
+                        break;
                     default:
-                        featureList.Add("HiddenEnemyGroundAttackingObj");
+                        if (playerHasPlanes && Toolbox.RollChance(AmountNR.High)) { featureList.Add("HiddenEnemyCASAttackingObj"); }
+                        if (Toolbox.RollChance(AmountNR.Average)) { featureList.Add("HiddenEnemyHeloAttackingObj"); }
+                        if (Toolbox.RollChance(AmountNR.VeryHigh)) { featureList.Add("HiddenEnemyGroundAttackingObj"); }
                         break;
                 }
             }
