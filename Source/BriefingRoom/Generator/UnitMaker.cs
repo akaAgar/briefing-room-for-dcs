@@ -282,6 +282,8 @@ namespace BriefingRoom4DCS.Generator
                 }
                 else if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.RadioAircraftSpawn))
                     Mission.AppendValue("AircraftRadioActivator", $"{{{GroupID}, \"{groupName}\"}},");
+                 else if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.TimedAircraftSpawn))
+                    dCSGroup.Name += $"-TQ-{new MinMaxI(1, 60).GetValue()}-";
                 else if (groupTypeLua != "AircraftUncontrolled" && !groupTypeLua.Contains("Player"))
                     dCSGroup.Name += "-RQ-";
                 else if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.StaticAircraft))

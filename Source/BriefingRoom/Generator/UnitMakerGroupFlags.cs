@@ -42,5 +42,6 @@ namespace BriefingRoom4DCS.Generator
         ScrambleStart = 512,
         StaticAircraft = 1024,
         LowUnitVariation = 2048,
+        TimedAircraftSpawn = 4096,
     }
 }

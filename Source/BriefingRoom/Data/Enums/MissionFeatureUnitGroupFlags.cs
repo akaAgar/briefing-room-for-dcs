@@ -65,5 +65,6 @@ namespace BriefingRoom4DCS.Data
         LowUnitVariation = 67108864,
         SupportingTarget = 134217728,
         UseFrontLine = 268435456,
+        TimedAircraftActivation = 536870912,
     }
 }

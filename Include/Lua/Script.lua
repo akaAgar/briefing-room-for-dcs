@@ -571,8 +571,17 @@ end
 briefingRoom.aircraftActivator = { }
 briefingRoom.aircraftActivator.INTERVAL = { 10, 20 } -- min/max interval (in seconds) between two updates
 briefingRoom.aircraftActivator.currentQueue = dcsExtensions.getGroupNamesContaining("%-IQ%-") -- current queue of aircraft group IDs to spawn every INTERVAL seconds
-briefingRoom.aircraftActivator.reserveQueue = dcsExtensions.getGroupNamesContaining("%-RQ%-") -- additional aircraft group IDs to be added to the queue later
+briefingRoom.aircraftActivator.reserveQueue = dcsExtensions.getGroupNamesContaining("%-RQ%-")
+briefingRoom.aircraftActivator.timeQueue = dcsExtensions.getGroupNamesContaining("%-TQ%-") -- additional aircraft group IDs to be added to the queue later
 briefingRoom.aircraftActivator.responsiveMode = false
+
+
+function briefingRoom.aircraftActivator.getAircraftTime(str)
+  local tempa, tempb = string.find(str, "%-TQ%-%d+")
+  local mid = string.sub(str, tempa,tempb)
+  local mida, midb = string.find(mid, "%d+")
+  return tonumber(string.sub(mid, mida,midb))
+end
 
 function briefingRoom.aircraftActivator.getRandomInterval()
   return math.random(briefingRoom.aircraftActivator.INTERVAL[1], briefingRoom.aircraftActivator.INTERVAL[2])
@@ -596,11 +605,21 @@ end
 
 -- Every INTERVAL seconds, check for aircraft groups to activate in the queue
 function briefingRoom.aircraftActivator.update(args, time)
-  briefingRoom.debugPrint("Looking for aircraft groups to activate, found "..tostring(#briefingRoom.aircraftActivator.currentQueue), 1)
+  local minsPassed = math.floor((timer.getAbsTime() - timer.getTime0())/60)
+  for k, name in pairs(briefingRoom.aircraftActivator.timeQueue) do
+    local actTime = briefingRoom.aircraftActivator.getAircraftTime(name)
+    briefingRoom.debugPrint("Looking for aircraft groups to activate, "..name.." ActTime:"..tostring(actTime).." Time:"..tostring(minsPassed), 1)
+    if actTime <= minsPassed then
+      table.insert(briefingRoom.aircraftActivator.currentQueue, name)
+      table.removeValue(briefingRoom.aircraftActivator.timeQueue, name)
+      briefingRoom.debugPrint(name.." Pushed to current queue", 1)
+    end
+  end
+  briefingRoom.debugPrint("Looking for aircraft groups to activate, found "..tostring(#briefingRoom.aircraftActivator.currentQueue).." Time:"..tostring(minsPassed), 1)
   if #briefingRoom.aircraftActivator.currentQueue == 0 then -- no aircraft in the queue at the moment
     return time + briefingRoom.aircraftActivator.getRandomInterval() -- schedule next update and return
   end
-
+  
   local acGroup = Group.getByName(briefingRoom.aircraftActivator.currentQueue[1]) -- get the group
   if acGroup ~= nil then -- activate the group, if it exists
     acGroup:activate()
@@ -616,7 +635,7 @@ function briefingRoom.aircraftActivator.update(args, time)
   end
   table.remove(briefingRoom.aircraftActivator.currentQueue, 1) -- remove the ID from the queue
   if string.match(acGroup:getName(), "%-IQ%-") then
-      return time + 1
+    return time + 1
   end
   return time + briefingRoom.aircraftActivator.getRandomInterval() -- schedule next update
 end
