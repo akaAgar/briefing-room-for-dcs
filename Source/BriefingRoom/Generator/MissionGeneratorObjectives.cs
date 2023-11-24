@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -366,6 +366,21 @@ namespace BriefingRoom4DCS.Generator
             // Add objective features Lua for this objective
             mission.AppendValue("ScriptObjectivesFeatures", ""); // Just in case there's no features
             var featureList = taskDB.RequiredFeatures.Concat(featuresID).ToHashSet();
+            if(taskDB.IsEscort())
+            {
+                
+                switch (targetDB.UnitCategory)
+                {
+                    case UnitCategory.Plane:
+                    case UnitCategory.Helicopter:
+                       featureList.Add("HiddenEnemyCAPAttackingObj");
+                       break;
+                    
+                    default:
+                        featureList.Add("HiddenEnemyGroundAttackingObj");
+                        break;
+                }
+            }
             foreach (string featureID in featureList)
                 FeaturesGenerator.GenerateMissionFeature(mission, featureID, objectiveName, objectiveIndex, targetGroupInfo.Value, taskDB.TargetSide, objectiveOptions.Contains(ObjectiveOption.HideTarget), overrideCoords: (targetBehaviorDB.ID == "ToFrontLine" ? objectiveCoordinates : null));
 
