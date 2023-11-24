@@ -1,4 +1,4 @@
-﻿/*
+/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -330,7 +330,7 @@ namespace BriefingRoom4DCS.Generator
             if (objectiveOptions.Contains(ObjectiveOption.EmbeddedAirDefense) && (targetDB.UnitCategory == UnitCategory.Static))
                 AddEmbeddedAirDefenseUnits(template, targetDB, targetBehaviorDB, taskDB, objectiveCoordinates, groupFlags, extraSettings);
 
-            targetGroupInfo.Value.DCSGroup.Waypoints = DCSWaypoint.CreateExtraWaypoints(targetGroupInfo.Value.DCSGroup.Waypoints, targetGroupInfo.Value.UnitDB.Families.First(), UnitMaker.SpawnPointSelector);
+            targetGroupInfo.Value.DCSGroup.Waypoints = taskDB.IsEscort() ? targetGroupInfo.Value.DCSGroup.Waypoints : DCSWaypoint.CreateExtraWaypoints(targetGroupInfo.Value.DCSGroup.Waypoints, targetGroupInfo.Value.UnitDB.Families.First(), UnitMaker.SpawnPointSelector);
 
             // Assign target suffix
             var i = 0;
