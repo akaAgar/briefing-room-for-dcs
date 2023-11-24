@@ -58,7 +58,9 @@ table.insert(briefingRoom.mission.objectiveTriggers, function(event)
       end
     end
   end
-  if #collect > 0 then
+
+  local nonNativeTransportingAircraft = { "UH-60L" }
+  if #collect > 0 and table.contains(nonNativeTransportingAircraft, event.initiator:getTypeName()) then
     briefingRoom.transportManager.troopsMoveToGetIn(event.initiator:getName(), collect)
   end
 end)
