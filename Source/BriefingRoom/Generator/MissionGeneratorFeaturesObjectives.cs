@@ -45,9 +45,13 @@ namespace BriefingRoom4DCS.Generator
 
             Coordinates? coordinates = null;
             Coordinates? coordinates2 = null;
+            Dictionary<string, object> extraSettings = new(StringComparer.InvariantCultureIgnoreCase);
             var flags = featureDB.UnitGroupFlags;
-            if (flags.HasFlag(FeatureUnitGroupFlags.Intercept) && objectiveTarget.DCSGroup.Waypoints.Count > 1)
-                objCoords = Coordinates.Lerp(objectiveTarget.DCSGroup.Waypoints.First().Coordinates, objectiveTarget.DCSGroup.Waypoints.Last().Coordinates, new MinMaxD(0,.8).GetValue());
+            if (flags.HasFlag(FeatureUnitGroupFlags.Intercept) && objectiveTarget.DCSGroup.Waypoints.Count > 1) {
+                var lerp = new MinMaxD(0.05,.95).GetValue();
+                objCoords = Coordinates.Lerp(objectiveTarget.DCSGroup.Waypoints.First().Coordinates, objectiveTarget.DCSGroup.Waypoints.Last().Coordinates, lerp);
+                extraSettings.AddIfKeyUnused("TimeQueueTime",  (int)Math.Floor(60*lerp));
+            }
     
             if (flags.HasFlag(FeatureUnitGroupFlags.SpawnOnObjective))
             {
@@ -84,7 +88,7 @@ namespace BriefingRoom4DCS.Generator
                 coordinates2 = objCoords;
 
 
-            Dictionary<string, object> extraSettings = new(StringComparer.InvariantCultureIgnoreCase);
+           
             extraSettings.AddIfKeyUnused("ObjectiveName", objectiveName);
             extraSettings.AddIfKeyUnused("ObjectiveIndex", objectiveIndex + 1);
             extraSettings.AddIfKeyUnused("ObjectiveGroupID", objectiveTarget.GroupID);
