@@ -80,7 +80,7 @@ Build
 
 Run responding on port localhost:5000 
 
-    docker run --rm -it -p 5000:80  johnharvey/dcs-briefing-room-web:latest
+    docker run --rm -it -p 5000:80 -e ASPNETCORE_HTTP_PORTS=80  johnharvey/dcs-briefing-room-web:latest
 
 
 ## Changelog
