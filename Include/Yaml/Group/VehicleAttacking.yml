@@ -15,9 +15,6 @@ waypoints:
     speedLocked: true
     y: $GROUPY$
     x: $GROUPX$
-  - alt: 10
-    action: Rank
-    speed: 5.5555555555556
     tasks:
       - id: AttackGroup
         auto: false
@@ -32,6 +29,9 @@ waypoints:
           groupAttack: false
           weaponType: 52613349374
           direction: 0
+  - alt: 10
+    action: Rank
+    speed: 5.5555555555556
     type: Turning Point
     etaLocked: false
     speedLocked: true

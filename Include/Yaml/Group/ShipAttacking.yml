@@ -10,14 +10,6 @@ waypoints:
     speedLocked: true
     y: $GROUPY$
     x: $GROUPX$
-  - alt: 0
-    action: Turning Point
-    speed: 13.888888
-    type: Turning Point
-    etaLocked: false
-    speedLocked: true
-    y: $GROUPY2$
-    x: $GROUPX2$
     tasks:
       - id: AttackGroup
         auto: false
@@ -32,6 +24,14 @@ waypoints:
           groupAttack: false
           weaponType: 52613349374
           direction: 0
+  - alt: 0
+    action: Turning Point
+    speed: 13.888888
+    type: Turning Point
+    etaLocked: false
+    speedLocked: true
+    y: $GROUPY2$
+    x: $GROUPX2$   
 groupId: $GROUPID$
 hidden: $HIDDEN$
 y: $GROUPY$

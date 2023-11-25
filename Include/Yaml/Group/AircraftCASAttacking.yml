@@ -26,15 +26,6 @@ waypoints:
           wrapped: true
           value: $EPLRS$
           groupId: $GROUPID$
-    type: Turning Point
-    etaLocked: true
-    speedLocked: true
-    y: $GROUPY$
-    x: $GROUPX$
-  - alt: $ALTITUDE$
-    action: Turning Point
-    speed: $SPEED$
-    tasks:
       - id: AttackGroup
         auto: false
         parameters:
@@ -48,6 +39,18 @@ waypoints:
           groupAttack: false
           weaponType: 52613349374
           direction: 0
+    type: Turning Point
+    etaLocked: true
+    speedLocked: true
+    y: $GROUPY$
+    x: $GROUPX$
+  - alt: $ALTITUDE$
+    action: Turning Point
+    speed: $SPEED$
+    tasks:
+      - id: Orbit
+        parameters:
+          pattern: Circle
     type: Turning Point
     etaLocked: false
     speedLocked: true
