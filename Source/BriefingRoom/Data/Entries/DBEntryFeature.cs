@@ -53,8 +53,10 @@ namespace BriefingRoom4DCS.Data
         internal double UnitGroupSpawnDistance { get; private set; }
 
         internal DCSTask UnitGroupTask { get; private set; }
+        internal bool UnitGroupAllowStatic {get; set;}
 
         internal SpawnPointType[] UnitGroupValidSpawnPoints { get; private set; }
+
 
 
         protected override bool OnLoad(string iniFilePath)
@@ -90,6 +92,7 @@ namespace BriefingRoom4DCS.Data
             UnitGroupSpawnDistance = ini.GetValue<double>("UnitGroup", "SpawnDistance");
             UnitGroupTask = ini.GetValue<DCSTask>("UnitGroup", "Task", DCSTask.Nothing);
             UnitGroupValidSpawnPoints = DatabaseTools.CheckSpawnPoints(ini.GetValueArray<SpawnPointType>("UnitGroup", "ValidSpawnPoints"));
+            UnitGroupAllowStatic = ini.GetValue<bool>("UnitGroup", "AllowStatic");
 
             return true;
         }

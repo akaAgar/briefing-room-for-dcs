@@ -1227,7 +1227,7 @@
     {
         "type": "JTAC",
         "families": [
-            "VehicleStatic"
+            "Infantry"
         ],
         "lowPolly": false,
         "immovable": true

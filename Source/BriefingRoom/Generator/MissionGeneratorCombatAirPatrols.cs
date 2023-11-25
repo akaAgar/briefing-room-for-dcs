@@ -114,7 +114,7 @@ namespace BriefingRoom4DCS.Generator
                 if (template.MissionFeatures.Contains("ContextScrambleStart"))
                     groupFlags |= UnitMakerGroupFlags.ScrambleStart;
 
-                var (units, unitDBs) = unitMaker.GetUnits(commonCAPDB.UnitFamilies.ToList(), groupSize, side, groupFlags, ref extraSettings);
+                var (units, unitDBs) = unitMaker.GetUnits(commonCAPDB.UnitFamilies.ToList(), groupSize, side, groupFlags, ref extraSettings, false);
                 if(units.Count == 0)
                     return;
                 var unitDB = (DBEntryAircraft)unitDBs.First();

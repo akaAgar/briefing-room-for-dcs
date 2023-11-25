@@ -109,14 +109,15 @@ namespace BriefingRoom4DCS.Generator
             GroupID = 1;
             UnitID = 1;
         }
-        internal Tuple<List<string>, List<DBEntryJSONUnit>> GetUnits(UnitFamily family, int unitCount, Side side, UnitMakerGroupFlags unitMakerGroupFlags, ref Dictionary<string, object> extraSettings) =>
-            GetUnits(new List<UnitFamily> { family }, unitCount, side, unitMakerGroupFlags, ref extraSettings);
+        internal Tuple<List<string>, List<DBEntryJSONUnit>> GetUnits(UnitFamily family, int unitCount, Side side, UnitMakerGroupFlags unitMakerGroupFlags, ref Dictionary<string, object> extraSettings, bool allowStatic) =>
+            GetUnits(new List<UnitFamily> { family }, unitCount, side, unitMakerGroupFlags, ref extraSettings, allowStatic);
 
         internal Tuple<List<string>, List<DBEntryJSONUnit>> GetUnits(
             List<UnitFamily> families,
             int unitCount, Side side,
             UnitMakerGroupFlags unitMakerGroupFlags,
             ref Dictionary<string, object> extraSettings,
+            bool allowStatic,
             bool forceTryTemplate = false)
         {
             if (unitCount <= 0) throw new BriefingRoomException("Asking for a zero units");
@@ -141,7 +142,15 @@ namespace BriefingRoom4DCS.Generator
                 }
             }
             if (!units.Where(x => x != null).Any())
-                (country, units) = unitsCoalitionDB.GetRandomUnits(families, Template.ContextDecade, unitCount, Template.Mods, Template.OptionsUnitBanList, Template.OptionsMission.Contains("AllowlowPolly"), Template.OptionsMission.Contains("BlockSuppliers"), lowUnitVariation: unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.LowUnitVariation));
+                (country, units) = unitsCoalitionDB.GetRandomUnits(
+                    families,
+                    Template.ContextDecade,
+                    unitCount, Template.Mods,
+                    Template.OptionsUnitBanList,
+                    Template.OptionsMission.Contains("AllowlowPolly"),
+                    Template.OptionsMission.Contains("BlockSuppliers"),
+                    lowUnitVariation: unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.LowUnitVariation),
+                    allowStatic: allowStatic);
 
 
             if (country != Country.ALL)
@@ -174,7 +183,9 @@ namespace BriefingRoom4DCS.Generator
             string groupLua, string unitLua,
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags,
-            Dictionary<string, object> extraSettings, bool forceTryTemplate = false) => AddUnitGroup(new List<UnitFamily> { family }, unitCount, side, groupLua, unitLua, coordinates, unitMakerGroupFlags, extraSettings, forceTryTemplate);
+            Dictionary<string, object> extraSettings,
+            bool allowStatic,
+            bool forceTryTemplate = false) => AddUnitGroup(new List<UnitFamily> { family }, unitCount, side, groupLua, unitLua, coordinates, unitMakerGroupFlags, extraSettings, allowStatic, forceTryTemplate);
 
         internal UnitMakerGroupInfo? AddUnitGroup(
             List<UnitFamily> families, int unitCount, Side side,
@@ -182,11 +193,12 @@ namespace BriefingRoom4DCS.Generator
             Coordinates coordinates,
             UnitMakerGroupFlags unitMakerGroupFlags,
             Dictionary<string, object> extraSettings,
+            bool allowStatic,
             bool forceTryTemplate = false)
         {
             if (unitCount <= 0) throw new BriefingRoomException("Asking for a zero units");
             if (families.Count <= 0) throw new BriefingRoomException("No Unit Families Provided");
-            var (units, _) = GetUnits(families, unitCount, side, unitMakerGroupFlags, ref extraSettings, forceTryTemplate);
+            var (units, _) = GetUnits(families, unitCount, side, unitMakerGroupFlags, ref extraSettings, allowStatic, forceTryTemplate: forceTryTemplate);
             return AddUnitGroup(units, side, families.First(), groupLua, unitLua, coordinates, unitMakerGroupFlags, extraSettings);
         }
 

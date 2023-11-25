@@ -32,12 +32,14 @@ namespace BriefingRoom4DCS.Data
 
         internal UnitCategory[] ValidUnitCategories { get; private set; }
         internal string[] InvalidTasks { get; private set; }
+        internal bool IsStatic {get; set;}
 
 
         protected override bool OnLoad(string iniFilePath)
         {
             var ini = new INIFile(iniFilePath);
             Location = ini.GetValue<DBEntryObjectiveTargetBehaviorLocation>("Behavior", "Location");
+            IsStatic = ini.GetValue<bool>("Behavior", "IsStatic");
 
             GroupLua = new string[Toolbox.EnumCount<DCSUnitCategory>()];
             foreach (DCSUnitCategory unitCategory in Toolbox.GetEnumValues<DCSUnitCategory>())

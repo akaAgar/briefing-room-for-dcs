@@ -47,7 +47,7 @@ namespace BriefingRoom4DCS.Generator
                 _drawingMaker.AddDrawing($"Supply_{CTLDZoneCount}", DrawingType.TextBox, coords, "Text".ToKeyValuePair($"Supply Base"));
                 _drawingMaker.AddDrawing($"Supply_zone_{CTLDZoneCount}", DrawingType.Circle, coords, "Radius".ToKeyValuePair(500), "Colour".ToKeyValuePair(DrawingColour.White));
                 _mission.MapData.Add($"SUPPLY_{CTLDZoneCount}", new List<double[]> { coords.ToArray() });
-                var group = _unitMaker.AddUnitGroup(UnitFamily.StaticStructureMilitary, 1, Side.Ally, "Static", "Static", coords, UnitMakerGroupFlags.Inert, new Dictionary<string, object>());
+                var group = _unitMaker.AddUnitGroup(UnitFamily.StaticStructureMilitary, 1, Side.Ally, "Static", "Static", coords, UnitMakerGroupFlags.Inert, new Dictionary<string, object>(), true);
                 group.Value.DCSGroup.Units[0].Name = $"logistic{CTLDZoneCount}";
             }
             AddToList($"pickzone{CTLDZoneCount}", coords, 500);

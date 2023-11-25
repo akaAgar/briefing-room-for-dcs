@@ -100,7 +100,7 @@ namespace BriefingRoom4DCS.Generator
                 var unitCount = featureDB.UnitGroupSize.GetValue();
                 var unitFamily = preSelectedUnitFamily ?? Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
                 var luaUnit = featureDB.UnitGroupLuaUnit;
-                var (units, unitDBs) = _unitMaker.GetUnits(unitFamily, unitCount, groupSide, groupFlags, ref extraSettings);
+                var (units, unitDBs) = _unitMaker.GetUnits(unitFamily, unitCount, groupSide, groupFlags, ref extraSettings, featureDB.UnitGroupAllowStatic);
                 if (units.Count == 0)
                 {
                     _unitMaker.SpawnPointSelector.RecoverSpawnPoint(coordinatesValue);
@@ -264,7 +264,7 @@ namespace BriefingRoom4DCS.Generator
                     continue;
 
                 extraSettings.Remove("TemplatePositionMap");
-                var (units, unitDBs) = _unitMaker.GetUnits(unitFamily, unitCount, groupSide, groupFlags, ref extraSettings);
+                var (units, unitDBs) = _unitMaker.GetUnits(unitFamily, unitCount, groupSide, groupFlags, ref extraSettings, featureDB.UnitGroupAllowStatic);
                 if (units.Count == 0)
                 {
                     _unitMaker.SpawnPointSelector.RecoverSpawnPoint(spawnCoords.Value);

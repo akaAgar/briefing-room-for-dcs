@@ -191,7 +191,7 @@ namespace BriefingRoom4DCS.Generator
             var extraSettings = new Dictionary<string, object>();
             var (luaUnit, unitCount, unitCountMinMax, objectiveTargetUnitFamily, groupFlags) = GetUnitData(task, targetDB, targetBehaviorDB, objectiveOptions);
             var isInverseTransportWayPoint = false;
-            var (units, unitDBs) = UnitMaker.GetUnits(objectiveTargetUnitFamily, unitCount, taskDB.TargetSide, groupFlags, ref extraSettings);
+            var (units, unitDBs) = UnitMaker.GetUnits(objectiveTargetUnitFamily, unitCount, taskDB.TargetSide, groupFlags, ref extraSettings, targetBehaviorDB.IsStatic);
             if (units.Count == 0 || unitDBs.Count == 0)
                 throw new BriefingRoomException($"No operational units in {objectiveTargetUnitFamily} for given time period.");
             var unitDB = unitDBs.First();

@@ -118,7 +118,9 @@ namespace BriefingRoom4DCS.Generator
                         "Vehicle", "Vehicle",
                         spawnPoint.Value,
                         0,
-                        new Dictionary<string, object>(), forceTryTemplate: forceTryTemplate);
+                        new Dictionary<string, object>(),
+                        true,
+                        forceTryTemplate: forceTryTemplate);
 
                 if (!groupInfo.HasValue){
                     BriefingRoom.PrintToLog(
