@@ -257,8 +257,10 @@ namespace BriefingRoom4DCS.Generator
                     groupName += "(C)";
                 if (extraSettings.ContainsKey("PlayerStartingType") && extraSettings.GetValueOrDefault("PlayerStartingType").ToString() == "Turning Point")
                     groupName += "(A)";
+
                 var aircraftUnitDB = (DBEntryAircraft)firstUnitDB;
-                extraSettings["Pylons"] = extraSettings.ContainsKey("Payload") ? aircraftUnitDB.GetPylonsObject(extraSettings.GetValueOrDefault("Payload", "").ToString()) : aircraftUnitDB.GetPylonsObject((DCSTask)extraSettings.GetValueOrDefault("DCSTask", DCSTask.Nothing));
+                var payloadName = extraSettings.GetValueOrDefault("Payload", "").ToString();
+                extraSettings["Pylons"] = !String.IsNullOrEmpty(payloadName) && payloadName != "default" ? aircraftUnitDB.GetPylonsObject(payloadName) : aircraftUnitDB.GetPylonsObject((DCSTask)extraSettings.GetValueOrDefault("DCSTask", DCSTask.Nothing));
             }
 
             GetLivery(firstUnitDB, country, ref extraSettings);
