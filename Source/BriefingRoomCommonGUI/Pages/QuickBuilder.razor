@@ -113,6 +113,17 @@
                                 <a @onclick="() => ClearCarrierHint(flight.Carrier)" >@BriefingRoom.Translate("RemoveCarrierHint")</a>
                             </p>
                         }
+                        <div class="form-group flex-block">
+                            <label>@BriefingRoom.Translate("Payload")</label>
+                            <select class="form-control selectpicker" @bind=flight.Payload>
+                                <option value="default">@BriefingRoom.Translate("Default")</option>
+                                <option value="EMPTY">@BriefingRoom.Translate("Empty")</option>
+                                @foreach (var item in BriefingRoom.GetAircraftPayloads(flight.Aircraft))
+                                {
+                                    <option value="@item">@item</option> // Blazor needs to know what values it binds to!
+                                }
+                            </select>
+                        </div>
                         <div class="flex-block form-group">
                             <label>@BriefingRoom.Translate("Livery")</label>
                             <select class="form-control selectpicker" @bind=flight.Livery>
