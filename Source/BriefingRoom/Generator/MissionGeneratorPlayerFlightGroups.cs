@@ -186,7 +186,7 @@ namespace BriefingRoom4DCS.Generator
             groupInfo.Value.DCSGroup.Waypoints.InsertRange(1, flightWaypoints.Select(x => x.ToDCSWaypoint(unitDB, task)).ToList());
 
 
-            SaveFlightGroup(mission, groupInfo, flightGroup, unitDB, carrierName ?? airbase.Name);
+            SaveFlightGroup(mission, groupInfo, flightGroup, unitDB, carrierName ?? airbase.Name, task);
             SaveWaypointsToBriefing(
                 mission,
                 groupStartingCoords,
@@ -202,13 +202,13 @@ namespace BriefingRoom4DCS.Generator
             mission.MapData.Add($"ROUTE_{groupInfo.Value.DCSGroup.GroupId}", mapWaypoints);
         }
 
-        private static void SaveFlightGroup(DCSMission mission, UnitMakerGroupInfo? groupInfo, MissionTemplateFlightGroupRecord flightGroup, DBEntryJSONUnit unitDB, string homeBase)
+        private static void SaveFlightGroup(DCSMission mission, UnitMakerGroupInfo? groupInfo, MissionTemplateFlightGroupRecord flightGroup, DBEntryJSONUnit unitDB, string homeBase, DCSTask task)
         {
             mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
                 $"{groupInfo.Value.Name}(P)\t" +
                 $"{flightGroup.Count}× {unitDB.UIDisplayName.Get()}\t" +
                 $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
-                $"{flightGroup.Payload}\t" +
+                $"{(flightGroup.Payload == "default" ?  task : flightGroup.Payload)}\t" +
                 $"{homeBase}");
             for (int i = 0; i < flightGroup.Count; i++)
                 mission.AppendValue("SCRIPTCLIENTPILOTNAMES", $"\"{groupInfo.Value.Name} {i + 1}\",");
