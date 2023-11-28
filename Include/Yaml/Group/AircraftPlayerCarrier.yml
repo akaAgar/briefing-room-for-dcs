@@ -1,5 +1,5 @@
 modulation: $RADIOBAND$
-task: $TASK$
+task: $DCSTASK$
 radioSet: true
 uncontrolled: false
 waypoints:

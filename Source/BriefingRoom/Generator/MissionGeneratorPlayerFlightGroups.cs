@@ -1,4 +1,4 @@
-﻿/*
+/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -257,7 +257,7 @@ namespace BriefingRoom4DCS.Generator
             if (package != null)
                 objs = objs.Where((x, i) => package.ObjectiveIndexes.Contains(i)).ToList();
             var task = objectives.Select(x => new List<DCSTask> { AssignTask(x) }.Concat(x.SubTasks.Select(y => AssignTask(y)).ToList())).SelectMany(x => x).ToList().GroupBy(x => x).MaxBy(g => g.Count()).ToList().First();
-            extraSettings.AddIfKeyUnused("Task", task.ToString());
+            extraSettings.AddIfKeyUnused("DCSTask", task);
             return task;
         }
 
