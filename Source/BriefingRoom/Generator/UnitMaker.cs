@@ -263,7 +263,7 @@ namespace BriefingRoom4DCS.Generator
                 extraSettings["Pylons"] = !String.IsNullOrEmpty(payloadName) && payloadName != "default" ? aircraftUnitDB.GetPylonsObject(payloadName) : aircraftUnitDB.GetPylonsObject((DCSTask)extraSettings.GetValueOrDefault("DCSTask", DCSTask.Nothing));
             }
 
-            GetLivery(firstUnitDB, country, ref extraSettings);
+            GetLivery(firstUnitDB, country, coalition, ref extraSettings);
 
             var dCSGroup = CreateGroup(
                 groupTypeLua,
@@ -595,12 +595,19 @@ namespace BriefingRoom4DCS.Generator
             return unit;
         }
 
-        private void GetLivery(DBEntryJSONUnit unitDB, Country country, ref Dictionary<string, object> extraSettings)
+        private void GetLivery(DBEntryJSONUnit unitDB, Country country, Coalition coalition, ref Dictionary<string, object> extraSettings)
         {
             var LiveryId = extraSettings.GetValueOrDefault("Livery", "default").ToString();
             if (LiveryId != "default")
                 return;
             var options = unitDB.Liveries.GetValueOrDefault(country, new List<string> { "default" });
+            if ((country == Country.CombinedJointTaskForcesBlue || country == Country.CombinedJointTaskForcesRed) && options.Count == 1)
+            {
+                foreach (var coalitionCountry in CoalitionsCountries[(int)coalition])
+                {
+                    options.AddRange(unitDB.Liveries.GetValueOrDefault(coalitionCountry, new List<string> {})) ; 
+                }
+            }
             if (DBEntryTheater.DESERT_MAPS.Contains(Mission.TheaterID))
             {
                 var subset = options.Where(x => x.ToLower().Contains("desert")).ToList();

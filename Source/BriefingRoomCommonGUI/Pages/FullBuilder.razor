@@ -413,7 +413,7 @@
                                         <div class="flex-block form-group">
                                             <label>@BriefingRoom.Translate("Livery")</label>
                                             <select class="form-control selectpicker" @bind=flight.Livery>
-                                                <option value="default">default</option>
+                                                <option value="default">@BriefingRoom.Translate("Default")</option>
                                             @foreach (var item in BriefingRoom.GetAircraftLiveries(flight.Aircraft))
                                             {
                                                 <option value="@item">@item</option> // Blazor needs to know what values it binds to!
