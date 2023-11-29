@@ -74,8 +74,8 @@ namespace BriefingRoom4DCS.Generator
         private static async Task<int> GenerateKneeboardImageAsync(string html, DCSMission mission, int inc = 1, string aircraftID = "")
         {
             var converterlogs = "";
-            var iWidth = 600;
-            var iHeight = 863;
+            var iWidth = 768;
+            var iHeight = 1024;
             try
             {
                 string tempRenderPath = Path.ChangeExtension(Path.GetTempFileName(), ".png").Replace(".png", "_*.png");
