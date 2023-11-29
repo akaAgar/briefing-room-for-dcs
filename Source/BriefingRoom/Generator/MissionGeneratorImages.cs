@@ -74,14 +74,21 @@ namespace BriefingRoom4DCS.Generator
         private static async Task<int> GenerateKneeboardImageAsync(string html, DCSMission mission, int inc = 1, string aircraftID = "")
         {
             var converterlogs = "";
+            var iWidth = 600;
+            var iHeight = 863;
             try
             {
                 string tempRenderPath = Path.ChangeExtension(Path.GetTempFileName(), ".png").Replace(".png", "_*.png");
                 ChromePdfRenderer renderer = new();
                 renderer.RenderingOptions.PaperSize = IronPdf.Rendering.PdfPaperSize.Custom;
-                renderer.RenderingOptions.SetCustomPaperSizeinPixelsOrPoints(1200, 1725);
+                renderer.RenderingOptions.SetCustomPaperSizeinPixelsOrPoints(iWidth, iHeight);
+                renderer.RenderingOptions.MarginTop = 0;
+                renderer.RenderingOptions.MarginLeft = 0;
+                renderer.RenderingOptions.MarginRight = 0;
+                renderer.RenderingOptions.MarginBottom = 0;
                 PdfDocument pdf = await renderer.RenderHtmlAsPdfAsync(html);
-                var imagePaths = pdf.ToPngImages(tempRenderPath, 1200, 1725);
+                // Console.WriteLine(html);
+                var imagePaths = pdf.ToPngImages(tempRenderPath, iWidth, iHeight);
 
 
                 foreach (var path in imagePaths)
