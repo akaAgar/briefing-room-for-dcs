@@ -399,11 +399,7 @@
                     </li>
                 }
             </ul>
-            <div>
-                <div id="map"></div>
-                <p>@BriefingRoom.Translate("MapWarning")</p> 
-            </div>
-            <div>@((MarkupString)missionTab.Briefing.GetBriefingAsHTML(false))</div>
+            <Briefing mission=@missionTab />
         </div>
     }
 </div>

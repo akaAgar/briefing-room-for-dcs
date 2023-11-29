@@ -1,0 +1,60 @@
+@using BriefingRoom4DCS.Mission
+<div>
+    <div id="map"></div>
+    <p>@BriefingRoom.Translate("MapWarning")</p>
+</div>
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link @(briefingTab == "Description" ? "active" : "")" aria-current="page"
+            @onclick='() => briefingTab = "Description"'>@BriefingRoom.Translate("Description")</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(briefingTab == "Tasks" ? "active" : "")" aria-current="page"
+            @onclick='() => briefingTab = "Tasks"'>@BriefingRoom.Translate("Tasks")</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(briefingTab == "Ground" ? "active" : "")" aria-current="page"
+            @onclick='() => briefingTab = "Ground"'>@BriefingRoom.Translate("airbases") &
+            @BriefingRoom.Translate("JTAC")</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(briefingTab == "Flights" ? "active" : "")" aria-current="page"
+            @onclick='() => briefingTab = "Flights"'>@BriefingRoom.Translate("Flightgroups")</a>
+    </li>
+    @foreach (var flight in mission.Briefing.FlightBriefings)
+    {
+        <a class="nav-link @(briefingTab == flight.Name ? "active" : "")" aria-current="page"
+            @onclick='() => briefingTab = flight.Name'>@flight.Name</a>
+    }
+</ul>
+@if (briefingTab == "Description")
+{
+    <div>@((MarkupString)mission.Briefing.GetShortBriefingAsHTML())</div>
+}
+@if (briefingTab == "Tasks")
+{
+    <iframe width="768" height="1024"
+        srcdoc=@((MarkupString)mission.Briefing.GetBriefingKneeBoardTasksAndRemarksHTML())></iframe>
+}
+@if (briefingTab == "Ground")
+{
+    <iframe width="768" height="1024" srcdoc=@((MarkupString)mission.Briefing.GetBriefingKneeBoardGroundHTML())></iframe>
+}
+@if (briefingTab == "Flights")
+{
+    <iframe width="768" height="1024" srcdoc=@((MarkupString)mission.Briefing.GetBriefingKneeBoardFlightsHTML())></iframe>
+}
+@foreach (var flight in mission.Briefing.FlightBriefings)
+{
+    @if (briefingTab == flight.Name)
+    {
+        <iframe width="768" height="1024" srcdoc=@((MarkupString)flight.GetFlightBriefingKneeBoardHTML())></iframe>
+    }
+}
+
+@code {
+    [Parameter] public DCSMission mission { get; set; }
+    private string briefingTab = "Description";
+
+}

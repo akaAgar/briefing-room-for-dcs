@@ -164,8 +164,8 @@ function GetHintPoints(map) {
 
 async function RenderMap(mapData, map, inverted) {
     if (leafMap) {
-        leafMap.off();
         leafMap.remove();
+        leafMap.off();
     }
 
     try {
@@ -197,7 +197,7 @@ async function RenderMap(mapData, map, inverted) {
         }
     })
     if (Object.keys(mapData).includes("AIRBASE_HOME"))
-        leafMap.setView(GetFromMapCoordData(mapData["AIRBASE_HOME"][0].reverse(), map), 6.5);
+        leafMap.setView(GetFromMapCoordData(mapData["AIRBASE_HOME"][0].reverse(), map), 6.4);
     else {
         await GetCenterView(map, leafMap)
     }

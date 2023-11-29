@@ -28,6 +28,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace BriefingRoom4DCS.Generator
@@ -61,12 +62,16 @@ namespace BriefingRoom4DCS.Generator
         {
             var html = mission.Briefing.GetBriefingKneeBoardTasksAndRemarksHTML();
             var inc = await GenerateKneeboardImageAsync(html, mission);
+
             html = mission.Briefing.GetBriefingKneeBoardFlightsHTML();
+            inc = await GenerateKneeboardImageAsync(html, mission, inc);
+
+            html = mission.Briefing.GetBriefingKneeBoardGroundHTML();
             inc = await GenerateKneeboardImageAsync(html, mission, inc);
 
             foreach (var flight in mission.Briefing.FlightBriefings)
             {
-                html = flight.GetFlightBriefingKneeBoardHTML(mission);
+                html = flight.GetFlightBriefingKneeBoardHTML();
                 inc = await GenerateKneeboardImageAsync(html, mission, inc, flight.Type);
             }
         }
@@ -98,6 +103,7 @@ namespace BriefingRoom4DCS.Generator
                     using var ms = new MemoryStream();
                     img.Save(ms, img.RawFormat);
                     mission.AddMediaFile($"KNEEBOARD/{midPath}IMAGES/comms_{mission.UniqueID}_{inc}.png", ms.ToArray());
+                    mission.AddMediaFile($"KNEEBOARD_HTML/{midPath}IMAGES/comms_{mission.UniqueID}_{inc}.html", Encoding.UTF8.GetBytes(html));
                     img.Dispose();
                     File.Delete(path);
                     inc++;

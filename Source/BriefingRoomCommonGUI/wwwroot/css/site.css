@@ -366,6 +366,10 @@ th {
     width: 100%;
 }
 
+#map {
+    height: 500px;
+}
+
 .map_point_icon {
     width: 40px !important;
     height: 40px;

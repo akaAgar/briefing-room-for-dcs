@@ -35,7 +35,7 @@ namespace BriefingRoom4DCS.Mission
 
         private readonly Dictionary<DCSMissionBriefingItemType, List<string>> Items;
 
-        internal List<DCSMissionFlightBriefing> FlightBriefings { get; set; } = new List<DCSMissionFlightBriefing>();
+        public List<DCSMissionFlightBriefing> FlightBriefings { get; set; } = new List<DCSMissionFlightBriefing>();
 
         internal DCSMissionBriefing(DCSMission mission)
         {
@@ -85,6 +85,15 @@ namespace BriefingRoom4DCS.Mission
             return html;
         }
 
+        public string GetShortBriefingAsHTML()
+        {
+            string html = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "BriefingShort.html"));
+            html = BriefingRoom.LanguageDB.ReplaceValues(html);
+            html = Mission.ReplaceValues(html, true);
+
+            return html;
+        }
+
         public string GetBriefingKneeBoardTasksAndRemarksHTML()
         {
             string html = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "KneeboardHeader.html")) +
@@ -108,8 +117,21 @@ namespace BriefingRoom4DCS.Mission
 
             html = BriefingRoom.LanguageDB.ReplaceValues(html);
             html = Mission.ReplaceValues(html, true);
-
             GeneratorTools.ReplaceKey(ref html, "BriefingFlightGroups", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.FlightGroup)));
+
+            return html;
+        }
+
+         public string GetBriefingKneeBoardGroundHTML()
+        {
+            string html = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "KneeboardHeader.html")) +
+                Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "KneeboardGround.html")) +
+                Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "BriefingFooter.html"));
+
+            html = BriefingRoom.LanguageDB.ReplaceValues(html);
+            html = Mission.ReplaceValues(html, true);
+            GeneratorTools.ReplaceKey(ref html, "BriefingAirbases", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.Airbase)));
+            GeneratorTools.ReplaceKey(ref html, "BriefingJTAC", GeneratorTools.MakeHTMLTable(GetItems(DCSMissionBriefingItemType.JTAC)));
 
             return html;
         }
