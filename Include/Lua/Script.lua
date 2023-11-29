@@ -634,7 +634,7 @@ function briefingRoom.aircraftActivator.update(args, time)
     briefingRoom.debugPrint("Failed to activate aircraft group "..tostring(briefingRoom.aircraftActivator.currentQueue[1]))
   end
   table.remove(briefingRoom.aircraftActivator.currentQueue, 1) -- remove the ID from the queue
-  if string.match(acGroup:getName(), "%-IQ%-") then
+  if acGroup == nil or string.match(acGroup:getName(), "%-IQ%-") then
     return time + 1
   end
   return time + briefingRoom.aircraftActivator.getRandomInterval() -- schedule next update
