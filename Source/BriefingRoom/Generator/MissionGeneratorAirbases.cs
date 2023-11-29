@@ -1,4 +1,4 @@
-﻿/*
+/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -54,7 +54,7 @@ namespace BriefingRoom4DCS.Generator
                 var requiredRunway = flights.Select(x => ((DBEntryAircraft)Database.Instance.GetEntry<DBEntryJSONUnit>(x.Aircraft)).MinimumRunwayLengthFt).Max();
                 var airbase = SelectStartingAirbase(package.StartingAirbase, theaterDB, requiredSpots, requiredRunway);
 
-                if (missionPackages.Any(x => x.Airbase == airbase))
+                if (!missionPackages.Any(x => x.Airbase.ID == airbase.ID))
                     mission.Briefing.AddItem(DCSMissionBriefingItemType.Airbase, $"{airbase.Name}\t{airbase.Runways}\t{airbase.ATC}\t{airbase.ILS}\t{airbase.TACAN}");
                 mission.MapData.AddIfKeyUnused($"AIRBASE_${airbase.Name}", new List<double[]> { airbase.Coordinates.ToArray() });
                 missionPackages.Add(new DCSMissionPackage(_template.AircraftPackages.IndexOf(package), airbase));
