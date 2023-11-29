@@ -181,24 +181,24 @@ namespace BriefingRoom4DCS
             return (from DatabaseEntryInfo entryInfo in GetDatabaseEntriesInfo(entryType, parameter) select entryInfo.ID).ToArray();
         }
 
-        public static async Task<DCSMission> GenerateMissionAsync(string templateFilePath)
+        public static DCSMission GenerateMission(string templateFilePath)
         {
-            return await MissionGenerator.GenerateRetryableAsync(new MissionTemplate(templateFilePath));
+            return MissionGenerator.GenerateRetryable(new MissionTemplate(templateFilePath));
         }
 
-        public static async Task<DCSMission> GenerateMissionAsync(MissionTemplate template)
+        public static DCSMission GenerateMission(MissionTemplate template)
         {
-            return await MissionGenerator.GenerateRetryableAsync(template);
+            return MissionGenerator.GenerateRetryable(template);
         }
 
-        public static async Task<DCSCampaign> GenerateCampaignAsync(string templateFilePath)
+        public static DCSCampaign GenerateCampaign(string templateFilePath)
         {
-            return await CampaignGenerator.GenerateAsync(new CampaignTemplate(templateFilePath));
+            return CampaignGenerator.Generate(new CampaignTemplate(templateFilePath));
         }
 
-        public static async Task<DCSCampaign> GenerateCampaignAsync(CampaignTemplate template)
+        public static DCSCampaign GenerateCampaign(CampaignTemplate template)
         {
-            return await CampaignGenerator.GenerateAsync(template);
+            return CampaignGenerator.Generate(template);
         }
 
         public static string GetBriefingRoomRootPath() { return BRPaths.ROOT; }

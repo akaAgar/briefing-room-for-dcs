@@ -33,7 +33,7 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGenerator
     {
 
-        internal static async Task<DCSMission> GenerateAsync(MissionTemplateRecord template)
+        internal static DCSMission Generate(MissionTemplateRecord template)
         {
             // Check for missing entries in the database
             GeneratorTools.CheckDBForMissingEntry<DBEntryCoalition>(template.ContextCoalitionBlue);
@@ -43,7 +43,7 @@ namespace BriefingRoom4DCS.Generator
             if (!template.PlayerFlightGroups.Any(x => !x.Hostile))
                 throw new BriefingRoomException("Cannot have all players on hostile side.");
 
-            var mission = new DCSMission();
+            var mission = new DCSMission(template);
 
             var waypoints = new List<Waypoint>();
 
@@ -229,27 +229,21 @@ namespace BriefingRoom4DCS.Generator
             BriefingRoom.PrintToLog("Generating warehouses...");
             MissionGeneratorWarehouses.GenerateWarehouses(mission, unitMaker.CarrierDictionary);
 
-            // Generate image files
-            BriefingRoom.PrintToLog("Generating images...");
-            MissionGeneratorImages.GenerateTitle(mission, template);
-            if (!template.OptionsMission.Contains("DisableKneeboardImages"))
-                await MissionGeneratorImages.GenerateKneeboardImagesAsync(mission);
-
             return mission;
         }
 
-        internal static async Task<DCSMission> GenerateRetryableAsync(MissionTemplate template)
+        internal static DCSMission GenerateRetryable(MissionTemplate template)
         {
             var templateRecord = new MissionTemplateRecord(template);
-            var mission = await Policy
+            var mission = Policy
                 .HandleResult<DCSMission>(x => x.IsExtremeDistance(template, out double distance))
                 .Or<BriefingRoomException>(x =>
                 {
                     BriefingRoom.PrintToLog($"Recoverable Error thrown, {x.Message}", LogMessageErrorLevel.Warning);
                     return true;
                 })
-                .RetryAsync(10)
-                .ExecuteAsync(() => GenerateAsync(templateRecord));
+                .Retry(10)
+                .Execute(() => Generate(templateRecord));
 
             if (mission.IsExtremeDistance(template, out double distance))
                 BriefingRoom.PrintToLog($"Distance to objectives exceeds 1.7x of requested distance. ({Math.Round(distance, 2)}NM)", LogMessageErrorLevel.Warning);

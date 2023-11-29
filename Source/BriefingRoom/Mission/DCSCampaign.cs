@@ -23,6 +23,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
+using BriefingRoom4DCS.Generator;
 using BriefingRoom4DCS.Template;
 
 namespace BriefingRoom4DCS.Mission
@@ -47,7 +49,7 @@ namespace BriefingRoom4DCS.Mission
             Name = "";
         }
 
-        public void ExportToDirectory(string exportPath)
+        public async Task ExportToDirectory(string exportPath)
         {
             // Try to create the directory if it doesn't exist.
             if (!Toolbox.CreateMissingDirectory(exportPath))
@@ -64,16 +66,19 @@ namespace BriefingRoom4DCS.Mission
 
             // Write missions
             for (int i = 0; i < Missions.Count; i++)
-                Missions[i].SaveToMizFile($"{exportPath}{Name}{i + 1:00}.miz");
+                await Missions[i].SaveToMizFile($"{exportPath}{Name}{i + 1:00}.miz");
         }
 
-        public byte[] ExportToCompressedByteArray(CampaignTemplate template)
+        public async Task<byte[]> ExportToCompressedByteArray(CampaignTemplate template)
         {
             Dictionary<string, byte[]> FileEntries = new()
             {
                 { "Campaign.cmp", Encoding.UTF8.GetBytes(CMPFile) },
                 { "template.cbrt", template.GetIniBytes() }
             };
+            
+            string baseFileName = Toolbox.RemoveInvalidPathCharacters(this.Name);
+            CampaignGenerator.CreateImageFiles(template, this, baseFileName);
 
             foreach (string key in MediaFiles.Keys)
             {
@@ -81,7 +86,7 @@ namespace BriefingRoom4DCS.Mission
             }
 
             for (int i = 0; i < Missions.Count; i++)
-                FileEntries.Add($"{Name}{i + 1:00}.miz", Missions[i].SaveToMizBytes());
+                FileEntries.Add($"{Name}{i + 1:00}.miz", await Missions[i].SaveToMizBytes());
 
             return Toolbox.ZipData(FileEntries);
         }

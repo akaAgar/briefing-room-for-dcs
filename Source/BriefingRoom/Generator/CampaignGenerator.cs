@@ -37,13 +37,12 @@ namespace BriefingRoom4DCS.Generator
         private static readonly string CAMPAIGN_LUA_TEMPLATE = Path.Combine(BRPaths.INCLUDE_LUA, "Campaign", "Campaign.lua");
         private static readonly string CAMPAIGN_STAGE_LUA_TEMPLATE = Path.Combine(BRPaths.INCLUDE_LUA, "Campaign", "CampaignStage.lua");
 
-        internal static async Task<DCSCampaign> GenerateAsync(CampaignTemplate campaignTemplate)
+        internal static DCSCampaign Generate(CampaignTemplate campaignTemplate)
         {
             DCSCampaign campaign = new()
             {
                 Name = GeneratorTools.GenerateMissionName(campaignTemplate.BriefingCampaignName)
             };
-            string baseFileName = Toolbox.RemoveInvalidPathCharacters(campaign.Name);
 
             DateTime date = GenerateCampaignDate(campaignTemplate);
 
@@ -57,7 +56,7 @@ namespace BriefingRoom4DCS.Generator
 
                 var template = CreateMissionTemplate(campaignTemplate, campaign.Name, i, (int)campaignTemplate.MissionsObjectiveCount, previousSituationId, previousObjectiveCenterCoords, previousPlayerAirbaseId);
 
-                var mission = await MissionGenerator.GenerateRetryableAsync(template);
+                var mission = MissionGenerator.GenerateRetryable(template);
 
                 if (mission == null)
                 {
@@ -80,9 +79,6 @@ namespace BriefingRoom4DCS.Generator
             if (campaign.MissionCount < 1) // No missions generated, something went very wrong.
                 throw new BriefingRoomException($"Campaign has no valid mission.");
 
-
-            CreateImageFiles(campaignTemplate, campaign, baseFileName);
-
             campaign.CMPFile = GetCMPFile(campaignTemplate, campaign.Name);
 
             return campaign;
@@ -98,7 +94,7 @@ namespace BriefingRoom4DCS.Generator
             return date;
         }
 
-        private static void CreateImageFiles(CampaignTemplate campaignTemplate, DCSCampaign campaign, string baseFileName)
+        internal static void CreateImageFiles(CampaignTemplate campaignTemplate, DCSCampaign campaign, string baseFileName)
         {
             string allyFlagName = campaignTemplate.GetCoalition(campaignTemplate.ContextPlayerCoalition);
             string enemyFlagName = campaignTemplate.GetCoalition((Coalition)(1 - (int)campaignTemplate.ContextPlayerCoalition));

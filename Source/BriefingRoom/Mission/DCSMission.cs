@@ -23,6 +23,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
+using BriefingRoom4DCS.Generator;
 using BriefingRoom4DCS.Template;
 
 namespace BriefingRoom4DCS.Mission
@@ -50,6 +52,7 @@ namespace BriefingRoom4DCS.Mission
         internal Dictionary<Coalition, List<int>> PopulatedAirbaseIds { get; }
 
         internal List<DCSMissionPackage> MissionPackages { get; }
+        internal MissionTemplateRecord  TemplateRecord { get; }
 
 
         internal string ReplaceValues(string rawText, bool useHTMLBreaks = false)
@@ -76,7 +79,7 @@ namespace BriefingRoom4DCS.Mission
                 Airbases.Add(airbaseID, airbaseCoalition);
         }
 
-        internal DCSMission()
+        internal DCSMission(MissionTemplateRecord template)
         {
             Airbases = new Dictionary<int, Coalition>();
             Briefing = new DCSMissionBriefing(this);
@@ -95,6 +98,7 @@ namespace BriefingRoom4DCS.Mission
             SetValue("MissionID", UniqueID);
             SetValue("ScriptMIST", Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_LUA, "MIST.lua")));
             SetValue("ScriptSingletons", "");
+            TemplateRecord = template;
         }
 
         internal void SetValue(string key, int value)
@@ -183,14 +187,14 @@ namespace BriefingRoom4DCS.Mission
             MediaFiles.Add(fileName, mediaFileBytes);
         }
 
-        public bool SaveToMizFile(string mizFilePath)
+        public async Task<bool> SaveToMizFile(string mizFilePath)
         {
             try
             {
                 if (string.IsNullOrEmpty(mizFilePath)) return false;
                 if (!Toolbox.IsFilePathValid(mizFilePath)) return false;
 
-                byte[] mizBytes = SaveToMizBytes();
+                byte[] mizBytes = await SaveToMizBytes();
                 if (mizBytes == null) return false; // Something went wrong
 
                 if (File.Exists(mizFilePath)) File.Delete(mizFilePath);
@@ -204,9 +208,15 @@ namespace BriefingRoom4DCS.Mission
             }
         }
 
-        public byte[] SaveToMizBytes(MissionTemplate template = null)
+        public async Task<byte[]> SaveToMizBytes()
         {
-            return MizMaker.ExportToMizBytes(this, template);
+            // Generate image files
+            BriefingRoom.PrintToLog("Generating images...");
+            MissionGeneratorImages.GenerateTitleImage(this, TemplateRecord);
+            if (!TemplateRecord.OptionsMission.Contains("DisableKneeboardImages"))
+                await MissionGeneratorImages.GenerateKneeboardImagesAsync(this);
+
+            return MizMaker.ExportToMizBytes(this, TemplateRecord.Template);
         }
 
         internal string[] GetMediaFileNames()

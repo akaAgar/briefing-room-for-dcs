@@ -65,6 +65,7 @@ namespace BriefingRoom4DCS.Template
         internal int CombinedArmsJTACRed { get; init; }
         internal bool SpawnAnywhere { get; init; }
         internal Dictionary<string, double[]> CarrierHints { get; init; }
+        internal MissionTemplate Template { get; init; }
 
 
         internal MissionTemplateRecord(MissionTemplate template)
@@ -115,6 +116,7 @@ namespace BriefingRoom4DCS.Template
             CombinedArmsJTACRed = template.CombinedArmsJTACRed;
             SpawnAnywhere = template.OptionsMission.Contains("SpawnAnywhere") || template.ContextSituation == "None";
             CarrierHints = template.CarrierHints;
+            Template = template;
         }
 
         internal string GetCoalitionID(Coalition coalition)

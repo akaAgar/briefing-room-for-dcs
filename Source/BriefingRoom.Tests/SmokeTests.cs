@@ -8,7 +8,7 @@ public class SmokeTests
     async public void SingleMission()
     {
         new BriefingRoom();
-        DCSMission mission = await BriefingRoom.GenerateMissionAsync($"{BriefingRoom.GetBriefingRoomRootPath()}\\Default.brt");
+        DCSMission mission = await BriefingRoom.GenerateMission($"{BriefingRoom.GetBriefingRoomRootPath()}\\Default.brt");
 
         Assert.NotNull(mission);
         Assert.Equal("Caucasus", mission.TheaterID);
@@ -20,7 +20,7 @@ public class SmokeTests
     async public void Campaign()
     {
         new BriefingRoom();
-        DCSCampaign campaign = await BriefingRoom.GenerateCampaignAsync($"{BriefingRoom.GetBriefingRoomRootPath()}\\Default.cbrt");
+        DCSCampaign campaign = await BriefingRoom.GenerateCampaign($"{BriefingRoom.GetBriefingRoomRootPath()}\\Default.cbrt");
 
         Assert.NotNull(campaign);
         Assert.Equal(5, campaign.MissionCount);

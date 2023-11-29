@@ -35,7 +35,7 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGeneratorImages
     {
 
-        internal static void GenerateTitle(DCSMission mission, MissionTemplateRecord template)
+        internal static void GenerateTitleImage(DCSMission mission, MissionTemplateRecord template)
         {
             ImageMaker imageMaker = new();
             imageMaker.TextOverlay.Alignment = ContentAlignment.MiddleCenter;

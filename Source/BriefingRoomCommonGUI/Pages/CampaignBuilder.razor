@@ -504,7 +504,7 @@
             StateHasChanged();
             campaign = null;
             errorMessage = "";
-            campaign = await BriefingRoom.GenerateCampaignAsync(Template);
+            campaign = BriefingRoom.GenerateCampaign(Template);
             missionTab = campaign.Missions.First();
             StateHasChanged();
             await Policy.Handle<Exception>().RetryAsync(3).ExecuteAsync(async () => await JSRuntime.InvokeVoidAsync("RenderMap", missionTab.GetMapData(), Template.ContextTheater, Template.ContextPlayerCoalition == Coalition.Red));
@@ -527,12 +527,19 @@
 
     async Task DownloadCampaign()
     {
+        try { 
+            spinner = true;
+            StateHasChanged();
+            byte[] zipBytes = await campaign.ExportToCompressedByteArray(Template);
+            if (zipBytes == null) return; // Something went wrong during the .miz export
 
-        byte[] zipBytes = campaign.ExportToCompressedByteArray(Template);
-        if (zipBytes == null) return; // Something went wrong during the .miz export
-
-        try { await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{Template.ContextTheater} - {campaign.Name}.zip", "application/octet-stream", zipBytes); }
-        catch (Exception) { }
+            await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", $"{Template.ContextTheater} - {campaign.Name}.zip", "application/octet-stream", zipBytes);
+        } catch (Exception ex){
+            Console.WriteLine(ex);
+        } finally {
+            spinner = false;
+            StateHasChanged();
+        }
     }
 
     async Task DownloadBriefing()
