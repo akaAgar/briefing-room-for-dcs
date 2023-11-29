@@ -54,7 +54,6 @@ namespace BriefingRoom4DCS.GUI.Utils
             Template.CarrierHints = new Dictionary<string, double[]>();
             foreach (var obj in Template.Objectives)
                 obj.CoordinateHint = [0,0];
-
             foreach (var kv in result)
             {
                 switch (true)

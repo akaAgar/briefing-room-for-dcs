@@ -1,0 +1,191 @@
+@page "/KneeboardEditor"
+@inject IJSRuntime JSRuntime
+@using System.Reflection
+@using BriefingRoom4DCS
+@using System.IO.Compression
+@using System.IO
+@using System.Text.RegularExpressions
+@using System.Text
+@using BlazorMonaco
+@using BlazorMonaco.Editor
+@using BlazorMonaco.Languages
+@using BriefingRoom4DCS.Generator
+
+
+<div class="title-bar">
+  <h1>@BriefingRoom.Translate("KneeboardEditor")</h1>
+  <TemplateButtons Title="Mission" LoadTemplate="LoadTemplate" SaveTemplate="SaveTemplate" ClearTemplate="ClearTemplate"
+    AcceptString=".miz" />
+</div>
+<div class="generator-group">
+  <div class="generator-form">
+    <div>
+      @if (!string.IsNullOrEmpty(errorMessage))
+      {
+        <div class="alert alert-danger" role="alert">
+          Error: @errorMessage
+        </div>
+      }
+    </div>
+    <ul class="nav nav-tabs">
+      @foreach (var key in htmlStore.Keys)
+      {
+        <a class="nav-link @(tab == key ? "active" : "")" aria-current="page" @onclick='() => SetTab(key)'>@key</a>
+      }
+    </ul>
+    <div class="full-width">
+      <button type="button" class="btn btn-primary form-control" @onclick="() => GetValue()"
+        title="Render">@BriefingRoom.Translate("Render")</button>
+      <StandaloneCodeEditor Id="my-editor-instance-id" @ref="_editor" ConstructionOptions="EditorConstructionOptions" />
+    </div>
+  </div>
+  <div class="generator-preview">
+
+    <iframe width="768" height="1024" srcdoc=@((MarkupString)editorContent)></iframe>
+  </div>
+</div>
+@code {
+  private string editorContent = "";
+  private StandaloneCodeEditor _editor = null!;
+  private string errorMessage = "";
+  private string tab = "";
+  private IBrowserFile file;
+
+  private Dictionary<string, string> htmlStore = new();
+
+  private StandaloneEditorConstructionOptions EditorConstructionOptions(StandaloneCodeEditor editor)
+  {
+    return new StandaloneEditorConstructionOptions
+      {
+        Language = "html",
+        GlyphMargin = true,
+        Value = "",
+        Theme = "vs-dark"
+      };
+  }
+
+  private async Task LoadTemplate(InputFileChangeEventArgs e)
+  {
+    await Clean();
+    try
+    {
+      using var ms = new MemoryStream();
+      await e.File.OpenReadStream(BriefingRoom.MAXFILESIZE).CopyToAsync(ms);
+      using var zip = new ZipArchive(ms);
+      if (!zip.Entries.Any(entry => entry.Name == "mission"))
+        throw new Exception("Mission File not found");
+      if (!zip.Entries.Any(entry => entry.Name == "dictionary"))
+        throw new Exception("Dictionary File not found");
+      foreach (var entry in zip.Entries)
+      {
+        if (entry.FullName.StartsWith("KNEEBOARD_HTML") && entry.FullName.EndsWith(".html"))
+        {
+          using var reader = new StreamReader(entry.Open());
+          var file = await reader.ReadToEndAsync();
+          htmlStore.Add(entry.FullName, file);
+        }
+      }
+      file = e.File;
+      await SetTab(htmlStore.Keys.First());
+    }
+    catch (Exception ex)
+    {
+      Console.WriteLine(ex);
+      errorMessage = ex.Message;
+    }
+  }
+
+
+  private async Task SaveTemplate()
+  {
+    try
+    {
+      if (file == null)
+      {
+        throw new Exception("File not loaded load a mission file first.");
+      }
+      using (var ms = new MemoryStream())
+      {
+        await file.OpenReadStream(BriefingRoom.MAXFILESIZE).CopyToAsync(ms);
+        using (var zip = new ZipArchive(ms, ZipArchiveMode.Update))
+        {
+          if (!zip.Entries.Any(entry => entry.Name == "mission"))
+            throw new Exception("Mission File not found");
+
+          foreach (var key in htmlStore.Keys)
+          {
+            var foundFile = zip.Entries.First(entry => entry.FullName == key);
+            foundFile.Delete();
+            var newHTMLFile = zip.CreateEntry(key);
+            using (var newStream = newHTMLFile.Open())
+            {
+              using var writer = new StreamWriter(newStream);
+              writer.Write(htmlStore[key]);
+            }
+
+            var replacedKey = key.Replace("KNEEBOARD_HTML", "KNEEBOARD").Replace(".html", "");
+            var foundFiles = zip.Entries.Where(entry => entry.FullName.StartsWith(replacedKey)).ToList();
+            foreach (var foundF in foundFiles)
+            {
+              foundF.Delete();
+            }
+
+            var imagesData = await MissionGeneratorImages.GenerateKneeboardImageAsync(htmlStore[key]);
+            var i = 0;
+            var multiImage = imagesData.Count > 1;
+            foreach (var imageData in imagesData)
+            {
+              var outputKey = $"{replacedKey}{(multiImage? i : "")}.png";
+              var newImageFile = zip.CreateEntry(outputKey);
+              using (var newStream = newImageFile.Open())
+              {
+                using var writer = new BinaryWriter(newStream);
+                writer.Write(imageData);
+              }
+              i++;
+            }
+          }
+        }
+        await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", file.Name, "application/octet-stream", ms.ToArray());
+      }
+    }
+    catch (Exception ex)
+    {
+      Console.WriteLine(ex);
+      errorMessage = ex.Message;
+    }
+    StateHasChanged();
+  }
+
+
+  private async Task ClearTemplate()
+  {
+    await Clean();
+  }
+
+  private async Task Clean()
+  {
+    errorMessage = "";
+    editorContent = "";
+    tab = "";
+    htmlStore = new();
+    file = null;
+    await _editor.SetValue("");
+    StateHasChanged();
+  }
+
+  private async Task SetTab(string key)
+  {
+    var tabValue = htmlStore.GetValueOrDefault(key, "");
+    editorContent = tabValue;
+    await _editor.SetValue(tabValue);
+    tab = key;
+  }
+
+  private async Task GetValue()
+  {
+    var val = await _editor.GetValue();
+    editorContent = val;
+    htmlStore[tab] = val;
+  }
+}

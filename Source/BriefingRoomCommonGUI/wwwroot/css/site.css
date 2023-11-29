@@ -598,3 +598,17 @@ a.kofi-button:active {
         transform: rotate(0) scale(1)
     }
 }
+
+.monaco-editor-container {
+    width: 100%;
+    height: 80vh;
+
+}
+
+.decorationGlyphMarginClass {
+    background: red;
+}
+
+.decorationContentClass {
+    background: lightblue;
+}

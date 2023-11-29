@@ -28,12 +28,13 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal class MissionGeneratorImages
+    public class MissionGeneratorImages
     {
 
         internal static void GenerateTitleImage(DCSMission mission, MissionTemplateRecord template)
@@ -61,62 +62,93 @@ namespace BriefingRoom4DCS.Generator
         internal static async Task GenerateKneeboardImagesAsync(DCSMission mission)
         {
             var html = mission.Briefing.GetBriefingKneeBoardTasksAndRemarksHTML();
-            var inc = await GenerateKneeboardImageAsync(html, mission);
+            await GenerateKneeboardImageAsync(html, "Tasks", mission);
 
             html = mission.Briefing.GetBriefingKneeBoardFlightsHTML();
-            inc = await GenerateKneeboardImageAsync(html, mission, inc);
+            await GenerateKneeboardImageAsync(html, "Flights", mission);
 
             html = mission.Briefing.GetBriefingKneeBoardGroundHTML();
-            inc = await GenerateKneeboardImageAsync(html, mission, inc);
+            await GenerateKneeboardImageAsync(html, "Ground",  mission);
 
             foreach (var flight in mission.Briefing.FlightBriefings)
             {
                 html = flight.GetFlightBriefingKneeBoardHTML();
-                inc = await GenerateKneeboardImageAsync(html, mission, inc, flight.Type);
+                await GenerateKneeboardImageAsync(html, flight.Name, mission, flight.Type);
             }
         }
 
-        private static async Task<int> GenerateKneeboardImageAsync(string html, DCSMission mission, int inc = 1, string aircraftID = "")
+
+
+        public static async Task<List<byte[]>> GenerateKneeboardImageAsync(string html)
         {
-            var converterlogs = "";
-            var iWidth = 768;
-            var iHeight = 1024;
+            List<byte[]> output = new();
             try
             {
-                string tempRenderPath = Path.ChangeExtension(Path.GetTempFileName(), ".png").Replace(".png", "_*.png");
-                ChromePdfRenderer renderer = new();
-                renderer.RenderingOptions.PaperSize = IronPdf.Rendering.PdfPaperSize.Custom;
-                renderer.RenderingOptions.SetCustomPaperSizeinPixelsOrPoints(iWidth, iHeight);
-                renderer.RenderingOptions.MarginTop = 0;
-                renderer.RenderingOptions.MarginLeft = 0;
-                renderer.RenderingOptions.MarginRight = 0;
-                renderer.RenderingOptions.MarginBottom = 0;
-                PdfDocument pdf = await renderer.RenderHtmlAsPdfAsync(html);
-                // Console.WriteLine(html);
-                var imagePaths = pdf.ToPngImages(tempRenderPath, iWidth, iHeight);
-
-
+                var imagePaths = await GenerateImagePaths(html);
                 foreach (var path in imagePaths)
                 {
                     var img = Image.FromFile(path);
-                    var midPath = !string.IsNullOrEmpty(aircraftID) ? $"{aircraftID}/" : "";
                     using var ms = new MemoryStream();
                     img.Save(ms, img.RawFormat);
-                    mission.AddMediaFile($"KNEEBOARD/{midPath}IMAGES/comms_{mission.UniqueID}_{inc}.png", ms.ToArray());
-                    mission.AddMediaFile($"KNEEBOARD_HTML/{midPath}IMAGES/comms_{mission.UniqueID}_{inc}.html", Encoding.UTF8.GetBytes(html));
+                    output.Add(ms.ToArray());
+                    img.Dispose();
+                    File.Delete(path);
+                }
+                return output;
+
+            }
+            catch (Exception e)
+            {
+                throw new BriefingRoomException($"Failed to create KneeBoard Image", e);
+            }
+
+        }
+
+        private static async Task<int> GenerateKneeboardImageAsync(string html, string name, DCSMission mission, string aircraftID = "")
+        {
+            try
+            {
+                var midPath = !string.IsNullOrEmpty(aircraftID) ? $"{aircraftID}/" : "";
+                var imagePaths = await GenerateImagePaths(html);
+                var multiImage = imagePaths.Count() > 1;
+                var inc = 0;
+                foreach (var path in imagePaths)
+                {
+                    var img = Image.FromFile(path);
+                    using var ms = new MemoryStream();
+                    img.Save(ms, img.RawFormat);
+                    mission.AddMediaFile($"KNEEBOARD/{midPath}IMAGES/{name}{(multiImage? inc : "")}.png", ms.ToArray());
                     img.Dispose();
                     File.Delete(path);
                     inc++;
                 }
+                mission.AddMediaFile($"KNEEBOARD_HTML/{midPath}IMAGES/{name}.html", Encoding.UTF8.GetBytes(html));
 
                 return inc;
 
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
-                throw new BriefingRoomException($"Failed to create KneeBoard Image converter logs {converterlogs}", e);
+                throw new BriefingRoomException($"Failed to create KneeBoard", e);
             }
 
+        }
+
+        private static async Task<string[]> GenerateImagePaths(string html) {
+            var iWidth = 768;
+            var iHeight = 1024;
+            string tempRenderPath = Path.ChangeExtension(Path.GetTempFileName(), ".png").Replace(".png", "_*.png");
+            ChromePdfRenderer renderer = new();
+            renderer.RenderingOptions.PaperSize = IronPdf.Rendering.PdfPaperSize.Custom;
+            renderer.RenderingOptions.SetCustomPaperSizeinPixelsOrPoints(iWidth, iHeight);
+            renderer.RenderingOptions.MarginTop = 0;
+            renderer.RenderingOptions.MarginLeft = 0;
+            renderer.RenderingOptions.MarginRight = 0;
+            renderer.RenderingOptions.MarginBottom = 0;
+            PdfDocument pdf = await renderer.RenderHtmlAsPdfAsync(html);
+            var imagePaths = pdf.ToPngImages(tempRenderPath, iWidth, iHeight);
+
+            return imagePaths;
         }
     }
 }
