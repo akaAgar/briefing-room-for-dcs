@@ -90,7 +90,7 @@ namespace BriefingRoom4DCS.CommandLineTool
             {
                 if (Path.GetExtension(t).ToLower() == ".cbrt") // Template file is a campaign template
                 {
-                    DCSCampaign campaign = await BriefingRoom.GenerateCampaign(t);
+                    DCSCampaign campaign = BriefingRoom.GenerateCampaign(t);
                     if (campaign == null)
                     {
                         Console.WriteLine($"Failed to generate a campaign from template {Path.GetFileName(t)}");
@@ -104,12 +104,12 @@ namespace BriefingRoom4DCS.CommandLineTool
                         campaignDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.GetFileNameWithoutExtension(t));
                     campaignDirectory = GetUnusedFileName(campaignDirectory);
 
-                    campaign.ExportToDirectory(AppDomain.CurrentDomain.BaseDirectory);
+                    await campaign.ExportToDirectory(AppDomain.CurrentDomain.BaseDirectory);
                     WriteToDebugLog($"Campaign {Path.GetFileName(campaignDirectory)} exported to directory from template {Path.GetFileName(t)}");
                 }
                 else // Template file is a mission template
                 {
-                    DCSMission mission = await BriefingRoom.GenerateMission(t);
+                    DCSMission mission = BriefingRoom.GenerateMission(t);
                     if (mission == null)
                     {
                         Console.WriteLine($"Failed to generate a mission from template {Path.GetFileName(t)}");
@@ -123,7 +123,8 @@ namespace BriefingRoom4DCS.CommandLineTool
                         mizFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.GetFileNameWithoutExtension(t) + ".miz");
                     mizFileName = GetUnusedFileName(mizFileName);
 
-                    if (!mission.SaveToMizFile(mizFileName))
+                    var savedMission = await mission.SaveToMizFile(mizFileName);
+                    if (!savedMission)
                     {
                         WriteToDebugLog($"Failed to export .miz file from template {Path.GetFileName(t)}", LogMessageErrorLevel.Warning);
                         continue;
