@@ -30,17 +30,14 @@
     <ul class="nav nav-tabs">
       @foreach (var key in htmlStore.Keys)
       {
-        <a class="nav-link @(tab == key ? "active" : "")" aria-current="page" @onclick='() => SetTab(key)'>@key</a>
+        <a class="nav-link @(tab == key ? "active" : "")" aria-current="page" @onclick='() => SetTab(key)'>@key.Replace("KNEEBOARD_HTML/","").Replace(".html","")</a>
       }
     </ul>
     <div class="full-width">
-      <button type="button" class="btn btn-primary form-control" @onclick="() => GetValue()"
-        title="Render">@BriefingRoom.Translate("Render")</button>
-      <StandaloneCodeEditor Id="my-editor-instance-id" @ref="_editor" ConstructionOptions="EditorConstructionOptions" />
+      <StandaloneCodeEditor Id="my-editor-instance-id" @ref="_editor" ConstructionOptions="EditorConstructionOptions" OnKeyUp="GetValue" />
     </div>
   </div>
-  <div class="generator-preview">
-
+  <div class="generator-preview kneeboard">
     <iframe width="768" height="1024" srcdoc=@((MarkupString)editorContent)></iframe>
   </div>
 </div>
@@ -57,6 +54,7 @@
   {
     return new StandaloneEditorConstructionOptions
       {
+        AutomaticLayout = true,
         Language = "html",
         GlyphMargin = true,
         Value = "",

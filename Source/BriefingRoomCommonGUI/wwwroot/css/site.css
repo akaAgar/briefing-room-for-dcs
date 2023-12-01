@@ -102,6 +102,7 @@ h4 {
     flex-shrink: 1;
 }
 
+
 .generator-preview {
     grid-area: nav;
     border-left: 1px solid gray;
@@ -110,6 +111,11 @@ h4 {
     resize: horizontal;
     min-width: 50%;
 }
+.generator-preview.kneeboard {
+    max-width: 768px;
+    min-width: unset;
+}
+
 
 .delete-flight {
     margin: 5px;
