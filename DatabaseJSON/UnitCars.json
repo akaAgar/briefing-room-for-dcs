@@ -637,6 +637,9 @@
         },
         "displayName": "Mortar 2B11 120mm",
         "shape": "2B11",
+        "detectionRange": 0,
+        "threatRangeMin": 30,
+        "threatRange": 7000,
         "operators": {
             "Russia": [
                 1980,
@@ -1742,6 +1745,9 @@
         },
         "displayName": "SPH 2S1 Gvozdika 122mm",
         "shape": "2c1",
+        "detectionRange": 0,
+        "threatRangeMin": 30,
+        "threatRange": 15000,
         "operators": {
             "Russia": [
                 1970,
@@ -2871,6 +2877,9 @@
         },
         "displayName": "SPH 2S19 Msta 152mm",
         "shape": "2-c19",
+        "detectionRange": 0,
+        "threatRangeMin": 30,
+        "threatRange": 23500,
         "operators": {
             "Russia": [
                 1990,
@@ -3912,6 +3921,9 @@
         },
         "displayName": "SPH 2S3 Akatsia 152mm",
         "shape": "2-c3",
+        "detectionRange": 0,
+        "threatRangeMin": 30,
+        "threatRange": 17000,
         "operators": {
             "Russia": [
                 1970,
@@ -5001,6 +5013,9 @@
         },
         "displayName": "SPM 2S9 Nona 120mm M",
         "shape": "2-c9",
+        "detectionRange": 0,
+        "threatRangeMin": 30,
+        "threatRange": 7000,
         "operators": {
             "Russia": [
                 1980,
@@ -6046,6 +6061,9 @@
         },
         "displayName": "SPH M109 Paladin 155mm",
         "shape": "m-109",
+        "detectionRange": 0,
+        "threatRangeMin": 30,
+        "threatRange": 22000,
         "operators": {
             "USA": [
                 1960,
@@ -6435,6 +6453,9 @@
         },
         "displayName": "SPH Dana vz77 152mm",
         "shape": "SpGH_Dana",
+        "detectionRange": 0,
+        "threatRangeMin": 30,
+        "threatRange": 18700,
         "operators": {
             "Russia": [
                 1980,
@@ -7112,6 +7133,8 @@
         },
         "displayName": "APC AAV-7 Amphibious",
         "shape": "AAV-7",
+        "detectionRange": 0,
+        "threatRange": 1200,
         "operators": {
             "USA": [
                 1970,
@@ -8247,6 +8270,8 @@
         },
         "displayName": "IFV BMD-1",
         "shape": "bmd-1",
+        "detectionRange": 0,
+        "threatRange": 3000,
         "operators": {
             "Russia": [
                 1970,
@@ -10388,6 +10413,8 @@
         },
         "displayName": "IFV BMP-1",
         "shape": "bmp-1",
+        "detectionRange": 0,
+        "threatRange": 3000,
         "operators": {
             "SouthOssetia": [
                 2010,
@@ -12253,6 +12280,8 @@
         },
         "displayName": "IFV BMP-2",
         "shape": "bmp-2",
+        "detectionRange": 0,
+        "threatRange": 3000,
         "operators": {
             "SouthOssetia": [
                 2010,
@@ -13366,6 +13395,8 @@
         },
         "displayName": "IFV BMP-3",
         "shape": "BMP-3",
+        "detectionRange": 0,
+        "threatRange": 4000,
         "operators": {
             "Russia": [
                 1980,
@@ -14419,6 +14450,8 @@
         },
         "displayName": "Scout BRDM-2",
         "shape": "brdm-2",
+        "detectionRange": 0,
+        "threatRange": 1600,
         "operators": {
             "Russia": [
                 1960,
@@ -15564,6 +15597,8 @@
         },
         "displayName": "APC BTR-RD",
         "shape": "btr-d",
+        "detectionRange": 0,
+        "threatRange": 3000,
         "operators": {
             "Russia": [
                 1970,
@@ -15606,6 +15641,8 @@
         "paintSchemes": {},
         "displayName": "Scout Cobra",
         "shape": "Otokar_Cobra",
+        "detectionRange": 0,
+        "threatRange": 1200,
         "operators": {
             "Turkey": [
                 1990,
@@ -16655,6 +16692,8 @@
         },
         "displayName": "IFV LAV-25",
         "shape": "lav-25",
+        "detectionRange": 0,
+        "threatRange": 2500,
         "operators": {
             "USA": [
                 1980,
@@ -17680,6 +17719,8 @@
         },
         "displayName": "Scout HMMWV",
         "shape": "HMMWV_M1043",
+        "detectionRange": 0,
+        "threatRange": 1200,
         "operators": {
             "Ukraine": [
                 1980,
@@ -18873,6 +18914,8 @@
         },
         "displayName": "ATGM HMMWV",
         "shape": "HMMWV_M1045",
+        "detectionRange": 0,
+        "threatRange": 3800,
         "operators": {
             "Ukraine": [
                 2010,
@@ -19035,6 +19078,8 @@
         "paintSchemes": {},
         "displayName": "IFV M1126 Stryker ICV",
         "shape": "M1126",
+        "detectionRange": 0,
+        "threatRange": 1200,
         "operators": {
             "USA": [
                 2000,
@@ -21038,6 +21083,8 @@
         },
         "displayName": "APC M113",
         "shape": "m-113",
+        "detectionRange": 0,
+        "threatRange": 1200,
         "operators": {
             "USA": [
                 1960,
@@ -21224,6 +21271,8 @@
         "paintSchemes": {},
         "displayName": "ATGM Stryker",
         "shape": "M1134",
+        "detectionRange": 0,
+        "threatRange": 3800,
         "operators": {
             "USA": [
                 2000,
@@ -21877,6 +21926,8 @@
         },
         "displayName": "IFV M2A2 Bradley",
         "shape": "m-2",
+        "detectionRange": 0,
+        "threatRange": 3800,
         "operators": {
             "USA": [
                 1980,
@@ -22542,6 +22593,8 @@
         },
         "displayName": "IFV Warrior ",
         "shape": "mcv-80",
+        "detectionRange": 0,
+        "threatRange": 2500,
         "operators": {
             "UK": [
                 1990,
@@ -23559,6 +23612,8 @@
         },
         "displayName": "APC MTLB",
         "shape": "MTLB",
+        "detectionRange": 0,
+        "threatRange": 1000,
         "operators": {
             "Sweden": [
                 1990,
@@ -24292,6 +24347,8 @@
         },
         "displayName": "IFV Marder",
         "shape": "marder",
+        "detectionRange": 0,
+        "threatRange": 1500,
         "operators": {
             "Germany": [
                 1970,
@@ -24322,6 +24379,8 @@
         "paintSchemes": {},
         "displayName": "APC TPz Fuchs ",
         "shape": "tpz",
+        "detectionRange": 0,
+        "threatRange": 1000,
         "operators": {
             "USA": [
                 1980,
@@ -24392,6 +24451,8 @@
         "paintSchemes": {},
         "displayName": "Grad MRL FDDM (FC)",
         "shape": "BOMAN",
+        "detectionRange": 0,
+        "threatRange": 1000,
         "operators": {
             "Russia": [
                 1980,
@@ -24514,6 +24575,8 @@
         "paintSchemes": {},
         "displayName": "Bunker 2",
         "shape": "dot2",
+        "detectionRange": 0,
+        "threatRange": 800,
         "operators": {
             "ALL": [
                 1940,
@@ -24880,6 +24943,8 @@
         "paintSchemes": {},
         "displayName": "Paratrooper RPG-16",
         "shape": "Infantry_typeD_RPG-16",
+        "detectionRange": 0,
+        "threatRange": 500,
         "operators": {
             "Russia": [
                 1970,
@@ -24930,6 +24995,8 @@
         "paintSchemes": {},
         "displayName": "Paratrooper AKS",
         "shape": "Infantry_typeD_AKS-74",
+        "detectionRange": 0,
+        "threatRange": 500,
         "operators": {
             "Russia": [
                 1970,
@@ -24980,6 +25047,8 @@
         "paintSchemes": {},
         "displayName": "Insurgent AK-74",
         "shape": "soldier_ins_00",
+        "detectionRange": 0,
+        "threatRange": 500,
         "operators": {
             "Insurgents": [
                 1980,
@@ -25018,6 +25087,8 @@
         "paintSchemes": {},
         "displayName": "Bunker 1",
         "shape": "dot",
+        "detectionRange": 0,
+        "threatRange": 800,
         "operators": {
             "ALL": [
                 1940,
@@ -25032,6 +25103,8 @@
         "paintSchemes": {},
         "displayName": "Infantry AK-74",
         "shape": "Soldier_AK",
+        "detectionRange": 0,
+        "threatRange": 500,
         "operators": {
             "Insurgents": [
                 1950,
@@ -25070,6 +25143,8 @@
         "paintSchemes": {},
         "displayName": "Infantry AK-74 Rus ver1",
         "shape": "soldier_ru_00",
+        "detectionRange": 0,
+        "threatRange": 500,
         "operators": {
             "Russia": [
                 1980,
@@ -26033,6 +26108,8 @@
         },
         "displayName": "Infantry M249",
         "shape": "Soldier_M249",
+        "detectionRange": 0,
+        "threatRange": 700,
         "operators": {
             "USA": [
                 1980,
@@ -26980,6 +27057,8 @@
         },
         "displayName": "Infantry M4",
         "shape": "Soldier_M4",
+        "detectionRange": 0,
+        "threatRange": 500,
         "operators": {
             "USA": [
                 1990,
@@ -27034,6 +27113,8 @@
         "paintSchemes": {},
         "displayName": "Infantry M4 Georgia",
         "shape": "soldier_ge_00",
+        "detectionRange": 0,
+        "threatRange": 500,
         "operators": {
             "Georgia": [
                 2010,
@@ -27052,6 +27133,8 @@
         "paintSchemes": {},
         "displayName": "Infantry RPG",
         "shape": "Soldier_RPG",
+        "detectionRange": 0,
+        "threatRange": 500,
         "operators": {
             "Georgia": [
                 1970,
@@ -27090,6 +27173,8 @@
         "paintSchemes": {},
         "displayName": "MRLS FDDM (FC)",
         "shape": "HMMWV_M1043",
+        "detectionRange": 0,
+        "threatRange": 1200,
         "operators": {
             "USA": [
                 1980,
@@ -27220,6 +27305,8 @@
         "paintSchemes": {},
         "displayName": "Infantry AK-74 Rus ver2",
         "shape": "soldier_ru_01",
+        "detectionRange": 0,
+        "threatRange": 500,
         "operators": {
             "Russia": [
                 1980,
@@ -27282,6 +27369,8 @@
         "paintSchemes": {},
         "displayName": "Infantry AK-74 Rus ver3",
         "shape": "soldier_ru_02",
+        "detectionRange": 0,
+        "threatRange": 500,
         "operators": {
             "Russia": [
                 1980,
@@ -27344,6 +27433,9 @@
         "paintSchemes": {},
         "displayName": "MLRS BM-21 Grad 122mm",
         "shape": "bm-21-40",
+        "detectionRange": 0,
+        "threatRangeMin": 5000,
+        "threatRange": 19000,
         "operators": {
             "Russia": [
                 1960,
@@ -27538,6 +27630,9 @@
         "paintSchemes": {},
         "displayName": "MLRS 9K57 Uragan BM-27 220mm",
         "shape": "Uragan_9k57",
+        "detectionRange": 0,
+        "threatRangeMin": 11500,
+        "threatRange": 35800,
         "operators": {
             "Russia": [
                 1970,
@@ -27584,6 +27679,9 @@
         "paintSchemes": {},
         "displayName": "MLRS 9A52 Smerch CM 300mm",
         "shape": "smerch",
+        "detectionRange": 0,
+        "threatRangeMin": 20000,
+        "threatRange": 70000,
         "operators": {
             "Russia": [
                 1980,
@@ -27654,6 +27752,9 @@
         "paintSchemes": {},
         "displayName": "MLRS 9A52 Smerch HE 300mm",
         "shape": "smerch",
+        "detectionRange": 0,
+        "threatRangeMin": 20000,
+        "threatRange": 70000,
         "operators": {
             "Russia": [
                 1980,
@@ -28715,6 +28816,9 @@
         },
         "displayName": "MLRS M270 227mm",
         "shape": "MLRS",
+        "detectionRange": 0,
+        "threatRangeMin": 10000,
+        "threatRange": 32000,
         "operators": {
             "USA": [
                 1980,
@@ -29792,6 +29896,8 @@
         },
         "displayName": "SAM SA-19 Tunguska \"Grison\" ",
         "shape": "2c6m",
+        "detectionRange": 18000,
+        "threatRange": 8000,
         "operators": {
             "Russia": [
                 1980,
@@ -30473,6 +30579,8 @@
         },
         "displayName": "SAM SA-6 Kub \"Gainful\" TEL",
         "shape": "2p25",
+        "detectionRange": 0,
+        "threatRange": 25000,
         "operators": {
             "Russia": [
                 1960,
@@ -31582,6 +31690,8 @@
         },
         "displayName": "SAM SA-3 S-125 \"Goa\" LN",
         "shape": "5P73_LAUNCH",
+        "detectionRange": 0,
+        "threatRange": 18000,
         "operators": {
             "Russia": [
                 1970,
@@ -31983,6 +32093,8 @@
         },
         "displayName": "SAM SA-11 Buk \"Gadfly\" Fire Dome TEL",
         "shape": "9a310m1",
+        "detectionRange": 50000,
+        "threatRange": 35000,
         "operators": {
             "Russia": [
                 1980,
@@ -32684,6 +32796,8 @@
         },
         "displayName": "SAM SA-8 Osa \"Gecko\" TEL",
         "shape": "9A33",
+        "detectionRange": 30000,
+        "threatRange": 10300,
         "operators": {
             "Russia": [
                 1970,
@@ -34141,6 +34255,8 @@
         },
         "displayName": "SAM SA-15 Tor \"Gauntlet\"",
         "shape": "9a331",
+        "detectionRange": 25000,
+        "threatRange": 12000,
         "operators": {
             "Russia": [
                 1990,
@@ -35190,6 +35306,8 @@
         },
         "displayName": "SAM SA-13 Strela 10M3 \"Gopher\" TEL",
         "shape": "9a35",
+        "detectionRange": 8000,
+        "threatRange": 5000,
         "operators": {
             "Russia": [
                 1990,
@@ -36251,6 +36369,8 @@
         },
         "displayName": "SAM SA-9 Strela 1 \"Gaskin\" TEL",
         "shape": "9p31",
+        "detectionRange": 5000,
+        "threatRange": 4200,
         "operators": {
             "Russia": [
                 1970,
@@ -37736,6 +37856,8 @@
         },
         "displayName": "SAM SA-11 Buk \"Gadfly\" C2 ",
         "shape": "9S470M1",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1980,
@@ -38441,6 +38563,8 @@
         },
         "displayName": "SAM Patriot CR (AMG AN/MRC-137)",
         "shape": "patriot-ag",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1980,
@@ -39142,6 +39266,8 @@
         },
         "displayName": "SAM Patriot ECS",
         "shape": "patriot-ECS",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1980,
@@ -39843,6 +39969,8 @@
         },
         "displayName": "SPAAA Gepard",
         "shape": "gepard",
+        "detectionRange": 15000,
+        "threatRange": 4000,
         "operators": {
             "Germany": [
                 1970,
@@ -39885,6 +40013,8 @@
         "paintSchemes": {},
         "displayName": "SAM Hawk Platoon Command Post (PCP)",
         "shape": "hawk-cv",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1960,
@@ -41346,6 +41476,8 @@
         },
         "displayName": "SPAAA Vulcan M163",
         "shape": "VULCAN",
+        "detectionRange": 5000,
+        "threatRange": 2000,
         "operators": {
             "USA": [
                 1970,
@@ -41420,6 +41552,8 @@
         "paintSchemes": {},
         "displayName": "SAM Hawk LN M192",
         "shape": "hawk-pu",
+        "detectionRange": 0,
+        "threatRange": 45000,
         "operators": {
             "USA": [
                 1960,
@@ -42881,6 +43015,8 @@
         },
         "displayName": "SAM Chaparral M48",
         "shape": "M48",
+        "detectionRange": 10000,
+        "threatRange": 8500,
         "operators": {
             "USA": [
                 1970,
@@ -43562,6 +43698,8 @@
         },
         "displayName": "SAM Linebacker - Bradley M6",
         "shape": "M6",
+        "detectionRange": 8000,
+        "threatRange": 4500,
         "operators": {
             "USA": [
                 1990,
@@ -44215,6 +44353,8 @@
         },
         "displayName": "SAM Patriot LN",
         "shape": "patriot-pu",
+        "detectionRange": 0,
+        "threatRange": 100000,
         "operators": {
             "USA": [
                 1980,
@@ -44285,6 +44425,8 @@
         "paintSchemes": {},
         "displayName": "SAM Avenger (Stinger)",
         "shape": "HMMWV_M973",
+        "detectionRange": 5200,
+        "threatRange": 4500,
         "operators": {
             "USA": [
                 1990,
@@ -44970,6 +45112,8 @@
         },
         "displayName": "SAM Patriot EPP-III",
         "shape": "patriot-epp",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1980,
@@ -45671,6 +45815,8 @@
         },
         "displayName": "SAM Patriot C2 ICC",
         "shape": "patriot-kp",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1980,
@@ -46012,6 +46158,8 @@
         },
         "displayName": "SAM Roland ADS",
         "shape": "roland",
+        "detectionRange": 12000,
+        "threatRange": 8000,
         "operators": {
             "USA": [
                 1980,
@@ -46092,6 +46240,8 @@
         },
         "displayName": "MANPADS Stinger",
         "shape": "soldier_stinger",
+        "detectionRange": 5000,
+        "threatRange": 4500,
         "operators": {
             "USA": [
                 1980,
@@ -46234,6 +46384,8 @@
         "paintSchemes": {},
         "displayName": "MANPADS Stinger C2 Desert",
         "shape": "Stinger_com2",
+        "detectionRange": 5000,
+        "threatRange": 0,
         "operators": {
             "UK": [
                 1980,
@@ -46911,6 +47063,8 @@
         },
         "displayName": "MANPADS Stinger C2",
         "shape": "Stinger_com",
+        "detectionRange": 5000,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1980,
@@ -48756,6 +48910,8 @@
         },
         "displayName": "SPAAA ZSU-23-4 Shilka \"Gun Dish\"",
         "shape": "zsu-23-4",
+        "detectionRange": 5000,
+        "threatRange": 2500,
         "operators": {
             "Russia": [
                 1960,
@@ -49541,6 +49697,8 @@
         },
         "displayName": "AAA ZU-23 Closed Emplacement",
         "shape": "ZU-23",
+        "detectionRange": 5000,
+        "threatRange": 2500,
         "operators": {
             "Russia": [
                 1960,
@@ -50346,6 +50504,8 @@
         },
         "displayName": "AAA ZU-23 Emplacement",
         "shape": "ZU-23_S",
+        "detectionRange": 5000,
+        "threatRange": 2500,
         "operators": {
             "Russia": [
                 1960,
@@ -50791,6 +50951,8 @@
         },
         "displayName": "SPAAA ZU-23-2 Mounted Ural 375",
         "shape": "Ural_ZU-23",
+        "detectionRange": 5000,
+        "threatRange": 2500,
         "operators": {
             "Russia": [
                 1960,
@@ -50933,6 +51095,8 @@
         "paintSchemes": {},
         "displayName": "AAA ZU-23 Insurgent Closed Emplacement",
         "shape": "ZU-23_CHECH",
+        "detectionRange": 5000,
+        "threatRange": 2500,
         "operators": {
             "Insurgents": [
                 1960,
@@ -51226,6 +51390,8 @@
         },
         "displayName": "SPAAA ZU-23-2 Insurgent Mounted Ural-375",
         "shape": "Ural_ZU-23_CHECH",
+        "detectionRange": 5000,
+        "threatRange": 2500,
         "operators": {
             "Insurgents": [
                 1960,
@@ -51248,6 +51414,8 @@
         "paintSchemes": {},
         "displayName": "AAA ZU-23 Insurgent Emplacement",
         "shape": "ZU-23_S_CHECH",
+        "detectionRange": 5000,
+        "threatRange": 2500,
         "operators": {
             "Insurgents": [
                 1960,
@@ -51266,6 +51434,8 @@
         "paintSchemes": {},
         "displayName": "MANPADS SA-18 Igla \"Grouse\"",
         "shape": "SA18_manpad2",
+        "detectionRange": 5000,
+        "threatRange": 5200,
         "operators": {
             "Russia": [
                 1980,
@@ -51388,6 +51558,8 @@
         "paintSchemes": {},
         "displayName": "MANPADS SA-18 Igla \"Grouse\" C2",
         "shape": "SA18_com2",
+        "detectionRange": 5000,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1980,
@@ -51522,6 +51694,8 @@
         "paintSchemes": {},
         "displayName": "MANPADS SA-18 Igla-S \"Grouse\"",
         "shape": "soldier_ru_03",
+        "detectionRange": 5000,
+        "threatRange": 5200,
         "operators": {
             "Russia": [
                 1980,
@@ -51620,6 +51794,8 @@
         "paintSchemes": {},
         "displayName": "MANPADS SA-18 Igla-S \"Grouse\" C2",
         "shape": "SA18_com1",
+        "detectionRange": 5000,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1980,
@@ -51714,6 +51890,8 @@
         "paintSchemes": {},
         "displayName": "MANPADS SA-18 Igla \"Grouse\" Ins",
         "shape": "soldier_INS_03",
+        "detectionRange": 5000,
+        "threatRange": 5200,
         "operators": {
             "USSR": [
                 1980,
@@ -52031,6 +52209,8 @@
         },
         "displayName": "EWR 1L13",
         "shape": "1l13",
+        "detectionRange": 300000,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1980,
@@ -52712,6 +52892,8 @@
         },
         "displayName": "SAM SA-6 Kub \"Straight Flush\" STR",
         "shape": "1s91",
+        "detectionRange": 70000,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1960,
@@ -53105,6 +53287,8 @@
         },
         "displayName": "EWR 55G6",
         "shape": "55g6",
+        "detectionRange": 400000,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1980,
@@ -54498,6 +54682,8 @@
         },
         "displayName": "SAM SA-11 Buk \"Gadfly\" Snow Drift SR",
         "shape": "9S18M1",
+        "detectionRange": 100000,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1980,
@@ -55923,6 +56109,8 @@
         },
         "displayName": "MCC-SR Sborka \"Dog Ear\" SR",
         "shape": "Sborka",
+        "detectionRange": 35000,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1980,
@@ -55973,6 +56161,8 @@
         "paintSchemes": {},
         "displayName": "SAM Hawk TR (AN/MPQ-46)",
         "shape": "hawk-upr",
+        "detectionRange": 90000,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1960,
@@ -56083,6 +56273,8 @@
         "paintSchemes": {},
         "displayName": "SAM Hawk SR (AN/MPQ-50)",
         "shape": "hawk-rls",
+        "detectionRange": 90000,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1960,
@@ -56824,6 +57016,8 @@
         },
         "displayName": "SAM Patriot STR",
         "shape": "patriot-rls",
+        "detectionRange": 160000,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1980,
@@ -56894,6 +57088,8 @@
         "paintSchemes": {},
         "displayName": "SAM Hawk CWAR AN/MPQ-55",
         "shape": "hawk-cwar",
+        "detectionRange": 70000,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1960,
@@ -57995,6 +58191,8 @@
         },
         "displayName": "SAM SA-2/3/5 P19 \"Flat Face\" SR ",
         "shape": "Zil_p19_Radar",
+        "detectionRange": 160000,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1960,
@@ -58420,6 +58618,8 @@
         },
         "displayName": "SAM Roland EWR",
         "shape": "roland-rls",
+        "detectionRange": 35000,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1980,
@@ -59469,6 +59669,8 @@
         },
         "displayName": "SAM SA-3 S-125 \"Low Blow\" TR",
         "shape": "snr-125",
+        "detectionRange": 100000,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1970,
@@ -59603,6 +59805,8 @@
         "paintSchemes": {},
         "displayName": "Barracks armed",
         "shape": "kazarma1",
+        "detectionRange": 0,
+        "threatRange": 800,
         "operators": {
             "Russia": [
                 1940,
@@ -59965,6 +60169,8 @@
         "paintSchemes": {},
         "displayName": "Watch tower armed",
         "shape": "ohr-vyshka",
+        "detectionRange": 0,
+        "threatRange": 800,
         "operators": {
             "Russia": [
                 1940,
@@ -60327,6 +60533,8 @@
         "paintSchemes": {},
         "displayName": "Road outpost",
         "shape": "block-onroad",
+        "detectionRange": 0,
+        "threatRange": 800,
         "operators": {
             "Russia": [
                 1940,
@@ -60689,6 +60897,8 @@
         "paintSchemes": {},
         "displayName": "Outpost",
         "shape": "block",
+        "detectionRange": 0,
+        "threatRange": 800,
         "operators": {
             "ALL": [
                 1940,
@@ -60703,6 +60913,8 @@
         "paintSchemes": {},
         "displayName": "Building armed",
         "shape": "home1_a",
+        "detectionRange": 0,
+        "threatRange": 800,
         "operators": {
             "Russia": [
                 1940,
@@ -61065,6 +61277,8 @@
         "paintSchemes": {},
         "displayName": "Beacon TACAN Portable TTS 3030",
         "shape": "tacan_b",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "ALL": [
                 1970,
@@ -61440,6 +61654,8 @@
         },
         "displayName": "MBT Challenger II",
         "shape": "CHALLENGER-2",
+        "detectionRange": 0,
+        "threatRange": 3500,
         "operators": {
             "UK": [
                 1990,
@@ -61733,6 +61949,8 @@
         },
         "displayName": "MBT Leclerc",
         "shape": "Leclerc",
+        "detectionRange": 0,
+        "threatRange": 3500,
         "operators": {
             "France": [
                 1990,
@@ -62386,6 +62604,8 @@
         },
         "displayName": "MBT M60A3 Patton",
         "shape": "m-60",
+        "detectionRange": 0,
+        "threatRange": 8000,
         "operators": {
             "USA": [
                 1960,
@@ -62476,6 +62696,8 @@
         "paintSchemes": {},
         "displayName": "SPG Stryker MGS",
         "shape": "M1128",
+        "detectionRange": 0,
+        "threatRange": 4000,
         "operators": {
             "USA": [
                 2000,
@@ -63129,6 +63351,8 @@
         },
         "displayName": "MBT M1A2 Abrams",
         "shape": "m-1",
+        "detectionRange": 0,
+        "threatRange": 3500,
         "operators": {
             "USA": [
                 1990,
@@ -64158,6 +64382,8 @@
         },
         "displayName": "MBT T-55",
         "shape": "T-55",
+        "detectionRange": 0,
+        "threatRange": 2500,
         "operators": {
             "Russia": [
                 1960,
@@ -64607,6 +64833,8 @@
         },
         "displayName": "MBT T-72B",
         "shape": "t-72",
+        "detectionRange": 0,
+        "threatRange": 4000,
         "operators": {
             "Russia": [
                 1980,
@@ -65876,6 +66104,8 @@
         },
         "displayName": "MBT T-80U",
         "shape": "t-80ud",
+        "detectionRange": 0,
+        "threatRange": 5000,
         "operators": {
             "Russia": [
                 1980,
@@ -66913,6 +67143,8 @@
         },
         "displayName": "MBT T-90",
         "shape": "T-90",
+        "detectionRange": 0,
+        "threatRange": 5000,
         "operators": {
             "USSR": [
                 1990,
@@ -67946,6 +68178,8 @@
         },
         "displayName": "MBT Leopard 1A3",
         "shape": "LEOPARD-1A3",
+        "detectionRange": 0,
+        "threatRange": 2500,
         "operators": {
             "Turkey": [
                 1980,
@@ -68012,6 +68246,8 @@
         "paintSchemes": {},
         "displayName": "MBT Merkava IV",
         "shape": "Merkava_Mk_IV",
+        "detectionRange": 0,
+        "threatRange": 3500,
         "operators": {
             "Israel": [
                 2000,
@@ -68301,6 +68537,8 @@
         },
         "displayName": "GPU APA-5D on Ural 4320",
         "shape": "ural-apa",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1960,
@@ -68638,6 +68876,8 @@
         },
         "displayName": "Refueler ATMZ-5",
         "shape": "Ural_ATMZ-5",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1960,
@@ -68987,6 +69227,8 @@
         },
         "displayName": "Refueler ATZ-10",
         "shape": "Ural_ATZ-10",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1960,
@@ -69061,6 +69303,8 @@
         "paintSchemes": {},
         "displayName": "Truck GAZ-3307",
         "shape": "GAZ-3307",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1980,
@@ -69390,6 +69634,8 @@
         },
         "displayName": "Truck GAZ-3308",
         "shape": "GAZ-3308",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USSR": [
                 1990,
@@ -70443,6 +70689,8 @@
         },
         "displayName": "Truck GAZ-66",
         "shape": "Gaz-66",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1970,
@@ -71136,6 +71384,8 @@
         },
         "displayName": "Refueler M978 HEMTT",
         "shape": "HEMTT",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1980,
@@ -71505,6 +71755,8 @@
         },
         "displayName": "Firefighter HEMMT TFFT",
         "shape": "hemtt_fire",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1980,
@@ -71599,6 +71851,8 @@
         "paintSchemes": {},
         "displayName": "Bus IKARUS-280",
         "shape": "ikarus",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1960,
@@ -72684,6 +72938,8 @@
         },
         "displayName": "Truck KAMAZ 43101",
         "shape": "KAMAZ-TENT",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1970,
@@ -72790,6 +73046,8 @@
         "paintSchemes": {},
         "displayName": "Bus LAZ-695",
         "shape": "laz-695",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1960,
@@ -72848,6 +73106,8 @@
         "paintSchemes": {},
         "displayName": "Bus LiAZ-677",
         "shape": "liaz-677",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1960,
@@ -73893,6 +74153,8 @@
         },
         "displayName": "LUV HMMWV Jeep",
         "shape": "HMMWV_M1025",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Ukraine": [
                 2010,
@@ -74644,6 +74906,8 @@
         },
         "displayName": "Truck M939 Heavy",
         "shape": "m-818",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1970,
@@ -74846,6 +75110,8 @@
         "paintSchemes": {},
         "displayName": "Truck MAZ-6303",
         "shape": "MAZ-6303",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USSR": [
                 1990,
@@ -74936,6 +75202,8 @@
         "paintSchemes": {},
         "displayName": "MCC Predator UAV CP & GCS",
         "shape": "GCS",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1990,
@@ -74994,6 +75262,8 @@
         "paintSchemes": {},
         "displayName": "MCC-COMM Predator UAV CL",
         "shape": "TrojanSpirit",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1990,
@@ -75052,6 +75322,8 @@
         "paintSchemes": {},
         "displayName": "Suidae",
         "shape": "Suidae",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {}
     },
     {
@@ -75332,6 +75604,8 @@
         },
         "displayName": "LUV Tigr",
         "shape": "Tigr_233036",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 2000,
@@ -75378,6 +75652,8 @@
         "paintSchemes": {},
         "displayName": "Bus ZIU-9 Trolley",
         "shape": "trolebus",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1950,
@@ -75472,6 +75748,8 @@
         "paintSchemes": {},
         "displayName": "LUV UAZ-469 Jeep",
         "shape": "uaz-469",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1970,
@@ -75566,6 +75844,8 @@
         "paintSchemes": {},
         "displayName": "Firefighter Ural ATsP-6",
         "shape": "Ural_ACP6",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1980,
@@ -75903,6 +76183,8 @@
         },
         "displayName": "Truck Ural-4320-31 Arm'd",
         "shape": "Ural_4320-31",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1960,
@@ -76220,6 +76502,8 @@
         },
         "displayName": "Truck Ural-4320T",
         "shape": "Ural_4320_T",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1960,
@@ -76545,6 +76829,8 @@
         },
         "displayName": "Truck Ural-375 Mobile C2",
         "shape": "Ural_4320_K",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1980,
@@ -76878,6 +77164,8 @@
         },
         "displayName": "Truck Ural-375",
         "shape": "Ural_4320_B",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1960,
@@ -77040,6 +77328,8 @@
         "paintSchemes": {},
         "displayName": "Car VAZ-2109",
         "shape": "vaz",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1980,
@@ -77409,6 +77699,8 @@
         },
         "displayName": "GPU APA-80 on ZIL-131",
         "shape": "Zil_APA-80",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1970,
@@ -77758,6 +78050,8 @@
         },
         "displayName": "Truck SKP-11 Mobile ATC",
         "shape": "ZIL_SKP-11",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1960,
@@ -78807,6 +79101,8 @@
         },
         "displayName": "Truck ZIL-131 (C2)",
         "shape": "zil_p19_kung",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1960,
@@ -78881,6 +79177,8 @@
         "paintSchemes": {},
         "displayName": "Truck ZIL-4331",
         "shape": "zil-4334",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1980,
@@ -80020,6 +80318,8 @@
         },
         "displayName": "Truck KrAZ-6322 6x6",
         "shape": "Kraz-6322",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Ukraine": [
                 1990,
@@ -80082,6 +80382,8 @@
         "paintSchemes": {},
         "displayName": "JTAC",
         "shape": "Stinger_com2",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1950,
@@ -80117,6 +80419,8 @@
         "displayName": "LPWS C-RAM",
         "module": "HeavyMetalCore",
         "shape": "HEMTT_C-RAM_Phalanx",
+        "detectionRange": 10000,
+        "threatRange": 2000,
         "operators": {
             "USA": [
                 2000,
@@ -80763,6 +81067,8 @@
         "displayName": "SAM SA-10 S-300 \"Grumble\" TEL C",
         "module": "HeavyMetalCore",
         "shape": "S-300_5P85C",
+        "detectionRange": 0,
+        "threatRange": 120000,
         "operators": {
             "Russia": [
                 1970,
@@ -81477,6 +81783,8 @@
         "displayName": "SAM SA-10 S-300 \"Grumble\" TEL D",
         "module": "HeavyMetalCore",
         "shape": "S-300_5P85D",
+        "detectionRange": 0,
+        "threatRange": 120000,
         "operators": {
             "Russia": [
                 1970,
@@ -82191,6 +82499,8 @@
         "displayName": "SAM SA-10 S-300 \"Grumble\" C2",
         "module": "HeavyMetalCore",
         "shape": "S-300_PBU_54K6",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1970,
@@ -82909,6 +83219,8 @@
         "displayName": "SAM SA-10 S-300 \"Grumble\" Flap Lid-A TR",
         "module": "HeavyMetalCore",
         "shape": "s-300_40v6m_rpn",
+        "detectionRange": 160000,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1970,
@@ -83627,6 +83939,8 @@
         "displayName": "SAM SA-10 S-300 \"Grumble\" Big Bird SR",
         "module": "HeavyMetalCore",
         "shape": "S-300_5n64k_ewr",
+        "detectionRange": 160000,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1970,
@@ -83714,6 +84028,8 @@
         "displayName": "SAM SA-10 S-300 \"Grumble\" Tin Shield SR",
         "module": "HeavyMetalCore",
         "shape": "s-300_40v6m_19j6",
+        "detectionRange": 150000,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1970,
@@ -83797,6 +84113,8 @@
         "displayName": "SAM SA-10 S-300 \"Grumble\" Flap Lid-B TR",
         "module": "HeavyMetalCore",
         "shape": "S-300_rpn_5n63s",
+        "detectionRange": 120000,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1970,
@@ -84511,6 +84829,8 @@
         "displayName": "SAM SA-10 S-300 \"Grumble\" Clam Shell SR",
         "module": "HeavyMetalCore",
         "shape": "s-300_40v6md_5n66m_nvo",
+        "detectionRange": 60000,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1970,
@@ -84598,6 +84918,8 @@
         "displayName": "Loco VL80 Electric",
         "module": "RailwayObjectsPack",
         "shape": "elektrowoz",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1950,
@@ -84625,6 +84947,8 @@
         "displayName": "Loco CHME3T",
         "module": "RailwayObjectsPack",
         "shape": "teplowoz",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1940,
@@ -84660,6 +84984,8 @@
         "displayName": "Freight Van",
         "module": "RailwayObjectsPack",
         "shape": "wagon-gruz",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1940,
@@ -84695,6 +85021,8 @@
         "displayName": "Open Wagon",
         "module": "RailwayObjectsPack",
         "shape": "wagon-gruz-otkr",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1940,
@@ -84730,6 +85058,8 @@
         "displayName": "Tank Car blue",
         "module": "RailwayObjectsPack",
         "shape": "wagon-cisterna_blue",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1940,
@@ -84765,6 +85095,8 @@
         "displayName": "Tank Car yellow",
         "module": "RailwayObjectsPack",
         "shape": "wagon-cisterna_yellow",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1940,
@@ -84800,6 +85132,8 @@
         "displayName": "Passenger Car",
         "module": "RailwayObjectsPack",
         "shape": "wagon-pass",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1940,
@@ -84835,6 +85169,8 @@
         "displayName": "Coach Platform",
         "module": "RailwayObjectsPack",
         "shape": "wagon-platforma",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1940,
@@ -84870,6 +85206,8 @@
         "displayName": "RAF Rescue",
         "module": "South_Atlantic_Assets",
         "shape": "tacr2a",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "UK": [
                 1960,
@@ -84885,6 +85223,8 @@
         "displayName": "LARC-V",
         "module": "South_Atlantic_Assets",
         "shape": "LARC-V",
+        "detectionRange": 500,
+        "threatRange": 0,
         "operators": {
             "Argentina": [
                 1960,
@@ -85457,6 +85797,8 @@
         "displayName": "AAA KS-19 100mm",
         "module": "TechWeaponPack",
         "shape": "KS-19",
+        "detectionRange": 0,
+        "threatRange": 20000,
         "operators": {
             "Russia": [
                 1940,
@@ -86105,6 +86447,8 @@
         "displayName": "AAA Fire Can SON-9",
         "module": "TechWeaponPack",
         "shape": "son-9.EDM",
+        "detectionRange": 55000,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1960,
@@ -86237,6 +86581,9 @@
         "displayName": "SSM SS-1C Scud-B",
         "module": "TechWeaponPack",
         "shape": "Scud_B",
+        "detectionRange": 0,
+        "threatRangeMin": 50000,
+        "threatRange": 285000,
         "operators": {
             "Russia": [
                 1960,
@@ -86889,6 +87236,8 @@
         "displayName": "Scout HL with DSHK 12.7mm",
         "module": "TechWeaponPack",
         "shape": "ttHL-dshk",
+        "detectionRange": 5000,
+        "threatRange": 1200,
         "operators": {
             "Ukraine": [
                 2010,
@@ -87525,6 +87874,8 @@
         "displayName": "Scout HL with KORD 12.7mm",
         "module": "TechWeaponPack",
         "shape": "ttHL-kord",
+        "detectionRange": 5000,
+        "threatRange": 1200,
         "operators": {
             "Ukraine": [
                 2010,
@@ -88161,6 +88512,8 @@
         "displayName": "Scout LC with DSHK 12.7mm",
         "module": "TechWeaponPack",
         "shape": "tt70-dshk",
+        "detectionRange": 5000,
+        "threatRange": 1200,
         "operators": {
             "Ukraine": [
                 2010,
@@ -88797,6 +89150,8 @@
         "displayName": "Scout LC with KORD 12.7mm",
         "module": "TechWeaponPack",
         "shape": "tt70-kord",
+        "detectionRange": 5000,
+        "threatRange": 1200,
         "operators": {
             "Ukraine": [
                 2010,
@@ -89433,6 +89788,8 @@
         "displayName": "SPAAA HL with ZU-23",
         "module": "TechWeaponPack",
         "shape": "ttHL-zu23",
+        "detectionRange": 5000,
+        "threatRange": 2500,
         "operators": {
             "Ukraine": [
                 2010,
@@ -90069,6 +90426,8 @@
         "displayName": "SPAAA LC with ZU-23",
         "module": "TechWeaponPack",
         "shape": "tt70-zu23",
+        "detectionRange": 0,
+        "threatRange": 2500,
         "operators": {
             "Ukraine": [
                 2010,
@@ -90705,6 +91064,8 @@
         "displayName": "MLRS HL with B8M1 80mm",
         "module": "TechWeaponPack",
         "shape": "ttHL-B8M1",
+        "detectionRange": 5000,
+        "threatRange": 5000,
         "operators": {
             "Insurgents": [
                 2010,
@@ -91325,6 +91686,8 @@
         "displayName": "MLRS LC with B8M1 80mm",
         "module": "TechWeaponPack",
         "shape": "tt70-B8M1",
+        "detectionRange": 5000,
+        "threatRange": 5000,
         "operators": {
             "Insurgents": [
                 2010,
@@ -91945,6 +92308,8 @@
         "displayName": "SAM NASAMS SR MPQ64F1",
         "module": "TechWeaponPack",
         "shape": "NASAMS_Radar_MPQ64F1",
+        "detectionRange": 50000,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 2000,
@@ -92537,6 +92902,8 @@
         "displayName": "SAM NASAMS C2",
         "module": "TechWeaponPack",
         "shape": "NASAMS_Command_Post",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1990,
@@ -93129,6 +93496,8 @@
         "displayName": "SAM NASAMS LN AIM-120B",
         "module": "TechWeaponPack",
         "shape": "NASAMS_Missile_Launcher",
+        "detectionRange": 0,
+        "threatRange": 15000,
         "operators": {
             "USA": [
                 1980,
@@ -93745,6 +94114,8 @@
         "displayName": "SAM NASAMS LN AIM-120C",
         "module": "TechWeaponPack",
         "shape": "NASAMS_Missile_Launcher",
+        "detectionRange": 0,
+        "threatRange": 15000,
         "operators": {
             "USA": [
                 2000,
@@ -94337,6 +94708,8 @@
         "displayName": "Tk M4 Sherman",
         "module": "TechWeaponPack",
         "shape": "M4_Sherman",
+        "detectionRange": 0,
+        "threatRange": 3000,
         "operators": {
             "USAFAggressors": [
                 1940,
@@ -95017,6 +95390,8 @@
         "displayName": "APC M2A1 Halftrack",
         "module": "TechWeaponPack",
         "shape": "M2A1_halftrack",
+        "detectionRange": 0,
+        "threatRange": 1200,
         "operators": {
             "USA": [
                 1940,
@@ -95661,6 +96036,8 @@
         "displayName": "EWR AN/FPS-117 Radar (domed)",
         "module": "TechWeaponPack",
         "shape": "ewr_fps117radar_dome",
+        "detectionRange": 400000,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1980,
@@ -96313,6 +96690,8 @@
         "displayName": "EWR AN/FPS-117 ECS",
         "module": "TechWeaponPack",
         "shape": "ewr_fps117radar_shelter",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1980,
@@ -96965,6 +97344,8 @@
         "displayName": "EWR AN/FPS-117 Radar",
         "module": "TechWeaponPack",
         "shape": "ewr_fps117",
+        "detectionRange": 463000,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1980,
@@ -98787,6 +99168,8 @@
         "displayName": "APC BTR-80",
         "module": "TechWeaponPack",
         "shape": "BTR-80",
+        "detectionRange": 0,
+        "threatRange": 1600,
         "operators": {
             "Russia": [
                 1980,
@@ -99439,6 +99822,8 @@
         "displayName": "SAM SA-2 S-75 RD-75 Amazonka RF",
         "module": "TechWeaponPack",
         "shape": "RD_75.EDM",
+        "detectionRange": 100000,
+        "threatRange": 0,
         "operators": {
             "USAFAggressors": [
                 1950,
@@ -100089,6 +100474,9 @@
         "displayName": "SAM SA-2 S-75 \"Guideline\" LN",
         "module": "TechWeaponPack",
         "shape": "S_75_Launcher",
+        "detectionRange": 0,
+        "threatRangeMin": 7000,
+        "threatRange": 43000,
         "operators": {
             "Russia": [
                 1960,
@@ -100843,6 +101231,8 @@
         "displayName": "SAM SA-2 S-75 \"Fan Song\" TR",
         "module": "TechWeaponPack",
         "shape": "SNR_75",
+        "detectionRange": 100000,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1960,
@@ -101507,6 +101897,8 @@
         "displayName": "SAM SA-5 S-200 ST-68U \"Tin Shield\" SR",
         "module": "TechWeaponPack",
         "shape": "rls_19j6",
+        "detectionRange": 150000,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1980,
@@ -103199,6 +103591,8 @@
         "displayName": "SAM SA-5 S-200 \"Square Pair\" TR",
         "module": "TechWeaponPack",
         "shape": "S-200_Radar",
+        "detectionRange": 400000,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1980,
@@ -104907,6 +105301,9 @@
         "displayName": "SAM SA-5 S-200 \"Gammon\" LN",
         "module": "TechWeaponPack",
         "shape": "S-200_Launcher",
+        "detectionRange": 0,
+        "threatRangeMin": 7000,
+        "threatRange": 255000,
         "operators": {
             "Russia": [
                 1980,
@@ -105625,6 +106022,8 @@
         "displayName": "SPAAA ZSU-57-2",
         "module": "TechWeaponPack",
         "shape": "ZSU_57_2",
+        "detectionRange": 5000,
+        "threatRange": 7000,
         "operators": {
             "USSR": [
                 1950,
@@ -105988,6 +106387,8 @@
         "displayName": "AAA S-60 57mm",
         "module": "TechWeaponPack",
         "shape": "S-60_Type59_Artillery",
+        "detectionRange": 5000,
+        "threatRange": 6000,
         "operators": {
             "Russia": [
                 1940,
@@ -106668,6 +107069,8 @@
         "displayName": "Diesel Power Station 5I57A",
         "module": "TechWeaponPack",
         "shape": "generator_5i57",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1970,
@@ -107288,6 +107691,8 @@
         "displayName": "MBT T-72B3",
         "module": "TechWeaponPack",
         "shape": "T-72B3",
+        "detectionRange": 0,
+        "threatRange": 4000,
         "operators": {
             "Russia": [
                 2010,
@@ -107319,6 +107724,8 @@
         "displayName": "LT PT-76",
         "module": "TechWeaponPack",
         "shape": "pt-76",
+        "detectionRange": 0,
+        "threatRange": 2000,
         "operators": {
             "Russia": [
                 1950,
@@ -109207,6 +109614,8 @@
         "displayName": "IFV BTR-82A",
         "module": "TechWeaponPack",
         "shape": "BTR-82A",
+        "detectionRange": 0,
+        "threatRange": 2000,
         "operators": {
             "Russia": [
                 2010,
@@ -109775,6 +110184,8 @@
         "displayName": "Refueler ATZ-5",
         "module": "TechWeaponPack",
         "shape": "atz5",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1960,
@@ -110379,6 +110790,8 @@
         "displayName": "Firefighter Vehicle AA-7.2/60",
         "module": "TechWeaponPack",
         "shape": "aa8",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USSR": [
                 1990,
@@ -110943,6 +111356,8 @@
         "displayName": "Refueler TZ-22 Tractor (KrAZ-258B1)",
         "module": "TechWeaponPack",
         "shape": "tz_22_truck",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1970,
@@ -111887,6 +112302,8 @@
         "displayName": "Refueler ATZ-60 Tractor (MAZ-7410)",
         "module": "TechWeaponPack",
         "shape": "atz60_maz",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1970,
@@ -112945,6 +113362,8 @@
         "displayName": "Truck ZIL-135",
         "module": "TechWeaponPack",
         "shape": "Zil_135l",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1950,
@@ -113581,6 +114000,8 @@
         "displayName": "S-75 Tractor (ZIL-131)",
         "module": "TechWeaponPack",
         "shape": "S_75_Zil_Truck",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1970,
@@ -114247,6 +114668,8 @@
         "displayName": "SAM Rapier LN",
         "module": "TechWeaponPack",
         "shape": "rapier_fsa_launcher",
+        "detectionRange": 30000,
+        "threatRange": 6800,
         "operators": {
             "USA": [
                 1980,
@@ -114953,6 +115376,8 @@
         "displayName": "SAM Rapier Tracker",
         "module": "TechWeaponPack",
         "shape": "rapier_fsa_optical_tracker_unit",
+        "detectionRange": 20000,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1980,
@@ -115659,6 +116084,8 @@
         "displayName": "SAM Rapier Blindfire TR",
         "module": "TechWeaponPack",
         "shape": "rapier_fsa_blindfire_radar",
+        "detectionRange": 30000,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1970,
@@ -116275,6 +116702,8 @@
         "displayName": "AAA Bofors 40mm",
         "module": "TechWeaponPack",
         "shape": "bofors40",
+        "detectionRange": 0,
+        "threatRange": 4000,
         "operators": {
             "USA": [
                 1940,
@@ -117427,6 +117856,8 @@
         "displayName": "MBT Chieftain Mk.3",
         "module": "TechWeaponPack",
         "shape": "Chieftain_mk3",
+        "detectionRange": 0,
+        "threatRange": 3500,
         "operators": {
             "UK": [
                 1960,
@@ -118191,6 +118622,8 @@
         "displayName": "Truck Bedford",
         "module": "TechWeaponPack",
         "shape": "Bedford_MWD",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "UK": [
                 1940,
@@ -118751,6 +119184,8 @@
         "displayName": "Truck Land Rover 101 FC",
         "module": "TechWeaponPack",
         "shape": "land_rover_101_fc",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "UK": [
                 1970,
@@ -119323,6 +119758,8 @@
         "displayName": "LUV Land Rover 109",
         "module": "TechWeaponPack",
         "shape": "land_rover_109_s3",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "UK": [
                 1970,
@@ -119809,6 +120246,8 @@
         "displayName": "AShM SS-N-2 Silkworm",
         "module": "TechWeaponPack",
         "shape": "hy_launcher",
+        "detectionRange": 100000,
+        "threatRange": 100000,
         "operators": {
             "China": [
                 1980,
@@ -120119,6 +120558,8 @@
         "displayName": "AShM Silkworm SR",
         "module": "TechWeaponPack",
         "shape": "mys-m1",
+        "detectionRange": 200000,
+        "threatRange": 0,
         "operators": {
             "USAFAggressors": [
                 1960,
@@ -121243,6 +121684,8 @@
         "displayName": "Loco ES44AH",
         "module": "TechWeaponPack",
         "shape": "es44ah",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 2000,
@@ -121823,6 +122266,8 @@
         "displayName": "Flatcar",
         "module": "TechWeaponPack",
         "shape": "boxcartrinity",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 2000,
@@ -122403,6 +122848,8 @@
         "displayName": "Tank Cartrinity",
         "module": "TechWeaponPack",
         "shape": "tankcartrinity",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 2000,
@@ -123163,6 +123610,8 @@
         "displayName": "Well Car",
         "module": "TechWeaponPack",
         "shape": "wellcarnsc",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 2000,
@@ -123743,6 +124192,8 @@
         "displayName": "AAA 8,8cm Flak 18",
         "module": "TechWeaponPack",
         "shape": "flak18",
+        "detectionRange": 0,
+        "threatRange": 5000,
         "operators": {
             "Germany": [
                 1940,
@@ -124303,6 +124754,8 @@
         "displayName": "Tk PzIV H",
         "module": "TechWeaponPack",
         "shape": "Pz_IV_H",
+        "detectionRange": 0,
+        "threatRange": 3000,
         "operators": {
             "Germany": [
                 1940,
@@ -125583,6 +126036,8 @@
         "displayName": "MBT Leopard-2A5",
         "module": "TechWeaponPack",
         "shape": "leopard-2a5",
+        "detectionRange": 0,
+        "threatRange": 3500,
         "operators": {
             "Germany": [
                 1990,
@@ -129141,6 +129596,8 @@
         "displayName": "MBT Leopard-2A6M",
         "module": "TechWeaponPack",
         "shape": "leopard-2",
+        "detectionRange": 0,
+        "threatRange": 3500,
         "operators": {
             "Turkey": [
                 1990,
@@ -131193,6 +131650,8 @@
         "displayName": "MBT Leopard-2A4",
         "module": "TechWeaponPack",
         "shape": "leopard-2a4",
+        "detectionRange": 0,
+        "threatRange": 3500,
         "operators": {
             "Germany": [
                 1990,
@@ -131817,6 +132276,8 @@
         "displayName": "MBT Leopard-2A4 Trs",
         "module": "TechWeaponPack",
         "shape": "leopard-2a4_trs",
+        "detectionRange": 0,
+        "threatRange": 3500,
         "operators": {
             "Turkey": [
                 1990,
@@ -132401,6 +132862,8 @@
         "displayName": "APC Sd.Kfz.251 Halftrack",
         "module": "TechWeaponPack",
         "shape": "Sd_Kfz_251",
+        "detectionRange": 0,
+        "threatRange": 1100,
         "operators": {
             "ItalianSocialRepublic": [
                 1940,
@@ -133153,6 +133616,8 @@
         "displayName": "Truck Opel Blitz",
         "module": "TechWeaponPack",
         "shape": "Blitz_36-6700A",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Germany": [
                 1940,
@@ -134073,6 +134538,8 @@
         "displayName": "SPH T155 Firtina 155mm",
         "module": "TechWeaponPack",
         "shape": "Firtina_T155_trs",
+        "detectionRange": 0,
+        "threatRange": 41000,
         "operators": {
             "Turkey": [
                 2000,
@@ -134989,6 +135456,8 @@
         "displayName": "ATGM VAB Mephisto",
         "module": "TechWeaponPack",
         "shape": "VAB_Mephisto",
+        "detectionRange": 0,
+        "threatRange": 3800,
         "operators": {
             "France": [
                 1970,
@@ -135303,6 +135772,8 @@
         "displayName": "ZTZ-96B",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "ztz96b",
+        "detectionRange": 0,
+        "threatRange": 5000,
         "operators": {
             "China": [
                 1990,
@@ -135348,6 +135819,8 @@
         "displayName": "ZBD-04A",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "zbd04a",
+        "detectionRange": 0,
+        "threatRange": 4800,
         "operators": {
             "China": [
                 2000,
@@ -135638,6 +136111,8 @@
         "displayName": "HQ-7 Self-Propelled LN",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "hq7_ln",
+        "detectionRange": 15000,
+        "threatRange": 15000,
         "operators": {
             "China": [
                 1980,
@@ -135936,6 +136411,8 @@
         "displayName": "HQ-7 LN Electro-Optics",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "hq7_ln",
+        "detectionRange": 8000,
+        "threatRange": 12000,
         "operators": {
             "USAFAggressors": [
                 1980,
@@ -136226,6 +136703,8 @@
         "displayName": "HQ-7 Self-Propelled STR",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "hq7_str",
+        "detectionRange": 30000,
+        "threatRange": 0,
         "operators": {
             "USAFAggressors": [
                 1980,
@@ -136280,6 +136759,9 @@
         "displayName": "PLZ-05",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "plz05",
+        "detectionRange": 0,
+        "threatRangeMin": 60,
+        "threatRange": 23500,
         "operators": {
             "China": [
                 2000,
@@ -136303,6 +136785,8 @@
         "displayName": "MT Type 59",
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "ztz59",
+        "detectionRange": 0,
+        "threatRange": 2500,
         "operators": {
             "UnitedNationsPeacekeepers": [
                 1950,
@@ -137067,6 +137551,8 @@
         "displayName": "LUV Kubelwagen Jeep",
         "module": "WWII Armour and Technics",
         "shape": "Kubelwagen_82",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Germany": [
                 1940,
@@ -137082,6 +137568,7 @@
         "displayName": "LUV Kettenrad",
         "module": "WWII Armour and Technics",
         "shape": "Sd_Kfz_2_Kettenkrad",
+        "detectionRange": 0,
         "operators": {
             "Germany": [
                 1940,
@@ -137642,6 +138129,7 @@
         "displayName": "Tractor Sd.Kfz.7 Art'y Tractor",
         "module": "WWII Armour and Technics",
         "shape": "sd_kfz_7",
+        "detectionRange": 0,
         "operators": {
             "Germany": [
                 1940,
@@ -138202,6 +138690,8 @@
         "displayName": "LUV Horch 901 Staff Car",
         "module": "WWII Armour and Technics",
         "shape": "horch_901_typ_40_kfz_21",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Germany": [
                 1940,
@@ -138770,6 +139260,8 @@
         "displayName": "Tk Tiger 1",
         "module": "WWII Armour and Technics",
         "shape": "Tiger_I",
+        "detectionRange": 0,
+        "threatRange": 3000,
         "operators": {
             "Germany": [
                 1940,
@@ -138789,6 +139281,8 @@
         "displayName": "Tk Tiger II",
         "module": "WWII Armour and Technics",
         "shape": "Tiger_II",
+        "detectionRange": 0,
+        "threatRange": 6000,
         "operators": {
             "Germany": [
                 1940,
@@ -138808,6 +139302,8 @@
         "displayName": "Tk Panther G (Pz V)",
         "module": "WWII Armour and Technics",
         "shape": "Pz_V_G",
+        "detectionRange": 0,
+        "threatRange": 3000,
         "operators": {
             "Germany": [
                 1940,
@@ -139368,6 +139864,8 @@
         "displayName": "SPG Jagdpanther TD",
         "module": "WWII Armour and Technics",
         "shape": "Jagdpanther_G1",
+        "detectionRange": 0,
+        "threatRange": 5000,
         "operators": {
             "Germany": [
                 1940,
@@ -139387,6 +139885,8 @@
         "displayName": "SPG Jagdpanzer IV TD",
         "module": "WWII Armour and Technics",
         "shape": "Jagdpanzer_IV",
+        "detectionRange": 0,
+        "threatRange": 3000,
         "operators": {
             "Germany": [
                 1940,
@@ -139947,6 +140447,8 @@
         "displayName": "SPG StuG IV AG",
         "module": "WWII Armour and Technics",
         "shape": "Stug_IV",
+        "detectionRange": 0,
+        "threatRange": 3000,
         "operators": {
             "Germany": [
                 1940,
@@ -139966,6 +140468,8 @@
         "displayName": "SPG Brummbaer AG",
         "module": "WWII Armour and Technics",
         "shape": "Brummbar_Late",
+        "detectionRange": 0,
+        "threatRange": 4500,
         "operators": {
             "Germany": [
                 1940,
@@ -140526,6 +141030,8 @@
         "displayName": "SPH Sd.Kfz.124 Wespe 105mm",
         "module": "WWII Armour and Technics",
         "shape": "Wespe124",
+        "detectionRange": 0,
+        "threatRange": 10500,
         "operators": {
             "Germany": [
                 1940,
@@ -141086,6 +141592,8 @@
         "displayName": "Scout Puma AC",
         "module": "WWII Armour and Technics",
         "shape": "Sd_Kfz_234_2_Puma",
+        "detectionRange": 0,
+        "threatRange": 2000,
         "operators": {
             "Germany": [
                 1940,
@@ -141646,6 +142154,8 @@
         "displayName": "AAA Flak 38 20mm",
         "module": "WWII Armour and Technics",
         "shape": "flak30",
+        "detectionRange": 0,
+        "threatRange": 2500,
         "operators": {
             "Germany": [
                 1940,
@@ -142206,6 +142716,8 @@
         "displayName": "AAA 8,8cm Flak 36",
         "module": "WWII Armour and Technics",
         "shape": "flak36",
+        "detectionRange": 0,
+        "threatRange": 5000,
         "operators": {
             "Germany": [
                 1940,
@@ -142766,6 +143278,8 @@
         "displayName": "AAA 8,8cm Flak 37",
         "module": "WWII Armour and Technics",
         "shape": "flak37",
+        "detectionRange": 0,
+        "threatRange": 5000,
         "operators": {
             "Germany": [
                 1940,
@@ -143326,6 +143840,8 @@
         "displayName": "AAA Flak-Vierling 38 Quad 20mm",
         "module": "WWII Armour and Technics",
         "shape": "flak38",
+        "detectionRange": 0,
+        "threatRange": 2500,
         "operators": {
             "Germany": [
                 1940,
@@ -143886,6 +144402,8 @@
         "displayName": "AAA Kdo.G.40",
         "module": "WWII Armour and Technics",
         "shape": "KDO_Mod40",
+        "detectionRange": 30000,
+        "threatRange": 0,
         "operators": {
             "Germany": [
                 1940,
@@ -144446,6 +144964,8 @@
         "displayName": "SL Flakscheinwerfer 37",
         "module": "WWII Armour and Technics",
         "shape": "Flakscheinwerfer_37",
+        "detectionRange": 15000,
+        "threatRange": 15000,
         "operators": {
             "Germany": [
                 1940,
@@ -145006,6 +145526,8 @@
         "displayName": "Maschinensatz 33 Gen",
         "module": "WWII Armour and Technics",
         "shape": "Maschinensatz_33",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Germany": [
                 1940,
@@ -145025,6 +145547,8 @@
         "displayName": "Infantry Mauser 98",
         "module": "WWII Armour and Technics",
         "shape": "soldier_wwii_de_01",
+        "detectionRange": 0,
+        "threatRange": 500,
         "operators": {
             "Germany": [
                 1940,
@@ -145044,6 +145568,8 @@
         "displayName": "Gun 15cm SK C/28 Naval in Bunker",
         "module": "WWII Armour and Technics",
         "shape": "pillbox",
+        "detectionRange": 0,
+        "threatRange": 20000,
         "operators": {
             "France": [
                 1940,
@@ -145087,6 +145613,8 @@
         "displayName": "Bunker with Fire Control Center",
         "module": "WWII Armour and Technics",
         "shape": "fire_control",
+        "detectionRange": 0,
+        "threatRange": 1100,
         "operators": {
             "France": [
                 1940,
@@ -145671,6 +146199,8 @@
         "displayName": "SPG StuG III G AG",
         "module": "WWII Armour and Technics",
         "shape": "Stug_III",
+        "detectionRange": 0,
+        "threatRange": 3000,
         "operators": {
             "ItalianSocialRepublic": [
                 1940,
@@ -146239,6 +146769,8 @@
         "displayName": "SPG Elefant TD",
         "module": "WWII Armour and Technics",
         "shape": "Elefant_SdKfz_184",
+        "detectionRange": 0,
+        "threatRange": 6000,
         "operators": {
             "Germany": [
                 1940,
@@ -146799,6 +147331,8 @@
         "displayName": "AAA 8,8cm Flak 41",
         "module": "WWII Armour and Technics",
         "shape": "flak41",
+        "detectionRange": 0,
+        "threatRange": 5000,
         "operators": {
             "Germany": [
                 1940,
@@ -146818,6 +147352,8 @@
         "displayName": "V-1 Launch Ramp",
         "module": "WWII Armour and Technics",
         "shape": "v1_ramp",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Germany": [
                 1940,
@@ -147378,6 +147914,8 @@
         "displayName": "EWR FuMG-401 Freya LZ",
         "module": "WWII Armour and Technics",
         "shape": "FuMG-401",
+        "detectionRange": 160000,
+        "threatRange": 0,
         "operators": {
             "Germany": [
                 1940,
@@ -147938,6 +148476,8 @@
         "displayName": "EWR FuSe-65 Würzburg-Riese",
         "module": "WWII Armour and Technics",
         "shape": "FuSe-65",
+        "detectionRange": 60000,
+        "threatRange": 0,
         "operators": {
             "Germany": [
                 1940,
@@ -148228,6 +148768,8 @@
         "displayName": "FH Pak 40 75mm",
         "module": "WWII Armour and Technics",
         "shape": "Pak40",
+        "detectionRange": 0,
+        "threatRange": 3000,
         "operators": {
             "Germany": [
                 1940,
@@ -148788,6 +149330,8 @@
         "displayName": "FH LeFH-18 105mm",
         "module": "WWII Armour and Technics",
         "shape": "LeFH_18-40-105mm",
+        "detectionRange": 0,
+        "threatRange": 10500,
         "operators": {
             "Germany": [
                 1940,
@@ -149348,6 +149892,8 @@
         "displayName": "Tk Cromwell IV",
         "module": "WWII Armour and Technics",
         "shape": "Cromwell_IV",
+        "detectionRange": 0,
+        "threatRange": 3000,
         "operators": {
             "UK": [
                 1940,
@@ -149940,6 +150486,8 @@
         "displayName": "Tk M4A4 Sherman Firefly",
         "module": "WWII Armour and Technics",
         "shape": "M4A4_Sherman_FF",
+        "detectionRange": 0,
+        "threatRange": 3000,
         "operators": {
             "Argentina": [
                 1940,
@@ -149991,6 +150539,8 @@
         "displayName": "Infantry SMLE No.4 Mk-1",
         "module": "WWII Armour and Technics",
         "shape": "soldier_wwii_br_01",
+        "detectionRange": 0,
+        "threatRange": 500,
         "operators": {
             "UK": [
                 1940,
@@ -150547,6 +151097,8 @@
         "displayName": "Tk Centaur IV CS",
         "module": "WWII Armour and Technics",
         "shape": "Centaur_IV",
+        "detectionRange": 0,
+        "threatRange": 6000,
         "operators": {
             "UK": [
                 1940,
@@ -151139,6 +151691,8 @@
         "displayName": "Tk Churchill VII",
         "module": "WWII Armour and Technics",
         "shape": "churchill_vii",
+        "detectionRange": 0,
+        "threatRange": 3000,
         "operators": {
             "UK": [
                 1940,
@@ -151695,6 +152249,8 @@
         "displayName": "Car Daimler Armored",
         "module": "WWII Armour and Technics",
         "shape": "Daimler_AC",
+        "detectionRange": 0,
+        "threatRange": 2000,
         "operators": {
             "UK": [
                 1940,
@@ -152291,6 +152847,8 @@
         "displayName": "Tk Tetrach",
         "module": "WWII Armour and Technics",
         "shape": "Tetrarch",
+        "detectionRange": 0,
+        "threatRange": 2000,
         "operators": {
             "UK": [
                 1940,
@@ -152863,6 +153421,8 @@
         "displayName": "AAA QF 3.7\"",
         "module": "WWII Armour and Technics",
         "shape": "QF_37_AA",
+        "detectionRange": 0,
+        "threatRange": 9000,
         "operators": {
             "UK": [
                 1940,
@@ -152914,6 +153474,8 @@
         "displayName": "Allies Rangefinder (DRT)",
         "module": "WWII Armour and Technics",
         "shape": "Bedford_MWD",
+        "detectionRange": 30000,
+        "threatRange": 0,
         "operators": {
             "UK": [
                 1940,
@@ -153474,6 +154036,8 @@
         "displayName": "Truck GMC \"Jimmy\" 6x6",
         "module": "WWII Armour and Technics",
         "shape": "CCKW_353",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1940,
@@ -154402,6 +154966,8 @@
         "displayName": "Car Willys Jeep",
         "module": "WWII Armour and Technics",
         "shape": "Willys_MB",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USA": [
                 1940,
@@ -154978,6 +155544,8 @@
         "displayName": "SPH M12 GMC 155mm",
         "module": "WWII Armour and Technics",
         "shape": "m12",
+        "detectionRange": 0,
+        "threatRange": 18300,
         "operators": {
             "USA": [
                 1940,
@@ -155542,6 +156110,8 @@
         "displayName": "Ammo M30 Cargo Carrier",
         "module": "WWII Armour and Technics",
         "shape": "m30",
+        "detectionRange": 0,
+        "threatRange": 1200,
         "operators": {
             "USA": [
                 1940,
@@ -155565,6 +156135,8 @@
         "displayName": "Infantry M1 Garand",
         "module": "WWII Armour and Technics",
         "shape": "soldier_wwii_us_01",
+        "detectionRange": 0,
+        "threatRange": 500,
         "operators": {
             "USA": [
                 1940,
@@ -156121,6 +156693,8 @@
         "displayName": "SPG M10 GMC TD",
         "module": "WWII Armour and Technics",
         "shape": "M10",
+        "detectionRange": 0,
+        "threatRange": 6000,
         "operators": {
             "USA": [
                 1940,
@@ -156709,6 +157283,8 @@
         "displayName": "Scout M8 Greyhound AC",
         "module": "WWII Armour and Technics",
         "shape": "m8_greyhound",
+        "detectionRange": 0,
+        "threatRange": 2000,
         "operators": {
             "USA": [
                 1940,
@@ -157301,6 +157877,8 @@
         "displayName": "FH M2A1 105mm",
         "module": "WWII Armour and Technics",
         "shape": "M2A1-105mm",
+        "detectionRange": 0,
+        "threatRange": 11500,
         "operators": {
             "Argentina": [
                 1940,
@@ -158017,6 +158595,8 @@
         "displayName": "Tractor M4 High Speed",
         "module": "WWII Armour and Technics",
         "shape": "M4_Tractor",
+        "detectionRange": 0,
+        "threatRange": 1200,
         "operators": {
             "USA": [
                 1940,
@@ -158641,6 +159221,8 @@
         "displayName": "AAA M45 Quadmount HB 12.7mm",
         "module": "WWII Armour and Technics",
         "shape": "M45_Quadmount",
+        "detectionRange": 0,
+        "threatRange": 1500,
         "operators": {
             "USA": [
                 1940,
@@ -159221,6 +159803,8 @@
         "displayName": "AAA M1 37mm",
         "module": "WWII Armour and Technics",
         "shape": "M1_37mm",
+        "detectionRange": 0,
+        "threatRange": 5700,
         "operators": {
             "USA": [
                 1940,
@@ -159605,6 +160189,8 @@
         "displayName": "DR 50-ton flat wagon",
         "module": "WWII Armour and Technics",
         "shape": "DR_50Ton_Flat_Wagon",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Germany": [
                 1940,
@@ -160013,6 +160599,8 @@
         "displayName": "Loco DRG Class 86",
         "module": "WWII Armour and Technics",
         "shape": "DRG_Class_86",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Germany": [
                 1940,
@@ -160421,6 +161009,8 @@
         "displayName": "Wagon G10 (Germany)",
         "module": "WWII Armour and Technics",
         "shape": "German_covered_wagon_G10",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Germany": [
                 1940,
@@ -160825,6 +161415,8 @@
         "displayName": "Tank Car (Germany)",
         "module": "WWII Armour and Technics",
         "shape": "German_tank_wagon",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Germany": [
                 1940,

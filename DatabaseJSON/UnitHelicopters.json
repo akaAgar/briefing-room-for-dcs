@@ -65620,9 +65620,16 @@
         "height": 4.15,
         "length": 17.87,
         "paintSchemes": {
+            "0": [
+                "default livery"
+            ],
+            "1": [
+                "default livery"
+            ],
             "2": [
                 "default livery",
                 "12th Combat Aviation Brigade Griffins",
+                "12th Combat Aviation Brigade Weathered",
                 "2-6 CAV, 25th Combat Aviation Brigade",
                 "A Company, Archangel, 4-2 ARB",
                 "A Company, Avengers, 1-227th ARB",
@@ -65639,43 +65646,280 @@
                 "Ghostriders, 1-151st ATKHB SCNG - Gray TADS",
                 "Wolfpack, 1-82 ARB"
             ],
+            "3": [
+                "default livery"
+            ],
             "4": [
+                "default livery",
                 "662 Squadron 3 Regiment AAC UK - ZJ171",
                 "664 Squadron 9 Regiment AAC UK"
             ],
+            "5": [
+                "default livery"
+            ],
+            "6": [
+                "default livery"
+            ],
+            "7": [
+                "default livery"
+            ],
+            "8": [
+                "default livery"
+            ],
+            "9": [
+                "default livery"
+            ],
             "10": [
+                "default livery",
                 "301 Squadron Redskins, Royal Netherlands Air Force"
             ],
+            "11": [
+                "default livery"
+            ],
+            "12": [
+                "default livery"
+            ],
+            "13": [
+                "default livery"
+            ],
             "15": [
+                "default livery",
                 "IAF 113th Hornet Squadron"
             ],
+            "16": [
+                "default livery"
+            ],
+            "17": [
+                "default livery"
+            ],
+            "18": [
+                "default livery"
+            ],
+            "19": [
+                "default livery"
+            ],
+            "20": [
+                "default livery"
+            ],
+            "21": [
+                "default livery"
+            ],
+            "22": [
+                "default livery"
+            ],
+            "23": [
+                "default livery"
+            ],
+            "24": [
+                "default livery"
+            ],
+            "25": [
+                "default livery"
+            ],
+            "26": [
+                "default livery"
+            ],
+            "27": [
+                "default livery"
+            ],
+            "28": [
+                "default livery"
+            ],
             "29": [
+                "default livery",
                 "Egyptian Air Force"
             ],
+            "30": [
+                "default livery"
+            ],
             "31": [
+                "default livery",
                 "1st Attack Helicopter Battalion, Hellenic Army Aviation",
                 "Pegasus Display Team - ES1008, Hellenic Army Aviation"
             ],
+            "32": [
+                "default livery"
+            ],
             "33": [
+                "default livery",
                 "Indian Air Force - Gray"
             ],
+            "34": [
+                "default livery"
+            ],
+            "35": [
+                "default livery"
+            ],
             "36": [
+                "default livery",
                 "1st Combat Helicopter Unit, Japanese Ground SDF"
             ],
+            "37": [
+                "default livery"
+            ],
+            "38": [
+                "default livery"
+            ],
+            "39": [
+                "default livery"
+            ],
+            "40": [
+                "default livery"
+            ],
+            "41": [
+                "default livery"
+            ],
             "42": [
+                "default livery",
                 "Saudi Arabian National Guard"
             ],
+            "43": [
+                "default livery"
+            ],
+            "44": [
+                "default livery"
+            ],
             "45": [
+                "default livery",
                 "Republic of Korea Army"
             ],
+            "46": [
+                "default livery"
+            ],
+            "47": [
+                "default livery"
+            ],
+            "48": [
+                "default livery"
+            ],
+            "49": [
+                "default livery"
+            ],
+            "50": [
+                "default livery"
+            ],
+            "51": [
+                "default livery"
+            ],
+            "52": [
+                "default livery"
+            ],
+            "53": [
+                "default livery"
+            ],
+            "54": [
+                "default livery"
+            ],
+            "55": [
+                "default livery"
+            ],
+            "56": [
+                "default livery"
+            ],
+            "57": [
+                "default livery"
+            ],
+            "58": [
+                "default livery"
+            ],
+            "59": [
+                "default livery"
+            ],
             "60": [
+                "default livery",
                 "11th Squadron/Serbu, Indonesian Army"
             ],
+            "61": [
+                "default livery"
+            ],
+            "62": [
+                "default livery"
+            ],
+            "63": [
+                "default livery"
+            ],
+            "64": [
+                "default livery"
+            ],
+            "65": [
+                "default livery"
+            ],
+            "66": [
+                "default livery"
+            ],
+            "67": [
+                "default livery"
+            ],
+            "68": [
+                "default livery"
+            ],
+            "69": [
+                "default livery"
+            ],
+            "70": [
+                "default livery"
+            ],
+            "71": [
+                "default livery"
+            ],
             "72": [
+                "default livery",
                 "Qatar Emiri Air Force"
             ],
+            "73": [
+                "default livery"
+            ],
             "74": [
+                "default livery",
                 "UAE Armed Forces - Olive Drab"
+            ],
+            "75": [
+                "default livery"
+            ],
+            "76": [
+                "default livery"
+            ],
+            "77": [
+                "default livery"
+            ],
+            "78": [
+                "default livery"
+            ],
+            "79": [
+                "default livery"
+            ],
+            "80": [
+                "default livery"
+            ],
+            "81": [
+                "default livery"
+            ],
+            "82": [
+                "default livery"
+            ],
+            "83": [
+                "default livery"
+            ],
+            "84": [
+                "default livery"
+            ],
+            "85": [
+                "default livery"
+            ],
+            "86": [
+                "default livery"
+            ],
+            "87": [
+                "default livery"
+            ],
+            "88": [
+                "default livery"
+            ],
+            "89": [
+                "default livery"
+            ],
+            "90": [
+                "default livery"
             ]
         },
         "panelRadio": [
@@ -74712,515 +74956,307 @@
                 "Desert camo #018 Zhukovsky 1995 Werewolf",
                 "Desert camo #018 Zhukovsky 1997 Black Shark",
                 "Standart camo n/a 2000-2001 Chechnya",
-                "Standart black Russian Air Force",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart black Russian Air Force"
             ],
             "1": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "2": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "3": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "4": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "5": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "6": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "7": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "8": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "9": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "10": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "11": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "12": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "13": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "15": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "16": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "17": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "18": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "19": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "20": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "21": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "22": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "23": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "24": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "25": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "26": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "27": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "28": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "29": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "30": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "31": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "32": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "33": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "34": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "35": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "36": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "37": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "38": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "39": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "40": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "41": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "42": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "43": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "44": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "45": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "46": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "47": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "48": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "49": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "50": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "51": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "52": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "53": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "54": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "55": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "56": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "57": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "58": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "59": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "60": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "61": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "62": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "63": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "64": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "65": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "66": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "67": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "68": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "69": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "70": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "71": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "72": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "73": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "74": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "75": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ],
             "76": [
                 "Black neutral n/a",
-                "Standart camo n/a 2000-2001 Chechnya",
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
-            ],
-            "77": [
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
-            ],
-            "78": [
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
-            ],
-            "79": [
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
-            ],
-            "80": [
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
-            ],
-            "81": [
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
-            ],
-            "82": [
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
-            ],
-            "83": [
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
-            ],
-            "84": [
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
-            ],
-            "85": [
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
-            ],
-            "86": [
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
-            ],
-            "87": [
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
-            ],
-            "88": [
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
-            ],
-            "89": [
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
-            ],
-            "90": [
-                "Ukrainian Army Aviation - Captured (Damaged)",
-                "Ukrainian Army Aviation - Captured (Undamaged)"
+                "Standart camo n/a 2000-2001 Chechnya"
             ]
         },
         "panelRadio": [

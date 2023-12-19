@@ -9,6 +9,8 @@
             }
         ],
         "shape": "Patrol_Boat",
+        "detectionRange": 5000,
+        "threatRange": 1000,
         "operators": {
             "ALL": [
                 1940,
@@ -36,6 +38,8 @@
             }
         ],
         "shape": "vinson",
+        "detectionRange": 30000,
+        "threatRange": 15000,
         "operators": {
             "USA": [
                 1980,
@@ -57,6 +61,8 @@
             }
         ],
         "shape": "perry",
+        "detectionRange": 150000,
+        "threatRange": 100000,
         "operators": {
             "USA": [
                 1970,
@@ -110,6 +116,8 @@
             }
         ],
         "shape": "ticonderoga",
+        "detectionRange": 150000,
+        "threatRange": 100000,
         "operators": {
             "USA": [
                 1970,
@@ -131,6 +139,8 @@
             }
         ],
         "shape": "albatros",
+        "detectionRange": 30000,
+        "threatRange": 16000,
         "operators": {
             "Russia": [
                 1980,
@@ -182,6 +192,8 @@
             }
         ],
         "shape": "kuznecow",
+        "detectionRange": 25000,
+        "threatRange": 12000,
         "operators": {
             "Russia": [
                 1990,
@@ -207,6 +219,8 @@
             }
         ],
         "shape": "molniya",
+        "detectionRange": 21000,
+        "threatRange": 2000,
         "operators": {
             "Russia": [
                 1980,
@@ -288,6 +302,8 @@
             }
         ],
         "shape": "moscow",
+        "detectionRange": 160000,
+        "threatRange": 75000,
         "operators": {
             "Russia": [
                 1980,
@@ -317,6 +333,8 @@
             }
         ],
         "shape": "neustrash",
+        "detectionRange": 27000,
+        "threatRange": 12000,
         "operators": {
             "Russia": [
                 1990,
@@ -346,6 +364,8 @@
             }
         ],
         "shape": "Piotr_Velikiy",
+        "detectionRange": 250000,
+        "threatRange": 190000,
         "operators": {
             "Russia": [
                 2000,
@@ -367,6 +387,8 @@
             }
         ],
         "shape": "rezky",
+        "detectionRange": 30000,
+        "threatRange": 16000,
         "operators": {
             "Russia": [
                 1970,
@@ -395,6 +417,8 @@
         "type": "ELNYA",
         "displayName": "Tanker Elnya 160",
         "shape": "elnya",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1970,
@@ -439,6 +463,8 @@
         "type": "Dry-cargo ship-2",
         "displayName": "Cargo Ivanov",
         "shape": "barge-1",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "ALL": [
                 1940,
@@ -451,6 +477,8 @@
         "type": "Dry-cargo ship-1",
         "displayName": "Bulker Yakushev",
         "shape": "barge-2",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "ALL": [
                 1940,
@@ -463,6 +491,8 @@
         "type": "ZWEZDNY",
         "displayName": "Boat Zvezdny type",
         "shape": "zwezdny",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1960,
@@ -511,6 +541,8 @@
         "type": "KILO",
         "displayName": "SSK 877V Kilo",
         "shape": "kilo",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1980,
@@ -559,6 +591,8 @@
         "type": "IMPROVED_KILO",
         "displayName": "SSK 636 Improved Kilo",
         "shape": "kilo_636",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1980,
@@ -583,6 +617,8 @@
         "type": "SOM",
         "displayName": "SSK 641B Tango",
         "shape": "som",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1970,
@@ -615,6 +651,8 @@
         ],
         "module": "TAVKR 1143 High Detail",
         "shape": "CV_1143_5",
+        "detectionRange": 25000,
+        "threatRange": 12000,
         "operators": {
             "USAFAggressors": [
                 1990,
@@ -641,6 +679,8 @@
         ],
         "module": "South_Atlantic_Assets",
         "shape": "CastleClass_01",
+        "detectionRange": 25000,
+        "threatRange": 3000,
         "operators": {
             "USAFAggressors": [
                 1970,
@@ -658,6 +698,8 @@
         "displayName": "Harbor Tug",
         "module": "South_Atlantic_Assets",
         "shape": "HarborTug",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "ALL": [
                 1950,
@@ -683,6 +725,8 @@
         ],
         "module": "South_Atlantic_Assets",
         "shape": "hms_invincible",
+        "detectionRange": 100000,
+        "threatRange": 74000,
         "operators": {
             "USAFAggressors": [
                 1970,
@@ -709,6 +753,8 @@
         ],
         "module": "South_Atlantic_Assets",
         "shape": "leander-gun-achilles",
+        "detectionRange": 180000,
+        "threatRange": 8000,
         "operators": {
             "UnitedNationsPeacekeepers": [
                 1970,
@@ -735,6 +781,8 @@
         ],
         "module": "South_Atlantic_Assets",
         "shape": "leander-gun-andromeda",
+        "detectionRange": 180000,
+        "threatRange": 140000,
         "operators": {
             "UnitedNationsPeacekeepers": [
                 1970,
@@ -761,6 +809,8 @@
         ],
         "module": "South_Atlantic_Assets",
         "shape": "leander-gun-ariadne",
+        "detectionRange": 150000,
+        "threatRange": 100000,
         "operators": {
             "UnitedNationsPeacekeepers": [
                 1970,
@@ -787,6 +837,8 @@
         ],
         "module": "South_Atlantic_Assets",
         "shape": "leander-gun-condell",
+        "detectionRange": 150000,
+        "threatRange": 100000,
         "operators": {
             "UnitedNationsPeacekeepers": [
                 1970,
@@ -817,6 +869,8 @@
         ],
         "module": "South_Atlantic_Assets",
         "shape": "leander-gun-lynch",
+        "detectionRange": 180000,
+        "threatRange": 140000,
         "operators": {
             "UnitedNationsPeacekeepers": [
                 1970,
@@ -836,6 +890,8 @@
         ],
         "module": "South_Atlantic_Assets",
         "shape": "Ship_Tilde_Supply",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "UnitedNationsPeacekeepers": [
                 2000,
@@ -885,6 +941,8 @@
         ],
         "module": "South_Atlantic_Assets",
         "shape": "ara_vdm",
+        "detectionRange": 18000,
+        "threatRange": 5000,
         "operators": {
             "UK": [
                 1940,
@@ -912,6 +970,8 @@
         ],
         "module": "TechWeaponPack",
         "shape": "Ship_Handy_Wind",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "ALL": [
                 1970,
@@ -931,6 +991,8 @@
         ],
         "module": "TechWeaponPack",
         "shape": "seawise_giant",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "ALL": [
                 1980,
@@ -949,6 +1011,8 @@
         ],
         "module": "TechWeaponPack",
         "shape": "La_Combattante_II",
+        "detectionRange": 19000,
+        "threatRange": 4000,
         "operators": {
             "Germany": [
                 1970,
@@ -999,6 +1063,8 @@
         ],
         "module": "TechWeaponPack",
         "shape": "BDK_775",
+        "detectionRange": 25000,
+        "threatRange": 6000,
         "operators": {
             "Russia": [
                 1970,
@@ -1043,6 +1109,8 @@
         ],
         "module": "USS_Nimitz",
         "shape": "Nimitz_CVN_71",
+        "detectionRange": 50000,
+        "threatRange": 25000,
         "operators": {
             "USA": [
                 1980,
@@ -1079,6 +1147,8 @@
         ],
         "module": "USS_Nimitz",
         "shape": "Nimitz_CVN_72",
+        "detectionRange": 50000,
+        "threatRange": 25000,
         "operators": {
             "USA": [
                 1990,
@@ -1115,6 +1185,8 @@
         ],
         "module": "USS_Nimitz",
         "shape": "Nimitz_CVN_73",
+        "detectionRange": 50000,
+        "threatRange": 25000,
         "operators": {
             "USA": [
                 1990,
@@ -1151,6 +1223,8 @@
         ],
         "module": "USS_Nimitz",
         "shape": "nimitz_cvn_74",
+        "detectionRange": 50000,
+        "threatRange": 25000,
         "operators": {
             "USA": [
                 1990,
@@ -1187,6 +1261,8 @@
         ],
         "module": "USS_Nimitz",
         "shape": "Nimitz_CVN_75",
+        "detectionRange": 50000,
+        "threatRange": 25000,
         "operators": {
             "USA": [
                 2000,
@@ -1217,6 +1293,8 @@
         ],
         "module": "USS_Nimitz",
         "shape": "Arleigh_Burke_IIa",
+        "detectionRange": 150000,
+        "threatRange": 100000,
         "operators": {
             "USA": [
                 1980,
@@ -1246,6 +1324,8 @@
         ],
         "module": "AV-8B N/A AI by RAZBAM Sims",
         "shape": "LHA_Tarawa",
+        "detectionRange": 150000,
+        "threatRange": 20000,
         "operators": {
             "USA": [
                 1970,
@@ -1272,6 +1352,8 @@
         ],
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "052b",
+        "detectionRange": 100000,
+        "threatRange": 30000,
         "operators": {
             "China": [
                 2000,
@@ -1298,6 +1380,8 @@
         ],
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "054a",
+        "detectionRange": 160000,
+        "threatRange": 45000,
         "operators": {
             "China": [
                 2010,
@@ -1324,6 +1408,8 @@
         ],
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "052c",
+        "detectionRange": 260000,
+        "threatRange": 100000,
         "operators": {
             "China": [
                 2000,
@@ -1346,6 +1432,8 @@
         ],
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "093",
+        "detectionRange": 40000,
+        "threatRange": 40000,
         "operators": {
             "China": [
                 2000,
@@ -1378,6 +1466,8 @@
         ],
         "module": "China Asset Pack by Deka Ironwork Simulations and Eagle Dynamics",
         "shape": "071",
+        "detectionRange": 300000,
+        "threatRange": 150000,
         "operators": {
             "China": [
                 2000,
@@ -1410,6 +1500,8 @@
         ],
         "module": "F-14B AI by Heatblur Simulations",
         "shape": "CV-59-Forrestal_LOD0",
+        "detectionRange": 50000,
+        "threatRange": 25000,
         "operators": {
             "USAFAggressors": [
                 1990,
@@ -1432,6 +1524,8 @@
         ],
         "module": "WWII Armour and Technics",
         "shape": "LST_Mk2",
+        "detectionRange": 0,
+        "threatRange": 4000,
         "operators": {
             "USA": [
                 1940,
@@ -1462,6 +1556,8 @@
         ],
         "module": "WWII Armour and Technics",
         "shape": "uss_samuel_chase",
+        "detectionRange": 0,
+        "threatRange": 7000,
         "operators": {
             "USA": [
                 1940,
@@ -1484,6 +1580,8 @@
         ],
         "module": "WWII Armour and Technics",
         "shape": "Higgins_boat",
+        "detectionRange": 3000,
+        "threatRange": 1000,
         "operators": {
             "USA": [
                 1940,
@@ -1506,6 +1604,8 @@
         ],
         "module": "WWII Armour and Technics",
         "shape": "Uboat_typeVIIC",
+        "detectionRange": 20000,
+        "threatRange": 4000,
         "operators": {
             "Thirdreich": [
                 1940,
@@ -1532,6 +1632,8 @@
         ],
         "module": "WWII Armour and Technics",
         "shape": "Schnellboot_type_S130",
+        "detectionRange": 10000,
+        "threatRange": 4000,
         "operators": {
             "UnitedNationsPeacekeepers": [
                 1940,
