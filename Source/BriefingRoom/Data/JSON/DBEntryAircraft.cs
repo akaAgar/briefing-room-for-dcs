@@ -136,6 +136,10 @@ namespace BriefingRoom4DCS.Data
 
             }
 
+            
+            missingDCSDataWarnings(supportData, itemMap, "Aircraft");
+
+
             return itemMap;
         }
 

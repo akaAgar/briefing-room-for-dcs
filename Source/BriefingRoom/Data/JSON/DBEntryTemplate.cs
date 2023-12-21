@@ -76,6 +76,8 @@ namespace BriefingRoom4DCS.Data
                 });
             }
 
+            missingDCSDataWarnings(supportData, itemMap, "Templates");
+
             return itemMap;
         }
 

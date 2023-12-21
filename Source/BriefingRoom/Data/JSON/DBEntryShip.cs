@@ -40,16 +40,16 @@ namespace BriefingRoom4DCS.Data
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Ship>>(File.ReadAllText(filepath));
-            var infoDataDict = JsonConvert.DeserializeObject<List<BRInfo>>(File.ReadAllText(filepath.Replace(".json", "BRInfo.json"))).ToDictionary(x => x.type, x => x);
+            var supportData = JsonConvert.DeserializeObject<List<BRInfo>>(File.ReadAllText(filepath.Replace(".json", "BRInfo.json"))).ToDictionary(x => x.type, x => x);
             foreach (var ship in data)
             {
                 var id = ship.type;
-                if (!infoDataDict.ContainsKey(id))
+                if (!supportData.ContainsKey(id))
                 {
                     BriefingRoom.PrintToLog($"Ship missing {id} in info data", LogMessageErrorLevel.Warning);
                     continue;
                 }
-                var infoData = infoDataDict[id];
+                var infoData = supportData[id];
 
                 itemMap.Add(id, new DBEntryShip
                 {
@@ -65,6 +65,8 @@ namespace BriefingRoom4DCS.Data
                 });
 
             }
+
+           missingDCSDataWarnings(supportData, itemMap, "Ship");
 
             return itemMap;
         }

@@ -57,6 +57,15 @@ namespace BriefingRoom4DCS.Data
             return OnLoad(iniFilePath);
         }
 
+        protected static void missingDCSDataWarnings<T>(Dictionary<string, T> supportData, Dictionary<string, DBEntry> itemMap, string Name)
+        {
+            var missingDCSData = supportData.Where(x => !itemMap.ContainsKey(x.Key)).Select(x => x.Key).ToList();
+            if (missingDCSData.Count > 0)
+            {
+                BriefingRoom.PrintToLog($"{Name} DCS Data missing for {string.Join(',', missingDCSData)}", LogMessageErrorLevel.Warning);
+            }
+        }
+
         protected abstract bool OnLoad(string iniFilePath);
 
         protected string[] GetValidDBEntryIDs<T>(string[] values, out string[] rejected) where T : DBEntry

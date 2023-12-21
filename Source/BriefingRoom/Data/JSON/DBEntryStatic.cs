@@ -49,7 +49,7 @@ namespace BriefingRoom4DCS.Data
                 var id = @static.type;
                 if (!supportData.ContainsKey(id))
                 {
-                    BriefingRoom.PrintToLog($"Unit missing {id} in info data", LogMessageErrorLevel.Warning);
+                    BriefingRoom.PrintToLog($"Static missing {id} in info data", LogMessageErrorLevel.Warning);
                     continue;
                 }
                 var supportInfo = supportData[id];
@@ -66,6 +66,8 @@ namespace BriefingRoom4DCS.Data
                     ParkingSpots = @static.numParking
                 });
             }
+
+            missingDCSDataWarnings(supportData, itemMap, "Static");
 
             return itemMap;
         }

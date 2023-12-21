@@ -41,16 +41,16 @@ namespace BriefingRoom4DCS.Data
         {
             var itemMap = new Dictionary<string, DBEntry>(StringComparer.InvariantCultureIgnoreCase);
             var data = JsonConvert.DeserializeObject<List<Car>>(File.ReadAllText(filepath));
-            var infoDataDict = JsonConvert.DeserializeObject<List<BRInfo>>(File.ReadAllText(filepath.Replace(".json", "BRInfo.json"))).ToDictionary(x => x.type, x => x);
+            var supportData = JsonConvert.DeserializeObject<List<BRInfo>>(File.ReadAllText(filepath.Replace(".json", "BRInfo.json"))).ToDictionary(x => x.type, x => x);
             foreach (var car in data)
             {
                 var id = car.type;
-                if (!infoDataDict.ContainsKey(id))
+                if (!supportData.ContainsKey(id))
                 {
-                    BriefingRoom.PrintToLog($"Unit missing {id} in info data", LogMessageErrorLevel.Warning);
+                    BriefingRoom.PrintToLog($"Car missing {id} in info data", LogMessageErrorLevel.Warning);
                     continue;
                 }
-                var infoData = infoDataDict[id];
+                var infoData = supportData[id];
 
                 itemMap.Add(id, new DBEntryCar
                 {
@@ -67,6 +67,9 @@ namespace BriefingRoom4DCS.Data
                     Immovable = infoData.immovable
                 });
             }
+
+            missingDCSDataWarnings(supportData, itemMap, "Car");
+
             return itemMap;
         }
 
