@@ -6294,6 +6294,10 @@
         ]
     },
     {
+        "_id": "658392cfa46b12b617694564",
+        "country": "CJTF_RED",
+        "name": "Igla-s Squad",
+        "type": "vehicle",
         "units": [
             {
                 "dx": 0,
@@ -6323,180 +6327,78 @@
                 "skill": "Average",
                 "heading": 0
             }
-        ],
-        "type": "InfantryMANPADS",
-        "name": "Igla-s Squad",
-        "country": 81
+        ]
     },
     {
-        "units": [
-            {
-                "dx": 0,
-                "dy": 0,
-                "name": "Soldier stinger",
-                "skill": "Average",
-                "heading": 0
-            },
-            {
-                "dx": -16.691432350024,
-                "dy": 0.3287609500112,
-                "name": "Stinger comm",
-                "skill": "Average",
-                "heading": 0
-            },
-            {
-                "dx": -29.325703160022,
-                "dy": -14.379793119966,
-                "name": "Soldier stinger",
-                "skill": "Average",
-                "heading": 0
-            },
-            {
-                "dx": -30.457130399998,
-                "dy": 15.225886230008,
-                "name": "Soldier stinger",
-                "skill": "Average",
-                "heading": 0
-            }
-        ],
-        "type": "InfantryMANPADS",
-        "name": "Stringer Squad",
-        "country": 81
-    },
-    {
-        "units": [
-            {
-                "dx": 0,
-                "dy": 0,
-                "name": "SA-18 Igla manpad",
-                "skill": "Average",
-                "heading": 0
-            },
-            {
-                "dx": -16.691432350024,
-                "dy": 0.32876096002292,
-                "name": "SA-18 Igla comm",
-                "skill": "Average",
-                "heading": 0
-            },
-            {
-                "dx": -29.325703160022,
-                "dy": -14.379793119966,
-                "name": "SA-18 Igla manpad",
-                "skill": "Average",
-                "heading": 0
-            },
-            {
-                "dx": -30.457130399998,
-                "dy": 15.225886240019,
-                "name": "SA-18 Igla manpad",
-                "skill": "Average",
-                "heading": 0
-            }
-        ],
-        "type": "InfantryMANPADS",
-        "name": "Igla Squad",
-        "country": 81
-    },
-    {
-        "_id": "6459ed683eaa30299313bd4a",
-        "country": 80,
-        "name": "ZU-23",
-        "@created": "2023-05-09T06:51:20.637Z",
-        "@dcsversion": "2.8.4.39731",
+        "_id": "658392cfa46b12b617694568",
+        "country": "CJTF_BLUE",
+        "name": "ZU-23 insurgent",
         "type": "vehicle",
         "units": [
             {
                 "dx": 0,
                 "dy": 0,
-                "name": "ZU-23 Emplacement",
+                "name": "ZU-23 Insurgent",
                 "skill": "Average",
                 "heading": 0
             },
             {
                 "dx": 0.57527454331284,
                 "dy": 55.801630700938,
-                "name": "ZU-23 Emplacement",
+                "name": "ZU-23 Insurgent",
                 "skill": "Average",
                 "heading": 0
             }
         ]
     },
     {
-        "_id": "6459ed683eaa30299313bd4c",
-        "country": 80,
-        "name": "S-60 Battery",
-        "@created": "2023-05-09T06:51:20.639Z",
-        "@dcsversion": "2.8.4.39731",
+        "_id": "658392cfa46b12b617694588",
+        "country": "CJTF_BLUE",
+        "name": "ZU-23 Closed Insurgent",
         "type": "vehicle",
         "units": [
             {
                 "dx": 0,
                 "dy": 0,
-                "name": "S-60_Type59_Artillery",
+                "name": "ZU-23 Closed Insurgent",
                 "skill": "Average",
                 "heading": 0
             },
             {
-                "dx": 28.371925066167,
-                "dy": 32.68560804578,
-                "name": "S-60_Type59_Artillery",
+                "dx": -0.18569178698817,
+                "dy": 55.362838423578,
+                "name": "ZU-23 Closed Insurgent",
                 "skill": "Average",
-                "heading": 3.3547675228555
-            },
-            {
-                "dx": 27.138895471464,
-                "dy": -34.918525458546,
-                "name": "S-60_Type59_Artillery",
-                "skill": "Average",
-                "heading": 3.3547675228555
-            },
-            {
-                "dx": -43.593710084504,
-                "dy": -0.26495627593249,
-                "name": "S-60_Type59_Artillery",
-                "skill": "Average",
-                "heading": 3.3547675228555
+                "heading": 0
             }
         ]
     },
     {
-        "_id": "6459ed683eaa30299313bd40",
-        "country": 80,
-        "name": "K-19 Battery",
-        "@created": "2023-05-09T06:51:20.620Z",
-        "@dcsversion": "2.8.4.39731",
+        "_id": "658392cfa46b12b617694596",
+        "country": "CJTF_BLUE",
+        "name": "ZU-23 closed",
         "type": "vehicle",
         "units": [
             {
                 "dx": 0,
                 "dy": 0,
-                "name": "KS-19",
+                "name": "ZU-23 Emplacement Closed",
                 "skill": "Average",
                 "heading": 0
             },
             {
-                "dx": 41.336550131149,
-                "dy": -59.555238050525,
-                "name": "KS-19",
-                "skill": "Average",
-                "heading": 0
-            },
-            {
-                "dx": -37.592478887818,
-                "dy": 69.022696319036,
-                "name": "KS-19",
+                "dx": -0.18569178698817,
+                "dy": 55.362838423578,
+                "name": "ZU-23 Emplacement Closed",
                 "skill": "Average",
                 "heading": 0
             }
         ]
     },
     {
-        "_id": "6459ed683eaa30299313bd3c",
-        "country": 80,
+        "_id": "658392cfa46b12b6176945ac",
+        "country": "CJTF_BLUE",
         "name": "Bofors Quad",
-        "@created": "2023-05-09T06:51:20.616Z",
-        "@dcsversion": "2.8.4.39731",
         "type": "vehicle",
         "units": [
             {
@@ -6530,75 +6432,430 @@
         ]
     },
     {
-        "_id": "6459ed683eaa30299313bd24",
-        "country": 80,
-        "name": "ZU-23 insurgent",
-        "@created": "2023-05-09T06:51:20.560Z",
-        "@dcsversion": "2.8.4.39731",
+        "_id": "658392cfa46b12b6176945b4",
+        "country": "CJTF_BLUE",
+        "name": "K-19 Battery",
         "type": "vehicle",
         "units": [
             {
                 "dx": 0,
                 "dy": 0,
-                "name": "ZU-23 Insurgent",
+                "name": "KS-19",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": 41.336550131149,
+                "dy": -59.555238050525,
+                "name": "KS-19",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -37.592478887818,
+                "dy": 69.022696319036,
+                "name": "KS-19",
+                "skill": "Average",
+                "heading": 0
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b6176945be",
+        "country": "CJTF_RED",
+        "name": "Igla Squad",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "SA-18 Igla manpad",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -16.691432350024,
+                "dy": 0.32876096002292,
+                "name": "SA-18 Igla comm",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -29.325703160022,
+                "dy": -14.379793119966,
+                "name": "SA-18 Igla manpad",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -30.457130399998,
+                "dy": 15.225886240019,
+                "name": "SA-18 Igla manpad",
+                "skill": "Average",
+                "heading": 0
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b6176945c2",
+        "country": "CJTF_RED",
+        "name": "Stringer Squad",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "Soldier stinger",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -16.691432350024,
+                "dy": 0.3287609500112,
+                "name": "Stinger comm",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -29.325703160022,
+                "dy": -14.379793119966,
+                "name": "Soldier stinger",
+                "skill": "Average",
+                "heading": 0
+            },
+            {
+                "dx": -30.457130399998,
+                "dy": 15.225886230008,
+                "name": "Soldier stinger",
+                "skill": "Average",
+                "heading": 0
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b6176945c4",
+        "country": "CJTF_BLUE",
+        "name": "ZU-23",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "ZU-23 Emplacement",
                 "skill": "Average",
                 "heading": 0
             },
             {
                 "dx": 0.57527454331284,
                 "dy": 55.801630700938,
-                "name": "ZU-23 Insurgent",
+                "name": "ZU-23 Emplacement",
                 "skill": "Average",
                 "heading": 0
             }
         ]
     },
     {
-        "_id": "6459ed683eaa30299313bd2d",
-        "country": 80,
-        "name": "ZU-23 Closed Insurgent",
-        "@created": "2023-05-09T06:51:20.585Z",
-        "@dcsversion": "2.8.4.39731",
+        "_id": "658392cfa46b12b6176945c6",
+        "country": "CJTF_BLUE",
+        "name": "S-60 Battery",
         "type": "vehicle",
         "units": [
             {
                 "dx": 0,
                 "dy": 0,
-                "name": "ZU-23 Closed Insurgent",
+                "name": "S-60_Type59_Artillery",
                 "skill": "Average",
                 "heading": 0
             },
             {
-                "dx": -0.18569178698817,
-                "dy": 55.362838423578,
-                "name": "ZU-23 Closed Insurgent",
+                "dx": 28.371925066167,
+                "dy": 32.68560804578,
+                "name": "S-60_Type59_Artillery",
                 "skill": "Average",
-                "heading": 0
+                "heading": 3.3547675228555
+            },
+            {
+                "dx": 27.138895471464,
+                "dy": -34.918525458546,
+                "name": "S-60_Type59_Artillery",
+                "skill": "Average",
+                "heading": 3.3547675228555
+            },
+            {
+                "dx": -43.593710084504,
+                "dy": -0.26495627593249,
+                "name": "S-60_Type59_Artillery",
+                "skill": "Average",
+                "heading": 3.3547675228555
             }
         ]
     },
     {
-        "_id": "6459ed683eaa30299313bd35",
-        "country": 80,
-        "name": "ZU-23 closed",
-        "@created": "2023-05-09T06:51:20.603Z",
-        "@dcsversion": "2.8.4.39731",
+        "_id": "65839a4da46b12b617694c2c",
+        "country": "RUSSIA",
+        "name": "SA-10 SAM Battery Tin",
         "type": "vehicle",
         "units": [
             {
                 "dx": 0,
                 "dy": 0,
-                "name": "ZU-23 Emplacement Closed",
-                "skill": "Average",
+                "name": "S-300PS 40B6M tr",
+                "skill": "High",
+                "heading": 4.7123889803847
+            },
+            {
+                "dx": 0.69314285699511,
+                "dy": 127.97571428004,
+                "name": "S-300PS 40B6MD sr_19J6",
+                "skill": "High",
                 "heading": 0
             },
             {
-                "dx": -0.18569178698817,
-                "dy": 55.362838423578,
-                "name": "ZU-23 Emplacement Closed",
-                "skill": "Average",
+                "dx": 23.579234991223,
+                "dy": 246.55467524601,
+                "name": "S-300PS 54K6 cp",
+                "skill": "High",
+                "heading": 3.1415926535898
+            },
+            {
+                "dx": -22.516027817794,
+                "dy": 246.55467524601,
+                "name": "S-300PS 64H6E sr",
+                "skill": "High",
+                "heading": 3.1415926535898
+            },
+            {
+                "dx": 83.349983285123,
+                "dy": -1.3806866992963,
+                "name": "S-300PS 5P85C ln",
+                "skill": "High",
+                "heading": 3.1415926535898
+            },
+            {
+                "dx": 82.498640577192,
+                "dy": 16.104647497996,
+                "name": "S-300PS 5P85D ln",
+                "skill": "High",
+                "heading": 3.3161255787892
+            },
+            {
+                "dx": 82.547616217693,
+                "dy": -18.227276489837,
+                "name": "S-300PS 5P85D ln",
+                "skill": "High",
+                "heading": 2.9670597283904
+            },
+            {
+                "dx": -82.640406328603,
+                "dy": -0.41562629467808,
+                "name": "S-300PS 5P85C ln",
+                "skill": "High",
                 "heading": 0
+            },
+            {
+                "dx": -81.939684967569,
+                "dy": 17.115632734494,
+                "name": "S-300PS 5P85D ln",
+                "skill": "High",
+                "heading": 6.1086523819802
+            },
+            {
+                "dx": -81.939684967569,
+                "dy": -17.99454369233,
+                "name": "S-300PS 5P85D ln",
+                "skill": "High",
+                "heading": 0.17453292519943
+            },
+            {
+                "dx": -9.0858776818495,
+                "dy": 187.67713509151,
+                "name": "generator_5i57",
+                "skill": "High",
+                "heading": 1.5707963267949
+            },
+            {
+                "dx": 0.83760223048739,
+                "dy": 187.51811292395,
+                "name": "generator_5i57",
+                "skill": "High",
+                "heading": 1.5707963267949
+            },
+            {
+                "dx": -59.823818980018,
+                "dy": 168.63468487991,
+                "name": "ATZ-5",
+                "skill": "High",
+                "heading": 0
+            },
+            {
+                "dx": -59.823818980018,
+                "dy": 179.2654343833,
+                "name": "ATZ-5",
+                "skill": "High",
+                "heading": 0
+            },
+            {
+                "dx": 20.947679329896,
+                "dy": -62.811427216162,
+                "name": "GAZ-66",
+                "skill": "High",
+                "heading": 1.5707963267949
+            },
+            {
+                "dx": 66.751355714747,
+                "dy": 151.35592090525,
+                "name": "ATZ-60_Maz",
+                "skill": "High",
+                "heading": 3.9269908169872
+            },
+            {
+                "dx": 59.63926918729,
+                "dy": 158.46800743265,
+                "name": "ATZ-60_Maz",
+                "skill": "High",
+                "heading": 3.9269908169872
+            },
+            {
+                "dx": -16.327227612433,
+                "dy": -62.472874663305,
+                "name": "KAMAZ Truck",
+                "skill": "High",
+                "heading": 1.5707963267949
             }
         ]
     },
+    {
+        "_id": "65839a4da46b12b617694c34",
+        "country": "RUSSIA",
+        "name": "SA-10 SAM Battery Flap B",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "S-300PS 5H63C 30H6_tr",
+                "skill": "High",
+                "heading": 4.7123889803847
+            },
+            {
+                "dx": 0.69314285699511,
+                "dy": 127.97571428004,
+                "name": "S-300PS 40B6MD sr",
+                "skill": "High",
+                "heading": 0
+            },
+            {
+                "dx": 23.579234991223,
+                "dy": 246.55467524601,
+                "name": "S-300PS 54K6 cp",
+                "skill": "High",
+                "heading": 3.1415926535898
+            },
+            {
+                "dx": -22.516027817794,
+                "dy": 246.55467524601,
+                "name": "S-300PS 64H6E sr",
+                "skill": "High",
+                "heading": 3.1415926535898
+            },
+            {
+                "dx": 83.349983285123,
+                "dy": -1.3806866992963,
+                "name": "S-300PS 5P85C ln",
+                "skill": "High",
+                "heading": 3.1415926535898
+            },
+            {
+                "dx": 82.498640577192,
+                "dy": 16.104647497996,
+                "name": "S-300PS 5P85D ln",
+                "skill": "High",
+                "heading": 3.3161255787892
+            },
+            {
+                "dx": 82.547616217693,
+                "dy": -18.227276489837,
+                "name": "S-300PS 5P85D ln",
+                "skill": "High",
+                "heading": 2.9670597283904
+            },
+            {
+                "dx": -82.640406328603,
+                "dy": -0.41562629467808,
+                "name": "S-300PS 5P85C ln",
+                "skill": "High",
+                "heading": 0
+            },
+            {
+                "dx": -81.939684967569,
+                "dy": 17.115632734494,
+                "name": "S-300PS 5P85D ln",
+                "skill": "High",
+                "heading": 6.1086523819802
+            },
+            {
+                "dx": -81.939684967569,
+                "dy": -17.99454369233,
+                "name": "S-300PS 5P85D ln",
+                "skill": "High",
+                "heading": 0.17453292519943
+            },
+            {
+                "dx": -9.0858776818495,
+                "dy": 187.67713509151,
+                "name": "generator_5i57",
+                "skill": "High",
+                "heading": 1.5707963267949
+            },
+            {
+                "dx": 0.83760223048739,
+                "dy": 187.51811292395,
+                "name": "generator_5i57",
+                "skill": "High",
+                "heading": 1.5707963267949
+            },
+            {
+                "dx": -59.823818980018,
+                "dy": 168.63468487991,
+                "name": "ATZ-5",
+                "skill": "High",
+                "heading": 0
+            },
+            {
+                "dx": -59.823818980018,
+                "dy": 179.2654343833,
+                "name": "ATZ-5",
+                "skill": "High",
+                "heading": 0
+            },
+            {
+                "dx": 20.947679329896,
+                "dy": -62.811427216162,
+                "name": "GAZ-66",
+                "skill": "High",
+                "heading": 1.5707963267949
+            },
+            {
+                "dx": 66.751355714747,
+                "dy": 151.35592090525,
+                "name": "ATZ-60_Maz",
+                "skill": "High",
+                "heading": 3.9269908169872
+            },
+            {
+                "dx": 59.63926918729,
+                "dy": 158.46800743265,
+                "name": "ATZ-60_Maz",
+                "skill": "High",
+                "heading": 3.9269908169872
+            },
+            {
+                "dx": -16.327227612433,
+                "dy": -62.472874663305,
+                "name": "KAMAZ Truck",
+                "skill": "High",
+                "heading": 1.5707963267949
+            }
+        ]
+    }
 ]

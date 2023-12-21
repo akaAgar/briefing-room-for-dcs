@@ -1,11 +1,8 @@
 [
     {
-        "_id": "ce1c56264818d26bb2acd7afc2c6f9f785aeb03b",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.641Z",
-        "country": 34,
+        "_id": "658392cfa46b12b61769455e",
+        "country": "IRAN",
         "name": "SA-10 SAM Battery Iran",
-        "sys": true,
         "type": "vehicle",
         "units": [
             {
@@ -137,12 +134,87 @@
         ]
     },
     {
-        "_id": "cb54b555c50a771d198245d66b4a6b394bfb84be",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.684Z",
-        "country": 34,
+        "_id": "658392cfa46b12b617694560",
+        "country": "THIRDREICH",
+        "name": "Heavy Searchlight Battery(Asset Pack Required)",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "Flakscheinwerfer_37",
+                "skill": "Average",
+                "heading": 3.1499742277917
+            },
+            {
+                "dx": -55.169013568004,
+                "dy": 910.502561144,
+                "name": "Flakscheinwerfer_37",
+                "skill": "Average",
+                "heading": 3.1499742277917
+            },
+            {
+                "dx": 121.491980271,
+                "dy": 1829.633629736,
+                "name": "Flakscheinwerfer_37",
+                "skill": "Average",
+                "heading": 3.1499742277917
+            },
+            {
+                "dx": 223.382275356,
+                "dy": 3629.695509577,
+                "name": "Flakscheinwerfer_37",
+                "skill": "Average",
+                "heading": 3.1499742277917
+            },
+            {
+                "dx": 7.251346387,
+                "dy": 2709.595269109,
+                "name": "Flakscheinwerfer_37",
+                "skill": "Average",
+                "heading": 3.1499742277917
+            },
+            {
+                "dx": -5.301707023,
+                "dy": -5.5122860140036,
+                "name": "Maschinensatz_33",
+                "skill": "Average",
+                "heading": 2.3212879051525
+            },
+            {
+                "dx": -61.623256274004,
+                "dy": 913.32608708399,
+                "name": "Maschinensatz_33",
+                "skill": "Average",
+                "heading": 4.0491638646268
+            },
+            {
+                "dx": 115.857458682,
+                "dy": 1824.214015195,
+                "name": "Maschinensatz_33",
+                "skill": "Average",
+                "heading": 2.1816615649929
+            },
+            {
+                "dx": -1.654420430001,
+                "dy": 2715.338394437,
+                "name": "Maschinensatz_33",
+                "skill": "Average",
+                "heading": 3.996803987067
+            },
+            {
+                "dx": 216.422531548,
+                "dy": 3624.557481013,
+                "name": "Maschinensatz_33",
+                "skill": "Average",
+                "heading": 1.7104226669544
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b617694562",
+        "country": "IRAN",
         "name": "SA-2 SAM Battery Iran",
-        "sys": true,
         "type": "vehicle",
         "units": [
             {
@@ -211,86 +283,9 @@
         ]
     },
     {
-        "_id": "a9aee1e66c456ef23a7c2d149746223738509e50",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.686Z",
-        "country": 34,
-        "name": "SA-6 SAM Battery Iran",
-        "sys": true,
-        "type": "vehicle",
-        "units": [
-            {
-                "dx": 0,
-                "dy": 0,
-                "name": "Kub 1S91 str",
-                "skill": "High",
-                "heading": 0
-            },
-            {
-                "dx": 2.6563550499995,
-                "dy": 100.877549925,
-                "name": "Kub 2P25 ln",
-                "skill": "High",
-                "heading": 4.7123889803847
-            },
-            {
-                "dx": -3.9905785700103,
-                "dy": -102.252741427,
-                "name": "Kub 2P25 ln",
-                "skill": "High",
-                "heading": 1.553343034275
-            },
-            {
-                "dx": -105.82160159001,
-                "dy": 4.8958284879991,
-                "name": "Kub 2P25 ln",
-                "skill": "High",
-                "heading": 0.034906585039887
-            },
-            {
-                "dx": 99.169831179999,
-                "dy": -3.3463691979996,
-                "name": "Kub 2P25 ln",
-                "skill": "High",
-                "heading": 3.1415926535898
-            },
-            {
-                "dx": 129.64229952999,
-                "dy": -104.569064854,
-                "name": "BTR-80",
-                "skill": "High",
-                "heading": 2.3212879051525
-            },
-            {
-                "dx": 120.44134814,
-                "dy": -112.000602515,
-                "name": "BTR-80",
-                "skill": "High",
-                "heading": 2.4958208303519
-            },
-            {
-                "dx": 25.605996860002,
-                "dy": 20.019633917,
-                "name": "Land_Rover_101_FC",
-                "skill": "High",
-                "heading": 1.5882496193148
-            },
-            {
-                "dx": 42.172491459991,
-                "dy": -20.017069267,
-                "name": "Land_Rover_101_FC",
-                "skill": "High",
-                "heading": 0.05235987755983
-            }
-        ]
-    },
-    {
-        "_id": "fb9f13317c6bbe7c1a8a78737f92323d1c8c5e9e",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.689Z",
-        "country": 34,
+        "_id": "658392cfa46b12b617694566",
+        "country": "IRAN",
         "name": "Rapier SAM Battery Iran",
-        "sys": true,
         "type": "vehicle",
         "units": [
             {
@@ -373,128 +368,9 @@
         ]
     },
     {
-        "_id": "71acc68664120863b4e8119c261d39a20d77fa93",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.692Z",
-        "country": 0,
-        "name": "SA-2 SAM Battery",
-        "sys": true,
-        "type": "vehicle",
-        "units": [
-            {
-                "dx": 0,
-                "dy": 0,
-                "name": "SNR_75V",
-                "skill": "High",
-                "heading": 0.0038885041518015
-            },
-            {
-                "dx": 79.099061770001,
-                "dy": -47.096697396999,
-                "name": "S_75M_Volhov",
-                "skill": "High",
-                "heading": 5.4803338512622
-            },
-            {
-                "dx": 0.21820687000582,
-                "dy": 106.800532487,
-                "name": "S_75M_Volhov",
-                "skill": "High",
-                "heading": 1.535889741755
-            },
-            {
-                "dx": -1.8276942699886,
-                "dy": -98.244225791997,
-                "name": "S_75M_Volhov",
-                "skill": "High",
-                "heading": 4.6774823953448
-            },
-            {
-                "dx": -85.254996139993,
-                "dy": -46.869375048002,
-                "name": "S_75M_Volhov",
-                "skill": "High",
-                "heading": 3.8048177693476
-            },
-            {
-                "dx": -87.755541969993,
-                "dy": 57.926227576005,
-                "name": "S_75M_Volhov",
-                "skill": "High",
-                "heading": 2.3561944901923
-            },
-            {
-                "dx": 80.690318210007,
-                "dy": 54.289070001003,
-                "name": "S_75M_Volhov",
-                "skill": "High",
-                "heading": 0.92502450355699
-            },
-            {
-                "dx": 29.956672100001,
-                "dy": 44.636165102005,
-                "name": "ZIL-131 KUNG",
-                "skill": "High",
-                "heading": 4.1713369122664
-            },
-            {
-                "dx": 25.126949860001,
-                "dy": 47.889142120999,
-                "name": "ZIL-131 KUNG",
-                "skill": "High",
-                "heading": 4.1713369122664
-            },
-            {
-                "dx": -61.142498229994,
-                "dy": 165.65584994,
-                "name": "p-19 s-125 sr",
-                "skill": "High",
-                "heading": 2.2165681500328
-            },
-            {
-                "dx": -49.941045745189,
-                "dy": 164.38476072691,
-                "name": "Ural-4320 APA-5D",
-                "skill": "High",
-                "heading": 0.68067840827779
-            },
-            {
-                "dx": -118.28563314999,
-                "dy": -171.162132111,
-                "name": "ATMZ-5",
-                "skill": "High",
-                "heading": 0.87266462599716
-            },
-            {
-                "dx": -137.35942972999,
-                "dy": -151.259040031,
-                "name": "ATMZ-5",
-                "skill": "High",
-                "heading": 1.0297442586767
-            },
-            {
-                "dx": -168.04336334999,
-                "dy": -84.915399762001,
-                "name": "Ural-4320T",
-                "skill": "High",
-                "heading": 5.4279739737024
-            },
-            {
-                "dx": -151.45745328999,
-                "dy": -70.817376204999,
-                "name": "Ural-4320T",
-                "skill": "High",
-                "heading": 5.3407075111026
-            }
-        ]
-    },
-    {
-        "_id": "da9f5b7109fc7ba5ce1535060f98245568842350",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.695Z",
-        "country": 80,
+        "_id": "658392cfa46b12b61769456a",
+        "country": "CJTF_BLUE",
         "name": "NASAMS Bty CJTF Blue",
-        "sys": true,
         "type": "vehicle",
         "units": [
             {
@@ -549,12 +425,9 @@
         ]
     },
     {
-        "_id": "6660c6287b2aaf04130212b73cb93beb39b8cd4a",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.698Z",
-        "country": 2,
+        "_id": "658392cfa46b12b61769456c",
+        "country": "USA",
         "name": "Hawk SAM Battery reinforced",
-        "sys": true,
         "type": "vehicle",
         "units": [
             {
@@ -672,350 +545,298 @@
         ]
     },
     {
-        "_id": "2c475635855d65daf8f5c971d219bb8f0aeeaecc",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.702Z",
-        "country": 6,
-        "name": "Patriot site Germany",
-        "sys": true,
+        "_id": "658392cfa46b12b61769456e",
+        "country": "THIRDREICH",
+        "name": "FLAK36 BATTERY(Asset Pack Required)",
         "type": "vehicle",
         "units": [
             {
                 "dx": 0,
                 "dy": 0,
-                "name": "Patriot str",
-                "skill": "High",
-                "heading": 0
-            },
-            {
-                "dx": -19.60004352557,
-                "dy": 9.2644465620397,
-                "name": "Patriot EPP",
-                "skill": "High",
-                "heading": 0
-            },
-            {
-                "dx": -35.248201985043,
-                "dy": -0.8707412587828,
-                "name": "Patriot ECS",
-                "skill": "High",
-                "heading": 0
-            },
-            {
-                "dx": -52.779034586449,
-                "dy": -20.804649357509,
-                "name": "Patriot AMG",
-                "skill": "High",
-                "heading": 4.7123889803847
-            },
-            {
-                "dx": -35.511640445024,
-                "dy": 16.23725082296,
-                "name": "Patriot cp",
-                "skill": "High",
-                "heading": 0
-            },
-            {
-                "dx": 136.71587389408,
-                "dy": -115.36026572896,
-                "name": "Patriot ln",
-                "skill": "High",
-                "heading": 5.9341194567807
-            },
-            {
-                "dx": 233.22284679177,
-                "dy": -169.50440608741,
-                "name": "Patriot ln",
-                "skill": "High",
-                "heading": 5.9341194567807
-            },
-            {
-                "dx": 302.6260036147,
-                "dy": -119.57223135463,
-                "name": "Patriot ln",
-                "skill": "High",
-                "heading": 0
-            },
-            {
-                "dx": 173.84730488189,
-                "dy": -29.940192911235,
-                "name": "Patriot ln",
-                "skill": "High",
-                "heading": 0
-            },
-            {
-                "dx": 287.4638047662,
-                "dy": 8.9459295797569,
-                "name": "Patriot ln",
-                "skill": "High",
-                "heading": 0
-            },
-            {
-                "dx": 101.78340133674,
-                "dy": 47.897296695373,
-                "name": "Patriot ln",
-                "skill": "High",
-                "heading": 0.3490658503988
-            },
-            {
-                "dx": 187.95200156058,
-                "dy": 104.06103102239,
-                "name": "Patriot ln",
-                "skill": "High",
-                "heading": 0.3490658503988
-            },
-            {
-                "dx": -31.67915746152,
-                "dy": 171.21775733319,
-                "name": "Roland ADS",
-                "skill": "High",
-                "heading": 5.9341194567807
-            },
-            {
-                "dx": 46.357670822879,
-                "dy": -267.34404672193,
-                "name": "Roland ADS",
-                "skill": "High",
-                "heading": 0
-            },
-            {
-                "dx": -68.129344288536,
-                "dy": -146.06991632772,
-                "name": "Hummer",
-                "skill": "High",
-                "heading": 5.9341194567807
-            },
-            {
-                "dx": -81.188374167279,
-                "dy": -130.70164152705,
-                "name": "Hummer",
-                "skill": "High",
-                "heading": 5.9341194567807
-            },
-            {
-                "dx": -95.083442423507,
-                "dy": -114.72675693111,
-                "name": "M978 HEMTT Tanker",
-                "skill": "High",
-                "heading": 5.9341194567807
-            },
-            {
-                "dx": -55.049316178425,
-                "dy": -162.07189504143,
-                "name": "M 818",
-                "skill": "High",
-                "heading": 5.9341194567807
-            },
-            {
-                "dx": 139.89969071567,
-                "dy": -62.41809110227,
-                "name": "M 818",
-                "skill": "High",
-                "heading": 5.9341194567807
-            },
-            {
-                "dx": -26.639011004663,
-                "dy": 25.619801495515,
-                "name": "M 818",
-                "skill": "High",
-                "heading": 1.5707963267949
-            }
-        ]
-    },
-    {
-        "_id": "97acdf0f858204443dbfd6d5da81b6b1bc25f774",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.706Z",
-        "country": 81,
-        "name": "NASAMS Bty CJTF Red",
-        "sys": true,
-        "type": "vehicle",
-        "units": [
-            {
-                "dx": 0,
-                "dy": 0,
-                "name": "NASAMS_Command_Post",
-                "skill": "High",
-                "heading": 6.2765352930821
-            },
-            {
-                "dx": -14.042657040991,
-                "dy": 54.532318175887,
-                "name": "NASAMS_LN_B",
-                "skill": "High",
-                "heading": 2.3561944901923
-            },
-            {
-                "dx": 51.255698199675,
-                "dy": -5.1489742484409,
-                "name": "NASAMS_LN_B",
-                "skill": "High",
-                "heading": 6.2765352930821
-            },
-            {
-                "dx": 29.255535502103,
-                "dy": 55.936583879986,
-                "name": "NASAMS_LN_C",
-                "skill": "High",
-                "heading": 1.5707963267949
-            },
-            {
-                "dx": 21.063985561486,
-                "dy": 15.680967029068,
-                "name": "NASAMS_Radar_MPQ64F1",
-                "skill": "High",
-                "heading": 6.2765352930821
-            },
-            {
-                "dx": -18.499094251951,
-                "dy": -14.299637664692,
-                "name": "M 818",
-                "skill": "High",
-                "heading": 1.5707963267949
-            },
-            {
-                "dx": -7.042956299847,
-                "dy": -18.311686379602,
-                "name": "M 818",
-                "skill": "High",
-                "heading": 1.5707963267949
-            }
-        ]
-    },
-    {
-        "_id": "02bacfb4f13f659c7eaa38bd7bb553fd7bee267f",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.709Z",
-        "country": 66,
-        "name": "FLAK18 BATTERY",
-        "sys": true,
-        "type": "vehicle",
-        "units": [
-            {
-                "dx": 0,
-                "dy": 0,
-                "name": "flak18",
+                "name": "flak36",
                 "skill": "Average",
                 "heading": 6.261241987952
             },
             {
                 "dx": -3.8613997810025,
                 "dy": 54.05821418362,
-                "name": "flak18",
+                "name": "flak36",
                 "skill": "Average",
                 "heading": 6.261241987952
             },
             {
                 "dx": -50.700600202996,
                 "dy": -8.27913509211,
-                "name": "flak18",
+                "name": "flak36",
                 "skill": "Average",
                 "heading": 6.261241987952
             },
             {
                 "dx": -42.560838181002,
                 "dy": 64.09794160531,
-                "name": "flak18",
+                "name": "flak36",
+                "skill": "Average",
+                "heading": 6.261241987952
+            },
+            {
+                "dx": -33.367777767999,
+                "dy": 29.28042241213,
+                "name": "Maschinensatz_33",
+                "skill": "Average",
+                "heading": 1.0122909661567
+            },
+            {
+                "dx": -28.450048104001,
+                "dy": 27.57813137439,
+                "name": "KDO_Mod40",
+                "skill": "Average",
+                "heading": 6.261241987952
+            },
+            {
+                "dx": -29.500230491001,
+                "dy": -57.19329495632,
+                "name": "flak30",
+                "skill": "Average",
+                "heading": 6.1086523819802
+            },
+            {
+                "dx": -17.89838528799,
+                "dy": 101.66273935837,
+                "name": "flak30",
+                "skill": "Average",
+                "heading": 0.24434609527921
+            },
+            {
+                "dx": -3.4753199699917,
+                "dy": 4.18875688462,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 4.8345620280243
+            },
+            {
+                "dx": -3.8553021169937,
+                "dy": -2.36188694823,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.73303828583762
+            },
+            {
+                "dx": -6.2330054990016,
+                "dy": 0.52171077058,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -8.2519295599923,
+                "dy": 56.02220414941,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 5.3581608036226
+            },
+            {
+                "dx": -8.4816498419968,
+                "dy": 50.27919711185,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 1.2740903539559
+            },
+            {
+                "dx": -9.4464750240004,
+                "dy": 53.63311322178,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -49.64012726699,
+                "dy": 64.543434392,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -48.003567613996,
+                "dy": 68.21726866402,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 4.7123889803847
+            },
+            {
+                "dx": -48.646329914991,
+                "dy": 63.02168219606,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.27925268031909
+            },
+            {
+                "dx": -37.446054493994,
+                "dy": 179.07871687505,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 1.6406094968747
+            },
+            {
+                "dx": -34.098098925999,
+                "dy": 180.83865061347,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 6.1261056745001
+            },
+            {
+                "dx": -34.069527496991,
+                "dy": 177.6100791849,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -55.973774088998,
+                "dy": -8.41206963398,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -54.566215516999,
+                "dy": -5.52287046063,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 4.7647488579445
+            },
+            {
+                "dx": -54.640297546997,
+                "dy": -9.74554617552,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.71558499331767
+            },
+            {
+                "dx": -29.905138253001,
+                "dy": 27.50876939442,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -31.654749056994,
+                "dy": 28.96160410654,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 2.757620218151
+            },
+            {
+                "dx": -37.887497600997,
+                "dy": 182.31596632424,
+                "name": "Maschinensatz_33",
+                "skill": "Average",
+                "heading": 1.0122909661567
+            },
+            {
+                "dx": -32.443032618001,
+                "dy": 179.07871687505,
+                "name": "KDO_Mod40",
                 "skill": "Average",
                 "heading": 6.261241987952
             }
         ]
     },
     {
-        "_id": "7799193430e10a4ca182ed329be6364bd4f4b4bf",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.711Z",
-        "country": 74,
-        "name": "Rapier SAM Battery UAE",
-        "sys": true,
+        "_id": "658392cfa46b12b617694570",
+        "country": "THIRDREICH",
+        "name": "SKORPION Radar Site (3 Freya + 2 Wurz) Asset Pack Required",
         "type": "vehicle",
         "units": [
             {
                 "dx": 0,
                 "dy": 0,
-                "name": "rapier_fsa_blindfire_radar",
-                "skill": "High",
-                "heading": 0.013157135472537
+                "name": "FuMG-401",
+                "skill": "Average",
+                "heading": 5.9864793343406
             },
             {
-                "dx": -14.178539628003,
-                "dy": 10.201632172,
-                "name": "rapier_fsa_optical_tracker_unit",
-                "skill": "High",
-                "heading": 3.1590459461097
+                "dx": -7.3793248650036,
+                "dy": -23.1805481839,
+                "name": "FuMG-401",
+                "skill": "Average",
+                "heading": 5.9864793343406
             },
             {
-                "dx": -66.224154607,
-                "dy": 1.2103631389982,
-                "name": "rapier_fsa_launcher",
-                "skill": "High",
-                "heading": 0.017453292519943
+                "dx": 74.516779591999,
+                "dy": 8.1921116998,
+                "name": "FuSe-65",
+                "skill": "Average",
+                "heading": 5.846852994181
             },
             {
-                "dx": -50.662342819996,
-                "dy": 58.961975773003,
-                "name": "rapier_fsa_launcher",
-                "skill": "High",
-                "heading": 5.7595865315813
+                "dx": 54.092542421,
+                "dy": -23.5973066062,
+                "name": "FuSe-65",
+                "skill": "Average",
+                "heading": 5.218534463463
             },
             {
-                "dx": -54.812159296009,
-                "dy": -56.368340474997,
-                "name": "rapier_fsa_launcher",
-                "skill": "High",
-                "heading": 0.80285145591739
+                "dx": 35.778511590994,
+                "dy": 25.0546187574,
+                "name": "Blitz_36-6700A",
+                "skill": "Average",
+                "heading": 1.5707963267949
             },
             {
-                "dx": 49.050959151995,
-                "dy": 45.906522844001,
-                "name": "Land_Rover_101_FC",
-                "skill": "High",
-                "heading": 4.1364303272266
+                "dx": 31.824495852998,
+                "dy": 23.209411413,
+                "name": "Blitz_36-6700A",
+                "skill": "Average",
+                "heading": 1.9198621771938
             },
             {
-                "dx": 36.182838894005,
-                "dy": 58.774643101002,
-                "name": "Land_Rover_109_S3",
-                "skill": "High",
-                "heading": 4.1364303272266
+                "dx": 25.759663933,
+                "dy": 22.4199213453,
+                "name": "Kubelwagen_82",
+                "skill": "Average",
+                "heading": 4.625122517785
             },
             {
-                "dx": 32.038867964002,
-                "dy": 61.828095365003,
-                "name": "Land_Rover_101_FC",
-                "skill": "High",
-                "heading": 4.1364303272266
+                "dx": 70.96300977499,
+                "dy": 5.4170990932,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 4.625122517785
             },
             {
-                "dx": 22.442303705,
-                "dy": 69.897933492997,
-                "name": "Land_Rover_101_FC",
-                "skill": "High",
-                "heading": 4.1364303272266
+                "dx": 49.305866918003,
+                "dy": -23.497186621,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 3.07177948351
             },
             {
-                "dx": 52.758722615996,
-                "dy": 42.634966846002,
-                "name": "Land_Rover_109_S3",
-                "skill": "High",
-                "heading": 4.1364303272266
+                "dx": 79.581109937993,
+                "dy": 67.33336621335,
+                "name": "flak30",
+                "skill": "Average",
+                "heading": 5.4977871437821
             },
             {
-                "dx": 39.890602357991,
-                "dy": 55.066879637001,
-                "name": "Land_Rover_109_S3",
-                "skill": "High",
-                "heading": 4.1364303272266
+                "dx": 47.214605996996,
+                "dy": -72.46893013445,
+                "name": "flak30",
+                "skill": "Average",
+                "heading": 5.6723200689816
+            },
+            {
+                "dx": -12.742524121,
+                "dy": -47.39321530718,
+                "name": "FuMG-401",
+                "skill": "Average",
+                "heading": 5.9864793343406
             }
         ]
     },
     {
-        "_id": "5d850a7ed0203ec02cccf829749f4e93459fe57c",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.713Z",
-        "country": 4,
+        "_id": "658392cfa46b12b617694572",
+        "country": "UK",
         "name": "Rapier SAM Battery UK",
-        "sys": true,
         "type": "vehicle",
         "units": [
             {
@@ -1098,12 +919,9 @@
         ]
     },
     {
-        "_id": "8c12d1f48c02d2f5f829e16deaee57664c03a262",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.716Z",
-        "country": 10,
+        "_id": "658392cfa46b12b617694574",
+        "country": "THE_NETHERLANDS",
         "name": "Patriot site Netherlands",
-        "sys": true,
         "type": "vehicle",
         "units": [
             {
@@ -1256,12 +1074,9 @@
         ]
     },
     {
-        "_id": "53934b725953d347cd95d2d25dde7e803899ce88",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.718Z",
-        "country": 4,
+        "_id": "658392cfa46b12b617694576",
+        "country": "UK",
         "name": "BRITISH BOFORS AA BATTERY",
-        "sys": true,
         "type": "vehicle",
         "units": [
             {
@@ -1281,12 +1096,9 @@
         ]
     },
     {
-        "_id": "631a51571cf647379de535c3fcb8a49fe01958f7",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.721Z",
-        "country": 0,
+        "_id": "658392cfa46b12b617694578",
+        "country": "RUSSIA",
         "name": "SA-11 SAM Battery",
-        "sys": true,
         "type": "vehicle",
         "units": [
             {
@@ -1376,12 +1188,9 @@
         ]
     },
     {
-        "_id": "df363a7a8563022480914eab16412880c0278437",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.723Z",
-        "country": 2,
+        "_id": "658392cfa46b12b61769457a",
+        "country": "USA",
         "name": "Patriot site",
-        "sys": true,
         "type": "vehicle",
         "units": [
             {
@@ -1527,12 +1336,847 @@
         ]
     },
     {
-        "_id": "d696989499467cab21e1010f3c8fd16cff6a6e13",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.725Z",
-        "country": 34,
+        "_id": "658392cfa46b12b61769457c",
+        "country": "THIRDREICH",
+        "name": "BULLDOGGE Radar Site (4 Freya + 2 Wurz) Asset Pack Required",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "FuMG-401",
+                "skill": "Average",
+                "heading": 5.9864793343406
+            },
+            {
+                "dx": -7.3793248660004,
+                "dy": -23.1805481839,
+                "name": "FuMG-401",
+                "skill": "Average",
+                "heading": 5.9864793343406
+            },
+            {
+                "dx": 74.516779592001,
+                "dy": 8.1921116998,
+                "name": "FuSe-65",
+                "skill": "Average",
+                "heading": 5.846852994181
+            },
+            {
+                "dx": 54.09254242,
+                "dy": -23.5973066062,
+                "name": "FuSe-65",
+                "skill": "Average",
+                "heading": 5.1487212933833
+            },
+            {
+                "dx": 35.778511591001,
+                "dy": 25.0546187574,
+                "name": "Blitz_36-6700A",
+                "skill": "Average",
+                "heading": 1.5707963267949
+            },
+            {
+                "dx": 31.824495852999,
+                "dy": 23.209411413,
+                "name": "Blitz_36-6700A",
+                "skill": "Average",
+                "heading": 1.9198621771938
+            },
+            {
+                "dx": 25.759663932,
+                "dy": 22.4199213453,
+                "name": "Kubelwagen_82",
+                "skill": "Average",
+                "heading": 4.625122517785
+            },
+            {
+                "dx": 70.963009775,
+                "dy": 5.4170990932,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 4.625122517785
+            },
+            {
+                "dx": 49.305866918001,
+                "dy": -23.497186621,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 3.07177948351
+            },
+            {
+                "dx": 151.426856188,
+                "dy": 9.75449073604,
+                "name": "flak30",
+                "skill": "Average",
+                "heading": 5.4977871437821
+            },
+            {
+                "dx": 15.792985001,
+                "dy": -70.60393294657,
+                "name": "flak30",
+                "skill": "Average",
+                "heading": 5.6723200689816
+            },
+            {
+                "dx": -28.058570105,
+                "dy": -14.19430617642,
+                "name": "FuMG-401",
+                "skill": "Average",
+                "heading": 5.9864793343406
+            },
+            {
+                "dx": -21.473515473999,
+                "dy": 4.46334861258,
+                "name": "FuMG-401",
+                "skill": "Average",
+                "heading": 5.9864793343406
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b61769457e",
+        "country": "FINLAND",
+        "name": "NASAMS Bty FIN",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "NASAMS_Command_Post",
+                "skill": "High",
+                "heading": 6.2765352930821
+            },
+            {
+                "dx": -14.042657040991,
+                "dy": 54.532318175887,
+                "name": "NASAMS_LN_B",
+                "skill": "High",
+                "heading": 2.3561944901923
+            },
+            {
+                "dx": 51.255698199675,
+                "dy": -5.1489742484409,
+                "name": "NASAMS_LN_B",
+                "skill": "High",
+                "heading": 6.2765352930821
+            },
+            {
+                "dx": 29.255535502103,
+                "dy": 55.936583879986,
+                "name": "NASAMS_LN_C",
+                "skill": "High",
+                "heading": 1.5707963267949
+            },
+            {
+                "dx": 21.063985561486,
+                "dy": 15.680967029068,
+                "name": "NASAMS_Radar_MPQ64F1",
+                "skill": "High",
+                "heading": 6.2765352930821
+            },
+            {
+                "dx": -18.499094251951,
+                "dy": -14.299637664692,
+                "name": "M 818",
+                "skill": "High",
+                "heading": 1.5707963267949
+            },
+            {
+                "dx": -7.042956299847,
+                "dy": -18.311686379602,
+                "name": "M 818",
+                "skill": "High",
+                "heading": 1.5707963267949
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b617694580",
+        "country": "NORWAY",
+        "name": "NASAMS Bty NOR",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "NASAMS_Command_Post",
+                "skill": "High",
+                "heading": 6.2765352930821
+            },
+            {
+                "dx": -14.042657040991,
+                "dy": 54.532318175887,
+                "name": "NASAMS_LN_B",
+                "skill": "High",
+                "heading": 2.3561944901923
+            },
+            {
+                "dx": 51.255698199675,
+                "dy": -5.1489742484409,
+                "name": "NASAMS_LN_B",
+                "skill": "High",
+                "heading": 6.2765352930821
+            },
+            {
+                "dx": 29.255535502103,
+                "dy": 55.936583879986,
+                "name": "NASAMS_LN_C",
+                "skill": "High",
+                "heading": 1.5707963267949
+            },
+            {
+                "dx": 21.063985561486,
+                "dy": 15.680967029068,
+                "name": "NASAMS_Radar_MPQ64F1",
+                "skill": "High",
+                "heading": 6.2765352930821
+            },
+            {
+                "dx": -18.499094251951,
+                "dy": -14.299637664692,
+                "name": "M 818",
+                "skill": "High",
+                "heading": 1.5707963267949
+            },
+            {
+                "dx": -7.042956299847,
+                "dy": -18.311686379602,
+                "name": "M 818",
+                "skill": "High",
+                "heading": 1.5707963267949
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b617694582",
+        "country": "OMAN",
+        "name": "Rapier SAM Battery Oman",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "rapier_fsa_blindfire_radar",
+                "skill": "High",
+                "heading": 0.013157135472537
+            },
+            {
+                "dx": -14.178539628003,
+                "dy": 10.201632172,
+                "name": "rapier_fsa_optical_tracker_unit",
+                "skill": "High",
+                "heading": 3.1590459461097
+            },
+            {
+                "dx": -66.224154607,
+                "dy": 1.2103631389982,
+                "name": "rapier_fsa_launcher",
+                "skill": "High",
+                "heading": 0.017453292519943
+            },
+            {
+                "dx": -50.662342819996,
+                "dy": 58.961975773003,
+                "name": "rapier_fsa_launcher",
+                "skill": "High",
+                "heading": 5.7595865315813
+            },
+            {
+                "dx": -54.812159296009,
+                "dy": -56.368340474997,
+                "name": "rapier_fsa_launcher",
+                "skill": "High",
+                "heading": 0.80285145591739
+            },
+            {
+                "dx": 49.050959151995,
+                "dy": 45.906522844001,
+                "name": "Land_Rover_101_FC",
+                "skill": "High",
+                "heading": 4.1364303272266
+            },
+            {
+                "dx": 36.182838894005,
+                "dy": 58.774643101002,
+                "name": "Land_Rover_109_S3",
+                "skill": "High",
+                "heading": 4.1364303272266
+            },
+            {
+                "dx": 32.038867964002,
+                "dy": 61.828095365003,
+                "name": "Land_Rover_109_S3",
+                "skill": "High",
+                "heading": 4.1364303272266
+            },
+            {
+                "dx": 22.442303705,
+                "dy": 69.897933492997,
+                "name": "Land_Rover_109_S3",
+                "skill": "High",
+                "heading": 4.1364303272266
+            },
+            {
+                "dx": 52.758722615996,
+                "dy": 42.634966846002,
+                "name": "Land_Rover_109_S3",
+                "skill": "High",
+                "heading": 4.1364303272266
+            },
+            {
+                "dx": 39.890602357991,
+                "dy": 55.066879637001,
+                "name": "Land_Rover_101_FC",
+                "skill": "High",
+                "heading": 4.1364303272266
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b617694584",
+        "country": "INSURGENTS",
+        "name": "insurgents mortar crew with car",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "2B11 mortar",
+                "skill": "Average",
+                "heading": 2.3091703583438
+            },
+            {
+                "dx": -2.0000000010041,
+                "dy": -3.1428571399883,
+                "name": "Soldier AK",
+                "skill": "Average",
+                "heading": 2.3091703583438
+            },
+            {
+                "dx": 2.2857142851426,
+                "dy": 1.7142857114086,
+                "name": "Soldier AK",
+                "skill": "Average",
+                "heading": 2.3091703583438
+            },
+            {
+                "dx": 4.2857142849971,
+                "dy": -3.7142857200233,
+                "name": "VAZ Car",
+                "skill": "Average",
+                "heading": 2.3091703583438
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b617694586",
+        "country": "USA",
+        "name": "NASAMS Bty USA",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "NASAMS_Command_Post",
+                "skill": "High",
+                "heading": 6.2765352930821
+            },
+            {
+                "dx": -14.042657040991,
+                "dy": 54.532318175887,
+                "name": "NASAMS_LN_B",
+                "skill": "High",
+                "heading": 2.3561944901923
+            },
+            {
+                "dx": 51.255698199675,
+                "dy": -5.1489742484409,
+                "name": "NASAMS_LN_B",
+                "skill": "High",
+                "heading": 6.2765352930821
+            },
+            {
+                "dx": 29.255535502103,
+                "dy": 55.936583879986,
+                "name": "NASAMS_LN_C",
+                "skill": "High",
+                "heading": 1.5707963267949
+            },
+            {
+                "dx": 21.063985561486,
+                "dy": 15.680967029068,
+                "name": "NASAMS_Radar_MPQ64F1",
+                "skill": "High",
+                "heading": 6.2765352930821
+            },
+            {
+                "dx": -18.499094251951,
+                "dy": -14.299637664692,
+                "name": "M 818",
+                "skill": "High",
+                "heading": 1.5707963267949
+            },
+            {
+                "dx": -10.08824481722,
+                "dy": -14.611150606768,
+                "name": "M 818",
+                "skill": "High",
+                "heading": 1.5707963267949
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b61769458a",
+        "country": "RUSSIA",
+        "name": "SA-6 SAM Battery",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "Kub 1S91 str",
+                "skill": "High",
+                "heading": 0
+            },
+            {
+                "dx": 2.6563550499995,
+                "dy": 100.877549925,
+                "name": "Kub 2P25 ln",
+                "skill": "High",
+                "heading": 4.7123889803847
+            },
+            {
+                "dx": -3.9905785699957,
+                "dy": -102.252741427,
+                "name": "Kub 2P25 ln",
+                "skill": "High",
+                "heading": 1.553343034275
+            },
+            {
+                "dx": -105.82160159,
+                "dy": 4.8958284879991,
+                "name": "Kub 2P25 ln",
+                "skill": "High",
+                "heading": 0.034906585039887
+            },
+            {
+                "dx": 99.169831179999,
+                "dy": -3.3463691979996,
+                "name": "Kub 2P25 ln",
+                "skill": "High",
+                "heading": 3.1415926535898
+            },
+            {
+                "dx": 129.64229952999,
+                "dy": -104.569064854,
+                "name": "ATZ-10",
+                "skill": "High",
+                "heading": 2.3212879051525
+            },
+            {
+                "dx": 120.44134814,
+                "dy": -112.000602515,
+                "name": "ATZ-10",
+                "skill": "High",
+                "heading": 2.4958208303519
+            },
+            {
+                "dx": 25.605996860002,
+                "dy": 20.019633917,
+                "name": "ZiL-131 APA-80",
+                "skill": "High",
+                "heading": 1.5882496193148
+            },
+            {
+                "dx": 42.172491459991,
+                "dy": -20.017069267,
+                "name": "Ural-4320-31",
+                "skill": "High",
+                "heading": 0.05235987755983
+            },
+            {
+                "dx": 42.172491459991,
+                "dy": -28.818736966998,
+                "name": "Ural-4320-31",
+                "skill": "High",
+                "heading": 0.034906585039887
+            },
+            {
+                "dx": 22.038305519993,
+                "dy": 20.113878987999,
+                "name": "Ural-375 PBU",
+                "skill": "High",
+                "heading": 1.5882496193148
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b61769458c",
+        "country": "USA",
+        "name": "U.S. M1 37MM AA (Asset Pack Required)",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "M1_37mm",
+                "skill": "Average",
+                "heading": 2.8099800957109
+            },
+            {
+                "dx": 6.7532400479004,
+                "dy": 9.885626989002,
+                "name": "M1_37mm",
+                "skill": "Average",
+                "heading": 2.8099800957109
+            },
+            {
+                "dx": 4.2286874667006,
+                "dy": -0.645150585995,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 2.8099800957109
+            },
+            {
+                "dx": 1.0858303239002,
+                "dy": -3.8165791579959,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 1.7627825445143
+            },
+            {
+                "dx": 1.6429300043001,
+                "dy": 1.7665160239994,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 3.8397243543875
+            },
+            {
+                "dx": 8.4715014328003,
+                "dy": 11.423658882006,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 4.2411500823462
+            },
+            {
+                "dx": 10.5268586313,
+                "dy": 7.4725039700061,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 2.8099800957109
+            },
+            {
+                "dx": 7.8143585757007,
+                "dy": 6.252230310005,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 1.1693705988362
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b61769458e",
+        "country": "UK",
+        "name": "BRITISH QF 3.7 AA BATTERY(Asset Pack Required)",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "QF_37_AA",
+                "skill": "Average",
+                "heading": 2.6703537555513
+            },
+            {
+                "dx": 13.607460362899,
+                "dy": 28.877344632005,
+                "name": "QF_37_AA",
+                "skill": "Average",
+                "heading": 2.6703537555513
+            },
+            {
+                "dx": -4.5281188716999,
+                "dy": 60.529063107999,
+                "name": "QF_37_AA",
+                "skill": "Average",
+                "heading": 2.6703537555513
+            },
+            {
+                "dx": -33.0956548482,
+                "dy": -4.6937243139982,
+                "name": "QF_37_AA",
+                "skill": "Average",
+                "heading": 2.6703537555513
+            },
+            {
+                "dx": 4.3095708659994,
+                "dy": -1.5393791280003,
+                "name": "soldier_wwii_br_01",
+                "skill": "Average",
+                "heading": 2.6703537555513
+            },
+            {
+                "dx": 1.3848229982996,
+                "dy": -4.3079611809953,
+                "name": "soldier_wwii_br_01",
+                "skill": "Average",
+                "heading": 1.0821041362365
+            },
+            {
+                "dx": 4.4524280087999,
+                "dy": 0.77490658600436,
+                "name": "soldier_wwii_br_01",
+                "skill": "Average",
+                "heading": 3.3510321638291
+            },
+            {
+                "dx": 18.115528941799,
+                "dy": 26.519424645005,
+                "name": "soldier_wwii_br_01",
+                "skill": "Average",
+                "heading": 2.6703537555513
+            },
+            {
+                "dx": 16.088701087299,
+                "dy": 24.897962360999,
+                "name": "soldier_wwii_br_01",
+                "skill": "Average",
+                "heading": 1.9722220547536
+            },
+            {
+                "dx": 18.791138226599,
+                "dy": 30.437958497001,
+                "name": "soldier_wwii_br_01",
+                "skill": "Average",
+                "heading": 3.9618974020271
+            },
+            {
+                "dx": -0.75400686789999,
+                "dy": 59.235068175003,
+                "name": "soldier_wwii_br_01",
+                "skill": "Average",
+                "heading": 2.6703537555513
+            },
+            {
+                "dx": -2.7941689554,
+                "dy": 56.422117417998,
+                "name": "soldier_wwii_br_01",
+                "skill": "Average",
+                "heading": 1.2566370614359
+            },
+            {
+                "dx": -0.25942211950041,
+                "dy": 60.935203247005,
+                "name": "soldier_wwii_br_01",
+                "skill": "Average",
+                "heading": 3.1939525311496
+            },
+            {
+                "dx": -30.7943687957,
+                "dy": -8.4475860279999,
+                "name": "soldier_wwii_br_01",
+                "skill": "Average",
+                "heading": 2.0071286397935
+            },
+            {
+                "dx": -28.805107711501,
+                "dy": -7.2435595829957,
+                "name": "soldier_wwii_br_01",
+                "skill": "Average",
+                "heading": 2.6703537555513
+            },
+            {
+                "dx": -27.9675240971,
+                "dy": -4.2596679560011,
+                "name": "soldier_wwii_br_01",
+                "skill": "Average",
+                "heading": 3.7873644768277
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b617694590",
+        "country": "CJTF_RED",
+        "name": "NASAMS Bty CJTF Red",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "NASAMS_Command_Post",
+                "skill": "High",
+                "heading": 6.2765352930821
+            },
+            {
+                "dx": -14.042657040991,
+                "dy": 54.532318175887,
+                "name": "NASAMS_LN_B",
+                "skill": "High",
+                "heading": 2.3561944901923
+            },
+            {
+                "dx": 51.255698199675,
+                "dy": -5.1489742484409,
+                "name": "NASAMS_LN_B",
+                "skill": "High",
+                "heading": 6.2765352930821
+            },
+            {
+                "dx": 29.255535502103,
+                "dy": 55.936583879986,
+                "name": "NASAMS_LN_C",
+                "skill": "High",
+                "heading": 1.5707963267949
+            },
+            {
+                "dx": 21.063985561486,
+                "dy": 15.680967029068,
+                "name": "NASAMS_Radar_MPQ64F1",
+                "skill": "High",
+                "heading": 6.2765352930821
+            },
+            {
+                "dx": -18.499094251951,
+                "dy": -14.299637664692,
+                "name": "M 818",
+                "skill": "High",
+                "heading": 1.5707963267949
+            },
+            {
+                "dx": -7.042956299847,
+                "dy": -18.311686379602,
+                "name": "M 818",
+                "skill": "High",
+                "heading": 1.5707963267949
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b617694592",
+        "country": "IRAN",
+        "name": "SA-6 SAM Battery Iran",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "Kub 1S91 str",
+                "skill": "High",
+                "heading": 0
+            },
+            {
+                "dx": 2.6563550499995,
+                "dy": 100.877549925,
+                "name": "Kub 2P25 ln",
+                "skill": "High",
+                "heading": 4.7123889803847
+            },
+            {
+                "dx": -3.9905785700103,
+                "dy": -102.252741427,
+                "name": "Kub 2P25 ln",
+                "skill": "High",
+                "heading": 1.553343034275
+            },
+            {
+                "dx": -105.82160159001,
+                "dy": 4.8958284879991,
+                "name": "Kub 2P25 ln",
+                "skill": "High",
+                "heading": 0.034906585039887
+            },
+            {
+                "dx": 99.169831179999,
+                "dy": -3.3463691979996,
+                "name": "Kub 2P25 ln",
+                "skill": "High",
+                "heading": 3.1415926535898
+            },
+            {
+                "dx": 129.64229952999,
+                "dy": -104.569064854,
+                "name": "BTR-80",
+                "skill": "High",
+                "heading": 2.3212879051525
+            },
+            {
+                "dx": 120.44134814,
+                "dy": -112.000602515,
+                "name": "BTR-80",
+                "skill": "High",
+                "heading": 2.4958208303519
+            },
+            {
+                "dx": 25.605996860002,
+                "dy": 20.019633917,
+                "name": "Land_Rover_101_FC",
+                "skill": "High",
+                "heading": 1.5882496193148
+            },
+            {
+                "dx": 42.172491459991,
+                "dy": -20.017069267,
+                "name": "Land_Rover_101_FC",
+                "skill": "High",
+                "heading": 0.05235987755983
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b617694594",
+        "country": "USA",
+        "name": "U.S. M45 12.7mm AA (Asset Pack Required)",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "M45_Quadmount",
+                "skill": "Average",
+                "heading": 3.3335788713092
+            },
+            {
+                "dx": 1.1031021015997,
+                "dy": 9.1439193750048,
+                "name": "M45_Quadmount",
+                "skill": "Average",
+                "heading": 3.3335788713092
+            },
+            {
+                "dx": 1.8692516463998,
+                "dy": 10.718944250002,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 3.8746309394274
+            },
+            {
+                "dx": 2.2692516463994,
+                "dy": 7.9475156780027,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 2.2863813201126
+            },
+            {
+                "dx": 1.4121087893,
+                "dy": -1.1667700359976,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 2.5307274153918
+            },
+            {
+                "dx": 0.75496593219941,
+                "dy": 1.5475156780012,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 3.996803987067
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b617694598",
+        "country": "IRAN",
         "name": "Hawk SAM Battery Iran",
-        "sys": true,
         "type": "vehicle",
         "units": [
             {
@@ -1615,132 +2259,9 @@
         ]
     },
     {
-        "_id": "b49afdc74a83baadb26ac876c84d6cfa748dfa36",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.728Z",
-        "country": 30,
-        "name": "NASAMS Bty FIN",
-        "sys": true,
-        "type": "vehicle",
-        "units": [
-            {
-                "dx": 0,
-                "dy": 0,
-                "name": "NASAMS_Command_Post",
-                "skill": "High",
-                "heading": 6.2765352930821
-            },
-            {
-                "dx": -14.042657040991,
-                "dy": 54.532318175887,
-                "name": "NASAMS_LN_B",
-                "skill": "High",
-                "heading": 2.3561944901923
-            },
-            {
-                "dx": 51.255698199675,
-                "dy": -5.1489742484409,
-                "name": "NASAMS_LN_B",
-                "skill": "High",
-                "heading": 6.2765352930821
-            },
-            {
-                "dx": 29.255535502103,
-                "dy": 55.936583879986,
-                "name": "NASAMS_LN_C",
-                "skill": "High",
-                "heading": 1.5707963267949
-            },
-            {
-                "dx": 21.063985561486,
-                "dy": 15.680967029068,
-                "name": "NASAMS_Radar_MPQ64F1",
-                "skill": "High",
-                "heading": 6.2765352930821
-            },
-            {
-                "dx": -18.499094251951,
-                "dy": -14.299637664692,
-                "name": "M 818",
-                "skill": "High",
-                "heading": 1.5707963267949
-            },
-            {
-                "dx": -7.042956299847,
-                "dy": -18.311686379602,
-                "name": "M 818",
-                "skill": "High",
-                "heading": 1.5707963267949
-            }
-        ]
-    },
-    {
-        "_id": "ab6e737923eb17ec6f6c659724ba180d8969aa28",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.729Z",
-        "country": 12,
-        "name": "NASAMS Bty NOR",
-        "sys": true,
-        "type": "vehicle",
-        "units": [
-            {
-                "dx": 0,
-                "dy": 0,
-                "name": "NASAMS_Command_Post",
-                "skill": "High",
-                "heading": 6.2765352930821
-            },
-            {
-                "dx": -14.042657040991,
-                "dy": 54.532318175887,
-                "name": "NASAMS_LN_B",
-                "skill": "High",
-                "heading": 2.3561944901923
-            },
-            {
-                "dx": 51.255698199675,
-                "dy": -5.1489742484409,
-                "name": "NASAMS_LN_B",
-                "skill": "High",
-                "heading": 6.2765352930821
-            },
-            {
-                "dx": 29.255535502103,
-                "dy": 55.936583879986,
-                "name": "NASAMS_LN_C",
-                "skill": "High",
-                "heading": 1.5707963267949
-            },
-            {
-                "dx": 21.063985561486,
-                "dy": 15.680967029068,
-                "name": "NASAMS_Radar_MPQ64F1",
-                "skill": "High",
-                "heading": 6.2765352930821
-            },
-            {
-                "dx": -18.499094251951,
-                "dy": -14.299637664692,
-                "name": "M 818",
-                "skill": "High",
-                "heading": 1.5707963267949
-            },
-            {
-                "dx": -7.042956299847,
-                "dy": -18.311686379602,
-                "name": "M 818",
-                "skill": "High",
-                "heading": 1.5707963267949
-            }
-        ]
-    },
-    {
-        "_id": "0c81e2f0e8a98228cfc7bb4bdf2224cb50c362c4",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.731Z",
-        "country": 1,
+        "_id": "658392cfa46b12b61769459a",
+        "country": "UKRAINE",
         "name": "SA-10 SAM Battery Ukr",
-        "sys": true,
         "type": "vehicle",
         "units": [
             {
@@ -1872,79 +2393,794 @@
         ]
     },
     {
-        "_id": "7ce07f3393da5482897297617a7225a4dbe085f4",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.733Z",
-        "country": 34,
-        "name": "SA-11 SAM Battery Iran",
-        "sys": true,
+        "_id": "658392cfa46b12b61769459c",
+        "country": "THIRDREICH",
+        "name": "Light Searchlight Battery(Asset Pack Required)",
         "type": "vehicle",
         "units": [
             {
                 "dx": 0,
                 "dy": 0,
-                "name": "SA-11 Buk SR 9S18M1",
-                "skill": "High",
-                "heading": 0
+                "name": "Flakscheinwerfer_37",
+                "skill": "Average",
+                "heading": 3.1499742277917
             },
             {
-                "dx": 2.6563550499995,
-                "dy": 100.877549925,
-                "name": "SA-11 Buk LN 9A310M1",
-                "skill": "High",
-                "heading": 4.7123889803847
+                "dx": -55.169013568,
+                "dy": 910.502561144,
+                "name": "Flakscheinwerfer_37",
+                "skill": "Average",
+                "heading": 3.1499742277917
             },
             {
-                "dx": -3.9905785699957,
-                "dy": -102.252741427,
-                "name": "SA-11 Buk LN 9A310M1",
-                "skill": "High",
-                "heading": 1.553343034275
+                "dx": 121.49198027099,
+                "dy": 1829.633629736,
+                "name": "Flakscheinwerfer_37",
+                "skill": "Average",
+                "heading": 3.1499742277917
             },
             {
-                "dx": -105.82160159,
-                "dy": 4.8958284879991,
-                "name": "SA-11 Buk LN 9A310M1",
-                "skill": "High",
-                "heading": 0.034906585039887
+                "dx": -5.3017070229999,
+                "dy": -5.5122860139963,
+                "name": "Maschinensatz_33",
+                "skill": "Average",
+                "heading": 2.3212879051525
             },
             {
-                "dx": 99.169831179999,
-                "dy": -3.3463691979996,
-                "name": "SA-11 Buk LN 9A310M1",
-                "skill": "High",
-                "heading": 3.1415926535898
+                "dx": -61.623256274,
+                "dy": 913.326087084,
+                "name": "Maschinensatz_33",
+                "skill": "Average",
+                "heading": 4.0491638646268
             },
             {
-                "dx": 13.036696923475,
-                "dy": 16.072267943571,
-                "name": "SA-11 Buk CC 9S470M1",
-                "skill": "High",
-                "heading": 1.6231562043547
-            },
-            {
-                "dx": -89.094825591223,
-                "dy": 136.78724945918,
-                "name": "Land_Rover_109_S3",
-                "skill": "High",
-                "heading": 5.1661745859032
-            },
-            {
-                "dx": -98.372481539802,
-                "dy": 130.29289029518,
-                "name": "Land_Rover_109_S3",
-                "skill": "High",
-                "heading": 5.1661745859032
+                "dx": 115.857458682,
+                "dy": 1824.214015195,
+                "name": "Maschinensatz_33",
+                "skill": "Average",
+                "heading": 2.1816615649929
             }
         ]
     },
     {
-        "_id": "b469f16313dd6821c71b637c2312d8f25518e04a",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.735Z",
-        "country": 2,
+        "_id": "658392cfa46b12b61769459e",
+        "country": "UK",
+        "name": "BRITISH BOFORS AA BATTERY(Asset Pack Required)",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "bofors40",
+                "skill": "Average",
+                "heading": 5.6374134839417
+            },
+            {
+                "dx": 8.6139882987,
+                "dy": 8.0418525209971,
+                "name": "bofors40",
+                "skill": "Average",
+                "heading": 5.6374134839417
+            },
+            {
+                "dx": 7.8723011497004,
+                "dy": 6.245181858998,
+                "name": "soldier_wwii_br_01",
+                "skill": "Average",
+                "heading": 0.78539816339745
+            },
+            {
+                "dx": 11.8523462516,
+                "dy": 5.9836757349985,
+                "name": "soldier_wwii_br_01",
+                "skill": "Average",
+                "heading": 2.4783675378319
+            },
+            {
+                "dx": 11.6637297265,
+                "dy": 9.1634688630002,
+                "name": "soldier_wwii_br_01",
+                "skill": "Average",
+                "heading": 4.1189770347066
+            },
+            {
+                "dx": -0.78484170740012,
+                "dy": -2.1548181409962,
+                "name": "soldier_wwii_br_01",
+                "skill": "Average",
+                "heading": 0.95993108859688
+            },
+            {
+                "dx": 3.4523462515999,
+                "dy": -2.0448956929977,
+                "name": "soldier_wwii_br_01",
+                "skill": "Average",
+                "heading": 2.4783675378319
+            },
+            {
+                "dx": 2.9294440068998,
+                "dy": 0.64518185899942,
+                "name": "soldier_wwii_br_01",
+                "skill": "Average",
+                "heading": 3.9793506945471
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b6176945a0",
+        "country": "GERMANY",
+        "name": "Patriot site Germany",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "Patriot str",
+                "skill": "High",
+                "heading": 0
+            },
+            {
+                "dx": -19.60004352557,
+                "dy": 9.2644465620397,
+                "name": "Patriot EPP",
+                "skill": "High",
+                "heading": 0
+            },
+            {
+                "dx": -35.248201985043,
+                "dy": -0.8707412587828,
+                "name": "Patriot ECS",
+                "skill": "High",
+                "heading": 0
+            },
+            {
+                "dx": -52.779034586449,
+                "dy": -20.804649357509,
+                "name": "Patriot AMG",
+                "skill": "High",
+                "heading": 4.7123889803847
+            },
+            {
+                "dx": -35.511640445024,
+                "dy": 16.23725082296,
+                "name": "Patriot cp",
+                "skill": "High",
+                "heading": 0
+            },
+            {
+                "dx": 136.71587389408,
+                "dy": -115.36026572896,
+                "name": "Patriot ln",
+                "skill": "High",
+                "heading": 5.9341194567807
+            },
+            {
+                "dx": 233.22284679177,
+                "dy": -169.50440608741,
+                "name": "Patriot ln",
+                "skill": "High",
+                "heading": 5.9341194567807
+            },
+            {
+                "dx": 302.6260036147,
+                "dy": -119.57223135463,
+                "name": "Patriot ln",
+                "skill": "High",
+                "heading": 0
+            },
+            {
+                "dx": 173.84730488189,
+                "dy": -29.940192911235,
+                "name": "Patriot ln",
+                "skill": "High",
+                "heading": 0
+            },
+            {
+                "dx": 287.4638047662,
+                "dy": 8.9459295797569,
+                "name": "Patriot ln",
+                "skill": "High",
+                "heading": 0
+            },
+            {
+                "dx": 101.78340133674,
+                "dy": 47.897296695373,
+                "name": "Patriot ln",
+                "skill": "High",
+                "heading": 0.3490658503988
+            },
+            {
+                "dx": 187.95200156058,
+                "dy": 104.06103102239,
+                "name": "Patriot ln",
+                "skill": "High",
+                "heading": 0.3490658503988
+            },
+            {
+                "dx": -31.67915746152,
+                "dy": 171.21775733319,
+                "name": "Roland ADS",
+                "skill": "High",
+                "heading": 5.9341194567807
+            },
+            {
+                "dx": 46.357670822879,
+                "dy": -267.34404672193,
+                "name": "Roland ADS",
+                "skill": "High",
+                "heading": 0
+            },
+            {
+                "dx": -68.129344288536,
+                "dy": -146.06991632772,
+                "name": "Hummer",
+                "skill": "High",
+                "heading": 5.9341194567807
+            },
+            {
+                "dx": -81.188374167279,
+                "dy": -130.70164152705,
+                "name": "Hummer",
+                "skill": "High",
+                "heading": 5.9341194567807
+            },
+            {
+                "dx": -95.083442423507,
+                "dy": -114.72675693111,
+                "name": "M978 HEMTT Tanker",
+                "skill": "High",
+                "heading": 5.9341194567807
+            },
+            {
+                "dx": -55.049316178425,
+                "dy": -162.07189504143,
+                "name": "M 818",
+                "skill": "High",
+                "heading": 5.9341194567807
+            },
+            {
+                "dx": 139.89969071567,
+                "dy": -62.41809110227,
+                "name": "M 818",
+                "skill": "High",
+                "heading": 5.9341194567807
+            },
+            {
+                "dx": -26.639011004663,
+                "dy": 25.619801495515,
+                "name": "M 818",
+                "skill": "High",
+                "heading": 1.5707963267949
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b6176945a2",
+        "country": "THIRDREICH",
+        "name": "FLAK41 BATTERY(Asset Pack Required)",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "flak41",
+                "skill": "Average",
+                "heading": 6.261241987952
+            },
+            {
+                "dx": -3.8613997810025,
+                "dy": 54.05821418362,
+                "name": "flak41",
+                "skill": "Average",
+                "heading": 6.261241987952
+            },
+            {
+                "dx": -50.70060020301,
+                "dy": -8.27913509211,
+                "name": "flak41",
+                "skill": "Average",
+                "heading": 6.261241987952
+            },
+            {
+                "dx": -42.560838181002,
+                "dy": 64.09794160531,
+                "name": "flak41",
+                "skill": "Average",
+                "heading": 6.261241987952
+            },
+            {
+                "dx": -33.367777767999,
+                "dy": 29.28042241213,
+                "name": "Maschinensatz_33",
+                "skill": "Average",
+                "heading": 1.0122909661567
+            },
+            {
+                "dx": -28.450048104001,
+                "dy": 27.57813137439,
+                "name": "KDO_Mod40",
+                "skill": "Average",
+                "heading": 6.261241987952
+            },
+            {
+                "dx": -29.500230491001,
+                "dy": -57.19329495632,
+                "name": "flak30",
+                "skill": "Average",
+                "heading": 6.1086523819802
+            },
+            {
+                "dx": -17.898385288005,
+                "dy": 101.66273935837,
+                "name": "flak30",
+                "skill": "Average",
+                "heading": 0.24434609527921
+            },
+            {
+                "dx": -3.4753199700062,
+                "dy": 4.18875688462,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 4.8345620280243
+            },
+            {
+                "dx": -3.8553021170083,
+                "dy": -2.36188694823,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.73303828583762
+            },
+            {
+                "dx": -6.2330054990016,
+                "dy": 0.52171077058,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -8.2519295600068,
+                "dy": 56.02220414941,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 5.3581608036226
+            },
+            {
+                "dx": -8.4816498419968,
+                "dy": 50.27919711185,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 1.2740903539559
+            },
+            {
+                "dx": -9.4464750240004,
+                "dy": 53.63311322178,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -49.640127267005,
+                "dy": 64.543434392,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -48.003567614011,
+                "dy": 68.21726866402,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 4.7123889803847
+            },
+            {
+                "dx": -48.646329915005,
+                "dy": 63.02168219606,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.27925268031909
+            },
+            {
+                "dx": -37.446054494008,
+                "dy": 179.07871687505,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 1.6406094968747
+            },
+            {
+                "dx": -34.098098925999,
+                "dy": 180.83865061347,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 6.1261056745001
+            },
+            {
+                "dx": -34.069527497006,
+                "dy": 177.6100791849,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -55.973774088998,
+                "dy": -8.41206963398,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -54.566215516999,
+                "dy": -5.52287046063,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 4.7647488579445
+            },
+            {
+                "dx": -54.640297546997,
+                "dy": -9.74554617552,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.71558499331767
+            },
+            {
+                "dx": -29.905138253001,
+                "dy": 27.50876939442,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -31.654749057008,
+                "dy": 28.96160410654,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 2.757620218151
+            },
+            {
+                "dx": -37.887497600997,
+                "dy": 182.31596632424,
+                "name": "Maschinensatz_33",
+                "skill": "Average",
+                "heading": 1.0122909661567
+            },
+            {
+                "dx": -32.443032618001,
+                "dy": 179.07871687505,
+                "name": "KDO_Mod40",
+                "skill": "Average",
+                "heading": 6.261241987952
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b6176945a4",
+        "country": "THIRDREICH",
+        "name": "FLAK18 BATTERY",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "flak18",
+                "skill": "Average",
+                "heading": 6.261241987952
+            },
+            {
+                "dx": -3.8613997810025,
+                "dy": 54.05821418362,
+                "name": "flak18",
+                "skill": "Average",
+                "heading": 6.261241987952
+            },
+            {
+                "dx": -50.700600202996,
+                "dy": -8.27913509211,
+                "name": "flak18",
+                "skill": "Average",
+                "heading": 6.261241987952
+            },
+            {
+                "dx": -42.560838181002,
+                "dy": 64.09794160531,
+                "name": "flak18",
+                "skill": "Average",
+                "heading": 6.261241987952
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b6176945a6",
+        "country": "UNITED_ARAB_EMIRATES",
+        "name": "Rapier SAM Battery UAE",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "rapier_fsa_blindfire_radar",
+                "skill": "High",
+                "heading": 0.013157135472537
+            },
+            {
+                "dx": -14.178539628003,
+                "dy": 10.201632172,
+                "name": "rapier_fsa_optical_tracker_unit",
+                "skill": "High",
+                "heading": 3.1590459461097
+            },
+            {
+                "dx": -66.224154607,
+                "dy": 1.2103631389982,
+                "name": "rapier_fsa_launcher",
+                "skill": "High",
+                "heading": 0.017453292519943
+            },
+            {
+                "dx": -50.662342819996,
+                "dy": 58.961975773003,
+                "name": "rapier_fsa_launcher",
+                "skill": "High",
+                "heading": 5.7595865315813
+            },
+            {
+                "dx": -54.812159296009,
+                "dy": -56.368340474997,
+                "name": "rapier_fsa_launcher",
+                "skill": "High",
+                "heading": 0.80285145591739
+            },
+            {
+                "dx": 49.050959151995,
+                "dy": 45.906522844001,
+                "name": "Land_Rover_101_FC",
+                "skill": "High",
+                "heading": 4.1364303272266
+            },
+            {
+                "dx": 36.182838894005,
+                "dy": 58.774643101002,
+                "name": "Land_Rover_109_S3",
+                "skill": "High",
+                "heading": 4.1364303272266
+            },
+            {
+                "dx": 32.038867964002,
+                "dy": 61.828095365003,
+                "name": "Land_Rover_101_FC",
+                "skill": "High",
+                "heading": 4.1364303272266
+            },
+            {
+                "dx": 22.442303705,
+                "dy": 69.897933492997,
+                "name": "Land_Rover_101_FC",
+                "skill": "High",
+                "heading": 4.1364303272266
+            },
+            {
+                "dx": 52.758722615996,
+                "dy": 42.634966846002,
+                "name": "Land_Rover_109_S3",
+                "skill": "High",
+                "heading": 4.1364303272266
+            },
+            {
+                "dx": 39.890602357991,
+                "dy": 55.066879637001,
+                "name": "Land_Rover_109_S3",
+                "skill": "High",
+                "heading": 4.1364303272266
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b6176945a8",
+        "country": "RUSSIA",
+        "name": "SA-2 SAM Battery",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "SNR_75V",
+                "skill": "High",
+                "heading": 0.0038885041518015
+            },
+            {
+                "dx": 79.099061770001,
+                "dy": -47.096697396999,
+                "name": "S_75M_Volhov",
+                "skill": "High",
+                "heading": 5.4803338512622
+            },
+            {
+                "dx": 0.21820687000582,
+                "dy": 106.800532487,
+                "name": "S_75M_Volhov",
+                "skill": "High",
+                "heading": 1.535889741755
+            },
+            {
+                "dx": -1.8276942699886,
+                "dy": -98.244225791997,
+                "name": "S_75M_Volhov",
+                "skill": "High",
+                "heading": 4.6774823953448
+            },
+            {
+                "dx": -85.254996139993,
+                "dy": -46.869375048002,
+                "name": "S_75M_Volhov",
+                "skill": "High",
+                "heading": 3.8048177693476
+            },
+            {
+                "dx": -87.755541969993,
+                "dy": 57.926227576005,
+                "name": "S_75M_Volhov",
+                "skill": "High",
+                "heading": 2.3561944901923
+            },
+            {
+                "dx": 80.690318210007,
+                "dy": 54.289070001003,
+                "name": "S_75M_Volhov",
+                "skill": "High",
+                "heading": 0.92502450355699
+            },
+            {
+                "dx": 29.956672100001,
+                "dy": 44.636165102005,
+                "name": "ZIL-131 KUNG",
+                "skill": "High",
+                "heading": 4.1713369122664
+            },
+            {
+                "dx": 25.126949860001,
+                "dy": 47.889142120999,
+                "name": "ZIL-131 KUNG",
+                "skill": "High",
+                "heading": 4.1713369122664
+            },
+            {
+                "dx": -61.142498229994,
+                "dy": 165.65584994,
+                "name": "p-19 s-125 sr",
+                "skill": "High",
+                "heading": 2.2165681500328
+            },
+            {
+                "dx": -49.941045745189,
+                "dy": 164.38476072691,
+                "name": "Ural-4320 APA-5D",
+                "skill": "High",
+                "heading": 0.68067840827779
+            },
+            {
+                "dx": -118.28563314999,
+                "dy": -171.162132111,
+                "name": "ATMZ-5",
+                "skill": "High",
+                "heading": 0.87266462599716
+            },
+            {
+                "dx": -137.35942972999,
+                "dy": -151.259040031,
+                "name": "ATMZ-5",
+                "skill": "High",
+                "heading": 1.0297442586767
+            },
+            {
+                "dx": -168.04336334999,
+                "dy": -84.915399762001,
+                "name": "Ural-4320T",
+                "skill": "High",
+                "heading": 5.4279739737024
+            },
+            {
+                "dx": -151.45745328999,
+                "dy": -70.817376204999,
+                "name": "Ural-4320T",
+                "skill": "High",
+                "heading": 5.3407075111026
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b6176945aa",
+        "country": "RUSSIA",
+        "name": "SA-3 SAM Battery",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "snr s-125 tr",
+                "skill": "High",
+                "heading": 6.2641478001644
+            },
+            {
+                "dx": -54.395544479994,
+                "dy": 20.411364487998,
+                "name": "5p73 s-125 ln",
+                "skill": "High",
+                "heading": 3.1590459461097
+            },
+            {
+                "dx": -55.65154957,
+                "dy": -15.115636602,
+                "name": "5p73 s-125 ln",
+                "skill": "High",
+                "heading": 3.1590459461097
+            },
+            {
+                "dx": -26.404573919994,
+                "dy": 38.533723629997,
+                "name": "5p73 s-125 ln",
+                "skill": "High",
+                "heading": 3.1590459461097
+            },
+            {
+                "dx": -28.378296209994,
+                "dy": -36.108864519003,
+                "name": "5p73 s-125 ln",
+                "skill": "High",
+                "heading": 3.1590459461097
+            },
+            {
+                "dx": 33.753619990006,
+                "dy": -73.286112753005,
+                "name": "p-19 s-125 sr",
+                "skill": "High",
+                "heading": 6.2641478001644
+            },
+            {
+                "dx": -0.19719014999282,
+                "dy": 16.417675958997,
+                "name": "ZIL-131 KUNG",
+                "skill": "High",
+                "heading": 1.5707963267949
+            },
+            {
+                "dx": 6.6801895600074,
+                "dy": 13.694317328001,
+                "name": "ZiL-131 APA-80",
+                "skill": "High",
+                "heading": 3.1241393610699
+            },
+            {
+                "dx": 73.148097120007,
+                "dy": 24.177887045,
+                "name": "GAZ-66",
+                "skill": "High",
+                "heading": 1.6057029118348
+            },
+            {
+                "dx": 67.422903450002,
+                "dy": 24.220744209997,
+                "name": "GAZ-66",
+                "skill": "High",
+                "heading": 1.6406094968747
+            },
+            {
+                "dx": 62.727714700013,
+                "dy": 24.526952171,
+                "name": "GAZ-66",
+                "skill": "High",
+                "heading": 1.5707963267949
+            },
+            {
+                "dx": 39.803062310006,
+                "dy": -66.502451588,
+                "name": "ZiL-131 APA-80",
+                "skill": "High",
+                "heading": 1.6406094968747
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b6176945ae",
+        "country": "USA",
         "name": "Hawk SAM Battery",
-        "sys": true,
         "type": "vehicle",
         "units": [
             {
@@ -2027,139 +3263,94 @@
         ]
     },
     {
-        "_id": "7129a30a64376fd443bccaf36ac6ca742bbc684f",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.737Z",
-        "country": 73,
-        "name": "Rapier SAM Battery Oman",
-        "sys": true,
+        "_id": "658392cfa46b12b6176945b0",
+        "country": "THIRDREICH",
+        "name": "KRABBE Radar Site (2 Freya + 2 Wurz) Asset Pack Required",
         "type": "vehicle",
         "units": [
             {
                 "dx": 0,
                 "dy": 0,
-                "name": "rapier_fsa_blindfire_radar",
-                "skill": "High",
-                "heading": 0.013157135472537
+                "name": "FuMG-401",
+                "skill": "Average",
+                "heading": 5.9864793343406
             },
             {
-                "dx": -14.178539628003,
-                "dy": 10.201632172,
-                "name": "rapier_fsa_optical_tracker_unit",
-                "skill": "High",
-                "heading": 3.1590459461097
+                "dx": -7.3793248660004,
+                "dy": -23.180548183998,
+                "name": "FuMG-401",
+                "skill": "Average",
+                "heading": 5.9864793343406
             },
             {
-                "dx": -66.224154607,
-                "dy": 1.2103631389982,
-                "name": "rapier_fsa_launcher",
-                "skill": "High",
-                "heading": 0.017453292519943
+                "dx": 74.516779591999,
+                "dy": 8.192111700002,
+                "name": "FuSe-65",
+                "skill": "Average",
+                "heading": 5.8643062867009
             },
             {
-                "dx": -50.662342819996,
-                "dy": 58.961975773003,
-                "name": "rapier_fsa_launcher",
-                "skill": "High",
-                "heading": 5.7595865315813
+                "dx": 54.09254242,
+                "dy": -23.597306605996,
+                "name": "FuSe-65",
+                "skill": "Average",
+                "heading": 5.235987755983
             },
             {
-                "dx": -54.812159296009,
-                "dy": -56.368340474997,
-                "name": "rapier_fsa_launcher",
-                "skill": "High",
-                "heading": 0.80285145591739
+                "dx": 35.778511591001,
+                "dy": 25.054618758004,
+                "name": "Blitz_36-6700A",
+                "skill": "Average",
+                "heading": 1.5707963267949
             },
             {
-                "dx": 49.050959151995,
-                "dy": 45.906522844001,
-                "name": "Land_Rover_101_FC",
-                "skill": "High",
-                "heading": 4.1364303272266
+                "dx": 32.997888761001,
+                "dy": 17.996707823004,
+                "name": "Blitz_36-6700A",
+                "skill": "Average",
+                "heading": 2.1816615649929
             },
             {
-                "dx": 36.182838894005,
-                "dy": 58.774643101002,
-                "name": "Land_Rover_109_S3",
-                "skill": "High",
-                "heading": 4.1364303272266
+                "dx": 25.759663932,
+                "dy": 22.419921345005,
+                "name": "Kubelwagen_82",
+                "skill": "Average",
+                "heading": 4.625122517785
             },
             {
-                "dx": 32.038867964002,
-                "dy": 61.828095365003,
-                "name": "Land_Rover_109_S3",
-                "skill": "High",
-                "heading": 4.1364303272266
+                "dx": 70.963009775001,
+                "dy": 5.417099093007,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 4.625122517785
             },
             {
-                "dx": 22.442303705,
-                "dy": 69.897933492997,
-                "name": "Land_Rover_109_S3",
-                "skill": "High",
-                "heading": 4.1364303272266
+                "dx": 49.305866917999,
+                "dy": -23.497186620996,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 3.07177948351
             },
             {
-                "dx": 52.758722615996,
-                "dy": 42.634966846002,
-                "name": "Land_Rover_109_S3",
-                "skill": "High",
-                "heading": 4.1364303272266
+                "dx": 103.435993881,
+                "dy": 59.554057083005,
+                "name": "flak30",
+                "skill": "Average",
+                "heading": 5.4977871437821
             },
             {
-                "dx": 39.890602357991,
-                "dy": 55.066879637001,
-                "name": "Land_Rover_101_FC",
-                "skill": "High",
-                "heading": 4.1364303272266
+                "dx": 21.592699059001,
+                "dy": -137.566389169,
+                "name": "flak30",
+                "skill": "Average",
+                "heading": 5.6723200689816
             }
         ]
     },
     {
-        "_id": "a5540bc0a20a46491196181822956ac9dc27931e",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.739Z",
-        "country": 17,
-        "name": "insurgents mortar crew with car",
-        "sys": true,
-        "type": "vehicle",
-        "units": [
-            {
-                "dx": 0,
-                "dy": 0,
-                "name": "2B11 mortar",
-                "skill": "Average",
-                "heading": 2.3091703583438
-            },
-            {
-                "dx": -2.0000000010041,
-                "dy": -3.1428571399883,
-                "name": "Soldier AK",
-                "skill": "Average",
-                "heading": 2.3091703583438
-            },
-            {
-                "dx": 2.2857142851426,
-                "dy": 1.7142857114086,
-                "name": "Soldier AK",
-                "skill": "Average",
-                "heading": 2.3091703583438
-            },
-            {
-                "dx": 4.2857142849971,
-                "dy": -3.7142857200233,
-                "name": "VAZ Car",
-                "skill": "Average",
-                "heading": 2.3091703583438
-            }
-        ]
-    },
-    {
-        "_id": "df19433377066c37dea998ca34cb471b21dc4bb0",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.741Z",
-        "country": 15,
+        "_id": "658392cfa46b12b6176945b2",
+        "country": "ISRAEL",
         "name": "Patriot site Israel",
-        "sys": true,
         "type": "vehicle",
         "units": [
             {
@@ -2305,167 +3496,665 @@
         ]
     },
     {
-        "_id": "ada0aa4f6bdf6b84b82f294d6ce14a39418e3a3a",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.743Z",
-        "country": 2,
-        "name": "NASAMS Bty USA",
-        "sys": true,
+        "_id": "658392cfa46b12b6176945b6",
+        "country": "THIRDREICH",
+        "name": "V1 Launch Site (Asset Pack Required)",
         "type": "vehicle",
         "units": [
             {
                 "dx": 0,
                 "dy": 0,
-                "name": "NASAMS_Command_Post",
-                "skill": "High",
-                "heading": 6.2765352930821
+                "name": "v1_launcher",
+                "skill": "Average",
+                "heading": 5.3581608036226
             },
             {
-                "dx": -14.042657040991,
-                "dy": 54.532318175887,
-                "name": "NASAMS_LN_B",
-                "skill": "High",
-                "heading": 2.3561944901923
+                "dx": 1.6795945619961,
+                "dy": -48.200304352002,
+                "name": "fire_control",
+                "skill": "Average",
+                "heading": 2.1991148575129
             },
             {
-                "dx": 51.255698199675,
-                "dy": -5.1489742484409,
-                "name": "NASAMS_LN_B",
-                "skill": "High",
-                "heading": 6.2765352930821
+                "dx": -66.771726084,
+                "dy": 12.168495752994,
+                "name": "house2arm",
+                "skill": "Average",
+                "heading": 6.2133721370998
             },
             {
-                "dx": 29.255535502103,
-                "dy": 55.936583879986,
-                "name": "NASAMS_LN_C",
-                "skill": "High",
-                "heading": 1.5707963267949
+                "dx": 6.3387374529993,
+                "dy": -57.470705306005,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 4.310963252426
             },
             {
-                "dx": 21.063985561486,
-                "dy": 15.680967029068,
-                "name": "NASAMS_Radar_MPQ64F1",
-                "skill": "High",
-                "heading": 6.2765352930821
+                "dx": 4.3573629300008,
+                "dy": -59.676454501001,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 5.7595865315813
             },
             {
-                "dx": -18.499094251951,
-                "dy": -14.299637664692,
-                "name": "M 818",
-                "skill": "High",
-                "heading": 1.5707963267949
+                "dx": -31.861243734005,
+                "dy": 21.316645955994,
+                "name": "Blitz_36-6700A",
+                "skill": "Average",
+                "heading": 5.3581608036226
             },
             {
-                "dx": -10.08824481722,
-                "dy": -14.611150606768,
-                "name": "M 818",
-                "skill": "High",
-                "heading": 1.5707963267949
+                "dx": -36.523662436004,
+                "dy": 18.119558845996,
+                "name": "Blitz_36-6700A",
+                "skill": "Average",
+                "heading": 5.3232542185827
+            },
+            {
+                "dx": -40.653233286001,
+                "dy": 15.188895661995,
+                "name": "Kubelwagen_82",
+                "skill": "Average",
+                "heading": 5.3930673886625
+            },
+            {
+                "dx": -44.383168248001,
+                "dy": 11.325748737996,
+                "name": "Sd_Kfz_2",
+                "skill": "Average",
+                "heading": 3.3161255787892
+            },
+            {
+                "dx": 27.829577258999,
+                "dy": -5.9198491710049,
+                "name": "Sd_Kfz_251",
+                "skill": "Average",
+                "heading": 4.4331363000656
             }
         ]
     },
     {
-        "_id": "5a446c859e1368ac3f3a045c2804e672d8a5cb52",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.745Z",
-        "country": 0,
-        "name": "SA-3 SAM Battery",
-        "sys": true,
+        "_id": "658392cfa46b12b6176945b8",
+        "country": "USA",
+        "name": "U.S. QF 3.7 AA BATTERY(Asset Pack Required)",
         "type": "vehicle",
         "units": [
             {
                 "dx": 0,
                 "dy": 0,
-                "name": "snr s-125 tr",
-                "skill": "High",
-                "heading": 6.2641478001644
+                "name": "QF_37_AA",
+                "skill": "Average",
+                "heading": 2.6703537555513
             },
             {
-                "dx": -54.395544479994,
-                "dy": 20.411364487998,
-                "name": "5p73 s-125 ln",
-                "skill": "High",
-                "heading": 3.1590459461097
+                "dx": 13.6074603629,
+                "dy": 28.877344631997,
+                "name": "QF_37_AA",
+                "skill": "Average",
+                "heading": 2.6703537555513
             },
             {
-                "dx": -55.65154957,
-                "dy": -15.115636602,
-                "name": "5p73 s-125 ln",
-                "skill": "High",
-                "heading": 3.1590459461097
+                "dx": -4.5281188716999,
+                "dy": 60.529063107999,
+                "name": "QF_37_AA",
+                "skill": "Average",
+                "heading": 2.6703537555513
             },
             {
-                "dx": -26.404573919994,
-                "dy": 38.533723629997,
-                "name": "5p73 s-125 ln",
-                "skill": "High",
-                "heading": 3.1590459461097
+                "dx": -33.0956548482,
+                "dy": -4.6937243139982,
+                "name": "QF_37_AA",
+                "skill": "Average",
+                "heading": 2.6703537555513
             },
             {
-                "dx": -28.378296209994,
-                "dy": -36.108864519003,
-                "name": "5p73 s-125 ln",
-                "skill": "High",
-                "heading": 3.1590459461097
+                "dx": 4.5060433946001,
+                "dy": -1.3882627540006,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 2.6703537555513
             },
             {
-                "dx": 33.753619990006,
-                "dy": -73.286112753005,
-                "name": "p-19 s-125 sr",
-                "skill": "High",
-                "heading": 6.2641478001644
+                "dx": 1.7713701772,
+                "dy": -5.259102021002,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 1.0821041362365
             },
             {
-                "dx": -0.19719014999282,
-                "dy": 16.417675958997,
-                "name": "ZIL-131 KUNG",
-                "skill": "High",
-                "heading": 1.5707963267949
+                "dx": 4.6203291089005,
+                "dy": 0.4403086750026,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 3.3510321638291
             },
             {
-                "dx": 6.6801895600074,
-                "dy": 13.694317328001,
-                "name": "ZiL-131 APA-80",
-                "skill": "High",
-                "heading": 3.1241393610699
+                "dx": 18.1155289418,
+                "dy": 26.519424644997,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 2.6703537555513
             },
             {
-                "dx": 73.148097120007,
-                "dy": 24.177887045,
-                "name": "GAZ-66",
-                "skill": "High",
-                "heading": 1.6057029118348
+                "dx": 16.0887010873,
+                "dy": 24.897962360999,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 1.9722220547536
             },
             {
-                "dx": 67.422903450002,
-                "dy": 24.220744209997,
-                "name": "GAZ-66",
-                "skill": "High",
-                "heading": 1.6406094968747
+                "dx": 18.7911382266,
+                "dy": 30.437958497001,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 3.9618974020271
             },
             {
-                "dx": 62.727714700013,
-                "dy": 24.526952171,
-                "name": "GAZ-66",
-                "skill": "High",
-                "heading": 1.5707963267949
+                "dx": -0.75400686789999,
+                "dy": 59.235068175003,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 2.6703537555513
             },
             {
-                "dx": 39.803062310006,
-                "dy": -66.502451588,
-                "name": "ZiL-131 APA-80",
-                "skill": "High",
-                "heading": 1.6406094968747
+                "dx": -2.7941689554,
+                "dy": 56.422117417998,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 1.2566370614359
+            },
+            {
+                "dx": -0.2594221194995,
+                "dy": 60.935203246998,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 3.1939525311496
+            },
+            {
+                "dx": -30.794368795699,
+                "dy": -8.4475860279999,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 2.0071286397935
+            },
+            {
+                "dx": -28.8051077115,
+                "dy": -7.2435595829957,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 2.6703537555513
+            },
+            {
+                "dx": -27.9675240971,
+                "dy": -4.2596679560011,
+                "name": "soldier_wwii_us",
+                "skill": "Average",
+                "heading": 3.7873644768277
             }
         ]
     },
     {
-        "_id": "130bd2f959313bc077dd7f1130043458033ad7f6",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.747Z",
-        "country": 0,
+        "_id": "658392cfa46b12b6176945ba",
+        "country": "IRAN",
+        "name": "SA-11 SAM Battery Iran",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "SA-11 Buk SR 9S18M1",
+                "skill": "High",
+                "heading": 0
+            },
+            {
+                "dx": 2.6563550499995,
+                "dy": 100.877549925,
+                "name": "SA-11 Buk LN 9A310M1",
+                "skill": "High",
+                "heading": 4.7123889803847
+            },
+            {
+                "dx": -3.9905785699957,
+                "dy": -102.252741427,
+                "name": "SA-11 Buk LN 9A310M1",
+                "skill": "High",
+                "heading": 1.553343034275
+            },
+            {
+                "dx": -105.82160159,
+                "dy": 4.8958284879991,
+                "name": "SA-11 Buk LN 9A310M1",
+                "skill": "High",
+                "heading": 0.034906585039887
+            },
+            {
+                "dx": 99.169831179999,
+                "dy": -3.3463691979996,
+                "name": "SA-11 Buk LN 9A310M1",
+                "skill": "High",
+                "heading": 3.1415926535898
+            },
+            {
+                "dx": 13.036696923475,
+                "dy": 16.072267943571,
+                "name": "SA-11 Buk CC 9S470M1",
+                "skill": "High",
+                "heading": 1.6231562043547
+            },
+            {
+                "dx": -89.094825591223,
+                "dy": 136.78724945918,
+                "name": "Land_Rover_109_S3",
+                "skill": "High",
+                "heading": 5.1661745859032
+            },
+            {
+                "dx": -98.372481539802,
+                "dy": 130.29289029518,
+                "name": "Land_Rover_109_S3",
+                "skill": "High",
+                "heading": 5.1661745859032
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b6176945bc",
+        "country": "THIRDREICH",
+        "name": "FLAK37 BATTERY(Asset Pack Required)",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "flak37",
+                "skill": "Average",
+                "heading": 6.261241987952
+            },
+            {
+                "dx": -3.8613997810025,
+                "dy": 54.05821418362,
+                "name": "flak37",
+                "skill": "Average",
+                "heading": 6.261241987952
+            },
+            {
+                "dx": -50.700600202996,
+                "dy": -8.27913509211,
+                "name": "flak37",
+                "skill": "Average",
+                "heading": 6.261241987952
+            },
+            {
+                "dx": -42.560838181002,
+                "dy": 64.09794160531,
+                "name": "flak37",
+                "skill": "Average",
+                "heading": 6.261241987952
+            },
+            {
+                "dx": -33.367777767999,
+                "dy": 29.28042241213,
+                "name": "Maschinensatz_33",
+                "skill": "Average",
+                "heading": 1.0122909661567
+            },
+            {
+                "dx": -28.450048104001,
+                "dy": 27.57813137439,
+                "name": "KDO_Mod40",
+                "skill": "Average",
+                "heading": 6.261241987952
+            },
+            {
+                "dx": -29.500230491001,
+                "dy": -57.19329495632,
+                "name": "flak30",
+                "skill": "Average",
+                "heading": 6.1086523819802
+            },
+            {
+                "dx": -17.89838528799,
+                "dy": 101.66273935837,
+                "name": "flak30",
+                "skill": "Average",
+                "heading": 0.24434609527921
+            },
+            {
+                "dx": -3.4753199699917,
+                "dy": 4.18875688462,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 4.8345620280243
+            },
+            {
+                "dx": -3.8553021169937,
+                "dy": -2.36188694823,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.73303828583762
+            },
+            {
+                "dx": -6.2330054990016,
+                "dy": 0.52171077058,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -8.2519295599923,
+                "dy": 56.02220414941,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 5.3581608036226
+            },
+            {
+                "dx": -8.4816498419968,
+                "dy": 50.27919711185,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 1.2740903539559
+            },
+            {
+                "dx": -9.4464750240004,
+                "dy": 53.63311322178,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -49.64012726699,
+                "dy": 64.543434392,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -48.003567613996,
+                "dy": 68.21726866402,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 4.7123889803847
+            },
+            {
+                "dx": -48.646329914991,
+                "dy": 63.02168219606,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.27925268031909
+            },
+            {
+                "dx": -37.446054493994,
+                "dy": 179.07871687505,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 1.6406094968747
+            },
+            {
+                "dx": -34.098098925999,
+                "dy": 180.83865061347,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 6.1261056745001
+            },
+            {
+                "dx": -34.069527496991,
+                "dy": 177.6100791849,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -55.973774088998,
+                "dy": -8.41206963398,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -54.566215516999,
+                "dy": -5.52287046063,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 4.7647488579445
+            },
+            {
+                "dx": -54.640297546997,
+                "dy": -9.74554617552,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.71558499331767
+            },
+            {
+                "dx": -29.905138253001,
+                "dy": 27.50876939442,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -31.654749056994,
+                "dy": 28.96160410654,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 2.757620218151
+            },
+            {
+                "dx": -37.887497600997,
+                "dy": 182.31596632424,
+                "name": "Maschinensatz_33",
+                "skill": "Average",
+                "heading": 1.0122909661567
+            },
+            {
+                "dx": -32.443032618001,
+                "dy": 179.07871687505,
+                "name": "KDO_Mod40",
+                "skill": "Average",
+                "heading": 6.261241987952
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b6176945c0",
+        "country": "THIRDREICH",
+        "name": "FLAK18 BATTERY(Asset Pack Required)",
+        "type": "vehicle",
+        "units": [
+            {
+                "dx": 0,
+                "dy": 0,
+                "name": "flak18",
+                "skill": "Average",
+                "heading": 6.261241987952
+            },
+            {
+                "dx": -3.8613997810025,
+                "dy": 54.05821418362,
+                "name": "flak18",
+                "skill": "Average",
+                "heading": 6.261241987952
+            },
+            {
+                "dx": -50.70060020301,
+                "dy": -8.27913509211,
+                "name": "flak18",
+                "skill": "Average",
+                "heading": 6.261241987952
+            },
+            {
+                "dx": -42.560838181002,
+                "dy": 64.09794160531,
+                "name": "flak18",
+                "skill": "Average",
+                "heading": 6.261241987952
+            },
+            {
+                "dx": -33.367777767999,
+                "dy": 29.28042241213,
+                "name": "Maschinensatz_33",
+                "skill": "Average",
+                "heading": 1.0122909661567
+            },
+            {
+                "dx": -28.450048104001,
+                "dy": 27.57813137439,
+                "name": "KDO_Mod40",
+                "skill": "Average",
+                "heading": 6.261241987952
+            },
+            {
+                "dx": -29.500230491001,
+                "dy": -57.19329495632,
+                "name": "flak30",
+                "skill": "Average",
+                "heading": 6.1086523819802
+            },
+            {
+                "dx": -17.898385288005,
+                "dy": 101.66273935837,
+                "name": "flak30",
+                "skill": "Average",
+                "heading": 0.24434609527921
+            },
+            {
+                "dx": -3.4753199700062,
+                "dy": 4.18875688462,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 4.8345620280243
+            },
+            {
+                "dx": -3.8553021170083,
+                "dy": -2.36188694823,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.73303828583762
+            },
+            {
+                "dx": -6.2330054990016,
+                "dy": 0.52171077058,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -8.2519295600068,
+                "dy": 56.02220414941,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 5.3581608036226
+            },
+            {
+                "dx": -8.4816498420114,
+                "dy": 50.27919711185,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 1.2740903539559
+            },
+            {
+                "dx": -9.4464750240004,
+                "dy": 53.63311322178,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -49.640127267005,
+                "dy": 64.543434392,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -48.003567614011,
+                "dy": 68.21726866402,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 4.7123889803847
+            },
+            {
+                "dx": -48.646329915005,
+                "dy": 63.02168219606,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.27925268031909
+            },
+            {
+                "dx": -34.743792244248,
+                "dy": 175.18588809242,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 1.6406094968747
+            },
+            {
+                "dx": -34.098098925999,
+                "dy": 180.83865061347,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 6.1261056745001
+            },
+            {
+                "dx": -34.069527497006,
+                "dy": 177.6100791849,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -55.973774088998,
+                "dy": -8.41206963398,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -54.566215516999,
+                "dy": -5.52287046063,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 4.7647488579445
+            },
+            {
+                "dx": -54.640297546997,
+                "dy": -9.74554617552,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.71558499331767
+            },
+            {
+                "dx": -29.905138253001,
+                "dy": 27.50876939442,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 0.10471975511966
+            },
+            {
+                "dx": -31.654749057008,
+                "dy": 28.96160410654,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 2.757620218151
+            },
+            {
+                "dx": -37.887497600997,
+                "dy": 182.31596632424,
+                "name": "Maschinensatz_33",
+                "skill": "Average",
+                "heading": 1.0122909661567
+            },
+            {
+                "dx": -32.443032618001,
+                "dy": 179.07871687505,
+                "name": "KDO_Mod40",
+                "skill": "Average",
+                "heading": 6.261241987952
+            }
+        ]
+    },
+    {
+        "_id": "658392cfa46b12b6176945c8",
+        "country": "RUSSIA",
         "name": "SA-10 SAM Battery",
-        "sys": true,
         "type": "vehicle",
         "units": [
             {
@@ -2597,90 +4286,66 @@
         ]
     },
     {
-        "_id": "eb2e904be1bf5ea001e692587ac70fbdbd5e4f4c",
-        "@dcsversion": "2.8.4.39313",
-        "@created": "2023-05-01T07:17:45.749Z",
-        "country": 0,
-        "name": "SA-6 SAM Battery",
-        "sys": true,
+        "_id": "658392cfa46b12b6176945ca",
+        "country": "THIRDREICH",
+        "name": "PFERD Radar Site (1 Freya) Asset Pack Required",
         "type": "vehicle",
         "units": [
             {
                 "dx": 0,
                 "dy": 0,
-                "name": "Kub 1S91 str",
-                "skill": "High",
-                "heading": 0
+                "name": "FuMG-401",
+                "skill": "Average",
+                "heading": 5.9864793343406
             },
             {
-                "dx": 2.6563550499995,
-                "dy": 100.877549925,
-                "name": "Kub 2P25 ln",
-                "skill": "High",
-                "heading": 4.7123889803847
+                "dx": 7.0556493440017,
+                "dy": -2.9420315649986,
+                "name": "Blitz_36-6700A",
+                "skill": "Average",
+                "heading": 1.5707963267949
             },
             {
-                "dx": -3.9905785699957,
-                "dy": -102.252741427,
-                "name": "Kub 2P25 ln",
-                "skill": "High",
-                "heading": 1.553343034275
+                "dx": -9.9946436050013,
+                "dy": 2.4873913289994,
+                "name": "Blitz_36-6700A",
+                "skill": "Average",
+                "heading": 1.9198621771938
             },
             {
-                "dx": -105.82160159,
-                "dy": 4.8958284879991,
-                "name": "Kub 2P25 ln",
-                "skill": "High",
-                "heading": 0.034906585039887
+                "dx": -14.566789199998,
+                "dy": 1.9158731300049,
+                "name": "Kubelwagen_82",
+                "skill": "Average",
+                "heading": 4.625122517785
             },
             {
-                "dx": 99.169831179999,
-                "dy": -3.3463691979996,
-                "name": "Kub 2P25 ln",
-                "skill": "High",
-                "heading": 3.1415926535898
+                "dx": -1.2936078290004,
+                "dy": -5.1820244209957,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 4.625122517785
             },
             {
-                "dx": 129.64229952999,
-                "dy": -104.569064854,
-                "name": "ATZ-10",
-                "skill": "High",
-                "heading": 2.3212879051525
+                "dx": -16.186090764997,
+                "dy": 1.7253670630016,
+                "name": "soldier_mauser98",
+                "skill": "Average",
+                "heading": 3.07177948351
             },
             {
-                "dx": 120.44134814,
-                "dy": -112.000602515,
-                "name": "ATZ-10",
-                "skill": "High",
-                "heading": 2.4958208303519
+                "dx": -24.615077899995,
+                "dy": -9.1804265229948,
+                "name": "flak30",
+                "skill": "Average",
+                "heading": 5.7944931166212
             },
             {
-                "dx": 25.605996860002,
-                "dy": 20.019633917,
-                "name": "ZiL-131 APA-80",
-                "skill": "High",
-                "heading": 1.5882496193148
-            },
-            {
-                "dx": 42.172491459991,
-                "dy": -20.017069267,
-                "name": "Ural-4320-31",
-                "skill": "High",
-                "heading": 0.05235987755983
-            },
-            {
-                "dx": 42.172491459991,
-                "dy": -28.818736966998,
-                "name": "Ural-4320-31",
-                "skill": "High",
-                "heading": 0.034906585039887
-            },
-            {
-                "dx": 22.038305519993,
-                "dy": 20.113878987999,
-                "name": "Ural-375 PBU",
-                "skill": "High",
-                "heading": 1.5882496193148
+                "dx": 23.711035726999,
+                "dy": 10.633379425002,
+                "name": "flak30",
+                "skill": "Average",
+                "heading": 4.9043751981041
             }
         ]
     }

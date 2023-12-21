@@ -80,7 +80,9 @@
     {
         "type": "Hawk SAM Battery Iran",
         "family": "VehicleSAMMedium",
-        "extraOperators": {},
+        "extraOperators": {
+            "Iran": []
+        },
         "operational": [
             1960,
             2020
@@ -189,7 +191,9 @@
     {
         "type": "NASAMS Bty FIN",
         "family": "VehicleSAMMedium",
-        "extraOperators": {},
+        "extraOperators": {
+            "Finland": []
+        },
         "operational": [
             2000,
             2020
@@ -198,7 +202,9 @@
     {
         "type": "NASAMS Bty NOR",
         "family": "VehicleSAMMedium",
-        "extraOperators": {},
+        "extraOperators": {
+            "Norway": []
+        },
         "operational": [
             2000,
             2020
@@ -207,7 +213,9 @@
     {
         "type": "NASAMS Bty USA",
         "family": "VehicleSAMMedium",
-        "extraOperators": {},
+        "extraOperators": {
+            "USA": []
+        },
         "operational": [
             2000,
             2020
@@ -216,7 +224,9 @@
     {
         "type": "Patriot site Germany",
         "family": "VehicleSAMLong",
-        "extraOperators": {},
+        "extraOperators": {
+            "Germany": []
+        },
         "operational": [
             1980,
             2020
@@ -225,7 +235,9 @@
     {
         "type": "Patriot site Israel",
         "family": "VehicleSAMLong",
-        "extraOperators": {},
+        "extraOperators": {
+            "Israel": []
+        },
         "operational": [
             1980,
             2020
@@ -234,7 +246,9 @@
     {
         "type": "Patriot site Netherlands",
         "family": "VehicleSAMLong",
-        "extraOperators": {},
+        "extraOperators": {
+            "TheNetherlands": []
+        },
         "operational": [
             1980,
             2020
@@ -260,7 +274,9 @@
     {
         "type": "Rapier SAM Battery Iran",
         "family": "VehicleSAMMedium",
-        "extraOperators": {},
+        "extraOperators": {
+            "Iran": []
+        },
         "operational": [
             1970,
             2020
@@ -269,7 +285,9 @@
     {
         "type": "Rapier SAM Battery Oman",
         "family": "VehicleSAMMedium",
-        "extraOperators": {},
+        "extraOperators": {
+            "Oman": []
+        },
         "operational": [
             1970,
             2020
@@ -278,7 +296,9 @@
     {
         "type": "Rapier SAM Battery UAE",
         "family": "VehicleSAMMedium",
-        "extraOperators": {},
+        "extraOperators": {
+            "UnitedArabEmirates": []
+        },
         "operational": [
             1970,
             2020
@@ -306,7 +326,9 @@
     {
         "type": "SA-10 SAM Battery Iran",
         "family": "VehicleSAMLong",
-        "extraOperators": {},
+        "extraOperators": {
+            "Iran": []
+        },
         "operational": [
             1970,
             2020
@@ -315,7 +337,9 @@
     {
         "type": "SA-10 SAM Battery Ukr",
         "family": "VehicleSAMLong",
-        "extraOperators": {},
+        "extraOperators": {
+            "Ukraine": []
+        },
         "operational": [
             1970,
             2020
@@ -346,7 +370,9 @@
     {
         "type": "SA-11 SAM Battery Iran",
         "family": "VehicleSAMMedium",
-        "extraOperators": {},
+        "extraOperators": {
+            "Iran": []
+        },
         "operational": [
             1980,
             2020
@@ -372,7 +398,9 @@
     {
         "type": "SA-2 SAM Battery Iran",
         "family": "VehicleSAMMedium",
-        "extraOperators": {},
+        "extraOperators": {
+            "Iran": []
+        },
         "operational": [
             1960,
             2020
@@ -453,7 +481,9 @@
     {
         "type": "SA-6 SAM Battery Iran",
         "family": "VehicleSAMMedium",
-        "extraOperators": {},
+        "extraOperators": {
+            "Iran": []
+        },
         "operational": [
             1960,
             2020
@@ -494,10 +524,322 @@
     {
         "type": "insurgents mortar crew with car",
         "family": "VehicleArtillery",
-        "extraOperators": {},
+        "extraOperators": {
+            "Insurgents": [],
+            "Algeria": [],
+            "Bulgaria": [],
+            "Cuba": [],
+            "CzechRepublic": [],
+            "Egypt": [],
+            "Ethiopia": [],
+            "GDR": [],
+            "Hungary": [],
+            "India": [],
+            "Iraq": [],
+            "Kazakhstan": [],
+            "Libya": [],
+            "Romania": [],
+            "Russia": [],
+            "Serbia": [],
+            "Slovakia": [],
+            "Syria": [],
+            "Ukraine": [],
+            "Vietnam": [],
+            "Yemen": [],
+            "Yugoslavia": []
+        },
         "operational": [
             1980,
             2020
         ]
-    }
+    },
+    {
+        "type": "U.S. M1 37MM AA (Asset Pack Required)",
+        "family": "VehicleAAAStatic",
+        "extraOperators": {
+            "USA": [],
+            "USAFAggressors": [],
+            "UnitedNationsPeacekeepers": []
+        },
+        "operational": [
+            1940,
+            1940
+        ]
+    },
+    {
+        "type": "BRITISH QF 3.7 AA BATTERY(Asset Pack Required)",
+        "family": "VehicleAAAStatic",
+        "extraOperators": {
+            "UK": [],
+            "USAFAggressors": [],
+            "Canada": [],
+            "Belgium": [],
+            "Israel": [],
+            "Australia": [],
+            "India": [],
+            "Pakistan": [],
+            "Poland": [],
+            "UnitedNationsPeacekeepers": []
+        },
+        "operational": [
+            1940,
+            1940
+        ]
+    },
+    {
+        "type": "U.S. QF 3.7 AA BATTERY(Asset Pack Required)",
+        "family": "VehicleAAAStatic",
+        "extraOperators": {
+            "UK": [],
+            "USAFAggressors": [],
+            "Canada": [],
+            "Belgium": [],
+            "Israel": [],
+            "Australia": [],
+            "India": [],
+            "Pakistan": [],
+            "Poland": [],
+            "UnitedNationsPeacekeepers": []
+        },
+        "operational": [
+            1940,
+            1940
+        ]
+    },
+    {
+        "type": "U.S. M45 12.7mm AA (Asset Pack Required)",
+        "family": "VehicleAAAStatic",
+        "extraOperators": {
+            "USA": [],
+            "UK": [],
+            "France": [],
+            "USAFAggressors": [],
+            "Canada": [],
+            "UnitedNationsPeacekeepers": [],
+            "Ecuador": []
+        },
+        "operational": [
+            1940,
+            1940
+        ]
+    },
+    {
+        "type": "Light Searchlight Battery(Asset Pack Required)",
+        "family": "VehicleEWR",
+        "extraOperators": {
+            "Germany": [
+            ],
+            "Thirdreich": [
+            ]
+        },
+        "operational": [
+            1940,
+            1940
+        ]
+    },
+    {
+        "type": "Heavy Searchlight Battery(Asset Pack Required)",
+        "family": "VehicleEWR",
+        "extraOperators": {
+            "Germany": [
+            ],
+            "Thirdreich": [
+            ]
+        },
+        "operational": [
+            1940,
+            1940
+        ]
+    },
+    {
+        "type": "BRITISH BOFORS AA BATTERY(Asset Pack Required)",
+        "family": "VehicleAAAStatic",
+        "extraOperators": {
+            "Algeria": [],
+            "Argentina": [],
+            "Australia": [],
+            "Austria": [],
+            "Bahrain": [],
+            "Belgium": [],
+            "Brazil": [],
+            "Canada": [],
+            "Chile": [],
+            "China": [],
+            "Croatia": [],
+            "Cyprus": [],
+            "CzechRepublic": [],
+            "Denmark": [],
+            "Egypt": [],
+            "Finland": [],
+            "France": [],
+            "Germany": [],
+            "Greece": [],
+            "India": [],
+            "Indonesia": [],
+            "Iraq": [],
+            "Israel": [],
+            "Italy": [],
+            "Japan": [],
+            "Jordan": [],
+            "Lebanon": [],
+            "Libya": [],
+            "Malaysia": [],
+            "Mexico": [],
+            "Norway": [],
+            "Oman": [],
+            "Pakistan": [],
+            "Philippines": [],
+            "Poland": [],
+            "Portugal": [],
+            "Qatar": [],
+            "Russia": [],
+            "SaudiArabia": [],
+            "Serbia": [],
+            "SouthAfrica": [],
+            "SouthKorea": [],
+            "Spain": [],
+            "Sudan": [],
+            "Sweden": [],
+            "Switzerland": [],
+            "Thailand": [],
+            "TheNetherlands": [],
+            "Turkey": [],
+            "UK": [],
+            "USA": [],
+            "UnitedArabEmirates": [],
+            "Venezuela": [],
+            "Vietnam": [],
+            "Yemen": []
+        },
+        "operational": [
+            1940,
+            2020
+        ]
+    },
+    {
+        "type": "FLAK41 BATTERY(Asset Pack Required)",
+        "family": "VehicleAAAStatic",
+        "extraOperators": {
+            "Germany": [
+            ],
+            "Thirdreich": [
+            ]
+        },
+        "operational": [
+            1940,
+            1940
+        ]
+    },
+    {
+        "type": "FLAK36 BATTERY(Asset Pack Required)",
+        "family": "VehicleAAAStatic",
+        "extraOperators": {
+            "Germany": [
+            ],
+            "Thirdreich": [
+            ]
+        },
+        "operational": [
+            1940,
+            1940
+        ]
+    },
+    {
+        "type": "FLAK37 BATTERY(Asset Pack Required)",
+        "family": "VehicleAAAStatic",
+        "extraOperators": {
+            "Germany": [
+            ],
+            "Thirdreich": [
+            ]
+        },
+        "operational": [
+            1940,
+            1940
+        ]
+    },
+    {
+        "type": "FLAK18 BATTERY(Asset Pack Required)",
+        "family": "VehicleAAAStatic",
+        "extraOperators": {
+            "Germany": [
+            ],
+            "Thirdreich": [
+            ]
+        },
+        "operational": [
+            1940,
+            1940
+        ]
+    },
+    {
+        "type": "KRABBE Radar Site (2 Freya + 2 Wurz) Asset Pack Required",
+        "family": "VehicleEWR",
+        "extraOperators": {
+            "Germany": [
+            ],
+            "Thirdreich": [
+            ]
+        },
+        "operational": [
+            1940,
+            1940
+        ]
+    },
+    {
+        "type": "SKORPION Radar Site (3 Freya + 2 Wurz) Asset Pack Required",
+        "family": "VehicleEWR",
+        "extraOperators": {
+            "Germany": [
+            ],
+            "Thirdreich": [
+            ]
+        },
+        "operational": [
+            1940,
+            1940
+        ]
+    },
+    {
+        "type": "BULLDOGGE Radar Site (4 Freya + 2 Wurz) Asset Pack Required",
+        "family": "VehicleEWR",
+        "extraOperators": {
+            "Germany": [
+            ],
+            "Thirdreich": [
+            ]
+        },
+        "operational": [
+            1940,
+            1940
+        ]
+    },
+    {
+        "type": "PFERD Radar Site (1 Freya) Asset Pack Required",
+        "family": "VehicleEWR",
+        "extraOperators": {
+            "Germany": [
+            ],
+            "Thirdreich": [
+            ]
+        },
+        "operational": [
+            1940,
+            1940
+        ]
+    },
+    {
+        "type": "V1 Launch Site (Asset Pack Required)",
+        "family": "VehicleArtillery",
+        "extraOperators": {
+            "Germany": [
+            ],
+            "Thirdreich": [
+            ]
+        },
+        "operational": [
+            1940,
+            1940
+        ]
+    },
 ]

@@ -13,7 +13,7 @@ namespace BriefingRoom4DCS.Data.JSON
 
         [JsonProperty("@created")]
         public DateTime created { get; set; }
-        public int country { get; set; }
+        public string country { get; set; }
         public string name { get; set; }
         public bool sys { get; set; }
         public string type { get; set; }

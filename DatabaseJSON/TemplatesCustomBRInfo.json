@@ -1538,5 +1538,53 @@
             1960,
             2020
         ]
+    },
+    {
+        "type": "SA-10 SAM Battery Tin",
+        "family": "VehicleSAMLong",
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Venezuela": [],
+            "Vietnam": [],
+            "Iran": [],
+            "Ukraine": []
+        },
+        "operational": [
+            1970,
+            2020
+        ]
+    },
+    {
+        "type": "SA-10 SAM Battery Flap B",
+        "family": "VehicleSAMLong",
+        "extraOperators": {
+            "Algeria": [],
+            "Belarus": [],
+            "Bulgaria": [],
+            "China": [],
+            "Egypt": [],
+            "GDR": [],
+            "Greece": [],
+            "Kazakhstan": [],
+            "Russia": [],
+            "Slovakia": [],
+            "Venezuela": [],
+            "Vietnam": [],
+            "Iran": [],
+            "Ukraine": []
+        },
+        "operational": [
+            1980,
+            2020
+        ]
     }
 ]
