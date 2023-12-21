@@ -62,7 +62,7 @@ namespace BriefingRoom4DCS.Data
             var missingDCSData = supportData.Where(x => !itemMap.ContainsKey(x.Key)).Select(x => x.Key).ToList();
             if (missingDCSData.Count > 0)
             {
-                BriefingRoom.PrintToLog($"{Name} DCS Data missing for {string.Join(',', missingDCSData)}", LogMessageErrorLevel.Warning);
+                BriefingRoom.PrintToLog($"{Name} DCS Data missing for: {string.Join(',', missingDCSData)}", LogMessageErrorLevel.Warning);
             }
         }
 

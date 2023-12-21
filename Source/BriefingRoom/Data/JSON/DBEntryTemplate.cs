@@ -59,7 +59,7 @@ namespace BriefingRoom4DCS.Data
                 var supportInfo = supportData[id];
                 var defaultOperational = (start: (Decade)supportInfo.operational[0], end: (Decade)supportInfo.operational[1]);
                 var extraCountries = supportInfo.extraOperators.ToDictionary(x => (Country)Enum.Parse(typeof(Country), x.Key.Replace(" ", ""), true), x => x.Value.Count > 0 ? (start: (Decade)x.Value[0], end: (Decade)x.Value[1]) : defaultOperational);
-                itemMap.Add(id, new DBEntryTemplate
+                var entry = new DBEntryTemplate
                 {
                     ID = id,
                     UIDisplayName = new LanguageString(template.name),
@@ -73,7 +73,15 @@ namespace BriefingRoom4DCS.Data
                         Heading = x.heading
                     }).ToList(),
                     Module = supportInfo.module
-                });
+                };
+
+                var missingModuleRefs = entry.Units.Select(x => Database.Instance.GetEntry<DBEntryJSONUnit>(x.DCSID).Module).Where(x => !String.IsNullOrEmpty(x) && x != entry.Module && !DBEntryDCSMod.CORE_MODS.Contains(x)).Distinct().ToList();
+                if(missingModuleRefs.Count > 0)
+                {
+                    BriefingRoom.PrintToLog($"{id} missing module refs in BRInfo data: {string.Join(',', missingModuleRefs)}", LogMessageErrorLevel.Warning);
+                }
+                
+                itemMap.Add(id, entry);
             }
 
             missingDCSDataWarnings(supportData, itemMap, "Templates");

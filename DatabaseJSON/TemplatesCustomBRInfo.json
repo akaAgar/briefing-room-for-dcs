@@ -764,6 +764,7 @@
     {
         "type": "SA-2 HQ-2 Missile",
         "family": "VehicleSAMMedium",
+        "module": "HighDigitSAMs",
         "operational": [
             1980,
             2020
@@ -875,6 +876,7 @@
     },
     {
         "type": "flak36",
+        "module": "WWII Armour and Technics",
         "family": "VehicleAAAStatic",
         "operational": [
             1940,
@@ -887,6 +889,7 @@
     },
     {
         "type": "flak37",
+        "module": "WWII Armour and Technics",
         "family": "VehicleAAAStatic",
         "operational": [
             1940,
@@ -899,6 +902,7 @@
     },
     {
         "type": "flak41",
+        "module": "WWII Armour and Technics",
         "family": "VehicleAAAStatic",
         "operational": [
             1940,
@@ -911,6 +915,7 @@
     },
     {
         "type": "QF_37_AA",
+        "module": "WWII Armour and Technics",
         "family": "VehicleAAAStatic",
         "operational": [
             1940,
