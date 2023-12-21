@@ -147,7 +147,7 @@ namespace BriefingRoom4DCS.Generator
                     units = unitTemplate.Units.Select(x => x.DCSID).ToList();
                 }
             }
-            if (!units.Where(x => x != null).Any())
+            if (!units.Where(x => x != null).Any()) {
                 (country, units) = unitsCoalitionDB.GetRandomUnits(
                     families,
                     Template.ContextDecade,
@@ -157,6 +157,8 @@ namespace BriefingRoom4DCS.Generator
                     Template.OptionsMission.Contains("BlockSuppliers"),
                     lowUnitVariation: unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.LowUnitVariation),
                     allowStatic: allowStatic);
+                units = Toolbox.ShuffleList(units.ToList());
+            }
 
 
             if (country != Country.ALL)
@@ -167,7 +169,6 @@ namespace BriefingRoom4DCS.Generator
                 var airDefenseUnits = GeneratorTools.GetEmbeddedAirDefenseUnits(Template, side, families.First().GetUnitCategory(), country != Country.ALL ? country : null);
                 units.AddRange(airDefenseUnits);
             }
-            units = Toolbox.ShuffleList(units.ToList());
             return new(units, Database.Instance.GetEntries<DBEntryJSONUnit>(units));
         }
 
