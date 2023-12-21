@@ -1233,14 +1233,6 @@
         "immovable": true
     },
     {
-        "type": "Infantry Animated",
-        "families": [
-            "Infantry"
-        ],
-        "lowPolly": false,
-        "immovable": false
-    },
-    {
         "type": "Electric locomotive",
         "families": [
             "VehicleStatic"
