@@ -45,7 +45,7 @@ namespace BriefingRoom4DCS
 
         public const string DISCORD_URL = "https://discord.gg/MvdFTYxkpx";
 
-        public const string VERSION = "0.5.310.04";
+        public const string VERSION = "0.5.312.22";
 
         public const string BUILD_VERSION = "~BUILD_VERSION~";
 
@@ -60,7 +60,7 @@ namespace BriefingRoom4DCS
         public BriefingRoom(LogHandler logHandler = null)
         {
             INIFile ini = new(Path.Combine(BRPaths.DATABASE, "Common.ini"));
-            TARGETED_DCS_WORLD_VERSION = ini.GetValue("Versions", "DCSVersion", "2.7");
+            TARGETED_DCS_WORLD_VERSION = ini.GetValue("Versions", "DCSVersion", "2.9.2");
 
             AvailableLanguagesMap = new Dictionary<string, string> { { "en", "English" } };
             foreach (var key in ini.GetKeysInSection("Languages"))
