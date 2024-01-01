@@ -1,0 +1,8 @@
+[
+    {
+        "type": "TB-2 UCAV",
+        "families": ["PlaneDrone"],
+        "lowPolly": false,
+        "playerControllable": false
+    }
+]

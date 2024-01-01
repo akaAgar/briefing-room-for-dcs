@@ -1,0 +1,8 @@
+[
+    {
+        "type": "CH_Tu-95MSM",
+        "families": ["PlaneBomber"],
+        "lowPolly": false,
+        "playerControllable": false
+    }
+]

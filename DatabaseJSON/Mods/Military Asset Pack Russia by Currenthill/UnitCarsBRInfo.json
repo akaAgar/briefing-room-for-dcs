@@ -1,0 +1,178 @@
+[
+    {
+        "type": "CH_2S38_LG",
+        "families": [
+            "VehicleAAA"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_2S38",
+        "families": [
+            "VehicleAAA"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "K300P",
+        "families": [
+            "VehicleMissile"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "MonolitB",
+        "families": [
+            "VehicleMissile"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_3K60_BAL",
+        "families": [
+            "VehicleMissile"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_DSHK_HMG_RUS",
+        "families": [
+            "Infantry"
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "CH_DSHK_HMG_UKR",
+        "families": [
+            "Infantry"
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "CH_S350_50P6_9M96D",
+        "families": [
+            "VehicleSAMMedium"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_S350_50P6_9M100",
+        "families": [
+            "VehicleSAMMedium"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_S350_50N6",
+        "families": [
+            "VehicleSAMMedium"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_S350_50K6",
+        "families": [
+            "VehicleSAMMedium"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_S350_96L6",
+        "families": [
+            "VehicleSAMMedium"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_T14",
+        "families": [
+            "VehicleMBT"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_TigrM",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_IskanderM",
+        "families": [
+            "VehicleMissile"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_IskanderK",
+        "families": [
+            "VehicleMissile"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "PantsirS1",
+        "families": [
+            "VehicleSAMShort"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "PantsirS2",
+        "families": [
+            "VehicleSAMShort"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_T90M",
+        "families": [
+            "VehicleMBT"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "TorM2K",
+        "families": [
+            "VehicleSAMShort"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "TorM2",
+        "families": [
+            "VehicleSAMShort"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "TorM2M",
+        "families": [
+            "VehicleSAMShort"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    }
+]

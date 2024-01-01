@@ -1,0 +1,20 @@
+[
+    {
+        "type": "MiG-29MU2",
+        "families": [
+            "PlaneFighter"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "Su-24MU",
+        "families": [
+            "PlaneStrike",
+            "PlaneSEAD",
+            "PlaneBomber"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    }
+]

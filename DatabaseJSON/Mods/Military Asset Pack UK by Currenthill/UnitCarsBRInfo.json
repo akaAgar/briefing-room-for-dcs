@@ -1,0 +1,8 @@
+[
+    {
+        "type": "CH_Challenger3",
+        "families": ["VehicleMBT"],
+        "lowPolly": false,
+        "immovable": false
+    }
+]

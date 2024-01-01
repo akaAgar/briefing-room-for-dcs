@@ -1,0 +1,108 @@
+[
+    {
+        "type": "CH_CJ10",
+        "families": [
+            "VehicleMissile"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_HQ22_LN",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_HQ22_STR",
+        "families": [
+            "VehicleSAMLong",
+            "VehicleEWR"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_HQ22_SR",
+        "families": [
+            "VehicleSAMLong",
+            "VehicleEWR"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_LD3000",
+        "families": [
+            "VehicleAAA"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_LD3000_stationary",
+        "families": [
+            "VehicleAAAStatic"
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "CH_PCL181",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_ZBD04A-AT",
+        "families": [
+            "VehicleAPC"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "HQ17A",
+        "families": [
+            "VehicleSAMShort"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "PGL_625",
+        "families": [
+            "VehicleAAA"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_PGZ09",
+        "families": [
+            "VehicleAAA"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_ZTQ_15",
+        "families": [
+            "VehicleMBT"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "ZTZ_99A2",
+        "families": [
+            "VehicleMBT"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    }
+]

@@ -1,0 +1,35 @@
+[
+    {
+        "_id": "656665311f7407e942eddc77",
+        "type": "IranFAC_MG_AShM",
+        "numParking": 0,
+        "displayName": "[CH] IRGCN FAC (MG/AShM)",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            }
+        ],
+        "module": "Military Asset Pack Iran by Currenthill",
+        "shape": "IranFAC_MG_AShM",
+        "detectionRange": 40000,
+        "threatRange": 1800,
+        "operators": {}
+    },
+    {
+        "_id": "656665311f7407e942eddc79",
+        "type": "IranFAC_MG",
+        "numParking": 0,
+        "displayName": "[CH] IRGCN FAC (MG/MANPADS)",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            }
+        ],
+        "module": "Military Asset Pack Iran by Currenthill",
+        "shape": "IranFAC_MG",
+        "detectionRange": 40000,
+        "threatRangeMin": 500,
+        "threatRange": 5200,
+        "operators": {}
+    }
+]

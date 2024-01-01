@@ -1,0 +1,32 @@
+[
+    {
+        "type": "CH_Alligator_Sniper",
+        "families": ["Infantry"],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "BTR-4",
+        "families": ["VehicleAPC"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_Stugna_P",
+        "families": ["Infantry"],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "CH_T64BV",
+        "families": ["VehicleMBT"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "T84_OplotM",
+        "families": ["VehicleMBT"],
+        "lowPolly": false,
+        "immovable": false
+    }
+]

@@ -1,0 +1,14 @@
+[
+    {
+        "_id": "656665301f7407e942eddaa9",
+        "type": "CH_Challenger3",
+        "category": "Armor",
+        "paintSchemes": {},
+        "displayName": "[CH] Challenger 3 MBT",
+        "module": "Military Asset Pack UK by Currenthill",
+        "shape": "Challenger3",
+        "detectionRange": 0,
+        "threatRange": 8000,
+        "operators": {}
+    }
+]

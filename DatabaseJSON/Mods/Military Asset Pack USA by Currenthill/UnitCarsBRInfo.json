@@ -1,0 +1,300 @@
+[
+    {
+        "type": "CH_LAVAD",
+        "families": ["VehicleAAA"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_M10",
+        "families": [
+            "VehicleMBT"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_M1A2SEPV3",
+        "families": [
+            "VehicleMBT"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_M551",
+        "families": ["VehicleMBT"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_M777LTH",
+        "families": ["VehicleArtillery"],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "CH_M777LTH_MTVR",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_MTVR",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_OshkoshLATV_M2",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_OshkoshLATV_MK19",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_OshkoshMATV_M2",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_OshkoshMATV_MK19",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_USInfantry_FGM148",
+        "families": [
+            "Infantry"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_USInfantry_M136",
+        "families": [
+            "Infantry"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_USInfantry_M2",
+        "families": [
+            "Infantry"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_USInfantry_M82",
+        "families": [
+            "Infantry"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_USInfantry_MK19",
+        "families": [
+            "Infantry"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_USInfantry_M4",
+        "families": [
+            "Infantry"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_USInfantry_M240",
+        "families": [
+            "Infantry"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_USInfantry_M249",
+        "families": [
+            "Infantry"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_USInfantry_M4M203",
+        "families": [
+            "Infantry"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_USInfantry_FIM92",
+        "families": [
+            "InfantryMANPADS"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_USInfantry_M120",
+        "families": [
+            "Infantry"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_Centurion_C_RAM",
+        "families": [
+            "VehicleAAA"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M142_HIMARS_GLSDB",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M142_HIMARS_ATACMS",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M142_HIMARS_GMLRS",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M142_HIMARS_PRSM",
+        "families": ["VehicleArtillery"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "M142_HIMARS_PRSM_ASHM",
+        "families": ["VehicleArtillery"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_M270A1_GLSDB",
+        "families": ["VehicleArtillery"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_M270A1_ATACMS",
+        "families": ["VehicleArtillery"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_M270A1_GMLRS",
+        "families": ["VehicleArtillery"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "MIM104_M903_PAC2",
+        "families": ["VehicleSAMLong"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "MIM104_M903_PAC3",
+        "families": ["VehicleSAMLong"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "MIM104_ECS",
+        "families": ["VehicleSAMLong"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "MIM104_ANMPQ65",
+        "families": ["VehicleSAMLong"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "MIM104_ANMPQ65A",
+        "families": ["VehicleSAMLong"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "MIM104_LTAMDS",
+        "families": ["VehicleSAMLong"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "MIM104_EPP",
+        "families": ["VehicleSAMLong"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_NASAMS3_LN_AMRAAM_ER",
+        "families": ["VehicleSAMMedium"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_NASAMS3_LN_AIM9X2",
+        "families": ["VehicleSAMMedium"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_NASAMS3_SR",
+        "families": ["VehicleSAMMedium"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_NASAMS3_CP",
+        "families": ["VehicleSAMMedium"],
+        "lowPolly": false,
+        "immovable": false
+    }
+]

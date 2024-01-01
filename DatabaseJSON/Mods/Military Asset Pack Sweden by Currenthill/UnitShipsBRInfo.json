@@ -1,0 +1,14 @@
+[
+    {
+        "type": "Strb90",
+        "families": ["ShipTransport"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "HSwMS_Visby",
+        "families": ["ShipCruiser"],
+        "lowPolly": false,
+        "immovable": false
+    }
+]

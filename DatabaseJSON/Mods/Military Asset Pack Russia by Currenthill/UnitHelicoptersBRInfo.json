@@ -1,0 +1,18 @@
+[
+    {
+        "type": "CH_Ka52",
+        "families": [
+            "HelicopterAttack"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    },
+    {
+        "type": "CH_Ka52K",
+        "families": [
+            "HelicopterAttack"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    }
+]

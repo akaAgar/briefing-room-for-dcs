@@ -1,0 +1,26 @@
+[
+    {
+        "type": "CH_Marder1A5",
+        "families": [
+            "VehicleAPC"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_PumaA1",
+        "families": [
+            "VehicleAPC"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_PZH2000",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    }
+]

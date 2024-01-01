@@ -1,0 +1,280 @@
+[
+    {
+        "type": "AG-90",
+        "families": [ "Infantry"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Artillerisystem08",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "BV410",
+        "families": [
+            "VehicleTransport"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_CV9050",
+        "families": [
+            "VehicleAPC"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Grkpbv90",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "LvS-103_Lavett103_Rb103A",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "LvS-103_Lavett103_Rb103B",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "LvS-103_Lavett103_HX_Rb103A",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "LvS-103_Lavett103_HX_Rb103B",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "LvS-103_StriE103",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "LvS-103_PM103",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "LvS-103_PM103_HX",
+        "families": [
+            "VehicleSAMLong"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "LvS-103_Elverk103",
+        "families": ["VehicleSAMLong"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "LvKv9040",
+        "families": ["VehicleAAA"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "RBS-15KA",
+        "families": ["VehicleMissile"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "RBS-58",
+        "families": ["Infantry"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "RBS-70",
+        "families": [
+            "VehicleSAMShort"
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "BV410_RBS70",
+        "families": [
+            "VehicleSAMShort"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "RBS-90",
+        "families": [
+            "VehicleSAMShort"
+        ],
+        "lowPolly": false,
+        "immovable": true
+    },
+    {
+        "type": "BV410_RBS90",
+        "families": [
+            "VehicleSAMShort"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "RBS-98",
+        "families": [
+            "VehicleSAMShort"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CV9040",
+        "families": [
+            "VehicleAPC"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_Strf9040C",
+        "families": [
+            "VehicleAPC"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Strv103",
+        "families": [
+            "VehicleMBT"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Strv121",
+        "families": [
+            "VehicleMBT"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Strv122",
+        "families": [
+            "VehicleMBT"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Strv2000",
+        "families": [
+            "VehicleMBT"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SwedishinfantryAK4",
+        "families": [
+            "Infantry"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SwedishinfantryAK5",
+        "families": [
+            "Infantry"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SwedishinfantryAK5GT",
+        "families": [
+            "Infantry"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SwedishinfantryKSP90",
+        "families": [
+            "Infantry"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SwedishinfantryKSP58",
+        "families": [
+            "Infantry"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "SwedishinfantryPskott86",
+        "families": [
+            "Infantry"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "RBS-57",
+        "families": [
+            "Infantry"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "UndE23",
+        "families": [
+            "VehicleEWR"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Volvo740",
+        "families": [
+            "VehicleAPC"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    }
+]

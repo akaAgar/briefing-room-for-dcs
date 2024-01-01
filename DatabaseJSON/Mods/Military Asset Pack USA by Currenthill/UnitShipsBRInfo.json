@@ -1,0 +1,56 @@
+[
+    {
+        "type": "Arleigh_Burke_Flight_III_SAM",
+        "families": [
+            "ShipCruiser",
+            "ShipCarrierSTOVL"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Arleigh_Burke_Flight_III_AShM",
+        "families": [
+            "ShipCruiser",
+            "ShipCarrierSTOVL"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Arleigh_Burke_Flight_III_LACM",
+        "families": [
+            "ShipCruiser",
+            "ShipCarrierSTOVL"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Ticonderoga_CMP_SAM",
+        "families": [
+            "ShipCruiser",
+            "ShipCarrierSTOVL"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Ticonderoga_CMP_AShM",
+        "families": [
+            "ShipCruiser",
+            "ShipCarrierSTOVL"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Ticonderoga_CMP_LACM",
+        "families": [
+            "ShipCruiser",
+            "ShipCarrierSTOVL"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    }
+]

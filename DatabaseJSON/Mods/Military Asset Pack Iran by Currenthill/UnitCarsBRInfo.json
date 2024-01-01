@@ -1,0 +1,10 @@
+[
+    {
+        "type": "CH_Shahed136",
+        "families": [
+            "VehicleArtillery"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    }
+]

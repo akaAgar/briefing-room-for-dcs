@@ -1,0 +1,14 @@
+[
+    {
+        "type": "CH_Type26",
+        "families": ["ShipFrigate"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Type45",
+        "families": ["ShipFrigate"],
+        "lowPolly": false,
+        "immovable": false
+    }
+]

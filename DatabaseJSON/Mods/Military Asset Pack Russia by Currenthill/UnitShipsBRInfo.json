@@ -1,0 +1,44 @@
+[
+    {
+        "type": "CH_Grigorovich_AShM",
+        "families": ["ShipFrigate"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_Grigorovich_LACM",
+        "families": ["ShipFrigate"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_Steregushchiy",
+        "families": ["ShipCruiser"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "CH_Project22160",
+        "families": ["ShipFrigate"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Admiral_Gorshkov",
+        "families": ["ShipFrigate"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Karakurt_AShM",
+        "families": ["ShipCruiser"],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "Karakurt_LACM",
+        "families": ["ShipCruiser"],
+        "lowPolly": false,
+        "immovable": false
+    }
+]

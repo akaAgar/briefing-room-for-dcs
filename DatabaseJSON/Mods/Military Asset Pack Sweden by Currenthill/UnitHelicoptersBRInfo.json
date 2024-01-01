@@ -1,0 +1,10 @@
+[
+    {
+        "type": "HKP15B",
+        "families": [
+            "HelicopterTransport"
+        ],
+        "lowPolly": false,
+        "playerControllable": false
+    }
+]

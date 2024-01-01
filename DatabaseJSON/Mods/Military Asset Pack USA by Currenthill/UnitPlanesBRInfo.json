@@ -1,0 +1,8 @@
+[
+    {
+        "type": "B-21",
+        "families": ["PlaneBomber"],
+        "lowPolly": false,
+        "playerControllable": false
+    }
+]

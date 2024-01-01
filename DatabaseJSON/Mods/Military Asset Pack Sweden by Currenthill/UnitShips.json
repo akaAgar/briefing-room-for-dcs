@@ -1,0 +1,38 @@
+[
+    {
+        "_id": "656665311f7407e942eddc71",
+        "type": "Strb90",
+        "numParking": 0,
+        "displayName": "[CH] Strb 90 FAC",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            }
+        ],
+        "module": "Military Asset Pack Sweden by Currenthill",
+        "shape": "Strb90",
+        "detectionRange": 46300,
+        "threatRangeMin": 500,
+        "threatRange": 10000,
+        "operators": {}
+    },
+    {
+        "_id": "656665311f7407e942eddc75",
+        "type": "HSwMS_Visby",
+        "numParking": 1,
+        "displayName": "[CH] Visby Class Corvette",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "HelicopterCarrier"
+            }
+        ],
+        "module": "Military Asset Pack Sweden by Currenthill",
+        "shape": "HSwMS_Visby",
+        "detectionRange": 180000,
+        "threatRange": 30000,
+        "operators": {}
+    }
+]

@@ -1,0 +1,122 @@
+[
+    {
+        "_id": "656665311f7407e942eddc7b",
+        "type": "Arleigh_Burke_Flight_III_SAM",
+        "numParking": 1,
+        "displayName": "[CH] Arleigh Burke III Destroyer (SAM)",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "HelicopterCarrier"
+            }
+        ],
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "Arleigh_Burke_IIa",
+        "detectionRange": 450000,
+        "threatRangeMin": 1000,
+        "threatRange": 240000,
+        "operators": {}
+    },
+    {
+        "_id": "656665311f7407e942eddc7d",
+        "type": "Arleigh_Burke_Flight_III_AShM",
+        "numParking": 1,
+        "displayName": "[CH] Arleigh Burke III Destroyer (AShM)",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "HelicopterCarrier"
+            }
+        ],
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "Arleigh_Burke_IIa",
+        "detectionRange": 450000,
+        "threatRangeMin": 1000,
+        "threatRange": 240000,
+        "operators": {}
+    },
+    {
+        "_id": "656665311f7407e942eddc7f",
+        "type": "Arleigh_Burke_Flight_III_LACM",
+        "numParking": 1,
+        "displayName": "[CH] Arleigh Burke III Destroyer (LACM)",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "HelicopterCarrier"
+            }
+        ],
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "Arleigh_Burke_IIa",
+        "detectionRange": 450000,
+        "threatRangeMin": 1000,
+        "threatRange": 240000,
+        "operators": {}
+    },
+    {
+        "_id": "656665311f7407e942eddc81",
+        "type": "Ticonderoga_CMP_SAM",
+        "numParking": 1,
+        "displayName": "[CH] Ticonderoga CMP Cruiser (SAM)",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "HelicopterCarrier"
+            }
+        ],
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "ticonderoga",
+        "detectionRange": 370000,
+        "threatRangeMin": 1000,
+        "threatRange": 240000,
+        "operators": {}
+    },
+    {
+        "_id": "656665311f7407e942eddc83",
+        "type": "Ticonderoga_CMP_AShM",
+        "numParking": 1,
+        "displayName": "[CH] Ticonderoga CMP Cruiser (AShM)",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "HelicopterCarrier"
+            }
+        ],
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "ticonderoga",
+        "detectionRange": 370000,
+        "threatRangeMin": 1000,
+        "threatRange": 240000,
+        "operators": {}
+    },
+    {
+        "_id": "656665311f7407e942eddc85",
+        "type": "Ticonderoga_CMP_LACM",
+        "numParking": 1,
+        "displayName": "[CH] Ticonderoga CMP Cruiser (LACM)",
+        "categories": [
+            {
+                "name": "Armed Ship"
+            },
+            {
+                "name": "HelicopterCarrier"
+            }
+        ],
+        "module": "Military Asset Pack USA by Currenthill",
+        "shape": "ticonderoga",
+        "detectionRange": 370000,
+        "threatRangeMin": 1000,
+        "threatRange": 240000,
+        "operators": {}
+    }
+]

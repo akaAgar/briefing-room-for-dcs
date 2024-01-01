@@ -1,0 +1,18 @@
+[
+    {
+        "type": "IranFAC_MG_AShM",
+        "families": [
+            "ShipSpeedboat"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    },
+    {
+        "type": "IranFAC_MG",
+        "families": [
+            "ShipSpeedboat"
+        ],
+        "lowPolly": false,
+        "immovable": false
+    }
+]
