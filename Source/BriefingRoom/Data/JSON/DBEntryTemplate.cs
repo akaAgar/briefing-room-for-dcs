@@ -75,6 +75,12 @@ namespace BriefingRoom4DCS.Data
                     Module = supportInfo.module
                 };
 
+                var units = entry.Units.Where(x => Database.Instance.GetEntry<DBEntryJSONUnit>(x.DCSID) == null).Select(x => x.DCSID).ToList();
+                if(units.Count > 0)
+                {
+                    BriefingRoom.PrintToLog($"{id} has units not in data: {string.Join(',', units)}", LogMessageErrorLevel.Warning);
+                    continue;
+                }
                 var missingModuleRefs = entry.Units.Select(x => Database.Instance.GetEntry<DBEntryJSONUnit>(x.DCSID).Module).Where(x => !String.IsNullOrEmpty(x) && x != entry.Module && !DBEntryDCSMod.CORE_MODS.Contains(x)).Distinct().ToList();
                 if(missingModuleRefs.Count > 0)
                 {

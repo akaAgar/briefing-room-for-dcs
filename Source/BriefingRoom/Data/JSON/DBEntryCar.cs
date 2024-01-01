@@ -47,7 +47,7 @@ namespace BriefingRoom4DCS.Data
                 var id = car.type;
                 if (!supportData.ContainsKey(id))
                 {
-                    BriefingRoom.PrintToLog($"Car missing {id} in info data", LogMessageErrorLevel.Warning);
+                    BriefingRoom.PrintToLog($"Car missing {car.module} {id} info data", LogMessageErrorLevel.Warning);
                     continue;
                 }
                 var infoData = supportData[id];

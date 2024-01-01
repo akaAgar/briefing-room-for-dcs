@@ -46,7 +46,7 @@ namespace BriefingRoom4DCS.Data
                 var id = ship.type;
                 if (!supportData.ContainsKey(id))
                 {
-                    BriefingRoom.PrintToLog($"Ship missing {id} in info data", LogMessageErrorLevel.Warning);
+                    BriefingRoom.PrintToLog($"Ship missing {ship.module} {id} info data", LogMessageErrorLevel.Warning);
                     continue;
                 }
                 var infoData = supportData[id];
