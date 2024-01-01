@@ -3908,11 +3908,23 @@
             {
                 "range": [
                     {
+                        "min": 108,
+                        "max": 117.975
+                    },
+                    {
+                        "min": 118,
+                        "max": 136.99167
+                    },
+                    {
+                        "min": 137,
+                        "max": 173.975
+                    },
+                    {
                         "min": 225,
                         "max": 399.975
                     }
                 ],
-                "name": "AN/ARC-150(V)-2",
+                "name": "V/UHF COM1 XT-6013",
                 "channels": [
                     {
                         "modulation": "AM",
@@ -3963,75 +3975,29 @@
                         "modulation": "AM",
                         "name": "Channel 10",
                         "default": 263
-                    },
-                    {
-                        "modulation": "AM",
-                        "name": "Channel 11",
-                        "default": 267
-                    },
-                    {
-                        "modulation": "AM",
-                        "name": "Channel 12",
-                        "default": 254
-                    },
-                    {
-                        "modulation": "AM",
-                        "name": "Channel 13",
-                        "default": 264
-                    },
-                    {
-                        "modulation": "AM",
-                        "name": "Channel 14",
-                        "default": 266
-                    },
-                    {
-                        "modulation": "AM",
-                        "name": "Channel 15",
-                        "default": 265
-                    },
-                    {
-                        "modulation": "AM",
-                        "name": "Channel 16",
-                        "default": 252
-                    },
-                    {
-                        "modulation": "AM",
-                        "name": "Channel 17",
-                        "default": 268
-                    },
-                    {
-                        "modulation": "AM",
-                        "name": "Channel 18",
-                        "default": 269
-                    },
-                    {
-                        "modulation": "AM",
-                        "name": "Channel 19",
-                        "default": 268
-                    },
-                    {
-                        "modulation": "AM",
-                        "name": "Channel 20",
-                        "default": 269
                     }
                 ]
             },
             {
                 "range": [
                     {
-                        "min": 30,
-                        "max": 88
+                        "min": 108,
+                        "max": 117.975
                     },
                     {
-                        "min": 108,
-                        "max": 174
+                        "min": 118,
+                        "max": 136.99167
+                    },
+                    {
+                        "min": 137,
+                        "max": 173.975
                     },
                     {
                         "min": 225,
                         "max": 399.975
                     }
                 ],
-                "name": "SRT-651/N",
+                "name": "V/UHF COM1 XT-6313D",
                 "channels": [
                     {
                         "default": 225,
@@ -4072,86 +4038,6 @@
                     },
                     {
                         "name": "Channel 10",
-                        "default": 263
-                    },
-                    {
-                        "name": "Channel 11",
-                        "default": 267
-                    },
-                    {
-                        "name": "Channel 12",
-                        "default": 254
-                    },
-                    {
-                        "name": "Channel 13",
-                        "default": 264
-                    },
-                    {
-                        "name": "Channel 14",
-                        "default": 266
-                    },
-                    {
-                        "name": "Channel 15",
-                        "default": 265
-                    },
-                    {
-                        "name": "Channel 16",
-                        "default": 252
-                    },
-                    {
-                        "name": "Channel 17",
-                        "default": 268
-                    },
-                    {
-                        "name": "Channel 18",
-                        "default": 269
-                    },
-                    {
-                        "name": "Channel 19",
-                        "default": 268
-                    },
-                    {
-                        "name": "Channel 20",
-                        "default": 269
-                    },
-                    {
-                        "name": "Channel 21",
-                        "default": 225
-                    },
-                    {
-                        "name": "Channel 22",
-                        "default": 258
-                    },
-                    {
-                        "name": "Channel 23",
-                        "default": 260
-                    },
-                    {
-                        "name": "Channel 24",
-                        "default": 270
-                    },
-                    {
-                        "name": "Channel 25",
-                        "default": 255
-                    },
-                    {
-                        "name": "Channel 26",
-                        "default": 259
-                    },
-                    {
-                        "name": "Channel 27",
-                        "default": 262
-                    },
-                    {
-                        "name": "Channel 28",
-                        "default": 257
-                    },
-                    {
-                        "name": "Channel 29",
-                        "default": 253
-                    },
-                    {
-                        "name": "Channel 30",
                         "default": 263
                     }
                 ]
