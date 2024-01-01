@@ -611,56 +611,6 @@
         }
     },
     {
-        "type": "SA-10b (5v5rud)",
-        "module": "HighDigitSAMs",
-        "family": "VehicleSAMLong",
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": {
-            "Algeria": [],
-            "Belarus": [],
-            "Bulgaria": [],
-            "China": [],
-            "Egypt": [],
-            "GDR": [],
-            "Greece": [],
-            "Iran": [],
-            "Kazakhstan": [],
-            "Russia": [],
-            "Slovakia": [],
-            "Ukraine": [],
-            "Venezuela": [],
-            "Vietnam": []
-        }
-    },
-    {
-        "type": "SA-10b",
-        "family": "VehicleSAMLong",
-        "module": "HighDigitSAMs",
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": {
-            "Algeria": [],
-            "Belarus": [],
-            "Bulgaria": [],
-            "China": [],
-            "Egypt": [],
-            "GDR": [],
-            "Greece": [],
-            "Iran": [],
-            "Kazakhstan": [],
-            "Russia": [],
-            "Slovakia": [],
-            "Ukraine": [],
-            "Venezuela": [],
-            "Vietnam": []
-        }
-    },
-    {
         "type": "SA-12 Anti Ballistic",
         "module": "HighDigitSAMs",
         "family": "VehicleSAMLong",
@@ -772,31 +722,6 @@
         "extraOperators": {
             "China": [],
             "Pakistan": []
-        }
-    },
-    {
-        "type": "SA-20A",
-        "module": "HighDigitSAMs",
-        "family": "VehicleSAMLong",
-        "operational": [
-            1970,
-            2020
-        ],
-        "extraOperators": {
-            "Algeria": [],
-            "Belarus": [],
-            "Bulgaria": [],
-            "China": [],
-            "Egypt": [],
-            "GDR": [],
-            "Greece": [],
-            "Iran": [],
-            "Kazakhstan": [],
-            "Russia": [],
-            "Slovakia": [],
-            "Ukraine": [],
-            "Venezuela": [],
-            "Vietnam": []
         }
     },
     {

@@ -1,882 +1,5 @@
 [
     {
-        "_id": "65328a704319326630cdf115",
-        "type": "Fire Can radar",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "AAA SON-9 Fire Can TR",
-        "module": "HighDigitSAMs",
-        "shape": "mys-m1",
-        "operators": {
-            "USAFAggressors": [
-                1940,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                1940,
-                2020
-            ],
-            "Russia": [
-                1940,
-                2020
-            ],
-            "Georgia": [
-                1940,
-                2020
-            ],
-            "Bulgaria": [
-                1940,
-                2020
-            ],
-            "China": [
-                1940,
-                2020
-            ],
-            "Egypt": [
-                1940,
-                2020
-            ],
-            "Hungary": [
-                1940,
-                2020
-            ],
-            "Iran": [
-                1940,
-                2020
-            ],
-            "Iraq": [
-                1940,
-                2020
-            ],
-            "Kazakhstan": [
-                1940,
-                2020
-            ],
-            "NorthKorea": [
-                1940,
-                2020
-            ],
-            "Poland": [
-                1940,
-                2020
-            ],
-            "Romania": [
-                1940,
-                2020
-            ],
-            "Syria": [
-                1940,
-                2020
-            ],
-            "Yemen": [
-                1940,
-                2020
-            ],
-            "Vietnam": [
-                1940,
-                2020
-            ],
-            "Sudan": [
-                1940,
-                2020
-            ],
-            "Morocco": [
-                1940,
-                2020
-            ],
-            "Libya": [
-                1940,
-                2020
-            ],
-            "USSR": [
-                1940,
-                2020
-            ],
-            "Algeria": [
-                1940,
-                2020
-            ],
-            "Cuba": [
-                1940,
-                2020
-            ],
-            "GDR": [
-                1940,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a704319326630cdf117",
-        "type": "KS19",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "AAA 100mm KS-19",
-        "module": "HighDigitSAMs",
-        "shape": "flak18",
-        "operators": {
-            "USAFAggressors": [
-                1940,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                1940,
-                2020
-            ],
-            "Russia": [
-                1940,
-                1980
-            ],
-            "Georgia": [
-                1940,
-                1980
-            ],
-            "Bulgaria": [
-                1940,
-                1980
-            ],
-            "China": [
-                1940,
-                1980
-            ],
-            "Egypt": [
-                1940,
-                1980
-            ],
-            "Iraq": [
-                1940,
-                2000
-            ],
-            "Poland": [
-                1940,
-                1960
-            ],
-            "Yemen": [
-                1940,
-                1980
-            ],
-            "Sudan": [
-                1940,
-                1980
-            ],
-            "Morocco": [
-                1940,
-                1980
-            ],
-            "Algeria": [
-                1940,
-                1980
-            ],
-            "Hungary": [
-                1940,
-                2020
-            ],
-            "Iran": [
-                1940,
-                2020
-            ],
-            "Kazakhstan": [
-                1940,
-                2020
-            ],
-            "NorthKorea": [
-                1940,
-                2020
-            ],
-            "Romania": [
-                1940,
-                2020
-            ],
-            "Syria": [
-                1940,
-                2020
-            ],
-            "Vietnam": [
-                1940,
-                2020
-            ],
-            "Libya": [
-                1940,
-                2020
-            ],
-            "USSR": [
-                1940,
-                2020
-            ],
-            "Cuba": [
-                1940,
-                2020
-            ],
-            "GDR": [
-                1940,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a704319326630cdf119",
-        "type": "S-300PS SA-10B 54K6 cp",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "SAM SA-10B S-300PS \"Grumble\" C2",
-        "module": "HighDigitSAMs",
-        "shape": "54k6cp",
-        "operators": {
-            "UnitedNationsPeacekeepers": [
-                1980,
-                2020
-            ],
-            "Algeria": [
-                1980,
-                2020
-            ],
-            "Belarus": [
-                1980,
-                2020
-            ],
-            "Bulgaria": [
-                1980,
-                2020
-            ],
-            "China": [
-                1980,
-                2020
-            ],
-            "Egypt": [
-                1980,
-                2020
-            ],
-            "GDR": [
-                1980,
-                2020
-            ],
-            "Greece": [
-                1980,
-                2020
-            ],
-            "Iran": [
-                1980,
-                2020
-            ],
-            "Kazakhstan": [
-                1980,
-                2020
-            ],
-            "Russia": [
-                1980,
-                2020
-            ],
-            "USSR": [
-                1980,
-                2020
-            ],
-            "Slovakia": [
-                1980,
-                2020
-            ],
-            "Ukraine": [
-                1980,
-                2020
-            ],
-            "Venezuela": [
-                1980,
-                2020
-            ],
-            "Vietnam": [
-                1980,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a704319326630cdf11b",
-        "type": "S-300PS 5P85SE_mod ln",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "SAM SA-10B S-300PS \"Grumble\" TEL S",
-        "module": "HighDigitSAMs",
-        "shape": "5p85se",
-        "operators": {
-            "UnitedNationsPeacekeepers": [
-                1980,
-                2020
-            ],
-            "Algeria": [
-                1980,
-                2020
-            ],
-            "Belarus": [
-                1980,
-                2020
-            ],
-            "Bulgaria": [
-                1980,
-                2020
-            ],
-            "China": [
-                1980,
-                2020
-            ],
-            "Egypt": [
-                1980,
-                2020
-            ],
-            "GDR": [
-                1980,
-                2020
-            ],
-            "Greece": [
-                1980,
-                2020
-            ],
-            "Iran": [
-                1980,
-                2020
-            ],
-            "Kazakhstan": [
-                1980,
-                2020
-            ],
-            "USSR": [
-                1980,
-                2020
-            ],
-            "Russia": [
-                1980,
-                2020
-            ],
-            "Slovakia": [
-                1980,
-                2020
-            ],
-            "Ukraine": [
-                1980,
-                2020
-            ],
-            "Venezuela": [
-                1980,
-                2020
-            ],
-            "Vietnam": [
-                1980,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a704319326630cdf11d",
-        "type": "S-300PS 5P85SU_mod ln",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "SAM SA-10B S-300PS \"Grumble\" TEL U",
-        "module": "HighDigitSAMs",
-        "shape": "5p85su",
-        "operators": {
-            "UnitedNationsPeacekeepers": [
-                1980,
-                2020
-            ],
-            "Algeria": [
-                1980,
-                2020
-            ],
-            "Belarus": [
-                1980,
-                2020
-            ],
-            "Bulgaria": [
-                1980,
-                2020
-            ],
-            "China": [
-                1980,
-                2020
-            ],
-            "Egypt": [
-                1980,
-                2020
-            ],
-            "GDR": [
-                1980,
-                2020
-            ],
-            "Greece": [
-                1980,
-                2020
-            ],
-            "Iran": [
-                1980,
-                2020
-            ],
-            "Kazakhstan": [
-                1980,
-                2020
-            ],
-            "USSR": [
-                1980,
-                2020
-            ],
-            "Russia": [
-                1980,
-                2020
-            ],
-            "Slovakia": [
-                1980,
-                2020
-            ],
-            "Ukraine": [
-                1980,
-                2020
-            ],
-            "Venezuela": [
-                1980,
-                2020
-            ],
-            "Vietnam": [
-                1980,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a704319326630cdf11f",
-        "type": "S-300PS 5P85CE ln",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "SAM SA-10 (5V55RUD) S-300 TEL C",
-        "module": "HighDigitSAMs",
-        "shape": "5p85se",
-        "operators": {
-            "UnitedNationsPeacekeepers": [
-                1980,
-                2020
-            ],
-            "Algeria": [
-                1980,
-                2020
-            ],
-            "Belarus": [
-                1980,
-                2020
-            ],
-            "Bulgaria": [
-                1980,
-                2020
-            ],
-            "China": [
-                1980,
-                2020
-            ],
-            "Egypt": [
-                1980,
-                2020
-            ],
-            "GDR": [
-                1980,
-                2020
-            ],
-            "Greece": [
-                1980,
-                2020
-            ],
-            "Iran": [
-                1980,
-                2020
-            ],
-            "Kazakhstan": [
-                1980,
-                2020
-            ],
-            "Russia": [
-                1980,
-                2020
-            ],
-            "USSR": [
-                1980,
-                2020
-            ],
-            "Slovakia": [
-                1980,
-                2020
-            ],
-            "Ukraine": [
-                1980,
-                2020
-            ],
-            "Venezuela": [
-                1980,
-                2020
-            ],
-            "Vietnam": [
-                1980,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a704319326630cdf121",
-        "type": "S-300PS 5P85DE ln",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "SAM SA-10 (5V55RUD) S-300 TEL D",
-        "module": "HighDigitSAMs",
-        "shape": "5p85su",
-        "operators": {
-            "USAFAggressors": [
-                1980,
-                2020
-            ],
-            "UnitedNationsPeacekeepers": [
-                1980,
-                2020
-            ],
-            "Algeria": [
-                1980,
-                2020
-            ],
-            "Belarus": [
-                1980,
-                2020
-            ],
-            "Bulgaria": [
-                1980,
-                2020
-            ],
-            "China": [
-                1980,
-                2020
-            ],
-            "Egypt": [
-                1980,
-                2020
-            ],
-            "GDR": [
-                1980,
-                2020
-            ],
-            "Greece": [
-                1980,
-                2020
-            ],
-            "Iran": [
-                1980,
-                2020
-            ],
-            "Kazakhstan": [
-                1980,
-                2020
-            ],
-            "Russia": [
-                1980,
-                2020
-            ],
-            "USSR": [
-                1980,
-                2020
-            ],
-            "Slovakia": [
-                1980,
-                2020
-            ],
-            "Ukraine": [
-                1980,
-                2020
-            ],
-            "Venezuela": [
-                1980,
-                2020
-            ],
-            "Vietnam": [
-                1980,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a704319326630cdf123",
-        "type": "S-300PS 30N6 TRAILER tr",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "SAM SA-10B S-300PS Flap Lid(truck) TR",
-        "module": "HighDigitSAMs",
-        "shape": "30h6_truck",
-        "operators": {
-            "Algeria": [
-                1980,
-                2020
-            ],
-            "Belarus": [
-                1980,
-                2020
-            ],
-            "Bulgaria": [
-                1980,
-                2020
-            ],
-            "China": [
-                1980,
-                2020
-            ],
-            "Egypt": [
-                1980,
-                2020
-            ],
-            "GDR": [
-                1980,
-                2020
-            ],
-            "Greece": [
-                1980,
-                2020
-            ],
-            "Iran": [
-                1980,
-                2020
-            ],
-            "Kazakhstan": [
-                1980,
-                2020
-            ],
-            "Russia": [
-                1980,
-                2020
-            ],
-            "USSR": [
-                1980,
-                2020
-            ],
-            "Slovakia": [
-                1980,
-                2020
-            ],
-            "Ukraine": [
-                1980,
-                2020
-            ],
-            "Venezuela": [
-                1980,
-                2020
-            ],
-            "Vietnam": [
-                1980,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a704319326630cdf125",
-        "type": "S-300PS SA-10B 40B6M MAST tr",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "SAM SA-10B S-300PS Flap Lid(mast) TR",
-        "module": "HighDigitSAMs",
-        "shape": "40b6m_mast",
-        "operators": {
-            "Algeria": [
-                1980,
-                2020
-            ],
-            "Belarus": [
-                1980,
-                2020
-            ],
-            "Bulgaria": [
-                1980,
-                2020
-            ],
-            "China": [
-                1980,
-                2020
-            ],
-            "Egypt": [
-                1980,
-                2020
-            ],
-            "GDR": [
-                1980,
-                2020
-            ],
-            "Greece": [
-                1980,
-                2020
-            ],
-            "Iran": [
-                1980,
-                2020
-            ],
-            "Kazakhstan": [
-                1980,
-                2020
-            ],
-            "Russia": [
-                1980,
-                2020
-            ],
-            "Slovakia": [
-                1980,
-                2020
-            ],
-            "Ukraine": [
-                1980,
-                2020
-            ],
-            "Venezuela": [
-                1980,
-                2020
-            ],
-            "Vietnam": [
-                1980,
-                2020
-            ],
-            "USSR": [
-                1980,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a704319326630cdf127",
-        "type": "S-300PS SA-10B 40B6MD MAST sr",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "SAM SA-10B S-300PS Clam Shell SR",
-        "module": "HighDigitSAMs",
-        "shape": "40b6md_mast",
-        "operators": {
-            "Algeria": [
-                1980,
-                2020
-            ],
-            "Belarus": [
-                1980,
-                2020
-            ],
-            "Bulgaria": [
-                1980,
-                2020
-            ],
-            "China": [
-                1980,
-                2020
-            ],
-            "Egypt": [
-                1980,
-                2020
-            ],
-            "GDR": [
-                1980,
-                2020
-            ],
-            "Greece": [
-                1980,
-                2020
-            ],
-            "Iran": [
-                1980,
-                2020
-            ],
-            "Kazakhstan": [
-                1980,
-                2020
-            ],
-            "Russia": [
-                1980,
-                2020
-            ],
-            "Slovakia": [
-                1980,
-                2020
-            ],
-            "Ukraine": [
-                1980,
-                2020
-            ],
-            "Venezuela": [
-                1980,
-                2020
-            ],
-            "Vietnam": [
-                1980,
-                2020
-            ],
-            "USSR": [
-                1980,
-                2020
-            ]
-        }
-    },
-    {
-        "_id": "65328a704319326630cdf129",
-        "type": "S-300PS 64H6E TRAILER sr",
-        "category": "Air Defence",
-        "paintSchemes": {},
-        "displayName": "SAM SA-10B S-300PS Big Bird SR",
-        "module": "HighDigitSAMs",
-        "shape": "64n6",
-        "operators": {
-            "Algeria": [
-                1980,
-                2020
-            ],
-            "Belarus": [
-                1980,
-                2020
-            ],
-            "Bulgaria": [
-                1980,
-                2020
-            ],
-            "China": [
-                1980,
-                2020
-            ],
-            "Egypt": [
-                1980,
-                2020
-            ],
-            "GDR": [
-                1980,
-                2020
-            ],
-            "Greece": [
-                1980,
-                2020
-            ],
-            "Iran": [
-                1980,
-                2020
-            ],
-            "Kazakhstan": [
-                1980,
-                2020
-            ],
-            "Russia": [
-                1980,
-                2020
-            ],
-            "Slovakia": [
-                1980,
-                2020
-            ],
-            "Ukraine": [
-                1980,
-                2020
-            ],
-            "Venezuela": [
-                1980,
-                2020
-            ],
-            "Vietnam": [
-                1980,
-                2020
-            ],
-            "USSR": [
-                1980,
-                2020
-            ]
-        }
-    },
-    {
         "_id": "65328a704319326630cdf12b",
         "type": "S-300PMU1 54K6 cp",
         "category": "Air Defence",
@@ -884,6 +7,8 @@
         "displayName": "SAM SA-20A S-300PMU-1 \"Gargoyle\" C2",
         "module": "HighDigitSAMs",
         "shape": "54k6cp",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USAFAggressors": [
                 1990,
@@ -960,9 +85,11 @@
         "type": "S-300PMU1 40B6M tr",
         "category": "Air Defence",
         "paintSchemes": {},
-        "displayName": "SA-20A TR",
+        "displayName": "SAM SA-20A S-300PMU-1 Tomb Stone(mast) TR",
         "module": "HighDigitSAMs",
         "shape": "40b6m_mast",
+        "detectionRange": 160000,
+        "threatRange": 0,
         "operators": {
             "USAFAggressors": [
                 1990,
@@ -1042,6 +169,8 @@
         "displayName": "SAM SA-20A S-300PMU-1 Tomb Stone(truck) TR",
         "module": "HighDigitSAMs",
         "shape": "30h6_truck",
+        "detectionRange": 160000,
+        "threatRange": 0,
         "operators": {
             "USAFAggressors": [
                 1990,
@@ -1121,6 +250,8 @@
         "displayName": "SAM SA-20A S-300PMU-1 Clam Shell SR",
         "module": "HighDigitSAMs",
         "shape": "40b6md_mast",
+        "detectionRange": 120000,
+        "threatRange": 0,
         "operators": {
             "USAFAggressors": [
                 1990,
@@ -1200,6 +331,8 @@
         "displayName": "SAM SA-20A S-300PMU-1 Big Bird SR",
         "module": "HighDigitSAMs",
         "shape": "64n6",
+        "detectionRange": 300000,
+        "threatRange": 0,
         "operators": {
             "USAFAggressors": [
                 1990,
@@ -1279,6 +412,8 @@
         "displayName": "SAM SA-20A S-300PMU-1 \"Gargoyle\" TEL C",
         "module": "HighDigitSAMs",
         "shape": "5p85se",
+        "detectionRange": 0,
+        "threatRange": 150000,
         "operators": {
             "USAFAggressors": [
                 1990,
@@ -1358,6 +493,8 @@
         "displayName": "SAM SA-20A S-300PMU-1 \"Gargoyle\" TEL D",
         "module": "HighDigitSAMs",
         "shape": "5p85su",
+        "detectionRange": 0,
+        "threatRange": 150000,
         "operators": {
             "USAFAggressors": [
                 2000,
@@ -1433,6 +570,8 @@
         "displayName": "SAM SA-20B S-300PMU-2 \"Favorit\" C2",
         "module": "HighDigitSAMs",
         "shape": "54k6cp",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USAFAggressors": [
                 2000,
@@ -1508,6 +647,8 @@
         "displayName": "SAM SA-20B S-300PMU2 Grave Stone(truck) TR",
         "module": "HighDigitSAMs",
         "shape": "92n6_truck",
+        "detectionRange": 270000,
+        "threatRange": 0,
         "operators": {
             "Algeria": [
                 2000,
@@ -1575,6 +716,8 @@
         "displayName": "SAM SA-20B S-300PMU-2 Big Bird SR",
         "module": "HighDigitSAMs",
         "shape": "64n6",
+        "detectionRange": 330000,
+        "threatRange": 0,
         "operators": {
             "Algeria": [
                 2000,
@@ -1642,6 +785,8 @@
         "displayName": "SAM SA-20B S-300PMU-2 \"Favorit\" TEL S",
         "module": "HighDigitSAMs",
         "shape": "5p85se",
+        "detectionRange": 0,
+        "threatRange": 200000,
         "operators": {
             "USAFAggressors": [
                 2000,
@@ -1717,6 +862,8 @@
         "displayName": "SAM SA-12 S-300V \"Gladiator/Giant\" C2",
         "module": "HighDigitSAMs",
         "shape": "9s457me",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USAFAggressors": [
                 1980,
@@ -1796,6 +943,8 @@
         "displayName": "SAM SA-12 S-300V \"Giant\" TEL B",
         "module": "HighDigitSAMs",
         "shape": "9a82me",
+        "detectionRange": 0,
+        "threatRange": 100000,
         "operators": {
             "USAFAggressors": [
                 1980,
@@ -1875,6 +1024,8 @@
         "displayName": "SAM SA-12 S-300V \"Gladiator\" TEL A",
         "module": "HighDigitSAMs",
         "shape": "9a83me",
+        "detectionRange": 0,
+        "threatRange": 75000,
         "operators": {
             "USAFAggressors": [
                 1980,
@@ -1954,6 +1105,8 @@
         "displayName": "SAM SA-12 S-300V Bill Board SR",
         "module": "HighDigitSAMs",
         "shape": "9s15m2",
+        "detectionRange": 240000,
+        "threatRange": 0,
         "operators": {
             "USAFAggressors": [
                 1980,
@@ -2033,6 +1186,8 @@
         "displayName": "SAM SA-12 S-300V High Screen SR",
         "module": "HighDigitSAMs",
         "shape": "9s19m2",
+        "detectionRange": 175000,
+        "threatRange": 0,
         "operators": {
             "USAFAggressors": [
                 1980,
@@ -2112,6 +1267,8 @@
         "displayName": "SAM SA-12 S-300V Grill Pan TR",
         "module": "HighDigitSAMs",
         "shape": "9s32",
+        "detectionRange": 150000,
+        "threatRange": 0,
         "operators": {
             "USAFAggressors": [
                 1980,
@@ -2191,6 +1348,8 @@
         "displayName": "SAM SA-23 S-300VM \"Gladiator/Giant\" C2",
         "module": "HighDigitSAMs",
         "shape": "9s457me",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USAFAggressors": [
                 2010,
@@ -2266,6 +1425,8 @@
         "displayName": "SAM SA-23 S-300VM Bill Board SR",
         "module": "HighDigitSAMs",
         "shape": "9s15m2",
+        "detectionRange": 320000,
+        "threatRange": 0,
         "operators": {
             "USAFAggressors": [
                 2010,
@@ -2341,6 +1502,8 @@
         "displayName": "SAM SA-23 S-300VM High Screen SR",
         "module": "HighDigitSAMs",
         "shape": "9s19m2",
+        "detectionRange": 310000,
+        "threatRange": 0,
         "operators": {
             "USAFAggressors": [
                 2010,
@@ -2416,6 +1579,8 @@
         "displayName": "SAM SA-23 S-300VM Grill Pan TR",
         "module": "HighDigitSAMs",
         "shape": "9s32me",
+        "detectionRange": 230000,
+        "threatRange": 0,
         "operators": {
             "USAFAggressors": [
                 2010,
@@ -2491,6 +1656,8 @@
         "displayName": "SAM SA-23 S-300VM \"Gladiator\" TEL A",
         "module": "HighDigitSAMs",
         "shape": "9a83me",
+        "detectionRange": 0,
+        "threatRange": 90000,
         "operators": {
             "USAFAggressors": [
                 2010,
@@ -2566,6 +1733,8 @@
         "displayName": "SAM SA-23 S-300VM \"Giant\" TEL B",
         "module": "HighDigitSAMs",
         "shape": "9a82me",
+        "detectionRange": 0,
+        "threatRange": 200000,
         "operators": {
             "USAFAggressors": [
                 2010,
@@ -2641,6 +1810,8 @@
         "displayName": "SAM SA-17 Buk-M1-2 \"Grizzly\" TEL",
         "module": "HighDigitSAMs",
         "shape": "9a310m1",
+        "detectionRange": 120000,
+        "threatRange": 50000,
         "operators": {
             "USAFAggressors": [
                 1970,
@@ -2692,6 +1863,9 @@
         "displayName": "SAM SA-2 (V759) \"Guideline\" LN",
         "module": "HighDigitSAMs",
         "shape": "S_75_Launcher",
+        "detectionRange": 0,
+        "threatRangeMin": 3000,
+        "threatRange": 50000,
         "operators": {
             "USAFAggressors": [
                 1970,
@@ -2815,6 +1989,9 @@
         "displayName": "SAM HQ-2 \"Guideline\" LN",
         "module": "HighDigitSAMs",
         "shape": "S_75_Launcher",
+        "detectionRange": 0,
+        "threatRangeMin": 6000,
+        "threatRange": 50000,
         "operators": {
             "USAFAggressors": [
                 1970,
@@ -2842,6 +2019,8 @@
         "displayName": "SAM SA-3 (V-601P) S-125 LN",
         "module": "HighDigitSAMs",
         "shape": "5P73_LAUNCH",
+        "detectionRange": 0,
+        "threatRange": 18000,
         "operators": {
             "Russia": [
                 1970,
@@ -2973,6 +2152,8 @@
         "displayName": "MANPADS SA-24 Igla-S \"Grinch\"",
         "module": "HighDigitSAMs",
         "shape": "soldier_ru_03",
+        "detectionRange": 5000,
+        "threatRange": 6000,
         "operators": {
             "Abkhazia": [
                 1980,
@@ -3104,6 +2285,8 @@
         "displayName": "MANPADS SA-14 Strela-3 \"Gremlin\"",
         "module": "HighDigitSAMs",
         "shape": "soldier_ru_03",
+        "detectionRange": 5000,
+        "threatRange": 4500,
         "operators": {
             "Abkhazia": [
                 1980,
@@ -3235,6 +2418,8 @@
         "displayName": "Polyana-D4M1 C2 node",
         "module": "HighDigitSAMs",
         "shape": "Polyana",
+        "detectionRange": 0,
+        "threatRange": 0,
         "operators": {
             "USAFAggressors": [
                 1970,
@@ -3254,6 +2439,8 @@
         "displayName": "34Ya6E Gazetchik E decoy",
         "module": "HighDigitSAMs",
         "shape": "Gazetchik",
+        "detectionRange": 20000,
+        "threatRange": 0,
         "operators": {
             "Russia": [
                 1970,
