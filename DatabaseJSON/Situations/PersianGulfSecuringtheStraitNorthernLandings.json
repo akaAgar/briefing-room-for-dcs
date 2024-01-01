@@ -4,7 +4,9 @@
   },
   "Theater": "PersianGulf",
   "BriefingDescriptions": [],
-  "RelatedSituations": ["PersianGulfSecuringtheStraitClosingIn"],
+  "RelatedSituations": [
+    "PersianGulfSecuringtheStraitClosingIn"
+  ],
   "redZones": [
     [
       [

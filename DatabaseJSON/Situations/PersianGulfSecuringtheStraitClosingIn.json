@@ -4,7 +4,9 @@
   },
   "Theater": "PersianGulf",
   "BriefingDescriptions": [],
-  "RelatedSituations": ["PersianGulfSecuringtheStraitBattleForBandarAbbas"],
+  "RelatedSituations": [
+    "PersianGulfSecuringtheStraitBattleForBandarAbbas"
+  ],
   "redZones": [
     [
       [

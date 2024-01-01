@@ -4,7 +4,9 @@
   },
   "Theater": "Normandy",
   "BriefingDescriptions": [],
-  "RelatedSituations": ["NormandyDDayP2"],
+  "RelatedSituations": [
+    "NormandyDDayP2"
+  ],
   "redZones": [
     [
       [

@@ -4,7 +4,9 @@
   },
   "Theater": "SinaiMap",
   "BriefingDescriptions": [],
-  "RelatedSituations": ["SinaiMapSixDayWar5"],
+  "RelatedSituations": [
+    "SinaiMapSixDayWar5"
+  ],
   "redZones": [
     [
       [

@@ -2326,7 +2326,6 @@
         "immovable": true
     },
     {
-        
         "type": "HEMTT_C-RAM_Phalanx",
         "families": [
             "VehicleAAA"
@@ -2335,7 +2334,6 @@
         "immovable": false
     },
     {
-        
         "type": "S-300PS 40B6MD sr_19J6",
         "families": [
             "VehicleSAMLong"
@@ -2344,7 +2342,6 @@
         "immovable": true
     },
     {
-        
         "type": "S-300PS 5H63C 30H6_tr",
         "families": [
             "VehicleSAMLong"
