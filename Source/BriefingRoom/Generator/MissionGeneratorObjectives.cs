@@ -1,4 +1,4 @@
-﻿/*
+/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -232,7 +232,7 @@ namespace BriefingRoom4DCS.Generator
             }
             else if (targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.GoToAirbase)
             {
-                var targetCoalition = GeneratorTools.GetSpawnPointCoalition(template, taskDB.TargetSide);
+                var targetCoalition = GeneratorTools.GetSpawnPointCoalition(template, taskDB.TargetSide, forceSide: true);
                 var destinationAirbase = situationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions")).Where(x => x.Coalition == targetCoalition.Value).OrderBy(x => destinationPoint.GetDistanceFrom(x.Coordinates)).First();
                 destinationPoint = destinationAirbase.Coordinates;
                 extraSettings.Add("EndAirbaseId", destinationAirbase.DCSID);
