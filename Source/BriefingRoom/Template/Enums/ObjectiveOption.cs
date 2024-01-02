@@ -32,5 +32,9 @@ namespace BriefingRoom4DCS.Template
 
         ShowTarget,
         Invisible,
+
+        ProgressionActivation,
+        PreProgressionSpottable,
+        ProgressionHiddenBrief
     }
 }

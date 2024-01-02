@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================================
 This file is part of Briefing Room for DCS World, a mission
 generator for DCS World, by @akaAgar (https://github.com/akaAgar/briefing-room-for-dcs)
@@ -295,7 +295,12 @@ namespace BriefingRoom4DCS.Generator
                 !groupFlags.HasFlag(UnitMakerGroupFlags.RadioAircraftSpawn) &&
                 !AIR_ON_GROUND_LOCATIONS.Contains(targetBehaviorDB.Location)
                 )
-                groupFlags |= UnitMakerGroupFlags.ImmediateAircraftSpawn;
+                {
+                    if(objectiveIndex > 0 && objectiveOptions.Contains(ObjectiveOption.ProgressionActivation)) 
+                        groupFlags |= UnitMakerGroupFlags.ProgressionAircraftSpawn;
+                    else
+                        groupFlags |= UnitMakerGroupFlags.ImmediateAircraftSpawn;
+                }
 
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
                 units,
@@ -311,6 +316,12 @@ namespace BriefingRoom4DCS.Generator
 
             if (template.MissionFeatures.Contains("ContextScrambleStart") && !taskDB.UICategory.ContainsValue("Transport"))
                 targetGroupInfo.Value.DCSGroup.LateActivation = false;
+
+            if(objectiveIndex > 0 && objectiveOptions.Contains(ObjectiveOption.ProgressionActivation))
+            {
+                targetGroupInfo.Value.DCSGroup.LateActivation = true;
+                targetGroupInfo.Value.DCSGroup.Visible = objectiveOptions.Contains(ObjectiveOption.PreProgressionSpottable);
+            }
 
             if (targetDB.UnitCategory.IsAircraft())
                 targetGroupInfo.Value.DCSGroup.Waypoints.First().Tasks.Insert(0, new DCSWrappedWaypointTask("SetUnlimitedFuel", new Dictionary<string, object> { { "value", true } }));
@@ -344,8 +355,8 @@ namespace BriefingRoom4DCS.Generator
             var length = isStatic ? targetGroupInfo.Value.DCSGroups.Count : targetGroupInfo.Value.UnitNames.Length;
             var pluralIndex = length == 1 ? 0 : 1;
             var taskString = GeneratorTools.ParseRandomString(taskDB.BriefingTask[pluralIndex].Get(), mission).Replace("\"", "''");
-            CreateTaskString(mission, pluralIndex, ref taskString, objectiveName, objectiveTargetUnitFamily);
-            CreateLua(mission, template, targetDB, taskDB, objectiveIndex, objectiveName, targetGroupInfo, taskString);
+            CreateTaskString(mission, pluralIndex, ref taskString, objectiveName, objectiveTargetUnitFamily, objectiveOptions);
+            CreateLua(mission, template, targetDB, taskDB, objectiveIndex, objectiveName, targetGroupInfo, taskString, objectiveOptions);
 
             // Add briefing remarks for this objective task
             var remarksString = taskDB.BriefingRemarks.Get();
@@ -530,7 +541,7 @@ namespace BriefingRoom4DCS.Generator
                     extraSettings);
         }
 
-        private static void CreateLua(DCSMission mission, MissionTemplateRecord template, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTask taskDB, int objectiveIndex, string objectiveName, UnitMakerGroupInfo? targetGroupInfo, string taskString)
+        private static void CreateLua(DCSMission mission, MissionTemplateRecord template, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTask taskDB, int objectiveIndex, string objectiveName, UnitMakerGroupInfo? targetGroupInfo, string taskString, ObjectiveOption[] objectiveOptions)
         {
             // Add Lua table for this objective
             string objectiveLua = $"briefingRoom.mission.objectives[{objectiveIndex + 1}] = {{ ";
@@ -543,7 +554,9 @@ namespace BriefingRoom4DCS.Generator
             objectiveLua += $"taskType = \"{taskDB.ID}\", ";
             objectiveLua += $"task = \"{taskString}\", ";
             objectiveLua += $"unitsCount = #dcsExtensions.getUnitNamesByGroupNameSuffix(\"-TGT-{objectiveName}\"), ";
-            objectiveLua += $"unitNames = dcsExtensions.getUnitNamesByGroupNameSuffix(\"-TGT-{objectiveName}\") ";
+            objectiveLua += $"unitNames = dcsExtensions.getUnitNamesByGroupNameSuffix(\"-TGT-{objectiveName}\"), ";
+            objectiveLua += $"progressionHidden = {(objectiveOptions.Contains(ObjectiveOption.ProgressionActivation) ? "true" : "false")},";
+            objectiveLua += $"progressionHiddenBrief = {(objectiveOptions.Contains(ObjectiveOption.ProgressionHiddenBrief) ? "true" : "false")}";
             objectiveLua += "}\n";
 
             // Add F10 sub-menu for this objective
@@ -559,13 +572,14 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        private static void CreateTaskString(DCSMission mission, int pluralIndex, ref string taskString, string objectiveName, UnitFamily objectiveTargetUnitFamily)
+        private static void CreateTaskString(DCSMission mission, int pluralIndex, ref string taskString, string objectiveName, UnitFamily objectiveTargetUnitFamily, ObjectiveOption[] objectiveOptions)
         {
             // Get tasking string for the briefing
             if (string.IsNullOrEmpty(taskString)) taskString = "Complete objective $OBJECTIVENAME$";
             GeneratorTools.ReplaceKey(ref taskString, "ObjectiveName", objectiveName);
             GeneratorTools.ReplaceKey(ref taskString, "UnitFamily", Database.Instance.Common.Names.UnitFamilies[(int)objectiveTargetUnitFamily].Get().Split(",")[pluralIndex]);
-            mission.Briefing.AddItem(DCSMissionBriefingItemType.Task, taskString);
+            if(!objectiveOptions.Contains(ObjectiveOption.ProgressionHiddenBrief))
+                mission.Briefing.AddItem(DCSMissionBriefingItemType.Task, taskString);
         }
 
         private Waypoint GenerateObjectiveWaypoint(MissionTemplateSubTaskRecord objectiveTemplate, Coordinates objectiveCoordinates, Coordinates ObjectiveDestinationCoordinates, string objectiveName, MissionTemplateRecord template, int groupId = 0, bool scriptIgnore = false)
