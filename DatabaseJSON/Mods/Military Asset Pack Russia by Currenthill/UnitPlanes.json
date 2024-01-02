@@ -3771,6 +3771,11 @@
         "cruiseSpeed": 208,
         "shape": "CH_Tu-95MSM",
         "width": 50.04,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2020,
+                2020
+            ]
+        }
     }
 ]

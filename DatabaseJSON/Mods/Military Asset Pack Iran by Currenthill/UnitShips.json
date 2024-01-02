@@ -13,7 +13,12 @@
         "shape": "IranFAC_MG_AShM",
         "detectionRange": 40000,
         "threatRange": 1800,
-        "operators": {}
+        "operators": {
+            "Iran": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665311f7407e942eddc79",
@@ -30,6 +35,11 @@
         "detectionRange": 40000,
         "threatRangeMin": 500,
         "threatRange": 5200,
-        "operators": {}
+        "operators": {
+            "Iran": [
+                2000,
+                2020
+            ]
+        }
     }
 ]

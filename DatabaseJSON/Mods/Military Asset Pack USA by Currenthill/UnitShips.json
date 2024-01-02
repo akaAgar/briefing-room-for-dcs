@@ -17,7 +17,12 @@
         "detectionRange": 450000,
         "threatRangeMin": 1000,
         "threatRange": 240000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665311f7407e942eddc7d",
@@ -37,7 +42,12 @@
         "detectionRange": 450000,
         "threatRangeMin": 1000,
         "threatRange": 240000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665311f7407e942eddc7f",
@@ -57,7 +67,12 @@
         "detectionRange": 450000,
         "threatRangeMin": 1000,
         "threatRange": 240000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665311f7407e942eddc81",
@@ -77,7 +92,12 @@
         "detectionRange": 370000,
         "threatRangeMin": 1000,
         "threatRange": 240000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665311f7407e942eddc83",
@@ -97,7 +117,12 @@
         "detectionRange": 370000,
         "threatRangeMin": 1000,
         "threatRange": 240000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665311f7407e942eddc85",
@@ -117,6 +142,11 @@
         "detectionRange": 370000,
         "threatRangeMin": 1000,
         "threatRange": 240000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ]
+        }
     }
 ]

@@ -9,7 +9,12 @@
         "shape": "Alligator_Sniper",
         "detectionRange": 5000,
         "threatRange": 3000,
-        "operators": {}
+        "operators": {
+            "Ukraine": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942edda97",
@@ -22,7 +27,12 @@
         "detectionRange": 0,
         "threatRangeMin": 150,
         "threatRange": 5000,
-        "operators": {}
+        "operators": {
+            "Ukraine": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb75",
@@ -34,7 +44,12 @@
         "shape": "Stugna-P",
         "detectionRange": 5500,
         "threatRange": 5500,
-        "operators": {}
+        "operators": {
+            "Ukraine": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb77",
@@ -47,7 +62,12 @@
         "detectionRange": 5000,
         "threatRangeMin": 100,
         "threatRange": 4000,
-        "operators": {}
+        "operators": {
+            "Ukraine": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb79",
@@ -60,6 +80,11 @@
         "detectionRange": 8000,
         "threatRangeMin": 100,
         "threatRange": 5000,
-        "operators": {}
+        "operators": {
+            "Ukraine": [
+                2010,
+                2020
+            ]
+        }
     }
 ]

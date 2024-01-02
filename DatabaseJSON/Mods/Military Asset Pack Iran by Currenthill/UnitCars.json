@@ -10,6 +10,15 @@
         "detectionRange": 0,
         "threatRangeMin": 20000,
         "threatRange": 360000,
-        "operators": {}
+        "operators": {
+            "Iran": [
+                2020,
+                2020
+            ],
+            "Russia": [
+                2020,
+                2020
+            ]
+        }
     }
 ]

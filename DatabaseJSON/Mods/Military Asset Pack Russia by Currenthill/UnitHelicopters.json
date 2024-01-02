@@ -4134,7 +4134,12 @@
         "cruiseSpeed": 310,
         "shape": "CH_Ka-52",
         "width": 14.4,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665311f7407e942eddc2c",
@@ -8001,6 +8006,11 @@
         "cruiseSpeed": 310,
         "shape": "CH_Ka-52K",
         "width": 14.4,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     }
 ]

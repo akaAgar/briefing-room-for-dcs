@@ -14,7 +14,12 @@
         "detectionRange": 100000,
         "threatRangeMin": 15000,
         "threatRange": 4000,
-        "operators": {}
+        "operators": {
+            "China": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665311f7407e942eddc87",
@@ -34,7 +39,12 @@
         "detectionRange": 400000,
         "threatRangeMin": 500,
         "threatRange": 250000,
-        "operators": {}
+        "operators": {
+            "China": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665311f7407e942eddc89",
@@ -54,6 +64,11 @@
         "detectionRange": 500000,
         "threatRangeMin": 500,
         "threatRange": 250000,
-        "operators": {}
+        "operators": {
+            "China": [
+                2020,
+                2020
+            ]
+        }
     }
 ]

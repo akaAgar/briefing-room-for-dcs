@@ -9,6 +9,11 @@
         "shape": "Challenger3",
         "detectionRange": 0,
         "threatRange": 8000,
-        "operators": {}
+        "operators": {
+            "UK": [
+                1990,
+                2020
+            ]
+        }
     }
 ]

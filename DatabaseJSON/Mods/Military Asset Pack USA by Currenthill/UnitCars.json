@@ -10,7 +10,12 @@
         "detectionRange": 10000,
         "threatRangeMin": 160,
         "threatRange": 8000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddacf",
@@ -383,7 +388,12 @@
         "shape": "M10",
         "detectionRange": 0,
         "threatRange": 4000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddad1",
@@ -756,7 +766,12 @@
         "shape": "M1A2SEPV3",
         "detectionRange": 0,
         "threatRange": 5000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddad3",
@@ -1129,7 +1144,12 @@
         "shape": "M551",
         "detectionRange": 0,
         "threatRange": 3000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddad5",
@@ -1503,7 +1523,16 @@
         "detectionRange": 0,
         "threatRangeMin": 50,
         "threatRange": 50000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2000,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddad7",
@@ -1877,7 +1906,16 @@
         "detectionRange": 0,
         "threatRangeMin": 50,
         "threatRange": 50000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2000,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddad9",
@@ -2250,7 +2288,16 @@
         "shape": "MTVR",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2000,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddadd",
@@ -2623,7 +2670,16 @@
         "shape": "OshkoshLATV_M2",
         "detectionRange": 0,
         "threatRange": 1800,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2010,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddadf",
@@ -2997,7 +3053,16 @@
         "detectionRange": 0,
         "threatRangeMin": 75,
         "threatRange": 2000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2010,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddae1",
@@ -3370,7 +3435,16 @@
         "shape": "OshkoshMATV_M2",
         "detectionRange": 0,
         "threatRange": 1800,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2000,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddae3",
@@ -3744,7 +3818,16 @@
         "detectionRange": 0,
         "threatRangeMin": 75,
         "threatRange": 2000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2000,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb23",
@@ -3757,7 +3840,12 @@
         "detectionRange": 0,
         "threatRangeMin": 100,
         "threatRange": 5000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb25",
@@ -3770,7 +3858,12 @@
         "detectionRange": 0,
         "threatRangeMin": 30,
         "threatRange": 400,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb27",
@@ -3782,7 +3875,12 @@
         "shape": "US_Infantry_M2",
         "detectionRange": 0,
         "threatRange": 1800,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1930,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb29",
@@ -3794,7 +3892,12 @@
         "shape": "US_Infantry_M82",
         "detectionRange": 0,
         "threatRange": 1800,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb2b",
@@ -3806,7 +3909,12 @@
         "shape": "US_Infantry_MK19",
         "detectionRange": 0,
         "threatRange": 1500,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1960,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb2d",
@@ -3818,7 +3926,12 @@
         "shape": "US_Infantry_M4",
         "detectionRange": 0,
         "threatRange": 500,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb2f",
@@ -3830,7 +3943,12 @@
         "shape": "US_Infantry_M240",
         "detectionRange": 0,
         "threatRange": 1200,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb31",
@@ -3842,7 +3960,12 @@
         "shape": "US_Infantry_M249",
         "detectionRange": 0,
         "threatRange": 700,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb33",
@@ -3854,7 +3977,12 @@
         "shape": "US_Infantry_M4M203",
         "detectionRange": 0,
         "threatRange": 500,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb35",
@@ -3867,7 +3995,12 @@
         "detectionRange": 0,
         "threatRangeMin": 160,
         "threatRange": 8000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb37",
@@ -3880,7 +4013,12 @@
         "detectionRange": 0,
         "threatRangeMin": 180,
         "threatRange": 7200,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb3f",
@@ -3892,7 +4030,12 @@
         "shape": "Centurion_C-RAM",
         "detectionRange": 20000,
         "threatRange": 2000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb47",
@@ -3905,7 +4048,16 @@
         "detectionRange": 0,
         "threatRangeMin": 55000,
         "threatRange": 150000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb49",
@@ -3918,7 +4070,16 @@
         "detectionRange": 0,
         "threatRangeMin": 74000,
         "threatRange": 296000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2010,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb4b",
@@ -3931,7 +4092,16 @@
         "detectionRange": 0,
         "threatRangeMin": 15000,
         "threatRange": 92000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2000,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb4d",
@@ -3944,7 +4114,16 @@
         "detectionRange": 0,
         "threatRangeMin": 100000,
         "threatRange": 500000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb4f",
@@ -3957,7 +4136,16 @@
         "detectionRange": 0,
         "threatRangeMin": 100000,
         "threatRange": 500000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb51",
@@ -3970,7 +4158,40 @@
         "detectionRange": 0,
         "threatRangeMin": 55000,
         "threatRange": 150000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ],
+            "Finland": [
+                2020,
+                2020
+            ],
+            "France": [
+                2020,
+                2020
+            ],
+            "Germany": [
+                2020,
+                2020
+            ],
+            "Italy": [
+                2020,
+                2020
+            ],
+            "South Korea": [
+                2020,
+                2020
+            ],
+            "UK": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb53",
@@ -3983,7 +4204,40 @@
         "detectionRange": 0,
         "threatRangeMin": 74000,
         "threatRange": 296000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1990,
+                2020
+            ],
+            "Ukraine": [
+                1990,
+                2020
+            ],
+            "Finland": [
+                1990,
+                2020
+            ],
+            "France": [
+                1990,
+                2020
+            ],
+            "Germany": [
+                1990,
+                2020
+            ],
+            "Italy": [
+                1990,
+                2020
+            ],
+            "South Korea": [
+                1990,
+                2020
+            ],
+            "UK": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb55",
@@ -3996,7 +4250,40 @@
         "detectionRange": 0,
         "threatRangeMin": 15000,
         "threatRange": 92000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2000,
+                2020
+            ],
+            "Ukraine": [
+                2000,
+                2020
+            ],
+            "Finland": [
+                2000,
+                2020
+            ],
+            "France": [
+                2000,
+                2020
+            ],
+            "Germany": [
+                2000,
+                2020
+            ],
+            "Italy": [
+                2000,
+                2020
+            ],
+            "South Korea": [
+                2000,
+                2020
+            ],
+            "UK": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb57",
@@ -4009,7 +4296,64 @@
         "detectionRange": 0,
         "threatRangeMin": 3000,
         "threatRange": 150000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2010,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ],
+            "Germany": [
+                2010,
+                2020
+            ],
+            "Greece": [
+                2010,
+                2020
+            ],
+            "Israel": [
+                2010,
+                2020
+            ],
+            "Japan": [
+                2010,
+                2020
+            ],
+            "Poland": [
+                2010,
+                2020
+            ],
+            "Spain": [
+                2010,
+                2020
+            ],
+            "Taiwan": [
+                2010,
+                2020
+            ],
+            "Romania": [
+                2010,
+                2020
+            ],
+            "South Korea": [
+                2010,
+                2020
+            ],
+            "Jordan": [
+                2010,
+                2020
+            ],
+            "Saudi Arabia": [
+                2010,
+                2020
+            ],
+            "United Arab Emirates": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb59",
@@ -4022,7 +4366,64 @@
         "detectionRange": 0,
         "threatRangeMin": 1000,
         "threatRange": 120000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2010,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ],
+            "Germany": [
+                2010,
+                2020
+            ],
+            "Greece": [
+                2010,
+                2020
+            ],
+            "Israel": [
+                2010,
+                2020
+            ],
+            "Japan": [
+                2010,
+                2020
+            ],
+            "Poland": [
+                2010,
+                2020
+            ],
+            "Spain": [
+                2010,
+                2020
+            ],
+            "Taiwan": [
+                2010,
+                2020
+            ],
+            "Romania": [
+                2010,
+                2020
+            ],
+            "South Korea": [
+                2010,
+                2020
+            ],
+            "Jordan": [
+                2010,
+                2020
+            ],
+            "Saudi Arabia": [
+                2010,
+                2020
+            ],
+            "United Arab Emirates": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb5b",
@@ -4034,7 +4435,64 @@
         "shape": "MIM104_ECS",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2010,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ],
+            "Germany": [
+                2010,
+                2020
+            ],
+            "Greece": [
+                2010,
+                2020
+            ],
+            "Israel": [
+                2010,
+                2020
+            ],
+            "Japan": [
+                2010,
+                2020
+            ],
+            "Poland": [
+                2010,
+                2020
+            ],
+            "Spain": [
+                2010,
+                2020
+            ],
+            "Taiwan": [
+                2010,
+                2020
+            ],
+            "Romania": [
+                2010,
+                2020
+            ],
+            "South Korea": [
+                2010,
+                2020
+            ],
+            "Jordan": [
+                2010,
+                2020
+            ],
+            "Saudi Arabia": [
+                2010,
+                2020
+            ],
+            "United Arab Emirates": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb5d",
@@ -4046,7 +4504,64 @@
         "shape": "MIM104_ANMPQ65",
         "detectionRange": 200000,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2010,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ],
+            "Germany": [
+                2010,
+                2020
+            ],
+            "Greece": [
+                2010,
+                2020
+            ],
+            "Israel": [
+                2010,
+                2020
+            ],
+            "Japan": [
+                2010,
+                2020
+            ],
+            "Poland": [
+                2010,
+                2020
+            ],
+            "Spain": [
+                2010,
+                2020
+            ],
+            "Taiwan": [
+                2010,
+                2020
+            ],
+            "Romania": [
+                2010,
+                2020
+            ],
+            "South Korea": [
+                2010,
+                2020
+            ],
+            "Jordan": [
+                2010,
+                2020
+            ],
+            "Saudi Arabia": [
+                2010,
+                2020
+            ],
+            "United Arab Emirates": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb5f",
@@ -4058,7 +4573,64 @@
         "shape": "MIM104_ANMPQ65A",
         "detectionRange": 260000,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2010,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ],
+            "Germany": [
+                2010,
+                2020
+            ],
+            "Greece": [
+                2010,
+                2020
+            ],
+            "Israel": [
+                2010,
+                2020
+            ],
+            "Japan": [
+                2010,
+                2020
+            ],
+            "Poland": [
+                2010,
+                2020
+            ],
+            "Spain": [
+                2010,
+                2020
+            ],
+            "Taiwan": [
+                2010,
+                2020
+            ],
+            "Romania": [
+                2010,
+                2020
+            ],
+            "South Korea": [
+                2010,
+                2020
+            ],
+            "Jordan": [
+                2010,
+                2020
+            ],
+            "Saudi Arabia": [
+                2010,
+                2020
+            ],
+            "United Arab Emirates": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb61",
@@ -4070,7 +4642,64 @@
         "shape": "MIM104_LTAMDS",
         "detectionRange": 400000,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2010,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ],
+            "Germany": [
+                2010,
+                2020
+            ],
+            "Greece": [
+                2010,
+                2020
+            ],
+            "Israel": [
+                2010,
+                2020
+            ],
+            "Japan": [
+                2010,
+                2020
+            ],
+            "Poland": [
+                2010,
+                2020
+            ],
+            "Spain": [
+                2010,
+                2020
+            ],
+            "Taiwan": [
+                2010,
+                2020
+            ],
+            "Romania": [
+                2010,
+                2020
+            ],
+            "South Korea": [
+                2010,
+                2020
+            ],
+            "Jordan": [
+                2010,
+                2020
+            ],
+            "Saudi Arabia": [
+                2010,
+                2020
+            ],
+            "United Arab Emirates": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb63",
@@ -4082,7 +4711,64 @@
         "shape": "MIM104_EPP",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2010,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ],
+            "Germany": [
+                2010,
+                2020
+            ],
+            "Greece": [
+                2010,
+                2020
+            ],
+            "Israel": [
+                2010,
+                2020
+            ],
+            "Japan": [
+                2010,
+                2020
+            ],
+            "Poland": [
+                2010,
+                2020
+            ],
+            "Spain": [
+                2010,
+                2020
+            ],
+            "Taiwan": [
+                2010,
+                2020
+            ],
+            "Romania": [
+                2010,
+                2020
+            ],
+            "South Korea": [
+                2010,
+                2020
+            ],
+            "Jordan": [
+                2010,
+                2020
+            ],
+            "Saudi Arabia": [
+                2010,
+                2020
+            ],
+            "United Arab Emirates": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb65",
@@ -4095,7 +4781,12 @@
         "detectionRange": 0,
         "threatRangeMin": 2000,
         "threatRange": 50000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb67",
@@ -4108,7 +4799,12 @@
         "detectionRange": 0,
         "threatRangeMin": 200,
         "threatRange": 20000,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb69",
@@ -4120,7 +4816,12 @@
         "shape": "NASAMS_Radar_MPQ64F1",
         "detectionRange": 120000,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb6b",
@@ -4132,6 +4833,11 @@
         "shape": "NASAMS_Command_Post",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ]
+        }
     }
 ]

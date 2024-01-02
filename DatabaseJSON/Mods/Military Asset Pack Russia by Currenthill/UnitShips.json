@@ -17,7 +17,12 @@
         "detectionRange": 300000,
         "threatRangeMin": 1500,
         "threatRange": 70000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665311f7407e942eddc65",
@@ -37,7 +42,12 @@
         "detectionRange": 300000,
         "threatRangeMin": 1500,
         "threatRange": 70000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665311f7407e942eddc67",
@@ -57,7 +67,12 @@
         "detectionRange": 150000,
         "threatRangeMin": 1500,
         "threatRange": 150000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665311f7407e942eddc69",
@@ -77,7 +92,12 @@
         "detectionRange": 80000,
         "threatRangeMin": 500,
         "threatRange": 8000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665311f7407e942eddc6b",
@@ -97,7 +117,12 @@
         "detectionRange": 150000,
         "threatRangeMin": 500,
         "threatRange": 150000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665311f7407e942eddc6d",
@@ -114,7 +139,12 @@
         "detectionRange": 150000,
         "threatRangeMin": 1000,
         "threatRange": 25000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665311f7407e942eddc6f",
@@ -131,6 +161,11 @@
         "detectionRange": 150000,
         "threatRangeMin": 1000,
         "threatRange": 25000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     }
 ]

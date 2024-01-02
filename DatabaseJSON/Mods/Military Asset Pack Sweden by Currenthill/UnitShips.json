@@ -14,7 +14,12 @@
         "detectionRange": 46300,
         "threatRangeMin": 500,
         "threatRange": 10000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665311f7407e942eddc75",
@@ -33,6 +38,11 @@
         "shape": "HSwMS_Visby",
         "detectionRange": 180000,
         "threatRange": 30000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                2000,
+                2020
+            ]
+        }
     }
 ]

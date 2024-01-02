@@ -3863,6 +3863,11 @@
         "cruiseSpeed": 208,
         "shape": "B-21",
         "width": 50,
-        "operators": {}
+        "operators": {
+            "USA": [
+                2020,
+                2020
+            ]
+        }
     }
 ]

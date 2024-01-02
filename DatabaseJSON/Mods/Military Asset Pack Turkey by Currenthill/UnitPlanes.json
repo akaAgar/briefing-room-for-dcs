@@ -3486,6 +3486,15 @@
         "cruiseSpeed": 60,
         "shape": "tb2",
         "width": 10,
-        "operators": {}
+        "operators": {
+            "Turkey": [
+                2010,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ]
+        }
     }
 ]

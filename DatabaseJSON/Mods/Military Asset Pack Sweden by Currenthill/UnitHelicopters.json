@@ -3803,6 +3803,11 @@
         "cruiseSpeed": 283,
         "shape": "hkp15b",
         "width": 10.83,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                2000,
+                2020
+            ]
+        }
     }
 ]

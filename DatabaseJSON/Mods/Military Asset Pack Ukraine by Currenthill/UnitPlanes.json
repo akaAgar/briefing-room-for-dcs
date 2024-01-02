@@ -3530,7 +3530,12 @@
         "cruiseSpeed": 222,
         "shape": "mig-29mu2",
         "width": 11.36,
-        "operators": {}
+        "operators": {
+            "Ukraine": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665311f7407e942eddc0b",
@@ -7045,6 +7050,11 @@
         "cruiseSpeed": 210,
         "shape": "su-24mu",
         "width": 17.64,
-        "operators": {}
+        "operators": {
+            "Ukraine": [
+                1970,
+                2020
+            ]
+        }
     }
 ]

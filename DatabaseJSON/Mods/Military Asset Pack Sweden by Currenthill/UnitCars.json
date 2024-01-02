@@ -9,7 +9,12 @@
         "shape": "Ag90-lod0",
         "detectionRange": 5000,
         "threatRange": 1800,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942edda9f",
@@ -22,7 +27,12 @@
         "detectionRange": 10000,
         "threatRangeMin": 50,
         "threatRange": 50000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddaa3",
@@ -34,7 +44,12 @@
         "shape": "BV410-lod0",
         "detectionRange": 0,
         "threatRange": 1800,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddaa7",
@@ -47,7 +62,12 @@
         "detectionRange": 6000,
         "threatRangeMin": 1000,
         "threatRange": 5500,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddaaf",
@@ -59,7 +79,12 @@
         "shape": "Grkpbv90-lod0",
         "detectionRange": 0,
         "threatRange": 7500,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddabd",
@@ -72,7 +97,12 @@
         "detectionRange": 0,
         "threatRangeMin": 3000,
         "threatRange": 160000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddabf",
@@ -85,7 +115,12 @@
         "detectionRange": 0,
         "threatRangeMin": 1000,
         "threatRange": 120000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddac1",
@@ -97,7 +132,12 @@
         "shape": "LvS103_Lavett103A_HX-lod0",
         "detectionRange": 0,
         "threatRange": 160000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddac3",
@@ -110,7 +150,12 @@
         "detectionRange": 0,
         "threatRangeMin": 1000,
         "threatRange": 120000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddac5",
@@ -122,7 +167,12 @@
         "shape": "LvS103_StriE103-lod0",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddac7",
@@ -134,7 +184,12 @@
         "shape": "lvs103_pm103-lod0",
         "detectionRange": 200000,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddac9",
@@ -146,7 +201,12 @@
         "shape": "LvS103_PM103_HX-lod0",
         "detectionRange": 200000,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddacb",
@@ -158,7 +218,12 @@
         "shape": "LvS103_Elverk103-lod0",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddacd",
@@ -170,7 +235,12 @@
         "shape": "LvKv9040-lod0",
         "detectionRange": 15000,
         "threatRange": 4000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddaeb",
@@ -183,7 +253,12 @@
         "detectionRange": 300000,
         "threatRangeMin": 4500,
         "threatRange": 300000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddaed",
@@ -196,7 +271,12 @@
         "detectionRange": 5000,
         "threatRangeMin": 150,
         "threatRange": 5000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddaef",
@@ -209,7 +289,12 @@
         "detectionRange": 0,
         "threatRangeMin": 250,
         "threatRange": 8000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddaf1",
@@ -222,7 +307,12 @@
         "detectionRange": 0,
         "threatRangeMin": 250,
         "threatRange": 8000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddaf3",
@@ -235,7 +325,12 @@
         "detectionRange": 20000,
         "threatRangeMin": 250,
         "threatRange": 8000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddaf5",
@@ -248,7 +343,12 @@
         "detectionRange": 20000,
         "threatRangeMin": 250,
         "threatRange": 8000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddaf7",
@@ -261,7 +361,12 @@
         "detectionRange": 0,
         "threatRangeMin": 250,
         "threatRange": 20000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb05",
@@ -273,7 +378,12 @@
         "shape": "CV9040-lod0",
         "detectionRange": 0,
         "threatRange": 4000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb07",
@@ -286,7 +396,12 @@
         "detectionRange": 3500,
         "threatRangeMin": 10,
         "threatRange": 3500,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb09",
@@ -298,7 +413,12 @@
         "shape": "strv103-lod0",
         "detectionRange": 6000,
         "threatRange": 6000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1960,
+                1990
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb0b",
@@ -314,7 +434,12 @@
         "shape": "leopard-2a4",
         "detectionRange": 0,
         "threatRange": 8000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1990,
+                2000
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb0d",
@@ -330,7 +455,12 @@
         "shape": "leopard-2a5",
         "detectionRange": 0,
         "threatRange": 8000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb0f",
@@ -342,7 +472,12 @@
         "shape": "strv2000-lod0",
         "detectionRange": 8000,
         "threatRange": 8000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1990,
+                2000
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb11",
@@ -354,7 +489,12 @@
         "shape": "Swedish_infantry_AK4-lod0",
         "detectionRange": 0,
         "threatRange": 600,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1960,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb13",
@@ -366,7 +506,12 @@
         "shape": "Swedish_infantry_AK5-lod0",
         "detectionRange": 0,
         "threatRange": 500,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb15",
@@ -378,7 +523,12 @@
         "shape": "Swedish_infantry_AK5GT-lod0",
         "detectionRange": 0,
         "threatRange": 500,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb17",
@@ -390,7 +540,12 @@
         "shape": "Swedish_infantry_ksp90-lod0",
         "detectionRange": 0,
         "threatRange": 700,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb19",
@@ -402,7 +557,12 @@
         "shape": "Swedish_infantry_KSP58-lod0",
         "detectionRange": 0,
         "threatRange": 1200,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1950,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb1b",
@@ -415,7 +575,12 @@
         "detectionRange": 0,
         "threatRangeMin": 30,
         "threatRange": 400,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb1d",
@@ -428,7 +593,12 @@
         "detectionRange": 0,
         "threatRangeMin": 20,
         "threatRange": 1000,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb39",
@@ -440,7 +610,12 @@
         "shape": "UndE23-lod0",
         "detectionRange": 300000,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb3b",
@@ -452,6 +627,11 @@
         "shape": "Volvo740-lod0",
         "detectionRange": 0,
         "threatRange": 1200,
-        "operators": {}
+        "operators": {
+            "Sweden": [
+                1980,
+                2020
+            ]
+        }
     }
 ]

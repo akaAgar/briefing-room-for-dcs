@@ -17,7 +17,12 @@
         "detectionRange": 200000,
         "threatRangeMin": 500,
         "threatRange": 30000,
-        "operators": {}
+        "operators": {
+            "UK": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665311f7407e942eddc8d",
@@ -37,6 +42,11 @@
         "detectionRange": 400000,
         "threatRangeMin": 1500,
         "threatRange": 120000,
-        "operators": {}
+        "operators": {
+            "UK": [
+                2010,
+                2020
+            ]
+        }
     }
 ]

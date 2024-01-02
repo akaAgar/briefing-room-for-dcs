@@ -10,7 +10,16 @@
         "detectionRange": 6000,
         "threatRangeMin": 200,
         "threatRange": 3000,
-        "operators": {}
+        "operators": {
+            "Germany": [
+                2000,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddae7",
@@ -22,7 +31,12 @@
         "shape": "PumaA1",
         "detectionRange": 0,
         "threatRange": 3000,
-        "operators": {}
+        "operators": {
+            "Germany": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddae9",
@@ -35,6 +49,15 @@
         "detectionRange": 0,
         "threatRangeMin": 50,
         "threatRange": 50000,
-        "operators": {}
+        "operators": {
+            "Germany": [
+                1990,
+                2020
+            ],
+            "Ukraine": [
+                2020,
+                2020
+            ]
+        }
     }
 ]

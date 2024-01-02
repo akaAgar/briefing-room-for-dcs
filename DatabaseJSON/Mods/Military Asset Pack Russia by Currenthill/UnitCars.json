@@ -10,7 +10,12 @@
         "detectionRange": 12000,
         "threatRangeMin": 500,
         "threatRange": 8000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942edda93",
@@ -22,7 +27,12 @@
         "shape": "2S38",
         "detectionRange": 12000,
         "threatRange": 5000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942edda99",
@@ -35,7 +45,12 @@
         "detectionRange": 400000,
         "threatRangeMin": 4500,
         "threatRange": 400000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942edda9b",
@@ -47,7 +62,12 @@
         "shape": "Monolit-B",
         "detectionRange": 800000,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddaa1",
@@ -60,7 +80,12 @@
         "detectionRange": 260000,
         "threatRangeMin": 7000,
         "threatRange": 260000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddaab",
@@ -72,7 +97,12 @@
         "shape": "DShK-MG-Rus",
         "detectionRange": 5000,
         "threatRange": 1800,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                1940,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddaad",
@@ -84,7 +114,12 @@
         "shape": "DShK-MG-Ukr",
         "detectionRange": 5000,
         "threatRange": 1800,
-        "operators": {}
+        "operators": {
+            "Ukraine": [
+                1940,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddaf9",
@@ -97,7 +132,12 @@
         "detectionRange": 0,
         "threatRangeMin": 2500,
         "threatRange": 150000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddafb",
@@ -110,7 +150,12 @@
         "detectionRange": 0,
         "threatRangeMin": 1500,
         "threatRange": 15000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddafd",
@@ -122,7 +167,12 @@
         "shape": "S350_50N6",
         "detectionRange": 200000,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddaff",
@@ -134,7 +184,12 @@
         "shape": "S350_50K6",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb01",
@@ -146,7 +201,12 @@
         "shape": "S350_96L6",
         "detectionRange": 300000,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb1f",
@@ -159,7 +219,12 @@
         "detectionRange": 8000,
         "threatRangeMin": 100,
         "threatRange": 5000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2020,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb21",
@@ -171,7 +236,12 @@
         "shape": "TigrM",
         "detectionRange": 0,
         "threatRange": 1200,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb43",
@@ -184,7 +254,12 @@
         "detectionRange": 500000,
         "threatRangeMin": 150000,
         "threatRange": 500000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb45",
@@ -197,7 +272,12 @@
         "detectionRange": 1500000,
         "threatRangeMin": 20000,
         "threatRange": 1500000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb71",
@@ -571,7 +651,12 @@
         "detectionRange": 36000,
         "threatRangeMin": 1200,
         "threatRange": 20000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb73",
@@ -945,7 +1030,12 @@
         "detectionRange": 40000,
         "threatRangeMin": 1200,
         "threatRange": 30000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb7b",
@@ -958,7 +1048,12 @@
         "detectionRange": 8000,
         "threatRangeMin": 100,
         "threatRange": 5000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb7d",
@@ -971,7 +1066,12 @@
         "detectionRange": 25000,
         "threatRangeMin": 1000,
         "threatRange": 12000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb7f",
@@ -984,7 +1084,12 @@
         "detectionRange": 25000,
         "threatRangeMin": 1000,
         "threatRange": 12000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2000,
+                2020
+            ]
+        }
     },
     {
         "_id": "656665301f7407e942eddb81",
@@ -997,6 +1102,11 @@
         "detectionRange": 25000,
         "threatRangeMin": 1000,
         "threatRange": 16000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                2010,
+                2020
+            ]
+        }
     }
 ]
