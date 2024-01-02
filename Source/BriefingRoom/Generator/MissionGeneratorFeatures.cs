@@ -117,6 +117,10 @@ namespace BriefingRoom4DCS.Generator
                     return groupInfo;
                 }
 
+                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.FireWithinThreatRange))
+                    SetFiringCoordinates(coordinatesValue, unitDB, ref extraSettings);
+
+
                 groupInfo = _unitMaker.AddUnitGroup(
                     units,
                     groupSide,
@@ -124,6 +128,8 @@ namespace BriefingRoom4DCS.Generator
                     groupLua, luaUnit,
                     coordinatesValue, groupFlags,
                     extraSettings);
+
+
 
                 SetCarrier(featureDB, groupSide, ref groupInfo);
                 SetSupportingTargetGroupName(ref groupInfo, flags, extraSettings);
@@ -282,6 +288,9 @@ namespace BriefingRoom4DCS.Generator
                     continue;
                 }
 
+                if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.FireWithinThreatRange))
+                    SetFiringCoordinates(spawnCoords.Value, unitDB, ref extraSettings);
+
                 var groupInfo = _unitMaker.AddUnitGroup(
                     units,
                     groupSide,
@@ -364,13 +373,36 @@ namespace BriefingRoom4DCS.Generator
             groupInfo.Value.DCSGroup.X = (float)carrier.UnitMakerGroupInfo.Coordinates.X;
             groupInfo.Value.DCSGroup.Y = (float)carrier.UnitMakerGroupInfo.Coordinates.Y;
             groupInfo.Value.DCSGroup.Name = groupInfo.Value.DCSGroup.Name.Replace("-STATIC-", ""); // Remove Static code if on carrier as we can't replace it automatically
-            carrier.RemainingSpotCount -=  unitCount;
+            carrier.RemainingSpotCount -= unitCount;
         }
 
         private static void SetSupportingTargetGroupName(ref UnitMakerGroupInfo? groupInfo, FeatureUnitGroupFlags flags, Dictionary<string, object> extraSettings)
         {
             if (flags.HasFlag(FeatureUnitGroupFlags.SupportingTarget))
                 groupInfo.Value.DCSGroups.ForEach(x => x.Name += $"-STGT-{extraSettings["ObjectiveName"]}");
+        }
+
+        private Coordinates GetFiringCoordinates(Coordinates coordinates, DBEntryJSONUnit unitDB)
+        {
+            var angle = _unitMaker.SpawnPointSelector.GetDirToFrontLine(coordinates);
+            return Coordinates.FromAngleAndDistance(coordinates, new MinMaxD(unitDB.ThreatRangeMin, unitDB.ThreatRange), new MinMaxD(angle - 45, angle + 45).GetValue());
+        }
+
+        private void SetFiringCoordinates(Coordinates coordinates, DBEntryJSONUnit unitDB, ref Dictionary<string, object> extraSettings)
+        {
+            var timeInterval = 720;
+            var minTime = 0;
+            var maxTime = timeInterval;
+            
+            for (int i = 0; i < 5; i++)
+            {
+                var coords = GetFiringCoordinates(coordinates, unitDB);
+                extraSettings[$"FireX{i+1}"] = coords.X;
+                extraSettings[$"FireY{i+1}"] = coords.Y;
+                extraSettings[$"FireTime{i+1}"] = new MinMaxI(minTime, maxTime).GetValue();
+                minTime += timeInterval;
+                maxTime += timeInterval;
+            }
         }
 
     }

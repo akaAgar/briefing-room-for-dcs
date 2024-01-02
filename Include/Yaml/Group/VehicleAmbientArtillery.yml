@@ -1,0 +1,119 @@
+visible: false
+lateActivation: false
+modulation: $RADIOBAND$
+task: Ground Nothing
+uncontrolled: $NOCM$
+hiddenOnMFD: $HIDDEN$
+routeRelativeTOT: false
+waypoints:
+  - alt: 8
+    action: Off Road
+    speed: 5.5555555555556
+    type: Turning Point
+    etaLocked: true
+    speedLocked: true
+    y: $GROUPY$
+    x: $GROUPX$
+    tasks:
+      - id: ControlledTask
+        auto: false
+        parameters:
+          condition:
+            time: $FIRETIME1$
+          task:
+            id: FireAtPoint
+            params:
+              expendQtyEnabled: true
+              alt_type: 1
+              y: $FIREY1$
+              templateId: ""
+              x: $FIREX2$
+              expendQty: 5
+              weaponType: 52613349374
+              zoneRadius: 304.8
+      - id: ControlledTask
+        auto: false
+        parameters:
+          condition:
+            time: $FIRETIME1$
+          task:
+            id: FireAtPoint
+            params:
+              expendQtyEnabled: true
+              alt_type: 1
+              y: $FIREY2$
+              templateId: ""
+              x: $FIREX2$
+              expendQty: 5
+              weaponType: 52613349374
+              zoneRadius: 304.8
+      - id: ControlledTask
+        auto: false
+        parameters:
+          condition:
+            time: $FIRETIME2$
+          task:
+            id: FireAtPoint
+            params:
+              expendQtyEnabled: true
+              alt_type: 1
+              y: $FIREY2$
+              templateId: ""
+              x: $FIREX2$
+              expendQty: 5
+              weaponType: 52613349374
+              zoneRadius: 304.8
+      - id: ControlledTask
+        auto: false
+        parameters:
+          condition:
+            time: $FIRETIME3$
+          task:
+            id: FireAtPoint
+            params:
+              expendQtyEnabled: true
+              alt_type: 1
+              y: $FIREY3$
+              templateId: ""
+              x: $FIREX3$
+              expendQty: 5
+              weaponType: 52613349374
+              zoneRadius: 304.8
+      - id: ControlledTask
+        auto: false
+        parameters:
+          condition:
+            time: $FIRETIME4$
+          task:
+            id: FireAtPoint
+            params:
+              expendQtyEnabled: true
+              alt_type: 1
+              y: $FIREY4$
+              templateId: ""
+              x: $FIREX4$
+              expendQty: 5
+              weaponType: 52613349374
+              zoneRadius: 304.8
+      - id: ControlledTask
+        auto: false
+        parameters:
+          condition:
+            time: $FIRETIME5$
+          task:
+            id: FireAtPoint
+            params:
+              expendQtyEnabled: true
+              alt_type: 1
+              y: $FIREY5$
+              templateId: ""
+              x: $FIREX5$
+              expendQty: 5
+              weaponType: 52613349374
+              zoneRadius: 304.8
+groupId: $GROUPID$
+hidden: $HIDDEN$
+y: $GROUPY$
+x: $GROUPX$
+name: $NAME$
+frequency: $RADIOFREQUENCY$

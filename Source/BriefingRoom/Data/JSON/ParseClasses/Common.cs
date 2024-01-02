@@ -53,5 +53,8 @@ namespace BriefingRoom4DCS.Data.JSON
         public string displayName { get; set; }
         public string module { get; set; }
         public string shape { get; set; }
+        public int detectionRange { get; set; }
+        public int threatRangeMin { get; set; }
+        public int threatRange { get; set; }
     }
 }

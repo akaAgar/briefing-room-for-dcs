@@ -67,5 +67,6 @@ namespace BriefingRoom4DCS.Data
         UseFrontLine = 268435456,
         TimedAircraftActivation = 536870912,
         Intercept = 1073741824,
+        FireWithinThreatRange = 1073741825,
     }
 }

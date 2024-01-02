@@ -1,0 +1,55 @@
+visible: false
+lateActivation: false
+modulation: $RADIOBAND$
+task: Ground Nothing
+uncontrolled: $NOCM$
+hiddenOnMFD: $HIDDEN$
+routeRelativeTOT: false
+waypoints:
+  - alt: 8
+    action: Off Road
+    speed: 5.5555555555556
+    type: Turning Point
+    etaLocked: true
+    speedLocked: true
+    y: $GROUPY$
+    x: $GROUPX$
+    tasks:
+      - id: ControlledTask
+        auto: false
+        parameters:
+          condition:
+            condition: |
+              local players = dcsExtensions.getAllPlayers()
+              for _,p in ipairs(players) do
+                local unit = Group.getByName("$NAME$"):getUnit(1)
+                if unit ~= nil then
+                  local vec2p = dcsExtensions.toVec2(p:getPoint())
+                  local vec2u = dcsExtensions.toVec2(unit:getPoint())
+                  local distance = dcsExtensions.getDistance(vec2p, vec2u);
+                  
+                  if distance < 18520 and math.abs(vec2p.y - vec2u.y) < 4572 and p:inAir() then
+                    return true
+                  end
+                  return false
+              end
+              return false
+              end 
+          task:
+            id: FireAtPoint
+            params:
+              expendQtyEnabled: false
+              alt_type: 1
+              y: $FIREY1$
+              templateId: ""
+              x: $FIREX1$
+              altitude: 609
+              expendQty: 1
+              weaponType: 52613349374
+              zoneRadius: 304.8
+groupId: $GROUPID$
+hidden: $HIDDEN$
+y: $GROUPY$
+x: $GROUPX$
+name: $NAME$
+frequency: $RADIOFREQUENCY$

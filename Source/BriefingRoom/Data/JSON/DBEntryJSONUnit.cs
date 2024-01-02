@@ -38,6 +38,9 @@ namespace BriefingRoom4DCS.Data
         internal bool LowPolly { get; init; } = false;
         internal bool Immovable { get; init; } = false;
         internal string Shape { get; init; }
+        internal int DetectionRange { get; init; }
+        internal int ThreatRangeMin { get; init; }
+        internal int ThreatRange { get; init; }
 
         override internal DatabaseEntryInfo GetDBEntryInfo()
         {

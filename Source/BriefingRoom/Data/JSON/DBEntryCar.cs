@@ -64,7 +64,10 @@ namespace BriefingRoom4DCS.Data
                     Shape = car.shape,
                     Families = infoData.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
                     LowPolly = infoData.lowPolly,
-                    Immovable = infoData.immovable
+                    Immovable = infoData.immovable,
+                    DetectionRange = car.detectionRange,
+                    ThreatRangeMin = car.threatRangeMin,
+                    ThreatRange = car.threatRange
                 });
             }
 

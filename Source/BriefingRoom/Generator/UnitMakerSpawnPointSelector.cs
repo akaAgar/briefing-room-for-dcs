@@ -270,6 +270,12 @@ namespace BriefingRoom4DCS.Generator
             SpawnPoints.Add(usedSP);
         }
 
+        internal double GetDirToFrontLine(Coordinates coords)
+        {
+            var nearestFrontLinePoint = ShapeManager.GetNearestPointBorder(coords, FrontLine);
+            return nearestFrontLinePoint.Item2.GetHeadingFrom(coords);
+        }
+
         private List<DBEntryAirbaseParkingSpot> FilterAndSortSuitableSpots(DBEntryAirbaseParkingSpot[] parkingspots, DBEntryAircraft aircraftDB, bool requiresOpenAirParking)
         {
             if (parkingspots.Any(x => x.Height == 0))
