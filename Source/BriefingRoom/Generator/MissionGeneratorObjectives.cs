@@ -556,7 +556,8 @@ namespace BriefingRoom4DCS.Generator
             objectiveLua += $"unitsCount = #dcsExtensions.getUnitNamesByGroupNameSuffix(\"-TGT-{objectiveName}\"), ";
             objectiveLua += $"unitNames = dcsExtensions.getUnitNamesByGroupNameSuffix(\"-TGT-{objectiveName}\"), ";
             objectiveLua += $"progressionHidden = {(objectiveOptions.Contains(ObjectiveOption.ProgressionActivation) ? "true" : "false")},";
-            objectiveLua += $"progressionHiddenBrief = {(objectiveOptions.Contains(ObjectiveOption.ProgressionHiddenBrief) ? "true" : "false")}";
+            objectiveLua += $"progressionHiddenBrief = {(objectiveOptions.Contains(ObjectiveOption.ProgressionHiddenBrief) ? "true" : "false")},";
+            objectiveLua += $"progressionBundle = {(objectiveOptions.Contains(ObjectiveOption.ProgressionBundle) ? "true" : "false")}";
             objectiveLua += "}\n";
 
             // Add F10 sub-menu for this objective

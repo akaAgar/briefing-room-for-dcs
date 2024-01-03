@@ -35,6 +35,7 @@ namespace BriefingRoom4DCS.Template
 
         ProgressionActivation,
         PreProgressionSpottable,
-        ProgressionHiddenBrief
+        ProgressionHiddenBrief,
+        ProgressionBundle
     }
 }
