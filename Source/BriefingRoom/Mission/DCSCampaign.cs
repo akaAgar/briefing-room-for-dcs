@@ -78,7 +78,7 @@ namespace BriefingRoom4DCS.Mission
             };
             
             string baseFileName = Toolbox.RemoveInvalidPathCharacters(this.Name);
-            CampaignGenerator.CreateImageFiles(template, this, baseFileName);
+            await MissionGeneratorImages.GenerateCampaignImages(template, this, baseFileName);
 
             foreach (string key in MediaFiles.Keys)
             {

@@ -32,6 +32,8 @@ namespace BriefingRoom4DCS.Data
 
         internal LanguageString MissionNameTemplate { get; }
 
+        internal LanguageString CampaignNameTemplate { get; }
+
         internal LanguageString[] UnitFamilies { get; } = new LanguageString[Toolbox.EnumCount<UnitFamily>()];
 
         internal LanguageString[] UnitGroups { get; } = new LanguageString[Toolbox.EnumCount<UnitFamily>()];
@@ -52,6 +54,7 @@ namespace BriefingRoom4DCS.Data
 
             BriefingRoom.PrintToLog("Loading common global settings...");
             INIFile ini = new(Path.Combine(BRPaths.DATABASE, "Names.ini"));
+            CampaignNameTemplate = ini.GetLangStrings("Campaign", "Template");
             MissionNameTemplate = ini.GetLangStrings("Mission", "Template");
             for (i = 0; i < MISSION_NAMES_PART_COUNT; i++)
                 MissionNameParts[i] = ini.GetLangStrings("Mission", $"Part{i + 1}");

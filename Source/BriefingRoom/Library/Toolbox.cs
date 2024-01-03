@@ -21,7 +21,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -30,6 +29,7 @@ using System.IO.Compression;
 using BriefingRoom4DCS.Data;
 using System.Text.RegularExpressions;
 using BriefingRoom4DCS.Mission;
+using Microsoft.Maui.Graphics;
 
 namespace BriefingRoom4DCS
 {

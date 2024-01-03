@@ -79,6 +79,17 @@ namespace BriefingRoom4DCS.Template
 
         }
 
+        internal string GetCoalitionID(Coalition coalition)
+        {
+            if (coalition == Coalition.Red) return ContextCoalitionRed;
+            return ContextCoalitionBlue;
+        }
+
+        internal string GetCoalitionID(Side side)
+        {
+            return GetCoalitionID((side == Side.Ally) ? ContextPlayerCoalition : ContextPlayerCoalition.GetEnemy());
+        }
+
         public bool LoadFromFile(string filePath)
         {
             if (!File.Exists(filePath)) throw new FileNotFoundException(filePath);
