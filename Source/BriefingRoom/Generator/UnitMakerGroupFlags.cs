@@ -43,5 +43,6 @@ namespace BriefingRoom4DCS.Generator
         StaticAircraft = 1024,
         LowUnitVariation = 2048,
         TimedAircraftSpawn = 4096,
+        ProgressionAircraftSpawn = 8192,
     }
 }

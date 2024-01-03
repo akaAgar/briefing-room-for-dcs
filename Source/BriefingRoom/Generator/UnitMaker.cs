@@ -147,7 +147,8 @@ namespace BriefingRoom4DCS.Generator
                     units = unitTemplate.Units.Select(x => x.DCSID).ToList();
                 }
             }
-            if (!units.Where(x => x != null).Any()) {
+            if (!units.Where(x => x != null).Any())
+            {
                 (country, units) = unitsCoalitionDB.GetRandomUnits(
                     families,
                     Template.ContextDecade,
@@ -303,11 +304,12 @@ namespace BriefingRoom4DCS.Generator
                 }
                 else if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.RadioAircraftSpawn))
                     Mission.AppendValue("AircraftRadioActivator", $"{{{GroupID}, \"{groupName}\"}},");
-                 else if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.TimedAircraftSpawn))
-                 {
+                else if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.TimedAircraftSpawn))
+                {
                     var timeMins = (int)extraSettings.GetValueOrDefault("TimeQueueTime", new MinMaxI(1, 60).GetValue());
                     dCSGroup.Name += $"-TQ-{timeMins}-";
-                 }
+                }
+                else if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.ProgressionAircraftSpawn)){}
                 else if (groupTypeLua != "AircraftUncontrolled" && !groupTypeLua.Contains("Player"))
                     dCSGroup.Name += "-RQ-";
                 else if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.StaticAircraft))
@@ -606,7 +608,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 foreach (var coalitionCountry in CoalitionsCountries[(int)coalition])
                 {
-                    options.AddRange(unitDB.Liveries.GetValueOrDefault(coalitionCountry, new List<string> {})) ; 
+                    options.AddRange(unitDB.Liveries.GetValueOrDefault(coalitionCountry, new List<string> { }));
                 }
             }
             if (DBEntryTheater.DESERT_MAPS.Contains(Mission.TheaterID))

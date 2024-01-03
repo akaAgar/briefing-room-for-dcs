@@ -902,6 +902,7 @@ briefingRoom.mission.commandEnd = $ENDMISSIONONCOMMAND$
 -- Marks objective with index index as complete, and completes the mission itself if all objectives are complete
 function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
   failed = failed or false
+  local revealObjective = false
   if briefingRoom.mission.complete then return end -- mission already complete
   if briefingRoom.mission.objectives[index].complete and briefingRoom.mission.objectives[index].failed == failed then return end -- objective already complete with same fail state
 
@@ -910,6 +911,26 @@ function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
   briefingRoom.mission.objectives[index].complete = true
   briefingRoom.mission.objectives[index].failed = failed
   briefingRoom.aircraftActivator.pushFromReserveQueue() -- activate next batch of aircraft (so more CAP will pop up)
+  if briefingRoom.mission.objectives[index +1] ~= nil and briefingRoom.mission.objectives[index +1].progressionHidden then
+    local acGroup = Group.getByName(briefingRoom.mission.objectives[index +1].groupName) -- get the group
+    if acGroup ~= nil then -- activate the group, if it exists
+      acGroup:activate()
+      local Start = {
+        id = 'Start',
+        params = {
+        }
+      }
+      acGroup:getController():setCommand(Start)
+      briefingRoom.debugPrint("Activating objective group "..acGroup:getName())
+      briefingRoom.mission.objectives[index +1].progressionHidden = false
+    else
+      briefingRoom.debugPrint("Failed to activate objective group "..briefingRoom.mission.objectives[index +1].name)
+    end
+  end
+  if briefingRoom.mission.objectives[index +1] ~= nil and briefingRoom.mission.objectives[index +1].progressionHiddenBrief then
+    briefingRoom.mission.objectives[index +1].progressionHiddenBrief = false
+    revealObjective = true
+  end
 
   -- Remove objective menu from the F10 menu
   if briefingRoom.f10Menu.objectives[index] ~= nil then
@@ -956,6 +977,9 @@ function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
     briefingRoom.radioManager.play("$LANG_AUTOCOMPLETEOBJECTIVE$", "Radio0", math.random(6, 8))
   else
     briefingRoom.radioManager.play("$LANG_COMMAND$: "..(failed and "$LANG_FAILEDOBJECTIVE$" or "$LANG_COMPLETEOBJECTIVE$"), (failed and "RadioHQObjectiveFailed" or "RadioHQObjectiveComplete"), math.random(6, 8))
+    if revealObjective then
+      briefingRoom.radioManager.play("$LANG_COMMAND$: $LANG_NEWOBJECTIVE$: "..briefingRoom.mission.objectives[index +1].task, "RadioHQNewObjective", math.random(16, 20))
+    end
   end
 end
 
@@ -996,19 +1020,21 @@ function briefingRoom.f10MenuCommands.missionStatus()
   end
 
   for i,o in ipairs(briefingRoom.mission.objectives) do
-    if o.complete then
-      msnStatus = msnStatus..(o.failed and "[/]" or "[X]")
-    else
-      msnStatus = msnStatus.."[ ]"
-    end
+    if o.progressionHiddenBrief == false then
+      if o.complete then
+        msnStatus = msnStatus..(o.failed and "[/]" or "[X]")
+      else
+        msnStatus = msnStatus.."[ ]"
+      end
 
-    local objectiveProgress = ""
-    if o.unitsCount > 0 and o.hideTargetCount ~= true then
-      local targetsDone = math.max(0, o.unitsCount - #o.unitNames)
-      objectiveProgress = " ("..tostring(targetsDone).."/"..tostring(o.unitsCount)..")"
-    end
+      local objectiveProgress = ""
+      if o.unitsCount > 0 and o.hideTargetCount ~= true then
+        local targetsDone = math.max(0, o.unitsCount - #o.unitNames)
+        objectiveProgress = " ("..tostring(targetsDone).."/"..tostring(o.unitsCount)..")"
+      end
 
-    msnStatus = msnStatus.." "..o.task..objectiveProgress.."\n"
+      msnStatus = msnStatus.." "..o.task..objectiveProgress.."\n"
+    end
   end
 
   briefingRoom.radioManager.play("$LANG_PILOT$: $LANG_MISSIONSTATUSREQUEST$", "RadioPilotMissionStatus")
