@@ -902,7 +902,7 @@ briefingRoom.mission.commandEnd = $ENDMISSIONONCOMMAND$
 -- Marks objective with index index as complete, and completes the mission itself if all objectives are complete
 function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
   failed = failed or false
-  local revealObjective = false
+  local revealObjective = 0
   if briefingRoom.mission.complete then return end -- mission already complete
   if briefingRoom.mission.objectives[index].complete and briefingRoom.mission.objectives[index].failed == failed then return end -- objective already complete with same fail state
 
@@ -911,26 +911,31 @@ function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
   briefingRoom.mission.objectives[index].complete = true
   briefingRoom.mission.objectives[index].failed = failed
   briefingRoom.aircraftActivator.pushFromReserveQueue() -- activate next batch of aircraft (so more CAP will pop up)
-  if briefingRoom.mission.objectives[index +1] ~= nil and briefingRoom.mission.objectives[index +1].progressionHidden then
-    local acGroup = Group.getByName(briefingRoom.mission.objectives[index +1].groupName) -- get the group
-    if acGroup ~= nil then -- activate the group, if it exists
-      acGroup:activate()
-      local Start = {
-        id = 'Start',
-        params = {
+  local idx = index + 1
+  repeat
+    if briefingRoom.mission.objectives[idx] ~= nil and briefingRoom.mission.objectives[idx].progressionHidden then
+      local acGroup = Group.getByName(briefingRoom.mission.objectives[idx].groupName) -- get the group
+      if acGroup ~= nil then -- activate the group, if it exists
+        acGroup:activate()
+        local Start = {
+          id = 'Start',
+          params = {
+          }
         }
-      }
-      acGroup:getController():setCommand(Start)
-      briefingRoom.debugPrint("Activating objective group "..acGroup:getName())
-      briefingRoom.mission.objectives[index +1].progressionHidden = false
-    else
-      briefingRoom.debugPrint("Failed to activate objective group "..briefingRoom.mission.objectives[index +1].name)
+        acGroup:getController():setCommand(Start)
+        briefingRoom.debugPrint("Activating objective group "..acGroup:getName())
+        briefingRoom.mission.objectives[idx].progressionHidden = false
+      else
+        briefingRoom.debugPrint("Failed to activate objective group "..briefingRoom.mission.objectives[idx].name)
+      end
     end
-  end
-  if briefingRoom.mission.objectives[index +1] ~= nil and briefingRoom.mission.objectives[index +1].progressionHiddenBrief then
-    briefingRoom.mission.objectives[index +1].progressionHiddenBrief = false
-    revealObjective = true
-  end
+    if briefingRoom.mission.objectives[idx] ~= nil and briefingRoom.mission.objectives[idx].progressionHiddenBrief then
+      briefingRoom.mission.objectives[idx].progressionHiddenBrief = false
+      revealObjective = revealObjective + 1
+    end
+    idx = idx + 1
+  until( briefingRoom.mission.objectives[idx] == nil or briefingRoom.mission.objectives[idx].progressionBundle == false)
+  
 
   -- Remove objective menu from the F10 menu
   if briefingRoom.f10Menu.objectives[index] ~= nil then
@@ -977,8 +982,14 @@ function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
     briefingRoom.radioManager.play("$LANG_AUTOCOMPLETEOBJECTIVE$", "Radio0", math.random(6, 8))
   else
     briefingRoom.radioManager.play("$LANG_COMMAND$: "..(failed and "$LANG_FAILEDOBJECTIVE$" or "$LANG_COMPLETEOBJECTIVE$"), (failed and "RadioHQObjectiveFailed" or "RadioHQObjectiveComplete"), math.random(6, 8))
-    if revealObjective then
-      briefingRoom.radioManager.play("$LANG_COMMAND$: $LANG_NEWOBJECTIVE$: "..briefingRoom.mission.objectives[index +1].task, "RadioHQNewObjective", math.random(16, 20))
+    if revealObjective > 0 then 
+      local time =  math.random(12, 15)
+      for j = 1, revealObjective, 1 do
+        if j > 1 then
+          time = time + 4
+        end
+        briefingRoom.radioManager.play("$LANG_COMMAND$: $LANG_NEWOBJECTIVE$: "..briefingRoom.mission.objectives[index + j].task, "RadioHQNewObjective", time)
+      end
     end
   end
 end
