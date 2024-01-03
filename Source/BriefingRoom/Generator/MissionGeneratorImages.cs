@@ -19,16 +19,13 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCS.Data;
-using BriefingRoom4DCS.Media;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using IronPdf;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,27 +33,72 @@ namespace BriefingRoom4DCS.Generator
 {
     public class MissionGeneratorImages
     {
-
-        internal static void GenerateTitleImage(DCSMission mission, MissionTemplateRecord template)
+        internal static async Task GenerateCampaignImages(CampaignTemplate campaignTemplate, DCSCampaign campaign, string baseFileName)
         {
-            ImageMaker imageMaker = new();
-            imageMaker.TextOverlay.Alignment = ContentAlignment.MiddleCenter;
-            imageMaker.TextOverlay.Text = mission.Briefing.Name;
+            string titleHTML = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "CampaignTitleImage.html"));
+            string winHTML = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "CampaignWinImage.html"));
+            string lossHTML = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "CampaignLossImage.html"));
+            string[] theaterImages = Directory.GetFiles(Path.Combine(BRPaths.INCLUDE_JPG, "Theaters"), $"{Database.Instance.GetEntry<DBEntryTheater>(campaignTemplate.ContextTheater).DCSID}*.jpg");
+            var backgroundImage = "_default.jpg";
+            if (theaterImages.Length > 0)
+                backgroundImage = Path.GetFileName(Toolbox.RandomFrom(theaterImages));
+            
+            GeneratorTools.ReplaceKey(ref titleHTML, "BackgroundImage", GetInternalImageHTMLPath(Path.Combine(BRPaths.INCLUDE_JPG, "Theaters", backgroundImage)));
+            GeneratorTools.ReplaceKey(ref winHTML, "BackgroundImage", GetInternalImageHTMLPath(Path.Combine(BRPaths.INCLUDE_JPG, "Sky.jpg")));
+            GeneratorTools.ReplaceKey(ref lossHTML, "BackgroundImage", GetInternalImageHTMLPath(Path.Combine(BRPaths.INCLUDE_JPG, "Fire.jpg")));
 
-            List<ImageMakerLayer> imageLayers = new();
+            var playerFlagPath = Path.Combine(BRPaths.INCLUDE_JPG, "Flags", $"{campaignTemplate.GetCoalitionID(campaignTemplate.ContextPlayerCoalition)}.png");
+            if (File.Exists(playerFlagPath))
+            {
+                GeneratorTools.ReplaceKey(ref titleHTML, "PlayerFlag", GetInternalImageHTMLPath(playerFlagPath));
+                GeneratorTools.ReplaceKey(ref winHTML, "PlayerFlag", GetInternalImageHTMLPath(playerFlagPath));
+                GeneratorTools.ReplaceKey(ref lossHTML, "PlayerFlag", GetInternalImageHTMLPath(playerFlagPath));
+            }
+        
+            var enemyFlagPath = Path.Combine(BRPaths.INCLUDE_JPG, "Flags", $"{campaignTemplate.GetCoalitionID(campaignTemplate.ContextPlayerCoalition.GetEnemy())}.png");
+            if (File.Exists(enemyFlagPath))
+            {
+                GeneratorTools.ReplaceKey(ref titleHTML, "EnemyFlag", GetInternalImageHTMLPath(enemyFlagPath));
+                GeneratorTools.ReplaceKey(ref winHTML, "EnemyFlag", GetInternalImageHTMLPath(enemyFlagPath));
+                GeneratorTools.ReplaceKey(ref lossHTML, "EnemyFlag", GetInternalImageHTMLPath(enemyFlagPath));
+            }
+                
+
+            GeneratorTools.ReplaceKey(ref titleHTML, "MissionName", campaign.Name);
+            GeneratorTools.ReplaceKey(ref winHTML, "MissionName", campaign.Name);
+            GeneratorTools.ReplaceKey(ref lossHTML, "MissionName", campaign.Name);
+
+            GeneratorTools.ReplaceKey(ref titleHTML, "Watermark", GetInternalImageHTMLPath(Path.Combine(BRPaths.INCLUDE_JPG, "IconSlim.png")));
+            GeneratorTools.ReplaceKey(ref winHTML, "Watermark", GetInternalImageHTMLPath(Path.Combine(BRPaths.INCLUDE_JPG, "IconSlim.png")));
+            GeneratorTools.ReplaceKey(ref lossHTML, "Watermark", GetInternalImageHTMLPath(Path.Combine(BRPaths.INCLUDE_JPG, "IconSlim.png")));
+
+
+            await GenerateCampaignImageAsync(titleHTML, campaign, $"{baseFileName}_Title");
+            await GenerateCampaignImageAsync(winHTML, campaign, $"{baseFileName}_Success");  
+            await GenerateCampaignImageAsync(lossHTML, campaign, $"{baseFileName}_Failure");
+
+        }
+
+        internal static async Task GenerateTitleImage(DCSMission mission, MissionTemplateRecord template)
+        {
+            string html = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "MissionTitleImage.html"));
             string[] theaterImages = Directory.GetFiles(Path.Combine(BRPaths.INCLUDE_JPG, "Theaters"), $"{Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater).DCSID}*.jpg");
-            if (theaterImages.Length == 0)
-                imageLayers.Add(new ImageMakerLayer("_default.jpg"));
-            else
-                imageLayers.Add(new ImageMakerLayer(Path.Combine("Theaters", Path.GetFileName(Toolbox.RandomFrom(theaterImages)))));
+            var backgroundImage = "_default.jpg";
+            if (theaterImages.Length > 0)
+                backgroundImage = Path.GetFileName(Toolbox.RandomFrom(theaterImages));
+            GeneratorTools.ReplaceKey(ref html, "BackgroundImage", GetInternalImageHTMLPath(Path.Combine(BRPaths.INCLUDE_JPG, "Theaters", backgroundImage)));
 
-            var path = Path.Combine("Flags", $"{template.GetCoalitionID(template.ContextPlayerCoalition)}.png");
-            if (File.Exists(Path.Combine(BRPaths.INCLUDE_JPG, path)))
-                imageLayers.Add(new ImageMakerLayer(path, ContentAlignment.TopLeft, 8, 8, 0, .5));
+            var playerFlagPath = Path.Combine(BRPaths.INCLUDE_JPG, "Flags", $"{template.GetCoalitionID(template.ContextPlayerCoalition)}.png");
+            if (File.Exists(playerFlagPath))
+                GeneratorTools.ReplaceKey(ref html, "PlayerFlag", GetInternalImageHTMLPath(playerFlagPath));
+            var enemyFlagPath = Path.Combine(BRPaths.INCLUDE_JPG, "Flags", $"{template.GetCoalitionID(template.ContextPlayerCoalition.GetEnemy())}.png");
+            if (File.Exists(enemyFlagPath))
+                GeneratorTools.ReplaceKey(ref html, "EnemyFlag", GetInternalImageHTMLPath(enemyFlagPath));
 
-            byte[] imageBytes = imageMaker.GetImageBytes(imageLayers.ToArray());
-
-            mission.AddMediaFile($"l10n/DEFAULT/title_{mission.UniqueID}.jpg", imageBytes);
+            GeneratorTools.ReplaceKey(ref html, "MissionName", mission.Briefing.Name);
+            GeneratorTools.ReplaceKey(ref html, "Watermark", GetInternalImageHTMLPath(Path.Combine(BRPaths.INCLUDE_JPG, "IconSlim.png")));
+            
+            await GenerateTitleImageAsync(html, mission);
         }
 
         internal static async Task GenerateKneeboardImagesAsync(DCSMission mission)
@@ -68,7 +110,7 @@ namespace BriefingRoom4DCS.Generator
             await GenerateKneeboardImageAsync(html, "Flights", mission);
 
             html = mission.Briefing.GetBriefingKneeBoardGroundHTML();
-            await GenerateKneeboardImageAsync(html, "Ground",  mission);
+            await GenerateKneeboardImageAsync(html, "Ground", mission);
 
             foreach (var flight in mission.Briefing.FlightBriefings)
             {
@@ -84,14 +126,12 @@ namespace BriefingRoom4DCS.Generator
             List<byte[]> output = new();
             try
             {
-                var imagePaths = await GenerateImagePaths(html);
+                var imagePaths = await GenerateKneeboardImagePaths(html);
                 foreach (var path in imagePaths)
                 {
-                    var img = Image.FromFile(path);
+                    var imgData = await File.ReadAllBytesAsync(path);
                     using var ms = new MemoryStream();
-                    img.Save(ms, img.RawFormat);
-                    output.Add(ms.ToArray());
-                    img.Dispose();
+                    output.Add(imgData);
                     File.Delete(path);
                 }
                 return output;
@@ -109,16 +149,13 @@ namespace BriefingRoom4DCS.Generator
             try
             {
                 var midPath = !string.IsNullOrEmpty(aircraftID) ? $"{aircraftID}/" : "";
-                var imagePaths = await GenerateImagePaths(html);
+                var imagePaths = await GenerateKneeboardImagePaths(html);
                 var multiImage = imagePaths.Count() > 1;
                 var inc = 0;
                 foreach (var path in imagePaths)
                 {
-                    var img = Image.FromFile(path);
-                    using var ms = new MemoryStream();
-                    img.Save(ms, img.RawFormat);
-                    mission.AddMediaFile($"KNEEBOARD/{midPath}IMAGES/{name}{(multiImage? inc : "")}.png", ms.ToArray());
-                    img.Dispose();
+                    var imgData = await File.ReadAllBytesAsync(path);
+                    mission.AddMediaFile($"KNEEBOARD/{midPath}IMAGES/{name}{(multiImage ? inc : "")}.png", imgData);
                     File.Delete(path);
                     inc++;
                 }
@@ -134,7 +171,42 @@ namespace BriefingRoom4DCS.Generator
 
         }
 
-        private static async Task<string[]> GenerateImagePaths(string html) {
+        private static async Task GenerateTitleImageAsync(string html, DCSMission mission)
+        {
+            try
+            {
+                var imagePath = await GenerateTitleImagePath(html);
+                var imgData = await File.ReadAllBytesAsync(imagePath);
+                mission.AddMediaFile($"l10n/DEFAULT/title_{mission.UniqueID}.png", imgData);
+                File.Delete(imagePath);
+                mission.AddMediaFile($"l10n/DEFAULT/title_{mission.UniqueID}.html", Encoding.UTF8.GetBytes(html));
+            }
+            catch (Exception e)
+            {
+                throw new BriefingRoomException($"Failed to create Title Image", e);
+            }
+
+        }
+
+        private static async Task GenerateCampaignImageAsync(string html, DCSCampaign campaign, string fileName)
+        {
+            try
+            {
+                var imagePath = await GenerateTitleImagePath(html);
+                var imgData = await File.ReadAllBytesAsync(imagePath);
+                campaign.AddMediaFile($"{fileName}.png", imgData);
+                File.Delete(imagePath);
+                campaign.AddMediaFile($"{fileName}.html", Encoding.UTF8.GetBytes(html));
+            }
+            catch (Exception e)
+            {
+                throw new BriefingRoomException($"Failed to create Title Image", e);
+            }
+
+        }
+
+        private static async Task<string[]> GenerateKneeboardImagePaths(string html)
+        {
             var iWidth = 768;
             var iHeight = 1024;
             string tempRenderPath = Path.ChangeExtension(Path.GetTempFileName(), ".png").Replace(".png", "_*.png");
@@ -149,6 +221,29 @@ namespace BriefingRoom4DCS.Generator
             var imagePaths = pdf.ToPngImages(tempRenderPath, iWidth, iHeight);
 
             return imagePaths;
+        }
+
+        private static async Task<string> GenerateTitleImagePath(string html)
+        {
+            var iWidth = 1024;
+            var iHeight = 1024;
+            string tempRenderPath = Path.ChangeExtension(Path.GetTempFileName(), ".png").Replace(".png", "_*.png");
+            ChromePdfRenderer renderer = new();
+            renderer.RenderingOptions.PaperSize = IronPdf.Rendering.PdfPaperSize.Custom;
+            renderer.RenderingOptions.SetCustomPaperSizeinPixelsOrPoints(iWidth, iHeight);
+            renderer.RenderingOptions.MarginTop = 0;
+            renderer.RenderingOptions.MarginLeft = 0;
+            renderer.RenderingOptions.MarginRight = 0;
+            renderer.RenderingOptions.MarginBottom = 0;
+            PdfDocument pdf = await renderer.RenderHtmlAsPdfAsync(html);
+            var imagePaths = pdf.ToPngImages(tempRenderPath, iWidth, iHeight);
+
+            return imagePaths[0];
+        }
+
+        private static string GetInternalImageHTMLPath(string filePath)
+        {
+            return $"file:///{filePath.Replace("\\", "/")}";
         }
     }
 }

@@ -315,7 +315,6 @@ mission =
     ["descriptionText"] = "DictKey_briefing",
     ["pictureFileNameR"] = 
     {
-      [1] = "ResKey_TitleImage_$MISSIONID$",
     }, -- end of ["pictureFileNameR"]
     ["descriptionBlueTask"] = "DictKey_descriptionBlueTask_3",
     ["descriptionRedTask"] = "DictKey_descriptionRedTask_2",

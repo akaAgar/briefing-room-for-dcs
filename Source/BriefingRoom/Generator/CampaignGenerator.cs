@@ -19,16 +19,13 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCS.Data;
-using BriefingRoom4DCS.Media;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -41,7 +38,7 @@ namespace BriefingRoom4DCS.Generator
         {
             DCSCampaign campaign = new()
             {
-                Name = GeneratorTools.GenerateMissionName(campaignTemplate.BriefingCampaignName)
+                Name = GeneratorTools.GenerateCampaignName(campaignTemplate.BriefingCampaignName)
             };
 
             DateTime date = GenerateCampaignDate(campaignTemplate);
@@ -94,36 +91,6 @@ namespace BriefingRoom4DCS.Generator
             return date;
         }
 
-        internal static void CreateImageFiles(CampaignTemplate campaignTemplate, DCSCampaign campaign, string baseFileName)
-        {
-            string allyFlagName = campaignTemplate.GetCoalition(campaignTemplate.ContextPlayerCoalition);
-            string enemyFlagName = campaignTemplate.GetCoalition((Coalition)(1 - (int)campaignTemplate.ContextPlayerCoalition));
-
-            ImageMaker imgMaker = new();
-            string theaterImage;
-            string[] theaterImages = Directory.GetFiles(Path.Combine(BRPaths.INCLUDE_JPG, "Theaters"), $"{campaignTemplate.ContextTheater}*.jpg");
-            if (theaterImages.Length == 0)
-                theaterImage = "_default.jpg";
-            else
-                theaterImage = Path.Combine("Theaters", Path.GetFileName(Toolbox.RandomFrom(theaterImages)));
-
-            // Print the name of the campaign over the campaign "title picture"
-            imgMaker.TextOverlay.Text = campaign.Name;
-            imgMaker.TextOverlay.Alignment = ContentAlignment.TopCenter;
-            campaign.AddMediaFile($"{baseFileName}_Title.jpg",
-                imgMaker.GetImageBytes(
-                    new ImageMakerLayer(theaterImage),
-                    new ImageMakerLayer(Path.Combine("Flags", $"{enemyFlagName}.png"), ContentAlignment.MiddleCenter, -32, -32),
-                    new ImageMakerLayer(Path.Combine("Flags", $"{allyFlagName}.png"), ContentAlignment.MiddleCenter, 32, 32)));
-
-            // Reset background and text overlay
-            imgMaker.BackgroundColor = Color.Black;
-            imgMaker.TextOverlay.Text = "";
-
-            campaign.AddMediaFile($"{baseFileName}_Success.jpg", imgMaker.GetImageBytes("Sky.jpg", Path.Combine("Flags", $"{allyFlagName}.png")));
-            campaign.AddMediaFile($"{baseFileName}_Failure.jpg", imgMaker.GetImageBytes("Fire.jpg", Path.Combine("Flags", $"{allyFlagName}.png"), "Burning.png"));
-        }
-
         private static string GetCMPFile(CampaignTemplate campaignTemplate, string campaignName)
         {
             string lua = File.ReadAllText(CAMPAIGN_LUA_TEMPLATE);
@@ -156,7 +123,7 @@ namespace BriefingRoom4DCS.Generator
             string weatherPreset = GetWeatherForMission(campaignTemplate.EnvironmentBadWeatherChance);
             MissionTemplate template = new()
             {
-                BriefingMissionName = $"{campaignName}, phase {missionIndex + 1}",
+                BriefingMissionName = $"{campaignName}, {GeneratorTools.GenerateMissionName("")}",
                 BriefingMissionDescription = "",
 
                 ContextCoalitionBlue = campaignTemplate.ContextCoalitionBlue,
