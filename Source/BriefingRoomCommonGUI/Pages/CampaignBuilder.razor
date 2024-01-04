@@ -500,6 +500,7 @@
             StateHasChanged();
             campaign = null;
             errorMessage = "";
+            await Task.Delay(10);
             campaign = BriefingRoom.GenerateCampaign(Template);
             missionTab = campaign.Missions.First();
             StateHasChanged();
