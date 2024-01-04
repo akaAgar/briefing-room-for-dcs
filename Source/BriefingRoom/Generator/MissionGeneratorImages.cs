@@ -43,24 +43,24 @@ namespace BriefingRoom4DCS.Generator
             if (theaterImages.Length > 0)
                 backgroundImage = Path.GetFileName(Toolbox.RandomFrom(theaterImages));
             
-            GeneratorTools.ReplaceKey(ref titleHTML, "BackgroundImage", GetInternalImageHTMLPath(Path.Combine(BRPaths.INCLUDE_JPG, "Theaters", backgroundImage)));
-            GeneratorTools.ReplaceKey(ref winHTML, "BackgroundImage", GetInternalImageHTMLPath(Path.Combine(BRPaths.INCLUDE_JPG, "Sky.jpg")));
-            GeneratorTools.ReplaceKey(ref lossHTML, "BackgroundImage", GetInternalImageHTMLPath(Path.Combine(BRPaths.INCLUDE_JPG, "Fire.jpg")));
+            GeneratorTools.ReplaceKey(ref titleHTML, "BackgroundImage", GetInternalImageHTMLBase64(Path.Combine(BRPaths.INCLUDE_JPG, "Theaters", backgroundImage)));
+            GeneratorTools.ReplaceKey(ref winHTML, "BackgroundImage", GetInternalImageHTMLBase64(Path.Combine(BRPaths.INCLUDE_JPG, "Sky.jpg")));
+            GeneratorTools.ReplaceKey(ref lossHTML, "BackgroundImage", GetInternalImageHTMLBase64(Path.Combine(BRPaths.INCLUDE_JPG, "Fire.jpg")));
 
             var playerFlagPath = Path.Combine(BRPaths.INCLUDE_JPG, "Flags", $"{campaignTemplate.GetCoalitionID(campaignTemplate.ContextPlayerCoalition)}.png");
             if (File.Exists(playerFlagPath))
             {
-                GeneratorTools.ReplaceKey(ref titleHTML, "PlayerFlag", GetInternalImageHTMLPath(playerFlagPath));
-                GeneratorTools.ReplaceKey(ref winHTML, "PlayerFlag", GetInternalImageHTMLPath(playerFlagPath));
-                GeneratorTools.ReplaceKey(ref lossHTML, "PlayerFlag", GetInternalImageHTMLPath(playerFlagPath));
+                GeneratorTools.ReplaceKey(ref titleHTML, "PlayerFlag", GetInternalImageHTMLBase64(playerFlagPath));
+                GeneratorTools.ReplaceKey(ref winHTML, "PlayerFlag", GetInternalImageHTMLBase64(playerFlagPath));
+                GeneratorTools.ReplaceKey(ref lossHTML, "PlayerFlag", GetInternalImageHTMLBase64(playerFlagPath));
             }
         
             var enemyFlagPath = Path.Combine(BRPaths.INCLUDE_JPG, "Flags", $"{campaignTemplate.GetCoalitionID(campaignTemplate.ContextPlayerCoalition.GetEnemy())}.png");
             if (File.Exists(enemyFlagPath))
             {
-                GeneratorTools.ReplaceKey(ref titleHTML, "EnemyFlag", GetInternalImageHTMLPath(enemyFlagPath));
-                GeneratorTools.ReplaceKey(ref winHTML, "EnemyFlag", GetInternalImageHTMLPath(enemyFlagPath));
-                GeneratorTools.ReplaceKey(ref lossHTML, "EnemyFlag", GetInternalImageHTMLPath(enemyFlagPath));
+                GeneratorTools.ReplaceKey(ref titleHTML, "EnemyFlag", GetInternalImageHTMLBase64(enemyFlagPath));
+                GeneratorTools.ReplaceKey(ref winHTML, "EnemyFlag", GetInternalImageHTMLBase64(enemyFlagPath));
+                GeneratorTools.ReplaceKey(ref lossHTML, "EnemyFlag", GetInternalImageHTMLBase64(enemyFlagPath));
             }
                 
 
@@ -68,9 +68,9 @@ namespace BriefingRoom4DCS.Generator
             GeneratorTools.ReplaceKey(ref winHTML, "MissionName", campaign.Name);
             GeneratorTools.ReplaceKey(ref lossHTML, "MissionName", campaign.Name);
 
-            GeneratorTools.ReplaceKey(ref titleHTML, "Watermark", GetInternalImageHTMLPath(Path.Combine(BRPaths.INCLUDE_JPG, "IconSlim.png")));
-            GeneratorTools.ReplaceKey(ref winHTML, "Watermark", GetInternalImageHTMLPath(Path.Combine(BRPaths.INCLUDE_JPG, "IconSlim.png")));
-            GeneratorTools.ReplaceKey(ref lossHTML, "Watermark", GetInternalImageHTMLPath(Path.Combine(BRPaths.INCLUDE_JPG, "IconSlim.png")));
+            GeneratorTools.ReplaceKey(ref titleHTML, "Watermark", GetInternalImageHTMLBase64(Path.Combine(BRPaths.INCLUDE_JPG, "IconSlim.png")));
+            GeneratorTools.ReplaceKey(ref winHTML, "Watermark", GetInternalImageHTMLBase64(Path.Combine(BRPaths.INCLUDE_JPG, "IconSlim.png")));
+            GeneratorTools.ReplaceKey(ref lossHTML, "Watermark", GetInternalImageHTMLBase64(Path.Combine(BRPaths.INCLUDE_JPG, "IconSlim.png")));
 
 
             await GenerateCampaignImageAsync(titleHTML, campaign, $"{baseFileName}_Title");
@@ -86,17 +86,17 @@ namespace BriefingRoom4DCS.Generator
             var backgroundImage = "_default.jpg";
             if (theaterImages.Length > 0)
                 backgroundImage = Path.GetFileName(Toolbox.RandomFrom(theaterImages));
-            GeneratorTools.ReplaceKey(ref html, "BackgroundImage", GetInternalImageHTMLPath(Path.Combine(BRPaths.INCLUDE_JPG, "Theaters", backgroundImage)));
+            GeneratorTools.ReplaceKey(ref html, "BackgroundImage", GetInternalImageHTMLBase64(Path.Combine(BRPaths.INCLUDE_JPG, "Theaters", backgroundImage)));
 
             var playerFlagPath = Path.Combine(BRPaths.INCLUDE_JPG, "Flags", $"{template.GetCoalitionID(template.ContextPlayerCoalition)}.png");
             if (File.Exists(playerFlagPath))
-                GeneratorTools.ReplaceKey(ref html, "PlayerFlag", GetInternalImageHTMLPath(playerFlagPath));
+                GeneratorTools.ReplaceKey(ref html, "PlayerFlag", GetInternalImageHTMLBase64(playerFlagPath));
             var enemyFlagPath = Path.Combine(BRPaths.INCLUDE_JPG, "Flags", $"{template.GetCoalitionID(template.ContextPlayerCoalition.GetEnemy())}.png");
             if (File.Exists(enemyFlagPath))
-                GeneratorTools.ReplaceKey(ref html, "EnemyFlag", GetInternalImageHTMLPath(enemyFlagPath));
+                GeneratorTools.ReplaceKey(ref html, "EnemyFlag", GetInternalImageHTMLBase64(enemyFlagPath));
 
             GeneratorTools.ReplaceKey(ref html, "MissionName", mission.Briefing.Name);
-            GeneratorTools.ReplaceKey(ref html, "Watermark", GetInternalImageHTMLPath(Path.Combine(BRPaths.INCLUDE_JPG, "IconSlim.png")));
+            GeneratorTools.ReplaceKey(ref html, "Watermark", GetInternalImageHTMLBase64(Path.Combine(BRPaths.INCLUDE_JPG, "IconSlim.png")));
             
             await GenerateTitleImageAsync(html, mission);
         }
@@ -241,9 +241,11 @@ namespace BriefingRoom4DCS.Generator
             return imagePaths[0];
         }
 
-        private static string GetInternalImageHTMLPath(string filePath)
+        private static string GetInternalImageHTMLBase64(string filePath)
         {
-            return $"file:///{filePath.Replace("\\", "/")}";
+            var bytes = File.ReadAllBytes(filePath);
+            var fileBase64 = Convert.ToBase64String(bytes);
+            return $"data:image/png;base64, {fileBase64}";
         }
     }
 }
