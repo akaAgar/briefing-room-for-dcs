@@ -6,31 +6,34 @@
         foreach (var group in Data.GroupBy(x => GroupingField?.Invoke(x)))
         {
             <div class="checkboxList-group">
-            @if(!String.IsNullOrEmpty(group.Key))
-            {
-                <div class="checkboxList-group-title">@group.Key:</div>
-            }
-            <div class="checkboxList-group-options">
-                @foreach (var item in group)
-                {   
-                    var Text = TextField?.Invoke(item);
-                    var Description = DescriptionField?.Invoke(item);
-                    var Grouping = GroupingField?.Invoke(item);
-                    var Value = ValueField?.Invoke(item);
-                    bool Checked = false;
-                    if (SelectedValues.Contains((TItemOutput)Value))
-                    {
-                        Checked = true;
-                    }
-                    <label class="checkboxList-item">
-                    <input type="checkbox" checked=@Checked
-                    @onchange="eventArgs => { CheckboxClicked((TItemOutput)Value, eventArgs.Value); }" />
-                    <span>
-                        @Text
-                        <span class="description">@Description</span>
-                        </span>
-                    </label>
+                @if (!String.IsNullOrEmpty(group.Key))
+                {
+                    <div class="checkboxList-group-title">@group.Key:</div>
                 }
+                <div class="checkboxList-group-options">
+                    @foreach (var item in group)
+                    {
+                        var Text = TextField?.Invoke(item);
+                        var Description = DescriptionField?.Invoke(item);
+                        var Grouping = GroupingField?.Invoke(item);
+                        var Value = ValueField?.Invoke(item);
+                        bool Checked = false;
+                        if (SelectedValues.Contains((TItemOutput)Value))
+                        {
+                            Checked = true;
+                        }
+                        <label class="checkboxList-item">
+                            <input type="checkbox" checked=@Checked
+                                @onchange="eventArgs => { CheckboxClicked((TItemOutput)Value, eventArgs.Value); }" />
+                            <span>
+                                @Text
+                                @if (!String.IsNullOrEmpty(Description))
+                                {
+                                    <span class="description">@Description</span>
+                                }
+                            </span>
+                        </label>
+                    }
                 </div>
             </div>
 
