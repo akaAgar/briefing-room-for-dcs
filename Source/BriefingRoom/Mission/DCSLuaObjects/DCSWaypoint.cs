@@ -74,12 +74,13 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
         {
             var firstWP = waypoints.First();
             var lastWP = waypoints.Last();
+            var distance = firstWP.Coordinates.GetDistanceFrom(lastWP.Coordinates);
             if (firstWP == lastWP)
                 return waypoints;
             var L = CalculateParallelVector(waypoints);
-            var mid1 = OffsetWaypoint(waypoints, firstWP.Coordinates, L, unitFamily);
-            var mid3 = OffsetWaypoint(waypoints, lastWP.Coordinates, L, unitFamily);
-            var mid2 = OffsetWaypoint(waypoints, Coordinates.Lerp(firstWP.Coordinates, lastWP.Coordinates, new MinMaxD(0.2, 0.7).GetValue()), L, unitFamily);
+            var mid1 = OffsetWaypoint(waypoints, firstWP.Coordinates, L, unitFamily, distance);
+            var mid3 = OffsetWaypoint(waypoints, lastWP.Coordinates, L, unitFamily, distance);
+            var mid2 = OffsetWaypoint(waypoints, Coordinates.Lerp(firstWP.Coordinates, lastWP.Coordinates, new MinMaxD(0.2, 0.7).GetValue()), L, unitFamily, distance);
             var lastWaypoint = waypoints.Last();
             var extraWaypoints = new List<DCSWaypoint>();
 
@@ -122,20 +123,20 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             return Math.Sqrt((firstWP.X - lastWp.X) * (firstWP.X - lastWp.X) + (firstWP.Y - lastWp.Y) * (firstWP.Y - lastWp.Y));
         }
 
-        private static Coordinates OffsetWaypoint(List<DCSWaypoint> waypoints, Coordinates waypoint, double L, UnitFamily unitFamily)
+        private static Coordinates OffsetWaypoint(List<DCSWaypoint> waypoints, Coordinates waypoint, double L, UnitFamily unitFamily, double initialDistance)
         {
-
+            var maxOffsetDistance = initialDistance/3;
             var offsetRange = unitFamily.GetUnitCategory() switch
             {
-                UnitCategory.Plane => new MinMaxD(-30, 30),
-                UnitCategory.Helicopter => new MinMaxD(-20, 20),
-                _ => unitFamily == UnitFamily.InfantryMANPADS || unitFamily == UnitFamily.Infantry ? new MinMaxD(-5, 5) : new MinMaxD(-8, 8)
+                UnitCategory.Plane => new MinMaxD(-Math.Min(maxOffsetDistance, 20), Math.Min(maxOffsetDistance, 20)),
+                UnitCategory.Helicopter => new MinMaxD(-Math.Min(maxOffsetDistance, 10), Math.Min(maxOffsetDistance, 10)),
+                _ => unitFamily == UnitFamily.InfantryMANPADS || unitFamily == UnitFamily.Infantry ? new MinMaxD(-1, 1) : new MinMaxD(-2, 2)
             };
             var randomRange = unitFamily.GetUnitCategory() switch
             {
-                UnitCategory.Plane => 20,
-                UnitCategory.Helicopter => 10,
-                _ => unitFamily == UnitFamily.InfantryMANPADS || unitFamily == UnitFamily.Infantry ? 1 : 3
+                UnitCategory.Plane => 10,
+                UnitCategory.Helicopter => 5,
+                _ => unitFamily == UnitFamily.InfantryMANPADS || unitFamily == UnitFamily.Infantry ? 0 : 1
             };
 
             var offsetPixels = offsetRange.GetValue() * Toolbox.NM_TO_METERS;
