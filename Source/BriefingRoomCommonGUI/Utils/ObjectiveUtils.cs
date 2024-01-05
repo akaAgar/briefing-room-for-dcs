@@ -67,7 +67,8 @@ namespace BriefingRoom4DCS.GUI.Utils
                 TargetCount = subTask.TargetCount,
                 Task = subTask.Task,
                 Options = subTask.Options,
-                Preset = subTask.Preset
+                Preset = subTask.Preset,
+                Alias = $"{obj.Alias}{obj.SubTasks.Count + 2}",
             };
             obj.SubTasks.Add(newSubT);
         }
@@ -81,7 +82,9 @@ namespace BriefingRoom4DCS.GUI.Utils
 
         internal void AddSubTask(MissionTemplateObjective obj)
         {
-            obj.SubTasks.Add(new MissionTemplateSubTask());
+            obj.SubTasks.Add(new MissionTemplateSubTask{
+                Alias = $"{obj.Alias}{obj.SubTasks.Count + 2}",
+            });
         }
 
         internal void RemoveSubTask(MissionTemplateObjective obj, MissionTemplateSubTask subTsk)

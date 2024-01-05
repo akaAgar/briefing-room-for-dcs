@@ -520,13 +520,13 @@
                             {
                                 <div class="flight-group">
                                     <div class="form-group">
-                                        <label>@BriefingRoom.Translate("Objectives")</label>
-                                         <CheckBoxList
-                                            Data="Template.Objectives"
+                                        <label>@BriefingRoom.Translate("Objectives")</label>>
+                                        <CheckBoxList
+                                            Data="Template.GetTasksFlat()"
                                             TextField="@(item =>item.Alias + ": " + item.Task + "-" + item.Target)"
-                                            ValueField="@(item =>Template.Objectives.IndexOf(item))"
+                                            ValueField="@(item =>Template.GetTasksFlat().IndexOf(item))"
                                             SelectedValues="package.ObjectiveIndexes"
-                                            TItem="MissionTemplateObjective" TItemOutput="int">
+                                            TItem="MissionTemplateSubTask" TItemOutput="int">
                                         </CheckBoxList>
                                     </div>
                                     <div class="form-group">

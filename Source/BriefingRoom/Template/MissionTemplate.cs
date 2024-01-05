@@ -182,6 +182,16 @@ namespace BriefingRoom4DCS.Template
                 item.AssignAlias(AircraftPackages.IndexOf(item));
         }
 
+        public List<MissionTemplateSubTask> GetTasksFlat() {
+            List<MissionTemplateSubTask> lst = new();
+            foreach (var obj in Objectives)
+            {
+                lst.Add(obj);
+                lst.AddRange(obj.SubTasks);
+            }
+            return lst;
+        }
+
 
     }
 }

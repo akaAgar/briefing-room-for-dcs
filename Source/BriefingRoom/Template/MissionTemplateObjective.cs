@@ -26,22 +26,10 @@ using System.Linq;
 
 namespace BriefingRoom4DCS.Template
 {
-    public class MissionTemplateObjective : MissionTemplateGroup
+    public class MissionTemplateObjective : MissionTemplateSubTask
     {
         public List<string> Features { get { return Features_; } set { Features_ = Database.Instance.CheckIDs<DBEntryFeatureObjective>(value.ToArray()).ToList(); } }
         private List<string> Features_ = new();
-        public List<ObjectiveOption> Options { get { return Options_; } set { Options_ = value.Distinct().ToList(); } }
-        private List<ObjectiveOption> Options_;
-        public string Preset { get { return Preset_; } set { Preset_ = Database.Instance.CheckID<DBEntryObjectivePreset>(value); } }
-        private string Preset_;
-        public bool HasPreset { get { return Preset_ != "Custom"; } }
-        public string Target { get { return Target_; } set { Target_ = Database.Instance.CheckID<DBEntryObjectiveTarget>(value); } }
-        private string Target_;
-        public string TargetBehavior { get { return TargetBehavior_; } set { TargetBehavior_ = Database.Instance.CheckID<DBEntryObjectiveTargetBehavior>(value); } }
-        private string TargetBehavior_;
-        public Amount TargetCount { get; set; }
-        public string Task { get { return Task_; } set { Task_ = Database.Instance.CheckID<DBEntryObjectiveTask>(value); } }
-        private string Task_;
         public double[] CoordinateHint { get { return CoordinateHint_.ToArray(); } set { CoordinateHint_ = new Coordinates(value[0], value[1]); } }
         internal Coordinates CoordinateHint_ { get; set; }
 
@@ -90,7 +78,7 @@ namespace BriefingRoom4DCS.Template
             LoadFromFile(ini, section, key);
         }
 
-        internal void LoadFromFile(INIFile ini, string section, string key)
+        new internal void LoadFromFile(INIFile ini, string section, string key)
         {
             Features = Database.Instance.CheckIDs<DBEntryFeatureObjective>(ini.GetValueArray<string>(section, $"{key}.Features")).ToList();
             Options = ini.GetValueArray<ObjectiveOption>(section, $"{key}.Options").ToList();
@@ -110,7 +98,7 @@ namespace BriefingRoom4DCS.Template
             }
         }
 
-        internal void SaveToFile(INIFile ini, string section, string key)
+        new internal void SaveToFile(INIFile ini, string section, string key)
         {
             ini.SetValueArray(section, $"{key}.Features", Features.ToArray());
             ini.SetValueArray(section, $"{key}.Options", Options.ToArray());
@@ -127,5 +115,13 @@ namespace BriefingRoom4DCS.Template
                 i++;
             }
         }
+
+        new public void AssignAlias(int index)
+        {
+            Alias = Toolbox.GetAlias(index);
+            foreach (var subTask in SubTasks)
+                subTask.Alias = $"{Alias}{SubTasks.IndexOf(subTask) + 2}";
+        }
+
     }
 }
