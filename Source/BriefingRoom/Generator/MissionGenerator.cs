@@ -138,7 +138,7 @@ namespace BriefingRoom4DCS.Generator
             var objectiveTargetUnitFamilies = new List<UnitFamily>();
             var lastObjectiveCoordinates = playerAirbase.Coordinates;
             var objectivesGenerator = new MissionGeneratorObjectives(unitMaker, drawingMaker, template);
-            var objectiveGroupedWaypoints = new List<List<Waypoint>>();
+            var objectiveGroupedWaypoints = new List<List<List<Waypoint>>>();
             var i = 0;
             foreach (var objectiveTemplate in template.Objectives)
             {

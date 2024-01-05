@@ -42,12 +42,16 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("BullseyeRedY", objectivesCenter.Y + GetBullseyeRandomDistance());
         }
 
-        internal static void GenerateAircraftPackageWaypoints(MissionTemplateRecord template, DCSMission mission, List<List<Waypoint>> objectiveGroupedWaypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter, WaypointNameGenerator waypointNameGenerator)
+        internal static void GenerateAircraftPackageWaypoints(MissionTemplateRecord template, DCSMission mission, List<List<List<Waypoint>>> objectiveGroupedWaypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter, WaypointNameGenerator waypointNameGenerator)
         {
             foreach (var package in template.AircraftPackages)
             {
                 var missionPackage = mission.MissionPackages.First(x => x.RecordIndex == template.AircraftPackages.IndexOf(package));
-                missionPackage.Waypoints = objectiveGroupedWaypoints.SelectMany(x => x).Where((v, i) => package.ObjectiveIndexes.Contains(i)).ToList();
+                missionPackage.Waypoints = objectiveGroupedWaypoints
+                    .SelectMany(x => x)
+                    .Where((v, i) => package.ObjectiveIndexes.Contains(i))
+                    .SelectMany(x => x)
+                    .ToList();
                 GenerateIngressAndEgressWaypoints(template, missionPackage.Waypoints, averageInitialLocation, objectivesCenter, waypointNameGenerator);
 
                 foreach (var waypoint in missionPackage.Waypoints)
@@ -91,7 +95,7 @@ namespace BriefingRoom4DCS.Generator
             if (template.OptionsMission.Contains("MarkWaypoints"))
                 foreach (var waypoint in waypoints)
                 {
-                    DrawingMaker.AddDrawing(waypoint.Name, DrawingType.TextBox, waypoint.Coordinates, "Text".ToKeyValuePair(waypoint.Name));
+                    DrawingMaker.AddDrawing(waypoint.Name, DrawingType.TextBox, waypoint.Coordinates + new Coordinates(30, 8), "Text".ToKeyValuePair(waypoint.Name));
                 }
 
             foreach (var waypoint in waypoints)
