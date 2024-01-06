@@ -421,6 +421,7 @@
             StateHasChanged();
             mission = null;
             errorMessage = "";
+            await Task.Delay(10);
             mission = BriefingRoom.GenerateMission(Template);
             StateHasChanged();
             await Policy.Handle<Exception>().RetryAsync(3).ExecuteAsync(async () => await JSRuntime.InvokeVoidAsync("RenderMap", mission.GetMapData(), Template.ContextTheater, Template.ContextPlayerCoalition == Coalition.Red));
