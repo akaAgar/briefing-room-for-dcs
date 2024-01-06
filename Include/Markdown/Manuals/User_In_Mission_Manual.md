@@ -1,4 +1,4 @@
-# User in mission manual
+# User in mission manual (TODO: UPDATE 2024)
 __Last Edited: 23/12/2021__
 
 This manual contains everything you need to know to play a mission generated in BriefingRoom

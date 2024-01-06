@@ -1,4 +1,4 @@
-# User's manual
+# User's manual (TODO: UPDATE 2024)
 __Last Edited: 29/03/2022__
 
 This manual contains everything you need to know if you just plan to use BriefingRoom to generate missions. If you plan on modding BriefingRoom, please read the Modder's manual.

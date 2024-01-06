@@ -1,5 +1,5 @@
 # Credits
-__Last Edited: 15/01/2022__
+__Last Edited: 05/01/2024__
 
 The creators of Briefing Room would like to thank for following for their direct contributions towards the project
 
@@ -23,6 +23,8 @@ The creators of Briefing Room would like to thank for following for their direct
     * Juanillus
     * NaDs
     * Eagle01
+    * edernucci
+
 * Creators of scripts used:
     * ciribob (CSAR & CTLD)
     * https://spatialillusions.com/unitgenerator/ (Map Icons)

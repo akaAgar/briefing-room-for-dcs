@@ -1,4 +1,4 @@
-# Modders manual
+# Modders manual (TODO: UPDATE 2024)
 __Last Edited: 16/04/2022__
 
 This manual contains everything you need to know in order to modify BriefingRoom to your needs [for Aircraft Payloads and Liveries use Custom Configs](Custom_Configs.md).
