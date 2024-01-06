@@ -36,14 +36,16 @@ namespace BriefingRoom4DCS.Generator
         internal bool ScriptIgnore { get; }
 
         internal int TargetGroupID { get; }
+        internal bool HiddenMapMarker {get; }
 
-        internal Waypoint(string name, Coordinates coordinates, bool onGround = false, int targetGroupID = 0, bool scriptIgnore = false)
+        internal Waypoint(string name, Coordinates coordinates, bool onGround = false, int targetGroupID = 0, bool scriptIgnore = false, bool hiddenMapMarker = false)
         {
             Name = name;
             Coordinates = coordinates;
             OnGround = onGround;
             ScriptIgnore = scriptIgnore;
             TargetGroupID = targetGroupID;
+            HiddenMapMarker = hiddenMapMarker;
         }
 
         internal DCSWaypoint ToDCSWaypoint(Data.DBEntryAircraft aircraftData, DCSTask task)

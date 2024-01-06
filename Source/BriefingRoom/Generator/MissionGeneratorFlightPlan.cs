@@ -95,7 +95,8 @@ namespace BriefingRoom4DCS.Generator
             if (template.OptionsMission.Contains("MarkWaypoints"))
                 foreach (var waypoint in waypoints)
                 {
-                    DrawingMaker.AddDrawing(waypoint.Name, DrawingType.TextBox, waypoint.Coordinates + new Coordinates(-100, 0), "Text".ToKeyValuePair(waypoint.Name));
+                    if(!waypoint.HiddenMapMarker)
+                        DrawingMaker.AddDrawing(waypoint.Name, DrawingType.TextBox, waypoint.Coordinates + new Coordinates(-100, 0), "Text".ToKeyValuePair(waypoint.Name));
                 }
 
             foreach (var waypoint in waypoints)

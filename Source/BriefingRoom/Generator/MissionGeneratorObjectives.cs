@@ -400,7 +400,7 @@ namespace BriefingRoom4DCS.Generator
             objectiveCoordinatesList.Add(isInverseTransportWayPoint ? unitCoordinates : objectiveCoordinates);
             var objCoords = objectiveCoordinates;
             var furthestWaypoint = targetGroupInfo.Value.DCSGroup.Waypoints.Aggregate(objectiveCoordinates, (furthest, x) => objCoords.GetDistanceFrom(x.Coordinates) > objCoords.GetDistanceFrom(furthest) ? x.Coordinates : furthest);
-            var waypoint = GenerateObjectiveWaypoint(task, objectiveCoordinates, furthestWaypoint, objectiveName, template, targetGroupInfo.Value.GroupID);
+            var waypoint = GenerateObjectiveWaypoint(task, objectiveCoordinates, furthestWaypoint, objectiveName, template, targetGroupInfo.Value.GroupID, hiddenMapMarker: objectiveOptions.Contains(ObjectiveOption.ProgressionHiddenBrief));
             waypoints.Add(waypoint);
             objectiveWaypoints.Add(waypoint);
             mission.MapData.Add($"OBJECTIVE_AREA_{objectiveIndex}", new List<double[]> { waypoint.Coordinates.ToArray() });
@@ -582,7 +582,7 @@ namespace BriefingRoom4DCS.Generator
                 mission.Briefing.AddItem(DCSMissionBriefingItemType.Task, taskString);
         }
 
-        private Waypoint GenerateObjectiveWaypoint(MissionTemplateSubTaskRecord objectiveTemplate, Coordinates objectiveCoordinates, Coordinates ObjectiveDestinationCoordinates, string objectiveName, MissionTemplateRecord template, int groupId = 0, bool scriptIgnore = false)
+        private Waypoint GenerateObjectiveWaypoint(MissionTemplateSubTaskRecord objectiveTemplate, Coordinates objectiveCoordinates, Coordinates ObjectiveDestinationCoordinates, string objectiveName, MissionTemplateRecord template, int groupId = 0, bool scriptIgnore = false, bool hiddenMapMarker = false)
         {
             var (targetDB, targetBehaviorDB, taskDB, objectiveOptions, presetDB) = GetCustomObjectiveData(objectiveTemplate);
             var targetBehaviorLocation = targetBehaviorDB.Location;
@@ -601,7 +601,7 @@ namespace BriefingRoom4DCS.Generator
                 DrawingMaker.AddDrawing($"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(500));
             else if (targetBehaviorLocation == DBEntryObjectiveTargetBehaviorLocation.Patrolling)
                 DrawingMaker.AddDrawing($"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(ObjectiveDestinationCoordinates.GetDistanceFrom(objectiveCoordinates)));
-            return new Waypoint(objectiveName, waypointCoordinates, onGround, groupId, scriptIgnore);
+            return new Waypoint(objectiveName, waypointCoordinates, onGround, groupId, scriptIgnore, hiddenMapMarker);
         }
 
         //----------------SUB TASK SUPPORT FUNCTIONS-------------------------------
