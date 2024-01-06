@@ -88,6 +88,7 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("EndMissionAutomatically", template.OptionsMission.Contains("EndMissionAutomatically"));
             mission.SetValue("EndMissionOnCommand", template.OptionsMission.Contains("EndMissionOnCommand"));
             mission.SetValue("InstantStart", template.PlayerFlightGroups.Any(x => x.StartLocation == PlayerStartLocation.Air));
+            mission.SetValue("ShowMapMarkers", template.OptionsMission.Contains("MarkWaypoints") ? "true" : "false");
 
 
             foreach (string oggFile in Database.Instance.Common.CommonOGG)

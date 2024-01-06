@@ -898,6 +898,7 @@ briefingRoom.mission.coreFunctions = { }
 briefingRoom.mission.hasStarted = false -- has at least one player taken off?
 briefingRoom.mission.autoEnd = $ENDMISSIONAUTOMATICALLY$
 briefingRoom.mission.commandEnd = $ENDMISSIONONCOMMAND$
+briefingRoom.mission.MapMarkers = $SHOWMAPMARKERS$
 
 -- Marks objective with index index as complete, and completes the mission itself if all objectives are complete
 function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
@@ -932,7 +933,7 @@ function briefingRoom.mission.coreFunctions.completeObjective(index, failed)
     if briefingRoom.mission.objectives[idx] ~= nil and briefingRoom.mission.objectives[idx].progressionHiddenBrief then
       briefingRoom.mission.objectives[idx].progressionHiddenBrief = false
       briefingRoom.f10MenuCommands.activateObjective(idx)
-      if briefingRoom.mission.objectives[idx].waypoint ~= nil then
+      if briefingRoom.mission.objectives[idx].waypoint ~= nil and briefingRoom.mission.MapMarkers then
         local vec3pos = dcsExtensions.toVec3(briefingRoom.mission.objectives[idx].waypoint)
         trigger.action.textToAll(briefingRoom.playerCoalition, idx * 100 , vec3pos,{0, 0, 0, .53} , {1, 1, 1, .53} , 15, true , briefingRoom.mission.objectives[idx].name)
       end
