@@ -435,7 +435,7 @@ end
 function dcsExtensions.toVec2(xOrVector, y)
   if y == nil then
     if xOrVector.z then return { ["x"] = xOrVector.x, ["y"] = xOrVector.z } end
-    return { ["x"] = pxOrVector1.x, ["y"] = xOrVector.y } -- return xOrVector if it was already a vec2
+    return { ["x"] = xOrVector.x, ["y"] = xOrVector.y } -- return xOrVector if it was already a vec2
   else
     return { ["x"] = xOrVector, ["y"] = y }
   end
@@ -445,7 +445,7 @@ end
 function dcsExtensions.toVec3(xOrVector, y, z)
   if y == nil or z == nil then
     if xOrVector.z then return { ["x"] = xOrVector.x, ["y"] = xOrVector.y, ["z"] = xOrVector.z } end  -- return xOrVector if it was already a vec3
-    return { ["x"] = pxOrVector1.x, ["y"] = 0, ["z"] = xOrVector.y }
+    return { ["x"] = xOrVector.x, ["y"] = 0, ["z"] = xOrVector.y }
   else
     return { ["x"] = xOrVector, ["y"] = y, ["z"] = z }
   end
