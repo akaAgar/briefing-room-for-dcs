@@ -36,6 +36,7 @@ namespace BriefingRoom4DCS.Template
         ProgressionActivation,
         PreProgressionSpottable,
         ProgressionHiddenBrief,
-        ProgressionBundle
+        ProgressionBundle,
+        NoAircraftWaypoint
     }
 }

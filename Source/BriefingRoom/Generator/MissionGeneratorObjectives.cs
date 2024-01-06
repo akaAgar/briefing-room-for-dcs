@@ -601,7 +601,7 @@ namespace BriefingRoom4DCS.Generator
                 DrawingMaker.AddDrawing($"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(500));
             else if (targetBehaviorLocation == DBEntryObjectiveTargetBehaviorLocation.Patrolling)
                 DrawingMaker.AddDrawing($"Target Zone {objectiveName}", DrawingType.Circle, waypointCoordinates, "Radius".ToKeyValuePair(ObjectiveDestinationCoordinates.GetDistanceFrom(objectiveCoordinates)));
-            return new Waypoint(objectiveName, waypointCoordinates, onGround, groupId, scriptIgnore, hiddenMapMarker);
+            return new Waypoint(objectiveName, waypointCoordinates, onGround, groupId, scriptIgnore, objectiveTemplate.Options.Contains(ObjectiveOption.NoAircraftWaypoint), hiddenMapMarker);
         }
 
         //----------------SUB TASK SUPPORT FUNCTIONS-------------------------------
