@@ -40,4 +40,4 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeM
 end
       
 -- Add the command to the F10 menu
-missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_SMOKEMENU$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarker)
+table.insert(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].f10Commands, {text = "$LANG_SMOKEMENU$", func = briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationSmokeMarker, args =  nil})

@@ -15,7 +15,9 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].startAttack = function 
         end
     end
     briefingRoom.radioManager.play("$LANG_TROOP$: $LANG_BEGINATTACK$", "RadioOtherPilotBeginAttack")
-    missionCommands.removeItemForCoalition(briefingRoom.playerCoalition, briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].startAttackCommand)
+    local idx = briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].startAttackCommandIndex
+    missionCommands.removeItemForCoalition(briefingRoom.playerCoalition, briefingRoom.mission.objectives[$OBJECTIVEINDEX$].f10Commands[idx].commandPath)
 end
 
-briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].startAttackCommand = missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_LAUNCHATTACK$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].startAttack)
+table.insert(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].f10Commands, {text = "$LANG_LAUNCHATTACK$", func = briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].startAttack, args =  nil})
+briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].startAttackCommandIndex = #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].f10Commands

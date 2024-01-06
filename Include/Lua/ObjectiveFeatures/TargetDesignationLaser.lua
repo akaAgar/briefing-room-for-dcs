@@ -144,4 +144,4 @@ end
 -- Begin updating laser designation
 timer.scheduleFunction(briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.laserWatch, nil, timer.getTime() + 1)
 
-missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_LASERMENUNEW$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.turnOn)
+table.insert(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].f10Commands, {text = "$LANG_LASERMENUNEW$", func = briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationLaser.turnOn, args =  nil})

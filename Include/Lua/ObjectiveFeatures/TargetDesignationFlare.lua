@@ -36,4 +36,4 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationFlare 
 end
       
 -- Add the command to the F10 menu
-missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_FLAIRMENU$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationFlare)
+table.insert(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].f10Commands, {text = "$LANG_FLAIRMENU$", func = briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationFlare, args =  nil})

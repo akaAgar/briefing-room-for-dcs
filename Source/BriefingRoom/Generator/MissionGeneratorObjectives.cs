@@ -555,11 +555,12 @@ namespace BriefingRoom4DCS.Generator
             objectiveLua += $"unitNames = dcsExtensions.getUnitNamesByGroupNameSuffix(\"-TGT-{objectiveName}\"), ";
             objectiveLua += $"progressionHidden = {(objectiveOptions.Contains(ObjectiveOption.ProgressionActivation) ? "true" : "false")},";
             objectiveLua += $"progressionHiddenBrief = {(objectiveOptions.Contains(ObjectiveOption.ProgressionHiddenBrief) ? "true" : "false")},";
-            objectiveLua += $"progressionBundle = {(objectiveOptions.Contains(ObjectiveOption.ProgressionBundle) ? "true" : "false")}";
+            objectiveLua += $"progressionBundle = {(objectiveOptions.Contains(ObjectiveOption.ProgressionBundle) ? "true" : "false")},";
+            objectiveLua += $"f10MenuText = \"$LANG_OBJECTIVE$ {objectiveName}\",";
+            objectiveLua += $"f10Commands = {{}}";
             objectiveLua += "}\n";
 
             // Add F10 sub-menu for this objective
-            objectiveLua += $"briefingRoom.f10Menu.objectives[{objectiveIndex + 1}] = missionCommands.addSubMenuForCoalition(coalition.side.{template.ContextPlayerCoalition.ToString().ToUpper()}, \"$LANG_OBJECTIVE$ {objectiveName}\", nil)\n";
             mission.AppendValue("ScriptObjectives", objectiveLua);
 
             // Add objective trigger Lua for this objective

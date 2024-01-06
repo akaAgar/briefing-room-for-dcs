@@ -41,5 +41,5 @@ if unit == nil then
   unit = StaticObject.getByName(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].unitNames[1])
 end
 if unit ~= nil and not unit:isActive() then
-  missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_ESCORTMENU$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectives[$OBJECTIVEINDEX$].launchMission)
+  table.insert(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].f10Commands, {text = "$LANG_ESCORTMENU$", func = briefingRoom.mission.objectives[$OBJECTIVEINDEX$].launchMission, args =  nil})
 end

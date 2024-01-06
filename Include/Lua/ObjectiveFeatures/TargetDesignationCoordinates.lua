@@ -17,9 +17,14 @@ briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationCoordi
   local unitVec2 = { x = unitVec3.x, y = unitVec3.z }
   local cooMessage = dcsExtensions.vec2ToStringCoordinates(unitVec2)
   briefingRoom.radioManager.play(objective.name.." $LANG_JTAC$: $LANG_TARGETCOORDSAFFIRM$\n"..cooMessage, "RadioSupportTargetCoordinates", briefingRoom.radioManager.getAnswerDelay())
-  missionCommands.removeItemForCoalition(briefingRoom.playerCoalition, briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].objRadioCommand)
-  briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].objRadioCommand = missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_TARGETCOORDSMENU$.\n$LANG_TARGETCOORDSMENULAST$:\n"..cooMessage, briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationCoordinates)
+
+  local idx = briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].objRadioCommandIndex
+
+  missionCommands.removeItemForCoalition(briefingRoom.playerCoalition, briefingRoom.mission.objectives[$OBJECTIVEINDEX$].f10Commands[idx].commandPath)
+  briefingRoom.mission.objectives[$OBJECTIVEINDEX$].f10Commands[idx].commandPath = missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_TARGETCOORDSMENU$.\n$LANG_TARGETCOORDSMENULAST$:\n"..cooMessage, briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationCoordinates)
 end
     
 -- Add the command to the F10 menu
-briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].objRadioCommand = missionCommands.addCommandForCoalition(briefingRoom.playerCoalition, "$LANG_TARGETCOORDSMENU$", briefingRoom.f10Menu.objectives[$OBJECTIVEINDEX$], briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationCoordinates)
+
+table.insert(briefingRoom.mission.objectives[$OBJECTIVEINDEX$].f10Commands, {text = "$LANG_TARGETCOORDSMENU$", func = briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].targetDesignationCoordinates, args =  nil})
+briefingRoom.mission.objectiveFeatures[$OBJECTIVEINDEX$].objRadioCommandIndex = #briefingRoom.mission.objectives[$OBJECTIVEINDEX$].f10Commands
