@@ -39,7 +39,7 @@ namespace BriefingRoom4DCS
     {
         public static string ToValue(this DrawingColour colour) => colour switch
         {
-            DrawingColour.Black => "0x000000ff",
+            DrawingColour.Black => "0x00000088",
             DrawingColour.Red => "0xff0000ff",
             DrawingColour.RedFill => "0xff000022",
             DrawingColour.Blue => "0x0000ffff",
@@ -47,7 +47,7 @@ namespace BriefingRoom4DCS
             DrawingColour.Clear => "0xff000000",
             DrawingColour.GreenFill => "0x00800022",
             DrawingColour.White => "0xffffffff",
-            DrawingColour.WhiteBackground => "0xffffff96",
+            DrawingColour.WhiteBackground => "0xffffff88",
             _ => throw new ArgumentOutOfRangeException(nameof(colour), $"Not expected colour value: {colour}"),
         };
     }
