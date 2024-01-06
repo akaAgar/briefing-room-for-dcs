@@ -109,7 +109,7 @@ namespace BriefingRoom4DCS.Generator
             Coordinates? carrierGroupCoordinates = null;
             Coordinates? destinationPoint = null;
             var iteration = 0;
-            var maxDistance = 25;
+            var maxDistance = 15;
             var usingHint = template.CarrierHints.ContainsKey(flightGroup.Carrier);
             var location = objectivesCenter;
             if (usingHint)
@@ -118,20 +118,15 @@ namespace BriefingRoom4DCS.Generator
                 if (!unitMaker.SpawnPointSelector.CheckInSea(location))
                     throw new BriefingRoomException($"Carrier Hint location is on shore");
             }
-            while (iteration < 100)
+            while (iteration < 25)
             {
                 carrierGroupCoordinates = usingHint ? location : unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                     new SpawnPointType[] { SpawnPointType.Sea },
                     landbaseCoordinates,
                     new MinMaxD(10, maxDistance),
                     objectivesCenter,
-                    new MinMaxD(10, 99999),
+                    new MinMaxD(10, template.FlightPlanObjectiveDistance.Max/2),
                     template.OptionsMission.Contains("CarrierAllWaters") ? null : GeneratorTools.GetSpawnPointCoalition(template, Side.Ally));
-                if (!carrierGroupCoordinates.HasValue)
-                {
-                    maxDistance += 25;
-                    continue;
-                }
                 var minDist = usedCoordinates.Aggregate(99999999.0, (acc, x) => x.GetDistanceFrom(carrierGroupCoordinates.Value) < acc ? x.GetDistanceFrom(carrierGroupCoordinates.Value) : acc);
                 if (minDist < Database.Instance.Common.CarrierGroup.ShipSpacing)
                     continue;
@@ -140,8 +135,6 @@ namespace BriefingRoom4DCS.Generator
                 if (unitMaker.SpawnPointSelector.CheckInSea(destinationPoint.Value))
                     break;
                 iteration++;
-                if (iteration > 10)
-                    maxDistance += 1;
             }
 
             if (!carrierGroupCoordinates.HasValue)
@@ -164,17 +157,12 @@ namespace BriefingRoom4DCS.Generator
             if (theaterDB == null) return; // Theater doesn't exist. Should never happen.
 
             var usingHint = template.CarrierHints.ContainsKey(flightGroup.Carrier);
-            var location = objectivesCenter;
+            var defaultFlightDistance = landbaseCoordinates.GetDistanceFrom(objectivesCenter);
+            var location = Coordinates.Lerp(objectivesCenter, landbaseCoordinates, (defaultFlightDistance > 90 ? 0.3 : 0.5));
             if (usingHint)
                 location = new Coordinates(template.CarrierHints[flightGroup.Carrier]);
 
-            Coordinates? spawnPoint =
-                    unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
-                        new SpawnPointType[] { SpawnPointType.LandLarge },
-                        landbaseCoordinates,
-                        usingHint ? Toolbox.ANY_RANGE : new MinMaxD(5, template.FlightPlanObjectiveDistance.Max),
-                        location,
-                        usingHint ? Toolbox.HINT_RANGE : new MinMaxD(10, template.FlightPlanObjectiveDistance.Max / 2), template.ContextPlayerCoalition);
+            Coordinates? spawnPoint = unitMaker.SpawnPointSelector.GetNearestSpawnPoint(new SpawnPointType[] { SpawnPointType.LandLarge }, location);
 
             if (!spawnPoint.HasValue)
             {
@@ -207,7 +195,7 @@ namespace BriefingRoom4DCS.Generator
                     {"RadioFrequency", radioFrequencyValue},
                     {"playerCanDrive", false},
                     {"NoCM", true}});
-            if (!groupInfo.HasValue || (groupInfo.Value.UnitNames.Length == 0)) 
+            if (!groupInfo.HasValue || (groupInfo.Value.UnitNames.Length == 0))
             {
                 unitMaker.SpawnPointSelector.RecoverSpawnPoint(spawnPoint.Value);
                 return;
@@ -220,7 +208,8 @@ namespace BriefingRoom4DCS.Generator
                      DCSMissionBriefingItemType.Airbase,
                      $"{groupInfo.Value.Name}\t\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t\t");
             unitMaker.CarrierDictionary.Add(flightGroup.Carrier, new CarrierUnitMakerGroupInfo(groupInfo.Value, unitDB.ParkingSpots, template.ContextPlayerCoalition));
-            mission.MapData.Add($"FOB_{flightGroup.Carrier}", new List<double[]> { groupInfo.Value.Coordinates.ToArray() });
+            mission.MapData.Add($"FOB_{flightGroup.Carrier}", new List<double[]> { groupInfo.Value.Coordinates.ToArray()
+});
 
             foreach (var group in groupInfo.Value.DCSGroups)
             {
