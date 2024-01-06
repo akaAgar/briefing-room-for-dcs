@@ -28,7 +28,7 @@ namespace BriefingRoom4DCS.Generator
 {
     internal class UnitMakerSpawnPointSelector
     {
-        private const int MAX_RADIUS_SEARCH_ITERATIONS = 32;
+        private const int MAX_RADIUS_SEARCH_ITERATIONS = 15;
         private readonly List<UnitCategory> NEAR_FRONT_LINE_CATEGORIES = new() { UnitCategory.Static, UnitCategory.Vehicle, UnitCategory.Infantry};
 
         private readonly Dictionary<int, List<DBEntryAirbaseParkingSpot>> AirbaseParkingSpots;
@@ -173,10 +173,10 @@ namespace BriefingRoom4DCS.Generator
                                           CheckNotInHostileCoords(s.Coordinates, coalition) &&
                                           (useFrontLine ? CheckNotFarFromFrontLine(s.Coordinates, nearFrontLineFamily.Value, coalition) : CheckNotFarFromBorders(s.Coordinates, borderLimit, coalition))
                                       select s);
-                    searchRange = new MinMaxD(searchRange.Min * 0.9, Math.Max(100, searchRange.Max * 1.1));
+                    searchRange = new MinMaxD(searchRange.Min * 0.95, searchRange.Max * 1.05);
                     validSP = (from DBEntryTheaterSpawnPoint s in validSPInRange select s);
-                    if (iterationsLeft < 22)
-                        borderLimit *= 1.1;
+                    if (iterationsLeft < MAX_RADIUS_SEARCH_ITERATIONS * 0.3)
+                        borderLimit *= 1.05;
                     iterationsLeft--;
                 } while ((!validSPInRange.Any()) && (iterationsLeft > 0));
             }
@@ -220,13 +220,13 @@ namespace BriefingRoom4DCS.Generator
                 if (coordOptions.Count > 0)
                     return Toolbox.RandomFrom(coordOptions);
 
-                searchRange = new MinMaxD(searchRange.Min * 0.9, searchRange.Max * 1.1);
+                searchRange = new MinMaxD(searchRange.Min * 0.95, searchRange.Max * 1.15);
 
                 if (secondSearchRange.HasValue)
-                    secondSearchRange = new MinMaxD(secondSearchRange.Value.Min * 0.9, secondSearchRange.Value.Max * 1.1);
+                    secondSearchRange = new MinMaxD(secondSearchRange.Value.Min * 0.95, secondSearchRange.Value.Max * 1.05);
 
-                if (iterations > 10)
-                    borderLimit *= 1.1;
+                if (iterations > MAX_RADIUS_SEARCH_ITERATIONS * 0.66)
+                    borderLimit *= 1.05;
 
                 iterations++;
             } while (iterations < MAX_RADIUS_SEARCH_ITERATIONS);
