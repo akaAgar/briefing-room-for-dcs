@@ -64,15 +64,24 @@ namespace BriefingRoom4DCS.Generator
 
             var points = "";
             var index = 1;
+            var templateLua = "";
             foreach (Coordinates pos in (List<Coordinates>)extraSettings.First(x => x.Key == "Points").Value)
             {
-                var templateLua = new String(freePosLuaTemplate);
+                templateLua = new String(freePosLuaTemplate);
                 GeneratorTools.ReplaceKey(ref templateLua, "Index", index);
                 GeneratorTools.ReplaceKey(ref templateLua, "X", pos.X);
                 GeneratorTools.ReplaceKey(ref templateLua, "Y", pos.Y);
                 points += $"{templateLua}\n";
                 index++;
             }
+
+            //Make last point first point
+            templateLua = new String(freePosLuaTemplate);
+            GeneratorTools.ReplaceKey(ref templateLua, "Index", index);
+            GeneratorTools.ReplaceKey(ref templateLua, "X", 0);
+            GeneratorTools.ReplaceKey(ref templateLua, "Y", 0);
+            points += $"{templateLua}\n";
+    
             GeneratorTools.ReplaceKey(ref drawingLuaTemplate, "POINTS", points);
             DrawingColour colour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "Colour").Value ?? DrawingColour.Red);
             DrawingColour fillColour = (DrawingColour)(extraSettings.FirstOrDefault(x => x.Key == "FillColour").Value ?? DrawingColour.RedFill);
