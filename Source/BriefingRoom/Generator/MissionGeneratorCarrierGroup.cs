@@ -120,21 +120,30 @@ namespace BriefingRoom4DCS.Generator
             }
             while (iteration < 25)
             {
+                iteration++;
                 carrierGroupCoordinates = usingHint ? location : unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
                     new SpawnPointType[] { SpawnPointType.Sea },
                     landbaseCoordinates,
                     new MinMaxD(10, maxDistance),
                     objectivesCenter,
-                    new MinMaxD(10, template.FlightPlanObjectiveDistance.Max/2),
+                    new MinMaxD(10, template.FlightPlanObjectiveDistance.Max *.75),
                     template.OptionsMission.Contains("CarrierAllWaters") ? null : GeneratorTools.GetSpawnPointCoalition(template, Side.Ally));
+                if(!carrierGroupCoordinates.HasValue)
+                    continue;
                 var minDist = usedCoordinates.Aggregate(99999999.0, (acc, x) => x.GetDistanceFrom(carrierGroupCoordinates.Value) < acc ? x.GetDistanceFrom(carrierGroupCoordinates.Value) : acc);
                 if (minDist < Database.Instance.Common.CarrierGroup.ShipSpacing)
                     continue;
 
-                destinationPoint = Coordinates.FromAngleAndDistance(carrierGroupCoordinates.Value, travelMinMax, carrierPathDeg);
+                var destIteration = 0;
+                while (destIteration < 10)
+                {
+                    destIteration++;
+                    destinationPoint = Coordinates.FromAngleAndDistance(carrierGroupCoordinates.Value, travelMinMax, carrierPathDeg);
+                    if (unitMaker.SpawnPointSelector.CheckInSea(destinationPoint.Value))
+                        break;
+                }
                 if (unitMaker.SpawnPointSelector.CheckInSea(destinationPoint.Value))
                     break;
-                iteration++;
             }
 
             if (!carrierGroupCoordinates.HasValue)
