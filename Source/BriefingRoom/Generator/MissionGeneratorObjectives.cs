@@ -475,7 +475,7 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.GetSpawnPointCoalition(template, Side.Enemy));
 
             if (!spawnPoint.HasValue)
-                throw new BriefingRoomException($"Failed to spawn objective unit group. {String.Join(", ", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList())} Please try again (Consider Adusting Flight Plan)");
+                throw new BriefingRoomException($"Failed to spawn objective unit group. {String.Join(", ", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList())} Please try again (Consider Adjusting Objective distances or Hint Locations)");
 
             Coordinates objectiveCoordinates = spawnPoint.Value;
             return objectiveCoordinates;
@@ -613,7 +613,7 @@ namespace BriefingRoom4DCS.Generator
                 coreCoordinates, remove);
 
             if (!spawnPoint.HasValue)
-                throw new BriefingRoomException($"Failed to spawn nearby objective point. {String.Join(",", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList())} Please try again (Consider Adusting Flight Plan)");
+                throw new BriefingRoomException($"Failed to spawn nearby objective point. {String.Join(",", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList())} Please try again (Consider Adjusting Objective distances or Hint Locations)");
 
             Coordinates objectiveCoordinates = spawnPoint.Value;
             return objectiveCoordinates;
