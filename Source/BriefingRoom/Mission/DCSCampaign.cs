@@ -65,8 +65,11 @@ namespace BriefingRoom4DCS.Mission
                 File.WriteAllBytes($"{exportPath}{f}", MediaFiles[f]);
 
             // Write missions
-            for (int i = 0; i < Missions.Count; i++)
-                await Missions[i].SaveToMizFile($"{exportPath}{Name}{i + 1:00}.miz");
+            foreach (var mission in Missions)
+            {
+                await mission.SaveToMizFile($"{exportPath}{Name}-{mission.Briefing.Name}.miz");
+            }
+                
         }
 
         public async Task<byte[]> ExportToCompressedByteArray(CampaignTemplate template)
@@ -95,8 +98,9 @@ namespace BriefingRoom4DCS.Mission
         {
             Dictionary<string, byte[]> FileEntries = new();
 
-            for (int i = 0; i < Missions.Count; i++)
-                FileEntries.Add($"{Name}{i + 1:00}.html", Encoding.UTF8.GetBytes(Missions[i].Briefing.GetBriefingAsHTML()));
+            foreach (var mission in Missions)
+                FileEntries.Add($"{Name}-{mission.Briefing.Name}.html", Encoding.UTF8.GetBytes(mission.Briefing.GetBriefingAsHTML(mission)));
+                
 
             return Toolbox.ZipData(FileEntries);
         }

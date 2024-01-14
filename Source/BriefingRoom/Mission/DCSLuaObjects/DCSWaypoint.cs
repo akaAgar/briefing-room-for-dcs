@@ -70,7 +70,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             return LuaSerializer.Serialize(obj);
         }
 
-        internal static List<DCSWaypoint> CreateExtraWaypoints(List<DCSWaypoint> waypoints, UnitFamily unitFamily, UnitMakerSpawnPointSelector spawnPointSelector)
+        internal static List<DCSWaypoint> CreateExtraWaypoints(ref DCSMission mission, List<DCSWaypoint> waypoints, UnitFamily unitFamily)
         {
             var firstWP = waypoints.First();
             var lastWP = waypoints.Last();
@@ -92,7 +92,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 
                 if (unitFamily.GetUnitCategory() == UnitCategory.Vehicle || unitFamily.GetUnitCategory() == UnitCategory.Infantry)
                 {
-                    var waypointCoordsSpawn = spawnPointSelector.GetNearestSpawnPoint(new SpawnPointType[] { SpawnPointType.LandLarge, SpawnPointType.LandMedium, SpawnPointType.LandSmall }, tempWaypointCoords, false);
+                    var waypointCoordsSpawn = UnitMakerSpawnPointSelector.GetNearestSpawnPoint(ref mission, new SpawnPointType[] { SpawnPointType.LandLarge, SpawnPointType.LandMedium, SpawnPointType.LandSmall }, tempWaypointCoords, false);
                     if (!waypointCoordsSpawn.HasValue)
                         continue;
                     tempWaypointCoords = waypointCoordsSpawn.Value;

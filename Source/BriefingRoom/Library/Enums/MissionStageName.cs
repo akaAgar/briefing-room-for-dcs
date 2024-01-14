@@ -18,27 +18,18 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 ==========================================================================
 */
 
-using System;
-using BriefingRoom4DCS.Data.JSON;
-
-namespace BriefingRoom4DCS.Data
+namespace BriefingRoom4DCS
 {
-    public readonly struct DBEntryTheaterSpawnPoint
+    public enum MissionStageName
     {
-
-        public Coordinates Coordinates { get; init; }
-
-        public SpawnPointType PointType { get; init; }
-
-        public DBEntryTheaterSpawnPoint() {}
-
-        internal SpawnPoint ToSpawnPoint()
-        {
-            return new SpawnPoint
-            {
-                BRtype = PointType.ToString(),
-                coords = Coordinates.ToArray()
-            };
-        }
+        Initialization,
+        Situation,
+        Airbase,
+        Objective,
+        Carrier,
+        PlayerFlightGroups,
+        CAPResponse,
+        AirDefense,
+        MissionFeatures,
     }
 }

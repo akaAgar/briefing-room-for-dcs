@@ -37,7 +37,7 @@ namespace BriefingRoom4DCS
         {
             Dictionary<string, byte[]> MizFileEntries = new();
 
-            AddStringValueToEntries(MizFileEntries, "l10n/DEFAULT/briefing.html", mission.Briefing.GetBriefingAsHTML(true));
+            AddStringValueToEntries(MizFileEntries, "l10n/DEFAULT/briefing.html", mission.Briefing.GetBriefingAsHTML(mission, true));
             mission.AppendValue("MapResourcesFiles", $"[\"ResKey_Snd_briefing_html\"] = \"briefing.html\",\n");
 
             AddStringValueToEntries(MizFileEntries, "l10n/DEFAULT/credits.txt", $"Generated with BriefingRoom for DCS World (https://akaagar.itch.io/briefing-room-for-dcs) {BriefingRoom.VERSION} ({BriefingRoom.BUILD_VERSION})");
@@ -78,11 +78,7 @@ namespace BriefingRoom4DCS
             if (mission != null) // A mission was provided, do the required replacements in the file.
                 luaContent = mission.ReplaceValues(luaContent);
             luaContent = BriefingRoom.LanguageDB.ReplaceValues(luaContent);
-
-            foreach (Match match in UnassignedRegex().Matches(luaContent).Cast<Match>())
-                BriefingRoom.PrintToLog($"Found a non-assigned value ({match.Value}) in Lua file \"{mizEntryKey}\".", LogMessageErrorLevel.Info);
             luaContent = UnassignedRegex().Replace(luaContent, "0");
-
             mizFileEntries.Add(mizEntryKey, Encoding.UTF8.GetBytes(luaContent));
             return true;
         }

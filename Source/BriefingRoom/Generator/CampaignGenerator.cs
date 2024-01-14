@@ -47,36 +47,50 @@ namespace BriefingRoom4DCS.Generator
             Coordinates previousObjectiveCenterCoords = new();
             string previousPlayerAirbaseId = "";
 
-            for (int i = 0; i < campaignTemplate.MissionsCount; i++)
+            var i = 0;
+            var failedTries = 0;
+            do
             {
                 if (i > 0) date = IncrementDate(date);
 
-                var template = CreateMissionTemplate(campaignTemplate, campaign.Name, i, (int)campaignTemplate.MissionsObjectiveCount, previousSituationId, previousObjectiveCenterCoords, previousPlayerAirbaseId);
+                var template = CreateMissionTemplate(
+                    campaignTemplate,
+                    campaign.Name,
+                    i,
+                    (int)campaignTemplate.MissionsObjectiveCount,
+                    previousSituationId,
+                    failedTries > 1 ? new() :previousObjectiveCenterCoords,
+                    failedTries > 2 ? "" : previousPlayerAirbaseId);
 
-                var mission = MissionGenerator.GenerateRetryable(template);
-
-                if (mission == null)
+                try
                 {
-                    BriefingRoom.PrintToLog($"Failed to generate mission {i + 1} in the campaign.", LogMessageErrorLevel.Warning);
+                    var mission = MissionGenerator.GenerateRetryable(template);
+                    mission.SetValue("DateDay", date.Day);
+                    mission.SetValue("DateMonth", date.Month);
+                    mission.SetValue("DateYear", date.Year);
+                    mission.SetValue("BriefingDate", $"{date.Day:00}/{date.Month:00}/{date.Year:0000}");
+
+                    campaign.AddMission(mission);
+
+                    previousSituationId = mission.GetValue("BriefingSituationId");
+                    previousObjectiveCenterCoords = new Coordinates(double.Parse(mission.GetValue("MissionCenterX"), CultureInfo.InvariantCulture), double.Parse(mission.GetValue("MissionCenterY"), CultureInfo.InvariantCulture));
+                    previousPlayerAirbaseId = mission.GetValue("PlayerAirbaseId");
+                    i++;
+                    failedTries = 0;
+                }
+                catch (BriefingRoomException err)
+                {
+                    if(failedTries >= 3)
+                        throw new BriefingRoomException($"Failed to generate mission {i + 1} in the campaign.", err);
+                    failedTries++;
                     continue;
                 }
-
-                mission.SetValue("DateDay", date.Day);
-                mission.SetValue("DateMonth", date.Month);
-                mission.SetValue("DateYear", date.Year);
-                mission.SetValue("BriefingDate", $"{date.Day:00}/{date.Month:00}/{date.Year:0000}");
-
-                campaign.AddMission(mission);
-
-                previousSituationId = mission.GetValue("BriefingSituationId");
-                previousObjectiveCenterCoords = new Coordinates(double.Parse(mission.GetValue("MissionCenterX"), CultureInfo.InvariantCulture), double.Parse(mission.GetValue("MissionCenterY"), CultureInfo.InvariantCulture));
-                previousPlayerAirbaseId = mission.GetValue("PlayerAirbaseId");
-            }
+            } while (campaign.Missions.Count < campaignTemplate.MissionsCount);
 
             if (campaign.MissionCount < 1) // No missions generated, something went very wrong.
                 throw new BriefingRoomException($"Campaign has no valid mission.");
 
-            campaign.CMPFile = GetCMPFile(campaignTemplate, campaign.Name);
+            campaign.CMPFile = GetCMPFile(campaignTemplate, campaign);
 
             return campaign;
         }
@@ -91,24 +105,26 @@ namespace BriefingRoom4DCS.Generator
             return date;
         }
 
-        private static string GetCMPFile(CampaignTemplate campaignTemplate, string campaignName)
+        private static string GetCMPFile(CampaignTemplate campaignTemplate, DCSCampaign campaign)
         {
             string lua = File.ReadAllText(CAMPAIGN_LUA_TEMPLATE);
-            GeneratorTools.ReplaceKey(ref lua, "Name", campaignName);
+            GeneratorTools.ReplaceKey(ref lua, "Name", campaign.Name);
             GeneratorTools.ReplaceKey(ref lua, "Description",
                 $"This is a {campaignTemplate.ContextCoalitionBlue} vs {campaignTemplate.ContextCoalitionRed} randomly-generated campaign created by an early version of the campaign generator of BriefingRoom, a mission generator for DCS World ({BriefingRoom.WEBSITE_URL}).");
             GeneratorTools.ReplaceKey(ref lua, "Units", "");
 
             string stagesLua = "";
-            for (int i = 0; i < campaignTemplate.MissionsCount; i++)
+            var i = 1;
+            foreach(var mission in campaign.Missions)
             {
                 string nextStageLua = File.ReadAllText(CAMPAIGN_STAGE_LUA_TEMPLATE);
-                GeneratorTools.ReplaceKey(ref nextStageLua, "Index", i + 1);
-                GeneratorTools.ReplaceKey(ref nextStageLua, "Name", $"Stage {i + 1}");
+                GeneratorTools.ReplaceKey(ref nextStageLua, "Index", i);
+                GeneratorTools.ReplaceKey(ref nextStageLua, "Name", $"Stage {i}");
                 GeneratorTools.ReplaceKey(ref nextStageLua, "Description", $"");
-                GeneratorTools.ReplaceKey(ref nextStageLua, "File", $"{campaignName}{i + 1:00}.miz");
+                GeneratorTools.ReplaceKey(ref nextStageLua, "File", $"{campaign.Name}-{mission.Briefing.Name}.miz");
 
                 stagesLua += nextStageLua + "\r\n";
+                i++;
             }
             GeneratorTools.ReplaceKey(ref lua, "Stages", stagesLua);
 

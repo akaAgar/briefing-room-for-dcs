@@ -30,7 +30,7 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGeneratorBriefing
     {
 
-        internal static void GenerateMissionBriefingDescription(DCSMission mission, MissionTemplateRecord template, List<UnitFamily> objectiveTargetUnitFamilies, DBEntrySituation situationDB)
+        internal static void GenerateMissionBriefingDescription(ref DCSMission mission, MissionTemplateRecord template, List<UnitFamily> objectiveTargetUnitFamilies, DBEntrySituation situationDB)
         {
             // Try to get the provided custom mission description.
             string briefingDescription = (template.BriefingMissionDescription ?? "").Replace("\r\n", "\n").Trim();
@@ -58,7 +58,7 @@ namespace BriefingRoom4DCS.Generator
                         AddSubTasks(obj, objectiveTargetUnitFamilies, ref descriptionsMap, ref familyCount);
                     }
 
-                    briefingDescription = ConstructTaskDescriptions(descriptionsMap, mission);
+                    briefingDescription = ConstructTaskDescriptions(descriptionsMap, ref mission);
                 }
                 if (situationDB.BriefingDescriptions != null && situationDB.BriefingDescriptions.Count > 0)
                     briefingDescription = GeneratorTools.ParseRandomString(string.Join(" ", Toolbox.RandomFrom(situationDB.BriefingDescriptions).Get(), briefingDescription), mission);
@@ -69,7 +69,7 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("BRIEFINGDESCRIPTION", briefingDescription);
         }
 
-        private static string ConstructTaskDescriptions(Dictionary<string, List<string>> descriptionsMap, DCSMission mission)
+        private static string ConstructTaskDescriptions(Dictionary<string, List<string>> descriptionsMap, ref DCSMission mission)
         {
             var briefingDescriptionList = new List<string>();
             var maxDescriptionCount = Database.Instance.Common.Briefing.MaxObjectiveDescriptionCount;

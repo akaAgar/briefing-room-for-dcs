@@ -28,16 +28,16 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGeneratorWeather
     {
 
-        internal static int GenerateWeather(DCSMission mission, MissionTemplateRecord template, DBEntryTheater theaterDB, Month month, DBEntryAirbase playerAirbase)
+        internal static int GenerateWeather(ref DCSMission mission)
         {
-            var baseAlt = template.OptionsMission.Contains("SeaLevelRefCloud") ? 0.0 : playerAirbase.Elevation;
-            if (template.OptionsMission.Contains("HighCloud"))
+            var baseAlt = mission.TemplateRecord.OptionsMission.Contains("SeaLevelRefCloud") ? 0.0 : mission.PlayerAirbase.Elevation;
+            if (mission.TemplateRecord.OptionsMission.Contains("HighCloud"))
                 baseAlt += 2000;
             DBEntryWeatherPreset weatherDB;
-            if (string.IsNullOrEmpty(template.EnvironmentWeatherPreset)) // Random weather
+            if (string.IsNullOrEmpty(mission.TemplateRecord.EnvironmentWeatherPreset)) // Random weather
                 weatherDB = Toolbox.RandomFrom(Database.Instance.GetAllEntries<DBEntryWeatherPreset>());
             else
-                weatherDB = Database.Instance.GetEntry<DBEntryWeatherPreset>(template.EnvironmentWeatherPreset);
+                weatherDB = Database.Instance.GetEntry<DBEntryWeatherPreset>(mission.TemplateRecord.EnvironmentWeatherPreset);
 
             mission.SetValue("WeatherName", weatherDB.BriefingDescription.Get());
             mission.SetValue("WeatherCloudsBase", weatherDB.CloudsBase.GetValue() + baseAlt);
@@ -49,18 +49,18 @@ namespace BriefingRoom4DCS.Generator
             mission.SetValue("WeatherFogThickness", weatherDB.FogThickness.GetValue());
             mission.SetValue("WeatherFogVisibility", weatherDB.FogVisibility.GetValue());
             mission.SetValue("WeatherQNH", weatherDB.QNH.GetValue());
-            mission.SetValue("WeatherTemperature", theaterDB.Temperature[(int)month].GetValue());
+            mission.SetValue("WeatherTemperature", mission.TheaterDB.Temperature[int.Parse(mission.GetValue("DateMonth")) - 1].GetValue());
             mission.SetValue("WeatherVisibility", weatherDB.Visibility.GetValue());
 
             return weatherDB.Turbulence.GetValue();
         }
 
-        internal static Tuple<double, double> GenerateWind(DCSMission mission, MissionTemplateRecord template, int turbulenceFromWeather)
+        internal static Tuple<double, double> GenerateWind(ref DCSMission mission, int turbulenceFromWeather)
         {
             var windSpeedAtSeaLevel = 0.0;
             var windDirectionAtSeaLevel = 0.0;
 
-            Wind windLevel = template.EnvironmentWind == Wind.Random ? PickRandomWindLevel() : template.EnvironmentWind;
+            Wind windLevel = mission.TemplateRecord.EnvironmentWind == Wind.Random ? PickRandomWindLevel() : mission.TemplateRecord.EnvironmentWind;
             BriefingRoom.PrintToLog($"Wind speed level set to \"{windLevel}\".");
 
             int windAverage = 0;

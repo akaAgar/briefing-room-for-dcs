@@ -21,7 +21,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,19 +28,19 @@ namespace BriefingRoom4DCS.Generator
 {
     internal class MissionGeneratorFrontLine
     {
-        internal static void GenerateFrontLine(DCSMission mission, MissionTemplateRecord template, Coordinates playerAirbase, Coordinates objectiveCenter, Coalition playerCoalition, DBEntrySituation situationDB, ref UnitMaker unitMaker)
+        internal static void GenerateFrontLine(ref DCSMission mission)
         {
-            if (template.OptionsMission.Contains("SpawnAnywhere") || template.ContextSituation == "None" || template.OptionsMission.Contains("NoFrontLine"))
+            if (mission.TemplateRecord.OptionsMission.Contains("SpawnAnywhere") || mission.TemplateRecord.ContextSituation == "None" || mission.TemplateRecord.OptionsMission.Contains("NoFrontLine"))
                 return;
             var frontLineDB = Database.Instance.Common.FrontLine;
-            var frontLineCenter = Coordinates.Lerp(playerAirbase, objectiveCenter, GetObjectiveLerpBias(template, frontLineDB));
+            var frontLineCenter = Coordinates.Lerp(mission.PlayerAirbase.Coordinates, mission.ObjectivesCenter, GetObjectiveLerpBias(mission.TemplateRecord, frontLineDB));
 
-            var objectiveHeading = playerAirbase.GetHeadingFrom(objectiveCenter);
+            var objectiveHeading = mission.PlayerAirbase.Coordinates.GetHeadingFrom(mission.ObjectivesCenter);
             var angleVariance = frontLineDB.AngleVarianceRange + objectiveHeading;
             var frontLineList = new List<Coordinates> { frontLineCenter };
 
-            var blueZones = situationDB.GetBlueZones(false);
-            var redZones = situationDB.GetRedZones(false);
+            var blueZones = mission.SituationDB.GetBlueZones(false);
+            var redZones = mission.SituationDB.GetRedZones(false);
             var biasZones = ShapeManager.IsPosValid(frontLineCenter, blueZones) ? blueZones : (ShapeManager.IsPosValid(frontLineCenter, redZones) ? redZones : Toolbox.RandomFrom(blueZones, redZones));
 
             for (int i = 0; i < frontLineDB.SegmentsPerSide; i++)
@@ -51,7 +50,7 @@ namespace BriefingRoom4DCS.Generator
             }
 
             mission.MapData.Add("FRONTLINE", frontLineList.Select(x => x.ToArray()).ToList());
-            unitMaker.SpawnPointSelector.SetFrontLine(frontLineList, playerAirbase, playerCoalition);
+            mission.SetFrontLine(frontLineList, mission.PlayerAirbase.Coordinates, mission.TemplateRecord.ContextPlayerCoalition);
         }
 
         private static Coordinates CreatePoint(DBCommonFrontLine frontLineDB, List<Coordinates> frontLineList, MinMaxD angleVariance, List<List<Coordinates>> biasPoints, bool preCenter)

@@ -31,7 +31,7 @@ namespace BriefingRoom4DCS.Generator
     {
         private static readonly Country[] DEFAULT_COUNTRIES = new Country[] { Country.CombinedJointTaskForcesBlue, Country.CombinedJointTaskForcesRed };
 
-        internal static Country[][] GenerateCountries(DCSMission mission, MissionTemplateRecord template)
+        internal static Country[][] GenerateCountries(ref DCSMission mission)
         {
             int i;
 
@@ -42,15 +42,15 @@ namespace BriefingRoom4DCS.Generator
                 countries[i].Add(DEFAULT_COUNTRIES[i]);
 
             // Add countries for player FGs to player coalition
-            foreach (MissionTemplateFlightGroupRecord flightGroup in template.PlayerFlightGroups)
+            foreach (MissionTemplateFlightGroupRecord flightGroup in mission.TemplateRecord.PlayerFlightGroups)
             {
-                var group = flightGroup.Hostile ? template.ContextPlayerCoalition.GetEnemy() : template.ContextPlayerCoalition;
+                var group = flightGroup.Hostile ? mission.TemplateRecord.ContextPlayerCoalition.GetEnemy() : mission.TemplateRecord.ContextPlayerCoalition;
                 countries[(int)group].Add(flightGroup.Country);
             }
 
 
-            countries[(int)Coalition.Blue].AddRange(Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionBlue).Countries);
-            countries[(int)Coalition.Red].AddRange(Database.Instance.GetEntry<DBEntryCoalition>(template.ContextCoalitionRed).Countries);
+            countries[(int)Coalition.Blue].AddRange(Database.Instance.GetEntry<DBEntryCoalition>(mission.TemplateRecord.ContextCoalitionBlue).Countries);
+            countries[(int)Coalition.Red].AddRange(Database.Instance.GetEntry<DBEntryCoalition>(mission.TemplateRecord.ContextCoalitionRed).Countries);
 
             // Add all non-aligned countries to the list of neutral countries
             List<Country> neutralCountries = new(Toolbox.GetEnumValues<Country>());

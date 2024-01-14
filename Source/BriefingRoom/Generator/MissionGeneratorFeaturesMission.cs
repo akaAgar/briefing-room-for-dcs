@@ -20,7 +20,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
-using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +28,8 @@ namespace BriefingRoom4DCS.Generator
 {
     internal class MissionGeneratorFeaturesMission : MissionGeneratorFeatures<DBEntryFeatureMission>
     {
-        internal MissionGeneratorFeaturesMission(UnitMaker unitMaker, MissionTemplateRecord template) : base(unitMaker, template) { }
 
-        internal void GenerateMissionFeature(DCSMission mission, string featureID, Coordinates initialCoordinates, Coordinates objectivesCenter)
+        internal static void GenerateMissionFeature(ref DCSMission mission, string featureID)
         {
             DBEntryFeatureMission featureDB = Database.Instance.GetEntry<DBEntryFeatureMission>(featureID);
             if (featureDB == null) // Feature doesn't exist
@@ -39,23 +37,23 @@ namespace BriefingRoom4DCS.Generator
                 BriefingRoom.PrintToLog($"Mission feature {featureID} not found.", LogMessageErrorLevel.Warning);
                 return;
             }
-            Coalition coalition = featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly) ? _template.ContextPlayerCoalition : _template.ContextPlayerCoalition.GetEnemy();
+            Coalition coalition = featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly) ? mission.TemplateRecord.ContextPlayerCoalition : mission.TemplateRecord.ContextPlayerCoalition.GetEnemy();
 
             if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ForEachAirbase))
             {
-                ForEachAirbase(mission, featureID, featureDB, coalition);
+                ForEachAirbase(ref mission, featureID, featureDB, coalition);
                 return;
             }
 
             if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ForEachCarrier))
             {
-                ForEachCarrier(mission, featureDB);
+                ForEachCarrier(ref mission, featureDB);
                 return;
             }
 
             if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.ForEachFOB))
             {
-                ForEachFob(mission, featureID, featureDB);
+                ForEachFob(ref mission, featureID, featureDB);
                 return;
             }
             Coordinates? spawnPoint = null;
@@ -64,9 +62,10 @@ namespace BriefingRoom4DCS.Generator
             if (FeatureHasUnitGroup(featureDB))
             {
                 unitFamily = Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
-                Coordinates pointSearchCenter = Coordinates.Lerp(initialCoordinates, objectivesCenter, featureDB.UnitGroupSpawnDistance);
+                Coordinates pointSearchCenter = Coordinates.Lerp(mission.AverageInitialPosition, mission.ObjectivesCenter, featureDB.UnitGroupSpawnDistance);
                 spawnPoint =
-                    _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                    UnitMakerSpawnPointSelector.GetRandomSpawnPoint(
+                        ref mission,
                         featureDB.UnitGroupValidSpawnPoints, pointSearchCenter,
                         featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.AwayFromMissionArea) ? new MinMaxD(50, 100) : new MinMaxD(0, 10),
                         coalition: (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.IgnoreBorders) || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Neutral)) ? null : coalition,
@@ -74,55 +73,58 @@ namespace BriefingRoom4DCS.Generator
                         );
                 if (!spawnPoint.HasValue) // No spawn point found
                 {
-                    BriefingRoom.PrintToLog($"No spawn point found for mission feature {featureID}.", LogMessageErrorLevel.Warning);
-                    return;
+                    throw new BriefingRoomException($"No spawn point found for mission feature {featureID}.");
+                    // BriefingRoom.PrintToLog($"No spawn point found for mission feature {featureID}.", LogMessageErrorLevel.Warning);
+                    // return;
                 }
 
 
                 var goPoint = spawnPoint.Value;
 
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.MoveTowardObjectives))
-                    goPoint = objectivesCenter;
+                    goPoint = mission.ObjectivesCenter;
                 else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.MoveAnyWhere))
                     goPoint = goPoint.CreateNearRandom(50 * Toolbox.NM_TO_METERS, 100 * Toolbox.NM_TO_METERS);
                 else if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.MoveTowardPlayerBase))
-                    goPoint = initialCoordinates;
+                    goPoint = mission.AverageInitialPosition;
 
                 coordinates2 = goPoint + Coordinates.CreateRandom(5, 20) * Toolbox.NM_TO_METERS;
             }
             Dictionary<string, object> extraSettings = new();
-            UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, spawnPoint, coordinates2, ref extraSettings, preSelectedUnitFamily: unitFamily);
+            UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, ref mission, spawnPoint, coordinates2, ref extraSettings, preSelectedUnitFamily: unitFamily, missionLevelFeature: true);
 
-            AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
+            AddBriefingRemarkFromFeature(featureDB, ref mission, false, groupInfo, extraSettings);
         }
 
-        private void ForEachAirbase(DCSMission mission, string featureID, DBEntryFeatureMission featureDB, Coalition coalition)
+        private static void ForEachAirbase(ref DCSMission mission, string featureID, DBEntryFeatureMission featureDB, Coalition coalition)
         {
             var activeAirbases = mission.PopulatedAirbaseIds[coalition];
-            var airbases = Database.Instance.GetAllEntries<DBEntryAirbase>().Where(x => x.Theater == mission.TheaterID.ToLower() && activeAirbases.Contains(x.DCSID)).ToList();
+            var theaterId = mission.TheaterID.ToLower();
+            var airbases = Database.Instance.GetAllEntries<DBEntryAirbase>().Where(x => x.Theater == theaterId && activeAirbases.Contains(x.DCSID)).ToList();
             foreach (DBEntryAirbase airbase in airbases)
             {
 
-                Coordinates? spawnPoint = _unitMaker.SpawnPointSelector.GetNearestSpawnPoint(featureDB.UnitGroupValidSpawnPoints, airbase.Coordinates);
+                Coordinates? spawnPoint = UnitMakerSpawnPointSelector.GetNearestSpawnPoint(ref mission,featureDB.UnitGroupValidSpawnPoints, airbase.Coordinates);
                 if (!spawnPoint.HasValue) // No spawn point found
                 {
-                    BriefingRoom.PrintToLog($"No spawn point found for mission feature {featureID}.", LogMessageErrorLevel.Warning);
-                    return;
+                    throw new BriefingRoomException($"No spawn point found for mission feature {featureID}.");
+                    // BriefingRoom.PrintToLog($"No spawn point found for mission feature {featureID}.", LogMessageErrorLevel.Warning);
+                    // return;
                 }
 
                 Dictionary<string, object> extraSettings = new() { { "TACAN_NAME", airbase.Name } };
-                UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, spawnPoint.Value, spawnPoint.Value, ref extraSettings);
+                UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, ref mission, spawnPoint.Value, spawnPoint.Value, ref extraSettings);
 
-                AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
+                AddBriefingRemarkFromFeature(featureDB, ref mission, false, groupInfo, extraSettings);
                 if (featureID == "TacanAirbases")
-                    AppendTacanToBriefing(mission, airbase.Name, extraSettings);
+                    AppendTacanToBriefing(ref mission, airbase.Name, extraSettings);
 
             }
         }
 
-        private void ForEachCarrier(DCSMission mission, DBEntryFeatureMission featureDB)
+        private static void ForEachCarrier(ref DCSMission mission, DBEntryFeatureMission featureDB)
         {
-            var carriers = _unitMaker.CarrierDictionary
+            var carriers = mission.CarrierDictionary
                 .Where(x => !x.Value.UnitMakerGroupInfo.UnitDB.Families.Contains(UnitFamily.FOB))
                 .Select(x => x.Value)
                 .ToList();
@@ -131,16 +133,16 @@ namespace BriefingRoom4DCS.Generator
 
                 var coordinates = carrier.UnitMakerGroupInfo.Coordinates + Coordinates.CreateRandom(30, 100);
                 Dictionary<string, object> extraSettings = new() { { "CarrierGroupId", carrier.UnitMakerGroupInfo.GroupID } };
-                UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, coordinates, coordinates, ref extraSettings);
+                UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, ref mission, coordinates, coordinates, ref extraSettings);
 
-                AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
+                AddBriefingRemarkFromFeature(featureDB, ref mission, false, groupInfo, extraSettings);
 
             }
         }
 
-        private void ForEachFob(DCSMission mission, string featureID, DBEntryFeatureMission featureDB)
+        private static void ForEachFob(ref DCSMission mission, string featureID, DBEntryFeatureMission featureDB)
         {
-            var fobs = _unitMaker.CarrierDictionary
+            var fobs = mission.CarrierDictionary
                 .Where(x => x.Value.UnitMakerGroupInfo.UnitDB.Families.Contains(UnitFamily.FOB))
                 .Select(x => x.Value)
                 .ToList();
@@ -149,15 +151,15 @@ namespace BriefingRoom4DCS.Generator
 
                 var coordinates = fob.UnitMakerGroupInfo.Coordinates + Coordinates.CreateRandom(150, 400);
                 Dictionary<string, object> extraSettings = new() { { "TACAN_NAME", fob.UnitMakerGroupInfo.Name.Replace("FOB ", "") } };
-                UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, mission, coordinates, coordinates, ref extraSettings);
+                UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, ref mission, coordinates, coordinates, ref extraSettings);
 
-                AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
+                AddBriefingRemarkFromFeature(featureDB, ref mission, false, groupInfo, extraSettings);
                 if (featureID == "TacanFOBs")
-                    AppendTacanToBriefing(mission, fob.UnitMakerGroupInfo.Name, extraSettings);
+                    AppendTacanToBriefing(ref mission, fob.UnitMakerGroupInfo.Name, extraSettings);
             }
         }
 
-        private static void AppendTacanToBriefing(DCSMission mission, string name, Dictionary<string, object> extraSettings)
+        private static void AppendTacanToBriefing(ref DCSMission mission, string name, Dictionary<string, object> extraSettings)
         {
             var airbaseBriefingItems = mission.Briefing.GetItems(DCSMissionBriefingItemType.Airbase);
             var airbaseIdx = airbaseBriefingItems.FindIndex(x => x.StartsWith(name));

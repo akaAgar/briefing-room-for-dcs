@@ -26,7 +26,7 @@ using BriefingRoom4DCS.Template;
 
 namespace BriefingRoom4DCS.Data
 {
-    internal struct DBEntryAirbaseParkingSpot
+    public struct DBEntryAirbaseParkingSpot
     {
         internal int DCSID { get; private set; }
         internal Coordinates Coordinates { get; private set; }

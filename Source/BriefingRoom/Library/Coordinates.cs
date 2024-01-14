@@ -24,7 +24,7 @@ using System.Linq;
 
 namespace BriefingRoom4DCS
 {
-    internal readonly struct Coordinates : ICloneable
+    public readonly struct Coordinates : ICloneable
     {
         internal static readonly Coordinates Zero = new(0, 0);
 
@@ -95,9 +95,14 @@ namespace BriefingRoom4DCS
 
         internal static Coordinates FromAngleAndDistance(Coordinates coordinates, MinMaxD distanceMinMax, double angle)
         {
+            return FromAngleAndDistance(coordinates, distanceMinMax.GetValue(), angle);
+        }
+
+        internal static Coordinates FromAngleAndDistance(Coordinates coordinates, double distance, double angle)
+        {
             return new Coordinates(
-                coordinates.X + distanceMinMax.GetValue() * Math.Cos(angle * Toolbox.DEGREES_TO_RADIANS),
-                coordinates.Y + distanceMinMax.GetValue() * Math.Sin(angle * Toolbox.DEGREES_TO_RADIANS));
+                coordinates.X + distance * Math.Cos(angle * Toolbox.DEGREES_TO_RADIANS),
+                coordinates.Y + distance * Math.Sin(angle * Toolbox.DEGREES_TO_RADIANS));
         }
 
 
