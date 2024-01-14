@@ -32,23 +32,19 @@ namespace BriefingRoom4DCS.Generator
     {
 
         internal static void GeneratePlayerFlightGroup(
-            UnitMaker unitMaker,
-            DCSMission mission,
-            MissionTemplateRecord template,
-            MissionTemplateFlightGroupRecord flightGroup,
-            DBEntryAirbase playerAirbase,
-            List<Waypoint> waypoints,
-            Coordinates objectivesCenter,
-            DBEntryTheater theaterDB)
+            ref DCSMission mission,
+            MissionTemplateFlightGroupRecord flightGroup
+            )
         {
-            var airbase = playerAirbase;
-            var flightWaypoints = new List<Waypoint>(waypoints);
-            var groupStartingCoords = playerAirbase.Coordinates;
+            var airbase = mission.PlayerAirbase;
+            var flightWaypoints = new List<Waypoint>(mission.Waypoints);
+            var groupStartingCoords = mission.PlayerAirbase.Coordinates;
 
-            var package = template.AircraftPackages.FirstOrDefault(x => x.FlightGroupIndexes.Contains(flightGroup.Index));
+            var package = mission.TemplateRecord.AircraftPackages.FirstOrDefault(x => x.FlightGroupIndexes.Contains(flightGroup.Index));
             if (package is not null)
             {
-                var missionPackage = mission.MissionPackages.First(x => x.RecordIndex == template.AircraftPackages.IndexOf(package));
+                var aircraftPackages = mission.TemplateRecord.AircraftPackages;
+                var missionPackage = mission.StrikePackages.First(x => x.RecordIndex == aircraftPackages.IndexOf(package));
                 flightWaypoints = missionPackage.Waypoints;
                 airbase = missionPackage.Airbase;
                 groupStartingCoords = missionPackage.Airbase.Coordinates;
@@ -76,9 +72,9 @@ namespace BriefingRoom4DCS.Generator
             if (airbase.ATC != null)
                 _ = double.TryParse(airbase.ATC.Split("/")[0], out atcRadioFrequency);
 
-            if (!string.IsNullOrEmpty(flightGroup.Carrier) && unitMaker.CarrierDictionary.ContainsKey(flightGroup.Carrier) && !flightGroup.Hostile) // Carrier take off
+            if (!string.IsNullOrEmpty(flightGroup.Carrier) && mission.CarrierDictionary.ContainsKey(flightGroup.Carrier) && !flightGroup.Hostile) // Carrier take off
             {
-                var carrier = unitMaker.CarrierDictionary[flightGroup.Carrier];
+                var carrier = mission.CarrierDictionary[flightGroup.Carrier];
                 if (carrier.UnitMakerGroupInfo.UnitDB.Families.Contains(UnitFamily.ShipCarrierSTOVL) && flightGroup.Carrier != "LHA_Tarawa")
                 {
                     extraSettings.AddIfKeyUnused("Speed", 0);
@@ -105,8 +101,8 @@ namespace BriefingRoom4DCS.Generator
             }
             else if (flightGroup.Hostile)
             {
-                var coalition = GeneratorTools.GetSpawnPointCoalition(template, side, true);
-                var (hostileAirbase, hostileParkingSpotIDsList, hostileParkingSpotCoordinatesList) = unitMaker.SpawnPointSelector.GetAirbaseAndParking(template, objectivesCenter, flightGroup.Count, coalition.Value, unitDB);
+                var coalition = GeneratorTools.GetSpawnPointCoalition(mission.TemplateRecord, side, true);
+                var (hostileAirbase, hostileParkingSpotIDsList, hostileParkingSpotCoordinatesList) = UnitMakerSpawnPointSelector.GetAirbaseAndParking(mission, mission.ObjectivesCenter, flightGroup.Count, coalition.Value, unitDB);
                 parkingSpotIDsList = hostileParkingSpotIDsList;
                 parkingSpotCoordinatesList = hostileParkingSpotCoordinatesList;
                 groupStartingCoords = hostileParkingSpotCoordinatesList.First();
@@ -120,7 +116,7 @@ namespace BriefingRoom4DCS.Generator
             }
             else // Land airbase take off
             {
-                var parkingSpots = unitMaker.SpawnPointSelector.GetFreeParkingSpots(airbase.DCSID, flightGroup.Count, unitDB);
+                var parkingSpots = UnitMakerSpawnPointSelector.GetFreeParkingSpots(ref mission, airbase.DCSID, flightGroup.Count, unitDB);
                 parkingSpotIDsList = parkingSpots.Select(x => x.DCSID).ToList();
                 parkingSpotCoordinatesList = parkingSpots.Select(x => x.Coordinates).ToList();
                 groupStartingCoords = parkingSpotCoordinatesList.First();
@@ -168,9 +164,10 @@ namespace BriefingRoom4DCS.Generator
                 extraSettings.AddIfKeyUnused("UnitCoords", parkingSpotCoordinatesList);
             }
 
-            var task = GetTaskType(template.Objectives, extraSettings, package);
+            var task = GetTaskType(mission.TemplateRecord.Objectives, extraSettings, package);
 
-            UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(
+            UnitMakerGroupInfo? groupInfo = UnitMaker.AddUnitGroup(
+                ref mission,
                 Enumerable.Repeat(flightGroup.Aircraft, flightGroup.Count).ToList(), side, unitDB.Families[0],
                 groupLuaFile, "Aircraft", groupStartingCoords,
                 unitMakerGroupFlags,
@@ -186,14 +183,14 @@ namespace BriefingRoom4DCS.Generator
             groupInfo.Value.DCSGroup.Waypoints.InsertRange(1, flightWaypoints.Where(x => !x.AircraftIgnore).Select(x => x.ToDCSWaypoint(unitDB, task)).ToList());
 
 
-            SaveFlightGroup(mission, groupInfo, flightGroup, unitDB, carrierName ?? airbase.Name, task);
+            SaveFlightGroup(ref mission, groupInfo, flightGroup, unitDB, carrierName ?? airbase.Name, task);
             SaveWaypointsToBriefing(
-                mission,
+                ref mission,
                 groupStartingCoords,
                 flightWaypoints,
-                template.OptionsMission.Contains("ImperialUnitsForBriefing"),
+                mission.TemplateRecord.OptionsMission.Contains("ImperialUnitsForBriefing"),
                 groupInfo,
-                theaterDB);
+                mission.TheaterDB);
 
             var mapWaypoints = flightWaypoints.Select(x => x.Coordinates.ToArray()).ToList();
             mapWaypoints = mapWaypoints.Prepend(groupStartingCoords.ToArray()).ToList();
@@ -202,19 +199,19 @@ namespace BriefingRoom4DCS.Generator
             mission.MapData.Add($"ROUTE_{groupInfo.Value.DCSGroup.GroupId}", mapWaypoints);
         }
 
-        private static void SaveFlightGroup(DCSMission mission, UnitMakerGroupInfo? groupInfo, MissionTemplateFlightGroupRecord flightGroup, DBEntryJSONUnit unitDB, string homeBase, DCSTask task)
+        private static void SaveFlightGroup(ref DCSMission mission, UnitMakerGroupInfo? groupInfo, MissionTemplateFlightGroupRecord flightGroup, DBEntryJSONUnit unitDB, string homeBase, DCSTask task)
         {
             mission.Briefing.AddItem(DCSMissionBriefingItemType.FlightGroup,
                 $"{groupInfo.Value.Name}(P)\t" +
                 $"{flightGroup.Count}× {unitDB.UIDisplayName.Get()}\t" +
                 $"{GeneratorTools.FormatRadioFrequency(groupInfo.Value.Frequency)}\t" +
-                $"{(flightGroup.Payload == "default" ?  task : flightGroup.Payload)}\t" +
+                $"{(flightGroup.Payload == "default" ? task : flightGroup.Payload)}\t" +
                 $"{homeBase}");
             for (int i = 0; i < flightGroup.Count; i++)
                 mission.AppendValue("SCRIPTCLIENTPILOTNAMES", $"\"{groupInfo.Value.Name} {i + 1}\",");
         }
 
-        private static void SaveWaypointsToBriefing(DCSMission mission, Coordinates initialCoordinates, List<Waypoint> waypoints, bool useImperialSystem, UnitMakerGroupInfo? groupInfo, DBEntryTheater theaterDB)
+        private static void SaveWaypointsToBriefing(ref DCSMission mission, Coordinates initialCoordinates, List<Waypoint> waypoints, bool useImperialSystem, UnitMakerGroupInfo? groupInfo, DBEntryTheater theaterDB)
         {
             double totalDistance = 0;
             Coordinates lastWP = initialCoordinates;

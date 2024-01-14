@@ -24,7 +24,7 @@ using BriefingRoom4DCS.Data;
 
 namespace BriefingRoom4DCS.Generator
 {
-    internal readonly struct Waypoint
+    public readonly struct Waypoint
     {
         private readonly List<DCSTask> ATTACK_GROUP_TASKS = new() { DCSTask.AntishipStrike, DCSTask.SEAD, DCSTask.CAS };
         internal string Name { get; }

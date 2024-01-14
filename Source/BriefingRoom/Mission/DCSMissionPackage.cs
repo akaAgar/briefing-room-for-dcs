@@ -28,13 +28,13 @@ using BriefingRoom4DCS.Generator;
 namespace BriefingRoom4DCS.Template
 {
 
-    internal sealed class DCSMissionPackage
+    internal sealed class DCSMissionStrikePackage
     {
         internal List<Waypoint> Waypoints { get; set; }
         internal DBEntryAirbase Airbase { get; }
         internal int RecordIndex { get; }
 
-        internal DCSMissionPackage(int recordIndex, DBEntryAirbase airbase)
+        internal DCSMissionStrikePackage(int recordIndex, DBEntryAirbase airbase)
         {
             RecordIndex = recordIndex;
             Airbase = airbase;

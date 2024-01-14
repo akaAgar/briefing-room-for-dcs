@@ -20,8 +20,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
-using BriefingRoom4DCS.Mission.DCSLuaObjects;
-using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,10 +28,8 @@ namespace BriefingRoom4DCS.Generator
 {
     internal class MissionGeneratorFeaturesObjectives : MissionGeneratorFeatures<DBEntryFeatureObjective>
     {
-        private int PrevLaserCode { get; set; } = 1687;
-        internal MissionGeneratorFeaturesObjectives(UnitMaker unitMaker, MissionTemplateRecord template) : base(unitMaker, template) { }
 
-        internal void GenerateMissionFeature(DCSMission mission, string featureID, string objectiveName, int objectiveIndex, UnitMakerGroupInfo objectiveTarget, Side objectiveTargetSide, bool hideEnemy = false, Coordinates? overrideCoords = null)
+        internal static void GenerateMissionFeature(ref DCSMission mission, string featureID, string objectiveName, int objectiveIndex, UnitMakerGroupInfo objectiveTarget, Side objectiveTargetSide, bool hideEnemy = false, Coordinates? overrideCoords = null)
         {   
             var objCoords = overrideCoords.HasValue ? overrideCoords.Value : objectiveTarget.Coordinates;
             DBEntryFeatureObjective featureDB = Database.Instance.GetEntry<DBEntryFeatureObjective>(featureID);
@@ -58,7 +54,7 @@ namespace BriefingRoom4DCS.Generator
                 coordinates = objCoords.CreateNearRandom(featureDB.UnitGroupSpawnDistance * .75, featureDB.UnitGroupSpawnDistance * 1.5); //UnitGroupSpawnDistance treated as Meters here rather than NM
                 if (
                     !(featureDB.UnitGroupValidSpawnPoints.Contains(SpawnPointType.Sea) || featureDB.UnitGroupValidSpawnPoints.Contains(SpawnPointType.Air)) &&
-                    _unitMaker.SpawnPointSelector.CheckInSea(coordinates.Value))
+                    UnitMakerSpawnPointSelector.CheckInSea(mission.TheaterDB,coordinates.Value))
                 {
                     BriefingRoom.PrintToLog($"Can't spawn objective feature {featureID}, Invalid spawn.", LogMessageErrorLevel.Warning);
                     return;
@@ -67,15 +63,17 @@ namespace BriefingRoom4DCS.Generator
             else if (FeatureHasUnitGroup(featureDB))
             {
                 Coordinates? spawnPoint =
-                    _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                    UnitMakerSpawnPointSelector.GetRandomSpawnPoint(
+                        ref mission,
                         featureDB.UnitGroupValidSpawnPoints, objCoords,
                         new MinMaxD(featureDB.UnitGroupSpawnDistance * .75, featureDB.UnitGroupSpawnDistance * 1.5),
                         nearFrontLineFamily: flags.HasFlag(FeatureUnitGroupFlags.UseFrontLine) ? featureDB.UnitGroupFamilies.First() : null);
 
                 if (!spawnPoint.HasValue) // No spawn point found
                 {
-                    BriefingRoom.PrintToLog($"No spawn point found for objective feature {featureID}.", LogMessageErrorLevel.Warning);
-                    return;
+                    throw new BriefingRoomException($"No spawn point found for objective feature {featureID}.");
+                    // BriefingRoom.PrintToLog($"No spawn point found for objective feature {featureID}.", LogMessageErrorLevel.Warning);
+                    // return;
                 }
 
                 coordinates = spawnPoint;
@@ -95,7 +93,7 @@ namespace BriefingRoom4DCS.Generator
 
             if (featureID == "TargetDesignationLaser")
             {
-                var laserCode = _template.OptionsMission.Contains("SingleLaserCode") || _template.OptionsMission.Contains("FC3LaserCode") ? (_template.OptionsMission.Contains("FC3LaserCode") ? 1113 : 1688) : GetNextLaserCode();
+                var laserCode = mission.TemplateRecord.OptionsMission.Contains("SingleLaserCode") || mission.TemplateRecord.OptionsMission.Contains("FC3LaserCode") ? (mission.TemplateRecord.OptionsMission.Contains("FC3LaserCode") ? 1113 : 1688) : mission.GetNextLaserCode();
                 extraSettings.AddIfKeyUnused("LASERCODE", laserCode);
                 mission.Briefing.AddItem(DCSMissionBriefingItemType.JTAC, $"{objectiveName}\t{laserCode}");
             }
@@ -106,40 +104,11 @@ namespace BriefingRoom4DCS.Generator
             }
 
             UnitMakerGroupInfo? groupInfo = AddMissionFeature(
-                featureDB, mission,
+                featureDB, ref mission,
                 coordinates, coordinates2,
                 ref extraSettings, objectiveTargetSide, hideEnemy);
 
-            AddBriefingRemarkFromFeature(featureDB, mission, false, groupInfo, extraSettings);
-        }
-
-        private int GetNextLaserCode()
-        {
-            var code = PrevLaserCode;
-            code++;
-            var digits = GetDigits(code).ToList();
-            if (digits.Last() == 9)
-                code += 2;
-            digits = GetDigits(code).ToList();
-            if (digits[2] == 9)
-                code += 20;
-            if (code >= 1788)
-                code = 1511;
-            PrevLaserCode = code;
-            return code;
-        }
-
-        private static IEnumerable<int> GetDigits(int source)
-        {
-            Stack<int> digits = new();
-            while (source > 0)
-            {
-                var digit = source % 10;
-                source /= 10;
-                digits.Push(digit);
-            }
-
-            return digits;
+            AddBriefingRemarkFromFeature(featureDB, ref mission, false, groupInfo, extraSettings);
         }
     }
 }

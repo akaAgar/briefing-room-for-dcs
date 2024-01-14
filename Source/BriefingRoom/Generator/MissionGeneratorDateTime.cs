@@ -28,24 +28,24 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGeneratorDateTime
     {
 
-        internal static Month GenerateMissionDate(DCSMission mission, MissionTemplateRecord template,  DBEntryTheater theaterDB)
+        internal static Month GenerateMissionDate(ref DCSMission mission)
         {
             int day;
             Month month;
 
             // Select a random year from the most recent coalition's decade.
-            var year = Toolbox.GetRandomYearFromDecade(template.ContextDecade);
+            var year = Toolbox.GetRandomYearFromDecade(mission.TemplateRecord.ContextDecade);
 
-            BriefingRoom.PrintToLog($"No fixed date provided in the mission template, generating date in decade {template.ContextDecade}");
+            BriefingRoom.PrintToLog($"No fixed date provided in the mission template, generating date in decade {mission.TemplateRecord.ContextDecade}");
 
-            if (template.EnvironmentSeason == Season.Random) // Random season, pick any day of the year.
+            if (mission.TemplateRecord.EnvironmentSeason == Season.Random) // Random season, pick any day of the year.
             {
                 month = (Month)Toolbox.RandomInt(12);
                 day = Toolbox.RandomMinMax(1, GeneratorTools.GetDaysPerMonth(month, year));
             }
             else // Pick a date according to the desired season
             {
-                Month[] seasonMonths = GetMonthsForSeason(template.EnvironmentSeason,  theaterDB);
+                Month[] seasonMonths = GetMonthsForSeason(mission.TemplateRecord.EnvironmentSeason,  mission.TheaterDB);
 
                 int monthIndex = Toolbox.RandomInt(4);
                 month = seasonMonths[monthIndex];
@@ -68,18 +68,18 @@ namespace BriefingRoom4DCS.Generator
             return month;
         }
 
-        internal static void GenerateMissionTime(DCSMission mission, MissionTemplateRecord template, DBEntryTheater theaterDB, Month month)
+        internal static void GenerateMissionTime(ref DCSMission mission, Month month)
         {
             int hour, minute;
-            var totalMinutes = template.EnvironmentTimeOfDay switch
+            var totalMinutes = mission.TemplateRecord.EnvironmentTimeOfDay switch
             {
-                TimeOfDay.RandomDaytime => Toolbox.RandomInt(theaterDB.DayTime[(int)month].Min, theaterDB.DayTime[(int)month].Max - 60),
-                TimeOfDay.Dawn => Toolbox.RandomInt(theaterDB.DayTime[(int)month].Min, theaterDB.DayTime[(int)month].Min + 120),
+                TimeOfDay.RandomDaytime => Toolbox.RandomInt(mission.TheaterDB.DayTime[(int)month].Min, mission.TheaterDB.DayTime[(int)month].Max - 60),
+                TimeOfDay.Dawn => Toolbox.RandomInt(mission.TheaterDB.DayTime[(int)month].Min, mission.TheaterDB.DayTime[(int)month].Min + 120),
                 TimeOfDay.Noon => Toolbox.RandomInt(
-                                        (theaterDB.DayTime[(int)month].Min + theaterDB.DayTime[(int)month].Max) / 2 - 90,
-                                        (theaterDB.DayTime[(int)month].Min + theaterDB.DayTime[(int)month].Max) / 2 + 90),
-                TimeOfDay.Twilight => Toolbox.RandomInt(theaterDB.DayTime[(int)month].Max - 120, theaterDB.DayTime[(int)month].Max + 30),
-                TimeOfDay.Night => Toolbox.RandomInt(0, theaterDB.DayTime[(int)month].Min - 120),
+                                        (mission.TheaterDB.DayTime[(int)month].Min + mission.TheaterDB.DayTime[(int)month].Max) / 2 - 90,
+                                        (mission.TheaterDB.DayTime[(int)month].Min + mission.TheaterDB.DayTime[(int)month].Max) / 2 + 90),
+                TimeOfDay.Twilight => Toolbox.RandomInt(mission.TheaterDB.DayTime[(int)month].Max - 120, mission.TheaterDB.DayTime[(int)month].Max + 30),
+                TimeOfDay.Night => Toolbox.RandomInt(0, mission.TheaterDB.DayTime[(int)month].Min - 120),
                 // case TimeOfDay.Random
                 _ => (double)Toolbox.RandomInt(Toolbox.MINUTES_PER_DAY),
             };

@@ -79,19 +79,19 @@ namespace BriefingRoom4DCS.Generator
 
         }
 
-        internal static async Task GenerateTitleImage(DCSMission mission, MissionTemplateRecord template)
+        internal static async Task GenerateTitleImage(DCSMission mission)
         {
             string html = Toolbox.ReadAllTextIfFileExists(Path.Combine(BRPaths.INCLUDE_HTML, "MissionTitleImage.html"));
-            string[] theaterImages = Directory.GetFiles(Path.Combine(BRPaths.INCLUDE_JPG, "Theaters"), $"{Database.Instance.GetEntry<DBEntryTheater>(template.ContextTheater).DCSID}*.jpg");
+            string[] theaterImages = Directory.GetFiles(Path.Combine(BRPaths.INCLUDE_JPG, "Theaters"), $"{Database.Instance.GetEntry<DBEntryTheater>(mission.TemplateRecord.ContextTheater).DCSID}*.jpg");
             var backgroundImage = "_default.jpg";
             if (theaterImages.Length > 0)
                 backgroundImage = Path.GetFileName(Toolbox.RandomFrom(theaterImages));
             GeneratorTools.ReplaceKey(ref html, "BackgroundImage", GetInternalImageHTMLBase64(Path.Combine(BRPaths.INCLUDE_JPG, "Theaters", backgroundImage)));
 
-            var playerFlagPath = Path.Combine(BRPaths.INCLUDE_JPG, "Flags", $"{template.GetCoalitionID(template.ContextPlayerCoalition)}.png");
+            var playerFlagPath = Path.Combine(BRPaths.INCLUDE_JPG, "Flags", $"{mission.TemplateRecord.GetCoalitionID(mission.TemplateRecord.ContextPlayerCoalition)}.png");
             if (File.Exists(playerFlagPath))
                 GeneratorTools.ReplaceKey(ref html, "PlayerFlag", GetInternalImageHTMLBase64(playerFlagPath));
-            var enemyFlagPath = Path.Combine(BRPaths.INCLUDE_JPG, "Flags", $"{template.GetCoalitionID(template.ContextPlayerCoalition.GetEnemy())}.png");
+            var enemyFlagPath = Path.Combine(BRPaths.INCLUDE_JPG, "Flags", $"{mission.TemplateRecord.GetCoalitionID(mission.TemplateRecord.ContextPlayerCoalition.GetEnemy())}.png");
             if (File.Exists(enemyFlagPath))
                 GeneratorTools.ReplaceKey(ref html, "EnemyFlag", GetInternalImageHTMLBase64(enemyFlagPath));
 
@@ -103,13 +103,13 @@ namespace BriefingRoom4DCS.Generator
 
         internal static async Task GenerateKneeboardImagesAsync(DCSMission mission)
         {
-            var html = mission.Briefing.GetBriefingKneeBoardTasksAndRemarksHTML();
+            var html = mission.Briefing.GetBriefingKneeBoardTasksAndRemarksHTML(mission);
             await GenerateKneeboardImageAsync(html, "Tasks", mission);
 
-            html = mission.Briefing.GetBriefingKneeBoardFlightsHTML();
+            html = mission.Briefing.GetBriefingKneeBoardFlightsHTML(mission);
             await GenerateKneeboardImageAsync(html, "Flights", mission);
 
-            html = mission.Briefing.GetBriefingKneeBoardGroundHTML();
+            html = mission.Briefing.GetBriefingKneeBoardGroundHTML(mission);
             await GenerateKneeboardImageAsync(html, "Ground", mission);
 
             foreach (var flight in mission.Briefing.FlightBriefings)

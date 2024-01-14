@@ -20,7 +20,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
-using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,25 +33,26 @@ namespace BriefingRoom4DCS.Generator
         private const double BULLSEYE_DISTANCE_MAX = 40.0;
 
 
-        internal static void GenerateBullseyes(DCSMission mission, Coordinates objectivesCenter)
+        internal static void GenerateBullseyes(ref DCSMission mission)
         {
-            mission.SetValue("BullseyeBlueX", objectivesCenter.X + GetBullseyeRandomDistance());
-            mission.SetValue("BullseyeBlueY", objectivesCenter.Y + GetBullseyeRandomDistance());
-            mission.SetValue("BullseyeRedX", objectivesCenter.X + GetBullseyeRandomDistance());
-            mission.SetValue("BullseyeRedY", objectivesCenter.Y + GetBullseyeRandomDistance());
+            mission.SetValue("BullseyeBlueX", mission.ObjectivesCenter.X + GetBullseyeRandomDistance());
+            mission.SetValue("BullseyeBlueY", mission.ObjectivesCenter.Y + GetBullseyeRandomDistance());
+            mission.SetValue("BullseyeRedX", mission.ObjectivesCenter.X + GetBullseyeRandomDistance());
+            mission.SetValue("BullseyeRedY", mission.ObjectivesCenter.Y + GetBullseyeRandomDistance());
         }
 
-        internal static void GenerateAircraftPackageWaypoints(MissionTemplateRecord template, DCSMission mission, List<List<List<Waypoint>>> objectiveGroupedWaypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter, WaypointNameGenerator waypointNameGenerator)
+        internal static void GenerateAircraftPackageWaypoints(ref DCSMission mission)
         {
-            foreach (var package in template.AircraftPackages)
+            foreach (var package in mission.TemplateRecord.AircraftPackages)
             {
-                var missionPackage = mission.MissionPackages.First(x => x.RecordIndex == template.AircraftPackages.IndexOf(package));
-                missionPackage.Waypoints = objectiveGroupedWaypoints
+                var aircraftPackages = mission.TemplateRecord.AircraftPackages;
+                var missionPackage = mission.StrikePackages.First(x => x.RecordIndex == aircraftPackages.IndexOf(package));
+                missionPackage.Waypoints = mission.ObjectiveGroupedWaypoints
                     .SelectMany(x => x)
                     .Where((v, i) => package.ObjectiveIndexes.Contains(i))
                     .SelectMany(x => x)
                     .ToList();
-                GenerateIngressAndEgressWaypoints(template, missionPackage.Waypoints, averageInitialLocation, objectivesCenter, waypointNameGenerator);
+                GenerateIngressAndEgressWaypoints(ref mission);
 
                 foreach (var waypoint in missionPackage.Waypoints)
                 {
@@ -62,44 +62,44 @@ namespace BriefingRoom4DCS.Generator
         }
 
 
-        internal static void GenerateIngressAndEgressWaypoints(MissionTemplateRecord template, List<Waypoint> waypoints, Coordinates averageInitialLocation, Coordinates objectivesCenter, WaypointNameGenerator waypointNameGenerator)
+        internal static void GenerateIngressAndEgressWaypoints(ref DCSMission mission)
         {
-            if (!template.MissionFeatures.Contains("IngressEgressWaypoints"))
+            if (!mission.TemplateRecord.MissionFeatures.Contains("IngressEgressWaypoints"))
                 return;
 
             BriefingRoom.PrintToLog($"Generating ingress and egress waypoints...");
 
-            double flightPathLength = (objectivesCenter - averageInitialLocation).GetLength();
+            double flightPathLength = (mission.ObjectivesCenter - mission.AverageInitialPosition).GetLength();
             double ingressDeviation = Math.Max(4.0, flightPathLength * .15);
-            Coordinates baseIngressPosition = averageInitialLocation + (objectivesCenter - averageInitialLocation) * .7f;
+            Coordinates baseIngressPosition = mission.AverageInitialPosition + (mission.ObjectivesCenter - mission.AverageInitialPosition) * .7f;
 
-            waypoints.Insert(0,
+            mission.Waypoints.Insert(0,
                 new Waypoint(
-                    $"{Database.Instance.Common.Names.WPIngressName.Get().ToUpper()}_{waypointNameGenerator.GetWaypointName()}",
+                    $"{Database.Instance.Common.Names.WPIngressName.Get().ToUpper()}_{mission.WaypointNameGenerator.GetWaypointName()}",
                     baseIngressPosition + Coordinates.CreateRandom(ingressDeviation * 0.9, ingressDeviation * 1.1)));
 
-            waypoints.Add(
+            mission.Waypoints.Add(
                 new Waypoint(
-                    $"{Database.Instance.Common.Names.WPEgressName.Get().ToUpper()}_{waypointNameGenerator.GetWaypointName()}",
+                    $"{Database.Instance.Common.Names.WPEgressName.Get().ToUpper()}_{mission.WaypointNameGenerator.GetWaypointName()}",
                     baseIngressPosition + Coordinates.CreateRandom(ingressDeviation * 0.9, ingressDeviation * 1.1)));
         }
 
-        internal static void GenerateObjectiveWPCoordinatesLua(MissionTemplateRecord template, DCSMission mission, List<Waypoint> waypoints, DrawingMaker DrawingMaker)
+        internal static void GenerateObjectiveWPCoordinatesLua(ref DCSMission mission)
         {
-            var scriptWaypoints = waypoints.Where(x => !x.ScriptIgnore).ToList();
+            var scriptWaypoints = mission.Waypoints.Where(x => !x.ScriptIgnore).ToList();
             for (int i = 0; i < scriptWaypoints.Count; i++)
             {
                 mission.AppendValue("ScriptObjectives",
                     $"briefingRoom.mission.objectives[{i + 1}].waypoint = {scriptWaypoints[i].Coordinates.ToLuaTable()}\n");
             }
-            if (template.OptionsMission.Contains("MarkWaypoints"))
-                foreach (var waypoint in waypoints)
+            if (mission.TemplateRecord.OptionsMission.Contains("MarkWaypoints"))
+                foreach (var waypoint in mission.Waypoints)
                 {
                     if(!waypoint.HiddenMapMarker)
-                        DrawingMaker.AddDrawing(waypoint.Name, DrawingType.TextBox, waypoint.Coordinates + new Coordinates(-100, 0), "Text".ToKeyValuePair(waypoint.Name));
+                        DrawingMaker.AddDrawing(ref mission,waypoint.Name, DrawingType.TextBox, waypoint.Coordinates + new Coordinates(-100, 0), "Text".ToKeyValuePair(waypoint.Name));
                 }
 
-            foreach (var waypoint in waypoints)
+            foreach (var waypoint in mission.Waypoints)
             {
                 mission.MapData.AddIfKeyUnused($"WAYPOINT_{waypoint.Name}", new List<double[]> { waypoint.Coordinates.ToArray() });
             }

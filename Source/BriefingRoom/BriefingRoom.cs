@@ -232,7 +232,7 @@ namespace BriefingRoom4DCS
         internal static void PrintToLog(string message, LogMessageErrorLevel errorLevel = LogMessageErrorLevel.Info)
         {
             OnMessageLogged?.Invoke(message, errorLevel);
-            if (errorLevel == LogMessageErrorLevel.Warning || errorLevel == LogMessageErrorLevel.Error)
+            if (errorLevel == LogMessageErrorLevel.Warning || errorLevel == LogMessageErrorLevel.Error || System.Diagnostics.Debugger.IsAttached)
                 Console.WriteLine($"{errorLevel}: {message}");
         }
 

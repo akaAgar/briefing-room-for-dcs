@@ -29,7 +29,7 @@ namespace BriefingRoom4DCS.Generator
     {
         private static readonly string AIRPORT_TEMPLATE_FILEPATH = Path.Combine(BRPaths.INCLUDE_LUA, "Warehouses", "Airport.lua");
 
-        internal static void GenerateWarehouses(DCSMission mission, Dictionary<string, CarrierUnitMakerGroupInfo> carrierDictionary)
+        internal static void GenerateWarehouses(ref DCSMission mission, Dictionary<string, CarrierUnitMakerGroupInfo> carrierDictionary)
         {
             string warehousesAirportLua = "";
 

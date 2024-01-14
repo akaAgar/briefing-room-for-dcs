@@ -534,33 +534,34 @@ namespace BriefingRoom4DCS
             return mizBytes;
         }
 
-        internal static void SetMinMaxTheaterCoords(DBEntryTheater theater, DCSMission mission)
+        internal static void SetMinMaxTheaterCoords(ref DCSMission mission)
         {
             double minX = 123;
             double minY = 123;
             double maxX = 123;
             double maxY = 123;
 
-            foreach (var area in theater.WaterCoordinates)
+            foreach (var area in mission.TheaterDB.WaterCoordinates)
             {
                 foreach (var coord in area)
                 {
                     GetMinMaxCoords(coord, ref minX, ref minY, ref maxX, ref maxY);
                 }
             }
-            foreach (var area in theater.WaterExclusionCoordinates)
+            foreach (var area in mission.TheaterDB.WaterExclusionCoordinates)
             {
                 foreach (var coord in area)
                 {
                     GetMinMaxCoords(coord, ref minX, ref minY, ref maxX, ref maxY);
                 }
             }
-            foreach (var sp in theater.SpawnPoints)
+            foreach (var sp in mission.TheaterDB.SpawnPoints)
             {
                 GetMinMaxCoords(sp.Coordinates, ref minX, ref minY, ref maxX, ref maxY);
             }
+            var theaterDCSID = mission.TheaterDB.DCSID.ToLower();
             var situations = Database.Instance.GetAllEntries<DBEntrySituation>()
-                    .Where(x => x.Theater == theater.DCSID.ToLower())
+                    .Where(x => x.Theater == theaterDCSID)
                     .ToList();
             foreach (var situation in situations)
             {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -82,8 +83,6 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
 
         public static DCSGroup YamlToGroup(string yaml)
         {
-            foreach (Match match in YamlRegex().Matches(yaml).Cast<Match>())
-                BriefingRoom.PrintToLog($"Found a non-assigned value ({match.Value}) in Group Yaml \"{yaml}\".", LogMessageErrorLevel.Info);
             yaml = YamlRegex().Replace(yaml, "0");
             var deserializer = new DeserializerBuilder()
             .WithNamingConvention(CamelCaseNamingConvention.Instance)

@@ -20,30 +20,18 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
-using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace BriefingRoom4DCS.Generator
 {
     internal abstract class MissionGeneratorFeatures<T> where T : DBEntryFeature
     {
-        protected readonly UnitMaker _unitMaker;
 
-        protected readonly MissionTemplateRecord _template;
-
-
-        private int TACANIndex = 1;
-
-        internal MissionGeneratorFeatures(UnitMaker unitMaker, MissionTemplateRecord template)
-        {
-            _unitMaker = unitMaker;
-            _template = template;
-        }
-
-        protected UnitMakerGroupInfo? AddMissionFeature(T featureDB, DCSMission mission, Coordinates? coordinates, Coordinates? coordinates2, ref Dictionary<string, object> extraSettings, Side? objectiveTargetSide = null, bool hideEnemy = false, UnitFamily? preSelectedUnitFamily = null)
+        protected static UnitMakerGroupInfo? AddMissionFeature(T featureDB, ref DCSMission mission, Coordinates? coordinates, Coordinates? coordinates2, ref Dictionary<string, object> extraSettings, Side? objectiveTargetSide = null, bool hideEnemy = false, UnitFamily? preSelectedUnitFamily = null, bool missionLevelFeature = false)
         {
             // Add secondary coordinates (destination point) to the extra settings
 
@@ -54,7 +42,7 @@ namespace BriefingRoom4DCS.Generator
                 if (!coordinates2.HasValue) coordinates2 = coordinates; // No destination point? Use initial point
                 extraSettings.AddIfKeyUnused("GroupX2", coordinates2.Value.X);
                 extraSettings.AddIfKeyUnused("GroupY2", coordinates2.Value.Y);
-                var TACANStr = GetExtraSettingsFromFeature(featureDB, ref extraSettings); // Add specific settings for this feature (TACAN frequencies, etc)
+                var TACANStr = mission.GetTACANSettingsFromFeature(featureDB, ref extraSettings); // Add specific settings for this feature (TACAN frequencies, etc)
                 var coordinatesValue = coordinates.Value;
                 UnitMakerGroupFlags groupFlags = 0;
                 var flags = featureDB.UnitGroupFlags;
@@ -77,7 +65,7 @@ namespace BriefingRoom4DCS.Generator
                 if (flags.HasFlag(FeatureUnitGroupFlags.TimedAircraftActivation))
                     groupFlags |= UnitMakerGroupFlags.TimedAircraftSpawn;
 
-                if (_template.MissionFeatures.Contains("ContextScrambleStart"))
+                if (mission.TemplateRecord.MissionFeatures.Contains("ContextScrambleStart"))
                     groupFlags |= UnitMakerGroupFlags.ScrambleStart;
 
                 if (flags.HasFlag(FeatureUnitGroupFlags.RadioAircraftActivation))
@@ -100,11 +88,11 @@ namespace BriefingRoom4DCS.Generator
                 var unitCount = featureDB.UnitGroupSize.GetValue();
                 var unitFamily = preSelectedUnitFamily ?? Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
                 var luaUnit = featureDB.UnitGroupLuaUnit;
-                var (units, unitDBs) = _unitMaker.GetUnits(unitFamily, unitCount, groupSide, groupFlags, ref extraSettings, featureDB.UnitGroupAllowStatic);
+                var (units, unitDBs) = UnitMaker.GetUnits(ref mission,unitFamily, unitCount, groupSide, groupFlags, ref extraSettings, featureDB.UnitGroupAllowStatic);
                 if (units.Count == 0)
                 {
-                    _unitMaker.SpawnPointSelector.RecoverSpawnPoint(coordinatesValue);
-                    return groupInfo;
+                    UnitMakerSpawnPointSelector.RecoverSpawnPoint(ref mission,coordinatesValue);
+                     throw new BriefingRoomException($"No units found for mission feature {featureDB.ID}.");
                 }
                 var unitDB = unitDBs.First();
                 try
@@ -113,15 +101,16 @@ namespace BriefingRoom4DCS.Generator
                 }
                 catch (BriefingRoomException)
                 {
-                    _unitMaker.SpawnPointSelector.RecoverSpawnPoint(coordinatesValue);
-                    return groupInfo;
+                    UnitMakerSpawnPointSelector.RecoverSpawnPoint(ref mission,coordinatesValue);
+                    throw;
                 }
 
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.FireWithinThreatRange))
-                    SetFiringCoordinates(coordinatesValue, unitDB, ref extraSettings);
+                    SetFiringCoordinates(ref mission, coordinatesValue, unitDB, ref extraSettings);
 
 
-                groupInfo = _unitMaker.AddUnitGroup(
+                groupInfo = UnitMaker.AddUnitGroup(
+                    ref mission,
                     units,
                     groupSide,
                     unitFamily,
@@ -131,7 +120,7 @@ namespace BriefingRoom4DCS.Generator
 
 
 
-                SetCarrier(featureDB, groupSide, ref groupInfo);
+                SetCarrier(ref mission, featureDB, groupSide, ref groupInfo);
                 SetSupportingTargetGroupName(ref groupInfo, flags, extraSettings);
                 if (
                     groupSide == Side.Ally &&
@@ -149,14 +138,14 @@ namespace BriefingRoom4DCS.Generator
                     mission.MapData.Add($"UNIT-{groupInfo.Value.UnitDB.Families[0]}-{groupSide}-{groupInfo.Value.GroupID}", new List<double[]> { groupInfo.Value.Coordinates.ToArray() });
 
                 if (featureDB.ExtraGroups.Max > 1)
-                    SpawnExtraGroups(featureDB, mission, groupSide, groupFlags, coordinatesValue, coordinates2.Value, extraSettings);
+                    SpawnExtraGroups(featureDB, ref mission, groupSide, groupFlags, coordinatesValue, coordinates2.Value, extraSettings);
             }
 
             // Feature Lua script
             string featureLua = "";
 
             // Adds the features' group ID to the briefingRoom.mission.missionFeatures.groupsID table
-            if (this is MissionGeneratorFeaturesMission)
+            if (missionLevelFeature)
             {
                 featureLua += $"briefingRoom.mission.missionFeatures.groupNames.{GeneratorTools.LowercaseFirstCharacter(featureDB.ID)} = \"{(groupInfo.HasValue ? groupInfo.Value.Name : 0)}\"\n";
                 featureLua += $"briefingRoom.mission.missionFeatures.unitNames.{GeneratorTools.LowercaseFirstCharacter(featureDB.ID)} = {{{(groupInfo.HasValue ? string.Join(",", groupInfo.Value.UnitNames.Select(x => $"\"{x}\"")) : "")}}}\n";
@@ -191,7 +180,7 @@ namespace BriefingRoom4DCS.Generator
             return groupInfo;
         }
 
-        protected static void AddBriefingRemarkFromFeature(T featureDB, DCSMission mission, bool useEnemyRemarkIfAvailable, UnitMakerGroupInfo? groupInfo, Dictionary<string, object> stringReplacements)
+        protected static void AddBriefingRemarkFromFeature(T featureDB, ref DCSMission mission, bool useEnemyRemarkIfAvailable, UnitMakerGroupInfo? groupInfo, Dictionary<string, object> stringReplacements)
         {
             string remarkString;
             if (useEnemyRemarkIfAvailable && !string.IsNullOrEmpty(featureDB.BriefingRemarks[(int)Side.Enemy].Get()))
@@ -215,22 +204,6 @@ namespace BriefingRoom4DCS.Generator
         }
 
 
-        private string GetExtraSettingsFromFeature(T featureDB, ref Dictionary<string, object> extraSettings)
-        {
-            if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.TACAN) && (featureDB.UnitGroupFamilies.Length > 0))
-            {
-                var callsign = (GetType() == typeof(MissionGeneratorFeaturesObjectives) && extraSettings.ContainsKey("ObjectiveName")) ? extraSettings["ObjectiveName"].ToString()[..3] : $"{GeneratorTools.GetTACANCallsign(featureDB.UnitGroupFamilies[0])}{TACANIndex}";
-                if (extraSettings.ContainsKey("TACAN_NAME"))
-                    callsign = extraSettings["TACAN_NAME"].ToString()[..3];
-                var channel = ((GetType() == typeof(MissionGeneratorFeaturesObjectives)) ? 31 : 25) + TACANIndex;
-                extraSettings.AddIfKeyUnused("TACANFrequency", 1108000000);
-                extraSettings.AddIfKeyUnused("TACANCallsign", callsign);
-                extraSettings.AddIfKeyUnused("TACANChannel", channel);
-                if (TACANIndex < 9) TACANIndex++;
-                return $",\n{channel}X (callsign {callsign})";
-            }
-            return "";
-        }
 
         internal static bool FeatureHasUnitGroup(T featureDB)
         {
@@ -239,7 +212,7 @@ namespace BriefingRoom4DCS.Generator
                  !string.IsNullOrEmpty(featureDB.UnitGroupLuaUnit);
         }
 
-        private void SpawnExtraGroups(T featureDB, DCSMission mission, Side groupSide, UnitMakerGroupFlags groupFlags, Coordinates coordinates, Coordinates coordinates2, Dictionary<string, object> extraSettings)
+        private static void SpawnExtraGroups(T featureDB, ref DCSMission mission, Side groupSide, UnitMakerGroupFlags groupFlags, Coordinates coordinates, Coordinates coordinates2, Dictionary<string, object> extraSettings)
         {
             var flags = featureDB.UnitGroupFlags;
             foreach (var i in Enumerable.Range(1, featureDB.ExtraGroups.GetValue()))
@@ -257,24 +230,25 @@ namespace BriefingRoom4DCS.Generator
                 var luaUnit = featureDB.UnitGroupLuaUnit;
                 Coordinates? spawnCoords;
                 if (flags.HasFlag(FeatureUnitGroupFlags.ExtraGroupsNearby))
-                    spawnCoords = _unitMaker.SpawnPointSelector.GetNearestSpawnPoint(featureDB.UnitGroupValidSpawnPoints, coordinates);
+                    spawnCoords = UnitMakerSpawnPointSelector.GetNearestSpawnPoint(ref mission,featureDB.UnitGroupValidSpawnPoints, coordinates);
                 else
-                    spawnCoords = _unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                    spawnCoords = UnitMakerSpawnPointSelector.GetRandomSpawnPoint(
+                        ref mission,
                         featureDB.UnitGroupValidSpawnPoints, coordinates,
                         new MinMaxD(0, 5),
-                        coalition: GeneratorTools.GetSpawnPointCoalition(_template, groupSide),
+                        coalition: GeneratorTools.GetSpawnPointCoalition(mission.TemplateRecord, groupSide),
                         nearFrontLineFamily: (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.UseFrontLine) ? unitFamily : null)
                         );
 
                 if (!spawnCoords.HasValue)
-                    continue;
+                    throw new BriefingRoomException($"No extra group spawn point found for mission feature {featureDB.ID}.");
 
                 extraSettings.Remove("TemplatePositionMap");
-                var (units, unitDBs) = _unitMaker.GetUnits(unitFamily, unitCount, groupSide, groupFlags, ref extraSettings, featureDB.UnitGroupAllowStatic);
+                var (units, unitDBs) = UnitMaker.GetUnits(ref mission,unitFamily, unitCount, groupSide, groupFlags, ref extraSettings, featureDB.UnitGroupAllowStatic);
                 if (units.Count == 0)
                 {
-                    _unitMaker.SpawnPointSelector.RecoverSpawnPoint(spawnCoords.Value);
-                    continue;
+                    UnitMakerSpawnPointSelector.RecoverSpawnPoint(ref mission,spawnCoords.Value);
+                    throw new BriefingRoomException($"No units found for mission feature {featureDB.ID}.");
                 }
                 var unitDB = unitDBs.First();
 
@@ -284,14 +258,15 @@ namespace BriefingRoom4DCS.Generator
                 }
                 catch (BriefingRoomException)
                 {
-                    _unitMaker.SpawnPointSelector.RecoverSpawnPoint(spawnCoords.Value);
+                    UnitMakerSpawnPointSelector.RecoverSpawnPoint(ref mission,spawnCoords.Value);
                     continue;
                 }
 
                 if (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.FireWithinThreatRange))
-                    SetFiringCoordinates(spawnCoords.Value, unitDB, ref extraSettings);
+                    SetFiringCoordinates(ref mission, spawnCoords.Value, unitDB, ref extraSettings);
 
-                var groupInfo = _unitMaker.AddUnitGroup(
+                var groupInfo = UnitMaker.AddUnitGroup(
+                    ref mission,
                     units,
                     groupSide,
                     unitFamily,
@@ -299,7 +274,7 @@ namespace BriefingRoom4DCS.Generator
                     spawnCoords.Value, groupFlags,
                     extraSettings);
 
-                SetCarrier(featureDB, groupSide, ref groupInfo);
+                SetCarrier(ref mission, featureDB, groupSide, ref groupInfo);
                 SetSupportingTargetGroupName(ref groupInfo, flags, extraSettings);
 
 
@@ -319,13 +294,13 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        private void SetAirbase(T featureDB, ref DCSMission mission, DBEntryJSONUnit unitDB, Side groupSide, ref Coordinates coordinates, Coordinates coordinates2, int unitCount, ref Dictionary<string, object> extraSettings)
+        private static void SetAirbase(T featureDB, ref DCSMission mission, DBEntryJSONUnit unitDB, Side groupSide, ref Coordinates coordinates, Coordinates coordinates2, int unitCount, ref Dictionary<string, object> extraSettings)
         {
-            if ((_template.MissionFeatures.Contains("ContextGroundStartAircraft") || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.GroundStart)) && unitDB.IsAircraft && featureDB.UnitGroupLuaGroup != "AircraftEscort")
+            if ((mission.TemplateRecord.MissionFeatures.Contains("ContextGroundStartAircraft") || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.GroundStart)) && unitDB.IsAircraft && featureDB.UnitGroupLuaGroup != "AircraftEscort")
             {
-                var coalition = GeneratorTools.GetSpawnPointCoalition(_template, groupSide, true).Value;
-                var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = _unitMaker.SpawnPointSelector.GetAirbaseAndParking(
-                    _template, coordinates, unitCount,
+                var coalition = GeneratorTools.GetSpawnPointCoalition(mission.TemplateRecord, groupSide, true).Value;
+                var (airbase, parkingSpotIDsList, parkingSpotCoordinatesList) = UnitMakerSpawnPointSelector.GetAirbaseAndParking(
+                    mission, coordinates, unitCount,
                     coalition,
                     (DBEntryAircraft)unitDB);
                 coordinates = airbase.Coordinates;
@@ -341,12 +316,12 @@ namespace BriefingRoom4DCS.Generator
             }
         }
 
-        private void SetCarrier(T featureDB, Side side, ref UnitMakerGroupInfo? groupInfo)
+        private static void SetCarrier(ref DCSMission mission, T featureDB, Side side, ref UnitMakerGroupInfo? groupInfo)
         {
 
             if (
                 side == Side.Enemy ||
-                (!_template.MissionFeatures.Contains("ContextGroundStartAircraft") && featureDB.ID != "FriendlyStaticAircraftCarrier") ||
+                (!mission.TemplateRecord.MissionFeatures.Contains("ContextGroundStartAircraft") && featureDB.ID != "FriendlyStaticAircraftCarrier") ||
                 true
             )
                 return;
@@ -357,7 +332,7 @@ namespace BriefingRoom4DCS.Generator
             if (groupInfo.Value.UnitDB.Families.Contains(UnitFamily.PlaneSTOBAR))
                 targetFamily = UnitFamily.ShipCarrierSTOBAR;
             var unitCount = groupInfo.Value.DCSGroup.Units.Count;
-            var carrierPool = _unitMaker.CarrierDictionary.Where(x =>
+            var carrierPool = mission.CarrierDictionary.Where(x =>
                     x.Value.UnitMakerGroupInfo.UnitDB.Families.Contains(targetFamily) &&
                     x.Value.RemainingSpotCount >= unitCount
                 ).ToDictionary(x => x.Key, x => x.Value);
@@ -382,13 +357,13 @@ namespace BriefingRoom4DCS.Generator
                 groupInfo.Value.DCSGroups.ForEach(x => x.Name += $"-STGT-{extraSettings["ObjectiveName"]}");
         }
 
-        private Coordinates GetFiringCoordinates(Coordinates coordinates, DBEntryJSONUnit unitDB)
+        private static Coordinates GetFiringCoordinates(ref DCSMission mission, Coordinates coordinates, DBEntryJSONUnit unitDB)
         {
-            var angle = _unitMaker.SpawnPointSelector.GetDirToFrontLine(coordinates);
+            var angle = UnitMakerSpawnPointSelector.GetDirToFrontLine(ref mission,coordinates);
             return Coordinates.FromAngleAndDistance(coordinates, new MinMaxD(unitDB.ThreatRangeMin, unitDB.ThreatRange), new MinMaxD(angle - 45, angle + 45).GetValue());
         }
 
-        private void SetFiringCoordinates(Coordinates coordinates, DBEntryJSONUnit unitDB, ref Dictionary<string, object> extraSettings)
+        private static void SetFiringCoordinates(ref DCSMission mission, Coordinates coordinates, DBEntryJSONUnit unitDB, ref Dictionary<string, object> extraSettings)
         {
             var timeInterval = 720;
             var minTime = 0;
@@ -396,7 +371,7 @@ namespace BriefingRoom4DCS.Generator
             
             for (int i = 0; i < 5; i++)
             {
-                var coords = GetFiringCoordinates(coordinates, unitDB);
+                var coords = GetFiringCoordinates(ref mission, coordinates, unitDB);
                 extraSettings[$"FireX{i+1}"] = coords.X;
                 extraSettings[$"FireY{i+1}"] = coords.Y;
                 extraSettings[$"FireTime{i+1}"] = new MinMaxI(minTime, maxTime).GetValue();

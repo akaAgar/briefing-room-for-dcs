@@ -12,4 +12,9 @@
     <PackageReference Include="Polly" Version="8.2.1" />
     <PackageReference Include="YamlDotNet" Version="13.7.1" />
   </ItemGroup>
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>$(AssemblyName).Tests</_Parameter1>
+    </AssemblyAttribute>
+    </ItemGroup>
 </Project>

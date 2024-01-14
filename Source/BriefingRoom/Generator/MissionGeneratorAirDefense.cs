@@ -30,25 +30,25 @@ namespace BriefingRoom4DCS.Generator
     internal class MissionGeneratorAirDefense
     {
 
-        internal static void GenerateAirDefense(MissionTemplateRecord template, DCSMission mission, UnitMaker unitMaker, Coordinates averageInitialPosition, Coordinates objectivesCenter)
+        internal static void GenerateAirDefense(ref DCSMission mission)
         {
             foreach (Coalition coalition in Toolbox.GetEnumValues<Coalition>())
             {
-                bool ally = coalition == template.ContextPlayerCoalition;
+                bool ally = coalition == mission.TemplateRecord.ContextPlayerCoalition;
 
                 Side side = ally ? Side.Ally : Side.Enemy;
-                AmountNR airDefenseAmount = ally ? template.SituationFriendlyAirDefense.Get() : template.SituationEnemyAirDefense.Get();
-                Coordinates centerPoint = ally ? averageInitialPosition : objectivesCenter;
-                Coordinates opposingPoint = ally ? objectivesCenter : averageInitialPosition;
+                AmountNR airDefenseAmount = ally ? mission.TemplateRecord.SituationFriendlyAirDefense.Get() : mission.TemplateRecord.SituationEnemyAirDefense.Get();
+                Coordinates centerPoint = ally ? mission.AverageInitialPosition : mission.ObjectivesCenter;
+                Coordinates opposingPoint = ally ? mission.ObjectivesCenter : mission.AverageInitialPosition;
 
                 var knockDownCount = 0; // If failed to spawn unit at higher level air defense then we should add the count of groups to the next level down.
                 foreach (AirDefenseRange airDefenseRange in Toolbox.GetEnumValues<AirDefenseRange>().Reverse())
-                    knockDownCount = CreateAirDefenseGroups(template, mission, unitMaker, side, coalition, airDefenseAmount, knockDownCount, airDefenseRange, centerPoint, opposingPoint);
+                    knockDownCount = CreateAirDefenseGroups(ref mission, side, coalition, airDefenseAmount, knockDownCount, airDefenseRange, centerPoint, opposingPoint);
             }
         }
 
         private static int CreateAirDefenseGroups(
-            MissionTemplateRecord template, DCSMission mission, UnitMaker unitMaker, Side side, Coalition coalition,
+           ref DCSMission mission, Side side, Coalition coalition,
             AmountNR airDefenseAmount, int knockDownCount, AirDefenseRange airDefenseRange,
             Coordinates centerPoint, Coordinates opposingPoint)
         {
@@ -90,20 +90,22 @@ namespace BriefingRoom4DCS.Generator
                 var unitFamily = Toolbox.RandomFrom(unitFamilies);
                 // Find spawn point at the proper distance
                 Coordinates? spawnPoint =
-                    unitMaker.SpawnPointSelector.GetRandomSpawnPoint(
+                    UnitMakerSpawnPointSelector.GetRandomSpawnPoint(
+                        ref mission,
                         validSpawnPoints,
                         centerPoint,
                         commonAirDefenseDB.DistanceFromCenter[(int)side, (int)airDefenseRange],
                         opposingPoint,
                         new MinMaxD(commonAirDefenseDB.MinDistanceFromOpposingPoint[(int)side, (int)airDefenseRange], 99999),
-                        GeneratorTools.GetSpawnPointCoalition(template, side),
+                        GeneratorTools.GetSpawnPointCoalition(mission.TemplateRecord, side),
                         unitFamily);
 
                 // No spawn point found, stop here.
                 if (!spawnPoint.HasValue)
                 {
-                    BriefingRoom.PrintToLog($"No spawn point found for {airDefenseRange} air defense unit groups", LogMessageErrorLevel.Warning);
-                    return groupCount -i;
+                    throw new BriefingRoomException($"No spawn point found for {airDefenseRange} air defense unit groups");
+                    // BriefingRoom.PrintToLog($"No spawn point found for {airDefenseRange} air defense unit groups", LogMessageErrorLevel.Warning);
+                    // return groupCount -i;
                 }
                 var unitCount = 1;
                 var forceTryTemplate = false;
@@ -113,7 +115,8 @@ namespace BriefingRoom4DCS.Generator
                     forceTryTemplate = Toolbox.RandomChance(2);
                 }
 
-                UnitMakerGroupInfo? groupInfo = unitMaker.AddUnitGroup(
+                UnitMakerGroupInfo? groupInfo = UnitMaker.AddUnitGroup(
+                    ref mission,
                         unitFamily, unitCount, side,
                         "Vehicle", "Vehicle",
                         spawnPoint.Value,
@@ -126,7 +129,7 @@ namespace BriefingRoom4DCS.Generator
                     BriefingRoom.PrintToLog(
                         $"Failed to add {airDefenseRange} air defense unit group for {coalition} coalition.",
                         LogMessageErrorLevel.Warning);
-                    unitMaker.SpawnPointSelector.RecoverSpawnPoint(spawnPoint.Value);
+                    UnitMakerSpawnPointSelector.RecoverSpawnPoint(ref mission,spawnPoint.Value);
                     return groupCount -i;
                 }
                 mission.MapData.Add($"UNIT-{groupInfo.Value.UnitDB.Families[0]}-{side}-{groupInfo.Value.GroupID}", new List<double[]> { groupInfo.Value.Coordinates.ToArray() });
