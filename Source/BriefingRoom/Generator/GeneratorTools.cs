@@ -62,7 +62,7 @@ namespace BriefingRoom4DCS.Generator
 
             var allowStatic = unitCategory == UnitCategory.Static;
             for (int i = 0; i < airDefenseUnitsCount; i++)
-                units.AddRange(unitsCoalitionDB.GetRandomUnits(families, template.ContextDecade, 1, template.Mods, template.OptionsUnitBanList, template.OptionsMission.Contains("AllowlowPolly"),  template.OptionsMission.Contains("BlockSuppliers"),  allowStatic, country).Item2);
+                units.AddRange(unitsCoalitionDB.GetRandomUnits(families, template.ContextDecade, 1, template.Mods, template.OptionsUnitBanList, template.OptionsMission.Contains("AllowLowPoly"),  template.OptionsMission.Contains("BlockSuppliers"),  allowStatic, country).Item2);
 
             return units.ToList();
         }

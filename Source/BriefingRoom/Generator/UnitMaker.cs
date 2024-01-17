@@ -77,7 +77,7 @@ namespace BriefingRoom4DCS.Generator
 
             if (side == Side.Neutral)
             {
-                (country, units) = GeneratorTools.GetNeutralRandomUnits(families, mission.CoalitionsDB.SelectMany(x => x.Countries).ToList(), mission.TemplateRecord.ContextDecade, unitCount, mission.TemplateRecord.Mods, mission.TemplateRecord.OptionsMission.Contains("AllowlowPolly"), mission.TemplateRecord.OptionsUnitBanList);
+                (country, units) = GeneratorTools.GetNeutralRandomUnits(families, mission.CoalitionsDB.SelectMany(x => x.Countries).ToList(), mission.TemplateRecord.ContextDecade, unitCount, mission.TemplateRecord.Mods, mission.TemplateRecord.OptionsMission.Contains("AllowLowPoly"), mission.TemplateRecord.OptionsUnitBanList);
                 if (!units.Where(x => x != null).Any()) return new(new List<string>(), new List<DBEntryJSONUnit>());
             }
             else if (forceTryTemplate || families.All(x => TEMPLATE_ALWAYS_FAMILIES.Contains(x)) || (families.All(x => TEMPLATE_PREFERENCE_FAMILIES.Contains(x)) && Toolbox.RandomChance(3)))
@@ -97,7 +97,7 @@ namespace BriefingRoom4DCS.Generator
                     mission.TemplateRecord.ContextDecade,
                     unitCount, mission.TemplateRecord.Mods,
                     mission.TemplateRecord.OptionsUnitBanList,
-                    mission.TemplateRecord.OptionsMission.Contains("AllowlowPolly"),
+                    mission.TemplateRecord.OptionsMission.Contains("AllowLowPoly"),
                     mission.TemplateRecord.OptionsMission.Contains("BlockSuppliers"),
                     lowUnitVariation: unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.LowUnitVariation),
                     allowStatic: allowStatic);

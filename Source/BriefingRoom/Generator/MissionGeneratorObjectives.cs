@@ -138,7 +138,7 @@ namespace BriefingRoom4DCS.Generator
             var isInverseTransportWayPoint = false;
             var (units, unitDBs) = UnitMaker.GetUnits(ref mission, objectiveTargetUnitFamily, unitCount, taskDB.TargetSide, groupFlags, ref extraSettings, targetBehaviorDB.IsStatic);
             if (units.Count == 0 || unitDBs.Count == 0)
-                throw new BriefingRoomException($"No operational units in {objectiveTargetUnitFamily} for given time period.");
+                throw new BriefingRoomException($"No operational units in {taskDB.TargetSide} {objectiveTargetUnitFamily} for given time period.");
             var unitDB = unitDBs.First();
             if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location) && targetDB.UnitCategory.IsAircraft())
                 objectiveCoordinates = PlaceInAirbase(ref mission, extraSettings, targetBehaviorDB, objectiveCoordinates, unitCount, unitDB);
