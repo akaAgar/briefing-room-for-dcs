@@ -69,13 +69,11 @@ namespace BriefingRoom4DCS.Generator
                         featureDB.UnitGroupValidSpawnPoints, pointSearchCenter,
                         featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.AwayFromMissionArea) ? new MinMaxD(50, 100) : new MinMaxD(0, 10),
                         coalition: (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.IgnoreBorders) || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Neutral)) ? null : coalition,
-                        nearFrontLineFamily: (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.UseFrontLine) ? unitFamily : null)
+                        nearFrontLineFamily: featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.UseFrontLine) ? unitFamily : null
                         );
                 if (!spawnPoint.HasValue) // No spawn point found
                 {
                     throw new BriefingRoomException($"No spawn point found for mission feature {featureID}.");
-                    // BriefingRoom.PrintToLog($"No spawn point found for mission feature {featureID}.", LogMessageErrorLevel.Warning);
-                    // return;
                 }
 
 
