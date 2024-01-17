@@ -21,7 +21,6 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
-using Shrulik.NGeoKDBush;
 using Shrulik.NKDBush;
 using System;
 using System.Collections.Generic;
@@ -237,7 +236,9 @@ namespace BriefingRoom4DCS.Generator
         }
 
         internal static double GetDirToFrontLine(ref DCSMission mission, Coordinates coords)
-        {
+        {   
+            if(mission.FrontLine.Count == 0)
+                return Toolbox.RandomAngle();
             var nearestFrontLinePoint = ShapeManager.GetNearestPointBorder(coords, mission.FrontLine);
             return nearestFrontLinePoint.Item2.GetHeadingFrom(coords);
         }
