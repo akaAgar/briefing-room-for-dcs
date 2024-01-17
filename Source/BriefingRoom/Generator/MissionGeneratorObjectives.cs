@@ -52,6 +52,21 @@ namespace BriefingRoom4DCS.Generator
             SpawnPointType.LandLarge,
         };
 
+        private static readonly List<List<UnitFamily>> MIXED_VEHICLE_SETS = new()
+        {
+            new List<UnitFamily> {UnitFamily.VehicleAPC},
+            new List<UnitFamily> {UnitFamily.VehicleAPC, UnitFamily.VehicleAPC, UnitFamily.VehicleMBT},
+            new List<UnitFamily> {UnitFamily.VehicleAPC, UnitFamily.VehicleAPC, UnitFamily.VehicleTransport},
+            new List<UnitFamily> {UnitFamily.VehicleArtillery},
+            new List<UnitFamily> {UnitFamily.VehicleArtillery,UnitFamily.VehicleArtillery,UnitFamily.VehicleAPC,UnitFamily.VehicleTransport},
+            new List<UnitFamily> {UnitFamily.VehicleMBT},
+            new List<UnitFamily> {UnitFamily.VehicleMBT,UnitFamily.VehicleMBT,UnitFamily.VehicleAPC,UnitFamily.VehicleTransport},
+            new List<UnitFamily> {UnitFamily.VehicleMissile},
+            new List<UnitFamily> {UnitFamily.VehicleMissile,UnitFamily.VehicleMissile,UnitFamily.VehicleAPC,UnitFamily.VehicleTransport},
+            new List<UnitFamily> {UnitFamily.VehicleTransport},
+            new List<UnitFamily> {UnitFamily.VehicleTransport,UnitFamily.VehicleTransport,UnitFamily.VehicleAPC,},
+        };
+
 
         internal static Tuple<Coordinates, List<List<Waypoint>>> GenerateObjective(
             DCSMission mission,
@@ -134,9 +149,10 @@ namespace BriefingRoom4DCS.Generator
             string[] featuresID)
         {
             var extraSettings = new Dictionary<string, object>();
-            var (luaUnit, unitCount, unitCountMinMax, objectiveTargetUnitFamily, groupFlags) = GetUnitData(task, targetDB, targetBehaviorDB, objectiveOptions);
+            var (luaUnit, unitCount, unitCountMinMax, objectiveTargetUnitFamilies, groupFlags) = GetUnitData(task, targetDB, targetBehaviorDB, objectiveOptions);
             var isInverseTransportWayPoint = false;
-            var (units, unitDBs) = UnitMaker.GetUnits(ref mission, objectiveTargetUnitFamily, unitCount, taskDB.TargetSide, groupFlags, ref extraSettings, targetBehaviorDB.IsStatic);
+            var (units, unitDBs) = UnitMaker.GetUnits(ref mission, objectiveTargetUnitFamilies, unitCount, taskDB.TargetSide, groupFlags, ref extraSettings, targetBehaviorDB.IsStatic);
+            var objectiveTargetUnitFamily = objectiveTargetUnitFamilies.First();
             if (units.Count == 0 || unitDBs.Count == 0)
                 throw new BriefingRoomException($"No operational units in {taskDB.TargetSide} {objectiveTargetUnitFamily} for given time period.");
             var unitDB = unitDBs.First();
@@ -242,12 +258,12 @@ namespace BriefingRoom4DCS.Generator
                 !groupFlags.HasFlag(UnitMakerGroupFlags.RadioAircraftSpawn) &&
                 !AIR_ON_GROUND_LOCATIONS.Contains(targetBehaviorDB.Location)
                 )
-                {
-                    if(objectiveIndex > 0 && objectiveOptions.Contains(ObjectiveOption.ProgressionActivation)) 
-                        groupFlags |= UnitMakerGroupFlags.ProgressionAircraftSpawn;
-                    else
-                        groupFlags |= UnitMakerGroupFlags.ImmediateAircraftSpawn;
-                }
+            {
+                if (objectiveIndex > 0 && objectiveOptions.Contains(ObjectiveOption.ProgressionActivation))
+                    groupFlags |= UnitMakerGroupFlags.ProgressionAircraftSpawn;
+                else
+                    groupFlags |= UnitMakerGroupFlags.ImmediateAircraftSpawn;
+            }
 
             UnitMakerGroupInfo? targetGroupInfo = UnitMaker.AddUnitGroup(
                 ref mission,
@@ -265,7 +281,7 @@ namespace BriefingRoom4DCS.Generator
             if (mission.TemplateRecord.MissionFeatures.Contains("ContextScrambleStart") && !taskDB.UICategory.ContainsValue("Transport"))
                 targetGroupInfo.Value.DCSGroup.LateActivation = false;
 
-            if(objectiveIndex > 0 && objectiveOptions.Contains(ObjectiveOption.ProgressionActivation))
+            if (objectiveIndex > 0 && objectiveOptions.Contains(ObjectiveOption.ProgressionActivation))
             {
                 targetGroupInfo.Value.DCSGroup.LateActivation = true;
                 targetGroupInfo.Value.DCSGroup.Visible = objectiveOptions.Contains(ObjectiveOption.PreProgressionSpottable);
@@ -361,7 +377,7 @@ namespace BriefingRoom4DCS.Generator
             return objectiveWaypoints;
         }
 
-        private static (string luaUnit, int unitCount, MinMaxI unitCountMinMax, UnitFamily objectiveTargetUnitFamily, UnitMakerGroupFlags groupFlags) GetUnitData(MissionTemplateSubTaskRecord task, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, ObjectiveOption[] objectiveOptions)
+        private static (string luaUnit, int unitCount, MinMaxI unitCountMinMax, List<UnitFamily> objectiveTargetUnitFamily, UnitMakerGroupFlags groupFlags) GetUnitData(MissionTemplateSubTaskRecord task, DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, ObjectiveOption[] objectiveOptions)
         {
             UnitMakerGroupFlags groupFlags = 0;
             if (objectiveOptions.Contains(ObjectiveOption.Invisible)) groupFlags |= UnitMakerGroupFlags.Invisible;
@@ -371,7 +387,7 @@ namespace BriefingRoom4DCS.Generator
             return (targetBehaviorDB.UnitLua[(int)targetDB.DCSUnitCategory],
                 targetDB.UnitCount[(int)task.TargetCount].GetValue(),
                 targetDB.UnitCount[(int)task.TargetCount],
-                Toolbox.RandomFrom(targetDB.UnitFamilies),
+                targetDB.ID == "VehicleAny" ? Toolbox.RandomFrom(MIXED_VEHICLE_SETS) : [Toolbox.RandomFrom(targetDB.UnitFamilies)],
                 groupFlags
             );
         }
@@ -534,7 +550,7 @@ namespace BriefingRoom4DCS.Generator
             if (string.IsNullOrEmpty(taskString)) taskString = "Complete objective $OBJECTIVENAME$";
             GeneratorTools.ReplaceKey(ref taskString, "ObjectiveName", objectiveName);
             GeneratorTools.ReplaceKey(ref taskString, "UnitFamily", Database.Instance.Common.Names.UnitFamilies[(int)objectiveTargetUnitFamily].Get().Split(",")[pluralIndex]);
-            if(!objectiveOptions.Contains(ObjectiveOption.ProgressionHiddenBrief))
+            if (!objectiveOptions.Contains(ObjectiveOption.ProgressionHiddenBrief))
                 mission.Briefing.AddItem(DCSMissionBriefingItemType.Task, taskString);
         }
 
