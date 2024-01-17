@@ -49,12 +49,15 @@ namespace BriefingRoom4DCS.Generator
             string groupName;
             int randomNumber;
             string[] callSignEnum;
+            int tryCount = 0;
             do
             {
                 callSignEnum = Toolbox.RandomFrom<string>(unitDB.CallSigns[country]).Split(":");
                 randomNumber = Toolbox.RandomMinMax(1, 9);
                 groupName = $"{callSignEnum[1]} {randomNumber}";
-            } while (mission.NATOCallsigns.Contains(groupName));
+
+                tryCount++;
+            } while (mission.NATOCallsigns.Contains(groupName) && tryCount < 100);
             mission.NATOCallsigns.Add(groupName);
 
             var unitName = groupName + " $INDEX$";
@@ -69,14 +72,16 @@ namespace BriefingRoom4DCS.Generator
         {
             string fgName;
             int[] fgNumber = new int[2];
-
+            int tryCount = 0;
             do
             {
                 fgNumber[0] = Toolbox.RandomMinMax(1, 9);
                 fgNumber[1] = Toolbox.RandomMinMax(0, 9);
 
                 fgName = Toolbox.ValToString(fgNumber[0]) + Toolbox.ValToString(fgNumber[1]);
-            } while (mission.RussianCallsigns.Contains(fgName));
+
+                tryCount++;
+            } while (mission.RussianCallsigns.Contains(fgName)  && tryCount < 100);
 
             mission.RussianCallsigns.Add(fgName);
 
