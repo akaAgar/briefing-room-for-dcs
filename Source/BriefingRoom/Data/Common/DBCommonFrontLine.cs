@@ -22,6 +22,7 @@ using BriefingRoom4DCS.Template;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace BriefingRoom4DCS.Data
 {
@@ -35,8 +36,8 @@ namespace BriefingRoom4DCS.Data
         internal double FriendlyObjectiveBias { get; private set; }
         internal double EnemyObjectiveBias { get; private set; }
         internal MinMaxD ObjectiveBiasLimits { get; private set; }
-        internal double[] DefaultUnitLimits { get; private set; }
-        internal Dictionary<UnitFamily, double[]> UnitLimits { get; private set; }
+        internal MinMaxD[] DefaultUnitLimits { get; private set; }
+        internal Dictionary<UnitFamily, MinMaxD[]> UnitLimits { get; private set; }
 
         internal DBCommonFrontLine()
         {
@@ -50,11 +51,11 @@ namespace BriefingRoom4DCS.Data
             BaseObjectiveBiasRange = new MinMaxD(ini.GetValueArray<double>("Limits", "BaseObjectiveBiasRange"));
             ObjectiveBiasLimits = new MinMaxD(ini.GetValueArray<double>("Limits", "ObjectiveBiasLimits"));
 
-            DefaultUnitLimits = ini.GetValueArray<double>("Limits", "DefaultUnitLimit");
-            UnitLimits = new Dictionary<UnitFamily, double[]>();
+            DefaultUnitLimits = ini.GetValueArray<string>("Limits", "DefaultUnitLimit", ';').Select(x => new MinMaxD(x.Split(',').Select(x => Double.Parse(x)).ToArray())).ToArray();
+            UnitLimits = new Dictionary<UnitFamily, MinMaxD[]>();
             foreach (string key in ini.GetKeysInSection("UnitLimits"))
             {
-                UnitLimits.Add((UnitFamily)Enum.Parse(typeof(UnitFamily), key, true), ini.GetValueArray<double>("UnitLimits", key));
+                UnitLimits.Add((UnitFamily)Enum.Parse(typeof(UnitFamily), key, true), ini.GetValueArray<string>("UnitLimits", key, ';').Select(x => new MinMaxD(x.Split(',').Select(x => Double.Parse(x)).ToArray())).ToArray());
             }
         }
 

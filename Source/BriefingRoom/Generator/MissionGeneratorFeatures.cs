@@ -24,7 +24,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 
 namespace BriefingRoom4DCS.Generator
 {
@@ -237,7 +236,7 @@ namespace BriefingRoom4DCS.Generator
                         featureDB.UnitGroupValidSpawnPoints, coordinates,
                         new MinMaxD(0, 5),
                         coalition: GeneratorTools.GetSpawnPointCoalition(mission.TemplateRecord, groupSide),
-                        nearFrontLineFamily: (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.UseFrontLine) ? unitFamily : null)
+                        nearFrontLineFamily: featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.UseFrontLine) ? unitFamily : null
                         );
 
                 if (!spawnCoords.HasValue)

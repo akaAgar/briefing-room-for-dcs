@@ -361,7 +361,7 @@ namespace BriefingRoom4DCS.Generator
             if (frontLineDB.UnitLimits.ContainsKey(unitFamily))
                 distanceLimit = frontLineDB.UnitLimits[unitFamily][onFriendlySideOfLineIndex];
 
-            return (distance * Toolbox.METERS_TO_NM) < distanceLimit;
+            return  distanceLimit.Contains(distance * Toolbox.METERS_TO_NM);
 
         }
 

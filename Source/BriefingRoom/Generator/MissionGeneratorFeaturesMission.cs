@@ -62,14 +62,15 @@ namespace BriefingRoom4DCS.Generator
             if (FeatureHasUnitGroup(featureDB))
             {
                 unitFamily = Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
-                Coordinates pointSearchCenter = Coordinates.Lerp(mission.AverageInitialPosition, mission.ObjectivesCenter, featureDB.UnitGroupSpawnDistance);
+                var useFrontLine =  mission.FrontLine.Count > 0 && featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.UseFrontLine);
+                Coordinates pointSearchCenter = useFrontLine ? mission.FrontLine[(int)Math.Floor((double)mission.FrontLine.Count/2)]  : Coordinates.Lerp(mission.AverageInitialPosition, mission.ObjectivesCenter, featureDB.UnitGroupSpawnDistance);
                 spawnPoint =
                     UnitMakerSpawnPointSelector.GetRandomSpawnPoint(
                         ref mission,
                         featureDB.UnitGroupValidSpawnPoints, pointSearchCenter,
-                        featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.AwayFromMissionArea) ? new MinMaxD(50, 100) : new MinMaxD(0, 10),
+                        featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.AwayFromMissionArea) ? new MinMaxD(50, 100) : new MinMaxD(0, 25),
                         coalition: (featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.IgnoreBorders) || featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Neutral)) ? null : coalition,
-                        nearFrontLineFamily: featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.UseFrontLine) ? unitFamily : null
+                        nearFrontLineFamily: useFrontLine ? unitFamily : null
                         );
                 if (!spawnPoint.HasValue) // No spawn point found
                 {
