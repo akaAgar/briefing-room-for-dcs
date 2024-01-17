@@ -21,6 +21,8 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 using BriefingRoom4DCS.Data;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
+using Shrulik.NGeoKDBush;
+using Shrulik.NKDBush;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -108,38 +110,40 @@ namespace BriefingRoom4DCS.Generator
             bool nested = false
         )
         {
-            var validSP = (from DBEntryTheaterSpawnPoint pt in mission.SpawnPoints where validTypes.Contains(pt.PointType) select pt);
-            Coordinates?[] distanceOrigin = new Coordinates?[] { distanceOrigin1, distanceOrigin2 };
-            MinMaxD?[] distanceFrom = new MinMaxD?[] { distanceFrom1, distanceFrom2 };
             var useFrontLine = nearFrontLineFamily.HasValue && mission.FrontLine.Count > 0 && NEAR_FRONT_LINE_CATEGORIES.Contains(nearFrontLineFamily.Value.GetUnitCategory());
-            for (int i = 0; i < 2; i++) // Remove spawn points too far or too close from distanceOrigin1 and distanceOrigin2
+            var validSP = from DBEntryTheaterSpawnPoint pt in mission.SpawnPoints where validTypes.Contains(pt.PointType) select pt;
+            Coordinates?[] distanceOrigin = [distanceOrigin1, distanceOrigin2];
+            MinMaxD?[] distanceFrom = [distanceFrom1, distanceFrom2];
+            for (int i = 0; i < 2; i++)
             {
                 if (!validSP.Any()) break;
                 if (!distanceFrom[i].HasValue || !distanceOrigin[i].HasValue) continue;
 
                 var borderLimit = (double)mission.TemplateRecord.BorderLimit;
+                Coordinates origin = distanceOrigin[i].Value;
                 var searchRange = distanceFrom[i].Value * Toolbox.NM_TO_METERS; // convert distance to meters
 
-                IEnumerable<DBEntryTheaterSpawnPoint> validSPInRange = (from DBEntryTheaterSpawnPoint s in validSP select s);
+                IEnumerable<DBEntryTheaterSpawnPoint> validSPInRange;
 
                 int iterationsLeft = MAX_RADIUS_SEARCH_ITERATIONS;
 
+                var validSPArray = validSP.ToArray();
+                var index = new KDBush<DBEntryTheaterSpawnPoint>(validSPArray, p => p.Coordinates.X, p => p.Coordinates.Y);
                 do
                 {
-                    Coordinates origin = distanceOrigin[i].Value;
-
-                    validSPInRange = (from DBEntryTheaterSpawnPoint s in validSP
+                    var within = index.Within(origin.X, origin.Y, searchRange.Max).Select(x => validSPArray[x]);
+                    validSPInRange = (from DBEntryTheaterSpawnPoint s in within
                                       where
-                                          searchRange.Contains(origin.GetDistanceFrom(s.Coordinates)) &&
-                                          CheckNotInHostileCoords(ref mission, s.Coordinates, coalition) &&
-                                          (useFrontLine ? CheckNotFarFromFrontLine(ref mission, s.Coordinates, nearFrontLineFamily.Value, coalition) : CheckNotFarFromBorders(ref mission, s.Coordinates, borderLimit, coalition))
+                                        searchRange.Contains(origin.GetDistanceFrom(s.Coordinates)) &&
+                                        CheckNotInHostileCoords(ref mission, s.Coordinates, coalition) &&
+                                        (useFrontLine ? CheckNotFarFromFrontLine(ref mission, s.Coordinates, nearFrontLineFamily.Value, coalition) : CheckNotFarFromBorders(ref mission, s.Coordinates, borderLimit, coalition))
                                       select s);
                     searchRange = new MinMaxD(searchRange.Min * 0.95, searchRange.Max * 1.05);
-                    validSP = (from DBEntryTheaterSpawnPoint s in validSPInRange select s);
                     if (iterationsLeft < MAX_RADIUS_SEARCH_ITERATIONS * 0.3)
                         borderLimit *= 1.05;
                     iterationsLeft--;
                 } while ((!validSPInRange.Any()) && (iterationsLeft > 0));
+                validSP = validSPInRange;
             }
 
             if (!validSP.Any())
@@ -168,7 +172,7 @@ namespace BriefingRoom4DCS.Generator
             var iterations = 0;
             do
             {
-                var coordOptionsLinq = Enumerable.Range(0, 5000)
+                var coordOptionsLinq = Enumerable.Range(0, 300)
                     .Select(x => Coordinates.CreateRandom(distanceOrigin1, searchRange))
                     .Where(x => CheckNotInHostileCoords(ref mission, x, coalition) && CheckNotInNoSpawnCoords(mission.SituationDB, x) && CheckNotFarFromBorders(ref mission, x, borderLimit, coalition));
 
