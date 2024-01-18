@@ -324,6 +324,18 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.ReplaceKey(ref groupYml, "Speed", aircraftDB.CruiseSpeed);
             }
 
+            if (unitFamily.GetUnitCategory() == UnitCategory.Vehicle || unitFamily.GetUnitCategory() == UnitCategory.Infantry)
+            {
+                GeneratorTools.ReplaceKey(ref groupYml, "Formation", Toolbox.RandomFrom(new List<string>{
+                    "Rank",
+                    "Cone",
+                    "Vee",
+                    "Diamond",
+                    "EchelonL",
+                    "EchelonR"
+                    }));
+            }
+
             var dCSGroup = DCSGroup.YamlToGroup(groupYml);
 
             if (unitFamily.GetUnitCategory().IsAircraft() && extraSettings.ContainsKey("GroupAirbaseID") && dCSGroup.Waypoints[0].AirdromeId == default)

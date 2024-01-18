@@ -83,14 +83,14 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
             var mid2 = OffsetWaypoint(waypoints, Coordinates.Lerp(firstWP.Coordinates, lastWP.Coordinates, new MinMaxD(0.2, 0.7).GetValue()), L, unitFamily, distance);
             var lastWaypoint = waypoints.Last();
             var extraWaypoints = new List<DCSWaypoint>();
+            var isGroundBased = unitFamily.GetUnitCategory() == UnitCategory.Vehicle || unitFamily.GetUnitCategory() == UnitCategory.Infantry;
 
             foreach (var waypointCoords in new Coordinates[] { mid1, mid2, mid3 })
             {
                 var tempWaypointCoords = waypointCoords;
                 if (new Random().NextDouble() <= 0.5)
                     continue;
-
-                if (unitFamily.GetUnitCategory() == UnitCategory.Vehicle || unitFamily.GetUnitCategory() == UnitCategory.Infantry)
+                if (isGroundBased)
                 {
                     var waypointCoordsSpawn = UnitMakerSpawnPointSelector.GetNearestSpawnPoint(ref mission, new SpawnPointType[] { SpawnPointType.LandLarge, SpawnPointType.LandMedium, SpawnPointType.LandSmall }, tempWaypointCoords, false);
                     if (!waypointCoordsSpawn.HasValue)
@@ -102,7 +102,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {
                     Alt = lastWaypoint.Alt,
                     AltType = lastWaypoint.AltType,
-                    Action = "Turning Point",
+                    Action = isGroundBased ? firstWP.Action : "Turning Point",
                     Speed = lastWaypoint.Speed,
                     Type = "Turning Point",
                     EtaLocked = false,

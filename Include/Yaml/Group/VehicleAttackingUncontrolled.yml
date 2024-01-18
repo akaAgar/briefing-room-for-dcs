@@ -8,7 +8,7 @@ hiddenOnMFD: $HIDDEN$
 routeRelativeTOT: false
 waypoints:
   - alt: 8
-    action: Rank
+    action: $FORMATION$
     speed: 5.5555555555556
     type: Turning Point
     etaLocked: true
@@ -16,7 +16,7 @@ waypoints:
     y: $GROUPY$
     x: $GROUPX$
   - alt: 10
-    action: Rank
+    action: $FORMATION$
     speed: 5.5555555555556
     tasks:
       - id: AttackGroup

@@ -8,7 +8,7 @@ hiddenOnMFD: $HIDDEN$
 routeRelativeTOT: false
 waypoints:
   - alt: 8
-    action: Rank
+    action: $FORMATION$
     speed: 5.5555555555556
     type: Turning Point
     etaLocked: true
@@ -30,7 +30,7 @@ waypoints:
           weaponType: 52613349374
           direction: 0
   - alt: 10
-    action: Rank
+    action: $FORMATION$
     speed: 5.5555555555556
     type: Turning Point
     etaLocked: false
