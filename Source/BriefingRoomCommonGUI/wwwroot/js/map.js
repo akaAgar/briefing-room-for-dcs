@@ -208,10 +208,10 @@ async function RenderMap(mapData, map, inverted) {
 function addButtons() {
     L.easyButton('oi oi-audio', function (btn, map) {
         ToggleLayer("SAMs")
-    }).addTo(leafMap);
+    }, 'SAMs').addTo(leafMap);
     L.easyButton('oi oi-dial', function (btn, map) {
         ToggleLayer("GroundForces")
-    }).addTo(leafMap);
+    }, 'Ground Forces').addTo(leafMap);
 }
 
 function AddIcon(key, data, map, mapName, inverted) {
