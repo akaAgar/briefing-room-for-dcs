@@ -1,14 +1,12 @@
-# User in mission manual (TODO: UPDATE 2024)
-__Last Edited: 23/12/2021__
+# User in mission manual
+__Last Edited: 18/01/2024__
 
 This manual contains everything you need to know to play a mission generated in BriefingRoom
 
-**This manual is not complete yet, additional information will be added in future revisions.**
-
 ## Basic Flow
-When you start the mission you will generally find there are no aircraft flying (Except AWACS if SKynet IADS is on). Neither are there any moving vehicles. Don't worry these will spawn when you take off. We do this to avoid stuff moving too far or running out of fuel before players are ready especially in MP.
+When you start the mission you will generally find there are no aircraft flying (Except AWACS if SKynet IADS is on). Neither are there any moving vehicles. Don't worry these will spawn when you take off. We do this to avoid stuff moving too far or running out of fuel before players are ready especially in MP. There are settings like Scramble start that override this.
 
-Once one player takes off this mission starts. Over the minute or so aircraft will spawn this can involve friendly or hostile CAP. You are provided with audio and visual confirmed kill call outs these will be different if its a objective target or just target of opportunity. Completing an objective also gives a chance for friendly or hostile CAP to spawn in so get on the AWACS radio channel and stay alert.
+Once one player takes off this mission starts. Over the minute or so aircraft will spawn this can involve friendly or hostile CAP. You are provided with audio and visual confirmed kill call outs these will be different if its a objective target or just target of opportunity (Callouts can be muted in Mission Options of BR). Completing an objective also gives a chance for friendly or hostile CAP to spawn in so get on the AWACS radio channel and stay alert. If you use advanced spawning then it will have chances to spawn CAP on detection and other kill events.
 
 When you complete all objectives you are told the RTB. This isn't mandatory and the mission won't end if you land so feel free to keep playing. You can get a updated mission status though the F-10 Commands.
 
@@ -35,6 +33,8 @@ If an objective is complete it will appear as so
         [X] Destroy all SAM sites at objective BAF (6/6) 
 
 The target count at the end of each objective line should give you idea of your progress towards completion. If you ask for status at the start it can be useful to decide if you want to change your payload to something more suitable.
+
+With objective progression settings on some objectives may be hidden from you until you have completed a preceding objective.
 
 #### Taskable
 

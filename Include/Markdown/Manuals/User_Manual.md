@@ -1,9 +1,8 @@
-# User's manual (TODO: UPDATE 2024)
-__Last Edited: 29/03/2022__
+# User's manual
+__Last Edited: 18/00/2024__
 
 This manual contains everything you need to know if you just plan to use BriefingRoom to generate missions. If you plan on modding BriefingRoom, please read the Modder's manual.
 
-**This manual is not complete yet, additional information will be added in future revisions.**
 
 ## Table of contents
 1. [Graphical user interface](#graphical-user-interface)
@@ -11,6 +10,8 @@ This manual contains everything you need to know if you just plan to use Briefin
     1. [Full Builder](#full-builder)
     1. [Campaign Builder](#campaign-builder)
     1. [Briefing Editor](#briefing-editor)
+    1. [Kneeboard Editor](#kneeboard-editor)
+    1. [Situation Editor](#situation-editor)
 1. [Command-line tool](#command-line-tool)
     1. [Command-line syntax](#command-line-syntax)
     1. [Using the command-line tool from the Windows file explorer](#using-the-command-line-tool-from-the-windows-file-explorer)
@@ -92,6 +93,20 @@ Set of tabs for ach objective can duplicate if you like
 **Objective Features**: Designation items through F-10 radio options on each objective, Scenery items ect.
 
 **Objective Options**: Can it have AA, Is the waypoint accurate (imagine known area objective)
+
+##### Objective Options Progression
+
+under **Objective Options** there are some progression options its worth explaining in a little more detail.
+
+**Delay Activation**: Units will stay inactive until the previous objective is completed (using this you can do waves of aircraft attacking a base)
+
+**Visible before activation**: Modifier to *Delay Activation* so units will be visible but not moving (Ground only).
+
+**Hidden In Brief**: Briefings and F-10 mission status & map will not show the existence of the objective until its activated by the competition of the previous mission. Missions being revealed will be announced in game.
+
+**No Aircraft Waypoint**: A waypoint won't be set in the aircraft for the objective (otherwise its a clue to hidden objectives).
+
+**Progression Bundle**: If the previous objective is activated also activate this objective (used for revealing many objectives at once eg. killing a SAM site opens up an area of ground targets)
 
 #### Flight Groups
 `TLDR: What am I to Fly`
@@ -187,6 +202,33 @@ UI is broken up into Situation and Tasks for Blue, Red & Neutrals just like the 
 **You must load a mission in first before editing** but you can save over the original mission or as a new mission.
 
 *Tech note: it does load the entire .miz file into memory so overwriting an existing file will do the entire .miz file loosing the orignal.*
+
+### Kneeboard Editor
+`TLDR: Update BR kneeboards with your edits`
+
+Kneeboards are rendered HTML pages and therefore if you know html & Css you are able to re-style the entire kneeboard. There are tabs for all the kneeboards in the mission and once you save it will overwrite the image files in the miz.
+
+### Situation Editor
+`TLDR: Make your own custom situations or entire campaigns by drawing boxes on a map`
+
+Select the map you want to create a situation and set map. There are drawing tools on the map and you choose Red/Blue/Neutral zone editing above the map.
+
+You can also see all the span points on a map with the spawn points toggle (note often takes a while to render as there are many) Blue is Large, Green Medium and Red small spawn points.
+
+Consider the zones you are drawing as be of strong control for that side. you can draw as many zones as you want for each side but there must be:
+
+* At least a Red & a Blue zone.
+* At least one airbase within a zone for each side.
+* Space between zones if you want units to spawn
+* Overlap zones (often with Neutral zones) to avoid spawning there.
+
+Once done hit generate situation file. It will then allow you to edit the JSON data inside. Please look at examples for ideas on what to do here but best give it a display name at minimum.
+
+If you are attempting to create a campaign you can control where missions may progress to by adding the filenames (-.json) into the RelatedSituations array. Missions can go forward backward or branch off. eg SituationResolve3 could go backwards to SituationResolve2 or forwards to SituationResolve4 or branch into an alternate path SituationResolve4B.
+
+To make it available in your BR tool then you need to save it using this pattern "<BR INSTALL>\DatabaseJSON\SituationZones\<TheaterID><FileName>.json". If you want to contribute it to the wider project then please feel free to contribute via github.
+
+
 
 ### Command-line syntax
 

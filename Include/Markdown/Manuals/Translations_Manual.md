@@ -1,4 +1,4 @@
-# Translations Manual (TODO: UPDATE 2024)
+# Translations Manual
 __Last Edited: 04/07/2022__
 
 **Translation support is currently partial** being limited to Briefings, Kneeboards and some UI support. Full UI and Scripting Message support will be added in time.
