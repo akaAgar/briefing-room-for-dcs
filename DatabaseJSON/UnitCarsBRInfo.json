@@ -1707,7 +1707,7 @@
             "VehicleMissile"
         ],
         "lowPolly": false,
-        "immovable": false
+        "immovable": true
     },
     {
         "type": "Silkworm_SR",
