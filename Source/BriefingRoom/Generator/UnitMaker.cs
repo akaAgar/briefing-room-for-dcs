@@ -105,7 +105,7 @@ namespace BriefingRoom4DCS.Generator
             }
 
 
-            if (country != Country.ALL)
+            if (country != Country.ALL && unitsCoalitionDB.Countries.Contains(country))
                 extraSettings["Country"] = country;
 
             if (unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.EmbeddedAirDefense))
