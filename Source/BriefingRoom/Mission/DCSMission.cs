@@ -34,7 +34,7 @@ namespace BriefingRoom4DCS.Mission
     {
 
         private const int MAX_VALUE_LENGTH_DISPLAY = 16;
-        internal string TheaterID { get { return GetValue("TheaterID"); } }
+        public string TheaterID { get { return GetValue("TheaterID"); } }
 
         internal Stack<DCSMissionState> PreviousStates;
 
