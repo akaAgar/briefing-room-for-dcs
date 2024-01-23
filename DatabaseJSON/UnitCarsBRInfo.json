@@ -997,7 +997,7 @@
         "families": [
             "VehicleTransport"
         ],
-        "lowPolly": false,
+        "lowPolly": true,
         "immovable": false
     },
     {
@@ -1005,7 +1005,7 @@
         "families": [
             "VehicleTransport"
         ],
-        "lowPolly": false,
+        "lowPolly": true,
         "immovable": false
     },
     {
@@ -1037,7 +1037,7 @@
         "families": [
             "VehicleTransport"
         ],
-        "lowPolly": false,
+        "lowPolly": true,
         "immovable": false
     },
     {
@@ -1085,7 +1085,7 @@
         "families": [
             "VehicleTransport"
         ],
-        "lowPolly": false,
+        "lowPolly": true,
         "immovable": false
     },
     {
@@ -1125,7 +1125,7 @@
         "families": [
             "VehicleTransport"
         ],
-        "lowPolly": false,
+        "lowPolly": true,
         "immovable": false
     },
     {
@@ -1181,7 +1181,7 @@
         "families": [
             "VehicleTransport"
         ],
-        "lowPolly": false,
+        "lowPolly": true,
         "immovable": false
     },
     {
@@ -1213,7 +1213,7 @@
         "families": [
             "VehicleTransport"
         ],
-        "lowPolly": false,
+        "lowPolly": true,
         "immovable": false
     },
     {
