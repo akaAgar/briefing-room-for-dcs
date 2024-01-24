@@ -30,7 +30,9 @@ namespace BriefingRoom4DCS.Data
 
         internal Country[] Countries { get; private set; }
 
-         internal (Decade start, Decade end) Operational { get; private set; } = new (Decade.Decade1940, Decade.Decade2020);
+        internal (Decade start, Decade end) Operational { get; private set; } = new (Decade.Decade1940, Decade.Decade2020);
+
+        internal string DefaultUnitList { get; private set; }
 
         private static readonly List<UnitFamily> SINGLE_TYPE_FAMILIES = new() { UnitFamily.VehicleMissile, UnitFamily.VehicleArtillery };
 
@@ -55,6 +57,13 @@ namespace BriefingRoom4DCS.Data
             var tempOperational = ini.GetValueArray<Decade>("Coalition", "Operational");
             if(tempOperational.Length > 0)
                 Operational = new (tempOperational[0], tempOperational[1]);
+            
+            DefaultUnitList = ini.GetValue<string>("Coalition", "DefaultUnitList");
+            if (!Database.EntryExists<DBEntryDefaultUnitList>(DefaultUnitList))
+            {
+                BriefingRoom.PrintToLog($"Default unit list \"{DefaultUnitList}\" required by coalition \"{ID}\" doesn't exist. Coalition was ignored.", LogMessageErrorLevel.Warning);
+                return false;
+            }
 
             return true;
         }
@@ -178,8 +187,9 @@ namespace BriefingRoom4DCS.Data
             {
                 if(allyCountries is null && !blockSuppliers)
                     return SelectValidUnits(families, decade, unitMods, unitBanList, allowLowPolly, false, allowStatic, GetAllyCountries(decade));
-                BriefingRoom.PrintToLog($"No Units of types {string.Join(", ", families)} found in coalition of {string.Join(", ", Countries.Where(x => x != Country.ALL))} {(!blockSuppliers ? $"including potential supplier allies {string.Join(", ", countryList.Where(x => x != Country.ALL))}" : ". Block Supplier Option turned on consider turning off.")}", LogMessageErrorLevel.Warning);
-                return null;
+                BriefingRoom.PrintToLog($"{UIDisplayName.Get()} No Units of types {string.Join(", ", families)} found in {decade} in coalition of {string.Join(", ", Countries.Where(x => x != Country.ALL))} {(!blockSuppliers ? $"including potential supplier allies ({countryList.Where(x => x != Country.ALL).Count()})" : ". Block Supplier Option turned on consider turning off.")}", LogMessageErrorLevel.Warning);
+
+                return GetDefaultUnits(families, decade, unitMods);
             }
             if(allyCountries != null)
                 validUnits = new Dictionary<Country, List<string>>{{Country.ALL, validUnits.SelectMany(x => x.Value).ToList()}};
@@ -195,6 +205,28 @@ namespace BriefingRoom4DCS.Data
                 .SelectMany(x =>x.Countries)
                 .Where(x => !Countries.Contains(x))
                 .ToArray();
+        }
+
+        private Dictionary<Country, List<string>> GetDefaultUnits(List<UnitFamily> families, Decade decade, List<string> unitMods)
+        {
+            var defaultDict = Database.GetEntry<DBEntryDefaultUnitList>(DefaultUnitList).DefaultUnits;
+            var validUnits = new List<string>();
+            foreach (var family in families)
+            {
+                if(!defaultDict[family].ContainsKey(decade))
+                    continue;
+                var options = defaultDict[family][decade].Where(id => 
+                {
+                    var unit = Database.GetEntry<DBEntryJSONUnit>(id);
+                    return string.IsNullOrEmpty(unit.Module) || unitMods.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase) || DBEntryDCSMod.CORE_MODS.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase);
+                });
+                validUnits.AddRange(options);
+            }
+            if(validUnits.Count == 0)
+                BriefingRoom.PrintToLog($"{UIDisplayName.Get()} No default units found in {decade} for types {string.Join(", ", families)}", LogMessageErrorLevel.Warning);
+            else 
+                BriefingRoom.PrintToLog($"{UIDisplayName.Get()} Needed to use default of {string.Join(", ", validUnits)} in {decade} for types {string.Join(", ", families)}", LogMessageErrorLevel.Warning);
+            return new Dictionary<Country, List<string>> { { Country.ALL, validUnits } };
         }
     }
 }

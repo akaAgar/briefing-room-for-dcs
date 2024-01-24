@@ -97,6 +97,7 @@ namespace BriefingRoom4DCS.Data
             LoadJSONEntries<DBEntryTemplate>("Templates");
             LoadJSONEntries<DBEntryTemplate>("TemplatesCustom");
             LoadJSONEntries<DBEntryLayout>("Layouts");
+            LoadEntries<DBEntryDefaultUnitList>("DefaultUnitLists");
             LoadEntries<DBEntryCoalition>("Coalitions");
             LoadCustomUnitEntries<DBEntryCoalition>("Coalitions");
             LoadEntries<DBEntryWeatherPreset>("WeatherPresets");
@@ -214,7 +215,7 @@ namespace BriefingRoom4DCS.Data
             {
                 var filePath = Path.Combine(folderPath, subDirectory);
                 var searchPath = $"{filePath}.json";
-                if(!File.Exists(searchPath))
+                if (!File.Exists(searchPath))
                     continue;
 
                 LoadJSONEntries<T>(filePath, unitType);
