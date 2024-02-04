@@ -124,6 +124,9 @@ namespace BriefingRoom4DCS.Generator
                         new Dictionary<string, object>(),
                         true,
                         forceTryTemplate: forceTryTemplate);
+                
+                if(mission.TemplateRecord.OptionsMission.Contains("HideAntiAirMFD") && side.Equals(Side.Enemy))
+                    groupInfo.Value.DCSGroup.HiddenOnMFD = true;
 
                 if (!groupInfo.HasValue){
                     BriefingRoom.PrintToLog(
@@ -132,6 +135,8 @@ namespace BriefingRoom4DCS.Generator
                     UnitMakerSpawnPointSelector.RecoverSpawnPoint(ref mission,spawnPoint.Value);
                     return groupCount -i;
                 }
+
+
                 mission.MapData.Add($"UNIT-{groupInfo.Value.UnitDB.Families[0]}-{side}-{groupInfo.Value.GroupID}", new List<double[]> { groupInfo.Value.Coordinates.ToArray() });
             }
             return 0;

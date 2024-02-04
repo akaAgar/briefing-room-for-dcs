@@ -57,7 +57,7 @@ namespace BriefingRoom4DCS.Mission.DCSLuaObjects
                 {"start_time", 0},
                 {"frequency", Frequency},
                 {"visible", Visible},
-                {"hiddenOnMFD", Visible},
+                {"hiddenOnMFD", HiddenOnMFD ?? Visible},
             };
             if (RadioSet)
                 obj.Add("radioSet", true);
