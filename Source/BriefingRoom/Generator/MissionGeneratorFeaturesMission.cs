@@ -74,7 +74,7 @@ namespace BriefingRoom4DCS.Generator
                         );
                 if (!spawnPoint.HasValue) // No spawn point found
                 {
-                    throw new BriefingRoomException($"No spawn point found for mission feature {featureID}.");
+                    throw new BriefingRoomException("NoSpawnPointForMissionFeature", featureID);
                 }
 
 
@@ -106,9 +106,7 @@ namespace BriefingRoom4DCS.Generator
                 Coordinates? spawnPoint = UnitMakerSpawnPointSelector.GetNearestSpawnPoint(ref mission,featureDB.UnitGroupValidSpawnPoints, airbase.Coordinates);
                 if (!spawnPoint.HasValue) // No spawn point found
                 {
-                    throw new BriefingRoomException($"No spawn point found for mission feature {featureID}.");
-                    // BriefingRoom.PrintToLog($"No spawn point found for mission feature {featureID}.", LogMessageErrorLevel.Warning);
-                    // return;
+                    throw new BriefingRoomException("NoSpawnPointForMissionFeature", featureID);
                 }
 
                 Dictionary<string, object> extraSettings = new() { { "TACAN_NAME", airbase.Name } };

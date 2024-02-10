@@ -113,7 +113,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 location = new Coordinates(mission.TemplateRecord.CarrierHints[flightGroup.Carrier]);
                 if (!UnitMakerSpawnPointSelector.CheckInSea(mission.TheaterDB, location))
-                    throw new BriefingRoomException($"Carrier Hint location is on shore");
+                    throw new BriefingRoomException("CarrierHintonShore");
             }
             while (iteration < 5)
             {
@@ -146,13 +146,13 @@ namespace BriefingRoom4DCS.Generator
             }
 
             if (!carrierGroupCoordinates.HasValue)
-                throw new BriefingRoomException($"Carrier spawnpoint could not be found.");
+                throw new BriefingRoomException("CarrierSpawnPointNotFound");
             if (!destinationPoint.HasValue)
-                throw new BriefingRoomException($"Carrier destination could not be found.");
+                throw new BriefingRoomException("CarrierDestinationNotFound");
             if (!UnitMakerSpawnPointSelector.CheckInSea(mission.TheaterDB ,destinationPoint.Value))
-                throw new BriefingRoomException($"Carrier waypoint is on shore");
+                throw new BriefingRoomException("CarrierWaypointOnShore");
             if (!ShapeManager.IsLineClear(carrierGroupCoordinates.Value, destinationPoint.Value, mission.TheaterDB.WaterExclusionCoordinates))
-                throw new BriefingRoomException($"Carrier Route passes though land");
+                throw new BriefingRoomException("CarrierPassesThrougLand");
 
             return new(carrierGroupCoordinates.Value, destinationPoint.Value);
         }
@@ -174,9 +174,7 @@ namespace BriefingRoom4DCS.Generator
 
             if (!spawnPoint.HasValue)
             {
-                throw new BriefingRoomException($"No spawn point found for FOB air defense unit groups");
-                // BriefingRoom.PrintToLog($"No spawn point found for FOB air defense unit groups", LogMessageErrorLevel.Warning);
-                // return;
+                throw new BriefingRoomException("NoFOBAirDefenseSpawnPoint");
             }
 
             var fobTemplate = Database.Instance.GetEntry<DBEntryTemplate>(flightGroup.Carrier);

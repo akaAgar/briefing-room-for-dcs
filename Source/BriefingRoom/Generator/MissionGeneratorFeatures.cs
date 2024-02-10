@@ -91,7 +91,7 @@ namespace BriefingRoom4DCS.Generator
                 if (units.Count == 0)
                 {
                     UnitMakerSpawnPointSelector.RecoverSpawnPoint(ref mission,coordinatesValue);
-                     throw new BriefingRoomException($"No units found for mission feature {featureDB.ID}.");
+                     throw new BriefingRoomException("NoUnitsFoundForMissionFeature",featureDB.ID);
                 }
                 var unitDB = unitDBs.First();
                 try
@@ -240,14 +240,14 @@ namespace BriefingRoom4DCS.Generator
                         );
 
                 if (!spawnCoords.HasValue)
-                    throw new BriefingRoomException($"No extra group spawn point found for mission feature {featureDB.ID}.");
+                    throw new BriefingRoomException("NoExtraGroupSpawnPoint", featureDB.ID);
 
                 extraSettings.Remove("TemplatePositionMap");
                 var (units, unitDBs) = UnitMaker.GetUnits(ref mission,unitFamily, unitCount, groupSide, groupFlags, ref extraSettings, featureDB.UnitGroupAllowStatic);
                 if (units.Count == 0)
                 {
                     UnitMakerSpawnPointSelector.RecoverSpawnPoint(ref mission,spawnCoords.Value);
-                    throw new BriefingRoomException($"No units found for mission feature {featureDB.ID}.");
+                    throw new BriefingRoomException("NoUnitsFoundForMissionFeature", featureDB.ID);
                 }
                 var unitDB = unitDBs.First();
 

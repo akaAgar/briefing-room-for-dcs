@@ -53,7 +53,7 @@ namespace BriefingRoom4DCS.Mission
         {
             // Try to create the directory if it doesn't exist.
             if (!Toolbox.CreateMissingDirectory(exportPath))
-                throw new BriefingRoomException("Failed to create campaign directory.");
+                throw new BriefingRoomException("FailedToCreateCampaignFolder");
 
 
 

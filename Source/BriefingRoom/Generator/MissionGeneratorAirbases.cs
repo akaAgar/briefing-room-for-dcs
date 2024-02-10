@@ -62,7 +62,7 @@ namespace BriefingRoom4DCS.Generator
             // If a particular airbase name has been specified and an airbase with this name exists, pick it
             if (!string.IsNullOrEmpty(selectedAirbaseID))
             {
-                var airbase = airbases.FirstOrDefault(x => x.ID == selectedAirbaseID) ?? throw new BriefingRoomException($"No airbase found with ID \"{selectedAirbaseID}\", cannot spawn player aircraft.");
+                var airbase = airbases.FirstOrDefault(x => x.ID == selectedAirbaseID) ?? throw new BriefingRoomException("AirbaseNotFoundForPlayer", selectedAirbaseID);
                 return airbase;
             }
 
@@ -80,7 +80,7 @@ namespace BriefingRoom4DCS.Generator
                 if (!mission.TemplateRecord.PlayerFlightGroups.Any(x => string.IsNullOrEmpty(x.Carrier)))
                     return new DBEntryAirbase(Coordinates.GetCenter(mission.SituationDB.GetBlueZones(mission.TemplateRecord.OptionsMission.Contains("InvertCountriesCoalitions")).First().ToArray()));
                 else
-                    throw new BriefingRoomException($"No airbase found, cannot spawn player aircraft.");
+                    throw new BriefingRoomException("NoPlayerAirbaseSpawnPoint");
             return Toolbox.RandomFrom(opts);
         }
 

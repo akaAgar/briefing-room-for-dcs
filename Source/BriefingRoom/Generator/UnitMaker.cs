@@ -199,7 +199,7 @@ namespace BriefingRoom4DCS.Generator
                 );
 
             var firstUnitID = mission.UnitID;
-            var firstUnitDB = units.Select(x => Database.Instance.GetEntry<DBEntryJSONUnit>(x)).FirstOrDefault(x => x != null, null) ?? throw new BriefingRoomException($"Cant Find unit {units[0]}");
+            var firstUnitDB = units.Select(x => Database.Instance.GetEntry<DBEntryJSONUnit>(x)).FirstOrDefault(x => x != null, null) ?? throw new BriefingRoomException("CantFindUnits",units[0]);
             if (unitFamily.GetUnitCategory().IsAircraft())
             {
                 callsign = UnitMakerCallsignGenerator.GetCallsign(ref mission, (DBEntryAircraft)firstUnitDB, country, side, isUsingSkynet, extraSettings.GetValueOrDefault("OverrideCallsignName", "").ToString(), (int)extraSettings.GetValueOrDefault("OverrideCallsignNumber", 1));
