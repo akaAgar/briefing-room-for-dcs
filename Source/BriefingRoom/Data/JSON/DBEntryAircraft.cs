@@ -206,6 +206,8 @@ namespace BriefingRoom4DCS.Data
                         displayName = (string)(itemEntry.Contains("displayName") ? itemEntry["displayName"] : itemEntry["name"]),
                         tasks = tasks 
                     };
+
+                    Payloads.Add( payload );
                     
                     BriefingRoom.PrintToLog($"Imported payload {payload.displayName} for {DCSID}");
                 }
