@@ -69,11 +69,10 @@ namespace BriefingRoom4DCS.Generator
                         new MinMaxD(featureDB.UnitGroupSpawnDistance * .75, featureDB.UnitGroupSpawnDistance * 1.5),
                         nearFrontLineFamily: flags.HasFlag(FeatureUnitGroupFlags.UseFrontLine) ? featureDB.UnitGroupFamilies.First() : null);
 
-                if (!spawnPoint.HasValue) // No spawn point found
+                if (!spawnPoint.HasValue)
                 {
-                    throw new BriefingRoomException($"No spawn point found for objective feature {featureID}.");
-                    // BriefingRoom.PrintToLog($"No spawn point found for objective feature {featureID}.", LogMessageErrorLevel.Warning);
-                    // return;
+                    throw new BriefingRoomException("NoSpawnPointForObjectiveFeature",featureID);
+  
                 }
 
                 coordinates = spawnPoint;

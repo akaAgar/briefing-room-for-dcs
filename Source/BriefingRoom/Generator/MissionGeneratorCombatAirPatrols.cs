@@ -90,9 +90,7 @@ namespace BriefingRoom4DCS.Generator
                 // No spawn point found, stop here.
                 if (!spawnPoint.HasValue)
                 {
-                    throw new BriefingRoomException($"No spawn point found for {coalition} combat air patrols.");
-                    //BriefingRoom.PrintToLog($"No spawn point found for {coalition} combat air patrols.", LogMessageErrorLevel.Warning);
-                    //return;
+                    throw new BriefingRoomException("NoCAPSpawnPoint", coalition);
                 }
 
                 Coordinates groupDestination = destination + Coordinates.CreateRandom(10, 20) * Toolbox.NM_TO_METERS;

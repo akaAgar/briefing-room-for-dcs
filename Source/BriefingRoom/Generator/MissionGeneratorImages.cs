@@ -139,7 +139,7 @@ namespace BriefingRoom4DCS.Generator
             }
             catch (Exception e)
             {
-                throw new BriefingRoomException($"Failed to create KneeBoard Image", e);
+                throw new BriefingRoomException("FailedToCreateKneeboard", e);
             }
 
         }
@@ -166,7 +166,7 @@ namespace BriefingRoom4DCS.Generator
             }
             catch (Exception e)
             {
-                throw new BriefingRoomException($"Failed to create KneeBoard", e);
+                throw new BriefingRoomException("FailedToCreateKneeboard", e);
             }
 
         }
@@ -183,7 +183,7 @@ namespace BriefingRoom4DCS.Generator
             }
             catch (Exception e)
             {
-                throw new BriefingRoomException($"Failed to create Title Image", e);
+                throw new BriefingRoomException("FailedToCreateTitleImage", e);
             }
 
         }
@@ -200,7 +200,7 @@ namespace BriefingRoom4DCS.Generator
             }
             catch (Exception e)
             {
-                throw new BriefingRoomException($"Failed to create Title Image", e);
+                throw new BriefingRoomException("FailedToCreateTitleImage", e);
             }
 
         }

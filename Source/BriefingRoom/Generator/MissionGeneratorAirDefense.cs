@@ -103,9 +103,7 @@ namespace BriefingRoom4DCS.Generator
                 // No spawn point found, stop here.
                 if (!spawnPoint.HasValue)
                 {
-                    throw new BriefingRoomException($"No spawn point found for {airDefenseRange} air defense unit groups");
-                    // BriefingRoom.PrintToLog($"No spawn point found for {airDefenseRange} air defense unit groups", LogMessageErrorLevel.Warning);
-                    // return groupCount -i;
+                    throw new BriefingRoomException("NoSpawnPointForAirDefense", airDefenseRange);
                 }
                 var unitCount = 1;
                 var forceTryTemplate = false;

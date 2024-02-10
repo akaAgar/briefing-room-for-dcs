@@ -528,7 +528,7 @@ namespace BriefingRoom4DCS
             }
             catch (Exception ex)
             {
-                throw new BriefingRoomException(ex.Message);
+                throw new BriefingRoomException("FailedToZip", ex);
             }
 
             return mizBytes;

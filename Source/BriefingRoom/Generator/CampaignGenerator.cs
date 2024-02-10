@@ -81,14 +81,14 @@ namespace BriefingRoom4DCS.Generator
                 catch (BriefingRoomException err)
                 {
                     if(failedTries >= 3)
-                        throw new BriefingRoomException($"Failed to generate mission {i + 1} in the campaign.", err);
+                        throw new BriefingRoomException("FailedToGenerateCampaignMission", err, i + 1);
                     failedTries++;
                     continue;
                 }
             } while (campaign.Missions.Count < campaignTemplate.MissionsCount);
 
             if (campaign.MissionCount < 1) // No missions generated, something went very wrong.
-                throw new BriefingRoomException($"Campaign has no valid mission.");
+                throw new BriefingRoomException("CampaignNoValidMissions");
 
             campaign.CMPFile = GetCMPFile(campaignTemplate, campaign);
 
