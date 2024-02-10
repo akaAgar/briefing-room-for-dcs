@@ -65,7 +65,7 @@ namespace BriefingRoom4DCS.Generator
             {
                 case AirDefenseRange.EWR:
                     unitFamilies = new List<UnitFamily> { UnitFamily.VehicleEWR };
-                    validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandSmall, SpawnPointType.LandMedium };
+                    validSpawnPoints = new SpawnPointType[] { SpawnPointType.LandSmall, SpawnPointType.LandMedium, SpawnPointType.LandLarge };
                     break;
                 case AirDefenseRange.LongRange:
                     unitFamilies = new List<UnitFamily> { UnitFamily.VehicleSAMLong };
