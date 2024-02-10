@@ -121,9 +121,9 @@ namespace BriefingRoom4DCS.Generator
 
             preValidSpawns.AddRange(targetDB.ValidSpawnPoints);
             if (preValidSpawns.Contains(SpawnPointType.Sea) && preValidSpawns.Any(x => LAND_SPAWNS.Contains(x)))
-                throw new BriefingRoomException("Cannot Mix Land and Sea Objectives. Check Sub Objective targets");
+                throw new BriefingRoomException("LandSeaSubMix");
             if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location) && !AIRBASE_LOCATIONS.Contains(mainObjLocation))
-                throw new BriefingRoomException("Spawning on airbase is not a valid Sub Objective unless main objective is also spawning on airbase.");
+                throw new BriefingRoomException("AirbaseSubMix");
             var objectiveCoords = GetNearestSpawnCoordinates(ref mission, coreCoordinates, targetDB);
             return CreateObjective(
                 task,

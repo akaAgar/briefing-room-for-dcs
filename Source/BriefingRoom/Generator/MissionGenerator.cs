@@ -157,7 +157,7 @@ namespace BriefingRoom4DCS.Generator
                         revertStageCount += fallbackSteps;
                         var fallbackStageIndex = currentStageIndex - fallbackSteps;
                         if (fallbackStageIndex <= 0)
-                            throw new BriefingRoomException($"Mission could not be generated: {err.Message}", err);
+                            throw new BriefingRoomException("FailGeneration", err, err.Message);
                         lastErrorStage = nextStage;
                         nextStage = STAGE_ORDER[fallbackStageIndex];
                         BriefingRoom.PrintToLog($"Falling Back to Stage: {nextStage}");
