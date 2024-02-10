@@ -19,12 +19,15 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BriefingRoom4DCS
 {
     public class BriefingRoomException : Exception
     {
-        public BriefingRoomException(string message) : base(message) { }
-        public BriefingRoomException(string message, Exception innerException) : base(message, innerException: innerException) { }
+        public BriefingRoomException(string message) : base(BriefingRoom.Translate(message)) { }
+        public BriefingRoomException([StringSyntax("CompositeFormat")] String message, params object[] args) : base(BriefingRoom.Translate(message, args)) { }
+        public BriefingRoomException(string message, Exception innerException) : base(BriefingRoom.Translate(message), innerException: innerException) { }
+        public BriefingRoomException([StringSyntax("CompositeFormat")] String message, Exception innerException, params object[] args) : base(BriefingRoom.Translate(message, args),  innerException: innerException) { }
     }
 }

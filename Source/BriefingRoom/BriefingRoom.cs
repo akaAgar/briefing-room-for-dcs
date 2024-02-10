@@ -227,7 +227,17 @@ namespace BriefingRoom4DCS
             return Toolbox.PATH_USER_DOCS;
         }
 
-        public static string Translate(string key) => LanguageDB.Translate(key);
+        public static string Translate(string key){
+                if(LanguageDB == null)
+                    return key;
+                return LanguageDB.Translate(key);
+            }
+        public static string Translate(string key, params object[] args) {
+            if(LanguageDB == null)
+                    return key;
+            var template = LanguageDB.Translate(key);
+            return string.Format(template, args);
+        }
 
         internal static void PrintToLog(string message, LogMessageErrorLevel errorLevel = LogMessageErrorLevel.Info)
         {

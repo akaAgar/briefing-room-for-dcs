@@ -180,6 +180,7 @@
                                     </div>
                                     
                                     <h4>@BriefingRoom.Translate("Tasks")</h4>
+                                    <h5>@BriefingRoom.Translate("Base")</h5>
                                     <div class="generator-group flex-justify-spaced flex-margin-fix">
                                         <InputDataBase ClassString="flex-block" Label=@BriefingRoom.Translate("Preset") @bind-Value="objective.Preset" DataBaseType="DatabaseEntryType.ObjectivePreset" HasDescription />
                                         @if (!objective.HasPreset)
@@ -204,6 +205,10 @@
                                                 TItemOutput="ObjectiveOption">
                                             </CheckBoxList>
                                         </div>
+                                    }
+                                    @if(objective.SubTasks.Count > 0){
+                                        <hr/>
+                                        <h5>@BriefingRoom.Translate("Nearby")</h5>
                                     }
                                     @foreach (var subTask in objective.SubTasks)
                                     {
