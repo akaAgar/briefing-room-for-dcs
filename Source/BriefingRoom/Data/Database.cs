@@ -149,7 +149,7 @@ namespace BriefingRoom4DCS.Data
 
         private void LoadJSONEntries<T>(string subDirectory, bool unitType = false) where T : DBEntry, new()
         {
-            BriefingRoom.PrintToLog($"Loading {subDirectory.ToLower()}...");
+            BriefingRoom.PrintToLog($"Loading {subDirectory.Replace(BRPaths.DATABASEJSON, "").ToLower()}...");
 
             string filePath = Path.Combine(BRPaths.DATABASEJSON, subDirectory + (Path.HasExtension(subDirectory) ? "" : ".json"));
             if (!File.Exists(filePath))

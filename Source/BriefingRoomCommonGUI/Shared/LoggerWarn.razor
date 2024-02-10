@@ -13,7 +13,7 @@
                 </div>
                 @foreach (var log in GetLastRunLogs().Where(LogsIfAboveWarn).ToList())
                 {
-                    <p>@log.Item1: @log.Item2</p>
+                    <p>@log.Item3</p>
                 }
             </div>
         </div>
@@ -26,7 +26,7 @@
 }
 
 @code {
-    [Parameter] public List<Tuple<LogMessageErrorLevel, string>> logs { get; set; }
+    [Parameter] public List<Tuple<DateTime, LogMessageErrorLevel, string>> logs { get; set; }
     private bool showLogs = false;
 
     public void ClearLogs()
@@ -41,9 +41,9 @@
         showLogs = !showLogs;
     }
 
-    private bool LogsIfAboveWarn(Tuple<LogMessageErrorLevel, string> x) =>
-    x.Item1 == LogMessageErrorLevel.Warning || x.Item1 == LogMessageErrorLevel.Error;
+    private bool LogsIfAboveWarn(Tuple<DateTime, LogMessageErrorLevel, string> x) =>
+    x.Item2 == LogMessageErrorLevel.Warning || x.Item2 == LogMessageErrorLevel.Error;
 
-    private List<Tuple<LogMessageErrorLevel, string>> GetLastRunLogs() =>
-    logs.Skip(logs.LastIndexOf(logs.Last(x => x.Item2 == "Generating mission date and time..."))).ToList();
+    private List<Tuple<DateTime, LogMessageErrorLevel, string>> GetLastRunLogs() =>
+    logs.Skip(logs.LastIndexOf(logs.Last(x => x.Item3 == "Generating mission date and time..."))).ToList();
 }

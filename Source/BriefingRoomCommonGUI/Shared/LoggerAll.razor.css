@@ -1,0 +1,8 @@
+.logs-list {
+    overflow: scroll;
+    max-height: 90vh;
+}
+
+.logs-list .text-danger, .logs-list .text-warning {
+    background-color: black;
+}

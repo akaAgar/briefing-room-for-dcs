@@ -57,11 +57,11 @@
     public BriefingRoom4DCS.BriefingRoom briefingRoom = new BriefingRoom4DCS.BriefingRoom(WriteToDebugLog);
     public bool darkmode = false;
 
-    public static List<Tuple<LogMessageErrorLevel, string>> logs = new List<Tuple<LogMessageErrorLevel, string>>();
+    public static List<Tuple<DateTime, LogMessageErrorLevel, string>> logs = new List<Tuple<DateTime, LogMessageErrorLevel, string>>();
 
     public static void WriteToDebugLog(string message, LogMessageErrorLevel errorLevel = LogMessageErrorLevel.Info)
     {
-        logs.Add(new(errorLevel, message));
+        logs.Add(new(DateTime.Now, errorLevel, message));
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

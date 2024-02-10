@@ -226,7 +226,7 @@ namespace BriefingRoom4DCS.Mission
             string displayedValue = value.Replace("\n", " ");
             if (displayedValue.Length > MAX_VALUE_LENGTH_DISPLAY) displayedValue = string.Concat(displayedValue.AsSpan(0, MAX_VALUE_LENGTH_DISPLAY), "...");
 
-            BriefingRoom.PrintToLog($"Mission parameter \"{key.ToLower()}\" {(append ? "appended with" : "set to")} \"{displayedValue}\".");
+            // BriefingRoom.PrintToLog($"Mission parameter \"{key.ToLower()}\" {(append ? "appended with" : "set to")} \"{displayedValue}\"."); // Spammy so debug only
 
             if (!Values.ContainsKey(key))
                 Values.Add(key, value);

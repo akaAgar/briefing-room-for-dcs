@@ -47,7 +47,7 @@ namespace BriefingRoom4DCS.Data
 
 
                 LoadValues(filePath);
-                BriefingRoom.PrintToLog($"Loaded {filePath} \"{id}\"");
+                BriefingRoom.PrintToLog($"Loaded {filePath.Replace(BRPaths.DATABASE, "")} \"{id}\"");
             }
         }
 

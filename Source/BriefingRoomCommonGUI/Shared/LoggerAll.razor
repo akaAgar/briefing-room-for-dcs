@@ -13,11 +13,12 @@
                 <button class="btn btn-secondary" @onclick="() => ReloadDatabase()">
                     <span class="oi oi-reload"></span>@BriefingRoom.Translate("ReloadDatabase")</button>
             </div>
-            <p>
-            @foreach (var log in logs)
-            {
-                <span>@log.Item1: @log.Item2<br/></span>
-            }
+            <p class="logs-list">
+                @foreach (var log in ReverseLogs())
+                {
+                    var logClass = log.Item2 == LogMessageErrorLevel.Error ? "text-danger" : log.Item2 == LogMessageErrorLevel.Warning ? "text-warning" : "";
+                    <span class=@logClass >@log.Item2 - @log.Item1.ToString("hh:mm:ss.fff"): @log.Item3<br /></span>
+                }
             </p>
         </div>
     </div>
@@ -28,7 +29,7 @@ else
 }
 
 @code {
-    [Parameter] public List<Tuple<LogMessageErrorLevel, string>> logs { get; set; }
+    [Parameter] public List<Tuple<DateTime, LogMessageErrorLevel, string>> logs { get; set; }
     private bool showLogs = false;
 
     public void ClearLogs()
@@ -51,5 +52,12 @@ else
     private void ReloadDatabase()
     {
         BriefingRoom.ReloadDatabase();
+    }
+
+    private List<Tuple<DateTime, LogMessageErrorLevel, string>> ReverseLogs()
+    {
+        var logsDupe = logs.ToList();
+        logsDupe.Reverse();
+        return logsDupe;
     }
 }
