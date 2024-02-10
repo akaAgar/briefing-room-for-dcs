@@ -67,7 +67,7 @@ namespace BriefingRoom4DCS
                 AvailableLanguagesMap.AddIfKeyUnused(key, ini.GetValue<string>("Languages", key));
 
 
-            OnMessageLogged += logHandler;
+            OnMessageLogged = logHandler;
             Database.Instance.Initialize();
             LanguageDB = Database.Instance.Language;
         }
