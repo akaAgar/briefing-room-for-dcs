@@ -152,13 +152,13 @@ namespace BriefingRoom4DCS.Mission
             MediaFiles = prevState.MediaFiles.ToDictionary(x => x.Key, x => x.Value, StringComparer.InvariantCultureIgnoreCase);
             SingletonSet = prevState.SingletonSet.ToHashSet(StringComparer.InvariantCultureIgnoreCase);
             Airbases = prevState.Airbases.ToDictionary(x => x.Key, x => x.Value);
-            PopulatedAirbaseIds = prevState.PopulatedAirbaseIds.ToDictionary(x => x.Key, x => x.Value);
+            PopulatedAirbaseIds = prevState.PopulatedAirbaseIds.ToDictionary(x => x.Key, x => x.Value.ToList());
             LuaDrawings = prevState.LuaDrawings.ToList();
             LuaZones = prevState.LuaZones.ToList();
             CTLDZoneCount = prevState.CTLDZoneCount;
             PrevLaserCode = prevState.PrevLaserCode;
             TACANIndex = prevState.TACANIndex;
-            AirbaseParkingSpots = prevState.AirbaseParkingSpots.ToDictionary(x => x.Key, x => x.Value);
+            AirbaseParkingSpots = prevState.AirbaseParkingSpots.ToDictionary(x => x.Key, x => x.Value.ToList());
             SpawnPoints = prevState.SpawnPoints.ToList();
             UsedSpawnPoints = prevState.UsedSpawnPoints.ToList();
             FrontLine = prevState.FrontLine.ToList();
@@ -167,7 +167,7 @@ namespace BriefingRoom4DCS.Mission
             UnitID = prevState.UnitID;
             CarrierDictionary = prevState.CarrierDictionary.ToDictionary(x => x.Key, x => x.Value, StringComparer.InvariantCultureIgnoreCase);
             ModUnits = prevState.ModUnits.ToList();
-            UnitLuaTables = prevState.UnitLuaTables.ToDictionary(x => x.Key, x => x.Value);
+            UnitLuaTables = prevState.UnitLuaTables.ToDictionary(x => x.Key, x => x.Value.ToDictionary(y => y.Key, y => y.Value.ToList()));
             Waypoints = prevState.Waypoints.ToList();
         }
 

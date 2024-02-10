@@ -89,13 +89,13 @@ namespace BriefingRoom4DCS.Mission
             MediaFiles = mission.MediaFiles.ToDictionary(x => x.Key, x => x.Value, StringComparer.InvariantCultureIgnoreCase);
             SingletonSet = mission.SingletonSet.ToHashSet(StringComparer.InvariantCultureIgnoreCase);
             Airbases = mission.Airbases.ToDictionary(x => x.Key, x => x.Value);
-            PopulatedAirbaseIds = mission.PopulatedAirbaseIds.ToDictionary(x => x.Key, x => x.Value);
+            PopulatedAirbaseIds = mission.PopulatedAirbaseIds.ToDictionary(x => x.Key, x => x.Value.ToList());
             LuaDrawings = mission.LuaDrawings.ToList();
             LuaZones = mission.LuaZones.ToList();
             CTLDZoneCount = mission.CTLDZoneCount;
             PrevLaserCode = mission.PrevLaserCode;
             TACANIndex = mission.TACANIndex;
-            AirbaseParkingSpots = mission.AirbaseParkingSpots.ToDictionary(x => x.Key, x => x.Value);
+            AirbaseParkingSpots = mission.AirbaseParkingSpots.ToDictionary(x => x.Key, x => x.Value.ToList());
             SpawnPoints = mission.SpawnPoints.ToList();
             UsedSpawnPoints = mission.UsedSpawnPoints.ToList();
             FrontLine = mission.FrontLine.ToList();
@@ -104,7 +104,7 @@ namespace BriefingRoom4DCS.Mission
             UnitID = mission.UnitID;
             CarrierDictionary = mission.CarrierDictionary.ToDictionary(x => x.Key, x => x.Value, StringComparer.InvariantCultureIgnoreCase);
             ModUnits = mission.ModUnits.ToList();
-            UnitLuaTables = mission.UnitLuaTables.ToDictionary(x => x.Key, x => x.Value);
+            UnitLuaTables = mission.UnitLuaTables.ToDictionary(x => x.Key, x => x.Value.ToDictionary(y => y.Key, y => y.Value.ToList()));
             Waypoints = mission.Waypoints.ToList();
         }
     }
