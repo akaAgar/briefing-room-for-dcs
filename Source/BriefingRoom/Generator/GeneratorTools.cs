@@ -70,8 +70,8 @@ namespace BriefingRoom4DCS.Generator
         internal static Tuple<Country, List<string>> GetNeutralRandomUnits(List<UnitFamily> families, List<Country> IgnoreCountries, Decade decade, int count, List<string> unitMods, bool allowLowPolly, List<string> unitBanList, Country? requiredCountry = null)
         {
             // Count is zero, return an empty array.
-            if (count < 1) throw new BriefingRoomException("Asking for a zero unit list");
-            if (families.Select(x => x.GetDCSUnitCategory()).Any(x => x != families.First().GetDCSUnitCategory())) throw new BriefingRoomException($"Cannot mix Categories in types {string.Join(", ", families)}");
+            if (count < 1) throw new BriefingRoomException("AskingForNoUnits");
+            if (families.Select(x => x.GetDCSUnitCategory()).Any(x => x != families.First().GetDCSUnitCategory())) throw new BriefingRoomException("CantMixCategoriesTypes", string.Join(", ", families));
 
             var category = families.First().GetDCSUnitCategory();
             bool allowDifferentUnitTypes = false;
@@ -318,7 +318,7 @@ namespace BriefingRoom4DCS.Generator
         internal static void CheckDBForMissingEntry<T>(string id, bool allowEmpty = false) where T : DBEntry
         {
             if (string.IsNullOrEmpty(id) && allowEmpty) return;
-            if (!Database.Instance.EntryExists<T>(id)) throw new BriefingRoomException($"Database entry {typeof(T).Name} with ID \"{id}\" not found.");
+            if (!Database.Instance.EntryExists<T>(id)) throw new BriefingRoomException("DBNotFound", typeof(T).Name, id);
         }
 
         internal static string ParseRandomString(string randomString, DCSMission mission = null)
@@ -379,7 +379,7 @@ namespace BriefingRoom4DCS.Generator
             if (isUsingSkynet)
                 return SetSkyNetPrefix(name, family, side);
             if (string.IsNullOrEmpty(name))
-                throw new BriefingRoomException($"{family} cannot have empty group name");
+                throw new BriefingRoomException("NoEmptyGroupName", family);
             return name;
         }
 

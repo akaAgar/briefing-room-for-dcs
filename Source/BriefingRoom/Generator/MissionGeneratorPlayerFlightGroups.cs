@@ -53,7 +53,7 @@ namespace BriefingRoom4DCS.Generator
 
             // Not an unit, or not a player-controllable unit, abort.
             if ((unitDB == null) || !unitDB.PlayerControllable)
-                throw new BriefingRoomException($"Player flight group unit {flightGroup.Aircraft} does not exist or is not player-controllable.");
+                throw new BriefingRoomException("PlayerFlightNotFound", flightGroup.Aircraft);
             if (unitDB.MinimumRunwayLengthFt > 0 && airbase.RunwayLengthFt < unitDB.MinimumRunwayLengthFt)
                 BriefingRoom.PrintToLog($"Runway at {airbase.Name}({airbase.RunwayLengthFt}ft) is shorter than {unitDB.UIDisplayName}({unitDB.MinimumRunwayLengthFt}ft) required runway length.", LogMessageErrorLevel.Warning);
 

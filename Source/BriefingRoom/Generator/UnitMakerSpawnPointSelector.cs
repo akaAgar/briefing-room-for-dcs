@@ -47,7 +47,7 @@ namespace BriefingRoom4DCS.Generator
         {
 
             if (!mission.AirbaseParkingSpots.ContainsKey(airbaseID))
-                throw new BriefingRoomException($"Airbase {airbaseID} not found in parking map");
+                throw new BriefingRoomException("AirbaseNotFound", airbaseID);
 
 
             var airbaseDB = mission.SituationDB.GetAirbases(mission.InvertedCoalition).First(x => x.DCSID == airbaseID);
@@ -56,7 +56,7 @@ namespace BriefingRoom4DCS.Generator
             for (int i = 0; i < unitCount; i++)
             {
                 var viableSpots = FilterAndSortSuitableSpots(mission.AirbaseParkingSpots[airbaseID].ToArray(), aircraftDB, requiresOpenAirParking);
-                if (viableSpots.Count == 0) throw new BriefingRoomException($"Airbase {airbaseDB.UIDisplayName.Get()} didn't have enough suitable parking spots.");
+                if (viableSpots.Count == 0) throw new BriefingRoomException("AirbaseNotEnoughParkingSpots", airbaseDB.UIDisplayName.Get());
                 var parkingSpot = viableSpots.First();
                 if (lastSpot.HasValue) //find nearest spot distance wise in attempt to cluster
                     parkingSpot = viableSpots

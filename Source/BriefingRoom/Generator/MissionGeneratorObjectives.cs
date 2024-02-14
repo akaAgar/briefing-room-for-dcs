@@ -121,9 +121,9 @@ namespace BriefingRoom4DCS.Generator
 
             preValidSpawns.AddRange(targetDB.ValidSpawnPoints);
             if (preValidSpawns.Contains(SpawnPointType.Sea) && preValidSpawns.Any(x => LAND_SPAWNS.Contains(x)))
-                throw new BriefingRoomException("Cannot Mix Land and Sea Objectives. Check Sub Objective targets");
+                throw new BriefingRoomException("LandSeaSubMix");
             if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location) && !AIRBASE_LOCATIONS.Contains(mainObjLocation))
-                throw new BriefingRoomException("Spawning on airbase is not a valid Sub Objective unless main objective is also spawning on airbase.");
+                throw new BriefingRoomException("AirbaseSubMix");
             var objectiveCoords = GetNearestSpawnCoordinates(ref mission, coreCoordinates, targetDB);
             return CreateObjective(
                 task,
@@ -154,7 +154,7 @@ namespace BriefingRoom4DCS.Generator
             var (units, unitDBs) = UnitMaker.GetUnits(ref mission, objectiveTargetUnitFamilies, unitCount, taskDB.TargetSide, groupFlags, ref extraSettings, targetBehaviorDB.IsStatic);
             var objectiveTargetUnitFamily = objectiveTargetUnitFamilies.First();
             if (units.Count == 0 || unitDBs.Count == 0)
-                throw new BriefingRoomException($"No operational units in {taskDB.TargetSide} {objectiveTargetUnitFamily} for given time period.");
+                throw new BriefingRoomException("NoUnitsForTimePeriod", taskDB.TargetSide, objectiveTargetUnitFamily);
             var unitDB = unitDBs.First();
             if (AIRBASE_LOCATIONS.Contains(targetBehaviorDB.Location) && targetDB.UnitCategory.IsAircraft())
                 objectiveCoordinates = PlaceInAirbase(ref mission, extraSettings, targetBehaviorDB, objectiveCoordinates, unitCount, unitDB);
@@ -219,7 +219,7 @@ namespace BriefingRoom4DCS.Generator
                     mission.TemplateRecord.FlightPlanObjectiveSeparation,
                     coalition: GeneratorTools.GetSpawnPointCoalition(mission.TemplateRecord, Side.Ally));
                     if (!spawnPoint.HasValue) // Failed to generate target group
-                        throw new BriefingRoomException($"Failed to find Cargo SpawnPoint");
+                        throw new BriefingRoomException("FailedToFindCargoSpawn");
                     unitCoordinates = spawnPoint.Value;
                 }
                 else
@@ -227,7 +227,7 @@ namespace BriefingRoom4DCS.Generator
                     var coords = targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.GoToPlayerAirbase ? mission.PlayerAirbase.Coordinates : unitCoordinates;
                     var (_, _, spawnPoints) = UnitMakerSpawnPointSelector.GetAirbaseAndParking(mission, coords, 1, GeneratorTools.GetSpawnPointCoalition(mission.TemplateRecord, Side.Ally, true).Value, (DBEntryAircraft)Database.Instance.GetEntry<DBEntryJSONUnit>("Mi-8MT"));
                     if (spawnPoints.Count == 0) // Failed to generate target group
-                        throw new BriefingRoomException($"Failed to find Cargo SpawnPoint");
+                        throw new BriefingRoomException("FailedToFindCargoSpawn");
                     unitCoordinates = spawnPoints.First();
                 }
                 if (targetBehaviorDB.ID.StartsWith("RecoverToBase") || taskDB.IsEscort())
@@ -276,7 +276,7 @@ namespace BriefingRoom4DCS.Generator
                 extraSettings);
 
             if (!targetGroupInfo.HasValue) // Failed to generate target group
-                throw new BriefingRoomException($"Failed to generate group for objective.");
+                throw new BriefingRoomException("FailedToGenerateGroupObjective");
 
             if (mission.TemplateRecord.MissionFeatures.Contains("ContextScrambleStart") && !taskDB.UICategory.ContainsValue("Transport"))
                 targetGroupInfo.Value.DCSGroup.LateActivation = false;
@@ -446,7 +446,7 @@ namespace BriefingRoom4DCS.Generator
                 GeneratorTools.GetSpawnPointCoalition(mission.TemplateRecord, Side.Enemy));
 
             if (!spawnPoint.HasValue)
-                throw new BriefingRoomException($"Failed to spawn objective unit group. {String.Join(", ", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList())} Please try again (Consider Adjusting Objective distances or Hint Locations)");
+                throw new BriefingRoomException("FailedToSpawnObjectiveGroup", String.Join(", ", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList()));
 
             Coordinates objectiveCoordinates = spawnPoint.Value;
             return objectiveCoordinates;
@@ -487,11 +487,11 @@ namespace BriefingRoom4DCS.Generator
 
         private static void ObjectiveNullCheck(DBEntryObjectiveTarget targetDB, DBEntryObjectiveTargetBehavior targetBehaviorDB, DBEntryObjectiveTask taskDB)
         {
-            if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective.");
-            if (targetBehaviorDB == null) throw new BriefingRoomException($"Target behavior \"{targetBehaviorDB.UIDisplayName}\" not found for objective.");
-            if (taskDB == null) throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not found for objective.");
+            if (targetDB == null) throw new BriefingRoomException("TargetNotFound", targetDB.UIDisplayName);
+            if (targetBehaviorDB == null) throw new BriefingRoomException("BehaviorNotFound", targetBehaviorDB.UIDisplayName);
+            if (taskDB == null) throw new BriefingRoomException("TaskNotFound", taskDB.UIDisplayName);
             if (!taskDB.ValidUnitCategories.Contains(targetDB.UnitCategory))
-                throw new BriefingRoomException($"Task \"{taskDB.UIDisplayName}\" not valid for objective targets, which belong to category \"{targetDB.UnitCategory}\".");
+                throw new BriefingRoomException("TaskTargetsInvalid",taskDB.UIDisplayName, targetDB.UnitCategory);
         }
 
 
@@ -558,7 +558,7 @@ namespace BriefingRoom4DCS.Generator
         {
             var (targetDB, targetBehaviorDB, taskDB, objectiveOptions, presetDB) = GetCustomObjectiveData(objectiveTemplate);
             var targetBehaviorLocation = targetBehaviorDB.Location;
-            if (targetDB == null) throw new BriefingRoomException($"Target \"{targetDB.UIDisplayName}\" not found for objective.");
+            if (targetDB == null) throw new BriefingRoomException("TargetNotFound", targetDB.UIDisplayName);
 
             Coordinates waypointCoordinates = objectiveCoordinates;
             bool onGround = !targetDB.UnitCategory.IsAircraft() || AIR_ON_GROUND_LOCATIONS.Contains(targetBehaviorLocation); // Ground targets = waypoint on the ground
@@ -586,7 +586,7 @@ namespace BriefingRoom4DCS.Generator
                 coreCoordinates, remove);
 
             if (!spawnPoint.HasValue)
-                throw new BriefingRoomException($"Failed to spawn nearby objective point. {String.Join(",", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList())} Please try again (Consider Adjusting Objective distances or Hint Locations)");
+                throw new BriefingRoomException("FailedToLaunchNearbyObjective",String.Join(",", targetDB.ValidSpawnPoints.Select(x => x.ToString()).ToList()));
 
             Coordinates objectiveCoordinates = spawnPoint.Value;
             return objectiveCoordinates;

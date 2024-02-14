@@ -105,8 +105,8 @@ namespace BriefingRoom4DCS.Data
         internal Tuple<Country, List<string>> GetRandomUnits(List<UnitFamily> families, Decade decade, int count, List<string> unitMods, List<string> unitBanList, bool allowLowPolly, bool blockSuppliers, bool allowStatic, Country? requiredCountry = null, bool lowUnitVariation = false)
         {
             // Count is zero, return an empty array.
-            if (count < 1) throw new BriefingRoomException("Asking for a zero unit list");
-            if (families.Select(x => x.GetDCSUnitCategory()).Any(x => x != families.First().GetDCSUnitCategory())) throw new BriefingRoomException($"Cannot mix Categories in types {string.Join(", ", families)}");
+            if (count < 1) throw new BriefingRoomException("AskingForNoUnits");
+            if (families.Select(x => x.GetDCSUnitCategory()).Any(x => x != families.First().GetDCSUnitCategory())) throw new BriefingRoomException("CantMixCategoriesTypes", string.Join(", ", families));
 
             var category = families.First().GetDCSUnitCategory();
             bool allowDifferentUnitTypes = false;

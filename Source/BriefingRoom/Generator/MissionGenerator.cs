@@ -52,7 +52,7 @@ namespace BriefingRoom4DCS.Generator
             GeneratorTools.CheckDBForMissingEntry<DBEntryWeatherPreset>(template.EnvironmentWeatherPreset, true);
             GeneratorTools.CheckDBForMissingEntry<DBEntryTheater>(template.ContextTheater);
             if (!template.PlayerFlightGroups.Any(x => !x.Hostile))
-                throw new BriefingRoomException("Cannot have all players on hostile side.");
+                throw new BriefingRoomException("NoFullyHostilePlayers");
 
             var mission = new DCSMission(template);
 
@@ -157,7 +157,7 @@ namespace BriefingRoom4DCS.Generator
                         revertStageCount += fallbackSteps;
                         var fallbackStageIndex = currentStageIndex - fallbackSteps;
                         if (fallbackStageIndex <= 0)
-                            throw new BriefingRoomException($"Mission could not be generated: {err.Message}", err);
+                            throw new BriefingRoomException("FailGeneration", err, err.Message);
                         lastErrorStage = nextStage;
                         nextStage = STAGE_ORDER[fallbackStageIndex];
                         BriefingRoom.PrintToLog($"Falling Back to Stage: {nextStage}");
@@ -230,7 +230,7 @@ namespace BriefingRoom4DCS.Generator
             var theaterDB = mission.TheaterDB;
             var brokenSP = mission.SpawnPoints.Where(x => UnitMakerSpawnPointSelector.CheckInSea(theaterDB, x.Coordinates)).ToList();
             if (brokenSP.Count > 0)
-                throw new BriefingRoomException($"Spawn Points in the sea!: {string.Join("\n", brokenSP.Select(x => $"[{x.Coordinates.X},{x.Coordinates.Y}],{x.PointType}").ToList())}");
+                throw new BriefingRoomException("SpawnPointsInSea", string.Join("\n", brokenSP.Select(x => $"[{x.Coordinates.X},{x.Coordinates.Y}],{x.PointType}").ToList()));
 
             foreach (DBEntryAirbase airbase in mission.SituationDB.GetAirbases(mission.InvertedCoalition))
             {
