@@ -159,7 +159,6 @@ namespace BriefingRoom4DCS.Data
                 return new Dictionary<int, Dictionary<string, string>>();
             var payload = Toolbox.RandomFrom(Payloads.Where(x => x.tasks.Contains((int)task)).ToList()) ?? Toolbox.RandomFrom(Payloads);
             return payload.pylons.Where(x => x != null).ToDictionary(x => x.num, x => new Dictionary<string, string> { { "CLSID", x.CLSID } });
-
         }
 
         internal void GetDCSPayloads()
@@ -204,7 +203,8 @@ namespace BriefingRoom4DCS.Data
                     var payload = new Payload {
                         name = (string)itemEntry["name"],
                         displayName = (string)(itemEntry.Contains("displayName") ? itemEntry["displayName"] : itemEntry["name"]),
-                        tasks = tasks 
+                        tasks = tasks,
+                        pylons = pylons,
                     };
 
                     Payloads.Add( payload );
