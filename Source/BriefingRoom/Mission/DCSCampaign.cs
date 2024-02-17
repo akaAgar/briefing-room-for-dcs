@@ -89,7 +89,7 @@ namespace BriefingRoom4DCS.Mission
             }
 
             for (int i = 0; i < Missions.Count; i++)
-                FileEntries.Add($"{Name}{i + 1:00}.miz", await Missions[i].SaveToMizBytes());
+                FileEntries.Add($"{Missions[i].Briefing.Name}.miz", await Missions[i].SaveToMizBytes());
 
             return Toolbox.ZipData(FileEntries);
         }
@@ -99,7 +99,7 @@ namespace BriefingRoom4DCS.Mission
             Dictionary<string, byte[]> FileEntries = new();
 
             foreach (var mission in Missions)
-                FileEntries.Add($"{Name}-{mission.Briefing.Name}.html", Encoding.UTF8.GetBytes(mission.Briefing.GetBriefingAsHTML(mission)));
+                FileEntries.Add($"{mission.Briefing.Name}.html", Encoding.UTF8.GetBytes(mission.Briefing.GetBriefingAsHTML(mission)));
                 
 
             return Toolbox.ZipData(FileEntries);
