@@ -320,8 +320,7 @@ namespace BriefingRoom4DCS.Generator
 
             if (
                 side == Side.Enemy ||
-                (!mission.TemplateRecord.MissionFeatures.Contains("ContextGroundStartAircraft") && featureDB.ID != "FriendlyStaticAircraftCarrier") ||
-                true
+                (!mission.TemplateRecord.MissionFeatures.Contains("ContextGroundStartAircraft") && featureDB.ID != "FriendlyStaticAircraftCarrier")
             )
                 return;
 
