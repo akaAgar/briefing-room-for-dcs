@@ -92,7 +92,7 @@ namespace BriefingRoom4DCS.Generator
                     DCSMissionBriefingItemType.Airbase,
                     $"{unitDB.UIDisplayName.Get()}\t-\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t{ilsChannel}\t{tacanCallsign}, {tacanChannel}X\t{link4Frequency}");
 
-                mission.CarrierDictionary.Add(flightGroup.Carrier, new CarrierUnitMakerGroupInfo(groupInfo.Value, unitDB.ParkingSpots, mission.TemplateRecord.ContextPlayerCoalition));
+                mission.CarrierDictionary.Add(flightGroup.Carrier, new CarrierUnitMakerGroupInfo(groupInfo.Value, unitDB.PlaneStorage, unitDB.HelicopterStorage, mission.TemplateRecord.ContextPlayerCoalition));
                 mission.MapData.Add($"CARRIER_{flightGroup.Carrier}", new List<double[]> { groupInfo.Value.Coordinates.ToArray() });
             }
         }
@@ -215,7 +215,7 @@ namespace BriefingRoom4DCS.Generator
             mission.Briefing.AddItem(
                      DCSMissionBriefingItemType.Airbase,
                      $"{groupInfo.Value.Name}\t\t{GeneratorTools.FormatRadioFrequency(radioFrequency)}\t\t");
-            mission.CarrierDictionary.Add(flightGroup.Carrier, new CarrierUnitMakerGroupInfo(groupInfo.Value, unitDB.ParkingSpots, mission.TemplateRecord.ContextPlayerCoalition));
+            mission.CarrierDictionary.Add(flightGroup.Carrier, new CarrierUnitMakerGroupInfo(groupInfo.Value, 4, 4, mission.TemplateRecord.ContextPlayerCoalition));
             mission.MapData.Add($"FOB_{flightGroup.Carrier}", new List<double[]> { groupInfo.Value.Coordinates.ToArray()
 });
 

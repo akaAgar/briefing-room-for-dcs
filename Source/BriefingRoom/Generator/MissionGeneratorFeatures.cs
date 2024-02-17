@@ -323,7 +323,7 @@ namespace BriefingRoom4DCS.Generator
                 (!mission.TemplateRecord.MissionFeatures.Contains("ContextGroundStartAircraft") && featureDB.ID != "FriendlyStaticAircraftCarrier")
             )
                 return;
-
+            bool isPlane = groupInfo.Value.UnitDB.Category == UnitCategory.Plane;
             UnitFamily targetFamily = UnitFamily.ShipCarrierSTOVL;
             if (groupInfo.Value.UnitDB.Families.Contains(UnitFamily.PlaneCATOBAR))
                 targetFamily = UnitFamily.ShipCarrierCATOBAR;
@@ -332,7 +332,7 @@ namespace BriefingRoom4DCS.Generator
             var unitCount = groupInfo.Value.DCSGroup.Units.Count;
             var carrierPool = mission.CarrierDictionary.Where(x =>
                     x.Value.UnitMakerGroupInfo.UnitDB.Families.Contains(targetFamily) &&
-                    x.Value.RemainingSpotCount >= unitCount
+                    (isPlane? x.Value.RemainingPlaneSpotCount : x.Value.RemainingHelicopterSpotCount) >= unitCount
                 ).ToDictionary(x => x.Key, x => x.Value);
 
             if (carrierPool.Count == 0)
@@ -346,7 +346,10 @@ namespace BriefingRoom4DCS.Generator
             groupInfo.Value.DCSGroup.X = (float)carrier.UnitMakerGroupInfo.Coordinates.X;
             groupInfo.Value.DCSGroup.Y = (float)carrier.UnitMakerGroupInfo.Coordinates.Y;
             groupInfo.Value.DCSGroup.Name = groupInfo.Value.DCSGroup.Name.Replace("-STATIC-", ""); // Remove Static code if on carrier as we can't replace it automatically
-            carrier.RemainingSpotCount -= unitCount;
+            if(isPlane)
+                carrier.RemainingPlaneSpotCount -= unitCount;
+            else
+                carrier.RemainingHelicopterSpotCount -= unitCount;
         }
 
         private static void SetSupportingTargetGroupName(ref UnitMakerGroupInfo? groupInfo, FeatureUnitGroupFlags flags, Dictionary<string, object> extraSettings)

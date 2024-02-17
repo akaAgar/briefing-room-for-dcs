@@ -11,6 +11,7 @@ namespace BriefingRoom4DCS.Data.JSON
     public class Ship : Unit
     {
         public List<Category> categories { get; set; }
-        public int numParking { get; set; }
+        public int helicopterStorage { get; set; }
+        public int planeStorage { get; set; }
     }
 }

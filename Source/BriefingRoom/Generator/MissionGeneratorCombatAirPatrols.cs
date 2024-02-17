@@ -162,7 +162,7 @@ namespace BriefingRoom4DCS.Generator
             var unitCount = groupInfo.Value.DCSGroup.Units.Count;
             var carrierPool = mission.CarrierDictionary.Where(x =>
                     x.Value.UnitMakerGroupInfo.UnitDB.Families.Contains(targetFamily) &&
-                    x.Value.RemainingSpotCount >= unitCount
+                    x.Value.RemainingPlaneSpotCount >= unitCount
                 ).ToDictionary(x => x.Key, x => x.Value);
 
             if (carrierPool.Count == 0)
@@ -175,7 +175,7 @@ namespace BriefingRoom4DCS.Generator
             groupInfo.Value.DCSGroup.Waypoints[0].Y = (float)carrier.UnitMakerGroupInfo.Coordinates.Y;
             groupInfo.Value.DCSGroup.X = (float)carrier.UnitMakerGroupInfo.Coordinates.X;
             groupInfo.Value.DCSGroup.Y = (float)carrier.UnitMakerGroupInfo.Coordinates.Y;
-            carrier.RemainingSpotCount -= unitCount;
+            carrier.RemainingPlaneSpotCount -= unitCount;
         }
     }
 }

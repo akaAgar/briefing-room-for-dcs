@@ -88,13 +88,17 @@ namespace BriefingRoom4DCS.Generator
                 carrierName = carrier.UnitMakerGroupInfo.UnitDB.UIDisplayName.Get();
                 if (flightGroup.StartLocation != PlayerStartLocation.Air)
                 {
-                    var spotOffset = carrier.TotalSpotCount - carrier.RemainingSpotCount;
+                    bool isPlane = unitDB.Category == UnitCategory.Plane;
+                    var spotOffset = (isPlane ? carrier.TotalPlaneSpotCount : carrier.TotalHelicopterSpotCount) - (isPlane ? carrier.RemainingPlaneSpotCount : carrier.RemainingHelicopterSpotCount);
                     for (int i = spotOffset; i < flightGroup.Count + spotOffset; i++)
                     {
                         parkingSpotIDsList.Add(i + 1);
                         parkingSpotCoordinatesList.Add(carrier.UnitMakerGroupInfo.Coordinates);
                     }
-                    carrier.RemainingSpotCount -= flightGroup.Count;
+                    if(isPlane)
+                        carrier.RemainingPlaneSpotCount -= flightGroup.Count;
+                    else
+                        carrier.RemainingHelicopterSpotCount -= flightGroup.Count;
                 }
                 groupStartingCoords = carrier.UnitMakerGroupInfo.Coordinates;
                 atcRadioFrequency = carrier.UnitMakerGroupInfo.Frequency / 1000000.0;

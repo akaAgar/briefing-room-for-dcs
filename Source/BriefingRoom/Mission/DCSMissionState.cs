@@ -30,16 +30,21 @@ namespace BriefingRoom4DCS.Mission
     public class CarrierUnitMakerGroupInfo
     {
         internal UnitMakerGroupInfo UnitMakerGroupInfo { get; }
-        internal int RemainingSpotCount { get; set; }
-        internal int TotalSpotCount { get; init; }
+        internal int RemainingPlaneSpotCount { get; set; }
+        internal int TotalPlaneSpotCount { get; init; }
+
+        internal int RemainingHelicopterSpotCount { get; set; }
+        internal int TotalHelicopterSpotCount { get; init; }
 
         internal Coalition Coalition { get; init; }
 
-        internal CarrierUnitMakerGroupInfo(UnitMakerGroupInfo unitMakerGroupInfo, int remainingSpotCount, Coalition coalition)
+        internal CarrierUnitMakerGroupInfo(UnitMakerGroupInfo unitMakerGroupInfo, int remainingPlaneSpotCount, int remainingHelicopterSpotCount, Coalition coalition)
         {
             UnitMakerGroupInfo = unitMakerGroupInfo;
-            RemainingSpotCount = remainingSpotCount;
-            TotalSpotCount = remainingSpotCount;
+            RemainingPlaneSpotCount = remainingPlaneSpotCount;
+            TotalPlaneSpotCount = remainingPlaneSpotCount;
+            RemainingHelicopterSpotCount = remainingHelicopterSpotCount;
+            TotalHelicopterSpotCount = remainingHelicopterSpotCount;
             Coalition = coalition;
         }
     }

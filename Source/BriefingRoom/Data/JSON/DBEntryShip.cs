@@ -29,7 +29,8 @@ namespace BriefingRoom4DCS.Data
 {
     internal class DBEntryShip : DBEntryJSONUnit
     {
-        internal int ParkingSpots { get; init; }
+        internal int PlaneStorage { get; init; }
+        internal int HelicopterStorage { get; init; }
 
         protected override bool OnLoad(string o)
         {
@@ -61,7 +62,8 @@ namespace BriefingRoom4DCS.Data
                     Shape = ship.shape,
                     Families = infoData.families.Select(x => (UnitFamily)Enum.Parse(typeof(UnitFamily), x, true)).ToArray(),
                     LowPolly = infoData.lowPolly,
-                    ParkingSpots = ship.numParking
+                    PlaneStorage = ship.planeStorage,
+                    HelicopterStorage = ship.helicopterStorage
                 });
 
             }
