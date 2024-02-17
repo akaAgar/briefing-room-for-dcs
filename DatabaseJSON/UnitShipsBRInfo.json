@@ -10,7 +10,8 @@
     {
         "type": "VINSON",
         "families": [
-            "ShipCarrierCATOBAR"
+            "ShipCarrierCATOBAR",
+            "ShipCarrierSTOVL"
         ],
         "lowPolly": false,
         "immovable": false
@@ -18,7 +19,8 @@
     {
         "type": "ara_vdm",
         "families": [
-            "ShipCarrierCATOBAR"
+            "ShipCarrierCATOBAR",
+            "ShipCarrierSTOVL"
         ],
         "lowPolly": false,
         "immovable": false
@@ -52,7 +54,8 @@
     {
         "type": "KUZNECOW",
         "families": [
-            "ShipCarrierSTOBAR"
+            "ShipCarrierSTOBAR",
+            "ShipCarrierSTOVL"
         ],
         "lowPolly": false,
         "immovable": false
@@ -159,7 +162,8 @@
     {
         "type": "CV_1143_5",
         "families": [
-            "ShipCarrierSTOBAR"
+            "ShipCarrierSTOBAR",
+            "ShipCarrierSTOVL"
         ],
         "lowPolly": false,
         "immovable": false
@@ -287,7 +291,8 @@
     {
         "type": "CVN_71",
         "families": [
-            "ShipCarrierCATOBAR"
+            "ShipCarrierCATOBAR",
+            "ShipCarrierSTOVL"
         ],
         "lowPolly": false,
         "immovable": false
@@ -295,7 +300,8 @@
     {
         "type": "CVN_72",
         "families": [
-            "ShipCarrierCATOBAR"
+            "ShipCarrierCATOBAR",
+            "ShipCarrierSTOVL"
         ],
         "lowPolly": false,
         "immovable": false
@@ -303,7 +309,8 @@
     {
         "type": "CVN_73",
         "families": [
-            "ShipCarrierCATOBAR"
+            "ShipCarrierCATOBAR",
+            "ShipCarrierSTOVL"
         ],
         "lowPolly": false,
         "immovable": false
@@ -311,7 +318,8 @@
     {
         "type": "Stennis",
         "families": [
-            "ShipCarrierCATOBAR"
+            "ShipCarrierCATOBAR",
+            "ShipCarrierSTOVL"
         ],
         "lowPolly": false,
         "immovable": false
@@ -319,7 +327,8 @@
     {
         "type": "CVN_75",
         "families": [
-            "ShipCarrierCATOBAR"
+            "ShipCarrierCATOBAR",
+            "ShipCarrierSTOVL"
         ],
         "lowPolly": false,
         "immovable": false
@@ -386,7 +395,8 @@
     {
         "type": "Forrestal",
         "families": [
-            "ShipCarrierCATOBAR"
+            "ShipCarrierCATOBAR",
+            "ShipCarrierSTOVL"
         ],
         "lowPolly": false,
         "immovable": false
