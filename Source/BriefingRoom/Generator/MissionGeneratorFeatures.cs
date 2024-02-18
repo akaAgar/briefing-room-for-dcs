@@ -30,7 +30,7 @@ namespace BriefingRoom4DCS.Generator
     internal abstract class MissionGeneratorFeatures<T> where T : DBEntryFeature
     {
 
-        protected static UnitMakerGroupInfo? AddMissionFeature(T featureDB, ref DCSMission mission, Coordinates? coordinates, Coordinates? coordinates2, ref Dictionary<string, object> extraSettings, Side? objectiveTargetSide = null, bool hideEnemy = false, UnitFamily? preSelectedUnitFamily = null, bool missionLevelFeature = false)
+        protected static UnitMakerGroupInfo? AddMissionFeature(T featureDB, ref DCSMission mission, Coordinates? coordinates, Coordinates? coordinates2, ref Dictionary<string, object> extraSettings, Side? objectiveTargetSide = null, bool hideEnemy = false, bool missionLevelFeature = false)
         {
             // Add secondary coordinates (destination point) to the extra settings
 
@@ -85,15 +85,15 @@ namespace BriefingRoom4DCS.Generator
 
                 var groupLua = featureDB.UnitGroupLuaGroup;
                 var unitCount = featureDB.UnitGroupSize.GetValue();
-                var unitFamily = preSelectedUnitFamily ?? Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
                 var luaUnit = featureDB.UnitGroupLuaUnit;
-                var (units, unitDBs) = UnitMaker.GetUnits(ref mission,unitFamily, unitCount, groupSide, groupFlags, ref extraSettings, featureDB.UnitGroupAllowStatic);
+                var (units, unitDBs) = UnitMaker.GetUnits(ref mission, featureDB.UnitGroupFamilies.ToList(), unitCount, groupSide, groupFlags, ref extraSettings, featureDB.UnitGroupAllowStatic);
                 if (units.Count == 0)
                 {
                     UnitMakerSpawnPointSelector.RecoverSpawnPoint(ref mission,coordinatesValue);
                      throw new BriefingRoomException("NoUnitsFoundForMissionFeature",featureDB.ID);
                 }
                 var unitDB = unitDBs.First();
+                var unitFamily = unitDB.Families.First();
                 try
                 {
                     SetAirbase(featureDB, ref mission, unitDB, groupSide, ref coordinatesValue, coordinates2.Value, unitCount, ref extraSettings);
@@ -225,9 +225,10 @@ namespace BriefingRoom4DCS.Generator
                 }
                 var groupLua = featureDB.UnitGroupLuaGroup;
                 var unitCount = featureDB.UnitGroupSize.GetValue();
-                var unitFamily = Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
                 var luaUnit = featureDB.UnitGroupLuaUnit;
                 Coordinates? spawnCoords;
+                var (units, unitDBs) = UnitMaker.GetUnits(ref mission, featureDB.UnitGroupFamilies.ToList(), unitCount, groupSide, groupFlags, ref extraSettings, featureDB.UnitGroupAllowStatic);
+                var unitFamily = unitDBs.First().Families.First();
                 if (flags.HasFlag(FeatureUnitGroupFlags.ExtraGroupsNearby))
                     spawnCoords = UnitMakerSpawnPointSelector.GetNearestSpawnPoint(ref mission,featureDB.UnitGroupValidSpawnPoints, coordinates);
                 else
@@ -243,7 +244,6 @@ namespace BriefingRoom4DCS.Generator
                     throw new BriefingRoomException("NoExtraGroupSpawnPoint", featureDB.ID);
 
                 extraSettings.Remove("TemplatePositionMap");
-                var (units, unitDBs) = UnitMaker.GetUnits(ref mission,unitFamily, unitCount, groupSide, groupFlags, ref extraSettings, featureDB.UnitGroupAllowStatic);
                 if (units.Count == 0)
                 {
                     UnitMakerSpawnPointSelector.RecoverSpawnPoint(ref mission,spawnCoords.Value);

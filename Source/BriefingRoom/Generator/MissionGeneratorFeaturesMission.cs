@@ -58,10 +58,9 @@ namespace BriefingRoom4DCS.Generator
             }
             Coordinates? spawnPoint = null;
             Coordinates? coordinates2 = null;
-            UnitFamily? unitFamily = null;
             if (FeatureHasUnitGroup(featureDB))
             {
-                unitFamily = Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
+                var unitFamily = Toolbox.RandomFrom(featureDB.UnitGroupFamilies);
                 var useFrontLine =  mission.FrontLine.Count > 0 && featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.UseFrontLine);
                 Coordinates pointSearchCenter = useFrontLine ? mission.FrontLine[(int)Math.Floor((double)mission.FrontLine.Count/2)]  : Coordinates.Lerp(mission.AverageInitialPosition, mission.ObjectivesCenter, featureDB.UnitGroupSpawnDistance);
                 spawnPoint =
@@ -90,7 +89,7 @@ namespace BriefingRoom4DCS.Generator
                 coordinates2 = goPoint + Coordinates.CreateRandom(5, 20) * Toolbox.NM_TO_METERS;
             }
             Dictionary<string, object> extraSettings = new();
-            UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, ref mission, spawnPoint, coordinates2, ref extraSettings, preSelectedUnitFamily: unitFamily, missionLevelFeature: true);
+            UnitMakerGroupInfo? groupInfo = AddMissionFeature(featureDB, ref mission, spawnPoint, coordinates2, ref extraSettings, missionLevelFeature: true);
 
             AddBriefingRemarkFromFeature(featureDB, ref mission, false, groupInfo, extraSettings);
         }

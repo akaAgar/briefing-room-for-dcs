@@ -57,9 +57,6 @@ namespace BriefingRoom4DCS.Generator
         private const double VEHICLE_UNIT_SPACING = 10.0;
         private readonly static List<string> IGNORE_PROPS = new() { "Skill" };
 
-        internal static Tuple<List<string>, List<DBEntryJSONUnit>> GetUnits(ref DCSMission mission, UnitFamily family, int unitCount, Side side, UnitMakerGroupFlags unitMakerGroupFlags, ref Dictionary<string, object> extraSettings, bool allowStatic) =>
-            GetUnits(ref mission, new List<UnitFamily> { family }, unitCount, side, unitMakerGroupFlags, ref extraSettings, allowStatic);
-
         internal static Tuple<List<string>, List<DBEntryJSONUnit>> GetUnits(
             ref DCSMission mission,
             List<UnitFamily> families,
