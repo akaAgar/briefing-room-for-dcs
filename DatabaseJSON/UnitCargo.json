@@ -1,96 +1,96 @@
 [
     {
-        "_id": "64bfb89a17951d43e5da2ab3",
+        "_id": "6592fd981c3873d77141490d",
         "type": "uh1h_cargo",
         "displayName": "UH-1H cargo",
         "shapeName": "ab-212_cargo"
     },
     {
-        "_id": "64bfb89a17951d43e5da2ab5",
+        "_id": "6592fd981c3873d77141490f",
         "type": "ammo_cargo",
         "displayName": "Ammo",
         "shapeName": "ammo_box_cargo"
     },
     {
-        "_id": "64bfb89a17951d43e5da2ab7",
+        "_id": "6592fd981c3873d771414911",
         "type": "f_bar_cargo",
         "displayName": "F-shape barrier",
         "shapeName": "f_bar_cargo"
     },
     {
-        "_id": "64bfb89a17951d43e5da2ab9",
+        "_id": "6592fd981c3873d771414913",
         "type": "m117_cargo",
         "displayName": "M117 bombs",
         "shapeName": "m117_cargo"
     },
     {
-        "_id": "64bfb89a17951d43e5da2abb",
+        "_id": "6592fd981c3873d771414915",
         "type": "iso_container",
         "displayName": "ISO container",
         "shapeName": "iso_container_cargo"
     },
     {
-        "_id": "64bfb89a17951d43e5da2abd",
+        "_id": "6592fd981c3873d771414917",
         "type": "iso_container_small",
         "displayName": "ISO container small",
         "shapeName": "iso_container_small_cargo"
     },
     {
-        "_id": "64bfb89a17951d43e5da2abf",
+        "_id": "6592fd981c3873d771414919",
         "type": "barrels_cargo",
         "displayName": "Barrels",
         "shapeName": "barrels_cargo"
     },
     {
-        "_id": "64bfb89a17951d43e5da2ac1",
+        "_id": "6592fd981c3873d77141491b",
         "type": "container_cargo",
         "displayName": "Container",
         "shapeName": "bw_container_cargo"
     },
     {
-        "_id": "64bfb89a17951d43e5da2ac3",
+        "_id": "6592fd981c3873d77141491d",
         "type": "tetrapod_cargo",
         "displayName": "Tetrapod",
         "shapeName": "tetrapod_cargo"
     },
     {
-        "_id": "64bfb89a17951d43e5da2ac5",
+        "_id": "6592fd981c3873d77141491f",
         "type": "fueltank_cargo",
         "displayName": "Fueltank",
         "shapeName": "fueltank_cargo"
     },
     {
-        "_id": "64bfb89a17951d43e5da2ac7",
+        "_id": "6592fd981c3873d771414921",
         "type": "oiltank_cargo",
         "displayName": "Oiltank",
         "shapeName": "oiltank_cargo"
     },
     {
-        "_id": "64bfb89a17951d43e5da2ac9",
+        "_id": "6592fd981c3873d771414923",
         "type": "pipes_big_cargo",
         "displayName": "Pipes big",
         "shapeName": "pipes_big_cargo"
     },
     {
-        "_id": "64bfb89a17951d43e5da2acb",
+        "_id": "6592fd981c3873d771414925",
         "type": "pipes_small_cargo",
         "displayName": "Pipes small",
         "shapeName": "pipes_small_cargo"
     },
     {
-        "_id": "64bfb89a17951d43e5da2acd",
+        "_id": "6592fd981c3873d771414927",
         "type": "trunks_small_cargo",
         "displayName": "Trunks short",
         "shapeName": "trunks_small_cargo"
     },
     {
-        "_id": "64bfb89a17951d43e5da2acf",
+        "_id": "6592fd981c3873d771414929",
         "type": "trunks_long_cargo",
         "displayName": "Trunks long",
         "shapeName": "trunks_long_cargo"
     },
     {
-        "_id": "64bfb89a17951d43e5da2ad1",
+        "_id": "6592fd981c3873d77141492b",
         "type": "l118",
         "displayName": "L118 Light Artillery",
         "module": "South_Atlantic_Assets",
