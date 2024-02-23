@@ -44,8 +44,8 @@ const MapBoundaries = {
         },
         // bottom right
         {
-            lat: 31.960960214436,
-            lon: 41.932899899137,
+            lat: 31.368464205285584,
+            lon: 41.44056629686251,
         },
         // top right
         {
