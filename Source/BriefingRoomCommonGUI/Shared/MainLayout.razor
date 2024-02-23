@@ -10,13 +10,17 @@
         <div class="main">
             <div class="top-row px-4">
                 <div class="form-group language-selector">
-                    <label>@BriefingRoom.Translate("Language")</label>
-                    <select class="form-control" value=@BriefingRoom.LanguageDB.Language @onchange="eventArgs => SetLanguage((string)eventArgs.Value)">
+                    <label>@BriefingRoom.Translate("Language") <a href="https://poeditor.com/join/project/MJES2FW5lh"
+                            class="img-link-tiny" target="_blank"><img
+                                src="_content/BriefingRoomCommonGUI/img/poeditor.svg" alt="poeditor.com" /></a></label>
+                    <select class="form-control" value=@BriefingRoom.LanguageDB.Language
+                        @onchange="eventArgs => SetLanguage((string)eventArgs.Value)">
                         @foreach (var key in BriefingRoom.AvailableLanguagesMap.Keys)
                         {
                             <option value="@key">@BriefingRoom.AvailableLanguagesMap[key]</option>
                         }
                     </select>
+
                 </div>
                 @if (BriefingRoom.RUNNING_IN_DOCKER)
                 {
@@ -27,7 +31,8 @@
                         src="_content/BriefingRoomCommonGUI/img/discord-icon-svgrepo-com.svg"></a>
                 <a href="@BriefingRoom.REPO_URL" target="_blank" class="img-link"><img alt="Github"
                         src="_content/BriefingRoomCommonGUI/img/github-mark@((darkmode? "-white" : "")).svg"></a>
-                <a href="https://www.patreon.com/bePatron?u=99514930" target="_blank" class="img-link"><img alt="Become a Patron!" src="_content/BriefingRoomCommonGUI/img/patreon-icon.png"></a>
+                <a href="https://www.patreon.com/bePatron?u=99514930" target="_blank" class="img-link"><img
+                        alt="Become a Patron!" src="_content/BriefingRoomCommonGUI/img/patreon-icon.png"></a>
                 @if (BriefingRoom.RUNNING_IN_DOCKER)
                 {
                     <div class="btn-container"><a title="Support me on ko-fi.com" class="kofi-button"
@@ -35,12 +40,15 @@
                                 class="kofitext"><img src="https://storage.ko-fi.com/cdn/cup-border.png"
                                     alt="Ko-fi donations"
                                     class="kofiimg">@BriefingRoom.Translate("KoFiContributeBeg")</span></a></div>
-                } else {
-                    <a href="https://ko-fi.com/V7V0IZI9N" target="_blank" class="img-link"><img alt="Support us with Ko-fi" src="_content/BriefingRoomCommonGUI/img/Kofi-icon.png"></a>
+                }
+                else
+                {
+                    <a href="https://ko-fi.com/V7V0IZI9N" target="_blank" class="img-link"><img alt="Support us with Ko-fi"
+                            src="_content/BriefingRoomCommonGUI/img/Kofi-icon.png"></a>
                 }
                 <label class="bulb">
                     <input type="checkbox" checked=@darkmode
-                    @onchange="eventArgs => SetDarkMode((bool)eventArgs.Value)" />
+                        @onchange="eventArgs => SetDarkMode((bool)eventArgs.Value)" />
                     <span class="oi oi-@((darkmode? "sun" : "moon"))"></span>
                 </label>
             </div>
@@ -57,7 +65,8 @@
     public BriefingRoom4DCS.BriefingRoom briefingRoom = new BriefingRoom4DCS.BriefingRoom(WriteToDebugLog);
     public bool darkmode = false;
 
-    public static List<Tuple<DateTime, LogMessageErrorLevel, string>> logs = new List<Tuple<DateTime, LogMessageErrorLevel, string>>();
+    public static List<Tuple<DateTime, LogMessageErrorLevel, string>> logs = new List<Tuple<DateTime, LogMessageErrorLevel,
+    string>>();
 
     public static void WriteToDebugLog(string message, LogMessageErrorLevel errorLevel = LogMessageErrorLevel.Info)
     {
@@ -69,16 +78,16 @@
         if (firstRender)
         {
             darkmode = true;
-            BriefingRoom.LanguageDB.Language="en";
+            BriefingRoom.LanguageDB.Language = "en";
             try
             {
                 darkmode = await localStorage.GetItemAsync<bool>("DCSUseDarkMode");
                 BriefingRoom.LanguageDB.Language = await localStorage.GetItemAsync<string>("DCSLanguage");
-                if(string.IsNullOrEmpty(BriefingRoom.LanguageDB.Language))
+                if (string.IsNullOrEmpty(BriefingRoom.LanguageDB.Language))
                     BriefingRoom.LanguageDB.Language = "en";
             }
             catch (System.Exception)
-            { 
+            {
             }
             StateHasChanged();
         }

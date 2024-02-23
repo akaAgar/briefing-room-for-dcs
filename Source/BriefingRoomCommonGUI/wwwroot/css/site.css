@@ -34,13 +34,19 @@ generator-block {
     border-color: #1861ac;
 }
 
+.img-link-tiny img {
+    height: 20px;
+    width: 20px;
+    text-align: center;
+}
+
 .img-link img {
     height: 40px;
     width: 40px;
     text-align: center;
 }
 
-.img-link:hover img {
+.img-link:hover img, .img-link-tiny:hover img {
     border-radius: 5px;
     border: solid 1px transparent;
 }
