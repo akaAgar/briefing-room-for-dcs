@@ -57,10 +57,11 @@ namespace BriefingRoom4DCS
 
         private static event LogHandler OnMessageLogged;
 
-        public BriefingRoom(LogHandler logHandler = null)
+        public BriefingRoom(LogHandler logHandler = null, bool nukeDB = false)
         {
             INIFile ini = new(Path.Combine(BRPaths.DATABASE, "Common.ini"));
             TARGETED_DCS_WORLD_VERSION = ini.GetValue("Versions", "DCSVersion", "2.9.2");
+
 
             AvailableLanguagesMap = new Dictionary<string, string> { { "en", "English" } };
             foreach (var key in ini.GetKeysInSection("Languages"))
@@ -68,7 +69,12 @@ namespace BriefingRoom4DCS
 
 
             OnMessageLogged = logHandler;
-            Database.Instance.Initialize();
+            if (nukeDB) 
+            {
+                Database.Reset();
+            } else {
+                Database.Instance.Initialize();
+            }
             LanguageDB = Database.Instance.Language;
         }
 

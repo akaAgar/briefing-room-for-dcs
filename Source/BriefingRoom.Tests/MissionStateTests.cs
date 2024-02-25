@@ -3,12 +3,13 @@ using BriefingRoom4DCS.Template;
 
 namespace BriefingRoom4DCS.Tests;
 
+[Collection("Sequential")]
 public class DCSMissionStateTests
 {
     [Fact]
     public void RevertOneState()
-    {   
-        new BriefingRoom();
+    {
+        new BriefingRoom(nukeDB: true);
         var template = new MissionTemplate($"{BriefingRoom.GetBriefingRoomRootPath()}\\Default.brt");
         var templateRecord = new MissionTemplateRecord(template);
         var mission = new DCSMission(templateRecord);
@@ -33,8 +34,8 @@ public class DCSMissionStateTests
 
     [Fact]
     public void RevertTwoStates()
-    {   
-        new BriefingRoom();
+    {
+        new BriefingRoom(nukeDB: true);
         var template = new MissionTemplate($"{BriefingRoom.GetBriefingRoomRootPath()}\\Default.brt");
         var templateRecord = new MissionTemplateRecord(template);
         var mission = new DCSMission(templateRecord);

@@ -2,12 +2,13 @@ using BriefingRoom4DCS.Mission;
 
 namespace BriefingRoom4DCS.Tests;
 
+[Collection("Sequential")]
 public class SmokeTests
 {
     [Fact]
     public void SingleMission()
     {
-        new BriefingRoom();
+        new BriefingRoom(nukeDB: true);
         DCSMission mission = BriefingRoom.GenerateMission($"{BriefingRoom.GetBriefingRoomRootPath()}\\Default.brt");
 
         Assert.NotNull(mission);
@@ -19,7 +20,7 @@ public class SmokeTests
     [Fact]
     public void Campaign()
     {
-        new BriefingRoom();
+        new BriefingRoom(nukeDB: true);
         DCSCampaign campaign = BriefingRoom.GenerateCampaign($"{BriefingRoom.GetBriefingRoomRootPath()}\\Default.cbrt");
 
         Assert.NotNull(campaign);
