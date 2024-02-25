@@ -55,7 +55,7 @@ namespace BriefingRoom4DCS.Data
         {
             var ini = new INIFile(filePath);
             var parts = Path.GetFileNameWithoutExtension(filePath).Split('.');
-            var lang = parts.Length > 1 ? parts[1].ToLower() : "en";
+            var lang = parts.Length > 0 ? parts[0].ToLower() : "en";
             foreach (var section in ini.GetSections())
             {
                 foreach (var key in ini.GetKeysInSection(section, true))
