@@ -71,7 +71,9 @@ namespace BriefingRoom4DCS.Generator
         {
             // Count is zero, return an empty array.
             if (count < 1) throw new BriefingRoomException("AskingForNoUnits");
-            if (families.Select(x => x.GetDCSUnitCategory()).Any(x => x != families.First().GetDCSUnitCategory())) throw new BriefingRoomException("CantMixCategoriesTypes", string.Join(", ", families));
+            if (families.Select(x => x.GetDCSUnitCategory()).Any(x => x != families.First().GetDCSUnitCategory())) {
+                families = Toolbox.RandomFrom(families.GroupBy(x => x.GetDCSUnitCategory()).ToList()).ToList();
+            }
 
             var category = families.First().GetDCSUnitCategory();
             bool allowDifferentUnitTypes = false;
