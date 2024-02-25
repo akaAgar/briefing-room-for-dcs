@@ -64,7 +64,8 @@ namespace BriefingRoom4DCS.Generator
             UnitMakerGroupFlags unitMakerGroupFlags,
             ref Dictionary<string, object> extraSettings,
             bool allowStatic,
-            bool forceTryTemplate = false)
+            bool forceTryTemplate = false,
+            bool allowDefaults = true)
         {
             if (unitCount <= 0) throw new BriefingRoomException("Asking for a zero units");
             if (families.Count <= 0) throw new BriefingRoomException("No Unit Families Provided");
@@ -97,7 +98,8 @@ namespace BriefingRoom4DCS.Generator
                     mission.TemplateRecord.OptionsMission.Contains("AllowLowPoly"),
                     mission.TemplateRecord.OptionsMission.Contains("BlockSuppliers"),
                     lowUnitVariation: unitMakerGroupFlags.HasFlag(UnitMakerGroupFlags.LowUnitVariation),
-                    allowStatic: allowStatic);
+                    allowStatic: allowStatic,
+                    allowDefaults: allowDefaults);
                 units = Toolbox.ShuffleList(units.ToList());
             }
 

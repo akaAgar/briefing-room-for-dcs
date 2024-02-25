@@ -19,6 +19,7 @@ along with Briefing Room for DCS World. If not, see https://www.gnu.org/licenses
 */
 
 using BriefingRoom4DCS.Data;
+using BriefingRoom4DCS.Data.JSON;
 using BriefingRoom4DCS.Mission;
 using BriefingRoom4DCS.Template;
 using System;
@@ -87,7 +88,19 @@ namespace BriefingRoom4DCS.Generator
 
             for (int i = 0; i < groupCount; i++)
             {
-                var unitFamily = Toolbox.RandomFrom(unitFamilies);
+                var unitCount = 1;
+                var forceTryTemplate = false;
+                if (airDefenseRange == AirDefenseRange.ShortRangeBattery)
+                {
+                    unitCount = Toolbox.RandomMinMax(2, 5);
+                    forceTryTemplate = Toolbox.RandomChance(2);
+                }
+                var extraSetting = new Dictionary<string, object>();
+                var (units, _) = UnitMaker.GetUnits(ref mission, unitFamilies, unitCount, side, 0, ref extraSetting, true, forceTryTemplate: forceTryTemplate, allowDefaults: false);
+                if (units.Count == 0)
+                {
+                    return groupCount - i;
+                }
                 // Find spawn point at the proper distance
                 Coordinates? spawnPoint =
                     UnitMakerSpawnPointSelector.GetRandomSpawnPoint(
@@ -98,40 +111,29 @@ namespace BriefingRoom4DCS.Generator
                         opposingPoint,
                         new MinMaxD(commonAirDefenseDB.MinDistanceFromOpposingPoint[(int)side, (int)airDefenseRange], 99999),
                         GeneratorTools.GetSpawnPointCoalition(mission.TemplateRecord, side),
-                        unitFamily);
+                        unitFamilies.First());
 
                 // No spawn point found, stop here.
                 if (!spawnPoint.HasValue)
                 {
                     throw new BriefingRoomException("NoSpawnPointForAirDefense", airDefenseRange);
                 }
-                var unitCount = 1;
-                var forceTryTemplate = false;
-                if (airDefenseRange == AirDefenseRange.ShortRangeBattery)
-                {
-                    unitCount = Toolbox.RandomMinMax(2, 5);
-                    forceTryTemplate = Toolbox.RandomChance(2);
-                }
 
                 UnitMakerGroupInfo? groupInfo = UnitMaker.AddUnitGroup(
                     ref mission,
-                        unitFamily, unitCount, side,
+                        units, side, unitFamilies.First(),
                         "Vehicle", "Vehicle",
                         spawnPoint.Value,
                         0,
-                        new Dictionary<string, object>(),
-                        true,
-                        forceTryTemplate: forceTryTemplate);
-                
-                if(mission.TemplateRecord.OptionsMission.Contains("HideAntiAirMFD") && side.Equals(Side.Enemy))
+                        extraSetting);
+
+                if (mission.TemplateRecord.OptionsMission.Contains("HideAntiAirMFD") && side.Equals(Side.Enemy))
                     groupInfo.Value.DCSGroup.HiddenOnMFD = true;
 
-                if (!groupInfo.HasValue){
-                    BriefingRoom.PrintToLog(
-                        $"Failed to add {airDefenseRange} air defense unit group for {coalition} coalition.",
-                        LogMessageErrorLevel.Warning);
-                    UnitMakerSpawnPointSelector.RecoverSpawnPoint(ref mission,spawnPoint.Value);
-                    return groupCount -i;
+                if (!groupInfo.HasValue)
+                {
+                    UnitMakerSpawnPointSelector.RecoverSpawnPoint(ref mission, spawnPoint.Value);
+                    return groupCount - i;
                 }
 
 
