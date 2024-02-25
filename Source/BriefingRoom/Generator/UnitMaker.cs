@@ -373,7 +373,7 @@ namespace BriefingRoom4DCS.Generator
                 DBEntryJSONUnit unitDB = Database.Instance.GetEntry<DBEntryJSONUnit>(unitSet);
                 if (unitDB == null)
                 {
-                    BriefingRoom.PrintToLog($"Unit \"{unitSet}\" not found.", LogMessageErrorLevel.Warning);
+                    BriefingRoom.PrintTranslatableWarning("UnitNotFound", unitSet);
                     continue;
                 }
                 dCSUnits.Add(AddUnit(
@@ -422,7 +422,7 @@ namespace BriefingRoom4DCS.Generator
                 var unitDB = Database.Instance.GetEntry<DBEntryJSONUnit>(unitSet);
                 if (unitDB == null)
                 {
-                    BriefingRoom.PrintToLog($"Unit \"{unitSet}\" not found.", LogMessageErrorLevel.Warning);
+                    BriefingRoom.PrintTranslatableWarning("UnitNotFound", unitSet);
                     continue;
                 }
                 var groupHeading = GetGroupHeading(coordinates, extraSettings);

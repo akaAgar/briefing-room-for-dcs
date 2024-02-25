@@ -247,7 +247,7 @@ namespace BriefingRoom4DCS.Generator
         {
             if (parkingspots.Any(x => x.Height == 0))
             {
-                BriefingRoom.PrintToLog("Using Simplified parking logic units may overlap", LogMessageErrorLevel.Warning);
+                BriefingRoom.PrintTranslatableWarning("UsingSimplifedParking");
                 return FilterAndSortSuitableSpotsSimple(parkingspots, aircraftDB.Families.First(), requiresOpenAirParking);
             }
             var category = aircraftDB.Families.First().GetUnitCategory();

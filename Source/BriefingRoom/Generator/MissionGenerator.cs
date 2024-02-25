@@ -347,14 +347,14 @@ namespace BriefingRoom4DCS.Generator
                 .HandleResult<DCSMission>(x => x.IsExtremeDistance(template, out double distance))
                 .Or<BriefingRoomException>(x =>
                 {
-                    BriefingRoom.PrintToLog($"Recoverable Error thrown, {x.Message}", LogMessageErrorLevel.Warning);
+                    BriefingRoom.PrintTranslatableWarning("RecoverableError", x.Message);
                     return true;
                 })
                 .Retry(3)
                 .Execute(() => Generate(templateRecord));
 
             if (mission.IsExtremeDistance(template, out double distance))
-                BriefingRoom.PrintToLog($"Distance to objectives exceeds 1.7x of requested distance. ({Math.Round(distance, 2)}NM)", LogMessageErrorLevel.Warning);
+                BriefingRoom.PrintTranslatableWarning("ExcessDistance", Math.Round(distance, 2));
 
             return mission;
         }

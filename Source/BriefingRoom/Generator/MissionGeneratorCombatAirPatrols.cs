@@ -127,7 +127,7 @@ namespace BriefingRoom4DCS.Generator
                         mission.MapData.AddIfKeyUnused($"AIRBASE_AI_{side}_${airbase.Name}", new List<double[]> { airbase.Coordinates.ToArray() });
                     } catch (BriefingRoomException e)
                     {
-                        BriefingRoom.PrintToLog($"CAP flight could not be placed at airport due to ${e.Message}", LogMessageErrorLevel.Warning);
+                        BriefingRoom.PrintTranslatableWarning("CAPCannotBeSpawnedAirport", e.Message);
                     }
 
                 }
@@ -136,7 +136,7 @@ namespace BriefingRoom4DCS.Generator
                 UnitMakerGroupInfo? groupInfo = UnitMaker.AddUnitGroup(ref mission,units, side, unitDB.Families.First(), commonCAPDB.LuaGroup, commonCAPDB.LuaUnit, spawnpointCoordinates, groupFlags, extraSettings);
 
                 if (!groupInfo.HasValue) // Failed to generate a group
-                    BriefingRoom.PrintToLog($"Failed to find units for {coalition} air defense unit group.", LogMessageErrorLevel.Warning);
+                    BriefingRoom.PrintTranslatableWarning("FailedToFindCAPUnits", coalition);
 
                 SetCarrier(ref mission, side, ref groupInfo);
 

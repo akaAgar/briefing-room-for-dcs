@@ -245,6 +245,12 @@ namespace BriefingRoom4DCS
             return string.Format(template, args);
         }
 
+        internal static void PrintTranslatableWarning(string key, params object[] args)
+        {
+           PrintToLog(Translate(key, args), LogMessageErrorLevel.Warning);
+        }
+
+
         internal static void PrintToLog(string message, LogMessageErrorLevel errorLevel = LogMessageErrorLevel.Info)
         {
             OnMessageLogged?.Invoke(message, errorLevel);

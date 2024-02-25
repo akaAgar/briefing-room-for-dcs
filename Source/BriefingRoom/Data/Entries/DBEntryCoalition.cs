@@ -30,7 +30,7 @@ namespace BriefingRoom4DCS.Data
 
         internal Country[] Countries { get; private set; }
 
-        internal (Decade start, Decade end) Operational { get; private set; } = new (Decade.Decade1940, Decade.Decade2020);
+        internal (Decade start, Decade end) Operational { get; private set; } = new(Decade.Decade1940, Decade.Decade2020);
 
         internal string DefaultUnitList { get; private set; }
 
@@ -55,9 +55,9 @@ namespace BriefingRoom4DCS.Data
             }
 
             var tempOperational = ini.GetValueArray<Decade>("Coalition", "Operational");
-            if(tempOperational.Length > 0)
-                Operational = new (tempOperational[0], tempOperational[1]);
-            
+            if (tempOperational.Length > 0)
+                Operational = new(tempOperational[0], tempOperational[1]);
+
             DefaultUnitList = ini.GetValue<string>("Coalition", "DefaultUnitList");
             if (!Database.EntryExists<DBEntryDefaultUnitList>(DefaultUnitList))
             {
@@ -68,7 +68,7 @@ namespace BriefingRoom4DCS.Data
             return true;
         }
 
-        internal Tuple<Country, DBEntryTemplate> GetRandomTemplate(List<UnitFamily> families, Decade decade, List<string> unitMods, List<string> unitBanList, MinMaxI? countMinMax = null,  Country[] allyCountries = null)
+        internal Tuple<Country, DBEntryTemplate> GetRandomTemplate(List<UnitFamily> families, Decade decade, List<string> unitMods, List<string> unitBanList, MinMaxI? countMinMax = null, Country[] allyCountries = null)
         {
 
             var validTemplates = new Dictionary<Country, List<DBEntryTemplate>>();
@@ -90,8 +90,8 @@ namespace BriefingRoom4DCS.Data
 
             if (validTemplates.Count == 0)
             {
-                if(allyCountries is null)
-                    return GetRandomTemplate(families, decade, unitMods, unitBanList, countMinMax,  GetAllyCountries(decade));
+                if (allyCountries is null)
+                    return GetRandomTemplate(families, decade, unitMods, unitBanList, countMinMax, GetAllyCountries(decade));
                 BriefingRoom.PrintToLog($"No Templates of types {string.Join(", ", families)} found in coalition including {string.Join(", ", Countries.Where(x => x != Country.ALL))} including potential supplier allies {string.Join(", ", countryList.Where(x => x != Country.ALL))}");
                 return null;
             }
@@ -106,7 +106,8 @@ namespace BriefingRoom4DCS.Data
         {
             // Count is zero, return an empty array.
             if (count < 1) throw new BriefingRoomException("AskingForNoUnits");
-            if (families.Select(x => x.GetDCSUnitCategory()).Any(x => x != families.First().GetDCSUnitCategory())) {
+            if (families.Select(x => x.GetDCSUnitCategory()).Any(x => x != families.First().GetDCSUnitCategory()))
+            {
                 families = Toolbox.RandomFrom(families.GroupBy(x => x.GetDCSUnitCategory()).ToList()).ToList();
             }
 
@@ -115,8 +116,8 @@ namespace BriefingRoom4DCS.Data
 
             var validUnits = SelectValidUnits(families, decade, unitMods, unitBanList, allowLowPolly, blockSuppliers, allowStatic, allowDefaults: allowDefaults);
 
-            if(validUnits is null)
-                return new (Country.ALL, new List<string>());
+            if (validUnits is null)
+                return new(Country.ALL, new List<string>());
 
             switch (category)
             {
@@ -167,7 +168,7 @@ namespace BriefingRoom4DCS.Data
             return new(country, Enumerable.Repeat(unit, count).ToList());
         }
 
-        private Dictionary<Country, List<string>> SelectValidUnits(List<UnitFamily> families, Decade decade, List<string> unitMods, List<string> unitBanList, bool allowLowPolly, bool blockSuppliers,  bool allowStatic, Country[] allyCountries = null, bool allowDefaults = true)
+        private Dictionary<Country, List<string>> SelectValidUnits(List<UnitFamily> families, Decade decade, List<string> unitMods, List<string> unitBanList, bool allowLowPolly, bool blockSuppliers, bool allowStatic, Country[] allyCountries = null, bool allowDefaults = true)
         {
             var validUnits = new Dictionary<Country, List<string>>();
             var countryList = allyCountries is null ? Countries : allyCountries;
@@ -187,15 +188,17 @@ namespace BriefingRoom4DCS.Data
             validUnits = validUnits.Where(x => x.Value.Count > 0).ToDictionary(x => x.Key, x => x.Value);
             if (validUnits.Count == 0)
             {
-                if(allyCountries is null && !blockSuppliers)
+                if (allyCountries is null && !blockSuppliers)
                     return SelectValidUnits(families, decade, unitMods, unitBanList, allowLowPolly, false, allowStatic, GetAllyCountries(decade), allowDefaults);
-                BriefingRoom.PrintToLog($"{UIDisplayName.Get()} No Units of types {string.Join(", ", families)} found in {decade} in coalition of {string.Join(", ", Countries.Where(x => x != Country.ALL))} {(!blockSuppliers ? $"including potential supplier allies ({countryList.Where(x => x != Country.ALL).Count()})" : ". Block Supplier Option turned on consider turning off.")}", LogMessageErrorLevel.Warning);
-                if(allowDefaults)
+
+                var blockSupplierString = !blockSuppliers ? BriefingRoom.Translate("IncludeSupplierAllies", countryList.Where(x => x != Country.ALL).Count()) : BriefingRoom.Translate("NoBlockSuppliers");
+                BriefingRoom.PrintTranslatableWarning("NoUnitsOrSuppliersFound", UIDisplayName.Get(), string.Join(", ", families), decade, string.Join(", ", Countries.Where(x => x != Country.ALL)), blockSupplierString);
+                if (allowDefaults)
                     return GetDefaultUnits(families, decade, unitMods);
                 return null;
             }
-            if(allyCountries != null)
-                validUnits = new Dictionary<Country, List<string>>{{Country.ALL, validUnits.SelectMany(x => x.Value).ToList()}};
+            if (allyCountries != null)
+                validUnits = new Dictionary<Country, List<string>> { { Country.ALL, validUnits.SelectMany(x => x.Value).ToList() } };
 
             return validUnits;
         }
@@ -205,7 +208,7 @@ namespace BriefingRoom4DCS.Data
             // Operates on the assumption that allies will supply them with arms. Most nations are in a coalition with the USA or Russia/USSR so is replacement for default unit lists.
             return Database.GetAllEntries<DBEntryCoalition>()
                 .Where(x => x.Countries.Where(x => x != Country.ALL).Intersect(Countries).Any() && (x.Operational.start <= decade) && (x.Operational.end >= decade))
-                .SelectMany(x =>x.Countries)
+                .SelectMany(x => x.Countries)
                 .Where(x => !Countries.Contains(x))
                 .ToArray();
         }
@@ -216,19 +219,19 @@ namespace BriefingRoom4DCS.Data
             var validUnits = new List<string>();
             foreach (var family in families)
             {
-                if(!defaultDict[family].ContainsKey(decade))
+                if (!defaultDict[family].ContainsKey(decade))
                     continue;
-                var options = defaultDict[family][decade].Where(id => 
+                var options = defaultDict[family][decade].Where(id =>
                 {
                     var unit = Database.GetEntry<DBEntryJSONUnit>(id);
                     return string.IsNullOrEmpty(unit.Module) || unitMods.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase) || DBEntryDCSMod.CORE_MODS.Contains(unit.Module, StringComparer.InvariantCultureIgnoreCase);
                 });
                 validUnits.AddRange(options);
             }
-            if(validUnits.Count == 0)
-                BriefingRoom.PrintToLog($"{UIDisplayName.Get()} No default units found in {decade} for types {string.Join(", ", families)}", LogMessageErrorLevel.Warning);
-            else 
-                BriefingRoom.PrintToLog($"{UIDisplayName.Get()} Needed to use default of {string.Join(", ", validUnits)} in {decade} for types {string.Join(", ", families)}", LogMessageErrorLevel.Warning);
+            if (validUnits.Count == 0)
+                BriefingRoom.PrintTranslatableWarning("NoDefautUnitsFound",UIDisplayName.Get(), decade, string.Join(", ", families));
+            else
+                BriefingRoom.PrintTranslatableWarning("DefaultUnitNeeded", UIDisplayName.Get(), string.Join(", ", validUnits), decade, string.Join(", ", families));
             return new Dictionary<Country, List<string>> { { Country.ALL, validUnits } };
         }
     }

@@ -55,7 +55,7 @@ namespace BriefingRoom4DCS.Generator
             if ((unitDB == null) || !unitDB.PlayerControllable)
                 throw new BriefingRoomException("PlayerFlightNotFound", flightGroup.Aircraft);
             if (unitDB.MinimumRunwayLengthFt > 0 && airbase.RunwayLengthFt < unitDB.MinimumRunwayLengthFt)
-                BriefingRoom.PrintToLog($"Runway at {airbase.Name}({airbase.RunwayLengthFt}ft) is shorter than {unitDB.UIDisplayName}({unitDB.MinimumRunwayLengthFt}ft) required runway length.", LogMessageErrorLevel.Warning);
+                BriefingRoom.PrintTranslatableWarning("RunwayTooShort", airbase.Name, airbase.RunwayLengthFt, unitDB.UIDisplayName, unitDB.MinimumRunwayLengthFt);
 
             List<int> parkingSpotIDsList = new();
             List<Coordinates> parkingSpotCoordinatesList = new();
@@ -180,7 +180,7 @@ namespace BriefingRoom4DCS.Generator
 
             if (!groupInfo.HasValue)
             {
-                BriefingRoom.PrintToLog("Failed to generate player flight group.", LogMessageErrorLevel.Warning);
+                BriefingRoom.PrintTranslatableWarning("FailedToSpawnPlayerFlightGroup");
                 return;
             }
 

@@ -34,7 +34,7 @@ namespace BriefingRoom4DCS.Generator
             DBEntryFeatureMission featureDB = Database.Instance.GetEntry<DBEntryFeatureMission>(featureID);
             if (featureDB == null) // Feature doesn't exist
             {
-                BriefingRoom.PrintToLog($"Mission feature {featureID} not found.", LogMessageErrorLevel.Warning);
+                BriefingRoom.PrintTranslatableWarning("MissionFeatureNotFound", featureID);
                 return;
             }
             Coalition coalition = featureDB.UnitGroupFlags.HasFlag(FeatureUnitGroupFlags.Friendly) ? mission.TemplateRecord.ContextPlayerCoalition : mission.TemplateRecord.ContextPlayerCoalition.GetEnemy();
