@@ -42,6 +42,8 @@ namespace BriefingRoom4DCS.Data
 
         internal List<string> RelatedSituations { get; private set; }
 
+        internal DBEntryAirbase[]  AirbaseStore { get; private set; }
+
         protected override bool OnLoad(string o)
         {
             throw new NotImplementedException();
@@ -69,6 +71,9 @@ namespace BriefingRoom4DCS.Data
 
         internal DBEntryAirbase[] GetAirbases(bool invertCoalition)
         {
+            if (AirbaseStore != null)
+                return AirbaseStore;
+
             var airbases = (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>()
                             where Toolbox.StringICompare(airbase.Theater, Theater)
                             select airbase).ToArray();
@@ -79,6 +84,7 @@ namespace BriefingRoom4DCS.Data
                 if (ShapeManager.IsPosValid(airbase.Coordinates, GetRedZones(invertCoalition)))
                     airbase.Coalition = Coalition.Red;
             }
+            AirbaseStore = airbases;
             return airbases;
         }
     }
