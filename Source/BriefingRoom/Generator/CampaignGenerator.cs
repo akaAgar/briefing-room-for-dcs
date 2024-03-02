@@ -55,11 +55,10 @@ namespace BriefingRoom4DCS.Generator
 
                 var template = CreateMissionTemplate(
                     campaignTemplate,
-                    campaign.Name,
                     i,
                     (int)campaignTemplate.MissionsObjectiveCount,
                     previousSituationId,
-                    failedTries > 1 ? new() :previousObjectiveCenterCoords,
+                    failedTries > 1 ? new() : previousObjectiveCenterCoords,
                     failedTries > 2 ? "" : previousPlayerAirbaseId);
 
                 try
@@ -80,7 +79,7 @@ namespace BriefingRoom4DCS.Generator
                 }
                 catch (BriefingRoomException err)
                 {
-                    if(failedTries >= 3)
+                    if (failedTries >= 3)
                         throw new BriefingRoomException("FailedToGenerateCampaignMission", err, i + 1);
                     failedTries++;
                     continue;
@@ -115,7 +114,7 @@ namespace BriefingRoom4DCS.Generator
 
             string stagesLua = "";
             var i = 1;
-            foreach(var mission in campaign.Missions)
+            foreach (var mission in campaign.Missions)
             {
                 string nextStageLua = File.ReadAllText(CAMPAIGN_STAGE_LUA_TEMPLATE);
                 GeneratorTools.ReplaceKey(ref nextStageLua, "Index", i);
@@ -132,7 +131,7 @@ namespace BriefingRoom4DCS.Generator
         }
 
         private static MissionTemplate CreateMissionTemplate(
-            CampaignTemplate campaignTemplate, string campaignName,
+            CampaignTemplate campaignTemplate,
             int missionIndex, int missionCount,
             string previousSituationId, Coordinates previousObjectiveCenterCoords, string previousPlayerAirbaseId)
         {
@@ -186,17 +185,29 @@ namespace BriefingRoom4DCS.Generator
 
             if (!String.IsNullOrEmpty(previousPlayerAirbaseId))
             {
-                var situationOptions = new List<string> { previousSituationId };
-                var previousSituationDB = Database.Instance.GetEntry<DBEntrySituation>(previousSituationId);
-                if(!campaignTemplate.StaticSituation)
-                    situationOptions.AddRange(previousSituationDB.RelatedSituations);
-                template.ContextSituation = Toolbox.RandomFrom(situationOptions.ToArray());
-                var nextSituationDB = Database.Instance.GetEntry<DBEntrySituation>(template.ContextSituation);
+                var isNone = previousSituationId == "None";
+                DBEntrySituation nextSituationDB;
+                if (!isNone)
+                {
+                    var situationOptions = new List<string> { previousSituationId };
+                    var previousSituationDB = Database.Instance.GetEntry<DBEntrySituation>(previousSituationId);
+                    if (!campaignTemplate.StaticSituation)
+                        situationOptions.AddRange(previousSituationDB.RelatedSituations);
+                    template.ContextSituation = Toolbox.RandomFrom(situationOptions.ToArray());
+                    nextSituationDB = Database.Instance.GetEntry<DBEntrySituation>(template.ContextSituation);
+                }
+                else
+                {
+                    template.ContextSituation = "None";
+                    var searchTheater = template.ContextTheater.ToLower();
+                    var randomSituations = Database.Instance.GetAllEntries<DBEntrySituation>().Where(x => x.Theater == searchTheater).ToList();
+                    nextSituationDB = Toolbox.RandomFrom(randomSituations);
+                }
 
                 var airbases = nextSituationDB.GetAirbases(template.OptionsMission.Contains("InvertCountriesCoalitions"));
                 var previousPlayerAirbase = airbases.First(x => x.ID == previousPlayerAirbaseId);
                 var airbaseOptions = airbases.Where(x =>
-                    x.Coalition == template.ContextPlayerCoalition &&
+                    (x.Coalition == template.ContextPlayerCoalition || isNone) &&
                     x.Coordinates.GetDistanceFrom(previousPlayerAirbase.Coordinates) < (GetAirbaseVariationDistance(campaignTemplate.MissionsAirbaseVariationDistance) * Toolbox.NM_TO_METERS)).ToList();
                 if (airbaseOptions.Count > 0)
                     template.FlightPlanTheaterStartingAirbase = Toolbox.RandomFrom(airbaseOptions).ID;
