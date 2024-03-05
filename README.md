@@ -87,95 +87,117 @@ Run responding on port localhost:5000
 
 (Changelog for older versions can be found in Changelog.md)
 
-* Version 0.5.312.22(Dec, 22, 2023)
+* Version 0.5.403.05(March, 05, 2024)
     * Added:
-        * Added: SA-10 Radar Variant Templates
-        * Added: Kneeboard Editor (Only compatible with BR mission post this release)
-        * Added: Kneeboard Rendering and standardized briefing component
-        * Added: Livery Selector will choose a Livery from coalition nations if country set to CJTF(B/R)
-        * Added: Payloads default now auto assigns loadout. Clean/Empty option
-        * Added: Escort Attacking units now try to intercept hostiles
-        * Added: On Road variants of escort
-        * Added: Escort Refactor Units now attack escorted units
-        * Added: Support for timed aircraft spawns
-        * Added: Transport to player airbase or any airbase
-        * Added: Transport objective troops Support vanilla transport methods
-        * Added: Missing C-17A and Mig-29S (Mig-29G also flyable)
-        * Added: Support for Folder based liveries
-        * Added: Unlimited fuel for target aircraft
-        * Added: CAP variants of Idle (Aircraft ROE free fire original Return fire)
+        * Added: 3 more Syria Situations
+        * Added: Hide Anti-air on MFD (Mission Option)
+        * Added: Re-implemented Default units (will warn when used)
+        * Added: Moving Ground Vehicle formation variance
+        * Added: No Aircraft Waypoint objective option
+        * Added: Progression hide waypoint map markers if hidden in brief
+        * Added: Progression hide objectives in F-10 menu if hidden in brief
+        * Added: Strike Packages now selectable per Objective no just per Objective Area.
+        * Added: Bundle Objective Activation/Reveal
+        * Added: Objective Progression Options: Delay Activation, Visible Before Activation and Hidden in Brief
+        * Added: Ambient AAA and Artillery firing (Results may vary may need manual tuning)
+        * Added: Currenthill Asset packs
+        * Added: Brazilian Portuguese translation
     *  Updated:
-        * Updated: Aircraft attackers delay spawn relative to intercept point
-        * Updated: Automatic troop loading limited to Aircraft not supporting native loading (currently: UH-60L)
-        * Updated: Corrected JTAC unit as Static (it doesn't move)
-        * Updated: Custom and Vanilla Templates
-        * Updated: Data to DCS Open Beta 2.9.2.(purging non default liveries)
-        * Updated: DB data to DCS 2.9
-        * Updated: Dotnet from 7.x.x to 8.x.x
-        * Updated: Increase Kneeboard image size to ED default size
-        * Updated: made "CombinedArmsPilotControl" default on
-        * Updated: Missing Tasks for aircraft
-        * Updated: Moose script to Moose 2.9.2
-        * Updated: Process Images at save stage (Faster generation, Slower saving)
-        * Updated: Reduce Kneeboard resolution for performance
-        * Updated: S-3B Tasks and upgraded tanker out of lowpolly
-        * Updated: Unit selection no longer chooses immovable units that will be asked to move
+        * Updated: PoEditor translated terms
+        * Updated: Support Translations for Warnings
+        * Updated: AirDefenses use fallback mechanism rather than default units
+        * Updated: Existing Syria Situations
+        * Updated: poeditor.com project links
+        * Updated: Syria spawn points
+        * Updated: DCS data to 2.9.3.5
+        * Updated: Error Translations
+        * Updated: Use new carrier storage capacity over outdated parking spots
+        * Updated: Static carrier aircraft groups max 8
+        * Updated: Made many carriers also ShipCarrierSTOVL type
+        * Updated: EWR air defense can now use Large Spawn points
+        * Updated: Moose to 2.9.4
+        * Updated: MIST to 4.5.122
+        * Updated: Coalitions to add more ally opportunities
+        * Updated: Docs
+        * Updated: VehicleAny spawns mix of vehicle types
+        * Updated: Spawning logic using front line
+        * Updated: Use KD tree for faster spawn selection
+        * Updated: Use Backtracking logic for generation
+        * Updated: Reduce FOB and Carrier spawn max distance (FOB aims to 30-50% of usual distance)
+        * Updated: More fine grained spawn point search expansion with less iterations (Max ~ 120% expansion, prev ~2300%)
+        * Updated: Narrow Flanking logic to max 1/3 original distance
+        * Updated: Disable AI extra waypoints if going via Roads
+        * Updated: Embed image data rather than reference in HTML files for images
+        * Updated: Mission Title and Campaign Images to be HTML based (So anyone can improve it)
+        * Updated: Current Hill asset pack operator lists
+        * Updated: DCS Plane data
+        * Updated: High Digit SAMs Mod data
+        * Updated: SU-30MK Flanker Mod data
+        * Updated: Bronco Mod data
+        * Updated: A-29B Mod Data
+        * Updated: Skynet Script to 3.3.0
+        * Updated: Demote a bunch of vehicles to low polly
     * Fixed:
-        * Fix: Aircraft on base targets now have waypoint on aircraft not airbase
-        * Fix: Attack logic for Escort mission attackers
-        * Fix: Auto check for and fix undeclared modules in templates
-        * Fix: Bad testing package version
-        * Fix: Broken Target coordinates scripting
-        * Fix: CLI failing due to uninitialized DB
-        * Fix: Error after trying to spawn Non existing aircraft
-        * Fix: Escort direction wrong way round
-        * Fix: Escorted units go direct to end
-        * Fix: Failing to clear Objective Hints
-        * Fix: Infinite loop crash
-        * Fix: JSON parsing missed module for Cargo and Static Objects
-        * Fix: Medium and Long Range SAM site should always spawn full template.
-        * Fix: More bad filter count occurrences
-        * Fix: Null error
-        * Fix: Objective CAP feature & Taskable CAP ROE incorrect
-        * Fix: objective complete count logic
-        * Fix: Objective features spawned at pickup for move to front line rather than at drop off
-        * Fix: Objective hints no longer allow objectives to ignore borders.
-        * Fix: Override Radio Frequencies type conflict
-        * Fix: Packages Airbases not showing in Briefings
-        * Fix: patrol aircraft ROE incorrect
-        * Fix: Remove bad and incomplete data.
-        * Fix: Standardize DCS Task usage for players
-        * Fix: Stop multi detection for FlyNearAndReportComplete
-        * Fix: Template groups shouldn't be shuffled order
-        * Fix: Throw error when template file missing
-        * Fix: Values set to null rather than empty string causing null pointer error
-        * Fix: Yak-52 now player flyable
+        * Fix: Spawn Anywhere didn't work for campaigns
+        * Fix: Translation bugs
+        * Fix: Handle multi DCS unit category error to remove error need
+        * Fix: Templates receiving bad operational data
+        * Fix: Dupe Airfield
+        * Fix: increase chances of avoiding default units in mission features
+        * Fix: Carrier AI spawning was disabled for some reason
+        * Fix: Campaign zips where corrupt
+        * FIx: Imported loadouts throwing error
+        * Fix: User payloads not being imported
+        * Fix: Remove log duplicating
+        * Fix: Mission Fallback State not dealing with airbase ParkingSpots correctly
+        * Fix: CommandLine Build
+        * Fix: AShM SS-N-2 Silkworm not marked as static
+        * Fix: Units spawning as neutral if from ally sources
+        * Fix: Enemy buildings spawning on friendly side
+        * Fix: error on artillery with no situation
+        * Fix: Low Res aircraft switch not working
+        * Fix: infinite loops possibility
+        * Fix: Null error when carrier couldn't find spawn point
+        * Fix: Zones Rendering incorrectly in DCS
+        * Fix: Map UI error
+        * Fix: Don't script mark waypoints if mark waypoints off
+        * Fix: Missing script for revealing hidden waypoint markers
+        * Fix: bad location script function
+        * Fix: Offset waypoint marker and make more translucent
+        * Fix: Image generator failed causing no saving
+        * Fix: Strike Groups couldn't deal with multi waypoint objectives
+        * Fix: download failing if taking too long (fall back to simple download)
+        * Fix: Campaign spinner not working
+        * Fix: Nullable error
+        * Fix: Extra nations not supported by ED
+        * Fix: Better data error logs
+        * Fix: Incomplete translation causing scripting error
     * UI
-        * UI: Ban and allow everything buttons on ban list page
-        * UI: Clearer on Objective separation setting relocation data
-        * UI: Improve Kneeboard Editor Functionality
-        * UI: Incorrect filter on Subtask Behavior
-        * UI: Payload to QuickBuilder
-        * UI: Task & Behavior have descriptions
-        * UI: Use Task for player Payload instead of default
-
-    * Upgraded:  
-        * Upgrade: Bump FluentRandomPicker from 3.4.0 to 3.5.0 in /Source
-        * Upgrade: Bump Markdig from 0.33.0 to 0.34.0 in /Source
+        * UI: Translation setup for as many errors as possible
+        * UI: Translate Errors from generator
+        * UI: Better format logs
+        * UI: Fix manual reference links
+        * UI: Added tooltips to map buttons
+        * UI: Hide tool tip if none
+    * Upgraded:
+        * Upgrade: Bump BlazorMonaco from 3.1.0 to 3.2.0 in /Source
+        * Upgrade: Bump coverlet.collector from 6.0.0 to 6.0.1 in /Source
+        * Upgrade: Bump Markdig from 0.34.0 to 0.35.0 in /Source
         * Upgrade: Bump Microsoft.AspNetCore.Components.Web in /Source
-        * Upgrade: Bump Microsoft.AspNetCore.Components.WebView.WindowsForms
-        * Upgrade: Bump Microsoft.Maui.Graphics from 7.0.100 to 7.0.101 in /Source
-        * Upgrade: Bump Microsoft.NET.Test.Sdk from 17.3.2 to 17.8.0 in /Source
-        * Upgrade: Bump Polly from 8.0.0 to 8.1.0 in /Source
-        * Upgrade: Bump xunit.runner.visualstudio from 2.4.5 to 2.5.3 in /Source
-        * Upgrade: Bump YamlDotNet from 13.4.0 to 13.5.2 in /Source
+        * Upgrade: Bump Microsoft.Maui.Graphics from 8.0.6 to 8.0.7 in /Source
+        * Upgrade: Bump Microsoft.NET.Test.Sdk from 17.8.0 to 17.9.0 in /Source
+        * Upgrade: Bump Polly from 8.2.1 to 8.3.0 in /Source
+        * Upgrade: Bump System.Drawing.Common from 8.0.0 to 8.0.2 in /Source
+        * Upgrade: Bump xunit from 2.6.6 to 2.7.0 in /Source
+        * Upgrade: Bump xunit.runner.visualstudio from 2.5.6 to 2.5.7 in /Source
+        * Upgrade: Bump YamlDotNet from 15.1.0 to 15.1.1 in /Source
+        * Upgrade: Leaflet JS to 1.9.4
     * Misc:
-        * Misc: Add warnings for BR data missing DCS data
-        * Misc: Correct bad link
-        * Misc: Update docker readme command
-        * Misc: Update editors notes for timed spawns
-        * Misc: Update links
-        * Misc: WebApp shutdown much quicker
+        * Misc: GetAirbases Optimization
+        * Misc: Make fallback failure error less scary
+        * Misc: Improve spawn error to hint and looking for erroneous hints
+        * Misc: File formatting
+
 
 
 
