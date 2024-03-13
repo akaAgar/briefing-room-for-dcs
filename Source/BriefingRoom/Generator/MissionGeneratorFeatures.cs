@@ -321,6 +321,7 @@ namespace BriefingRoom4DCS.Generator
             if (
                 side == Side.Enemy ||
                 (!mission.TemplateRecord.MissionFeatures.Contains("ContextGroundStartAircraft") && featureDB.ID != "FriendlyStaticAircraftCarrier")
+                || !groupInfo.Value.UnitDB.Families.Intersect(new[] { UnitFamily.PlaneCATOBAR, UnitFamily.PlaneSTOBAR, UnitFamily.PlaneSTOVL }).Any()
             )
                 return;
             bool isPlane = groupInfo.Value.UnitDB.Category == UnitCategory.Plane;
