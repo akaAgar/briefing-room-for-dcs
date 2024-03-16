@@ -75,7 +75,10 @@ namespace BriefingRoom4DCS.Generator
             if (!string.IsNullOrEmpty(flightGroup.Carrier) && mission.CarrierDictionary.ContainsKey(flightGroup.Carrier) && !flightGroup.Hostile) // Carrier take off
             {
                 var carrier = mission.CarrierDictionary[flightGroup.Carrier];
-                if (carrier.UnitMakerGroupInfo.UnitDB.Families.Contains(UnitFamily.ShipCarrierSTOVL) && flightGroup.Carrier != "LHA_Tarawa")
+                if (
+                    !carrier.UnitMakerGroupInfo.UnitDB.Families.Intersect([UnitFamily.ShipCarrierCATOBAR, UnitFamily.ShipCarrierSTOBAR]).Any() &&
+                    carrier.UnitMakerGroupInfo.UnitDB.Families.Contains(UnitFamily.ShipCarrierSTOVL) &&
+                    flightGroup.Carrier != "LHA_Tarawa")
                 {
                     extraSettings.AddIfKeyUnused("Speed", 0);
                     unitMakerGroupFlags = 0;
@@ -95,7 +98,7 @@ namespace BriefingRoom4DCS.Generator
                         parkingSpotIDsList.Add(i + 1);
                         parkingSpotCoordinatesList.Add(carrier.UnitMakerGroupInfo.Coordinates);
                     }
-                    if(isPlane)
+                    if (isPlane)
                         carrier.RemainingPlaneSpotCount -= flightGroup.Count;
                     else
                         carrier.RemainingHelicopterSpotCount -= flightGroup.Count;
