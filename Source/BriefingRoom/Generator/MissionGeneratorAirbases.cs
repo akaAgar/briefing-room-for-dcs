@@ -58,11 +58,11 @@ namespace BriefingRoom4DCS.Generator
             if (requiredParkingSpots == 0)
                 requiredParkingSpots = mission.TemplateRecord.PlayerFlightGroups.Sum(x => x.Count);
             // Select all airbases for this theater
-            DBEntryAirbase[] airbases = mission.SituationDB.GetAirbases(mission.TemplateRecord.OptionsMission.Contains("InvertCountriesCoalitions"));
+            var airbases = mission.AirbaseDB;
             // If a particular airbase name has been specified and an airbase with this name exists, pick it
             if (!string.IsNullOrEmpty(selectedAirbaseID))
             {
-                var airbase = airbases.FirstOrDefault(x => x.ID == selectedAirbaseID) ?? throw new BriefingRoomException("AirbaseNotFoundForPlayer", selectedAirbaseID);
+                var airbase = mission.AirbaseDB.FirstOrDefault(x => x.ID == selectedAirbaseID) ?? throw new BriefingRoomException("AirbaseNotFoundForPlayer", selectedAirbaseID);
                 return airbase;
             }
 
@@ -103,7 +103,7 @@ namespace BriefingRoom4DCS.Generator
         internal static void SetupAirbasesCoalitions(ref DCSMission mission)
         {
             // Select all airbases for this theater
-            DBEntryAirbase[] situationAirbases = mission.SituationDB.GetAirbases(mission.TemplateRecord.OptionsMission.Contains("InvertCountriesCoalitions"));
+            var situationAirbases = mission.AirbaseDB;
 
             foreach (DBEntryAirbase airbase in situationAirbases)
             {

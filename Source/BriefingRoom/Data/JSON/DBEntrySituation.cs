@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using BriefingRoom4DCS.Data.JSON;
+using BriefingRoom4DCS.Mission;
 using Newtonsoft.Json;
 
 namespace BriefingRoom4DCS.Data
@@ -41,8 +42,6 @@ namespace BriefingRoom4DCS.Data
         internal List<LanguageString> BriefingDescriptions { get; private set; }
 
         internal List<string> RelatedSituations { get; private set; }
-
-        internal DBEntryAirbase[]  AirbaseStore { get; private set; }
 
         protected override bool OnLoad(string o)
         {
@@ -69,14 +68,10 @@ namespace BriefingRoom4DCS.Data
         internal List<List<Coordinates>> GetRedZones(bool invertCoalition) => !invertCoalition ? RedZones : BlueZones;
         internal List<List<Coordinates>> GetBlueZones(bool invertCoalition) => !invertCoalition ? BlueZones : RedZones;
 
-        internal DBEntryAirbase[] GetAirbases(bool invertCoalition)
-        {
-            if (AirbaseStore != null)
-                return AirbaseStore;
-
+        internal List<DBEntryAirbase> GetAirbases(bool invertCoalition) {
             var airbases = (from DBEntryAirbase airbase in Database.Instance.GetAllEntries<DBEntryAirbase>()
                             where Toolbox.StringICompare(airbase.Theater, Theater)
-                            select airbase).ToArray();
+                            select airbase).ToList();
             foreach (var airbase in airbases)
             {
                 if (ShapeManager.IsPosValid(airbase.Coordinates, GetBlueZones(invertCoalition)))
@@ -84,7 +79,7 @@ namespace BriefingRoom4DCS.Data
                 if (ShapeManager.IsPosValid(airbase.Coordinates, GetRedZones(invertCoalition)))
                     airbase.Coalition = Coalition.Red;
             }
-            AirbaseStore = airbases;
+
             return airbases;
         }
     }

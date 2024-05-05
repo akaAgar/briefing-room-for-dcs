@@ -79,6 +79,7 @@ namespace BriefingRoom4DCS.Mission
         protected internal List<string> ModUnits { get; protected set; }
         protected internal Dictionary<Country, Dictionary<DCSUnitCategory, List<DCSGroup>>> UnitLuaTables { get; protected set; }
         protected internal List<Waypoint> Waypoints { get; protected set; }
+        internal List<DBEntryAirbase> AirbaseDB { get; set; }
 
         internal DCSMissionState()
         {
@@ -111,6 +112,7 @@ namespace BriefingRoom4DCS.Mission
             ModUnits = mission.ModUnits.ToList();
             UnitLuaTables = mission.UnitLuaTables.ToDictionary(x => x.Key, x => x.Value.ToDictionary(y => y.Key, y => y.Value.ToList()));
             Waypoints = mission.Waypoints.ToList();
+            AirbaseDB = mission.AirbaseDB.ToList();
         }
     }
 }

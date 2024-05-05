@@ -217,6 +217,7 @@ namespace BriefingRoom4DCS.Generator
                 mission.SituationDB = Database.Instance.GetEntry<DBEntrySituation>(mission.TemplateRecord.ContextSituation);
             mission.SetValue("BriefingSituation", mission.TemplateRecord.SpawnAnywhere ? "None" : mission.SituationDB.UIDisplayName.Get());
             mission.SetValue("BriefingSituationId", mission.TemplateRecord.SpawnAnywhere ? "None" : mission.SituationDB.ID);
+            mission.AirbaseDB = mission.SituationDB.GetAirbases(mission.TemplateRecord.OptionsMission.Contains("InvertCountriesCoalitions"));
 
 
             DrawingMaker.AddTheaterZones(ref mission);
@@ -232,7 +233,7 @@ namespace BriefingRoom4DCS.Generator
             if (brokenSP.Count > 0)
                 throw new BriefingRoomException("SpawnPointsInSea", string.Join("\n", brokenSP.Select(x => $"[{x.Coordinates.X},{x.Coordinates.Y}],{x.PointType}").ToList()));
 
-            foreach (DBEntryAirbase airbase in mission.SituationDB.GetAirbases(mission.InvertedCoalition))
+            foreach (DBEntryAirbase airbase in mission.AirbaseDB)
             {
                 if (airbase.ParkingSpots.Length < 1) continue;
                 if (mission.AirbaseParkingSpots.ContainsKey(airbase.DCSID)) continue;

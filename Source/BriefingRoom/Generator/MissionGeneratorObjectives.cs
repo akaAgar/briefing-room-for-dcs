@@ -194,7 +194,7 @@ namespace BriefingRoom4DCS.Generator
             else if (targetBehaviorDB.Location == DBEntryObjectiveTargetBehaviorLocation.GoToAirbase)
             {
                 var targetCoalition = GeneratorTools.GetSpawnPointCoalition(mission.TemplateRecord, taskDB.TargetSide, forceSide: true);
-                var destinationAirbase = mission.SituationDB.GetAirbases(mission.TemplateRecord.OptionsMission.Contains("InvertCountriesCoalitions")).Where(x => x.Coalition == targetCoalition.Value).OrderBy(x => destinationPoint.GetDistanceFrom(x.Coordinates)).First();
+                var destinationAirbase = mission.AirbaseDB.Where(x => x.Coalition == targetCoalition.Value).OrderBy(x => destinationPoint.GetDistanceFrom(x.Coordinates)).First();
                 destinationPoint = destinationAirbase.Coordinates;
                 extraSettings.Add("EndAirbaseId", destinationAirbase.DCSID);
                 mission.PopulatedAirbaseIds[targetCoalition.Value].Add(destinationAirbase.DCSID);
@@ -401,7 +401,7 @@ namespace BriefingRoom4DCS.Generator
             var playerAirbaseDCSID = mission.PlayerAirbase.DCSID;
             var spawnAnywhere = mission.TemplateRecord.SpawnAnywhere;
             var targetAirbaseOptions =
-                (from DBEntryAirbase airbaseDB in mission.SituationDB.GetAirbases(mission.TemplateRecord.OptionsMission.Contains("InvertCountriesCoalitions"))
+                (from DBEntryAirbase airbaseDB in mission.AirbaseDB
                  where airbaseDB.DCSID != playerAirbaseDCSID && (spawnAnywhere || airbaseDB.Coalition == enemyCoalition)
                  select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(objectiveCoordinates));
 

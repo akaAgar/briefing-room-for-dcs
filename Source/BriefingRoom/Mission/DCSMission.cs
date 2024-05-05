@@ -105,6 +105,7 @@ namespace BriefingRoom4DCS.Mission
             CarrierDictionary = [];
             ModUnits = [];
             UnitLuaTables = [];
+            AirbaseDB = [];
         }
 
         internal string ReplaceValues(string rawText, bool useHTMLBreaks = false)
@@ -169,6 +170,7 @@ namespace BriefingRoom4DCS.Mission
             ModUnits = prevState.ModUnits.ToList();
             UnitLuaTables = prevState.UnitLuaTables.ToDictionary(x => x.Key, x => x.Value.ToDictionary(y => y.Key, y => y.Value.ToList()));
             Waypoints = prevState.Waypoints.ToList();
+            AirbaseDB = prevState.AirbaseDB.ToList();
         }
 
         internal MissionStageName GetLastSavedStage()

@@ -49,8 +49,7 @@ namespace BriefingRoom4DCS.Generator
             if (!mission.AirbaseParkingSpots.ContainsKey(airbaseID))
                 throw new BriefingRoomException("AirbaseNotFound", airbaseID);
 
-
-            var airbaseDB = mission.SituationDB.GetAirbases(mission.InvertedCoalition).First(x => x.DCSID == airbaseID);
+            var airbaseDB = mission.AirbaseDB.First(x => x.DCSID == airbaseID);
             var parkingSpots = new List<DBEntryAirbaseParkingSpot>();
             DBEntryAirbaseParkingSpot? lastSpot = null;
             for (int i = 0; i < unitCount; i++)
@@ -204,7 +203,7 @@ namespace BriefingRoom4DCS.Generator
             int unitCount, Coalition coalition, DBEntryAircraft aircraftDB)
         {
             var targetAirbaseOptions =
-                        (from DBEntryAirbase airbaseDB in mission.SituationDB.GetAirbases(mission.InvertedCoalition)
+                        (from DBEntryAirbase airbaseDB in mission.AirbaseDB
                          where (coalition == Coalition.Neutral || airbaseDB.Coalition == coalition) && mission.AirbaseParkingSpots.ContainsKey(airbaseDB.DCSID) && ValidateAirfieldParking(mission.AirbaseParkingSpots[airbaseDB.DCSID], aircraftDB.Families.First(), unitCount) && ValidateAirfieldRunway(airbaseDB, aircraftDB.Families.First())
                          select airbaseDB).OrderBy(x => x.Coordinates.GetDistanceFrom(coordinates));
 
