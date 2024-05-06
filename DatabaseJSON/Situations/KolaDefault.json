@@ -1,0 +1,84 @@
+{
+  "DisplayName": {
+    "en": "Peacetime National Control"
+  },
+  "Theater": "Kola",
+  "BriefingDescriptions": [
+    {
+      "en": "With the support of $BRIEFINGALLYCOALITION$ we are about to attack $BRIEFINGENEMYCOALITION$ in response to the {atrocities happening under their watch|election that didn't go our way|military coup that has taken place}."
+    },
+    {
+      "en": "We are under threat of being attacked by $BRIEFINGENEMYCOALITION$ and therefore are taking control of this {conflict|flashpoint|situation} with a pre-emptive strike."
+    }
+  ],
+  "RelatedSituations": [],
+  "redZones": [
+    [
+      [
+        -299161.16959069483,
+        392965.854400005
+      ],
+      [
+        -99148.52781629376,
+        316849.9861193601
+      ],
+      [
+        451.99801480490714,
+        348902.1445882391
+      ],
+      [
+        82716.0248345146,
+        260325.9618474563
+      ],
+      [
+        293743.1777251223,
+        358859.42514471343
+      ],
+      [
+        195383.0440024743,
+        848843.4947297735
+      ],
+      [
+        -285621.9600124806,
+        992964.8721452176
+      ]
+    ]
+  ],
+  "blueZones": [
+    [
+      [
+        -304037.02316793427,
+        314065.7575697258
+      ],
+      [
+        -307430.70581033267,
+        -539270.5798571173
+      ],
+      [
+        153126.09704077058,
+        -391944.09458192444
+      ],
+      [
+        293126.2870690888,
+        -183765.7671265459
+      ],
+      [
+        412520.3633020427,
+        100269.13094432218
+      ],
+      [
+        419115.4429187048,
+        388907.5213262073
+      ],
+      [
+        154452.103011447,
+        250116.0734368596
+      ],
+      [
+        109221.7041156292,
+        220247.89332713134
+      ]
+    ]
+  ],
+  "noSpawnZones": []
+}

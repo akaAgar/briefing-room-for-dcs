@@ -55,8 +55,13 @@ const config = {
         false_easting: 99376.00000000288,
         false_northing: -5636889.00000001,
         scale_factor: 0.9996,
+    },
+    Kola: {
+        central_meridian: 21,
+        false_easting: -62702,
+        false_northing: -7543625,
+        scale_factor: 0.9996,
     }
-
 }
 
 
