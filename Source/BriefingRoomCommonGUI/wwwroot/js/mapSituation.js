@@ -7,6 +7,7 @@ const situationMapLayers = {
 let leafSituationMap, drawnItems,SPGroup;
 
 async function RenderEditorMap(map, spawnPoints) {
+    console.log("SpawnPoints", spawnPoints.length)
     if (leafSituationMap) {
         leafSituationMap.off();
         leafSituationMap.remove();
