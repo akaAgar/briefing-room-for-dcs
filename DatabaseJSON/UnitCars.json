@@ -136114,6 +136114,10 @@
         "detectionRange": 8000,
         "threatRange": 12000,
         "operators": {
+            "USAFAggressors": [
+                1980,
+                2020
+            ],
             "China": [
                 1980,
                 2020
@@ -136123,7 +136127,7 @@
                 2020
             ],
             "Pakistan": [
-                1990,
+                1980,
                 2020
             ],
             "UnitedNationsPeacekeepers": [
@@ -136415,6 +136419,18 @@
         "threatRange": 12000,
         "operators": {
             "USAFAggressors": [
+                1980,
+                2020
+            ],
+            "China": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1980,
+                2020
+            ],
+            "Pakistan": [
                 1980,
                 2020
             ],
@@ -161827,7 +161843,12 @@
         "shape": "M92_TugHarlan_drivable",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "ALL": [
+                1950,
+                2020
+            ]
+        }
     },
     {
         "_id": "66508fa8eaf4d629400ed4a4",
@@ -162110,7 +162131,12 @@
         "shape": "M92_B600_drivable",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "ALL": [
+                1950,
+                2020
+            ]
+        }
     },
     {
         "_id": "66508fa8eaf4d629400ed4a6",
@@ -162663,7 +162689,12 @@
         "shape": "M92_MJ-1_drivable",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1950,
+                2020
+            ]
+        }
     },
     {
         "_id": "66508fa8eaf4d629400ed4a8",
@@ -163306,7 +163337,12 @@
         "shape": "M92_P20_drivable",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1980,
+                2020
+            ]
+        }
     },
     {
         "_id": "66508fa8eaf4d629400ed4aa",
@@ -163318,7 +163354,12 @@
         "shape": "M92_r11_volvo_drivable",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1990,
+                2020
+            ]
+        }
     },
     {
         "_id": "66508fa8eaf4d629400ed4b4",
@@ -163330,7 +163371,68 @@
         "shape": "L118_Unit",
         "detectionRange": 500,
         "threatRange": 17200,
-        "operators": {}
+        "operators": {
+            "Bahrain": [
+                1970,
+                2020
+            ],
+            "Oman": [
+                1970,
+                2020
+            ],
+            "Portugal": [
+                1970,
+                2020
+            ],
+            "Spain": [
+                1970,
+                2020
+            ],
+            "Thailand": [
+                1970,
+                2020
+            ],
+            "UK": [
+                1970,
+                2020
+            ],
+            "UnitedArabEmirates": [
+                1970,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1970,
+                2020
+            ],
+            "Australia": [
+                1970,
+                2020
+            ],
+            "TheNetherlands": [
+                1970,
+                2020
+            ],
+            "SouthKorea": [
+                1970,
+                2020
+            ],
+            "Brazil": [
+                1970,
+                2020
+            ],
+            "Morocco": [
+                1970,
+                2020
+            ],
+            "USA": [
+                1970,
+                2020
+            ],
+            "Ukraine": [
+                1970,
+                2020
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed4fa",
@@ -163342,6 +163444,27 @@
         "shape": "hq7_ln",
         "detectionRange": 8000,
         "threatRange": 12000,
-        "operators": {}
+        "operators": {
+            "USAFAggressors": [
+                1980,
+                2020
+            ],
+            "China": [
+                1980,
+                2020
+            ],
+            "Iran": [
+                1980,
+                2020
+            ],
+            "Pakistan": [
+                1980,
+                2020
+            ],
+            "UnitedNationsPeacekeepers": [
+                1980,
+                2020
+            ]
+        }
     }
 ]

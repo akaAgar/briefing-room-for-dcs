@@ -62,7 +62,7 @@ namespace BriefingRoom4DCS.Data.JSON
     public class Payload
     {
         public List<Pylon> pylons { get; set; }
-        public List<int> tasks { get; set; }
+        public List<int?> tasks { get; set; }
         public string name { get; set; }
         public string displayName { get; set; }
     }

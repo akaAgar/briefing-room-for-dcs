@@ -640,7 +640,12 @@
         "shape": "vap_mule",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5d2",
@@ -1013,7 +1018,120 @@
         "shape": "vap_mutt",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "Argentina": [
+                1950,
+                1990
+            ],
+            "Bahrain": [
+                1950,
+                1990
+            ],
+            "Brazil": [
+                1950,
+                1990
+            ],
+            "Canada": [
+                1950,
+                1990
+            ],
+            "Chile": [
+                1950,
+                1990
+            ],
+            "Denmark": [
+                1950,
+                1990
+            ],
+            "Egypt": [
+                1950,
+                1990
+            ],
+            "France": [
+                1950,
+                1990
+            ],
+            "Greece": [
+                1950,
+                1990
+            ],
+            "Indonesia": [
+                1950,
+                1990
+            ],
+            "Israel": [
+                1950,
+                1990
+            ],
+            "Jordan": [
+                1950,
+                1990
+            ],
+            "Kuwait": [
+                1950,
+                1990
+            ],
+            "Lebanon": [
+                1950,
+                1990
+            ],
+            "Libya": [
+                1950,
+                1990
+            ],
+            "Morocco": [
+                1950,
+                1990
+            ],
+            "TheNetherlands": [
+                1950,
+                1990
+            ],
+            "Pakistan": [
+                1950,
+                1990
+            ],
+            "Portugal": [
+                1950,
+                1990
+            ],
+            "SaudiArabia": [
+                1950,
+                1990
+            ],
+            "SouthKorea": [
+                1950,
+                1990
+            ],
+            "Spain": [
+                1950,
+                1990
+            ],
+            "Thailand": [
+                1950,
+                1990
+            ],
+            "Turkey": [
+                1950,
+                1990
+            ],
+            "UK": [
+                1950,
+                1990
+            ],
+            "USA": [
+                1950,
+                1990
+            ],
+            "Vietnam": [
+                1950,
+                1990
+            ],
+            "Yemen": [
+                1950,
+                1990
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5d4",
@@ -1025,7 +1143,120 @@
         "shape": "vap_mutt_gun",
         "detectionRange": 0,
         "threatRange": 5000,
-        "operators": {}
+        "operators": {
+            "Argentina": [
+                1950,
+                1990
+            ],
+            "Bahrain": [
+                1950,
+                1990
+            ],
+            "Brazil": [
+                1950,
+                1990
+            ],
+            "Canada": [
+                1950,
+                1990
+            ],
+            "Chile": [
+                1950,
+                1990
+            ],
+            "Denmark": [
+                1950,
+                1990
+            ],
+            "Egypt": [
+                1950,
+                1990
+            ],
+            "France": [
+                1950,
+                1990
+            ],
+            "Greece": [
+                1950,
+                1990
+            ],
+            "Indonesia": [
+                1950,
+                1990
+            ],
+            "Israel": [
+                1950,
+                1990
+            ],
+            "Jordan": [
+                1950,
+                1990
+            ],
+            "Kuwait": [
+                1950,
+                1990
+            ],
+            "Lebanon": [
+                1950,
+                1990
+            ],
+            "Libya": [
+                1950,
+                1990
+            ],
+            "Morocco": [
+                1950,
+                1990
+            ],
+            "TheNetherlands": [
+                1950,
+                1990
+            ],
+            "Pakistan": [
+                1950,
+                1990
+            ],
+            "Portugal": [
+                1950,
+                1990
+            ],
+            "SaudiArabia": [
+                1950,
+                1990
+            ],
+            "SouthKorea": [
+                1950,
+                1990
+            ],
+            "Spain": [
+                1950,
+                1990
+            ],
+            "Thailand": [
+                1950,
+                1990
+            ],
+            "Turkey": [
+                1950,
+                1990
+            ],
+            "UK": [
+                1950,
+                1990
+            ],
+            "USA": [
+                1950,
+                1990
+            ],
+            "Vietnam": [
+                1950,
+                1990
+            ],
+            "Yemen": [
+                1950,
+                1990
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5d6",
@@ -1578,7 +1809,108 @@
         "shape": "vap_m35_truck",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "Argentina": [
+                1950,
+                2000
+            ],
+            "Austria": [
+                1950,
+                2000
+            ],
+            "Brazil": [
+                1950,
+                2000
+            ],
+            "Canada": [
+                1950,
+                2000
+            ],
+            "Chile": [
+                1950,
+                2000
+            ],
+            "Denmark": [
+                1950,
+                2000
+            ],
+            "Egypt": [
+                1950,
+                2000
+            ],
+            "Georgia": [
+                1950,
+                2000
+            ],
+            "Greece": [
+                1950,
+                2000
+            ],
+            "Iran": [
+                1950,
+                2000
+            ],
+            "Israel": [
+                1950,
+                2000
+            ],
+            "Jordan": [
+                1950,
+                2000
+            ],
+            "Lebanon": [
+                1950,
+                2000
+            ],
+            "Morocco": [
+                1950,
+                2000
+            ],
+            "Norway": [
+                1950,
+                2000
+            ],
+            "Pakistan": [
+                1950,
+                2000
+            ],
+            "Portugal": [
+                1950,
+                2000
+            ],
+            "SouthKorea": [
+                1950,
+                2000
+            ],
+            "SaudiArabia": [
+                1950,
+                2000
+            ],
+            "Sweden": [
+                1950,
+                2000
+            ],
+            "Thailand": [
+                1950,
+                2000
+            ],
+            "Turkey": [
+                1950,
+                2000
+            ],
+            "Vietnam": [
+                1950,
+                2000
+            ],
+            "Venezuela": [
+                1950,
+                2000
+            ],
+            "USA": [
+                1950,
+                2000
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5d8",
@@ -1590,7 +1922,68 @@
         "shape": "vap_type63_mlrs",
         "detectionRange": 5000,
         "threatRange": 5000,
-        "operators": {}
+        "operators": {
+            "China": [
+                1960,
+                2020
+            ],
+            "Egypt": [
+                1960,
+                2020
+            ],
+            "Ethiopia": [
+                1960,
+                2020
+            ],
+            "Indonesia": [
+                1960,
+                2020
+            ],
+            "Iran": [
+                1960,
+                2020
+            ],
+            "Iraq": [
+                1960,
+                2020
+            ],
+            "Jordan": [
+                1960,
+                2020
+            ],
+            "NorthKorea": [
+                1960,
+                2020
+            ],
+            "Libya": [
+                1960,
+                2020
+            ],
+            "Pakistan": [
+                1960,
+                2020
+            ],
+            "SouthAfrica": [
+                1960,
+                2020
+            ],
+            "Syria": [
+                1960,
+                2020
+            ],
+            "Turkey": [
+                1960,
+                2020
+            ],
+            "Venezuela": [
+                1960,
+                2020
+            ],
+            "Vietnam": [
+                1960,
+                2020
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5da",
@@ -1602,7 +1995,20 @@
         "shape": "vap_vc_zil",
         "detectionRange": 5000,
         "threatRange": 500,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                1940,
+                1980
+            ],
+            "Vietnam": [
+                1940,
+                1980
+            ],
+            "China": [
+                1940,
+                1980
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5dc",
@@ -1614,7 +2020,20 @@
         "shape": "vap_zis_150",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                1940,
+                1980
+            ],
+            "Vietnam": [
+                1940,
+                1980
+            ],
+            "China": [
+                1940,
+                1980
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5de",
@@ -1987,7 +2406,20 @@
         "shape": "vap_zis_150_aa",
         "detectionRange": 5000,
         "threatRange": 7000,
-        "operators": {}
+        "operators": {
+            "Russia": [
+                1940,
+                1980
+            ],
+            "Vietnam": [
+                1940,
+                1980
+            ],
+            "China": [
+                1940,
+                1980
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5e0",
@@ -1999,7 +2431,12 @@
         "shape": "vap_vc_bicycle",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "Vietnam": [
+                1940,
+                1980
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5e2",
@@ -2012,7 +2449,12 @@
         "detectionRange": 0,
         "threatRangeMin": 30,
         "threatRange": 7000,
-        "operators": {}
+        "operators": {
+            "Vietnam": [
+                1940,
+                1980
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5e4",
@@ -2024,7 +2466,12 @@
         "shape": "vap_vc_bicycle_ak",
         "detectionRange": 5000,
         "threatRange": 500,
-        "operators": {}
+        "operators": {
+            "Vietnam": [
+                1940,
+                1980
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5e6",
@@ -2036,7 +2483,12 @@
         "shape": "vap_us_hooch_LP",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5e8",
@@ -2048,7 +2500,12 @@
         "shape": "vap_ammo_50cal_line",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5ea",
@@ -2060,7 +2517,12 @@
         "shape": "vap_ammo_50cal_pack",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5ec",
@@ -2072,7 +2534,12 @@
         "shape": "vap_barrels_line",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5ee",
@@ -2084,7 +2551,12 @@
         "shape": "vap_barrels",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5f0",
@@ -2096,7 +2568,12 @@
         "shape": "vap_ammo_box_pile",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5f2",
@@ -2108,7 +2585,12 @@
         "shape": "vap_ammo_box_wood_long",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5f4",
@@ -2120,7 +2602,12 @@
         "shape": "vap_ammo_box_wood_small",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5f6",
@@ -2132,7 +2619,12 @@
         "shape": "vap_barrel_red",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5f8",
@@ -2144,7 +2636,12 @@
         "shape": "vap_barrel_green",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5fa",
@@ -2156,7 +2653,12 @@
         "shape": "vap_mre_boxes",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5fc",
@@ -2168,7 +2670,12 @@
         "shape": "vap_mixed_cargo_1",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed5fe",
@@ -2180,7 +2687,12 @@
         "shape": "vap_mixed_cargo_2",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed600",
@@ -2192,7 +2704,12 @@
         "shape": "vap_watchtower",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed602",
@@ -2204,7 +2721,12 @@
         "shape": "vap_house_high",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed604",
@@ -2216,7 +2738,12 @@
         "shape": "vap_house_long",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed606",
@@ -2228,7 +2755,12 @@
         "shape": "vap_house_small",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed608",
@@ -2240,7 +2772,12 @@
         "shape": "vap_house_T",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed60a",
@@ -2252,7 +2789,12 @@
         "shape": "vap_house_tiny",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed60c",
@@ -2264,7 +2806,12 @@
         "shape": "vap_house1",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "ALL": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed60e",
@@ -2276,7 +2823,12 @@
         "shape": "vap_us_hooch_radio",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed610",
@@ -2288,7 +2840,12 @@
         "shape": "vap_us_hooch_closed",
         "detectionRange": 0,
         "threatRange": 0,
-        "operators": {}
+        "operators": {
+            "USA": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed612",
@@ -2300,7 +2857,12 @@
         "shape": "vap_vc_bunker_single",
         "detectionRange": 0,
         "threatRange": 800,
-        "operators": {}
+        "operators": {
+            "Vietnam": [
+                1950,
+                1970
+            ]
+        }
     },
     {
         "_id": "66508fa9eaf4d629400ed614",
@@ -2312,6 +2874,11 @@
         "shape": "vap_vc_mg_nest",
         "detectionRange": 1000,
         "threatRange": 500,
-        "operators": {}
+        "operators": {
+            "Vietnam": [
+                1950,
+                1970
+            ]
+        }
     }
 ]
